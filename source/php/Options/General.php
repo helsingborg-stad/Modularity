@@ -26,6 +26,7 @@ class General
 
     public function generalOptionsPageContent()
     {
-        return "Hej";
+        $templatePath = \Modular\Helper\Wp::getTemplate('options', 'options');
+        require_once $templatePath;
     }
 }
