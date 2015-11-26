@@ -33,7 +33,7 @@ gulp.task('sass-dev', function() {
 // Concatenate & Minify JS
 gulp.task('scripts-dist', function() {
     return gulp.src('source/js/**/*.js')
-            .pipe(concat('modularity.js'))
+            .pipe(concat('modularity.dev.js'))
             .pipe(gulp.dest('dist/js'))
             .pipe(rename('modularity.min.js'))
             .pipe(uglify())

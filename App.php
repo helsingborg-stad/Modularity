@@ -7,6 +7,7 @@ class App
     public function __construct()
     {
         add_action('init', array($this, 'includeAcf'), 11);
+        add_action('admin_enqueue_scripts', array($this, 'enqueu'));
 
         new Options\General();
     }
@@ -22,7 +23,7 @@ class App
         if (!is_plugin_active('advanced-custom-fields-pro/acf.php')
             && !is_plugin_active('advanced-custom-fields/acf.php')
         ) {
-            require_once MODULAR_PATH . 'source/acf/acf.php';
+            require_once MODULARITY_PATH . 'source/acf/acf.php';
 
             add_action('admin_notices', function () {
                 echo '<div class="notice error"><p>' .
@@ -30,5 +31,16 @@ class App
                      '</p></div>';
             });
         }
+    }
+
+    public function enqueu()
+    {
+        // Style
+        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.min.css', false, '1.0.0');
+        wp_enqueue_style('modularity');
+
+        // Scripts
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.min.js', false, '1.0.0');
+        wp_enqueue_script('modularity');
     }
 }
