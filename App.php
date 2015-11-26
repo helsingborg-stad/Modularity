@@ -40,7 +40,7 @@ class App
         wp_enqueue_style('modularity');
 
         // Scripts
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.min.js', false, '1.0.0');
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.min.js', false, '1.0.0', true);
         wp_enqueue_script('modularity');
     }
 }
