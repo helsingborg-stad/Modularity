@@ -1,15 +1,7 @@
-<div id="submitdiv" class="postbox">
-    <h3><span>Publish</span></h3>
-    <div class="inside">
-        <div id="submitpost" class="submitbox">
-            <div id="major-publishing-actions">
-                <div id="publishing-action">
-                    <span class="spinner"></span>
-                    <input type="hidden" value="Publish" id="original_publish" name="original_publish">
-                    <input type="submit" value="Publish" class="button button-primary button-large" id="publish" name="publish">
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div>
+<div id="major-publishing-actions" style="margin: -7px -12px -12px;">
+    <div id="publishing-action">
+        <span class="spinner"></span>
+        <input type="submit" value="Save" class="button button-primary button-large" id="publish" name="publish">
     </div>
+    <div class="clear"></div>
 </div>

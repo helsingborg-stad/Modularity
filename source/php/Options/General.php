@@ -4,14 +4,20 @@ namespace Modularity\Options;
 
 class General
 {
+    protected $screenHook = null;
+
     public function __construct()
     {
-        add_action('admin_menu', array($this, 'generalOptionsPage'));
+        add_action('admin_menu', array($this, 'registerGeneralOptionsPage'));
     }
 
-    public function generalOptionsPage()
+    /**
+     * The setup of the general options page
+     * @return void
+     */
+    public function registerGeneralOptionsPage()
     {
-        add_menu_page(
+        $this->screenHook = add_menu_page(
             $page_title = __('Modularity options', 'modular'),
             $menu_title = __('Modularity', 'modular'),
             $capability = 'manage_options',
@@ -21,12 +27,81 @@ class General
             $position = 100
         );
 
-        return true;
+        // Setup meta box support
+        add_action('load-' . $this->screenHook, array($this, 'setupMetaBoxSupport'));
+        add_action('admin_footer-' . $this->screenHook, array($this, 'printScripts'));
+
+        // Hook to add the metaboxes
+        add_action('add_meta_boxes_' . $this->screenHook, array($this, 'addMetaBoxes'));
     }
 
+    /**
+     * Adds meta boxes to the general options page
+     * @return void
+     */
+    public function addMetaBoxes()
+    {
+        // Publish
+        add_meta_box(
+            'modularity-mb-publish',
+            __('Save options', 'modularity'),
+            function () {
+                $templatePath = \Modularity\Helper\Wp::getTemplate('publish', 'options/partials');
+                require_once $templatePath;
+            },
+            $this->screenHook,
+            'side'
+        );
+
+        // Core options
+        add_meta_box(
+            'modularity-mb-core-options',
+            __('Core options', 'modularity'),
+            function () {
+                $templatePath = \Modularity\Helper\Wp::getTemplate('core-options', 'options/partials');
+                require_once $templatePath;
+            },
+            $this->screenHook,
+            'normal'
+        );
+    }
+
+    /**
+     * The contents of the general options page
+     * @return void
+     */
     public function generalOptionsPageContent()
     {
+        wp_enqueue_script('postbox');
+
+        // Load template file
         $templatePath = \Modularity\Helper\Wp::getTemplate('options', 'options');
         require_once $templatePath;
+    }
+
+    /**
+     * Add metabox support to the options page
+     * @return void
+     */
+    public function setupMetaBoxSupport()
+    {
+        do_action('add_meta_boxes_' . $this->screenHook, null);
+        do_action('add_meta_boxes', $this->screenHook, null);
+
+        add_screen_option('layout_columns', array('max' => 2, 'default' => 2));
+    }
+
+    /**
+     * Prints inline scripts to admin footer
+     * @return void
+     */
+    public function printScripts()
+    {
+        echo "<script>jQuery(document).ready(function($){
+                postboxes.add_postbox_toggles(pagenow);
+                $('#publish').on('click', function () {
+                    $(this).siblings('.spinner').css('visibility', 'visible');
+                });
+              });</script>";
     }
 }
