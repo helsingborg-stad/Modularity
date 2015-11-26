@@ -1,6 +1,6 @@
 <?php
 
-namespace Modular;
+namespace Modularity;
 
 class App
 {
@@ -26,7 +26,7 @@ class App
 
             add_action('admin_notices', function () {
                 echo '<div class="notice error"><p>' .
-                        __('To get the full expirience of the <strong>Modular</strong> plugin, please activate the <a href="http://www.advancedcustomfields.com/pro/" target="_blank">Advanced Custom Fields Pro</a> plugin.', 'modular') .
+                        __('To get the full expirience of the <strong>Modularity</strong> plugin, please activate the <a href="http://www.advancedcustomfields.com/pro/" target="_blank">Advanced Custom Fields Pro</a> plugin.', 'modular') .
                      '</p></div>';
             });
         }

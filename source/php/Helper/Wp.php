@@ -1,6 +1,6 @@
 <?php
 
-namespace Modular\Helper;
+namespace Modularity\Helper;
 
 class Wp
 {
@@ -9,14 +9,14 @@ class Wp
         $paths = apply_filters('Evaluate/TemplatePath', array(
             get_stylesheet_directory() . '/templates/',
             get_template_directory() . '/templates/',
-            MODULAR_PATH . 'templates/',
+            MODULARITY_PATH . 'templates/',
         ));
 
-        $slug = apply_filters('Modular/TemplatePathSlug', $slug ? $slug . '/' : '', $prefix);
+        $slug = apply_filters('Modularity/TemplatePathSlug', $slug ? $slug . '/' : '', $prefix);
         $prefix = $prefix ? '-'.$prefix : '';
 
         foreach ($paths as $path) {
-            $file = $path . $slug . 'modular' . $prefix.'.php';
+            $file = $path . $slug . 'modularity' . $prefix.'.php';
 
             if (file_exists($file)) {
                 return $file;
@@ -24,7 +24,7 @@ class Wp
         }
 
         if ($error) {
-            trigger_error('Modular: Template ' . $slug . 'evaluate' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true), E_USER_WARNING);
+            trigger_error('Modularity: Template ' . $slug . 'evaluate' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true), E_USER_WARNING);
         }
     }
 
