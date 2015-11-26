@@ -17,19 +17,30 @@ abstract class Options
      * @param  integer     $position   Menu position
      * @return void
      */
-    public function register($pageTitle, $menuTitle, $capability, $menuSlug, $iconUrl = null, $position = null)
+    public function register($pageTitle, $menuTitle, $capability, $menuSlug, $parent = null, $iconUrl = null, $position = null)
     {
-        add_action('admin_menu', function () use ($pageTitle, $menuTitle, $capability, $menuSlug, $iconUrl, $position) {
+        add_action('admin_menu', function () use ($parent, $pageTitle, $menuTitle, $capability, $menuSlug, $iconUrl, $position) {
             // Add the menu page
-            $this->screenHook = add_menu_page(
-                $pageTitle,
-                $menuTitle,
-                $capability,
-                $menuSlug,
-                array($this, 'optionPageTemplate'),
-                $iconUrl,
-                $position
-            );
+            if (!$parent) {
+                $this->screenHook = add_menu_page(
+                    $pageTitle,
+                    $menuTitle,
+                    $capability,
+                    $menuSlug,
+                    array($this, 'optionPageTemplate'),
+                    $iconUrl,
+                    $position
+                );
+            } else {
+                $this->screenHook = add_submenu_page(
+                    $parent,
+                    $pageTitle,
+                    $menuTitle,
+                    $capability,
+                    $menuSlug,
+                    array($this, 'optionPageTemplate')
+                );
+            }
 
             // Setup meta box support
             add_action('load-' . $this->screenHook, array($this, 'setupMetaBoxSupport'));
@@ -54,7 +65,8 @@ abstract class Options
      */
     public function save()
     {
-        var_dump("GOD SAVE THE DATA", $_POST);
+        $options = (isset($_POST['modularity-options'])) ? $_POST['modularity-options'] : array();
+        var_dump("GOD SAVE THE DATA", $options);
     }
 
     /**
