@@ -13,7 +13,7 @@
 define('MODULARITY_PATH', plugin_dir_path(__FILE__));
 define('MODULARITY_URL', plugins_url('', __FILE__));
 
-define('MODULARITY_TEMPLATE_PATH', MODULARITY_PATH . 'templates');
+define('MODULARITY_TEMPLATE_PATH', MODULARITY_PATH . 'templates/');
 
 load_plugin_textdomain('modular', false, plugin_basename(dirname(__FILE__)) . '/languages');
 
