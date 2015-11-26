@@ -36,6 +36,23 @@ class General
     }
 
     /**
+     * The contents of the general options page
+     * @return void
+     */
+    public function generalOptionsPageContent()
+    {
+        if (isset($_POST['action']) && $_POST['action'] == 'modularity-options' && wp_verify_nonce($_POST['_wpnonce'], 'modularity-options')) {
+            $this->save();
+        }
+
+        wp_enqueue_script('postbox');
+
+        // Load template file
+        $templatePath = \Modularity\Helper\Wp::getTemplate('options', 'options');
+        require_once $templatePath;
+    }
+
+    /**
      * Adds meta boxes to the general options page
      * @return void
      */
@@ -67,16 +84,12 @@ class General
     }
 
     /**
-     * The contents of the general options page
-     * @return void
+     * Saves the options
+     * @return boolean True/false based on result
      */
-    public function generalOptionsPageContent()
+    protected function save()
     {
-        wp_enqueue_script('postbox');
-
-        // Load template file
-        $templatePath = \Modularity\Helper\Wp::getTemplate('options', 'options');
-        require_once $templatePath;
+        var_dump("GOD SAVE THE DATA", $_POST);
     }
 
     /**
