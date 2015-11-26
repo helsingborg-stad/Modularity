@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Modularity
  * Plugin URI: -
- * Description: Module system for post types
+ * Description: Modular component system for WordPress
  * Version: 0.1
  * Author: Kristoffer Svanmark
  * Author URI: -
