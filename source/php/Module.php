@@ -11,11 +11,15 @@ class Module
 
     public function __construct()
     {
-        self::$enabled = $this->getEnabled();
+        self::$enabled = self::getEnabled();
         $this->initBundledModules();
     }
 
-    public function getEnabled()
+    /**
+     * Get enabled module id's
+     * @return array
+     */
+    public static function getEnabled()
     {
         $options = get_option('modularity-options');
 
@@ -40,6 +44,10 @@ class Module
         }
     }
 
+    /**
+     * Check if the module should be displayed in the admin menu
+     * @return boolean
+     */
     public function showInAdminMenu()
     {
         $options = get_option('modularity-options');

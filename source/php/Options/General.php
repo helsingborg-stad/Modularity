@@ -48,6 +48,38 @@ class General extends \Modularity\Options
 
         // Modules
         add_meta_box(
+            'modularity-mb-post-types',
+            __('Post types', 'modularity'),
+            function () {
+                global $options;
+                $enabled = isset($options['enabled-post-types']) && is_array($options['enabled-post-types']) ? $options['enabled-post-types'] : array();
+
+                $postTypes = array_filter(get_post_types(), function ($item) {
+                    $disallowed = array_merge(
+                        array_keys(\Modularity\Module::$available),
+                        array('attachment', 'revision', 'nav_menu_item')
+                    );
+
+                    if (in_array($item, $disallowed)) {
+                        return false;
+                    }
+
+                    if (substr($item, 0, 4) == 'acf-') {
+                        return false;
+                    }
+
+                    return true;
+                });
+
+                $templatePath = \Modularity\Helper\Wp::getTemplate('post-types', 'options/partials');
+                require_once $templatePath;
+            },
+            $this->screenHook,
+            'normal'
+        );
+
+        // Modules
+        add_meta_box(
             'modularity-mb-modules',
             __('Modules', 'modularity'),
             function () {

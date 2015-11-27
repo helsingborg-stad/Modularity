@@ -1,3 +1,8 @@
+<p>
+    Enable and/or disable modules.<br>
+    <span style="font-style:italic;">Note: You will not lose any data from disabling a module. However the modules will not be displayed on your site.</span>
+</p>
+
 <div class="modularity-table-metabox-wrapper">
     <table class="modularity-table">
         <thead>
