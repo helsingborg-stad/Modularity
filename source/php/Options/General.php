@@ -46,5 +46,20 @@ class General extends \Modularity\Options
             $this->screenHook,
             'normal'
         );
+
+        // Modules
+        add_meta_box(
+            'modularity-mb-modules',
+            __('Modules', 'modularity'),
+            function () {
+                $available = \Modularity\Module::$available;
+                $enabled = \Modularity\Module::$enabled;
+
+                $templatePath = \Modularity\Helper\Wp::getTemplate('modules', 'options/partials');
+                require_once $templatePath;
+            },
+            $this->screenHook,
+            'normal'
+        );
     }
 }
