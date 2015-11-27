@@ -10,6 +10,10 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'enqueu'));
 
         new Options\General();
+
+        new Module();
+
+        do_action('modularity\init');
     }
 
     /**
