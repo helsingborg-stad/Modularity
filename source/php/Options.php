@@ -4,6 +4,16 @@ namespace Modularity;
 
 abstract class Options
 {
+    /**
+     * Will be set to menu_slug in the register function
+     * @var string
+     */
+    protected $slug = null;
+
+    /**
+     * The hook name to use with the WP Load action (load-{$screenHook})
+     * @var string
+     */
     protected $screenHook = null;
 
     /**
@@ -42,8 +52,12 @@ abstract class Options
                 );
             }
 
+            // Set the slug
+            $this->slug = $menuSlug;
+
             // Setup meta box support
             add_action('load-' . $this->screenHook, array($this, 'setupMetaBoxSupport'));
+            add_action('load-' . $this->screenHook, array($this, 'save'));
 
             // Hook to add the metaboxes
             add_action('add_meta_boxes_' . $this->screenHook, array($this, 'addMetaBoxes'));
@@ -60,13 +74,46 @@ abstract class Options
     }
 
     /**
+     * Validates post save
+     * @return boolean
+     */
+    public function isValidPostSave()
+    {
+        return isset($_POST['action']) && $_POST['action'] == 'modularity-options' && wp_verify_nonce($_POST['_wpnonce'], 'modularity-options');
+    }
+
+    /**
      * Saves the options
      * @return void
      */
     public function save()
     {
+        if (!$this->isValidPostSave()) {
+            return;
+        }
+
+        // Get the options
         $options = (isset($_POST['modularity-options'])) ? $_POST['modularity-options'] : array();
-        var_dump("GOD SAVE THE DATA", $options);
+
+        // Update the options
+        update_option($this->slug, $options);
+
+        // All done, send notice
+        $this->notice(__('Options saved successfully', 'modularity'), ['updated']);
+    }
+
+    /**
+     * Sends a notice to the user
+     * @param  string $message The noticce message
+     * @param  array  $class   List of DOM classes to use on the notice
+     * @return void
+     */
+    protected function notice($message, $class = array())
+    {
+        add_action('admin_notices', function () use ($message, $class) {
+            $class = implode(' ', $class);
+            echo '<div class="notice ' . $class . '"><p>' . $message . '</p></div>';
+        });
     }
 
     /**
@@ -87,11 +134,10 @@ abstract class Options
      */
     public function optionPageTemplate()
     {
-        if (isset($_POST['action']) && $_POST['action'] == 'modularity-options' && wp_verify_nonce($_POST['_wpnonce'], 'modularity-options')) {
-            $this->save();
-        }
-
         wp_enqueue_script('postbox');
+
+        global $options;
+        $options = get_option($this->slug);
 
         // Load template file
         require_once MODULARITY_TEMPLATE_PATH . 'options/modularity-options.php';
