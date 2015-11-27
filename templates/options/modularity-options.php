@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="wrap" id="modularity-options">
 
     <h2><?php esc_html_e('Modularity', 'modularity'); ?></h2>
 
