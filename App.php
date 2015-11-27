@@ -20,6 +20,7 @@ class App
 
         new Options\General();
         new Module();
+        new Editor();
 
         do_action('modularity\init');
     }
