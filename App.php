@@ -48,6 +48,10 @@ class App
 
     public function enqueu()
     {
+        if (!$this->isModularityPage()) {
+            return;
+        }
+
         // Style
         wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.min.css', false, '1.0.0');
         wp_enqueue_style('modularity');
@@ -55,6 +59,17 @@ class App
         // Scripts
         wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.min.js', false, '1.0.0', true);
         wp_enqueue_script('modularity');
+    }
+
+    public function isModularityPage()
+    {
+        global $current_screen;
+
+        if (strpos($current_screen->id, 'modularity') === false) {
+            return false;
+        }
+
+        return true;
     }
 
     public function addAdminMenuPage()
