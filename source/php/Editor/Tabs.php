@@ -11,6 +11,11 @@ class Tabs
         add_action('in_admin_header', array($this, 'output'));
     }
 
+    /**
+     * Outputs the tabbar html
+     * @param  integer $activeIndex Current active tab index
+     * @return void
+     */
     public function output($activeIndex = 0)
     {
         if (!$this->shouldOutput()) {
@@ -33,12 +38,21 @@ class Tabs
         echo '</h2>';
     }
 
+    /**
+     * Add a tab to the tabbar
+     * @param string $title The tab title text
+     * @param string $url   The target url
+     */
     public function add($title, $url)
     {
         $this->tabs[$title] = $url;
         return true;
     }
 
+    /**
+     * Check if tabs should be outputted
+     * @return boolean
+     */
     protected function shouldOutput()
     {
         global $current_screen;
@@ -58,6 +72,6 @@ class Tabs
             'edit'
         ));
 
-        return $validPostType && $validAction;
+        return ($validPostType && $validAction) || $current_screen->id == 'admin_page_modularity-editor';
     }
 }
