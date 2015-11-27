@@ -11,7 +11,19 @@ class Module
 
     public function __construct()
     {
+        self::$enabled = $this->getEnabled();
         $this->initBundledModules();
+    }
+
+    public function getEnabled()
+    {
+        $options = get_option('modularity-options');
+
+        if (!isset($options['enabled-modules'])) {
+            return array();
+        }
+
+        return $options['enabled-modules'];
     }
 
     /**
@@ -26,6 +38,17 @@ class Module
             $class = '\Modularity\Module\\' . pathinfo($filename)['filename'];
             new $class;
         }
+    }
+
+    public function showInAdminMenu()
+    {
+        $options = get_option('modularity-options');
+
+        if (isset($options['show-modules-in-menu']) && $options['show-modules-in-menu'] == 'on') {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -61,12 +84,13 @@ class Module
             'description'          => __($description, 'modularity'),
             'public'               => false,
             'publicly_queriable'   => false,
-            'show_ui'              => true,
-            'show_in_nav_menus'    => true,
+            'show_ui'              => $this->showInAdminMenu(),
+            'show_in_nav_menus'    => $this->showInAdminMenu(),
             'show_in_menu'         => 'modularity',
             'has_archive'          => false,
             'rewrite'              => false,
             'hierarchical'         => false,
+            'menu_position'        => 100,
             'exclude_from_search'  => true
         );
 
@@ -83,9 +107,11 @@ class Module
         /**
          * Register the post type on WP Init
          */
-        add_action('init', function () use ($postTypeSlug, $args) {
-            register_post_type($postTypeSlug, $args);
-        });
+        if (in_array($postTypeSlug, self::$enabled)) {
+            add_action('init', function () use ($postTypeSlug, $args) {
+                register_post_type($postTypeSlug, $args);
+            });
+        }
 
         /**
          * Add to available modules

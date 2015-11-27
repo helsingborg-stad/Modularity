@@ -8,7 +8,7 @@
         <tbody>
         <?php foreach ($available as $id => $module) : ?>
             <tr>
-                <td class="checkbox"><input type="checkbox" name="<?php echo $this->getFieldName('enabled-modules'); ?>" value="<?php echo $id; ?>"></td>
+                <td class="checkbox"><input type="checkbox" name="<?php echo $this->getFieldName('enabled-modules', true); ?>" value="<?php echo $id; ?>" <?php checked(in_array($id, $enabled) ? 'on' : null, 'on', true); ?>></td>
                 <td><strong><?php echo $module['labels']['name']; ?></strong></td>
                 <td><?php echo $module['description']; ?></td>
             </tr>

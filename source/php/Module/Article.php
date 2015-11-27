@@ -8,5 +8,6 @@ class Article extends \Modularity\Module
     {
         $this->register('article', 'Article', 'Articles', 'Outputs a full article', array('title', 'editor'));
         $this->register('test', 'Gallery', 'Galleries', 'Outputs a gallery with images', array('title', 'editor'));
+        $this->register('hej', 'Hej', 'Hejs', 'Säg hej', array('title', 'editor'));
     }
 }

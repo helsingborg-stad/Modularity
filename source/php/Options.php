@@ -27,37 +27,25 @@ abstract class Options
      * @param  integer     $position   Menu position
      * @return void
      */
-    public function register($pageTitle, $menuTitle, $capability, $menuSlug, $parent = null, $iconUrl = null, $position = null)
+    public function register($pageTitle, $menuTitle, $capability, $menuSlug, $iconUrl = null, $position = null)
     {
-        add_action('admin_menu', function () use ($parent, $pageTitle, $menuTitle, $capability, $menuSlug, $iconUrl, $position) {
+        add_action('admin_menu', function () use ($pageTitle, $menuTitle, $capability, $menuSlug, $iconUrl, $position) {
             // Add the menu page
-            if (!$parent) {
-                $this->screenHook = add_menu_page(
-                    $pageTitle,
-                    $menuTitle,
-                    $capability,
-                    $menuSlug,
-                    array($this, 'optionPageTemplate'),
-                    $iconUrl,
-                    $position
-                );
-            } else {
-                $this->screenHook = add_submenu_page(
-                    $parent,
-                    $pageTitle,
-                    $menuTitle,
-                    $capability,
-                    $menuSlug,
-                    array($this, 'optionPageTemplate')
-                );
-            }
+            $this->screenHook = add_submenu_page(
+                'modularity',
+                $pageTitle,
+                $menuTitle,
+                $capability,
+                $menuSlug,
+                array($this, 'optionPageTemplate')
+            );
 
             // Set the slug
             $this->slug = $menuSlug;
 
             // Setup meta box support
-            add_action('load-' . $this->screenHook, array($this, 'setupMetaBoxSupport'));
-            add_action('load-' . $this->screenHook, array($this, 'save'));
+            add_action('load-' . $this->screenHook, array($this, 'save'), 1);
+            add_action('load-' . $this->screenHook, array($this, 'setupMetaBoxSupport'), 2);
 
             // Hook to add the metaboxes
             add_action('add_meta_boxes_' . $this->screenHook, array($this, 'addMetaBoxes'));
@@ -93,6 +81,7 @@ abstract class Options
         }
 
         // Get the options
+        global $options;
         $options = (isset($_POST['modularity-options'])) ? $_POST['modularity-options'] : array();
 
         // Update the options
@@ -147,11 +136,16 @@ abstract class Options
      * Get input field name (modularitu-options[$name])
      * The $name will be the options key later on
      *
-     * @param  string $name Desired field name
-     * @return string       The full field name
+     * @param  string $name      Desired field name
+     * @param  boolean $multiple Should the field accept multiple values (array)
+     * @return string            The full field name
      */
-    protected function getFieldName($name)
+    protected function getFieldName($name, $multiple = false)
     {
-        return 'modularity-options[' . $name . ']';
+        if (!$multiple) {
+            return 'modularity-options[' . $name . ']';
+        }
+
+        return 'modularity-options[' . $name . '][]';
     }
 }
