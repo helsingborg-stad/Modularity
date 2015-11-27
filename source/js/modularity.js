@@ -1,5 +1,8 @@
 // Initialize postboxes
-postboxes.add_postbox_toggles(pagenow);
+
+if (typeof postboxes !== 'undefined') {
+    postboxes.add_postbox_toggles(pagenow);
+}
 
 (function($){
 
