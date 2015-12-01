@@ -81,8 +81,8 @@ abstract class Options
         }
 
         // Get the options
-        global $options;
-        $options = (isset($_POST['modularity-options'])) ? $_POST['modularity-options'] : array();
+        global $modularityOptions;
+        $modularityOptions = (isset($_POST['modularity-options'])) ? $_POST['modularity-options'] : array();
 
         // Update the options
         update_option($this->slug, $options);
@@ -125,8 +125,8 @@ abstract class Options
     {
         wp_enqueue_script('postbox');
 
-        global $options;
-        $options = get_option($this->slug);
+        global $modularityOptions;
+        $modularityOptions = get_option($this->slug);
 
         // Load template file
         require_once MODULARITY_TEMPLATE_PATH . 'options/modularity-options.php';
