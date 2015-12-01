@@ -43,7 +43,9 @@ if (typeof postboxes !== 'undefined') {
         accept: '.modularity-js-draggable',
         hoverClass: 'modularity-state-droppable',
         drop: function(event, ui) {
-            $(this).html("DROPPED");
+            var module = ui.draggable;
+
+            $(this).append('<div>' + module.find('.modularity-module-name').text() + '</div>');
         }
     });
 
