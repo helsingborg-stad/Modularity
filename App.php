@@ -46,6 +46,10 @@ class App
         }
     }
 
+    /**
+     * Enqueues scripts and styles
+     * @return void
+     */
     public function enqueu()
     {
         if (!$this->isModularityPage()) {
@@ -59,6 +63,12 @@ class App
         // Scripts
         wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.min.js', false, '1.0.0', true);
         wp_enqueue_script('modularity');
+
+        // If editor
+        if (isset($_GET['page']) && $_GET['page'] == 'modularity-editor') {
+            wp_enqueue_script('jquery-ui-sortable');
+            wp_enqueue_script('jquery-ui-droppable');
+        }
     }
 
     public function isModularityPage()

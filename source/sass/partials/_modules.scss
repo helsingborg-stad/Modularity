@@ -13,6 +13,7 @@
     box-sizing: border-box;
     display: inline-block;
     width: 45%;
+    max-width: 130px;
     text-align: center;
     padding: 10px;
     margin: 5px;
@@ -55,4 +56,27 @@
     svg * {
         fill: #4D4D4D !important;
     }
+}
+
+.modularity-js-droppable {
+    box-sizing: border-box;
+    position: relative;
+    min-height: 200px;
+    border-radius: 10px;
+
+    &:empty:after {
+        display: block;
+        content: attr(data-empty);
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 13pt;
+        color: #999;
+    }
+}
+
+.modularity-state-droppable {
+    border: 3px dashed #999;
 }

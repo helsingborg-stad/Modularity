@@ -6,6 +6,12 @@ class Editor extends \Modularity\Options
 {
     public function __construct()
     {
+        global $post;
+
+        if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
+            $post = get_post($_GET['id']);
+        }
+
         add_action('admin_head', array($this, 'registerTabs'));
         $this->registerEditorPage();
     }
@@ -17,10 +23,6 @@ class Editor extends \Modularity\Options
     public function registerTabs()
     {
         global $post;
-
-        if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
-            $post = get_post($_GET['id']);
-        }
 
         if ($post) {
             $tabs = new \Modularity\Editor\Tabs();
@@ -84,5 +86,47 @@ class Editor extends \Modularity\Options
             $this->screenHook,
             'side'
         );
+
+        $this->addSidebarsMetaBoxes();
+    }
+
+    public function addSidebarsMetaBoxes()
+    {
+        global $wp_registered_sidebars;
+
+        foreach ($wp_registered_sidebars as $sidebar) {
+            $this->sidebarMetaBox($sidebar);
+        }
+    }
+
+    public function sidebarMetaBox($sidebar)
+    {
+        add_meta_box(
+            'modularity-mb-' . $sidebar['id'],
+            $sidebar['name'],
+            array($this, 'metaBoxSidebar'),
+            $this->screenHook,
+            'normal',
+            'low',
+            array('sidebar' => $sidebar)
+        );
+    }
+
+    public function metaBoxSidebar($post, $args)
+    {
+        //var_dump($args['args']['sidebar']);
+
+        $templatePath = \Modularity\Helper\Wp::getTemplate('sidebar-drop-area', 'editor');
+        include $templatePath;
+    }
+
+    public function save()
+    {
+        if (!$this->isValidPostSave()) {
+            return;
+        }
+
+        var_dump("SAVE IT GODDAMIT");
+        exit;
     }
 }

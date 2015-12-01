@@ -29,4 +29,22 @@ if (typeof postboxes !== 'undefined') {
         return true;
     });
 
+    // Editor
+    $('.modularity-js-draggable').draggable({
+        appendTo: 'body',
+        containment: 'window',
+        scroll: false,
+        helper: 'clone',
+        revert: 'invalid',
+        revertDuration: 200
+    });
+
+    $('.modularity-js-droppable').droppable({
+        accept: '.modularity-js-draggable',
+        hoverClass: 'modularity-state-droppable',
+        drop: function(event, ui) {
+            $(this).html("DROPPED");
+        }
+    });
+
 })(jQuery);
