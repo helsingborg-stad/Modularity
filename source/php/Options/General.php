@@ -7,7 +7,7 @@ class General extends \Modularity\Options
     public function __construct()
     {
         $this->register(
-            $pageTitle = __('Options'),
+            $pageTitle = __('Modularity Options'),
             $menuTitle = __('Options'),
             $capability = 'manage_options',
             $menuSlug = 'modularity-options',
