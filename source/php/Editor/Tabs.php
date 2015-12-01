@@ -16,7 +16,7 @@ class Tabs
      * @param  integer $activeIndex Current active tab index
      * @return void
      */
-    public function output($activeIndex = 0)
+    public function output()
     {
         if (!$this->shouldOutput()) {
             return false;
@@ -24,15 +24,12 @@ class Tabs
 
         echo '<h2 class="nav-tab-wrapper">';
 
-        $index = 0;
         foreach ($this->tabs as $tab => $url) {
-            if ($activeIndex == $index) {
+            if (strpos($url, $_SERVER['REQUEST_URI']) > -1) {
                 echo '<a href="' . $url . '" class="nav-tab nav-tab-active">' . $tab . '</a>';
             } else {
                 echo '<a href="' . $url . '" class="nav-tab">' . $tab . '</a>';
             }
-
-            $index++;
         }
 
         echo '</h2>';
