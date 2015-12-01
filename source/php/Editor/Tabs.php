@@ -22,10 +22,10 @@ class Tabs
             return false;
         }
 
-        echo '<h2 class="nav-tab-wrapper">';
+        echo '<h2 class="nav-tab-wrapper" id="modularity-tabs">';
 
         foreach ($this->tabs as $tab => $url) {
-            if (strpos($url, $_SERVER['REQUEST_URI']) > -1) {
+            if (strpos($url, $_SERVER['REQUEST_URI']) !== false || (strpos($_SERVER['REQUEST_URI'], 'post-new.php') !== false && strpos($url, 'post.php') !== false)) {
                 echo '<a href="' . $url . '" class="nav-tab nav-tab-active">' . $tab . '</a>';
             } else {
                 echo '<a href="' . $url . '" class="nav-tab">' . $tab . '</a>';

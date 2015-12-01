@@ -65,11 +65,13 @@ class App
     {
         global $current_screen;
 
-        if (strpos($current_screen->id, 'modularity') === false) {
-            return false;
+        $result = true;
+
+        if (strpos($current_screen->id, 'modularity') === false && ($current_screen->action != 'add' && (isset($_GET['action']) && $_GET['action'] != 'edit')) && $current_screen->base != 'post') {
+            $result = false;
         }
 
-        return true;
+        return $result;
     }
 
     public function addAdminMenuPage()
