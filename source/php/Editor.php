@@ -90,6 +90,9 @@ class Editor extends \Modularity\Options
         $this->addSidebarsMetaBoxes();
     }
 
+    /**
+     * Loops registered sidebars and creates metaboxes for them
+     */
     public function addSidebarsMetaBoxes()
     {
         global $wp_registered_sidebars;
@@ -99,6 +102,11 @@ class Editor extends \Modularity\Options
         }
     }
 
+    /**
+     * Create metabox for sidebars
+     * @param  array $sidebar The sidebar args
+     * @return void
+     */
     public function sidebarMetaBox($sidebar)
     {
         add_meta_box(
@@ -112,6 +120,12 @@ class Editor extends \Modularity\Options
         );
     }
 
+    /**
+     * The content for sidebar metabox
+     * @param  array $post
+     * @param  array $args The metabox args
+     * @return void
+     */
     public function metaBoxSidebar($post, $args)
     {
         //var_dump($args['args']['sidebar']);
