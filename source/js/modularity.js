@@ -1,3 +1,4 @@
+var Modularity = Modularity || {};
 
 // Initialize postboxes
 if (typeof postboxes !== 'undefined') {
@@ -29,24 +30,5 @@ if (typeof postboxes !== 'undefined') {
         return true;
     });
 
-    // Editor
-    $('.modularity-js-draggable').draggable({
-        appendTo: 'body',
-        containment: 'window',
-        scroll: false,
-        helper: 'clone',
-        revert: 'invalid',
-        revertDuration: 200
-    });
-
-    $('.modularity-js-droppable').droppable({
-        accept: '.modularity-js-draggable',
-        hoverClass: 'modularity-state-droppable',
-        drop: function(event, ui) {
-            var module = ui.draggable;
-
-            $(this).append('<div>' + module.find('.modularity-module-name').text() + '</div>');
-        }
-    });
 
 })(jQuery);

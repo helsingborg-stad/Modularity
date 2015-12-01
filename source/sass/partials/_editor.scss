@@ -1,3 +1,47 @@
+
+.modularity-sidebar-area {
+    counter-reset: int;
+
+    li {
+        counter-increment: int;
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .modularity-module-name:before {
+            $size: 20px;
+
+            display: inline-block;
+            vertical-align: middle;
+            content: counter(int);
+            width: $size;
+            height: $size;
+            margin-right: 10px;
+
+            background-color: #E5E5E5;
+            border-radius: 50px;
+            padding: 0 5px;
+
+            font-size: 10pt;
+            font-weight: normal;
+            text-align: center;
+            line-height: $size;
+        }
+
+        background-color: #FAFAFA;
+        border: 1px solid #E5E5E5;
+        padding: 10px 15px;
+    }
+}
+
+// Drag and drop
+//
+.modularity-js-draggable {
+    cursor: move;
+}
+
 .modularity-js-droppable {
     box-sizing: border-box;
     position: relative;
@@ -18,5 +62,16 @@
 }
 
 .modularity-state-droppable {
-    border: 3px dashed #999;
+    &:not(:empty):after {
+        display: block;
+        content: '';
+        min-height: 40px;
+        border: 3px dashed #999;
+    }
+
+    &:empty {
+        display: block;
+        content: '';
+        border: 3px dashed #999;
+    }
 }
