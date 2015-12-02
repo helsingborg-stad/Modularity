@@ -53,4 +53,9 @@ class Wp
             return false;
         }
     }
+
+    public static function isEditor()
+    {
+        return isset($_GET['page']) && $_GET['page'] == 'modularity-editor';
+    }
 }

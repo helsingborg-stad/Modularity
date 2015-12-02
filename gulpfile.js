@@ -12,32 +12,47 @@ var plumber = require('gulp-plumber');
 
 // Compile Our Sass
 gulp.task('sass-dist', function() {
-    return gulp.src('source/sass/modularity.scss')
+    gulp.src('source/sass/modularity.scss')
             .pipe(plumber())
             .pipe(sass())
             .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
             .pipe(rename({suffix: '.min'}))
             .pipe(minifycss())
-            .pipe(gulp.dest('dist/css'))
-});
+            .pipe(gulp.dest('dist/css'));
 
-gulp.task('sass-dev', function() {
-    return gulp.src('source/sass/modularity.scss')
+    gulp.src('source/sass/modularity-thickbox-edit.scss')
             .pipe(plumber())
             .pipe(sass())
             .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
-            .pipe(rename({suffix: '.dev'}))
-            .pipe(gulp.dest('dist/css'))
+            .pipe(rename({suffix: '.min'}))
+            .pipe(minifycss())
+            .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('sass-dev', function() {
+    gulp.src('source/sass/modularity.scss')
+        .pipe(plumber())
+        .pipe(sass())
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+        .pipe(rename({suffix: '.dev'}))
+        .pipe(gulp.dest('dist/css'));
+
+    gulp.src('source/sass/modularity-thickbox-edit.scss')
+        .pipe(plumber())
+        .pipe(sass())
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1'))
+        .pipe(rename({suffix: '.dev'}))
+        .pipe(gulp.dest('dist/css'));
 });
 
 // Concatenate & Minify JS
 gulp.task('scripts-dist', function() {
-    return gulp.src('source/js/**/*.js')
-            .pipe(concat('modularity.dev.js'))
-            .pipe(gulp.dest('dist/js'))
-            .pipe(rename('modularity.min.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest('dist/js'));
+    gulp.src('source/js/**/*.js')
+        .pipe(concat('modularity.dev.js'))
+        .pipe(gulp.dest('dist/js'))
+        .pipe(rename('modularity.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
 });
 
 // Watch Files For Changes

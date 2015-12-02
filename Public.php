@@ -1,6 +1,7 @@
 <?php
 
-function modularity_decode_icon($data) {
+function modularity_decode_icon($data)
+{
     if (empty($data)) {
         return;
     }

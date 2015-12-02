@@ -3,6 +3,11 @@ Modularity.Editor = Modularity.Editor || {};
 
 Modularity.Editor.Module = (function ($) {
 
+    var thickboxOptions = {
+        width: 980,
+        height: 600
+    };
+
     function Module() {
         $(function(){
             this.handleEvents();
@@ -18,10 +23,24 @@ Modularity.Editor.Module = (function ($) {
     Module.prototype.addModule = function (target, moduleId, moduleName) {
         postId = (typeof postId != 'undefined') ? postId : '';
 
+        var thickboxUrl = 'is_thickbox=true&amp;TB_iframe=true&amp;width=' + thickboxOptions.width + '&amp;height=' + thickboxOptions.height;
+
+        var admin_url_page = 'post-new.php';
+        var admin_url_querystring = '?post_type=' + moduleId + '&amp;' + thickboxUrl;
+
+        if (postId) {
+            admin_url_page = 'edit.php';
+            admin_url_querystring += '&amp;post_id=' + postId;
+        }
+
         $(target).append('\
             <li data-module-id="' + moduleId + '">\
                 <span class="modularity-sortable-handle"></span>\
-                <span class="modularity-module-name">' + moduleName + '</span>\
+                <span class="modularity-module-name">\
+                    <a href="' + admin_url + admin_url_page + admin_url_querystring + '" class="thickbox">\
+                        ' + moduleName + '\
+                    </a>\
+                </span>\
                 <span class="modularity-module-remove"><button data-action="modularity-module-remove"></button></span>\
                 <input type="hidden" name="modularity_post_id[]" value="' + postId + '">\
             </li>\
