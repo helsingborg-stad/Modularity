@@ -3,6 +3,8 @@ Modularity.Editor = Modularity.Editor || {};
 
 Modularity.Editor.DragAndDrop = (function ($) {
 
+    var sortableIn;
+
     function DragAndDrop() {
         $(function(){
 
@@ -28,7 +30,7 @@ Modularity.Editor.DragAndDrop = (function ($) {
             handle: '.modularity-sortable-handle',
             connectWith: '.modularity-js-sortable',
             placeholder: 'ui-sortable-placeholder'
-        });
+        }).bind(this);
     };
 
     /**
@@ -54,21 +56,17 @@ Modularity.Editor.DragAndDrop = (function ($) {
         $('.modularity-js-droppable').droppable({
             accept: '.modularity-js-draggable',
             hoverClass: 'modularity-state-droppable',
-            drop: function (event, ui) {
-                this.dropped(event, ui);
+            drop: function (e, ui) {
+                this.appendModule(e, ui);
             }.bind(this)
         }).bind(this);
     };
 
-    DragAndDrop.prototype.dropped = function (e, ui) {
+    DragAndDrop.prototype.appendModule = function (e, ui) {
         var module = ui.draggable;
+        var moduleName = module.find('.modularity-module-name').text();
 
-        $(e.target).append('\
-            <li>\
-                <span class="modularity-sortable-handle"></span>\
-                <span class="modularity-module-name">' + module.find('.modularity-module-name').text() + '</span>\
-            </li>\
-        ');
+        Modularity.Editor.Module.addModule(e.target, moduleName);
 
         $('.modularity-js-sortable').sortable('refresh');
     };

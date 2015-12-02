@@ -83,6 +83,24 @@
     }
 }
 
+.modularity-module-remove {
+    float: right;
+
+    button {
+        display: block;
+        width: 20px;
+        height: 20px;
+        apperance: none;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iLTM0NSAxNDYuNSAyNjguNSAyNjguNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAtMzQ1IDE0Ni41IDI2OC41IDI2OC41OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojOUUwMDAwO30NCjwvc3R5bGU+DQo8ZyBpZD0iRGVsZXRlX194MkZfX1RyYXNoIj4NCgk8cGF0aCBjbGFzcz0ic3QwIiBkPSJNLTI4MS45LDM5Ni44YzAsMCw0LDE4LjIsMjQuNiwxOC4yaDkzLjFjMjAuNiwwLDI0LjYtMTguMiwyNC42LTE4LjJsMTguNC0xNzguN2gtMTc5TC0yODEuOSwzOTYuOHogTS0xNzUsMjQ1DQoJCWMwLTQuOSw0LTguOSw4LjktOC45YzQuOSwwLDguOSw0LDguOSw4LjlsLTguOSwxMzQuMmMwLDQuOS00LDguOS04LjksOC45cy04LjktNC04LjktOC45TC0xNzUsMjQ1eiBNLTIxOS43LDI0NQ0KCQljMC00LjksNC04LjksOC45LTguOWM0LjksMCw4LjksNCw4LjksOC45djEzNC4yYzAsNC45LTQsOC45LTguOSw4LjljLTQuOSwwLTguOS00LTguOS04LjlDLTIxOS43LDM3OS4yLTIxOS43LDI0NS0yMTkuNywyNDV6DQoJCSBNLTI1NS41LDIzNmM0LjksMCw4LjksNCw4LjksOC45bDguOSwxMzQuMmMwLDQuOS00LDguOS04LjksOC45Yy00LjksMC04LjktNC04LjktOC45bC04LjktMTM0LjJDLTI2NC41LDI0MC0yNjAuNSwyMzYtMjU1LjUsMjM2eg0KCQkgTS0xMjYuNiwxODIuM0gtMTY2di0xNy45YzAtMTMuNi00LjQtMTcuOS0xNy45LTE3LjloLTUzLjdjLTEyLjQsMC0xNy45LDYtMTcuOSwxNy45djE3LjloLTM5LjRjLTcuOSwwLTE0LjMsNi0xNC4zLDEzLjQNCgkJYzAsNy40LDYuNCwxMy40LDE0LjMsMTMuNGgxNjguMmM3LjksMCwxNC4zLTYsMTQuMy0xMy40Qy0xMTIuMywxODguMy0xMTguNywxODIuMy0xMjYuNiwxODIuM3ogTS0xODMuOSwxODIuM2gtNTMuN2wwLTE3LjloNTMuNw0KCQlMLTE4My45LDE4Mi4zTC0xODMuOSwxODIuM3oiLz4NCjwvZz4NCjwvc3ZnPg0K');
+        background-size: cover;
+        background-position: center center;
+        cursor: pointer;
+    }
+}
+
 // Helpers
 //
 
