@@ -67,6 +67,7 @@ class App
         // If editor
         if (isset($_GET['page']) && $_GET['page'] == 'modularity-editor') {
             wp_enqueue_script('jquery-ui-sortable');
+            wp_enqueue_script('jquery-ui-draggable');
             wp_enqueue_script('jquery-ui-droppable');
         }
     }
