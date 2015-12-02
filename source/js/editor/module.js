@@ -3,6 +3,10 @@ Modularity.Editor = Modularity.Editor || {};
 
 Modularity.Editor.Module = (function ($) {
 
+    /**
+     * Object to create Thickbox querystring from
+     * @type {Object}
+     */
     var thickboxOptions = {
         is_thickbox: true,
         TB_iframe: true,
@@ -15,13 +19,42 @@ Modularity.Editor.Module = (function ($) {
     function Module() {
         $(function(){
             this.handleEvents();
+            this.loadModules(modularity_post_id);
         }.bind(this));
     }
 
+    /**
+     * Loads saved modules and adds them to the page
+     * @param  {integer} postId The post id to load modules from
+     * @return {void}
+     */
+    Module.prototype.loadModules = function (postId) {
+        var request = {
+            action: 'get_post_modules',
+            id: postId
+        };
+
+        console.log(request);
+
+        $.post(ajaxurl, request, function (response) {
+            console.log(response);
+        }, 'json');
+    };
+
+    /**
+     * Check editing module
+     * @return {boolean/string}
+     */
     Module.prototype.isEditingModule = function () {
         return editingModule;
     };
 
+    /**
+     * Generates a thickbox url to open a thickbox in correct mode
+     * @param  {string} action Should be "add" or "edit"
+     * @param  {object} data   Should contain additional data (for now supports "postId" and "postType")
+     * @return {string}        Thickbox url
+     */
     Module.prototype.getThickBoxUrl = function (action, data) {
         var base = '';
         var querystring = {};
@@ -71,6 +104,8 @@ Modularity.Editor.Module = (function ($) {
             Modularity.Editor.Thickbox.postAction = 'edit';
         }
 
+        var sidebarId = $(target).data('area-id');
+
         $(target).append('\
             <li data-module-id="' + moduleId + '">\
                 <span class="modularity-sortable-handle"></span>\
@@ -80,15 +115,22 @@ Modularity.Editor.Module = (function ($) {
                 </span>\
                 <span class="modularity-module-actions">\
                     <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open">Edit</a>\
+                    <a href="#" class="modularity-js-thickbox-open">Import</a>\
                 </span>\
                 <span class="modularity-module-remove"><button data-action="modularity-module-remove"></button></span>\
-                <input type="hidden" name="modularity_post_id[]" value="' + postId + '">\
+                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" value="' + postId + '">\
             </li>\
         ');
 
         $('.modularity-js-sortable').sortable('refresh');
     };
 
+    /**
+     * Updates a module "row" after editing the module post
+     * @param  {DOM} module    Module dom element
+     * @param  {object} data   The data
+     * @return {void}
+     */
     Module.prototype.updateModule = function (module, data) {
         // Href
         module.find('a.modularity-js-thickbox-open').attr('href', this.getThickBoxUrl('edit', {

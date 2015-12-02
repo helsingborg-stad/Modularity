@@ -76,9 +76,12 @@ class App
             wp_enqueue_script('jquery-ui-droppable');
 
             add_action('admin_head', function () {
+                global $post;
+
                 echo "
                     <script>
                         var admin_url = '" . admin_url() . "';
+                        var modularity_post_id = " . $post->ID . "
                     </script>
                 ";
             });
