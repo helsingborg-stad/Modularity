@@ -132,8 +132,6 @@ class Editor extends \Modularity\Options
      */
     public function metaBoxSidebar($post, $args)
     {
-        //var_dump($args['args']['sidebar']);
-
         $templatePath = \Modularity\Helper\Wp::getTemplate('sidebar-drop-area', 'editor');
         include $templatePath;
     }
@@ -144,7 +142,14 @@ class Editor extends \Modularity\Options
             return;
         }
 
-        var_dump("SAVE IT GODDAMIT");
-        exit;
+        // Check if post id is valid
+        if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
+            return trigger_error('Invalid post id. Please contact system administrator.');
+        }
+
+        $postId = $_GET['id'];
+        update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
+
+        $this->notice(__('Modules saved', 'modularity'), ['updated']);
     }
 }
