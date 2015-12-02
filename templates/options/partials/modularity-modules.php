@@ -6,7 +6,7 @@
 <div class="modularity-table-metabox-wrapper">
     <table class="modularity-table">
         <thead>
-            <th>Enabled</th>
+            <th class="checkbox-wrapper">Enabled</th>
             <th><?php _e('Module', 'modularity'); ?></th>
             <th><?php _e('Description', 'modularity'); ?></th>
         </thead>
