@@ -9,9 +9,9 @@ Modularity.Editor.Module = (function ($) {
         }.bind(this));
     }
 
-    Module.prototype.addModule = function (target, moduleName) {
+    Module.prototype.addModule = function (target, moduleId, moduleName) {
         $(target).append('\
-            <li>\
+            <li data-module-id="' + moduleId + '">\
                 <span class="modularity-sortable-handle"></span>\
                 <span class="modularity-module-name">' + moduleName + '</span>\
                 <span class="modularity-module-remove"><button data-action="modularity-module-remove"></button></span>\

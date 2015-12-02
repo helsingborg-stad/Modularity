@@ -65,8 +65,9 @@ Modularity.Editor.DragAndDrop = (function ($) {
     DragAndDrop.prototype.appendModule = function (e, ui) {
         var module = ui.draggable;
         var moduleName = module.find('.modularity-module-name').text();
+        var moduleId = module.data('module-id');
 
-        Modularity.Editor.Module.addModule(e.target, moduleName);
+        Modularity.Editor.Module.addModule(e.target, moduleId, moduleName);
 
         $('.modularity-js-sortable').sortable('refresh');
     };
