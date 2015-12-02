@@ -15,9 +15,27 @@
             min-height: 20px;
         }
 
-        span {
+        > span {
             display: inline-block;
             vertical-align: middle;
+        }
+
+        .modularity-module-name {
+            margin-right: 10px;
+        }
+
+        .modularity-module-title {
+            font-weight: normal;
+        }
+
+        .modularity-module-actions {
+            visibility: hidden;
+        }
+
+        &:hover {
+            .modularity-module-actions {
+                visibility: visible;
+            }
         }
 
         .modularity-module-name:before {

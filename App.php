@@ -24,6 +24,7 @@ class App
             wp_redirect(admin_url('admin.php?page=modularity-options'));
         });
 
+        new Ajax();
         new Options\General();
         new Module();
         new Editor();

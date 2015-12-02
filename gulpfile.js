@@ -47,7 +47,10 @@ gulp.task('sass-dev', function() {
 
 // Concatenate & Minify JS
 gulp.task('scripts-dist', function() {
-    gulp.src('source/js/**/*.js')
+    gulp.src([
+            'source/js/**/*.js',
+            '!source/js/modularity-thickbox.js'
+        ])
         .pipe(concat('modularity.dev.js'))
         .pipe(gulp.dest('dist/js'))
         .pipe(rename('modularity.min.js'))
