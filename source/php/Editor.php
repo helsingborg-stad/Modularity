@@ -8,11 +8,15 @@ class Editor extends \Modularity\Options
     {
         global $post;
 
+        // Prepare Thickbox
+        new \Modularity\Editor\Thickbox();
+
         if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
             $post = get_post($_GET['id']);
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
+
         $this->registerEditorPage();
     }
 

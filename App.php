@@ -9,7 +9,7 @@ class App
      * Should be "dev" or "min"
      * @var string
      */
-    private $assetSuffix = 'dev';
+    public static $assetSuffix = 'dev';
 
     public function __construct()
     {
@@ -61,11 +61,11 @@ class App
         }
 
         // Style
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . $this->assetSuffix . '.css', false, '1.0.0');
+        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, '1.0.0');
         wp_enqueue_style('modularity');
 
         // Scripts
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . $this->assetSuffix . '.js', false, '1.0.0', true);
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, '1.0.0', true);
         wp_enqueue_script('modularity');
 
         // If editor
@@ -83,37 +83,6 @@ class App
             });
 
             add_thickbox();
-        }
-
-        // If thickbox
-        if (\Modularity\Helper\Wp::isThickBox()) {
-            // Script
-
-            add_action('admin_head', function () {
-                global $current_screen;
-                global $post;
-
-                if (substr($current_screen->post_type, 0, 4) == 'mod-' && $current_screen->action == 'add') {
-                    echo "
-                        <script>
-                            var modularity_post_id = " . $post->ID . ";
-                        </script>
-                    ";
-                }
-            });
-
-            wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-thickbox.' . $this->assetSuffix . '.js', false, '1.0.0', true);
-            wp_enqueue_script('modularity-thickbox');
-
-            // Style
-            wp_register_style(
-                'modularity-thickbox',
-                MODULARITY_URL . '/dist/css/modularity-thickbox-edit.' . $this->assetSuffix . '.css',
-                false,
-                '1.0.0'
-            );
-
-            wp_enqueue_style('modularity-thickbox');
         }
     }
 
