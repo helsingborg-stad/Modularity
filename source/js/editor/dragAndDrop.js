@@ -62,6 +62,12 @@ Modularity.Editor.DragAndDrop = (function ($) {
         }).bind(this);
     };
 
+    /**
+     * Appends a module to the target when dropped
+     * @param  {object} e  Event
+     * @param  {object} ui UI
+     * @return {void}
+     */
     DragAndDrop.prototype.appendModule = function (e, ui) {
         var module = ui.draggable;
         var moduleName = module.find('.modularity-module-name').text();
