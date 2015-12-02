@@ -40,7 +40,11 @@ class Module
 
         foreach (@glob($directory . "*.php") as $filename) {
             $class = '\Modularity\Module\\' . pathinfo($filename)['filename'];
-            new $class;
+            
+            if (class_exists($class)) {
+	            new $class;
+            }
+            
         }
     }
 
