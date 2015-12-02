@@ -4,11 +4,17 @@ namespace Modularity;
 
 class App
 {
+    /**
+     * JS and CSS suffix
+     * Should be "dev" or "min"
+     * @var string
+     */
+    private $assetSuffix = 'dev';
+
     public function __construct()
     {
         add_action('init', array($this, 'includeAcf'), 11);
-        add_action('admin_enqueue_scripts', array($this, 'enqueu'));
-
+        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
 
         /**
@@ -21,8 +27,6 @@ class App
         new Options\General();
         new Module();
         new Editor();
-
-        do_action('modularity\init');
     }
 
     /**
@@ -50,35 +54,86 @@ class App
      * Enqueues scripts and styles
      * @return void
      */
-    public function enqueu()
+    public function enqueue()
     {
         if (!$this->isModularityPage()) {
             return;
         }
 
         // Style
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.min.css', false, '1.0.0');
+        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . $this->assetSuffix . '.css', false, '1.0.0');
         wp_enqueue_style('modularity');
 
         // Scripts
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.dev.js', false, '1.0.0', true);
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . $this->assetSuffix . '.js', false, '1.0.0', true);
         wp_enqueue_script('modularity');
 
         // If editor
-        if (isset($_GET['page']) && $_GET['page'] == 'modularity-editor') {
+        if (\Modularity\Helper\Wp::isEditor()) {
             wp_enqueue_script('jquery-ui-sortable');
             wp_enqueue_script('jquery-ui-draggable');
             wp_enqueue_script('jquery-ui-droppable');
+
+            add_action('admin_head', function () {
+                echo "
+                    <script>
+                        var admin_url = '" . admin_url() . "';
+                    </script>
+                ";
+            });
+
+            add_thickbox();
+        }
+
+        // If thickbox
+        if (\Modularity\Helper\Wp::isThickBox()) {
+            // Script
+
+            add_action('admin_head', function () {
+                global $current_screen;
+                global $post;
+
+                if (substr($current_screen->post_type, 0, 4) == 'mod-' && $current_screen->action == 'add') {
+                    echo "
+                        <script>
+                            var modularity_post_id = " . $post->ID . ";
+                        </script>
+                    ";
+                }
+            });
+
+            wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-thickbox.' . $this->assetSuffix . '.js', false, '1.0.0', true);
+            wp_enqueue_script('modularity-thickbox');
+
+            // Style
+            wp_register_style(
+                'modularity-thickbox',
+                MODULARITY_URL . '/dist/css/modularity-thickbox-edit.' . $this->assetSuffix . '.css',
+                false,
+                '1.0.0'
+            );
+
+            wp_enqueue_style('modularity-thickbox');
         }
     }
 
+    /**
+     * Check if current page is a modularity page
+     * @return boolean
+     */
     public function isModularityPage()
     {
         global $current_screen;
 
         $result = true;
 
-        if (strpos($current_screen->id, 'modularity') === false && ($current_screen->action != 'add' && (isset($_GET['action']) && $_GET['action'] != 'edit')) && $current_screen->base != 'post') {
+        if (strpos($current_screen->id, 'modularity') === false
+            && ($current_screen->action != 'add'
+                && (
+                    isset($_GET['action'])
+                    && $_GET['action'] != 'edit')
+                )
+            && $current_screen->base != 'post') {
             $result = false;
         }
 
