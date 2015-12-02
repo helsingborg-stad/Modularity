@@ -19,6 +19,7 @@ Modularity.Editor.Module = (function ($) {
     function Module() {
         $(function(){
             this.handleEvents();
+            this.loadModules(modularity_post_id);
         }.bind(this));
     }
 
@@ -29,9 +30,11 @@ Modularity.Editor.Module = (function ($) {
      */
     Module.prototype.loadModules = function (postId) {
         var request = {
-            action: 'load_modules',
-            post_id: postId
+            action: 'get_post_modules',
+            id: postId
         };
+
+        console.log(request);
 
         $.post(ajaxurl, request, function (response) {
             console.log(response);
