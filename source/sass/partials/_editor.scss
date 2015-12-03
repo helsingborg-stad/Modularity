@@ -72,6 +72,16 @@
             text-align: center;
             line-height: $size;
         }
+
+        &.validation-error {
+            background-color: #F4DFDF;
+            border-color: #E23030;
+
+            .modularity-module-name:before {
+                background-color: #E23030;
+                color: #fff;
+            }
+        }
     }
 }
 
