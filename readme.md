@@ -23,7 +23,9 @@ Here's a very basic example module for you:
  * Author: Modularity
  */
 
-class VeryBasicModule extends \Modularity\Module
+namespace MyArticleModule;
+
+class Article extends \Modularity\Module
 {
     public function __construct()
     {
@@ -44,6 +46,8 @@ class VeryBasicModule extends \Modularity\Module
         );
     }
 }
+
+new \MyArticleModule\Article;
 ```
 
 Action reference
