@@ -59,6 +59,17 @@ $module-line-height: 50px;
 
     svg,
     svg * {
-        fill: #4D4D4D !important;
+        fill: #4D4D4D !important; 
     }
+}
+
+.modularity-sortable-handle {
+	line-height: $module-line-height; 
+}
+
+.mod-table {
+	
+}
+
+.ui-draggable-draggning {
 }
