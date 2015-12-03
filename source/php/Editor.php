@@ -80,7 +80,9 @@ class Editor extends \Modularity\Options
 
                 $modules = array();
                 foreach ($enabled as $module) {
-                    $modules[$module] = $available[$module];
+                    if (isset($available[$module])) {
+                        $modules[$module] = $available[$module];
+                    }
                 }
 
                 $templatePath = \Modularity\Helper\Wp::getTemplate('enabled-modules', 'editor');
