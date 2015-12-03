@@ -54,6 +54,7 @@ Action reference
 ----------------
 
 ##### Modularity/Module/[MODULE SLUG]/enqueue
+
 > Enqueue js or css only for the add and edit page of the specified module.
 
 ```php
