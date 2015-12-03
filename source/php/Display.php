@@ -27,6 +27,11 @@ class Display
         add_action('dynamic_sidebar_before', array($this, 'output'));
     }
 
+    /**
+     * Get sidebar arguments of a specific sidebar id
+     * @param  string $id        The sidebar id to look for
+     * @return boolean/array     false if nothing found, else the arguments in array
+     */
     public function getSidebarArgs($id)
     {
         global $wp_registered_sidebars;
@@ -38,6 +43,11 @@ class Display
         return $wp_registered_sidebars[$id];
     }
 
+    /**
+     * Outputs the modules of a specific sidebar
+     * @param  string $sidebar Sidebar id/slug
+     * @return void
+     */
     public function output($sidebar)
     {
         global $post;
