@@ -61,7 +61,7 @@ class Editor extends \Modularity\Options
         // Publish
         add_meta_box(
             'modularity-mb-publish',
-            __('Save options', 'modularity'),
+            __('Save modules', 'modularity'),
             function () {
                 $templatePath = \Modularity\Helper\Wp::getTemplate('publish', 'options/partials');
                 include $templatePath;
