@@ -30,6 +30,8 @@
 
         .modularity-module-actions {
             visibility: hidden;
+            position: relative;
+            top: 1.5px;
             font-size: 0;
 
             a {

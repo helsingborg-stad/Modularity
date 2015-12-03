@@ -6,6 +6,16 @@ class Module
 {
     const MODULE_PREFIX = 'mod';
 
+    /**
+     * The modules slug (id)
+     * @var boolean/string "false" if not set otherwise string id
+     */
+    public $moduleSlug = false;
+
+    /**
+     * Available and enabled modules
+     * @var array
+     */
     public static $available = array();
     public static $enabled = array();
 
@@ -16,7 +26,7 @@ class Module
     }
 
     /**
-     * Get enabled module id's
+     * Get enabled modules id:s
      * @return array
      */
     public static function getEnabled()
@@ -31,6 +41,29 @@ class Module
     }
 
     /**
+     * ACTION: Modularity/Module/<MODULE SLUG>/enqueue
+     * Enqueue assets (css and/or js) to the add/edit pages of the given module
+     * @return void
+     */
+    public function enqueue()
+    {
+        if ($this->isAddOrEditOfPostType()) {
+            do_action('Modularity/Module/' . $this->moduleSlug . '/enqueue');
+        }
+    }
+
+    public function isAddOrEditOfPostType()
+    {
+        global $current_screen;
+
+        return $current_screen->base == 'post'
+                && $current_screen->id == $this->moduleSlug
+                && (
+                    $current_screen->action == 'add' || (isset($_GET['action']) && $_GET['action'] == 'edit')
+                );
+    }
+
+    /**
      * Initializes bundled modules which is set to be active in the Modularity options
      * @return void
      */
@@ -40,11 +73,11 @@ class Module
 
         foreach (@glob($directory . "*.php") as $filename) {
             $class = '\Modularity\Module\\' . pathinfo($filename)['filename'];
-            
+
             if (class_exists($class)) {
-	            new $class;
+                new $class;
             }
-            
+
         }
     }
 
@@ -140,6 +173,9 @@ class Module
          * Add to available modules
          */
         self::$available[$postTypeSlug] = $args;
+
+        $this->moduleSlug = $postTypeSlug;
+        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 
         return $postTypeSlug;
     }
