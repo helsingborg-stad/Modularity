@@ -62,3 +62,26 @@ add_action('Modularity/Module/mod-article/enqueue', function () {
     // Do your thing
 });
 ```
+
+Filter reference
+----------------
+
+##### Modularity/Display/BeforeModule
+
+> Filter module sidebar wrapper (before)
+
+```php
+add_filter('Modularity/Display/BeforeModule', function ($beforeModule, $moduleType, $moduleId) {
+    // Do your thing
+});
+```
+
+##### Modularity/Display/AfterModule
+
+> Filter module sidebar wrapper (after)
+
+```php
+add_filter('Modularity/Display/AfterModule', function ($afterModule, $moduleType, $moduleId) {
+    // Do your thing
+});
+```
