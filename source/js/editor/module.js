@@ -18,8 +18,10 @@ Modularity.Editor.Module = (function ($) {
 
     function Module() {
         $(function(){
-            this.handleEvents();
-            this.loadModules(modularity_post_id);
+            if (pagenow == 'admin_page_modularity-editor') {
+                this.handleEvents();
+                this.loadModules(modularity_post_id);
+            }
         }.bind(this));
     }
 
@@ -124,7 +126,7 @@ Modularity.Editor.Module = (function ($) {
                     <a href="#" class="modularity-js-thickbox-open">Import</a>\
                 </span>\
                 <span class="modularity-module-remove"><button data-action="modularity-module-remove"></button></span>\
-                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '">\
+                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
             </li>\
         ');
 
@@ -144,7 +146,7 @@ Modularity.Editor.Module = (function ($) {
         }));
 
         // Post id input
-        module.find('input.modularity-js-module-id').val(data.post_id);
+        module.find('input.modularity-js-module-id').val(data.post_id).change();
 
         // Post title
         module.find('.modularity-module-title').text(': ' + data.title);
