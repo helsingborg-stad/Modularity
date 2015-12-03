@@ -75,8 +75,7 @@ class Editor extends \Modularity\Options
             'modularity-mb-modules',
             __('Enabled modules', 'modularity'),
             function () {
-                $modularityOptions = get_option('modularity-options');
-                $enabled = isset($modularityOptions['enabled-modules']) && is_array($modularityOptions['enabled-modules']) ? $modularityOptions['enabled-modules'] : array();
+                $enabled = \Modularity\Module::$enabled;
                 $available = \Modularity\Module::$available;
 
                 $modules = array();
@@ -136,6 +135,65 @@ class Editor extends \Modularity\Options
         include $templatePath;
     }
 
+    /**
+     * Get modules added to a specific post
+     * @param  integer $postId The post id
+     * @return array           The modules on the post
+     */
+    public static function getPostModules($postId)
+    {
+        $modules = array();
+        $retModules = array();
+
+        // Get enabled modules
+        $enabled = \Modularity\Module::$enabled;
+
+        // Get modules structure
+        $moduleIds = array();
+        $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        foreach ($moduleSidebars as $sidebar) {
+            $moduleIds = array_merge($moduleIds, $sidebar);
+        }
+
+        // Get module posts
+        $posts = get_posts(array(
+            'posts_per_page' => -1,
+            'post_type' => $enabled,
+            'include' => $moduleIds
+        ));
+
+        // Add module id's as keys in the array
+        foreach ($posts as $module) {
+            $modules[$module->ID] = $module;
+        }
+
+        // Create an strucural correct array with module post data
+        //
+        // array(
+        //     'sidebar-id-1' => array(
+        //          0 => Module #1,
+        //          1 => Module #2
+        //     ),
+        //     'sidebar-id-2' => array(
+        //          0 => Module #1,
+        //          1 => Module #2
+        //     )
+        // )
+        foreach ($moduleSidebars as $key => $sidebar) {
+            $retModules[$key] = array();
+
+            foreach ($sidebar as $moduleId) {
+                $retModules[$key][$moduleId] = $modules[$moduleId];
+            }
+        }
+
+        return $retModules;
+    }
+
+    /**
+     * Saves the selected modules
+     * @return void
+     */
     public function save()
     {
         if (!$this->isValidPostSave()) {

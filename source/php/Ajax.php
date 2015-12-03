@@ -36,7 +36,7 @@ class Ajax
             wp_die();
         }
 
-        echo json_encode(get_post_meta($_POST['id'], 'modularity-modules', true));
+        echo json_encode(\Modularity\Editor::getPostModules($_POST['id']));
         wp_die();
     }
 }
