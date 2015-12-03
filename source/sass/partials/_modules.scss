@@ -28,6 +28,13 @@ $module-line-height: 50px;
     }
 }
 
+li.modularity-module {
+	line-height: auto; 
+	>span {
+		line-height: auto; 
+	}
+}
+
 .modularity-module-name {
     display: block;
     font-weight: normal;

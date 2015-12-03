@@ -212,8 +212,14 @@ class Editor extends \Modularity\Options
         }
 
         $postId = $_GET['id'];
-        update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
-
+        
+        //Remove post meta if not set. 
+        if ( isset( $_POST['modularity_modules'] ) ) { 
+        	update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
+		} else {
+			delete_post_meta($postId, 'modularity-modules'); 
+		}
+		
         $this->notice(__('Modules saved', 'modularity'), ['updated']);
     }
 }
