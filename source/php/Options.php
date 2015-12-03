@@ -85,7 +85,7 @@ abstract class Options
         $modularityOptions = (isset($_POST['modularity-options'])) ? $_POST['modularity-options'] : array();
 
         // Update the options
-        update_option($this->slug, $options);
+        update_option($this->slug, $modularityOptions);
 
         // All done, send notice
         $this->notice(__('Options saved successfully', 'modularity'), ['updated']);
