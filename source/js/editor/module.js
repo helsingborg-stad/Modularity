@@ -35,8 +35,15 @@ Modularity.Editor.Module = (function ($) {
         };
 
         $.post(ajaxurl, request, function (response) {
-            console.log(response);
-        }, 'json');
+            $.each(response, function (sidebar, modules) {
+                var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
+
+                $.each(modules, function (key, data) {
+                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID);
+                }.bind(this));
+
+            }.bind(this));
+        }.bind(this), 'json');
     };
 
     /**
@@ -85,7 +92,8 @@ Modularity.Editor.Module = (function ($) {
      * @param {string} moduleId   The module id slug
      * @param {string} moduleName The module name
      */
-    Module.prototype.addModule = function (target, moduleId, moduleName) {
+    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId) {
+        moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
 
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -96,7 +104,7 @@ Modularity.Editor.Module = (function ($) {
 
         if (postId) {
             thickboxUrl = this.getThickBoxUrl('edit', {
-                postId: moduleId
+                postId: postId
             });
 
             Modularity.Editor.Thickbox.postAction = 'edit';
@@ -109,7 +117,7 @@ Modularity.Editor.Module = (function ($) {
                 <span class="modularity-sortable-handle"></span>\
                 <span class="modularity-module-name">\
                         ' + moduleName + '\
-                        <span class="modularity-module-title"></span>\
+                        <span class="modularity-module-title">' + moduleTitle + '</span>\
                 </span>\
                 <span class="modularity-module-actions">\
                     <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open">Edit</a>\

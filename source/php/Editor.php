@@ -146,6 +146,7 @@ class Editor extends \Modularity\Options
         $retModules = array();
 
         // Get enabled modules
+        $available = \Modularity\Module::$available;
         $enabled = \Modularity\Module::$enabled;
 
         // Get modules structure
@@ -184,6 +185,9 @@ class Editor extends \Modularity\Options
 
             foreach ($sidebar as $moduleId) {
                 $retModules[$key][$moduleId] = $modules[$moduleId];
+
+                // Get the post type name and append it to the module post data
+                $retModules[$key][$moduleId]->post_type_name = $available[$retModules[$key][$moduleId]->post_type]['labels']['name'];
             }
         }
 
