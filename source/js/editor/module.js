@@ -126,6 +126,7 @@ Modularity.Editor.Module = (function ($) {
                     <a href="#" class="modularity-js-thickbox-open">Import</a>\
                 </span>\
                 <span class="modularity-module-remove"><button data-action="modularity-module-remove"></button></span>\
+                <span class="modularity-module-hide"><button data-action="modularity-module-hide"></button></span>\
                 <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
             </li>\
         ');
@@ -161,6 +162,15 @@ Modularity.Editor.Module = (function ($) {
         if (confirm('Are you sure you want to remove this module?')) {
             module.remove();
         }
+    };
+    
+    /**
+     * Removes a module "row" from the placeholder
+     * @param  {DOM Element} module The (to be removed) module's dom element
+     * @return {void}
+     */
+    Module.prototype.hideModule = function (module) {
+    	
     };
 
     /**
