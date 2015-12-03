@@ -11,6 +11,10 @@ class Thickbox
         }
     }
 
+    /**
+     * Initializes the class if we're in a thickbox (checked in the __construct method)
+     * @return void
+     */
     public function init()
     {
         add_action('admin_head', array($this, 'addJsVariables'));
@@ -36,6 +40,10 @@ class Thickbox
         }
     }
 
+    /**
+     * Enqueue scripts and styles specific for the Thickbox content
+     * @return void
+     */
     public function enqueue()
     {
         // Script
