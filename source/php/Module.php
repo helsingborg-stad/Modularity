@@ -149,6 +149,16 @@ class Module
         if (strlen($postTypeSlug) > 20) {
             $postTypeSlug = substr($postTypeSlug, 0, 20);
         }
+        
+        /**
+         * Try to get an icon if not defined in module configuration file. 
+         * Max 20 characters long
+         * @var string
+         */
+        if ( empty( $args['menu_icon'] ) && file_exists( MODULARITY_PATH . "/dist/images/icons/" . $slug . ".svg" ) ) {
+	        $args['menu_icon'] = file_get_contents( MODULARITY_PATH . "/dist/images/icons/" . $slug . ".svg" ); 
+	        $args['menu_icon_auto_import'] = true; 
+	    }
 
         /**
          * Register the post type on WP Init
