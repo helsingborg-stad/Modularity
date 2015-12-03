@@ -1,5 +1,4 @@
 <div class="modularity-modules">
-
     <?php foreach ($modules as $moduleId => $module) : ?>
     <div class="modularity-module modularity-js-draggable" data-module-id="<?php echo $moduleId; ?>">
         <span class="modularity-module-icon">
