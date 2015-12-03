@@ -27,6 +27,17 @@ class Display
         add_action('dynamic_sidebar_before', array($this, 'output'));
     }
 
+    public function getSidebarArgs($id)
+    {
+        global $wp_registered_sidebars;
+
+        if (!isset($wp_registered_sidebars[$id])) {
+            return false;
+        }
+
+        return $wp_registered_sidebars[$id];
+    }
+
     public function output($sidebar)
     {
         global $post;
@@ -34,9 +45,22 @@ class Display
         // Get modules
         $modules = $this->modules[$sidebar];
 
+        $sidebarArgs = $this->getSidebarArgs($sidebar);
+
         // Loop and output modules
         foreach ($modules as $module) {
+            if (isset($sidebarArgs['before_widget'])) {
+                $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $sidebarArgs['before_widget']);
+                $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
+
+                echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $module->post_type, $module->ID);
+            }
+
             echo $module->post_title . '<br>';
+
+            if (isset($sidebarArgs['after_widget'])) {
+                echo apply_filters('Modularity/Display/AfterModule', $sidebarArgs['after_widget'], $module->post_type, $module->ID);
+            }
         }
     }
 }
