@@ -28,6 +28,7 @@ class App
         new Options\General();
         new Module();
         new Editor();
+        new Display();
     }
 
     /**
