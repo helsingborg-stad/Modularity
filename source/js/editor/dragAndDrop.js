@@ -29,7 +29,11 @@ Modularity.Editor.DragAndDrop = (function ($) {
         $('.modularity-js-sortable').sortable({
             handle: '.modularity-sortable-handle',
             connectWith: '.modularity-js-sortable',
-            placeholder: 'ui-sortable-placeholder'
+            placeholder: 'ui-sortable-placeholder',
+            stop: function (e, ui) {
+                var sidebarId = ui.item.parents('ul').data('area-id');
+                ui.item.find('input.modularity-js-module-id').attr('name', 'modularity_modules[' + sidebarId + '][]')
+            }
         }).bind(this);
     };
 
