@@ -16,9 +16,9 @@
                 border-left: 1px solid #ddd;
             }
         }
-        
+
         th.checkbox-wrapper {
-	        width: 50px; 
+	        width: 50px;
         }
     }
 
@@ -29,6 +29,7 @@
 
         td {
             padding: 12px;
+            vertical-align: text-top;
         }
 
         .checkbox {
