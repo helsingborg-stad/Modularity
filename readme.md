@@ -50,12 +50,27 @@ class Article extends \Modularity\Module
 new \MyArticleModule\Article;
 ```
 
+#### Module templates
+
+You can easily create your own module templates by placing them in: `/wp-content/themes/[my-theme]/templates/module/`.
+
+Name your template file with the following pattern: `modularity-[module-id].php`. You can get your module's id from the Modularity options page.
+
+#### Module boilerplate
+
+You can download our module boilerplate. It will be a good starting point for any custom module that you would like to build.
+
+[Download it here (NOT AVAILABLE YET)](http://www.helsingborg.se)
+
+
 Action reference
 ----------------
 
-##### Modularity/Module/[MODULE SLUG]/enqueue
+#### Modularity/Module/[MODULE SLUG]/enqueue
 
 > Enqueue js or css only for the add and edit page of the specified module.
+
+*Example:*
 
 ```php
 add_action('Modularity/Module/mod-article/enqueue', function () {
@@ -66,22 +81,45 @@ add_action('Modularity/Module/mod-article/enqueue', function () {
 Filter reference
 ----------------
 
-##### Modularity/Display/BeforeModule
+#### Modularity/Display/BeforeModule
 
 > Filter module sidebar wrapper (before)
 
+*Params:*
+```
+$beforeModule     The value to filter
+$args             Arguments of the sidebar (ex: before_widget)
+$moduleType       The module's type
+$moduleId         The ID of the module
+```
+
+*Example:*
 ```php
-add_filter('Modularity/Display/BeforeModule', function ($beforeModule, $moduleType, $moduleId) {
+add_filter('Modularity/Display/BeforeModule', function ($beforeModule, $args, $moduleType, $moduleId) {
     // Do your thing
+    return $filteredValue;
 });
 ```
 
-##### Modularity/Display/AfterModule
+___
+
+#### Modularity/Display/AfterModule
 
 > Filter module sidebar wrapper (after)
 
+*Params:*
+```
+$afterModule      The value to filter
+$args             Arguments of the sidebar (ex: before_widget)
+$moduleType       The module's type
+$moduleId         The ID of the module
+```
+
+*Example:*
+
 ```php
-add_filter('Modularity/Display/AfterModule', function ($afterModule, $moduleType, $moduleId) {
+add_filter('Modularity/Display/AfterModule', function ($afterModule, $args, $moduleType, $moduleId) {
     // Do your thing
+    return $filteredValue;
 });
 ```
