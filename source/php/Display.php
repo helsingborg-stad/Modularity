@@ -59,18 +59,37 @@ class Display
 
         // Loop and output modules
         foreach ($modules as $module) {
-            if (isset($sidebarArgs['before_widget'])) {
-                $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $sidebarArgs['before_widget']);
-                $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
-
-                echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $module->post_type, $module->ID);
-            }
-
-            echo $module->post_title . '<br>';
-
-            if (isset($sidebarArgs['after_widget'])) {
-                echo apply_filters('Modularity/Display/AfterModule', $sidebarArgs['after_widget'], $module->post_type, $module->ID);
-            }
+            $this->outputModule($module, $sidebarArgs);
         }
+    }
+
+    /**
+     * Outputs a specific module
+     * @param  object $module      The module data
+     * @param  array $sidebarArgs  The sidebar data
+     * @return boolean             True if success otherwise false
+     */
+    public function outputModule($module, $sidebarArgs)
+    {
+        $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+
+        if (!$templatePath) {
+            return false;
+        }
+
+        if (isset($sidebarArgs['before_widget'])) {
+            $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $sidebarArgs['before_widget']);
+            $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
+
+            echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $module->post_type, $module->ID);
+        }
+
+        include $templatePath;
+
+        if (isset($sidebarArgs['after_widget'])) {
+            echo apply_filters('Modularity/Display/AfterModule', $sidebarArgs['after_widget'], $module->post_type, $module->ID);
+        }
+
+        return true;
     }
 }
