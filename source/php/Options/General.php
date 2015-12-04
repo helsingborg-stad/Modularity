@@ -91,8 +91,7 @@ class General extends \Modularity\Options
             return true;
         });
 
-        $templatePath = \Modularity\Helper\Wp::getTemplate('post-types', 'options/partials');
-        include $templatePath;
+        include MODULARITY_TEMPLATE_PATH . 'options/partials/modularity-post-types.php';
     }
 
     /**

@@ -63,8 +63,7 @@ class Editor extends \Modularity\Options
             'modularity-mb-editor-publish',
             __('Save modules', 'modularity'),
             function () {
-                $templatePath = \Modularity\Helper\Wp::getTemplate('publish', 'options/partials');
-                include $templatePath;
+                include MODULARITY_TEMPLATE_PATH . 'options/partials/modularity-publish.php';
             },
             $this->screenHook,
             'side'
@@ -85,8 +84,7 @@ class Editor extends \Modularity\Options
                     }
                 }
 
-                $templatePath = \Modularity\Helper\Wp::getTemplate('enabled-modules', 'editor');
-                include $templatePath;
+                include MODULARITY_TEMPLATE_PATH . 'editor/modularity-enabled-modules.php';
             },
             $this->screenHook,
             'side'
@@ -133,8 +131,7 @@ class Editor extends \Modularity\Options
      */
     public function metaBoxSidebar($post, $args)
     {
-        $templatePath = \Modularity\Helper\Wp::getTemplate('sidebar-drop-area', 'editor');
-        include $templatePath;
+        include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 
     /**
@@ -212,14 +209,14 @@ class Editor extends \Modularity\Options
         }
 
         $postId = $_GET['id'];
-        
-        //Remove post meta if not set. 
-        if ( isset( $_POST['modularity_modules'] ) ) { 
+
+        //Remove post meta if not set.
+        if ( isset( $_POST['modularity_modules'] ) ) {
         	update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
 		} else {
-			delete_post_meta($postId, 'modularity-modules'); 
+			delete_post_meta($postId, 'modularity-modules');
 		}
-		
+
         $this->notice(__('Modules saved', 'modularity'), ['updated']);
     }
 }
