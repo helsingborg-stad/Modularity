@@ -162,8 +162,11 @@ class Editor extends \Modularity\Options
         // Get modules structure
         $moduleIds = array();
         $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
-        foreach ($moduleSidebars as $sidebar) {
-            $moduleIds = array_merge($moduleIds, $sidebar);
+
+        if (!empty($moduleSidebars)) {
+            foreach ($moduleSidebars as $sidebar) {
+                $moduleIds = array_merge($moduleIds, $sidebar);
+            }
         }
 
         // Get module posts
@@ -174,23 +177,27 @@ class Editor extends \Modularity\Options
         ));
 
         // Add module id's as keys in the array
-        foreach ($modulesPosts as $module) {
-            $modules[$module->ID] = $module;
+        if (!empty($posts)) {
+            foreach ($modulesPosts as $module) {
+                $modules[$module->ID] = $module;
+            }
         }
 
         // Create an strucural correct array with module post data
-        foreach ($moduleSidebars as $key => $sidebar) {
-            $retModules[$key] = array(
-                'modules' => array(),
-                'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
-            );
+        if (!empty($moduleSidebars)) {
+            foreach ($moduleSidebars as $key => $sidebar) {
+                $retModules[$key] = array(
+                    'modules' => array(),
+                    'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
+                );
 
-            foreach ($sidebar as $moduleId) {
-                $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
+                foreach ($sidebar as $moduleId) {
+                    $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
 
-                // Get the post type name and append it to the module post data
-                $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
-                $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
+                    // Get the post type name and append it to the module post data
+                    $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
+                    $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
+                }
             }
         }
 
