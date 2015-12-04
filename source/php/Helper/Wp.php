@@ -14,7 +14,7 @@ class Wp
      */
     public static function getTemplate($prefix = '', $slug = '', $error = true)
     {
-        $paths = apply_filters('Evaluate/TemplatePath', array(
+        $paths = apply_filters('Modularity/Module/TemplatePath', array(
             get_stylesheet_directory() . '/templates/',
             get_template_directory() . '/templates/',
             MODULARITY_PATH . 'templates/',
@@ -30,6 +30,8 @@ class Wp
                 return $file;
             }
         }
+
+        var_dump($file);
 
         error_log('Modularity: Template ' . $slug . 'evaluate' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true));
 
