@@ -177,7 +177,7 @@ class Editor extends \Modularity\Options
         ));
 
         // Add module id's as keys in the array
-        if (!empty($posts)) {
+        if (!empty($modulesPosts)) {
             foreach ($modulesPosts as $module) {
                 $modules[$module->ID] = $module;
             }

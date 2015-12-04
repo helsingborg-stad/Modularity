@@ -108,6 +108,10 @@ class Display
      */
     public function output($sidebar)
     {
+        if (!isset($this->modules[$sidebar])) {
+            return;
+        }
+
         // Get modules
         $modules = $this->modules[$sidebar];
 
