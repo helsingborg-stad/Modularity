@@ -9,6 +9,7 @@ class Display
      * @var array
      */
     public $modules = array();
+    public $options = null;
 
     public function __construct()
     {
@@ -23,8 +24,10 @@ class Display
     {
         global $post;
         $this->modules = \Modularity\Editor::getPostModules($post->ID);
+        $this->options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
 
-        add_action('dynamic_sidebar_before', array($this, 'output'));
+        add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
+        add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
     }
 
     /**
@@ -44,21 +47,47 @@ class Display
     }
 
     /**
+     * Check if modules should be outputted before widgets
+     * @param  string $sidebar Current sidebar
+     * @return boolean|void
+     */
+    public function outputBefore($sidebar)
+    {
+        if (!isset($this->options[$sidebar]['hook']) || $this->options[$sidebar]['hook'] != 'before') {
+            return false;
+        }
+
+        $this->output($sidebar);
+    }
+
+    /**
+     * Check if modules should be outputted after widgets
+     * @param  string $sidebar Current sidebar
+     * @return boolean|void
+     */
+    public function outputAfter($sidebar)
+    {
+        if (isset($this->options[$sidebar]['hook']) && $this->options[$sidebar]['hook'] != 'after') {
+            return false;
+        }
+
+        $this->output($sidebar);
+    }
+
+    /**
      * Outputs the modules of a specific sidebar
      * @param  string $sidebar Sidebar id/slug
      * @return void
      */
     public function output($sidebar)
     {
-        global $post;
-
         // Get modules
         $modules = $this->modules[$sidebar];
 
         $sidebarArgs = $this->getSidebarArgs($sidebar);
 
         // Loop and output modules
-        foreach ($modules as $module) {
+        foreach ($modules['modules'] as $module) {
             $this->outputModule($module, $sidebarArgs);
         }
     }

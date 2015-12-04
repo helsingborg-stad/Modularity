@@ -40,7 +40,7 @@ Modularity.Editor.Module = (function ($) {
             $.each(response, function (sidebar, modules) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
-                $.each(modules, function (key, data) {
+                $.each(modules.modules, function (key, data) {
                     this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID);
                 }.bind(this));
 
@@ -163,14 +163,14 @@ Modularity.Editor.Module = (function ($) {
             module.remove();
         }
     };
-    
+
     /**
      * Removes a module "row" from the placeholder
      * @param  {DOM Element} module The (to be removed) module's dom element
      * @return {void}
      */
     Module.prototype.hideModule = function (module) {
-    	
+
     };
 
     /**

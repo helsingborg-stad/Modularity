@@ -13,6 +13,7 @@ class Editor extends \Modularity\Options
 
         if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
             $post = get_post($_GET['id']);
+            setup_postdata($post);
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
@@ -63,7 +64,7 @@ class Editor extends \Modularity\Options
             'modularity-mb-editor-publish',
             __('Save modules', 'modularity'),
             function () {
-                include MODULARITY_TEMPLATE_PATH . 'options/partials/modularity-publish.php';
+                include MODULARITY_TEMPLATE_PATH . 'editor/modularity-publish.php';
             },
             $this->screenHook,
             'side'
@@ -131,6 +132,9 @@ class Editor extends \Modularity\Options
      */
     public function metaBoxSidebar($post, $args)
     {
+        global $post;
+        $options = get_post_meta($post->ID, 'modularity-sidebar-options', true)[$args['args']['sidebar']['id']];
+
         include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 
@@ -180,13 +184,16 @@ class Editor extends \Modularity\Options
         //     )
         // )
         foreach ($moduleSidebars as $key => $sidebar) {
-            $retModules[$key] = array();
+            $retModules[$key] = array(
+                'modules' => array(),
+                'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
+            );
 
             foreach ($sidebar as $moduleId) {
-                $retModules[$key][$moduleId] = $modules[$moduleId];
+                $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
 
                 // Get the post type name and append it to the module post data
-                $retModules[$key][$moduleId]->post_type_name = $available[$retModules[$key][$moduleId]->post_type]['labels']['name'];
+                $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
             }
         }
 
@@ -210,12 +217,19 @@ class Editor extends \Modularity\Options
 
         $postId = $_GET['id'];
 
-        //Remove post meta if not set.
-        if ( isset( $_POST['modularity_modules'] ) ) {
-        	update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
-		} else {
-			delete_post_meta($postId, 'modularity-modules');
-		}
+        // Remove post meta if not set.
+        if (isset($_POST['modularity_modules'])) {
+            update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
+        } else {
+            delete_post_meta($postId, 'modularity-modules');
+        }
+
+        // Remove post meta if not set.
+        if (isset($_POST['modularity_sidebar_options'])) {
+            update_post_meta($postId, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
+        } else {
+            delete_post_meta($postId, 'modularity-sidebar-options');
+        }
 
         $this->notice(__('Modules saved', 'modularity'), ['updated']);
     }
