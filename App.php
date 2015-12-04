@@ -29,6 +29,8 @@ class App
         new Module();
         new Editor();
         new Display();
+
+        do_action('Modularity');
     }
 
     /**
