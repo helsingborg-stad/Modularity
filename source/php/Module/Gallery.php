@@ -11,7 +11,7 @@ class Gallery extends \Modularity\Module
             'Gallery',
             'Galleries',
             'Outputs a gallery with images',
-            array('title')
+            array()
         );
     }
 }

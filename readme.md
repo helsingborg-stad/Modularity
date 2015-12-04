@@ -33,7 +33,7 @@ class Article extends \Modularity\Module
         $nameSingular = 'Article';
         $namePlural = 'Articles';
         $description = 'Outputs a full article with title and content';
-        $supports = array('title', 'editor');
+        $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
 
         $this->register(
