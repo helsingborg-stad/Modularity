@@ -28,6 +28,28 @@ class Display
 
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
         add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
+
+        add_filter('sidebars_widgets', array($this, 'hideWidgets'));
+    }
+
+    /**
+     * Unsets (hides) widgets from sidebar if set in Modularity options
+     * @param  array $sidebars Sidebars and widgets
+     * @return array           Filtered sidebars and widgets
+     */
+    public function hideWidgets($sidebars)
+    {
+        $retSidebars = $sidebars;
+
+        foreach ($retSidebars as $sidebar => $widgets) {
+            if (!isset($this->options[$sidebar]['hide_widgets']) || $this->options[$sidebar]['hide_widgets'] != 'true') {
+                continue;
+            }
+
+            $retSidebars[$sidebar] = array('');
+        }
+
+        return $retSidebars;
     }
 
     /**
