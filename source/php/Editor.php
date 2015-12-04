@@ -167,29 +167,18 @@ class Editor extends \Modularity\Options
         }
 
         // Get module posts
-        $posts = get_posts(array(
+        $modulesPosts = get_posts(array(
             'posts_per_page' => -1,
             'post_type' => $enabled,
             'include' => $moduleIds
         ));
 
         // Add module id's as keys in the array
-        foreach ($posts as $module) {
+        foreach ($modulesPosts as $module) {
             $modules[$module->ID] = $module;
         }
 
         // Create an strucural correct array with module post data
-        //
-        // array(
-        //     'sidebar-id-1' => array(
-        //          0 => Module #1,
-        //          1 => Module #2
-        //     ),
-        //     'sidebar-id-2' => array(
-        //          0 => Module #1,
-        //          1 => Module #2
-        //     )
-        // )
         foreach ($moduleSidebars as $key => $sidebar) {
             $retModules[$key] = array(
                 'modules' => array(),
@@ -201,6 +190,7 @@ class Editor extends \Modularity\Options
 
                 // Get the post type name and append it to the module post data
                 $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
+                $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
             }
         }
 
