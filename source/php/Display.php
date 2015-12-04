@@ -69,7 +69,7 @@ class Display
      * @param  array $sidebarArgs  The sidebar data
      * @return boolean             True if success otherwise false
      */
-    public function outputModule($module, $sidebarArgs)
+    public function outputModule($module, $args)
     {
         $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
 
@@ -77,17 +77,19 @@ class Display
             return false;
         }
 
-        if (isset($sidebarArgs['before_widget'])) {
-            $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $sidebarArgs['before_widget']);
+        setup_postdata($module);
+
+        if (isset($args['before_widget'])) {
+            $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
             $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
 
-            echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $module->post_type, $module->ID);
+            echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
         }
 
         include $templatePath;
 
-        if (isset($sidebarArgs['after_widget'])) {
-            echo apply_filters('Modularity/Display/AfterModule', $sidebarArgs['after_widget'], $module->post_type, $module->ID);
+        if (isset($args['after_widget'])) {
+            echo apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
         }
 
         return true;
