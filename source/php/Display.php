@@ -22,6 +22,10 @@ class Display
      */
     public function init()
     {
+        if (is_admin()) {
+            return;
+        }
+
         global $post;
         $this->modules = \Modularity\Editor::getPostModules($post->ID);
         $this->options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
