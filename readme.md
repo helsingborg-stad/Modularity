@@ -33,7 +33,7 @@ class Article extends \Modularity\Module
         $nameSingular = 'Article';
         $namePlural = 'Articles';
         $description = 'Outputs a full article with title and content';
-        $supports = array('title', 'editor');
+        $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
 
         $this->register(
@@ -65,6 +65,17 @@ You can download our module boilerplate. It will be a good starting point for an
 
 Action reference
 ----------------
+
+#### Modularity
+
+> Runs when Modularity core is loaded. Typically used to add custom modules.
+
+*Example:*
+```php
+add_action('Modularity', function () {
+    // Do your thing
+});
+```
 
 #### Modularity/Module/[MODULE SLUG]/enqueue
 
@@ -101,7 +112,7 @@ add_filter('Modularity/Display/BeforeModule', function ($beforeModule, $args, $m
 });
 ```
 
-___
+---
 
 #### Modularity/Display/AfterModule
 
@@ -121,5 +132,26 @@ $moduleId         The ID of the module
 add_filter('Modularity/Display/AfterModule', function ($afterModule, $args, $moduleType, $moduleId) {
     // Do your thing
     return $filteredValue;
+});
+```
+
+---
+
+#### Modularity/Module/TemplatePath
+
+> Modify (add/edit) paths where to look for module templates
+> Typically used for adding search path's for finding custom modules templates.
+> 
+> *Attention: Unsetting paths may cause issues displaying modules. Plase do not do this unless you know exacly what you are doing.*
+
+*Params:*
+```
+$paths      The value to filter
+```
+
+*Example:*
+```php
+add_filter('Modularity/Module/TemplatePath', function ($paths) {
+    return $paths;
 });
 ```

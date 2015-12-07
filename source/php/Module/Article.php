@@ -11,7 +11,7 @@ class Article extends \Modularity\Module
             'Article',
             'Articles',
             'Outputs a full article',
-            array('title', 'editor')
+            array('editor')
         );
     }
 }

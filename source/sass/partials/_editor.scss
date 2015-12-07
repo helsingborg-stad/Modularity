@@ -31,36 +31,31 @@
     width: 100%; 
 
     li {
-	    
-	    display: table-row; 
-	    
         &:not(.ui-sortable-placeholder) {
             counter-increment: int;
         }
-        
+
+        background-color: #FAFAFA;
+        border: 1px solid #E5E5E5;
         padding: 0;
         height: 50px;
-        
+        border-radius: 1px;
+
+        &:not(.ui-sortable-placeholder) {
+            counter-increment: int;
+        }
 
         &.ui-sortable-placeholder {
             border: 3px dashed #999;
             min-height: 50px;
         }
 
-		.modularity-line-wrapper {
-			display: block; 
-			background-color: #FAFAFA;
-			border: 1px solid #E5E5E5;
-			border-radius: 1px;
-		}
-
-        .modularity-line-wrapper > span {
-	        display: table-cell; 
+        > span {
+            display: table-cell;
             vertical-align: middle;
             padding: 0 20px;
             height: inherit;
             line-height: 48px;
-            height: 48px; 
         }
 
         .modularity-module-name {
@@ -76,7 +71,6 @@
         .modularity-module-actions {
             position: relative;
             font-size: 0;
-			border-right: 1px solid #E5E5E5;
 			border-left: 1px solid #E5E5E5;
 			padding-left: 0;
 			padding-right: 0;
@@ -90,16 +84,13 @@
                 display: inline-block;
                 height: inherit;
                 background: rgba(#000,.03);
+                border-right: 1px solid #E5E5E5;
                 line-height: 50px;
-
-                &:not(:last-child) {
-	                border-right: 1px solid #E5E5E5;
-                }
             }
         }
 
         .modularity-module-actions a:hover {
-            background: rgba(#000,.05);
+            background: rgba(#000, .05);
         }
 
         .modularity-module-name:before {

@@ -11,7 +11,7 @@ class Social extends \Modularity\Module
             __("Social Media Feed",'modularity-plugin'),
             __("Sociala Media Feeds",'modularity-plugin'),
             __("Outputs a social media feed from desired username or hashtag (facebook, instagram, twitter, linkedin).",'modularity-plugin'),
-            array('title')
+            array()
         );
     }
 }

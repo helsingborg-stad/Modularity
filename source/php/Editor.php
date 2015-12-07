@@ -133,19 +133,16 @@ class Editor extends \Modularity\Options
     public function metaBoxSidebar($post, $args)
     {
         global $post;
-        
+
         $options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
-        
-        if ( isset($options[$args['args']['sidebar']['id']]) ) { 
-	    	
-	    	$options = $options[$args['args']['sidebar']['id']]; 
-	    	
-	    	
-	    	   
-	    }
-	    
-	    include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
-        
+
+        if (isset($options[$args['args']['sidebar']['id']])) {
+            $options = $options[$args['args']['sidebar']['id']];
+        } else {
+            $options = null;
+        }
+
+        include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 
     /**
@@ -165,53 +162,43 @@ class Editor extends \Modularity\Options
         // Get modules structure
         $moduleIds = array();
         $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
-       
-        if ( !empty( $moduleSidebars ) ) { 
-	        foreach ($moduleSidebars as $sidebar) {
-	            $moduleIds = array_merge($moduleIds, $sidebar);
-	        }
+
+        if (!empty($moduleSidebars)) {
+            foreach ($moduleSidebars as $sidebar) {
+                $moduleIds = array_merge($moduleIds, $sidebar);
+            }
         }
 
         // Get module posts
-        $posts = get_posts(array(
+        $modulesPosts = get_posts(array(
             'posts_per_page' => -1,
             'post_type' => $enabled,
             'include' => $moduleIds
         ));
 
         // Add module id's as keys in the array
-        if (!empty($posts)) {
-	        foreach ($posts as $module) {
-	            $modules[$module->ID] = $module;
-	        }
+        if (!empty($modulesPosts)) {
+            foreach ($modulesPosts as $module) {
+                $modules[$module->ID] = $module;
+            }
         }
 
         // Create an strucural correct array with module post data
-        //
-        // array(
-        //     'sidebar-id-1' => array(
-        //          0 => Module #1,
-        //          1 => Module #2
-        //     ),
-        //     'sidebar-id-2' => array(
-        //          0 => Module #1,
-        //          1 => Module #2
-        //     )
-        // )
         if (!empty($moduleSidebars)) {
-       		foreach ($moduleSidebars as $key => $sidebar) {
-	            $retModules[$key] = array(
-	                'modules' => array(),
-	                'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
-	            );
-	
-	            foreach ($sidebar as $moduleId) {
-	                $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
-	
-	                // Get the post type name and append it to the module post data
-	                $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
-	            }
-	        }		
+            foreach ($moduleSidebars as $key => $sidebar) {
+                $retModules[$key] = array(
+                    'modules' => array(),
+                    'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
+                );
+
+                foreach ($sidebar as $moduleId) {
+                    $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
+
+                    // Get the post type name and append it to the module post data
+                    $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
+                    $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
+                }
+            }
         }
 
         return $retModules;

@@ -11,7 +11,7 @@ class Table extends \Modularity\Module
             __("Table",'modularity-plugin'),
             __("Tables",'modularity-plugin'),
             __("Outputs a flexible table with options.",'modularity-plugin'),
-            array('title')
+            array()
         );
     }
 }
