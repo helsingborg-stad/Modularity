@@ -116,18 +116,20 @@ Modularity.Editor.Module = (function ($) {
 
         $(target).append('\
             <li data-module-id="' + moduleId + '">\
-                <span class="modularity-sortable-handle"></span>\
-                <span class="modularity-module-name">\
-                        ' + moduleName + '\
-                        <span class="modularity-module-title">' + moduleTitle + '</span>\
+            	<span class="modularity-line-wrapper">\
+                	<span class="modularity-sortable-handle"></span>\
+	                <span class="modularity-module-name">\
+	                        ' + moduleName + '\
+	                        <span class="modularity-module-title">' + moduleTitle + '</span>\
+	                </span>\
+	                <span class="modularity-module-actions">\
+	                    <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open">Edit</a>\
+	                    <a href="#import" class="modularity-js-thickbox-import">Import</a>\
+	                    <a href="#remove" class="modularity-module-remove">Remove</a>\
+	                    <a href="#hide" class="modularity-module-hide">Hide</a>\
+	                </span>\
+	                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
                 </span>\
-                <span class="modularity-module-actions">\
-                    <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open">Edit</a>\
-                    <a href="#" class="modularity-js-thickbox-open">Import</a>\
-                </span>\
-                <span class="modularity-module-remove"><button data-action="modularity-module-remove"></button></span>\
-                <span class="modularity-module-hide"><button data-action="modularity-module-hide"></button></span>\
-                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
             </li>\
         ');
 

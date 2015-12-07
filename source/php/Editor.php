@@ -133,9 +133,19 @@ class Editor extends \Modularity\Options
     public function metaBoxSidebar($post, $args)
     {
         global $post;
-        $options = get_post_meta($post->ID, 'modularity-sidebar-options', true)[$args['args']['sidebar']['id']];
-
-        include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
+        
+        $options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+        
+        if ( isset($options[$args['args']['sidebar']['id']]) ) { 
+	    	
+	    	$options = $options[$args['args']['sidebar']['id']]; 
+	    	
+	    	
+	    	   
+	    }
+	    
+	    include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
+        
     }
 
     /**
