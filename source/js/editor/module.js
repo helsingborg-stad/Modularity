@@ -125,8 +125,8 @@ Modularity.Editor.Module = (function ($) {
 	                <span class="modularity-module-actions">\
 	                    <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
 	                    <a href="#import" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
-	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
 	                    <a href="#hide" class="modularity-module-hide"><span>' + modularityAdminLanguage.langhide + '</span></a>\
+	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
 	                </span>\
 	                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
                 </span>\
@@ -161,7 +161,7 @@ Modularity.Editor.Module = (function ($) {
      * @return {void}
      */
     Module.prototype.removeModule = function (module) {
-        if (confirm('Are you sure you want to remove this module?')) {
+        if (confirm(modularityAdminLanguage.actionRemove)) {
             module.remove();
         }
     };
@@ -180,13 +180,25 @@ Modularity.Editor.Module = (function ($) {
      * @return {void}
      */
     Module.prototype.handleEvents = function () {
+        
         // Trash icon
-        $(document).on('click', '[data-action="modularity-module-remove"]', function (e) {
+        $(document).on('click', '.modularity-module-remove', function (e) {
             e.preventDefault();
-
             var target = $(e.target).closest('li');
             this.removeModule(target);
         }.bind(this));
+        
+        //Import
+        $(document).on('click', '.modularity-js-thickbox-import', function (e) {
+            e.preventDefault();
+            alert("Import not done, still in beta."); 
+        }); 
+        
+        //Hide
+        $(document).on('click', '.modularity-module-hide', function (e) {
+            e.preventDefault();
+            alert("Hide not done, still in beta."); 
+        }); 
 
         // Edit
         $(document).on('click', '.modularity-js-thickbox-open', function (e) {

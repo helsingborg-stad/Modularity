@@ -337,3 +337,8 @@
 .ui-sortable-handle {
     cursor: move;
 }
+@media (max-width: 800px) {
+	#modularity-mb-modules {
+		padding-top: 0 !important; 
+	}
+}

@@ -74,7 +74,8 @@ class App
 			'langedit' => __( 'Edit', 'plugin-domain' ),
 			'langimport' => __( 'Import', 'plugin-domain' ),
 			'langremove' => __( 'Remove', 'plugin-domain' ),
-			'langhide' => __( 'Hide', 'plugin-domain' )
+			'langhide' => __( 'Hide', 'plugin-domain' ),
+			'actionRemove' => __( 'Are you sure you want to remove this module?', 'plugin-domain' ),
 		));
         wp_enqueue_script('modularity');
 

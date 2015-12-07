@@ -3,7 +3,7 @@
         <div class="col">
             <label>
                 <input type="checkbox" value="true" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][hide_widgets]" <?php checked(true, isset($options['hide_widgets']), true); ?>>
-                <?php _e('Hide widgets', 'modularity'); ?>
+                <?php _e('Hide global widgets', 'modularity'); ?>
             </label>
         </div>
         <div class="col">

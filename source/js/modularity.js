@@ -30,5 +30,34 @@ if (typeof postboxes !== 'undefined') {
         return true;
     });
 
+})(jQuery);
 
+
+/* Auto scrolling content */ 
+(function($){
+	jQuery(document).scroll(function(){
+		if(jQuery("#modularity-mb-modules").length) {
+		    var offset = jQuery("#modularity-mb-modules").offset(); 
+			if ( window.pageYOffset > offset.top - jQuery("#wpadminbar").outerHeight() ) {
+				jQuery("#modularity-mb-modules").css("paddingTop", window.pageYOffset-offset.top + jQuery("#wpadminbar").outerHeight() )
+			} else {
+				jQuery("#modularity-mb-modules").css("paddingTop",0); 
+			}
+	    }
+	}); 
+})(jQuery);
+
+/* Max height */ 
+(function($){
+	$( window ).resize(function() {
+		if(jQuery("#modularity-mb-modules").length) {
+			jQuery(".modularity-modules").css("maxHeight", "60vh"); 
+		}
+	});
+})(jQuery);
+
+(function($){
+	if(jQuery("#modularity-mb-modules").length) {
+		jQuery(".modularity-modules").css("maxHeight", "60vh"); 
+	}
 })(jQuery);
