@@ -123,10 +123,10 @@ Modularity.Editor.Module = (function ($) {
 	                        <span class="modularity-module-title">' + moduleTitle + '</span>\
 	                </span>\
 	                <span class="modularity-module-actions">\
-	                    <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open">Edit</a>\
-	                    <a href="#import" class="modularity-js-thickbox-import">Import</a>\
-	                    <a href="#remove" class="modularity-module-remove">Remove</a>\
-	                    <a href="#hide" class="modularity-module-hide">Hide</a>\
+	                    <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open"><span>Edit</span></a>\
+	                    <a href="#import" class="modularity-js-thickbox-import"><span>Import</span></a>\
+	                    <a href="#remove" class="modularity-module-remove"><span>Remove</span></a>\
+	                    <a href="#hide" class="modularity-module-hide"><span>Hide</span></a>\
 	                </span>\
 	                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
                 </span>\

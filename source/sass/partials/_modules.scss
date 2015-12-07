@@ -68,6 +68,8 @@ li.modularity-module {
     float: left;
     width: $module-line-height;
 	height: $module-line-height;
+	transition: transform 200ms ease; 
+	
     svg,
     img {
         position: absolute;
@@ -84,6 +86,10 @@ li.modularity-module {
     svg * {
         fill: #4D4D4D !important;
     }
+}
+
+.modularity-module:hover .modularity-module-icon {
+	transform: rotate(-10deg);
 }
 
 .modularity-sortable-handle {
