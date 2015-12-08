@@ -18,7 +18,8 @@ Modularity.Editor.Thickbox = (function ($) {
     }
 
     Thickbox.prototype.modulePostCreated = function (postId) {
-        tb_remove();
+        Modularity.Prompt.Modal.close();
+
         var module = Modularity.Editor.Module.isEditingModule();
 
         var request = {

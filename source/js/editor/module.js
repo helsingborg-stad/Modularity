@@ -9,9 +9,9 @@ Modularity.Editor.Module = (function ($) {
      */
     var thickboxOptions = {
         is_thickbox: true,
-        TB_iframe: true,
-        width: 980,
-        height: 600
+        //TB_iframe: true,
+        //width: 980,
+        //height: 600
     };
 
     var editingModule = false;
@@ -123,7 +123,7 @@ Modularity.Editor.Module = (function ($) {
 	                        <span class="modularity-module-title">' + moduleTitle + '</span>\
 	                </span>\
 	                <span class="modularity-module-actions">\
-	                    <a href="' + thickboxUrl + '" class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
+	                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
 	                    <a href="#import" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
 	                    <a href="#hide" class="modularity-module-hide"><span>' + modularityAdminLanguage.langhide + '</span></a>\
 	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
@@ -180,25 +180,25 @@ Modularity.Editor.Module = (function ($) {
      * @return {void}
      */
     Module.prototype.handleEvents = function () {
-        
+
         // Trash icon
         $(document).on('click', '.modularity-module-remove', function (e) {
             e.preventDefault();
             var target = $(e.target).closest('li');
             this.removeModule(target);
         }.bind(this));
-        
+
         //Import
         $(document).on('click', '.modularity-js-thickbox-import', function (e) {
             e.preventDefault();
-            alert("Import not done, still in beta."); 
-        }); 
-        
+            alert("Import not done, still in beta.");
+        });
+
         //Hide
         $(document).on('click', '.modularity-module-hide', function (e) {
             e.preventDefault();
-            alert("Hide not done, still in beta."); 
-        }); 
+            alert("Hide not done, still in beta.");
+        });
 
         // Edit
         $(document).on('click', '.modularity-js-thickbox-open', function (e) {
@@ -210,7 +210,8 @@ Modularity.Editor.Module = (function ($) {
             }
 
             editingModule = $(e.target).closest('li');
-            tb_show('', $(e.target).closest('a').attr('href'));
+
+            Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
         }.bind(this));
     };
 
