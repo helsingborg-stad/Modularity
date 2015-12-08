@@ -1,6 +1,6 @@
 <?php
 
-namespace Modularity\Module;
+namespace Modularity\Module\Hero;
 
 class Hero extends \Modularity\Module
 {
@@ -14,7 +14,7 @@ class Hero extends \Modularity\Module
             array()
         );
 
-        add_action('plugins_loaded', array($this,'acfFields')); 
+        add_action('plugins_loaded', array($this,'acfFields'));
     }
 
     public function acfFields()

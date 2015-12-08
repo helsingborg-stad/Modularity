@@ -1,6 +1,6 @@
 <?php
 
-namespace Modularity\Module;
+namespace Modularity\Module\Form;
 
 class Form extends \Modularity\Module
 {

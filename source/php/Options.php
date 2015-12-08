@@ -67,7 +67,7 @@ abstract class Options
      */
     public function isValidPostSave()
     {
-        return isset($_POST['action']) && $_POST['action'] == 'modularity-options' && wp_verify_nonce($_POST['_wpnonce'], 'modularity-options');
+        return isset($_POST['modularity-action']) && $_POST['modularity-action'] == 'modularity-options' && wp_verify_nonce($_POST['_wpnonce'], 'modularity-options');
     }
 
     /**

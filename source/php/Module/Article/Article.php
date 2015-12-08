@@ -1,6 +1,6 @@
 <?php
 
-namespace Modularity\Module;
+namespace Modularity\Module\Article;
 
 class Article extends \Modularity\Module
 {

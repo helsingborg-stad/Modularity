@@ -18,6 +18,7 @@ class Module
      */
     public static $available = array();
     public static $enabled = array();
+    public static $options = array();
 
     public function __construct()
     {
@@ -71,12 +72,12 @@ class Module
     {
         $directory = MODULARITY_PATH . 'source/php/Module/';
 
-        foreach (@glob($directory . "*.php") as $filename) {
-            $class = '\Modularity\Module\\' . pathinfo($filename)['filename'];
+        foreach (@glob($directory . "*", GLOB_ONLYDIR) as $folder) {
+            $class = '\Modularity\Module\\' . basename($folder) . '\\' . basename($folder);
 
-            if (class_exists($class)) {
+           // if (class_exists($class)) {
                 new $class;
-            }
+            //}
         }
     }
 
@@ -155,8 +156,8 @@ class Module
          * Max 20 characters long
          * @var string
          */
-        if (empty($args['menu_icon']) && file_exists(MODULARITY_PATH . "/dist/images/icons/" . $slug . ".svg")) {
-            $args['menu_icon'] = file_get_contents(MODULARITY_PATH . "/dist/images/icons/" . $slug . ".svg");
+        if (empty($args['menu_icon']) && file_exists(MODULARITY_PATH . "/source/php/Module/" . $slug . "/assets/icon.svg")) {
+            $args['menu_icon'] = file_get_contents(MODULARITY_PATH . "/source/php/Module/" . $slug . "/assets/icon.svg");
             $args['menu_icon_auto_import'] = true;
         }
 
@@ -177,12 +178,12 @@ class Module
         $this->moduleSlug = $postTypeSlug;
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 
-		/**
-         * Include plugin 
+        /**
+         * Include plugin
          */
-         if (!is_null($plugin) && file_exists(__DIR__ . '/../../plugins/'. $plugin)) {
-	        require __DIR__.'/../../plugins/' . $plugin;  
-         }
+        if (!is_null($plugin) && file_exists(__DIR__ . '/../../plugins/'. $plugin)) {
+            require __DIR__.'/../../plugins/' . $plugin;
+        }
 
         return $postTypeSlug;
     }
