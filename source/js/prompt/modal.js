@@ -31,14 +31,6 @@ Modularity.Prompt.Modal = (function ($) {
     };
 
     Modal.prototype.handleEvents = function () {
-        /*
-        $(document).on('click', 'a[data-modularity-modal]', function (e) {
-            e.preventDefault();
-            var element = $(e.target).closest('a[data-modularity-modal]');
-            this.open(element.attr('href'));
-        }.bind(this));
-        */
-
         $(document).on('click', '[data-modularity-modal-action="close"]', function (e) {
             e.preventDefault();
             this.close();
