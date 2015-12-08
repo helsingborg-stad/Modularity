@@ -77,8 +77,9 @@
         }
 
         .modularity-module-name {
+            position: relative;
             margin-right: 10px;
-            width: 50%;
+            width: 30%;
             font-weight: bold;
 
             overflow: hidden;
@@ -102,6 +103,12 @@
 
         .modularity-module-title {
             font-weight: normal;
+            position: relative;
+        }
+
+        .modularity-module-hide {
+            position: absolute;
+            right: 20px;
         }
 
         span.modularity-module-actions {
@@ -140,7 +147,7 @@
                 height: inherit;
                 background: rgba(#000,.03);
                 line-height: 50px;
-                width: 25%;
+                width: 33.33%;
                 display: inline-block;
                 box-sizing: border-box;
                 text-align: center;
@@ -201,10 +208,6 @@
 	                background-image: url('../../dist/images/action_icons/delete.svg');
                 }
 
-                &.modularity-module-hide:before {
-	                background-image: url('../../dist/images/action_icons/hide.svg');
-                }
-
             }
 
             @media (max-width: 600px) {
@@ -212,8 +215,7 @@
 		            width: 50%;
 	            }
 
-	            a.modularity-js-thickbox-import,
-	            a.modularity-module-hide {
+	            a.modularity-js-thickbox-import {
 		            display: none !important;
 	            }
 	        }

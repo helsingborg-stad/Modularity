@@ -125,13 +125,16 @@ Modularity.Editor.Module = (function ($) {
             	<span class="modularity-line-wrapper">\
                 	<span class="modularity-sortable-handle"></span>\
 	                <span class="modularity-module-name">\
-	                        ' + moduleName + '\
-	                        <span class="modularity-module-title">' + moduleTitle + '</span>\
+                        ' + moduleName + '\
+                        <span class="modularity-module-title">' + moduleTitle + '</span>\
+                        <label class="modularity-module-hide">\
+                            <input type="checkbox" name="modularity_modules_hidden[' + sidebarId + '][]" value="true" />\
+                            ' + modularityAdminLanguage.langhide + '\
+                        </label>\
 	                </span>\
 	                <span class="modularity-module-actions">\
 	                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
 	                    <a href="#import" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
-	                    <a href="#hide" class="modularity-module-hide"><span>' + modularityAdminLanguage.langhide + '</span></a>\
 	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
 	                </span>\
 	                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
@@ -198,12 +201,6 @@ Modularity.Editor.Module = (function ($) {
         $(document).on('click', '.modularity-js-thickbox-import', function (e) {
             e.preventDefault();
             alert("Import not done, still in beta.");
-        });
-
-        //Hide
-        $(document).on('click', '.modularity-module-hide', function (e) {
-            e.preventDefault();
-            alert("Hide not done, still in beta.");
         });
 
         // Edit
