@@ -4,7 +4,7 @@
  * Plugin URI: -
  * Description: Modular component system for WordPress
  * Version: 0.1
- * Author: Kristoffer Svanmark
+ * Author: Kristoffer Svanmark, Sebastian Thulin
  * Author URI: -
  *
  * Copyright (C) 2015
