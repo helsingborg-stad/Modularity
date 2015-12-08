@@ -8,9 +8,9 @@ class InlayList extends \Modularity\Module
     {
         $this->register(
             'inlaylist',
-            __("Inlay List",'modularity-plugin'),
-            __("Inlay Lists",'modularity-plugin'),
-            __("Outputs one or more posts from selected post-type.",'modularity-plugin'),
+            __("Inlay List", 'modularity-plugin'),
+            __("Inlay Lists", 'modularity-plugin'),
+            __("Outputs one or more posts from selected post-type.", 'modularity-plugin'),
             array()
         );
     }
