@@ -1,6 +1,6 @@
 <?php
 
-namespace Modularity\Module;
+namespace Modularity\Module\Social;
 
 class Social extends \Modularity\Module
 {
@@ -14,7 +14,7 @@ class Social extends \Modularity\Module
             array()
         );
 
-        add_action('plugins_loaded', array($this,'acfFields')); 
+        add_action('plugins_loaded', array($this,'acfFields'));
     }
 
     public function acfFields()
