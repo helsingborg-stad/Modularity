@@ -31,8 +31,6 @@ class Wp
             }
         }
 
-        var_dump($file);
-
         error_log('Modularity: Template ' . $slug . 'evaluate' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true));
 
         if ($error) {
