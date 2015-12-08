@@ -27,7 +27,7 @@ class Hero extends \Modularity\Module
                     array(
                         'key' => 'field_56669ca8e12a6',
                         'label' => 'Show title',
-                        'name' => 'show_title',
+                        'name' => 'mod_hero_show_title',
                         'type' => 'radio',
                         'instructions' => '',
                         'required' => 1,
@@ -49,7 +49,7 @@ class Hero extends \Modularity\Module
                     array(
                         'key' => 'field_566199a65c835',
                         'label' => 'Images',
-                        'name' => 'images',
+                        'name' => 'mod_hero_images',
                         'type' => 'gallery',
                         'instructions' => 'You can use one or more image. If using more than one image we\'ll instantiate a slider.',
                         'required' => 1,

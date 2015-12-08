@@ -27,7 +27,7 @@ class Gallery extends \Modularity\Module
                     array(
                         'key' => 'field_56669ca8e12345',
                         'label' => 'Show title',
-                        'name' => 'show_title',
+                        'name' => 'mod_gallery_show_title',
                         'type' => 'radio',
                         'instructions' => '',
                         'required' => 1,
@@ -49,7 +49,7 @@ class Gallery extends \Modularity\Module
                     array (
                         'key' => 'field_5666984b52220',
                         'label' => 'Gallery',
-                        'name' => 'gallery',
+                        'name' => 'mod_gallery_images',
                         'type' => 'gallery',
                         'instructions' => '',
                         'required' => 1,
