@@ -14,7 +14,7 @@ class Gallery extends \Modularity\Module
             array()
         );
 
-        $this->acfFields();
+        add_action('plugins_loaded', array($this,'acfFields')); 
     }
 
     public function acfFields()

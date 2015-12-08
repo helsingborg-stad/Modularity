@@ -16,7 +16,8 @@ class Table extends \Modularity\Module
             'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php' //included plugin
         );
         
-        $this->acfFields();
+        add_action('plugins_loaded', array($this,'acfFields')); 
+        
     }
     
     public function acfFields()
