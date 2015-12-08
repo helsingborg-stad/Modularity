@@ -104,7 +104,7 @@ class Module
      * @param  array  $supports     Which core post type fileds this module supports
      * @return string               The prefixed module id/slug
      */
-    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null)
+    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null)
     {
         $labels = array(
             'name'               => _x($nameSingular, 'post type general name', 'modularity'),
@@ -176,6 +176,13 @@ class Module
 
         $this->moduleSlug = $postTypeSlug;
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+
+		/**
+         * Include plugin 
+         */
+         if (!is_null($plugin) && file_exists(__DIR__ . '/../../plugins/'. $plugin)) {
+	        require __DIR__.'/../../plugins/' . $plugin;  
+         }
 
         return $postTypeSlug;
     }
