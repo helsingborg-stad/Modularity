@@ -44,7 +44,7 @@ class Gallery extends \Modularity\Module
                         'other_choice' => 0,
                         'save_other_choice' => 0,
                         'default_value' => 'true',
-                        'layout' => 'vertical',
+                        'layout' => 'horizontal',
                     ),
                     array (
                         'key' => 'field_5666984b52220',

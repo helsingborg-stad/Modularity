@@ -44,7 +44,7 @@ class Hero extends \Modularity\Module
                         'other_choice' => 0,
                         'save_other_choice' => 0,
                         'default_value' => 'false',
-                        'layout' => 'vertical',
+                        'layout' => 'horizontal',
                     ),
                     array(
                         'key' => 'field_566199a65c835',
