@@ -71,11 +71,13 @@ class App
         // Scripts
         wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, '1.0.0', true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
-            'langedit' => __('Edit', 'plugin-domain'),
-            'langimport' => __('Import', 'plugin-domain'),
-            'langremove' => __('Remove', 'plugin-domain'),
-            'langhide' => __('Hide', 'plugin-domain'),
-            'actionRemove' => __('Are you sure you want to remove this module?', 'plugin-domain'),
+            'langedit' => __('Edit', 'modularity'),
+            'langimport' => __('Import', 'modularity'),
+            'langremove' => __('Remove', 'modularity'),
+            'langhide' => __('Hide', 'modularity'),
+            'actionRemove' => __('Are you sure you want to remove this module?', 'modularity'),
+            'isSaving' => __('Saving…', 'modularity'),
+            'close' => __('Close', 'modularity')
         ));
         wp_enqueue_script('modularity');
 

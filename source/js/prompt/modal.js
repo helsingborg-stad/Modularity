@@ -15,7 +15,7 @@ Modularity.Prompt.Modal = (function ($) {
         $('body').addClass('modularity-modal-open').append('\
             <div id="modularity-modal">\
                 <div class="modularity-modal-wrapper">\
-                    <button class="modularity-modal-close" data-modularity-modal-action="close">&times; Close</button>\
+                    <button class="modularity-modal-close" data-modularity-modal-action="close">&times; ' + modularityAdminLanguage.close + '</button>\
                     <iframe class="modularity-modal-iframe" src="' + url + '" frameborder="0" allowtransparency></iframe>\
                 </div>\
             </div>\
