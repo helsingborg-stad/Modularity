@@ -44,7 +44,7 @@ class App
         if (!is_plugin_active('advanced-custom-fields-pro/acf.php')
             && !is_plugin_active('advanced-custom-fields/acf.php')
         ) {
-            require_once MODULARITY_PATH . 'source/acf/acf.php';
+            require_once MODULARITY_PATH . 'plugins/acf/acf.php';
 
             add_action('admin_notices', function () {
                 echo '<div class="notice error"><p>' .
