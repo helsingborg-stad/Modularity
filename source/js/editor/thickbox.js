@@ -34,6 +34,7 @@ Modularity.Editor.Thickbox = (function ($) {
             };
 
             Modularity.Editor.Module.updateModule(module, data);
+            Modularity.Editor.Autosave.save('form');
         }, 'json');
     };
 

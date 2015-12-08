@@ -3,7 +3,7 @@
     <h2><?php esc_html_e(get_admin_page_title(), 'modularity'); ?></h2>
 
     <form name="my_form" method="post">
-        <input type="hidden" name="action" value="modularity-options">
+        <input type="hidden" name="modularity-action" value="modularity-options">
 
         <?php
         wp_nonce_field('modularity-options');

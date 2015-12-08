@@ -17,6 +17,7 @@ class Editor extends \Modularity\Options
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
+        add_action('wp_ajax_save_modules', array($this, 'save'));
 
         $this->registerEditorPage();
     }
@@ -215,11 +216,11 @@ class Editor extends \Modularity\Options
         }
 
         // Check if post id is valid
-        if (!isset($_GET['id']) || empty($_GET['id']) || !is_numeric($_GET['id'])) {
+        if (!isset($_REQUEST['id']) || empty($_REQUEST['id']) || !is_numeric($_REQUEST['id'])) {
             return trigger_error('Invalid post id. Please contact system administrator.');
         }
 
-        $postId = $_GET['id'];
+        $postId = $_REQUEST['id'];
 
         // Remove post meta if not set.
         if (isset($_POST['modularity_modules'])) {
@@ -233,6 +234,11 @@ class Editor extends \Modularity\Options
             update_post_meta($postId, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
         } else {
             delete_post_meta($postId, 'modularity-sidebar-options');
+        }
+
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            echo "success";
+            wp_die();
         }
 
         $this->notice(__('Modules saved', 'modularity'), ['updated']);

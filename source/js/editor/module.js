@@ -3,6 +3,8 @@ Modularity.Editor = Modularity.Editor || {};
 
 Modularity.Editor.Module = (function ($) {
 
+    var initCompleted = false;
+
     /**
      * Object to create Thickbox querystring from
      * @type {Object}
@@ -45,6 +47,10 @@ Modularity.Editor.Module = (function ($) {
                 }.bind(this));
 
             }.bind(this));
+
+            this.initCompleted = true;
+
+
         }.bind(this), 'json');
     };
 
