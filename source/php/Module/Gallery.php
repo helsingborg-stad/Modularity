@@ -24,6 +24,28 @@ class Gallery extends \Modularity\Module
                 'key' => 'group_566698470e7d0',
                 'title' => 'Gallery',
                 'fields' => array (
+                    array(
+                        'key' => 'field_56669ca8e12345',
+                        'label' => 'Show title',
+                        'name' => 'show_title',
+                        'type' => 'radio',
+                        'instructions' => '',
+                        'required' => 1,
+                        'conditional_logic' => 0,
+                        'wrapper' => array(
+                            'width' => '',
+                            'class' => '',
+                            'id' => '',
+                        ),
+                        'choices' => array(
+                            'true' => 'Yes',
+                            'false' => 'No',
+                        ),
+                        'other_choice' => 0,
+                        'save_other_choice' => 0,
+                        'default_value' => 'true',
+                        'layout' => 'vertical',
+                    ),
                     array (
                         'key' => 'field_5666984b52220',
                         'label' => 'Gallery',
