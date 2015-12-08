@@ -19,6 +19,7 @@ class Hero extends \Modularity\Module
 
     public function acfFields()
     {
+	    
         if (function_exists('acf_add_local_field_group')) {
             acf_add_local_field_group(array(
                 'key' => 'group_566199a104d0a',

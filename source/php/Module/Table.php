@@ -15,11 +15,13 @@ class Table extends \Modularity\Module
             null, //icon 
             'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php' //included plugin
         );
+        
+        $this->acfFields();
     }
     
     public function acfFields()
     {
-	 	if( function_exists('acf_add_local_field_group') ):
+	 	if(function_exists('acf_add_local_field_group')) {
 			
 			acf_add_local_field_group(array (
 				'key' => 'group_5666a2a71d806',
@@ -161,7 +163,7 @@ class Table extends \Modularity\Module
 				'description' => '',
 			));
 			
-		endif;   
+		}  
 		
 	}
     
