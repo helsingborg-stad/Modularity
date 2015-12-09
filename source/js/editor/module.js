@@ -119,7 +119,7 @@ Modularity.Editor.Module = (function ($) {
         }
 
         var isHidden = '';
-        if (hidden == true) {
+        if (hidden == 'true') {
             isHidden = 'checked';
         }
 
