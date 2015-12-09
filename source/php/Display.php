@@ -47,7 +47,6 @@ class Display
         $retSidebars = $sidebars;
 
         foreach ($retSidebars as $sidebar => $widgets) {
-
             if (!empty($retSidebars[$sidebar]) && (!isset($this->options[$sidebar]['hide_widgets']) || $this->options[$sidebar]['hide_widgets'] != 'true')) {
                 continue;
             }
