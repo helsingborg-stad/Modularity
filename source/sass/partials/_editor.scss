@@ -309,6 +309,7 @@
 
 .modularity-sortable-handle {
     position: relative;
+    z-index: 50; 
     display: inline-block;
     margin: 0;
     float: left;
