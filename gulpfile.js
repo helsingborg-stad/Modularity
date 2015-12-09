@@ -77,6 +77,7 @@ gulp.task('scripts-dist', function() {
 gulp.task('watch', function() {
     gulp.watch('Source/js/**/*.js', ['scripts-dist']);
     gulp.watch('Source/sass/**/*.scss', ['sass-dist', 'sass-dev']);
+    gulp.watch('source/php/Module/*/assets/*.scss', ['sass-dist', 'sass-dev']);
 });
 
 // Default Task
