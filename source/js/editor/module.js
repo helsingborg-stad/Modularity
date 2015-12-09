@@ -43,7 +43,7 @@ Modularity.Editor.Module = (function ($) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
                 $.each(modules.modules, function (key, data) {
-                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID);
+                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden);
                 }.bind(this));
 
             }.bind(this));
@@ -100,7 +100,7 @@ Modularity.Editor.Module = (function ($) {
      * @param {string} moduleId   The module id slug
      * @param {string} moduleName The module name
      */
-    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId) {
+    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
 
@@ -118,7 +118,14 @@ Modularity.Editor.Module = (function ($) {
             Modularity.Editor.Thickbox.postAction = 'edit';
         }
 
+        var isHidden = '';
+        if (hidden) {
+            isHidden = 'checked';
+        }
+
         var sidebarId = $(target).data('area-id');
+
+        var itemRowId = Modularity.Helpers.uuid();
 
         $(target).append('\
             <li data-module-id="' + moduleId + '">\
@@ -128,7 +135,8 @@ Modularity.Editor.Module = (function ($) {
                         ' + moduleName + '\
                         <span class="modularity-module-title">' + moduleTitle + '</span>\
                         <label class="modularity-module-hide">\
-                            <input type="checkbox" name="modularity_modules_hidden[' + sidebarId + '][]" value="' + postId + '" />\
+                            <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="false" />\
+                            <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="true" ' + isHidden + ' />\
                             ' + modularityAdminLanguage.langhide + '\
                         </label>\
 	                </span>\
@@ -137,7 +145,7 @@ Modularity.Editor.Module = (function ($) {
 	                    <a href="#import" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
 	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
 	                </span>\
-	                <input type="hidden" name="modularity_modules[' + sidebarId + '][]" class="modularity-js-module-id" value="' + postId + '" required>\
+	                <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
                 </span>\
             </li>\
         ');

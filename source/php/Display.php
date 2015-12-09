@@ -47,7 +47,6 @@ class Display
         $retSidebars = $sidebars;
 
         foreach ($retSidebars as $sidebar => $widgets) {
-
             if (!empty($retSidebars[$sidebar]) && (!isset($this->options[$sidebar]['hide_widgets']) || $this->options[$sidebar]['hide_widgets'] != 'true')) {
                 continue;
             }
@@ -120,6 +119,10 @@ class Display
 
         // Loop and output modules
         foreach ($modules['modules'] as $module) {
+            if ($module->hidden) {
+                continue;
+            }
+
             $this->outputModule($module, $sidebarArgs);
         }
     }

@@ -14,6 +14,18 @@ class Editor extends \Modularity\Options
         if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
             $post = get_post($_GET['id']);
             setup_postdata($post);
+
+            add_action('admin_bar_menu', function () use ($post) {
+                global $wp_admin_bar;
+                $wp_admin_bar->add_node(array(
+                    'id' => 'view_page',
+                    'title' => __('View Page'),
+                    'href' => get_permalink($post->ID),
+                    'meta' => array(
+                        'target' => '_blank'
+                    )
+                ));
+            }, 1050);
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
@@ -166,7 +178,9 @@ class Editor extends \Modularity\Options
 
         if (!empty($moduleSidebars)) {
             foreach ($moduleSidebars as $sidebar) {
-                $moduleIds = array_merge($moduleIds, $sidebar);
+                foreach ($sidebar as $module) {
+                    $moduleIds[] = $module['postid'];
+                }
             }
         }
 
@@ -192,12 +206,14 @@ class Editor extends \Modularity\Options
                     'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
                 );
 
-                foreach ($sidebar as $moduleId) {
+                foreach ($sidebar as $moduleUid => $module) {
+                    $moduleId = $module['postid'];
                     $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
 
                     // Get the post type name and append it to the module post data
                     $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
                     $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
+                    $retModules[$key]['modules'][$moduleId]->hidden = $module['hidden'];
                 }
             }
         }
@@ -222,20 +238,21 @@ class Editor extends \Modularity\Options
 
         $postId = $_REQUEST['id'];
 
-        // Remove post meta if not set.
+        // Save/remove modules
         if (isset($_POST['modularity_modules'])) {
             update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
         } else {
             delete_post_meta($postId, 'modularity-modules');
         }
 
-        // Remove post meta if not set.
+        // Save/remove sidebar options
         if (isset($_POST['modularity_sidebar_options'])) {
             update_post_meta($postId, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
         } else {
             delete_post_meta($postId, 'modularity-sidebar-options');
         }
 
+        // If this is an ajax post, return "success" as plain text
         if (defined('DOING_AJAX') && DOING_AJAX) {
             echo "success";
             wp_die();
