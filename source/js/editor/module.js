@@ -119,12 +119,11 @@ Modularity.Editor.Module = (function ($) {
         }
 
         var isHidden = '';
-        if (hidden) {
+        if (hidden == true) {
             isHidden = 'checked';
         }
 
         var sidebarId = $(target).data('area-id');
-
         var itemRowId = Modularity.Helpers.uuid();
 
         $(target).append('\
