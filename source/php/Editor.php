@@ -14,6 +14,18 @@ class Editor extends \Modularity\Options
         if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
             $post = get_post($_GET['id']);
             setup_postdata($post);
+
+            add_action('admin_bar_menu', function () use ($post) {
+                global $wp_admin_bar;
+                $wp_admin_bar->add_node(array(
+                    'id' => 'view_page',
+                    'title' => __('View Page'),
+                    'href' => get_permalink($post->ID),
+                    'meta' => array(
+                        'target' => '_blank'
+                    )
+                ));
+            }, 1050);
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
