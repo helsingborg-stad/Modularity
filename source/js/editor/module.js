@@ -128,7 +128,7 @@ Modularity.Editor.Module = (function ($) {
                         ' + moduleName + '\
                         <span class="modularity-module-title">' + moduleTitle + '</span>\
                         <label class="modularity-module-hide">\
-                            <input type="checkbox" name="modularity_modules_hidden[' + sidebarId + '][]" value="true" />\
+                            <input type="checkbox" name="modularity_modules_hidden[' + sidebarId + '][]" value="' + postId + '" />\
                             ' + modularityAdminLanguage.langhide + '\
                         </label>\
 	                </span>\
