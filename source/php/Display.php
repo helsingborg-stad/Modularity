@@ -119,6 +119,10 @@ class Display
 
         // Loop and output modules
         foreach ($modules['modules'] as $module) {
+            if ($module->hidden) {
+                continue;
+            }
+
             $this->outputModule($module, $sidebarArgs);
         }
     }
