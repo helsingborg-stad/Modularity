@@ -139,7 +139,6 @@
 
             a {
                 font-size: 10pt;
-                text-transform: uppercase;
                 color: #000;
                 text-decoration: none;
                 padding: 0 15px;
@@ -189,10 +188,6 @@
 	                margin: -2px 0 -2px 0;
 	                background-size: contain;
                 }
-
-                &:hover:before {
-	                transform: scale(1.2);
-	            }
 
 				//Icons
                 &.modularity-js-thickbox-open:before {
@@ -308,7 +303,7 @@
 
 .modularity-sortable-handle {
     position: relative;
-    z-index: 50; 
+    z-index: 50;
     display: inline-block;
     margin: 0;
     float: left;
