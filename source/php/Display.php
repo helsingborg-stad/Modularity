@@ -119,7 +119,7 @@ class Display
 
         // Loop and output modules
         foreach ($modules['modules'] as $module) {
-            if ($module->hidden) {
+            if ($module->hidden == 'true') {
                 continue;
             }
 
