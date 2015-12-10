@@ -32,7 +32,10 @@ Modularity.Editor.DragAndDrop = (function ($) {
             placeholder: 'ui-sortable-placeholder',
             stop: function (e, ui) {
                 var sidebarId = ui.item.parents('ul').data('area-id');
-                ui.item.find('input.modularity-js-module-id').attr('name', 'modularity_modules[' + sidebarId + '][]')
+                ui.item.find('input[name^="modularity_modules"]').each(function (index, element) {
+                    var newName = $(this).attr('name').replace(/\[(.*?)\]/i, '[' + sidebarId + ']');
+                    $(this).attr('name', newName);
+                });
             }
         }).bind(this);
     };
