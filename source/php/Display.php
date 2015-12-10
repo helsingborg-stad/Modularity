@@ -141,8 +141,6 @@ class Display
             return false;
         }
 
-        setup_postdata($module);
-
         if (isset($args['before_widget'])) {
             $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
             $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
