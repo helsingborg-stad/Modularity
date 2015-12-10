@@ -47,7 +47,7 @@ class Thickbox
     public function enqueue()
     {
         // Script
-        wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-thickbox.' . \Modularity\App::$assetSuffix . '.js', false, '1.0.0', true);
+        wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-editor-modal.' . \Modularity\App::$assetSuffix . '.js', false, '1.0.0', true);
         wp_enqueue_script('modularity-thickbox');
 
         // Style

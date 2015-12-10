@@ -94,6 +94,15 @@ Modularity.Editor.Module = (function ($) {
         return admin_url + base + '?' + $.param(querystring) + '&' + $.param(thickboxOptions);
     };
 
+    Module.prototype.getImportUrl = function (data) {
+        var base = 'edit.php';
+        var querystring = {};
+
+        querystring.post_type = data.postType;
+
+        return admin_url + base + '?' + $.param(querystring) + '&' + $.param(thickboxOptions);
+    };
+
     /**
      * Adds a module "row" to the target placeholder
      * @param {selector} target   The target selector
@@ -104,10 +113,12 @@ Modularity.Editor.Module = (function ($) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
 
+        // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
             postType: moduleId
         });
 
+        // Set thickbox action
         Modularity.Editor.Thickbox.postAction = 'add';
 
         if (postId) {
@@ -118,6 +129,12 @@ Modularity.Editor.Module = (function ($) {
             Modularity.Editor.Thickbox.postAction = 'edit';
         }
 
+        // Get import url
+        var importUrl = this.getImportUrl({
+            postType: moduleId
+        });
+
+        // Check/uncheck hidden checkbox
         var isHidden = '';
         if (hidden == 'true') {
             isHidden = 'checked';
@@ -141,7 +158,7 @@ Modularity.Editor.Module = (function ($) {
 	                </span>\
 	                <span class="modularity-module-actions">\
 	                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
-	                    <a href="#import" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
+	                    <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
 	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
 	                </span>\
 	                <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
@@ -183,15 +200,6 @@ Modularity.Editor.Module = (function ($) {
     };
 
     /**
-     * Removes a module "row" from the placeholder
-     * @param  {DOM Element} module The (to be removed) module's dom element
-     * @return {void}
-     */
-    Module.prototype.hideModule = function (module) {
-
-    };
-
-    /**
      * Handle events
      * @return {void}
      */
@@ -207,7 +215,12 @@ Modularity.Editor.Module = (function ($) {
         //Import
         $(document).on('click', '.modularity-js-thickbox-import', function (e) {
             e.preventDefault();
-            alert("Import not done, still in beta.");
+
+            var el = $(e.target).closest('a');
+            editingModule = $(e.target).closest('li');
+
+            Modularity.Editor.Thickbox.postAction = 'import';
+            Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
         });
 
         // Edit

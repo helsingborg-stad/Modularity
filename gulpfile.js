@@ -27,7 +27,7 @@ gulp.task('sass-dist', function() {
             .pipe(rename({suffix: '.min'}))
             .pipe(minifycss())
             .pipe(gulp.dest('dist/css'));
-            
+
     gulp.src('source/php/Module/*/assets/*.scss')
             .pipe(plumber())
             .pipe(sass())
@@ -57,7 +57,7 @@ gulp.task('sass-dev', function() {
 gulp.task('scripts-dist', function() {
     gulp.src([
             'source/js/**/*.js',
-            '!source/js/modularity-thickbox.js'
+            '!source/js/modularity-editor-modal.js'
         ])
         .pipe(concat('modularity.dev.js'))
         .pipe(gulp.dest('dist/js'))
@@ -65,10 +65,10 @@ gulp.task('scripts-dist', function() {
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
-    gulp.src('source/js/modularity-thickbox.js')
-        .pipe(concat('modularity-thickbox.dev.js'))
+    gulp.src('source/js/modularity-editor-modal.js')
+        .pipe(concat('modularity-editor-modal.dev.js'))
         .pipe(gulp.dest('dist/js'))
-        .pipe(rename('modularity-thickbox.min.js'))
+        .pipe(rename('modularity-editor-modal.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 });
