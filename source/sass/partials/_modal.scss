@@ -19,15 +19,18 @@
 
     .modularity-modal-close {
         position: absolute;
-        top: 3.5%;
+        top: 0;
         right: 6%;
-        background-color: #c00b0b;
-        font-size: 15pt;
+        font-size: 12pt;
         padding: 5px 20px;
-        color: #fff;
         border: none;
-        border-radius: 50px;
         cursor: pointer;
+        background-color: #c00b0b;
+        color: #fff;
+
+        &:hover {
+            padding-top: 10px;
+        }
     }
 
     .modularity-modal-wrapper {
