@@ -208,6 +208,11 @@ class Editor extends \Modularity\Options
 
                 foreach ($sidebar as $moduleUid => $module) {
                     $moduleId = $module['postid'];
+
+                    if (!isset($modules[$moduleId])) {
+                        continue;
+                    }
+
                     $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
 
                     // Get the post type name and append it to the module post data
