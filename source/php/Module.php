@@ -151,6 +151,8 @@ class Module
             $postTypeSlug = substr($postTypeSlug, 0, 20);
         }
 
+        $postTypeSlug = strtolower($postTypeSlug);
+
         /**
          * Try to get an icon if not defined in module configuration file.
          * Max 20 characters long
