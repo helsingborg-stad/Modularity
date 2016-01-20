@@ -2,12 +2,18 @@
 
 namespace Modularity\Helper;
 
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveRegexIterator;
+use RegexIterator;
+
 class Acf
 {
     public function __construct()
     {
         add_action('init', array($this, 'includeAcf'), 11);
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
+        //add_action('admin_init', array($this, 'importAcf'));
     }
 
     /**
@@ -35,5 +41,36 @@ class Acf
     {
         $paths[] = MODULARITY_PATH . 'source/acf-json';
         return $paths;
+    }
+
+    /**
+     * Search for ACF json exports with naming convention "acf-{name}.json"
+     * Create field groups for matches
+     * @return array Found/added field groups
+     */
+    public function importAcf()
+    {
+        $directory = new RecursiveDirectoryIterator(MODULARITY_PATH . 'source/acf-json/');
+        $iterator = new RecursiveIteratorIterator($directory);
+        $matches = new RegexIterator($iterator, '/acf-.+\.json$/i', RegexIterator::ALL_MATCHES, RegexIterator::USE_KEY);
+
+        $fieldgroups = array();
+
+        $acfImport = new \acf_settings_tools();
+
+        foreach ($matches as $path => $match) {
+            $_FILES['acf_import_file'] = array(
+                'name' => $match[0][0],
+                'type' => 'application/json',
+                'size' => filesize($path),
+                'tmp_name' => $path
+            );
+
+            $acfImport->import();
+        }
+
+        unset($acfImport);
+
+        return $fieldgroups;
     }
 }

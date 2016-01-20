@@ -2,11 +2,6 @@
 
 namespace Modularity;
 
-use RecursiveDirectoryIterator;
-use RecursiveIteratorIterator;
-use RecursiveRegexIterator;
-use RegexIterator;
-
 class App
 {
     /**
@@ -38,31 +33,6 @@ class App
 
         do_action('Modularity');
     }
-
-    /**
-     * Search for ACF json exports with naming convention "acf-{name}.json"
-     * Create field groups for matches
-     * @return array Found/added field groups
-     */
-    public function importAcf()
-    {
-        $directory = new RecursiveDirectoryIterator(MODULARITY_PATH . 'source/php/Module/');
-        $iterator = new RecursiveIteratorIterator($directory);
-        $matches = new RegexIterator($iterator, '/acf-.+\.json$/i', RegexIterator::ALL_MATCHES, RegexIterator::USE_KEY);
-
-        $fieldgroups = array();
-
-        foreach ($matches as $path => $match) {
-            $fields = json_decode(file_get_contents($path), true);
-            $fieldgroups[] = $match[0][0];
-            var_dump(register_field_group($fields));
-            exit;
-        }
-
-        return $fieldgroups;
-    }
-
-
 
     /**
      * Enqueues scripts and styles
