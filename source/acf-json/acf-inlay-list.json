@@ -1,0 +1,205 @@
+[
+    {
+        "key": "group_569e054a7f9c2",
+        "title": "InlayList module",
+        "fields": [
+            {
+                "key": "field_569e0559eb084",
+                "label": "Lista",
+                "name": "items",
+                "type": "repeater",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": 1,
+                "max": "",
+                "layout": "block",
+                "button_label": "L\u00e4gg till rad",
+                "sub_fields": [
+                    {
+                        "key": "field_569e068b33f31",
+                        "label": "L\u00e4nktyp",
+                        "name": "type",
+                        "type": "radio",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "internal": "Internal link",
+                            "external": "External link"
+                        },
+                        "other_choice": 0,
+                        "save_other_choice": 0,
+                        "default_value": "internal",
+                        "layout": "horizontal"
+                    },
+                    {
+                        "key": "field_569e0567eb085",
+                        "label": "Titel",
+                        "name": "title",
+                        "type": "text",
+                        "instructions": "If empty, title will default to the linked post's\/page's title",
+                        "required": 0,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e068b33f31",
+                                    "operator": "==",
+                                    "value": "internal"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_569e0e48a1971",
+                        "label": "Titel",
+                        "name": "title",
+                        "type": "text",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e068b33f31",
+                                    "operator": "==",
+                                    "value": "external"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "prepend": "",
+                        "append": "",
+                        "maxlength": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    },
+                    {
+                        "key": "field_569e05bceb086",
+                        "label": "L\u00e4nk",
+                        "name": "link_internal",
+                        "type": "post_object",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e068b33f31",
+                                    "operator": "==",
+                                    "value": "internal"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "post",
+                            "page"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    },
+                    {
+                        "key": "field_569e05f8eb087",
+                        "label": "Datum",
+                        "name": "date",
+                        "type": "true_false",
+                        "instructions": "If checked, the publish\/last modified date of the linked post will be displayed.",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e068b33f31",
+                                    "operator": "==",
+                                    "value": "internal"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "message": "Show publish date",
+                        "default_value": 0
+                    },
+                    {
+                        "key": "field_569e06f633f32",
+                        "label": "L\u00e4nk",
+                        "name": "link_external",
+                        "type": "url",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e068b33f31",
+                                    "operator": "==",
+                                    "value": "external"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": ""
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "mod-inlaylist"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]
