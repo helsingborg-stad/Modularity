@@ -2,6 +2,11 @@
 
 namespace Modularity;
 
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use RecursiveRegexIterator;
+use RegexIterator;
+
 class App
 {
     /**
@@ -13,7 +18,6 @@ class App
 
     public function __construct()
     {
-        add_action('init', array($this, 'includeAcf'), 11);
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
 
@@ -30,29 +34,35 @@ class App
         new Editor();
         new Display();
 
+        new Helper\Acf();
+
         do_action('Modularity');
     }
 
     /**
-     * Includes Advanced Custom Fields if missing, notifies user to activate ACF PRO to get full expirience
-     * @return void
+     * Search for ACF json exports with naming convention "acf-{name}.json"
+     * Create field groups for matches
+     * @return array Found/added field groups
      */
-    public function includeAcf()
+    public function importAcf()
     {
-        include_once ABSPATH . 'wp-admin/includes/plugin.php';
+        $directory = new RecursiveDirectoryIterator(MODULARITY_PATH . 'source/php/Module/');
+        $iterator = new RecursiveIteratorIterator($directory);
+        $matches = new RegexIterator($iterator, '/acf-.+\.json$/i', RegexIterator::ALL_MATCHES, RegexIterator::USE_KEY);
 
-        if (!is_plugin_active('advanced-custom-fields-pro/acf.php')
-            && !is_plugin_active('advanced-custom-fields/acf.php')
-        ) {
-            require_once MODULARITY_PATH . 'plugins/acf/acf.php';
+        $fieldgroups = array();
 
-            add_action('admin_notices', function () {
-                echo '<div class="notice error"><p>' .
-                        __('To get the full expirience of the <strong>Modularity</strong> plugin, please activate the <a href="http://www.advancedcustomfields.com/pro/" target="_blank">Advanced Custom Fields Pro</a> plugin.', 'modular') .
-                     '</p></div>';
-            });
+        foreach ($matches as $path => $match) {
+            $fields = json_decode(file_get_contents($path), true);
+            $fieldgroups[] = $match[0][0];
+            var_dump(register_field_group($fields));
+            exit;
         }
+
+        return $fieldgroups;
     }
+
+
 
     /**
      * Enqueues scripts and styles
