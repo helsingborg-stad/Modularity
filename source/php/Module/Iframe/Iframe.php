@@ -13,12 +13,5 @@ class Iframe extends \Modularity\Module
             __("Outputs an embedded page inside a div.", 'modularity-plugin'),
             array()
         );
-
-        add_action('plugins_loaded', array($this,'acfFields'));
-    }
-
-    public function acfFields()
-    {
-	    
     }
 }
