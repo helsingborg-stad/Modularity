@@ -1,0 +1,163 @@
+[
+    {
+        "key": "group_569e2d5ceaee5",
+        "title": "Bildlista",
+        "fields": [
+            {
+                "key": "field_569e2d8414233",
+                "label": "Bilder",
+                "name": "pictures",
+                "type": "repeater",
+                "instructions": "L\u00e4gg till de bilder du vill ska synas",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": "",
+                "max": "",
+                "layout": "block",
+                "button_label": "L\u00e4gg till bild",
+                "sub_fields": [
+                    {
+                        "key": "field_569e2e6b14234",
+                        "label": "Bild",
+                        "name": "picture",
+                        "type": "image",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "return_format": "array",
+                        "preview_size": "thumbnail",
+                        "library": "all",
+                        "min_width": "",
+                        "min_height": "",
+                        "min_size": "",
+                        "max_width": "",
+                        "max_height": "",
+                        "max_size": "",
+                        "mime_types": ""
+                    },
+                    {
+                        "key": "field_569e2ed114235",
+                        "label": "L\u00e4nk typ",
+                        "name": "link_type",
+                        "type": "radio",
+                        "instructions": "V\u00e4lj intern eller extern l\u00e4nk",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "choices": {
+                            "internal_link": "Intern l\u00e4nk",
+                            "external_link": "Extern l\u00e4nk"
+                        },
+                        "other_choice": 0,
+                        "save_other_choice": 0,
+                        "default_value": "internal_link",
+                        "layout": "horizontal"
+                    },
+                    {
+                        "key": "field_569e2fefd2cf7",
+                        "label": "L\u00e4nk",
+                        "name": "link",
+                        "type": "page_link",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e2ed114235",
+                                    "operator": "==",
+                                    "value": "internal_link"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0
+                    },
+                    {
+                        "key": "field_569e3030d2cf8",
+                        "label": "L\u00e4nk",
+                        "name": "link",
+                        "type": "url",
+                        "instructions": "",
+                        "required": 1,
+                        "conditional_logic": [
+                            [
+                                {
+                                    "field": "field_569e2ed114235",
+                                    "operator": "==",
+                                    "value": "external_link"
+                                }
+                            ]
+                        ],
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": ""
+                    },
+                    {
+                        "key": "field_569e387349428",
+                        "label": "Bildspelstext",
+                        "name": "picture_text",
+                        "type": "textarea",
+                        "instructions": "",
+                        "required": 0,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "default_value": "",
+                        "placeholder": "",
+                        "maxlength": "",
+                        "rows": "",
+                        "new_lines": "",
+                        "readonly": 0,
+                        "disabled": 0
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "mod-picturelist"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]

@@ -1,0 +1,101 @@
+
+/* Description: File containing css for the right hand side menu */ 
+
+$module-line-height: 50px;
+
+.modularity-modules {
+    overflow: auto;
+    text-align: center;
+    margin: -12px;
+    margin-top: -6px;
+    padding: 12px;
+}
+
+.modularity-module {
+    box-sizing: border-box;
+    display: block;
+    text-align: left;
+    overflow: hidden;
+    background-color: #fff;
+    border: 1px solid #eee;
+
+    transition: 100ms background ease;
+
+    &:not(:last-child) {
+	    margin-bottom: 8px;
+    }
+
+    &:first-child {
+	    margin-top: 3px;
+    }
+
+    &:hover {
+	    background-color: #eee;
+    }
+
+    &.ui-draggable-dragging {
+        background-color: #fff;
+        width: 250px !important;
+        min-width: 250px !important;
+        transform: rotate(-4deg) scale(1.1);
+        box-shadow: 0 0 20px rgba(#000, .2);
+    }
+}
+
+li.modularity-module {
+	line-height: auto;
+	>span {
+		line-height: auto;
+	}
+}
+
+.modularity-modules .modularity-module-name,
+.ui-draggable-dragging .modularity-module-name {
+    display: block;
+    font-weight: normal;
+    font-size: 10pt;
+    line-height: $module-line-height;
+    font-weight: bold;
+}
+
+.modularity-module-icon {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    margin-bottom: 3px;
+    text-align: center;
+    float: left;
+    width: $module-line-height;
+	height: $module-line-height;
+	transition: transform 200ms ease; 
+	
+    svg,
+    img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 60%;
+        max-height: 60%;
+        height: 100%;
+        width: auto;
+    }
+
+    svg,
+    svg * {
+        fill: #4D4D4D !important;
+    }
+}
+
+.modularity-module:hover .modularity-module-icon {
+	transform: rotate(-10deg);
+}
+
+.modularity-sortable-handle {
+	line-height: $module-line-height;
+}
+
+.mod-table {
+
+}

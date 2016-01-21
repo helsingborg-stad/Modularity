@@ -1,0 +1,11 @@
+.nav-tab-wrapper + #wpbody {
+    margin-top: -16px;
+}
+
+.nav-tab-wrapper {
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-tab-wrapper + #wpbody {
+    margin-top: -17px;
+}

@@ -1,0 +1,70 @@
+
+	/* Module styling */ 
+	.post-type-mod-table {
+		
+		table.dynaimic-table.acf-table {
+			background: #000; 
+		}
+		
+		table.dynaimic-table.acf-table thead {
+			
+			th:last-child {
+				width: 50px; 
+			}
+			
+		}
+		
+		table.dynaimic-table.acf-table tbody,
+		table.dynaimic-table.acf-table thead {
+			
+			tr:first-child input {
+				font-weight: bold;
+			}
+			
+			tr input {
+				height: 40px; 
+			}
+			
+			tr td.remove {
+				
+				padding: 0; 
+				height: 0; 
+				
+				a.addrow:not(.disabled).icon-button, a.delrow:not(.disabled).icon-button {
+					visibility: visible; 
+					opacity: 1; 
+					position: relative; 
+					border-radius: 0; 
+					width: 100%; 
+					box-sizing: border-box; 
+					text-align: center; 
+					right: auto; 
+					left: auto; 
+					margin: 0; 
+					display: block;
+					box-shadow: none; 
+					background: none; 
+					color: #444; 
+					text-indent: 0; 
+					text-decoration: none; 
+					font-size: 1.3em; 
+					border-bottom: 1px solid #eee; 
+					height: 28px; 
+					line-height: 28px; 
+					
+				}
+				
+				a.addrow:not(.disabled).icon-button {
+					top: 0; 
+					bottom: 50%; 
+				}
+				
+				a.delrow:not(.disabled).icon-button {
+					border-bottom: none; 
+					top: 50%; 
+					bottom: 0; 
+				}
+			}
+		}
+		
+	}
