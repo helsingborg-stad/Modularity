@@ -1,7 +1,7 @@
 {
     "name": "helsingborg-stad/modularity",
     "description": "Modular component system for WordPress",
-    "type": "wp-plugin",
+    "type": "wordpress-plugin",
     "license": "MIT",
     "authors": [
         {
@@ -13,5 +13,7 @@
             "email": "sebastian.thulin@helsingborg.se"
         }
     ],
-    "require": {}
+    "require": {
+        "composer/installers": "~1.0"
+    }
 }
