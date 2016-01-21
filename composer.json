@@ -1,0 +1,13 @@
+{
+    "name": "helsingborg-stad/modularity",
+    "description": "Modular component system for WordPress",
+    "type": "wp-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kristoffer Svanmark",
+            "email": "kristoffer.svanmark@lexiconitkonsult.se"
+        }
+    ],
+    "require": {}
+}
