@@ -7,7 +7,7 @@ class MainNews extends \Modularity\Module
     public function __construct()
     {
         $this->register(
-            'mainNews',
+            'mainnews',
             'Main News',
             'Main News',
             'Outputs a list of prioritized articles',

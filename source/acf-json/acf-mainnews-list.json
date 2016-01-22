@@ -1,0 +1,68 @@
+[
+    {
+        "key": "group_569e401dd4422",
+        "title": "MainNewsListFields",
+        "fields": [
+            {
+                "key": "field_569e4038cadff",
+                "label": "Huvud nyheter",
+                "name": "main_news",
+                "type": "repeater",
+                "instructions": "V\u00e4lj sida att l\u00e4nka till",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "collapsed": "",
+                "min": "",
+                "max": "",
+                "layout": "table",
+                "button_label": "Add Row",
+                "sub_fields": [
+                    {
+                        "key": "field_569e4052cae00",
+                        "label": "Huvud nyhet",
+                        "name": "main_news",
+                        "type": "post_object",
+                        "instructions": "V\u00e4lj sida att l\u00e4nka till",
+                        "required": 1,
+                        "conditional_logic": 0,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        },
+                        "post_type": [
+                            "page"
+                        ],
+                        "taxonomy": [],
+                        "allow_null": 0,
+                        "multiple": 0,
+                        "return_format": "object",
+                        "ui": 1
+                    }
+                ]
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "mod-mainnews"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": 1,
+        "description": ""
+    }
+]
