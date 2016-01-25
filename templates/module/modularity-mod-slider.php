@@ -10,7 +10,9 @@
 
     <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'embed') : ?>
 
-        <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link']); ?>
+        <div class="ratio-16-9">
+            <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['content']); ?>
+        </div>
 
     <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'upload') : ?>
 
