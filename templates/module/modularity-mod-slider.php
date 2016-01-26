@@ -7,7 +7,7 @@
         <li>
         <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
-            <img src="<?php echo $slide['image']['url']; ?>">
+            <div class="slider-image" style="background-image:url('<?php echo $slide['image']['url']; ?>');"></div>
 
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'embed') : ?>
 
