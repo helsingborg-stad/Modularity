@@ -13,7 +13,7 @@ class PostStream extends \Modularity\Module
             __("", 'modularity-plugin'),
             array(),
             null,
-            'acf-post-type-field/acf-post-type-chooser.php' //included plugin
+            'acf-post-type-field/acf-posttype-select.php' //included plugin
         );
     }
 }
