@@ -17,4 +17,3 @@ class PostStream extends \Modularity\Module
         );
     }
 }
-
