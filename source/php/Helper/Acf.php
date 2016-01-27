@@ -13,6 +13,7 @@ class Acf
     {
         add_action('init', array($this, 'includeAcf'), 11);
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
+        add_filter('acf/settings/save_json', array($this, 'jsonSavePath'));
         //add_action('admin_init', array($this, 'importAcf'));
     }
 
@@ -41,6 +42,21 @@ class Acf
     {
         $paths[] = MODULARITY_PATH . 'source/acf-json';
         return $paths;
+    }
+
+    public function jsonSavePath($path)
+    {
+        if (isset($_POST['acf_field_group'])) {
+            foreach ($_POST['acf_field_group']['location'] as $rules) {
+                foreach ($rules as $rule) {
+                    if ($rule['param'] == 'post_type' && $rule['operator'] == '==' && substr($rule['value'], 0, 4) == 'mod-') {
+                        $path = MODULARITY_PATH . 'source/acf-json';
+                    }
+                }
+            }
+        }
+
+        return $path;
     }
 
     /**
