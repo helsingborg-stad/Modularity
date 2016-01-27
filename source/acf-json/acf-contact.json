@@ -173,7 +173,7 @@
             },
             {
                 "key": "field_56a0a4ae6a69c",
-                "label": "\u00d6ppettidet",
+                "label": "\u00d6ppettider",
                 "name": "opening_hours",
                 "type": "text",
                 "instructions": "",
@@ -278,69 +278,6 @@
                 "max_height": "",
                 "max_size": "",
                 "mime_types": ""
-            },
-            {
-                "key": "field_56a0a55b069a9",
-                "label": "Repeater",
-                "name": "repeater",
-                "type": "repeater",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "collapsed": "",
-                "min": "",
-                "max": "",
-                "layout": "table",
-                "button_label": "Add Row",
-                "sub_fields": [
-                    {
-                        "key": "field_56a0a575069aa",
-                        "label": "Intern",
-                        "name": "internal",
-                        "type": "text",
-                        "instructions": "Automatgenererad",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": "",
-                        "readonly": 0,
-                        "disabled": 0
-                    },
-                    {
-                        "key": "field_56a0a593069ab",
-                        "label": "Extern",
-                        "name": "external",
-                        "type": "text",
-                        "instructions": "Manuell skapad",
-                        "required": 0,
-                        "conditional_logic": 0,
-                        "wrapper": {
-                            "width": "",
-                            "class": "",
-                            "id": ""
-                        },
-                        "default_value": "",
-                        "placeholder": "",
-                        "prepend": "",
-                        "append": "",
-                        "maxlength": "",
-                        "readonly": 0,
-                        "disabled": 0
-                    }
-                ]
             }
         ],
         "location": [
@@ -348,7 +285,7 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "page"
+                    "value": "mod-contact"
                 }
             ]
         ],
