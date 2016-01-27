@@ -1,8 +1,8 @@
 <?php
 
-namespace Modularity\Module\Post;
+namespace Modularity\Module\InheritPost;
 
-class Post extends \Modularity\Module
+class InheritPost extends \Modularity\Module
 {
     public function __construct()
     {
@@ -11,7 +11,8 @@ class Post extends \Modularity\Module
             'Post article',
             'Post articles',
             'Outputs title and content from any post or page',
-            array('')
+            array(''),
+            null
         );
     }
 }
