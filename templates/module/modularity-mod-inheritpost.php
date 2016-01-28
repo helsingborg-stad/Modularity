@@ -1,4 +1,4 @@
 <article>
     <h2><?php echo apply_filters('the_title', $module->post_title); ?></h2>
-    <?php echo apply_filters('the_title', $module->post_content); ?>
+    <?php echo apply_filters('the_content', $module->post_content); ?>
 </article>
