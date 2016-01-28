@@ -62,6 +62,84 @@ if (typeof postboxes !== 'undefined') {
 	}
 })(jQuery);
 Modularity = Modularity || {};
+Modularity.Helpers = Modularity.Helpers || {};
+
+Modularity.Helpers = (function ($) {
+
+    function Helpers() {
+        $(function(){
+        }.bind(this));
+    }
+
+    Helpers.prototype.uuid = function (separator) {
+        return Math.random().toString(36).substr(2, 9);
+    };
+
+    return new Helpers();
+
+})(jQuery);
+
+jQuery.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    jQuery.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+Modularity = Modularity || {};
+Modularity.Prompt = Modularity.Prompt || {};
+
+Modularity.Prompt.Modal = (function ($) {
+
+    var isOpen = false;
+
+    function Modal() {
+        $(function(){
+            this.handleEvents();
+        }.bind(this));
+    }
+
+    Modal.prototype.open = function (url) {
+        $('body').addClass('modularity-modal-open').append('\
+            <div id="modularity-modal">\
+                <div class="modularity-modal-wrapper">\
+                    <button class="modularity-modal-close" data-modularity-modal-action="close">&times; ' + modularityAdminLanguage.close + '</button>\
+                    <iframe class="modularity-modal-iframe" src="' + url + '" frameborder="0" allowtransparency></iframe>\
+                </div>\
+            </div>\
+        ');
+
+        isOpen = true;
+    };
+
+    Modal.prototype.close = function () {
+        $('body').removeClass('modularity-modal-open');
+        $('#modularity-modal').remove();
+        isOpen = false;
+    };
+
+    Modal.prototype.handleEvents = function () {
+        $(document).on('click', '[data-modularity-modal-action="close"]', function (e) {
+            e.preventDefault();
+            this.close();
+        }.bind(this));
+    };
+
+    return new Modal();
+
+})(jQuery);
+
+Modularity = Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
 
 Modularity.Editor.Autosave = (function ($) {
@@ -528,83 +606,5 @@ Modularity.Editor.Validate = (function ($) {
     };
 
     return new Validate();
-
-})(jQuery);
-
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
-
-Modularity.Helpers = (function ($) {
-
-    function Helpers() {
-        $(function(){
-        }.bind(this));
-    }
-
-    Helpers.prototype.uuid = function (separator) {
-        return Math.random().toString(36).substr(2, 9);
-    };
-
-    return new Helpers();
-
-})(jQuery);
-
-jQuery.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    jQuery.each(a, function() {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
-
-Modularity = Modularity || {};
-Modularity.Prompt = Modularity.Prompt || {};
-
-Modularity.Prompt.Modal = (function ($) {
-
-    var isOpen = false;
-
-    function Modal() {
-        $(function(){
-            this.handleEvents();
-        }.bind(this));
-    }
-
-    Modal.prototype.open = function (url) {
-        $('body').addClass('modularity-modal-open').append('\
-            <div id="modularity-modal">\
-                <div class="modularity-modal-wrapper">\
-                    <button class="modularity-modal-close" data-modularity-modal-action="close">&times; ' + modularityAdminLanguage.close + '</button>\
-                    <iframe class="modularity-modal-iframe" src="' + url + '" frameborder="0" allowtransparency></iframe>\
-                </div>\
-            </div>\
-        ');
-
-        isOpen = true;
-    };
-
-    Modal.prototype.close = function () {
-        $('body').removeClass('modularity-modal-open');
-        $('#modularity-modal').remove();
-        isOpen = false;
-    };
-
-    Modal.prototype.handleEvents = function () {
-        $(document).on('click', '[data-modularity-modal-action="close"]', function (e) {
-            e.preventDefault();
-            this.close();
-        }.bind(this));
-    };
-
-    return new Modal();
 
 })(jQuery);
