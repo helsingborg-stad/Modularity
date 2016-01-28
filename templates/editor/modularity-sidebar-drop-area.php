@@ -7,12 +7,13 @@
 <div class="modularity-sidebar-options">
     <div class="container">
         <div class="col half">
-            <?php _e('Before module', 'modularity'); ?>:
-            <input type="text" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][before_module]" value="<?php echo htmlentities($args['args']['sidebar']['before_widget']); ?>" class="widefat">
+            <?php _e('Specific before module markup (only applied to the current post/page)', 'modularity'); ?>:
+            <input type="text" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][before_module]" value="<?php echo isset($options['before_module']) ? htmlentities($options['before_module']) : ''; ?>" class="widefat">
+            <small>Tags: %1$s = Module id, %2$s = Module class</small>
         </div>
         <div class="col half">
-            <?php _e('After module', 'modularity'); ?>:
-            <input type="text" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][after_module]" value="<?php echo htmlentities($args['args']['sidebar']['after_widget']); ?>" class="widefat">
+            <?php _e('Specific after module markup (only applied to the current post/page)', 'modularity'); ?>:
+            <input type="text" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][after_module]" value="<?php echo isset($options['after_module']) ? htmlentities($options['after_module']) : ''; ?>" class="widefat">
         </div>
     </div>
     <div class="container">
