@@ -7,12 +7,16 @@
     .container {
         display: table;
         width: 100%;
+
+        & + .container {
+            border-top: 1px solid #E5E5E5;
+        }
     }
 
     .col {
         display: table-cell;
         visibility: middle;
-        padding: 6px 12px;
+        padding: 10px 14px;
 
         & + .col {
             border-left: 1px solid #E5E5E5;
@@ -22,6 +26,10 @@
             margin: 0 3px;
         }
     }
+}
+
+.half {
+    width: 50%;
 }
 
 .modularity-sidebar-area {

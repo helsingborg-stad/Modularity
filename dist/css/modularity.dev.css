@@ -149,14 +149,19 @@ li.modularity-module {
   .modularity-sidebar-options .container {
     display: table;
     width: 100%; }
+    .modularity-sidebar-options .container + .container {
+      border-top: 1px solid #E5E5E5; }
   .modularity-sidebar-options .col {
     display: table-cell;
     visibility: middle;
-    padding: 6px 12px; }
+    padding: 10px 14px; }
     .modularity-sidebar-options .col + .col {
       border-left: 1px solid #E5E5E5; }
     .modularity-sidebar-options .col select {
       margin: 0 3px; }
+
+.half {
+  width: 50%; }
 
 .modularity-sidebar-area {
   counter-reset: int;
