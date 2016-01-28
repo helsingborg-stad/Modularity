@@ -2,7 +2,7 @@
     $fields = json_decode(json_encode(get_fields($module->ID)));
 ?>
 
-<div class="box box-card" itemscope="person" itemtype="http://schema.org/Organization">
+<div itemtype="http://schema.org/Organization">
     <?php if (isset($fields->picture->sizes->large)) : ?>
     <img class="box-image" src="<?php echo $fields->picture->sizes->large; ?>">
     <?php endif; ?>
