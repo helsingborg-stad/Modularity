@@ -1,24 +1,11 @@
 <?php
     global $post;
     $items = get_field('items', $module->ID);
-
-    $class = '';
-
-    switch ($args['id']) {
-        case 'content-area':
-            $class = 'box-panel-secondary';
-            break;
-
-        default:
-            $class = 'box-panel-primary';
-            break;
-    }
-
 ?>
 
 <div class="grid">
     <div class="grid-lg-12">
-        <div class="box box-panel <?php echo $class; ?>">
+        <div class="box box-panel">
             <h4 class="box-title"><?php echo $module->post_title; ?></h4>
             <ul>
                 <?php foreach ($items as $item) : ?>
