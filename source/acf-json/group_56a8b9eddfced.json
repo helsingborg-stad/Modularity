@@ -19,7 +19,7 @@
             "placeholder": "",
             "maxlength": "",
             "rows": "",
-            "new_lines": "wpautop",
+            "new_lines": "",
             "readonly": 0,
             "disabled": 0
         }
@@ -41,5 +41,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453898321
+    "modified": 1453993524
 }
