@@ -1,10 +1,10 @@
 {
     "key": "group_56a8c4581d906",
-    "title": "LatestFields",
+    "title": "Latest posts",
     "fields": [
         {
             "key": "field_56a8c474647a6",
-            "label": "Post typ",
+            "label": "Posttyp",
             "name": "post_type",
             "type": "posttype_select",
             "instructions": "V\u00e4lj post typ att ta de senaste ifr\u00e5n",
@@ -21,70 +21,6 @@
             "placeholder": "",
             "disabled": 0,
             "readonly": 0
-        },
-        {
-            "key": "field_56a8c4c5647a7",
-            "label": "Visa datum",
-            "name": "show_date",
-            "type": "true_false",
-            "instructions": "Ska datum visas?",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56a8c531647a8",
-            "label": "Visa ingress",
-            "name": "show_excerpt",
-            "type": "true_false",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56a8c554647a9",
-            "label": "Visa titel",
-            "name": "show_title",
-            "type": "true_false",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56a8c56a647aa",
-            "label": "Visa utvald bild",
-            "name": "show_picture",
-            "type": "true_false",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
         },
         {
             "key": "field_56a8c593647ab",
@@ -135,6 +71,34 @@
             "placeholder": "",
             "disabled": 0,
             "readonly": 0
+        },
+        {
+            "key": "field_56ab2b439eee5",
+            "label": "Visningsinst\u00e4llningar",
+            "name": "show",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "date": "Visa datum",
+                "title": "Visa titel",
+                "excerpt": "Visa ingress",
+                "picture": "Visa utvald bild"
+            },
+            "default_value": {
+                "date": "date",
+                "title": "title",
+                "excerpt": "excerpt",
+                "picture": "picture"
+            },
+            "layout": "vertical",
+            "toggle": 0
         }
     ],
     "location": [
@@ -154,5 +118,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453971048
+    "modified": 1454060399
 }
