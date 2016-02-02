@@ -114,9 +114,53 @@ class Editor extends \Modularity\Options
     {
         global $wp_registered_sidebars;
 
-        foreach ($wp_registered_sidebars as $sidebar) {
+        $template = $this->getPostTemplate();
+        $options = get_option('modularity-options');
+
+        $activeAreas = $options['enabled-areas'][$template];
+
+        foreach ($activeAreas as $area) {
+            if (isset($wp_registered_sidebars[$area])) {
+                $sidebars[$area] = $wp_registered_sidebars[$area];
+            }
+        }
+
+        foreach ($sidebars as $sidebar) {
             $this->sidebarMetaBox($sidebar);
         }
+    }
+
+    public function getPostTemplate()
+    {
+        global $post;
+        $template = get_page_template_slug($post->ID);
+
+        if (!$template) {
+            $template = $this->detectCoreTemplate();
+        }
+
+        return $template;
+    }
+
+    public function detectCoreTemplate()
+    {
+        global $post;
+
+        switch ($post->post_type) {
+            case 'post':
+                return 'single';
+                break;
+
+            case 'page':
+                return 'page';
+                break;
+
+            default:
+                return 'single-' . $post->post_type;
+                break;
+        }
+
+        return 'index';
     }
 
     /**

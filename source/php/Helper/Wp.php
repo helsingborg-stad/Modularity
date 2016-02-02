@@ -5,6 +5,68 @@ namespace Modularity\Helper;
 class Wp
 {
     /**
+     * Get core templates
+     * @return array Core templates found
+     */
+    public static function getCoreTemplates($extension = false)
+    {
+        $paths = apply_filters('Modularity/CoreTemplatesSearchPaths', array(
+            get_stylesheet_directory(),
+            get_template_directory()
+        ));
+
+        $fileExt = apply_filters('Modularity/CoreTemplatesSearchFileExtension', array(
+            '.php',
+            '.blade.php'
+        ));
+
+        $search = array(
+            'index',
+            'comments',
+            'front-page',
+            'home',
+            'single',
+            'single-*',
+            'archive',
+            'archive-*',
+            'page',
+            'page-*',
+            'category',
+            'category-*',
+            'author',
+            'date',
+            'search',
+            'attachment',
+            'image'
+        );
+
+        $templates = array();
+
+        foreach ($paths as $path) {
+            foreach ($search as $pattern) {
+                foreach ($fileExt as $ext) {
+                    $foundTemplates = array();
+                    foreach (glob($path . '/' . $pattern . $ext) as $found) {
+                        $basename = str_replace(array('.blade.php', '.php'), '', basename($found));
+
+                        if ($extension) {
+                            $foundTemplates[$basename] = basename($found);
+                        } else {
+                            $foundTemplates[$basename] = str_replace(array('.blade.php', '.php'), '', basename($found));
+                        }
+                    }
+
+                    $templates = array_merge($templates, $foundTemplates);
+                }
+            }
+        }
+
+        $templates = array_unique($templates);
+
+        return $templates;
+    }
+
+    /**
      * Tries to get the template path
      * Checks the plugin's template folder, the parent theme's templates folder and the current theme's template folder
      * @param  string  $prefix The filename without prefix

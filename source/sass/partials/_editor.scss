@@ -343,8 +343,20 @@
     cursor: move;
 }
 
-@media (max-width: 800px) {
-	#modularity-mb-modules {
-		padding-top: 0 !important;
-	}
+#modularity-mb-modules {
+    .inside {
+        overflow: auto;
+        max-height: 50vh;
+    }
+
+    &.is-fixed {
+        position: fixed;
+        top: 40px;
+
+        .modularity-modules {
+            height: 100%;
+            min-height: none;
+            max-height: auto;
+        }
+    }
 }

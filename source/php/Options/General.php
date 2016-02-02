@@ -55,6 +55,15 @@ class General extends \Modularity\Options
             'normal'
         );
 
+        // Templates and areas
+        add_meta_box(
+            'modularity-mb-template-areas',
+            __('Template areas', 'modularity'),
+            array($this, 'metaBoxTemplateAreas'),
+            $this->screenHook,
+            'normal'
+        );
+
         // Modules
         add_meta_box(
             'modularity-mb-modules',
@@ -63,6 +72,27 @@ class General extends \Modularity\Options
             $this->screenHook,
             'normal'
         );
+    }
+
+    /**
+     * Template areas meta box
+     * @return void
+     */
+    public function metaBoxTemplateAreas()
+    {
+        global $wp_registered_sidebars;
+        global $modularityOptions;
+
+        usort($wp_registered_sidebars, function ($a, $b) {
+            return $a['name'] > $b['name'];
+        });
+
+        $coreTemplates = \Modularity\Helper\Wp::getCoreTemplates();
+        $coreTemplates = apply_filters('Modularity/CoreTemplatesInTheme', $coreTemplates);
+        $customTemplates = get_page_templates();
+        $templates = array_merge($coreTemplates, $customTemplates);
+
+        include MODULARITY_TEMPLATE_PATH . 'options/partials/modularity-template-areas.php';
     }
 
     /**
