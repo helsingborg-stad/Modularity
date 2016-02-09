@@ -89,7 +89,7 @@
         {
             "key": "field_56a8c593647ab",
             "label": "Antal poster",
-            "name": "numer_of_posts",
+            "name": "number_of_posts",
             "type": "number",
             "instructions": "",
             "required": 0,
