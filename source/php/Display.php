@@ -14,6 +14,28 @@ class Display
     public function __construct()
     {
         add_action('wp', array($this, 'init'));
+        add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
+    }
+
+    /**
+     * New is_active_sidebar logic which includes module check
+     * @param  boolean  $isActiveSidebar Original response
+     * @param  string   $sidebar         Sidebar id
+     * @return boolean
+     */
+    public function isActiveSidebar($isActiveSidebar, $sidebar)
+    {
+        $widgets = wp_get_sidebars_widgets();
+        $widgets = array_map('array_filter', $widgets);
+
+        $hasWidgets = !empty($widgets[$sidebar]);
+        $hasModules = (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
+
+        if ($hasWidgets || $hasModules) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
