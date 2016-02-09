@@ -116,6 +116,7 @@ class Editor extends \Modularity\Options
 
         $template = $this->getPostTemplate();
         $options = get_option('modularity-options');
+        $sidebars = null;
 
         $activeAreas = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
