@@ -9,8 +9,6 @@
         'orderby' => $sort[0],
         'order' => $sort[1]
     ));
-
-    var_dump($fields);
 ?>
 
 <div class="grid">
