@@ -123,8 +123,8 @@
                 "id": ""
             },
             "choices": {
-                "date_desc": "Datum senast \u00f6verst",
-                "date_asc": "Datum senast nederst",
+                "date_desc": "Datum, stigande ordning",
+                "date_asc": "Datum, fallande ordning",
                 "title": "Titel"
             },
             "default_value": [],
