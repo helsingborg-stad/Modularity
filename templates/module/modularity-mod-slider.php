@@ -57,14 +57,14 @@
                         <source src="<?php echo $slide['video_ogg']['url']; ?>" type="video/ogg">
                     <?php } ?>
 
-                    <!-- Text -->
-                    <?php
-                        if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
-                            echo '<span class="text-block">' . $slide['textblock_content'] . '</span>';
-                        }
-                    ?>
-
                 </video>
+
+                <!-- Text -->
+                <?php
+                    if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
+                        echo '<span class="text-block">' . $slide['textblock_content'] . '</span>';
+                    }
+                ?>
 
             </div>
 
