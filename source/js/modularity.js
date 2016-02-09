@@ -6,6 +6,21 @@ if (typeof postboxes !== 'undefined') {
 }
 
 (function($){
+    $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {
+        var isChecked = $(this).is(':checked');
+        var value = $(this).attr('value');
+
+        if (e.shiftKey) {
+            if (!isChecked) {
+                $('input.sidebar-area-activator[type="checkbox"][value="' + value + '"]').attr('checked', false);
+            } else {
+                $('input.sidebar-area-activator[type="checkbox"][value="' + value + '"]').attr('checked', true);
+            }
+        }
+    });
+})(jQuery);
+
+(function($){
 
     // Show spinner when clicking save on Modularity options page
     $('#modularity-options #publish').on('click', function () {
@@ -33,31 +48,16 @@ if (typeof postboxes !== 'undefined') {
 })(jQuery);
 
 
-/* Auto scrolling content */ 
-(function($){
-	jQuery(document).scroll(function(){
-		if(jQuery("#modularity-mb-modules").length) {
-		    var offset = jQuery("#modularity-mb-modules").offset(); 
-			if ( window.pageYOffset > offset.top - jQuery("#wpadminbar").outerHeight() ) {
-				jQuery("#modularity-mb-modules").css("paddingTop", window.pageYOffset-offset.top + jQuery("#wpadminbar").outerHeight() )
-			} else {
-				jQuery("#modularity-mb-modules").css("paddingTop",0); 
-			}
-	    }
-	}); 
-})(jQuery);
-
-/* Max height */ 
-(function($){
-	$( window ).resize(function() {
-		if(jQuery("#modularity-mb-modules").length) {
-			jQuery(".modularity-modules").css("maxHeight", "60vh"); 
-		}
-	});
-})(jQuery);
-
-(function($){
-	if(jQuery("#modularity-mb-modules").length) {
-		jQuery(".modularity-modules").css("maxHeight", "60vh"); 
-	}
-})(jQuery);
+/* Auto scrolling content */
+jQuery(document).ready(function ($) {
+    if ($('#modularity-mb-modules').length) {
+        var offset = $('#modularity-mb-modules').offset();
+    	$(document).scroll(function(){
+            if ($(window).scrollTop()+50 > offset.top && !$('#modularity-mb-modules').hasClass('is-fixed')) {
+                $('#modularity-mb-modules').addClass('is-fixed');
+            } else if ($(window).scrollTop()+50 < offset.top && $('#modularity-mb-modules').hasClass('is-fixed')) {
+                $('#modularity-mb-modules').removeClass('is-fixed');
+            }
+    	});
+    }
+});

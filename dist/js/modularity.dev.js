@@ -6,6 +6,21 @@ if (typeof postboxes !== 'undefined') {
 }
 
 (function($){
+    $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {
+        var isChecked = $(this).is(':checked');
+        var value = $(this).attr('value');
+
+        if (e.shiftKey) {
+            if (!isChecked) {
+                $('input.sidebar-area-activator[type="checkbox"][value="' + value + '"]').attr('checked', false);
+            } else {
+                $('input.sidebar-area-activator[type="checkbox"][value="' + value + '"]').attr('checked', true);
+            }
+        }
+    });
+})(jQuery);
+
+(function($){
 
     // Show spinner when clicking save on Modularity options page
     $('#modularity-options #publish').on('click', function () {
@@ -33,111 +48,19 @@ if (typeof postboxes !== 'undefined') {
 })(jQuery);
 
 
-/* Auto scrolling content */ 
-(function($){
-	jQuery(document).scroll(function(){
-		if(jQuery("#modularity-mb-modules").length) {
-		    var offset = jQuery("#modularity-mb-modules").offset(); 
-			if ( window.pageYOffset > offset.top - jQuery("#wpadminbar").outerHeight() ) {
-				jQuery("#modularity-mb-modules").css("paddingTop", window.pageYOffset-offset.top + jQuery("#wpadminbar").outerHeight() )
-			} else {
-				jQuery("#modularity-mb-modules").css("paddingTop",0); 
-			}
-	    }
-	}); 
-})(jQuery);
-
-/* Max height */ 
-(function($){
-	$( window ).resize(function() {
-		if(jQuery("#modularity-mb-modules").length) {
-			jQuery(".modularity-modules").css("maxHeight", "60vh"); 
-		}
-	});
-})(jQuery);
-
-(function($){
-	if(jQuery("#modularity-mb-modules").length) {
-		jQuery(".modularity-modules").css("maxHeight", "60vh"); 
-	}
-})(jQuery);
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
-
-Modularity.Helpers = (function ($) {
-
-    function Helpers() {
-        $(function(){
-        }.bind(this));
-    }
-
-    Helpers.prototype.uuid = function (separator) {
-        return Math.random().toString(36).substr(2, 9);
-    };
-
-    return new Helpers();
-
-})(jQuery);
-
-jQuery.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    jQuery.each(a, function() {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
+/* Auto scrolling content */
+jQuery(document).ready(function ($) {
+    if ($('#modularity-mb-modules').length) {
+        var offset = $('#modularity-mb-modules').offset();
+    	$(document).scroll(function(){
+            if ($(window).scrollTop()+50 > offset.top && !$('#modularity-mb-modules').hasClass('is-fixed')) {
+                $('#modularity-mb-modules').addClass('is-fixed');
+            } else if ($(window).scrollTop()+50 < offset.top && $('#modularity-mb-modules').hasClass('is-fixed')) {
+                $('#modularity-mb-modules').removeClass('is-fixed');
             }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
-
-Modularity = Modularity || {};
-Modularity.Prompt = Modularity.Prompt || {};
-
-Modularity.Prompt.Modal = (function ($) {
-
-    var isOpen = false;
-
-    function Modal() {
-        $(function(){
-            this.handleEvents();
-        }.bind(this));
+    	});
     }
-
-    Modal.prototype.open = function (url) {
-        $('body').addClass('modularity-modal-open').append('\
-            <div id="modularity-modal">\
-                <div class="modularity-modal-wrapper">\
-                    <button class="modularity-modal-close" data-modularity-modal-action="close">&times; ' + modularityAdminLanguage.close + '</button>\
-                    <iframe class="modularity-modal-iframe" src="' + url + '" frameborder="0" allowtransparency></iframe>\
-                </div>\
-            </div>\
-        ');
-
-        isOpen = true;
-    };
-
-    Modal.prototype.close = function () {
-        $('body').removeClass('modularity-modal-open');
-        $('#modularity-modal').remove();
-        isOpen = false;
-    };
-
-    Modal.prototype.handleEvents = function () {
-        $(document).on('click', '[data-modularity-modal-action="close"]', function (e) {
-            e.preventDefault();
-            this.close();
-        }.bind(this));
-    };
-
-    return new Modal();
-
-})(jQuery);
+});
 
 Modularity = Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
@@ -606,5 +529,83 @@ Modularity.Editor.Validate = (function ($) {
     };
 
     return new Validate();
+
+})(jQuery);
+
+Modularity = Modularity || {};
+Modularity.Helpers = Modularity.Helpers || {};
+
+Modularity.Helpers = (function ($) {
+
+    function Helpers() {
+        $(function(){
+        }.bind(this));
+    }
+
+    Helpers.prototype.uuid = function (separator) {
+        return Math.random().toString(36).substr(2, 9);
+    };
+
+    return new Helpers();
+
+})(jQuery);
+
+jQuery.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    jQuery.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+Modularity = Modularity || {};
+Modularity.Prompt = Modularity.Prompt || {};
+
+Modularity.Prompt.Modal = (function ($) {
+
+    var isOpen = false;
+
+    function Modal() {
+        $(function(){
+            this.handleEvents();
+        }.bind(this));
+    }
+
+    Modal.prototype.open = function (url) {
+        $('body').addClass('modularity-modal-open').append('\
+            <div id="modularity-modal">\
+                <div class="modularity-modal-wrapper">\
+                    <button class="modularity-modal-close" data-modularity-modal-action="close">&times; ' + modularityAdminLanguage.close + '</button>\
+                    <iframe class="modularity-modal-iframe" src="' + url + '" frameborder="0" allowtransparency></iframe>\
+                </div>\
+            </div>\
+        ');
+
+        isOpen = true;
+    };
+
+    Modal.prototype.close = function () {
+        $('body').removeClass('modularity-modal-open');
+        $('#modularity-modal').remove();
+        isOpen = false;
+    };
+
+    Modal.prototype.handleEvents = function () {
+        $(document).on('click', '[data-modularity-modal-action="close"]', function (e) {
+            e.preventDefault();
+            this.close();
+        }.bind(this));
+    };
+
+    return new Modal();
 
 })(jQuery);
