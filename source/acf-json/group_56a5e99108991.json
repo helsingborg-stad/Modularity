@@ -143,15 +143,69 @@
                                 ]
                             ],
                             "wrapper": {
-                                "width": "",
+                                "width": "33,333",
                                 "class": "",
                                 "id": ""
                             },
                             "return_format": "array",
                             "library": "all",
                             "min_size": "",
-                            "max_size": "",
+                            "max_size": 20,
                             "mime_types": "mp4"
+                        },
+                        {
+                            "key": "field_56b9e2102128f",
+                            "label": "Video: webm",
+                            "name": "video_webm",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "33,333",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": 20,
+                            "mime_types": "webm"
+                        },
+                        {
+                            "key": "field_56b9e26c21290",
+                            "label": "Video: ogg",
+                            "name": "video_ogg",
+                            "type": "file",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "33,333",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_size": "",
+                            "max_size": 20,
+                            "mime_types": "ogg"
                         },
                         {
                             "key": "field_56a5ed47398dd",
@@ -176,6 +230,30 @@
                             },
                             "default_value": "",
                             "placeholder": ""
+                        },
+                        {
+                            "key": "field_56b9e2a221291",
+                            "label": "Placeholder Image",
+                            "name": "placeholder_image",
+                            "type": "image",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": 1140,
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "png,jpg"
                         }
                     ],
                     "min": "",
@@ -201,5 +279,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1454056320
+    "modified": 1455022847
 }
