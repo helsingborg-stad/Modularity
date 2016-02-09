@@ -117,7 +117,7 @@ class Editor extends \Modularity\Options
         $template = $this->getPostTemplate();
         $options = get_option('modularity-options');
 
-        $activeAreas = $options['enabled-areas'][$template];
+        $activeAreas = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
         foreach ($activeAreas as $area) {
             if (isset($wp_registered_sidebars[$area])) {
