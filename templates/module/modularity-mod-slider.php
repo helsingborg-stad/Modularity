@@ -10,7 +10,7 @@
             <div class="slider-image" style="background-image:url('<?php echo $slide['image']['url']; ?>');">
                 <?php
                 if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
-                    echo '<span class="text-block">' . $slide['textblock_content'] . '</span>';
+                    echo '<span class="text-block">' . do_shortcode($slide['textblock_content']) . '</span>';
                 }
                 ?>
             </div>
@@ -62,7 +62,7 @@
                 <!-- Text -->
                 <?php
                     if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
-                        echo '<span class="text-block">' . $slide['textblock_content'] . '</span>';
+                        echo '<span class="text-block">' . do_shortcode($slide['textblock_content']) . '</span>';
                     }
                 ?>
 
