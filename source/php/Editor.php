@@ -125,8 +125,10 @@ class Editor extends \Modularity\Options
             }
         }
 
-        foreach ($sidebars as $sidebar) {
-            $this->sidebarMetaBox($sidebar);
+        if (is_array($sidebars)) {
+            foreach ($sidebars as $sidebar) {
+                $this->sidebarMetaBox($sidebar);
+            }
         }
     }
 
