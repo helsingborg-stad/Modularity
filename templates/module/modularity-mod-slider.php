@@ -4,39 +4,34 @@
 <div class="slider">
     <ul>
     <?php foreach ($slides as $slide) : ?>
+        <?php
+            if (isset($slide['image']) && !empty($slide['image'])) {
+                $image = wp_get_attachment_image_src(
+                    $slide['image']['id'],
+                    apply_filters('modularity/image/slider',
+                        array(1140,641)
+                    )
+                );
+            } else {
+                $image = false;
+            }
+        ?>
         <li>
         <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
-            <div class="slider-image" style="background-image:url('<?php echo $slide['image']['url']; ?>');">
+            <div class="slider-image" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
                 <?php
-                if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
-                    echo '<span class="text-block">' . do_shortcode($slide['textblock_content']) . '</span>';
-                }
+                    if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
+                        echo '<span class="text-block">' . do_shortcode($slide['textblock_content']) . '</span>';
+                    }
                 ?>
             </div>
 
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'embed') : ?>
 
-            <div class="ratio-16-9">
-                <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['content']); ?>
-            </div>
+            <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['content','player','ratio-16-9'], $image); ?>
 
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'upload') : ?>
-
-            <?php
-
-                if (isset($slide['placeholder_image']) && !empty($slide['placeholder_image'])) {
-                    $image = wp_get_attachment_image_src(
-                        $slide['placeholder_image']['id'],
-                        apply_filters('modularity/image/hero/video',
-                            array(1140,641)
-                        )
-                    );
-                } else {
-                    $image = false;
-                }
-
-            ?>
 
             <div class="slider-video" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
 
