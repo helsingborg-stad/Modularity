@@ -28,11 +28,7 @@
             </div>
 
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'embed') : ?>
-
-	<div class="video-background">
-            <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['content','player','ratio-16-9'], $image); ?>
-	</div>
-
+            <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['player','ratio-16-9'], $image); ?>
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'upload') : ?>
 
             <div class="slider-video" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
