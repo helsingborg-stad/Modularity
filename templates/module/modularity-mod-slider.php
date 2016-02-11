@@ -16,7 +16,7 @@
                 $image = false;
             }
         ?>
-        <li>
+        <li class="type-<?php echo $slide['acf_fc_layout']; ?>">
         <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
             <div class="slider-image" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
@@ -29,7 +29,9 @@
 
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'embed') : ?>
 
+	<div class="video-background">
             <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['content','player','ratio-16-9'], $image); ?>
+	</div>
 
         <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'upload') : ?>
 
@@ -38,17 +40,17 @@
                 <video poster="<?php echo ($image !== false ) ? $image[0] : ''; ?>" loop="" preload="auto" autoplay="1">
 
                     <!-- Mp4 -->
-                    <?php if(isset($slide['video_mp4']) && !empty($slide['video_mp4'])) { ?>
+                    <?php if (isset($slide['video_mp4']) && !empty($slide['video_mp4'])) { ?>
                         <source src="<?php echo $slide['video_mp4']['url']; ?>" type="video/mp4">
                     <?php } ?>
 
                     <!-- Webm -->
-                    <?php if(isset($slide['video_webm']) && !empty($slide['video_webm'])) { ?>
+                    <?php if (isset($slide['video_webm']) && !empty($slide['video_webm'])) { ?>
                         <source src="<?php echo $slide['video_webm']['url']; ?>" type="video/webm">
                     <?php } ?>
 
                     <!-- Ogg -->
-                    <?php if(isset($slide['video_ogg']) && !empty($slide['video_ogg'])) { ?>
+                    <?php if (isset($slide['video_ogg']) && !empty($slide['video_ogg'])) { ?>
                         <source src="<?php echo $slide['video_ogg']['url']; ?>" type="video/ogg">
                     <?php } ?>
 
