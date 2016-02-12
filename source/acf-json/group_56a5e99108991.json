@@ -234,7 +234,7 @@
                         {
                             "key": "field_56b9e2a221291",
                             "label": "Placeholder Image",
-                            "name": "placeholder_image",
+                            "name": "image",
                             "type": "image",
                             "instructions": "",
                             "required": 0,
@@ -262,7 +262,15 @@
                             "type": "true_false",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -329,5 +337,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1455027229
+    "modified": 1455185982
 }
