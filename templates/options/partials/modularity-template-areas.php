@@ -1,6 +1,6 @@
 <p>
-    Enable and/or disable areas in a specific template.<br>
-    <span style="font-style:italic;"><strong>Pro tip:</strong> Shift click on a checkbox to check/uncheck the area in all templates.</span>
+    <?php _e('Enable and/or disable areas in a specific template.', 'modularity'); ?><br>
+    <span style="font-style:italic;"><strong><?php _e('Pro tip:', 'modularity'); ?></strong> <?php _e('Shift click on a checkbox to check/uncheck the area in all templates.', 'modularity'); ?></span>
 </p>
 
 <div class="modularity-table-metabox-wrapper">

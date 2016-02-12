@@ -6,6 +6,7 @@
  * Version: 0.1
  * Author: Kristoffer Svanmark, Sebastian Thulin
  * Author URI: -
+ * Text domain: modularity
  *
  * Copyright (C) 2015
  */

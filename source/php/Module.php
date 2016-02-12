@@ -112,7 +112,7 @@ class Module
             'singular_name'      => _x($nameSingular, 'post type singular name', 'modularity'),
             'menu_name'          => _x($namePlural, 'admin menu', 'modularity'),
             'name_admin_bar'     => _x($nameSingular, 'add new on admin bar', 'modularity'),
-            'add_new'            => _x('Add New', 'book', 'modularity'),
+            'add_new'            => _x('Add New', 'add new button', 'modularity'),
             'add_new_item'       => __('Add New ' . $nameSingular, 'modularity'),
             'new_item'           => __('New ' . $nameSingular, 'modularity'),
             'edit_item'          => __('Edit ' . $nameSingular, 'modularity'),

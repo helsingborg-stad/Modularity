@@ -1,18 +1,18 @@
 <ul
     class="modularity-sidebar-area modularity-js-droppable modularity-js-sortable"
-    data-empty="<?php echo __('Drag your modules here…', 'modularity'); ?>"
+    data-empty="<?php _e('Drag your modules here…', 'modularity'); ?>"
     data-area-id="<?php echo $args['args']['sidebar']['id']; ?>"
 ></ul>
 
 <div class="modularity-sidebar-options">
     <div class="container">
         <div class="col half">
-            <?php _e('Specific before module markup (only applied to the current post/page)', 'modularity'); ?>:
+            <?php _e('Specific "before module" markup (only applied to the current post/page)', 'modularity'); ?>:
             <input type="text" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][before_module]" value="<?php echo isset($options['before_module']) ? htmlentities($options['before_module']) : ''; ?>" class="widefat">
-            <small>Tags: %1$s = Module id, %2$s = Module class</small>
+            <small><?php _e('Tags: %1$s = Module id, %2$s = Module class', 'modularity'); ?></small>
         </div>
         <div class="col half">
-            <?php _e('Specific after module markup (only applied to the current post/page)', 'modularity'); ?>:
+            <?php _e('Specific "after module" markup (only applied to the current post/page)', 'modularity'); ?>:
             <input type="text" name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][after_module]" value="<?php echo isset($options['after_module']) ? htmlentities($options['after_module']) : ''; ?>" class="widefat">
         </div>
     </div>

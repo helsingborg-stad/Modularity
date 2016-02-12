@@ -14,6 +14,10 @@ class Acf
         add_action('init', array($this, 'includeAcf'), 11);
         add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
         add_filter('acf/settings/save_json', array($this, 'jsonSavePath'));
+        add_filter('acf/settings/l10n', function () {
+            return true;
+        });
+
         //add_action('admin_init', array($this, 'importAcf'));
     }
 

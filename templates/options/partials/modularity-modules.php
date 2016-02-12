@@ -1,12 +1,12 @@
 <p>
-    Enable and/or disable modules.<br>
-    <span style="font-style:italic;">Note: You will not lose any data from disabling a module. However the modules will not be displayed on your site.</span>
+    <?php _e('Enable and/or disable modules.', 'modularity'); ?><br>
+    <span style="font-style:italic;"><?php _e('Note: You will not lose any data from disabling a module. However the modules will not be displayed on your site.', 'modularity'); ?></span>
 </p>
 
 <div class="modularity-table-metabox-wrapper">
     <table class="modularity-table">
         <thead>
-            <th class="checkbox-wrapper">Enabled</th>
+            <th class="checkbox-wrapper"><?php _e('Enabled', 'modularity'); ?></th>
             <th><?php _e('Module', 'modularity'); ?></th>
             <th><?php _e('Module', 'modularity'); ?> ID</th>
             <th><?php _e('Description', 'modularity'); ?></th>

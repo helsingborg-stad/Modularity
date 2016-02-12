@@ -1,11 +1,11 @@
 <p>
-    Select which post types you would like to enable Modularity on.
+    <?php _e('Select which post types you would like to enable Modularity on.', 'modularity'); ?>
 </p>
 
 <div class="modularity-table-metabox-wrapper">
     <table class="modularity-table">
         <thead>
-            <th class="checkbox-wrapper">Enabled</th>
+            <th class="checkbox-wrapper"><?php _e('Enabled', 'modularity'); ?></th>
             <th><?php _e('Post type', 'modularity'); ?></th>
         </thead>
         <tbody>

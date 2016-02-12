@@ -28,7 +28,7 @@ class Slider extends \Modularity\Module
                 return null;
             }
 
-            $src .= '<iframe ' . $classes . ' width="560" height="315" src="https://www.youtube.com/embed/' . $urlParts['v'] . '?hd=1&controls=0&showinfo=0&rel=0&loop=1&enablejsapi=1&autoplay=1" frameborder="0" allowfullscreen></iframe>';
+            $src .= '<iframe ' . $classes . ' width="560" height="315" src="https://www.youtube.com/embed/' . $urlParts['v'] . '?hd=1&controls=0&showinfo=0&rel=0&loop=1&autoplay=1" frameborder="0" allowfullscreen></iframe>';
         }
         elseif (strpos($url, 'vimeo') > -1) {
             $id = preg_match_all('/.*\/([0-9]+)$/i', $url, $matches);
