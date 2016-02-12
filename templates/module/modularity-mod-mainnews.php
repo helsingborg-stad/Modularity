@@ -7,7 +7,7 @@
         <?php $thumbnail_image = get_thumbnail_source($item->ID); ?>
         <div class="grid-lg-12">
             <a href="#" class="box box-news box-news-horizontal">
-                <?php if ( !empty ( $thumbnail_image ) ) {
+                <?php if ( !empty ( $thumbnail_image ) ) { ?>
                     <div class="box-image-container">
                         <img src="<?php echo get_thumbnail_source($item->ID); ?>" />
                     </div>
