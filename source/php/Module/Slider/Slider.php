@@ -16,7 +16,7 @@ class Slider extends \Modularity\Module
         );
     }
 
-    public static function getEmbed($url, $classes = array(), $image)
+    public static function getEmbed($url, $classes = array(), $image = null)
     {
         $src = null;
         $classes = count($classes) > 0 ? 'class="' . implode(' ', $classes) . '"' : '';
