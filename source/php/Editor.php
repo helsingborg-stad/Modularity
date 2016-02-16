@@ -202,6 +202,23 @@ class Editor extends \Modularity\Options
             $options = null;
         }
 
+        $optionsBeforeModule = array(
+            // classes => title
+            'grid-lg-1' => 1,
+            'grid-lg-2' => 2,
+            'grid-lg-3' => 3,
+            'grid-lg-4' => 4,
+            'grid-lg-5' => 5,
+            'grid-lg-6' => 6,
+            'grid-lg-7' => 7,
+            'grid-lg-8' => 8,
+            'grid-lg-9' => 9,
+            'grid-lg-10' => 10,
+            'grid-lg-11' => 11,
+            'grid-lg-12' => 12
+        );
+        $optionsBeforeModule = apply_filters('Modularity/before_module_options', $optionsBeforeModule);
+
         include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 

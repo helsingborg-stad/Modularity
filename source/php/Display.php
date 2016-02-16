@@ -164,10 +164,11 @@ class Display
         }
 
         if (isset($this->options[$args['id']]['before_module']) && !empty($this->options[$args['id']]['before_module'])) {
-            $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $this->options[$args['id']]['before_module']);
-            $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
+            $beforeWidget = $this->options[$args['id']]['before_module'];
+            //$beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $this->options[$args['id']]['before_module']);
+            //$beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
 
-            echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
+            echo apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
         }
         else if (isset($args['before_widget'])) {
             $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
@@ -179,7 +180,7 @@ class Display
         include $templatePath;
 
         if (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
-            echo apply_filters('Modularity/Display/AfterModule', $this->options[$args['id']]['after_module'], $args, $module->post_type, $module->ID);
+            echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
         }
         else if (isset($args['after_widget'])) {
             echo apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
