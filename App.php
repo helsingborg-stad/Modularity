@@ -23,6 +23,23 @@ class App
             wp_redirect(admin_url('admin.php?page=modularity-options'));
         });
 
+        // Link to editor from page
+        add_action('admin_bar_menu', function () {
+            if (is_admin()) {
+                return;
+            }
+
+            global $wp_admin_bar;
+            $wp_admin_bar->add_node(array(
+                'id' => 'modularity_editor',
+                'title' => __('Edit', 'modularity') . ' ' . strtolower(__('Modules', 'modularity')),
+                'href' => admin_url('options.php?page=modularity-editor&id=' . get_the_id()),
+                'meta' => array(
+                    'class' => 'modularity-editor-icon'
+                )
+            ));
+        }, 1050);
+
         new Ajax();
         new Options\General();
         new Module();
