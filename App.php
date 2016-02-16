@@ -23,6 +23,25 @@ class App
             wp_redirect(admin_url('admin.php?page=modularity-options'));
         });
 
+        $this->setupAdminBar();
+
+        new Ajax();
+        new Options\General();
+        new Module();
+        new Editor();
+        new Display();
+
+        new Helper\Acf();
+
+        do_action('Modularity');
+    }
+
+    /**
+     * Add buttons to admin bar (public)
+     * @return void
+     */
+    public function setupAdminBar()
+    {
         // Link to editor from page
         add_action('admin_bar_menu', function () {
             if (is_admin()) {
@@ -39,16 +58,6 @@ class App
                 )
             ));
         }, 1050);
-
-        new Ajax();
-        new Options\General();
-        new Module();
-        new Editor();
-        new Display();
-
-        new Helper\Acf();
-
-        do_action('Modularity');
     }
 
     /**
