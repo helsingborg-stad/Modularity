@@ -46,12 +46,18 @@ class Display
     {
         global $post;
 
-        if (is_admin() || !$post) {
+        if (is_admin()) {
             return;
         }
 
-        $this->modules = \Modularity\Editor::getPostModules($post->ID);
-        $this->options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+        if (is_post_type_archive() || is_archive()) {
+            $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+            $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
+            $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
+        } else {
+            $this->modules = \Modularity\Editor::getPostModules($post->ID);
+            $this->options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+        }
 
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
         add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
