@@ -104,11 +104,14 @@ class App
 
             add_action('admin_head', function () {
                 global $post;
+                global $archive;
+
+                $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
 
                 echo "
                     <script>
                         var admin_url = '" . admin_url() . "';
-                        var modularity_post_id = " . $post->ID . "
+                        var modularity_post_id = " . $id . "
                     </script>
                 ";
             });

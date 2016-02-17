@@ -26,6 +26,9 @@ class Editor extends \Modularity\Options
                     )
                 ));
             }, 1050);
+        } else {
+            global $archive;
+            $archive = $_GET['id'];
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
@@ -135,7 +138,13 @@ class Editor extends \Modularity\Options
 
     public function getPostTemplate()
     {
-        global $post;
+        if ($this->isArchive()) {
+            if ($postType = get_post_type()) {
+                return 'archive-' . $postType;
+            }
+            return 'archive';
+        }
+
         $template = get_page_template_slug($post->ID);
 
         if (!$template) {
@@ -328,5 +337,11 @@ class Editor extends \Modularity\Options
         }
 
         $this->notice(__('Modules saved', 'modularity'), ['updated']);
+    }
+
+    public function isArchive()
+    {
+        global $archive;
+        return $archive !== false;
     }
 }
