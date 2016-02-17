@@ -27,6 +27,7 @@ class App
 
         new Ajax();
         new Options\General();
+        new Options\Archives();
         new Module();
         new Editor();
         new Display();
