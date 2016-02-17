@@ -125,6 +125,21 @@ class Editor extends \Modularity\Options
 
         $activeAreas = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
+        if (count($activeAreas) === 0) {
+            add_meta_box(
+                'no-sidebars',
+                __('No active sidebar areas', 'modularity'),
+                function () {
+                    echo '<p>' . __('There\'s no active sidebars. Please activate sidebar areas in the Modularity Options to add modules.', 'modularity') . '</p>';
+                },
+                $this->screenHook,
+                'normal',
+                'low',
+                null
+            );
+            return;
+        }
+
         foreach ($activeAreas as $area) {
             if (isset($wp_registered_sidebars[$area])) {
                 $sidebars[$area] = $wp_registered_sidebars[$area];
@@ -138,6 +153,10 @@ class Editor extends \Modularity\Options
         }
     }
 
+    /**
+     * Gets the post template of the current editor page
+     * @return string Template slug
+     */
     public function getPostTemplate()
     {
         if ($this->isArchive()) {
@@ -155,6 +174,10 @@ class Editor extends \Modularity\Options
         return $template;
     }
 
+    /**
+     * Detects core templates
+     * @return string Template
+     */
     public function detectCoreTemplate()
     {
         global $post;
