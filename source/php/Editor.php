@@ -11,21 +11,26 @@ class Editor extends \Modularity\Options
         // Prepare Thickbox
         new \Modularity\Editor\Thickbox();
 
-        if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0) {
-            $post = get_post($_GET['id']);
-            setup_postdata($post);
+        if (isset($_GET['id'])) {
+            if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
+                $post = get_post($_GET['id']);
+                setup_postdata($post);
 
-            add_action('admin_bar_menu', function () use ($post) {
-                global $wp_admin_bar;
-                $wp_admin_bar->add_node(array(
-                    'id' => 'view_page',
-                    'title' => __('View Page'),
-                    'href' => get_permalink($post->ID),
-                    'meta' => array(
-                        'target' => '_blank'
-                    )
-                ));
-            }, 1050);
+                add_action('admin_bar_menu', function () use ($post) {
+                    global $wp_admin_bar;
+                    $wp_admin_bar->add_node(array(
+                        'id' => 'view_page',
+                        'title' => __('View Page'),
+                        'href' => get_permalink($post->ID),
+                        'meta' => array(
+                            'target' => '_blank'
+                        )
+                    ));
+                }, 1050);
+            } else {
+                global $archive;
+                $archive = $_GET['id'];
+            }
         }
 
         add_action('admin_head', array($this, 'registerTabs'));
@@ -135,6 +140,11 @@ class Editor extends \Modularity\Options
 
     public function getPostTemplate()
     {
+        if ($this->isArchive()) {
+            global $archive;
+            return $archive;
+        }
+
         global $post;
         $template = get_page_template_slug($post->ID);
 
@@ -194,7 +204,14 @@ class Editor extends \Modularity\Options
     {
         global $post;
 
-        $options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+        $options = null;
+
+        if ($this->isArchive()) {
+            global $archive;
+            $options = get_option('modularity_' . $archive . '_sidebar-options');
+        } else {
+            $options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+        }
 
         if (isset($options[$args['args']['sidebar']['id']])) {
             $options = $options[$args['args']['sidebar']['id']];
@@ -238,7 +255,15 @@ class Editor extends \Modularity\Options
 
         // Get modules structure
         $moduleIds = array();
-        $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        $moduleSidebars = null;
+
+        if (is_string($postId)) {
+            $moduleSidebars = get_option('modularity_' . $postId . '_modules');
+        } else {
+            $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        }
+
+       //$moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
 
         if (!empty($moduleSidebars)) {
             foreach ($moduleSidebars as $sidebar) {
@@ -301,10 +326,29 @@ class Editor extends \Modularity\Options
         }
 
         // Check if post id is valid
-        if (!isset($_REQUEST['id']) || empty($_REQUEST['id']) || !is_numeric($_REQUEST['id'])) {
+        if (!isset($_REQUEST['id']) || empty($_REQUEST['id'])) {
             return trigger_error('Invalid post id. Please contact system administrator.');
         }
 
+        if ($this->isArchive()) {
+            $this->saveArchive();
+        } else {
+            $this->savePost();
+        }
+
+        // If this is an ajax post, return "success" as plain text
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            echo "success";
+            wp_die();
+        }
+
+        $this->notice(__('Modules saved', 'modularity'), ['updated']);
+    }
+
+    // get_option('modularity_' . $archive . '_sidebar-options');
+
+    public function savePost()
+    {
         $postId = $_REQUEST['id'];
 
         // Save/remove modules
@@ -321,12 +365,45 @@ class Editor extends \Modularity\Options
             delete_post_meta($postId, 'modularity-sidebar-options');
         }
 
-        // If this is an ajax post, return "success" as plain text
-        if (defined('DOING_AJAX') && DOING_AJAX) {
-            echo "success";
-            wp_die();
+        return true;
+    }
+
+    public function saveArchive()
+    {
+        global $archive;
+
+        // Save/remove modules
+        $optionName = 'modularity_' . $archive . '_modules';
+
+        if (isset($_POST['modularity_modules'])) {
+            if (get_option($optionName)) {
+                update_option($optionName, $_POST['modularity_modules']);
+            } else {
+                add_option($optionName, $_POST['modularity_modules'], '', 'no');
+            }
+        } else {
+            delete_option($optionName);
         }
 
-        $this->notice(__('Modules saved', 'modularity'), ['updated']);
+        // Save/remove sidebar options
+        $optionName = 'modularity_' . $archive . '_sidebar-options';
+
+        if (isset($_POST['modularity_sidebar_options'])) {
+            if (get_option($optionName)) {
+                update_option($optionName, $_POST['modularity_sidebar_options']);
+            } else {
+                add_option($optionName, $_POST['modularity_sidebar_options'], '', 'no');
+            }
+        } else {
+            delete_option($optionName);
+        }
+
+        return true;
+    }
+
+    public function isArchive()
+    {
+        global $archive;
+        return $archive != '';
     }
 }

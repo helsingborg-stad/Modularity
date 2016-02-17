@@ -50,10 +50,18 @@ class App
             }
 
             global $wp_admin_bar;
+
+            $editorLink = admin_url('options.php?page=modularity-editor&id=' . get_the_id());
+
+            if (is_post_type_archive() || is_archive()) {
+                $postType = get_post_type_object(get_post_type());
+                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType->rewrite['slug']);
+            }
+
             $wp_admin_bar->add_node(array(
                 'id' => 'modularity_editor',
                 'title' => __('Edit', 'modularity') . ' ' . strtolower(__('Modules', 'modularity')),
-                'href' => admin_url('options.php?page=modularity-editor&id=' . get_the_id()),
+                'href' => $editorLink,
                 'meta' => array(
                     'class' => 'modularity-editor-icon'
                 )
@@ -96,11 +104,14 @@ class App
 
             add_action('admin_head', function () {
                 global $post;
+                global $archive;
+
+                $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
 
                 echo "
                     <script>
                         var admin_url = '" . admin_url() . "';
-                        var modularity_post_id = " . $post->ID . "
+                        var modularity_post_id = " . $id . "
                     </script>
                 ";
             });
