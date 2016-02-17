@@ -54,11 +54,13 @@ class ArchivesList extends \WP_List_Table
 
     public function column_archive($item)
     {
+        $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $item->rewrite['slug']);
+
         $actions = array(
             'view' => sprintf('<a href="%s" target="_blank">' . __('View') . '</a>', get_post_type_archive_link($item->rewrite['slug'])),
-            'edit' => sprintf('<a href="#">' . __('Edit modules', 'modularity') . '</a>'),
+            'edit' => sprintf('<a href="' . $editorLink . '">' . __('Edit modules', 'modularity') . '</a>'),
         );
 
-        return sprintf('%1$s %2$s', '<a href="" class="row-title">' . $item->labels->name . '</a>', $this->row_actions($actions));
+        return sprintf('%1$s %2$s', '<a href="' . $editorLink . '" class="row-title">' . $item->labels->name . '</a>', $this->row_actions($actions));
     }
 }
