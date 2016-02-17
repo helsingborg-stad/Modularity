@@ -21,7 +21,7 @@ class ArchivesList extends \WP_List_Table
     public function get_columns()
     {
         return array(
-            'archive' => __('Archive', 'modularity'),
+            'archive' => __('Post Type Archive', 'modularity'),
             'has_modules' => __('Has modules', 'modularity')
         );
     }
@@ -56,7 +56,7 @@ class ArchivesList extends \WP_List_Table
     {
         $actions = array(
             'view' => sprintf('<a href="%s" target="_blank">' . __('View') . '</a>', get_post_type_archive_link($item->rewrite['slug'])),
-            'edit' => sprintf('<a href="?page=%s&action=%s&book=%s">' . __('Edit') . '</a>', $_REQUEST['page'], 'edit', $item->rewrite['slug']),
+            'edit' => sprintf('<a href="#">' . __('Edit modules', 'modularity') . '</a>'),
         );
 
         return sprintf('%1$s %2$s', '<a href="" class="row-title">' . $item->labels->name . '</a>', $this->row_actions($actions));
