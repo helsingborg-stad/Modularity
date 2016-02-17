@@ -255,7 +255,15 @@ class Editor extends \Modularity\Options
 
         // Get modules structure
         $moduleIds = array();
-        $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        $moduleSidebars = null;
+
+        if (is_string($postId)) {
+            $moduleSidebars = get_option('modularity_' . $postId . '_modules');
+        } else {
+            $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        }
+
+       //$moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
 
         if (!empty($moduleSidebars)) {
             foreach ($moduleSidebars as $sidebar) {

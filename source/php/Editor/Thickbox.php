@@ -29,11 +29,14 @@ class Thickbox
     {
         global $current_screen;
         global $post;
+        global $archive;
+
+        $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
 
         if (substr($current_screen->post_type, 0, 4) == 'mod-' && ($current_screen->action == 'add' || $current_screen->action == '')) {
             echo "
                 <script>
-                    var modularity_post_id = ". $post->ID . ";
+                    var modularity_post_id = ". $id . ";
                     var modularity_post_action = '" . $current_screen->action . "';
                 </script>
             ";
