@@ -7,7 +7,7 @@
             "label": "Embed code",
             "name": "embed_code",
             "type": "textarea",
-            "instructions": "HTML embed code (preferably an iframe)",
+            "instructions": "Paste your script code here (with <style> <script> tags if needed). ",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -19,7 +19,7 @@
             "placeholder": "",
             "maxlength": "",
             "rows": "",
-            "new_lines": "",
+            "new_lines": "wpautop",
             "readonly": 0,
             "disabled": 0
         }
@@ -29,7 +29,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "mod-iframe"
+                "value": "mod-script"
             }
         ]
     ],
@@ -41,5 +41,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453993524
+    "modified": 1455714319
 }
