@@ -171,9 +171,6 @@ class Display
 
         if (isset($this->options[$args['id']]['before_module']) && !empty($this->options[$args['id']]['before_module'])) {
             $beforeWidget = $this->options[$args['id']]['before_module'];
-            //$beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $this->options[$args['id']]['before_module']);
-            //$beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
-
             echo apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
         }
         else if (isset($args['before_widget'])) {
