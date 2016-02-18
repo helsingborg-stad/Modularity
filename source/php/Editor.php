@@ -192,7 +192,12 @@ class Editor extends \Modularity\Options
                 break;
 
             default:
-                return 'single-' . $post->post_type;
+                return \Modularity\Helper\Wp::findCoreTemplates(array(
+                    'single-' . $post->post_type,
+                    'single',
+                    'page',
+                    'index'
+                ));
                 break;
         }
 
