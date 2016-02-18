@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Fri Feb 12 2016 11:56:10 GMT+0100 (CET)\n"
-"PO-Revision-Date: Wed Feb 17 2016 16:31:42 GMT+0100 (CET)\n"
+"PO-Revision-Date: Thu Feb 18 2016 13:51:31 GMT+0100 (CET)\n"
 "Last-Translator: Beth <beth.linden@helsingborg.se>\n"
 "Language-Team: \n"
 "Language: Swedish\n"
@@ -2040,17 +2040,9 @@ msgstr ""
 msgid "Value must be a valid URL"
 msgstr ""
 
-#: ../../../source/php/Editor.php:131
-msgid "No active sidebar areas"
-msgstr "Inga aktiva sidebars"
-
-#: ../../../source/php/Editor.php:133
-msgid ""
-"There's no active sidebars. Please activate sidebar areas in the Modularity "
-"Options to add modules."
+#: ../../../source/php/Editor.php:247
+msgid "Unspecified"
 msgstr ""
-"Det finns inga aktiva sidebars. Du kan aktivera sidebars under "
-"inställningssidan \"Modularity -> Inställningar\"."
 
 #: ../../../source/php/Module/Iframe/Iframe.php:11 ../../..
 #: /source/php/Module/Iframe/Iframe.php:12
@@ -2061,56 +2053,9 @@ msgstr ""
 msgid "Outputs an embedded page."
 msgstr ""
 
-#: ../../../source/php/Module/Script/Script.php:11 ../../..
-#: /source/php/Module/Script/Script.php:12
-msgid "Script"
-msgstr "Script"
-
-#: ../../../source/php/Module/Script/Script.php:13
-msgid "Outputs unsanitized code to widget area."
-msgstr "Matar ut kod till widget-area"
-
-#: ../../../source/php/Options/Archives.php:39 ../../..
-#: /source/php/Options/Archives.php:40
-msgid "Archive modules"
-msgstr "Arkivmoduler"
-
-#: ../../../source/php/Options/ArchivesList.php:10
-msgid "Archive"
-msgstr "Arkiv"
-
-#: ../../../source/php/Options/ArchivesList.php:11 ../../..
-#: /templates/options/modularity-archives.php:2
-msgid "Archives"
-msgstr "Arkiv"
-
-#: ../../../source/php/Options/ArchivesList.php:18
-msgid "There's no archives to display"
-msgstr "Det finns inga arkivsidor att visa"
-
-#: ../../../source/php/Options/ArchivesList.php:24
-msgid "Post Type Archive"
-msgstr "Posttypsarkiv"
-
-#: ../../../source/php/Options/ArchivesList.php:25
-msgid "Has modules"
-msgstr "Innehåller moduler"
-
-#: ../../../source/php/Options/ArchivesList.php:60
-msgid "View"
-msgstr "Visa"
-
-#: ../../../source/php/Options/ArchivesList.php:61
-msgid "Edit modules"
-msgstr "Redigera moduler"
-
 #: ../../../templates/editor/modularity-sidebar-drop-area.php:10
-msgid "Module columns"
-msgstr "Modulkolumner"
-
-#: ../../../templates/options/partials/modularity-template-areas.php:2
-msgid "Enable and/or disable areas in a specific template."
-msgstr "Aktivera/inaktivera areor i en specifik mall"
+msgid "Columns"
+msgstr "Kolumner"
 
 #: ../../../App.php:63 ../../../App.php:89 ../../../plugins/acf/core/fields/image.
 #: php:91 ../../../plugins/acf/core/views/meta_box_fields.php:108
@@ -2187,7 +2132,19 @@ msgstr "Spara moduler"
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: ../../../source/php/Editor.php:368
+#: ../../../source/php/Editor.php:131
+msgid "No active sidebar areas"
+msgstr "Inga aktiva sidebars"
+
+#: ../../../source/php/Editor.php:133
+msgid ""
+"There's no active sidebars. Please activate sidebar areas in the Modularity "
+"Options to add modules."
+msgstr ""
+"Det finns inga aktiva sidebars. Du kan aktivera sidebars under "
+"inställningssidan \"Modularity -> Inställningar\"."
+
+#: ../../../source/php/Editor.php:363
 msgid "Modules saved"
 msgstr "Modulerna sparades"
 
@@ -2226,6 +2183,15 @@ msgstr "Visar en eller flera inlägg från en vald posttyp"
 msgid "Post Stream"
 msgstr "Inläggsflöde"
 
+#: ../../../source/php/Module/Script/Script.php:11 ../../..
+#: /source/php/Module/Script/Script.php:12
+msgid "Script"
+msgstr "Script"
+
+#: ../../../source/php/Module/Script/Script.php:13
+msgid "Outputs unsanitized code to widget area."
+msgstr "Matar ut kod till widget-area"
+
 #: ../../../source/php/Module/Slider/Slider.php:11
 msgid "Slider"
 msgstr "Slider"
@@ -2263,6 +2229,40 @@ msgstr "Tabeller"
 #: ../../../source/php/Module/Table/Table.php:15
 msgid "Outputs a flexible table with options."
 msgstr "Visar en tabell."
+
+#: ../../../source/php/Options/Archives.php:39 ../../..
+#: /source/php/Options/Archives.php:40
+msgid "Archive modules"
+msgstr "Arkivmoduler"
+
+#: ../../../source/php/Options/ArchivesList.php:10
+msgid "Archive"
+msgstr "Arkiv"
+
+#: ../../../source/php/Options/ArchivesList.php:11 ../../..
+#: /templates/options/modularity-archives.php:2
+msgid "Archives"
+msgstr "Arkiv"
+
+#: ../../../source/php/Options/ArchivesList.php:18
+msgid "There's no archives to display"
+msgstr "Det finns inga arkivsidor att visa"
+
+#: ../../../source/php/Options/ArchivesList.php:24
+msgid "Post Type Archive"
+msgstr "Posttypsarkiv"
+
+#: ../../../source/php/Options/ArchivesList.php:25
+msgid "Has modules"
+msgstr "Innehåller moduler"
+
+#: ../../../source/php/Options/ArchivesList.php:60
+msgid "View"
+msgstr "Visa"
+
+#: ../../../source/php/Options/ArchivesList.php:61
+msgid "Edit modules"
+msgstr "Redigera moduler"
 
 #: ../../../source/php/Options/General.php:10
 msgid "Modularity Options"
@@ -2346,6 +2346,10 @@ msgstr "Välj vilka posttyper du vill aktivera Modularity för"
 #: ../../../templates/options/partials/modularity-post-types.php:9
 msgid "Post type"
 msgstr "Posttyp"
+
+#: ../../../templates/options/partials/modularity-template-areas.php:2
+msgid "Enable and/or disable areas in a specific template."
+msgstr "Aktivera/inaktivera areor i en specifik mall"
 
 #: ../../../templates/options/partials/modularity-template-areas.php:3
 msgid "Pro tip:"
