@@ -20,3 +20,5 @@
     </div>
     <?php endforeach; ?>
 </div>
+
+<?php wp_reset_postdata(); ?>
