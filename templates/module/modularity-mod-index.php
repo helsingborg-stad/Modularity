@@ -3,7 +3,7 @@
     $items = get_field('index', $module->ID);
 ?>
 <div class="grid" data-equal-container>
-    <?php foreach ($items as $item) : $post = $item['page']; setup_postdata($post); ?>
+    <?php foreach ($items as $item) : $post = $item['page']; setup_postdata($post); //var_dump($item); ?>
     <div class="grid-md-6">
         <a href="<?php the_permalink(); ?>" class="box box-index" data-equal-item>
             <?php if ($item['image_display'] == 'featured' && $thumbnail = get_thumbnail_source()) : ?>
@@ -13,8 +13,8 @@
             <?php endif; ?>
 
             <div class="box-content">
-                <h5 class="box-index-title link-item"><?php the_title(); ?></h5>
-                <?php the_excerpt(); ?>
+                <h5 class="box-index-title link-item"><?php echo isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title(); ?></h5>
+                <?php echo isset($item['lead']) && !empty($item['lead']) ? $item['lead'] : get_the_excerpt(); ?>
             </div>
         </a>
     </div>
