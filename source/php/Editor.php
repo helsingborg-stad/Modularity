@@ -280,10 +280,10 @@ class Editor extends \Modularity\Options
         $moduleIds = array();
         $moduleSidebars = null;
 
-        if (is_string($postId)) {
-            $moduleSidebars = get_option('modularity_' . $postId . '_modules');
-        } else {
+        if (is_numeric($postId)) {
             $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        } else {
+            $moduleSidebars = get_option('modularity_' . $postId . '_modules');
         }
 
        //$moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
