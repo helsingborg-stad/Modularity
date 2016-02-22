@@ -175,8 +175,7 @@ class Display
             //$beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
 
             echo apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
-        }
-        else if (isset($args['before_widget'])) {
+        } elseif (isset($args['before_widget'])) {
             $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
             $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
 
@@ -187,8 +186,7 @@ class Display
 
         if (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
             echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
-        }
-        else if (isset($args['after_widget'])) {
+        } elseif (isset($args['after_widget'])) {
             echo apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
         }
 
