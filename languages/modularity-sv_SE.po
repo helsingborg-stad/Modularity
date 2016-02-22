@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Fri Feb 12 2016 11:56:10 GMT+0100 (CET)\n"
-"PO-Revision-Date: Fri Feb 12 2016 12:08:03 GMT+0100 (CET)\n"
+"PO-Revision-Date: Thu Feb 18 2016 13:51:31 GMT+0100 (CET)\n"
 "Last-Translator: Beth <beth.linden@helsingborg.se>\n"
 "Language-Team: \n"
 "Language: Swedish\n"
@@ -28,14 +28,6 @@ msgstr ""
 
 #. Author of the plugin
 msgid "Kristoffer Svanmark, Sebastian Thulin"
-msgstr ""
-
-#. Name of the plugin
-msgid "Modularity Image Module"
-msgstr ""
-
-#. Description of the plugin
-msgid "Image modue for Modularity"
 msgstr ""
 
 #. Name of the plugin
@@ -1087,7 +1079,7 @@ msgstr ""
 
 #: ../../../plugins/acf/core/fields/file.php:20 ../../..
 #: /plugins/acf/core/fields/image.php:20 ../../../plugins/acf/core/fields/wysiwyg.
-#: php:20 ../../../source/php/Editor.php:47
+#: php:20 ../../../source/php/Editor.php:52
 msgid "Content"
 msgstr ""
 
@@ -2034,11 +2026,6 @@ msgstr ""
 msgid "Website"
 msgstr ""
 
-#: ../../../plugins/acf-website-field/website_url_v4.php:253 ../../../plugins/acf-
-#: website-field/website_url_v5.php:259
-msgid "Show Title?"
-msgstr ""
-
 #: ../../../plugins/acf-website-field/website_url_v4.php:278 ../../../plugins/acf-
 #: website-field/website_url_v5.php:274
 msgid "Option to open in Current Window"
@@ -2053,37 +2040,54 @@ msgstr ""
 msgid "Value must be a valid URL"
 msgstr ""
 
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:12
-#, php-format
-msgid "Tags: %1$s = Module id, %2$s = Module class<"
+#: ../../../source/php/Editor.php:247
+msgid "Unspecified"
 msgstr ""
 
-#: ../../../App.php:54 ../../../plugins/acf/core/fields/image.php:91 ../../..
-#: /plugins/acf/core/views/meta_box_fields.php:108
+#: ../../../source/php/Module/Iframe/Iframe.php:11 ../../..
+#: /source/php/Module/Iframe/Iframe.php:12
+msgid "Iframe"
+msgstr ""
+
+#: ../../../source/php/Module/Iframe/Iframe.php:13
+msgid "Outputs an embedded page."
+msgstr ""
+
+#: ../../../templates/editor/modularity-sidebar-drop-area.php:10
+msgid "Columns"
+msgstr "Kolumner"
+
+#: ../../../App.php:63 ../../../App.php:89 ../../../plugins/acf/core/fields/image.
+#: php:91 ../../../plugins/acf/core/views/meta_box_fields.php:108
 msgid "Edit"
 msgstr "Redigera"
 
-#: ../../../App.php:55
+#: ../../../App.php:63 ../../../source/php/Editor.php:53 ../../..
+#: /source/php/Options/General.php:70
+msgid "Modules"
+msgstr "Moduler"
+
+#: ../../../App.php:90
 msgid "Import"
 msgstr "Importera"
 
-#: ../../../App.php:56 ../../../plugins/acf/core/fields/image.php:90
+#: ../../../App.php:91 ../../../plugins/acf/core/fields/image.php:90
 msgid "Remove"
 msgstr "Ta bort"
 
-#: ../../../App.php:57
+#: ../../../App.php:92
 msgid "Hide"
 msgstr "Göm"
 
-#: ../../../App.php:58
+#: ../../../App.php:93
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: ../../../App.php:59
+#: ../../../App.php:94
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: ../../../App.php:60
+#: ../../../App.php:95
 msgid "Close"
 msgstr "Stäng"
 
@@ -2095,31 +2099,52 @@ msgstr "Modularity"
 msgid "Modular component system for WordPress"
 msgstr "Modulärt komponentssystem för WordPress"
 
-#: ../../../source/php/Editor.php:22
+#. Name of the plugin
+msgid "Modularity Image Module"
+msgstr "Modularity Bild Modul"
+
+#. Description of the plugin
+msgid "Image modue for Modularity"
+msgstr "Bildmodul för Modularity"
+
+#: ../../../plugins/acf-website-field/website_url_v4.php:253 ../../../plugins/acf-
+#: website-field/website_url_v5.php:259
+msgid "Show Title?"
+msgstr "Visa titel"
+
+#: ../../../source/php/Editor.php:23
 msgid "View Page"
 msgstr "Visa Sida"
 
-#: ../../../source/php/Editor.php:48 ../../../source/php/Options/General.php:70
-msgid "Modules"
-msgstr "Moduler"
-
-#: ../../../source/php/Editor.php:59
+#: ../../../source/php/Editor.php:64
 msgid "Modularity editor"
 msgstr "Moduliaryt redigerare"
 
-#: ../../../source/php/Editor.php:60
+#: ../../../source/php/Editor.php:65
 msgid "Editor"
 msgstr "Redigerare"
 
-#: ../../../source/php/Editor.php:78
+#: ../../../source/php/Editor.php:83
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: ../../../source/php/Editor.php:89
+#: ../../../source/php/Editor.php:94
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: ../../../source/php/Editor.php:313
+#: ../../../source/php/Editor.php:131
+msgid "No active sidebar areas"
+msgstr "Inga aktiva sidebars"
+
+#: ../../../source/php/Editor.php:133
+msgid ""
+"There's no active sidebars. Please activate sidebar areas in the Modularity "
+"Options to add modules."
+msgstr ""
+"Det finns inga aktiva sidebars. Du kan aktivera sidebars under "
+"inställningssidan \"Modularity -> Inställningar\"."
+
+#: ../../../source/php/Editor.php:363
 msgid "Modules saved"
 msgstr "Modulerna sparades"
 
@@ -2141,18 +2166,6 @@ msgstr ""
 "För att kunna njuta av Modularity fullt ut bör du aktivera pluginet "
 "\"Advanced Custom Fields Pro\"."
 
-#: ../../../source/php/Module/Iframe/Iframe.php:11
-msgid "Iframe (embed)"
-msgstr "Iframe (embed)"
-
-#: ../../../source/php/Module/Iframe/Iframe.php:12
-msgid "Iframes"
-msgstr "Iframes"
-
-#: ../../../source/php/Module/Iframe/Iframe.php:13
-msgid "Outputs an embedded page inside a div."
-msgstr "Visar en embeddad sida inuti en div"
-
 #: ../../../source/php/Module/InlayList/InlayList.php:11
 msgid "Inlay List"
 msgstr "Lista"
@@ -2169,6 +2182,15 @@ msgstr "Visar en eller flera inlägg från en vald posttyp"
 #: /source/php/Module/PostStream/PostStream.php:12
 msgid "Post Stream"
 msgstr "Inläggsflöde"
+
+#: ../../../source/php/Module/Script/Script.php:11 ../../..
+#: /source/php/Module/Script/Script.php:12
+msgid "Script"
+msgstr "Script"
+
+#: ../../../source/php/Module/Script/Script.php:13
+msgid "Outputs unsanitized code to widget area."
+msgstr "Matar ut kod till widget-area"
 
 #: ../../../source/php/Module/Slider/Slider.php:11
 msgid "Slider"
@@ -2208,17 +2230,39 @@ msgstr "Tabeller"
 msgid "Outputs a flexible table with options."
 msgstr "Visar en tabell."
 
-#: ../../../source/php/Module_EXT/Event.php:11
-msgid "Calendar"
-msgstr "Kalender"
+#: ../../../source/php/Options/Archives.php:39 ../../..
+#: /source/php/Options/Archives.php:40
+msgid "Archive modules"
+msgstr "Arkivmoduler"
 
-#: ../../../source/php/Module_EXT/Event.php:12
-msgid "Calendars"
-msgstr "Kalendrar"
+#: ../../../source/php/Options/ArchivesList.php:10
+msgid "Archive"
+msgstr "Arkiv"
 
-#: ../../../source/php/Module_EXT/Event.php:13
-msgid "Outputs a calendar filled with happenings."
-msgstr "Visar en kalender fylld med evenemang."
+#: ../../../source/php/Options/ArchivesList.php:11 ../../..
+#: /templates/options/modularity-archives.php:2
+msgid "Archives"
+msgstr "Arkiv"
+
+#: ../../../source/php/Options/ArchivesList.php:18
+msgid "There's no archives to display"
+msgstr "Det finns inga arkivsidor att visa"
+
+#: ../../../source/php/Options/ArchivesList.php:24
+msgid "Post Type Archive"
+msgstr "Posttypsarkiv"
+
+#: ../../../source/php/Options/ArchivesList.php:25
+msgid "Has modules"
+msgstr "Innehåller moduler"
+
+#: ../../../source/php/Options/ArchivesList.php:60
+msgid "View"
+msgstr "Visa"
+
+#: ../../../source/php/Options/ArchivesList.php:61
+msgid "Edit modules"
+msgstr "Redigera moduler"
 
 #: ../../../source/php/Options/General.php:10
 msgid "Modularity Options"
@@ -2249,33 +2293,21 @@ msgstr "Spara"
 msgid "Drag your modules here…"
 msgstr "Dra moduler hit…"
 
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:10
-msgid "Specific \"before module\" markup (only applied to the current post/page)"
-msgstr ""
-"Specifik HTML-markup före moduler (bara applicerad på detta specifika "
-"inlägg/sida)"
-
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:15
-msgid "Specific \"after module\" markup (only applied to the current post/page)"
-msgstr ""
-"Specifik HTML-markup efter moduler (bara applicerad på detta specifika "
-"inlägg/sida)"
-
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:23
-msgid "Hide global widgets"
-msgstr "Glöm widgets"
-
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:27
+#: ../../../templates/editor/modularity-sidebar-drop-area.php:18
 msgid "Show modules"
 msgstr "Visa moduler"
 
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:29
+#: ../../../templates/editor/modularity-sidebar-drop-area.php:20
 msgid "before"
 msgstr "före"
 
-#: ../../../templates/editor/modularity-sidebar-drop-area.php:30
+#: ../../../templates/editor/modularity-sidebar-drop-area.php:21
 msgid "after"
 msgstr "efter"
+
+#: ../../../templates/editor/modularity-sidebar-drop-area.php:28
+msgid "Hide global widgets"
+msgstr "Glöm widgets"
 
 #: ../../../templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
@@ -2314,6 +2346,10 @@ msgstr "Välj vilka posttyper du vill aktivera Modularity för"
 #: ../../../templates/options/partials/modularity-post-types.php:9
 msgid "Post type"
 msgstr "Posttyp"
+
+#: ../../../templates/options/partials/modularity-template-areas.php:2
+msgid "Enable and/or disable areas in a specific template."
+msgstr "Aktivera/inaktivera areor i en specifik mall"
 
 #: ../../../templates/options/partials/modularity-template-areas.php:3
 msgid "Pro tip:"

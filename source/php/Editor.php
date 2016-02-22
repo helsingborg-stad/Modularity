@@ -125,6 +125,21 @@ class Editor extends \Modularity\Options
 
         $activeAreas = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
+        if (count($activeAreas) === 0) {
+            add_meta_box(
+                'no-sidebars',
+                __('No active sidebar areas', 'modularity'),
+                function () {
+                    echo '<p>' . __('There\'s no active sidebars. Please activate sidebar areas in the Modularity Options to add modules.', 'modularity') . '</p>';
+                },
+                $this->screenHook,
+                'normal',
+                'low',
+                null
+            );
+            return;
+        }
+
         foreach ($activeAreas as $area) {
             if (isset($wp_registered_sidebars[$area])) {
                 $sidebars[$area] = $wp_registered_sidebars[$area];
@@ -138,6 +153,10 @@ class Editor extends \Modularity\Options
         }
     }
 
+    /**
+     * Gets the post template of the current editor page
+     * @return string Template slug
+     */
     public function getPostTemplate()
     {
         if ($this->isArchive()) {
@@ -155,6 +174,10 @@ class Editor extends \Modularity\Options
         return $template;
     }
 
+    /**
+     * Detects core templates
+     * @return string Template
+     */
     public function detectCoreTemplate()
     {
         global $post;
@@ -169,7 +192,12 @@ class Editor extends \Modularity\Options
                 break;
 
             default:
-                return 'single-' . $post->post_type;
+                return \Modularity\Helper\Wp::findCoreTemplates(array(
+                    'single-' . $post->post_type,
+                    'single',
+                    'page',
+                    'index'
+                ));
                 break;
         }
 
@@ -221,18 +249,13 @@ class Editor extends \Modularity\Options
 
         $optionsBeforeModule = array(
             // classes => title
-            'grid-lg-1' => 1,
-            'grid-lg-2' => 2,
-            'grid-lg-3' => 3,
-            'grid-lg-4' => 4,
-            'grid-lg-5' => 5,
-            'grid-lg-6' => 6,
-            'grid-lg-7' => 7,
-            'grid-lg-8' => 8,
-            'grid-lg-9' => 9,
-            'grid-lg-10' => 10,
-            'grid-lg-11' => 11,
-            'grid-lg-12' => 12
+            'grid-none' => __('Unspecified', 'modularity'),
+            'grid-lg-12' => 1,
+            'grid-lg-6 grid-md-6 grid-sm-12' => 2,
+            'grid-lg-4 grid-md-12' => 3,
+            'grid-lg-3 grid-md-12' => 4,
+            'grid-lg-2 grid-md-12' => 6,
+            'grid-lg-1 grid-md-12' => 12
         );
         $optionsBeforeModule = apply_filters('Modularity/before_module_options', $optionsBeforeModule);
 
@@ -257,10 +280,10 @@ class Editor extends \Modularity\Options
         $moduleIds = array();
         $moduleSidebars = null;
 
-        if (is_string($postId)) {
-            $moduleSidebars = get_option('modularity_' . $postId . '_modules');
-        } else {
+        if (is_numeric($postId)) {
             $moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
+        } else {
+            $moduleSidebars = get_option('modularity_' . $postId . '_modules');
         }
 
        //$moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
