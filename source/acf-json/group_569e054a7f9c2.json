@@ -138,7 +138,7 @@
                     "name": "date",
                     "type": "true_false",
                     "instructions": "If checked, the publish\/last modified date of the linked post will be displayed.",
-                    "required": 1,
+                    "required": 0,
                     "conditional_logic": [
                         [
                             {
@@ -200,5 +200,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453891829
+    "modified": 1456223777
 }
