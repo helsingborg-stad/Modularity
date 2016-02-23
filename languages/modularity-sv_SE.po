@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: Fri Feb 12 2016 11:56:10 GMT+0100 (CET)\n"
-"PO-Revision-Date: Tue Feb 23 2016 08:53:30 GMT+0100 (CET)\n"
+"PO-Revision-Date: Tue Feb 23 2016 08:57:29 GMT+0100 (CET)\n"
 "Last-Translator: Beth <beth.linden@helsingborg.se>\n"
 "Language-Team: \n"
 "Language: Swedish\n"
@@ -2059,7 +2059,7 @@ msgstr "Sida:"
 
 #: ../../../templates/editor/modularity-publish.php:14
 msgid "Using template:"
-msgstr "Använder mall:"
+msgstr "Mall:"
 
 #: ../../../templates/editor/modularity-sidebar-drop-area.php:10
 msgid "Columns"
@@ -2310,7 +2310,7 @@ msgstr "efter"
 
 #: ../../../templates/editor/modularity-sidebar-drop-area.php:28
 msgid "Hide global widgets"
-msgstr "Göm widgets"
+msgstr "Glöm widgets"
 
 #: ../../../templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
