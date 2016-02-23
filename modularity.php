@@ -16,7 +16,9 @@ define('MODULARITY_URL', plugins_url('', __FILE__));
 
 define('MODULARITY_TEMPLATE_PATH', MODULARITY_PATH . 'templates/');
 
-load_plugin_textdomain('modularity', false, plugin_basename(dirname(__FILE__)) . '/languages');
+add_action('plugins_loaded', function () {
+    load_plugin_textdomain('modularity', false, plugin_basename(dirname(__FILE__)) . '/languages');
+});
 
 require_once MODULARITY_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once MODULARITY_PATH . 'Public.php';
