@@ -297,7 +297,7 @@ class Editor extends \Modularity\Options
 
         $optionsBeforeModule = array(
             // classes => title
-            'grid-none' => __('Unspecified', 'modularity'),
+            '' => __('Unspecified', 'modularity'),
             'grid-lg-12' => 1,
             'grid-lg-6 grid-md-6 grid-sm-12' => 2,
             'grid-lg-4 grid-md-12' => 3,
