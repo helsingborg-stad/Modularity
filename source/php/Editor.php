@@ -4,6 +4,8 @@ namespace Modularity;
 
 class Editor extends \Modularity\Options
 {
+    public static $isEditing = null;
+
     public function __construct()
     {
         global $post;
@@ -27,9 +29,19 @@ class Editor extends \Modularity\Options
                         )
                     ));
                 }, 1050);
+
+                self::$isEditing = array(
+                    'id' => $post->ID,
+                    'title' => $post->post_title
+                );
             } else {
                 global $archive;
                 $archive = $_GET['id'];
+
+                self::$isEditing = array(
+                    'id' => null,
+                    'title' => $archive
+                );
             }
         }
 
@@ -165,9 +177,12 @@ class Editor extends \Modularity\Options
         $options = get_option('modularity-options');
         $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
+        self::$isEditing['template'] = $template;
+
         if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true
             && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs($template))) {
             $template = explode('-', $template, 2)[0];
+            self::$isEditing['template'] = $template;
             $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
         }
 
