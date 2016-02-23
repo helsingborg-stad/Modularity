@@ -23,8 +23,8 @@ class Archives
 
                 add_submenu_page(
                     'edit.php' . $postType,
-                    __('Archive modules'),
-                    __('Archive modules'),
+                    __('Archive modules', 'modularity'),
+                    __('Archive modules', 'modularity'),
                     'edit_posts',
                     'options.php?page=modularity-editor&id=archive-' . $postTypeSlug
                 );
