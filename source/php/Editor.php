@@ -120,11 +120,11 @@ class Editor extends \Modularity\Options
         global $wp_registered_sidebars;
 
         $template = $this->getPostTemplate();
-        $options = get_option('modularity-options');
         $sidebars = null;
 
-        $activeAreas = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+        $activeAreas = $this->getActiveAreas($template);
 
+        // Add no active sidebars message if no active sidebars exists
         if (count($activeAreas) === 0) {
             add_meta_box(
                 'no-sidebars',
@@ -137,6 +137,7 @@ class Editor extends \Modularity\Options
                 'low',
                 null
             );
+
             return;
         }
 
@@ -151,6 +152,25 @@ class Editor extends \Modularity\Options
                 $this->sidebarMetaBox($sidebar);
             }
         }
+    }
+
+    /**
+     * Get active areas for template.
+     * If nothing found on the specific template (eg. archive-cars), fallback to the default template (eg. archive)
+     * @param  string $template Template
+     * @return array            Active sidebars
+     */
+    public function getActiveAreas($template)
+    {
+        $options = get_option('modularity-options');
+        $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+
+        if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true) {
+            $template = explode('-', $template, 2)[0];
+            $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+        }
+
+        return $active;
     }
 
     /**

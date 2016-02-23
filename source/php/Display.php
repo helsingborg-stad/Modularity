@@ -50,8 +50,13 @@ class Display
             return;
         }
 
-        if (is_post_type_archive() || is_archive()) {
-            $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+        if (is_post_type_archive() || is_archive() || is_home()) {
+            if (is_home()) {
+                $archiveSlug = 'archive-home';
+            } else {
+                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+            }
+
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
         } else {
