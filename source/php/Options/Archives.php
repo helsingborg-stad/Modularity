@@ -6,19 +6,6 @@ class Archives
 {
     public function __construct()
     {
-        /*
-        add_action('admin_menu', function () {
-            add_submenu_page(
-                'modularity',
-                __('Archives', 'modularity'),
-                __('Archives', 'modularity'),
-                'edit_posts',
-                'modularity-archives',
-                array($this, 'setupListTable')
-            );
-        });
-        */
-
         /**
          * Add "archive modules" links in admin menu to each post type submenu
          */
@@ -45,24 +32,44 @@ class Archives
         }, 10);
     }
 
-    public function setupListTable()
-    {
-        if (!class_exists('WP_List_Table')) {
-            require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
-        }
-
-        $listTable = new \Modularity\Options\ArchivesList();
-        $listTable->prepare_items();
-
-        $templatePath = \Modularity\Helper\Wp::getTemplate('archives', 'options');
-        include $templatePath;
-    }
-
+    /**
+     * Get a list of all archives available
+     * @return object
+     */
     public static function getArchives()
     {
         $archives = get_post_types(array(
             'has_archive' => true
         ), 'object');
+
+        return $archives;
+    }
+
+    /**
+     * Get list of currently available archives slugs that has a template
+     * @return array
+     */
+    public static function getArchiveSlugs()
+    {
+        $archives = get_post_types(array(
+            'has_archive' => true
+        ), 'names');
+
+        $templates = array();
+
+        foreach ($archives as $archive) {
+            $template = \Modularity\Helper\Wp::findCoreTemplates(array(
+                'archive-' . $archive
+            ));
+
+            if ($template) {
+                $templates[] = $template;
+            } else {
+                $templates[] = 'archive';
+            }
+        }
+
+        array_unique($templates);
 
         return $archives;
     }
