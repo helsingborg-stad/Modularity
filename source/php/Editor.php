@@ -174,16 +174,28 @@ class Editor extends \Modularity\Options
      */
     public function getActiveAreas($template)
     {
+        $originalTemplate = $template;
         $options = get_option('modularity-options');
         $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
         self::$isEditing['template'] = $template;
 
+        // Fallback
         if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true
-            && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs($template))) {
+            && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
             $template = explode('-', $template, 2)[0];
             self::$isEditing['template'] = $template;
             $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+        }
+
+        if ($originalTemplate == 'archive-post') {
+            $home = \Modularity\Helper\Wp::findCoreTemplates(array(
+                'home'
+            ));
+
+            if ($home) {
+                self::$isEditing['template'] = 'home';
+            }
         }
 
         return $active;
@@ -321,8 +333,6 @@ class Editor extends \Modularity\Options
         } else {
             $moduleSidebars = get_option('modularity_' . $postId . '_modules');
         }
-
-       //$moduleSidebars = get_post_meta($postId, 'modularity-modules', true);
 
         if (!empty($moduleSidebars)) {
             foreach ($moduleSidebars as $sidebar) {
@@ -463,6 +473,11 @@ class Editor extends \Modularity\Options
     public function isArchive()
     {
         global $archive;
+
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
+        }
+
         return $archive != '';
     }
 }
