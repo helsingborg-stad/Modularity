@@ -165,7 +165,8 @@ class Editor extends \Modularity\Options
         $options = get_option('modularity-options');
         $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
 
-        if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true) {
+        if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true
+            && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs($template))) {
             $template = explode('-', $template, 2)[0];
             $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
         }

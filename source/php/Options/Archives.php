@@ -49,7 +49,7 @@ class Archives
      * Get list of currently available archives slugs that has a template
      * @return array
      */
-    public static function getArchiveSlugs()
+    public static function getArchiveTemplateSlugs()
     {
         $archives = get_post_types(array(
             'has_archive' => true
@@ -70,7 +70,6 @@ class Archives
         }
 
         array_unique($templates);
-
-        return $archives;
+        return $templates;
     }
 }
