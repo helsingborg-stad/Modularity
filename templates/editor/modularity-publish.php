@@ -2,7 +2,7 @@
     <ul>
         <!-- Page -->
         <li>
-            <strong><?php _e('Page:'); ?></strong>
+            <strong><?php _e('Page:', 'modularity'); ?></strong>
             <?php echo \Modularity\Editor::$isEditing['title']; ?>
             <?php if (isset(\Modularity\Editor::$isEditing['id']) && !is_null(\Modularity\Editor::$isEditing['id'])) : ?>
                 (ID: <?php echo \Modularity\Editor::$isEditing['id']; ?>)
@@ -11,7 +11,7 @@
 
         <!-- Template -->
         <li>
-            <strong><?php _e('Using template:'); ?></strong>
+            <strong><?php _e('Using template:', 'modularity'); ?></strong>
             <?php echo \Modularity\Editor::$isEditing['template']; ?>
         </li>
     </ul>
