@@ -163,6 +163,12 @@ class Module
             $args['menu_icon_auto_import'] = true;
         }
 
+        //If fail to load (may happen on some systems) TODO: Make this more fancy
+        if (empty($args['menu_icon']) && file_exists(MODULARITY_PATH . "/source/php/Module/" . preg_replace('/\s+/', '', $nameSingular) . "/assets/icon.svg")) {
+            $args['menu_icon'] = file_get_contents(MODULARITY_PATH . "/source/php/Module/" . preg_replace('/\s+/', '', $nameSingular)  . "/assets/icon.svg");
+            $args['menu_icon_auto_import'] = true;
+        }
+
         /**
          * Register the post type on WP Init
          */
