@@ -50,9 +50,11 @@ class Display
             return;
         }
 
-        if (is_post_type_archive() || is_archive() || is_home()) {
+        if (is_post_type_archive() || is_archive() || is_home() || is_search()) {
             if (is_home()) {
                 $archiveSlug = 'archive-post';
+            } elseif (is_search()) {
+                $archiveSlug = 'search';
             } else {
                 $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
             }

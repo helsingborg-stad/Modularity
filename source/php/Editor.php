@@ -13,6 +13,16 @@ class Editor extends \Modularity\Options
         // Prepare Thickbox
         new \Modularity\Editor\Thickbox();
 
+        $this->adminBar();
+
+        add_action('admin_head', array($this, 'registerTabs'));
+        add_action('wp_ajax_save_modules', array($this, 'save'));
+
+        $this->registerEditorPage();
+    }
+
+    public function adminBar()
+    {
         if (isset($_GET['id'])) {
             if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
                 $post = get_post($_GET['id']);
@@ -44,11 +54,6 @@ class Editor extends \Modularity\Options
                 );
             }
         }
-
-        add_action('admin_head', array($this, 'registerTabs'));
-        add_action('wp_ajax_save_modules', array($this, 'save'));
-
-        $this->registerEditorPage();
     }
 
     /**
@@ -126,6 +131,7 @@ class Editor extends \Modularity\Options
 
     /**
      * Loops registered sidebars and creates metaboxes for them
+     * @return  void
      */
     public function addSidebarsMetaBoxes()
     {
@@ -414,8 +420,10 @@ class Editor extends \Modularity\Options
         $this->notice(__('Modules saved', 'modularity'), ['updated']);
     }
 
-    // get_option('modularity_' . $archive . '_sidebar-options');
-
+    /**
+     * Saves post modules
+     * @return boolean
+     */
     public function savePost()
     {
         $postId = $_REQUEST['id'];
@@ -437,6 +445,10 @@ class Editor extends \Modularity\Options
         return true;
     }
 
+    /**
+     * Saves archive modules
+     * @return boolean
+     */
     public function saveArchive()
     {
         global $archive;
@@ -470,6 +482,10 @@ class Editor extends \Modularity\Options
         return true;
     }
 
+    /**
+     * Verifies if the current page is an archive or search result page
+     * @return boolean [description]
+     */
     public function isArchive()
     {
         global $archive;
@@ -478,6 +494,6 @@ class Editor extends \Modularity\Options
             $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
         }
 
-        return $archive != '';
+        return $archive != '' || is_search();
     }
 }
