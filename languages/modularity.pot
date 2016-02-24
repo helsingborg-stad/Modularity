@@ -1,9 +1,11 @@
+#, fuzzy
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
 "POT-Creation-Date: 2016-02-24 08:52+0100\n"
-"PO-Revision-Date: 2016-02-24 09:03+0100\n"
+"PO-Revision-Date: 2016-02-24 08:51+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -15,86 +17,82 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: sv_SE\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: App.php:63 App.php:89
 msgid "Edit"
-msgstr "Redigera"
+msgstr ""
 
 #: App.php:63 source/php/Editor.php:65 source/php/Options/General.php:70
 msgid "Modules"
-msgstr "Moduler"
+msgstr ""
 
 #: App.php:90
 msgid "Import"
-msgstr "Importera"
+msgstr ""
 
 #: App.php:91
 msgid "Remove"
-msgstr "Ta bort"
+msgstr ""
 
 #: App.php:92
 msgid "Hide"
-msgstr "Göm"
+msgstr ""
 
 #: App.php:93
 msgid "Are you sure you want to remove this module?"
-msgstr "Är du säker på att du vill ta bort modulen?"
+msgstr ""
 
 #: App.php:94
 msgid "Saving…"
-msgstr "Sparar…"
+msgstr ""
 
 #: App.php:95
 msgid "Close"
-msgstr "Stäng"
+msgstr ""
 
 #: source/php/Editor.php:25
 msgid "View Page"
-msgstr "Visa sida"
+msgstr ""
 
 #: source/php/Editor.php:64
 msgid "Content"
-msgstr "Innehåll"
+msgstr ""
 
 #: source/php/Editor.php:76
 msgid "Modularity editor"
-msgstr "Modularity redigerare"
+msgstr ""
 
 #: source/php/Editor.php:77
 msgid "Editor"
-msgstr "Redigerare"
+msgstr ""
 
 #: source/php/Editor.php:95
 msgid "Save modules"
-msgstr "Spara moduler"
+msgstr ""
 
 #: source/php/Editor.php:106
 msgid "Enabled modules"
-msgstr "Aktiverade moduler"
+msgstr ""
 
 #: source/php/Editor.php:143
 msgid "No active sidebar areas"
-msgstr "Inga aktiva sidebars"
+msgstr ""
 
 #: source/php/Editor.php:145
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
 msgstr ""
-"Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
-"”Modularity -> Options”."
 
 #: source/php/Editor.php:300
 msgid "Unspecified"
-msgstr "Ospecificerad"
+msgstr ""
 
 #: source/php/Editor.php:414
 msgid "Modules saved"
-msgstr "Moduler sparades"
+msgstr ""
 
 #: source/php/Helper/Acf.php:39
 msgid ""
@@ -102,275 +100,265 @@ msgid ""
 "activate the <a href=\"http://www.advancedcustomfields.com/pro/\" target="
 "\"_blank\">Advanced Custom Fields Pro</a> plugin."
 msgstr ""
-"För att kunna utnyttja <strong>Modularity</strong> maximalt rekommenderar vi "
-"dig att installera och aktivera pluginet <a href=\"http://www."
-"advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields "
-"Pro</a>."
 
 #: source/php/Module.php:115
 msgctxt "add new button"
 msgid "Add New"
-msgstr "Lägg till ny"
+msgstr ""
 
 #: source/php/Module.php:116
 msgid "Add New "
-msgstr "Lägg till ny"
+msgstr ""
 
 #: source/php/Module.php:117
 msgid "New "
-msgstr "Ny"
+msgstr ""
 
 #: source/php/Module.php:118
 msgid "Edit "
-msgstr "Redigera"
+msgstr ""
 
 #: source/php/Module.php:119
 msgid "View "
-msgstr "Visa"
+msgstr ""
 
 #: source/php/Module.php:120
 msgid "All "
-msgstr "Alla"
+msgstr ""
 
 #: source/php/Module.php:121
 msgid "Search "
-msgstr "Sök"
+msgstr ""
 
 #: source/php/Module.php:122
 msgid "Parent "
-msgstr "Förälder"
+msgstr ""
 
 #: source/php/Module.php:123 source/php/Module.php:124
 msgid "No "
-msgstr "Nej"
+msgstr ""
 
 #: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
 msgid "Iframe"
-msgstr "Iframe"
+msgstr ""
 
 #: source/php/Module/Iframe/Iframe.php:13
 msgid "Outputs an embedded page."
-msgstr "Visar en inbäddad sida"
+msgstr ""
 
 #: source/php/Module/InlayList/InlayList.php:11
 msgid "Inlay List"
-msgstr "Lista"
+msgstr ""
 
 #: source/php/Module/InlayList/InlayList.php:12
 msgid "Inlay Lists"
-msgstr "Listor"
+msgstr ""
 
 #: source/php/Module/InlayList/InlayList.php:13
 msgid "Outputs one or more posts from selected post-type."
-msgstr "Visar en eller flera inlägg från vald posttyp"
+msgstr ""
 
 #: source/php/Module/Script/Script.php:11
 #: source/php/Module/Script/Script.php:12
 msgid "Script"
-msgstr "Script"
+msgstr ""
 
 #: source/php/Module/Script/Script.php:13
 msgid "Outputs unsanitized code to widget area."
-msgstr "Matar ut kod"
+msgstr ""
 
 #: source/php/Module/Slider/Slider.php:11
 msgid "Slider"
-msgstr "Slider"
+msgstr ""
 
 #: source/php/Module/Slider/Slider.php:12
 msgid "Sliders"
-msgstr "Sliders"
+msgstr ""
 
 #: source/php/Module/Slider/Slider.php:13
 msgid "Outputs multiple images or videos in a sliding apperance."
-msgstr "Visar flera bilder eller filmer i ett bildspel"
+msgstr ""
 
 #: source/php/Module/Social/Social.php:11
 msgid "Social Media Feed"
-msgstr "Social Media flöde"
+msgstr ""
 
 #: source/php/Module/Social/Social.php:12
 msgid "Sociala Media Feeds"
-msgstr "Sociala Medie flöden"
+msgstr ""
 
 #: source/php/Module/Social/Social.php:13
 msgid ""
 "Outputs a social media feed from desired username or hashtag (facebook, "
 "instagram, twitter, linkedin)."
 msgstr ""
-"Visar ett socialt flöde från specificerat användarnamn eller hashtag "
-"(facebook, instagram, twitter, linkedin)."
 
 #: source/php/Module/Table/Table.php:13
 msgid "Table"
-msgstr "Tabell"
+msgstr ""
 
 #: source/php/Module/Table/Table.php:14
 msgid "Tables"
-msgstr "Tabeller"
+msgstr ""
 
 #: source/php/Module/Table/Table.php:15
 msgid "Outputs a flexible table with options."
-msgstr "Visar en tabell"
+msgstr ""
 
 #: source/php/Options.php:91
 msgid "Options saved successfully"
-msgstr "Inställningarna sparades"
+msgstr ""
 
 #: source/php/Options/Archives.php:26 source/php/Options/Archives.php:27
 msgid "Archive modules"
-msgstr "Arkivmoduler"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:10
 msgid "Archive"
-msgstr "Arkiv"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:11
 #: templates/options/modularity-archives.php:2
 msgid "Archives"
-msgstr "Arkiv"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:18
 msgid "There's no archives to display"
-msgstr "Det finns inga arkiv att visa"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:24
 msgid "Post Type Archive"
-msgstr "Posttyp-arkiv"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:25
 msgid "Has modules"
-msgstr "Har moduler"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:60
 msgid "View"
-msgstr "Visa"
+msgstr ""
 
 #: source/php/Options/ArchivesList.php:61
 msgid "Edit modules"
-msgstr "Redigera moduler"
+msgstr ""
 
 #: source/php/Options/General.php:10
 msgid "Modularity Options"
-msgstr "Modularity inställningar"
+msgstr ""
 
 #: source/php/Options/General.php:11
 msgid "Options"
-msgstr "Inställningar"
+msgstr ""
 
 #: source/php/Options/General.php:28
 msgid "Save options"
-msgstr "Spara inställningar"
+msgstr ""
 
 #: source/php/Options/General.php:40
 msgid "Core options"
-msgstr "Core inställningar"
+msgstr ""
 
 #: source/php/Options/General.php:52
 msgid "Post types"
-msgstr "Posttyper"
+msgstr ""
 
 #: source/php/Options/General.php:61
 msgid "Template areas"
-msgstr "Mallområden"
+msgstr ""
 
 #: templates/editor/modularity-publish.php:5
 msgid "Page:"
-msgstr "Sida:"
+msgstr ""
 
 #: templates/editor/modularity-publish.php:14
 msgid "Using template:"
-msgstr "Mall:"
+msgstr ""
 
 #: templates/editor/modularity-publish.php:23
 #: templates/options/partials/modularity-publish.php:4
 msgid "Save"
-msgstr "Spara"
+msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:3
 msgid "Drag your modules here…"
-msgstr "Dra moduler hit…"
+msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:10
 msgid "Columns"
-msgstr "Kolumner"
+msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:18
 msgid "Show modules"
-msgstr "Visa moduler"
+msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:20
 msgid "before"
-msgstr "före"
+msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:21
 msgid "after"
-msgstr "efter"
+msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:28
 msgid "Hide global widgets"
-msgstr "Göm widgets"
+msgstr ""
 
 #: templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
-msgstr "Visa modulernas posttyper i administrationsmenyn"
+msgstr ""
 
 #: templates/options/partials/modularity-modules.php:2
 msgid "Enable and/or disable modules."
-msgstr "Aktivera/inaktivera moduler"
+msgstr ""
 
 #: templates/options/partials/modularity-modules.php:3
 msgid ""
 "Note: You will not lose any data from disabling a module. However the "
 "modules will not be displayed on your site."
 msgstr ""
-"Obs: Du kommer inte förlora någon data genom att inaktivera en modul (du kan "
-"alltid åtetraktivera den och behålla din nuvarande data). Tänk dock på att "
-"alla moduler av denna typ kommer döljas från dina sidor."
 
 #: templates/options/partials/modularity-modules.php:9
 #: templates/options/partials/modularity-post-types.php:8
 msgid "Enabled"
-msgstr "Aktiverad"
+msgstr ""
 
 #: templates/options/partials/modularity-modules.php:10
 #: templates/options/partials/modularity-modules.php:11
 msgid "Module"
-msgstr "Modul"
+msgstr ""
 
 #: templates/options/partials/modularity-modules.php:12
 msgid "Description"
-msgstr "Beskrivning"
+msgstr ""
 
 #: templates/options/partials/modularity-post-types.php:2
 msgid "Select which post types you would like to enable Modularity on."
-msgstr "Välj vilka posttyper där du vill kunna använda Modularity"
+msgstr ""
 
 #: templates/options/partials/modularity-post-types.php:9
 msgid "Post type"
-msgstr "Posttyper"
+msgstr ""
 
 #: templates/options/partials/modularity-template-areas.php:2
 msgid "Enable and/or disable areas in a specific template."
-msgstr "Aktivera/inaktivera sidebars i en specifik mall"
+msgstr ""
 
 #: templates/options/partials/modularity-template-areas.php:3
 msgid "Pro tip:"
-msgstr "Proffstips:"
+msgstr ""
 
 #: templates/options/partials/modularity-template-areas.php:3
 msgid "Shift click on a checkbox to check/uncheck the area in all templates."
 msgstr ""
-"Shift-klicka på en checkbox för att markera/avmarkera alla sidebars i mallen"
 
 #: templates/options/partials/modularity-template-areas.php:9
 msgid "Template"
-msgstr "Mall"
+msgstr ""
 
 #: templates/options/partials/modularity-template-areas.php:10
 msgid "Areas"
-msgstr "Sidebars"
+msgstr ""
 
 #. Plugin Name of the plugin/theme
 msgid "Modularity"
@@ -383,7 +371,7 @@ msgstr ""
 
 #. Description of the plugin/theme
 msgid "Modular component system for WordPress"
-msgstr "Modulärt komponentssytem för WordPress"
+msgstr ""
 
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
