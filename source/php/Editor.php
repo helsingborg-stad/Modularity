@@ -13,6 +13,16 @@ class Editor extends \Modularity\Options
         // Prepare Thickbox
         new \Modularity\Editor\Thickbox();
 
+        $this->adminBar();
+
+        add_action('admin_head', array($this, 'registerTabs'));
+        add_action('wp_ajax_save_modules', array($this, 'save'));
+
+        $this->registerEditorPage();
+    }
+
+    public function adminBar()
+    {
         if (isset($_GET['id'])) {
             if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
                 $post = get_post($_GET['id']);
@@ -44,11 +54,6 @@ class Editor extends \Modularity\Options
                 );
             }
         }
-
-        add_action('admin_head', array($this, 'registerTabs'));
-        add_action('wp_ajax_save_modules', array($this, 'save'));
-
-        $this->registerEditorPage();
     }
 
     /**
@@ -126,12 +131,13 @@ class Editor extends \Modularity\Options
 
     /**
      * Loops registered sidebars and creates metaboxes for them
+     * @return  void
      */
     public function addSidebarsMetaBoxes()
     {
         global $wp_registered_sidebars;
 
-        $template = $this->getPostTemplate();
+        $template = \Modularity\Helper\Post::getPostTemplate();
         $sidebars = null;
 
         $activeAreas = $this->getActiveAreas($template);
@@ -181,7 +187,7 @@ class Editor extends \Modularity\Options
         self::$isEditing['template'] = $template;
 
         // Fallback
-        if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true
+        if (count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') == true
             && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
             $template = explode('-', $template, 2)[0];
             self::$isEditing['template'] = $template;
@@ -199,57 +205,6 @@ class Editor extends \Modularity\Options
         }
 
         return $active;
-    }
-
-    /**
-     * Gets the post template of the current editor page
-     * @return string Template slug
-     */
-    public function getPostTemplate()
-    {
-        if ($this->isArchive()) {
-            global $archive;
-            return $archive;
-        }
-
-        global $post;
-        $template = get_page_template_slug($post->ID);
-
-        if (!$template) {
-            $template = $this->detectCoreTemplate();
-        }
-
-        return $template;
-    }
-
-    /**
-     * Detects core templates
-     * @return string Template
-     */
-    public function detectCoreTemplate()
-    {
-        global $post;
-
-        switch ($post->post_type) {
-            case 'post':
-                return 'single';
-                break;
-
-            case 'page':
-                return 'page';
-                break;
-
-            default:
-                return \Modularity\Helper\Wp::findCoreTemplates(array(
-                    'single-' . $post->post_type,
-                    'single',
-                    'page',
-                    'index'
-                ));
-                break;
-        }
-
-        return 'index';
     }
 
     /**
@@ -282,7 +237,7 @@ class Editor extends \Modularity\Options
 
         $options = null;
 
-        if ($this->isArchive()) {
+        if (\Modularity\Helper\Post::isArchive()) {
             global $archive;
             $options = get_option('modularity_' . $archive . '_sidebar-options');
         } else {
@@ -399,7 +354,7 @@ class Editor extends \Modularity\Options
             return trigger_error('Invalid post id. Please contact system administrator.');
         }
 
-        if ($this->isArchive()) {
+        if (\Modularity\Helper\Post::isArchive()) {
             $this->saveArchive();
         } else {
             $this->savePost();
@@ -414,8 +369,10 @@ class Editor extends \Modularity\Options
         $this->notice(__('Modules saved', 'modularity'), ['updated']);
     }
 
-    // get_option('modularity_' . $archive . '_sidebar-options');
-
+    /**
+     * Saves post modules
+     * @return boolean
+     */
     public function savePost()
     {
         $postId = $_REQUEST['id'];
@@ -437,6 +394,10 @@ class Editor extends \Modularity\Options
         return true;
     }
 
+    /**
+     * Saves archive modules
+     * @return boolean
+     */
     public function saveArchive()
     {
         global $archive;
@@ -468,16 +429,5 @@ class Editor extends \Modularity\Options
         }
 
         return true;
-    }
-
-    public function isArchive()
-    {
-        global $archive;
-
-        if (defined('DOING_AJAX') && DOING_AJAX) {
-            $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
-        }
-
-        return $archive != '';
     }
 }

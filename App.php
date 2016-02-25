@@ -58,6 +58,10 @@ class App
                 $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType->rewrite['slug']);
             }
 
+            if (is_search()) {
+                $editorLink = admin_url('options.php?page=modularity-editor&id=search');
+            }
+
             $wp_admin_bar->add_node(array(
                 'id' => 'modularity_editor',
                 'title' => __('Edit', 'modularity') . ' ' . strtolower(__('Modules', 'modularity')),
