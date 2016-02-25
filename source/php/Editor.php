@@ -219,6 +219,10 @@ class Editor extends \Modularity\Options
         }
 
         global $post;
+        if (!$post && isset($_GET['id'])) {
+            $post = get_post($_GET['id']);
+        }
+
         $template = get_page_template_slug($post->ID);
 
         if (!$template) {
