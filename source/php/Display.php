@@ -25,9 +25,8 @@ class Display
      */
     public function isActiveSidebar($isActiveSidebar, $sidebar)
     {
-
         $widgets = wp_get_sidebars_widgets();
-        $widgets = $this->recursiveArrayTrim($widgets);
+        $widgets = array_map('array_filter', $widgets);
 
         $hasWidgets = !empty($widgets[$sidebar]);
         $hasModules = (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
@@ -37,21 +36,6 @@ class Display
         }
 
         return false;
-    }
-
-    public function recursiveArrayTrim($haystack)
-    {
-        foreach ($haystack as $key => $value) {
-            if (is_array($value)) {
-                $haystack[$key] = $this->recursiveArrayTrim($haystack[$key]);
-            }
-
-            if (empty($haystack[$key])) {
-                unset($haystack[$key]);
-            }
-        }
-
-        return $haystack;
     }
 
     /**
