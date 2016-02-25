@@ -143,7 +143,7 @@ class Display
      */
     public function output($sidebar)
     {
-        if (!isset($this->modules[$sidebar])) {
+        if (!isset($this->modules[$sidebar]) || !$this->isModularitySidebarActive($sidebar)) {
             return;
         }
 
@@ -160,6 +160,14 @@ class Display
 
             $this->outputModule($module, $sidebarArgs);
         }
+    }
+
+    public function isModularitySidebarActive($sidebar)
+    {
+        $template =  \Modularity\Helper\Post::getPostTemplate();
+        $options = get_option('modularity-options');
+
+        return isset($options['enabled-areas'][$template]) && in_array($sidebar, $options['enabled-areas'][$template]);
     }
 
     /**
