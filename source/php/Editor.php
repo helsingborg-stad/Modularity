@@ -187,7 +187,7 @@ class Editor extends \Modularity\Options
         self::$isEditing['template'] = $template;
 
         // Fallback
-        if (count($active) === 0 && !is_numeric($template) && strpos($template, '-') == true
+        if (count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') == true
             && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
             $template = explode('-', $template, 2)[0];
             self::$isEditing['template'] = $template;
@@ -240,6 +240,13 @@ class Editor extends \Modularity\Options
     {
         global $post;
 
+        if ((int)get_option('page_on_front') == (int)$post->ID) {
+            return \Modularity\Helper\Wp::findCoreTemplates(array(
+                'front-page',
+                'page'
+            ));
+        }
+
         switch ($post->post_type) {
             case 'post':
                 return 'single';
@@ -253,8 +260,7 @@ class Editor extends \Modularity\Options
                 return \Modularity\Helper\Wp::findCoreTemplates(array(
                     'single-' . $post->post_type,
                     'single',
-                    'page',
-                    'index'
+                    'page'
                 ));
                 break;
         }
