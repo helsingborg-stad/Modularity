@@ -137,7 +137,7 @@ class Editor extends \Modularity\Options
     {
         global $wp_registered_sidebars;
 
-        $template = $this->getPostTemplate();
+        $template = \Modularity\Helper\Post::getPostTemplate();
         $sidebars = null;
 
         $activeAreas = $this->getActiveAreas($template);
@@ -208,67 +208,6 @@ class Editor extends \Modularity\Options
     }
 
     /**
-     * Gets the post template of the current editor page
-     * @return string Template slug
-     */
-    public function getPostTemplate()
-    {
-        if ($this->isArchive()) {
-            global $archive;
-            return $archive;
-        }
-
-        global $post;
-        if (!$post && isset($_GET['id'])) {
-            $post = get_post($_GET['id']);
-        }
-
-        $template = get_page_template_slug($post->ID);
-
-        if (!$template) {
-            $template = $this->detectCoreTemplate();
-        }
-
-        return $template;
-    }
-
-    /**
-     * Detects core templates
-     * @return string Template
-     */
-    public function detectCoreTemplate()
-    {
-        global $post;
-
-        if ((int)get_option('page_on_front') == (int)$post->ID) {
-            return \Modularity\Helper\Wp::findCoreTemplates(array(
-                'front-page',
-                'page'
-            ));
-        }
-
-        switch ($post->post_type) {
-            case 'post':
-                return 'single';
-                break;
-
-            case 'page':
-                return 'page';
-                break;
-
-            default:
-                return \Modularity\Helper\Wp::findCoreTemplates(array(
-                    'single-' . $post->post_type,
-                    'single',
-                    'page'
-                ));
-                break;
-        }
-
-        return 'index';
-    }
-
-    /**
      * Create metabox for sidebars
      * @param  array $sidebar The sidebar args
      * @return void
@@ -298,7 +237,7 @@ class Editor extends \Modularity\Options
 
         $options = null;
 
-        if ($this->isArchive()) {
+        if (\Modularity\Helper\Post::isArchive()) {
             global $archive;
             $options = get_option('modularity_' . $archive . '_sidebar-options');
         } else {
@@ -415,7 +354,7 @@ class Editor extends \Modularity\Options
             return trigger_error('Invalid post id. Please contact system administrator.');
         }
 
-        if ($this->isArchive()) {
+        if (\Modularity\Helper\Post::isArchive()) {
             $this->saveArchive();
         } else {
             $this->savePost();
@@ -490,20 +429,5 @@ class Editor extends \Modularity\Options
         }
 
         return true;
-    }
-
-    /**
-     * Verifies if the current page is an archive or search result page
-     * @return boolean [description]
-     */
-    public function isArchive()
-    {
-        global $archive;
-
-        if (defined('DOING_AJAX') && DOING_AJAX) {
-            $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
-        }
-
-        return $archive != '' || is_search();
     }
 }
