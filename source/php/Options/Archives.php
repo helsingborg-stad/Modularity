@@ -12,6 +12,10 @@ class Archives
         add_action('admin_menu', function () {
             $options = get_option('modularity-options');
 
+            if (!isset($options['enabled-post-types']) || !is_array($options['enabled-post-types'])) {
+                return;
+            }
+
             foreach ($options['enabled-post-types'] as $postType) {
                 $postTypeSlug = $postType;
 
