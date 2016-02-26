@@ -3,6 +3,34 @@
     "title": "Sorted Posts",
     "fields": [
         {
+            "key": "field_56d01a16eb9f3",
+            "label": "View as",
+            "name": "view_as",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "items": "Post items",
+                "list": "List"
+            },
+            "default_value": [
+                "items"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
             "key": "field_56a8c474647a6",
             "label": "Post type",
             "name": "post_type",
@@ -35,11 +63,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "date_desc": "Date, ascending",
-                "date_asc": "Date, descending",
-                "title": "Title, descending"
-            },
+            "choices": [],
             "default_value": [],
             "allow_null": 0,
             "multiple": 0,
@@ -237,5 +261,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1455883691
+    "modified": 1456478788
 }
