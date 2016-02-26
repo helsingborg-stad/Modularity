@@ -1,17 +1,17 @@
 {
     "key": "group_56a8c4581d906",
-    "title": "Sorted Posts",
+    "title": "Latest posts",
     "fields": [
         {
             "key": "field_56a8c474647a6",
-            "label": "Post type",
+            "label": "Posttyp",
             "name": "post_type",
             "type": "posttype_select",
-            "instructions": "",
+            "instructions": "V\u00e4lj post typ att ta de senaste ifr\u00e5n",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.333",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -23,42 +23,15 @@
             "readonly": 0
         },
         {
-            "key": "field_56a8c5cc647ac",
-            "label": "Sort by",
-            "name": "sorted_by",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33.333",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "date_desc": "Date, ascending",
-                "date_asc": "Date, descending",
-                "title": "Title, descending"
-            },
-            "default_value": [],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "disabled": 0,
-            "readonly": 0
-        },
-        {
             "key": "field_56a8c593647ab",
-            "label": "Number of posts",
+            "label": "Antal poster",
             "name": "number_of_posts",
             "type": "number",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.333",
+                "width": "",
                 "class": "",
                 "id": ""
             },
@@ -73,151 +46,87 @@
             "disabled": 0
         },
         {
-            "key": "field_56a8c4c5647a7",
-            "label": "Show date",
-            "name": "show_date",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33.333",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56a8c531647a8",
-            "label": "Show excerpt if avabile",
-            "name": "show_excerpt",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33.333",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56a8c554647a9",
-            "label": "Show post title",
-            "name": "show_title",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33.333",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56a8c56a647aa",
-            "label": "Show featured image",
-            "name": "show_picture",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "33.333",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0
-        },
-        {
-            "key": "field_56c6eebaa1de4",
-            "label": "Taxonomy filter",
-            "name": "taxonomy_filter",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "66.666",
-                "class": "",
-                "id": ""
-            },
-            "message": "Filter posts on a category or tag",
-            "default_value": 0
-        },
-        {
-            "key": "field_56c6eee0a1de5",
-            "label": "Filter posts by category",
-            "name": "filter_posts_by_category",
+            "key": "field_56a8c5cc647ac",
+            "label": "Sortera p\u00e5",
+            "name": "sorted_by",
             "type": "select",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_56c6eebaa1de4",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": 50,
+                "width": "",
                 "class": "",
                 "id": ""
             },
             "choices": {
-                "category": "category",
-                "post_tag": "post_tag",
-                "nav_menu": "nav_menu",
-                "link_category": "link_category",
-                "post_format": "post_format"
+                "date_desc": "Datum senast \u00f6verst",
+                "date_asc": "Datum senast nederst",
+                "title": "Titel"
             },
             "default_value": [],
             "allow_null": 0,
-            "multiple": 1,
-            "ui": 1,
+            "multiple": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
             "readonly": 0
         },
         {
-            "key": "field_56c6ef3ca1de6",
-            "label": "Filter posts by tag",
-            "name": "filter_posts_by_tag",
-            "type": "taxonomy",
+            "key": "field_56ab2b439eee5",
+            "label": "Visningsinst\u00e4llningar",
+            "name": "show",
+            "type": "checkbox",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_56c6eebaa1de4",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": 50,
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "taxonomy": "post_tag",
-            "field_type": "multi_select",
+            "choices": {
+                "date": "Visa datum",
+                "title": "Visa titel",
+                "excerpt": "Visa ingress",
+                "picture": "Visa utvald bild"
+            },
+            "default_value": {
+                "date": "date",
+                "title": "title",
+                "excerpt": "excerpt",
+                "picture": "picture"
+            },
+            "layout": "vertical",
+            "toggle": 0
+        },
+        {
+            "key": "field_56d0069a37760",
+            "label": "View mode",
+            "name": "mod-latest-type",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "posts": "View as items",
+                "list": "View as list"
+            },
+            "default_value": [
+                "posts"
+            ],
             "allow_null": 0,
-            "add_term": 0,
-            "save_terms": 0,
-            "load_terms": 0,
-            "return_format": "id",
-            "multiple": 0
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
         }
     ],
     "location": [
@@ -237,5 +146,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1455883691
+    "modified": 1456477652
 }
