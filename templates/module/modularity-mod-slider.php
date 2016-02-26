@@ -33,7 +33,7 @@
 
             <div class="slider-video" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
 
-                <video poster="<?php echo ($image !== false ) ? $image[0] : ''; ?>" preload="auto" autoplay loop mute>
+                <video poster="<?php echo ($image !== false ) ? $image[0] : ''; ?>" preload="auto" autoplay loop muted>
 
                     <!-- Mp4 -->
                     <?php if (isset($slide['video_mp4']) && !empty($slide['video_mp4'])) { ?>
