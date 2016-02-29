@@ -28,7 +28,7 @@ class Slider extends \Modularity\Module
                 return null;
             }
 
-            $src = '<div ' . $classes  . '  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a href="#video-player-' . $urlParts['v']  . '" data-video-id="' . $urlParts['v'] . '"></a></div>';
+            $src = '<div ' . $classes  . '  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a data-unavailable="' . __('Video playback unavailable, please activate JavaScript to enable.', 'modularity') .'" href="#video-player-' . $urlParts['v']  . '" data-video-id="' . $urlParts['v'] . '"></a></div>';
         } elseif (strpos($url, 'vimeo') > -1) {
             $id = preg_match_all('/.*\/([0-9]+)$/i', $url, $matches);
 
@@ -36,7 +36,7 @@ class Slider extends \Modularity\Module
                 return null;
             }
 
-            $src = '<div class="player ratio-16-9 ' . $classes  . '"  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a href="#video-player-' . $matches[1][0]  . '" data-video-id="' . $matches[1][0] . '"></a></div>';
+            $src = '<div class="player ratio-16-9 ' . $classes  . '"  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a data-unavailable="' . __('Video playback unavailable, please activate JavaScript to enable.', 'modularity') .'" href="#video-player-' . $matches[1][0]  . '" data-video-id="' . $matches[1][0] . '"></a></div>';
         }
 
         return $src;
