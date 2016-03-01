@@ -33,3 +33,9 @@
         </div>
     </form>
 </div>
+
+<script>
+    if (typeof postboxes !== 'undefined') {
+            postboxes.add_postbox_toggles(pagenow);
+        }
+</script>
