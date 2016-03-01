@@ -22,7 +22,7 @@ class Tabs
             return false;
         }
 
-        echo '<h2 class="nav-tab-wrapper" id="modularity-tabs">';
+        echo '<h2 class="modularity-nav-tab-wrapper" id="modularity-tabs">';
 
         foreach ($this->tabs as $tab => $url) {
             if (strpos($url, $_SERVER['REQUEST_URI']) !== false || (strpos($_SERVER['REQUEST_URI'], 'post-new.php') !== false && strpos($url, 'post.php') !== false)) {
@@ -32,7 +32,7 @@ class Tabs
             }
         }
 
-        echo '</h2>';
+        echo '<div class="modularity-clearfix"></div></h2>';
     }
 
     /**

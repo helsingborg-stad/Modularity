@@ -54,11 +54,14 @@ a.wp-first-item[href="admin.php?page=modularity"] {
   margin-left: -12px;
   margin-right: -12px; }
 
-.nav-tab-wrapper + #wpbody {
-  margin-top: -16px; }
+.modularity-nav-tab-wrapper + #wpbody {
+  margin-top: -17px; }
 
-.nav-tab-wrapper {
+.modularity-nav-tab-wrapper {
   border-bottom: 1px solid #ccc; }
+  .modularity-nav-tab-wrapper .nav-tab {
+    display: inline-block;
+    float: none; }
 
 .nav-tab-wrapper + #wpbody {
   margin-top: -17px; }

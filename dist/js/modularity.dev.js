@@ -1,10 +1,5 @@
 var Modularity = Modularity || {};
 
-// Initialize postboxes
-if (typeof postboxes !== 'undefined') {
-    postboxes.add_postbox_toggles(pagenow);
-}
-
 (function($){
     $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {
         var isChecked = $(this).is(':checked');
