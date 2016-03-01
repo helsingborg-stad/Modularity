@@ -1,13 +1,14 @@
 <?php
     $fields = json_decode(json_encode(get_fields($module->ID)));
 
-    $sort = explode('_', $fields->sorted_by);
+    $sortBy = $fields->sorted_by ? $fields->sorted_by : 'date';
+    $order = $fields->order ? $fields->order : 'desc';
 
     $posts = get_posts(array(
         'post_type' => $fields->post_type,
         'posts_per_page' => $fields->number_of_posts,
-        'orderby' => $sort[0],
-        'order' => $sort[1]
+        'orderby' => $sortBy,
+        'order' => $order
     ));
 
     if (isset($fields->view_as) && $fields->view_as == 'list') :

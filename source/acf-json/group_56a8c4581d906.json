@@ -11,7 +11,7 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -20,7 +20,7 @@
                 "list": "List"
             },
             "default_value": [
-                "items"
+                0
             ],
             "allow_null": 0,
             "multiple": 0,
@@ -39,7 +39,7 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "33.333",
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -63,8 +63,48 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [],
-            "default_value": [],
+            "choices": {
+                "ID": "ID",
+                "author": "Author",
+                "title": "Title",
+                "date": "Date published",
+                "modified": "Date modified",
+                "parent": "Parent",
+                "rand": "Random",
+                "comment_count": "Comment count",
+                "menu_order": "Menu order"
+            },
+            "default_value": [
+                "date"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
+            "key": "field_56d55ec58b9e3",
+            "label": "Order",
+            "name": "order",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.333",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "desc": "Descending",
+                "asc": "Ascending"
+            },
+            "default_value": [
+                "desc"
+            ],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -261,5 +301,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1456478788
+    "modified": 1456824150
 }
