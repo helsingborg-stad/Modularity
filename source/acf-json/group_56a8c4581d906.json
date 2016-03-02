@@ -41,7 +41,7 @@
             "wrapper": {
                 "width": 50,
                 "class": "",
-                "id": ""
+                "id": "modularity-latest-post-type"
             },
             "default_value": "",
             "allow_null": 0,
@@ -302,5 +302,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1456903457
+    "modified": 1456906547
 }
