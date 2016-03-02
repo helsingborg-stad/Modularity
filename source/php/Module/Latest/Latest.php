@@ -74,14 +74,9 @@ class Latest extends \Modularity\Module
         $taxonomy = $_POST['tax'];
         $post = $_POST['post'];
 
-        $curr = array();
-        foreach (get_field('filter_posts_by_tag', $post) as $item) {
-            $curr[] = (int) $item;
-        }
-
         $result = array(
             'tax' => get_terms($taxonomy),
-            'curr' => $curr
+            'curr' => get_field('filter_posts_by_tag', $post)
         );
 
         echo json_encode($result);

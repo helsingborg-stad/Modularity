@@ -59,8 +59,8 @@ jQuery(document).ready(function ($) {
 
         $.post(ajaxurl, data, function (response) {
             $.each(response.tax, function (index, item) {
-                var is_selected = ($.inArray(item.term_id, response.curr) > -1) ? 'selected' : '';
-                $('#modularity-latest-taxonomy-value select').append('<option value="' + item.term_id + '" ' + is_selected + '>' + item.name + '</option>');
+                var is_selected = ($.inArray(item.name, response.curr) > -1) ? 'selected' : '';
+                $('#modularity-latest-taxonomy-value select').append('<option value="' + item.name + '" ' + is_selected + '>' + item.name + '</option>');
             });
 
             $('#modularity-latest-taxonomy-value .acf-label label .spinner').remove();
