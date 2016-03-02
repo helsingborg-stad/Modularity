@@ -218,11 +218,11 @@
         },
         {
             "key": "field_56c6eee0a1de5",
-            "label": "Filter posts by category",
-            "name": "filter_posts_by_category",
+            "label": "Taxonomy type",
+            "name": "filter_posts_taxonomy_type",
             "type": "select",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": [
                 [
                     {
@@ -235,7 +235,7 @@
             "wrapper": {
                 "width": 50,
                 "class": "",
-                "id": ""
+                "id": "modularity-latest-taxonomy"
             },
             "choices": {
                 "category": "category",
@@ -246,8 +246,8 @@
             },
             "default_value": [],
             "allow_null": 0,
-            "multiple": 1,
-            "ui": 1,
+            "multiple": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
@@ -255,11 +255,11 @@
         },
         {
             "key": "field_56c6ef3ca1de6",
-            "label": "Filter posts by tag",
+            "label": "Select values",
             "name": "filter_posts_by_tag",
-            "type": "taxonomy",
+            "type": "select",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": [
                 [
                     {
@@ -272,16 +272,17 @@
             "wrapper": {
                 "width": 50,
                 "class": "",
-                "id": ""
+                "id": "modularity-latest-taxonomy-value"
             },
-            "taxonomy": "post_tag",
-            "field_type": "multi_select",
+            "choices": [],
+            "default_value": [],
             "allow_null": 0,
-            "add_term": 0,
-            "save_terms": 0,
-            "load_terms": 0,
-            "return_format": "id",
-            "multiple": 0
+            "multiple": 1,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
         }
     ],
     "location": [
@@ -301,5 +302,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1456824150
+    "modified": 1456903457
 }
