@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-02-24 08:52+0100\n"
+"POT-Creation-Date: 2016-03-03 10:11+0100\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,77 +20,77 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:63 App.php:89
+#: App.php:67 App.php:93
 msgid "Edit"
 msgstr ""
 
-#: App.php:63 source/php/Editor.php:65 source/php/Options/General.php:70
+#: App.php:67 source/php/Editor.php:70 source/php/Options/General.php:81
 msgid "Modules"
 msgstr ""
 
-#: App.php:90
+#: App.php:94
 msgid "Import"
 msgstr ""
 
-#: App.php:91
+#: App.php:95
 msgid "Remove"
 msgstr ""
 
-#: App.php:92
+#: App.php:96
 msgid "Hide"
 msgstr ""
 
-#: App.php:93
+#: App.php:97
 msgid "Are you sure you want to remove this module?"
 msgstr ""
 
-#: App.php:94
+#: App.php:98
 msgid "Saving…"
 msgstr ""
 
-#: App.php:95
+#: App.php:99
 msgid "Close"
 msgstr ""
 
-#: source/php/Editor.php:25
+#: source/php/Editor.php:35
 msgid "View Page"
 msgstr ""
 
-#: source/php/Editor.php:64
+#: source/php/Editor.php:69
 msgid "Content"
 msgstr ""
 
-#: source/php/Editor.php:76
+#: source/php/Editor.php:81
 msgid "Modularity editor"
 msgstr ""
 
-#: source/php/Editor.php:77
+#: source/php/Editor.php:82
 msgid "Editor"
 msgstr ""
 
-#: source/php/Editor.php:95
+#: source/php/Editor.php:100
 msgid "Save modules"
 msgstr ""
 
-#: source/php/Editor.php:106
+#: source/php/Editor.php:111
 msgid "Enabled modules"
 msgstr ""
 
-#: source/php/Editor.php:143
+#: source/php/Editor.php:149
 msgid "No active sidebar areas"
 msgstr ""
 
-#: source/php/Editor.php:145
+#: source/php/Editor.php:151
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:300
+#: source/php/Editor.php:255
 msgid "Unspecified"
 msgstr ""
 
-#: source/php/Editor.php:414
+#: source/php/Editor.php:369
 msgid "Modules saved"
 msgstr ""
 
@@ -180,6 +180,11 @@ msgstr ""
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr ""
 
+#: source/php/Module/Slider/Slider.php:31
+#: source/php/Module/Slider/Slider.php:39
+msgid "Video playback unavailable, please activate JavaScript to enable."
+msgstr ""
+
 #: source/php/Module/Social/Social.php:11
 msgid "Social Media Feed"
 msgstr ""
@@ -210,7 +215,7 @@ msgstr ""
 msgid "Options saved successfully"
 msgstr ""
 
-#: source/php/Options/Archives.php:26 source/php/Options/Archives.php:27
+#: source/php/Options/Archives.php:30 source/php/Options/Archives.php:31
 msgid "Archive modules"
 msgstr ""
 
@@ -251,19 +256,23 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: source/php/Options/General.php:28
+#: source/php/Options/General.php:22 source/php/Options/General.php:23
+msgid "Search page modules"
+msgstr ""
+
+#: source/php/Options/General.php:39
 msgid "Save options"
 msgstr ""
 
-#: source/php/Options/General.php:40
+#: source/php/Options/General.php:51
 msgid "Core options"
 msgstr ""
 
-#: source/php/Options/General.php:52
+#: source/php/Options/General.php:63
 msgid "Post types"
 msgstr ""
 
-#: source/php/Options/General.php:61
+#: source/php/Options/General.php:72
 msgid "Template areas"
 msgstr ""
 
@@ -302,6 +311,10 @@ msgstr ""
 
 #: templates/editor/modularity-sidebar-drop-area.php:28
 msgid "Hide global widgets"
+msgstr ""
+
+#: templates/module/modularity-mod-mainnews.php:31
+msgid "Read more"
 msgstr ""
 
 #: templates/options/partials/modularity-core-options.php:5

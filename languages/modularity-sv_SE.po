@@ -1,13 +1,15 @@
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-02-24 08:52+0100\n"
-"PO-Revision-Date: 2016-02-24 09:06+0100\n"
+"POT-Creation-Date: 2016-03-03 10:11+0100\n"
+"PO-Revision-Date: 2016-03-03 10:12+0100\n"
+"Last-Translator: \n"
 "Language-Team: \n"
+"Language: sv_SE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
@@ -15,72 +17,70 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
 "_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
-"Last-Translator: \n"
-"Language: sv_SE\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:63 App.php:89
+#: App.php:67 App.php:93
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:63 source/php/Editor.php:65 source/php/Options/General.php:70
+#: App.php:67 source/php/Editor.php:70 source/php/Options/General.php:81
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:90
+#: App.php:94
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:91
+#: App.php:95
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:92
+#: App.php:96
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:93
+#: App.php:97
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:94
+#: App.php:98
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:95
+#: App.php:99
 msgid "Close"
 msgstr "Stäng"
 
-#: source/php/Editor.php:25
+#: source/php/Editor.php:35
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:64
+#: source/php/Editor.php:69
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/Editor.php:76
+#: source/php/Editor.php:81
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:77
+#: source/php/Editor.php:82
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:95
+#: source/php/Editor.php:100
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:106
+#: source/php/Editor.php:111
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:143
+#: source/php/Editor.php:149
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:145
+#: source/php/Editor.php:151
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -88,11 +88,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:300
+#: source/php/Editor.php:255
 msgid "Unspecified"
 msgstr "Ospecificerad"
 
-#: source/php/Editor.php:414
+#: source/php/Editor.php:369
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
@@ -186,6 +186,11 @@ msgstr "Sliders"
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr "Visar flera bilder eller filmer i ett bildspel"
 
+#: source/php/Module/Slider/Slider.php:31
+#: source/php/Module/Slider/Slider.php:39
+msgid "Video playback unavailable, please activate JavaScript to enable."
+msgstr "Videouppspelning är inte tillgänglig."
+
 #: source/php/Module/Social/Social.php:11
 msgid "Social Media Feed"
 msgstr "Social Media flöde"
@@ -218,7 +223,7 @@ msgstr "Visar en tabell"
 msgid "Options saved successfully"
 msgstr "Inställningarna sparades"
 
-#: source/php/Options/Archives.php:26 source/php/Options/Archives.php:27
+#: source/php/Options/Archives.php:30 source/php/Options/Archives.php:31
 msgid "Archive modules"
 msgstr "Arkivmoduler"
 
@@ -259,19 +264,23 @@ msgstr "Modularity inställningar"
 msgid "Options"
 msgstr "Inställningar"
 
-#: source/php/Options/General.php:28
+#: source/php/Options/General.php:22 source/php/Options/General.php:23
+msgid "Search page modules"
+msgstr ""
+
+#: source/php/Options/General.php:39
 msgid "Save options"
 msgstr "Spara inställningar"
 
-#: source/php/Options/General.php:40
+#: source/php/Options/General.php:51
 msgid "Core options"
 msgstr "Core inställningar"
 
-#: source/php/Options/General.php:52
+#: source/php/Options/General.php:63
 msgid "Post types"
 msgstr "Posttyper"
 
-#: source/php/Options/General.php:61
+#: source/php/Options/General.php:72
 msgid "Template areas"
 msgstr "Mallområden"
 
@@ -311,6 +320,10 @@ msgstr "efter"
 #: templates/editor/modularity-sidebar-drop-area.php:28
 msgid "Hide global widgets"
 msgstr "Göm widgets"
+
+#: templates/module/modularity-mod-mainnews.php:31
+msgid "Read more"
+msgstr "Läs mer"
 
 #: templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
