@@ -9,7 +9,7 @@ class Varnish
         add_action('save_post', array($this, 'sendPurgeRequest'));
     }
 
-    private function sendPurgeRequest($post_id)
+    public function sendPurgeRequest($post_id)
     {
 
         //Not for revisions
