@@ -8,7 +8,7 @@ class Tabs
 
     public function __construct()
     {
-        add_action('in_admin_header', array($this, 'output'));
+        add_action('edit_form_top', array($this, 'output'));
     }
 
     /**

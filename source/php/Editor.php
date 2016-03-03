@@ -53,6 +53,10 @@ class Editor extends \Modularity\Options
                     'title' => $archive
                 );
             }
+
+            add_action('Modularity/options_page_title_suffix', function () {
+                echo ': ' . self::$isEditing['title'];
+            });
         }
     }
 

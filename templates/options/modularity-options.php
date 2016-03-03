@@ -1,6 +1,6 @@
 <div class="wrap" id="modularity-options">
 
-    <h2><?php esc_html_e(get_admin_page_title(), 'modularity'); ?></h2>
+    <h1><?php esc_html_e(get_admin_page_title(), 'modularity'); do_action('Modularity/options_page_title_suffix'); ?></h1>
 
     <form name="my_form" method="post">
         <input type="hidden" name="modularity-action" value="modularity-options">
@@ -11,6 +11,8 @@
         /* Used to save closed meta boxes and their order */
         wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false);
         wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false);
+
+        do_action('edit_form_top');
         ?>
 
         <div id="poststuff">
