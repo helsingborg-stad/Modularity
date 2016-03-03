@@ -33,6 +33,7 @@ class App
         new Display();
 
         new Helper\Acf();
+        new Helper\Varnish();
 
         do_action('Modularity');
     }
