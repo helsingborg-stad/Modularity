@@ -28,7 +28,7 @@
                 <div class="box-content">
                     <h3 class="text-highlight"><?php echo apply_filters('the_title', $item->post_title); ?></h3>
                     <p><?php echo isset(get_extended($item->post_content)['main']) ? get_extended($item->post_content)['main'] : ''; ?></p>
-                    <p><span class="link-item">Read more</span></p>
+                    <p><span class="link-item"><?php _e('Read more', 'modularity'); ?></span></p>
                 </div>
             </a>
         </div>
