@@ -35,8 +35,6 @@
             <?php
             if (count($posts) > 0) :
             foreach ($posts as $post) :
-                $image = get_post_thumbnail_id($post->ID);
-                $image = wp_get_attachment_url($image);
             ?>
                 <li>
                     <a class="link-item" href="<?php echo get_permalink($post->ID); ?>">
@@ -67,7 +65,7 @@
     <div class="grid-md-3">
         <a href="<?php echo get_permalink($post->ID); ?>" class="box box-news">
             <?php if ($image && $fields->show_picture) : ?>
-            <img src="<?php echo $image; ?>">
+            <img src="<?php echo $image; ?>" alt="<?php echo $post->post_title; ?>">
             <?php endif; ?>
             <div class="box-content">
                 <?php if ($fields->show_title) : ?>

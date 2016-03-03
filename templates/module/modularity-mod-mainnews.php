@@ -19,7 +19,7 @@
                 <?php if ($hasImages) : ?>
                     <div class="box-image-container">
                         <?php if (get_thumbnail_source($item->ID)) : ?>
-                        <img src="<?php echo get_thumbnail_source($item->ID); ?>" />
+                        <img src="<?php echo get_thumbnail_source($item->ID); ?>" alt="<?php echo $item->post_title; ?>">
                         <?php else : ?>
                         <figure class="image-placeholder"></figure>
                         <?php endif; ?>

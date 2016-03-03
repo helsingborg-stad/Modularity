@@ -4,7 +4,7 @@
 
 <div class="box box-card" itemscope="person" itemtype="http://schema.org/Organization">
     <?php if (isset($fields->picture->sizes->large)) : ?>
-    <img class="box-image" src="<?php echo $fields->picture->sizes->large; ?>">
+    <img class="box-image" src="<?php echo $fields->picture->sizes->large; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
     <?php endif; ?>
 
     <div class="box-content">
