@@ -39,7 +39,7 @@
                 <li>
                     <a class="link-item" href="<?php echo get_permalink($post->ID); ?>">
                         <?php if ($fields->show_title) : ?>
-                            <?php echo apply_filters('the_title', $post->post_title); ?>
+                            <span class="title"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                         <?php endif; ?>
 
                         <?php if ($fields->show_date) : ?>
