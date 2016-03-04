@@ -6,8 +6,8 @@ class Table extends \Modularity\Module
 {
     public function __construct()
     {
-	    
-	    //Register acf module 
+
+        //Register acf module
         $this->register(
             'table',
             __("Table", 'modularity-plugin'),
@@ -18,19 +18,17 @@ class Table extends \Modularity\Module
             'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php' //included plugin
         );
 
-		//Load acf config
+        //Load acf config
         add_action('plugins_loaded', array($this, 'acfFields'));
-        
-        //Register stylesheets 
-        add_action('Modularity/Module/mod-table/enqueue', function () {
-		   $this->modAssets(); 
-		});
+
+        //Register stylesheets
+        add_action('Modularity/Module/mod-table/enqueue', array($this, 'modAssets'));
     }
-    
-    public function modAssets() 
+
+    public function modAssets()
     {
-	    wp_register_style('mod-table', MODULARITY_URL . '/dist/css/Table/assets/table.min.css', array(), '1.1.1' );
-	    wp_enqueue_style( 'mod-table' );
+        wp_register_style('mod-table', MODULARITY_URL . '/dist/css/Table/assets/table.min.css', array(), '1.1.1');
+        wp_enqueue_style('mod-table');
     }
 
     public function acfFields()
