@@ -37,13 +37,13 @@
             foreach ($posts as $post) :
             ?>
                 <li>
-                    <a class="link-item" href="<?php echo get_permalink($post->ID); ?>">
+                    <a href="<?php echo get_permalink($post->ID); ?>">
                         <?php if ($fields->show_title) : ?>
-                            <span class="title"><?php echo apply_filters('the_title', $post->post_title); ?></span>
+                            <span class="link-item title"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                         <?php endif; ?>
 
                         <?php if ($fields->show_date) : ?>
-                        <time class="date pull-right text-sm text-dark-gray"><?php echo get_the_time('Y-m-d H:i', $post->ID); ?></time>
+                        <time class="date text-sm text-dark-gray"><?php echo get_the_time('Y-m-d', $post->ID); ?></time>
                         <?php endif; ?>
                     </a>
                 </li>

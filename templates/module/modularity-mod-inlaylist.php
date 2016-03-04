@@ -13,10 +13,10 @@
             </li>
             <?php elseif ($item['type'] == 'internal') : ?>
             <li>
-                <a class="link-item" href="<?php echo get_permalink($item['link_internal']->ID); ?>">
-                    <span class="title"><?php echo (!empty($item['title'])) ? $item['title'] : $item['link_internal']->post_title; ?></span>
+                <a href="<?php echo get_permalink($item['link_internal']->ID); ?>">
+                    <span class="link-item title"><?php echo (!empty($item['title'])) ? $item['title'] : $item['link_internal']->post_title; ?></span>
                     <?php if ($item['date'] === true) : ?>
-                    <time class="date pull-right text-sm text-dark-gray"><?php echo date('Y-m-d', strtotime($item['link_internal']->post_date)); ?></time>
+                    <time class="date text-sm text-dark-gray"><?php echo date('Y-m-d', strtotime($item['link_internal']->post_date)); ?></time>
                     <?php endif; ?>
                 </a>
             </li>
