@@ -26,6 +26,30 @@
             "sub_fields": []
         },
         {
+            "key": "field_56d97e463bf53",
+            "label": "Display settings",
+            "name": "mod_table_classes",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "table-sm": "Smaller table",
+                "table-lg": "Larger table",
+                "table-striped": "Striped rows",
+                "table-bordered": "Bordered rows",
+                "table-hover": "Mouseover indication on rows"
+            },
+            "default_value": [],
+            "layout": "horizontal",
+            "toggle": 0
+        },
+        {
             "key": "field_5666a3e0d2d29",
             "label": "Enable pagination",
             "name": "mod_table_pagination",
@@ -135,5 +159,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453896485
+    "modified": 1457094349
 }
