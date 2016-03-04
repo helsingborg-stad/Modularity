@@ -27,4 +27,25 @@ class Table extends \Modularity\Module
         wp_register_style('mod-table', MODULARITY_URL . '/dist/css/Table/assets/table.min.css', array(), '1.1.1');
         wp_enqueue_style('mod-table');
     }
+
+    public function script()
+    {
+        if (!$this->hasModule()) {
+            return;
+        }
+
+        wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array('jquery'), '1.10.11');
+
+        add_action('wp_footer', function () {
+            echo "<script>
+                jQuery(document).ready(function ($) {
+                    $('.datatable').DataTable({
+                        'dom': \"<'grid'<'grid-sm-6'l><'grid-sm-6'f>>\" +
+                               \"<'grid'<'grid-sm-12'tr>>\" +
+                               \"<'grid'<'grid-sm-5'i><'grid-sm-7'p>>\"
+                    });
+                });
+            </script>";
+        });
+    }
 }

@@ -53,6 +53,42 @@ class Module
         }
     }
 
+    public function style()
+    {
+
+    }
+
+    public function script()
+    {
+
+    }
+
+    public function hasModule()
+    {
+        global $post;
+        $modules = array();
+
+        if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
+            if (is_home()) {
+                $archiveSlug = 'archive-post';
+            } elseif (is_search()) {
+                $archiveSlug = 'search';
+            } elseif (is_404()) {
+                $archiveSlug = 'e404';
+            } else {
+                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+            }
+
+            $modules = \Modularity\Editor::getPostModules($archiveSlug);
+        } else {
+            $modules = \Modularity\Editor::getPostModules($post->ID);
+        }
+
+        $modules = json_encode($modules);
+
+        return strpos($modules, '"post_type":"mod-table"') == true;
+    }
+
     public function isAddOrEditOfPostType()
     {
         global $current_screen;
@@ -185,6 +221,8 @@ class Module
 
         $this->moduleSlug = $postTypeSlug;
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+        add_action('wp_enqueue_scripts', array($this, 'style'));
+        add_action('wp_enqueue_scripts', array($this, 'script'));
 
         /**
          * Include plugin
