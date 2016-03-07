@@ -24,8 +24,10 @@ class Tabs
 
         echo '<h2 class="modularity-nav-tab-wrapper" id="modularity-tabs">';
 
+        $requestUri = str_replace('&message=1', '', $_SERVER['REQUEST_URI']);
+
         foreach ($this->tabs as $tab => $url) {
-            if (strpos($url, $_SERVER['REQUEST_URI']) !== false || (strpos($_SERVER['REQUEST_URI'], 'post-new.php') !== false && strpos($url, 'post.php') !== false)) {
+            if (strpos($url, $requestUri) !== false) {
                 echo '<a href="' . $url . '" class="nav-tab nav-tab-active">' . $tab . '</a>';
             } else {
                 echo '<a href="' . $url . '" class="nav-tab">' . $tab . '</a>';
