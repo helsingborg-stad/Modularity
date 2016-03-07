@@ -40,9 +40,12 @@ class Table extends \Modularity\Module
             echo "<script>
                 jQuery(document).ready(function ($) {
                     $('.datatable').DataTable({
-                        'dom': \"<'grid'<'grid-sm-6'l><'grid-sm-6'f>>\" +
-                               \"<'grid'<'grid-sm-12'tr>>\" +
-                               \"<'grid'<'grid-sm-5'i><'grid-sm-7'p>>\"
+                        dom: \"<'grid-table no-padding filter-wrapper'<'grid-sm-6'l><'grid-sm-6'f>>\" +
+                               \"<'grid'<'table-wrapper'<'grid-sm-12'tr>>>\" +
+                               \"<'grid-table no-padding pagination-wrapper'<'grid-sm-5'i><'grid-sm-7'p>>\",
+                        oLanguage: {
+                            sSearch: ''
+                        }
                     });
                 });
             </script>";
