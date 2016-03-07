@@ -15,6 +15,8 @@ class Display
     {
         add_action('wp', array($this, 'init'));
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
+
+        add_shortcode('modularity', array($this, 'shortcodeDisplay'));
     }
 
     /**
@@ -178,7 +180,7 @@ class Display
      * @param  array $sidebarArgs  The sidebar data
      * @return boolean             True if success otherwise false
      */
-    public function outputModule($module, $args)
+    public function outputModule($module, $args = array())
     {
         $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
 
@@ -205,5 +207,44 @@ class Display
         }
 
         return true;
+    }
+
+    /**
+     * Display module with shortcode
+     * @param  array $args Args
+     * @return string      Html markup
+     */
+    public function shortcodeDisplay($args)
+    {
+        $args = shortcode_atts(array(
+            'id' => false,
+            'inline' => true
+        ), $args);
+
+        if (!is_numeric($args['id'])) {
+            return;
+        }
+
+        $module = get_post($args['id']);
+
+        if (substr($module->post_type, 0, 4) != 'mod-') {
+            return;
+        }
+
+        $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module-inline', false);
+
+        if (!$templatePath || $args['inline'] !== true) {
+            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+        }
+
+        if (!$templatePath) {
+            return false;
+        }
+
+        ob_start();
+        include $templatePath;
+        $moduleMarkup = ob_get_clean();
+
+        return $moduleMarkup;
     }
 }
