@@ -24,6 +24,8 @@ class Module
     {
         self::$enabled = self::getEnabled();
         $this->initBundledModules();
+
+        add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
     }
 
     /**
@@ -232,5 +234,32 @@ class Module
         }
 
         return $postTypeSlug;
+    }
+
+    public function shortcodeMetabox()
+    {
+        add_meta_box('modularity-shortcode', 'Modularity Shortcode', function () {
+            global $post;
+            echo '<p>';
+            _e('Copy and paste this shortcode to display the module inline.', 'modularity');
+            echo '</p><p>';
+            echo '<label><input type="checkbox" class="modularity-inline-template" checked> Use inline template</label>';
+            echo '<pre style="overflow: auto;background:#f9f9f9;border:1px solid #ddd;padding:5px;">[modularity id="' . $post->ID . '"<span></span>]</pre>';
+            echo '</p>';
+
+            echo "<script>
+                jQuery(document).ready(function ($) {
+                    $('.modularity-inline-template').prop('checked', true);
+
+                    $('.modularity-inline-template').on('change', function () {
+                        if ($(this).prop('checked') == false) {
+                            $(this).parents('.inside').find('pre span').text(' inline=\"false\"');
+                        } else {
+                            $(this).parents('.inside').find('pre span').text('');
+                        }
+                    });
+                });
+            </script>";
+        }, $this->moduleSlug, 'side', 'default');
     }
 }
