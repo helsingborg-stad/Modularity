@@ -21,6 +21,10 @@ class Editor extends \Modularity\Options
         $this->registerEditorPage();
     }
 
+    /**
+     * Handle admin bar stuff
+     * @return void
+     */
     public function adminBar()
     {
         if (isset($_GET['id'])) {

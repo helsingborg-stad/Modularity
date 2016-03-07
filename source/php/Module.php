@@ -236,8 +236,16 @@ class Module
         return $postTypeSlug;
     }
 
+    /**
+     * Shortcode metabox
+     * @return void
+     */
     public function shortcodeMetabox()
     {
+        if (!$this->moduleSlug) {
+            return;
+        }
+
         add_meta_box('modularity-shortcode', 'Modularity Shortcode', function () {
             global $post;
             echo '<p>';

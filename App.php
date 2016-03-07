@@ -46,13 +46,17 @@ class App
     {
         // Link to editor from page
         add_action('admin_bar_menu', function () {
+            $options = get_option('modularity-options');
+
             if (is_admin()) {
                 return;
             }
 
             global $wp_admin_bar;
-
+            global $post;
             $editorLink = admin_url('options.php?page=modularity-editor&id=' . get_the_id());
+
+            $postType = $post->post_type;
 
             if (is_post_type_archive() || is_archive()) {
                 $postType = get_post_type_object(get_post_type());
@@ -61,6 +65,10 @@ class App
 
             if (is_search()) {
                 $editorLink = admin_url('options.php?page=modularity-editor&id=search');
+            }
+
+            if (!in_array($postType, $options['enabled-post-types'])) {
+                return;
             }
 
             $wp_admin_bar->add_node(array(
