@@ -1,33 +1,11 @@
 {
-    "key": "group_5666a4ec3c437",
-    "title": "Social",
+    "key": "group_56dedc26e5327",
+    "title": "Social feed",
     "fields": [
         {
-            "key": "field_5666a4eed3288",
-            "label": "Show title",
-            "name": "mod_social_show_title",
-            "type": "radio",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "true": "Yes",
-                "false": "No"
-            },
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "default_value": "true",
-            "layout": "horizontal"
-        },
-        {
-            "key": "field_5666a56bd3289",
+            "key": "field_56dedc3548ed9",
             "label": "Feed type",
-            "name": "mod_social_feed_type",
+            "name": "mod_social_type",
             "type": "radio",
             "instructions": "",
             "required": 1,
@@ -40,44 +18,16 @@
             "choices": {
                 "facebook": "Facebook",
                 "instagram": "Instagram",
-                "twitter": "Twitter"
+                "twitter": "Twitter",
+                "pinterest": "Pinterest"
             },
             "other_choice": 0,
             "save_other_choice": 0,
-            "default_value": "facebook",
+            "default_value": "",
             "layout": "horizontal"
         },
         {
-            "key": "field_5666a65b38131",
-            "label": "Instagram Client ID",
-            "name": "mod_social_instagram_client_id",
-            "type": "text",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5666a56bd3289",
-                        "operator": "==",
-                        "value": "instagram"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": "",
-            "readonly": 0,
-            "disabled": 0
-        },
-        {
-            "key": "field_5666a6a938132",
+            "key": "field_56dedd7948eda",
             "label": "Facebook App ID",
             "name": "mod_social_facebook_app_id",
             "type": "text",
@@ -86,14 +36,14 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5666a56bd3289",
+                        "field": "field_56dedc3548ed9",
                         "operator": "==",
                         "value": "facebook"
                     }
                 ]
             ],
             "wrapper": {
-                "width": "",
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -106,7 +56,7 @@
             "disabled": 0
         },
         {
-            "key": "field_5666a6ce38133",
+            "key": "field_56dedda248edb",
             "label": "Facebook App Secret",
             "name": "mod_social_facebook_app_secret",
             "type": "text",
@@ -115,7 +65,36 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5666a56bd3289",
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "facebook"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_56deddb348edc",
+            "label": "Facebook username",
+            "name": "mod_social_username",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
                         "operator": "==",
                         "value": "facebook"
                     }
@@ -135,112 +114,205 @@
             "disabled": 0
         },
         {
-            "key": "field_5666a76a7bb40",
-            "label": "Faceboook username",
-            "name": "mod_social_faceboook_username",
-            "type": "text",
-            "instructions": "The username of the Facebook user or page to fetch feed from. Attention: Only public user's feed can be fetched.",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5666a56bd3289",
-                        "operator": "==",
-                        "value": "facebook"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": "",
-            "readonly": 0,
-            "disabled": 0
-        },
-        {
-            "key": "field_5666a6d938134",
-            "label": "Twitter Consumer Key",
-            "name": "mod_social_twitter_consumer_key",
-            "type": "text",
+            "key": "field_56deddcd48edd",
+            "label": "Data type",
+            "name": "mod_social_data_type",
+            "type": "radio",
             "instructions": "",
             "required": 1,
             "conditional_logic": [
                 [
                     {
-                        "field": "field_5666a56bd3289",
-                        "operator": "==",
-                        "value": "twitter"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": "",
-            "readonly": 0,
-            "disabled": 0
-        },
-        {
-            "key": "field_5666a6ec38135",
-            "label": "Twitter Consumer Secret",
-            "name": "mod_social_twitter_consumer_secret",
-            "type": "text",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5666a56bd3289",
-                        "operator": "==",
-                        "value": "twitter"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": "",
-            "readonly": 0,
-            "disabled": 0
-        },
-        {
-            "key": "field_5666a7ca7bb41",
-            "label": "Hashtag",
-            "name": "mod_social_hashtag",
-            "type": "text",
-            "instructions": "The hashtag of the feed to fetch. Only one is allowed.",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5666a56bd3289",
+                        "field": "field_56dedc3548ed9",
                         "operator": "==",
                         "value": "instagram"
                     }
                 ],
                 [
                     {
-                        "field": "field_5666a56bd3289",
+                        "field": "field_56dedc3548ed9",
                         "operator": "==",
                         "value": "twitter"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "hashtag": "Hashtag",
+                "user": "User"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "hashtag",
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_56dede1448ede",
+            "label": "Instagram Client ID",
+            "name": "mod_social_instagram_client_id",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "instagram"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_56dee0e1ed7ab",
+            "label": "Twitter Consumer Key",
+            "name": "mod_social_twitter_key",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "twitter"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_56dee104ed7ac",
+            "label": "Twitter Consumer Secret",
+            "name": "mod_social_twitter_secret",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "twitter"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_56dede6048ee0",
+            "label": "Username",
+            "name": "mod_social_username",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "instagram"
+                    },
+                    {
+                        "field": "field_56deddcd48edd",
+                        "operator": "==",
+                        "value": "user"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "twitter"
+                    },
+                    {
+                        "field": "field_56deddcd48edd",
+                        "operator": "==",
+                        "value": "user"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "@",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_56dedeaa48ee2",
+            "label": "Hashtag",
+            "name": "mod_social_hashtag",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "instagram"
+                    },
+                    {
+                        "field": "field_56deddcd48edd",
+                        "operator": "==",
+                        "value": "hashtag"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "twitter"
+                    },
+                    {
+                        "field": "field_56deddcd48edd",
+                        "operator": "==",
+                        "value": "hashtag"
                     }
                 ]
             ],
@@ -275,5 +347,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453896546
+    "modified": 1457447591
 }
