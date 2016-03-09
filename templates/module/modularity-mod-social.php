@@ -8,6 +8,7 @@ $feedArgs = array(
     'query'      => isset($fields->mod_social_query) ? $fields->mod_social_query : '',
     'length'     => isset($fields->mod_social_length) ? $fields->mod_social_length : 10,
     'max_height' => isset($fields->mod_social_max_height) ? $fields->mod_social_max_height : 300,
+    'row_length' => isset($fields->mod_social_row_length) ? $fields->mod_social_row_length : 3,
     'api_user'   => isset($fields->mod_social_api_user) ? $fields->mod_social_api_user : '',
     'api_secret' => isset($fields->mod_social_api_secret) ? $fields->mod_social_api_secret : ''
 );
@@ -16,6 +17,6 @@ $feed = new \Modularity\Module\Social\Feed($feedArgs);
 ?>
 
 <div class="box box-panel">
-    <h4 class="box-title"><i class="fa fa-<?php echo $feedArgs['network']; ?>-square"></i> <?php echo $module->post_title; ?></h4>
+    <h4 class="box-title"><i class="fa fa-<?php echo $feedArgs['network']; ?>"></i> <?php echo $module->post_title; ?></h4>
     <?php $feed->render(); ?>
 </div>

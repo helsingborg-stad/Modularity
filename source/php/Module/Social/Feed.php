@@ -16,6 +16,8 @@ class Feed
             'type'       => 'hashtag',
             'query'      => 'sweden',
             'length'     => 10,
+            'max_height' => 300,
+            'row_length' => false,
             'api_user'   => '',
             'api_secret' => ''
         );
@@ -260,22 +262,24 @@ class Feed
 
     public function render()
     {
-        $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-' . $this->args['network'] . ' social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
-
         switch ($this->args['network']) {
             case 'instagram':
+                $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-instagram social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderInstagram();
                 break;
 
             case 'facebook':
+                $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-feed social-feed-facebook social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderFacebook();
                 break;
 
             case 'twitter':
+                $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-feed social-feed-twitter social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderTwitter();
                 break;
 
             case 'pinterest':
+                $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-pinterest social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderPinterest();
                 break;
         }
@@ -285,6 +289,66 @@ class Feed
         echo $this->markup;
     }
 
+    /**
+     * Render Pinterest images
+     * @return void
+     */
+    protected function renderPinterest()
+    {
+        $int = 0;
+
+        foreach ($this->feedData as $item) {
+            $int++;
+
+            $this->addImage(
+                null,
+                array(
+                    'name' => $item->pinner->full_name,
+                    'picture' => $item->pinner->image_small_url
+                ),
+                $item->images->{'237x'}->url,
+                isset($item->description) ? $item->description : null,
+                $item->link
+            );
+
+            if ($int == $this->args['length']) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Render Instagram images
+     * @return void
+     */
+    protected function renderInstagram()
+    {
+        $int = 0;
+
+        foreach ($this->feedData->data as $item) {
+            $int++;
+
+            $this->addImage(
+                $item->created_time,
+                array(
+                    'name' => $item->user->username,
+                    'picture' => $item->user->profile_picture
+                ),
+                $item->images->low_resolution->url,
+                isset($item->caption->text) ? $item->caption->text : null,
+                $item->link
+            );
+
+            if ($int == $this->args['length']) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Renders Facebook posts
+     * @return void
+     */
     protected function renderFacebook()
     {
         $int = 0;
@@ -341,6 +405,38 @@ class Feed
         }
     }
 
+    protected function addImage($createdTime, $user, $image, $caption, $link)
+    {
+        $rowWidth = '';
+        if (isset($this->args['row_length']) && is_numeric($this->args['row_length'])) {
+            $rowWidth = round(100/$this->args['row_length'], 4) . '%';
+            $item = '<li style="width:' . $rowWidth . '">';
+        } else {
+            $item = '<li>';
+        }
+
+        $time = '';
+        if (isset($createdTime) && !empty($createdTime)) {
+            $time = '<time>' . human_time_diff($createdTime, current_time('timestamp')) . ' '  . __('ago', 'modularity') . '</time>';
+        }
+
+        $item .= '
+            <a href="' . $link . '" target="_blank" class="mod-social-image" style="background-image:url(' . $image . ');" class="mod-social-image">
+                <img src="' . $image . '" alt="' . $user['name'] . '" class="mod-social-attachment-image">
+                <div class="mod-social-user">
+                    <img src="' . $user['picture'] . '" alt="' . $user['name'] . '">
+                    <span>' . $user['name'] . '</span>
+                    ' . $time .'
+                </div>
+                <div class="mod-social-story">
+                    ' . wpautop($caption) . '
+                </div>
+            </a>
+        </li>';
+
+        $this->markup .= apply_filters('Modularity/mod_social/image', $item, $createdTime, $user, $image, $caption);
+    }
+
     /**
      * Adds a story
      * @param timestamp $createdTime Created date timestamp
@@ -354,7 +450,7 @@ class Feed
                 <div class="mod-social-user">
                     <img src="' . $user['picture'] . '" alt="' . $user['name'] . '">
                     <span>' . $user['name'] . '</span>
-                    <time>' . human_time_diff($createdTime, current_time('timestamp')) . '</time>
+                    <time>' . human_time_diff($createdTime, current_time('timestamp')) . ' ' . __('ago', 'modularity') . '</time>
                 </div>
                 <div class="mod-social-story">
                     ' . wpautop($text) . '
