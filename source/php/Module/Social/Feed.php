@@ -5,7 +5,9 @@ namespace Modularity\Module\Social;
 class Feed
 {
     public $args = array();
+
     protected $feedData = array();
+    protected $markup = '';
 
     public function __construct($args = array())
     {
@@ -110,10 +112,12 @@ class Feed
         $endpoint = 'https://api.twitter.com/1.1/search/tweets.json';
         $data = array(
             'access_token'     => $access_token,
-            'q'                => urlencode($this->args['query']),
+            'q'                => urlencode('#' . $this->args['query']),
             'count'            => $this->args['length'],
             'exclude_replies'  => true,
-            'include_rts '     => false
+            'include_rts '     => false,
+            'result_type'      => 'recent',
+            'lang'             => 'sv'
         );
 
         // Request headers
@@ -127,7 +131,7 @@ class Feed
         // Curl
         $tweets = \Modularity\Helper\Curl::request('GET', $endpoint, $data, 'JSON', $headers);
 
-        return json_decode($tweets);
+        return json_decode($tweets)->statuses;
     }
 
     /**
@@ -252,6 +256,69 @@ class Feed
         }
 
         return false;
+    }
+
+    public function render()
+    {
+        $this->markup .= '<ul class="social-feed social-feed-' . $this->args['network'] . ' social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
+
+        switch ($this->args['network']) {
+            case 'instagram':
+                $this->renderInstagram();
+                break;
+
+            case 'facebook':
+                $this->renderFacebook();
+                break;
+
+            case 'twitter':
+                $this->renderTwitter();
+                break;
+
+            case 'pinterest':
+                $this->renderPinterest();
+                break;
+        }
+
+        $this->markup .= '</ul>';
+
+        echo $this->markup;
+    }
+
+    protected function renderTwitter()
+    {
+        foreach ($this->feedData as $item) {
+            $this->addStory(
+                $item->created_at,
+                array(
+                    'name' => $item->user->name,
+                    'picture' => $item->user->profile_image_url
+                ),
+                $item->text
+            );
+        }
+    }
+
+    protected function addStory($createdTime, $user, $text)
+    {
+        $date = new \DateTime($createdTime);
+        $timeZone = new \DateTimeZone(get_option('timezone_string'));
+        $date->setTimezone($timeZone);
+
+        $item = '
+            <li>
+                <div class="mod-social-user">
+                    <img src="' . $user['picture'] . '" alt="' . $user['name'] . '">
+                    <span>' . $user['name'] . '</span>
+                    <time>' . human_time_diff(strtotime($date->format('Y-m-d H:i:s')), current_time('timestamp')) . '</time>
+                </div>
+                <div class="mod-social-story">
+                    ' . $text . '
+                </div>
+            </li>
+        ';
+
+        $this->markup .= apply_filters('Modularity/mod_social/story', $item, $createdTime, $user, $text);
     }
 
     /**
