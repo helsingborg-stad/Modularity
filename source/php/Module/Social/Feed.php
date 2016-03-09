@@ -288,8 +288,12 @@ class Feed
     protected function renderTwitter()
     {
         foreach ($this->feedData as $item) {
+            $date = new \DateTime($item->created_at);
+            $timeZone = new \DateTimeZone(get_option('timezone_string'));
+            $date->setTimezone($timeZone);
+
             $this->addStory(
-                $item->created_at,
+                strtotime($date->format('Y-m-d H:i:s')),
                 array(
                     'name' => $item->user->name,
                     'picture' => $item->user->profile_image_url
@@ -299,18 +303,22 @@ class Feed
         }
     }
 
+    /**
+     * Adds a story
+     * @param timestamp $createdTime Created date timestamp
+     * @param array     $user        User name and picture
+     * @param string    $text        The text
+     */
     protected function addStory($createdTime, $user, $text)
     {
-        $date = new \DateTime($createdTime);
-        $timeZone = new \DateTimeZone(get_option('timezone_string'));
-        $date->setTimezone($timeZone);
+
 
         $item = '
             <li>
                 <div class="mod-social-user">
                     <img src="' . $user['picture'] . '" alt="' . $user['name'] . '">
                     <span>' . $user['name'] . '</span>
-                    <time>' . human_time_diff(strtotime($date->format('Y-m-d H:i:s')), current_time('timestamp')) . '</time>
+                    <time>' . human_time_diff($createdTime, current_time('timestamp')) . '</time>
                 </div>
                 <div class="mod-social-story">
                     ' . $text . '
