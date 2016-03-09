@@ -260,7 +260,7 @@ class Feed
 
     public function render()
     {
-        $this->markup .= '<ul class="social-feed social-feed-' . $this->args['network'] . ' social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
+        $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-' . $this->args['network'] . ' social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
 
         switch ($this->args['network']) {
             case 'instagram':
