@@ -15,8 +15,4 @@ class Social extends \Modularity\Module
         );
     }
 
-    public static function getFeed($moduleId, $type)
-    {
-
-    }
 }
