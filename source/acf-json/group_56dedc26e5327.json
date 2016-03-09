@@ -29,7 +29,7 @@
         {
             "key": "field_56dedd7948eda",
             "label": "Facebook App ID",
-            "name": "mod_social_facebook_app_id",
+            "name": "mod_social_api_user",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -58,7 +58,7 @@
         {
             "key": "field_56dedda248edb",
             "label": "Facebook App Secret",
-            "name": "mod_social_facebook_app_secret",
+            "name": "mod_social_api_secret",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -87,7 +87,7 @@
         {
             "key": "field_56deddb348edc",
             "label": "Facebook username",
-            "name": "mod_social_username",
+            "name": "mod_social_query",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -153,7 +153,7 @@
         {
             "key": "field_56dede1448ede",
             "label": "Instagram Client ID",
-            "name": "mod_social_instagram_client_id",
+            "name": "mod_social_api_user",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -182,7 +182,7 @@
         {
             "key": "field_56dee0e1ed7ab",
             "label": "Twitter Consumer Key",
-            "name": "mod_social_twitter_key",
+            "name": "mod_social_api_user",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -211,7 +211,7 @@
         {
             "key": "field_56dee104ed7ac",
             "label": "Twitter Consumer Secret",
-            "name": "mod_social_twitter_secret",
+            "name": "mod_social_api_secret",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -240,7 +240,7 @@
         {
             "key": "field_56dede6048ee0",
             "label": "Username",
-            "name": "mod_social_username",
+            "name": "mod_social_query",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -286,7 +286,7 @@
         {
             "key": "field_56dedeaa48ee2",
             "label": "Hashtag",
-            "name": "mod_social_hashtag",
+            "name": "mod_social_query",
             "type": "text",
             "instructions": "",
             "required": 1,
@@ -347,5 +347,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457447591
+    "modified": 1457508624
 }
