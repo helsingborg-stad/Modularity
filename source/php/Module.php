@@ -88,7 +88,7 @@ class Module
 
         $modules = json_encode($modules);
 
-        return strpos($modules, '"post_type":"mod-table"') == true;
+        return strpos($modules, '"post_type":"' . $this->moduleSlug . '"') == true;
     }
 
     public function isAddOrEditOfPostType()
