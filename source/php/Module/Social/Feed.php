@@ -191,7 +191,7 @@ class Feed
         $endpoint = 'https://graph.facebook.com/' . $this->args['query'] . '/posts';
         $data = array(
             'access_token' => $token,
-            'fields'       => 'full_picture, picture, message, created_time, object_id, link, name, caption, description, icon, type, status_type, likes'
+            'fields'       => 'from, full_picture, picture, message, created_time, object_id, link, name, caption, description, icon, type, status_type, likes'
         );
         $feed = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
         $feed = json_decode($feed);
@@ -285,6 +285,44 @@ class Feed
         echo $this->markup;
     }
 
+    protected function renderFacebook()
+    {
+        $int = 0;
+
+        foreach ($this->feedData as $item) {
+            $int++;
+
+            $date = new \DateTime($item->created_time);
+            $timeZone = new \DateTimeZone(get_option('timezone_string'));
+            $date->setTimezone($timeZone);
+
+            $this->addStory(
+                strtotime($date->format('Y-m-d H:i:s')),
+                array(
+                    'name' => $item->from->name,
+                    'picture' => '//graph.facebook.com/' . $item->from->id . '/picture?type=large'
+                ),
+                $item->message,
+                array(
+                    'type'         => isset($item->type) ? $item->type : null,
+                    'name'         => isset($item->name) ? $item->name : null,
+                    'description'  => isset($item->description) ? $item->description : null,
+                    'caption'      => isset($item->caption) ? $item->caption : null,
+                    'link'         => isset($item->link) ? $item->link : null,
+                    'full_picture' => isset($item->full_picture) ? $item->full_picture : null
+                )
+            );
+
+            if ($int == $this->args['length']) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Renders a Twitter post item
+     * @return void
+     */
     protected function renderTwitter()
     {
         foreach ($this->feedData as $item) {
@@ -309,10 +347,8 @@ class Feed
      * @param array     $user        User name and picture
      * @param string    $text        The text
      */
-    protected function addStory($createdTime, $user, $text)
+    protected function addStory($createdTime, $user, $text, $attachment = false)
     {
-
-
         $item = '
             <li>
                 <div class="mod-social-user">
@@ -321,12 +357,39 @@ class Feed
                     <time>' . human_time_diff($createdTime, current_time('timestamp')) . '</time>
                 </div>
                 <div class="mod-social-story">
-                    ' . $text . '
+                    ' . wpautop($text) . '
                 </div>
-            </li>
         ';
 
+        if (is_array($attachment)) {
+            $item .= $this->addAttachment($attachment);
+        }
+
+        $item .= '</li>';
+
         $this->markup .= apply_filters('Modularity/mod_social/story', $item, $createdTime, $user, $text);
+    }
+
+    protected function addAttachment($attachment)
+    {
+        $description = null;
+
+        if ($attachment['description'] !== null) {
+            $description = '<p>' . $attachment['description'] . '</p>';
+        }
+
+        $att = '
+            <a href="' . $attachment['link'] . '" target="_blank" class="mod-social-attachment mod-social-attachment-' . $attachment['type'] . '">
+                <img src="' . $attachment['full_picture'] . '" class="mod-social-attachment-image" alt="' . $attachment['name'] . '">
+                <div class="mod-social-attachment-content">
+                    <h4>' . $attachment['name'] . '</h4>
+                    ' . $description . '
+                    <span class="caption">' . $attachment['caption'] . '</span>
+                </div>
+            </a>
+        ';
+
+        return $att;
     }
 
     /**
