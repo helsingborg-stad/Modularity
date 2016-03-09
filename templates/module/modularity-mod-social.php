@@ -15,6 +15,6 @@ $feed = new \Modularity\Module\Social\Feed($feedArgs);
 ?>
 
 <div class="box box-panel">
-    <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <h4 class="box-title"><i class="fa fa-<?php echo $feedArgs['network']; ?>-square"></i> <?php echo $module->post_title; ?></h4>
     <?php $feed->render(); ?>
 </div>
