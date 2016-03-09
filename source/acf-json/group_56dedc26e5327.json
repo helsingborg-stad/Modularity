@@ -338,7 +338,7 @@
         },
         {
             "key": "field_56dfe51e498cb",
-            "label": "Item count",
+            "label": "Max items",
             "name": "mod_social_length",
             "type": "number",
             "instructions": "",
@@ -377,5 +377,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457514227
+    "modified": 1457516571
 }
