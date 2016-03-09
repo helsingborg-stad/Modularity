@@ -55,16 +55,28 @@ class Module
         }
     }
 
+    /**
+     * Enqueue styles
+     * @return void
+     */
     public function style()
     {
 
     }
 
+    /**
+     * Enqueue scripts
+     * @return void
+     */
     public function script()
     {
 
     }
 
+    /**
+     * Checks if a page has a modules
+     * @return boolean
+     */
     public function hasModule()
     {
         global $post;
@@ -91,6 +103,10 @@ class Module
         return strpos($modules, '"post_type":"' . $this->moduleSlug . '"') == true;
     }
 
+    /**
+     * Check if current page is add new/edit post
+     * @return boolean
+     */
     public function isAddOrEditOfPostType()
     {
         global $current_screen;
