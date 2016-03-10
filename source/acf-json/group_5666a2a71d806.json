@@ -7,7 +7,7 @@
             "label": "Table",
             "name": "mod_table",
             "type": "dynamic_table",
-            "instructions": "Enter your table contents, and select appearance and functionality options below. ",
+            "instructions": "Enter your table contents, and select appearance and functionality options below.",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -27,7 +27,7 @@
         },
         {
             "key": "field_56d97e463bf53",
-            "label": "Display settings",
+            "label": "Display options",
             "name": "mod_table_classes",
             "type": "checkbox",
             "instructions": "",
@@ -58,7 +58,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": 55,
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -82,7 +82,7 @@
                 ]
             ],
             "wrapper": {
-                "width": 45,
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -105,7 +105,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": 55,
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -129,7 +129,7 @@
                 ]
             ],
             "wrapper": {
-                "width": 45,
+                "width": 50,
                 "class": "",
                 "id": ""
             },
@@ -140,6 +140,22 @@
             "maxlength": "",
             "readonly": 0,
             "disabled": 0
+        },
+        {
+            "key": "field_56e181adef7ac",
+            "label": "Enable column soring",
+            "name": "mod_table_ordering",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes, enable column sorting",
+            "default_value": 1
         }
     ],
     "location": [
@@ -159,5 +175,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457094349
+    "modified": 1457619699
 }
