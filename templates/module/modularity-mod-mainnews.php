@@ -13,13 +13,20 @@
 ?>
 <div class="grid">
     <?php foreach ($news as $item) : $item = $item['news_item']; ?>
-        <?php $thumbnail_image = get_thumbnail_source($item->ID); ?>
+        <?php
+            $thumbnail_image = wp_get_attachment_image_src(
+                get_post_thumbnail_id($item->ID),
+                apply_filters('modularity/image/mainnews',
+                    array(500, 250)
+                )
+            );
+        ?>
         <div class="grid-lg-12">
             <a href="<?php echo get_permalink($item->ID); ?>" class="box box-news box-news-horizontal">
                 <?php if ($hasImages) : ?>
                     <div class="box-image-container">
-                        <?php if (get_thumbnail_source($item->ID)) : ?>
-                        <img src="<?php echo get_thumbnail_source($item->ID); ?>" alt="<?php echo $item->post_title; ?>">
+                        <?php if ($thumbnail_image) : ?>
+                        <img src="<?php echo $thumbnail_image[0]; ?>" alt="<?php echo $item->post_title; ?>">
                         <?php else : ?>
                         <figure class="image-placeholder"></figure>
                         <?php endif; ?>
