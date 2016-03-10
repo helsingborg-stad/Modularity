@@ -3,12 +3,22 @@
     $items = get_field('index', $module->ID);
 ?>
 <div class="grid" data-equal-container>
-    <?php foreach ($items as $item) : $post = $item['page']; setup_postdata($post); //var_dump($item); ?>
+    <?php
+    foreach ($items as $item) : $post = $item['page']; setup_postdata($post);
+        $thumbnail_image = wp_get_attachment_image_src(
+            get_post_thumbnail_id($item['page']->ID),
+            apply_filters('modularity/image/index',
+                array(400, 300)
+            )
+        );
+    ?>
     <div class="grid-md-6">
         <a href="<?php the_permalink(); ?>" class="box box-index" data-equal-item>
-            <?php if ($item['image_display'] == 'featured' && $thumbnail = get_thumbnail_source()) : ?>
-                <img class="box-image" src="<?php echo $thumbnail; ?>" alt="<?php echo isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title(); ?>">
-            <?php elseif ($item['image_display'] == 'custom' && !empty($item['custom_image'])) : ?>
+            <?php if ($item['image_display'] == 'featured' && $thumbnail_image) : ?>
+                <img class="box-image" src="<?php echo $thumbnail_image[0]; ?>" alt="<?php echo isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title(); ?>">
+            <?php
+            elseif ($item['image_display'] == 'custom' && !empty($item['custom_image'])) :
+            ?>
                 <img class="box-image" src="<?php echo $item['custom_image']['url']; ?>" alt="<?php echo (!empty($item['custom_image']['alt'])) ? $item['custom_image']['alt'] : $item['title']; ?>">
             <?php endif; ?>
 
