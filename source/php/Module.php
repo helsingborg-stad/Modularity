@@ -24,8 +24,6 @@ class Module
     {
         self::$enabled = self::getEnabled();
         $this->initBundledModules();
-
-        add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
     }
 
     /**
@@ -241,6 +239,8 @@ class Module
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
         add_action('wp_enqueue_scripts', array($this, 'style'));
         add_action('wp_enqueue_scripts', array($this, 'script'));
+
+        add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
 
         /**
          * Include plugin
