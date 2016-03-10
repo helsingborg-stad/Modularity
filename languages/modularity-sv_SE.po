@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-03-03 10:11+0100\n"
-"PO-Revision-Date: 2016-03-03 10:12+0100\n"
+"POT-Creation-Date: 2016-03-10 11:28+0100\n"
+"PO-Revision-Date: 2016-03-10 11:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,67 +20,67 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:67 App.php:93
+#: App.php:76 App.php:102
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:67 source/php/Editor.php:70 source/php/Options/General.php:81
+#: App.php:76 source/php/Editor.php:88 source/php/Options/General.php:81
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:94
+#: App.php:103
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:95
+#: App.php:104
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:96
+#: App.php:105
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:97
+#: App.php:106
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:98
+#: App.php:107
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:99
+#: App.php:108
 msgid "Close"
 msgstr "Stäng"
 
-#: source/php/Editor.php:35
+#: source/php/Editor.php:40
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:69
+#: source/php/Editor.php:87
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/Editor.php:81
+#: source/php/Editor.php:99
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:82
+#: source/php/Editor.php:100
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:100
+#: source/php/Editor.php:118
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:111
+#: source/php/Editor.php:129
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:149
+#: source/php/Editor.php:167
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:151
+#: source/php/Editor.php:169
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -88,11 +88,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:255
+#: source/php/Editor.php:273
 msgid "Unspecified"
 msgstr "Ospecificerad"
 
-#: source/php/Editor.php:369
+#: source/php/Editor.php:387
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
@@ -107,42 +107,56 @@ msgstr ""
 "advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields "
 "Pro</a>."
 
-#: source/php/Module.php:115
+#: source/php/Module.php:167
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/Module.php:116
-msgid "Add New "
-msgstr "Lägg till ny"
+#: source/php/Module.php:168
+#, php-format
+msgid "Add new %s"
+msgstr "Lägg till %s"
 
-#: source/php/Module.php:117
-msgid "New "
-msgstr "Ny"
+#: source/php/Module.php:169
+#, php-format
+msgid "New %s"
+msgstr "Ny %s"
 
-#: source/php/Module.php:118
-msgid "Edit "
-msgstr "Redigera"
+#: source/php/Module.php:170 source/php/Module.php:172
+#, php-format
+msgid "Edit %s"
+msgstr "Redigera %s"
 
-#: source/php/Module.php:119
-msgid "View "
-msgstr "Visa"
+#: source/php/Module.php:171
+#, php-format
+msgid "View %s"
+msgstr "Visa %s"
 
-#: source/php/Module.php:120
-msgid "All "
-msgstr "Alla"
+#: source/php/Module.php:173
+#, php-format
+msgid "Search %s"
+msgstr "Sök %s"
 
-#: source/php/Module.php:121
-msgid "Search "
-msgstr "Sök"
+#: source/php/Module.php:174
+#, php-format
+msgid "Parent %s"
+msgstr "Förälder %s"
 
-#: source/php/Module.php:122
-msgid "Parent "
-msgstr "Förälder"
+#: source/php/Module.php:175
+#, php-format
+msgid "No %s"
+msgstr "Inga %s"
 
-#: source/php/Module.php:123 source/php/Module.php:124
-msgid "No "
-msgstr "Nej"
+#: source/php/Module.php:176
+#, php-format
+msgid "No %s in trash"
+msgstr "Inga %s i papperskorgen"
+
+#: source/php/Module.php:268
+msgid "Copy and paste this shortcode to display the module inline."
+msgstr ""
+"Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
+"modulen."
 
 #: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
@@ -190,6 +204,10 @@ msgstr "Visar flera bilder eller filmer i ett bildspel"
 #: source/php/Module/Slider/Slider.php:39
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
+
+#: source/php/Module/Social/Feed.php:420 source/php/Module/Social/Feed.php:453
+msgid "ago"
+msgstr "sedan"
 
 #: source/php/Module/Social/Social.php:11
 msgid "Social Media Feed"
@@ -266,7 +284,7 @@ msgstr "Inställningar"
 
 #: source/php/Options/General.php:22 source/php/Options/General.php:23
 msgid "Search page modules"
-msgstr ""
+msgstr "Moduler på söksida"
 
 #: source/php/Options/General.php:39
 msgid "Save options"
@@ -321,7 +339,7 @@ msgstr "efter"
 msgid "Hide global widgets"
 msgstr "Göm widgets"
 
-#: templates/module/modularity-mod-mainnews.php:31
+#: templates/module/modularity-mod-mainnews.php:38
 msgid "Read more"
 msgstr "Läs mer"
 
@@ -401,3 +419,27 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Add New "
+#~ msgstr "Lägg till ny"
+
+#~ msgid "New "
+#~ msgstr "Ny"
+
+#~ msgid "Edit "
+#~ msgstr "Redigera"
+
+#~ msgid "View "
+#~ msgstr "Visa"
+
+#~ msgid "All "
+#~ msgstr "Alla"
+
+#~ msgid "Search "
+#~ msgstr "Sök"
+
+#~ msgid "Parent "
+#~ msgstr "Förälder"
+
+#~ msgid "No "
+#~ msgstr "Nej"

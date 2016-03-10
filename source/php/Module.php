@@ -165,15 +165,15 @@ class Module
             'menu_name'          => _x($namePlural, 'admin menu', 'modularity'),
             'name_admin_bar'     => _x($nameSingular, 'add new on admin bar', 'modularity'),
             'add_new'            => _x('Add New', 'add new button', 'modularity'),
-            'add_new_item'       => __('Add New ' . $nameSingular, 'modularity'),
-            'new_item'           => __('New ' . $nameSingular, 'modularity'),
-            'edit_item'          => __('Edit ' . $nameSingular, 'modularity'),
-            'view_item'          => __('View ' . $nameSingular, 'modularity'),
-            'all_items'          => __('All ' . $namePlural, 'modularity'),
-            'search_items'       => __('Search ' . $namePlural, 'modularity'),
-            'parent_item_colon'  => __('Parent ' . $namePlural . ':', 'modularity'),
-            'not_found'          => __('No ' . $namePlural . ' found.', 'modularity'),
-            'not_found_in_trash' => __('No ' . $namePlural . ' found in Trash.', 'modularity')
+            'add_new_item'       => sprintf(__('Add new %s', 'modularity'), $nameSingular),
+            'new_item'           => sprintf(__('New %s', 'modularity'), $nameSingular),
+            'edit_item'          => sprintf(__('Edit %s', 'modularity'), $nameSingular),
+            'view_item'          => sprintf(__('View %s', 'modularity'), $nameSingular),
+            'all_items'          => sprintf(__('Edit %s', 'modularity'), $namePlural),
+            'search_items'       => sprintf(__('Search %s', 'modularity'), $namePlural),
+            'parent_item_colon'  => sprintf(__('Parent %s', 'modularity'), $namePlural),
+            'not_found'          => sprintf(__('No %s', 'modularity'), $namePlural),
+            'not_found_in_trash' => sprintf(__('No %s in trash', 'modularity'), $namePlural)
         );
 
         $args = array(
