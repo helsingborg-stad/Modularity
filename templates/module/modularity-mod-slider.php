@@ -16,7 +16,7 @@
                 $image = false;
             }
         ?>
-        <li class="type-<?php echo $slide['acf_fc_layout']; ?>">
+        <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
         <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
             <div class="slider-image" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
