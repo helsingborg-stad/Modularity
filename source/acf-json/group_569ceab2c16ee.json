@@ -23,7 +23,7 @@
             "sub_fields": [
                 {
                     "key": "field_569cf1252cfc9",
-                    "label": "Sida",
+                    "label": "Page",
                     "name": "page",
                     "type": "post_object",
                     "instructions": "",
@@ -43,7 +43,7 @@
                 },
                 {
                     "key": "field_569cf1762cfca",
-                    "label": "Bild",
+                    "label": "Image",
                     "name": "image_display",
                     "type": "radio",
                     "instructions": "",
@@ -55,9 +55,9 @@
                         "id": ""
                     },
                     "choices": {
-                        "featured": "Visa utvald bild",
-                        "custom": "Ladda upp bild",
-                        "false": "D\u00f6lj bild"
+                        "featured": "Use featured image",
+                        "custom": "Upload custom image",
+                        "false": "Hide image"
                     },
                     "other_choice": 0,
                     "save_other_choice": 0,
@@ -66,7 +66,7 @@
                 },
                 {
                     "key": "field_569e08cfb642a",
-                    "label": "Ladda upp bild",
+                    "label": "Upload image",
                     "name": "custom_image",
                     "type": "image",
                     "instructions": "",
@@ -119,7 +119,7 @@
                 },
                 {
                     "key": "field_56c5e12ac81bc",
-                    "label": "Ingress",
+                    "label": "Lead",
                     "name": "lead",
                     "type": "wysiwyg",
                     "instructions": "Om du inte vill anv\u00e4nda den underliggande sidans ingress kan du skriva in en annan ingress h\u00e4r.",
@@ -155,5 +155,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1455811106
+    "modified": 1457687330
 }

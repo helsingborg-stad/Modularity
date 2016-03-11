@@ -1,6 +1,6 @@
 {
     "key": "group_569e054a7f9c2",
-    "title": "Lista",
+    "title": "List",
     "fields": [
         {
             "key": "field_569e0559eb084",
@@ -23,7 +23,7 @@
             "sub_fields": [
                 {
                     "key": "field_569e068b33f31",
-                    "label": "L\u00e4nktyp",
+                    "label": "Link type",
                     "name": "type",
                     "type": "radio",
                     "instructions": "",
@@ -103,7 +103,7 @@
                 },
                 {
                     "key": "field_569e05bceb086",
-                    "label": "L\u00e4nk",
+                    "label": "Link",
                     "name": "link_internal",
                     "type": "post_object",
                     "instructions": "",
@@ -134,7 +134,7 @@
                 },
                 {
                     "key": "field_569e05f8eb087",
-                    "label": "Datum",
+                    "label": "Date",
                     "name": "date",
                     "type": "true_false",
                     "instructions": "If checked, the publish\/last modified date of the linked post will be displayed.",
@@ -158,7 +158,7 @@
                 },
                 {
                     "key": "field_569e06f633f32",
-                    "label": "L\u00e4nk",
+                    "label": "Link",
                     "name": "link_external",
                     "type": "url",
                     "instructions": "",
@@ -200,5 +200,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1456223777
+    "modified": 1457687271
 }
