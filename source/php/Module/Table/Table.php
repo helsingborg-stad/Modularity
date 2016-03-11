@@ -44,7 +44,27 @@ class Table extends \Modularity\Module
                                \"tr\" +
                                \"ip<'clearfix'>\",
                         oLanguage: {
-                            sSearch: ''
+                            \"sEmptyTable\":     \"" . __('No data available in table', 'modularity') . "\",
+                            \"sInfo\":           \"" . __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity') . "\",
+                            \"sInfoEmpty\":      \"" . __('Showing 0 to 0 of 0 entries', 'modularity') . "\",
+                            \"sInfoFiltered\":   \"(" . __('filtered from _MAX_ total entries', 'modularity') . ")\",
+                            \"sInfoPostFix\":    \"\",
+                            \"sInfoThousands\":  \",\",
+                            \"sLengthMenu\":     \"" . __('Show _MENU_ entries', 'modularity') . "\",
+                            \"sLoadingRecords\": \"" . __('Loading...', 'modularity') . "\",
+                            \"sProcessing\":     \"" . __('Processing...', 'modularity') . "\",
+                            \"sSearch\":         \"\",
+                            \"sZeroRecords\":    \"" . __('No matching records found', 'modularity') . "\",
+                            \"oPaginate\": {
+                                \"sFirst\":    \"" . __('First', 'modularity') . "\",
+                                \"sLast\":     \"" . __('Last', 'modularity') . "\",
+                                \"sNext\":     \"" . __('Next', 'modularity') . "\",
+                                \"sPrevious\": \"" . __('Previous', 'modularity') . "\"
+                            },
+                            \"oAria\": {
+                                \"sSortAscending\":  \": " . __('activate to sort column ascending', 'modularity') . "\",
+                                \"sSortDescending\": \": " . __('activate to sort column descending', 'modularity') . "\"
+                            }
                         }
                     });
                 });
