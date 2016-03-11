@@ -67,7 +67,7 @@
                         },
                         {
                             "key": "field_56ab235393f04",
-                            "label": "Content",
+                            "label": "Inneh\u00e5ll",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -106,7 +106,7 @@
                     "sub_fields": [
                         {
                             "key": "field_56a5eada398d7",
-                            "label": "Type",
+                            "label": "Typ",
                             "name": "type",
                             "type": "radio",
                             "instructions": "",
@@ -281,7 +281,7 @@
                         },
                         {
                             "key": "field_56b9f3b8d7720",
-                            "label": "Content",
+                            "label": "Inneh\u00e5ll",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -337,5 +337,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1455185982
+    "modified": 1457687131
 }

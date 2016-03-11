@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_56a0a4dc6a69e",
-            "label": "Hemlig",
+            "label": "Secret",
             "name": "secret",
             "type": "true_false",
             "instructions": "",
@@ -20,7 +20,7 @@
         },
         {
             "key": "field_56a0a5046a6a0",
-            "label": "Bild",
+            "label": "Image",
             "name": "picture",
             "type": "image",
             "instructions": "",
@@ -44,7 +44,7 @@
         },
         {
             "key": "field_56a0a39b6a694",
-            "label": "F\u00f6rnamn",
+            "label": "First name",
             "name": "first_name",
             "type": "text",
             "instructions": "",
@@ -65,7 +65,7 @@
         },
         {
             "key": "field_56a0a4156a695",
-            "label": "Efternamn",
+            "label": "Last name",
             "name": "last_name",
             "type": "text",
             "instructions": "",
@@ -128,7 +128,7 @@
         },
         {
             "key": "field_56a0a46c6a699",
-            "label": "F\u00f6rvaltning",
+            "label": "Administration",
             "name": "organization",
             "type": "text",
             "instructions": "",
@@ -170,7 +170,7 @@
         },
         {
             "key": "field_56a0a45a6a698",
-            "label": "Telefonnummer",
+            "label": "Phone number",
             "name": "phone_number",
             "type": "text",
             "instructions": "",
@@ -191,7 +191,7 @@
         },
         {
             "key": "field_56a0a4eb6a69f",
-            "label": "Webb telefonnummer",
+            "label": "Web phone number",
             "name": "webb_phonenumber",
             "type": "text",
             "instructions": "",
@@ -233,7 +233,7 @@
         },
         {
             "key": "field_56a0a4c26a69d",
-            "label": "Bes\u00f6ksadress",
+            "label": "Visiting address",
             "name": "visit_address",
             "type": "textarea",
             "instructions": "",
@@ -254,7 +254,7 @@
         },
         {
             "key": "field_56a0a4ae6a69c",
-            "label": "\u00d6ppettider",
+            "label": "Opening hours",
             "name": "opening_hours",
             "type": "text",
             "instructions": "",
@@ -291,5 +291,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1453891583
+    "modified": 1457687573
 }
