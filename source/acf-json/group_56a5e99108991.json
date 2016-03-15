@@ -67,7 +67,7 @@
                         },
                         {
                             "key": "field_56ab235393f04",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -93,6 +93,34 @@
                             "new_lines": "br",
                             "readonly": 0,
                             "disabled": 0
+                        },
+                        {
+                            "key": "field_56e7fa230ee09",
+                            "label": "Position",
+                            "name": "textblock_position",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "bottom": "Bottom banner",
+                                "center": "Centered"
+                            },
+                            "default_value": [
+                                "bottom"
+                            ],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
                         }
                     ],
                     "min": "",
@@ -281,7 +309,7 @@
                         },
                         {
                             "key": "field_56b9f3b8d7720",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -312,6 +340,34 @@
                             "new_lines": "br",
                             "readonly": 0,
                             "disabled": 0
+                        },
+                        {
+                            "key": "field_56e7fa620ee0a",
+                            "label": "Position",
+                            "name": "textblock_position",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "bottom": "Bottom banner",
+                                "center": "Centered"
+                            },
+                            "default_value": [
+                                "bottom"
+                            ],
+                            "allow_null": 0,
+                            "multiple": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "disabled": 0,
+                            "readonly": 0
                         }
                     ],
                     "min": "",
@@ -337,5 +393,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457687131
+    "modified": 1458043521
 }

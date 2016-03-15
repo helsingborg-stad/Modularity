@@ -12,7 +12,7 @@ class Post
     {
         if (self::isArchive()) {
             global $archive;
-            return $archive;
+            return 'archive-' . get_post_type();
         }
 
         global $post;
@@ -81,6 +81,6 @@ class Post
             $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
         }
 
-        return $archive != '' || is_search();
+        return $archive != '' || is_archive() || is_search();
     }
 }
