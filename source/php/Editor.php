@@ -205,7 +205,7 @@ class Editor extends \Modularity\Options
         self::$isEditing['template'] = $template;
 
         // Fallback
-        if (count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') == true
+        if (count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') !== false
             && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
             $template = explode('-', $template, 2)[0];
             self::$isEditing['template'] = $template;
@@ -218,6 +218,7 @@ class Editor extends \Modularity\Options
             ));
 
             if ($home) {
+                $active = isset($options['enabled-areas']['home']) ? $options['enabled-areas']['home'] : array();
                 self::$isEditing['template'] = 'home';
             }
         }
