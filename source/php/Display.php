@@ -168,10 +168,19 @@ class Display
 
     public function isModularitySidebarActive($sidebar)
     {
-        $template =  \Modularity\Helper\Post::getPostTemplate();
+        $template = \Modularity\Helper\Post::getPostTemplate();
+        $template = \Modularity\Helper\Wp::findCoreTemplates([$template, 'archive']);
         $options = get_option('modularity-options');
 
-        return isset($options['enabled-areas'][$template]) && in_array($sidebar, $options['enabled-areas'][$template]);
+        if (is_home()) {
+            $template = 'home';
+        }
+
+        if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, $options['enabled-areas'][$template])) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
