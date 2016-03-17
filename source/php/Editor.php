@@ -446,13 +446,13 @@ class Editor extends \Modularity\Options
     public function getWidthOptions()
     {
         $markup = '';
-        $options = apply_filters('Modularity\width_options', array(
-            'col-md-12' => '100%',
-            'col-md-9'  => '75%',
-            'col-md-8'   => '66%',
-            'col-md-6'  => '50%',
-            'col-md-4'  => '33%',
-            'col-md-3'  => '25%'
+        $options = apply_filters('Modularity/Editor/WidthOptions', array(
+            'grid-md-12' => '100%',
+            'grid-md-9'  => '75%',
+            'grid-md-8'   => '66%',
+            'grid-md-6'  => '50%',
+            'grid-md-4'  => '33%',
+            'grid-md-3'  => '25%'
         ));
 
         foreach ($options as $key => $value) {
