@@ -338,7 +338,8 @@ class Editor extends \Modularity\Options
                     // Get the post type name and append it to the module post data
                     $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
                     $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
-                    $retModules[$key]['modules'][$moduleId]->hidden = $module['hidden'];
+                    $retModules[$key]['modules'][$moduleId]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
+                    $retModules[$key]['modules'][$moduleId]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
                 }
             }
         }
