@@ -100,6 +100,10 @@ class Feed
         $response = \Modularity\Helper\Curl::request('POST', $endpoint, $data, null, $headers);
         $response = json_decode($response);
 
+        if (isset($response->errors)) {
+            return $response;
+        }
+
         return $response->access_token;
     }
 
@@ -110,6 +114,10 @@ class Feed
     public function getTwitterHashtag()
     {
         $access_token = $this->getTwitterAccessToken();
+
+        if (isset($access_token->errors[0])) {
+            return $access_token->errors[0];
+        }
 
         $endpoint = 'https://api.twitter.com/1.1/search/tweets.json';
         $data = array(
@@ -143,6 +151,10 @@ class Feed
     public function getTwitterUser()
     {
         $access_token = $this->getTwitterAccessToken();
+
+        if (isset($access_token->errors[0])) {
+            return $access_token->errors[0];
+        }
 
         // Request statuses
         $endpoint = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
@@ -184,6 +196,12 @@ class Feed
             'client_secret' => $this->args['api_secret']
         );
         $token = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+
+        if (strpos($token, 'error') !== false) {
+            $error = json_decode($token);
+            return $error;
+        }
+
         $token = explode('=', $token);
         $token = $token[1];
 
@@ -325,6 +343,11 @@ class Feed
     {
         $int = 0;
 
+        if (isset($this->feedData->meta->error_message)) {
+            $this->addError($this->feedData->meta->error_message);
+            return;
+        }
+
         foreach ($this->feedData->data as $item) {
             $int++;
 
@@ -352,6 +375,11 @@ class Feed
     protected function renderFacebook()
     {
         $int = 0;
+
+        if (isset($this->feedData->error->message)) {
+            $this->addError($this->feedData->error->message);
+            return;
+        }
 
         foreach ($this->feedData as $item) {
             $int++;
@@ -389,6 +417,11 @@ class Feed
      */
     protected function renderTwitter()
     {
+        if (isset($this->feedData->message)) {
+            $this->addError($this->feedData->message);
+            return;
+        }
+
         foreach ($this->feedData as $item) {
             $date = new \DateTime($item->created_at);
             $timeZone = new \DateTimeZone(get_option('timezone_string'));
@@ -435,6 +468,11 @@ class Feed
         </li>';
 
         $this->markup .= apply_filters('Modularity/mod_social/image', $item, $createdTime, $user, $image, $caption);
+    }
+
+    protected function addError($text)
+    {
+        $this->markup .= '<li class="error"><strong>Error:</strong> ' . $text . '</li>';
     }
 
     /**
