@@ -269,18 +269,6 @@ class Editor extends \Modularity\Options
             $options = null;
         }
 
-        $optionsBeforeModule = array(
-            // classes => title
-            '' => __('Unspecified', 'modularity'),
-            'grid-lg-12' => 1,
-            'grid-lg-6 grid-md-6 grid-sm-12' => 2,
-            'grid-lg-4 grid-md-12' => 3,
-            'grid-lg-3 grid-md-12' => 4,
-            'grid-lg-2 grid-md-12' => 6,
-            'grid-lg-1 grid-md-12' => 12
-        );
-        $optionsBeforeModule = apply_filters('Modularity/before_module_options', $optionsBeforeModule);
-
         include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 
@@ -448,5 +436,28 @@ class Editor extends \Modularity\Options
         }
 
         return true;
+    }
+
+    /**
+     * Get column width options
+     * @return string Options markup
+     */
+    public function getWidthOptions()
+    {
+        $markup = '';
+        $options = apply_filters('Modularity\width_options', array(
+            'col-md-12' => '100%',
+            'col-md-9'  => '75%',
+            'col-md-8'   => '66%',
+            'col-md-6'  => '50%',
+            'col-md-4'  => '33%',
+            'col-md-3'  => '25%'
+        ));
+
+        foreach ($options as $key => $value) {
+            $markup .= '<option value="' . $key . '">' . $value . '</option>' . "\n";
+        }
+
+        return $markup;
     }
 }
