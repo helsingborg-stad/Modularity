@@ -43,7 +43,7 @@ Modularity.Editor.Module = (function ($) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
                 $.each(modules.modules, function (key, data) {
-                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden);
+                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth);
                 }.bind(this));
 
             }.bind(this));
@@ -109,9 +109,10 @@ Modularity.Editor.Module = (function ($) {
      * @param {string} moduleId   The module id slug
      * @param {string} moduleName The module name
      */
-    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden) {
+    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
+        columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -144,7 +145,7 @@ Modularity.Editor.Module = (function ($) {
         var itemRowId = Modularity.Helpers.uuid();
 
         $(target).append('\
-            <li data-module-id="' + moduleId + '">\
+            <li id="post-' + postId + '" data-module-id="' + moduleId + '">\
             	<span class="modularity-line-wrapper">\
                 	<span class="modularity-sortable-handle"></span>\
 	                <span class="modularity-module-name">\
@@ -157,10 +158,9 @@ Modularity.Editor.Module = (function ($) {
                         </label>\
 	                </span>\
                     <span class="modularity-module-columns">\
-                        <label>Width:</label>\
-                        <select name="modularity_modules[' + sidebarId + '][' + itemRowId + '][columns]">\
-                            <option value="12">100%</option>\
-                            <option value="6">50%</option>\
+                        <label>' + modularityAdminLanguage.width + ':</label>\
+                        <select name="modularity_modules[' + sidebarId + '][' + itemRowId + '][columnWidth]">\
+                            ' + modularityAdminLanguage.widthOptions + '\
                         </select>\
                     </span>\
 	                <span class="modularity-module-actions">\
@@ -172,6 +172,8 @@ Modularity.Editor.Module = (function ($) {
                 </span>\
             </li>\
         ');
+
+        $(target).find('#post-' + postId + ' .modularity-module-columns option[value="' + columnWidth + '"]').prop('selected', true);
 
         $('.modularity-js-sortable').sortable('refresh');
     };
