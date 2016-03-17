@@ -11,6 +11,8 @@ class App
      */
     public static $assetSuffix = 'dev';
 
+    protected $editor = null;
+
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
@@ -29,7 +31,7 @@ class App
         new Options\General();
         new Options\Archives();
         new Module();
-        new Editor();
+        $this->editor = new Editor();
         new Display();
 
         new Helper\Acf();
@@ -105,7 +107,9 @@ class App
             'langhide' => __('Hide', 'modularity'),
             'actionRemove' => __('Are you sure you want to remove this module?', 'modularity'),
             'isSaving' => __('Saving…', 'modularity'),
-            'close' => __('Close', 'modularity')
+            'close' => __('Close', 'modularity'),
+            'width' => __('Width', 'modularity'),
+            'widthOptions' => $this->editor->getWidthOptions()
         ));
         wp_enqueue_script('modularity');
 

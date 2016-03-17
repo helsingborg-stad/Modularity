@@ -6,6 +6,7 @@
 
     .container {
         display: table;
+        table-layout: fixed;
         width: 100%;
 
         & + .container {
@@ -116,6 +117,10 @@
         .modularity-module-hide {
             position: absolute;
             right: 20px;
+        }
+
+        .modularity-module-columns {
+            width: 130px;
         }
 
         span.modularity-module-actions {
@@ -254,7 +259,6 @@
             @media (min-width: 1451px) {
           		margin-left: 42px;
           	}
-
         }
 
         &.validation-error {

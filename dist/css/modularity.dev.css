@@ -151,6 +151,7 @@ li.modularity-module {
   border-top: 1px solid #E5E5E5; }
   .modularity-sidebar-options .container {
     display: table;
+    table-layout: fixed;
     width: 100%; }
     .modularity-sidebar-options .container + .container {
       border-top: 1px solid #E5E5E5; }
@@ -228,6 +229,8 @@ li.modularity-module {
     .modularity-sidebar-area li .modularity-module-hide {
       position: absolute;
       right: 20px; }
+    .modularity-sidebar-area li .modularity-module-columns {
+      width: 130px; }
     .modularity-sidebar-area li span.modularity-module-actions {
       position: relative;
       font-size: 0;

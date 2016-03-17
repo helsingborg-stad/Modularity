@@ -92,6 +92,26 @@ add_action('Modularity/Module/mod-article/enqueue', function () {
 Filter reference
 ----------------
 
+#### Modularity/Editor/WidthOptions
+
+> Filter module width options
+
+*Params:*
+```
+$options      The default width options array ('value' => 'label')
+```
+
+*Example:*
+
+```php
+add_filter('Modularity/Editor/WidthOptions', function ($options) {
+    // Do your thing
+    return $filteredValue;
+});
+```
+
+---
+
 #### Modularity/Display/BeforeModule
 
 > Filter module sidebar wrapper (before)

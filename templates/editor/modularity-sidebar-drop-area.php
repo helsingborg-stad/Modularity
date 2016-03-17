@@ -7,14 +7,6 @@
 <div class="modularity-sidebar-options">
     <div class="container">
         <div class="col">
-            <?php _e('Columns', 'modularity'); ?>:
-            <select name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][before_module]">
-                <?php foreach ($optionsBeforeModule as $classes => $title) : ?>
-                    <option value="<?php echo $classes; ?>" <?php selected(isset($options['before_module']) ? $options['before_module'] : '', $classes, true); ?>><?php echo $title; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
-        <div class="col">
             <?php _e('Show modules', 'modularity'); ?>
             <select name="modularity_sidebar_options[<?php echo $args['args']['sidebar']['id']; ?>][hook]">
                 <option value="before" <?php selected('before', isset($options['hook']) ? $options['hook'] : '', true); ?>><?php _e('before', 'modularity'); ?></option>

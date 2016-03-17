@@ -269,18 +269,6 @@ class Editor extends \Modularity\Options
             $options = null;
         }
 
-        $optionsBeforeModule = array(
-            // classes => title
-            '' => __('Unspecified', 'modularity'),
-            'grid-lg-12' => 1,
-            'grid-lg-6 grid-md-6 grid-sm-12' => 2,
-            'grid-lg-4 grid-md-12' => 3,
-            'grid-lg-3 grid-md-12' => 4,
-            'grid-lg-2 grid-md-12' => 6,
-            'grid-lg-1 grid-md-12' => 12
-        );
-        $optionsBeforeModule = apply_filters('Modularity/before_module_options', $optionsBeforeModule);
-
         include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 
@@ -350,7 +338,8 @@ class Editor extends \Modularity\Options
                     // Get the post type name and append it to the module post data
                     $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
                     $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
-                    $retModules[$key]['modules'][$moduleId]->hidden = $module['hidden'];
+                    $retModules[$key]['modules'][$moduleId]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
+                    $retModules[$key]['modules'][$moduleId]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
                 }
             }
         }
@@ -448,5 +437,28 @@ class Editor extends \Modularity\Options
         }
 
         return true;
+    }
+
+    /**
+     * Get column width options
+     * @return string Options markup
+     */
+    public function getWidthOptions()
+    {
+        $markup = '<option value="">Inherit</option>' . "\n";
+        $options = apply_filters('Modularity/Editor/WidthOptions', array(
+            'grid-md-12' => '100%',
+            'grid-md-9'  => '75%',
+            'grid-md-8'   => '66%',
+            'grid-md-6'  => '50%',
+            'grid-md-4'  => '33%',
+            'grid-md-3'  => '25%'
+        ));
+
+        foreach ($options as $key => $value) {
+            $markup .= '<option value="' . $key . '">' . $value . '</option>' . "\n";
+        }
+
+        return $markup;
     }
 }

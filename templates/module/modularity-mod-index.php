@@ -1,6 +1,8 @@
 <?php
     global $post;
     $items = get_field('index', $module->ID);
+
+    $columnClass = !empty(get_field('index_columns', $module->ID)) ? get_field('index_columns', $module->ID) : 'grid-md-6';
 ?>
 <div class="grid" data-equal-container>
     <?php
@@ -12,7 +14,7 @@
             )
         );
     ?>
-    <div class="grid-md-6">
+    <div class="<?php echo $columnClass; ?>">
         <a href="<?php the_permalink(); ?>" class="box box-index" data-equal-item>
             <?php if ($item['image_display'] == 'featured' && $thumbnail_image) : ?>
                 <img class="box-image" src="<?php echo $thumbnail_image[0]; ?>" alt="<?php echo isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title(); ?>">
