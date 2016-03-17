@@ -118,6 +118,10 @@
             right: 20px;
         }
 
+        .modularity-module-columns {
+            width: 130px;
+        }
+
         span.modularity-module-actions {
             position: relative;
             font-size: 0;
@@ -254,7 +258,6 @@
             @media (min-width: 1451px) {
           		margin-left: 42px;
           	}
-
         }
 
         &.validation-error {

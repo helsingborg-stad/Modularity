@@ -228,6 +228,8 @@ li.modularity-module {
     .modularity-sidebar-area li .modularity-module-hide {
       position: absolute;
       right: 20px; }
+    .modularity-sidebar-area li .modularity-module-columns {
+      width: 130px; }
     .modularity-sidebar-area li span.modularity-module-actions {
       position: relative;
       font-size: 0;

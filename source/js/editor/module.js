@@ -156,6 +156,13 @@ Modularity.Editor.Module = (function ($) {
                             ' + modularityAdminLanguage.langhide + '\
                         </label>\
 	                </span>\
+                    <span class="modularity-module-columns">\
+                        <label>Width:</label>\
+                        <select name="modularity_modules[' + sidebarId + '][' + itemRowId + '][columns]">\
+                            <option value="12">100%</option>\
+                            <option value="6">50%</option>\
+                        </select>\
+                    </span>\
 	                <span class="modularity-module-actions">\
 	                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
 	                    <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
