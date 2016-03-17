@@ -98,7 +98,7 @@
                 },
                 {
                     "key": "field_56c5e0edc81bb",
-                    "label": "Titel",
+                    "label": "Title",
                     "name": "title",
                     "type": "text",
                     "instructions": "Om du inte vill anv\u00e4nda den underliggande sidans titel kan du skriva in en annan titel h\u00e4r.",
@@ -136,6 +136,36 @@
                     "media_upload": 0
                 }
             ]
+        },
+        {
+            "key": "field_56eab26cd3a86",
+            "label": "Columns",
+            "name": "index_columns",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid-md-12": 1,
+                "grid-md-6": 2,
+                "grid-md-4": 3,
+                "grid-md-3": 4
+            },
+            "default_value": [
+                "grid-md-12"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
         }
     ],
     "location": [
@@ -155,5 +185,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457687330
+    "modified": 1458221806
 }

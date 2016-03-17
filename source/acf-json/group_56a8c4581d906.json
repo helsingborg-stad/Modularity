@@ -283,6 +283,44 @@
             "placeholder": "",
             "disabled": 0,
             "readonly": 0
+        },
+        {
+            "key": "field_56eac0e900dab",
+            "label": "Item columns",
+            "name": "item_column_size",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56d01a16eb9f3",
+                        "operator": "==",
+                        "value": "items"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid-md-12": 1,
+                "grid-md-6": 2,
+                "grid-md-4": 3,
+                "grid-md-3": 4
+            },
+            "default_value": [
+                "grid-md-12"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
         }
     ],
     "location": [
@@ -302,5 +340,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1456907766
+    "modified": 1458225592
 }
