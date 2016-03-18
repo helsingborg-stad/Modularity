@@ -59,8 +59,14 @@
     <?php
     if (count($posts) > 0) :
     foreach ($posts as $post) :
-        $image = get_post_thumbnail_id($post->ID);
-        $image = wp_get_attachment_url($image);
+
+        $image = wp_get_attachment_image_src(
+            get_post_thumbnail_id($post->ID),
+            apply_filters('modularity/image/latest/box',
+                array(400, 300)
+            )
+        );
+
     ?>
     <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3' ?>">
         <a href="<?php echo get_permalink($post->ID); ?>" class="box box-news">
