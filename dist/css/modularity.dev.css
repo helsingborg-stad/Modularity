@@ -228,9 +228,20 @@ li.modularity-module {
       position: relative; }
     .modularity-sidebar-area li .modularity-module-hide {
       position: absolute;
-      right: 20px; }
+      right: 0; }
+      @media (max-width: 1451px) {
+        .modularity-sidebar-area li .modularity-module-hide {
+          right: 160px;
+          padding-top: 2px; } }
     .modularity-sidebar-area li .modularity-module-columns {
       width: 130px; }
+      @media (max-width: 1451px) {
+        .modularity-sidebar-area li .modularity-module-columns {
+          padding: 0 0 0 15px !important;
+          position: absolute;
+          right: 0;
+          top: 0;
+          border-left: 1px solid #E5E5E5; } }
     .modularity-sidebar-area li span.modularity-module-actions {
       position: relative;
       font-size: 0;
@@ -399,13 +410,14 @@ li.modularity-module {
   overflow: auto;
   max-height: 50vh; }
 
-#modularity-mb-modules.is-fixed {
-  position: fixed;
-  top: 40px; }
-  #modularity-mb-modules.is-fixed .modularity-modules {
-    height: 100%;
-    min-height: none;
-    max-height: auto; }
+@media screen and (min-width: 851px) {
+  #modularity-mb-modules.is-fixed {
+    position: fixed;
+    top: 40px; }
+    #modularity-mb-modules.is-fixed .modularity-modules {
+      height: 100%;
+      min-height: none;
+      max-height: auto; } }
 
 .modularity-modal-open {
   overflow: hidden; }

@@ -116,11 +116,24 @@
 
         .modularity-module-hide {
             position: absolute;
-            right: 20px;
+            right: 0;
+
+            @media (max-width: 1451px) {
+                right: 160px;
+                padding-top: 2px;
+            }
         }
 
         .modularity-module-columns {
             width: 130px;
+
+            @media (max-width: 1451px) {
+                padding: 0 0 0 15px !important;
+                position: absolute;
+                right: 0;
+                top: 0;
+                border-left: 1px solid #E5E5E5;
+            }
         }
 
         span.modularity-module-actions {
@@ -354,13 +367,15 @@
     }
 
     &.is-fixed {
-        position: fixed;
-        top: 40px;
+        @media screen and (min-width: 851px) {
+            position: fixed;
+            top: 40px;
 
-        .modularity-modules {
-            height: 100%;
-            min-height: none;
-            max-height: auto;
+            .modularity-modules {
+                height: 100%;
+                min-height: none;
+                max-height: auto;
+            }
         }
     }
 }
