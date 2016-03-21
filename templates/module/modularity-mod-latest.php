@@ -28,6 +28,9 @@
 
     if (isset($fields->view_as) && $fields->view_as == 'list') {
         include 'modularity-mod-latest-list.php';
+    }
+    elseif (isset($fields->view_as) && $fields->view_as == 'news') {
+        include 'modularity-mod-latest-news.php';
     } else {
         include 'modularity-mod-latest-item.php';
     }
