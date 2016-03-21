@@ -1,6 +1,6 @@
 {
     "key": "group_569e401dd4422",
-    "title": "Huvudnyheter",
+    "title": "Main news",
     "fields": [
         {
             "key": "field_569e4038cadff",
@@ -34,9 +34,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "post_type": [
-                        "page"
-                    ],
+                    "post_type": [],
                     "taxonomy": [],
                     "allow_null": 0,
                     "multiple": 0,
@@ -63,5 +61,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457687375
+    "modified": 1458547031
 }

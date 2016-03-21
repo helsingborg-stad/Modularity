@@ -37,7 +37,9 @@
 </div>
 
 <script>
-    if (typeof postboxes !== 'undefined') {
+    jQuery(document).ready(function () {
+        if (typeof postboxes !== 'undefined') {
             postboxes.add_postbox_toggles(pagenow);
         }
+    });
 </script>

@@ -26,73 +26,12 @@
 
     $posts = get_posts($getPostsArgs);
 
-    if (isset($fields->view_as) && $fields->view_as == 'list') :
+    if (isset($fields->view_as) && $fields->view_as == 'list') {
+        include 'modularity-mod-latest-list.php';
+    }
+    elseif (isset($fields->view_as) && $fields->view_as == 'news') {
+        include 'modularity-mod-latest-news.php';
+    } else {
+        include 'modularity-mod-latest-item.php';
+    }
 ?>
-
-    <div class="box box-panel">
-        <h4 class="box-title"><?php echo $module->post_title; ?></h4>
-        <ul>
-            <?php
-            if (count($posts) > 0) :
-            foreach ($posts as $post) :
-            ?>
-                <li>
-                    <a href="<?php echo get_permalink($post->ID); ?>">
-                        <?php if ($fields->show_title) : ?>
-                            <span class="link-item title"><?php echo apply_filters('the_title', $post->post_title); ?></span>
-                        <?php endif; ?>
-
-                        <?php if ($fields->show_date) : ?>
-                        <time class="date text-sm text-dark-gray"><?php echo get_the_time('Y-m-d', $post->ID); ?></time>
-                        <?php endif; ?>
-                    </a>
-                </li>
-            <?php endforeach; else : ?>
-            <li>Inga inlägg att visa…</li>
-            <?php endif; ?>
-        </ul>
-    </div>
-
-<?php else : ?>
-
-    <div class="grid">
-    <?php
-    if (count($posts) > 0) :
-    foreach ($posts as $post) :
-
-        $image = wp_get_attachment_image_src(
-            get_post_thumbnail_id($post->ID),
-            apply_filters('modularity/image/latest/box',
-                array(400, 300)
-            )
-        );
-
-    ?>
-    <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3' ?>">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="box box-news">
-            <?php if ($image && $fields->show_picture) : ?>
-            <img src="<?php echo $image; ?>" alt="<?php echo $post->post_title; ?>">
-            <?php endif; ?>
-            <div class="box-content">
-                <?php if ($fields->show_title) : ?>
-                <h5 class="link-item link-item-light"><?php echo apply_filters('the_title', $post->post_title); ?></h5>
-                <?php endif; ?>
-
-                <?php if ($fields->show_date) : ?>
-                <p><time><?php echo get_the_time('Y-m-d H:i', $post->ID); ?></time></p>
-                <?php endif; ?>
-
-                <?php if ($fields->show_excerpt) : ?>
-                <p><?php echo isset(get_extended($post->post_content)['main']) ? get_extended($post->post_content)['main'] : ''; ?></p>
-                <?php endif; ?>
-            </div>
-        </a>
-    </div>
-    <?php endforeach; else : ?>
-    <div class="grid-md-12">
-        Inga inlägg att visa…
-    </div>
-    <?php endif; ?>
-    </div>
-
-<?php endif; ?>
