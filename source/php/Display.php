@@ -29,9 +29,20 @@ class Display
     {
         $widgets = wp_get_sidebars_widgets();
         $widgets = array_map('array_filter', $widgets);
+        $visibleModules = false;
+
+        if (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0) {
+            foreach ($this->modules[$sidebar]['modules'] as $module) {
+                if ($module->hidden == 'true') {
+                    continue;
+                }
+
+                $visibleModules = true;
+            }
+        }
 
         $hasWidgets = !empty($widgets[$sidebar]);
-        $hasModules = (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
+        $hasModules = ($visibleModules && isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
 
         if ($hasWidgets || $hasModules) {
             return true;
