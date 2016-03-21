@@ -13,7 +13,7 @@ $fields = get_fields($module->ID);
         );
     ?>
     <li class="grid-md-3">
-        <a class="box box-index lightbox-trigger" href="<?php echo $image['sizes']['large']; ?>" <?php if (isset($image['caption']) && !empty($image['caption'])) : ?>data-caption="<?php echo $image['caption']; ?>"<?php endif; ?>>
+        <a class="box box-index lightbox-trigger" href="<?php echo $image['sizes']['large']; ?>" <?php if (isset($image['caption']) && !empty($image['caption']) && !in_array(strtolower($image['caption']), array('caption text'))) : ?>data-caption="<?php echo $image['caption']; ?>"<?php endif; ?>>
             <?php if ($thumbnail_image) : ?>
             <img src="<?php echo $thumbnail_image[0]; ?>" alt="<?php echo $image['alt']; ?>">
             <?php else : ?>
