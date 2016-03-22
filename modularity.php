@@ -8,7 +8,7 @@
  * Author URI: -
  * Text domain: modularity
  *
- * Copyright (C) 2015
+ * Copyright (C) 2016
  */
 
 define('MODULARITY_PATH', plugin_dir_path(__FILE__));
