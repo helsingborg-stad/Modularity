@@ -8,7 +8,8 @@ $fields = get_fields($module->ID);
         $thumbnail_image = wp_get_attachment_image_src(
             $image['id'],
             apply_filters('modularity/image/gallery/thumbnail',
-                array(200, 150)
+                array(200, 150),
+                $args
             )
         );
     ?>

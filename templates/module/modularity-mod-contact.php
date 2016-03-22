@@ -3,8 +3,23 @@
 ?>
 
 <div class="box box-card" itemscope="person" itemtype="http://schema.org/Organization">
-    <?php if (isset($fields->picture->sizes->large)) : ?>
-    <img class="box-image" src="<?php echo $fields->picture->sizes->large; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
+
+    <?php
+    if (isset($fields->picture) && !empty($fields->picture)) {
+        $image = wp_get_attachment_image_src(
+            $fields->picture->id,
+            apply_filters('modularity/image/contact',
+                array(400, 400),
+                $args
+            )
+        );
+    } else {
+        $image = false;
+    }
+    ?>
+
+    <?php if ($image !== false) : ?>
+    <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
     <?php endif; ?>
 
     <div class="box-content">

@@ -10,7 +10,8 @@
         $thumbnail_image = wp_get_attachment_image_src(
             get_post_thumbnail_id($item['page']->ID),
             apply_filters('modularity/image/index',
-                array(400, 300)
+                array(400, 300),
+                $args
             )
         );
     ?>

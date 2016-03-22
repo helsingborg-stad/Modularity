@@ -8,7 +8,10 @@
         if (isset($slide['image']) && !empty($slide['image'])) {
             $image = wp_get_attachment_image_src(
                 $slide['image']['id'],
-                apply_filters('modularity/image/slider', array(1140, 641))
+                apply_filters('modularity/image/slider',
+                    array(1140, 641),
+                    $args
+                )
             );
         } else {
             $image = false;
