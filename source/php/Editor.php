@@ -445,7 +445,7 @@ class Editor extends \Modularity\Options
      */
     public function getWidthOptions()
     {
-        $markup = '<option value="">Inherit</option>' . "\n";
+        $markup = '<option value="">' . __('Inherit', 'modularity') . '</option>' . "\n";
         $options = apply_filters('Modularity/Editor/WidthOptions', array(
             'grid-md-12' => '100%',
             'grid-md-9'  => '75%',

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-03-11 09:17+0100\n"
-"PO-Revision-Date: 2016-03-11 09:19+0100\n"
+"POT-Creation-Date: 2016-03-23 12:25+0100\n"
+"PO-Revision-Date: 2016-03-23 12:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,37 +20,41 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:76 App.php:102
+#: App.php:78 App.php:104
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:76 source/php/Editor.php:88 source/php/Options/General.php:81
+#: App.php:78 source/php/Editor.php:88 source/php/Options/General.php:81
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:103
+#: App.php:105
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:104
+#: App.php:106
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:105
+#: App.php:107
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:106
+#: App.php:108
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:107
+#: App.php:109
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:108
+#: App.php:110
 msgid "Close"
 msgstr "Stäng"
+
+#: App.php:111
+msgid "Width"
+msgstr "Bredd"
 
 #: source/php/Editor.php:40
 msgid "View Page"
@@ -88,13 +92,13 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:273
-msgid "Unspecified"
-msgstr "Ospecificerad"
-
-#: source/php/Editor.php:387
+#: source/php/Editor.php:377
 msgid "Modules saved"
 msgstr "Moduler sparades"
+
+#: source/php/Editor.php:448
+msgid "Inherit"
+msgstr "Ärv"
 
 #: source/php/Helper/Acf.php:39
 msgid ""
@@ -205,7 +209,7 @@ msgstr "Visar flera bilder eller filmer i ett bildspel"
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
-#: source/php/Module/Social/Feed.php:420 source/php/Module/Social/Feed.php:453
+#: source/php/Module/Social/Feed.php:453 source/php/Module/Social/Feed.php:491
 msgid "ago"
 msgstr "sedan"
 
@@ -376,26 +380,23 @@ msgid "Drag your modules here…"
 msgstr "Dra moduler hit…"
 
 #: templates/editor/modularity-sidebar-drop-area.php:10
-msgid "Columns"
-msgstr "Kolumner"
-
-#: templates/editor/modularity-sidebar-drop-area.php:18
 msgid "Show modules"
 msgstr "Visa moduler"
 
-#: templates/editor/modularity-sidebar-drop-area.php:20
+#: templates/editor/modularity-sidebar-drop-area.php:12
 msgid "before"
 msgstr "före"
 
-#: templates/editor/modularity-sidebar-drop-area.php:21
+#: templates/editor/modularity-sidebar-drop-area.php:13
 msgid "after"
 msgstr "efter"
 
-#: templates/editor/modularity-sidebar-drop-area.php:28
+#: templates/editor/modularity-sidebar-drop-area.php:20
 msgid "Hide global widgets"
 msgstr "Göm widgets"
 
-#: templates/module/modularity-mod-mainnews.php:38
+#: templates/module/modularity-mod-latest-news.php:41
+#: templates/module/modularity-mod-mainnews.php:39
 msgid "Read more"
 msgstr "Läs mer"
 
@@ -475,6 +476,12 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Unspecified"
+#~ msgstr "Ospecificerad"
+
+#~ msgid "Columns"
+#~ msgstr "Kolumner"
 
 #~ msgid "Add New "
 #~ msgstr "Lägg till ny"
