@@ -448,7 +448,7 @@
                         },
                         {
                             "key": "field_56e7fa620ee0a",
-                            "label": "Position",
+                            "label": "Text position",
                             "name": "textblock_position",
                             "type": "select",
                             "instructions": "",
@@ -473,6 +473,118 @@
                             "placeholder": "",
                             "disabled": 0,
                             "readonly": 0
+                        },
+                        {
+                            "key": "field_56fa87ec3ace2",
+                            "label": "Link",
+                            "name": "link_type",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "false": "No link",
+                                "internal": "Internal",
+                                "external": "External"
+                            },
+                            "other_choice": 0,
+                            "save_other_choice": 0,
+                            "default_value": "false",
+                            "layout": "horizontal"
+                        },
+                        {
+                            "key": "field_56fa87fa3ace4",
+                            "label": "Url",
+                            "name": "link_url",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    },
+                                    {
+                                        "field": "field_56fa87ec3ace2",
+                                        "operator": "==",
+                                        "value": "external"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": ""
+                        },
+                        {
+                            "key": "field_56fa88043ace5",
+                            "label": "Page",
+                            "name": "link_url",
+                            "type": "page_link",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    },
+                                    {
+                                        "field": "field_56fa87ec3ace2",
+                                        "operator": "==",
+                                        "value": "internal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "post_type": [],
+                            "taxonomy": [],
+                            "allow_null": 0,
+                            "multiple": 0
+                        },
+                        {
+                            "key": "field_56fa880c3ace6",
+                            "label": "New window",
+                            "name": "link_target",
+                            "type": "true_false",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    },
+                                    {
+                                        "field": "field_56fa87ec3ace2",
+                                        "operator": "!=",
+                                        "value": "false"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "message": "Yes, open link in new window",
+                            "default_value": 0
                         }
                     ],
                     "min": "",
@@ -498,5 +610,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1459258231
+    "modified": 1459259610
 }
