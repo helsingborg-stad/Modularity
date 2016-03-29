@@ -65,6 +65,10 @@ class App
                 $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType->rewrite['slug']);
             }
 
+            if (is_home()) {
+                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-post');
+            }
+
             if (is_search()) {
                 $editorLink = admin_url('options.php?page=modularity-editor&id=search');
             }
