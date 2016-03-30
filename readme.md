@@ -175,3 +175,22 @@ add_filter('Modularity/Module/TemplatePath', function ($paths) {
     return $paths;
 });
 ```
+
+#### Modularity/Module/Classes
+
+> Modify the list of classes added to a module's main element
+
+*Params:*
+```
+$classes      The classes (array)
+$postType     The module post type
+$sidebarArgs  The sidebar's args
+```
+
+*Example:*
+```php
+add_filter('Modularity/Module/Classes', function ($classes, $postType, $sidebarArgs) {
+    $classes[] = 'example-class';
+    return $classes;
+});
+```

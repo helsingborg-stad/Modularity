@@ -3,7 +3,7 @@
     $items = get_field('items', $module->ID);
 ?>
 
-<div class="box box-panel">
+<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
     <h4 class="box-title"><?php echo $module->post_title; ?></h4>
     <ul>
         <?php foreach ($items as $item) : ?>

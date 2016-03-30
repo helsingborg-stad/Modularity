@@ -16,7 +16,7 @@ $feedArgs = array(
 $feed = new \Modularity\Module\Social\Feed($feedArgs);
 ?>
 
-<div class="box box-panel">
+<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
     <h4 class="box-title"><i class="fa fa-<?php echo $feedArgs['network']; ?>"></i> <?php echo $module->post_title; ?></h4>
     <?php $feed->render(); ?>
 </div>

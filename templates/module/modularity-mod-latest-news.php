@@ -18,7 +18,7 @@ foreach ($posts as $post) {
         );
     ?>
     <div class="grid-lg-12">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="box box-news box-news-horizontal">
+        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>">
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">
                     <?php if ($image && $fields->show_picture) : ?>

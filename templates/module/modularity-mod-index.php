@@ -16,7 +16,7 @@
         );
     ?>
     <div class="<?php echo $columnClass; ?>">
-        <a href="<?php the_permalink(); ?>" class="box box-index" data-equal-item>
+        <a href="<?php the_permalink(); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $module->post_type, $args)); ?>" data-equal-item>
             <?php if ($item['image_display'] == 'featured' && $thumbnail_image) : ?>
                 <img class="box-image" src="<?php echo $thumbnail_image[0]; ?>" alt="<?php echo isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title(); ?>">
             <?php

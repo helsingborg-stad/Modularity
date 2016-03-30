@@ -13,7 +13,7 @@
 
     ?>
     <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3' ?>">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="box box-news">
+        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>">
             <?php if ($image && $fields->show_picture) : ?>
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
             <?php endif; ?>

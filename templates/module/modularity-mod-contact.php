@@ -2,7 +2,7 @@
     $fields = json_decode(json_encode(get_fields($module->ID)));
 ?>
 
-<div class="box box-card" itemscope="person" itemtype="http://schema.org/Organization">
+<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $module->post_type, $args)); ?>" itemscope="person" itemtype="http://schema.org/Organization">
 
     <?php
     if (isset($fields->picture) && !empty($fields->picture)) {
