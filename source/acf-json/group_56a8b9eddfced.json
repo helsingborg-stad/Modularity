@@ -7,7 +7,7 @@
             "label": "Embed code",
             "name": "embed_code",
             "type": "textarea",
-            "instructions": "Paste your script code here (with <style> <script> tags if needed). ",
+            "instructions": "Paste your script code here (with &lt;style&gt; &lt;script&gt; tags if needed). ",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -41,5 +41,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1455714319
+    "modified": 1459423764
 }
