@@ -212,7 +212,7 @@ class Editor extends \Modularity\Options
             $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
         }
 
-        if ($originalTemplate == 'archive-post') {
+        if (self::$isEditing['title'] == 'archive-post') {
             $home = \Modularity\Helper\Wp::findCoreTemplates(array(
                 'home'
             ));
