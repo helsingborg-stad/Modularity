@@ -180,6 +180,35 @@
             "disabled": 0
         },
         {
+            "key": "field_56fe7e3f9218d",
+            "label": "Instagram Access Token",
+            "name": "mod_social_api_secret",
+            "type": "text",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_56dedc3548ed9",
+                        "operator": "==",
+                        "value": "instagram"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "<a target=\"_blank\" href=\"http:\/\/pinceladasdaweb.com.br\/instagram\/access-token\/\">Generate me one<\/a>",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
             "key": "field_56dee0e1ed7ab",
             "label": "Twitter Consumer Key",
             "name": "mod_social_api_user",
@@ -438,5 +467,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457535264
+    "modified": 1459519190
 }

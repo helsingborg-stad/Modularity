@@ -225,9 +225,10 @@ class Feed
      */
     protected function getInstagramHashtag()
     {
-        $endpoint = 'https://api.instagram.com/v1/tags/' . $this->args['query'] . '/media/recent';
+        echo $endpoint = 'https://api.instagram.com/v1/tags/' . $this->args['query'] . '/media/recent';
         $data = array(
-            'client_id' => $this->args['api_user']
+            'client_id' => $this->args['api_user'],
+            'access_token' => $this->args['api_secret']
         );
 
         $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
@@ -244,7 +245,8 @@ class Feed
 
         $endpoint = 'https://api.instagram.com/v1/users/' . $userId . '/media/recent/';
         $data = array(
-            'client_id' => $this->args['api_user']
+            'client_id' => $this->args['api_user'],
+            'access_token' => $this->args['api_secret']
         );
 
         $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
@@ -261,7 +263,8 @@ class Feed
         $endpoint = 'https://api.instagram.com/v1/users/search';
         $data = array(
             'q' => $username,
-            'client_id' => $this->args['api_user']
+            'client_id' => $this->args['api_user'],
+            'access_token' => $this->args['api_secret']
         );
 
         $users = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
