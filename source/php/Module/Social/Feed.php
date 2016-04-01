@@ -225,7 +225,7 @@ class Feed
      */
     protected function getInstagramHashtag()
     {
-        echo $endpoint = 'https://api.instagram.com/v1/tags/' . $this->args['query'] . '/media/recent';
+        $endpoint = 'https://api.instagram.com/v1/tags/' . $this->args['query'] . '/media/recent';
         $data = array(
             'client_id' => $this->args['api_user'],
             'access_token' => $this->args['api_secret']
