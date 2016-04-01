@@ -299,6 +299,10 @@ class Editor extends \Modularity\Options
         if (!empty($moduleSidebars)) {
             foreach ($moduleSidebars as $sidebar) {
                 foreach ($sidebar as $module) {
+                    if (!isset($module['postid'])) {
+                        continue;
+                    }
+
                     $moduleIds[] = $module['postid'];
                 }
             }
@@ -327,6 +331,10 @@ class Editor extends \Modularity\Options
                 );
 
                 foreach ($sidebar as $moduleUid => $module) {
+                    if (!isset($module['postid'])) {
+                        continue;
+                    }
+
                     $moduleId = $module['postid'];
 
                     if (!isset($modules[$moduleId])) {
