@@ -1,7 +1,7 @@
 <?php
 
 $fields = json_decode(json_encode(get_fields($module->ID)));
-var_dump($fields );
+
 $feedArgs = array(
     'network'    => isset($fields->mod_social_type) ? $fields->mod_social_type : '',
     'type'       => isset($fields->mod_social_data_type) ? $fields->mod_social_data_type : '',
