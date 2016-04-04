@@ -62,7 +62,10 @@ class App
 
             if (is_post_type_archive() || is_archive()) {
                 $postType = get_post_type_object(get_post_type());
-                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType->rewrite['slug']);
+                if (is_object($postType)) {
+                    $postType = $postType->rewrite['slug'];
+                }
+                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType);
             }
 
             if (is_home()) {
