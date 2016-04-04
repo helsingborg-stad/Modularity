@@ -220,7 +220,9 @@ class Display
 
         include $templatePath;
 
-        if (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
+        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
+            echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
+        } elseif (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
             echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
         } elseif (isset($args['after_widget'])) {
             echo apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
