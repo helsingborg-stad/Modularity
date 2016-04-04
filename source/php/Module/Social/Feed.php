@@ -453,7 +453,7 @@ class Feed
 
         $time = '';
         if (isset($createdTime) && !empty($createdTime)) {
-            $time = '<time>' . human_time_diff($createdTime, current_time('timestamp')) . ' '  . __('ago', 'modularity') . '</time>';
+            $time = '<time datetime="' . date('Y-m-d H:i', $createdTime) . '">' . human_time_diff($createdTime, current_time('timestamp')) . ' '  . __('ago', 'modularity') . '</time>';
         }
 
         $item .= '
