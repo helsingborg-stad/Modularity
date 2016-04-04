@@ -56,7 +56,7 @@
 
             <!-- Text -->
             <?php
-            if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) {
+            if (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) :
                 $classes = '';
 
                 switch ($slide['textblock_position']) {
@@ -65,9 +65,18 @@
                         break;
                 }
 
-                echo '<span class="text-block' . $classes . '"><span>' . do_shortcode($slide['textblock_content']) . '</span></span>';
-            }
             ?>
+                <span class="text-block <?php echo $classes; ?>">
+                    <span>
+                        <?php if (isset($slide['textblock_title']) && strlen($slide['textblock_title']) > 0) : ?>
+                            <em class="title text-xl block-level"><?php echo do_shortcode($slide['textblock_title']); ?></em>
+                        <?php endif; ?>
+                        <?php if (isset($slide['textblock_content']) && strlen($slide['textblock_content']) > 0) : ?>
+                            <?php echo do_shortcode($slide['textblock_content']); ?>
+                        <?php endif; ?>
+                    </span>
+                </span>
+            <?php endif; ?>
 
             <?php if ($slide['link_type'] != 'false') : ?>
             </a>
