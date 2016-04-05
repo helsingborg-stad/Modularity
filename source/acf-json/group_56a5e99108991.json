@@ -66,35 +66,6 @@
                             "default_value": 0
                         },
                         {
-                            "key": "field_56ab235393f04",
-                            "label": "Inneh\u00e5ll",
-                            "name": "textblock_content",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_56ab224ac2c28",
-                                        "operator": "==",
-                                        "value": "1"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": "",
-                            "rows": "",
-                            "new_lines": "br",
-                            "readonly": 0,
-                            "disabled": 0
-                        },
-                        {
                             "key": "field_56e7fa230ee09",
                             "label": "Text position",
                             "name": "textblock_position",
@@ -129,6 +100,64 @@
                             "placeholder": "",
                             "disabled": 0,
                             "readonly": 0
+                        },
+                        {
+                            "key": "field_5702597b7d869",
+                            "label": "Titel",
+                            "name": "textblock_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56e7fa230ee09",
+                                        "operator": "==",
+                                        "value": "center"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
+                            "key": "field_56ab235393f04",
+                            "label": "Inneh\u00e5ll",
+                            "name": "textblock_content",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56ab224ac2c28",
+                                        "operator": "==",
+                                        "value": "1"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": "",
+                            "rows": "",
+                            "new_lines": "br",
+                            "readonly": 0,
+                            "disabled": 0
                         },
                         {
                             "key": "field_56fa82a2d464d",
@@ -610,5 +639,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1459259610
+    "modified": 1459771816
 }
