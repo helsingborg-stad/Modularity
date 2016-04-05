@@ -183,13 +183,13 @@ add_filter('Modularity/Module/TemplatePath', function ($paths) {
 *Params:*
 ```
 $classes      The classes (array)
-$postType     The module post type
+$moduleType   The module type
 $sidebarArgs  The sidebar's args
 ```
 
 *Example:*
 ```php
-add_filter('Modularity/Module/Classes', function ($classes, $postType, $sidebarArgs) {
+add_filter('Modularity/Module/Classes', function ($classes, $moduleType, $sidebarArgs) {
     $classes[] = 'example-class';
     return $classes;
 });
