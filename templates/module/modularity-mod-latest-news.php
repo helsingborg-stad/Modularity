@@ -1,3 +1,4 @@
+<div class="grid">
 <?php
 $hasImages = false;
 foreach ($posts as $post) {
@@ -43,3 +44,4 @@ foreach ($posts as $post) {
         </a>
     </div>
 <?php endforeach; ?>
+</div>
