@@ -1,0 +1,178 @@
+{
+    "key": "group_570770ab8f064",
+    "title": "Image",
+    "fields": [
+        {
+            "key": "field_570770b8e2e61",
+            "label": "Image",
+            "name": "mod_image_image",
+            "type": "image",
+            "instructions": "Allowed file types: jpg, png, gif",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg, png, gif"
+        },
+        {
+            "key": "field_570770f5e2e62",
+            "label": "Cropping",
+            "name": "mod_image_crop",
+            "type": "true_false",
+            "instructions": "Check if you wold like to crop your image to a specific size",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "message": "Crop image",
+            "default_value": 1
+        },
+        {
+            "key": "field_570775955b8de",
+            "label": "Responsive",
+            "name": "mod_image_responsive",
+            "type": "true_false",
+            "instructions": "Make the image responsive if you would like it to automatically resize to fit inside its container.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes, make this image responsive",
+            "default_value": 1
+        },
+        {
+            "key": "field_57077112e2e63",
+            "label": "Crop width",
+            "name": "mod_image_crop_width",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_570770f5e2e62",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "pixels",
+            "min": 1,
+            "max": "",
+            "step": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5707712be2e64",
+            "label": "Crop height",
+            "name": "mod_image_crop_height",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_570770f5e2e62",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "pixels",
+            "min": 1,
+            "max": "",
+            "step": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5707716fabf17",
+            "label": "Image size",
+            "name": "mod_image_size",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_570770f5e2e62",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "thumbnail": "thumbnail",
+                "medium": "medium",
+                "medium_large": "medium_large",
+                "large": "large"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mod-image"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1460108207
+}
