@@ -22,5 +22,3 @@ if ($fields['mod_image_responsive'] === true) {
 }
 
 echo '<img src="' . $imageSrc . '" alt="' . $fields['mod_image_image']['alt'] . '" class="' . implode(' ', apply_filters('', $classes)) . '">';
-
-?>
