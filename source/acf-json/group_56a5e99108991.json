@@ -510,7 +510,15 @@
                             "type": "radio",
                             "instructions": "",
                             "required": 1,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56a5eada398d7",
+                                        "operator": "==",
+                                        "value": "upload"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -639,5 +647,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1459771816
+    "modified": 1460097918
 }
