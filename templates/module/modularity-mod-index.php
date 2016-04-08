@@ -9,7 +9,7 @@
     foreach ($items as $item) : $post = $item['page']; setup_postdata($post);
         $thumbnail_image = wp_get_attachment_image_src(
             get_post_thumbnail_id($item['page']->ID),
-            apply_filters('modularity/image/index',
+            apply_filters('Modularity/index/image',
                 array(400, 300),
                 $args
             )
