@@ -15,6 +15,10 @@ class Post
             return 'archive-' . get_post_type();
         }
 
+        if (is_home()) {
+            return 'archive-home';
+        }
+
         global $post;
         if (!$post && isset($_GET['id'])) {
             $post = get_post($_GET['id']);
