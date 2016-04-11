@@ -236,11 +236,17 @@ class Module
         self::$available[$postTypeSlug] = $args;
 
         $this->moduleSlug = $postTypeSlug;
+
+        // Enqueue
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
         add_action('wp_enqueue_scripts', array($this, 'style'));
         add_action('wp_enqueue_scripts', array($this, 'script'));
 
+        // Shortcode metabox
         add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
+
+        // Description metabox
+        $this->setupDescriptionField();
 
         /**
          * Include plugin
@@ -250,6 +256,44 @@ class Module
         }
 
         return $postTypeSlug;
+    }
+
+    public function setupDescriptionField()
+    {
+        add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
+        add_action('save_post', array($this, 'descriptionMetaboxSave'));
+
+        add_filter('manage_edit-' . $this->moduleSlug . '_columns', array($this, 'descriptionColumn'));
+        add_action('manage_' . $this->moduleSlug . '_posts_custom_column', array($this, 'descriptionColumnContent'), 10, 2);
+        add_filter('manage_edit-' . $this->moduleSlug . '_sortable_columns', array($this, 'descriptionColumnSorting'));
+    }
+
+    public function descriptionColumn($columns)
+    {
+        $columns = array(
+            'cb'               => '<input type="checkbox">',
+            'title'            => __('Title'),
+            'description'      => __('Description'),
+            'date'             => __('Date')
+        );
+
+        return $columns;
+    }
+
+    public function descriptionColumnContent($column, $postId)
+    {
+        switch ($column) {
+            case 'description':
+                $description = get_post_meta($postId, 'module-description', true);
+                echo !empty($description) ? $description : '';
+                break;
+        }
+    }
+
+    public function descriptionColumnSorting($columns)
+    {
+        $columns['description'] = 'description';
+        return $columns;
     }
 
     /**
@@ -285,5 +329,33 @@ class Module
                 });
             </script>";
         }, $this->moduleSlug, 'side', 'default');
+    }
+
+    public function descriptionMetabox()
+    {
+        if (!$this->moduleSlug) {
+            return;
+        }
+
+        add_meta_box(
+            'modularity-description',
+            'Module description',
+            function () {
+                $description = get_post_meta(get_the_id(), 'module-description', true);
+                include MODULARITY_TEMPLATE_PATH . 'editor/modularity-module-description.php';
+            },
+            $this->moduleSlug,
+            'normal',
+            'high'
+        );
+    }
+
+    public function descriptionMetaboxSave()
+    {
+        if (!isset($_POST['modularity-module-description'])) {
+            return;
+        }
+
+        update_post_meta(intval($_POST['post_ID']), 'module-description', trim($_POST['modularity-module-description']));
     }
 }
