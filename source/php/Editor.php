@@ -330,6 +330,8 @@ class Editor extends \Modularity\Options
                     'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
                 );
 
+                $arrayIndex = 0;
+
                 foreach ($sidebar as $moduleUid => $module) {
                     if (!isset($module['postid'])) {
                         continue;
@@ -341,13 +343,15 @@ class Editor extends \Modularity\Options
                         continue;
                     }
 
-                    $retModules[$key]['modules'][$moduleId] = $modules[$moduleId];
+                    $retModules[$key]['modules'][$arrayIndex] = $modules[$moduleId];
 
                     // Get the post type name and append it to the module post data
-                    $retModules[$key]['modules'][$moduleId]->post_type_name = $available[$retModules[$key]['modules'][$moduleId]->post_type]['labels']['name'];
-                    $retModules[$key]['modules'][$moduleId]->meta = get_post_custom($moduleId);
-                    $retModules[$key]['modules'][$moduleId]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
-                    $retModules[$key]['modules'][$moduleId]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
+                    $retModules[$key]['modules'][$arrayIndex]->post_type_name = $available[$retModules[$key]['modules'][$arrayIndex]->post_type]['labels']['name'];
+                    $retModules[$key]['modules'][$arrayIndex]->meta = get_post_custom($moduleId);
+                    $retModules[$key]['modules'][$arrayIndex]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
+                    $retModules[$key]['modules'][$arrayIndex]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
+
+                    $arrayIndex++;
                 }
             }
         }
