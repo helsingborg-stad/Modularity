@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-03-23 12:25+0100\n"
-"PO-Revision-Date: 2016-03-23 12:25+0100\n"
+"POT-Creation-Date: 2016-04-12 16:13+0200\n"
+"PO-Revision-Date: 2016-04-12 16:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,39 +20,39 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:78 App.php:104
+#: App.php:91 App.php:117
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:78 source/php/Editor.php:88 source/php/Options/General.php:81
+#: App.php:91 source/php/Editor.php:88 source/php/Options/General.php:81
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:105
+#: App.php:118
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:106
+#: App.php:119
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:107
+#: App.php:120
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:108
+#: App.php:121
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:109
+#: App.php:122
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:110
+#: App.php:123
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:111
+#: App.php:124
 msgid "Width"
 msgstr "Bredd"
 
@@ -92,11 +92,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:377
+#: source/php/Editor.php:389
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:448
+#: source/php/Editor.php:460
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -156,7 +156,20 @@ msgstr "Inga %s"
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/Module.php:268
+#: source/php/Module.php:275
+msgid "Title"
+msgstr "Titel"
+
+#: source/php/Module.php:276
+#: templates/options/partials/modularity-modules.php:12
+msgid "Description"
+msgstr "Beskrivning"
+
+#: source/php/Module.php:277
+msgid "Date"
+msgstr "Datum"
+
+#: source/php/Module.php:312
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
@@ -209,7 +222,7 @@ msgstr "Visar flera bilder eller filmer i ett bildspel"
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
-#: source/php/Module/Social/Feed.php:453 source/php/Module/Social/Feed.php:491
+#: source/php/Module/Social/Feed.php:456 source/php/Module/Social/Feed.php:494
 msgid "ago"
 msgstr "sedan"
 
@@ -362,6 +375,14 @@ msgstr "Posttyper"
 msgid "Template areas"
 msgstr "Mallområden"
 
+#: templates/editor/modularity-module-description.php:2
+msgid ""
+"Only visible for administrators/editors. Please keep the description short "
+"and concisely."
+msgstr ""
+"Visas bara för administratörer/redaktörer. Håll beskrivningen kort och "
+"lättläst."
+
 #: templates/editor/modularity-publish.php:5
 msgid "Page:"
 msgstr "Sida:"
@@ -395,7 +416,7 @@ msgstr "efter"
 msgid "Hide global widgets"
 msgstr "Göm widgets"
 
-#: templates/module/modularity-mod-latest-news.php:41
+#: templates/module/modularity-mod-latest-news.php:42
 #: templates/module/modularity-mod-mainnews.php:39
 msgid "Read more"
 msgstr "Läs mer"
@@ -426,10 +447,6 @@ msgstr "Aktiverad"
 #: templates/options/partials/modularity-modules.php:11
 msgid "Module"
 msgstr "Modul"
-
-#: templates/options/partials/modularity-modules.php:12
-msgid "Description"
-msgstr "Beskrivning"
 
 #: templates/options/partials/modularity-post-types.php:2
 msgid "Select which post types you would like to enable Modularity on."

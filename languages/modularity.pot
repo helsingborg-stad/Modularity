@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-03-23 12:25+0100\n"
+"POT-Creation-Date: 2016-04-12 16:13+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,39 +20,39 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:78 App.php:104
+#: App.php:91 App.php:117
 msgid "Edit"
 msgstr ""
 
-#: App.php:78 source/php/Editor.php:88 source/php/Options/General.php:81
+#: App.php:91 source/php/Editor.php:88 source/php/Options/General.php:81
 msgid "Modules"
 msgstr ""
 
-#: App.php:105
+#: App.php:118
 msgid "Import"
 msgstr ""
 
-#: App.php:106
+#: App.php:119
 msgid "Remove"
 msgstr ""
 
-#: App.php:107
+#: App.php:120
 msgid "Hide"
 msgstr ""
 
-#: App.php:108
+#: App.php:121
 msgid "Are you sure you want to remove this module?"
 msgstr ""
 
-#: App.php:109
+#: App.php:122
 msgid "Saving…"
 msgstr ""
 
-#: App.php:110
+#: App.php:123
 msgid "Close"
 msgstr ""
 
-#: App.php:111
+#: App.php:124
 msgid "Width"
 msgstr ""
 
@@ -90,11 +90,11 @@ msgid ""
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:377
+#: source/php/Editor.php:389
 msgid "Modules saved"
 msgstr ""
 
-#: source/php/Editor.php:448
+#: source/php/Editor.php:460
 msgid "Inherit"
 msgstr ""
 
@@ -150,7 +150,20 @@ msgstr ""
 msgid "No %s in trash"
 msgstr ""
 
-#: source/php/Module.php:268
+#: source/php/Module.php:275
+msgid "Title"
+msgstr ""
+
+#: source/php/Module.php:276
+#: templates/options/partials/modularity-modules.php:12
+msgid "Description"
+msgstr ""
+
+#: source/php/Module.php:277
+msgid "Date"
+msgstr ""
+
+#: source/php/Module.php:312
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 
@@ -201,7 +214,7 @@ msgstr ""
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr ""
 
-#: source/php/Module/Social/Feed.php:453 source/php/Module/Social/Feed.php:491
+#: source/php/Module/Social/Feed.php:456 source/php/Module/Social/Feed.php:494
 msgid "ago"
 msgstr ""
 
@@ -352,6 +365,12 @@ msgstr ""
 msgid "Template areas"
 msgstr ""
 
+#: templates/editor/modularity-module-description.php:2
+msgid ""
+"Only visible for administrators/editors. Please keep the description short "
+"and concisely."
+msgstr ""
+
 #: templates/editor/modularity-publish.php:5
 msgid "Page:"
 msgstr ""
@@ -385,7 +404,7 @@ msgstr ""
 msgid "Hide global widgets"
 msgstr ""
 
-#: templates/module/modularity-mod-latest-news.php:41
+#: templates/module/modularity-mod-latest-news.php:42
 #: templates/module/modularity-mod-mainnews.php:39
 msgid "Read more"
 msgstr ""
@@ -412,10 +431,6 @@ msgstr ""
 #: templates/options/partials/modularity-modules.php:10
 #: templates/options/partials/modularity-modules.php:11
 msgid "Module"
-msgstr ""
-
-#: templates/options/partials/modularity-modules.php:12
-msgid "Description"
 msgstr ""
 
 #: templates/options/partials/modularity-post-types.php:2
