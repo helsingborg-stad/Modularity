@@ -60,7 +60,19 @@ class App
 
             $postType = $post->post_type;
 
-            if (is_post_type_archive() || is_archive()) {
+
+
+            if (is_home()) {
+                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-post');
+            } elseif (is_search()) {
+                $editorLink = admin_url('options.php?page=modularity-editor&id=search');
+            } elseif (is_post_type_archive() && is_search()) {
+                $postType = get_post_type_object(get_post_type());
+                if (is_object($postType)) {
+                    $postType = $postType->rewrite['slug'];
+                }
+                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType);
+            } elseif (is_post_type_archive() || is_archive()) {
                 $postType = get_post_type_object(get_post_type());
                 if (is_object($postType)) {
                     $postType = $postType->rewrite['slug'];
@@ -68,17 +80,11 @@ class App
                 $editorLink = admin_url('options.php?page=modularity-editor&id=archive-' . $postType);
             }
 
-            if (is_home()) {
-                $editorLink = admin_url('options.php?page=modularity-editor&id=archive-post');
-            }
-
-            if (is_search()) {
-                $editorLink = admin_url('options.php?page=modularity-editor&id=search');
-            }
-
             if (isset($options['enabled-post-types']) && is_array($options['enabled-post-types']) && !in_array($postType, $options['enabled-post-types'])) {
                 return;
             }
+
+            $editorLink = apply_filters('Modularity/adminbar/editor_link', $editorLink, $post);
 
             $wp_admin_bar->add_node(array(
                 'id' => 'modularity_editor',

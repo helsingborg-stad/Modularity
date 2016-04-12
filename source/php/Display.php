@@ -66,6 +66,8 @@ class Display
         if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
             if (is_home()) {
                 $archiveSlug = 'archive-post';
+            } elseif (is_post_type_archive() && is_search()) {
+                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
             } elseif (is_search()) {
                 $archiveSlug = 'search';
             } elseif (is_404()) {
