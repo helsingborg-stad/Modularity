@@ -24,6 +24,25 @@ class Latest extends \Modularity\Module
         add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
         add_action('wp_ajax_get_taxonomy_types', array($this, 'getTaxonomyTypes'));
         add_action('wp_ajax_get_taxonomy_values', array($this, 'getTaxonomyValues'));
+        add_action('wp_ajax_get_sortable_meta_keys', array($this, 'getSortableMetaKeys'));
+    }
+
+    public function getSortableMetaKeys()
+    {
+        if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
+            echo '0';
+            die();
+        }
+
+        $meta = \Modularity\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
+
+        $response = array(
+            'meta_keys' => $meta,
+            'curr' => get_field('sorted_by', $_POST['post'])
+        );
+
+        echo json_encode($response);
+        die();
     }
 
     public function getTaxonomiesOptions($field)

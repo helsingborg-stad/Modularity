@@ -1,6 +1,44 @@
 jQuery(document).ready(function ($) {
 
     /**
+     * Posttype Meta keys
+     */
+    getPostMeta({
+        'action': 'get_sortable_meta_keys',
+        'posttype': $('#modularity-latest-post-type select').val(),
+        'post': modularity_current_post_id
+    });
+
+    $('#modularity-latest-post-type select').on('change', function () {
+        getPostMeta({
+            'action': 'get_sortable_meta_keys',
+            'posttype': $(this).val(),
+            'post': modularity_current_post_id
+        });
+    });
+
+    function getPostMeta(data) {
+        if ($('#modularity-sorted-by select optgroup[label="Post fields"]').length === 0) {
+            $('#modularity-sorted-by select').prepend('<optgroup label="Post fields">').append('</optgroup>');
+        }
+
+        $.post(ajaxurl, data, function (response) {
+            $('#modularity-sorted-by select option[value^="_metakey_"], #modularity-sorted-by select optgroup[label="Post meta"]').remove();
+
+            if (response.meta_keys.length > 2) {
+                $('#modularity-sorted-by select').append('<optgroup label="Post meta">');
+
+                $.each(response.meta_keys, function (index, item) {
+                    var is_selected = (item.meta_key == response.curr.replace('_metakey_', '')) ? 'selected' : '';
+                    $('#modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + is_selected + '>' + item.meta_key +'</option>');
+                });
+
+                $('#modularity-sorted-by select').append('</optgroup>');
+            }
+        }, 'json');
+    }
+
+    /**
      * Taxonomy type update
      */
     getTaxonomyTypes({

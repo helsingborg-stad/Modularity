@@ -62,7 +62,7 @@
             "wrapper": {
                 "width": "33.333",
                 "class": "",
-                "id": ""
+                "id": "modularity-sorted-by"
             },
             "choices": {
                 "ID": "ID",
@@ -341,5 +341,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1458548752
+    "modified": 1458548753
 }
