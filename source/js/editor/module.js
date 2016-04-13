@@ -46,11 +46,11 @@ Modularity.Editor.Module = (function ($) {
                     this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth);
                 }.bind(this));
 
+                sidebarElement.removeClass('modularity-spinner');
             }.bind(this));
 
             this.initCompleted = true;
-
-
+            $('.modularity-sidebar-area').removeClass('modularity-spinner');
         }.bind(this), 'json');
     };
 

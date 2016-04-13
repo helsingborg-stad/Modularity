@@ -1,5 +1,5 @@
 <ul
-    class="modularity-sidebar-area modularity-js-droppable modularity-js-sortable"
+    class="modularity-sidebar-area modularity-js-droppable modularity-js-sortable modularity-spinner"
     data-empty="<?php _e('Drag your modules here…', 'modularity'); ?>"
     data-area-id="<?php echo $args['args']['sidebar']['id']; ?>"
 ></ul>
