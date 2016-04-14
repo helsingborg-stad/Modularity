@@ -27,14 +27,38 @@
                     "sub_fields": [
                         {
                             "key": "field_56a5ed2f398dc",
-                            "label": "Image",
+                            "label": "Desktop image",
                             "name": "image",
                             "type": "image",
-                            "instructions": "",
+                            "instructions": "This image will be used in larger screens. Preferably a widescreen image.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": "",
+                                "width": 50,
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
+                        },
+                        {
+                            "key": "field_570f4e9b10c26",
+                            "label": "Mobile image",
+                            "name": "mobile_image",
+                            "type": "image",
+                            "instructions": "This image will be used in smaller screens. Preferably a square image.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": 50,
                                 "class": "",
                                 "id": ""
                             },
@@ -647,5 +671,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1460097918
+    "modified": 1460621039
 }

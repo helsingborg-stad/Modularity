@@ -8,13 +8,25 @@
         if (isset($slide['image']) && !empty($slide['image'])) {
             $image = wp_get_attachment_image_src(
                 $slide['image']['id'],
-                apply_filters('modularity/image/slider',
+                apply_filters('Modularity/slider/image',
                     array(1140, 641),
                     $args
                 )
             );
         } else {
             $image = false;
+        }
+
+        if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
+            $mobile_image = wp_get_attachment_image_src(
+                $slide['mobile_image']['id'],
+                apply_filters('Modularity/slider/mobile_image',
+                    array(500, 500),
+                    $args
+                )
+            );
+        } else {
+            $mobile_image = false;
         }
         ?>
         <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
@@ -24,7 +36,12 @@
             <?php // SLIDES ?>
             <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
-                <div class="slider-image" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');"></div>
+                <?php if ($image !== false) : ?>
+                <div class="slider-image slider-image-desktop <?php echo apply_filters('Modularity/slider/desktop_image_hidden', 'hidden-xs hidden-sm'); ?>" style="background-image:url(<?php echo ($image !== false) ? $image[0] : ''; ?>)"></div>
+                <?php endif; ?>
+                <?php if ($mobile_image !== false) : ?>
+                <div class="slider-image slider-image-mobile <?php echo apply_filters('Modularity/slider/mobile_image_hidden', 'hidden-md hidden-lg'); ?>" style="background-image:url(<?php echo ($mobile_image !== false) ? $mobile_image[0] : ''; ?>)"></div>
+                <?php endif; ?>
 
             <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'embed') : ?>
                 <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['player'], $image); ?>
