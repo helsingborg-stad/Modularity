@@ -343,7 +343,7 @@ class Editor extends \Modularity\Options
                         continue;
                     }
 
-                    $retModules[$key]['modules'][$arrayIndex] = $modules[$moduleId];
+                    $retModules[$key]['modules'][$arrayIndex] = clone $modules[$moduleId];
 
                     // Get the post type name and append it to the module post data
                     $retModules[$key]['modules'][$arrayIndex]->post_type_name = $available[$retModules[$key]['modules'][$arrayIndex]->post_type]['labels']['name'];
