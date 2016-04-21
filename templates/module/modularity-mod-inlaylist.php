@@ -9,8 +9,8 @@
         <?php foreach ($items as $item) : ?>
             <?php if ($item['type'] == 'external') : ?>
             <li>
-                <a class="link-item link-item-outbound" href="<?php echo $item['link_external']; ?>" target="_blank">
-                    <span class="link-item title"><?php echo $item['title'] ?></span>
+                <a href="<?php echo $item['link_external']; ?>" target="_blank">
+                    <span class="link-item link-item-outbound title"><?php echo $item['title'] ?></span>
                 </a>
             </li>
             <?php elseif ($item['type'] == 'internal') : ?>
