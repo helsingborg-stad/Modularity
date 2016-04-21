@@ -14,17 +14,17 @@ class Curl
      * @return string              The request response
      */
 
-    private $cacheKey;
+    private static $cacheKey;
 
     public static function request($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
 
         //Create cache key as a reference
-        $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
-
+        self::$cacheKey = self::createCacheKey($type, $url, $data, $contentType, $headers);
+        //delete_transient(self::$cacheKey);
         //Return cached data
-        if($this->getCachedResponse() !== false) {
-            return $this->getCachedResponse();
+        if (self::getCachedResponse() !== false) {
+            return self::getCachedResponse();
         }
 
         //Arguments are stored here
@@ -48,7 +48,7 @@ class Curl
                     CURLOPT_SSL_VERIFYPEER      => false,
                     CURLOPT_SSL_VERIFYHOST      => false,
                     CURLOPT_URL                 => $url,
-                    CURLOPT_CONNECTTIMEOUT_MS]  => 1500
+                    CURLOPT_CONNECTTIMEOUT_MS  => 1500
                 );
 
                 break;
@@ -64,7 +64,7 @@ class Curl
                     CURLOPT_POST                => 1,
                     CURLOPT_HEADER              => false,
                     CURLOPT_POSTFIELDS          => http_build_query($data),
-                    CURLOPT_CONNECTTIMEOUT_MS]  => 3000
+                    CURLOPT_CONNECTTIMEOUT_MS  => 3000
                 );
 
                 break;
@@ -89,7 +89,7 @@ class Curl
         /**
          * Cache response
          */
-        $this->storeResponse($response);
+        self::storeResponse($response);
 
         /**
          * Return the response
@@ -97,16 +97,23 @@ class Curl
         return $response;
     }
 
-    public function createCacheKey($type, $url, $data = null, $contentType = 'json', $headers = null) {
-        $this->cacheKey = "curl_cache".md5($type.$url.$data.$contentType.$headers);
-        return $cacheKey;
+    public static function createCacheKey($type, $url, $data = null, $contentType = 'json', $headers = null)
+    {
+        self::$cacheKey = "curl_cache_".md5($type.$url.(is_array($data) ? implode($data, "") : $data).$contentType.(is_array($headers) ? implode($headers, "") : $headers));
+        return self::$cacheKey;
     }
 
-    public function getCachedResponse () {
-        return get_transient($this->cacheKey);
+    public static function getCachedResponse()
+    {
+        return get_transient(self::$cacheKey);
     }
 
-    public function storeResponse($reponse,$minutes = 15) {
-        return set_transient($this->cacheKey,$response,60*$minutes);
+    public static function storeResponse($response, $minutes = 15)
+    {
+        if (!empty($response) && !is_null($response)) {
+            return set_transient(self::$cacheKey, $response, 60*$minutes);
+        } else {
+            return false;
+        }
     }
 }
