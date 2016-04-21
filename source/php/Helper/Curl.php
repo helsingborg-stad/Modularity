@@ -21,7 +21,7 @@ class Curl
 
         //Create cache key as a reference
         self::$cacheKey = self::createCacheKey($type, $url, $data, $contentType, $headers);
-        //delete_transient(self::$cacheKey);
+
         //Return cached data
         if (self::getCachedResponse() !== false) {
             return self::getCachedResponse();
