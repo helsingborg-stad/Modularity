@@ -13,8 +13,21 @@ class Curl
      * @param  array $headers      Request headers
      * @return string              The request response
      */
+
+    private $cacheKey;
+
     public static function request($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
+
+        //Create cache key as a reference
+        $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
+
+        //Return cached data
+        if($this->getCachedResponse() !== false) {
+            return $this->getCachedResponse();
+        }
+
+        //Arguments are stored here
         $arguments = null;
 
         switch (strtoupper($type)) {
@@ -29,12 +42,13 @@ class Curl
 
                 // Set curl options for GET
                 $arguments = array(
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_HEADER         => false,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_SSL_VERIFYPEER => false,
-                    CURLOPT_SSL_VERIFYHOST => false,
-                    CURLOPT_URL            => $url
+                    CURLOPT_RETURNTRANSFER      => true,
+                    CURLOPT_HEADER              => false,
+                    CURLOPT_FOLLOWLOCATION      => true,
+                    CURLOPT_SSL_VERIFYPEER      => false,
+                    CURLOPT_SSL_VERIFYHOST      => false,
+                    CURLOPT_URL                 => $url,
+                    CURLOPT_CONNECTTIMEOUT_MS]  => 1500
                 );
 
                 break;
@@ -45,11 +59,12 @@ class Curl
             case 'POST':
                 // Set curl options for POST
                 $arguments = array(
-                    CURLOPT_RETURNTRANSFER => 1,
-                    CURLOPT_URL            => $url,
-                    CURLOPT_POST           => 1,
-                    CURLOPT_HEADER         => false,
-                    CURLOPT_POSTFIELDS     => http_build_query($data)
+                    CURLOPT_RETURNTRANSFER      => 1,
+                    CURLOPT_URL                 => $url,
+                    CURLOPT_POST                => 1,
+                    CURLOPT_HEADER              => false,
+                    CURLOPT_POSTFIELDS          => http_build_query($data),
+                    CURLOPT_CONNECTTIMEOUT_MS]  => 3000
                 );
 
                 break;
@@ -63,11 +78,6 @@ class Curl
         }
 
         /**
-         * Set timeout
-         */
-        $arguments[CURLOPT_CONNECTTIMEOUT_MS] = 2000;
-
-        /**
          * Do the actual curl
          */
         $ch = curl_init();
@@ -76,6 +86,27 @@ class Curl
         $response = curl_exec($ch);
         curl_close($ch);
 
+        /**
+         * Cache response
+         */
+        $this->storeResponse($response);
+
+        /**
+         * Return the response
+         */
         return $response;
+    }
+
+    public function createCacheKey($type, $url, $data = null, $contentType = 'json', $headers = null) {
+        $this->cacheKey = "curl_cache".md5($type.$url.$data.$contentType.$headers);
+        return $cacheKey;
+    }
+
+    public function getCachedResponse () {
+        return get_transient($this->cacheKey);
+    }
+
+    public function storeResponse($reponse,$minutes = 15) {
+        return set_transient($this->cacheKey,$response,60*$minutes);
     }
 }
