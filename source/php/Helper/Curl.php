@@ -63,6 +63,11 @@ class Curl
         }
 
         /**
+         * Set timeout
+         */
+        $arguments[CURLOPT_CONNECTTIMEOUT_MS] = 2000;
+
+        /**
          * Do the actual curl
          */
         $ch = curl_init();
