@@ -97,16 +97,38 @@ class Curl
         return $response;
     }
 
+    /**
+     * Create Cache key
+     * @param  string $type        Request type
+     * @param  string $url         Request url
+     * @param  array $data         Request data
+     * @param  string $contentType Content type
+     * @param  array $headers      Request headers
+     * @return string              The cache key
+     */
+
     public static function createCacheKey($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
         self::$cacheKey = "curl_cache_".md5($type.$url.(is_array($data) ? implode($data, "") : $data).$contentType.(is_array($headers) ? implode($headers, "") : $headers));
         return self::$cacheKey;
     }
 
+    /**
+     * Get cached response
+     * @return string       The request response from cache
+     */
+
     public static function getCachedResponse()
     {
         return get_transient(self::$cacheKey);
     }
+
+    /**
+     * Store response in cache
+     * @param $response     Response to save in cache
+     * @param $minutes      Number of minutes to cache response
+     * @return string       The request response from cache
+     */
 
     public static function storeResponse($response, $minutes = 15)
     {
