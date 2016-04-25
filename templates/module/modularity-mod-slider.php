@@ -2,7 +2,6 @@
     $slides = get_field('slides', $module->ID);
 ?>
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider'), $module->post_type, $args)); ?>">
-<?php var_dump($args); ?>
     <ul>
     <?php foreach ($slides as $slide) : ?>
         <?php
