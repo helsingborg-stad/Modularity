@@ -27,7 +27,7 @@ class Widget extends \WP_Widget
     {
         $display = new \Modularity\Display();
         $module = get_post($instance['module_id']);
-        echo $display->outputModule($module, $args);
+        $display->outputModule($module, $args);
     }
 
     /**
