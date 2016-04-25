@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
         $.post(ajaxurl, data, function (response) {
             $('#modularity-sorted-by select option[value^="_metakey_"], #modularity-sorted-by select optgroup[label="Post meta"]').remove();
 
-            if (response.meta_keys.length > 2) {
+            if (response.meta_keys.length > 0) {
                 $('#modularity-sorted-by select').append('<optgroup label="Post meta">');
 
                 $.each(response.meta_keys, function (index, item) {
