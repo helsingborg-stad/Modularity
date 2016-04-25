@@ -16,7 +16,6 @@ class Editor extends \Modularity\Options
         $this->adminBar();
 
         add_action('admin_head', array($this, 'registerTabs'));
-        // add_action('media_buttons', array($this, 'mediaButtons'));
         add_action('wp_ajax_save_modules', array($this, 'save'));
 
         $this->registerEditorPage();
@@ -63,15 +62,6 @@ class Editor extends \Modularity\Options
                 echo ': ' . self::$isEditing['title'];
             });
         }
-    }
-
-    /**
-     * Add insert module button
-     * @return void
-     */
-    public function mediaButtons()
-    {
-         echo '<button id="insert-modularity-shortcode" class="button"><span class="modularity-icon"></span> Insert module</button>';
     }
 
     /**
