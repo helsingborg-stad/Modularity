@@ -1,0 +1,122 @@
+{
+    "key": "group_571dfd3c07a77",
+    "title": "Data display",
+    "fields": [
+        {
+            "key": "field_571dfd4c0d9d9",
+            "label": "Display as",
+            "name": "posts_display_as",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "list": "List",
+                "expandable-list": "Expandable List",
+                "items": "Post items",
+                "news": "News items",
+                "index": "Index"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "list",
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_571dfdf50d9da",
+            "label": "Columns",
+            "name": "posts_columns",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "items"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "index"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid-md-12": 1,
+                "grid-md-6": 2,
+                "grid-md-4": 3,
+                "grid-md-3": 4
+            },
+            "default_value": [
+                "grid-md-12"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
+            "key": "field_571e01e7f246c",
+            "label": "Fields",
+            "name": "posts_fields",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "date": "Show data published",
+                "excerpt": "Show excerpt",
+                "title": "Show title",
+                "image": "Show featured image"
+            },
+            "default_value": [
+                "date",
+                "excerpt",
+                "title",
+                "image"
+            ],
+            "layout": "horizontal",
+            "toggle": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mod-posts"
+            }
+        ]
+    ],
+    "menu_order": -10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1461584439
+}
