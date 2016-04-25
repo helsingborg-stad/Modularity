@@ -252,7 +252,7 @@ class Module
          * Include plugin
          */
         if (!is_null($plugin) && file_exists(__DIR__ . '/../../plugins/'. $plugin)) {
-            require __DIR__.'/../../plugins/' . $plugin;
+            require_once __DIR__.'/../../plugins/' . $plugin;
         }
 
         return $postTypeSlug;
