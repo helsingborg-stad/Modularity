@@ -36,4 +36,74 @@ class Posts extends \Modularity\Module
             echo '<script>var modularity_current_post_id = ' . $post->ID . ';</script>';
         });
     }
+
+    public static function getPosts($module)
+    {
+        $fields = json_decode(json_encode(get_fields($module->ID)));
+
+        $metaQuery = false;
+        $sortBy = $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
+        $order = $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
+
+        // Get post args
+        $getPostsArgs = array(
+            'posts_per_page' => $fields->posts_count,
+            'orderby' => $sortBy,
+            'order' => $order
+        );
+
+        // Sort by meta key
+        if (strpos($sortBy, '_metakey_') > -1) {
+            $orderby = str_replace('_metakey_', '', $sortBy);
+            $metaQuery = array(
+                'relation' => 'OR',
+                array(
+                    'key' => $orderby,
+                    'compare' => 'EXISTS'
+                ),
+                array(
+                    'key' => $orderby,
+                    'compare' => 'NOT EXISTS'
+                )
+            );
+
+            $sortBy = 'meta_key';
+        }
+
+        // Taxonomy filter
+        if ($fields->posts_taxonomy_filter === true) {
+            $taxType = $fields->posts_taxonomy_type;
+            $taxValues = (array) $fields->posts_taxonomy_value;
+
+            foreach ($taxValues as $term) {
+                $getPostsArgs['tax_query'][] = array(
+                    'taxonomy' => $taxType,
+                    'field'    => 'name',
+                    'terms'    => $term
+                );
+            }
+        }
+
+        // Data source
+        switch ($fields->posts_data_source) {
+            case 'posttype':
+                $getPostsArgs['post_type'] = $fields->posts_data_post_type;
+                break;
+
+            case 'children':
+                $getPostsArgs['post_parent'] = $fields->posts_data_child_of;
+                break;
+
+            case 'manual':
+                $getPostsArgs['include'] = $fields->posts_data_posts;
+                break;
+        }
+
+        // Add metaquery to args
+        if ($metaQuery) {
+            $getPostsArgs['meta_query'] = $metaQuery;
+        }
+
+        return get_posts($getPostsArgs);
+    }
 }
