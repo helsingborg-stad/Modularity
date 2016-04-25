@@ -51,4 +51,39 @@
         });
     }
 
+    /**
+     * Import post modifications and callback
+     */
+    if (parent.Modularity.Editor.Thickbox.postAction == 'import-widget') {
+        $('.check-column input[type="checkbox"]').remove();
+        $('.wp-list-table').addClass('modularity-wp-list-table');
+        $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
+
+        $(document).on('click', '[data-modularity-action="import"]', function (e) {
+            e.preventDefault();
+
+            var postId = $(e.target).closest('tr').attr('id');
+            postId = postId.split('-')[1];
+
+            var widget = parent.Modularity.Helpers.Widget.isEditingWidget();
+
+            var request = {
+                action: 'get_post',
+                id: postId
+            };
+
+            $('body').addClass('modularity-loader-takeover');
+
+            $.post(ajaxurl, request, function (response) {
+                var data = {
+                    post_id: response.ID,
+                    title: response.post_title
+                };
+
+                parent.Modularity.Helpers.Widget.updateWidget(widget, data);
+                parent.Modularity.Prompt.Modal.close();
+            }, 'json');
+        });
+    }
+
 })(jQuery)

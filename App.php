@@ -37,6 +37,11 @@ class App
         new Helper\Acf();
         new Helper\Varnish();
 
+        add_action('widgets_init', function () {
+            register_widget('\Modularity\Widget');
+        });
+
+
         do_action('Modularity');
     }
 
@@ -126,6 +131,16 @@ class App
         ));
         wp_enqueue_script('modularity');
 
+        add_thickbox();
+
+        add_action('admin_head', function () {
+            echo "
+                <script>
+                    var admin_url = '" . admin_url() . "';
+                </script>
+            ";
+        });
+
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {
             wp_enqueue_script('jquery-ui-sortable');
@@ -140,13 +155,10 @@ class App
 
                 echo "
                     <script>
-                        var admin_url = '" . admin_url() . "';
                         var modularity_post_id = " . $id . "
                     </script>
                 ";
             });
-
-            add_thickbox();
         }
     }
 
@@ -166,7 +178,8 @@ class App
                     isset($_GET['action'])
                     && $_GET['action'] != 'edit')
                 )
-            && $current_screen->base != 'post') {
+            && $current_screen->base != 'post'
+            && $current_screen->base != 'widgets') {
             $result = false;
         }
 
