@@ -65,6 +65,10 @@ gulp.task('scripts-dist', function() {
         .pipe(uglify())
         .pipe(gulp.dest('dist/js'));
 
+    gulp.src('source/php/Module/*/assets/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
+
     gulp.src('source/js/modularity-editor-modal.js')
         .pipe(concat('modularity-editor-modal.dev.js'))
         .pipe(gulp.dest('dist/js'))
@@ -75,7 +79,7 @@ gulp.task('scripts-dist', function() {
 
 // Watch Files For Changes
 gulp.task('watch', function() {
-    gulp.watch('Source/js/**/*.js', ['scripts-dist']);
+    gulp.watch(['Source/js/**/*.js', 'source/php/Module/*/assets/*.js'], ['scripts-dist']);
     gulp.watch('Source/sass/**/*.scss', ['sass-dist', 'sass-dev']);
     gulp.watch('source/php/Module/*/assets/*.scss', ['sass-dist', 'sass-dev']);
 });

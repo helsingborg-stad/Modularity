@@ -1,0 +1,1 @@
+jQuery(document).ready(function(n){n("#list-columns"),n("#list-rows")});
