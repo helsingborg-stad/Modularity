@@ -16,5 +16,5 @@
     </select>
 </p>
 <p class="modularity-widget-module-import">
-    <a href="#" class="button modularity-js-thickbox-import"><?php _e('Browse modules', 'modularity'); ?></a>
+    <a href="#" class="button modularity-js-thickbox-widget-import"><?php _e('Browse modules', 'modularity'); ?></a>
 </p>

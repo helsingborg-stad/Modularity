@@ -7,7 +7,7 @@ Modularity.Helpers.Widget = (function ($) {
 
     function Widget() {
         $(function(){
-            $(document).on('click', '.modularity-js-thickbox-import', function (e) {
+            $(document).on('click', '.modularity-js-thickbox-widget-import', function (e) {
                 e.preventDefault();
 
                 editingWidget = $(e.target).parents('.widget-inside');
