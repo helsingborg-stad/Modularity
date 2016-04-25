@@ -26,7 +26,17 @@
                 )
             );
         } else {
-            $mobile_image = false;
+            if ($image !== false) {
+                $mobile_image = wp_get_attachment_image_src(
+                    $slide['image']['id'],
+                    apply_filters('Modularity/slider/mobile_image',
+                        array(500, 500),
+                        $args
+                    )
+                );
+            } else {
+                $mobile_image = false;
+            }
         }
         ?>
         <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
@@ -47,9 +57,9 @@
                 <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['player'], $image); ?>
             <?php elseif ($slide['acf_fc_layout'] == 'video' && $slide['type'] == 'upload') : ?>
 
-                <div class="slider-video" style="background-image:url('<?php echo ($image !== false ) ? $image[0] : ''; ?>');">
+                <div class="slider-video" style="background-image:url('<?php echo ($image !== false) ? $image[0] : ''; ?>');">
 
-                    <video poster="<?php echo ($image !== false ) ? $image[0] : ''; ?>" preload="auto" autoplay loop muted>
+                    <video poster="<?php echo ($image !== false) ? $image[0] : ''; ?>" preload="auto" autoplay loop muted>
 
                         <!-- Mp4 -->
                         <?php if (isset($slide['video_mp4']) && !empty($slide['video_mp4'])) : ?>
