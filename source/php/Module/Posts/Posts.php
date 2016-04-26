@@ -42,6 +42,10 @@ class Posts extends \Modularity\Module
         global $post;
         global $current_screen;
 
+        if (empty($post_type)) {
+            return;
+        }
+
         $modules = array();
 
         // If manually picked
