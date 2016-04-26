@@ -1,6 +1,7 @@
 <div class="accordion accordion-icon accordion-list">
     <?php if (isset($fields->posts_list_column_titles) && count($fields->posts_list_column_titles) > 0) : ?>
-    <header>
+    <header class="accordion-table accordion-table-head">
+        <span class="column-header"><?php _e('Title', 'modularity'); ?></span>
         <?php foreach ($fields->posts_list_column_titles as $column) : ?>
             <span class="column-header"><?php echo $column->column_header; ?></span>
         <?php endforeach; ?>
@@ -12,14 +13,17 @@
         <input type="radio" name="active-section" id="<?php echo $post->post_name; ?>">
         <label class="accordion-toggle" for="<?php echo $post->post_name; ?>">
             <?php if (isset($fields->posts_list_column_titles) && count($fields->posts_list_column_titles) > 0) : ?>
+                <span class="accordion-table">
                 <?php $column_values = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true); ?>
                 <?php if (isset($column_values) && !empty($column_values)) : ?>
+                    <span class="column-header"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                     <?php foreach ($fields->posts_list_column_titles as $column) : ?>
-                        <?php echo isset($column_values[sanitize_title($column->column_header)]) ? $column_values[sanitize_title($column->column_header)] : ''; ?>
+                        <span class="column-header"><?php echo isset($column_values[sanitize_title($column->column_header)]) ? $column_values[sanitize_title($column->column_header)] : ''; ?></span>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <h2><?php echo apply_filters('the_title', $post->post_title); ?></h2>
+                    <span class="column-header"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                 <?php endif; ?>
+                </span>
             <?php else : ?>
             <h2><?php echo apply_filters('the_title', $post->post_title); ?></h2>
             <?php endif; ?>
