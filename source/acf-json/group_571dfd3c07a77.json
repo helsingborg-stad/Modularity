@@ -79,7 +79,15 @@
             "type": "checkbox",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "!=",
+                        "value": "expandable-list"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -99,6 +107,56 @@
             ],
             "layout": "horizontal",
             "toggle": 0
+        },
+        {
+            "key": "field_571f5776592e6",
+            "label": "List column titles",
+            "name": "posts_list_column_titles",
+            "type": "repeater",
+            "instructions": "A title field will always be added as the first column. You will need to go to each post in this list to give the values for each column.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "expandable-list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": "",
+            "max": "",
+            "layout": "table",
+            "button_label": "L\u00e4gg till rad",
+            "sub_fields": [
+                {
+                    "key": "field_571f5790592e7",
+                    "label": "Column header",
+                    "name": "column_header",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": "",
+                    "readonly": 0,
+                    "disabled": 0
+                }
+            ]
         }
     ],
     "location": [
@@ -118,5 +176,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1461584439
+    "modified": 1461671993
 }

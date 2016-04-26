@@ -18,4 +18,8 @@ switch ($fields->posts_display_as) {
     case 'index':
         include \Modularity\Helper\Wp::getTemplate($module->post_type . '-index', 'module/modularity-mod-posts', false);
         break;
+
+    case 'expandable-list':
+        include \Modularity\Helper\Wp::getTemplate($module->post_type . '-expandable-list', 'module/modularity-mod-posts', false);
+        break;
 }

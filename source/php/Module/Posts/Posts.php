@@ -20,8 +20,127 @@ class Posts extends \Modularity\Module
         );
 
         add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
+        add_action('add_meta_boxes', array($this, 'addColumnFields'));
+        add_action('save_post', array($this, 'saveColumnFields'));
     }
 
+    public function saveColumnFields($postId)
+    {
+        if (!isset($_POST['modularity-mod-posts-expandable-list'])) {
+            delete_post_meta($postId, 'modularity-mod-posts-expandable-list');
+            return;
+        }
+
+        update_post_meta($postId, 'modularity-mod-posts-expandable-list', $_POST['modularity-mod-posts-expandable-list']);
+    }
+
+    /**
+     * Check wheather to add expandable list column fields to edit post screeen
+     */
+    public function addColumnFields()
+    {
+        global $post;
+        global $current_screen;
+
+        $modules = array();
+
+        // If manually picked
+        if ($newModules = $this->checkIfManuallyPicked($post->ID)) {
+            $modules = array_merge($modules, $newModules);
+        }
+
+        if (empty($modules)) {
+            return false;
+        }
+
+        $fields = $this->getColumns($modules);
+
+        add_meta_box(
+            'modularity-mod-posts-expandable-list',
+            'Modularity expandable list column values',
+            array($this, 'columnFieldsMetaBoxContent'),
+            null,
+            'normal',
+            'default',
+            array($fields)
+        );
+    }
+
+    /**
+     * Expandable list column value fields metabox content
+     * @param  object $post Post object
+     * @param  array  $args Arguments
+     * @return void
+     */
+    public function columnFieldsMetaBoxContent($post, $args)
+    {
+        $fields = $args['args'][0];
+        $fieldValues = get_post_meta( $post->ID, 'modularity-mod-posts-expandable-list', true);
+
+        foreach ($fields as $field) {
+            $fieldSlug = sanitize_title($field);
+            $value = isset($fieldValues[$fieldSlug]) && !empty($fieldValues[$fieldSlug]) ? $fieldValues[$fieldSlug] : '';
+            echo '
+                <p>
+                    <label for="mod-' . $fieldSlug . '">' . $field . ':</label>
+                    <input value="' . $value . '" class="widefat" type="text" name="modularity-mod-posts-expandable-list[' . sanitize_title($field) . ']" id="mod-' . sanitize_title($field) . '">
+                </p>
+            ';
+        }
+    }
+
+    /**
+     * Get field columns
+     * @param  array $posts Post ids
+     * @return array        Column names
+     */
+    public function getColumns($posts)
+    {
+        $columns = array();
+
+        foreach ($posts as $post) {
+            $values = get_field('posts_list_column_titles', $post);
+
+            foreach ($values as $value) {
+                $columns[] = $value['column_header'];
+            }
+        }
+
+        return $columns;
+    }
+
+    /**
+     * Check if current post is included in a manually picked data source in exapndable list
+     * @param  integer $id Post id
+     * @return array       Modules included in
+     */
+    public function checkIfManuallyPicked($id)
+    {
+        global $wpdb;
+
+        $result = $wpdb->get_results("
+            SELECT *
+            FROM $wpdb->postmeta
+            WHERE meta_key = 'posts_data_posts'
+                  AND meta_value LIKE '%\"{$id}\"%'
+        ", OBJECT);
+
+        if (count($result) === 0) {
+            return false;
+        }
+
+        $posts = array();
+        foreach ($result as $item) {
+            $posts[] = $item->post_id;
+        }
+
+        return $posts;
+    }
+
+    /**
+     * Enqueue scripts
+     * @return void
+     */
     public function enqueueScripts()
     {
         wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js', array(), '1.0.0', true);
@@ -37,6 +156,11 @@ class Posts extends \Modularity\Module
         });
     }
 
+    /**
+     * Get included posts
+     * @param  object $module Module object
+     * @return array          Array with post objects
+     */
     public static function getPosts($module)
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
