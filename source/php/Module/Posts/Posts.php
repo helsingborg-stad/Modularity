@@ -49,6 +49,16 @@ class Posts extends \Modularity\Module
             $modules = array_merge($modules, $newModules);
         }
 
+        // If post type
+        if ($newModules = $this->checkIfPostType($post->ID)) {
+            $modules = array_merge($modules, $newModules);
+        }
+
+        // If child
+        if ($newModules = $this->checkIfChild($post->ID)) {
+            $modules = array_merge($modules, $newModules);
+        }
+
         if (empty($modules)) {
             return false;
         }
@@ -107,6 +117,60 @@ class Posts extends \Modularity\Module
         }
 
         return $columns;
+    }
+
+    public function checkIfChild($id)
+    {
+        global $post;
+        global $wpdb;
+
+        $result = $wpdb->get_results("
+            SELECT *
+            FROM $wpdb->postmeta
+            WHERE meta_key = 'posts_data_child_of'
+                  AND meta_value = '{$post->post_parent}'
+        ", OBJECT);
+
+        if (count($result) === 0) {
+            return false;
+        }
+
+        $posts = array();
+        foreach ($result as $item) {
+            $posts[] = $item->post_id;
+        }
+
+        return $posts;
+    }
+
+    /**
+     * Check if current post is included in the data source post type
+     * @param  integer $id Postid
+     * @return array       Modules included in
+     */
+    public function checkIfPostType($id)
+    {
+        global $post;
+        global $wpdb;
+
+        $result = $wpdb->get_results("
+            SELECT *
+            FROM $wpdb->postmeta
+            WHERE meta_key = 'posts_data_post_type'
+                  AND meta_value = '{$post->post_type}'
+        ", OBJECT);
+
+        if (count($result) === 0) {
+            return false;
+        }
+
+        $posts = array();
+        foreach ($result as $item) {
+            $posts[] = $item->post_id;
+        }
+
+        return $posts;
+
     }
 
     /**

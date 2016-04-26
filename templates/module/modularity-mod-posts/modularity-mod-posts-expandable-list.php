@@ -8,6 +8,7 @@
     </header>
     <?php endif; ?>
 
+    <?php if (count($posts) > 0) : ?>
     <?php $i = 0; foreach ($posts as $post) : $i++; ?>
     <section class="accordion-section">
         <input type="radio" name="active-section" id="<?php echo $post->post_name; ?>">
@@ -33,4 +34,9 @@
         </div>
     </section>
     <?php endforeach; ?>
+    <?php else : ?>
+        <section class="accordion-section">
+            <?php _e('Nothing to display…', 'modularity'); ?>
+        </section>
+    <?php endif; ?>
 </div>
