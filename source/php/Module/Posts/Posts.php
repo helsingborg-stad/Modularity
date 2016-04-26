@@ -47,10 +47,13 @@ class Posts extends \Modularity\Module
 
         // Get post args
         $getPostsArgs = array(
-            'posts_per_page' => $fields->posts_count,
-            'orderby' => $sortBy,
-            'order' => $order
+            'posts_per_page' => $fields->posts_count
         );
+
+        if ($sortBy != 'false') {
+            $getPostsArgs['order'] = $order;
+            $getPostsArgs['orderby'] = $sortBy;
+        }
 
         // Sort by meta key
         if (strpos($sortBy, '_metakey_') > -1) {
@@ -95,7 +98,8 @@ class Posts extends \Modularity\Module
                 break;
 
             case 'manual':
-                $getPostsArgs['include'] = $fields->posts_data_posts;
+                $getPostsArgs['post__in'] = $fields->posts_data_posts;
+                if ($sortBy == 'false') $getPostsArgs['orderby'] = 'post__in';
                 break;
         }
 
