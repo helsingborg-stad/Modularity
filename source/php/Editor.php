@@ -120,10 +120,11 @@ class Editor extends \Modularity\Options
             function () {
                 $enabled = \Modularity\Module::$enabled;
                 $available = \Modularity\Module::$available;
+                $deprecated = \Modularity\Module::$deprecated;
 
                 $modules = array();
                 foreach ($enabled as $module) {
-                    if (isset($available[$module])) {
+                    if (isset($available[$module]) && !in_array($module, $deprecated)) {
                         $modules[$module] = $available[$module];
                     }
                 }
@@ -340,6 +341,7 @@ class Editor extends \Modularity\Options
                     $retModules[$key]['modules'][$arrayIndex]->meta = get_post_custom($moduleId);
                     $retModules[$key]['modules'][$arrayIndex]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
                     $retModules[$key]['modules'][$arrayIndex]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
+                    $retModules[$key]['modules'][$arrayIndex]->isDeprecated = (in_array($retModules[$key]['modules'][$arrayIndex]->post_type, \Modularity\Module::$deprecated)) ? true : false;
 
                     $arrayIndex++;
                 }

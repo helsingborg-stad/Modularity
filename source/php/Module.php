@@ -12,11 +12,14 @@ class Module
      */
     public $moduleSlug = false;
 
+    public $isDeprecated = false;
+
     /**
      * Available and enabled modules
      * @var array
      */
     public static $available = array();
+    public static $deprecated = array();
     public static $enabled = array();
     public static $options = array();
 
@@ -231,8 +234,12 @@ class Module
         }
 
         /**
-         * Add to available modules
+         * Add to available (and depracated if it is) modules
          */
+        if ($this->isDeprecated) {
+            self::$deprecated[] = $postTypeSlug;
+        }
+
         self::$available[$postTypeSlug] = $args;
 
         $this->moduleSlug = $postTypeSlug;
