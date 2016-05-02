@@ -302,7 +302,7 @@ class Module
                 $usage = $this->getModuleUsage($postId, 3);
 
                 if (count($usage->data) == 0) {
-                    echo __('Not used', 'municipio');
+                    echo __('Not used', 'modularity');
                     break;
                 }
 

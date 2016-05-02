@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-04-28 11:26+0200\n"
-"PO-Revision-Date: 2016-04-28 11:27+0200\n"
+"POT-Creation-Date: 2016-05-02 09:59+0200\n"
+"PO-Revision-Date: 2016-05-02 10:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -156,25 +156,45 @@ msgstr "Inga %s"
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/Module.php:282
+#: source/php/Module.php:284
 #: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:4
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Module.php:283
+#: source/php/Module.php:285
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/Module.php:284
+#: source/php/Module.php:286
+msgid "Usage"
+msgstr "Användning"
+
+#: source/php/Module.php:287
 msgid "Date"
 msgstr "Datum"
 
-#: source/php/Module.php:319
+#: source/php/Module.php:305
+msgid "Not used"
+msgstr "Inte använd"
+
+#: source/php/Module.php:322
+msgid "more"
+msgstr "fler"
+
+#: source/php/Module.php:349
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
+
+#: source/php/Module.php:388
+msgid "This modules is not used yet."
+msgstr "Denna modulen används inte än."
+
+#: source/php/Module.php:392
+msgid "This module is used on the following places:"
+msgstr "Denna modulen används på följande ställen:"
 
 #: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
