@@ -12,6 +12,10 @@ class Module
      */
     public $moduleSlug = false;
 
+    /**
+     * Indicates wheather the module is deprecated or not
+     * @var boolean
+     */
     public $isDeprecated = false;
 
     /**
@@ -57,7 +61,7 @@ class Module
     }
 
     /**
-     * Enqueue styles
+     * (PLACEHOLDER) Enqueue styles
      * @return void
      */
     public function style()
@@ -66,7 +70,7 @@ class Module
     }
 
     /**
-     * Enqueue scripts
+     * (PLACEHOLDER) Enqueue scripts
      * @return void
      */
     public function script()
@@ -241,7 +245,6 @@ class Module
         }
 
         self::$available[$postTypeSlug] = $args;
-
         $this->moduleSlug = $postTypeSlug;
 
         // Enqueue
@@ -252,10 +255,11 @@ class Module
         // Shortcode metabox
         add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
 
+        // Add usage metabox
         add_action('add_meta_boxes', array($this, 'whereUsedMetaBox'));
 
-        // Description metabox
-        $this->setupDescriptionField();
+        // Setup list table fields
+        $this->setupListTableField();
 
         /**
          * Include plugin
@@ -267,7 +271,11 @@ class Module
         return $postTypeSlug;
     }
 
-    public function setupDescriptionField()
+    /**
+     * Setup list table fields
+     * @return void
+     */
+    public function setupListTableField()
     {
         add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
@@ -277,6 +285,11 @@ class Module
         add_filter('manage_edit-' . $this->moduleSlug . '_sortable_columns', array($this, 'listTableColumnSorting'));
     }
 
+    /**
+     * Define list table columns
+     * @param  array $columns  Default columns
+     * @return array           Modified columns
+     */
     public function listTableColumns($columns)
     {
         $columns = array(
@@ -290,6 +303,12 @@ class Module
         return $columns;
     }
 
+    /**
+     * List table column content
+     * @param  string $column  Column
+     * @param  integer $postId Post id
+     * @return void
+     */
     public function listTableColumnContent($column, $postId)
     {
         switch ($column) {
@@ -326,6 +345,11 @@ class Module
         }
     }
 
+    /**
+     * Table list column sorting
+     * @param  array $columns Default sortable columns
+     * @return array          Modified sortable columns
+     */
     public function listTableColumnSorting($columns)
     {
         $columns['description'] = 'description';
@@ -463,6 +487,10 @@ class Module
         return $result;
     }
 
+    /**
+     * Saves the description
+     * @return void
+     */
     public function descriptionMetaboxSave()
     {
         if (!isset($_POST['modularity-module-description'])) {
