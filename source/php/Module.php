@@ -252,6 +252,8 @@ class Module
         // Shortcode metabox
         add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
 
+        add_action('add_meta_boxes', array($this, 'whereUsedMetaBox'));
+
         // Description metabox
         $this->setupDescriptionField();
 
@@ -338,6 +340,42 @@ class Module
         }, $this->moduleSlug, 'side', 'default');
     }
 
+    /**
+     * Metabox that shows where the module is used
+     * @return void
+     */
+    public function whereUsedMetaBox()
+    {
+        if (!$this->moduleSlug) {
+            return;
+        }
+
+        global $post;
+
+        $module = $this;
+        $usage = $module->getModuleUsage($post->ID);
+
+        add_meta_box('modularity-usage', 'Module usage', function () use ($module, $usage) {
+            if (count($usage) == 0) {
+                echo '<p>' . __('This modules is not used yet.', 'modularity')  . '</p>';
+                return;
+            }
+
+            echo '<p>' . __('This module is used on the following places:', 'modularity') . '</p><p><ul class="modularity-usage-list">';
+
+            foreach ($usage as $page) {
+                echo '<li><a href="' . get_permalink($page->post_id) . '">' . $page->post_title . '</a></li>';
+            }
+
+            echo '</ul></p>';
+
+        }, $this->moduleSlug, 'side', 'default');
+    }
+
+    /**
+     * Description metabox content
+     * @return void
+     */
     public function descriptionMetabox()
     {
         if (!$this->moduleSlug) {
@@ -355,6 +393,31 @@ class Module
             'normal',
             'high'
         );
+    }
+
+    /**
+     * Search database for where the module is used
+     * @param  integer $id Module id
+     * @return array       List of pages where the module is used
+     */
+    public function getModuleUsage($id)
+    {
+        global $wpdb;
+        $query = "
+            SELECT
+                {$wpdb->postmeta}.post_id,
+                {$wpdb->posts}.post_title,
+                {$wpdb->posts}.post_type
+            FROM {$wpdb->postmeta}
+            LEFT JOIN
+                {$wpdb->posts} ON ({$wpdb->postmeta}.post_id = {$wpdb->posts}.ID)
+            WHERE
+                {$wpdb->postmeta}.meta_key = 'modularity-modules'
+                AND ({$wpdb->postmeta}.meta_value REGEXP '.*\"postid\";s:[0-9]+:\"{$id}\".*')
+            ORDER BY {$wpdb->posts}.post_title ASC
+        ";
+
+        return $wpdb->get_results($query, OBJECT);
     }
 
     public function descriptionMetaboxSave()
