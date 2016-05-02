@@ -283,6 +283,7 @@ class Module
             'cb'               => '<input type="checkbox">',
             'title'            => __('Title'),
             'description'      => __('Description'),
+            'usage'            => __('Usage', 'modularity'),
             'date'             => __('Date')
         );
 
@@ -296,12 +297,33 @@ class Module
                 $description = get_post_meta($postId, 'module-description', true);
                 echo !empty($description) ? $description : '';
                 break;
+
+            case 'usage':
+                $usage = $this->getModuleUsage($postId, 3);
+                $i = 0;
+
+                foreach ($usage->data as $item) {
+                    $i++;
+
+                    if ($i > 1) {
+                        echo ', ';
+                    }
+
+                    echo '<a href="' . get_permalink($item->postid) . '">' . $item->post_title . '</a>';
+                }
+
+                if ($usage->more > 0) {
+                    echo ' (' . $usage->more . ' ' . __('more', 'modularity') . ')';
+                }
+
+                break;
         }
     }
 
     public function descriptionColumnSorting($columns)
     {
         $columns['description'] = 'description';
+        $columns['usage'] = 'usage';
         return $columns;
     }
 
@@ -400,7 +422,7 @@ class Module
      * @param  integer $id Module id
      * @return array       List of pages where the module is used
      */
-    public function getModuleUsage($id)
+    public function getModuleUsage($id, $limit = false)
     {
         global $wpdb;
         $query = "
@@ -417,7 +439,22 @@ class Module
             ORDER BY {$wpdb->posts}.post_title ASC
         ";
 
-        return $wpdb->get_results($query, OBJECT);
+        $result = $wpdb->get_results($query, OBJECT);
+
+        if (is_numeric($limit)) {
+            if (count($result) > $limit) {
+                $sliced = array_slice($result, $limit);
+            } else {
+                $sliced = $result;
+            }
+
+            return (object) array(
+                'data' => $sliced,
+                'more' => (count($result) > 0 && count($sliced) > 0) ? count($result) - count($sliced) : 0
+            );
+        }
+
+        return $result;
     }
 
     public function descriptionMetaboxSave()
