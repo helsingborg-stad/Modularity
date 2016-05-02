@@ -309,7 +309,7 @@ class Module
                         echo ', ';
                     }
 
-                    echo '<a href="' . get_permalink($item->postid) . '">' . $item->post_title . '</a>';
+                    echo '<a href="' . get_permalink($item->post_id) . '">' . $item->post_title . '</a>';
                 }
 
                 if ($usage->more > 0) {
