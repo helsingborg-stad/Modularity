@@ -16,6 +16,7 @@
                 "id": "modularity-sorted-by"
             },
             "choices": {
+                "false": "Do not sort",
                 "ID": "ID",
                 "author": "F\u00f6rfattare",
                 "title": "Titel",
@@ -77,5 +78,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1461586484
+    "modified": 1461661083
 }

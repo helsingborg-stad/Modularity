@@ -58,6 +58,83 @@ jQuery(document).ready(function ($) {
 });
 
 Modularity = Modularity || {};
+Modularity.Helpers = Modularity.Helpers || {};
+
+Modularity.Helpers = (function ($) {
+
+    function Helpers() {
+        $(function(){
+        }.bind(this));
+    }
+
+    Helpers.prototype.uuid = function (separator) {
+        return Math.random().toString(36).substr(2, 9);
+    };
+
+    return new Helpers();
+
+})(jQuery);
+
+jQuery.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    jQuery.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+Modularity = Modularity || {};
+Modularity.Helpers = Modularity.Helpers || {};
+
+Modularity.Helpers.Widget = (function ($) {
+
+    var editingWidget = false;
+
+    function Widget() {
+        $(function(){
+            $(document).on('click', '.modularity-js-thickbox-widget-import', function (e) {
+                e.preventDefault();
+
+                editingWidget = $(e.target).parents('.widget-inside');
+
+                var importUrl = Modularity.Editor.Module.getImportUrl({
+                    postType: $(e.target).parents('.widget-inside').find('.modularity-widget-module-type select').val()
+                });
+
+                Modularity.Editor.Module.editingModule = $(e.target).closest('.widget-inside');
+
+                Modularity.Editor.Thickbox.postAction = 'import-widget';
+                Modularity.Prompt.Modal.open(importUrl);
+            });
+        }.bind(this));
+    }
+
+    Widget.prototype.isEditingWidget = function () {
+        return editingWidget;
+    };
+
+    Widget.prototype.updateWidget = function (widget, data) {
+        $(widget).find('.modularity-widget-module-id-span').html(data.post_id);
+        $(widget).find('.modularity-widget-module-id').val(data.post_id);
+
+        $(widget).find('.modularity-widget-module-title-span').html(data.title);
+        $(widget).find('.modularity-widget-module-title').val(data.title);
+    };
+
+    return new Widget();
+
+})(jQuery);
+
+Modularity = Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
 
 Modularity.Editor.Autosave = (function ($) {
@@ -219,7 +296,7 @@ Modularity.Editor.Module = (function ($) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
                 $.each(modules.modules, function (key, data) {
-                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth);
+                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated);
                 }.bind(this));
 
                 sidebarElement.removeClass('modularity-spinner');
@@ -285,10 +362,11 @@ Modularity.Editor.Module = (function ($) {
      * @param {string} moduleId   The module id slug
      * @param {string} moduleName The module name
      */
-    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth) {
+    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth, isDeprecated) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
+        deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(Deprecated)</span>' : '';
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -326,6 +404,7 @@ Modularity.Editor.Module = (function ($) {
                 	<span class="modularity-sortable-handle"></span>\
 	                <span class="modularity-module-name">\
                         ' + moduleName + '\
+                        ' + deprecated + '\
                         <span class="modularity-module-title">' + moduleTitle + '</span>\
                         <label class="modularity-module-hide">\
                             <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="false" />\
@@ -533,83 +612,6 @@ Modularity.Editor.Validate = (function ($) {
     };
 
     return new Validate();
-
-})(jQuery);
-
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
-
-Modularity.Helpers = (function ($) {
-
-    function Helpers() {
-        $(function(){
-        }.bind(this));
-    }
-
-    Helpers.prototype.uuid = function (separator) {
-        return Math.random().toString(36).substr(2, 9);
-    };
-
-    return new Helpers();
-
-})(jQuery);
-
-jQuery.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    jQuery.each(a, function() {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
-
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
-
-Modularity.Helpers.Widget = (function ($) {
-
-    var editingWidget = false;
-
-    function Widget() {
-        $(function(){
-            $(document).on('click', '.modularity-js-thickbox-widget-import', function (e) {
-                e.preventDefault();
-
-                editingWidget = $(e.target).parents('.widget-inside');
-
-                var importUrl = Modularity.Editor.Module.getImportUrl({
-                    postType: $(e.target).parents('.widget-inside').find('.modularity-widget-module-type select').val()
-                });
-
-                Modularity.Editor.Module.editingModule = $(e.target).closest('.widget-inside');
-
-                Modularity.Editor.Thickbox.postAction = 'import-widget';
-                Modularity.Prompt.Modal.open(importUrl);
-            });
-        }.bind(this));
-    }
-
-    Widget.prototype.isEditingWidget = function () {
-        return editingWidget;
-    };
-
-    Widget.prototype.updateWidget = function (widget, data) {
-        $(widget).find('.modularity-widget-module-id-span').html(data.post_id);
-        $(widget).find('.modularity-widget-module-id').val(data.post_id);
-
-        $(widget).find('.modularity-widget-module-title-span').html(data.title);
-        $(widget).find('.modularity-widget-module-title').val(data.title);
-    };
-
-    return new Widget();
 
 })(jQuery);
 

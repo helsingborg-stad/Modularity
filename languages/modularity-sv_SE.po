@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-04-12 16:13+0200\n"
-"PO-Revision-Date: 2016-04-12 16:14+0200\n"
+"POT-Creation-Date: 2016-05-02 09:59+0200\n"
+"PO-Revision-Date: 2016-05-02 10:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,71 +20,71 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:91 App.php:117
+#: App.php:96 App.php:122
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:91 source/php/Editor.php:88 source/php/Options/General.php:81
+#: App.php:96 source/php/Editor.php:78 source/php/Options/General.php:81
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:118
+#: App.php:123
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:119
+#: App.php:124
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:120
+#: App.php:125
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:121
+#: App.php:126
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:122
+#: App.php:127
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:123
+#: App.php:128
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:124
+#: App.php:129
 msgid "Width"
 msgstr "Bredd"
 
-#: source/php/Editor.php:40
+#: source/php/Editor.php:39
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:87
+#: source/php/Editor.php:77
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/Editor.php:99
+#: source/php/Editor.php:89
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:100
+#: source/php/Editor.php:90
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:118
+#: source/php/Editor.php:108
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:129
+#: source/php/Editor.php:119
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:167
+#: source/php/Editor.php:158
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:169
+#: source/php/Editor.php:160
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -92,11 +92,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:389
+#: source/php/Editor.php:381
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:460
+#: source/php/Editor.php:452
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -111,69 +111,90 @@ msgstr ""
 "advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields "
 "Pro</a>."
 
-#: source/php/Module.php:167
+#: source/php/Module.php:170
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/Module.php:168
+#: source/php/Module.php:171
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
 
-#: source/php/Module.php:169
+#: source/php/Module.php:172
 #, php-format
 msgid "New %s"
 msgstr "Ny %s"
 
-#: source/php/Module.php:170 source/php/Module.php:172
+#: source/php/Module.php:173 source/php/Module.php:175
 #, php-format
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-#: source/php/Module.php:171
+#: source/php/Module.php:174
 #, php-format
 msgid "View %s"
 msgstr "Visa %s"
 
-#: source/php/Module.php:173
+#: source/php/Module.php:176
 #, php-format
 msgid "Search %s"
 msgstr "Sök %s"
 
-#: source/php/Module.php:174
+#: source/php/Module.php:177
 #, php-format
 msgid "Parent %s"
 msgstr "Förälder %s"
 
-#: source/php/Module.php:175
+#: source/php/Module.php:178
 #, php-format
 msgid "No %s"
 msgstr "Inga %s"
 
-#: source/php/Module.php:176
+#: source/php/Module.php:179
 #, php-format
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/Module.php:275
+#: source/php/Module.php:284
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:4
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Module.php:276
-#: templates/options/partials/modularity-modules.php:12
+#: source/php/Module.php:285
+#: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/Module.php:277
+#: source/php/Module.php:286
+msgid "Usage"
+msgstr "Användning"
+
+#: source/php/Module.php:287
 msgid "Date"
 msgstr "Datum"
 
-#: source/php/Module.php:312
+#: source/php/Module.php:305
+msgid "Not used"
+msgstr "Inte använd"
+
+#: source/php/Module.php:322
+msgid "more"
+msgstr "fler"
+
+#: source/php/Module.php:349
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
+
+#: source/php/Module.php:388
+msgid "This modules is not used yet."
+msgstr "Denna modulen används inte än."
+
+#: source/php/Module.php:392
+msgid "This module is used on the following places:"
+msgstr "Denna modulen används på följande ställen:"
 
 #: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
@@ -418,8 +439,13 @@ msgstr "Göm widgets"
 
 #: templates/module/modularity-mod-latest-news.php:42
 #: templates/module/modularity-mod-mainnews.php:39
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:42
 msgid "Read more"
 msgstr "Läs mer"
+
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:39
+msgid "Nothing to display…"
+msgstr "Inget att visa…"
 
 #: templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
@@ -438,15 +464,33 @@ msgstr ""
 "alltid åtetraktivera den och behålla din nuvarande data). Tänk dock på att "
 "alla moduler av denna typ kommer döljas från dina sidor."
 
+#: templates/options/partials/modularity-modules.php:8
+msgid "Deprecated modules"
+msgstr "Moduler som kommer att utgå"
+
 #: templates/options/partials/modularity-modules.php:9
+msgid ""
+"Some of your modules is set as deprecated. That means that the modules "
+"already created will still be available to display and edit, but the option "
+"to create new modules is disabled."
+msgstr ""
+"Några av dina moduler kommer att utgå. Detta innebär att moduler av typen "
+"som du redan har skapat kan fortsätta användas men det kommer inte att gå "
+"att skapa upp nya moduler av typen."
+
+#: templates/options/partials/modularity-modules.php:16
 #: templates/options/partials/modularity-post-types.php:8
 msgid "Enabled"
 msgstr "Aktiverad"
 
-#: templates/options/partials/modularity-modules.php:10
-#: templates/options/partials/modularity-modules.php:11
+#: templates/options/partials/modularity-modules.php:17
+#: templates/options/partials/modularity-modules.php:18
 msgid "Module"
 msgstr "Modul"
+
+#: templates/options/partials/modularity-modules.php:27
+msgid "Deprecated"
+msgstr "Utgår snart"
 
 #: templates/options/partials/modularity-post-types.php:2
 msgid "Select which post types you would like to enable Modularity on."
@@ -476,6 +520,22 @@ msgstr "Mall"
 #: templates/options/partials/modularity-template-areas.php:10
 msgid "Areas"
 msgstr "Sidebars"
+
+#: templates/widget/form.php:2
+msgid "Selected module"
+msgstr "Vald modul"
+
+#: templates/widget/form.php:4 templates/widget/form.php:7
+msgid "Not selected"
+msgstr "Inte vald"
+
+#: templates/widget/form.php:11
+msgid "Module type"
+msgstr "Typ av modul"
+
+#: templates/widget/form.php:19
+msgid "Browse modules"
+msgstr "Bläddra moduler"
 
 #. Plugin Name of the plugin/theme
 msgid "Modularity"

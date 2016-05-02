@@ -43,7 +43,7 @@ Modularity.Editor.Module = (function ($) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
                 $.each(modules.modules, function (key, data) {
-                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth);
+                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated);
                 }.bind(this));
 
                 sidebarElement.removeClass('modularity-spinner');
@@ -109,10 +109,11 @@ Modularity.Editor.Module = (function ($) {
      * @param {string} moduleId   The module id slug
      * @param {string} moduleName The module name
      */
-    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth) {
+    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth, isDeprecated) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
+        deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(Deprecated)</span>' : '';
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -150,6 +151,7 @@ Modularity.Editor.Module = (function ($) {
                 	<span class="modularity-sortable-handle"></span>\
 	                <span class="modularity-module-name">\
                         ' + moduleName + '\
+                        ' + deprecated + '\
                         <span class="modularity-module-title">' + moduleTitle + '</span>\
                         <label class="modularity-module-hide">\
                             <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="false" />\

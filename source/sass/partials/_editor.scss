@@ -385,3 +385,22 @@
         }
     }
 }
+
+.modularity-usage-list {
+    li {
+        display: inline-block;
+        margin-right: 5px;
+    }
+
+    a {
+        display: block;
+        width: 230px;
+        text-decoration: none;
+        padding: 8px 10px;
+        border: 1px solid #EEEEEE;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
