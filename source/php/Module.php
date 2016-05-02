@@ -300,6 +300,12 @@ class Module
 
             case 'usage':
                 $usage = $this->getModuleUsage($postId, 3);
+
+                if (count($usage->data) == 0) {
+                    echo __('Not used', 'municipio');
+                    break;
+                }
+
                 $i = 0;
 
                 foreach ($usage->data as $item) {
