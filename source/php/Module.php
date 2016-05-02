@@ -272,12 +272,12 @@ class Module
         add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
 
-        add_filter('manage_edit-' . $this->moduleSlug . '_columns', array($this, 'descriptionColumn'));
-        add_action('manage_' . $this->moduleSlug . '_posts_custom_column', array($this, 'descriptionColumnContent'), 10, 2);
-        add_filter('manage_edit-' . $this->moduleSlug . '_sortable_columns', array($this, 'descriptionColumnSorting'));
+        add_filter('manage_edit-' . $this->moduleSlug . '_columns', array($this, 'listTableColumns'));
+        add_action('manage_' . $this->moduleSlug . '_posts_custom_column', array($this, 'listTableColumnContent'), 10, 2);
+        add_filter('manage_edit-' . $this->moduleSlug . '_sortable_columns', array($this, 'listTableColumnSorting'));
     }
 
-    public function descriptionColumn($columns)
+    public function listTableColumns($columns)
     {
         $columns = array(
             'cb'               => '<input type="checkbox">',
@@ -290,7 +290,7 @@ class Module
         return $columns;
     }
 
-    public function descriptionColumnContent($column, $postId)
+    public function listTableColumnContent($column, $postId)
     {
         switch ($column) {
             case 'description':
@@ -326,7 +326,7 @@ class Module
         }
     }
 
-    public function descriptionColumnSorting($columns)
+    public function listTableColumnSorting($columns)
     {
         $columns['description'] = 'description';
         $columns['usage'] = 'usage';
