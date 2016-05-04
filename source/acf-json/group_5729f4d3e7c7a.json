@@ -1,0 +1,72 @@
+{
+    "key": "group_5729f4d3e7c7a",
+    "title": "Wordpress Widget",
+    "fields": [
+        {
+            "key": "field_572a06dd9d06c",
+            "label": "Widget Type",
+            "name": "mod_standard_widget_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "WP_Widget_Archives": "Archives",
+                "WP_Widget_Calendar": "Calendar",
+                "WP_Widget_Categories": "Categories",
+                "WP_Widget_Links": "Links",
+                "WP_Widget_Meta": "Meta",
+                "WP_Widget_Pages": "Pages",
+                "WP_Widget_Recent_Comments": "Recent comments",
+                "WP_Widget_Recent_Posts": "Recent posts",
+                "WP_Widget_RSS": "RSS",
+                "WP_Widget_Search": "Search",
+                "WP_Widget_Tag_Cloud": "Tag cloud",
+                "WP_Nav_Menu_Widget": "Navigation menu"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mod-wpwidget"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "permalink",
+        "the_content",
+        "excerpt",
+        "custom_fields",
+        "discussion",
+        "comments",
+        "revisions",
+        "slug",
+        "author",
+        "format",
+        "page_attributes",
+        "featured_image",
+        "categories",
+        "tags",
+        "send-trackbacks"
+    ],
+    "active": 1,
+    "description": "",
+    "modified": 1462372457
+}
