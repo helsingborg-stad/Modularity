@@ -1,10 +1,24 @@
 <div class="grid" data-equal-container>
     <?php
     foreach ($posts as $post) :
+
+        /* Image size */
+        switch ($fields->posts_columns) {
+            case "grid-md-12":    //1-col
+                $image_dimensions = array(1200,900);
+                break;
+            case "grid-md-6":    //2-col
+                $image_dimensions = array(400*2,300*2);
+                break;
+            default:
+                $image_dimensions = array(400,300);
+        }
+
+        /* Image */
         $image = wp_get_attachment_image_src(
             get_post_thumbnail_id($post->ID),
             apply_filters('modularity/image/latest/box',
-                array(400, 300),
+                $image_dimensions,
                 $args
             )
         );
