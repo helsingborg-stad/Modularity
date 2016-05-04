@@ -6,11 +6,25 @@
 ?>
 <div class="grid" data-equal-container>
     <?php
+
+    /* Get image size by column count */
+    switch ($columnClass) {
+        case "grid-md-12":    //1-col
+            $image_dimensions = array(1200,900);
+            break;
+        case "grid-md-6":    //2-col
+            $image_dimensions = array(400*2,300*2);
+            break;
+        default:
+            $image_dimensions = array(400,300);
+    }
+
+    /* Get image */
     foreach ($items as $item) : $post = $item['page']; setup_postdata($post);
         $thumbnail_image = wp_get_attachment_image_src(
             get_post_thumbnail_id($item['page']->ID),
             apply_filters('Modularity/index/image',
-                array(400, 300),
+                $image_dimensions,
                 $args
             )
         );

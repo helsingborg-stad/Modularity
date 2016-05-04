@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-04-12 16:13+0200\n"
+"POT-Creation-Date: 2016-05-02 09:59+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,81 +20,81 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:91 App.php:117
+#: App.php:96 App.php:122
 msgid "Edit"
 msgstr ""
 
-#: App.php:91 source/php/Editor.php:88 source/php/Options/General.php:81
+#: App.php:96 source/php/Editor.php:78 source/php/Options/General.php:81
 msgid "Modules"
 msgstr ""
 
-#: App.php:118
+#: App.php:123
 msgid "Import"
 msgstr ""
 
-#: App.php:119
+#: App.php:124
 msgid "Remove"
 msgstr ""
 
-#: App.php:120
+#: App.php:125
 msgid "Hide"
 msgstr ""
 
-#: App.php:121
+#: App.php:126
 msgid "Are you sure you want to remove this module?"
 msgstr ""
 
-#: App.php:122
+#: App.php:127
 msgid "Saving…"
 msgstr ""
 
-#: App.php:123
+#: App.php:128
 msgid "Close"
 msgstr ""
 
-#: App.php:124
+#: App.php:129
 msgid "Width"
 msgstr ""
 
-#: source/php/Editor.php:40
+#: source/php/Editor.php:39
 msgid "View Page"
 msgstr ""
 
-#: source/php/Editor.php:87
+#: source/php/Editor.php:77
 msgid "Content"
 msgstr ""
 
-#: source/php/Editor.php:99
+#: source/php/Editor.php:89
 msgid "Modularity editor"
 msgstr ""
 
-#: source/php/Editor.php:100
+#: source/php/Editor.php:90
 msgid "Editor"
 msgstr ""
 
-#: source/php/Editor.php:118
+#: source/php/Editor.php:108
 msgid "Save modules"
 msgstr ""
 
-#: source/php/Editor.php:129
+#: source/php/Editor.php:119
 msgid "Enabled modules"
 msgstr ""
 
-#: source/php/Editor.php:167
+#: source/php/Editor.php:158
 msgid "No active sidebar areas"
 msgstr ""
 
-#: source/php/Editor.php:169
+#: source/php/Editor.php:160
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:389
+#: source/php/Editor.php:381
 msgid "Modules saved"
 msgstr ""
 
-#: source/php/Editor.php:460
+#: source/php/Editor.php:452
 msgid "Inherit"
 msgstr ""
 
@@ -105,66 +105,87 @@ msgid ""
 "\"_blank\">Advanced Custom Fields Pro</a> plugin."
 msgstr ""
 
-#: source/php/Module.php:167
+#: source/php/Module.php:170
 msgctxt "add new button"
 msgid "Add New"
 msgstr ""
 
-#: source/php/Module.php:168
+#: source/php/Module.php:171
 #, php-format
 msgid "Add new %s"
 msgstr ""
 
-#: source/php/Module.php:169
+#: source/php/Module.php:172
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: source/php/Module.php:170 source/php/Module.php:172
+#: source/php/Module.php:173 source/php/Module.php:175
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: source/php/Module.php:171
+#: source/php/Module.php:174
 #, php-format
 msgid "View %s"
 msgstr ""
 
-#: source/php/Module.php:173
+#: source/php/Module.php:176
 #, php-format
 msgid "Search %s"
 msgstr ""
 
-#: source/php/Module.php:174
+#: source/php/Module.php:177
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
-#: source/php/Module.php:175
+#: source/php/Module.php:178
 #, php-format
 msgid "No %s"
 msgstr ""
 
-#: source/php/Module.php:176
+#: source/php/Module.php:179
 #, php-format
 msgid "No %s in trash"
 msgstr ""
 
-#: source/php/Module.php:275
+#: source/php/Module.php:284
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:4
 msgid "Title"
 msgstr ""
 
-#: source/php/Module.php:276
-#: templates/options/partials/modularity-modules.php:12
+#: source/php/Module.php:285
+#: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr ""
 
-#: source/php/Module.php:277
+#: source/php/Module.php:286
+msgid "Usage"
+msgstr ""
+
+#: source/php/Module.php:287
 msgid "Date"
 msgstr ""
 
-#: source/php/Module.php:312
+#: source/php/Module.php:305
+msgid "Not used"
+msgstr ""
+
+#: source/php/Module.php:322
+msgid "more"
+msgstr ""
+
+#: source/php/Module.php:349
 msgid "Copy and paste this shortcode to display the module inline."
+msgstr ""
+
+#: source/php/Module.php:388
+msgid "This modules is not used yet."
+msgstr ""
+
+#: source/php/Module.php:392
+msgid "This module is used on the following places:"
 msgstr ""
 
 #: source/php/Module/Iframe/Iframe.php:11
@@ -406,7 +427,12 @@ msgstr ""
 
 #: templates/module/modularity-mod-latest-news.php:42
 #: templates/module/modularity-mod-mainnews.php:39
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:42
 msgid "Read more"
+msgstr ""
+
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:39
+msgid "Nothing to display…"
 msgstr ""
 
 #: templates/options/partials/modularity-core-options.php:5
@@ -423,14 +449,29 @@ msgid ""
 "modules will not be displayed on your site."
 msgstr ""
 
+#: templates/options/partials/modularity-modules.php:8
+msgid "Deprecated modules"
+msgstr ""
+
 #: templates/options/partials/modularity-modules.php:9
+msgid ""
+"Some of your modules is set as deprecated. That means that the modules "
+"already created will still be available to display and edit, but the option "
+"to create new modules is disabled."
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:16
 #: templates/options/partials/modularity-post-types.php:8
 msgid "Enabled"
 msgstr ""
 
-#: templates/options/partials/modularity-modules.php:10
-#: templates/options/partials/modularity-modules.php:11
+#: templates/options/partials/modularity-modules.php:17
+#: templates/options/partials/modularity-modules.php:18
 msgid "Module"
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:27
+msgid "Deprecated"
 msgstr ""
 
 #: templates/options/partials/modularity-post-types.php:2
@@ -459,6 +500,22 @@ msgstr ""
 
 #: templates/options/partials/modularity-template-areas.php:10
 msgid "Areas"
+msgstr ""
+
+#: templates/widget/form.php:2
+msgid "Selected module"
+msgstr ""
+
+#: templates/widget/form.php:4 templates/widget/form.php:7
+msgid "Not selected"
+msgstr ""
+
+#: templates/widget/form.php:11
+msgid "Module type"
+msgstr ""
+
+#: templates/widget/form.php:19
+msgid "Browse modules"
 msgstr ""
 
 #. Plugin Name of the plugin/theme

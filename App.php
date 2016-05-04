@@ -11,7 +11,9 @@ class App
      */
     public static $assetSuffix = 'dev';
 
-    protected $editor = null;
+    public static $display = null;
+    public $editor = null;
+
 
     public function __construct()
     {
@@ -32,7 +34,7 @@ class App
         new Options\Archives();
         new Module();
         $this->editor = new Editor();
-        new Display();
+        self::$display = new Display();
 
         new Helper\Acf();
         new Helper\Varnish();

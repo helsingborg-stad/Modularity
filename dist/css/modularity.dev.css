@@ -423,6 +423,19 @@ li.modularity-module {
       min-height: none;
       max-height: auto; } }
 
+.modularity-usage-list li {
+  display: inline-block;
+  margin-right: 5px; }
+
+.modularity-usage-list a {
+  display: block;
+  width: 230px;
+  text-decoration: none;
+  padding: 8px 10px;
+  border: 1px solid #EEEEEE; }
+  .modularity-usage-list a:hover {
+    text-decoration: underline; }
+
 .modularity-modal-open {
   overflow: hidden; }
 
