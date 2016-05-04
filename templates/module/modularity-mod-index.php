@@ -13,7 +13,7 @@
             $image_dimensions = array(1200,900);
             break;
         case "grid-md-6":    //2-col
-            $image_dimensions = array(400*2,300*2);
+            $image_dimensions = array(800,600);
             break;
         default:
             $image_dimensions = array(400,300);

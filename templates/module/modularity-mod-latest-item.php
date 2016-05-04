@@ -3,10 +3,23 @@
     if (count($posts) > 0) :
     foreach ($posts as $post) :
 
+        /* Image size */
+        switch ((isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3') {
+            case "grid-md-12":    //1-col
+                $image_dimensions = array(1200,900);
+                break;
+            case "grid-md-6":    //2-col
+                $image_dimensions = array(800,600);
+                break;
+            default:
+                $image_dimensions = array(400,300);
+        }
+
+        /* Image */
         $image = wp_get_attachment_image_src(
             get_post_thumbnail_id($post->ID),
             apply_filters('modularity/image/latest/box',
-                array(400, 300),
+                $image_dimensions,
                 $args
             )
         );
