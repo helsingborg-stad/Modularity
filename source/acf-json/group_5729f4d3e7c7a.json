@@ -19,7 +19,6 @@
                 "WP_Widget_Archives": "Archives",
                 "WP_Widget_Calendar": "Calendar",
                 "WP_Widget_Categories": "Categories",
-                "WP_Widget_Links": "Links",
                 "WP_Widget_Meta": "Meta",
                 "WP_Widget_Pages": "Pages",
                 "WP_Widget_Recent_Comments": "Recent comments",
@@ -33,6 +32,45 @@
             "save_other_choice": 0,
             "default_value": "",
             "layout": "horizontal"
+        },
+        {
+            "key": "field_57309aa0b176d",
+            "label": "No options avabile",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Calendar"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Meta"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Search"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "There are no options available for this widget type.\r\n<style>.acf-field-57309aa0b176d {background-color: #FFDFDF;}<\/style>",
+            "new_lines": "",
+            "esc_html": 0
         }
     ],
     "location": [
@@ -68,5 +106,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1462372457
+    "modified": 1462803453
 }
