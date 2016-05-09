@@ -41,7 +41,6 @@ class WpWidget extends \Modularity\Module
 
     public static function displayWidget($widgetKey, $args, $instance = array() )
     {
-        echo $widgetKey;
         if (array_key_exists($widgetKey, self::$widgetIndexList) && class_exists($widgetKey)) {
             $widgetInstance = new $widgetKey;
             $widgetInstance->widget($args, $instance);
