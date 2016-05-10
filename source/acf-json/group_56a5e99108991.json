@@ -232,7 +232,7 @@
                         },
                         {
                             "key": "field_56fa8331d4651",
-                            "label": "Page",
+                            "label": "Sida",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -589,7 +589,7 @@
                         },
                         {
                             "key": "field_56fa88043ace5",
-                            "label": "Page",
+                            "label": "Sida",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -652,6 +652,53 @@
                     "max": ""
                 }
             ]
+        },
+        {
+            "key": "field_5731c6d886811",
+            "label": "Autoslide",
+            "name": "slides_autoslide",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "message": "Automatically slide between slides",
+            "default_value": 0
+        },
+        {
+            "key": "field_5731c78886813",
+            "label": "Slide timeout",
+            "name": "slides_slide_timeout",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5731c6d886811",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "seconds",
+            "min": 1,
+            "max": 20,
+            "step": 1,
+            "readonly": 0,
+            "disabled": 0
         }
     ],
     "location": [
@@ -671,5 +718,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1460621039
+    "modified": 1462880714
 }
