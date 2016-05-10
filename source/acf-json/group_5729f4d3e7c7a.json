@@ -25,8 +25,7 @@
                 "WP_Widget_Recent_Posts": "Recent posts",
                 "WP_Widget_RSS": "RSS",
                 "WP_Widget_Search": "Search",
-                "WP_Widget_Tag_Cloud": "Tag cloud",
-                "WP_Nav_Menu_Widget": "Navigation menu"
+                "WP_Widget_Tag_Cloud": "Tag cloud"
             },
             "other_choice": 0,
             "save_other_choice": 0,
@@ -71,6 +70,156 @@
             "message": "There are no options available for this widget type.\r\n<style>.acf-field-57309aa0b176d {background-color: #FFDFDF;}<\/style>",
             "new_lines": "",
             "esc_html": 0
+        },
+        {
+            "key": "field_5730a1f85e023",
+            "label": "Show number of items indicator",
+            "name": "wp_widget_archive_count",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Archives"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_57319d35a5915",
+            "label": "Show as dropdown list",
+            "name": "wp_widget_archive_dropdown",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Archives"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_57319e7e4900e",
+            "label": "Show number of category items indicator",
+            "name": "wp_widget_cat_count",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Categories"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33,333",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_5731aa7f0f0f8",
+            "label": "Show as hierarchial list",
+            "name": "wp_widget_cat_hierarchical",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Categories"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33,333",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_5731aaac9c7d2",
+            "label": "Show as dropdown",
+            "name": "wp_widget_cat_dropdown",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Categories"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33,333",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                "No",
+                "Yes"
+            ],
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": 0,
+            "layout": "horizontal"
         }
     ],
     "location": [
@@ -106,5 +255,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1462803453
+    "modified": 1462874352
 }
