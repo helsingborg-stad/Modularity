@@ -37,6 +37,12 @@ class WpWidget extends \Modularity\Module
         add_filter('acf/load_field/name=wp_widget_tag_cloud_taxonomy', array($this, 'tagCloudTaxonomies'));
     }
 
+    /**
+     * Displays the widget
+     * @param  string $widget   The widget type
+     * @param  array  $instance The widget instance
+     * @return void
+     */
     public static function displayWidget($widget, $instance = array())
     {
         if (array_key_exists($widget, self::$widgetIndexList) && class_exists($widget)) {
@@ -46,12 +52,21 @@ class WpWidget extends \Modularity\Module
         }
     }
 
+    /**
+     * Widget options list
+     * @param array $field
+     */
     public function addWidgetOptionsList($field)
     {
         $field['choices'] = self::$widgetIndexList;
         return $field;
     }
 
+    /**
+     * Add taxonomies to tag cloud widget form
+     * @param  array $field
+     * @return array
+     */
     public function tagCloudTaxonomies($field)
     {
         $taxonomies = get_taxonomies(array('show_tagcloud' => true), 'object');
@@ -63,6 +78,12 @@ class WpWidget extends \Modularity\Module
         return $field;
     }
 
+    /**
+     * Widget fields
+     * @param  string $widget_class Widget class
+     * @param  integer $post_id     Post id
+     * @return arrat                Fields
+     */
     public static function createSettingsArray($widget_class, $post_id)
     {
         switch ($widget_class) {
