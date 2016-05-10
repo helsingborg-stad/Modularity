@@ -67,7 +67,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "There are no options available for this widget type.\r\n<style>.acf-field-57309aa0b176d {background-color: #FFDFDF;}<\/style>",
+            "message": "There are no options available for this widget type.<br> <style>.acf-field-57309aa0b176d {background-color: #FFDFDF;}<\/style>",
             "new_lines": "",
             "esc_html": 0
         },
@@ -220,6 +220,290 @@
             "save_other_choice": 0,
             "default_value": 0,
             "layout": "horizontal"
+        },
+        {
+            "key": "field_5731e69671076",
+            "label": "Sort by",
+            "name": "wp_widget_pages_sort_by",
+            "type": "select",
+            "instructions": "Select how to sort the pages",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Pages"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "post_title": "Titel",
+                "menu_order": "Menu order",
+                "ID": "Page ID"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
+            "key": "field_5731e78c71077",
+            "label": "Exclude",
+            "name": "wp_widget_pages_exclude",
+            "type": "text",
+            "instructions": "ID:s of pages to exclude. Separated by comma.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Pages"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5731e8cf25b42",
+            "label": "Number of comments to show",
+            "name": "wp_widget_comments_comments",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Recent_Comments"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 5,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 1,
+            "max": "",
+            "step": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5731e9c32cd95",
+            "label": "Number of posts to show",
+            "name": "wp_widget_posts_number",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Recent_Posts"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 5,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5731ea87eae83",
+            "label": "RSS Url",
+            "name": "wp_widget_rss_url",
+            "type": "url",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_RSS"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5731ea9beae84",
+            "label": "Items to show",
+            "name": "wp_widget_rss_items",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_RSS"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 25,
+                "class": "",
+                "id": ""
+            },
+            "default_value": 5,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": "",
+            "max": "",
+            "step": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5731eab4eae85",
+            "label": "Show summary",
+            "name": "wp_widget_rss_summary",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_RSS"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 25,
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes, show summary",
+            "default_value": 0
+        },
+        {
+            "key": "field_5731eaceeae86",
+            "label": "Visa f\u00f6rfattare",
+            "name": "wp_widget_rss_author",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_RSS"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 25,
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes, show author",
+            "default_value": 0
+        },
+        {
+            "key": "field_5731eae5eae87",
+            "label": "Show date",
+            "name": "wp_widget_rss_date",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_RSS"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 25,
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes, show date",
+            "default_value": 0
+        },
+        {
+            "key": "field_5731ebd018370",
+            "label": "Taxonomy",
+            "name": "wp_widget_tag_cloud_taxonomy",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_572a06dd9d06c",
+                        "operator": "==",
+                        "value": "WP_Widget_Tag_Cloud"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
         }
     ],
     "location": [
@@ -255,5 +539,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1462874352
+    "modified": 1462889442
 }

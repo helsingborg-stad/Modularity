@@ -4,7 +4,6 @@ namespace Modularity\Module\WpWidget;
 
 class WpWidget extends \Modularity\Module
 {
-
     private static $widgetIndexList;
 
     public function __construct()
@@ -35,6 +34,7 @@ class WpWidget extends \Modularity\Module
 
         //Add options to list of selectable widgets
         add_filter('acf/load_field/name=mod_standard_widget_type', array($this, 'addWidgetOptionsList'));
+        add_filter('acf/load_field/name=wp_widget_tag_cloud_taxonomy', array($this, 'tagCloudTaxonomies'));
     }
 
     public static function displayWidget($widget, $instance = array())
@@ -52,10 +52,20 @@ class WpWidget extends \Modularity\Module
         return $field;
     }
 
+    public function tagCloudTaxonomies($field)
+    {
+        $taxonomies = get_taxonomies(array('show_tagcloud' => true), 'object');
+
+        foreach ($taxonomies as $key => $value) {
+            $field['choices'][$key] = $value->labels->name;
+        }
+
+        return $field;
+    }
+
     public static function createSettingsArray($widget_class, $post_id)
     {
         switch ($widget_class) {
-
             case "WP_Widget_Archives":
                 return  array(
                             'title' => get_the_title($post_id),
@@ -84,39 +94,39 @@ class WpWidget extends \Modularity\Module
             case "WP_Widget_Pages":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'sortby' => 'post_title',
-                            'exclude' => null,
+                            'sortby' => get_field('wp_widget_pages_sort_by', $post_id),
+                            'exclude' => get_field('wp_widget_pages_exclude', $post_id)
                         );
                         break;
 
             case "WP_Widget_Recent_Comments":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'comments' => 5
+                            'comments' => get_field('wp_widget_comments_comments', $post_id)
                         );
                         break;
 
             case "WP_Widget_Recent_Posts":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'comments' => 5
+                            'number' => get_field('wp_widget_posts_number', $post_id)
                         );
                         break;
 
             case "WP_Widget_RSS":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'url' => 5, //rss url atom/rss-xml,
-                            'items' => 4, //Max number of items to show
-                            'show_summary' => true,
-                            'show_author' => true,
-                            'show_date' => true
+                            'url' => get_field('wp_widget_rss_url', $post_id), //rss url atom/rss-xml,
+                            'items' => get_field('wp_widget_rss_items', $post_id), //Max number of items to show
+                            'show_summary' => get_field('wp_widget_rss_summary', $post_id),
+                            'show_author' => get_field('wp_widget_rss_author', $post_id),
+                            'show_date' => get_field('wp_widget_rss_date', $post_id)
                         );
                         break;
             case "WP_Widget_Tag_Cloud":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'taxonomy' => 'post_tag'
+                            'taxonomy' => get_field('wp_widget_tag_cloud_taxonomy', $post_id)
                         );
                         break;
             default:
