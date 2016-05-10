@@ -20,6 +20,33 @@ class Table extends \Modularity\Module
 
         //Register stylesheets
         add_action('Modularity/Module/mod-table/enqueue', array($this, 'modAssets'));
+
+        add_action('save_post', array($this, 'csvImport'), 999);
+    }
+
+    public function csvImport($post_id)
+    {
+        if (!isset($_POST['post_type']) || $_POST['post_type'] != $this->moduleSlug) {
+            return;
+        }
+
+        if (get_field('mod_table_data_type') != 'csv') {
+            return;
+        }
+
+        $file = get_field('mod_table_csv_file', $post_id);
+        $file = fopen($file['url'], 'r');
+        $data = array();
+
+        while (!feof($file)) {
+            $row = fgetcsv($file, 0, ';');
+            array_push($data, $row);
+        }
+
+        fclose($file);
+
+        $data = json_encode($data);
+        update_post_meta($post_id, 'mod_table', $data);
     }
 
     public function modAssets()
