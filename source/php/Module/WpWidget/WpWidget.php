@@ -59,8 +59,8 @@ class WpWidget extends \Modularity\Module
             case "WP_Widget_Archives":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'count' => '0', // Numeric boolean
-                            'dropdown' => '' // Numeric boolean
+                            'count' => get_field('wp_widget_archive_count', $post_id),
+                            'dropdown' => get_field('wp_widget_archive_dropdown', $post_id)
                         );
                         break;
 
@@ -75,9 +75,9 @@ class WpWidget extends \Modularity\Module
             case "WP_Widget_Categories":
                 return  array(
                             'title' => get_the_title($post_id),
-                            'count' => '0', // Numeric boolean
-                            'hierarchical' => '0', // Numeric boolean
-                            'dropdown' => '' // Numeric boolean
+                            'count' => get_field('wp_widget_cat_count', $post_id),
+                            'hierarchical' => get_field('wp_widget_cat_hierarchical', $post_id),
+                            'dropdown' => get_field('wp_widget_cat_dropdown', $post_id)
                         );
                         break;
 
