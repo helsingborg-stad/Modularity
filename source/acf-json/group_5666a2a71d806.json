@@ -3,13 +3,99 @@
     "title": "Table Editor",
     "fields": [
         {
+            "key": "field_5731982808842",
+            "label": "Data type",
+            "name": "mod_table_data_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "manual": "Manual input",
+                "csv": "CSV Import"
+            },
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "horizontal"
+        },
+        {
+            "key": "field_57319c3b08843",
+            "label": "CSV File",
+            "name": "mod_table_csv_file",
+            "type": "file",
+            "instructions": "CSV formatted file",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5731982808842",
+                        "operator": "==",
+                        "value": "csv"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": ".csv"
+        },
+        {
+            "key": "field_5731a138b52aa",
+            "label": "CSV Delimiter",
+            "name": "mod_table_csv_delimiter",
+            "type": "text",
+            "instructions": "CSV Delimiter character. Usually comma or semicolon.",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5731982808842",
+                        "operator": "==",
+                        "value": "csv"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": 50,
+                "class": "",
+                "id": ""
+            },
+            "default_value": ";",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
             "key": "field_5666a2ae23643",
             "label": "Table",
             "name": "mod_table",
             "type": "dynamic_table",
             "instructions": "Enter your table contents, and select appearance and functionality options below.",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5731982808842",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -175,5 +261,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1457619699
+    "modified": 1462870710
 }
