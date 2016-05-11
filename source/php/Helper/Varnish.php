@@ -19,7 +19,13 @@ class Varnish
 
         //Check if modularity, then send purge!
         if ($this->isModularityPost($post_id)) {
-            wp_remote_request($this->getMasterUrl(), array('method' => 'PURGE'));
+            wp_remote_request($this->getMasterUrl(),
+                array(
+                    'method' => 'PURGE',
+                    'timeout' => 2,
+                    'redirection' => 0,
+                )
+            );
             return true;
         }
 
