@@ -1,1 +1,1 @@
-<?php echo get_field('embed_code', $module->ID); ?>
+<?php echo get_post_meta($module->ID, 'embed_code', true);
