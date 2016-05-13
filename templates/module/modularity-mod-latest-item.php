@@ -24,13 +24,16 @@
             )
         );
 
+        //Make sorted by data avabile
+        $meta_data = get_post_meta($post->ID, $fields->meta_key_output, true);
+
     ?>
     <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3' ?>">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>">
+        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>" data-meta-sort-by="<?php echo $meta_data; ?>">
             <?php if ($image && $fields->show_picture) : ?>
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
             <?php endif; ?>
-            <div class="box-content">
+            <div class="box-content" data-meta-sort-by="<?php echo $meta_data; ?>">
                 <?php if ($fields->show_title) : ?>
                 <h5 class="link-item link-item-light"><?php echo apply_filters('the_title', $post->post_title); ?></h5>
                 <?php endif; ?>

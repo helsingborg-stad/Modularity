@@ -4,9 +4,12 @@
         <?php
         if (count($posts) > 0) :
         foreach ($posts as $post) :
+
+            //Make sorted by data avabile
+            $meta_data = get_post_meta($post->ID, $fields->meta_key_output, true);
         ?>
-            <li>
-                <a href="<?php echo get_permalink($post->ID); ?>">
+            <li data-meta-sort-by="<?php echo $meta_data; ?>">
+                <a href="<?php echo get_permalink($post->ID); ?>" data-meta-sort-by="<?php echo $meta_data; ?>">
                     <?php if ($fields->show_title) : ?>
                         <span class="link-item title"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                     <?php endif; ?>

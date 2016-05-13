@@ -17,9 +17,13 @@ foreach ($posts as $post) {
                 $args
             )
         );
+
+        //Make sorted by data avabile
+        $meta_data = get_post_meta($post->ID, $fields->meta_key_output, true);
+
     ?>
     <div class="grid-lg-12">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>">
+        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>" data-meta-sort-by="<?php echo $meta_data; ?>">
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">
                     <?php if ($image && $fields->show_picture) : ?>
@@ -29,7 +33,7 @@ foreach ($posts as $post) {
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
-            <div class="box-content">
+            <div class="box-content" data-meta-sort-by="<?php echo $meta_data; ?>">
                 <?php if ($fields->show_title) : ?>
                 <h3 class="text-highlight"><?php echo apply_filters('the_title', $post->post_title); ?></h3>
                 <?php endif; ?>
