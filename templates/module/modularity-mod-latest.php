@@ -22,7 +22,6 @@ if (strpos($sortBy, '_metakey_') > -1) {
 
     $sortBy = 'meta_key';
     $fields->meta_key_output = $orderby;
-
 }
 
 $getPostsArgs = array(

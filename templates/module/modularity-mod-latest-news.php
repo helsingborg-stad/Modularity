@@ -19,7 +19,16 @@ foreach ($posts as $post) {
         );
 
         //Make sorted by data avabile
-        $meta_data = get_post_meta($post->ID, $fields->meta_key_output, true);
+        if (isset($fields->meta_key_output)) {
+            $meta_data = get_post_meta($post->ID, $fields->meta_key_output, true);
+
+            //Serialize data if needed
+            if (is_array($meta_data) || is_object($meta_data)) {
+                $meta_data = json_encode($meta_data);
+            }
+        } else {
+            $meta_data = "";
+        }
 
     ?>
     <div class="grid-lg-12">
