@@ -29,8 +29,12 @@ $getPostsArgs = array(
     'post_type' => $fields->post_type,
     'posts_per_page' => $fields->number_of_posts,
     'orderby' => $sortBy,
-    'order' => $order
+    'order' => strtoupper($order)
 );
+
+if ($sortBy == 'meta_key') {
+    $getPostsArgs['meta_key'] = $orderby;
+}
 
 if ($fields->taxonomy_filter === true) {
     $taxType = $fields->filter_posts_taxonomy_type;
