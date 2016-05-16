@@ -28,7 +28,7 @@ if (strpos($sortBy, '_metakey_') > -1) {
 $getPostsArgs = array(
     'post_type' => $fields->post_type,
     'posts_per_page' => $fields->number_of_posts,
-    'orderby' => $sortBy,
+    'orderby' => str_replace('post_', '', $sortBy),
     'order' => strtoupper($order)
 );
 

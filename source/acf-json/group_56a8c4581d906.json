@@ -66,14 +66,14 @@
             },
             "choices": {
                 "ID": "ID",
-                "author": "F\u00f6rfattare",
-                "title": "Titel",
-                "date": "Publiceringsdatum",
-                "modified": "Date modified",
-                "parent": "Parent",
-                "rand": "Random",
-                "comment_count": "Comment count",
-                "menu_order": "Menu order"
+                "post_author": "F\u00f6rfattare",
+                "post_title": "Titel",
+                "post_date": "Publiceringsdatum",
+                "post_modified": "Date modified",
+                "post_parent": "Parent",
+                "post_rand": "Random",
+                "post_comment_count": "Comment count",
+                "post_menu_order": "Menu order"
             },
             "default_value": [
                 "date"
@@ -357,5 +357,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1463383652
+    "modified": 1463386320
 }
