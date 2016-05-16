@@ -37,10 +37,10 @@
                 if ($fields->taxonomy_filter === true) {
                     $taxType = $fields->filter_posts_taxonomy_type;
                     $taxValues = (array) $fields->filter_posts_by_tag;
-                    $taxValues = implode(',', $taxValues);
+                    $taxValues = implode('|', $taxValues);
 
                     $filters['tax'] = $taxType;
-                    $filters['terms'] = $taxValues;
+                    $filters['term'] = $taxValues;
                 }
             ?>
             <li><a class="read-more" href="<?php echo get_post_type_archive_link($fields->post_type); echo '?' . http_build_query($filters); ?>"><?php _e('Show more', 'modularity'); ?></a></li>
