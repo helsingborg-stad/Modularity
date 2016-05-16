@@ -55,6 +55,8 @@ if ($metaQuery) {
 
 $posts = get_posts($getPostsArgs);
 
+$showMoreButton = get_field('show_view_more_button', $module->ID);
+
 if (isset($fields->view_as) && $fields->view_as == 'list') {
     include 'modularity-mod-latest-list.php';
 } elseif (isset($fields->view_as) && $fields->view_as == 'news') {

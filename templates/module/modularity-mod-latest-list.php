@@ -22,5 +22,28 @@
         <?php endforeach; else : ?>
         <li>Inga inlägg att visa…</li>
         <?php endif; ?>
+
+        <?php if ($showMoreButton) : ?>
+            <?php
+                $filters = array(
+                    'orderby' => sanitize_text_field($sortBy),
+                    'order'   => sanitize_text_field($order)
+                );
+
+                if ($sortBy == 'meta_key') {
+                    $filters['meta_key'] = $orderby;
+                }
+
+                if ($fields->taxonomy_filter === true) {
+                    $taxType = $fields->filter_posts_taxonomy_type;
+                    $taxValues = (array) $fields->filter_posts_by_tag;
+                    $taxValues = implode(',', $taxValues);
+
+                    $filters['tax'] = $taxType;
+                    $filters['terms'] = $taxValues;
+                }
+            ?>
+            <li><a class="read-more" href="<?php echo get_post_type_archive_link($fields->post_type); echo '?' . http_build_query($filters); ?>"><?php _e('Show more', 'modularity'); ?></a></li>
+        <?php endif; ?>
     </ul>
 </div>

@@ -66,9 +66,9 @@
             },
             "choices": {
                 "ID": "ID",
-                "author": "Author",
-                "title": "Title",
-                "date": "Date published",
+                "author": "F\u00f6rfattare",
+                "title": "Titel",
+                "date": "Publiceringsdatum",
                 "modified": "Date modified",
                 "parent": "Parent",
                 "rand": "Random",
@@ -202,6 +202,22 @@
             "default_value": 0
         },
         {
+            "key": "field_57397624ab5ec",
+            "label": "Show \"view more\" button",
+            "name": "show_view_more_button",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33.333",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0
+        },
+        {
             "key": "field_56c6eebaa1de4",
             "label": "Taxonomy filter",
             "name": "taxonomy_filter",
@@ -210,7 +226,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "66.666",
+                "width": "33.333",
                 "class": "",
                 "id": ""
             },
@@ -341,5 +357,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1458548753
+    "modified": 1463383652
 }
