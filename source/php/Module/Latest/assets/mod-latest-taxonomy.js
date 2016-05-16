@@ -29,7 +29,12 @@ jQuery(document).ready(function ($) {
                 $('#modularity-sorted-by select').append('<optgroup label="Post meta">');
 
                 $.each(response.meta_keys, function (index, item) {
-                    var is_selected = (item.meta_key == response.curr.replace('_metakey_', '')) ? 'selected' : '';
+                    var is_selected = '';
+
+                    if (response.curr !== null) {
+                        is_selected = (item.meta_key == response.curr.replace('_metakey_', '')) ? 'selected' : '';
+                    }
+
                     $('#modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + is_selected + '>' + item.meta_key +'</option>');
                 });
 
@@ -66,7 +71,12 @@ jQuery(document).ready(function ($) {
             }
 
             $.each(response.types, function (index, item) {
-                var is_selected = (item.name == response.curr) ? 'selected' : '';
+                var is_selected = '';
+
+                if (response.curr !== null) {
+                    is_selected = (item.name == response.curr) ? 'selected' : '';
+                }
+
                 $('#modularity-latest-taxonomy select').append('<option value="' + item.name + '" ' + is_selected + '>' + item.label + '</option>');
             });
 
