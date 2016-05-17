@@ -400,6 +400,7 @@ class Feed
                 $item->message,
                 array(
                     'type'         => isset($item->type) ? $item->type : null,
+                    'status_type'  => isset($item->status_type) ? $item->status_type : null,
                     'name'         => isset($item->name) ? $item->name : null,
                     'description'  => isset($item->description) ? $item->description : null,
                     'caption'      => isset($item->caption) ? $item->caption : null,
@@ -490,8 +491,10 @@ class Feed
             <li>
                 <div class="mod-social-user">
                     <img src="' . $user['picture'] . '" alt="' . $user['name'] . '">
-                    <span>' . $user['name'] . '</span>
-                    <time>' . human_time_diff($createdTime, current_time('timestamp')) . ' ' . __('ago', 'modularity') . '</time>
+                    <div>
+                        <span>' . $user['name'] . '</span>
+                        <time>' . human_time_diff($createdTime, current_time('timestamp')) . ' ' . __('ago', 'modularity') . '</time>
+                    </div>
                 </div>
                 <div class="mod-social-story">
                     ' . wpautop($text) . '
@@ -516,7 +519,7 @@ class Feed
         }
 
         $att = '
-            <a href="' . $attachment['link'] . '" target="_blank" class="mod-social-attachment mod-social-attachment-' . $attachment['type'] . '">
+            <a href="' . $attachment['link'] . '" target="_blank" class="mod-social-attachment mod-social-attachment-' . $attachment['type'] . ' mod-social-attachment-type-' . $attachment['status_type'] . '">
                 <img src="' . $attachment['full_picture'] . '" class="mod-social-attachment-image" alt="' . $attachment['name'] . '">
                 <div class="mod-social-attachment-content">
                     <h4>' . $attachment['name'] . '</h4>
