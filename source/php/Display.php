@@ -210,6 +210,14 @@ class Display
             return false;
         }
 
+        ob_start();
+        include $templatePath;
+        $moduleMarkup = ob_get_clean();
+
+        if (strlen($moduleMarkup) === 0) {
+            return;
+        }
+
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
             $beforeWidget = $module->columnWidth;
             echo apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
@@ -220,7 +228,7 @@ class Display
             echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
         }
 
-        include $templatePath;
+        echo $moduleMarkup;
 
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
             echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
