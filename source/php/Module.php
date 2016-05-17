@@ -403,8 +403,12 @@ class Module
         }
 
         global $post;
-
         $module = $this;
+
+        if (is_null($post)) {
+            return;
+        }
+
         $usage = $module->getModuleUsage($post->ID);
 
         add_meta_box('modularity-usage', 'Module usage', function () use ($module, $usage) {

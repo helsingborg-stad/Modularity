@@ -27,9 +27,13 @@ if (strpos($sortBy, '_metakey_') > -1) {
 $getPostsArgs = array(
     'post_type' => $fields->post_type,
     'posts_per_page' => $fields->number_of_posts,
-    'orderby' => $sortBy,
-    'order' => $order
+    'orderby' => str_replace('post_', '', $sortBy),
+    'order' => strtoupper($order)
 );
+
+if ($sortBy == 'meta_key') {
+    $getPostsArgs['meta_key'] = $orderby;
+}
 
 if ($fields->taxonomy_filter === true) {
     $taxType = $fields->filter_posts_taxonomy_type;
@@ -49,6 +53,8 @@ if ($metaQuery) {
 }
 
 $posts = get_posts($getPostsArgs);
+
+$showMoreButton = get_field('show_view_more_button', $module->ID);
 
 if (isset($fields->view_as) && $fields->view_as == 'list') {
     include 'modularity-mod-latest-list.php';
