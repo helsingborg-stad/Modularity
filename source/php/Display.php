@@ -63,19 +63,9 @@ class Display
             return;
         }
 
-        if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
-            if (is_home()) {
-                $archiveSlug = 'archive-post';
-            } elseif (is_post_type_archive() && is_search()) {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
-            } elseif (is_search()) {
-                $archiveSlug = 'search';
-            } elseif (is_404()) {
-                $archiveSlug = 'e404';
-            } else {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
-            }
+        $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
 
+        if ($archiveSlug) {
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
         } else {
