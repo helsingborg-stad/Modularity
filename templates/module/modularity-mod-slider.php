@@ -38,8 +38,6 @@
                 $slide['link_url'] = get_permalink($slide['link_url']);
             }
 
-            //Slider format
-
         ?>
         <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
 
