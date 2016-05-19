@@ -956,6 +956,33 @@
             "default_value": "",
             "layout": "horizontal",
             "allow_null": 0
+        },
+        {
+            "key": "field_573dce058a66e",
+            "label": "Slider format",
+            "name": "slider_format",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "ratio-4-2": "Wide",
+                "ratio-16-9": "Normal (video)",
+                "ratio-4-3": "Square"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "disabled": 0,
+            "readonly": 0
         }
     ],
     "location": [
@@ -975,5 +1002,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1463655598
+    "modified": 1463668788
 }
