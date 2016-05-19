@@ -1,54 +1,52 @@
 <?php
     $slides = get_field('slides', $module->ID);
 ?>
-<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider'), $module->post_type, $args)); ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
+<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider'), $module->post_type, $args)); ?> <?php if (get_field('navigation_position', $module->ID) == "bottom") : ?>slider-nav-bottom<?php endif; ?> <?php if (get_field('show_navigation', $module->ID) == "hover") : ?>slider-nav-hover<?php endif; ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
     <ul>
     <?php foreach ($slides as $slide) : ?>
         <?php
-        if (isset($slide['image']) && !empty($slide['image'])) {
-            $image = wp_get_attachment_image_src(
-                $slide['image']['id'],
-                apply_filters('Modularity/slider/image',
-                    array(1140, 641),
-                    $args
-                )
-            );
-        } else {
-            $image = false;
-        }
 
-        if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
-            $mobile_image = wp_get_attachment_image_src(
-                $slide['mobile_image']['id'],
-                apply_filters('Modularity/slider/mobile_image',
-                    array(500, 500),
-                    $args
-                )
-            );
-        } else {
-
-            //TODO: Remove this fix after 2016-10-01. This field is now mandatory.
-
-            if ($image !== false) {
-                $mobile_image = wp_get_attachment_image_src(
+            //Image
+            if (isset($slide['image']) && !empty($slide['image'])) {
+                $image = wp_get_attachment_image_src(
                     $slide['image']['id'],
+                    apply_filters('Modularity/slider/image',
+                        array(1140, 641),
+                        $args
+                    )
+                );
+            } else {
+                $image = false;
+            }
+
+            //Mobile image
+            if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
+                $mobile_image = wp_get_attachment_image_src(
+                    $slide['mobile_image']['id'],
                     apply_filters('Modularity/slider/mobile_image',
                         array(500, 500),
                         $args
                     )
                 );
             } else {
-                $mobile_image = false;
+                $mobile_image = $image;
             }
-        }
+
+            //In some cases ACF will return an post-id instead of a link.
+            if (isset($slide['link_url']) && is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish")
+            {
+                $slide['link_url'] = get_permalink($slide['link_url']);
+            }
+
         ?>
         <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
+
+            <!-- Link start -->
             <?php if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false') : ?>
-            <a href="<?php echo isset($slide['link_url']) && !empty($slide['link_url']) ? $slide['link_url'] : '#' ?>" <?php if (isset($slide['link_target']) && $slide['link_target'] === true) : ?>target="_blank"<?php endif; ?>>
+                <a href="<?php echo isset($slide['link_url']) && !empty($slide['link_url']) ? $slide['link_url'] : '#' ?>" <?php if (isset($slide['link_target']) && $slide['link_target'] === true) : ?>target="_blank"<?php endif; ?>>
             <?php endif; ?>
-            <?php // SLIDES ?>
 
-
+            <!-- Slides -->
             <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
                 <?php if ($image !== false) : ?>
@@ -89,14 +87,20 @@
                 <span class="text-block text-block-left">
                     <span>
                         <!-- Title -->
-                        <?php if(isset($slide['textblock_title']) && !empty($slide['textblock_title'])) { ?>
-                            <em class="title block-level h1"><?php echo $slide['textblock_title']; ?> </em>
-                        <?php } ?>
+                        <?php if (isset($slide['textblock_title']) && !empty($slide['textblock_title'])) {
+    ?>
+                            <em class="title block-level h1"><?php echo $slide['textblock_title'];
+    ?> </em>
+                        <?php
+} ?>
 
                         <!-- Content -->
-                        <?php if(isset($slide['textblock_content']) && !empty($slide['textblock_content'])) { ?>
-                            <?php echo $slide['textblock_content']; ?>
-                        <?php } ?>
+                        <?php if (isset($slide['textblock_content']) && !empty($slide['textblock_content'])) {
+    ?>
+                            <?php echo $slide['textblock_content'];
+    ?>
+                        <?php
+} ?>
                     </span>
                 </span>
                 <div class="slider-image slider-image-desktop hidden-xs hidden-sm" style="background-image:url(<?php echo ($image !== false) ? $image[0] : ''; ?>)"></div>
