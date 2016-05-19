@@ -180,4 +180,31 @@ class Wp
     {
         return isset($_GET['page']) && $_GET['page'] == 'modularity-editor';
     }
+
+    /**
+     * Fetches current archive slug
+     * @return mixed (string, boolean) False if not archive else archive slug
+     */
+    public static function getArchiveSlug()
+    {
+        $archiveSlug = false;
+
+        if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
+            if (is_home()) {
+                $archiveSlug = 'archive-post';
+            } elseif (is_post_type_archive() && is_search()) {
+                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+            } elseif (is_search()) {
+                $archiveSlug = 'search';
+            } elseif (is_404()) {
+                $archiveSlug = 'e404';
+            } elseif (is_author()) {
+                $archiveSlug = 'author-' . get_the_author_meta('ID');
+            } else {
+                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+            }
+        }
+
+        return $archiveSlug;
+    }
 }

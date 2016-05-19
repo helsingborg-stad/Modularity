@@ -63,19 +63,9 @@ class Display
             return;
         }
 
-        if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
-            if (is_home()) {
-                $archiveSlug = 'archive-post';
-            } elseif (is_post_type_archive() && is_search()) {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
-            } elseif (is_search()) {
-                $archiveSlug = 'search';
-            } elseif (is_404()) {
-                $archiveSlug = 'e404';
-            } else {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
-            }
+        $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
 
+        if ($archiveSlug) {
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
         } else {
@@ -210,6 +200,14 @@ class Display
             return false;
         }
 
+        ob_start();
+        include $templatePath;
+        $moduleMarkup = ob_get_clean();
+
+        if (strlen($moduleMarkup) === 0) {
+            return;
+        }
+
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
             $beforeWidget = $module->columnWidth;
             echo apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
@@ -220,7 +218,7 @@ class Display
             echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
         }
 
-        include $templatePath;
+        echo $moduleMarkup;
 
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
             echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);

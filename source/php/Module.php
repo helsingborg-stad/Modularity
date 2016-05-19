@@ -87,17 +87,9 @@ class Module
         global $post;
         $modules = array();
 
-        if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
-            if (is_home()) {
-                $archiveSlug = 'archive-post';
-            } elseif (is_search()) {
-                $archiveSlug = 'search';
-            } elseif (is_404()) {
-                $archiveSlug = 'e404';
-            } else {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
-            }
+        $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
 
+        if ($archiveSlug) {
             $modules = \Modularity\Editor::getPostModules($archiveSlug);
         } else {
             $modules = \Modularity\Editor::getPostModules($post->ID);
