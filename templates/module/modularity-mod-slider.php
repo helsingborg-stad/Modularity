@@ -1,5 +1,7 @@
 <?php
     $slides = get_field('slides', $module->ID);
+
+    var_dump($slides);
 ?>
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider'), $module->post_type, $args)); ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
     <ul>
@@ -26,6 +28,9 @@
                 )
             );
         } else {
+
+            //TODO: Remove this fix after 2016-10-01. This field is now mandatory.
+
             if ($image !== false) {
                 $mobile_image = wp_get_attachment_image_src(
                     $slide['image']['id'],
@@ -44,6 +49,8 @@
             <a href="<?php echo isset($slide['link_url']) && !empty($slide['link_url']) ? $slide['link_url'] : '#' ?>" <?php if (isset($slide['link_target']) && $slide['link_target'] === true) : ?>target="_blank"<?php endif; ?>>
             <?php endif; ?>
             <?php // SLIDES ?>
+
+
             <?php if ($slide['acf_fc_layout'] == 'image') : ?>
 
                 <?php if ($image !== false) : ?>
@@ -78,6 +85,24 @@
 
                     </video>
                 </div>
+
+            <?php elseif ($slide['acf_fc_layout'] == 'featured') : ?>
+
+                <span class="text-block text-block-left">
+                    <span>
+                        <!-- Title -->
+                        <?php if(isset($slide['textblock_title']) && !empty($slide['textblock_title'])) { ?>
+                            <em class="title block-level h1"><?php echo $slide['textblock_title']; ?> </em>
+                        <?php } ?>
+
+                        <!-- Content -->
+                        <?php if(isset($slide['textblock_content']) && !empty($slide['textblock_content'])) { ?>
+                            <?php echo $slide['textblock_content']; ?>
+                        <?php } ?>
+                    </span>
+                </span>
+                <div class="slider-image slider-image-desktop hidden-xs hidden-sm" style="background-image:url(<?php echo ($image !== false) ? $image[0] : ''; ?>)"></div>
+                <div class="slider-image slider-image-mobile hidden-md hidden-lg" style="background-image:url(<?php echo ($image !== false) ? $mobile_image[0] : ''; ?>)"></div>
 
             <?php endif; // END SLIDERS ?>
 
