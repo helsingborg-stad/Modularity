@@ -127,7 +127,7 @@
                         },
                         {
                             "key": "field_5702597b7d869",
-                            "label": "Titel",
+                            "label": "Title",
                             "name": "textblock_title",
                             "type": "text",
                             "instructions": "",
@@ -156,7 +156,7 @@
                         },
                         {
                             "key": "field_56ab235393f04",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -232,7 +232,7 @@
                         },
                         {
                             "key": "field_56fa8331d4651",
-                            "label": "Sida",
+                            "label": "Page",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -589,7 +589,7 @@
                         },
                         {
                             "key": "field_56fa88043ace5",
-                            "label": "Sida",
+                            "label": "Page",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -835,7 +835,7 @@
                         },
                         {
                             "key": "field_573d604fb1050",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -848,7 +848,7 @@
                             },
                             "default_value": "",
                             "placeholder": "",
-                            "maxlength": "",
+                            "maxlength": 250,
                             "rows": "",
                             "new_lines": "br",
                             "readonly": 0,
@@ -925,5 +925,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1463640425
+    "modified": 1463642745
 }
