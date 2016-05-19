@@ -1,7 +1,5 @@
 <?php
     $slides = get_field('slides', $module->ID);
-
-    var_dump($slides);
 ?>
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider'), $module->post_type, $args)); ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
     <ul>
