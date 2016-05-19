@@ -87,20 +87,14 @@
                 <span class="text-block text-block-left">
                     <span>
                         <!-- Title -->
-                        <?php if (isset($slide['textblock_title']) && !empty($slide['textblock_title'])) {
-    ?>
-                            <em class="title block-level h1"><?php echo $slide['textblock_title'];
-    ?> </em>
-                        <?php
-} ?>
+                        <?php if (isset($slide['textblock_title']) && !empty($slide['textblock_title'])) {?>
+                            <em class="title block-level h1"><?php echo $slide['textblock_title'];?> </em>
+                        <?php } ?>
 
                         <!-- Content -->
-                        <?php if (isset($slide['textblock_content']) && !empty($slide['textblock_content'])) {
-    ?>
-                            <?php echo $slide['textblock_content'];
-    ?>
-                        <?php
-} ?>
+                        <?php if (isset($slide['textblock_content']) && !empty($slide['textblock_content'])) { ?>
+                            <?php echo $slide['textblock_content']; ?>
+                        <?php } ?>
                     </span>
                 </span>
                 <div class="slider-image slider-image-desktop hidden-xs hidden-sm" style="background-image:url(<?php echo ($image !== false) ? $image[0] : ''; ?>)"></div>
