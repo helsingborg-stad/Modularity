@@ -24,10 +24,12 @@ if (strpos($sortBy, '_metakey_') > -1) {
     $fields->meta_key_output = $orderby;
 }
 
+$sanitizedOrderBy = str_replace('post_', '', $sortBy);
+
 $getPostsArgs = array(
     'post_type' => $fields->post_type,
     'posts_per_page' => $fields->number_of_posts,
-    'orderby' => str_replace('post_', '', $sortBy),
+    'orderby' => is_numeric($sanitizedOrderBy) ? intval($sanitizedOrderBy) : $sanitizedOrderBy,
     'order' => strtoupper($order)
 );
 
