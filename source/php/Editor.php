@@ -30,6 +30,10 @@ class Editor extends \Modularity\Options
         if (isset($_GET['id'])) {
             if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
                 $post = get_post($_GET['id']);
+                if (!$post) {
+                    return;
+                }
+
                 setup_postdata($post);
 
                 add_action('admin_bar_menu', function () use ($post) {
