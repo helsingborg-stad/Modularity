@@ -34,6 +34,8 @@ class Table extends \Modularity\Module
             return;
         }
 
+        ini_set('auto_detect_line_endings', true);
+
         $file = get_field('mod_table_csv_file', $post_id);
         $file = fopen($file['url'], 'r');
         $data = array();
