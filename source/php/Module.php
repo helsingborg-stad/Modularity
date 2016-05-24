@@ -365,7 +365,7 @@ class Module
             _e('Copy and paste this shortcode to display the module inline.', 'modularity');
             echo '</p><p>';
             echo '<label><input type="checkbox" class="modularity-inline-template" checked> Use inline template</label>';
-            echo '<pre style="overflow: auto;background:#f9f9f9;border:1px solid #ddd;padding:5px;">[modularity id="' . $post->ID . '"<span></span>]</pre>';
+            echo '<textarea style="margin-top:10px; overflow: hidden;width: 100%;height:30px;background:#f9f9f9;border:1px solid #ddd;padding:5px;">[modularity id="' . $post->ID . '"]</textarea>';
             echo '</p>';
 
             echo "<script>
