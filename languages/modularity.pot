@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-05-02 09:59+0200\n"
+"POT-Creation-Date: 2016-05-24 12:09+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,81 +20,81 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:96 App.php:122
+#: App.php:82 App.php:108
 msgid "Edit"
 msgstr ""
 
-#: App.php:96 source/php/Editor.php:78 source/php/Options/General.php:81
+#: App.php:82 source/php/Editor.php:82 source/php/Options/General.php:81
 msgid "Modules"
 msgstr ""
 
-#: App.php:123
+#: App.php:109
 msgid "Import"
 msgstr ""
 
-#: App.php:124
+#: App.php:110
 msgid "Remove"
 msgstr ""
 
-#: App.php:125
+#: App.php:111
 msgid "Hide"
 msgstr ""
 
-#: App.php:126
+#: App.php:112
 msgid "Are you sure you want to remove this module?"
 msgstr ""
 
-#: App.php:127
+#: App.php:113
 msgid "Saving…"
 msgstr ""
 
-#: App.php:128
+#: App.php:114
 msgid "Close"
 msgstr ""
 
-#: App.php:129
+#: App.php:115
 msgid "Width"
 msgstr ""
 
-#: source/php/Editor.php:39
+#: source/php/Editor.php:43
 msgid "View Page"
 msgstr ""
 
-#: source/php/Editor.php:77
+#: source/php/Editor.php:81
 msgid "Content"
 msgstr ""
 
-#: source/php/Editor.php:89
+#: source/php/Editor.php:93
 msgid "Modularity editor"
 msgstr ""
 
-#: source/php/Editor.php:90
+#: source/php/Editor.php:94
 msgid "Editor"
 msgstr ""
 
-#: source/php/Editor.php:108
+#: source/php/Editor.php:112
 msgid "Save modules"
 msgstr ""
 
-#: source/php/Editor.php:119
+#: source/php/Editor.php:123
 msgid "Enabled modules"
 msgstr ""
 
-#: source/php/Editor.php:158
+#: source/php/Editor.php:162
 msgid "No active sidebar areas"
 msgstr ""
 
-#: source/php/Editor.php:160
+#: source/php/Editor.php:164
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:381
+#: source/php/Editor.php:385
 msgid "Modules saved"
 msgstr ""
 
-#: source/php/Editor.php:452
+#: source/php/Editor.php:456
 msgid "Inherit"
 msgstr ""
 
@@ -105,86 +105,86 @@ msgid ""
 "\"_blank\">Advanced Custom Fields Pro</a> plugin."
 msgstr ""
 
-#: source/php/Module.php:170
+#: source/php/Module.php:166
 msgctxt "add new button"
 msgid "Add New"
 msgstr ""
 
-#: source/php/Module.php:171
+#: source/php/Module.php:167
 #, php-format
 msgid "Add new %s"
 msgstr ""
 
-#: source/php/Module.php:172
+#: source/php/Module.php:168
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: source/php/Module.php:173 source/php/Module.php:175
+#: source/php/Module.php:169 source/php/Module.php:171
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: source/php/Module.php:174
+#: source/php/Module.php:170
 #, php-format
 msgid "View %s"
 msgstr ""
 
-#: source/php/Module.php:176
+#: source/php/Module.php:172
 #, php-format
 msgid "Search %s"
 msgstr ""
 
-#: source/php/Module.php:177
+#: source/php/Module.php:173
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
-#: source/php/Module.php:178
+#: source/php/Module.php:174
 #, php-format
 msgid "No %s"
 msgstr ""
 
-#: source/php/Module.php:179
+#: source/php/Module.php:175
 #, php-format
 msgid "No %s in trash"
 msgstr ""
 
-#: source/php/Module.php:284
+#: source/php/Module.php:289
 #: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:4
 msgid "Title"
 msgstr ""
 
-#: source/php/Module.php:285
+#: source/php/Module.php:290
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr ""
 
-#: source/php/Module.php:286
+#: source/php/Module.php:291
 msgid "Usage"
 msgstr ""
 
-#: source/php/Module.php:287
+#: source/php/Module.php:292
 msgid "Date"
 msgstr ""
 
-#: source/php/Module.php:305
+#: source/php/Module.php:316
 msgid "Not used"
 msgstr ""
 
-#: source/php/Module.php:322
+#: source/php/Module.php:333
 msgid "more"
 msgstr ""
 
-#: source/php/Module.php:349
+#: source/php/Module.php:365
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 
-#: source/php/Module.php:388
+#: source/php/Module.php:408
 msgid "This modules is not used yet."
 msgstr ""
 
-#: source/php/Module.php:392
+#: source/php/Module.php:412
 msgid "This module is used on the following places:"
 msgstr ""
 
@@ -235,7 +235,7 @@ msgstr ""
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr ""
 
-#: source/php/Module/Social/Feed.php:456 source/php/Module/Social/Feed.php:494
+#: source/php/Module/Social/Feed.php:457 source/php/Module/Social/Feed.php:496
 msgid "ago"
 msgstr ""
 
@@ -265,60 +265,106 @@ msgstr ""
 msgid "Outputs a flexible table with options."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:47
+#: source/php/Module/Table/Table.php:76
 msgid "No data available in table"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:48
+#: source/php/Module/Table/Table.php:77
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:49
+#: source/php/Module/Table/Table.php:78
 msgid "Showing 0 to 0 of 0 entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:50
+#: source/php/Module/Table/Table.php:79
 msgid "filtered from _MAX_ total entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:53
+#: source/php/Module/Table/Table.php:82
 msgid "Show _MENU_ entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:54
+#: source/php/Module/Table/Table.php:83
 msgid "Loading..."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:55
+#: source/php/Module/Table/Table.php:84
 msgid "Processing..."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:57
+#: source/php/Module/Table/Table.php:86
 msgid "No matching records found"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:59
+#: source/php/Module/Table/Table.php:88
 msgid "First"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:60
+#: source/php/Module/Table/Table.php:89
 msgid "Last"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:61
+#: source/php/Module/Table/Table.php:90
 msgid "Next"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:62
+#: source/php/Module/Table/Table.php:91
 msgid "Previous"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:65
+#: source/php/Module/Table/Table.php:94
 msgid "activate to sort column ascending"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:66
+#: source/php/Module/Table/Table.php:95
 msgid "activate to sort column descending"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:23
+#: source/php/Options/ArchivesList.php:11
+#: templates/options/modularity-archives.php:2
+msgid "Archives"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:24
+msgid "Calendar"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:25
+msgid "Categories"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:26
+msgid "Meta"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:27
+msgid "Pages"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:28
+msgid "Recent comments"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:29
+msgid "Recent posts"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:30
+msgid "RSS"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:31
+msgid "Search"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:32
+msgid "Tag cloud"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:154
+msgid "Missing a valid classname!"
 msgstr ""
 
 #: source/php/Options.php:91
@@ -331,11 +377,6 @@ msgstr ""
 
 #: source/php/Options/ArchivesList.php:10
 msgid "Archive"
-msgstr ""
-
-#: source/php/Options/ArchivesList.php:11
-#: templates/options/modularity-archives.php:2
-msgid "Archives"
 msgstr ""
 
 #: source/php/Options/ArchivesList.php:18
@@ -425,9 +466,13 @@ msgstr ""
 msgid "Hide global widgets"
 msgstr ""
 
-#: templates/module/modularity-mod-latest-news.php:42
+#: templates/module/modularity-mod-latest-list.php:55
+msgid "Show more"
+msgstr ""
+
+#: templates/module/modularity-mod-latest-news.php:55
 #: templates/module/modularity-mod-mainnews.php:39
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:42
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:41
 msgid "Read more"
 msgstr ""
 
