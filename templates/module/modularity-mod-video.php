@@ -18,7 +18,7 @@
     <h4 class="box-title"><?php echo !empty($module->post_title) ? apply_filters('the_title', $module->post_title) : 'Video'; ?></h4>
 
     <?php if ($fields['type'] == 'upload') : ?>
-        <video poster="<?php echo ($image !== false) ? $image[0] : ''; ?>" preload="auto" autoplay loop muted>
+        <video class="ratio-16-9" poster="<?php echo ($image !== false) ? $image[0] : ''; ?>" preload="auto" autoplay loop muted>
 
             <!-- Mp4 -->
             <?php if (isset($fields['video_mp4']) && !empty($fields['video_mp4'])) : ?>
