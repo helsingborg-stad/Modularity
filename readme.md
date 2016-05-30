@@ -194,3 +194,36 @@ add_filter('Modularity/Module/Classes', function ($classes, $moduleType, $sideba
     return $classes;
 });
 ```
+
+#### Modularity/Display/Markup
+
+> Module display markup
+
+*Params:*
+```
+$markup      The markup
+$module      The module post
+```
+
+*Example:*
+```php
+add_filter('Modularity/Display/Markup', function ($markup, $module) {
+    return $markup;
+});
+```
+
+#### Modularity/Display/[MODULE SLUG]/Markup
+
+*Params:*
+```
+$markup      The markup
+$module      The module post
+```
+
+*Example:*
+```php
+add_filter('Modularity/Display/Markup', function ($markup, $module) {
+    return $markup;
+});
+```
+
