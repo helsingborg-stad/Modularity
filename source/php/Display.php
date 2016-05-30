@@ -210,23 +210,26 @@ class Display
 
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
             $beforeWidget = $module->columnWidth;
-            echo apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
+            $moduleMarkup = apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID)  . $moduleMarkup;
         } elseif (isset($args['before_widget'])) {
             $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
             $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
 
-            echo apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
+            $moduleMarkup = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID) . $moduleMarkup;
         }
-
-        echo $moduleMarkup;
 
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-            echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
+            $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
         } elseif (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
-            echo apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
+            $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
         } elseif (isset($args['after_widget'])) {
-            echo apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
+            $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
         }
+
+        $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
+        $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+
+        echo $moduleMarkup;
 
         return true;
     }
