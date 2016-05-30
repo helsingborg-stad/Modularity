@@ -48,7 +48,9 @@ class Table extends \Modularity\Module
         fclose($file);
 
         $data = json_encode($data);
+
         update_post_meta($post_id, 'mod_table', $data);
+        update_post_meta($post_id, '_mod_table', 'field_5666a2ae23643');
     }
 
     public function modAssets()
