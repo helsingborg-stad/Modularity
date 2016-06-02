@@ -24,7 +24,8 @@
             "other_choice": 0,
             "save_other_choice": 0,
             "default_value": "",
-            "layout": "horizontal"
+            "layout": "horizontal",
+            "allow_null": 0
         },
         {
             "key": "field_56dedd7948eda",
@@ -148,7 +149,8 @@
             "other_choice": 0,
             "save_other_choice": 0,
             "default_value": "hashtag",
-            "layout": "horizontal"
+            "layout": "horizontal",
+            "allow_null": 0
         },
         {
             "key": "field_56dede1448ede",
@@ -203,7 +205,7 @@
             "default_value": "",
             "placeholder": "",
             "prepend": "",
-            "append": "<a target=\"_blank\" href=\"http:\/\/pinceladasdaweb.com.br\/instagram\/access-token\/\">Generate me one<\/a>",
+            "append": "<a target=\"_blank\" href=\"http:\/\/instagram.pixelunion.net\">Generate me one<\/a>",
             "maxlength": "",
             "readonly": 0,
             "disabled": 0
@@ -467,5 +469,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1459519190
+    "modified": 1464863858
 }
