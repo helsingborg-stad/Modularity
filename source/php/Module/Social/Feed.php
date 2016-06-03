@@ -29,11 +29,7 @@ class Feed
          */
         switch ($this->args['network']) {
             case 'instagram':
-                if ($this->args['type'] == 'hashtag') {
-                    $this->feedData = $this->getInstagramHashtag();
-                } else {
-                    $this->feedData = $this->getInstagramUser();
-                }
+                $this->feedData = $this->getInstagramSelfFeed();
                 break;
 
             case 'facebook':
@@ -220,8 +216,25 @@ class Feed
     }
 
     /**
+     * Get Instagram self-user feed
+     * @return object Feed data
+     * @since 1.3.96
+     */
+    protected function getInstagramSelfFeed()
+    {
+        $endpoint = 'https://api.instagram.com/v1/users/self/media/recent/';
+        $data = array(
+            'access_token' => $this->args['api_secret']
+        );
+
+        $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+        return json_decode($recent);
+    }
+
+    /**
      * Get Instagram hashtag feed
      * @return object Feed data
+     * @deprecated depricated since 1.3.96, 3 Jun 2016
      */
     protected function getInstagramHashtag()
     {
@@ -238,6 +251,7 @@ class Feed
     /**
      * Get Instagram user feed
      * @return object Feed data
+     * @deprecated depricated since 1.3.96, 3 Jun 2016
      */
     protected function getInstagramUser()
     {
@@ -257,6 +271,7 @@ class Feed
      * Get Instagram user ID from username
      * @param  string   $username Username
      * @return integer            User ID
+     * @deprecated depricated since 1.3.96, 3 Jun 2016
      */
     protected function getInstagramUserId($username)
     {
