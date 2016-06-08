@@ -1,5 +1,22 @@
 <?php
     $fields = json_decode(json_encode(get_fields($module->ID)));
+
+    if (isset($fields->contacts) && count($fields->contacts) > 0) {
+        $displayMode = 'cards';
+        if (isset($fields->display_mode) && !empty($fields->display_mode)) {
+            $displayMode = $fields->display_mode;
+        }
+
+        switch ($displayMode) {
+            case 'list':
+                include \Modularity\Helper\Wp::getTemplate($module->post_type . '-list', 'module/modularity-mod-contact', false);
+                break;
+
+            default:
+                include \Modularity\Helper\Wp::getTemplate($module->post_type . '-cards', 'module/modularity-mod-contact', false);
+                break;
+        }
+    } else {
 ?>
 
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $module->post_type, $args)); ?>" itemscope="person" itemtype="http://schema.org/Organization">
@@ -37,3 +54,4 @@
        </ul>
     </div>
 </div>
+<?php } ?>
