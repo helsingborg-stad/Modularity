@@ -27,7 +27,7 @@ class Tabs
         $requestUri = str_replace('&message=1', '', $_SERVER['REQUEST_URI']);
 
         foreach ($this->tabs as $tab => $url) {
-            if (strpos($url, $requestUri) !== false) {
+            if (strpos($url, $requestUri) !== false || (strpos($url, 'post.php') !== false && strpos($requestUri, 'post-new.php') !== false)) {
                 echo '<a href="' . $url . '" class="nav-tab nav-tab-active">' . $tab . '</a>';
             } else {
                 echo '<a href="' . $url . '" class="nav-tab">' . $tab . '</a>';
