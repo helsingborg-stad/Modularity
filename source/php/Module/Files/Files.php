@@ -8,9 +8,9 @@ class Files extends \Modularity\Module
     {
         $this->register(
             'files',
-            __("Files", 'modularity-plugin'),
-            __("Files", 'modularity-plugin'),
-            __("Outputs a file archive.", 'modularity-plugin'),
+            __("Files", 'modularity'),
+            __("Files", 'modularity'),
+            __("Outputs a file archive.", 'modularity'),
             array()
         );
     }

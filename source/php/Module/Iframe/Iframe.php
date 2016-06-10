@@ -8,9 +8,9 @@ class Iframe extends \Modularity\Module
     {
         $this->register(
             'iframe',
-            __("Iframe", 'modularity-plugin'),
-            __("Iframe", 'modularity-plugin'),
-            __("Outputs an embedded page.", 'modularity-plugin'),
+            __("Iframe", 'modularity'),
+            __("Iframe", 'modularity'),
+            __("Outputs an embedded page.", 'modularity'),
             array()
         );
     }

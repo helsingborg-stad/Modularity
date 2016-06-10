@@ -9,8 +9,8 @@ class Latest extends \Modularity\Module
         //Register
         $this->register(
             'latest',
-            'Latest',
-            'Latest',
+            __('Latest', 'modularity'),
+            __('Latest', 'modularity'),
             'Outputs posts in a given order',
             array(''),
             null,

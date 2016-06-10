@@ -12,9 +12,9 @@ class WpWidget extends \Modularity\Module
         //Register widget
         $this->register(
             'wpwidget',
-            'Wordpress Widget',
-            'Wordpress Widgets',
-            'Outputs a default widget in WordPress',
+            __('Wordpress Widgets', 'modularity'),
+            __('Wordpress Widgets', 'modularity'),
+            __('Outputs a default widget in WordPress'),
             array('editor')
         );
 

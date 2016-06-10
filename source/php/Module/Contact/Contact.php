@@ -8,9 +8,9 @@ class Contact extends \Modularity\Module
     {
         $this->register(
             'contact',
-            'Contact',
-            'Contacts',
-            'Outputs one or more contacts',
+            __('Contact', 'modularity'),
+            __('Contacts', 'modularity'),
+            __('Outputs one or more contacts', 'modularity'),
             array('editor')
         );
     }

@@ -8,9 +8,9 @@ class Gallery extends \Modularity\Module
     {
         $this->register(
             'gallery',
-            'Gallery',
-            'Galleries',
-            'Outputs a gallery with images',
+            __('Gallery', 'modularity'),
+            __('Galleries', 'modularity'),
+            __('Outputs a gallery with images', 'modularity'),
             array()
         );
 

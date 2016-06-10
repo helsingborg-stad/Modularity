@@ -8,9 +8,9 @@ class Script extends \Modularity\Module
     {
         $this->register(
             'script',
-            __("Script", 'modularity-plugin'),
-            __("Script", 'modularity-plugin'),
-            __("Outputs unsanitized code to widget area.", 'modularity-plugin'),
+            __("Script", 'modularity'),
+            __("Script", 'modularity'),
+            __("Outputs unsanitized code to widget area.", 'modularity'),
             array()
         );
     }

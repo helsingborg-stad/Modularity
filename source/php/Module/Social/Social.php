@@ -8,9 +8,9 @@ class Social extends \Modularity\Module
     {
         $this->register(
             'social',
-            __("Social Media Feed", 'modularity-plugin'),
-            __("Sociala Media Feeds", 'modularity-plugin'),
-            __("Outputs a social media feed from desired username or hashtag (facebook, instagram, twitter, linkedin).", 'modularity-plugin'),
+            __("Social Media Feed", 'modularity'),
+            __("Sociala Media Feeds", 'modularity'),
+            __("Outputs a social media feed from desired username or hashtag (facebook, instagram, twitter, linkedin).", 'modularity'),
             array()
         );
     }

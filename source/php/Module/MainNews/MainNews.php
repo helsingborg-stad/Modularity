@@ -8,8 +8,8 @@ class MainNews extends \Modularity\Module
     {
         $this->register(
             'mainnews',
-            'Main News',
-            'Main News',
+            __('Main News', 'modularity'),
+            __('Main News', 'modularity'),
             'Outputs a list of prioritized articles',
             array()
         );

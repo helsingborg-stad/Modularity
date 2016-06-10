@@ -8,8 +8,8 @@ class Text extends \Modularity\Module
     {
         $this->register(
             'text',
-            'Text',
-            'Texts',
+            __('Text', 'modularity'),
+            __('Texts', 'modularity'),
             'Outputs a text',
             array('editor')
         );

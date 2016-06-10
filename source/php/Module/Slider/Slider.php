@@ -8,9 +8,9 @@ class Slider extends \Modularity\Module
     {
         $this->register(
             'slider',
-            __("Slider", 'modularity-plugin'),
-            __("Sliders", 'modularity-plugin'),
-            __("Outputs multiple images or videos in a sliding apperance.", 'modularity-plugin'),
+            __("Slider", 'modularity'),
+            __("Sliders", 'modularity'),
+            __("Outputs multiple images or videos in a sliding apperance.", 'modularity'),
             array(),
             null
         );

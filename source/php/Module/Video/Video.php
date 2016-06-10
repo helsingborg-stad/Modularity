@@ -8,9 +8,9 @@ class Video extends \Modularity\Module
     {
         $this->register(
             'video',
-            __("Video", 'modularity-plugin'),
-            __("Video", 'modularity-plugin'),
-            __("Outputs an embedded Video.", 'modularity-plugin'),
+            __("Video", 'modularity'),
+            __("Video", 'modularity'),
+            __("Outputs an embedded Video.", 'modularity'),
             array()
         );
     }

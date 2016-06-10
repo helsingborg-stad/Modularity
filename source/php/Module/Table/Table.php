@@ -10,9 +10,9 @@ class Table extends \Modularity\Module
         //Register acf module
         $this->register(
             'table',
-            __("Table", 'modularity-plugin'),
-            __("Tables", 'modularity-plugin'),
-            __("Outputs a flexible table with options.", 'modularity-plugin'),
+            __("Table", 'modularity'),
+            __("Tables", 'modularity'),
+            __("Outputs a flexible table with options.", 'modularity'),
             array(), //supports
             null, //icon
             'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php' //included plugin
