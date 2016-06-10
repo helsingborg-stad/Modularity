@@ -133,6 +133,10 @@ class Editor extends \Modularity\Options
                     }
                 }
 
+                uasort($modules, function ($a, $b) {
+                    return $a['labels']['name'] > $b['labels']['name'];
+                });
+
                 include MODULARITY_TEMPLATE_PATH . 'editor/modularity-enabled-modules.php';
             },
             $this->screenHook,
