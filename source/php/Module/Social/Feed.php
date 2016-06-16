@@ -47,6 +47,51 @@ class Feed
             case 'pinterest':
                 $this->feedData = $this->getPinterestUser();
                 break;
+
+            case 'googleplus':
+                $this->feedData = $this->getGooglePlusFeed();
+                break;
+        }
+    }
+
+    public function getGooglePlusFeed()
+    {
+        $key = $this->args['api_user'];
+        $getUser = urlencode($this->args['query']);
+
+        $endpoint = 'https://www.googleapis.com/plus/v1/people/' . $getUser . '/activities/public?key=' . $key;
+        $response = \Modularity\Helper\Curl::request('GET', $endpoint);
+        $response = json_decode($response);
+
+        return array_slice($response->items, 0, $this->args['length']);
+    }
+
+    public function renderGooglePlus()
+    {
+        foreach ($this->feedData as $item) {
+            $attachment = null;
+
+            if (isset($item->object->attachments[0])) {
+                $attachment = array(
+                    'type'         => $item->object->attachments[0]->objectType,
+                    'status_type'  => $item->object->attachments[0]->objectType,
+                    'name'         => $item->object->attachments[0]->displayName,
+                    'description'  => '',
+                    'caption'      => $item->object->attachments[0]->content,
+                    'link'         => $item->object->attachments[0]->url,
+                    'full_picture' => $item->object->attachments[0]->image->url
+                );
+            }
+
+            $this->addStory(
+                strtotime($item->published),
+                array(
+                    'name' => $item->actor->displayName,
+                    'picture' => $item->actor->image->url
+                ),
+                $item->object->content,
+                $attachment
+            );
         }
     }
 
@@ -317,6 +362,11 @@ class Feed
             case 'pinterest':
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-pinterest social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderPinterest();
+                break;
+
+            case 'googleplus':
+                $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-feed social-feed-facebook social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
+                $this->renderGooglePlus();
                 break;
         }
 
