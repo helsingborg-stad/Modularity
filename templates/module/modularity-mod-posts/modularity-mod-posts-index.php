@@ -15,16 +15,29 @@
         }
 
         /* Image */
-        $image = wp_get_attachment_image_src(
-            get_post_thumbnail_id($post->ID),
-            apply_filters('modularity/image/latest/box',
-                $image_dimensions,
-                $args
-            )
-        );
+        $image = null;
+        if ($fields->posts_data_source !== 'input') {
+            $image = wp_get_attachment_image_src(
+                get_post_thumbnail_id($post->ID),
+                apply_filters('modularity/image/latest/box',
+                    $image_dimensions,
+                    $args
+                )
+            );
+        } else {
+            if ($post->image) {
+                $image = wp_get_attachment_image_src(
+                    $post->image->ID,
+                    apply_filters('modularity/image/latest/box',
+                        $image_dimensions,
+                        $args
+                    )
+                );
+            }
+        }
     ?>
     <div class="<?php echo $fields->posts_columns; ?>">
-        <a href="<?php the_permalink(); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $module->post_type, $args)); ?>" data-equal-item>
+        <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $module->post_type, $args)); ?>" data-equal-item>
             <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
                 <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
             <?php endif; ?>

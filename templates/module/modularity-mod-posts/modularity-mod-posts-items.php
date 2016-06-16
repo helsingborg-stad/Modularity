@@ -16,17 +16,30 @@
         }
 
         /* Image */
-        $image = wp_get_attachment_image_src(
-            get_post_thumbnail_id($post->ID),
-            apply_filters('modularity/image/latest/box',
-                $image_dimensions,
-                $args
-            )
-        );
+        $image = null;
+        if ($fields->posts_data_source !== 'input') {
+            $image = wp_get_attachment_image_src(
+                get_post_thumbnail_id($post->ID),
+                apply_filters('modularity/image/latest/box',
+                    $image_dimensions,
+                    $args
+                )
+            );
+        } else {
+            if ($post->image) {
+                $image = wp_get_attachment_image_src(
+                    $post->image->ID,
+                    apply_filters('modularity/image/latest/box',
+                        $image_dimensions,
+                        $args
+                    )
+                );
+            }
+        }
 
     ?>
     <div class="<?php echo $fields->posts_columns; ?>">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>">
+        <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>">
             <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
             <?php endif; ?>
@@ -35,12 +48,16 @@
                 <h5 class="link-item link-item-light"><?php echo apply_filters('the_title', $post->post_title); ?></h5>
                 <?php endif; ?>
 
-                <?php if (in_array('date', $fields->posts_fields)) : ?>
+                <?php if (in_array('date', $fields->posts_fields) && $fields->posts_data_source !== 'input') : ?>
                 <p><time><?php echo get_the_time('Y-m-d H:i', $post->ID); ?></time></p>
                 <?php endif; ?>
 
                 <?php if (in_array('excerpt', $fields->posts_fields)) : ?>
-                <p><?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?></p>
+                        <?php if ($fields->posts_data_source === 'input') : ?>
+                            <?php echo $post->post_content; ?>
+                        <?php else : ?>
+                            <p><?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?></p>
+                        <?php endif; ?>
                 <?php endif; ?>
             </div>
         </a>

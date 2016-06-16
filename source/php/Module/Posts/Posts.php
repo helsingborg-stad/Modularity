@@ -224,6 +224,22 @@ class Posts extends \Modularity\Module
         });
     }
 
+    public static function getManualInputPosts($data)
+    {
+        $posts = array();
+
+        foreach ($data as $key => $item) {
+            $posts[] = array_merge((array) $item, array(
+                'ID' => $key,
+                'post_name' => $key
+            ));
+        }
+
+        $posts = json_decode(json_encode($posts));
+
+        return $posts;
+    }
+
     /**
      * Get included posts
      * @param  object $module Module object
@@ -232,6 +248,10 @@ class Posts extends \Modularity\Module
     public static function getPosts($module)
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
+
+        if ($fields->posts_data_source == 'input') {
+            return self::getManualInputPosts($fields->data);
+        }
 
         $metaQuery = false;
         $sortBy = $fields->posts_sort_by ? $fields->posts_sort_by : 'date';

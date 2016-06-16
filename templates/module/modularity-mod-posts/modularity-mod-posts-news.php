@@ -2,24 +2,43 @@
 <?php
 $hasImages = false;
 foreach ($posts as $post) {
-    if (get_thumbnail_source($post->ID) !== false) {
-        $hasImages = true;
+    if ($fields->posts_data_source === 'input') {
+        if ($post->image) {
+            $hasImages = true;
+        }
+    } else {
+        if (get_thumbnail_source($post->ID) !== false) {
+            $hasImages = true;
+        }
     }
 }
 ?>
 
 <?php foreach ($posts as $post) :  ?>
     <?php
-        $image = wp_get_attachment_image_src(
-            get_post_thumbnail_id($post->ID),
-            apply_filters('modularity/image/latest/box',
-                array(400, 300),
-                $args
-            )
-        );
+        $image = null;
+        if ($fields->posts_data_source !== 'input') {
+            $image = wp_get_attachment_image_src(
+                get_post_thumbnail_id($post->ID),
+                apply_filters('modularity/image/latest/box',
+                    $image_dimensions,
+                    $args
+                )
+            );
+        } else {
+            if ($post->image) {
+                $image = wp_get_attachment_image_src(
+                    $post->image->ID,
+                    apply_filters('modularity/image/latest/box',
+                        $image_dimensions,
+                        $args
+                    )
+                );
+            }
+        }
     ?>
     <div class="grid-lg-12">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>">
+        <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>">
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">
                     <?php if ($image && in_array('image', $fields->posts_fields)) : ?>

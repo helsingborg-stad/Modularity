@@ -25,7 +25,8 @@
             "other_choice": 0,
             "save_other_choice": 0,
             "default_value": "list",
-            "layout": "horizontal"
+            "layout": "horizontal",
+            "allow_null": 0
         },
         {
             "key": "field_571dfdf50d9da",
@@ -94,7 +95,7 @@
                 "id": ""
             },
             "choices": {
-                "date": "Show data published",
+                "date": "Show date published",
                 "excerpt": "Show excerpt",
                 "title": "Show title",
                 "image": "Show featured image"
@@ -176,5 +177,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1461671993
+    "modified": 1466065252
 }

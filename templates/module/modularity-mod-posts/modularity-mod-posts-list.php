@@ -6,12 +6,12 @@
         foreach ($posts as $post) :
         ?>
             <li>
-                <a href="<?php echo get_permalink($post->ID); ?>">
+                <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>">
                     <?php if (in_array('title', $fields->posts_fields)) : ?>
                         <span class="link-item title"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                     <?php endif; ?>
 
-                    <?php if (in_array('date', $fields->posts_fields)) : ?>
+                    <?php if (in_array('date', $fields->posts_fields) && $fields->posts_data_source !== 'input') : ?>
                     <time class="date text-sm text-dark-gray"><?php echo get_the_time('Y-m-d', $post->ID); ?></time>
                     <?php endif; ?>
                 </a>
