@@ -48,7 +48,7 @@
                 <?php endif; ?>
 
                 <?php if (in_array('excerpt', $fields->posts_fields)) : ?>
-                <?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?>
+                <?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : ''; ?>
                 <?php endif; ?>
             </div>
         </a>

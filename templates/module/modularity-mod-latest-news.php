@@ -49,7 +49,7 @@ foreach ($posts as $post) {
 
 
                 <?php if ($fields->show_excerpt) : ?>
-                <?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?>
+                <?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : ''; ?>
                 <?php endif; ?>
 
                 <p><span class="link-item"><?php _e('Read more', 'modularity'); ?></span></p>
