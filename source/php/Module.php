@@ -189,7 +189,7 @@ class Module
             'menu_position'        => 100,
             'exclude_from_search'  => true,
             'menu_icon'            => $icon,
-            'supports'             => array_merge($supports, array('title'))
+            'supports'             => array_merge($supports, array('title', 'revisions'))
         );
 
         /**
