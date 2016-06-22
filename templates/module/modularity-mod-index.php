@@ -27,22 +27,30 @@
 
         $permalink = ($item['link_type'] == 'internal') ? get_permalink() : $item['link_url'];
 
-        $thumbnail_image = wp_get_attachment_image_src(
-            get_post_thumbnail_id($item['page']->ID),
-            apply_filters('Modularity/index/image',
-                $image_dimensions,
-                $args
-            )
-        );
+        $thumbnail_image = null;
+
+        if ($item['image_display'] == 'custom' || $item['link_type'] == 'external') {
+            $thumbnail_image = wp_get_attachment_image_src(
+                $item['custom_image']['ID'],
+                apply_filters('Modularity/index/image',
+                    $image_dimensions,
+                    $args
+                )
+            );
+        } else {
+            $thumbnail_image = wp_get_attachment_image_src(
+                get_post_thumbnail_id($item['page']->ID),
+                apply_filters('Modularity/index/image',
+                    $image_dimensions,
+                    $args
+                )
+            );
+        }
     ?>
     <div class="<?php echo $columnClass; ?>">
         <a href="<?php echo $permalink; ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $module->post_type, $args)); ?>" data-equal-item>
-            <?php if ($item['image_display'] == 'featured' && $thumbnail_image) : ?>
+            <?php if ($thumbnail_image) : ?>
                 <img class="box-image" src="<?php echo $thumbnail_image[0]; ?>" alt="<?php echo isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title(); ?>">
-            <?php
-            elseif (($item['link_type'] == 'external' || $item['image_display'] == 'custom') && !empty($item['custom_image'])) :
-            ?>
-                <img class="box-image" src="<?php echo $item['custom_image']['url']; ?>" alt="<?php echo (!empty($item['custom_image']['alt'])) ? $item['custom_image']['alt'] : $item['title']; ?>">
             <?php endif; ?>
 
             <div class="box-content">
