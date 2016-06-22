@@ -1,3 +1,4 @@
+<div class="box">
 <div class="accordion accordion-icon accordion-list">
 <?php
 $contacts = $fields->contacts;
@@ -63,7 +64,6 @@ if (isset($info['image']) && !empty($info['image'])) {
     $image = false;
 }
 ?>
-
     <section class="accordion-section" itemscope="person" itemtype="http://schema.org/Organization">
         <input type="checkbox" name="active-section" id="accordion-section-<?php echo $i; ?>">
         <label class="accordion-toggle" for="accordion-section-<?php echo $i; ?>">
@@ -87,4 +87,5 @@ if (isset($info['image']) && !empty($info['image'])) {
 <?php
 }
 ?>
+</div>
 </div>
