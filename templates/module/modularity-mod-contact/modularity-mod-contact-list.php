@@ -65,7 +65,7 @@ if (isset($info['image']) && !empty($info['image'])) {
 ?>
 
     <section class="accordion-section" itemscope="person" itemtype="http://schema.org/Organization">
-        <input type="radio" name="active-section" id="accordion-section-<?php echo $i; ?>">
+        <input type="checkbox" name="active-section" id="accordion-section-<?php echo $i; ?>">
         <label class="accordion-toggle" for="accordion-section-<?php echo $i; ?>">
             <h3 itemprop="name"><?php echo $info['first_name']; ?> <?php echo $info['last_name']; ?></h3>
         </label>
