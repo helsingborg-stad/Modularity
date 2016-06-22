@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box no-padding">
 <div class="accordion accordion-icon accordion-list">
 <?php
 $contacts = $fields->contacts;
