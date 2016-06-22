@@ -19,6 +19,11 @@ class Archives
             foreach ($options['enabled-post-types'] as $postType) {
                 $postTypeSlug = $postType;
 
+                // Do not add archive modules for page
+                if ($postType == 'page') {
+                    continue;
+                }
+
                 if ($postType == 'post') {
                     $postType = '';
                 } else {
