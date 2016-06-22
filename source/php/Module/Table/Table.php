@@ -42,11 +42,17 @@ class Table extends \Modularity\Module
 
         while (!feof($file)) {
             $row = fgetcsv($file, 0, ';');
+
+            foreach ($row as &$value) {
+                $value = mb_convert_encoding($value, 'UTF-8', 'Windows-1252');
+            }
+
             array_push($data, $row);
         }
 
         fclose($file);
 
+        $data = array_filter($data);
         $data = json_encode($data);
 
         update_post_meta($post_id, 'mod_table', $data);
