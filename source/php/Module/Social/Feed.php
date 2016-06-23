@@ -29,7 +29,11 @@ class Feed
          */
         switch ($this->args['network']) {
             case 'instagram':
-                $this->feedData = $this->getInstagramSelfFeed();
+                if ($this->args['type'] == 'hashtag') {
+                    $this->feedData = $this->getInstagramHashtag();
+                } else {
+                    $this->feedData = $this->getIstagramUserProfileFeed();
+                }
                 break;
 
             case 'facebook':
@@ -264,6 +268,7 @@ class Feed
      * Get Instagram self-user feed
      * @return object Feed data
      * @since 1.3.96
+     * @deprecated depricated since 1.4.2, 23 Jun 2016
      */
     protected function getInstagramSelfFeed()
     {
@@ -277,18 +282,43 @@ class Feed
     }
 
     /**
+     * Get Instagram user profile feed (/user/media/ un-documented endpoint)
+     * @return object Feed data
+     * @since 1.4.2
+     */
+    protected function getIstagramUserProfileFeed()
+    {
+        $endpoint   = 'https://www.instagram.com/'.$this->args['query'].'/media/';
+        $recent     = \Modularity\Helper\Curl::request('GET', $endpoint, array());
+        $recent     = json_decode($recent);
+
+        //Rename object
+        if (isset($recent->items) && !isset($recent->data)) {
+            $recent->data = $recent->items;
+            unset($recent->items);
+        }
+
+        return $recent;
+    }
+
+    /**
      * Get Instagram hashtag feed
      * @return object Feed data
-     * @deprecated depricated since 1.3.96, 3 Jun 2016
      */
     protected function getInstagramHashtag()
     {
-        $endpoint = 'https://api.instagram.com/v1/tags/' . $this->args['query'] . '/media/recent';
+        //Fallback to public api key
+        if (empty($this->args['api_user'])) {
+            $this->args['api_user'] = "1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7";
+        }
+
+        //Structure url to call
+        $endpoint = 'https://api.instagram.com/v1/tags/'.$this->args['query'].'/media/recent/';
         $data = array(
-            'client_id' => $this->args['api_user'],
-            'access_token' => $this->args['api_secret']
+            'access_token' => $this->args['api_user']
         );
 
+        //Call and return
         $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
         return json_decode($recent);
     }

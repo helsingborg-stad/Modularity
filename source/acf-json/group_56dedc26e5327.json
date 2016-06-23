@@ -155,17 +155,22 @@
         },
         {
             "key": "field_56dede1448ede",
-            "label": "Instagram Client ID",
+            "label": "Instagram Client ID \/ Access Token",
             "name": "mod_social_api_user",
             "type": "text",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
                         "field": "field_56dedc3548ed9",
                         "operator": "==",
                         "value": "instagram"
+                    },
+                    {
+                        "field": "field_56deddcd48edd",
+                        "operator": "==",
+                        "value": "hashtag"
                     }
                 ]
             ],
@@ -174,8 +179,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "placeholder": "",
+            "default_value": "1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7",
+            "placeholder": "1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7",
             "prepend": "",
             "append": "",
             "maxlength": "",
@@ -477,5 +482,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1466078328
+    "modified": 1466685241
 }
