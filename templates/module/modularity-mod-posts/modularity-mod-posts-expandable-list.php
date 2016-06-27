@@ -1,4 +1,4 @@
-<div class="accordion accordion-icon accordion-list">
+<div class="box accordion accordion-icon accordion-list">
     <?php if (isset($fields->posts_list_column_titles) && count($fields->posts_list_column_titles) > 0) : ?>
     <header class="accordion-table accordion-table-head">
         <span class="column-header"><?php _e('Title', 'modularity'); ?></span>
