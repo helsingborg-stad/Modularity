@@ -1,5 +1,7 @@
-<div class="box accordion accordion-icon accordion-list">
-    <?php if (isset($fields->posts_list_column_titles) && count($fields->posts_list_column_titles) > 0) : ?>
+<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?> accordion accordion-icon accordion-list">
+    <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+
+    <?php if (isset($fields->posts_list_column_titles) && $fields->posts_list_column_titles) : ?>
     <header class="accordion-table accordion-table-head">
         <span class="column-header"><?php _e('Title', 'modularity'); ?></span>
         <?php foreach ($fields->posts_list_column_titles as $column) : ?>
@@ -39,7 +41,9 @@
                 <?php endif; ?>
             </label>
             <div class="accordion-content">
-                <?php echo apply_filters('the_content', $post->post_content); ?>
+                <article>
+                    <?php echo apply_filters('the_content', $post->post_content); ?>
+                </article>
             </div>
         </section>
         <?php endforeach; ?>
