@@ -30,7 +30,7 @@ class Table extends \Modularity\Module
             return;
         }
 
-        if (get_field('mod_table_data_type') != 'csv') {
+        if (get_field('mod_table_data_type', $post_id) != 'csv') {
             return;
         }
 
@@ -40,8 +40,16 @@ class Table extends \Modularity\Module
         $file = fopen($file['url'], 'r');
         $data = array();
 
+        if (!$file) {
+            wp_die(__('There was an error opening the selected .csv-file.'));
+        }
+
         while (!feof($file)) {
             $row = fgetcsv($file, 0, ';');
+
+            if (count($row) === 0) {
+                continue;
+            }
 
             foreach ($row as &$value) {
                 $value = mb_convert_encoding($value, 'UTF-8', 'Windows-1252');
