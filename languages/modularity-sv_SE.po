@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-05-24 12:09+0200\n"
-"PO-Revision-Date: 2016-05-24 12:10+0200\n"
+"POT-Creation-Date: 2016-07-01 09:53+0200\n"
+"PO-Revision-Date: 2016-07-01 09:56+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -80,11 +80,11 @@ msgstr "Spara moduler"
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:162
+#: source/php/Editor.php:166
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:164
+#: source/php/Editor.php:168
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -92,11 +92,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:385
+#: source/php/Editor.php:389
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:456
+#: source/php/Editor.php:460
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -157,7 +157,7 @@ msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
 #: source/php/Module.php:289
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:4
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:6
 msgid "Title"
 msgstr "Titel"
 
@@ -196,6 +196,38 @@ msgstr "Denna modulen används inte än."
 msgid "This module is used on the following places:"
 msgstr "Denna modulen används på följande ställen:"
 
+#: source/php/Module/Contact/Contact.php:11
+msgid "Contact"
+msgstr "Kontakt"
+
+#: source/php/Module/Contact/Contact.php:12
+msgid "Contacts"
+msgstr "Kontakter"
+
+#: source/php/Module/Contact/Contact.php:13
+msgid "Outputs one or more contacts"
+msgstr "Visar en eller flera kontakter"
+
+#: source/php/Module/Files/Files.php:11 source/php/Module/Files/Files.php:12
+msgid "Files"
+msgstr "Filer"
+
+#: source/php/Module/Files/Files.php:13
+msgid "Outputs a file archive."
+msgstr "Visa ett filarkiv"
+
+#: source/php/Module/Gallery/Gallery.php:11
+msgid "Gallery"
+msgstr "Galleri"
+
+#: source/php/Module/Gallery/Gallery.php:12
+msgid "Galleries"
+msgstr "Gallerier"
+
+#: source/php/Module/Gallery/Gallery.php:13
+msgid "Outputs a gallery with images"
+msgstr "Visar ett galleri med bilder"
+
 #: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
 msgid "Iframe"
@@ -204,6 +236,27 @@ msgstr "Iframe"
 #: source/php/Module/Iframe/Iframe.php:13
 msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida"
+
+#: source/php/Module/Image/Image.php:15 source/php/Module/Image/Image.php:16
+msgid "Image"
+msgstr "Bild"
+
+#: source/php/Module/Index/Index.php:15 source/php/Module/Index/Index.php:16
+msgid "Index"
+msgstr "Index"
+
+#: source/php/Module/Index/Index.php:17
+msgid "Index card to use as an entry point for a \"content section\"."
+msgstr "Index-rutor att använda som ingångar till undersidor"
+
+#: source/php/Module/InheritPost/InheritPost.php:11
+#: source/php/Module/InheritPost/InheritPost.php:12
+msgid "Post article"
+msgstr "Inläggsartikel"
+
+#: source/php/Module/InheritPost/InheritPost.php:13
+msgid "Outputs title and content from any post or page"
+msgstr "Visar titel och brödtet från ett inlägg eller sida"
 
 #: source/php/Module/InlayList/InlayList.php:11
 msgid "Inlay List"
@@ -216,6 +269,33 @@ msgstr "Listor"
 #: source/php/Module/InlayList/InlayList.php:13
 msgid "Outputs one or more posts from selected post-type."
 msgstr "Visar en eller flera inlägg från vald posttyp"
+
+#: source/php/Module/Latest/Latest.php:12
+#: source/php/Module/Latest/Latest.php:13
+msgid "Latest"
+msgstr "Senaste"
+
+#: source/php/Module/MainNews/MainNews.php:11
+#: source/php/Module/MainNews/MainNews.php:12
+msgid "Main News"
+msgstr "Huvudnyhet"
+
+#: source/php/Module/Notice/Notice.php:11
+#: source/php/Module/Notice/Notice.php:12
+msgid "Notice"
+msgstr "Notis"
+
+#: source/php/Module/Notice/Notice.php:13
+msgid "Outputs a notice"
+msgstr "Visar en notis"
+
+#: source/php/Module/Posts/Posts.php:15 source/php/Module/Posts/Posts.php:16
+msgid "Posts"
+msgstr "Inlägg"
+
+#: source/php/Module/Posts/Posts.php:17
+msgid "Outputs selected posts in specified layout"
+msgstr "Visar valda inlägg i en vald layout"
 
 #: source/php/Module/Script/Script.php:11
 #: source/php/Module/Script/Script.php:12
@@ -243,7 +323,7 @@ msgstr "Visar flera bilder eller filmer i ett bildspel"
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
-#: source/php/Module/Social/Feed.php:457 source/php/Module/Social/Feed.php:496
+#: source/php/Module/Social/Feed.php:552 source/php/Module/Social/Feed.php:591
 msgid "ago"
 msgstr "sedan"
 
@@ -275,61 +355,90 @@ msgstr "Tabeller"
 msgid "Outputs a flexible table with options."
 msgstr "Visar en tabell"
 
-#: source/php/Module/Table/Table.php:76
+#: source/php/Module/Table/Table.php:44
+msgid "There was an error opening the selected .csv-file."
+msgstr "Det uppstod ett fel när den valda .csv-filen skulle öppnas."
+
+#: source/php/Module/Table/Table.php:92
 msgid "No data available in table"
 msgstr "Inga rader i tabellen"
 
-#: source/php/Module/Table/Table.php:77
+#: source/php/Module/Table/Table.php:93
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "Visar _START_ till _END_ av _TOTAL_ rader"
 
-#: source/php/Module/Table/Table.php:78
+#: source/php/Module/Table/Table.php:94
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "Visar 0 till 0 av 0 rader"
 
-#: source/php/Module/Table/Table.php:79
+#: source/php/Module/Table/Table.php:95
 msgid "filtered from _MAX_ total entries"
 msgstr "filtrerad från _MAX_ rader"
 
-#: source/php/Module/Table/Table.php:82
+#: source/php/Module/Table/Table.php:98
 msgid "Show _MENU_ entries"
 msgstr "Visa _MENU_ rader"
 
-#: source/php/Module/Table/Table.php:83
+#: source/php/Module/Table/Table.php:99
 msgid "Loading..."
 msgstr "Laddar…"
 
-#: source/php/Module/Table/Table.php:84
+#: source/php/Module/Table/Table.php:100
 msgid "Processing..."
 msgstr "Laddar–"
 
-#: source/php/Module/Table/Table.php:86
+#: source/php/Module/Table/Table.php:102
 msgid "No matching records found"
 msgstr "Inga matchande rader hittades"
 
-#: source/php/Module/Table/Table.php:88
+#: source/php/Module/Table/Table.php:104
 msgid "First"
 msgstr "Första"
 
-#: source/php/Module/Table/Table.php:89
+#: source/php/Module/Table/Table.php:105
 msgid "Last"
 msgstr "Sista"
 
-#: source/php/Module/Table/Table.php:90
+#: source/php/Module/Table/Table.php:106
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Table/Table.php:91
+#: source/php/Module/Table/Table.php:107
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Table/Table.php:94
+#: source/php/Module/Table/Table.php:110
 msgid "activate to sort column ascending"
 msgstr "aktivera för att sortera kolumnen i stigande ordning"
 
-#: source/php/Module/Table/Table.php:95
+#: source/php/Module/Table/Table.php:111
 msgid "activate to sort column descending"
 msgstr "aktivera för att sortera kolumnen i fallande ordning"
+
+#: source/php/Module/Text/Text.php:11
+msgid "Text"
+msgstr "Text"
+
+#: source/php/Module/Text/Text.php:12
+msgid "Texts"
+msgstr "Texter"
+
+#: source/php/Module/Video/Video.php:11 source/php/Module/Video/Video.php:12
+msgid "Video"
+msgstr "Video"
+
+#: source/php/Module/Video/Video.php:13
+msgid "Outputs an embedded Video."
+msgstr "Visar en inbäddad video"
+
+#: source/php/Module/WpWidget/WpWidget.php:15
+#: source/php/Module/WpWidget/WpWidget.php:16
+msgid "Wordpress Widgets"
+msgstr "WordPress Widget"
+
+#: source/php/Module/WpWidget/WpWidget.php:17
+msgid "Outputs a default widget in WordPress"
+msgstr "Visar en WordPress widger"
 
 #: source/php/Module/WpWidget/WpWidget.php:23
 #: source/php/Options/ArchivesList.php:11
@@ -381,7 +490,7 @@ msgstr "Saknar ett godkänt class-namn."
 msgid "Options saved successfully"
 msgstr "Inställningarna sparades"
 
-#: source/php/Options/Archives.php:30 source/php/Options/Archives.php:31
+#: source/php/Options/Archives.php:35 source/php/Options/Archives.php:36
 msgid "Archive modules"
 msgstr "Arkivmoduler"
 
@@ -484,11 +593,11 @@ msgstr "Visa mer"
 
 #: templates/module/modularity-mod-latest-news.php:55
 #: templates/module/modularity-mod-mainnews.php:39
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:41
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:60
 msgid "Read more"
 msgstr "Läs mer"
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:39
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:52
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 

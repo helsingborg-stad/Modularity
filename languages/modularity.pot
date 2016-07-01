@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-05-24 12:09+0200\n"
+"POT-Creation-Date: 2016-07-01 09:53+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -80,21 +80,21 @@ msgstr ""
 msgid "Enabled modules"
 msgstr ""
 
-#: source/php/Editor.php:162
+#: source/php/Editor.php:166
 msgid "No active sidebar areas"
 msgstr ""
 
-#: source/php/Editor.php:164
+#: source/php/Editor.php:168
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:385
+#: source/php/Editor.php:389
 msgid "Modules saved"
 msgstr ""
 
-#: source/php/Editor.php:456
+#: source/php/Editor.php:460
 msgid "Inherit"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgid "No %s in trash"
 msgstr ""
 
 #: source/php/Module.php:289
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:4
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:6
 msgid "Title"
 msgstr ""
 
@@ -188,6 +188,38 @@ msgstr ""
 msgid "This module is used on the following places:"
 msgstr ""
 
+#: source/php/Module/Contact/Contact.php:11
+msgid "Contact"
+msgstr ""
+
+#: source/php/Module/Contact/Contact.php:12
+msgid "Contacts"
+msgstr ""
+
+#: source/php/Module/Contact/Contact.php:13
+msgid "Outputs one or more contacts"
+msgstr ""
+
+#: source/php/Module/Files/Files.php:11 source/php/Module/Files/Files.php:12
+msgid "Files"
+msgstr ""
+
+#: source/php/Module/Files/Files.php:13
+msgid "Outputs a file archive."
+msgstr ""
+
+#: source/php/Module/Gallery/Gallery.php:11
+msgid "Gallery"
+msgstr ""
+
+#: source/php/Module/Gallery/Gallery.php:12
+msgid "Galleries"
+msgstr ""
+
+#: source/php/Module/Gallery/Gallery.php:13
+msgid "Outputs a gallery with images"
+msgstr ""
+
 #: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
 msgid "Iframe"
@@ -195,6 +227,27 @@ msgstr ""
 
 #: source/php/Module/Iframe/Iframe.php:13
 msgid "Outputs an embedded page."
+msgstr ""
+
+#: source/php/Module/Image/Image.php:15 source/php/Module/Image/Image.php:16
+msgid "Image"
+msgstr ""
+
+#: source/php/Module/Index/Index.php:15 source/php/Module/Index/Index.php:16
+msgid "Index"
+msgstr ""
+
+#: source/php/Module/Index/Index.php:17
+msgid "Index card to use as an entry point for a \"content section\"."
+msgstr ""
+
+#: source/php/Module/InheritPost/InheritPost.php:11
+#: source/php/Module/InheritPost/InheritPost.php:12
+msgid "Post article"
+msgstr ""
+
+#: source/php/Module/InheritPost/InheritPost.php:13
+msgid "Outputs title and content from any post or page"
 msgstr ""
 
 #: source/php/Module/InlayList/InlayList.php:11
@@ -207,6 +260,33 @@ msgstr ""
 
 #: source/php/Module/InlayList/InlayList.php:13
 msgid "Outputs one or more posts from selected post-type."
+msgstr ""
+
+#: source/php/Module/Latest/Latest.php:12
+#: source/php/Module/Latest/Latest.php:13
+msgid "Latest"
+msgstr ""
+
+#: source/php/Module/MainNews/MainNews.php:11
+#: source/php/Module/MainNews/MainNews.php:12
+msgid "Main News"
+msgstr ""
+
+#: source/php/Module/Notice/Notice.php:11
+#: source/php/Module/Notice/Notice.php:12
+msgid "Notice"
+msgstr ""
+
+#: source/php/Module/Notice/Notice.php:13
+msgid "Outputs a notice"
+msgstr ""
+
+#: source/php/Module/Posts/Posts.php:15 source/php/Module/Posts/Posts.php:16
+msgid "Posts"
+msgstr ""
+
+#: source/php/Module/Posts/Posts.php:17
+msgid "Outputs selected posts in specified layout"
 msgstr ""
 
 #: source/php/Module/Script/Script.php:11
@@ -235,7 +315,7 @@ msgstr ""
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr ""
 
-#: source/php/Module/Social/Feed.php:457 source/php/Module/Social/Feed.php:496
+#: source/php/Module/Social/Feed.php:552 source/php/Module/Social/Feed.php:591
 msgid "ago"
 msgstr ""
 
@@ -265,60 +345,89 @@ msgstr ""
 msgid "Outputs a flexible table with options."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:76
+#: source/php/Module/Table/Table.php:44
+msgid "There was an error opening the selected .csv-file."
+msgstr ""
+
+#: source/php/Module/Table/Table.php:92
 msgid "No data available in table"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:77
+#: source/php/Module/Table/Table.php:93
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:78
+#: source/php/Module/Table/Table.php:94
 msgid "Showing 0 to 0 of 0 entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:79
+#: source/php/Module/Table/Table.php:95
 msgid "filtered from _MAX_ total entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:82
+#: source/php/Module/Table/Table.php:98
 msgid "Show _MENU_ entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:83
+#: source/php/Module/Table/Table.php:99
 msgid "Loading..."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:84
+#: source/php/Module/Table/Table.php:100
 msgid "Processing..."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:86
+#: source/php/Module/Table/Table.php:102
 msgid "No matching records found"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:88
+#: source/php/Module/Table/Table.php:104
 msgid "First"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:89
+#: source/php/Module/Table/Table.php:105
 msgid "Last"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:90
+#: source/php/Module/Table/Table.php:106
 msgid "Next"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:91
+#: source/php/Module/Table/Table.php:107
 msgid "Previous"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:94
+#: source/php/Module/Table/Table.php:110
 msgid "activate to sort column ascending"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:95
+#: source/php/Module/Table/Table.php:111
 msgid "activate to sort column descending"
+msgstr ""
+
+#: source/php/Module/Text/Text.php:11
+msgid "Text"
+msgstr ""
+
+#: source/php/Module/Text/Text.php:12
+msgid "Texts"
+msgstr ""
+
+#: source/php/Module/Video/Video.php:11 source/php/Module/Video/Video.php:12
+msgid "Video"
+msgstr ""
+
+#: source/php/Module/Video/Video.php:13
+msgid "Outputs an embedded Video."
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:15
+#: source/php/Module/WpWidget/WpWidget.php:16
+msgid "Wordpress Widgets"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:17
+msgid "Outputs a default widget in WordPress"
 msgstr ""
 
 #: source/php/Module/WpWidget/WpWidget.php:23
@@ -371,7 +480,7 @@ msgstr ""
 msgid "Options saved successfully"
 msgstr ""
 
-#: source/php/Options/Archives.php:30 source/php/Options/Archives.php:31
+#: source/php/Options/Archives.php:35 source/php/Options/Archives.php:36
 msgid "Archive modules"
 msgstr ""
 
@@ -472,11 +581,11 @@ msgstr ""
 
 #: templates/module/modularity-mod-latest-news.php:55
 #: templates/module/modularity-mod-mainnews.php:39
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:41
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:60
 msgid "Read more"
 msgstr ""
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:39
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:52
 msgid "Nothing to display…"
 msgstr ""
 
