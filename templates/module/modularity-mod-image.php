@@ -21,4 +21,8 @@ if ($fields['mod_image_responsive'] === true) {
     $classes[] = 'image-responsive';
 }
 
-echo '<img src="' . $imageSrc . '" alt="' . $fields['mod_image_image']['alt'] . '" class="' . implode(' ', apply_filters('', $classes)) . '">';
+if (isset($fields['mod_image_link_url']) && strlen($fields['mod_image_link_url']) > 0) {
+    echo '<a href="' . $fields['mod_image_link_url'] . '"><img src="' . $imageSrc . '" alt="' . $fields['mod_image_image']['alt'] . '" class="' . implode(' ', apply_filters('', $classes)) . '"></a>';
+} else {
+    echo '<img src="' . $imageSrc . '" alt="' . $fields['mod_image_image']['alt'] . '" class="' . implode(' ', apply_filters('', $classes)) . '">';
+}
