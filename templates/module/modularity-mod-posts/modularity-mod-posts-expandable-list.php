@@ -20,8 +20,10 @@
                     <?php
                     $column_values = array();
                     if ($fields->posts_data_source === 'input') {
-                        foreach ((array)$post->column_values as $key => $columnValue) {
-                            $column_values[sanitize_title($fields->posts_list_column_titles[$key]->column_header)] = $columnValue->value;
+                        if (count($post->column_values) > 0) {
+                            foreach ($post->column_values as $key => $columnValue) {
+                                $column_values[sanitize_title($fields->posts_list_column_titles[$key]->column_header)] = $columnValue->value;
+                            }
                         }
                     } else {
                         $column_values = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
