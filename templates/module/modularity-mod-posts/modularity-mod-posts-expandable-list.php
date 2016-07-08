@@ -20,7 +20,7 @@
                     <?php
                     $column_values = array();
                     if ($fields->posts_data_source === 'input') {
-                        if (count($post->column_values) > 0) {
+                        if ($post->column_values !== false && count($post->column_values) > 0) {
                             foreach ($post->column_values as $key => $columnValue) {
                                 $column_values[sanitize_title($fields->posts_list_column_titles[$key]->column_header)] = $columnValue->value;
                             }
