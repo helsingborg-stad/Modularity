@@ -58,7 +58,7 @@ jQuery(document).ready(function ($) {
 
     $('.modularity-edit-module a').on('click', function (e) {
         e.preventDefault();
-        console.log("HEJ HEJ");
+        Modularity.Editor.Thickbox.postAction = 'edit-inline-not-saved';
         Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
     });
 });
