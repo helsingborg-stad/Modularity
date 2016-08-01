@@ -20,7 +20,7 @@ Modularity.Editor.Module = (function ($) {
 
     function Module() {
         $(function(){
-            if (pagenow == 'admin_page_modularity-editor') {
+            if (typeof pagenow !== 'undefined' && pagenow == 'admin_page_modularity-editor') {
                 this.handleEvents();
                 this.loadModules(modularity_post_id);
             }

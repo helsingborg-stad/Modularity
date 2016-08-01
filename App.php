@@ -17,7 +17,8 @@ class App
 
     public function __construct()
     {
-        add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueueFront'));
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
 
         /**
@@ -88,11 +89,35 @@ class App
         }, 1050);
     }
 
+    public function enqueueFront()
+    {
+        if (!current_user_can('edit_post')) {
+            return;
+        }
+
+        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . '/dist/css/modularity.' . self::$assetSuffix . '.css'));
+        wp_enqueue_style('modularity');
+
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
+        wp_localize_script('modularity', 'modularityAdminLanguage', array(
+            'langedit' => __('Edit', 'modularity'),
+            'langimport' => __('Import', 'modularity'),
+            'langremove' => __('Remove', 'modularity'),
+            'langhide' => __('Hide', 'modularity'),
+            'actionRemove' => __('Are you sure you want to remove this module?', 'modularity'),
+            'isSaving' => __('Saving…', 'modularity'),
+            'close' => __('Close', 'modularity'),
+            'width' => __('Width', 'modularity'),
+            'widthOptions' => $this->editor->getWidthOptions()
+        ));
+        wp_enqueue_script('modularity');
+    }
+
     /**
      * Enqueues scripts and styles
      * @return void
      */
-    public function enqueue()
+    public function enqueueAdmin()
     {
         if (!$this->isModularityPage()) {
             return;
@@ -116,8 +141,6 @@ class App
             'widthOptions' => $this->editor->getWidthOptions()
         ));
         wp_enqueue_script('modularity');
-
-        add_thickbox();
 
         add_action('admin_head', function () {
             echo "

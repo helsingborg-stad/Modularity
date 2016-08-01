@@ -10,3 +10,45 @@
 @import 'partials/modal';
 @import 'partials/loader-takeover';
 @import 'partials/utilities';
+
+[class*="modularity-mod-"] {
+    position: relative;
+
+    .modularity-edit-module {
+        display: none;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .modularity-edit-module a {
+        position: relative;
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: #000;
+        color: #fff !important;
+        font-size: 14px;
+
+        &::after {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: block;
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+
+            border-top: 5px solid #000;
+        }
+    }
+
+    &:hover {
+        .modularity-edit-module {
+            display: block;
+        }
+    }
+}

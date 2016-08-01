@@ -210,7 +210,13 @@ class Display
 
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
             $beforeWidget = $module->columnWidth;
-            $moduleMarkup = apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID)  . $moduleMarkup;
+
+            $beforeModule = '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">';
+            if (current_user_can('edit_post')) {
+                $beforeModule .= apply_filters('Modularity/Display/EditLink', '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . '</a></div>', $module->post_type, $module->ID);
+            }
+
+            $moduleMarkup = apply_filters('Modularity/Display/BeforeModule', $beforeModule, $args, $module->post_type, $module->ID)  . $moduleMarkup;
         } elseif (isset($args['before_widget'])) {
             $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
             $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
@@ -269,6 +275,8 @@ class Display
         ob_start();
         include $templatePath;
         $moduleMarkup = ob_get_clean();
+
+        $moduleMarkup .= apply_filters('Modularity/Display/EditLink', '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . '</a></div>', $module->post_type, $module->ID);
 
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);

@@ -476,6 +476,9 @@ li.modularity-module {
     width: 100vw;
     height: 100%; }
 
+.admin-bar #modularity-modal {
+  top: 32px; }
+
 @-webkit-keyframes modal-fade-in {
   100% {
     opacity: 1; } }
@@ -550,3 +553,35 @@ body.modularity-loader-takeover::after {
   margin-right: 3px;
   position: relative;
   top: -2px; }
+
+[class*="modularity-mod-"] {
+  position: relative; }
+  [class*="modularity-mod-"] .modularity-edit-module {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%); }
+  [class*="modularity-mod-"] .modularity-edit-module a {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #000;
+    color: #fff !important;
+    font-size: 14px; }
+    [class*="modularity-mod-"] .modularity-edit-module a::after {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+      display: block;
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid #000; }
+  [class*="modularity-mod-"]:hover .modularity-edit-module {
+    display: block; }

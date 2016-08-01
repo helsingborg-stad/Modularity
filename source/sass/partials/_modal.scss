@@ -47,6 +47,10 @@
     }
 }
 
+.admin-bar #modularity-modal {
+    top: 32px;
+}
+
 @keyframes modal-fade-in {
     100% {
         opacity: 1;
