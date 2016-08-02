@@ -11,7 +11,7 @@ class Contact extends \Modularity\Module
             __('Contact', 'modularity'),
             __('Contacts', 'modularity'),
             __('Outputs one or more contacts', 'modularity'),
-            array('editor')
+            array()
         );
     }
 }
