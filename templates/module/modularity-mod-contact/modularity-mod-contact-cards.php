@@ -85,14 +85,14 @@ if (isset($info['image']) && !empty($info['image'])) {
 
             <?php if (isset($info['address']) && !empty($info['address'])) : ?>
             <div class="gutter gutter-top">
-                <strong><?php _e('Postal address'); ?></strong><br>
+                <strong><?php _e('Postal address', 'modularity'); ?></strong><br>
                 <?php echo $info['address']; ?>
             </div>
             <?php endif; ?>
 
             <?php if (isset($info['visiting_address']) && !empty($info['visiting_address'])) : ?>
             <div class="gutter gutter-top">
-                <strong><?php _e('Visiting address'); ?></strong><br>
+                <strong><?php _e('Visiting address', 'modularity'); ?></strong><br>
                 <?php echo $info['visiting_address']; ?>
             </div>
             <?php endif; ?>
