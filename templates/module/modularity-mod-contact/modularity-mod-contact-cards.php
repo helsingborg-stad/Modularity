@@ -70,17 +70,33 @@ if (isset($info['image']) && !empty($info['image'])) {
 
         <div class="box-content">
             <h5 itemprop="name"><?php echo $info['first_name']; ?> <?php echo $info['last_name']; ?></h5>
-            <ul>
+            <p>
+                <ul>
                 <?php if ((isset($info['work_title']) && !empty($info['work_title'])) || (isset($info['administration_unit']) && !empty($info['administration_unit']))) : ?>
-                    <li class="card-title">
-                        <span itemprop="jobTitle"><?php echo (isset($info['work_title']) && !empty($info['work_title'])) ? $info['work_title'] : ''; ?></span>
-                        <span itemprop="department"><?php echo (isset($info['administration_unit']) && !empty($info['administration_unit'])) ? $info['administration_unit'] : ''; ?></span>
-                    </li>
+                <li class="card-title">
+                    <span itemprop="jobTitle"><?php echo (isset($info['work_title']) && !empty($info['work_title'])) ? $info['work_title'] : ''; ?></span>
+                    <span itemprop="department"><?php echo (isset($info['administration_unit']) && !empty($info['administration_unit'])) ? $info['administration_unit'] : ''; ?></span>
+                </li>
                 <?php endif; ?>
                 <?php if (isset($info['phone']) && !empty($info['phone'])) : ?><li><a itemprop="telephone" class="link-item" href="tel:<?php echo $info['phone']; ?>"><?php echo $info['phone']; ?></a></li><?php endif; ?>
                 <?php if (isset($info['email']) && !empty($info['email'])) : ?><li><a itemprop="email" class="link-item" href="mailto:<?php echo $info['email']; ?>"><?php echo $info['email']; ?></a></li><?php endif; ?>
                 <?php if (!empty($module->post_content)) : ?><li class="small description"><?php echo apply_filters('the_content', $module->post_content); ?></li><?php endif; ?>
-           </ul>
+                </ul>
+            </p>
+
+            <?php if ((isset($info['address']) && !empty($info['address'])) : ?>
+            <p>
+                <strong><?php _e('Postal address'); ?></strong><br>
+                <?php echo $info['address']; ?>
+            </p>
+            <?php endif; ?>
+
+            <?php if ((isset($info['visiting_address']) && !empty($info['visiting_address'])) : ?>
+            <p>
+                <strong><?php _e('Visiting address'); ?></strong><br>
+                <?php echo $info['visiting_address']; ?>
+            </p>
+            <?php endif; ?>
         </div>
     </div>
 </div>
