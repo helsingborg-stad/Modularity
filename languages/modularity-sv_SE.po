@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-07-01 09:53+0200\n"
-"PO-Revision-Date: 2016-07-01 09:56+0200\n"
+"POT-Creation-Date: 2016-08-02 11:00+0200\n"
+"PO-Revision-Date: 2016-08-02 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,41 +20,45 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:82 App.php:108
+#: App.php:83 App.php:103 App.php:133
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:82 source/php/Editor.php:82 source/php/Options/General.php:81
+#: App.php:83 source/php/Editor.php:82 source/php/Options/General.php:81
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:109
+#: App.php:104 App.php:134
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:110
+#: App.php:105 App.php:135
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:111
+#: App.php:106 App.php:136
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:112
+#: App.php:107 App.php:137
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:113
+#: App.php:108 App.php:138
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:114
+#: App.php:109 App.php:139
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:115
+#: App.php:110 App.php:140
 msgid "Width"
 msgstr "Bredd"
+
+#: source/php/Display.php:214
+msgid "Edit module"
+msgstr "Redigera modul"
 
 #: source/php/Editor.php:43
 msgid "View Page"
@@ -587,6 +591,14 @@ msgstr "efter"
 msgid "Hide global widgets"
 msgstr "Göm widgets"
 
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:89
+msgid "Postal address"
+msgstr "Adress"
+
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:96
+msgid "Visiting address"
+msgstr "Besöksadress"
+
 #: templates/module/modularity-mod-latest-list.php:55
 msgid "Show more"
 msgstr "Visa mer"
@@ -597,7 +609,7 @@ msgstr "Visa mer"
 msgid "Read more"
 msgstr "Läs mer"
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:52
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:54
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 

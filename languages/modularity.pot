@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-07-01 09:53+0200\n"
+"POT-Creation-Date: 2016-08-02 11:00+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,40 +20,44 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:82 App.php:108
+#: App.php:83 App.php:103 App.php:133
 msgid "Edit"
 msgstr ""
 
-#: App.php:82 source/php/Editor.php:82 source/php/Options/General.php:81
+#: App.php:83 source/php/Editor.php:82 source/php/Options/General.php:81
 msgid "Modules"
 msgstr ""
 
-#: App.php:109
+#: App.php:104 App.php:134
 msgid "Import"
 msgstr ""
 
-#: App.php:110
+#: App.php:105 App.php:135
 msgid "Remove"
 msgstr ""
 
-#: App.php:111
+#: App.php:106 App.php:136
 msgid "Hide"
 msgstr ""
 
-#: App.php:112
+#: App.php:107 App.php:137
 msgid "Are you sure you want to remove this module?"
 msgstr ""
 
-#: App.php:113
+#: App.php:108 App.php:138
 msgid "Saving…"
 msgstr ""
 
-#: App.php:114
+#: App.php:109 App.php:139
 msgid "Close"
 msgstr ""
 
-#: App.php:115
+#: App.php:110 App.php:140
 msgid "Width"
+msgstr ""
+
+#: source/php/Display.php:214
+msgid "Edit module"
 msgstr ""
 
 #: source/php/Editor.php:43
@@ -575,6 +579,14 @@ msgstr ""
 msgid "Hide global widgets"
 msgstr ""
 
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:89
+msgid "Postal address"
+msgstr ""
+
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:96
+msgid "Visiting address"
+msgstr ""
+
 #: templates/module/modularity-mod-latest-list.php:55
 msgid "Show more"
 msgstr ""
@@ -585,7 +597,7 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:52
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:54
 msgid "Nothing to display…"
 msgstr ""
 
