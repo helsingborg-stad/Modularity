@@ -91,7 +91,7 @@ class App
 
     public function enqueueFront()
     {
-        if (!current_user_can('edit_post')) {
+        if (!current_user_can('edit_posts')) {
             return;
         }
 
