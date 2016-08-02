@@ -47,7 +47,7 @@
     }
 }
 
-.admin-bar #modularity-modal {
+.admin-bar:not(.wp-admin) #modularity-modal {
     top: 32px;
 }
 
