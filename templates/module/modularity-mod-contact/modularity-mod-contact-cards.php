@@ -29,7 +29,8 @@ switch ($contact->acf_fc_layout) {
             'phone'               => $contact->phone,
             'address'             => $contact->address,
             'visiting_address'    => $contact->visiting_address,
-            'opening_hours'       => $contact->opening_hours
+            'opening_hours'       => $contact->opening_hours,
+            'other'               => $contact->other
         ), $contact);
         break;
 
@@ -94,6 +95,12 @@ if (isset($info['image']) && !empty($info['image'])) {
             <div class="gutter gutter-top">
                 <strong><?php _e('Visiting address', 'modularity'); ?></strong><br>
                 <?php echo $info['visiting_address']; ?>
+            </div>
+            <?php endif; ?>
+
+            <?php if (isset($info['other']) && !empty($info['other'])) : ?>
+            <div class="gutter gutter-top">
+                <?php echo $info['other']; ?>
             </div>
             <?php endif; ?>
         </div>
