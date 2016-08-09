@@ -476,7 +476,7 @@ li.modularity-module {
     width: 100vw;
     height: 100%; }
 
-.admin-bar:not(.wp-admin) #modularity-modal {
+.admin-bar #modularity-modal {
   top: 32px; }
 
 @-webkit-keyframes modal-fade-in {
