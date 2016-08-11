@@ -18,7 +18,7 @@ class App
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
-        add_action('wp_enqueue_scripts', array($this, 'enqueueFront'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueueFront'),950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
 
         /**
