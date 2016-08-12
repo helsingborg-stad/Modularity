@@ -6,7 +6,7 @@ Modular component system plugin for WordPress. Drag and drop the bundled modules
 Creating modules
 ----------------
 
-To create your very own Modularity module you simply create a plugin with a class that extends our Modularity\Module class.
+To create your very own Modularity module you simply create a plugin with a class that extends our Modularity\Module class. Beth
 
 A module actually is the same as a custom post type. However we've added a few details to enable you to use them as modules.
 
