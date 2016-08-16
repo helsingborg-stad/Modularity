@@ -56,7 +56,7 @@
                         <?php if ($fields->posts_data_source === 'input') : ?>
                             <?php echo $post->post_content; ?>
                         <?php else : ?>
-                            <p><?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?></p>
+                            <?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?>
                         <?php endif; ?>
                 <?php endif; ?>
             </div>
