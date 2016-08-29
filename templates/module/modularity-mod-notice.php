@@ -3,10 +3,10 @@
 
     <div class="grid grid-table-md grid-va-middle no-margin no-padding">
         <?php if (!empty($fields['notice_icon'])) : ?>
-        <div class="grid-col-icon"><i class="fa <?php echo $fields['notice_icon']; ?>"></i></div>
+        <div class="grid-fit-content"><i class="fa <?php echo $fields['notice_icon']; ?>"></i></div>
         <?php endif; ?>
 
-        <div class="grid-md-12">
+        <div class="grid-auto">
             <?php echo $fields['notice_text']; ?>
         </div>
     </div>
