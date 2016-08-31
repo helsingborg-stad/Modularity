@@ -445,7 +445,7 @@ li.modularity-module {
 
 #modularity-modal {
   position: fixed;
-  z-index: 9999;
+  z-index: 2147483647;
   top: 0;
   bottom: 0;
   left: 0;
@@ -467,7 +467,7 @@ li.modularity-module {
     #modularity-modal .modularity-modal-close:hover {
       padding-top: 10px; }
   #modularity-modal .modularity-modal-wrapper {
-    position: relaitve;
+    position: relative;
     width: 100%;
     height: 100%;
     margin: 0 auto; }
