@@ -57,6 +57,18 @@ class General extends \Modularity\Options
             'normal'
         );
 
+        if (has_action('Modularity/Options/Module')) {
+            add_meta_box(
+                'modularity-mb-module-options',
+                __('Module options', 'modularity'),
+                function () {
+                    do_action('Modularity/Options/Module');
+                },
+                $this->screenHook,
+                'normal'
+            );
+        }
+
         // Modules
         add_meta_box(
             'modularity-mb-post-types',

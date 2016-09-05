@@ -87,6 +87,8 @@ abstract class Options
         // Update the options
         update_option($this->slug, $modularityOptions);
 
+        do_action('Modularity/Options/Save');
+
         // All done, send notice
         $this->notice(__('Options saved successfully', 'modularity'), ['updated']);
     }
