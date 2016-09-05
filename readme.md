@@ -89,6 +89,19 @@ add_action('Modularity/Module/mod-article/enqueue', function () {
 });
 ```
 
+#### Modularity/Options/Module
+
+> Action to use for adding option fields to modularity options page.
+> Use "Modularity/Options/Save" action to handle save of the option field added
+
+*Example:*
+
+```php
+add_action('Modularity/Options/Module', function () {
+    echo '<input type="text">';
+});
+```
+
 Filter reference
 ----------------
 
