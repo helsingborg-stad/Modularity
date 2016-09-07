@@ -8,20 +8,23 @@ class Cache
      * Output Cache
      * @param  string $postId      The post id that you want to cache
      * @param  string $ttl         The time that a cache sould live
-     * @param  string $inputHash   Any input data altering output result as a concatinated string/array/object.
+     * @param  string $hash        Any input data altering output result as a concatinated string/array/object.
      * @return string              The request response
      */
 
     private $postId = null;
-    private $ttl = 3600*24;
+    private $ttl = null;
 
     public static $keyGroup = 'mod-obj-cache';
 
-    public function __construct($postId, $ttl = 3600*24)
+    public function __construct($postId, $hash = '', $ttl = 3600*24)
     {
         //Set variables
         $this->postId       = $postId;
         $this->ttl          = $ttl;
+
+        //Create hash string
+        $this->hash_key     = substr(base_convert(md5($hash), 16, 32), 0, 12);
     }
 
     public static function clearCache($postId)
@@ -47,8 +50,19 @@ class Cache
     public function stop()
     {
         $return_data = ob_get_flush();
+
         if (!empty($return_data)) {
-            wp_cache_add($this->postId, $return_data.$this->timeStampTag(), $this->keyGroup, $this->ttl);
+
+            $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
+
+            if (!is_array($cacheArray)) {
+                $cacheArray = array();
+            }
+
+            $cacheArray[] = $return_data.$this->timeStampTag();
+
+            wp_cache_add($this->postId, $cacheArray, $this->keyGroup, $this->ttl);
+
         }
     }
 
@@ -59,11 +73,15 @@ class Cache
 
     private function getCache($print = true)
     {
-        if ($print === true) {
-            echo wp_cache_get($this->postId, $this->keyGroup);
-        }
+        $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
 
-        return wp_cache_get($this->postId, $this->keyGroup);
+        if (array_key_exists($this->hash, $cacheArray)) {
+            if ($print === true) {
+                echo $cacheArray[$this->hash];
+            }
+            return $cacheArray[$this->hash];
+        }
+        return false;
     }
 
     private function timeStampTag()
