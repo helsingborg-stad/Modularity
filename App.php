@@ -44,7 +44,10 @@ class App
             register_widget('\Modularity\Widget');
         });
 
+        //Hooks to clear fragment cache
+        add_action('save_post', '\Modularity\Helper\Cache::clearCache');
 
+        //Main hook
         do_action('Modularity');
     }
 
