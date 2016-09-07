@@ -29,6 +29,7 @@ class Cache
         if (wp_is_post_revision($postId) || get_post_status($postId) != 'publish') {
             return;
         }
+
         wp_cache_delete($postId, self::$keyGroup);
     }
 
@@ -37,10 +38,10 @@ class Cache
         if (!$this->hasCache()) {
             ob_start();
             return true;
-        } else {
-            $this->getCache(true);
-            return false;
         }
+
+        $this->getCache(true);
+        return false;
     }
 
     public function stop()
@@ -59,10 +60,10 @@ class Cache
     private function getCache($print = true)
     {
         if ($print === true) {
-            return wp_cache_get($this->postId, $this->keyGroup);
-        } else {
             echo wp_cache_get($this->postId, $this->keyGroup);
         }
+
+        return wp_cache_get($this->postId, $this->keyGroup);
     }
 
     private function timeStampTag()
@@ -73,8 +74,8 @@ class Cache
 
 /*
 $cache = new Modularity\Helper\Cache($post->Id);
-if($cache->start()) {
-    Your cacheable content here
+if ($cache->start()) {
+    // Your cacheable content here
     $cache->stop();
 }
 */
