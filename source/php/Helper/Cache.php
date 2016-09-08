@@ -117,9 +117,9 @@ class Cache
     {
         if (!defined('WP_USE_MEMCACHED') || defined('WP_USE_MEMCACHED') && !WP_USE_MEMCACHED) {
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 }
 
