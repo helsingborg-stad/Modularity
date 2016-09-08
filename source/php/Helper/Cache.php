@@ -68,7 +68,8 @@ class Cache
     public function stop()
     {
         if ($this->isActive()) {
-            $return_data = ob_get_flush();
+
+            $return_data = ob_get_clean();
 
             if (!empty($return_data)) {
                 $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
@@ -83,6 +84,8 @@ class Cache
 
                 wp_cache_add($this->postId, $cacheArray, $this->keyGroup, $this->ttl);
             }
+
+            echo $return_data;
         }
     }
 
