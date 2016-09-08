@@ -145,11 +145,11 @@ Modularity.Editor.Module = (function ($) {
         var sidebarId = $(target).data('area-id');
         var itemRowId = Modularity.Helpers.uuid();
 
-        $(target).append('\
-            <li id="post-' + postId + '" data-module-id="' + moduleId + '">\
-            	<span class="modularity-line-wrapper">\
-                	<span class="modularity-sortable-handle"></span>\
-	                <span class="modularity-module-name">\
+        var html = $(target)[0].innerHTML;
+        var html = html + '<li id="post-' + postId + '" data-module-id="' + moduleId + '">\
+                <span class="modularity-line-wrapper">\
+                    <span class="modularity-sortable-handle"></span>\
+                    <span class="modularity-module-name">\
                         ' + moduleName + '\
                         ' + deprecated + '\
                         <span class="modularity-module-title">' + moduleTitle + '</span>\
@@ -158,22 +158,23 @@ Modularity.Editor.Module = (function ($) {
                             <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="true" ' + isHidden + ' />\
                             ' + modularityAdminLanguage.langhide + '\
                         </label>\
-	                </span>\
+                    </span>\
                     <span class="modularity-module-columns">\
                         <label>' + modularityAdminLanguage.width + ':</label>\
                         <select name="modularity_modules[' + sidebarId + '][' + itemRowId + '][columnWidth]">\
                             ' + modularityAdminLanguage.widthOptions + '\
                         </select>\
                     </span>\
-	                <span class="modularity-module-actions">\
-	                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
-	                    <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
-	                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
-	                </span>\
-	                <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
+                    <span class="modularity-module-actions">\
+                        <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
+                        <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
+                        <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
+                    </span>\
+                    <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
                 </span>\
-            </li>\
-        ');
+            </li>';
+
+        $(target)[0].innerHTML = html;
 
         $(target).find('#post-' + postId + ' .modularity-module-columns option[value="' + columnWidth + '"]').prop('selected', true);
 
