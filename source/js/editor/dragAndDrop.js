@@ -81,8 +81,6 @@ Modularity.Editor.DragAndDrop = (function ($) {
         var moduleId = module.data('module-id');
 
         Modularity.Editor.Module.addModule(e.target, moduleId, moduleName);
-
-        $('.modularity-js-sortable').sortable('refresh');
     };
 
     return new DragAndDrop();
