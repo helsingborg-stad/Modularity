@@ -15,8 +15,11 @@ class Cache
     private $postId = null;
     private $ttl = null;
     private $hash = null;
+    private $keyGroup = null;
 
-    public static $keyGroup = 'mod-obj-cache';
+    public static $keyGroupPrefix = 'mod-cache-';
+    public static $keyGroupAuth = 'auth';
+    public static $keyGroupNoAuth = 'noauth';
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
@@ -31,7 +34,8 @@ class Cache
             $this->hash     = substr(base_convert(md5($module), 16, 32), 0, 12);
         }
 
-        echo $this->hash;
+        //Key Group
+        $this->keyGrop = self::$keyGroupPrefix . (is_user_logged_in() ? self::$keyGroupAuth : self::$keyGroupNoAuth);
     }
 
     public static function clearCache($postId)
@@ -40,13 +44,15 @@ class Cache
             return;
         }
 
-        wp_cache_delete($postId, self::$keyGroup);
+        //Clear cache for logged in and looged out
+        wp_cache_delete($postId, self::$keyGroupPrefix . self::$keyGroupAuth);
+        wp_cache_delete($postId, self::$keyGroupPrefix . self::$keyGroupNoAuth);
     }
 
     public function start()
     {
         if (!$this->isActive()) {
-            return false;
+            return true;
         }
 
         if (!$this->hasCache()) {
@@ -61,18 +67,22 @@ class Cache
 
     public function stop()
     {
-        $return_data = ob_get_flush();
+        if ($this->isActive()) {
+            $return_data = ob_get_flush();
 
-        if (!empty($return_data)) {
-            $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
+            if (!empty($return_data)) {
+                $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
 
-            if (!is_array($cacheArray)) {
-                $cacheArray = array();
+                if (!is_array($cacheArray)) {
+                    $cacheArray = array();
+                }
+
+                $cacheArray[$this->hash] = $return_data.$this->timeStampTag();
+
+                wp_cache_delete($this->postId, $this->keyGroup);
+
+                wp_cache_add($this->postId, $cacheArray, $this->keyGroup, $this->ttl);
             }
-
-            $cacheArray[$this->hash] = $return_data.$this->timeStampTag();
-
-            wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
         }
     }
 
@@ -87,7 +97,7 @@ class Cache
 
     private function getCache($print = true)
     {
-        $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
+        $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
 
         if (is_array($cacheArray) && array_key_exists($this->hash, $cacheArray)) {
             if ($print === true) {
@@ -105,8 +115,8 @@ class Cache
 
     private function isActive()
     {
-        if (!defined('WP_USE_MEMCACHED') ||defined('WP_USE_MEMCACHED') && !WP_USE_MEMCACHED === false) {
-            return true;
+        if (!defined('WP_USE_MEMCACHED') || defined('WP_USE_MEMCACHED') && !WP_USE_MEMCACHED) {
+            return false;
         } else {
             return true;
         }
