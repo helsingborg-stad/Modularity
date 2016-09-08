@@ -197,7 +197,8 @@ class Display
     {
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
-        if ($cache->start()) {
+        if ($moduleSettings['cache'] !== true || $cache->start()) {
+
             $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
 
             if (!$templatePath) {
