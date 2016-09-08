@@ -18,18 +18,20 @@ class Cache
 
     public static $keyGroup = 'mod-obj-cache';
 
-    public function __construct($postId, $hash = '', $ttl = 3600*24)
+    public function __construct($postId, $module = '', $ttl = 3600*24)
     {
         //Set variables
         $this->postId       = $postId;
         $this->ttl          = $ttl;
 
         //Create hash string
-        if (is_array($hash)||is_object($hash)) {
-            $this->hash     = substr(base_convert(md5(serialize($hash)), 16, 32), 0, 12);
+        if (is_array($module)||is_object($module)) {
+            $this->hash     = substr(base_convert(md5(serialize($module)), 16, 32), 0, 12);
         } else {
-            $this->hash     = substr(base_convert(md5($hash), 16, 32), 0, 12);
+            $this->hash     = substr(base_convert(md5($module), 16, 32), 0, 12);
         }
+
+        echo $this->hash;
     }
 
     public static function clearCache($postId)
@@ -68,7 +70,7 @@ class Cache
                 $cacheArray = array();
             }
 
-            $cacheArray[] = $return_data.$this->timeStampTag();
+            $cacheArray[$this->hash] = $return_data.$this->timeStampTag();
 
             wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
         }

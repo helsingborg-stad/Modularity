@@ -11,7 +11,11 @@ class Video extends \Modularity\Module
             __("Video", 'modularity'),
             __("Video", 'modularity'),
             __("Outputs an embedded Video.", 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

@@ -12,7 +12,10 @@ class InheritPost extends \Modularity\Module
             __('Post article', 'modularity'),
             __('Outputs title and content from any post or page', 'modularity'),
             array(''),
-            null
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

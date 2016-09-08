@@ -11,7 +11,11 @@ class Files extends \Modularity\Module
             __("Files", 'modularity'),
             __("Files", 'modularity'),
             __("Outputs a file archive.", 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

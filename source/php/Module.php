@@ -26,6 +26,7 @@ class Module
     public static $deprecated = array();
     public static $enabled = array();
     public static $options = array();
+    public static $moduleSettings = array();
 
     public function __construct()
     {
@@ -156,7 +157,7 @@ class Module
      * @param  array  $supports     Which core post type fileds this module supports
      * @return string               The prefixed module id/slug
      */
-    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null)
+    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache = false, $cache_ttl = 0)
     {
         $labels = array(
             'name'               => _x($nameSingular, 'post type general name', 'modularity'),
@@ -259,6 +260,22 @@ class Module
         if (!is_null($plugin) && file_exists(__DIR__ . '/../../plugins/'. $plugin)) {
             require_once __DIR__.'/../../plugins/' . $plugin;
         }
+
+        /**
+         * Store settings of each module in static var
+         * @var array
+         */
+        self::$moduleSettings[$postTypeSlug] = array(
+            'slug' => $slug,
+            'singular_name' => $nameSingular,
+            'plural_name' => $namePlural,
+            'description' => $description,
+            'supports' => $supports,
+            'icon' => $icon,
+            'plugin' => $plugin,
+            'cache' => $cache,
+            'cache_ttl' => $cache_ttl
+        );
 
         return $postTypeSlug;
     }

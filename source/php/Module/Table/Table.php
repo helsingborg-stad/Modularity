@@ -15,7 +15,9 @@ class Table extends \Modularity\Module
             __("Outputs a flexible table with options.", 'modularity'),
             array(), //supports
             null, //icon
-            'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php' //included plugin
+            'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php', //included plugin
+            true,
+            3600*24*7
         );
 
         //Register stylesheets

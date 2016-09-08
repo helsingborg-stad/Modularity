@@ -11,7 +11,11 @@ class InlayList extends \Modularity\Module
             __("Inlay List", 'modularity'),
             __("Inlay Lists", 'modularity'),
             __("Outputs one or more posts from selected post-type.", 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }
