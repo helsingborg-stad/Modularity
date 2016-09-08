@@ -35,7 +35,7 @@ class Cache
         }
 
         //Key Group
-        $this->keyGrop = self::$keyGroupPrefix . (is_user_logged_in() ? self::$keyGroupAuth : self::$keyGroupNoAuth);
+        $this->keyGroup = self::$keyGroupPrefix . (is_user_logged_in() ? self::$keyGroupAuth : self::$keyGroupNoAuth);
     }
 
     public static function clearCache($postId)
