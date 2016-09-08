@@ -67,7 +67,7 @@ class Cache
 
     public function stop()
     {
-        if ($this->isActive()) {
+        if ($this->isActive() && !$this->hasCache()) {
 
             $return_data = ob_get_clean();
 
