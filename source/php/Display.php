@@ -236,7 +236,16 @@ class Display
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
 
-        echo $moduleMarkup;
+        //Cache response
+        if (class_exists('\Modularity\Helper\Cache')) {
+            $cache = new \Modularity\Helper\Cache($module->ID, $module);
+            if ($cache->start()) {
+                echo $moduleMarkup;
+                $cache->stop();
+            }
+        } else {
+            echo $moduleMarkup;
+        }
 
         return true;
     }

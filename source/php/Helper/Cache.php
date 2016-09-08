@@ -5,15 +5,16 @@ namespace Modularity\Helper;
 class Cache
 {
     /**
-     * Output Cache
+     * Fragment cache in memcached
      * @param  string $postId      The post id that you want to cache
-     * @param  string $ttl         The time that a cache sould live
+     * @param  string $ttl         The time that a cache should live
      * @param  string $hash        Any input data altering output result as a concatinated string/array/object.
      * @return string              The request response
      */
 
     private $postId = null;
     private $ttl = null;
+    private $hash = null;
 
     public static $keyGroup = 'mod-obj-cache';
 
@@ -24,7 +25,11 @@ class Cache
         $this->ttl          = $ttl;
 
         //Create hash string
-        $this->hash_key     = substr(base_convert(md5($hash), 16, 32), 0, 12);
+        if (is_array($hash)||is_object($hash)) {
+            $this->hash     = substr(base_convert(md5(serialize($hash)), 16, 32), 0, 12);
+        } else {
+            $this->hash     = substr(base_convert(md5($hash), 16, 32), 0, 12);
+        }
     }
 
     public static function clearCache($postId)
@@ -38,12 +43,17 @@ class Cache
 
     public function start()
     {
+        if (!$this->isActive()) {
+            return false;
+        }
+
         if (!$this->hasCache()) {
             ob_start();
             return true;
         }
 
         $this->getCache(true);
+
         return false;
     }
 
@@ -52,8 +62,7 @@ class Cache
         $return_data = ob_get_flush();
 
         if (!empty($return_data)) {
-
-            $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
+            $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
 
             if (!is_array($cacheArray)) {
                 $cacheArray = array();
@@ -61,21 +70,24 @@ class Cache
 
             $cacheArray[] = $return_data.$this->timeStampTag();
 
-            wp_cache_add($this->postId, $cacheArray, $this->keyGroup, $this->ttl);
-
+            wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
         }
     }
 
     private function hasCache()
     {
+        if (!$this->isActive()) {
+            return false;
+        }
+
         return !empty($this->getCache(false));
     }
 
     private function getCache($print = true)
     {
-        $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
+        $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
 
-        if (array_key_exists($this->hash, $cacheArray)) {
+        if (is_array($cacheArray) && array_key_exists($this->hash, $cacheArray)) {
             if ($print === true) {
                 echo $cacheArray[$this->hash];
             }
@@ -87,6 +99,15 @@ class Cache
     private function timeStampTag()
     {
         return '<!-- Fragment cache time: ' . date("Y-m-d H:i:s") .'-->';
+    }
+
+    private function isActive()
+    {
+        if (!defined('WP_USE_MEMCACHED') ||defined('WP_USE_MEMCACHED') && !WP_USE_MEMCACHED === false) {
+            return true;
+        } else {
+            return true;
+        }
     }
 }
 
