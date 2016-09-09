@@ -17,7 +17,7 @@
                 </a>
             </li>
         <?php endforeach; else : ?>
-        <li>Inga inlägg att visa…</li>
+        <li><?php _e('No posts to show…', 'modularity'); ?></li>
         <?php endif; ?>
     </ul>
 </div>

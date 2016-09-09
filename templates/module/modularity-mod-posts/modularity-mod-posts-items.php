@@ -64,7 +64,7 @@
     </div>
     <?php endforeach; else : ?>
     <div class="grid-md-12">
-        Inga inlägg att visa…
+        <?php _e('No posts to show…', 'modularity'); ?>
     </div>
     <?php endif; ?>
 </div>
