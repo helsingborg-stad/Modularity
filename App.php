@@ -18,7 +18,7 @@ class App
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
-        add_action('wp_enqueue_scripts', array($this, 'enqueueFront'),950);
+        add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
 
         /**
@@ -44,7 +44,12 @@ class App
             register_widget('\Modularity\Widget');
         });
 
+        //Hooks to clear fragment cache
+        add_action('save_post', function ($postId) {
+            \Modularity\Helper\Cache::clearCache($postId);
+        });
 
+        //Main hook
         do_action('Modularity');
     }
 

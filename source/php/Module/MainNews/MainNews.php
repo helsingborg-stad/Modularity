@@ -11,7 +11,11 @@ class MainNews extends \Modularity\Module
             __('Main News', 'modularity'),
             __('Main News', 'modularity'),
             'Outputs a list of prioritized articles',
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

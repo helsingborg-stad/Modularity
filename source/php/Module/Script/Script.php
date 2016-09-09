@@ -11,7 +11,11 @@ class Script extends \Modularity\Module
             __("Script", 'modularity'),
             __("Script", 'modularity'),
             __("Outputs unsanitized code to widget area.", 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

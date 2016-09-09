@@ -11,7 +11,11 @@ class Gallery extends \Modularity\Module
             __('Gallery', 'modularity'),
             __('Galleries', 'modularity'),
             __('Outputs a gallery with images', 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
 
         $this->acfFields();

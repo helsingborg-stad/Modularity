@@ -11,7 +11,11 @@ class Notice extends \Modularity\Module
             __("Notice", 'modularity'),
             __("Notice", 'modularity'),
             __("Outputs a notice", 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

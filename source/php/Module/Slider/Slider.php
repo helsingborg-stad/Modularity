@@ -12,7 +12,10 @@ class Slider extends \Modularity\Module
             __("Sliders", 'modularity'),
             __("Outputs multiple images or videos in a sliding apperance.", 'modularity'),
             array(),
-            null
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 
