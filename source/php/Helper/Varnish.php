@@ -44,8 +44,7 @@ class Varnish
     {
         if (!is_multisite()) {
             return home_url();
-        } else {
-            return get_site_url(get_current_blog_id());
         }
+        return get_site_url(get_current_blog_id());
     }
 }

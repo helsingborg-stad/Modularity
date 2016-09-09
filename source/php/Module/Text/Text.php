@@ -11,7 +11,11 @@ class Text extends \Modularity\Module
             __('Text', 'modularity'),
             __('Texts', 'modularity'),
             'Outputs a text',
-            array('editor')
+            array('editor'),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

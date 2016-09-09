@@ -11,7 +11,11 @@ class Iframe extends \Modularity\Module
             __("Iframe", 'modularity'),
             __("Iframe", 'modularity'),
             __("Outputs an embedded page.", 'modularity'),
-            array()
+            array(),
+            null,
+            null,
+            true,
+            3600*24*7
         );
     }
 }

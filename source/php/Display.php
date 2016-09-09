@@ -165,7 +165,7 @@ class Display
                 continue;
             }
 
-            $this->outputModule($module, $sidebarArgs);
+            $this->outputModule($module, $sidebarArgs, \Modularity\Module::$moduleSettings[get_post_type($module)]);
         }
     }
 
@@ -188,55 +188,65 @@ class Display
 
     /**
      * Outputs a specific module
-     * @param  object $module      The module data
-     * @param  array $sidebarArgs  The sidebar data
-     * @return boolean             True if success otherwise false
+     * @param  object $module           The module data
+     * @param  array $args              The sidebar data
+     * @param  array $moduleSettings    The module configuration
+     * @return boolean                  True if success otherwise false
      */
-    public function outputModule($module, $args = array())
+    public function outputModule($module, $args = array(), $moduleSettings = array())
     {
-        $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+        $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
-        if (!$templatePath) {
-            return false;
+        if ($moduleSettings['cache'] !== true || $cache->start()) {
+
+            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+
+            if (!$templatePath) {
+                return false;
+            }
+
+            ob_start();
+            include $templatePath;
+            $moduleMarkup = ob_get_clean();
+
+            if (strlen($moduleMarkup) === 0) {
+                return;
+            }
+
+            $beforeModule = '';
+            $moduleEdit = '';
+            if (current_user_can('edit_posts')) {
+                $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity$moduleMarkup') . '</a></div>';
+            }
+
+            if (isset($module->columnWidth) && !empty($module->columnWidth)) {
+                $beforeWidget = $module->columnWidth;
+                $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
+            } elseif (isset($args['before_widget'])) {
+                $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
+                $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
+                $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
+            }
+
+            $moduleMarkup = $beforeModule . $moduleEdit . $moduleMarkup;
+
+            if (isset($module->columnWidth) && !empty($module->columnWidth)) {
+                $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
+            } elseif (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
+                $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
+            } elseif (isset($args['after_widget'])) {
+                $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
+            }
+
+            $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
+            $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+
+            echo $moduleMarkup;
+
+            if ($moduleSettings['cache']) {
+                $cache->stop();
+            }
         }
-
-        ob_start();
-        include $templatePath;
-        $moduleMarkup = ob_get_clean();
-
-        if (strlen($moduleMarkup) === 0) {
-            return;
-        }
-
-        $beforeModule = '';
-        $moduleEdit = '';
-        if (current_user_can('edit_posts')) {
-            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity$moduleMarkup') . '</a></div>';
-        }
-
-        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-            $beforeWidget = $module->columnWidth;
-            $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
-        } elseif (isset($args['before_widget'])) {
-            $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
-            $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
-            $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
-        }
-
-        $moduleMarkup = $beforeModule . $moduleEdit . $moduleMarkup;
-
-        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-            $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
-        } elseif (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
-            $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
-        } elseif (isset($args['after_widget'])) {
-            $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
-        }
-
-        $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
-        $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
-
-        echo $moduleMarkup;
 
         return true;
     }

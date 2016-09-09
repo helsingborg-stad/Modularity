@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-08-02 11:00+0200\n"
+"POT-Creation-Date: 2016-09-09 10:39+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -20,43 +20,43 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:83 App.php:103 App.php:133
+#: App.php:88 App.php:108 App.php:138
 msgid "Edit"
 msgstr ""
 
-#: App.php:83 source/php/Editor.php:82 source/php/Options/General.php:81
+#: App.php:88 source/php/Editor.php:82 source/php/Options/General.php:93
 msgid "Modules"
 msgstr ""
 
-#: App.php:104 App.php:134
+#: App.php:109 App.php:139
 msgid "Import"
 msgstr ""
 
-#: App.php:105 App.php:135
+#: App.php:110 App.php:140
 msgid "Remove"
 msgstr ""
 
-#: App.php:106 App.php:136
+#: App.php:111 App.php:141
 msgid "Hide"
 msgstr ""
 
-#: App.php:107 App.php:137
+#: App.php:112 App.php:142
 msgid "Are you sure you want to remove this module?"
 msgstr ""
 
-#: App.php:108 App.php:138
+#: App.php:113 App.php:143
 msgid "Saving…"
 msgstr ""
 
-#: App.php:109 App.php:139
+#: App.php:114 App.php:144
 msgid "Close"
 msgstr ""
 
-#: App.php:110 App.php:140
+#: App.php:115 App.php:145
 msgid "Width"
 msgstr ""
 
-#: source/php/Display.php:214
+#: source/php/Display.php:219
 msgid "Edit module"
 msgstr ""
 
@@ -109,86 +109,86 @@ msgid ""
 "\"_blank\">Advanced Custom Fields Pro</a> plugin."
 msgstr ""
 
-#: source/php/Module.php:166
+#: source/php/Module.php:167
 msgctxt "add new button"
 msgid "Add New"
 msgstr ""
 
-#: source/php/Module.php:167
+#: source/php/Module.php:168
 #, php-format
 msgid "Add new %s"
 msgstr ""
 
-#: source/php/Module.php:168
+#: source/php/Module.php:169
 #, php-format
 msgid "New %s"
 msgstr ""
 
-#: source/php/Module.php:169 source/php/Module.php:171
+#: source/php/Module.php:170 source/php/Module.php:172
 #, php-format
 msgid "Edit %s"
 msgstr ""
 
-#: source/php/Module.php:170
+#: source/php/Module.php:171
 #, php-format
 msgid "View %s"
 msgstr ""
 
-#: source/php/Module.php:172
+#: source/php/Module.php:173
 #, php-format
 msgid "Search %s"
 msgstr ""
 
-#: source/php/Module.php:173
+#: source/php/Module.php:174
 #, php-format
 msgid "Parent %s"
 msgstr ""
 
-#: source/php/Module.php:174
+#: source/php/Module.php:175
 #, php-format
 msgid "No %s"
 msgstr ""
 
-#: source/php/Module.php:175
+#: source/php/Module.php:176
 #, php-format
 msgid "No %s in trash"
 msgstr ""
 
-#: source/php/Module.php:289
+#: source/php/Module.php:306
 #: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:6
 msgid "Title"
 msgstr ""
 
-#: source/php/Module.php:290
+#: source/php/Module.php:307
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr ""
 
-#: source/php/Module.php:291
+#: source/php/Module.php:308
 msgid "Usage"
 msgstr ""
 
-#: source/php/Module.php:292
+#: source/php/Module.php:309
 msgid "Date"
 msgstr ""
 
-#: source/php/Module.php:316
+#: source/php/Module.php:333
 msgid "Not used"
 msgstr ""
 
-#: source/php/Module.php:333
+#: source/php/Module.php:350
 msgid "more"
 msgstr ""
 
-#: source/php/Module.php:365
+#: source/php/Module.php:382
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 
-#: source/php/Module.php:408
+#: source/php/Module.php:425
 msgid "This modules is not used yet."
 msgstr ""
 
-#: source/php/Module.php:412
+#: source/php/Module.php:429
 msgid "This module is used on the following places:"
 msgstr ""
 
@@ -314,8 +314,8 @@ msgstr ""
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr ""
 
-#: source/php/Module/Slider/Slider.php:31
-#: source/php/Module/Slider/Slider.php:39
+#: source/php/Module/Slider/Slider.php:34
+#: source/php/Module/Slider/Slider.php:42
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr ""
 
@@ -349,63 +349,63 @@ msgstr ""
 msgid "Outputs a flexible table with options."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:44
+#: source/php/Module/Table/Table.php:46
 msgid "There was an error opening the selected .csv-file."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:92
+#: source/php/Module/Table/Table.php:94
 msgid "No data available in table"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:93
+#: source/php/Module/Table/Table.php:95
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:94
+#: source/php/Module/Table/Table.php:96
 msgid "Showing 0 to 0 of 0 entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:95
+#: source/php/Module/Table/Table.php:97
 msgid "filtered from _MAX_ total entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:98
+#: source/php/Module/Table/Table.php:100
 msgid "Show _MENU_ entries"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:99
+#: source/php/Module/Table/Table.php:101
 msgid "Loading..."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:100
+#: source/php/Module/Table/Table.php:102
 msgid "Processing..."
 msgstr ""
 
-#: source/php/Module/Table/Table.php:102
+#: source/php/Module/Table/Table.php:104
 msgid "No matching records found"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:104
+#: source/php/Module/Table/Table.php:106
 msgid "First"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:105
+#: source/php/Module/Table/Table.php:107
 msgid "Last"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:106
+#: source/php/Module/Table/Table.php:108
 msgid "Next"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:107
+#: source/php/Module/Table/Table.php:109
 msgid "Previous"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:110
+#: source/php/Module/Table/Table.php:112
 msgid "activate to sort column ascending"
 msgstr ""
 
-#: source/php/Module/Table/Table.php:111
+#: source/php/Module/Table/Table.php:113
 msgid "activate to sort column descending"
 msgstr ""
 
@@ -480,7 +480,7 @@ msgstr ""
 msgid "Missing a valid classname!"
 msgstr ""
 
-#: source/php/Options.php:91
+#: source/php/Options.php:93
 msgid "Options saved successfully"
 msgstr ""
 
@@ -533,10 +533,14 @@ msgid "Core options"
 msgstr ""
 
 #: source/php/Options/General.php:63
+msgid "Module options"
+msgstr ""
+
+#: source/php/Options/General.php:75
 msgid "Post types"
 msgstr ""
 
-#: source/php/Options/General.php:72
+#: source/php/Options/General.php:84
 msgid "Template areas"
 msgstr ""
 
@@ -599,6 +603,11 @@ msgstr ""
 
 #: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:54
 msgid "Nothing to display…"
+msgstr ""
+
+#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:67
+#: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:20
+msgid "No posts to show…"
 msgstr ""
 
 #: templates/options/partials/modularity-core-options.php:5
