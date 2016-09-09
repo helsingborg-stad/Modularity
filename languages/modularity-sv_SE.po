@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2016-08-02 11:00+0200\n"
-"PO-Revision-Date: 2016-08-02 11:01+0200\n"
+"POT-Creation-Date: 2016-09-09 10:40+0200\n"
+"PO-Revision-Date: 2016-09-09 10:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,43 +20,43 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:83 App.php:103 App.php:133
+#: App.php:88 App.php:108 App.php:138
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:83 source/php/Editor.php:82 source/php/Options/General.php:81
+#: App.php:88 source/php/Editor.php:82 source/php/Options/General.php:93
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:104 App.php:134
+#: App.php:109 App.php:139
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:105 App.php:135
+#: App.php:110 App.php:140
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:106 App.php:136
+#: App.php:111 App.php:141
 msgid "Hide"
 msgstr "Göm"
 
-#: App.php:107 App.php:137
+#: App.php:112 App.php:142
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:108 App.php:138
+#: App.php:113 App.php:143
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:109 App.php:139
+#: App.php:114 App.php:144
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:110 App.php:140
+#: App.php:115 App.php:145
 msgid "Width"
 msgstr "Bredd"
 
-#: source/php/Display.php:214
+#: source/php/Display.php:219
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -115,88 +115,88 @@ msgstr ""
 "advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields "
 "Pro</a>."
 
-#: source/php/Module.php:166
+#: source/php/Module.php:167
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/Module.php:167
+#: source/php/Module.php:168
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
 
-#: source/php/Module.php:168
+#: source/php/Module.php:169
 #, php-format
 msgid "New %s"
 msgstr "Ny %s"
 
-#: source/php/Module.php:169 source/php/Module.php:171
+#: source/php/Module.php:170 source/php/Module.php:172
 #, php-format
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-#: source/php/Module.php:170
+#: source/php/Module.php:171
 #, php-format
 msgid "View %s"
 msgstr "Visa %s"
 
-#: source/php/Module.php:172
+#: source/php/Module.php:173
 #, php-format
 msgid "Search %s"
 msgstr "Sök %s"
 
-#: source/php/Module.php:173
+#: source/php/Module.php:174
 #, php-format
 msgid "Parent %s"
 msgstr "Förälder %s"
 
-#: source/php/Module.php:174
+#: source/php/Module.php:175
 #, php-format
 msgid "No %s"
 msgstr "Inga %s"
 
-#: source/php/Module.php:175
+#: source/php/Module.php:176
 #, php-format
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/Module.php:289
+#: source/php/Module.php:306
 #: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:6
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Module.php:290
+#: source/php/Module.php:307
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/Module.php:291
+#: source/php/Module.php:308
 msgid "Usage"
 msgstr "Användning"
 
-#: source/php/Module.php:292
+#: source/php/Module.php:309
 msgid "Date"
 msgstr "Datum"
 
-#: source/php/Module.php:316
+#: source/php/Module.php:333
 msgid "Not used"
 msgstr "Inte använd"
 
-#: source/php/Module.php:333
+#: source/php/Module.php:350
 msgid "more"
 msgstr "fler"
 
-#: source/php/Module.php:365
+#: source/php/Module.php:382
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
 
-#: source/php/Module.php:408
+#: source/php/Module.php:425
 msgid "This modules is not used yet."
 msgstr "Denna modulen används inte än."
 
-#: source/php/Module.php:412
+#: source/php/Module.php:429
 msgid "This module is used on the following places:"
 msgstr "Denna modulen används på följande ställen:"
 
@@ -322,8 +322,8 @@ msgstr "Sliders"
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr "Visar flera bilder eller filmer i ett bildspel"
 
-#: source/php/Module/Slider/Slider.php:31
-#: source/php/Module/Slider/Slider.php:39
+#: source/php/Module/Slider/Slider.php:34
+#: source/php/Module/Slider/Slider.php:42
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
@@ -359,63 +359,63 @@ msgstr "Tabeller"
 msgid "Outputs a flexible table with options."
 msgstr "Visar en tabell"
 
-#: source/php/Module/Table/Table.php:44
+#: source/php/Module/Table/Table.php:46
 msgid "There was an error opening the selected .csv-file."
 msgstr "Det uppstod ett fel när den valda .csv-filen skulle öppnas."
 
-#: source/php/Module/Table/Table.php:92
+#: source/php/Module/Table/Table.php:94
 msgid "No data available in table"
 msgstr "Inga rader i tabellen"
 
-#: source/php/Module/Table/Table.php:93
+#: source/php/Module/Table/Table.php:95
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "Visar _START_ till _END_ av _TOTAL_ rader"
 
-#: source/php/Module/Table/Table.php:94
+#: source/php/Module/Table/Table.php:96
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "Visar 0 till 0 av 0 rader"
 
-#: source/php/Module/Table/Table.php:95
+#: source/php/Module/Table/Table.php:97
 msgid "filtered from _MAX_ total entries"
 msgstr "filtrerad från _MAX_ rader"
 
-#: source/php/Module/Table/Table.php:98
+#: source/php/Module/Table/Table.php:100
 msgid "Show _MENU_ entries"
 msgstr "Visa _MENU_ rader"
 
-#: source/php/Module/Table/Table.php:99
+#: source/php/Module/Table/Table.php:101
 msgid "Loading..."
 msgstr "Laddar…"
 
-#: source/php/Module/Table/Table.php:100
+#: source/php/Module/Table/Table.php:102
 msgid "Processing..."
 msgstr "Laddar–"
 
-#: source/php/Module/Table/Table.php:102
+#: source/php/Module/Table/Table.php:104
 msgid "No matching records found"
 msgstr "Inga matchande rader hittades"
 
-#: source/php/Module/Table/Table.php:104
+#: source/php/Module/Table/Table.php:106
 msgid "First"
 msgstr "Första"
 
-#: source/php/Module/Table/Table.php:105
+#: source/php/Module/Table/Table.php:107
 msgid "Last"
 msgstr "Sista"
 
-#: source/php/Module/Table/Table.php:106
+#: source/php/Module/Table/Table.php:108
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Table/Table.php:107
+#: source/php/Module/Table/Table.php:109
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Table/Table.php:110
+#: source/php/Module/Table/Table.php:112
 msgid "activate to sort column ascending"
 msgstr "aktivera för att sortera kolumnen i stigande ordning"
 
-#: source/php/Module/Table/Table.php:111
+#: source/php/Module/Table/Table.php:113
 msgid "activate to sort column descending"
 msgstr "aktivera för att sortera kolumnen i fallande ordning"
 
@@ -490,7 +490,7 @@ msgstr "Taggmoln"
 msgid "Missing a valid classname!"
 msgstr "Saknar ett godkänt class-namn."
 
-#: source/php/Options.php:91
+#: source/php/Options.php:93
 msgid "Options saved successfully"
 msgstr "Inställningarna sparades"
 
@@ -543,10 +543,14 @@ msgid "Core options"
 msgstr "Core inställningar"
 
 #: source/php/Options/General.php:63
+msgid "Module options"
+msgstr "Modulinställningar"
+
+#: source/php/Options/General.php:75
 msgid "Post types"
 msgstr "Posttyper"
 
-#: source/php/Options/General.php:72
+#: source/php/Options/General.php:84
 msgid "Template areas"
 msgstr "Mallområden"
 
@@ -612,6 +616,11 @@ msgstr "Läs mer"
 #: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:54
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
+
+#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:67
+#: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:20
+msgid "No posts to show…"
+msgstr "Inga inlägg att visa"
 
 #: templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
