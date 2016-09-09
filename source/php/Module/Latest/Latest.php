@@ -14,9 +14,7 @@ class Latest extends \Modularity\Module
             'Outputs posts in a given order',
             array(''),
             null,
-            'acf-post-type-field/acf-posttype-select.php', //included plugin,
-            true,
-            3600*24*7
+            'acf-post-type-field/acf-posttype-select.php' //included plugin,
         );
 
         //Filter select
