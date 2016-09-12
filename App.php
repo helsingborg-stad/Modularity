@@ -63,7 +63,7 @@ class App
         add_action('admin_bar_menu', function () {
             $options = get_option('modularity-options');
 
-            if (is_admin()) {
+            if (is_admin() || !current_user_can('edit_posts')) {
                 return;
             }
 
