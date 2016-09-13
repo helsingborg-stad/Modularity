@@ -20,6 +20,7 @@ class Cache
     public static $keyGroupPrefix = 'mod-cache-';
     public static $keyGroupAuth = 'auth';
     public static $keyGroupNoAuth = 'noauth';
+    public static $keyGroupRole = '';
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
@@ -34,8 +35,21 @@ class Cache
             $this->hash     = substr(base_convert(md5($module), 16, 32), 0, 12);
         }
 
+        //Role based key
+        if (is_user_logged_in()) {
+            $currentUserInfo = get_currentuserinfo();
+
+            if (isset($currentUserInfo->roles) && is_array($currentUserInfo->roles)) {
+                self::$keyGroupRole = implode('-', $currentUserInfo->roles);
+            } elseif (isset($currentUserInfo->roles)) {
+                self::$keyGroupRole = $currentUserInfo->roles;
+            }
+        } else {
+            self::$keyGroupRole = '';
+        }
+
         //Key Group
-        $this->keyGroup = self::$keyGroupPrefix . (is_user_logged_in() ? self::$keyGroupAuth : self::$keyGroupNoAuth);
+        $this->keyGroup = self::$keyGroupPrefix . (is_user_logged_in() ? self::$keyGroupAuth . "-" . self::$keyGroupRole : self::$keyGroupNoAuth);
     }
 
     public static function clearCache($postId)
@@ -68,7 +82,6 @@ class Cache
     public function stop()
     {
         if ($this->isActive() && !$this->hasCache()) {
-
             $return_data = ob_get_clean();
 
             if (!empty($return_data)) {
