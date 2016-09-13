@@ -73,9 +73,9 @@ class Cache
 
                 $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
 
-                wp_cache_delete($this->postId, self::$keyGroup);
-
-                wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
+                if (wp_cache_delete($this->postId, self::$keyGroup)) {
+                    wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
+                }
             }
 
             echo $return_data;
