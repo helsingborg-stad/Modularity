@@ -37,12 +37,10 @@ class Cache
 
         //Role based key
         if (is_user_logged_in()) {
-            $currentUserInfo = get_currentuserinfo();
+            $currentUserInfo = wp_get_current_user();
 
-            if (isset($currentUserInfo->roles) && is_array($currentUserInfo->roles)) {
-                self::$keyGroupRole = implode('-', $currentUserInfo->roles);
-            } elseif (isset($currentUserInfo->roles)) {
-                self::$keyGroupRole = $currentUserInfo->roles;
+            if (isset($currentUserInfo->allcaps) && is_array($currentUserInfo->allcaps)) {
+                self::$keyGroupRole = substr(base_convert(md5(serialize($currentUserInfo->allcaps)), 16, 32), 0, 12);
             }
         } else {
             self::$keyGroupRole = '';
