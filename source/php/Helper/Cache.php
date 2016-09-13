@@ -29,9 +29,8 @@ class Cache
 
         //Role based key
         if (is_user_logged_in()) {
-            $currentUserInfo = wp_get_current_user();
-            if (isset($currentUserInfo->caps) && is_array($currentUserInfo->caps)) {
-                $this->hash = $this->hash . "-auth-" . $this->createShortHash($currentUserInfo->caps, true);
+            if (isset(wp_get_current_user()->caps) && is_array(wp_get_current_user()->caps)) {
+                $this->hash = $this->hash . "-auth-" . $this->createShortHash(wp_get_current_user()->caps, true);
             }
         }
     }
