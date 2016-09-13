@@ -16,7 +16,7 @@ class Cache
     private $ttl = null;
     private $hash = null;
 
-    public static $keyGroupPrefix = 'mod-cache-';
+    public static $keyGroup = 'mod-cache';
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
@@ -40,7 +40,7 @@ class Cache
         if (wp_is_post_revision($postId) || get_post_status($postId) != 'publish') {
             return;
         }
-        wp_cache_delete($postId, self::$keyGroupPrefix);
+        wp_cache_delete($postId, self::$keyGroup);
     }
 
     public function start()
@@ -65,7 +65,7 @@ class Cache
             $return_data = ob_get_clean();
 
             if (!empty($return_data)) {
-                $cacheArray = wp_cache_get($this->postId, self::$keyGroupPrefix);
+                $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
 
                 if (!is_array($cacheArray)) {
                     $cacheArray = array();
@@ -73,9 +73,9 @@ class Cache
 
                 $cacheArray[$this->hash] = $return_data.$this->timeStampTag();
 
-                wp_cache_delete($this->postId, self::$keyGroupPrefix);
+                wp_cache_delete($this->postId, self::$keyGroup);
 
-                wp_cache_add($this->postId, $cacheArray, self::$keyGroupPrefix, $this->ttl);
+                wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
             }
 
             echo $return_data;
@@ -93,7 +93,7 @@ class Cache
 
     private function getCache($print = true)
     {
-        $cacheArray = wp_cache_get($this->postId, self::$keyGroupPrefix);
+        $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
         if (is_array($cacheArray) && array_key_exists($this->hash, $cacheArray)) {
             if ($print === true) {
                 echo $cacheArray[$this->hash];
