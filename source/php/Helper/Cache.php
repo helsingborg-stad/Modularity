@@ -71,7 +71,7 @@ class Cache
                     $cacheArray = array();
                 }
 
-                $cacheArray[$this->hash] = $return_data.$this->timeStampTag();
+                $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
 
                 wp_cache_delete($this->postId, self::$keyGroup);
 
@@ -103,9 +103,9 @@ class Cache
         return false;
     }
 
-    private function timeStampTag()
+    private function fragmentTag()
     {
-        return '<!-- Fragment cache time: ' . current_time("Y-m-d H:i:s", 1) .'-->';
+        return '<!-- FGC: [' . current_time("Y-m-d H:i:s", 1) .'| ' .$this->hash. ']-->';
     }
 
     private function isActive()
