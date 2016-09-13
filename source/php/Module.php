@@ -157,7 +157,7 @@ class Module
      * @param  array  $supports     Which core post type fileds this module supports
      * @return string               The prefixed module id/slug
      */
-    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache = false, $cache_ttl = 0)
+    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache_ttl = 0)
     {
         $labels = array(
             'name'               => _x($nameSingular, 'post type general name', 'modularity'),
@@ -273,7 +273,6 @@ class Module
             'supports' => $supports,
             'icon' => $icon,
             'plugin' => $plugin,
-            'cache' => $cache,
             'cache_ttl' => $cache_ttl
         );
 

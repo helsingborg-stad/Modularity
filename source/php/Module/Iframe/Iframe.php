@@ -14,7 +14,6 @@ class Iframe extends \Modularity\Module
             array(),
             null,
             null,
-            true,
             3600*24*7
         );
     }

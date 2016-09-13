@@ -14,7 +14,6 @@ class Text extends \Modularity\Module
             array('editor'),
             null,
             null,
-            true,
             3600*24*7
         );
     }

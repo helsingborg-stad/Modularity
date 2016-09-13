@@ -197,7 +197,7 @@ class Display
     {
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
-        if ($moduleSettings['cache'] !== true || $cache->start()) {
+        if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
 
             $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
 
@@ -243,7 +243,7 @@ class Display
 
             echo $moduleMarkup;
 
-            if ($moduleSettings['cache']) {
+            if (!empty($moduleSettings['cache_ttl'])) {
                 $cache->stop();
             }
         }
