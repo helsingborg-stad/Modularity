@@ -113,6 +113,7 @@ class General extends \Modularity\Options
         $coreTemplates = \Modularity\Helper\Wp::getCoreTemplates();
         $coreTemplates = apply_filters('Modularity/CoreTemplatesInTheme', $coreTemplates);
         $customTemplates = get_page_templates();
+
         $templates = array_merge($coreTemplates, $customTemplates);
 
         include MODULARITY_TEMPLATE_PATH . 'options/partials/modularity-template-areas.php';

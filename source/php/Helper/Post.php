@@ -34,26 +34,26 @@ class Post
      */
     public static function getPostTemplate($id = null)
     {
-        if (self::isArchive()) {
-            global $archive;
-            return 'archive-' . get_post_type();
-        }
-
-        if (is_home()) {
-            return 'archive-home';
+        if ($archive = self::isArchive()) {
+            return $archive;
         }
 
         global $post;
-        if (!$post && isset($_GET['id'])) {
+
+        // If $post is empty try to fetc post from querystring
+        if (!$post && isset($_GET['id']) && is_numeric($_GET['id'])) {
             $post = get_post($_GET['id']);
+
+            if (!$post) {
+                throw new \Error('The requested post was not found.');
+            }
         }
 
-        $checkPost = $post;
-
-        if (is_numeric($id)) {
-            $checkPost = get_post($id);
+        if (!$post) {
+            return isset($_GET['id']) && !empty($_GET['id']) ? $_GET['id'] : $archive;
         }
 
+        // If post is set, fetch the template
         $template = get_page_template_slug($post->ID);
 
         if (!$template) {
@@ -109,6 +109,14 @@ class Post
             $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
         }
 
-        return $archive != '' || is_archive() || is_search();
+        if (substr($archive, 0, 8) == 'archive-' || is_search()) {
+            return $archive;
+        }
+
+        if (isset($_GET['id']) && $_GET['id'] == 'author') {
+            return 'author';
+        }
+
+        return false;
     }
 }

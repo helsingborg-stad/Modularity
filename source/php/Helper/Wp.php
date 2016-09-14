@@ -20,24 +20,27 @@ class Wp
             '.blade.php'
         ));
 
-        $search = array(
-            'index',
-            'comments',
-            'front-page',
-            'home',
-            'single',
-            'single-*',
-            'archive',
-            'archive-*',
-            'page',
-            'page-*',
-            'category',
-            'category-*',
-            'author',
-            'date',
-            'search',
-            'attachment',
-            'image'
+        $search = apply_filters(
+            'Modularity/CoreTemplatesSearchTemplates',
+            array(
+                'index',
+                'comments',
+                'front-page',
+                'home',
+                'single',
+                'single-*',
+                'archive',
+                'archive-*',
+                'page',
+                'page-*',
+                'category',
+                'category-*',
+                'author',
+                'date',
+                'search',
+                'attachment',
+                'image'
+            )
         );
 
         $templates = array();
@@ -187,24 +190,24 @@ class Wp
      */
     public static function getArchiveSlug()
     {
-        $archiveSlug = false;
+        global $wp_query;
 
         if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
             if (is_home()) {
-                $archiveSlug = 'archive-post';
+                return 'archive-post';
             } elseif (is_post_type_archive() && is_search()) {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+                return 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
             } elseif (is_search()) {
-                $archiveSlug = 'search';
+                return 'search';
             } elseif (is_404()) {
-                $archiveSlug = 'e404';
+                return 'e404';
             } elseif (is_author()) {
-                $archiveSlug = 'author-' . get_the_author_meta('ID');
-            } else {
-                $archiveSlug = 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+                return 'author';
             }
+
+            return 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
         }
 
-        return $archiveSlug;
+        return false;
     }
 }
