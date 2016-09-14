@@ -20,21 +20,17 @@ class Cache
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
-        //Set variables
+        // Set variables
         $this->postId       = $postId;
         $this->ttl          = $ttl;
 
-        //Create hash string
+        // Create hash string
         $this->hash = $this->createShortHash($module);
 
-        //Role based key
-        if (is_user_logged_in()) {
-            if (isset(wp_get_current_user()->caps) && is_array(wp_get_current_user()->caps)) {
-                $this->hash = $this->hash . "-auth-" . $this->createShortHash(wp_get_current_user()->caps, true);
-            }
+        // Role based key
+        if (is_user_logged_in() && isset(wp_get_current_user()->caps) && is_array(wp_get_current_user()->caps)) {
+            $this->hash = $this->hash . "-auth-" . $this->createShortHash(wp_get_current_user()->caps, true);
         }
-
-        var_dump($this->hash);
     }
 
     /**
@@ -54,7 +50,7 @@ class Cache
 
     /**
      * Starts the "cache engine"
-     * @return boolean Returns true if engine started, returns false if previous cache is loaded
+     * @return boolean Returns true if engine started or inactivated, returns false if previous cache is loaded
      */
     public function start()
     {
@@ -68,35 +64,38 @@ class Cache
         }
 
         $this->getCache(true);
-
         return false;
     }
 
     /**
      * Stops the cache engine and saves the output buffer to the cache
-     * @return void
+     * @return boolean
      */
     public function stop()
     {
-        if ($this->isActive() && !$this->hasCache()) {
-            $return_data = ob_get_clean();
+        if (!$this->isActive() || $this->hasCache()) {
+            return false;
+        }
 
-            if (!empty($return_data)) {
-                $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
+        // Get output buffer and save to cache
+        $return_data = ob_get_clean();
 
-                if (!is_array($cacheArray)) {
-                    $cacheArray = array();
-                }
+        if (!empty($return_data)) {
+            $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
 
-                $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
-
-                if (wp_cache_delete($this->postId, self::$keyGroup)) {
-                    wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
-                }
+            if (!is_array($cacheArray)) {
+                $cacheArray = array();
             }
 
-            echo $return_data;
+            $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
+
+            if (wp_cache_delete($this->postId, self::$keyGroup)) {
+                wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
+            }
         }
+
+        echo $return_data;
+        return true;
     }
 
     /**
@@ -121,15 +120,15 @@ class Cache
     {
         $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
 
-        if (is_array($cacheArray) && array_key_exists($this->hash, $cacheArray)) {
-            if ($print === true) {
-                echo $cacheArray[$this->hash];
-            }
-
-            return $cacheArray[$this->hash];
+        if (!is_array($cacheArray) || !array_key_exists($this->hash, $cacheArray)) {
+            return false;
         }
 
-        return false;
+        if ($print === true) {
+            echo $cacheArray[$this->hash];
+        }
+
+        return $cacheArray[$this->hash];
     }
 
     /**
