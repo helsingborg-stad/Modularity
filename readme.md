@@ -240,3 +240,20 @@ add_filter('Modularity/Display/Markup', function ($markup, $module) {
 });
 ```
 
+#### Modularity/CoreTemplatesSearchTemplates
+
+> What template files to look for
+
+*Params:*
+```
+$templates
+```
+
+*Example:*
+```php
+add_filter('Modularity/CoreTemplatesSearchTemplates', function ($templates) {
+    $templates[] = 'my-custom-template';
+    return $templates;
+});
+```
+
