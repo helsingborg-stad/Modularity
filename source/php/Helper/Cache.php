@@ -33,16 +33,29 @@ class Cache
                 $this->hash = $this->hash . "-auth-" . $this->createShortHash(wp_get_current_user()->caps, true);
             }
         }
+
+        var_dump($this->hash);
     }
 
+    /**
+     * Cleas the cache of a specific post id
+     * @param  integer $postId Post id to clear
+     * @return boolean
+     */
     public static function clearCache($postId)
     {
         if (wp_is_post_revision($postId) || get_post_status($postId) != 'publish') {
-            return;
+            return false;
         }
+
         wp_cache_delete($postId, self::$keyGroup);
+        return true;
     }
 
+    /**
+     * Starts the "cache engine"
+     * @return boolean Returns true if engine started, returns false if previous cache is loaded
+     */
     public function start()
     {
         if (!$this->isActive()) {
@@ -59,6 +72,10 @@ class Cache
         return false;
     }
 
+    /**
+     * Stops the cache engine and saves the output buffer to the cache
+     * @return void
+     */
     public function stop()
     {
         if ($this->isActive() && !$this->hasCache()) {
@@ -82,6 +99,10 @@ class Cache
         }
     }
 
+    /**
+     * Check if has cache
+     * @return boolean
+     */
     private function hasCache()
     {
         if (!$this->isActive()) {
@@ -91,23 +112,39 @@ class Cache
         return !empty($this->getCache(false));
     }
 
+    /**
+     * Get cache
+     * @param  boolean $print Set to true to print instead of return
+     * @return mixed
+     */
     private function getCache($print = true)
     {
         $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
+
         if (is_array($cacheArray) && array_key_exists($this->hash, $cacheArray)) {
             if ($print === true) {
                 echo $cacheArray[$this->hash];
             }
+
             return $cacheArray[$this->hash];
         }
+
         return false;
     }
 
+    /**
+     * Output fragment cache fingerprint in source code
+     * @return void
+     */
     private function fragmentTag()
     {
         return '<!-- FGC: [' . current_time("Y-m-d H:i:s", 1) .'| ' .$this->hash. ']-->';
     }
 
+    /**
+     * Check if cache engine shoud be used
+     * @return boolean
+     */
     private function isActive()
     {
         if (!defined('WP_USE_MEMCACHED') || defined('WP_USE_MEMCACHED') && !WP_USE_MEMCACHED) {
@@ -117,18 +154,24 @@ class Cache
         return true;
     }
 
+    /**
+     * Create a short hash from a value
+     * @param  string  $input    Key
+     * @param  boolean $keysOnly Set to true for keys only
+     * @return string            Hash
+     */
     private function createShortHash($input, $keysOnly = false)
     {
         if ($keysOnly === true && (is_array($input) || is_object($input))) {
             $input = array_keys($input);
         }
 
-        if (is_array($input)||is_object($input)) {
+        if (is_array($input) || is_object($input)) {
             $input = substr(base_convert(md5(serialize($input)), 16, 32), 0, 12);
-        } else {
-            $input = substr(base_convert(md5($input), 16, 32), 0, 12);
+            return $input;
         }
 
+        $input = substr(base_convert(md5($input), 16, 32), 0, 12);
         return $input;
     }
 }
