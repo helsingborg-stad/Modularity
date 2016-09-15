@@ -326,7 +326,7 @@ Modularity.Editor.Module = (function ($) {
         var itemRowId = Modularity.Helpers.uuid();
 
         var html = $(target)[0].innerHTML;
-        var html = html + '<li id="post-' + postId + '" data-module-id="' + moduleId + '">\
+        var html = html + '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
                 <span class="modularity-line-wrapper">\
                     <span class="modularity-sortable-handle"></span>\
                     <span class="modularity-module-name">\
@@ -354,10 +354,15 @@ Modularity.Editor.Module = (function ($) {
                 </span>\
             </li>';
 
+        //Store
         $(target)[0].innerHTML = html;
 
-        $(target).find('#post-' + postId + ' .modularity-module-columns option[value="' + columnWidth + '"]').prop('selected', true);
+        //Update width selector
+        jQuery(".modularity-sidebar-area > li").each(function(index,item) {
+            $('.modularity-module-columns select',$(item)).val($(item).attr('data-module-stored-width'));
+        });
 
+        //Refresh
         $('.modularity-js-sortable').sortable('refresh');
     };
 

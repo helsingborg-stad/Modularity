@@ -92,8 +92,7 @@ a.wp-first-item[href="admin.php?page=modularity"] {
     background-color: #fff;
     width: 250px !important;
     min-width: 250px !important;
-    -webkit-transform: rotate(-4deg) scale(1.1);
-            transform: rotate(-4deg) scale(1.1);
+    transform: rotate(-4deg) scale(1.1);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); }
 
 li.modularity-module {
@@ -119,16 +118,13 @@ li.modularity-module {
   float: left;
   width: 50px;
   height: 50px;
-  transition: -webkit-transform 200ms ease;
-  transition: transform 200ms ease;
-  transition: transform 200ms ease, -webkit-transform 200ms ease; }
+  transition: transform 200ms ease; }
   .modularity-module-icon svg,
   .modularity-module-icon img {
     position: absolute;
     top: 50%;
     left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     max-width: 60%;
     max-height: 60%;
     height: 100%;
@@ -138,8 +134,7 @@ li.modularity-module {
     fill: #4D4D4D !important; }
 
 .modularity-module:hover .modularity-module-icon {
-  -webkit-transform: rotate(-10deg);
-          transform: rotate(-10deg); }
+  transform: rotate(-10deg); }
 
 .modularity-sortable-handle {
   line-height: 50px; }
@@ -278,9 +273,7 @@ li.modularity-module {
         text-align: center;
         position: relative;
         white-space: nowrap;
-        transition: background 200ms ease, color 200ms ease, -webkit-transform 200ms ease;
-        transition: background 200ms ease, color 200ms ease, transform 200ms ease;
-        transition: background 200ms ease, color 200ms ease, transform 200ms ease, -webkit-transform 200ms ease; }
+        transition: background 200ms ease, color 200ms ease, transform 200ms ease; }
         .modularity-sidebar-area li span.modularity-module-actions a:not(:last-child) {
           border-right: 1px solid #E5E5E5; }
         .modularity-sidebar-area li span.modularity-module-actions a > span {
@@ -359,8 +352,7 @@ li.modularity-module {
     width: 100%;
     text-align: center;
     top: 50%;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
     font-size: 13pt;
     color: #999; }
   .modularity-js-droppable.modularity-spinner {
@@ -452,8 +444,7 @@ li.modularity-module {
   right: 0;
   background-color: rgba(241, 241, 241, 0.95);
   opacity: 0;
-  -webkit-animation: 200ms modal-fade-in forwards;
-          animation: 200ms modal-fade-in forwards; }
+  animation: 200ms modal-fade-in forwards; }
   #modularity-modal .modularity-modal-close {
     position: absolute;
     top: 0;
@@ -478,10 +469,6 @@ li.modularity-module {
 
 .admin-bar:not(.wp-admin) #modularity-modal {
   top: 32px; }
-
-@-webkit-keyframes modal-fade-in {
-  100% {
-    opacity: 1; } }
 
 @keyframes modal-fade-in {
   100% {
@@ -512,24 +499,13 @@ body.modularity-loader-takeover::after {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  -webkit-animation: 1000ms loading-ball ease-in-out infinite;
-          animation: 1000ms loading-ball ease-in-out infinite; }
-
-@-webkit-keyframes loading-ball {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1); }
-  50% {
-    -webkit-transform: scale(0.2);
-            transform: scale(0.2); } }
+  animation: 1000ms loading-ball ease-in-out infinite; }
 
 @keyframes loading-ball {
   0% {
-    -webkit-transform: scale(1);
-            transform: scale(1); }
+    transform: scale(1); }
   50% {
-    -webkit-transform: scale(0.2);
-            transform: scale(0.2); } }
+    transform: scale(0.2); } }
 
 .text-right {
   text-align: right; }
@@ -561,8 +537,7 @@ body.modularity-loader-takeover::after {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    -webkit-transform: translateX(-50%);
-            transform: translateX(-50%); }
+    transform: translateX(-50%); }
   [class*="modularity-mod-"] .modularity-edit-module a {
     position: relative;
     display: inline-block;
@@ -574,8 +549,7 @@ body.modularity-loader-takeover::after {
       position: absolute;
       top: 100%;
       left: 50%;
-      -webkit-transform: translateX(-50%);
-              transform: translateX(-50%);
+      transform: translateX(-50%);
       display: block;
       content: '';
       width: 0;

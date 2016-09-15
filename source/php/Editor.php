@@ -152,6 +152,12 @@ class Editor extends \Modularity\Options
      */
     public function addSidebarsMetaBoxes()
     {
+        /*
+        global $post;
+        var_dump($this->getPostModules('modularity_author-edit_modules')); exit;
+        */
+
+
         global $wp_registered_sidebars;
 
         $template = \Modularity\Helper\Post::getPostTemplate();
@@ -259,7 +265,15 @@ class Editor extends \Modularity\Options
             global $archive;
             $options = get_option('modularity_' . $archive . '_sidebar-options');
         } else {
-            $options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+            if ($post) {
+                $options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+            } else {
+                if (!isset($_GET['id']) || empty($_GET['id'])) {
+                    throw new \Error('Get paramter ID is empty.');
+                }
+
+                $options = get_post_meta($_GET['id'], 'modularity-sidebar-options', true);
+            }
         }
 
         if (isset($options[$args['args']['sidebar']['id']])) {
@@ -374,11 +388,7 @@ class Editor extends \Modularity\Options
             return trigger_error('Invalid post id. Please contact system administrator.');
         }
 
-        if (\Modularity\Helper\Post::isArchive()) {
-            $this->saveArchive();
-        } else {
-            $this->savePost();
-        }
+        $this->savePost();
 
         // If this is an ajax post, return "success" as plain text
         if (defined('DOING_AJAX') && DOING_AJAX) {
@@ -395,20 +405,34 @@ class Editor extends \Modularity\Options
      */
     public function savePost()
     {
-        $postId = $_REQUEST['id'];
+        $key = $_REQUEST['id'];
 
+        if (is_numeric($key)) {
+            return $this->saveAsPostMeta($key);
+        }
+
+        if (\Modularity\Helper\Post::isArchive()) {
+            global $archive;
+            $key = 'modularity_' . $archive;
+        }
+
+        return $this->saveAsOption($key);
+    }
+
+    public function saveAsPostMeta($key)
+    {
         // Save/remove modules
         if (isset($_POST['modularity_modules'])) {
-            update_post_meta($postId, 'modularity-modules', $_POST['modularity_modules']);
+            update_post_meta($key, 'modularity-modules', $_POST['modularity_modules']);
         } else {
-            delete_post_meta($postId, 'modularity-modules');
+            delete_post_meta($key, 'modularity-modules');
         }
 
         // Save/remove sidebar options
         if (isset($_POST['modularity_sidebar_options'])) {
-            update_post_meta($postId, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
+            update_post_meta($key, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
         } else {
-            delete_post_meta($postId, 'modularity-sidebar-options');
+            delete_post_meta($key, 'modularity-sidebar-options');
         }
 
         return true;
@@ -418,12 +442,10 @@ class Editor extends \Modularity\Options
      * Saves archive modules
      * @return boolean
      */
-    public function saveArchive()
+    public function saveAsOption($key)
     {
-        global $archive;
-
-        // Save/remove modules
-        $optionName = 'modularity_' . $archive . '_modules';
+        $key = 'modularity_' . $key;
+        $optionName = $key . '_modules';
 
         if (isset($_POST['modularity_modules'])) {
             if (get_option($optionName)) {
@@ -436,7 +458,7 @@ class Editor extends \Modularity\Options
         }
 
         // Save/remove sidebar options
-        $optionName = 'modularity_' . $archive . '_sidebar-options';
+        $optionName = $key . '_sidebar-options';
 
         if (isset($_POST['modularity_sidebar_options'])) {
             if (get_option($optionName)) {

@@ -13,7 +13,7 @@ class Display
 
     public function __construct()
     {
-        add_action('wp', array($this, 'init'));
+        add_filter('wp', array($this, 'init'));
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
 
         add_shortcode('modularity', array($this, 'shortcodeDisplay'));
@@ -58,6 +58,7 @@ class Display
     public function init()
     {
         global $post;
+        global $wp_query;
 
         if (is_admin()) {
             return;
@@ -65,7 +66,10 @@ class Display
 
         $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
 
-        if ($archiveSlug) {
+        if (isset($wp_query->query['modularity_template']) && !empty($wp_query->query['modularity_template'])) {
+            $this->modules = \Modularity\Editor::getPostModules($wp_query->query['modularity_template']);
+            $this->options = get_option('modularity_' . $wp_query->query['modularity_template'] . '_sidebar-options');
+        } elseif ($archiveSlug) {
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
         } else {
