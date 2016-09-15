@@ -35,6 +35,7 @@ class Article extends \Modularity\Module
         $description = 'Outputs a full article with title and content';
         $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
+        $cacheTTL = 60*60*24 //Time to live for fragment cache (stored in memcached). 
 
         $this->register(
             $id,
@@ -42,7 +43,8 @@ class Article extends \Modularity\Module
             $namePlural,
             $description,
             $supports,
-            $icon
+            $icon,
+            $cacheTTL
         );
     }
 }
