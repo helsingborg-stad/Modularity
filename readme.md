@@ -6,7 +6,7 @@ Modular component system plugin for WordPress. Drag and drop the bundled modules
 Creating modules
 ----------------
 
-To create your very own Modularity module you simply create a plugin with a class that extends our Modularity\Module class. Beth
+To create your very own Modularity module you simply create a plugin with a class that extends our Modularity\Module class.
 
 A module actually is the same as a custom post type. However we've added a few details to enable you to use them as modules.
 
@@ -35,6 +35,7 @@ class Article extends \Modularity\Module
         $description = 'Outputs a full article with title and content';
         $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
+        $plugin = '/path/to/include-file.php' // CAn also be an array of paths to include 
         $cacheTTL = 60*60*24 //Time to live for fragment cache (stored in memcached). 
 
         $this->register(
@@ -44,6 +45,7 @@ class Article extends \Modularity\Module
             $description,
             $supports,
             $icon,
+            $plugin,
             $cacheTTL
         );
     }
