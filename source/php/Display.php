@@ -200,6 +200,10 @@ class Display
      */
     public function outputModule($module, $args = array(), $moduleSettings = array())
     {
+        if (!in_array($module->ID, (array)$this->modules[$args['id']])) {
+            return;
+        }
+
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
