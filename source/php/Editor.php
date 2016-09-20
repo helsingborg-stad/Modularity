@@ -413,7 +413,7 @@ class Editor extends \Modularity\Options
 
         if (\Modularity\Helper\Post::isArchive()) {
             global $archive;
-            $key = 'modularity_' . $archive;
+            $key = $archive;
         }
 
         return $this->saveAsOption($key);
