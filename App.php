@@ -40,6 +40,8 @@ class App
         new Helper\Acf();
         new Helper\Varnish();
 
+        new Search();
+
         add_action('widgets_init', function () {
             register_widget('\Modularity\Widget');
         });

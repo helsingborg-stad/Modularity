@@ -17,6 +17,7 @@ class Display
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
 
         add_shortcode('modularity', array($this, 'shortcodeDisplay'));
+        add_filter('the_post', array($this, 'filterNestedModuleShortocde'));
     }
 
     /**
@@ -199,6 +200,10 @@ class Display
      */
     public function outputModule($module, $args = array(), $moduleSettings = array())
     {
+        if (!in_array($module->ID, (array)$this->modules[$args['id']])) {
+            return;
+        }
+
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
@@ -295,5 +300,15 @@ class Display
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
 
         return $moduleMarkup;
+    }
+
+    public function filterNestedModuleShortocde($post)
+    {
+        if (substr($post->post_type, 0, 4) != 'mod-') {
+            return $post;
+        }
+
+        $post->post_content = preg_replace('/\[modularity(.*)\]/', '', $content);
+        return $post;
     }
 }
