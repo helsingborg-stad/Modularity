@@ -300,6 +300,10 @@ class Display
 
     public function filterNestedModuleShortocde($post)
     {
+        if (is_admin()) {
+            return $post;
+        }
+
         if (substr($post->post_type, 0, 4) != 'mod-') {
             return $post;
         }
