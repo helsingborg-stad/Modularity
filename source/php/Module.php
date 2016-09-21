@@ -190,7 +190,17 @@ class Module
             'menu_position'        => 100,
             'exclude_from_search'  => false,
             'menu_icon'            => $icon,
-            'supports'             => array_merge($supports, array('title', 'revisions'))
+            'supports'             => array_merge($supports, array('title', 'revisions')),
+            'capabilities'         => array(
+                'edit_post'          => 'edit_module',
+                'edit_posts'         => 'edit_modules',
+                'edit_others_posts'  => 'edit_other_modules',
+                'publish_posts'      => 'publish_modules',
+                'read_post'          => 'read_module',
+                'read_private_posts' => 'read_private_posts',
+                'delete_post'        => 'delete_module'
+            ),
+            'map_meta_cap'         => true
         );
 
         /**

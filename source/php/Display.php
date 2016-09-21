@@ -220,7 +220,7 @@ class Display
 
             $beforeModule = '';
             $moduleEdit = '';
-            if (current_user_can('edit_posts')) {
+            if (current_user_can('edit_module', $module->ID)) {
                 $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity$moduleMarkup') . '</a></div>';
             }
 

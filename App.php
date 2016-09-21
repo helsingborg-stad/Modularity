@@ -20,6 +20,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
+        add_action('admin_init', array($this, 'addCaps'));
 
         /**
          * Redirect top level Modularity page to the Modularity options page
@@ -53,6 +54,48 @@ class App
 
         //Main hook
         do_action('Modularity');
+    }
+
+    public function addCaps()
+    {
+        $admin = get_role('administrator');
+        if ($admin->has_cap('edit_module')) {
+            return;
+        }
+
+        $caps = array(
+            'administrator' => array(
+                'edit_module',
+                'edit_modules',
+                'edit_other_modules',
+                'publish_modules',
+                'read_modules',
+                'delete_module'
+            ),
+            'editor' => array(
+                'edit_module',
+                'edit_modules',
+                'edit_other_modules',
+                'publish_modules',
+                'read_modules',
+                'delete_module'
+            ),
+            'author' => array(
+                'edit_module',
+                'edit_modules',
+                'edit_other_modules',
+                'publish_modules',
+                'read_modules'
+            )
+        );
+
+        foreach ($caps as $roleId => $cap) {
+            $role = get_role($roleId);
+
+            foreach ($cap as $item) {
+                $role->add_cap($item);
+            }
+        }
     }
 
     /**
