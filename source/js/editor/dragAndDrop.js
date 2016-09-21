@@ -47,7 +47,7 @@ Modularity.Editor.DragAndDrop = (function ($) {
     DragAndDrop.prototype.setupDraggable = function () {
         $('.modularity-js-draggable').draggable({
             appendTo: 'body',
-            containment: 'window',
+            containment: 'document',
             scroll: false,
             helper: 'clone',
             revert: 'invalid',

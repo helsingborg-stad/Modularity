@@ -188,7 +188,7 @@ class Module
             'rewrite'              => false,
             'hierarchical'         => false,
             'menu_position'        => 100,
-            'exclude_from_search'  => true,
+            'exclude_from_search'  => false,
             'menu_icon'            => $icon,
             'supports'             => array_merge($supports, array('title', 'revisions'))
         );
@@ -326,7 +326,7 @@ class Module
                 break;
 
             case 'usage':
-                $usage = $this->getModuleUsage($postId, 3);
+                $usage = self::getModuleUsage($postId, 3);
 
                 if (count($usage->data) == 0) {
                     echo __('Not used', 'modularity');
@@ -417,7 +417,7 @@ class Module
             return;
         }
 
-        $usage = $module->getModuleUsage($post->ID);
+        $usage = self::getModuleUsage($post->ID);
 
         add_meta_box('modularity-usage', 'Module usage', function () use ($module, $usage) {
             if (count($usage) == 0) {
@@ -464,7 +464,7 @@ class Module
      * @param  integer $id Module id
      * @return array       List of pages where the module is used
      */
-    public function getModuleUsage($id, $limit = false)
+    public static function getModuleUsage($id, $limit = false)
     {
         global $wpdb;
         $query = "
