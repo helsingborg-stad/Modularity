@@ -85,21 +85,25 @@ if (isset($info['image']) && !empty($info['image'])) {
             </ul>
 
             <?php if (isset($info['address']) && !empty($info['address'])) : ?>
-            <div class="gutter gutter-top">
-                <strong><?php _e('Postal address', 'modularity'); ?></strong><br>
+            <div class="gutter gutter-top small">
+                <?php if (isset($info['visiting_address']) && !empty($info['visiting_address'])) : ?>
+                    <strong><?php _e('Postal address', 'modularity'); ?></strong>
+                <?php endif; ?>
                 <?php echo $info['address']; ?>
             </div>
             <?php endif; ?>
 
             <?php if (isset($info['visiting_address']) && !empty($info['visiting_address'])) : ?>
-            <div class="gutter gutter-top">
-                <strong><?php _e('Visiting address', 'modularity'); ?></strong><br>
+            <div class="gutter gutter-top small">
+                <?php if (isset($info['address']) && !empty($info['address'])) : ?>
+                    <strong><?php _e('Visiting address', 'modularity'); ?></strong>
+                <?php endif; ?>
                 <?php echo $info['visiting_address']; ?>
             </div>
             <?php endif; ?>
 
             <?php if (isset($info['other']) && !empty($info['other'])) : ?>
-            <div class="gutter gutter-top">
+            <div class="gutter gutter-top small">
                 <?php echo $info['other']; ?>
             </div>
             <?php endif; ?>
