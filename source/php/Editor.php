@@ -325,7 +325,8 @@ class Editor extends \Modularity\Options
         $modulesPosts = get_posts(array(
             'posts_per_page' => -1,
             'post_type' => $enabled,
-            'include' => $moduleIds
+            'include' => $moduleIds,
+            'post_status' => array('published', 'private')
         ));
 
         // Add module id's as keys in the array
