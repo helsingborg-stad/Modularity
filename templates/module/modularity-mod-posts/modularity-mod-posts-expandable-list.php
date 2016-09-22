@@ -14,7 +14,7 @@
     <?php if (count($posts) > 0) : ?>
         <?php $i = 0; foreach ($posts as $post) : $i++; ?>
         <section class="accordion-section">
-            <input type="checkbox" name="active-section" id="item-<?php echo $module->ID; ?>-<?php echo $post->ID; ?>">
+            <input type="radio" name="active-section" id="item-<?php echo $module->ID; ?>-<?php echo $post->ID; ?>">
             <label class="accordion-toggle" for="item-<?php echo $module->ID; ?>-<?php echo $post->ID; ?>">
                 <?php if (isset($fields->posts_list_column_titles) && count($fields->posts_list_column_titles) > 0) : ?>
                     <span class="accordion-table">
