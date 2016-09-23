@@ -49,7 +49,7 @@
                 </li>
             <?php endif; ?>
             <?php if (isset($fields->phone_number) && !empty($fields->phone_number)) : ?><li><a itemprop="telephone" class="link-item" href="tel:<?php echo $fields->phone_number; ?>"><?php echo $fields->phone_number; ?></a></li><?php endif; ?>
-            <?php if (isset($fields->email) && !empty($fields->email)) : ?><li><a itemprop="email" class="link-item" href="mailto:<?php echo $fields->email; ?>"><?php echo $fields->email; ?></a></li><?php endif; ?>
+            <?php if (isset($fields->email) && !empty($fields->email)) : ?><li><a itemprop="email" class="link-item truncate" href="mailto:<?php echo $fields->email; ?>"><?php echo $fields->email; ?></a></li><?php endif; ?>
             <?php if (!empty($module->post_content)) : ?><li class="small description"><?php echo apply_filters('the_content', $module->post_content); ?></li><?php endif; ?>
        </ul>
     </div>
