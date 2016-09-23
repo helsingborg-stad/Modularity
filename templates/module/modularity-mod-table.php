@@ -7,7 +7,10 @@ if (isset($fields->mod_table_classes) && is_array($fields->mod_table_classes)) {
 }
 ?>
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
-    <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <?php if (!$module->hideTitle) : ?>
+        <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <?php endif; ?>
+
     <?php
     echo str_replace(
         '<table class="',
