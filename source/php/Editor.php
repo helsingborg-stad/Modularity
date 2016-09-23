@@ -370,6 +370,14 @@ class Editor extends \Modularity\Options
                     $retModules[$key]['modules'][$arrayIndex]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
                     $retModules[$key]['modules'][$arrayIndex]->isDeprecated = (in_array($retModules[$key]['modules'][$arrayIndex]->post_type, \Modularity\Module::$deprecated)) ? true : false;
 
+                    $hideTitle = \Modularity\Module::$moduleSettings[$retModules[$key]['modules'][$arrayIndex]->post_type]['hide_title'];
+
+                    if (!empty(get_post_meta($post->ID, 'modularity-module-hide-title', true))) {
+                        $hideTitle = (bool) get_post_meta($post->ID, 'modularity-module-hide-title', true);
+                    }
+
+                    $retModules[$key]['modules'][$arrayIndex]->hideTitle = $hideTitle;
+
                     $arrayIndex++;
                 }
             }

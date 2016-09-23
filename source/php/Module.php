@@ -32,6 +32,10 @@ class Module
     {
         self::$enabled = self::getEnabled();
         $this->initBundledModules();
+
+        // Hide title option
+        add_action('edit_form_before_permalink', array($this, 'hideTitleCheckbox'));
+        add_action('save_post', array($this, 'saveHideTitleCheckbox'), 10, 2);
     }
 
     /**
@@ -157,7 +161,7 @@ class Module
      * @param  array  $supports     Which core post type fileds this module supports
      * @return string               The prefixed module id/slug
      */
-    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache_ttl = 0)
+    protected function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache_ttl = 0, $hideTitle = false)
     {
         $labels = array(
             'name'               => _x($nameSingular, 'post type general name', 'modularity'),
@@ -261,6 +265,10 @@ class Module
         // Add usage metabox
         add_action('add_meta_boxes', array($this, 'whereUsedMetaBox'));
 
+        // Description meta box
+        add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
+        add_action('save_post', array($this, 'descriptionMetaboxSave'));
+
         // Setup list table fields
         $this->setupListTableField();
 
@@ -283,10 +291,50 @@ class Module
             'supports' => $supports,
             'icon' => $icon,
             'plugin' => $plugin,
-            'cache_ttl' => $cache_ttl
+            'cache_ttl' => $cache_ttl,
+            'hide_title' => $hideTitle
         );
 
         return $postTypeSlug;
+    }
+
+    public function hideTitleCheckbox()
+    {
+        global $post;
+
+        if (substr($post->post_type, 0, 4) != 'mod-') {
+            return;
+        }
+
+        $current = self::$moduleSettings[$post->post_type]['hide_title'];
+
+        if (!empty(get_post_meta($post->ID, 'modularity-module-hide-title', true))) {
+            $current = (bool) get_post_meta($post->ID, 'modularity-module-hide-title', true);
+        }
+
+        $checked = checked(true, $current, false);
+
+        echo '<div>
+            <label style="cursor:pointer;">
+                <input type="checkbox" name="modularity-module-hide-title" value="1" ' . $checked . '>
+                ' . __('Hide title', 'modularity') . '
+            </label>
+        </div>';
+    }
+
+    public function saveHideTitleCheckbox($postId, $post)
+    {
+        if (substr($post->post_type, 0, 4) != 'mod-') {
+            return;
+        }
+
+        if (!isset($_POST['modularity-module-hide-title'])) {
+            update_post_meta($postId, 'modularity-module-hide-title', false);
+            return;
+        }
+
+        update_post_meta($postId, 'modularity-module-hide-title', true);
+        return;
     }
 
     /**
@@ -295,13 +343,12 @@ class Module
      */
     public function setupListTableField()
     {
-        add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
-        add_action('save_post', array($this, 'descriptionMetaboxSave'));
-
         add_filter('manage_edit-' . $this->moduleSlug . '_columns', array($this, 'listTableColumns'));
         add_action('manage_' . $this->moduleSlug . '_posts_custom_column', array($this, 'listTableColumnContent'), 10, 2);
         add_filter('manage_edit-' . $this->moduleSlug . '_sortable_columns', array($this, 'listTableColumnSorting'));
     }
+
+
 
     /**
      * Define list table columns
