@@ -40,7 +40,7 @@
     <?php endif; ?>
 
     <div class="box-content">
-        <h5 itemprop="name"><?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?></h5>
+        <h5 itemprop="name"><?php echo $fields->first_name; ?> <?php echo isset($fields->last_name) && !empty($fields->last_name) ? $fields->last_name : ''; ?></h5>
         <ul>
             <?php if ((isset($fields->title) && !empty($fields->title)) || (isset($fields->organization) && !empty($fields->organization))) : ?>
                 <li class="card-title">

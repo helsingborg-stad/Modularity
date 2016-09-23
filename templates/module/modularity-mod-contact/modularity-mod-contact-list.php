@@ -67,7 +67,7 @@ if (isset($info['image']) && !empty($info['image'])) {
     <section class="accordion-section" itemscope="person" itemtype="http://schema.org/Organization">
         <input type="checkbox" name="active-section" id="accordion-section-<?php echo $i; ?>">
         <label class="accordion-toggle" for="accordion-section-<?php echo $i; ?>">
-            <h3 itemprop="name"><?php echo $info['first_name']; ?> <?php echo $info['last_name']; ?></h3>
+            <h6 itemprop="name"><?php echo $info['first_name']; ?> <?php echo isset($info['last_name']) && !empty($info['last_name']) ? $info['last_name'] : ''; ?></h6>
         </label>
         <div class="accordion-content">
             <ul>
@@ -78,7 +78,7 @@ if (isset($info['image']) && !empty($info['image'])) {
                     </li>
                 <?php endif; ?>
                 <?php if (isset($info['phone']) && !empty($info['phone'])) : ?><li><a itemprop="telephone" class="link-item" href="tel:<?php echo $info['phone']; ?>"><?php echo $info['phone']; ?></a></li><?php endif; ?>
-                <?php if (isset($info['email']) && !empty($info['email'])) : ?><li><a itemprop="email" class="link-item" href="mailto:<?php echo $info['email']; ?>"><?php echo $info['email']; ?></a></li><?php endif; ?>
+                <?php if (isset($info['email']) && !empty($info['email'])) : ?><li><a itemprop="email" class="link-item truncate" href="mailto:<?php echo $info['email']; ?>"><?php echo $info['email']; ?></a></li><?php endif; ?>
                 <?php if (!empty($module->post_content)) : ?><li class="small description"><?php echo apply_filters('the_content', $module->post_content); ?></li><?php endif; ?>
            </ul>
         </div>
