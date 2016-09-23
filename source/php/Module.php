@@ -308,8 +308,8 @@ class Module
 
         $current = self::$moduleSettings[$post->post_type]['hide_title'];
 
-        if (!empty(get_post_meta($post->ID, 'modularity-module-hide-title', true))) {
-            $current = (bool) get_post_meta($post->ID, 'modularity-module-hide-title', true);
+        if (strlen(get_post_meta($post->ID, 'modularity-module-hide-title', true)) > 0) {
+            $current = boolval(get_post_meta($post->ID, 'modularity-module-hide-title', true));
         }
 
         $checked = checked(true, $current, false);
@@ -329,11 +329,11 @@ class Module
         }
 
         if (!isset($_POST['modularity-module-hide-title'])) {
-            update_post_meta($postId, 'modularity-module-hide-title', false);
+            update_post_meta($post->ID, 'modularity-module-hide-title', 0);
             return;
         }
 
-        update_post_meta($postId, 'modularity-module-hide-title', true);
+        update_post_meta($post->ID, 'modularity-module-hide-title', 1);
         return;
     }
 

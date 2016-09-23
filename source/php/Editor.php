@@ -372,8 +372,8 @@ class Editor extends \Modularity\Options
 
                     $hideTitle = \Modularity\Module::$moduleSettings[$retModules[$key]['modules'][$arrayIndex]->post_type]['hide_title'];
 
-                    if (!empty(get_post_meta($post->ID, 'modularity-module-hide-title', true))) {
-                        $hideTitle = (bool) get_post_meta($post->ID, 'modularity-module-hide-title', true);
+                    if (strlen(get_post_meta($moduleId, 'modularity-module-hide-title', true)) > 0) {
+                        $hideTitle = boolval(get_post_meta($moduleId, 'modularity-module-hide-title', true));
                     }
 
                     $retModules[$key]['modules'][$arrayIndex]->hideTitle = $hideTitle;
