@@ -1,4 +1,10 @@
 <div class="grid">
+    <?php if (!$module->hideTitle) : ?>
+        <div class="grid-xs-12">
+            <h2><?php echo $module->post_title; ?></h2>
+        </div>
+    <?php endif; ?>
+
 <?php
 $hasImages = false;
 foreach ($posts as $post) {
