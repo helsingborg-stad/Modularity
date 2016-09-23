@@ -332,10 +332,6 @@ class Editor extends \Modularity\Options
         // Add module id's as keys in the array
         if (!empty($modulesPosts)) {
             foreach ($modulesPosts as $module) {
-                if (!current_user_can('read_post', $module->ID)) {
-                    continue;
-                }
-
                 $modules[$module->ID] = $module;
             }
         }
