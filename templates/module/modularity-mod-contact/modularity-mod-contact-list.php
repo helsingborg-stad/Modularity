@@ -1,4 +1,7 @@
 <div class="box no-padding">
+<?php if (!$module->hideTitle) : ?>
+    <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+<?php endif; ?>
 <div class="accordion accordion-icon accordion-list">
 <?php
 $contacts = $fields->contacts;

@@ -39,6 +39,10 @@
     <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
     <?php endif; ?>
 
+    <?php if (!$module->hideTitle) : ?>
+    <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <?php endif; ?>
+
     <div class="box-content">
         <h5 itemprop="name"><?php echo $fields->first_name; ?> <?php echo isset($fields->last_name) && !empty($fields->last_name) ? $fields->last_name : ''; ?></h5>
         <ul>
