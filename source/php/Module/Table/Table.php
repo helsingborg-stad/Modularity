@@ -70,6 +70,9 @@ class Table extends \Modularity\Module
 
     public function modAssets()
     {
+        wp_register_script('mod-table', MODULARITY_URL . '/dist/js/Table/assets/table.js', array(), '1.1.1', true);
+        wp_enqueue_script('mod-table');
+
         wp_register_style('mod-table', MODULARITY_URL . '/dist/css/Table/assets/table.min.css', array(), '1.1.1');
         wp_enqueue_style('mod-table');
     }
