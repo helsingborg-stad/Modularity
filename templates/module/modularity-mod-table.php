@@ -3,7 +3,13 @@ $fields = json_decode(json_encode(get_fields($module->ID)));
 
 $classes = '';
 if (isset($fields->mod_table_classes) && is_array($fields->mod_table_classes)) {
-    $classes = implode(' ', $fields->mod_table_classes);
+    $classes = $fields->mod_table_classes;
+    if (isset($fields->mod_table_size) && !empty($fields->mod_table_size)) {
+        $classes[] = $fields->mod_table_size;
+    }
+
+    $classes = array_unique($classes);
+    $classes = implode(' ', $classes);
 }
 ?>
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
