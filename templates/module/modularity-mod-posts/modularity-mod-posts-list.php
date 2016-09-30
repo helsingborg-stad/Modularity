@@ -1,5 +1,8 @@
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
+    <?php if (!$module->hideTitle) : ?>
     <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <?php endif; ?>
+
     <ul>
         <?php
         if (count($posts) > 0) :
@@ -18,6 +21,10 @@
             </li>
         <?php endforeach; else : ?>
         <li><?php _e('No posts to show…', 'modularity'); ?></li>
+        <?php endif; ?>
+
+        <?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
+        <li><a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); ?>"><?php _e('Show more', 'modularity'); ?></a></li>
         <?php endif; ?>
     </ul>
 </div>

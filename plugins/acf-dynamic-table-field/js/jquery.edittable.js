@@ -294,11 +294,6 @@
             return false;
         });
 
-        // Select all content on click
-        $table.on('click', 'input', function () {
-            $(this).select();
-        });
-
         // Return functions
         return {
             // Get an array of data

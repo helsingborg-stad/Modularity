@@ -66,11 +66,15 @@ if (isset($info['image']) && !empty($info['image'])) {
 <div class="<?php echo isset($fields->columns) && !empty($fields->columns) ? $fields->columns : 'grid-md-12'; ?>">
     <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $module->post_type, $args)); ?>" itemscope itemtype="http://schema.org/Person">
         <?php if ($image !== false) : ?>
-        <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
+        <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $info['first_name']; ?> <?php echo isset($info['last_name']) && !empty($info['last_name']) ? $info['last_name'] : ''; ?>">
+        <?php endif; ?>
+
+        <?php if (!$module->hideTitle) : ?>
+        <h4 class="box-title"><?php echo $module->post_title; ?></h4>
         <?php endif; ?>
 
         <div class="box-content">
-            <h5 itemprop="name"><?php echo $info['first_name']; ?> <?php echo $info['last_name']; ?></h5>
+            <h5 itemprop="name"><?php echo $info['first_name']; ?> <?php echo isset($info['last_name']) && !empty($info['last_name']) ? $info['last_name'] : ''; ?></h5>
 
             <ul>
             <?php if ((isset($info['work_title']) && !empty($info['work_title'])) || (isset($info['administration_unit']) && !empty($info['administration_unit']))) : ?>
@@ -80,7 +84,7 @@ if (isset($info['image']) && !empty($info['image'])) {
             </li>
             <?php endif; ?>
             <?php if (isset($info['phone']) && !empty($info['phone'])) : ?><li><a itemprop="telephone" class="link-item" href="tel:<?php echo $info['phone']; ?>"><?php echo $info['phone']; ?></a></li><?php endif; ?>
-            <?php if (isset($info['email']) && !empty($info['email'])) : ?><li><a itemprop="email" class="link-item" href="mailto:<?php echo $info['email']; ?>"><?php echo $info['email']; ?></a></li><?php endif; ?>
+            <?php if (isset($info['email']) && !empty($info['email'])) : ?><li><a itemprop="email" class="link-item truncate" href="mailto:<?php echo $info['email']; ?>"><?php echo $info['email']; ?></a></li><?php endif; ?>
             <?php if (!empty($module->post_content)) : ?><li class="small description"><?php echo apply_filters('the_content', $module->post_content); ?></li><?php endif; ?>
             </ul>
 

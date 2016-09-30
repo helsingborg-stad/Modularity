@@ -39,8 +39,12 @@
     <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
     <?php endif; ?>
 
+    <?php if (!$module->hideTitle) : ?>
+    <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <?php endif; ?>
+
     <div class="box-content">
-        <h5 itemprop="name"><?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?></h5>
+        <h5 itemprop="name"><?php echo $fields->first_name; ?> <?php echo isset($fields->last_name) && !empty($fields->last_name) ? $fields->last_name : ''; ?></h5>
         <ul>
             <?php if ((isset($fields->title) && !empty($fields->title)) || (isset($fields->organization) && !empty($fields->organization))) : ?>
                 <li class="card-title">
@@ -49,7 +53,7 @@
                 </li>
             <?php endif; ?>
             <?php if (isset($fields->phone_number) && !empty($fields->phone_number)) : ?><li><a itemprop="telephone" class="link-item" href="tel:<?php echo $fields->phone_number; ?>"><?php echo $fields->phone_number; ?></a></li><?php endif; ?>
-            <?php if (isset($fields->email) && !empty($fields->email)) : ?><li><a itemprop="email" class="link-item" href="mailto:<?php echo $fields->email; ?>"><?php echo $fields->email; ?></a></li><?php endif; ?>
+            <?php if (isset($fields->email) && !empty($fields->email)) : ?><li><a itemprop="email" class="link-item truncate" href="mailto:<?php echo $fields->email; ?>"><?php echo $fields->email; ?></a></li><?php endif; ?>
             <?php if (!empty($module->post_content)) : ?><li class="small description"><?php echo apply_filters('the_content', $module->post_content); ?></li><?php endif; ?>
        </ul>
     </div>

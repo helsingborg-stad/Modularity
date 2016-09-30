@@ -28,7 +28,8 @@
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
-            "readonly": 0
+            "readonly": 0,
+            "return_format": "value"
         },
         {
             "key": "field_571dfc40f8114",
@@ -294,6 +295,30 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "field_57ecf1007b749",
+            "label": "Link to post type archive",
+            "name": "archive_link",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfaafe6984",
+                        "operator": "==",
+                        "value": "posttype"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes, link to post type archive",
+            "default_value": 0
         }
     ],
     "location": [
@@ -313,5 +338,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1466065374
+    "modified": 1475146060
 }

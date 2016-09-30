@@ -5,6 +5,12 @@
     $columnClass = !empty(get_field('index_columns', $module->ID)) ? get_field('index_columns', $module->ID) : 'grid-md-6';
 ?>
 <div class="grid" data-equal-container>
+    <?php if (!$module->hideTitle) : ?>
+    <div class="grid-xs-12">
+        <h2><?php echo $module->post_title; ?></h2>
+    </div>
+    <?php endif; ?>
+
     <?php
 
     /* Get image size by column count */

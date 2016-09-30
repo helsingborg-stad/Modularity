@@ -1,9 +1,11 @@
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
+    <?php if (!$module->hideTitle) : ?>
     <h4 class="box-title"><?php echo $module->post_title; ?></h4>
+    <?php endif; ?>
 
     <?php if (isset($fields->posts_list_column_titles) && $fields->posts_list_column_titles) : ?>
     <header class="accordion-table accordion-table-head">
-        <span class="column-header"><?php _e('Title', 'modularity'); ?></span>
+        <span class="column-header"><?php echo $fields->title_column_label ? $fields->title_column_label : __('Title', 'modularity'); ?></span>
         <?php foreach ($fields->posts_list_column_titles as $column) : ?>
             <span class="column-header"><?php echo $column->column_header; ?></span>
         <?php endforeach; ?>

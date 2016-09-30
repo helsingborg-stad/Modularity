@@ -1,4 +1,10 @@
-<div class="grid">
+<div class="grid" data-equal-container>
+    <?php if (!$module->hideTitle) : ?>
+        <div class="grid-xs-12">
+            <h2><?php echo $module->post_title; ?></h2>
+        </div>
+    <?php endif; ?>
+
     <?php
     if (count($posts) > 0) :
     foreach ($posts as $post) :
@@ -39,7 +45,7 @@
 
     ?>
     <div class="<?php echo $fields->posts_columns; ?>">
-        <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>">
+        <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>" data-equal-item>
             <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
             <?php endif; ?>
@@ -65,6 +71,12 @@
     <?php endforeach; else : ?>
     <div class="grid-md-12">
         <?php _e('No posts to show…', 'modularity'); ?>
+    </div>
+    <?php endif; ?>
+
+    <?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
+    <div class="grid-lg-12">
+        <a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); ?>"><?php _e('Show more', 'modularity'); ?></a>
     </div>
     <?php endif; ?>
 </div>

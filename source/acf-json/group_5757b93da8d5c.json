@@ -28,7 +28,8 @@
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
-            "readonly": 0
+            "readonly": 0,
+            "return_format": "value"
         },
         {
             "key": "field_5757b947fecc5",
@@ -79,14 +80,14 @@
                         },
                         {
                             "key": "field_5757b9b1fecc9",
-                            "label": "First name",
+                            "label": "First name or place",
                             "name": "first_name",
                             "type": "text",
                             "instructions": "",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -94,9 +95,7 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "maxlength": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_5757b9befecca",
@@ -104,10 +103,10 @@
                             "name": "last_name",
                             "type": "text",
                             "instructions": "",
-                            "required": 1,
+                            "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
@@ -115,9 +114,7 @@
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "maxlength": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_5757b9cdfeccb",
@@ -336,10 +333,10 @@
                 "id": ""
             },
             "choices": {
-                "grid-md-12": 1,
-                "grid-md-6": 2,
-                "grid-md-4": 3,
-                "grid-md-3": 4
+                "grid-md-12": "1",
+                "grid-md-6": "2",
+                "grid-md-4": "3",
+                "grid-md-3": "4"
             },
             "default_value": [
                 "grid-md-12"
@@ -350,7 +347,8 @@
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
-            "readonly": 0
+            "readonly": 0,
+            "return_format": "value"
         }
     ],
     "location": [
@@ -370,5 +368,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1470131700
+    "modified": 1474621898
 }

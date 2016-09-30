@@ -2,6 +2,9 @@
     $slides = get_field('slides', $module->ID);
 ?>
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider', get_field('slider_format', $module->ID)), $module->post_type, $args)); ?> <?php if (get_field('navigation_position', $module->ID) == "bottom") : ?>slider-nav-bottom<?php endif; ?> <?php if (get_field('show_navigation', $module->ID) == "hover") : ?>slider-nav-hover<?php endif; ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
+    <?php if (!$module->hideTitle) : ?>
+        <h2><?php echo $module->post_title; ?></h2>
+    <?php endif; ?>
     <ul class="slider-items">
     <?php foreach ($slides as $slide) : ?>
         <?php

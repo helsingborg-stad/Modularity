@@ -1,4 +1,10 @@
 <div class="grid" data-equal-container>
+    <?php if (!$module->hideTitle) : ?>
+        <div class="grid-xs-12">
+            <h2><?php echo $module->post_title; ?></h2>
+        </div>
+    <?php endif; ?>
+
     <?php
     foreach ($posts as $post) :
 
@@ -54,4 +60,10 @@
         </a>
     </div>
     <?php endforeach; ?>
+
+    <?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
+    <div class="grid-lg-12">
+        <a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); ?>"><?php _e('Show more', 'modularity'); ?></a>
+    </div>
+    <?php endif; ?>
 </div>

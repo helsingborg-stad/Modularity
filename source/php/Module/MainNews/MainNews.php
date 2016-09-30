@@ -14,7 +14,8 @@ class MainNews extends \Modularity\Module
             array(),
             null,
             null,
-            3600*24*7
+            3600*24*7,
+            true
         );
     }
 }
