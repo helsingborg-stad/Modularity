@@ -48,7 +48,7 @@ foreach ($posts as $post) {
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">
                     <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
-                    <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
+                    <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
                     <?php else : ?>
                     <figure class="image-placeholder"></figure>
                     <?php endif; ?>
