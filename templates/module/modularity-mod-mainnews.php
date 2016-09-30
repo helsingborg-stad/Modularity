@@ -12,6 +12,12 @@
     }
 ?>
 <div class="grid">
+    <?php if (!$module->hideTitle) : ?>
+        <div class="grid-xs-12">
+            <h2><?php echo $module->post_title; ?></h2>
+        </div>
+    <?php endif; ?>
+
     <?php foreach ($news as $item) : $item = $item['news_item']; ?>
         <?php
             $thumbnail_image = wp_get_attachment_image_src(

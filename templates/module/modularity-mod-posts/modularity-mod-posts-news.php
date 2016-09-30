@@ -1,4 +1,10 @@
 <div class="grid">
+    <?php if (!$module->hideTitle) : ?>
+        <div class="grid-xs-12">
+            <h2><?php echo $module->post_title; ?></h2>
+        </div>
+    <?php endif; ?>
+
 <?php
 $hasImages = false;
 foreach ($posts as $post) {
@@ -42,7 +48,7 @@ foreach ($posts as $post) {
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">
                     <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
-                    <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
+                    <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
                     <?php else : ?>
                     <figure class="image-placeholder"></figure>
                     <?php endif; ?>
@@ -62,4 +68,10 @@ foreach ($posts as $post) {
         </a>
     </div>
 <?php endforeach; ?>
+
+<?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
+<div class="grid-lg-12">
+    <a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); ?>"><?php _e('Show more', 'modularity'); ?></a>
+</div>
+<?php endif; ?>
 </div>

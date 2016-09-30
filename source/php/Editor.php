@@ -325,7 +325,8 @@ class Editor extends \Modularity\Options
         $modulesPosts = get_posts(array(
             'posts_per_page' => -1,
             'post_type' => $enabled,
-            'include' => $moduleIds
+            'include' => $moduleIds,
+            'post_status' => array('publish', 'private')
         ));
 
         // Add module id's as keys in the array
@@ -364,6 +365,14 @@ class Editor extends \Modularity\Options
                     $retModules[$key]['modules'][$arrayIndex]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
                     $retModules[$key]['modules'][$arrayIndex]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
                     $retModules[$key]['modules'][$arrayIndex]->isDeprecated = (in_array($retModules[$key]['modules'][$arrayIndex]->post_type, \Modularity\Module::$deprecated)) ? true : false;
+
+                    $hideTitle = \Modularity\Module::$moduleSettings[$retModules[$key]['modules'][$arrayIndex]->post_type]['hide_title'];
+
+                    if (strlen(get_post_meta($moduleId, 'modularity-module-hide-title', true)) > 0) {
+                        $hideTitle = boolval(get_post_meta($moduleId, 'modularity-module-hide-title', true));
+                    }
+
+                    $retModules[$key]['modules'][$arrayIndex]->hideTitle = $hideTitle;
 
                     $arrayIndex++;
                 }

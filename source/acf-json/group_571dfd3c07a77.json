@@ -26,7 +26,8 @@
             "save_other_choice": 0,
             "default_value": "list",
             "layout": "horizontal",
-            "allow_null": 0
+            "allow_null": 0,
+            "return_format": "value"
         },
         {
             "key": "field_571dfdf50d9da",
@@ -57,10 +58,10 @@
                 "id": ""
             },
             "choices": {
-                "grid-md-12": 1,
-                "grid-md-6": 2,
-                "grid-md-4": 3,
-                "grid-md-3": 4
+                "grid-md-12": "1",
+                "grid-md-6": "2",
+                "grid-md-4": "3",
+                "grid-md-3": "4"
             },
             "default_value": [
                 "grid-md-12"
@@ -71,7 +72,8 @@
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
-            "readonly": 0
+            "readonly": 0,
+            "return_format": "value"
         },
         {
             "key": "field_571e01e7f246c",
@@ -107,11 +109,39 @@
                 "image"
             ],
             "layout": "horizontal",
-            "toggle": 0
+            "toggle": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_57e3bcae3826e",
+            "label": "Title column label",
+            "name": "title_column_label",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "expandable-list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         },
         {
             "key": "field_571f5776592e6",
-            "label": "List column titles",
+            "label": "List column labels",
             "name": "posts_list_column_titles",
             "type": "repeater",
             "instructions": "A title field will always be added as the first column. You will need to go to each post in this list to give the values for each column.",
@@ -177,5 +207,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1466065252
+    "modified": 1475146570
 }

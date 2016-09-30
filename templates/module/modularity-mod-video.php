@@ -15,7 +15,9 @@
 ?>
 
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel', 'embedded-video'), $module->post_type, $args)); ?>">
+    <?php if (!$module->hideTitle) : ?>
     <h4 class="box-title"><?php echo !empty($module->post_title) ? apply_filters('the_title', $module->post_title) : 'Video'; ?></h4>
+    <?php endif; ?>
 
     <?php if ($fields['type'] == 'upload') : ?>
         <video class="ratio-16-9" poster="<?php echo ($image !== false) ? $image[0] : ''; ?>" preload="auto" autoplay loop muted>
