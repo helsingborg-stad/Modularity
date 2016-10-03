@@ -26,7 +26,7 @@ class Cache
 
         //Alter keyGroup if ms
         if (function_exists('is_multisite') && is_multisite()) {
-            self::$keyGroup = self::$keyGroup . '-' . get_current_blog_id();
+            self::$keyGroup = self::$keyGroup . '-' . get_current_blog_id() . '-';
         }
 
         // Create hash string
