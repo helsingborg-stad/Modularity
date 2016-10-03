@@ -123,10 +123,14 @@ class App
             }
 
             if (isset($options['enabled-post-types']) && is_array($options['enabled-post-types']) && !in_array(get_post_type(), $options['enabled-post-types'])) {
-                return;
+                $editorLink = null;
             }
 
-            $editorLink = apply_filters('Modularity/adminbar/editor_link', $editorLink, $post);
+            $editorLink = apply_filters('Modularity/adminbar/editor_link', $editorLink, $post, $archiveSlug, $this->currentUrl());
+
+            if (empty($editorLink)) {
+                return;
+            }
 
             $wp_admin_bar->add_node(array(
                 'id' => 'modularity_editor',
@@ -137,6 +141,17 @@ class App
                 )
             ));
         }, 1050);
+    }
+
+    public function currentUrl($querystring = true)
+    {
+        $url =  '//' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+        if (!$querystring) {
+            $url = preg_replace('/\?(.*)/', '', $url);
+        }
+
+        return $url;
     }
 
     public function enqueueFront()
