@@ -113,7 +113,7 @@ Modularity.Editor.Module = (function ($) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
-        deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(Deprecated)</span>' : '';
+        deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(' + modularityAdminLanguage.deprecated + ')</span>' : '';
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {

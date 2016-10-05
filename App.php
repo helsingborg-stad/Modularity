@@ -173,7 +173,8 @@ class App
             'isSaving' => __('Saving…', 'modularity'),
             'close' => __('Close', 'modularity'),
             'width' => __('Width', 'modularity'),
-            'widthOptions' => $this->editor->getWidthOptions()
+            'widthOptions' => $this->editor->getWidthOptions(),
+            'deprecated' => __('Deprecated', 'modularity')
         ));
         wp_enqueue_script('modularity');
     }
@@ -203,7 +204,8 @@ class App
             'isSaving' => __('Saving…', 'modularity'),
             'close' => __('Close', 'modularity'),
             'width' => __('Width', 'modularity'),
-            'widthOptions' => $this->editor->getWidthOptions()
+            'widthOptions' => $this->editor->getWidthOptions(),
+            'deprecated' => __('Deprecated', 'modularity')
         ));
         wp_enqueue_script('modularity');
 
