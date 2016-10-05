@@ -4,6 +4,8 @@ namespace Modularity\Module\Latest;
 
 class Latest extends \Modularity\Module
 {
+    public $isDeprecated = true;
+
     public function __construct()
     {
         //Register
