@@ -7,6 +7,40 @@ class Search
     public function __construct()
     {
         add_action('wp', array($this, 'moduleSearch'));
+        add_action('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
+    }
+
+    /**
+     * Add modules to post content in ElasticPress pre index hook
+     * @param  WP_Post $post WP post object
+     * @return void
+     */
+    public function elasticPressPreIndex($post = null)
+    {
+        if (!$post) {
+            $post = get_post(1131);
+        }
+
+        $modules = \Modularity\Editor::getPostModules($post->ID);
+        $onlyModules = array();
+
+        // Normalize modules array
+        foreach ($modules as $sidebar => $item) {
+            if (!isset($item['modules']) || count($item['modules']) === 0) {
+                continue;
+            }
+
+            $onlyModules = array_merge($onlyModules, $item['modules']);
+        }
+
+        // Render modules and append to post content
+        $rendered = '';
+        foreach ($onlyModules as $module) {
+            $markup = \Modularity\App::$display->outputModule($module, array(), array(), false);
+            $rendered .= $markup;
+        }
+
+        $post->post_content .= $rendered;
     }
 
     /**

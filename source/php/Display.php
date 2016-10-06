@@ -198,12 +198,19 @@ class Display
      * @param  array $moduleSettings    The module configuration
      * @return boolean                  True if success otherwise false
      */
-    public function outputModule($module, $args = array(), $moduleSettings = array())
+    public function outputModule($module, $args = array(), $moduleSettings = array(), $echo = true)
     {
+        if (!isset($args['id'])) {
+            $args['id'] = 'no-id';
+        }
+
+        if (!$echo || !isset($moduleSettings['cache_ttl'])) {
+            $moduleSettings['cache_ttl'] = 0;
+        }
+
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
-
             $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
 
             if (!$templatePath) {
@@ -245,6 +252,10 @@ class Display
 
             $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
             $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+
+            if (!$echo) {
+                return $moduleMarkup;
+            }
 
             echo $moduleMarkup;
 
