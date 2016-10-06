@@ -8,26 +8,6 @@ class Search
     {
         add_action('wp', array($this, 'moduleSearch'));
         add_action('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
-        add_action('pre_get_posts', array($this, 'preElasticSearch'));
-    }
-
-    /**
-     * Limit searches to non module post types if using elasticsearch
-     * @param  WP_Query $query
-     * @return void
-     */
-    public function preElasticSearch($query)
-    {
-        // If not search or main query, return the default query
-        if (!defined('EP_VERSION') || !is_search() || !$query->is_main_query()) {
-            return;
-        }
-
-        $postTypes = array_filter(get_post_types(), function ($postType) {
-            return substr($postType, 0, 4) !== 'mod-';
-        });
-
-        $query->query_vars['post_type'] = $postTypes;
     }
 
     /**
