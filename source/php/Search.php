@@ -15,13 +15,13 @@ class Search
      * @param  WP_Post $post
      * @return void
      */
-    public function elasticPressPreIndex($post = null)
+    public function elasticPressPreIndex($post)
     {
         if (!$post) {
-            $post = get_post(1131);
+            return;
         }
 
-        $modules = \Modularity\Editor::getPostModules($post->ID);
+        $modules = \Modularity\Editor::getPostModules($post['ID']);
         $onlyModules = array();
 
         // Normalize modules array
@@ -40,7 +40,7 @@ class Search
             $rendered .= $markup;
         }
 
-        $post->post_content .= $rendered;
+        $post['post_content'] .= $rendered;
     }
 
     /**
