@@ -357,22 +357,7 @@ class Editor extends \Modularity\Options
                         continue;
                     }
 
-                    $retModules[$key]['modules'][$arrayIndex] = clone $modules[$moduleId];
-
-                    // Get the post type name and append it to the module post data
-                    $retModules[$key]['modules'][$arrayIndex]->post_type_name = $available[$retModules[$key]['modules'][$arrayIndex]->post_type]['labels']['name'];
-                    $retModules[$key]['modules'][$arrayIndex]->meta = get_post_custom($moduleId);
-                    $retModules[$key]['modules'][$arrayIndex]->hidden = (isset($module['hidden']) && !empty($module['hidden'])) ? $module['hidden'] : '';
-                    $retModules[$key]['modules'][$arrayIndex]->columnWidth = (isset($module['columnWidth']) && !empty($module['columnWidth'])) ? $module['columnWidth'] : '';
-                    $retModules[$key]['modules'][$arrayIndex]->isDeprecated = (in_array($retModules[$key]['modules'][$arrayIndex]->post_type, \Modularity\Module::$deprecated)) ? true : false;
-
-                    $hideTitle = \Modularity\Module::$moduleSettings[$retModules[$key]['modules'][$arrayIndex]->post_type]['hide_title'];
-
-                    if (strlen(get_post_meta($moduleId, 'modularity-module-hide-title', true)) > 0) {
-                        $hideTitle = boolval(get_post_meta($moduleId, 'modularity-module-hide-title', true));
-                    }
-
-                    $retModules[$key]['modules'][$arrayIndex]->hideTitle = $hideTitle;
+                    $retModules[$key]['modules'][$arrayIndex] = self::getModule($moduleId, $module);
 
                     $arrayIndex++;
                 }
@@ -380,6 +365,34 @@ class Editor extends \Modularity\Options
         }
 
         return $retModules;
+    }
+
+    public static function getModule($id, $moduleArgs = array())
+    {
+        $available = \Modularity\Module::$available;
+
+        // Basics
+        $module = get_post($id);
+        $module->post_type_name = $available[$module->post_type]['labels']['name'];
+        $module->meta = get_post_custom($module->ID);
+        $module->isDeprecated = in_array($module->post_type, \Modularity\Module::$deprecated);
+
+        // Args
+        if (count($moduleArgs) > 0) {
+            $module->hidden = (isset($moduleArgs['hidden']) && !empty($moduleArgs['hidden'])) ? $moduleArgs['hidden'] : '';
+            $module->columnWidth = isset($moduleArgs['columnWidth']) && !empty($moduleArgs['columnWidth']) ? $moduleArgs['columnWidth'] : '';
+        }
+
+        // Hide title?
+        $hideTitle = \Modularity\Module::$moduleSettings[$module->post_type]['hide_title'];
+
+        if (strlen(get_post_meta($module->ID, 'modularity-module-hide-title', true)) > 0) {
+            $hideTitle = boolval(get_post_meta($module->ID, 'modularity-module-hide-title', true));
+        }
+
+        $module->hideTitle = $hideTitle;
+
+        return $module;
     }
 
     /**

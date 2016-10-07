@@ -283,7 +283,7 @@ class Display
             return;
         }
 
-        $module = get_post($args['id']);
+        $module = \Modularity\Editor::getModule($args['id']);
 
         if (substr($module->post_type, 0, 4) != 'mod-' || !current_user_can('read_post', $module->ID)) {
             return;
