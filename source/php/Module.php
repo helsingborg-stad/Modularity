@@ -96,8 +96,10 @@ class Module
 
         if ($archiveSlug) {
             $modules = \Modularity\Editor::getPostModules($archiveSlug);
-        } else {
+        } elseif (isset($post->ID)) {
             $modules = \Modularity\Editor::getPostModules($post->ID);
+        } else {
+            return false;
         }
 
         $modules = json_encode($modules);
