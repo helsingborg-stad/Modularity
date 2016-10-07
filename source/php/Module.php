@@ -78,7 +78,7 @@ class Module
             'grid-md-8' => '66%',
             'grid-md-6' => '50%',
             'grid-md-4' => '33%',
-            'grid-md-3' => '33%'
+            'grid-md-3' => '25%'
         ));
     }
 

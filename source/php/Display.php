@@ -200,6 +200,7 @@ class Display
      */
     public function outputModule($module, $args = array(), $moduleSettings = array(), $echo = true)
     {
+
         if (!isset($args['id'])) {
             $args['id'] = 'no-id';
         }

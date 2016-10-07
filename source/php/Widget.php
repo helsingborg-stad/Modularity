@@ -26,7 +26,7 @@ class Widget extends \WP_Widget
     public function widget($args, $instance)
     {
         $display = \Modularity\App::$display;
-        $module = get_post($instance['module_id']);
+        $module = \Modularity\Editor::getModule($instance['module_id'], array('hidden' => false, 'columnWidth' => $instance['module_size']));
         $display->outputModule($module, $args);
     }
 

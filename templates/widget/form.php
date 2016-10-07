@@ -26,4 +26,6 @@
 
 <p class="modularity-widget-module-import">
     <a href="#" class="button modularity-js-thickbox-widget-import"><?php _e('Browse modules', 'modularity'); ?></a>
+
+    <a href="post.php?post=<?php echo isset($instance['module_id']) && !empty($instance['module_id']) ? $instance['module_id'] : ''; ?>&action=edit&is_thickbox=true" class="button modularity-js-thickbox-open modularity-widget-module-edit <?php echo isset($instance['module_id']) && !empty($instance['module_id']) ? '' : 'hidden'; ?>"><?php _e('Edit module', 'modularity'); ?></a>
 </p>
