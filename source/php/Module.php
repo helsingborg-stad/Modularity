@@ -23,6 +23,7 @@ class Module
      * @var array
      */
     public static $available = array();
+    public static $widths = array();
     public static $deprecated = array();
     public static $enabled = array();
     public static $options = array();
@@ -66,12 +67,28 @@ class Module
     }
 
     /**
+     * Define avabile width classes
+     * @return array
+     */
+    public static function widthOptions()
+    {
+        return apply_filters('Modularity/Editor/WidthOptions', array(
+            'grid-md-12' => '100%',
+            'grid-md-9' => '75%',
+            'grid-md-8' => '66%',
+            'grid-md-6' => '50%',
+            'grid-md-4' => '33%',
+            'grid-md-3' => '33%'
+        ));
+    }
+
+
+    /**
      * (PLACEHOLDER) Enqueue styles
      * @return void
      */
     public function style()
     {
-
     }
 
     /**
@@ -80,7 +97,6 @@ class Module
      */
     public function script()
     {
-
     }
 
     /**
@@ -133,9 +149,11 @@ class Module
         foreach (@glob($directory . "*", GLOB_ONLYDIR) as $folder) {
             $class = '\Modularity\Module\\' . basename($folder) . '\\' . basename($folder);
 
-           // if (class_exists($class)) {
+            if (class_exists($class)) {
                 new $class;
-            //}
+            } elseif (function_exists('error_log')) {
+                error_log(__("Error: Could not init '".$class."' module.", 'modularity'));
+            }
         }
     }
 

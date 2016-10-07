@@ -15,6 +15,15 @@
         <?php endforeach; ?>
     </select>
 </p>
+<p class="modularity-widget-module-size">
+    <label for="<?php echo $this->get_field_id('module_size'); ?>"><?php _e('Module width', 'modularity'); ?>:</label>
+    <select class="widefat" name="<?php echo $this->get_field_name('module_size'); ?>" id="<?php echo $this->get_field_id('size'); ?>">
+        <?php foreach (\Modularity\Module::widthOptions() as $key => $type) : ?>
+            <option value="<?php echo $key; ?>" <?php selected(isset($instance['module_size']) ? $instance['module_size'] : '', $key, true); ?>><?php echo $type; ?></option>
+        <?php endforeach; ?>
+    </select>
+</p>
+
 <p class="modularity-widget-module-import">
     <a href="#" class="button modularity-js-thickbox-widget-import"><?php _e('Browse modules', 'modularity'); ?></a>
 </p>

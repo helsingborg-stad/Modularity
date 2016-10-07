@@ -502,16 +502,8 @@ class Editor extends \Modularity\Options
     public function getWidthOptions()
     {
         $markup = '<option value="">' . __('Inherit', 'modularity') . '</option>' . "\n";
-        $options = apply_filters('Modularity/Editor/WidthOptions', array(
-            'grid-md-12' => '100%',
-            'grid-md-9'  => '75%',
-            'grid-md-8'   => '66%',
-            'grid-md-6'  => '50%',
-            'grid-md-4'  => '33%',
-            'grid-md-3'  => '25%'
-        ));
 
-        foreach ($options as $key => $value) {
+        foreach (\Modularity\Module::widthOptions() as $key => $value) {
             $markup .= '<option value="' . $key . '">' . $value . '</option>' . "\n";
         }
 
