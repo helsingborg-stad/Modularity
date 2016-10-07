@@ -25,8 +25,20 @@ class Widget extends \WP_Widget
      */
     public function widget($args, $instance)
     {
+        if (!isset($instance['module_id']) || !is_numeric($instance['module_id'])) {
+            return false;
+        }
+
         $display = \Modularity\App::$display;
-        $module = \Modularity\Editor::getModule($instance['module_id'], array('hidden' => false, 'columnWidth' => $instance['module_size']));
+
+        $module = \Modularity\Editor::getModule(
+            $instance['module_id'],
+            array(
+                'hidden' => false,
+                'columnWidth' => isset($instance['module_size']) ? $instance['module_size'] : 'grid-md-4'
+            )
+        );
+
         $display->outputModule($module, $args);
     }
 
