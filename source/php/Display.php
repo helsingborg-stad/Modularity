@@ -285,7 +285,7 @@ class Display
 
         $module = \Modularity\Editor::getModule($args['id']);
 
-        if (substr($module->post_type, 0, 4) != 'mod-' || !current_user_can('read_post', $module->ID)) {
+        if (substr($module->post_type, 0, 4) != 'mod-' || ($module->post_status == 'private' && !is_user_logged_in())) {
             return;
         }
 
