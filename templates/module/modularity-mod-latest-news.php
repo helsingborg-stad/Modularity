@@ -19,7 +19,7 @@ foreach ($posts as $post) {
         $image = wp_get_attachment_image_src(
             get_post_thumbnail_id($post->ID),
             apply_filters('modularity/image/latest/box',
-                array(400, 300),
+                municipio_to_aspect_ratio('16:9', array(400, 300)),
                 $args
             )
         );

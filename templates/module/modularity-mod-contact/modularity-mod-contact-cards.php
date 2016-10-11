@@ -54,7 +54,7 @@ if (isset($info['image']) && !empty($info['image'])) {
     $image = wp_get_attachment_image_src(
         $info['image']->id,
         apply_filters('Modularity/image/contact',
-            array(400, 400),
+            municipio_to_aspect_ratio('16:9', array(400, 400)),
             $args
         )
     );

@@ -39,7 +39,7 @@
             $thumbnail_image = wp_get_attachment_image_src(
                 $item['custom_image']['ID'],
                 apply_filters('Modularity/index/image',
-                    $image_dimensions,
+                    municipio_to_aspect_ratio('16:9', $image_dimensions),
                     $args
                 )
             );
@@ -47,7 +47,7 @@
             $thumbnail_image = wp_get_attachment_image_src(
                 get_post_thumbnail_id($item['page']->ID),
                 apply_filters('Modularity/index/image',
-                    $image_dimensions,
+                    municipio_to_aspect_ratio('16:9', $image_dimensions),
                     $args
                 )
             );
