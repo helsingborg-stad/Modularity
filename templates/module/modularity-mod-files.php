@@ -25,7 +25,7 @@
 
             $columnFields = array();
             if ($item['fields']) {
-                foreach ($item['fields'] as $columnField) {
+                foreach ((array) $item['fields'] as $columnField) {
                     $columnFields[$columnField['key']] = $columnField['value'];
                 }
             }
@@ -42,7 +42,7 @@
                 <?php endif; ?>
             </td>
 
-             <?php foreach ($columns as $column) : ?>
+             <?php foreach ((array) $columns as $column) : ?>
             <td>
                 <?php echo isset($columnFields[$column['key']]) && !empty($columnFields[$column['key']]) ? $columnFields[$column['key']] : ''; ?>
             </td>
