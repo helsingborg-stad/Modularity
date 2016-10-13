@@ -31,6 +31,7 @@
                     $columnFields[$columnField['key']] = $columnField['value'];
                 }
             }
+            var_dump($columnFields );
         ?>
         <tr>
             <td>
@@ -44,11 +45,13 @@
                 <?php endif; ?>
             </td>
 
-             <?php foreach ((array) $columns as $column) : ?>
-            <td>
-                <?php echo isset($columnFields[$column['key']]) && !empty($columnFields[$column['key']]) ? $columnFields[$column['key']] : ''; ?>
-            </td>
-             <?php endforeach; ?>
+            <?php if(is_array($columns ) && !empty ($columns ) ) { ?>
+                <?php foreach ((array) $columns as $column) : ?>
+                    <td>
+                        <?php echo isset($columnFields[$column['key']]) && !empty($columnFields[$column['key']]) ? $columnFields[$column['key']] : ''; ?>
+                    </td>
+                <?php endforeach; ?>
+            <?php } ?>
         </tr>
         <?php endforeach; ?>
         </tbody>
