@@ -1,4 +1,6 @@
-<?php if (get_field('file_list', $module->ID)) :
+<?php
+
+ if (!empty(get_field('file_list', $module->ID))) :
         $files = get_field('file_list', $module->ID);
         $columns = get_field('columns', $module->ID);
 ?>
@@ -42,11 +44,13 @@
                 <?php endif; ?>
             </td>
 
-             <?php foreach ($columns as $column) : ?>
-            <td>
-                <?php echo isset($columnFields[$column['key']]) && !empty($columnFields[$column['key']]) ? $columnFields[$column['key']] : ''; ?>
-            </td>
-             <?php endforeach; ?>
+            <?php if (is_array($columns ) && !empty($columns)){ ?>
+                <?php foreach ($columns as $column) : ?>
+                    <td>
+                        <?php echo isset($columnFields[$column['key']]) && !empty($columnFields[$column['key']]) ? $columnFields[$column['key']] : ''; ?>
+                    </td>
+                <?php endforeach; ?>
+            <?php } ?>
         </tr>
         <?php endforeach; ?>
         </tbody>
@@ -63,18 +67,20 @@
     <?php } ?>
 
     <ul class="files">
-        <?php foreach ($files as $file) : ?>
-            <li>
-                <a target="_blank" class="link-item" href="<?php echo $file['url']; ?>" title="<?php echo $file['title']; ?>">
-                    <?php echo $file['title']; ?>
-                    (<?php echo pathinfo($file['url'], PATHINFO_EXTENSION); ?>, <?php echo size_format(filesize(get_attached_file($file['ID'])), 2); ?>)
-                </a>
+        <?php if (is_array($files) && !empty($files)) { ?>
+            <?php foreach ($files as $file) : ?>
+                <li>
+                    <a target="_blank" class="link-item" href="<?php echo $file['url']; ?>" title="<?php echo $file['title']; ?>">
+                        <?php echo $file['title']; ?>
+                        (<?php echo pathinfo($file['url'], PATHINFO_EXTENSION); ?>, <?php echo size_format(filesize(get_attached_file($file['ID'])), 2); ?>)
+                    </a>
 
-                <?php if (isset($file['description']) && !empty($file['description'])) : ?>
-                    <?php echo wpautop($file['description']); ?>
-                <?php endif; ?>
-            </li>
-        <?php endforeach; ?>
+                    <?php if (isset($file['description']) && !empty($file['description'])) : ?>
+                        <?php echo wpautop($file['description']); ?>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        <?php } ?>
     </ul>
 </div>
 <?php endif; ?>
