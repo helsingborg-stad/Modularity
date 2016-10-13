@@ -77,8 +77,8 @@
                         (<?php echo pathinfo(wp_get_attachment_url($file), PATHINFO_EXTENSION); ?>, <?php echo size_format(filesize(get_attached_file($file)), 2); ?>)
                     </a>
 
-                    <?php if (isset($attachment['description']) && !empty($attachment['description'])) : ?>
-                        <?php echo wpautop($attachment['description']); ?>
+                    <?php if (isset(get_post_field('post_excerpt', $file)) && !empty(get_post_field('post_excerpt', $file)) : ?>
+                        <?php echo wpautop(get_post_field('post_excerpt', $file)); ?>
                     <?php endif; ?>
                 </li>
             <?php endforeach; ?>
