@@ -70,14 +70,15 @@
     <ul class="files">
         <?php if (is_array($files) && !empty($files)) { ?>
             <?php foreach ($files as $file) : ?>
+                <?php $attachment = wp_get_attachment_metadata($file); ?>
                 <li>
-                    <a target="_blank" class="link-item" href="<?php echo $file['url']; ?>" title="<?php echo $file['title']; ?>">
-                        <?php echo $file['title']; ?>
-                        (<?php echo pathinfo($file['url'], PATHINFO_EXTENSION); ?>, <?php echo size_format(filesize(get_attached_file($file['ID'])), 2); ?>)
+                    <a target="_blank" class="link-item" href="<?php echo wp_get_attachment_url($file); ?>" title="<?php echo get_the_title($file); ?>">
+                        <?php echo get_the_title($file); ?>
+                        (<?php echo pathinfo(wp_get_attachment_url($file), PATHINFO_EXTENSION); ?>, <?php echo size_format(filesize(get_attached_file($file)), 2); ?>)
                     </a>
 
-                    <?php if (isset($file['description']) && !empty($file['description'])) : ?>
-                        <?php echo wpautop($file['description']); ?>
+                    <?php if (isset($attachment['description']) && !empty($attachment['description'])) : ?>
+                        <?php echo wpautop($attachment['description']); ?>
                     <?php endif; ?>
                 </li>
             <?php endforeach; ?>
