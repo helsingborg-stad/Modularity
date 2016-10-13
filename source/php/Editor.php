@@ -152,12 +152,6 @@ class Editor extends \Modularity\Options
      */
     public function addSidebarsMetaBoxes()
     {
-        /*
-        global $post;
-        var_dump($this->getPostModules('modularity_author-edit_modules')); exit;
-        */
-
-
         global $wp_registered_sidebars;
 
         $template = \Modularity\Helper\Post::getPostTemplate();
@@ -357,7 +351,12 @@ class Editor extends \Modularity\Options
                         continue;
                     }
 
-                    $retModules[$key]['modules'][$arrayIndex] = self::getModule($moduleId, $module);
+                    $moduleObject = self::getModule($moduleId, $module);
+                    if (!$moduleObject) {
+                        continue;
+                    }
+
+                    $retModules[$key]['modules'][$arrayIndex] = $moduleObject;
 
                     $arrayIndex++;
                 }
@@ -373,6 +372,11 @@ class Editor extends \Modularity\Options
 
         // Basics
         $module = get_post($id);
+
+        if (!$module) {
+            return false;
+        }
+
         $module->post_type_name = $available[$module->post_type]['labels']['name'];
         $module->meta = get_post_custom($module->ID);
         $module->isDeprecated = in_array($module->post_type, \Modularity\Module::$deprecated);
