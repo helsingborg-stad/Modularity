@@ -76,9 +76,14 @@
                         <?php echo get_the_title($file); ?>
                         (<?php echo pathinfo(wp_get_attachment_url($file), PATHINFO_EXTENSION); ?>, <?php echo size_format(filesize(get_attached_file($file)), 2); ?>)
                     </a>
+                    <?php $excerpt = get_post_field('post_excerpt', $file); ?>
+                    <?php if (isset($excerpt) && !empty($excerpt)) : ?>
+                        <?php echo wpautop($excerpt); ?>
+                    <?php endif; ?>
 
-                    <?php if (isset(get_post_field('post_excerpt', $file)) && !empty(get_post_field('post_excerpt', $file)) : ?>
-                        <?php echo wpautop(get_post_field('post_excerpt', $file)); ?>
+                    <?php $description = get_post_field('post_content', $file); ?>
+                    <?php if (isset($description) && !empty($description)) : ?>
+                        <?php echo wpautop($description); ?>
                     <?php endif; ?>
                 </li>
             <?php endforeach; ?>
