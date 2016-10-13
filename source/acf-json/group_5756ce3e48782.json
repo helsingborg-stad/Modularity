@@ -3,69 +3,10 @@
     "title": "Files",
     "fields": [
         {
-            "key": "field_57fb42a3cb414",
-            "label": "Columns",
-            "name": "columns",
-            "type": "repeater",
-            "instructions": "The key should be used in each file's column value as reference.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": "",
-            "max": "",
-            "layout": "table",
-            "button_label": "Add column",
-            "sub_fields": [
-                {
-                    "key": "field_57fb42b2cb415",
-                    "label": "Key",
-                    "name": "key",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                },
-                {
-                    "key": "field_57fb42bacb416",
-                    "label": "Titel",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": ""
-                }
-            ]
-        },
-        {
-            "key": "field_57fb41f2cb40e",
+            "key": "field_5756ce4166341",
             "label": "Files",
-            "name": "file_list",
-            "type": "repeater",
+            "name": "files",
+            "type": "gallery",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -74,91 +15,18 @@
                 "class": "",
                 "id": ""
             },
-            "collapsed": "",
-            "min": 1,
+            "min": "",
             "max": "",
-            "layout": "block",
-            "button_label": "Add file",
-            "sub_fields": [
-                {
-                    "key": "field_57fb4218cb40f",
-                    "label": "File",
-                    "name": "file",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": ""
-                },
-                {
-                    "key": "field_57fb423bcb410",
-                    "label": "Fields",
-                    "name": "fields",
-                    "type": "repeater",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "collapsed": "",
-                    "min": "",
-                    "max": "",
-                    "layout": "table",
-                    "button_label": "Add column",
-                    "sub_fields": [
-                        {
-                            "key": "field_57fb4266cb411",
-                            "label": "Column key",
-                            "name": "key",
-                            "type": "text",
-                            "instructions": "Key reference from the column field",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "20",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_57fb427fcb412",
-                            "label": "Value",
-                            "name": "value",
-                            "type": "text",
-                            "instructions": "The value for this column",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
-                        }
-                    ]
-                }
-            ]
+            "preview_size": "thumbnail",
+            "insert": "append",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -178,5 +46,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1476085108
+    "modified": 1465384164
 }
