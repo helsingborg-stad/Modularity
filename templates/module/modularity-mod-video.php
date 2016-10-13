@@ -7,7 +7,7 @@
         $image = wp_get_attachment_image_src(
             $fields['placeholder_image']['id'],
             apply_filters('Modularity/slider/image',
-                array(1140, 641),
+                municipio_to_aspect_ratio('16:9', array(1140, 641)),
                 $args
             )
         );

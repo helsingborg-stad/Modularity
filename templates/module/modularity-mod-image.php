@@ -6,7 +6,7 @@ if ($fields['mod_image_crop'] === true) {
     $imageSrc = wp_get_attachment_image_src(
         $fields['mod_image_image']['ID'],
         apply_filters('Modularity/image/image',
-            array($fields['mod_image_crop_width'], $fields['mod_image_crop_height'])
+            municipio_to_aspect_ratio('16:9', array($fields['mod_image_crop_width'], $fields['mod_image_crop_height']))
         )
     );
 

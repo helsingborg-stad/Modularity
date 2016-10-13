@@ -9,7 +9,7 @@
     <?php foreach ($slides as $slide) : ?>
         <?php
 
-            //Image
+            // Image
             if (isset($slide['image']) && !empty($slide['image'])) {
                 $image = wp_get_attachment_image_src(
                     $slide['image']['id'],
@@ -22,7 +22,7 @@
                 $image = false;
             }
 
-            //Mobile image
+            // Mobile image
             if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
                 $mobile_image = wp_get_attachment_image_src(
                     $slide['mobile_image']['id'],
@@ -35,7 +35,7 @@
                 $mobile_image = $image;
             }
 
-            //In some cases ACF will return an post-id instead of a link.
+            // In some cases ACF will return an post-id instead of a link.
             if (isset($slide['link_url']) && is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish")
             {
                 $slide['link_url'] = get_permalink($slide['link_url']);

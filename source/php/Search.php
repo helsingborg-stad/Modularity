@@ -36,11 +36,16 @@ class Search
         // Render modules and append to post content
         $rendered = '';
         foreach ($onlyModules as $module) {
+            if ($module->post_type === 'mod-wpwidget') {
+                continue;
+            }
+
             $markup = \Modularity\App::$display->outputModule($module, array(), array(), false);
             $rendered .= $markup;
         }
 
         $post['post_content'] .= $rendered;
+        return;
     }
 
     /**

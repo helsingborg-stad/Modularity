@@ -40,3 +40,15 @@ if (!function_exists('get_thumbnail_source')) {
         return $src;
     }
 }
+
+if (!function_exists('municipio_to_aspect_ratio')) {
+    function municipio_to_aspect_ratio($ratio, $size)
+    {
+        $ratio = explode(':', $ratio);
+
+        $width = round($size[0]);
+        $height = round(($width / $ratio[0]) * $ratio[1]);
+
+        return array($width, $height);
+    }
+}

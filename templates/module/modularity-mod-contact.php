@@ -26,7 +26,7 @@
         $image = wp_get_attachment_image_src(
             $fields->picture->id,
             apply_filters('modularity/image/contact',
-                array(400, 400),
+                municipio_to_aspect_ratio('16:9', array(400, 400)),
                 $args
             )
         );

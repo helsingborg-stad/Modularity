@@ -25,7 +25,7 @@
         $image = wp_get_attachment_image_src(
             get_post_thumbnail_id($post->ID),
             apply_filters('modularity/image/latest/box',
-                $image_dimensions,
+                municipio_to_aspect_ratio('16:9', $image_dimensions),
                 $args
             )
         );
