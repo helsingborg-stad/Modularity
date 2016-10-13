@@ -31,7 +31,7 @@
                     $columnFields[$columnField['key']] = $columnField['value'];
                 }
             }
-            var_dump($columnFields );
+
         ?>
         <tr>
             <td>
