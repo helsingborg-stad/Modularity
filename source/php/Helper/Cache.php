@@ -86,17 +86,13 @@ class Cache
         $return_data = ob_get_clean();
 
         if (!empty($return_data)) {
-            $cacheArray = wp_cache_get($this->postId, self::$keyGroup);
-
-            if (!is_array($cacheArray)) {
-                $cacheArray = array();
-            }
+            $cacheArray = (array) wp_cache_get($this->postId, self::$keyGroup);
 
             $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
 
-            if (wp_cache_delete($this->postId, self::$keyGroup)) {
-                wp_cache_add($this->postId, $cacheArray, self::$keyGroup, $this->ttl);
-            }
+            wp_cache_delete($this->postId, self::$keyGroup);
+
+            wp_cache_add($this->postId, array_filter($cacheArray), self::$keyGroup, $this->ttl);
         }
 
         echo $return_data;
@@ -181,6 +177,7 @@ class Cache
 }
 
 /*
+Usage example:
 $cache = new Modularity\Helper\Cache($post->Id);
 if ($cache->start()) {
     // Your cacheable content here
