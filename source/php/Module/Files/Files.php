@@ -4,6 +4,8 @@ namespace Modularity\Module\Files;
 
 class Files extends \Modularity\Module
 {
+    public $isDeprecated = true;
+
     public function __construct()
     {
         $this->register(
