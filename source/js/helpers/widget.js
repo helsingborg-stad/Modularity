@@ -9,7 +9,7 @@ Modularity.Helpers.Widget = (function ($) {
         $(function(){
 
             /* Import */
-            $(document).on('click', '.modularity-js-thickbox-widget-import', function (e) {
+            $(document).on('click', '.modularity-js-thickbox-widget-import-widget', function (e) {
                 e.preventDefault();
 
                 editingWidget = $(e.target).parents('.widget-inside');
@@ -26,7 +26,7 @@ Modularity.Helpers.Widget = (function ($) {
 
 
             /* Edit */
-            $(document).on('click', '.modularity-js-thickbox-open', function (e) {
+            $(document).on('click', '.modularity-js-thickbox-open-widget', function (e) {
                 e.preventDefault();
 
                 var el = $(e.target).closest('a');

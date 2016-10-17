@@ -11,9 +11,6 @@ Modularity.Editor.Module = (function ($) {
      */
     var thickboxOptions = {
         is_thickbox: true,
-        //TB_iframe: true,
-        //width: 980,
-        //height: 600
     };
 
     var editingModule = false;

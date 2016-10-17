@@ -12,9 +12,7 @@ Modularity.Editor.Thickbox = (function ($) {
     var postAction = 'add';
 
     function Thickbox() {
-        $(function(){
-            //this.handleEvents();
-        }.bind(this));
+
     }
 
     Thickbox.prototype.modulePostCreated = function (postId) {

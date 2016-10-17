@@ -6,9 +6,7 @@ Modularity.Prompt.Modal = (function ($) {
     var isOpen = false;
 
     function Modal() {
-        $(function(){
-            this.handleEvents();
-        }.bind(this));
+        this.handleEvents();
     }
 
     Modal.prototype.open = function (url) {

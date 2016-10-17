@@ -7,9 +7,7 @@ Modularity.Editor.Validate = (function ($) {
     var errorClass = 'validation-error';
 
     function Validate() {
-        $(function(){
-            this.handleEvents();
-        }.bind(this));
+        this.handleEvents();
     }
 
     /**

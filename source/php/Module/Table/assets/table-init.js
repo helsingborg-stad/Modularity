@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log("VI ÄR HÄR");
     $('.datatable').DataTable({
         dom: "lf<'clearfix'>" +
                "tr" +
