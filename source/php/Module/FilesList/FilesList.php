@@ -1,15 +1,13 @@
 <?php
 
-namespace Modularity\Module\Files;
+namespace Modularity\Module\FilesList;
 
-class Files extends \Modularity\Module
+class FilesList extends \Modularity\Module
 {
-    public $isDeprecated = true;
-
     public function __construct()
     {
         $this->register(
-            'files',
+            'fileslist',
             __("Files", 'modularity'),
             __("Files", 'modularity'),
             __("Outputs a file archive.", 'modularity'),
