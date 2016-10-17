@@ -83,41 +83,23 @@ class Table extends \Modularity\Module
             return;
         }
 
-        wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array('jquery'), '1.10.11');
-
-        add_action('wp_footer', function () {
-            echo "<script>
-                jQuery(document).ready(function ($) {
-                    $('.datatable').DataTable({
-                        dom: \"lf<'clearfix'>\" +
-                               \"tr\" +
-                               \"ip<'clearfix'>\",
-                        oLanguage: {
-                            \"sEmptyTable\":     \"" . __('No data available in table', 'modularity') . "\",
-                            \"sInfo\":           \"" . __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity') . "\",
-                            \"sInfoEmpty\":      \"" . __('Showing 0 to 0 of 0 entries', 'modularity') . "\",
-                            \"sInfoFiltered\":   \"(" . __('filtered from _MAX_ total entries', 'modularity') . ")\",
-                            \"sInfoPostFix\":    \"\",
-                            \"sInfoThousands\":  \",\",
-                            \"sLengthMenu\":     \"" . __('Show _MENU_ entries', 'modularity') . "\",
-                            \"sLoadingRecords\": \"" . __('Loading...', 'modularity') . "\",
-                            \"sProcessing\":     \"" . __('Processing...', 'modularity') . "\",
-                            \"sSearch\":         \"\",
-                            \"sZeroRecords\":    \"" . __('No matching records found', 'modularity') . "\",
-                            \"oPaginate\": {
-                                \"sFirst\":    \"" . __('First', 'modularity') . "\",
-                                \"sLast\":     \"" . __('Last', 'modularity') . "\",
-                                \"sNext\":     \"" . __('Next', 'modularity') . "\",
-                                \"sPrevious\": \"" . __('Previous', 'modularity') . "\"
-                            },
-                            \"oAria\": {
-                                \"sSortAscending\":  \": " . __('activate to sort column ascending', 'modularity') . "\",
-                                \"sSortDescending\": \": " . __('activate to sort column descending', 'modularity') . "\"
-                            }
-                        }
-                    });
-                });
-            </script>";
-        });
+        wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
+        wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.js', array(), '1.0.0', true);
+        wp_localize_script('datatables-init', 'datatablesLang', array(
+            'sEmptyTable' => __('No data available in table', 'modularity'),
+            'sInfo' => __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity'),
+            'sInfoEmpty' => __('Showing 0 to 0 of 0 entries', 'modularity'),
+            'sInfoFiltered' => __('filtered from _MAX_ total entries', 'modularity'),
+            'sLengthMenu' => __('Show _MENU_ entries', 'modularity'),
+            'sLoadingRecords' => __('Loading...', 'modularity'),
+            'sProcessing' => __('Processing...', 'modularity'),
+            'sZeroRecords' => __('No matching records found', 'modularity'),
+            'sFirst' => __('First', 'modularity'),
+            'sLast' => __('Last', 'modularity'),
+            'sNext' => __('Next', 'modularity'),
+            'sPrevious' => __('Previous', 'modularity'),
+            'sSortAscending' => __('activate to sort column ascending', 'modularity'),
+            'sSortDescending' => __('activate to sort column descending', 'modularity')
+        ));
     }
 }
