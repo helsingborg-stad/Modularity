@@ -10,13 +10,13 @@ Modularity.Editor.Autosave = (function ($) {
     }
 
     Autosave.prototype.save = function (selector) {
-        $('#modularity-options #publishing-action .spinner');
+        $('#modularity-options #publishing-action .spinner').css('visibility', 'visible');
         var request = $(selector).serializeObject();
         request.id = modularity_post_id;
         request.action = 'save_modules';
 
         $.post(ajaxurl, request, function (response) {
-            $('#modularity-options #publishing-action .spinner').text('');
+            $('#modularity-options #publishing-action .spinner').css('visibility', 'hidden');
         });
     };
 
