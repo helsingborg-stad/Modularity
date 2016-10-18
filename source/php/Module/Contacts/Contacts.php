@@ -1,17 +1,15 @@
 <?php
 
-namespace Modularity\Module\Contact;
+namespace Modularity\Module\Contacts;
 
-class Contact extends \Modularity\Module
+class Contacts extends \Modularity\Module
 {
-    public $isDeprecated = true;
-
     public function __construct()
     {
         $this->register(
-            'contact',
-            __('Contact', 'modularity'),
-            __('Contacts', 'modularity'),
+            'contacts',
+            __('Contacts v2', 'modularity'),
+            __('Contacts v2', 'modularity'),
             __('Outputs one or more contacts', 'modularity'),
             array(),
             null,
