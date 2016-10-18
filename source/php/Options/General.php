@@ -154,7 +154,9 @@ class General extends \Modularity\Options
      */
     public function metaBoxModules()
     {
-        $available = \Modularity\Module::$available;
+        $available = uasort(\Modularity\Module::$available, function ($a, $b) {
+            return strcmp($a['labels']['name'], $b['labels']['name']);
+        });
 
         global $modularityOptions;
         $enabled = isset($modularityOptions['enabled-modules']) && is_array($modularityOptions['enabled-modules']) ? $modularityOptions['enabled-modules'] : array();
