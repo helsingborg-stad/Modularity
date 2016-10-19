@@ -154,7 +154,9 @@ class General extends \Modularity\Options
      */
     public function metaBoxModules()
     {
-        $available = uasort(\Modularity\Module::$available, function ($a, $b) {
+        $available = \Modularity\Module::$available;
+
+        uasort($available, function ($a, $b) {
             return strcmp($a['labels']['name'], $b['labels']['name']);
         });
 
