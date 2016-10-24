@@ -292,6 +292,7 @@ Modularity.Editor.Module = (function ($) {
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
         deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(' + modularityAdminLanguage.deprecated + ')</span>' : '';
+        hidden = (typeof hiddeen == 'undefined') ? false : true;
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -316,7 +317,7 @@ Modularity.Editor.Module = (function ($) {
 
         // Check/uncheck hidden checkbox
         var isHidden = '';
-        if (hidden == 'true') {
+        if (hidden) {
             isHidden = 'checked';
         }
 
@@ -324,7 +325,7 @@ Modularity.Editor.Module = (function ($) {
         var itemRowId = Modularity.Helpers.uuid();
 
         var html = $(target)[0].innerHTML;
-        var html = html + '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
+        var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
                 <span class="modularity-line-wrapper">\
                     <span class="modularity-sortable-handle"></span>\
                     <span class="modularity-module-name">\
@@ -353,12 +354,7 @@ Modularity.Editor.Module = (function ($) {
             </li>';
 
         //Store
-        $(target)[0].innerHTML = html;
-
-        //Update width selector
-        jQuery(".modularity-sidebar-area > li").each(function(index,item) {
-            $('.modularity-module-columns select',$(item)).val($(item).attr('data-module-stored-width'));
-        });
+        $(target).append(html);
 
         //Refresh
         $('.modularity-js-sortable').sortable('refresh');
