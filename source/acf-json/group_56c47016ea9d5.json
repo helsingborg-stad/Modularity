@@ -1,6 +1,6 @@
 {
     "key": "group_56c47016ea9d5",
-    "title": "Iframe",
+    "title": "Iframe settings",
     "fields": [
         {
             "key": "field_56c4701d32cb4",
@@ -15,8 +15,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "Enter your embed url",
-            "placeholder": ""
+            "default_value": "",
+            "placeholder": "Enter your embed url"
         },
         {
             "key": "field_56c4704f32cb5",
