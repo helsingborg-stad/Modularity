@@ -221,6 +221,10 @@ Modularity.Editor.Module = (function ($) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
                 $.each(modules.modules, function (key, data) {
+                    if (data.hidden == 'true') {
+                        data.hidden = true;
+                    }
+
                     this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated);
                 }.bind(this));
 
@@ -292,7 +296,6 @@ Modularity.Editor.Module = (function ($) {
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
         deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(' + modularityAdminLanguage.deprecated + ')</span>' : '';
-        hidden = (typeof hiddeen == 'undefined') ? false : true;
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -317,7 +320,7 @@ Modularity.Editor.Module = (function ($) {
 
         // Check/uncheck hidden checkbox
         var isHidden = '';
-        if (hidden) {
+        if (hidden === true) {
             isHidden = 'checked';
         }
 
@@ -355,6 +358,11 @@ Modularity.Editor.Module = (function ($) {
 
         //Store
         $(target).append(html);
+
+        //Update width selector
+        $('.modularity-sidebar-area > li').each(function(index, item) {
+            $('.modularity-module-columns select', $(item)).val($(item).attr('data-module-stored-width'));
+        });
 
         //Refresh
         $('.modularity-js-sortable').sortable('refresh');
