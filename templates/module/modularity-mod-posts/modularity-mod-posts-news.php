@@ -22,18 +22,7 @@ foreach ($posts as $post) {
 
 <?php foreach ($posts as $post) :  ?>
     <?php
-         /* Image size */
-        switch ($fields->posts_columns) {
-            case "grid-md-12":    //1-col
-                $image_dimensions = array(1200,900);
-                break;
-            case "grid-md-6":    //2-col
-                $image_dimensions = array(800,600);
-                break;
-            default:
-                $image_dimensions = array(400,300);
-        }
-
+        $image_dimensions = array(400, 300);
         $image = null;
 
         if ($fields->posts_data_source !== 'input') {
