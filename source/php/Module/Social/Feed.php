@@ -441,7 +441,7 @@ class Feed
     {
         $int = 0;
 
-        if (isset($this->feedData->meta->error_message)) {
+        if (isset($this->feedData->meta->error_message) || !isset($this->feedData->data)) {
             $this->addError($this->feedData->meta->error_message);
             return;
         }
