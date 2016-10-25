@@ -40,6 +40,10 @@ Modularity.Editor.Module = (function ($) {
                 var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
 
                 $.each(modules.modules, function (key, data) {
+                    if (data.hidden == 'true') {
+                        data.hidden = true;
+                    }
+
                     this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated);
                 }.bind(this));
 
@@ -135,7 +139,7 @@ Modularity.Editor.Module = (function ($) {
 
         // Check/uncheck hidden checkbox
         var isHidden = '';
-        if (hidden == 'true') {
+        if (hidden === true) {
             isHidden = 'checked';
         }
 
@@ -143,7 +147,7 @@ Modularity.Editor.Module = (function ($) {
         var itemRowId = Modularity.Helpers.uuid();
 
         var html = $(target)[0].innerHTML;
-        var html = html + '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
+        var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
                 <span class="modularity-line-wrapper">\
                     <span class="modularity-sortable-handle"></span>\
                     <span class="modularity-module-name">\
@@ -172,11 +176,11 @@ Modularity.Editor.Module = (function ($) {
             </li>';
 
         //Store
-        $(target)[0].innerHTML = html;
+        $(target).append(html);
 
         //Update width selector
-        jQuery(".modularity-sidebar-area > li").each(function(index,item) {
-            $('.modularity-module-columns select',$(item)).val($(item).attr('data-module-stored-width'));
+        $('.modularity-sidebar-area > li').each(function(index, item) {
+            $('.modularity-module-columns select', $(item)).val($(item).attr('data-module-stored-width'));
         });
 
         //Refresh
