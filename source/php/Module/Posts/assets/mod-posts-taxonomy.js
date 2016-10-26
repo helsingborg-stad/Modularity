@@ -74,7 +74,7 @@ jQuery(document).ready(function ($) {
 
             $.each(response.types, function (index, item) {
                 var is_selected = (item.name == response.curr) ? 'selected' : '';
-                $('#modularity-latest-taxonomy select').append('<option value="' + item.name + '" ' + is_selected + '>' + item.label + '</option>');
+                $('#modularity-latest-taxonomy select').append('<option value="' + item.name+ '" ' + is_selected + '>' + item.label + '</option>');
             });
 
             $('#modularity-latest-taxonomy .acf-label label .spinner').remove();
@@ -104,8 +104,8 @@ jQuery(document).ready(function ($) {
 
         $.post(ajaxurl, data, function (response) {
             $.each(response.tax, function (index, item) {
-                var is_selected = ($.inArray(item.name, response.curr) > -1) ? 'selected' : '';
-                $('#modularity-latest-taxonomy-value select').append('<option value="' + item.name + '" ' + is_selected + '>' + item.name + '</option>');
+                var is_selected = ($.inArray(item.slug, response.curr) > -1) ? 'selected' : '';
+                $('#modularity-latest-taxonomy-value select').append('<option value="' + item.slug + '" ' + is_selected + '>' + item.name + '</option>');
             });
 
             $('#modularity-latest-taxonomy-value .acf-label label .spinner').remove();

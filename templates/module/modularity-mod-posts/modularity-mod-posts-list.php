@@ -24,7 +24,7 @@
         <?php endif; ?>
 
         <?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
-        <li><a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); ?>"><?php _e('Show more', 'modularity'); ?></a></li>
+        <li><a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); echo '?' . http_build_query($filters); ?>"><?php _e('Show more', 'modularity'); ?></a></li>
         <?php endif; ?>
     </ul>
 </div>
