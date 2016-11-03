@@ -295,7 +295,7 @@ class Posts extends \Modularity\Module
             foreach ($taxValues as $term) {
                 $getPostsArgs['tax_query'][] = array(
                     'taxonomy' => $taxType,
-                    'field'    => 'name',
+                    'field'    => 'slug',
                     'terms'    => $term
                 );
             }

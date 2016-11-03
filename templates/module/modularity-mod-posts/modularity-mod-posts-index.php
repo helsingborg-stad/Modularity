@@ -1,5 +1,5 @@
 <div class="grid" data-equal-container>
-    <?php if (!$module->hideTitle) : ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
         <div class="grid-xs-12">
             <h2><?php echo $module->post_title; ?></h2>
         </div>
@@ -63,7 +63,7 @@
 
     <?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
     <div class="grid-lg-12">
-        <a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); ?>"><?php _e('Show more', 'modularity'); ?></a>
+        <a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); echo '?' . http_build_query($filters);  ?>"><?php _e('Show more', 'modularity'); ?></a>
     </div>
     <?php endif; ?>
 </div>
