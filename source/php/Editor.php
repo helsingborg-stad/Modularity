@@ -17,8 +17,30 @@ class Editor extends \Modularity\Options
 
         add_action('admin_head', array($this, 'registerTabs'));
         add_action('wp_ajax_save_modules', array($this, 'save'));
+        add_action('wp_insert_post_data', array($this, 'avoidDuplicatePostName'), 10, 2);
 
         $this->registerEditorPage();
+    }
+
+    /**
+     * Avoid duplicate post_name in db
+     * @param  array $data    Post data
+     * @param  array $postarr Postarr
+     * @return array          Post data to save
+     */
+    public function avoidDuplicatePostName($data, $postarr)
+    {
+        if (!isset($data['post_type']) || (isset($data['post_type']) && substr($data['post_type'], 0, 4) != 'mod-')) {
+            return $data;
+        }
+
+        if (substr($data['post_name'], 0, strlen($data['post_type'])) == $data['post_type']) {
+            return $data;
+        }
+
+        $data['post_name'] = $data['post_type'] . '_' . uniqid() . '_' . $data['post_name'];
+
+        return $data;
     }
 
     /**
