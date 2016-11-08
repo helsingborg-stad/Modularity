@@ -43,6 +43,8 @@
                     $args
                 )
             );
+        } elseif ($item['image_display'] == 'false') {
+            $thumbnail_image = false;
         } else {
             $thumbnail_image = wp_get_attachment_image_src(
                 get_post_thumbnail_id($item['page']->ID),
