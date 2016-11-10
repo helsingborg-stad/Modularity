@@ -44,8 +44,11 @@
     ?>
     <div class="<?php echo $fields->posts_columns; ?>">
         <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $module->post_type, $args)); ?>" data-equal-item>
+
             <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
-                <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
+                <div class="box-image-container">
+                    <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
+                </div>
             <?php endif; ?>
 
             <div class="box-content">

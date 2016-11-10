@@ -20,7 +20,7 @@ if ($sortBy == 'meta_key') {
     $filters['meta_key'] = $orderby;
 }
 
-if ($fields->posts_taxonomy_type) {
+if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
     $taxType = $fields->posts_taxonomy_type;
     $taxValues = (array) $fields->posts_taxonomy_value;
     $taxValues = implode('|', $taxValues);
