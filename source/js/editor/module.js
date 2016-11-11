@@ -146,7 +146,6 @@ Modularity.Editor.Module = (function ($) {
         var sidebarId = $(target).data('area-id');
         var itemRowId = Modularity.Helpers.uuid();
 
-        var html = $(target)[0].innerHTML;
         var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
                 <span class="modularity-line-wrapper">\
                     <span class="modularity-sortable-handle"></span>\

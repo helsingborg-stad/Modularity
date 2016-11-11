@@ -30,22 +30,25 @@ if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
 
 switch ($fields->posts_display_as) {
     case 'list':
-        include \Modularity\Helper\Wp::getTemplate($module->post_type . '-list', 'module/modularity-mod-posts', false);
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-list', 'module/modularity-mod-posts', false);
         break;
 
     case 'news':
-        include \Modularity\Helper\Wp::getTemplate($module->post_type . '-news', 'module/modularity-mod-posts', false);
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-news', 'module/modularity-mod-posts', false);
         break;
 
     case 'items':
-        include \Modularity\Helper\Wp::getTemplate($module->post_type . '-items', 'module/modularity-mod-posts', false);
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-items', 'module/modularity-mod-posts', false);
         break;
 
     case 'index':
-        include \Modularity\Helper\Wp::getTemplate($module->post_type . '-index', 'module/modularity-mod-posts', false);
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-index', 'module/modularity-mod-posts', false);
         break;
 
     case 'expandable-list':
-        include \Modularity\Helper\Wp::getTemplate($module->post_type . '-expandable-list', 'module/modularity-mod-posts', false);
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-expandable-list', 'module/modularity-mod-posts', false);
         break;
 }
+
+$template = apply_filters('Modularity/Module/Posts/template', $template, $module, $fields);
+include $template;
