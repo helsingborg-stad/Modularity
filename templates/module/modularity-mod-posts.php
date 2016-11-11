@@ -28,7 +28,7 @@ if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
     $filters['term[]'] = $taxType . '|' . $taxValues;
 }
 
-switch ($fields->posts_display_as) {
+switch (apply_filters('Modularity/Module/Posts/template', $fields->posts_display_as, $module, $fields)) {
     case 'list':
         include \Modularity\Helper\Wp::getTemplate($module->post_type . '-list', 'module/modularity-mod-posts', false);
         break;
