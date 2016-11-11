@@ -28,7 +28,7 @@ foreach ($posts as $post) {
         if ($fields->posts_data_source !== 'input') {
             $image = wp_get_attachment_image_src(
                 get_post_thumbnail_id($post->ID),
-                apply_filters('modularity/image/latest/box',
+                apply_filters('modularity/image/posts/news',
                     municipio_to_aspect_ratio('16:9', $image_dimensions),
                     $args
                 )
@@ -37,7 +37,7 @@ foreach ($posts as $post) {
             if ($post->image) {
                 $image = wp_get_attachment_image_src(
                     $post->image->ID,
-                    apply_filters('modularity/image/latest/box',
+                    apply_filters('modularity/image/posts/news',
                         municipio_to_aspect_ratio('16:9', $image_dimensions),
                         $args
                     )
