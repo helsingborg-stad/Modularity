@@ -164,7 +164,7 @@ class Display
 
         $sidebarArgs = $this->getSidebarArgs($sidebar);
 
-        // Loop and output modules
+    // Loop and output modules
         foreach ($modules['modules'] as $module) {
             if ($module->hidden == 'true') {
                 continue;
@@ -177,7 +177,9 @@ class Display
     public function isModularitySidebarActive($sidebar)
     {
         $template = \Modularity\Helper\Post::getPostTemplate();
-        $template = \Modularity\Helper\Wp::findCoreTemplates([$template, 'archive']);
+        if (!file_exists($template)) {
+            $template = \Modularity\Helper\Wp::findCoreTemplates([$template, 'archive']);
+        }
         $options = get_option('modularity-options');
 
         if (is_home()) {
@@ -200,7 +202,6 @@ class Display
      */
     public function outputModule($module, $args = array(), $moduleSettings = array(), $echo = true)
     {
-
         if (!isset($args['id'])) {
             $args['id'] = 'no-id';
         }
