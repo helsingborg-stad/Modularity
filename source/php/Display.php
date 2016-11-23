@@ -164,7 +164,7 @@ class Display
 
         $sidebarArgs = $this->getSidebarArgs($sidebar);
 
-    // Loop and output modules
+        // Loop and output modules
         foreach ($modules['modules'] as $module) {
             if ($module->hidden == 'true') {
                 continue;
