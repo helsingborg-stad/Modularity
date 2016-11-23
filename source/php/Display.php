@@ -164,7 +164,7 @@ class Display
 
         $sidebarArgs = $this->getSidebarArgs($sidebar);
 
-    // Loop and output modules
+        // Loop and output modules
         foreach ($modules['modules'] as $module) {
             if ($module->hidden == 'true') {
                 continue;
@@ -308,7 +308,7 @@ class Display
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
 
-        return $moduleMarkup;
+        return '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
     }
 
     public function filterNestedModuleShortocde($post)

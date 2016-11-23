@@ -53,7 +53,9 @@ class App
         });
 
         //Main hook
-        do_action('Modularity');
+        add_action('setup_theme', function () {
+            do_action('Modularity');
+        }, 11);
     }
 
     public function addCaps()

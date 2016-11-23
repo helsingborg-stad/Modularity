@@ -23,6 +23,70 @@ class Posts extends \Modularity\Module
         add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
         add_action('save_post', array($this, 'saveColumnFields'));
+
+        add_action('wp_ajax_get_taxonomy_types_v2', array($this, 'getTaxonomyTypes'));
+        add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
+        add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
+    }
+
+    public function getSortableMetaKeys()
+    {
+        if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
+            echo '0';
+            die();
+        }
+
+        $meta = \Modularity\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
+
+        $response = array(
+            'meta_keys' => $meta,
+            'curr' => get_field('sorted_by', $_POST['post'])
+        );
+
+        echo json_encode($response);
+        die();
+    }
+
+    public function getTaxonomyTypes()
+    {
+        if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
+            echo '0';
+            die();
+        }
+
+        $post = $_POST['post'];
+
+        $result = array(
+            'types' => get_object_taxonomies($_POST['posttype'], 'object'),
+            'curr' => get_field('posts_taxonomy_type', $post)
+        );
+
+        echo json_encode($result);
+        die();
+    }
+
+    /**
+     * AJAX CALLBACK
+     * Gets a taxonomies available values
+     * @return void
+     */
+    public function getTaxonomyValues()
+    {
+        if (!isset($_POST['tax']) || empty($_POST['tax'])) {
+            echo '0';
+            die();
+        }
+
+        $taxonomy = $_POST['tax'];
+        $post = $_POST['post'];
+
+        $result = array(
+            'tax' => get_terms($taxonomy),
+            'curr' => get_field('posts_taxonomy_value', $post)
+        );
+
+        echo json_encode($result);
+        die();
     }
 
     public function saveColumnFields($postId)
