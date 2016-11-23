@@ -20,6 +20,7 @@ class Cache
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
+
         // Set variables
         $this->postId       = $postId;
         $this->ttl          = $ttl;
@@ -28,7 +29,6 @@ class Cache
         if (function_exists('is_multisite') && is_multisite()) {
             $this->keyGroup = $this->keyGroup . '-' . get_current_blog_id();
         }
-        var_dump($this->keyGroup);
 
         // Create hash string
         $this->hash = $this->createShortHash($module);
@@ -99,12 +99,13 @@ class Cache
 
         if (!empty($return_data)) {
             $cacheArray = (array) wp_cache_get($this->postId, $this->keyGroup);
-var_dump($this->keyGroup);
+
             $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
-var_dump($cacheArray);
+
             wp_cache_delete($this->postId, $this->keyGroup);
 
             wp_cache_add($this->postId, array_filter($cacheArray), $this->keyGroup, $this->ttl);
+
         }
 
         echo $return_data;
@@ -131,9 +132,9 @@ var_dump($cacheArray);
      */
     private function getCache($print = true)
     {
-var_dump($this->keyGroup);
+
         $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
-var_dump( $cacheArray );
+
         if (!is_array($cacheArray) || !array_key_exists($this->hash, $cacheArray)) {
             return false;
         }
