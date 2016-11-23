@@ -53,7 +53,9 @@ class App
         });
 
         //Main hook
-        do_action('Modularity');
+        add_action('admin_init', function () {
+            do_action('Modularity');
+        }, 100);
     }
 
     public function addCaps()
