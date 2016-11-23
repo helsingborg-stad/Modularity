@@ -308,7 +308,7 @@ class Display
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
 
-        return $moduleMarkup;
+        return '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
     }
 
     public function filterNestedModuleShortocde($post)
