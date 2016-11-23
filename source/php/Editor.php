@@ -337,12 +337,17 @@ class Editor extends \Modularity\Options
             }
         }
 
+        $postStatuses = array('publish');
+        if (is_user_logged_in()) {
+            $postStatuses[] = 'private';
+        }
+
         // Get module posts
         $modulesPosts = get_posts(array(
             'posts_per_page' => -1,
             'post_type' => $enabled,
             'include' => $moduleIds,
-            'post_status' => array('publish', 'private')
+            'post_status' => $postStatuses
         ));
 
         // Add module id's as keys in the array
