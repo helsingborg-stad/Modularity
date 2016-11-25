@@ -45,7 +45,8 @@ class Search
         }
 
         $post['post_content'] .= $rendered;
-        return;
+
+        return $post;
     }
 
     /**
