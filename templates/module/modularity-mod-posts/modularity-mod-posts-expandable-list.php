@@ -5,7 +5,7 @@
 
     <?php if (isset($fields->posts_list_column_titles) && $fields->posts_list_column_titles) : ?>
     <header class="accordion-table accordion-table-head">
-        <span class="column-header"><?php echo $fields->title_column_label ? $fields->title_column_label : __('Title', 'modularity'); ?></span>
+        <span class="column-header"><?php echo isset($fields->title_column_label) && !empty($fields->title_column_label) ? $fields->title_column_label : __('Title', 'modularity'); ?></span>
         <?php foreach ($fields->posts_list_column_titles as $column) : ?>
             <span class="column-header"><?php echo $column->column_header; ?></span>
         <?php endforeach; ?>

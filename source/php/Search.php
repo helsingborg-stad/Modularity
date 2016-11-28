@@ -7,7 +7,9 @@ class Search
     public function __construct()
     {
         add_action('wp', array($this, 'moduleSearch'));
-        add_action('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
+
+        add_filter('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
+        add_filter('ep_post_sync_args_post_prepare_meta', array($this, 'elasticPressPreIndex'));
     }
 
     /**
@@ -21,7 +23,13 @@ class Search
             return;
         }
 
-        $modules = \Modularity\Editor::getPostModules($post['ID']);
+        if (is_array($post)) {
+            $postId = $post['ID'];
+        } else {
+            $postId = $post->ID;
+        }
+
+        $modules = \Modularity\Editor::getPostModules($postId);
         $onlyModules = array();
 
         // Normalize modules array
@@ -34,7 +42,7 @@ class Search
         }
 
         // Render modules and append to post content
-        $rendered = '';
+        $rendered = "<br><br>";
         foreach ($onlyModules as $module) {
             if ($module->post_type === 'mod-wpwidget') {
                 continue;
@@ -44,7 +52,11 @@ class Search
             $rendered .= $markup;
         }
 
-        $post['post_content'] .= $rendered;
+        if (is_array($post)) {
+            $post['post_content'] .= $rendered;
+        } else {
+            $post->post_content .= $rendered;
+        }
 
         return $post;
     }
