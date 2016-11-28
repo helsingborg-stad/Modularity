@@ -47,11 +47,6 @@ class App
             register_widget('\Modularity\Widget');
         });
 
-        //Hooks to clear fragment cache
-        add_action('save_post', function ($postId) {
-            \Modularity\Helper\Cache::clearCache($postId);
-        });
-
         //Main hook
         add_action('setup_theme', function () {
             do_action('Modularity');

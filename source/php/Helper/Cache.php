@@ -53,7 +53,7 @@ class Cache
      * @param  integer $postId Post id to clear
      * @return boolean
      */
-    public static function clearCache($postId)
+    public function clearCache($postId)
     {
         if (wp_is_post_revision($postId) || get_post_status($postId) != 'publish') {
             return false;
