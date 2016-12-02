@@ -21,6 +21,7 @@
         position: absolute;
         top: 0;
         right: 6%;
+        z-index: 3;
         font-size: 12pt;
         padding: 5px 20px;
         border: none;
@@ -41,6 +42,8 @@
     }
 
     .modularity-modal-iframe {
+        position: relative;
+        z-index: 2;
         box-sizing: border-box;
         width: 100vw;
         height: 100%;
