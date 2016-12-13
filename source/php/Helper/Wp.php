@@ -138,10 +138,11 @@ class Wp
             }
         }
 
-        error_log('Modularity: Template ' . $slug . 'modularity' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true));
-
-        if ($error) {
-            trigger_error('Modularity: Template ' . $slug . 'modularity' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true), E_USER_WARNING);
+        if (defined('WP_DEBUG') && WP_DEBUG === true) {
+            error_log('Modularity: Template ' . $slug . 'modularity' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true));
+            if ($error) {
+                trigger_error('Modularity: Template ' . $slug . 'modularity' . $prefix . '.php' . ' not found in any of the paths: ' . var_export($paths, true), E_USER_WARNING);
+            }
         }
     }
 
