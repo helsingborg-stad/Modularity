@@ -48,7 +48,7 @@ class Search
                 continue;
             }
 
-            $markup = \Modularity\App::$display->outputModule($module, array(), array(), false);
+            $markup = \Modularity\App::$display->outputModule($module, array('edit_module' => false), array(), false);
             $rendered .= $markup;
         }
 
