@@ -14,17 +14,17 @@ class Curl
      * @return string              The request response
      */
 
-    private static $cacheKey;
+    private $cacheKey;
 
-    public static function request($type, $url, $data = null, $contentType = 'json', $headers = null)
+    public function request($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
 
         //Create cache key as a reference
-        self::$cacheKey = self::createCacheKey($type, $url, $data, $contentType, $headers);
+        $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
 
         //Return cached data
-        if (self::getCachedResponse() !== false) {
-            return self::getCachedResponse();
+        if ($this->getCachedResponse() !== false) {
+            return $this->getCachedResponse();
         }
 
         //Arguments are stored here
@@ -89,7 +89,7 @@ class Curl
         /**
          * Cache response
          */
-        self::storeResponse($response);
+        $this->storeResponse($response);
 
         /**
          * Return the response
@@ -107,10 +107,10 @@ class Curl
      * @return string              The cache key
      */
 
-    public static function createCacheKey($type, $url, $data = null, $contentType = 'json', $headers = null)
+    public function createCacheKey($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
-        self::$cacheKey = "curl_cache_".md5($type.$url.(is_array($data) ? implode($data, "") : $data).$contentType.(is_array($headers) ? implode($headers, "") : $headers));
-        return self::$cacheKey;
+        $this->cacheKey = "curl_cache_".md5($type.$url.(is_array($data) ? implode($data, "") : $data).$contentType.(is_array($headers) ? implode($headers, "") : $headers));
+        return $this->cacheKey;
     }
 
     /**
@@ -118,9 +118,9 @@ class Curl
      * @return string       The request response from cache
      */
 
-    public static function getCachedResponse()
+    public function getCachedResponse()
     {
-        return get_transient(self::$cacheKey);
+        return get_transient($this->cacheKey);
     }
 
     /**
@@ -129,11 +129,10 @@ class Curl
      * @param $minutes      Number of minutes to cache response
      * @return string       The request response from cache
      */
-
-    public static function storeResponse($response, $minutes = 15)
+    public function storeResponse($response, $minutes = 15)
     {
         if (!empty($response) && !is_null($response)) {
-            return set_transient(self::$cacheKey, $response, 60*$minutes);
+            return set_transient($this->cacheKey, $response, 60*$minutes);
         } else {
             return false;
         }

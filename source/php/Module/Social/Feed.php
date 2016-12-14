@@ -64,7 +64,9 @@ class Feed
         $getUser = urlencode($this->args['query']);
 
         $endpoint = 'https://www.googleapis.com/plus/v1/people/' . $getUser . '/activities/public?key=' . $key;
-        $response = \Modularity\Helper\Curl::request('GET', $endpoint);
+
+        $curl = new \Modularity\Helper\Curl();
+        $response = $curl->request('GET', $endpoint);
         $response = json_decode($response);
 
         return array_slice($response->items, 0, $this->args['length']);
@@ -106,7 +108,9 @@ class Feed
     public function getPinterestuser()
     {
         $endpoint = 'https://api.pinterest.com/v3/pidgets/users/' . $this->args['query'] . '/pins/';
-        $response = \Modularity\Helper\Curl::request('GET', $endpoint);
+
+        $curl = new \Modularity\Helper\Curl();
+        $response = $curl->request('GET', $endpoint);
 
         return json_decode($response)->data->pins;
     }
@@ -142,7 +146,8 @@ class Feed
         );
 
         // Curl and format response
-        $response = \Modularity\Helper\Curl::request('POST', $endpoint, $data, null, $headers);
+        $curl = new \Modularity\Helper\Curl();
+        $response = $curl->request('POST', $endpoint, $data, null, $headers);
         $response = json_decode($response);
 
         if (isset($response->errors)) {
@@ -184,7 +189,8 @@ class Feed
         );
 
         // Curl
-        $tweets = \Modularity\Helper\Curl::request('GET', $endpoint, $data, 'JSON', $headers);
+        $curl = new \Modularity\Helper\Curl();
+        $tweets = $curl->request('GET', $endpoint, $data, 'JSON', $headers);
 
         return json_decode($tweets)->statuses;
     }
@@ -220,7 +226,8 @@ class Feed
         );
 
         // Curl
-        $tweets = \Modularity\Helper\Curl::request('GET', $endpoint, $data, 'JSON', $headers);
+        $curl = new \Modularity\Helper\Curl();
+        $tweets = $curl->request('GET', $endpoint, $data, 'JSON', $headers);
 
         return json_decode($tweets);
     }
@@ -240,7 +247,9 @@ class Feed
             'client_id'     => $this->args['api_user'],
             'client_secret' => $this->args['api_secret']
         );
-        $token = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+
+        $curl = new \Modularity\Helper\Curl();
+        $token = $curl->request('GET', $endpoint, $data);
 
         if (strpos($token, 'error') !== false) {
             $error = json_decode($token);
@@ -258,7 +267,7 @@ class Feed
             'access_token' => $token,
             'fields'       => 'from, full_picture, picture, message, created_time, object_id, link, name, caption, description, icon, type, status_type, likes'
         );
-        $feed = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+        $feed = $curl->request('GET', $endpoint, $data);
         $feed = json_decode($feed);
 
         return $feed->data;
@@ -277,7 +286,8 @@ class Feed
             'access_token' => $this->args['api_secret']
         );
 
-        $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+        $curl = new \Modularity\Helper\Curl();
+        $recent = $curl->request('GET', $endpoint, $data);
         return json_decode($recent);
     }
 
@@ -289,7 +299,9 @@ class Feed
     protected function getIstagramUserProfileFeed()
     {
         $endpoint   = 'https://www.instagram.com/'.$this->args['query'].'/media/';
-        $recent     = \Modularity\Helper\Curl::request('GET', $endpoint, array());
+
+        $curl       = new \Modularity\Helper\Curl();
+        $recent     = $curl->request('GET', $endpoint, array());
         $recent     = json_decode($recent);
 
         //Rename object
@@ -319,7 +331,8 @@ class Feed
         );
 
         //Call and return
-        $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+        $curl = new \Modularity\Helper\Curl();
+        $recent = $curl->request('GET', $endpoint, $data);
         return json_decode($recent);
     }
 
@@ -338,7 +351,8 @@ class Feed
             'access_token' => $this->args['api_secret']
         );
 
-        $recent = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+        $curl = new \Modularity\Helper\Curl();
+        $recent = $curl->request('GET', $endpoint, $data);
         return json_decode($recent);
     }
 
@@ -357,7 +371,8 @@ class Feed
             'access_token' => $this->args['api_secret']
         );
 
-        $users = \Modularity\Helper\Curl::request('GET', $endpoint, $data);
+        $curl = new \Modularity\Helper\Curl();
+        $users = $curl->request('GET', $endpoint, $data);
         $users = json_decode($users);
 
         $userId = null;
