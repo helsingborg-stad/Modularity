@@ -14,6 +14,7 @@ class Curl
      * @return string              The request response
      */
 
+    public $useCache = true;
     private $cacheKey;
 
     public function request($type, $url, $data = null, $contentType = 'json', $headers = null)
@@ -23,7 +24,7 @@ class Curl
         $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
 
         //Return cached data
-        if ($this->getCachedResponse() !== false) {
+        if ($this->useCache && $this->getCachedResponse() !== false) {
             return $this->getCachedResponse();
         }
 
@@ -120,7 +121,7 @@ class Curl
 
     public function getCachedResponse()
     {
-        return get_transient($this->cacheKey);
+        return html_entity_decode(get_transient($this->cacheKey));
     }
 
     /**
