@@ -457,7 +457,13 @@ class Feed
         $int = 0;
 
         if (isset($this->feedData->meta->error_message) || !isset($this->feedData->data)) {
-            $this->addError($this->feedData->meta->error_message);
+            $msg = 'No error message, sorry about that.';
+
+            if (isset($this->feedData->meta->error_message)) {
+                $msg = $this->feedData->meta->error_message;
+            }
+
+            $this->addError($msg);
             return;
         }
 
