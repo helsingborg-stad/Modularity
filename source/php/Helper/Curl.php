@@ -119,7 +119,7 @@ class Curl
      */
     public function getCachedResponse()
     {
-        return wp_cache_get($this->cacheKey, 'modularity-curl');
+        return html_entity_decode(wp_cache_get($this->cacheKey, 'modularity-curl'));
     }
 
     /**
