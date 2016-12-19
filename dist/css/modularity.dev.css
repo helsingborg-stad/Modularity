@@ -533,7 +533,34 @@ body.modularity-loader-takeover::after {
   position: relative;
   top: -2px; }
 
-.modularity-spinner-center {
+.modularity-modal-spinner {
+  text-indent: 999em;
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -10px;
+  background-color: #888;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3) inset;
+  border-radius: 50%; }
+  .modularity-modal-spinner:after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 2.66667px;
+    background-color: #fff;
+    height: 4px;
+    width: 4px;
+    animation: modularity-spin 1s linear infinite;
+    border-radius: 50%;
+    transform-origin: 7.33333px; }
+
+@keyframes modularity-spin {
+  100% {
+    transform: rotate(360deg); } }
+
+.modularity-modal-spinner-container {
   background-color: #fff;
   padding: 40px;
   border-radius: 10px;
