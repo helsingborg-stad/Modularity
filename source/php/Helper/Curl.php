@@ -19,7 +19,6 @@ class Curl
 
     public function request($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
-
         //Create cache key as a reference
         $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
 
@@ -118,10 +117,9 @@ class Curl
      * Get cached response
      * @return string       The request response from cache
      */
-
     public function getCachedResponse()
     {
-        return html_entity_decode(get_transient($this->cacheKey));
+        return wp_cache_get($this->cacheKey, 'modularity-curl');
     }
 
     /**
@@ -133,7 +131,7 @@ class Curl
     public function storeResponse($response, $minutes = 15)
     {
         if (!empty($response) && !is_null($response)) {
-            return set_transient($this->cacheKey, $response, 60*$minutes);
+            return wp_cache_add($this->cacheKey, $response, 'modularity-curl', 60 * $minutes);
         } else {
             return false;
         }
