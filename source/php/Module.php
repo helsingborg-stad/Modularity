@@ -106,21 +106,23 @@ class Module
     public function hasModule()
     {
         global $post;
-        $modules = array();
 
+        $postId = null;
+        $modules = array();
         $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
 
         if ($archiveSlug) {
-            $modules = \Modularity\Editor::getPostModules($archiveSlug);
+            $postId = $archiveSlug;
         } elseif (isset($post->ID)) {
-            $modules = \Modularity\Editor::getPostModules($post->ID);
+            $postId = $post->ID;
         } else {
-            return false;
+            return apply_filters('Modularity/hasModule', false, null);
         }
 
+        $modules = \Modularity\Editor::getPostModules($postId);
         $modules = json_encode($modules);
 
-        return strpos($modules, '"post_type":"' . $this->moduleSlug . '"') == true;
+        return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $this->moduleSlug . '"') == true, $archiveSlug);
     }
 
     /**
