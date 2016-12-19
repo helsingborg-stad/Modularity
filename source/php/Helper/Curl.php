@@ -23,7 +23,7 @@ class Curl
         $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
 
         //Return cached data
-        if ($this->useCache && $this->getCachedResponse() !== false) {
+        if ($this->useCache && $this->getCachedResponse() !== false && !empty($this->getCachedResponse())) {
             return $this->getCachedResponse();
         }
 
