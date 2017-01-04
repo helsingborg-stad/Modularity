@@ -30,6 +30,15 @@
                     $currentImageSize = array(1800,350);
             }
 
+            //Special for video & featured
+            if ($slide['acf_fc_layout'] == "video") {
+                $currentImageSize = array(1140,641);
+            }
+
+            if ($slide['acf_fc_layout'] == "featured") {
+                $currentImageSize = array(floor($currentImageSize[0]/2), $currentImageSize[1]);
+            }
+
             // Image
             if (isset($slide['image']) && !empty($slide['image'])) {
                 $image = wp_get_attachment_image_src(
@@ -57,8 +66,7 @@
             }
 
             // In some cases ACF will return an post-id instead of a link.
-            if (isset($slide['link_url']) && is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish")
-            {
+            if (isset($slide['link_url']) && is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
                 $slide['link_url'] = get_permalink($slide['link_url']);
             }
 
@@ -111,14 +119,20 @@
                 <span class="text-block text-block-left">
                     <span>
                         <!-- Title -->
-                        <?php if (isset($slide['textblock_title']) && !empty($slide['textblock_title'])) {?>
-                            <em class="title block-level h1"><?php echo $slide['textblock_title'];?> </em>
-                        <?php } ?>
+                        <?php if (isset($slide['textblock_title']) && !empty($slide['textblock_title'])) {
+    ?>
+                            <em class="title block-level h1"><?php echo $slide['textblock_title'];
+    ?> </em>
+                        <?php
+} ?>
 
                         <!-- Content -->
-                        <?php if (isset($slide['textblock_content']) && !empty($slide['textblock_content'])) { ?>
-                            <?php echo $slide['textblock_content']; ?>
-                        <?php } ?>
+                        <?php if (isset($slide['textblock_content']) && !empty($slide['textblock_content'])) {
+    ?>
+                            <?php echo $slide['textblock_content'];
+    ?>
+                        <?php
+} ?>
                     </span>
                 </span>
                 <div class="slider-image slider-image-desktop hidden-xs hidden-sm" style="background-image:url(<?php echo ($image !== false) ? $image[0] : ''; ?>)"></div>
