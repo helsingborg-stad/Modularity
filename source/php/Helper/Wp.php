@@ -197,7 +197,7 @@ class Wp
             if (is_home()) {
                 return 'archive-post';
             } elseif (is_post_type_archive() && is_search()) {
-                return 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+                return 'archive-' . get_post_type_object($wp_query->query_vars['post_type'])->rewrite['slug'];
             } elseif (is_search()) {
                 return 'search';
             } elseif (is_404()) {
@@ -206,7 +206,7 @@ class Wp
                 return 'author';
             }
 
-            return 'archive-' . get_post_type_object(get_post_type())->rewrite['slug'];
+            return 'archive-' . get_post_type_object($wp_query->query_vars['post_type'])->rewrite['slug'];
         }
 
         return false;
