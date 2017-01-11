@@ -6,7 +6,7 @@
     if (isset($fields['placeholder_image']) && !empty($fields['placeholder_image'])) {
         $image = wp_get_attachment_image_src(
             $fields['placeholder_image']['id'],
-            apply_filters('Modularity/slider/image',
+            apply_filters('Modularity/video/image',
                 municipio_to_aspect_ratio('16:9', array(1140, 641)),
                 $args
             )

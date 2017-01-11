@@ -9,12 +9,33 @@
     <?php foreach ($slides as $slide) : ?>
         <?php
 
+            //Formats
+            $imageSizes = array(
+                'ratio-16-9' => array(1140,641),
+                'ratio-10-3' => array(1140,342),
+                'ratio-4-3' => array(1140,885)
+            );
+
+            //Filter options
+            $imageSizes = apply_filters('Modularity/slider/imagesizes', $imageSizes, $args);
+
+            //Fallback to default
+            switch (get_field('slider_format', $module->ID)) {
+                case 'ratio-16-9':
+                case 'ratio-10-3':
+                case 'ratio-4-3':
+                    $currentImageSize = $imageSizes[get_field('slider_format', $module->ID)];
+                    break;
+                default:
+                    $currentImageSize = array(1800,350);
+            }
+
             // Image
             if (isset($slide['image']) && !empty($slide['image'])) {
                 $image = wp_get_attachment_image_src(
                     $slide['image']['id'],
                     apply_filters('Modularity/slider/image',
-                        array(1140, 641),
+                        $currentImageSize,
                         $args
                     )
                 );
