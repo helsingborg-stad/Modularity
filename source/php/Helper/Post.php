@@ -56,6 +56,11 @@ class Post
         // If post is set, fetch the template
         $template = get_page_template_slug($post->ID);
 
+        // If this is the front page and the template is set to page.php or page.blade.php default to just "page"
+        if ($post->ID === (int)get_option('page_on_front') && in_array($template, array('page.php', 'page.blade.php'))) {
+            return 'page';
+        }
+
         if (!$template) {
             $template = self::detectCoreTemplate($post);
         }
