@@ -27,6 +27,25 @@
             "mime_types": "jpg, png, gif"
         },
         {
+            "key": "field_587604df2975f",
+            "label": "Image caption",
+            "name": "mod_image_caption",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
             "key": "field_570770f5e2e62",
             "label": "Cropping",
             "name": "mod_image_crop",
@@ -154,7 +173,8 @@
             "ajax": 0,
             "placeholder": "",
             "disabled": 0,
-            "readonly": 0
+            "readonly": 0,
+            "return_format": "value"
         },
         {
             "key": "field_577d07c8d72db",
@@ -178,7 +198,8 @@
             "other_choice": 0,
             "save_other_choice": 0,
             "default_value": "",
-            "layout": "horizontal"
+            "layout": "horizontal",
+            "return_format": "value"
         },
         {
             "key": "field_577d0810d72dc",
@@ -228,7 +249,8 @@
             "post_type": [],
             "taxonomy": [],
             "allow_null": 0,
-            "multiple": 0
+            "multiple": 0,
+            "allow_archives": 1
         }
     ],
     "location": [
@@ -248,5 +270,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1467812145
+    "modified": 1484129869
 }
