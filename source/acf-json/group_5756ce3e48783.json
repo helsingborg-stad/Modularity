@@ -159,6 +159,22 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "field_587600817ff7f",
+            "label": "Filter",
+            "name": "show_filter",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Allow filtering",
+            "default_value": 1
         }
     ],
     "location": [
@@ -178,5 +194,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1476085108
+    "modified": 1484128422
 }

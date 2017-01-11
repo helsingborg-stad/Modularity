@@ -8,7 +8,7 @@
     <h4 class="box-title"><?php echo $module->post_title; ?></h4>
     <?php endif; ?>
 
-    <ul>
+    <ul class="nav">
         <?php foreach ($items as $item) : ?>
             <?php if ($item['type'] == 'external') : ?>
             <li>
