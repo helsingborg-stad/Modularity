@@ -349,6 +349,7 @@ class Posts extends \Modularity\Module
             );
 
             $sortBy = 'meta_key';
+            $getPostsArgs['orderby'] = $orderby;
         }
 
         // Taxonomy filter
