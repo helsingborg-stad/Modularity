@@ -17,7 +17,7 @@ $filters = array(
 );
 
 if ($sortBy == 'meta_key') {
-    $filters['meta_key'] = $orderby;
+    $filters['meta_key'] = $orderBy;
 }
 
 if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
