@@ -194,10 +194,15 @@ class Wp
         global $wp_query;
 
         if (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404()) {
+            $postType = get_post_type();
+            if (isset($wp_query->query_vars['post_type']) && !empty($wp_query->query_vars['post_type'])) {
+                $postType = $wp_query->query_vars['post_type'];
+            }
+
             if (is_home()) {
                 return 'archive-post';
             } elseif (is_post_type_archive() && is_search()) {
-                return 'archive-' . get_post_type_object($wp_query->query_vars['post_type'])->rewrite['slug'];
+                return 'archive-' . get_post_type_object($postType)->rewrite['slug'];
             } elseif (is_search()) {
                 return 'search';
             } elseif (is_404()) {
@@ -206,7 +211,7 @@ class Wp
                 return 'author';
             }
 
-            return 'archive-' . get_post_type_object($wp_query->query_vars['post_type'])->rewrite['slug'];
+            return 'archive-' . get_post_type_object($postType)->rewrite['slug'];
         }
 
         return false;
