@@ -27,6 +27,88 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_taxonomy_types_v2', array($this, 'getTaxonomyTypes'));
         add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
+
+        add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+    }
+
+    public function addTaxonomyDisplayOptions()
+    {
+        if (!function_exists('acf_add_local_field_group')) {
+            return;
+        }
+
+        $taxonomies = get_taxonomies();
+        $taxonomies = array_diff($taxonomies, array(
+            'nav_menu',
+            'link_category'
+        ));
+
+        $fieldgroup = array(
+            'key' => 'group_' . md5('mod_posts_taxonomy_display'),
+            'title' => __('Taxonomy display', 'municipio'),
+            'fields' => array(),
+            'location' => array (
+                array (
+                    array (
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'mod-posts',
+                    ),
+                ),
+            ),
+            'menu_order' => 20,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => 1,
+            'description' => '',
+        );
+
+        foreach ($taxonomies as $taxonomy) {
+            $taxonomy = get_taxonomy($taxonomy);
+            $choises = array(
+                'hidden' => 'Hidden',
+                'topleft' => 'Top left',
+                'topright' => 'Top right',
+                'bottomleft' => 'Bottom left',
+                'bottomright' => 'Bottom right',
+                'centered' => 'Centered',
+                'below' => 'Below'
+            );
+
+            $choises = apply_filters('Modularity/Module/mod-posts/TaxonomyDisplayChoises', $choises, $taxonomy);
+
+            $fieldgroup['fields'][] = array(
+                'key' => 'field_56f00fe21f918_' . md5($taxonomy->name),
+                'label' => $taxonomy->label,
+                'name' => 'taxonomy_' . sanitize_title($taxonomy->name) . '_placement',
+                'type' => 'radio',
+                'layout' => 'horizontal',
+                'instructions' => '',
+                'required' => 0,
+                'conditional_logic' => 0,
+                'wrapper' => array(
+                    'width' => '',
+                    'class' => '',
+                    'id' => '',
+                ),
+                'choices' => $choises,
+                'default_value' => array(
+                    0 => 'full',
+                ),
+                'allow_null' => 0,
+                'multiple' => 0,
+                'ui' => 0,
+                'ajax' => 0,
+                'placeholder' => '',
+                'disabled' => 0,
+                'readonly' => 0,
+            );
+        }
+
+        acf_add_local_field_group($fieldgroup);
     }
 
     public function getSortableMetaKeys()
