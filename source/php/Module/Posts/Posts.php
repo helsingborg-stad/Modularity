@@ -31,6 +31,10 @@ class Posts extends \Modularity\Module
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
     }
 
+    /**
+     * Add options fields to setup taxonomy display
+     * i.e where to display taxonomy labels in the layout
+     */
     public function addTaxonomyDisplayOptions()
     {
         if (!function_exists('acf_add_local_field_group')) {
@@ -150,6 +154,11 @@ class Posts extends \Modularity\Module
         acf_add_local_field_group($fieldgroup);
     }
 
+    /**
+     * AJAX CALLBACK
+     * Get metakeys which we can use to sort the posts
+     * @return void
+     */
     public function getSortableMetaKeys()
     {
         if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
@@ -161,13 +170,18 @@ class Posts extends \Modularity\Module
 
         $response = array(
             'meta_keys' => $meta,
-            'curr' => get_field('sorted_by', $_POST['post'])
+            'curr' => get_field('posts_sort_by', $_POST['post'])
         );
 
         echo json_encode($response);
         die();
     }
 
+    /**
+     * AJAX CALLBACK
+     * Get availabel taxonomies for a post type
+     * @return void
+     */
     public function getTaxonomyTypes()
     {
         if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
@@ -210,6 +224,11 @@ class Posts extends \Modularity\Module
         die();
     }
 
+    /**
+     * Saves column names if exandable list template is used
+     * @param  int $postId    The id of the post
+     * @return void
+     */
     public function saveColumnFields($postId)
     {
         if (!isset($_POST['modularity-mod-posts-expandable-list'])) {
@@ -410,6 +429,11 @@ class Posts extends \Modularity\Module
         });
     }
 
+    /**
+     * "Fake" WP_POST objects for manually inputted posts
+     * @param  array $data  The data to "fake"
+     * @return array        Faked data
+     */
     public static function getManualInputPosts($data)
     {
         $posts = array();

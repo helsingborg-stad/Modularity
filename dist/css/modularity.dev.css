@@ -432,8 +432,7 @@ li.modularity-module {
   overflow: hidden; }
 
 .modularity-modal-open #wpwrap {
-  -webkit-filter: blur(10px);
-          filter: blur(10px); }
+  filter: blur(10px); }
 
 #modularity-modal {
   position: fixed;
