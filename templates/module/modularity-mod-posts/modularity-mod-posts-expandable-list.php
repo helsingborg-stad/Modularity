@@ -40,6 +40,19 @@
                     <?php else : ?>
                         <span class="column-header"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                     <?php endif; ?>
+
+                    <?php if (isset($taxonomyDisplay['top'])) : ?>
+                    <span class="column-header text-right">
+                    <?php foreach ($taxonomyDisplay['top'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
+                    <ul class="inline-block tags-<?php echo $taxonomy; ?>">
+                        <?php foreach ($terms as $term) : ?>
+                            <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; endforeach; ?>
+                    </span>
+                    <?php endif; ?>
+
                     </span>
                 <?php else : ?>
                 <h2><?php echo apply_filters('the_title', $post->post_title); ?></h2>
@@ -49,6 +62,18 @@
                 <article>
                     <?php echo apply_filters('the_content', $post->post_content); ?>
                 </article>
+
+                <?php if (isset($taxonomyDisplay['below'])) : ?>
+                <div class="gutter gutter-top">
+                <?php foreach ($taxonomyDisplay['below'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
+                <ul class="tags tags-<?php echo $taxonomy; ?>">
+                    <?php foreach ($terms as $term) : ?>
+                        <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php endif; endforeach; ?>
+                </div>
+                <?php endif; ?>
             </div>
         </section>
         <?php endforeach; ?>

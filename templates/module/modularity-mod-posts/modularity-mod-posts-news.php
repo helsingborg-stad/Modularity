@@ -49,6 +49,14 @@ foreach ($posts as $post) {
         <a href="<?php echo $fields->posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>">
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">
+                    <?php if (isset($taxonomyDisplay['top'])) : foreach ($taxonomyDisplay['top'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
+                        <ul class="tags-<?php echo $taxonomy; ?> pos-absolute-<?php echo $placement; ?>">
+                            <?php foreach ($terms as $term) : ?>
+                                <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; endforeach; endif; ?>
+
                     <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
                     <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
                     <?php else : ?>
@@ -66,6 +74,18 @@ foreach ($posts as $post) {
                 <?php endif; ?>
 
                 <p><span class="link-item"><?php _e('Read more', 'modularity'); ?></span></p>
+
+                <?php if (isset($taxonomyDisplay['below'])) : ?>
+                    <div class="gutter gutter-top">
+                    <?php foreach ($taxonomyDisplay['below'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
+                    <ul class="tags tags-<?php echo $taxonomy; ?>">
+                        <?php foreach ($terms as $term) : ?>
+                            <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <?php endif; endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </a>
     </div>

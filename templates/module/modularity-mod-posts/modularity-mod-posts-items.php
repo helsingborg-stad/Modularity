@@ -49,7 +49,15 @@
 
             <?php if ($image && in_array('image', $fields->posts_fields)) : ?>
                 <div class="box-image-container">
-                <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
+                    <?php if (isset($taxonomyDisplay['top'])) : foreach ($taxonomyDisplay['top'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
+                        <ul class="tags-<?php echo $taxonomy; ?> pos-absolute-<?php echo $placement; ?>">
+                            <?php foreach ($terms as $term) : ?>
+                                <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; endforeach; endif; ?>
+
+                    <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>" class="box-image">
                 </div>
             <?php endif; ?>
 
@@ -69,6 +77,14 @@
                             <p><?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(get_extended($post->post_content)['main']), 30, null)) : ''; ?></p>
                         <?php endif; ?>
                 <?php endif; ?>
+
+                <?php if (isset($taxonomyDisplay['below'])) : foreach ($taxonomyDisplay['below'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
+                    <ul class="tags tags-<?php echo $taxonomy; ?>">
+                        <?php foreach ($terms as $term) : ?>
+                            <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; endforeach; endif; ?>
             </div>
         </a>
     </div>
