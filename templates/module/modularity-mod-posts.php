@@ -28,6 +28,30 @@ if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
     $filters['term[]'] = $taxType . '|' . $taxValues;
 }
 
+$taxonomyDisplay = array();
+$taxonomiesToDisplay = get_field('taxonomy_display', $module->ID);
+foreach ($taxonomiesToDisplay as $taxonomy) {
+    $placement = get_field('taxonomy_' . sanitize_title($taxonomy) . '_placement', $module->ID);
+
+    switch ($placement) {
+        case 'topleft':
+        case 'topright':
+        case 'bottomleft':
+        case 'bottomright':
+        case 'center':
+            $taxonomyDisplay['top'][$taxonomy] = $placement;
+            break;
+
+        case 'below':
+            $taxonomyDisplay['below'][$taxonomy] = $placement;
+            break;
+
+        default:
+            $taxonomyDisplay[$placement][$taxonomy] = $placement;
+            break;
+    }
+}
+
 switch ($fields->posts_display_as) {
     case 'list':
         $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-list', 'module/modularity-mod-posts', false);

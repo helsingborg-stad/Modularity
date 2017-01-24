@@ -43,6 +43,17 @@ class Posts extends \Modularity\Module
             'link_category'
         ));
 
+        $taxonomyDisplayChoices = array();
+
+        $taxonomiesNew = array();
+        foreach ($taxonomies as $taxonomy) {
+            $tax = get_taxonomy($taxonomy);
+            $taxonomiesNew[] = $tax;
+            $taxonomyDisplayChoices[$tax->name] = $tax->label;
+        }
+
+        $taxonomies = $taxonomiesNew;
+
         $fieldgroup = array(
             'key' => 'group_' . md5('mod_posts_taxonomy_display'),
             'title' => __('Taxonomy display', 'municipio'),
@@ -66,23 +77,46 @@ class Posts extends \Modularity\Module
             'description' => '',
         );
 
+        $fieldgroup['fields'][] = array(
+            'key' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
+            'label' => 'Taxonomies to display',
+            'name' => 'taxonomy_display',
+            'type' => 'checkbox',
+            'layout' => 'horizontal',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => $taxonomyDisplayChoices,
+            'default_value' => array(),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'disabled' => 0,
+            'readonly' => 0,
+        );
+
         foreach ($taxonomies as $taxonomy) {
-            $taxonomy = get_taxonomy($taxonomy);
-            $choises = array(
-                'hidden' => 'Hidden',
+            $choices = array(
                 'topleft' => 'Top left',
                 'topright' => 'Top right',
                 'bottomleft' => 'Bottom left',
                 'bottomright' => 'Bottom right',
-                'centered' => 'Centered',
+                'center' => 'Centered',
                 'below' => 'Below'
             );
 
-            $choises = apply_filters('Modularity/Module/mod-posts/TaxonomyDisplayChoises', $choises, $taxonomy);
+            $choices = apply_filters('Modularity/Module/mod-posts/TaxonomyDisplayChoises', $choices, $taxonomy);
 
             $fieldgroup['fields'][] = array(
                 'key' => 'field_56f00fe21f918_' . md5($taxonomy->name),
-                'label' => $taxonomy->label,
+                'label' => 'Placement: ' . $taxonomy->label,
                 'name' => 'taxonomy_' . sanitize_title($taxonomy->name) . '_placement',
                 'type' => 'radio',
                 'layout' => 'horizontal',
@@ -94,10 +128,8 @@ class Posts extends \Modularity\Module
                     'class' => '',
                     'id' => '',
                 ),
-                'choices' => $choises,
-                'default_value' => array(
-                    0 => 'full',
-                ),
+                'choices' => $choices,
+                'default_value' => array(),
                 'allow_null' => 0,
                 'multiple' => 0,
                 'ui' => 0,
@@ -105,6 +137,13 @@ class Posts extends \Modularity\Module
                 'placeholder' => '',
                 'disabled' => 0,
                 'readonly' => 0,
+                "conditional_logic" => array(array(
+                    array(
+                        'field' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
+                        'operator' => '==',
+                        'value' => $taxonomy->name
+                    ))
+                )
             );
         }
 
