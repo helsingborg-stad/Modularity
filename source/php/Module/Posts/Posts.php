@@ -440,7 +440,7 @@ class Posts extends \Modularity\Module
         }
 
         $metaQuery = false;
-        $sortBy = $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
+        $orderby = $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
         $order = $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
 
         // Get post args
@@ -449,14 +449,14 @@ class Posts extends \Modularity\Module
             'post_type' => 'any'
         );
 
-        if ($sortBy != 'false') {
+        if ($orderby != 'false') {
             $getPostsArgs['order'] = $order;
-            $getPostsArgs['orderby'] = $sortBy;
+            $getPostsArgs['orderby'] = $orderby;
         }
 
         // Sort by meta key
-        if (strpos($sortBy, '_metakey_') > -1) {
-            $orderby = str_replace('_metakey_', '', $sortBy);
+        if (strpos($orderby, '_metakey_') > -1) {
+            $orderby = str_replace('_metakey_', '', $orderby);
             $metaQuery = array(
                 'relation' => 'OR',
                 array(
@@ -469,7 +469,7 @@ class Posts extends \Modularity\Module
                 )
             );
 
-            $sortBy = 'meta_key';
+            $orderby = 'meta_key';
         }
 
         // Taxonomy filter
@@ -498,7 +498,7 @@ class Posts extends \Modularity\Module
 
             case 'manual':
                 $getPostsArgs['post__in'] = $fields->posts_data_posts;
-                if ($sortBy == 'false') $getPostsArgs['orderby'] = 'post__in';
+                if ($orderby == 'false') $getPostsArgs['orderby'] = 'post__in';
                 break;
         }
 
