@@ -30,7 +30,7 @@ if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
 
 $taxonomyDisplay = array();
 $taxonomiesToDisplay = get_field('taxonomy_display', $module->ID);
-foreach ($taxonomiesToDisplay as $taxonomy) {
+foreach ((array)$taxonomiesToDisplay as $taxonomy) {
     $placement = get_field('taxonomy_' . sanitize_title($taxonomy) . '_placement', $module->ID);
 
     switch ($placement) {
