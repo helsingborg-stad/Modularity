@@ -3,6 +3,20 @@
     "title": "Data display",
     "fields": [
         {
+            "layout": "horizontal",
+            "choices": {
+                "list": "List",
+                "expandable-list": "Expandable List",
+                "items": "Post items",
+                "news": "News items",
+                "index": "Index",
+                "grid": "Grid"
+            },
+            "default_value": "list",
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "allow_null": 0,
+            "return_format": "value",
             "key": "field_571dfd4c0d9d9",
             "label": "Display as",
             "name": "posts_display_as",
@@ -14,22 +28,24 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            },
-            "choices": {
-                "list": "List",
-                "expandable-list": "Expandable List",
-                "items": "Post items",
-                "news": "News items",
-                "index": "Index"
-            },
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "default_value": "list",
-            "layout": "horizontal",
-            "allow_null": 0,
-            "return_format": "value"
+            }
         },
         {
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": {
+                "grid-md-12": "1",
+                "grid-md-6": "2",
+                "grid-md-4": "3",
+                "grid-md-3": "4"
+            },
+            "default_value": [
+                "grid-md-12"
+            ],
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "key": "field_571dfdf50d9da",
             "label": "Columns",
             "name": "posts_columns",
@@ -50,32 +66,66 @@
                         "operator": "==",
                         "value": "index"
                     }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    }
                 ]
             ],
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
-            },
-            "choices": {
-                "grid-md-12": "1",
-                "grid-md-6": "2",
-                "grid-md-4": "3",
-                "grid-md-3": "4"
-            },
-            "default_value": [
-                "grid-md-12"
-            ],
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "disabled": 0,
-            "readonly": 0,
-            "return_format": "value"
+            }
         },
         {
+            "default_value": 0,
+            "message": "Yes, alter grid size automatically",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "key": "field_571e046536f0e",
+            "label": "Altering grid size",
+            "name": "posts_alter_columns",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
+            "layout": "horizontal",
+            "choices": {
+                "date": "Show date published",
+                "excerpt": "Show excerpt",
+                "title": "Show title",
+                "image": "Show featured image"
+            },
+            "default_value": [
+                "date",
+                "excerpt",
+                "title",
+                "image"
+            ],
+            "allow_custom": 0,
+            "save_custom": 0,
+            "toggle": 0,
+            "return_format": "value",
             "key": "field_571e01e7f246c",
             "label": "Fields",
             "name": "posts_fields",
@@ -95,24 +145,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            },
-            "choices": {
-                "date": "Show date published",
-                "excerpt": "Show excerpt",
-                "title": "Show title",
-                "image": "Show featured image"
-            },
-            "default_value": [
-                "date",
-                "excerpt",
-                "title",
-                "image"
-            ],
-            "layout": "horizontal",
-            "toggle": 0,
-            "return_format": "value"
+            }
         },
         {
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
             "key": "field_57e3bcae3826e",
             "label": "Title column label",
             "name": "title_column_label",
@@ -132,14 +172,37 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            }
         },
         {
+            "sub_fields": [
+                {
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "key": "field_571f5790592e7",
+                    "label": "Column header",
+                    "name": "column_header",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "readonly": 0,
+                    "disabled": 0
+                }
+            ],
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "L\u00e4gg till rad",
+            "collapsed": "",
             "key": "field_571f5776592e6",
             "label": "List column labels",
             "name": "posts_list_column_titles",
@@ -159,35 +222,7 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            },
-            "collapsed": "",
-            "min": "",
-            "max": "",
-            "layout": "table",
-            "button_label": "L\u00e4gg till rad",
-            "sub_fields": [
-                {
-                    "key": "field_571f5790592e7",
-                    "label": "Column header",
-                    "name": "column_header",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": "",
-                    "readonly": 0,
-                    "disabled": 0
-                }
-            ]
+            }
         }
     ],
     "location": [
@@ -207,5 +242,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1475146570
+    "modified": 1485442638
 }

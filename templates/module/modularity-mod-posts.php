@@ -69,6 +69,10 @@ switch ($fields->posts_display_as) {
         $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-index', 'module/modularity-mod-posts', false);
         break;
 
+    case 'grid':
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-grid', 'module/modularity-mod-posts', false);
+        break;
+
     case 'expandable-list':
         $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-expandable-list', 'module/modularity-mod-posts', false);
         break;
