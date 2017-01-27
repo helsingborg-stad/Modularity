@@ -463,7 +463,6 @@ class Posts extends \Modularity\Module
             return self::getManualInputPosts($fields->data);
         }
 
-        $metaQuery = false;
         $orderby = $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
         $order = $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
 
@@ -479,21 +478,9 @@ class Posts extends \Modularity\Module
         }
 
         // Sort by meta key
-        if (strpos($orderby, '_metakey_') > -1) {
-            $orderby = str_replace('_metakey_', '', $orderby);
-            $metaQuery = array(
-                'relation' => 'OR',
-                array(
-                    'key' => $orderby,
-                    'compare' => 'EXISTS'
-                ),
-                array(
-                    'key' => $orderby,
-                    'compare' => 'NOT EXISTS'
-                )
-            );
-
-            $orderby = 'meta_key';
+        if (strpos($orderby, '_metakey_') === 0) {
+            $getPostsArgs['orderby'] = 'meta_value';
+            $getPostsArgs['meta_key'] = substr($orderby, strlen('_metakey_'));
         }
 
         // Taxonomy filter
@@ -524,11 +511,6 @@ class Posts extends \Modularity\Module
                 $getPostsArgs['post__in'] = $fields->posts_data_posts;
                 if ($orderby == 'false') $getPostsArgs['orderby'] = 'post__in';
                 break;
-        }
-
-        // Add metaquery to args
-        if ($metaQuery) {
-            $getPostsArgs['meta_query'] = $metaQuery;
         }
 
         return get_posts($getPostsArgs);
