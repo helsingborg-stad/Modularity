@@ -131,7 +131,13 @@ class General extends \Modularity\Options
         $postTypes = array_filter(get_post_types(), function ($item) {
             $disallowed = array_merge(
                 array_keys(\Modularity\Module::$available),
-                array('attachment', 'revision', 'nav_menu_item')
+                array(
+                    'attachment',
+                    'revision',
+                    'nav_menu_item',
+                    'custom_css',
+                    'customize_changeset'
+                )
             );
 
             if (in_array($item, $disallowed)) {
