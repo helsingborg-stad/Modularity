@@ -53,3 +53,37 @@
         }
     }
 }
+
+.modularity-preview-hidden {
+    position: relative;
+    opacity: .5;
+    transition: 500ms all;
+
+    &::after {
+        display: block;
+        font-family: dashicons;
+        font-size: 10rem;
+        line-height: 1;
+        content: "\f530";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 20px;
+        height: 200px;
+        width: 200px;
+        opacity: 1;
+        transition: 500ms all;
+    }
+
+    &:hover,
+    &:focus {
+        opacity: 1;
+
+        &::after {
+            opacity: 0;
+        }
+    }
+}

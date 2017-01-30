@@ -34,7 +34,7 @@ class Display
 
         if (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0) {
             foreach ($this->modules[$sidebar]['modules'] as $module) {
-                if ($module->hidden == 'true') {
+                if (!is_preview() && $module->hidden == 'true') {
                     continue;
                 }
 
@@ -166,7 +166,7 @@ class Display
 
         // Loop and output modules
         foreach ($modules['modules'] as $module) {
-            if ($module->hidden == 'true') {
+            if (!is_preview() && $module->hidden == 'true') {
                 continue;
             }
 
@@ -227,6 +227,15 @@ class Display
                 return;
             }
 
+            $classes = array(
+                'modularity-' . $module->post_type,
+                'modularity-' . $module->post_type . '-' . $module->ID
+            );
+
+            if (is_preview() && $module->hidden) {
+                $classes[] = 'modularity-preview-hidden';
+            }
+
             $beforeModule = '';
             $moduleEdit = '';
             if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
@@ -235,10 +244,13 @@ class Display
 
             if (isset($module->columnWidth) && !empty($module->columnWidth)) {
                 $beforeWidget = $module->columnWidth;
-                $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . $beforeWidget . ' modularity-' . $module->post_type . ' modularity-' . $module->post_type . '-' . $module->ID . '">', $args, $module->post_type, $module->ID);
+
+                $classes[] = $beforeWidget;
+
+                $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . implode(' ', $classes) . '">', $args, $module->post_type, $module->ID);
             } elseif (isset($args['before_widget'])) {
                 $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
-                $beforeWidget = str_replace('%2$s', 'modularity-' . $module->post_type, $beforeWidget);
+                $beforeWidget = str_replace('%2$s', 'modularity-' . implode(' ', $classes), $beforeWidget);
                 $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
             }
 
