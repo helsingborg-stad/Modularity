@@ -71,11 +71,12 @@
         transform: translate(-50%, -50%);
         background-color: #fff;
         border-radius: 50%;
-        padding: 20px;
+        padding: 15px;
         height: 200px;
         width: 200px;
         opacity: 1;
         transition: 500ms all;
+        border: 5px solid currentColor;
     }
 
     &:hover,
