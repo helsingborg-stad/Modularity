@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-01-11 10:57+0100\n"
-"PO-Revision-Date: 2017-01-11 10:58+0100\n"
+"POT-Creation-Date: 2017-01-30 14:32+0100\n"
+"PO-Revision-Date: 2017-01-30 14:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -37,8 +37,8 @@ msgid "Remove"
 msgstr "Ta bort"
 
 #: App.php:168 App.php:199
-msgid "Hide"
-msgstr "Göm"
+msgid "Hide module"
+msgstr "Dölj modulen"
 
 #: App.php:169 App.php:200
 msgid "Are you sure you want to remove this module?"
@@ -60,7 +60,7 @@ msgstr "Bredd"
 msgid "Deprecated"
 msgstr "Utgående"
 
-#: source/php/Display.php:233 templates/widget/form.php:30
+#: source/php/Display.php:242 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -329,6 +329,10 @@ msgstr "Inlägg"
 #: source/php/Module/Posts/Posts.php:17
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
+
+#: source/php/Module/Posts/Posts.php:63
+msgid "Taxonomy display"
+msgstr ""
 
 #: source/php/Module/Script/Script.php:11
 #: source/php/Module/Script/Script.php:12
@@ -622,7 +626,7 @@ msgstr "efter"
 
 #: templates/editor/modularity-sidebar-drop-area.php:20
 msgid "Hide global widgets"
-msgstr "Göm widgets"
+msgstr "Dölj widgets i denna sidebar"
 
 #: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:94
 #: templates/module/modularity-mod-contacts/modularity-mod-contacts-cards.php:98
@@ -643,24 +647,26 @@ msgid "Filter files"
 msgstr "Filtrera filer"
 
 #: templates/module/modularity-mod-latest-list.php:58
-#: templates/module/modularity-mod-posts/modularity-mod-posts-index.php:69
-#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:83
+#: templates/module/modularity-mod-posts/modularity-mod-posts-grid.php:123
+#: templates/module/modularity-mod-posts/modularity-mod-posts-index.php:89
+#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:99
 #: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:27
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:76
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:96
 msgid "Show more"
 msgstr "Visa mer"
 
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:68
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:76
 msgid "Read more"
 msgstr "Läs mer"
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:57
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:82
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:77
+#: templates/module/modularity-mod-posts/modularity-mod-posts-grid.php:117
+#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:93
 #: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:23
 msgid "No posts to show…"
 msgstr "Inga inlägg att visa"
@@ -771,6 +777,9 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Hide"
+#~ msgstr "Göm"
 
 #~ msgid "Unspecified"
 #~ msgstr "Ospecificerad"

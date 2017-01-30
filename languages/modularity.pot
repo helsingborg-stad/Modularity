@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-01-11 10:56+0100\n"
+"POT-Creation-Date: 2017-01-30 14:32+0100\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -37,7 +37,7 @@ msgid "Remove"
 msgstr ""
 
 #: App.php:168 App.php:199
-msgid "Hide"
+msgid "Hide module"
 msgstr ""
 
 #: App.php:169 App.php:200
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Deprecated"
 msgstr ""
 
-#: source/php/Display.php:233 templates/widget/form.php:30
+#: source/php/Display.php:242 templates/widget/form.php:30
 msgid "Edit module"
 msgstr ""
 
@@ -318,6 +318,10 @@ msgstr ""
 
 #: source/php/Module/Posts/Posts.php:17
 msgid "Outputs selected posts in specified layout"
+msgstr ""
+
+#: source/php/Module/Posts/Posts.php:63
+msgid "Taxonomy display"
 msgstr ""
 
 #: source/php/Module/Script/Script.php:11
@@ -629,24 +633,26 @@ msgid "Filter files"
 msgstr ""
 
 #: templates/module/modularity-mod-latest-list.php:58
-#: templates/module/modularity-mod-posts/modularity-mod-posts-index.php:69
-#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:83
+#: templates/module/modularity-mod-posts/modularity-mod-posts-grid.php:123
+#: templates/module/modularity-mod-posts/modularity-mod-posts-index.php:89
+#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:99
 #: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:27
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:76
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:96
 msgid "Show more"
 msgstr ""
 
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:68
+#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:76
 msgid "Read more"
 msgstr ""
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:57
+#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:82
 msgid "Nothing to display…"
 msgstr ""
 
-#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:77
+#: templates/module/modularity-mod-posts/modularity-mod-posts-grid.php:117
+#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:93
 #: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:23
 msgid "No posts to show…"
 msgstr ""
