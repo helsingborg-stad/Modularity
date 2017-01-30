@@ -79,7 +79,7 @@
         .modularity-line-wrapper > span {
             display: table-cell;
             vertical-align: middle;
-            padding: 0 20px;
+            padding: 0 15px;
             height: 50px;
             line-height: 48px;
         }
@@ -116,11 +116,15 @@
 
         .modularity-module-hide {
             position: absolute;
+            top: 0;
             right: 0;
+            height: 100%;
+            border-left: 1px solid #E5E5E5;
+            border-right: 1px solid #E5E5E5;
+            padding: 1px 15px;
 
             @media (max-width: 1451px) {
-                right: 160px;
-                padding-top: 2px;
+                right: 135px;
             }
         }
 
