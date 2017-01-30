@@ -13,10 +13,40 @@
     $columnAlter = $numColumns > 1 ? $numColumns - 1 : $numColumns + 1;
     */
 
+    $gridSize = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
+    $gridAlterSize = $gridSize * 2;
+
     if (count($posts) > 0) :
     $postNum = 0;
     foreach ($posts as $post) :
         $postNum++;
+
+        $columnSize = 'grid-md-' . $gridSize;
+        $columnHeight = false;
+
+        if ($fields->posts_alter_columns) {
+            switch ($gridSize) {
+                case 3:
+                    $columnHeight = '280px';
+                    break;
+
+                case 4:
+                    $columnHeight = '400px';
+                    break;
+
+                case 6:
+                    $columnHeight = '500px';
+                    break;
+
+                default:
+                    $columnHeight = false;
+                    break;
+            }
+
+            if ($gridSize !== 12 && ($postNum % (12 / $gridSize) === 1)) {
+                $columnSize = 'grid-md-' . $gridAlterSize;
+            }
+        }
 
         /* Image size */
         $image_dimensions = array(800, 600);
@@ -56,8 +86,8 @@
             }
         }
     ?>
-    <div class="<?php echo $fields->posts_columns; ?>">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="box box-post-brick">
+    <div class="<?php echo $columnSize; ?>">
+        <a href="<?php echo get_permalink($post->ID); ?>" class="box box-post-brick" <?php echo ($columnHeight) ? 'style="padding-bottom:0;height:' . $columnHeight . '"' : ''; ?>>
             <div class="box-image" style="background-image:url(<?php echo $image[0]; ?>);">
                 <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
             </div>
