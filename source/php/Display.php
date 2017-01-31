@@ -249,8 +249,8 @@ class Display
 
                 $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . implode(' ', $classes) . '">', $args, $module->post_type, $module->ID);
             } elseif (isset($args['before_widget'])) {
-                $beforeWidget = str_replace('%1$s', 'modularity-' . $module->post_type . '-' . $module->ID, $args['before_widget']);
-                $beforeWidget = str_replace('%2$s', 'modularity-' . implode(' ', $classes), $beforeWidget);
+                $beforeWidget = str_replace('%1$s', $module->post_type . '-' . $module->ID, $args['before_widget']);
+                $beforeWidget = str_replace('%2$s', implode(' ', $classes), $beforeWidget);
                 $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
             }
 
