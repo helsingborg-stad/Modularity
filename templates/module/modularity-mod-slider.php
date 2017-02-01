@@ -35,7 +35,7 @@ if (get_field('slides_autoslide', $module->ID) === true) {
     $flickity['pauseAutoPlayOnHover'] = true;
 
     if (!empty(get_field('slides_slide_timeout', $module->ID))) {
-        $flickity['autoPlay'] = get_field('slides_slide_timeout', $module->ID) * 1000;
+        $flickity['autoPlay'] = (int) get_field('slides_slide_timeout', $module->ID);
     }
 }
 
@@ -50,8 +50,12 @@ if (count($slides) <= 1) {
 $flickity = json_encode($flickity);
 ?>
 
-<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?>" data-flickity='<?php echo $flickity; ?>'>
+<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?>">
+    <?php if (!$module->hideTitle) : ?>
+        <h2><?php echo $module->post_title; ?></h2>
+    <?php endif; ?>
 
+    <div data-flickity='<?php echo $flickity; ?>'>
     <?php foreach ($slides as $slide) : ?>
         <?php
             //Fallback to default
@@ -75,6 +79,7 @@ $flickity = json_encode($flickity);
             }
 
             // Image
+            $image = false;
             if (isset($slide['image']) && !empty($slide['image'])) {
                 $image = wp_get_attachment_image_src(
                     $slide['image']['id'],
@@ -83,11 +88,10 @@ $flickity = json_encode($flickity);
                         $args
                     )
                 );
-            } else {
-                $image = false;
             }
 
             // Mobile image
+            $mobile_image = $image;
             if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
                 $mobile_image = wp_get_attachment_image_src(
                     $slide['mobile_image']['id'],
@@ -96,8 +100,6 @@ $flickity = json_encode($flickity);
                         $args
                     )
                 );
-            } else {
-                $mobile_image = $image;
             }
 
             // In some cases ACF will return an post-id instead of a link.
@@ -106,7 +108,7 @@ $flickity = json_encode($flickity);
             }
 
         ?>
-        <div class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
+        <li class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
 
             <!-- Link start -->
             <?php if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false') : ?>
@@ -202,7 +204,8 @@ $flickity = json_encode($flickity);
             <?php if ($slide['link_type'] != 'false') : ?>
             </a>
             <?php endif; ?>
-        </div>
+        </li>
     <?php endforeach; ?>
+    </div>
 
 </div>
