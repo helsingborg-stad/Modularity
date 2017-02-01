@@ -1,24 +1,59 @@
 <?php
-    $slides = get_field('slides', $module->ID);
+$slides = get_field('slides', $module->ID);
+
+// Formats
+$imageSizes = array(
+    'ratio-16-9' => array(1140,641),
+    'ratio-10-3' => array(1140,342),
+    'ratio-4-3' => array(1140,885)
+);
+
+// Filter options
+$imageSizes = apply_filters('Modularity/slider/imagesizes', $imageSizes, $args);
+
+// Classes
+$classes = array();
+$classes[] = 'slider'; //array_merge($classes, array('slider', get_field('slider_format', $module->ID)));
+
+if (get_field('navigation_position', $module->ID) == 'bottom') {
+    $classes[] = 'slider-nav-bottom';
+}
+
+if (get_field('show_navigation', $module->ID) == "hover") {
+    $classes[] = 'slider-nav-hover';
+}
+
+// Flickity settings
+$flickity = array();
+$flickity['cellSelector'] = '.slide';
+$flickity['cellAlign'] = 'center';
+$flickity['wrapAround'] = true;
+$flickity['setGallerySize'] = false;
+
+if (get_field('slides_autoslide', $module->ID) === true) {
+    $flickity['autoPlay'] = true;
+    $flickity['pauseAutoPlayOnHover'] = true;
+
+    if (!empty(get_field('slides_slide_timeout', $module->ID))) {
+        $flickity['autoPlay'] = get_field('slides_slide_timeout', $module->ID) * 1000;
+    }
+}
+
+if (count($slides) <= 1) {
+    $flickity = array_merge($flickity, array(
+        'draggable' => false,
+        'pageDots' => false,
+        'prevNextButtons' => false
+    ));
+}
+
+$flickity = json_encode($flickity);
 ?>
-<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider', get_field('slider_format', $module->ID)), $module->post_type, $args)); ?> <?php if (get_field('navigation_position', $module->ID) == "bottom") : ?>slider-nav-bottom<?php endif; ?> <?php if (get_field('show_navigation', $module->ID) == "hover") : ?>slider-nav-hover<?php endif; ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
-    <?php if (!$module->hideTitle) : ?>
-        <h2><?php echo $module->post_title; ?></h2>
-    <?php endif; ?>
-    <ul class="slider-items">
+
+<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?>" data-flickity='<?php echo $flickity; ?>'>
+
     <?php foreach ($slides as $slide) : ?>
         <?php
-
-            //Formats
-            $imageSizes = array(
-                'ratio-16-9' => array(1140,641),
-                'ratio-10-3' => array(1140,342),
-                'ratio-4-3' => array(1140,885)
-            );
-
-            //Filter options
-            $imageSizes = apply_filters('Modularity/slider/imagesizes', $imageSizes, $args);
-
             //Fallback to default
             switch (get_field('slider_format', $module->ID)) {
                 case 'ratio-16-9':
@@ -30,7 +65,7 @@
                     $currentImageSize = array(1800,350);
             }
 
-            //Special for video & featured
+            // Special for video & featured
             if ($slide['acf_fc_layout'] == "video") {
                 $currentImageSize = array(1140,641);
             }
@@ -71,7 +106,7 @@
             }
 
         ?>
-        <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
+        <div class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
 
             <!-- Link start -->
             <?php if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false') : ?>
@@ -167,7 +202,7 @@
             <?php if ($slide['link_type'] != 'false') : ?>
             </a>
             <?php endif; ?>
-        </li>
+        </div>
     <?php endforeach; ?>
-    </ul>
+
 </div>
