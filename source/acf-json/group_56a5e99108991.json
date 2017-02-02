@@ -25,7 +25,7 @@
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50",
+                    "width": "33.3333",
                     "class": "",
                     "id": ""
                 }
@@ -55,7 +55,35 @@
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "50",
+                    "width": "33.3333",
+                    "class": "",
+                    "id": ""
+                }
+            },
+            {
+                "multiple": 0,
+                "allow_null": 0,
+                "choices": {
+                    "left" : "Left",
+                    "center" : "Center",
+                    "right" : "Right"
+                },
+                "default_value": [
+                    "center"
+                ],
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "return_format": "value",
+                "key": "field_58934110b566e",
+                "label": "Slide alignment",
+                "name": "slide_align",
+                "type": "select",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "33.3333",
                     "class": "",
                     "id": ""
                 }

@@ -26,7 +26,7 @@ if (get_field('show_navigation', $module->ID) == "hover") {
 // Flickity settings
 $flickity = array();
 $flickity['cellSelector'] = '.slide';
-$flickity['cellAlign'] = 'center';
+$flickity['cellAlign'] = get_field('slide_align', $module->ID) ? get_field('slide_align', $module->ID) : 'center';
 $flickity['wrapAround'] = in_array('wrapAround', (array) get_field('additional_options', $module->ID));
 $flickity['setGallerySize'] = false;
 $flickity['pageDots'] = in_array('pageDots', (array) get_field('additional_options', $module->ID));
