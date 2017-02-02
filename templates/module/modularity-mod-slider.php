@@ -35,11 +35,11 @@ if (get_field('slides_autoslide', $module->ID) === true) {
     $flickity['pauseAutoPlayOnHover'] = true;
 
     if (!empty(get_field('slides_slide_timeout', $module->ID))) {
-        $flickity['autoPlay'] = (int) get_field('slides_slide_timeout', $module->ID);
+        $flickity['autoPlay'] = (int) get_field('slides_slide_timeout', $module->ID) * 1000;
     }
 }
 
-if (count($slides) <= 1) {
+if (count($slides) == 1) {
     $flickity = array_merge($flickity, array(
         'draggable' => false,
         'pageDots' => false,
