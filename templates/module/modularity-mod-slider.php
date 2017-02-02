@@ -110,7 +110,7 @@ $flickity = json_encode($flickity);
             }
 
         ?>
-        <li class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
+        <li class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>" <?php echo get_field('slide_width', $module->ID) ? 'style="width:' . 100/(int)get_field('slide_columns', $module->ID) . '%;"' : ''; ?>>
 
             <!-- Link start -->
             <?php if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false') : ?>
