@@ -1,5 +1,6 @@
 <?php
 $slides = get_field('slides', $module->ID);
+$layout = get_field('slider_layout', $module->ID) ? get_field('slider_layout', $module->ID) : 'default';
 
 // Formats
 $imageSizes = array(
@@ -57,7 +58,7 @@ if (count($slides) == $slideColumns || count($slides) < $slideColumns) {
 $flickity = json_encode($flickity);
 ?>
 
-<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?>">
+<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?> slider-layout-<?php echo $layout; ?>">
     <?php if (!$module->hideTitle) : ?>
         <h2><?php echo $module->post_title; ?></h2>
     <?php endif; ?>

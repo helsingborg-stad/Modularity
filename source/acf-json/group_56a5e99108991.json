@@ -2,7 +2,34 @@
     "key": "group_56a5e99108991",
     "title": "Slider",
     "fields": [
-        {
+            {
+                "multiple": 0,
+                "allow_null": 1,
+                "choices": {
+                    "default": "Default",
+                    "circle": "Circle slides"
+                },
+                "default_value": [
+                    "default"
+                ],
+                "ui": 0,
+                "ajax": 0,
+                "placeholder": "",
+                "return_format": "value",
+                "key": "field_573dce058a66t",
+                "label": "Slider layout",
+                "name": "slider_layout",
+                "type": "select",
+                "instructions": "",
+                "required": 1,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "25%",
+                    "class": "",
+                    "id": ""
+                }
+            },
+            {
                 "multiple": 0,
                 "allow_null": 1,
                 "choices": {
@@ -25,7 +52,7 @@
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "33.3333",
+                    "width": "25%",
                     "class": "",
                     "id": ""
                 }
@@ -55,7 +82,7 @@
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "33.3333",
+                    "width": "25%",
                     "class": "",
                     "id": ""
                 }
@@ -83,7 +110,7 @@
                 "required": 1,
                 "conditional_logic": 0,
                 "wrapper": {
-                    "width": "33.3333",
+                    "width": "25%",
                     "class": "",
                     "id": ""
                 }
