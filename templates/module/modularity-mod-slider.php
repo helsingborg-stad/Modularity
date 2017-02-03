@@ -23,6 +23,8 @@ if (get_field('show_navigation', $module->ID) == "hover") {
     $classes[] = 'slider-nav-hover';
 }
 
+$slideColumns = get_field('slide_columns', $module->ID) ? get_field('slide_columns', $module->ID) : 1;
+
 // Flickity settings
 $flickity = array();
 $flickity['cellSelector']   = '.slide';
@@ -41,13 +43,15 @@ if (get_field('slides_autoslide', $module->ID) === true) {
     }
 }
 
-if (count($slides) == 1 || count($slides) == get_field('slide_columns', $module->ID)) {
+if (count($slides) == $slideColumns || count($slides) < $slideColumns) {
     $flickity = array_merge($flickity, array(
         'draggable' => false,
         'pageDots' => false,
         'prevNextButtons' => false,
         'autoPlay' => false
     ));
+
+    $slideColumns = count($slides);
 }
 
 $flickity = json_encode($flickity);
@@ -111,7 +115,7 @@ $flickity = json_encode($flickity);
             }
 
         ?>
-        <div class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>" <?php echo get_field('slide_columns', $module->ID) ? 'style="width:' . 100/(int)get_field('slide_columns', $module->ID) . '%;"' : ''; ?>>
+        <div class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>" <?php echo $slideColumns > 1 ? 'style="width:' . 100/$slideColumns . '%;"' : ''; ?>>
 
             <!-- Link start -->
             <?php if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false') : ?>
