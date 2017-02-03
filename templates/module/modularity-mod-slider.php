@@ -41,11 +41,12 @@ if (get_field('slides_autoslide', $module->ID) === true) {
     }
 }
 
-if (count($slides) == 1) {
+if (count($slides) == 1 || count($slides) == get_field('slide_columns', $module->ID)) {
     $flickity = array_merge($flickity, array(
         'draggable' => false,
         'pageDots' => false,
-        'prevNextButtons' => false
+        'prevNextButtons' => false,
+        'autoPlay' => false
     ));
 }
 
