@@ -7,7 +7,7 @@
 
         <div class="grid-auto">
             <?php if (!$module->hideTitle) : ?>
-                <strong><?php echo $module->post_title; ?></strong>
+                <h4><?php echo $module->post_title; ?></h4>
             <?php endif; ?>
             <?php echo $fields['notice_text']; ?>
         </div>
