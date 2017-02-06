@@ -31,7 +31,6 @@ $flickity = array();
 $flickity['cellSelector']   = '.slide';
 $flickity['cellAlign']      = get_field('slide_align', $module->ID) ? get_field('slide_align', $module->ID) : 'center';
 $flickity['wrapAround']     = in_array('wrapAround', (array) get_field('additional_options', $module->ID));
-$flickity['setGallerySize'] = false;
 $flickity['pageDots']       = in_array('pageDots', (array) get_field('additional_options', $module->ID));
 $flickity['freeScroll']     = in_array('freeScroll', (array) get_field('additional_options', $module->ID));
 
@@ -63,7 +62,7 @@ $flickity = json_encode($flickity);
         <h2><?php echo $module->post_title; ?></h2>
     <?php endif; ?>
 
-<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?> slider-layout-<?php echo $layout; ?>">
+<div class="<?php echo implode(' ', $classes); ?> slider-layout-<?php echo $layout; ?>">
     <div data-flickity='<?php echo $flickity; ?>'>
     <?php foreach ($slides as $slide) : ?>
         <?php
