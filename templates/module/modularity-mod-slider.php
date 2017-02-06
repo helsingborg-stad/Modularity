@@ -58,11 +58,12 @@ if (count($slides) == $slideColumns || count($slides) < $slideColumns) {
 $flickity = json_encode($flickity);
 ?>
 
-<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?> slider-layout-<?php echo $layout; ?>">
+<div>
     <?php if (!$module->hideTitle) : ?>
         <h2><?php echo $module->post_title; ?></h2>
     <?php endif; ?>
 
+<div class="<?php echo implode(' ', $classes); ?> <?php echo get_field('slider_format', $module->ID); ?> slider-layout-<?php echo $layout; ?>">
     <div data-flickity='<?php echo $flickity; ?>'>
     <?php foreach ($slides as $slide) : ?>
         <?php
@@ -216,4 +217,5 @@ $flickity = json_encode($flickity);
     <?php endforeach; ?>
     </div>
 
+</div>
 </div>
