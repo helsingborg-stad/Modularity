@@ -48,7 +48,8 @@ if (count($slides) == $slideColumns || count($slides) < $slideColumns) {
         'draggable' => false,
         'pageDots' => false,
         'prevNextButtons' => false,
-        'autoPlay' => false
+        'autoPlay' => false,
+        'cellAlign' => 'left'
     ));
 
     $slideColumns = count($slides);
