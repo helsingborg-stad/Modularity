@@ -62,7 +62,7 @@ $flickity = json_encode($flickity);
         <h2><?php echo $module->post_title; ?></h2>
     <?php endif; ?>
 
-<div class="<?php echo implode(' ', $classes); ?> slider-layout-<?php echo $layout; ?>">
+<div class="<?php echo implode(' ', $classes); ?> <?php echo $layout !== 'circle' ? get_field('slider_format', $module->ID) : ''; ?> slider-layout-<?php echo $layout; ?>">
     <div data-flickity='<?php echo $flickity; ?>'>
     <?php foreach ($slides as $slide) : ?>
         <?php
