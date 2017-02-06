@@ -1,6 +1,6 @@
 {
   "name": "Modularity",
-  "version": "1.6.3",
+  "version": "1.6.5",
   "description": "Modular component system for WordPress",
   "main": "gulpfile.js",
   "dependencies": {
