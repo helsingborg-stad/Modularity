@@ -84,7 +84,7 @@
     </div>
     <?php endforeach; ?>
 
-    <?php if (isset($fields->archive_link) && $fields->archive_link) : ?>
+    <?php if ($fields->posts_data_source !== 'input' && isset($fields->archive_link) && $fields->archive_link) : ?>
     <div class="grid-lg-12">
         <a class="read-more" href="<?php echo get_post_type_archive_link($fields->posts_data_post_type); echo '?' . http_build_query($filters);  ?>"><?php _e('Show more', 'modularity'); ?></a>
     </div>
