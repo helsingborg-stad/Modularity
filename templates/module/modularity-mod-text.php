@@ -1,6 +1,6 @@
 <?php if (get_field('hide_box_frame', $module->ID)) : ?>
 
-<article class="no-margin <?php echo get_field('font_size', $module->ID) ? get_field('font_size', $module->ID) : ''; ?>">
+<article class="no-margin full <?php echo get_field('font_size', $module->ID) ? get_field('font_size', $module->ID) : ''; ?>">
     <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
         <h1><?php echo apply_filters('the_title', $module->post_title); ?></h1>
     <?php endif; ?>
