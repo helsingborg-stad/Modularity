@@ -441,7 +441,8 @@ class Posts extends \Modularity\Module
         foreach ($data as $key => $item) {
             $posts[] = array_merge((array) $item, array(
                 'ID' => $key,
-                'post_name' => $key
+                'post_name' => $key,
+                'post_excerpt' => $item->post_content
             ));
         }
 
