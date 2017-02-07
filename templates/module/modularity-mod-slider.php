@@ -1,24 +1,72 @@
 <?php
-    $slides = get_field('slides', $module->ID);
+$slides = get_field('slides', $module->ID);
+$layout = get_field('slider_layout', $module->ID) ? get_field('slider_layout', $module->ID) : 'default';
+
+// Formats
+$imageSizes = array(
+    'ratio-16-9' => array(1140,641),
+    'ratio-10-3' => array(1140,342),
+    'ratio-4-3' => array(1140,885)
+);
+
+// Filter options
+$imageSizes = apply_filters('Modularity/slider/imagesizes', $imageSizes, $args);
+
+// Classes
+$classes = array();
+$classes[] = 'slider'; //array_merge($classes, array('slider', get_field('slider_format', $module->ID)));
+
+if (get_field('navigation_position', $module->ID) == 'bottom') {
+    $classes[] = 'slider-nav-bottom';
+}
+
+if (get_field('show_navigation', $module->ID) == "hover") {
+    $classes[] = 'slider-nav-hover';
+}
+
+$slideColumns = get_field('slide_columns', $module->ID) ? get_field('slide_columns', $module->ID) : 1;
+
+// Flickity settings
+$flickity = array();
+$flickity['cellSelector']   = '.slide';
+$flickity['cellAlign']      = get_field('slide_align', $module->ID) ? get_field('slide_align', $module->ID) : 'center';
+$flickity['wrapAround']     = in_array('wrapAround', (array) get_field('additional_options', $module->ID));
+$flickity['pageDots']       = in_array('pageDots', (array) get_field('additional_options', $module->ID));
+$flickity['freeScroll']     = in_array('freeScroll', (array) get_field('additional_options', $module->ID));
+
+if (get_field('slides_autoslide', $module->ID) === true) {
+    $flickity['autoPlay'] = true;
+    $flickity['pauseAutoPlayOnHover'] = true;
+
+    if (!empty(get_field('slides_slide_timeout', $module->ID))) {
+        $flickity['autoPlay'] = (int) get_field('slides_slide_timeout', $module->ID) * 1000;
+    }
+}
+
+if (count($slides) == $slideColumns || count($slides) < $slideColumns) {
+    $flickity = array_merge($flickity, array(
+        'draggable' => false,
+        'pageDots' => false,
+        'prevNextButtons' => false,
+        'autoPlay' => false,
+        'cellAlign' => 'left'
+    ));
+
+    $slideColumns = count($slides);
+}
+
+$flickity = json_encode($flickity);
 ?>
-<div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('slider', get_field('slider_format', $module->ID)), $module->post_type, $args)); ?> <?php if (get_field('navigation_position', $module->ID) == "bottom") : ?>slider-nav-bottom<?php endif; ?> <?php if (get_field('show_navigation', $module->ID) == "hover") : ?>slider-nav-hover<?php endif; ?>" <?php if (get_field('slides_autoslide', $module->ID) === true) : ?>data-autoslide="true"<?php endif; ?> <?php if (!empty(get_field('slides_slide_timeout', $module->ID))) : ?>data-autoslide-interval="<?php echo get_field('slides_slide_timeout', $module->ID) * 1000; ?>"<?php endif; ?>>
+
+<div>
     <?php if (!$module->hideTitle) : ?>
         <h2><?php echo $module->post_title; ?></h2>
     <?php endif; ?>
-    <ul class="slider-items">
+
+<div class="<?php echo implode(' ', $classes); ?> <?php echo $layout !== 'circle' ? get_field('slider_format', $module->ID) : ''; ?> slider-layout-<?php echo $layout; ?>">
+    <div data-flickity='<?php echo $flickity; ?>'>
     <?php foreach ($slides as $slide) : ?>
         <?php
-
-            //Formats
-            $imageSizes = array(
-                'ratio-16-9' => array(1140,641),
-                'ratio-10-3' => array(1140,342),
-                'ratio-4-3' => array(1140,885)
-            );
-
-            //Filter options
-            $imageSizes = apply_filters('Modularity/slider/imagesizes', $imageSizes, $args);
-
             //Fallback to default
             switch (get_field('slider_format', $module->ID)) {
                 case 'ratio-16-9':
@@ -30,7 +78,7 @@
                     $currentImageSize = array(1800,350);
             }
 
-            //Special for video & featured
+            // Special for video & featured
             if ($slide['acf_fc_layout'] == "video") {
                 $currentImageSize = array(1140,641);
             }
@@ -40,6 +88,7 @@
             }
 
             // Image
+            $image = false;
             if (isset($slide['image']) && !empty($slide['image'])) {
                 $image = wp_get_attachment_image_src(
                     $slide['image']['id'],
@@ -48,11 +97,10 @@
                         $args
                     )
                 );
-            } else {
-                $image = false;
             }
 
             // Mobile image
+            $mobile_image = $image;
             if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
                 $mobile_image = wp_get_attachment_image_src(
                     $slide['mobile_image']['id'],
@@ -61,8 +109,6 @@
                         $args
                     )
                 );
-            } else {
-                $mobile_image = $image;
             }
 
             // In some cases ACF will return an post-id instead of a link.
@@ -71,7 +117,7 @@
             }
 
         ?>
-        <li class="type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>">
+        <div class="slide type-<?php echo $slide['acf_fc_layout']; ?> <?php echo (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : ''; ?>" <?php echo $slideColumns > 1 ? 'style="width:' . 100/$slideColumns . '%;"' : ''; ?>>
 
             <!-- Link start -->
             <?php if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false') : ?>
@@ -167,7 +213,9 @@
             <?php if ($slide['link_type'] != 'false') : ?>
             </a>
             <?php endif; ?>
-        </li>
+        </div>
     <?php endforeach; ?>
-    </ul>
+    </div>
+
+</div>
 </div>
