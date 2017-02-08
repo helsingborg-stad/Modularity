@@ -33,6 +33,7 @@ $flickity['cellAlign']      = get_field('slide_align', $module->ID) ? get_field(
 $flickity['wrapAround']     = in_array('wrapAround', (array) get_field('additional_options', $module->ID));
 $flickity['pageDots']       = in_array('pageDots', (array) get_field('additional_options', $module->ID));
 $flickity['freeScroll']     = in_array('freeScroll', (array) get_field('additional_options', $module->ID));
+$flickity['groupCells']     = in_array('groupCells', (array) get_field('additional_options', $module->ID));
 
 if (get_field('slides_autoslide', $module->ID) === true) {
     $flickity['autoPlay'] = true;

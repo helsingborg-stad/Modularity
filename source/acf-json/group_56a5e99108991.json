@@ -1104,7 +1104,8 @@
                 "choices": {
                     "wrapAround": "Continues scroll (no ending slide)",
                     "pageDots": "Pages dot navigation",
-                    "freeScroll": "No scroll snapping"
+                    "freeScroll": "No scroll snapping",
+                    "groupCells": "Group slides"
                 },
                 "default_value": [
                     "wrapAround",
