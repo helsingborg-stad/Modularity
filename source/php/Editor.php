@@ -34,11 +34,7 @@ class Editor extends \Modularity\Options
             return $data;
         }
 
-        if (substr($data['post_name'], 0, strlen($data['post_type'])) == $data['post_type']) {
-            return $data;
-        }
-
-        $data['post_name'] = $data['post_type'] . '_' . uniqid() . '_' . $data['post_name'];
+        $data['post_name'] = $data['post_type'] . '_' . uniqid() . '_' . sanitize_title($data['post_title']);
 
         return $data;
     }
