@@ -406,7 +406,7 @@ class Editor extends \Modularity\Options
 
         // Args
         if (count($moduleArgs) > 0) {
-            $module->hidden = (isset($moduleArgs['hidden']) && !empty($moduleArgs['hidden'])) ? $moduleArgs['hidden'] : '';
+            $module->hidden = (isset($moduleArgs['hidden']) && $moduleArgs['hidden'] == 'true') ? true : false;
             $module->columnWidth = isset($moduleArgs['columnWidth']) && !empty($moduleArgs['columnWidth']) ? $moduleArgs['columnWidth'] : '';
         }
 
