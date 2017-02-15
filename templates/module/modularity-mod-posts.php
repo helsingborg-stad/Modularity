@@ -76,6 +76,10 @@ switch ($fields->posts_display_as) {
     case 'expandable-list':
         $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-expandable-list', 'module/modularity-mod-posts', false);
         break;
+
+    case 'circular':
+        $template = \Modularity\Helper\Wp::getTemplate($module->post_type . '-circular', 'module/modularity-mod-posts', false);
+        break;
 }
 
 $template = apply_filters('Modularity/Module/Posts/template', $template, $module, $fields);

@@ -10,7 +10,8 @@
                 "items": "Post items",
                 "news": "News items",
                 "index": "Index",
-                "grid": "Grid"
+                "grid": "Grid",
+                "circular" : "Circular"
             },
             "default_value": "list",
             "other_choice": 0,
@@ -72,6 +73,13 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "grid"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "circular"
                     }
                 ]
             ],
