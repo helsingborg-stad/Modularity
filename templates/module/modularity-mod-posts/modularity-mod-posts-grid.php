@@ -85,6 +85,8 @@
                 );
             }
         }
+
+        $extended = get_extended($post->post_content);
     ?>
     <div class="<?php echo $columnSize; ?>">
         <a href="<?php echo get_permalink($post->ID); ?>" class="box box-post-brick" <?php echo ($columnHeight) ? 'style="padding-bottom:0;height:' . $columnHeight . '"' : ''; ?>>
@@ -106,9 +108,12 @@
                 <h3 class="post-title"><?php echo apply_filters('the_title', $post->post_title); ?></h3>
                 <?php endif; ?>
             </div>
+
+            <?php if (in_array('excerpt', $fields->posts_fields)) : ?>
             <div class="box-post-brick-lead">
-                <?php echo $post->post_excerpt; ?>
+                <?php echo isset($extended['main']) && !empty($extended['main']) ? $extended['main'] : wp_trim_words($post->post_content, 100, '') ; ?>
             </div>
+            <?php endif; ?>
         </a>
     </div>
 
