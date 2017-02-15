@@ -7,22 +7,71 @@
 
     <?php
 
-    /*
-    $gridSize = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
-    $numColumns = 12 / $gridSize;
-    $columnAlter = $numColumns > 1 ? $numColumns - 1 : $numColumns + 1;
-    */
-
     $gridSize = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
     $gridAlterSize = $gridSize * 2;
+
+    $columnSize = 'grid-md-' . $gridSize;
+    $columnHeight = false;
+
+    $gridRand = array();
+    switch ($gridSize) {
+        case 12:
+            $gridRand = array(
+                array(12)
+            );
+            break;
+
+        case 6:
+            $gridRand = array(
+                array(12),
+                array(6, 6),
+                array(6, 6)
+            );
+            break;
+
+        case 4:
+            $gridRand = array(
+                array(8, 4),
+                array(4, 4, 4),
+                array(4, 8)
+            );
+            break;
+
+        case 3:
+            $gridRand = array(
+                array(6, 3, 3),
+                array(3, 3, 3, 3),
+                array(3, 3, 6),
+                array(3, 3, 3, 3),
+                array(3, 6, 3)
+            );
+            break;
+
+        default:
+            $gridRand = array(
+                array(12)
+            );
+            break;
+    }
+
+    $gridRow = array();
 
     if (count($posts) > 0) :
     $postNum = 0;
     foreach ($posts as $post) :
         $postNum++;
 
-        $columnSize = 'grid-md-' . $gridSize;
-        $columnHeight = false;
+        if (empty($gridRow)) {
+            $gridRow = $gridRand;
+        }
+
+        if (empty($gridColumns)) {
+            $gridColumns = $gridRow[0];
+            array_shift($gridRow);
+        }
+
+        $columnSize = 'grid-md-' . $gridColumns[0];
+        array_shift($gridColumns);
 
         if ($fields->posts_alter_columns) {
             switch ($gridSize) {
@@ -38,29 +87,29 @@
                     $columnHeight = '500px';
                     break;
 
+                case 12:
+                    $columnHeight = '500px';
+                    break;
+
                 default:
                     $columnHeight = false;
                     break;
             }
-
-            if ($gridSize !== 12 && ($postNum % (12 / $gridSize) === 1)) {
-                $columnSize = 'grid-md-' . $gridAlterSize;
-            }
         }
 
         /* Image size */
-        $image_dimensions = array(800, 600);
+        $image_dimensions = array(1200, 900);
 
         if (!$fields->posts_alter_columns) {
             switch ($fields->posts_columns) {
                 case "grid-md-12":    //1-col
-                    $image_dimensions = array(1200,900);
+                    $image_dimensions = array(1200, 900);
                     break;
                 case "grid-md-6":    //2-col
-                    $image_dimensions = array(800,600);
+                    $image_dimensions = array(800, 600);
                     break;
                 default:
-                    $image_dimensions = array(400,300);
+                    $image_dimensions = array(400, 300);
             }
         }
 
