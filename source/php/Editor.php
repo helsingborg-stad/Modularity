@@ -131,7 +131,7 @@ class Editor extends \Modularity\Options
         foreach ($postTypes as $postType) {
             $option = get_option('page_for_' . $postType);
 
-            if (!$option) {
+            if (!$option || $option !== $postId) {
                 continue;
             }
 
