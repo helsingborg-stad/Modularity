@@ -94,11 +94,51 @@ class Editor extends \Modularity\Options
     {
         global $post;
 
-        if ($post) {
-            $tabs = new \Modularity\Editor\Tabs();
-            $tabs->add(__('Content', 'modularity'), admin_url('post.php?post=' . $post->ID . '&action=edit'));
-            $tabs->add(__('Modules', 'modularity'), admin_url('options.php?page=modularity-editor&id=' . $post->ID));
+        if (!$post && !isset($_GET['page_for'])) {
+            return;
         }
+
+        if (!$post && isset($_GET['page_for']) && !empty($_GET['page_for'])) {
+            $post = get_post($_GET['page_for']);
+        }
+
+        $modulesEditorId = false;
+
+        if ($post) {
+            $modulesEditorId = $post->ID;
+            $thePostId = $post->ID;
+        }
+
+        if ($postType = self::isPageForPostType($post->ID)) {
+            $modulesEditorId = 'archive-' . $postType . '&page_for=' . $post->ID;
+        }
+
+        $tabs = new \Modularity\Editor\Tabs();
+        $tabs->add(__('Content', 'modularity'), admin_url('post.php?post=' . $thePostId . '&action=edit'));
+        $tabs->add(__('Modules', 'modularity'), admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId));
+    }
+
+    /**
+     * Check if the current page id is a page for a post type archive
+     * (Option page_for_{post_type_slug} = $post->ID)
+     * @param  [type]  $postId [description]
+     * @return boolean         [description]
+     */
+    public static function isPageForPostType($postId)
+    {
+        $postTypes = get_post_types();
+
+        foreach ($postTypes as $postType) {
+            $option = get_option('page_for_' . $postType);
+
+            if (!$option) {
+                continue;
+            }
+
+            return $postType;
+        }
+
+        return false;
     }
 
     /**
@@ -304,6 +344,10 @@ class Editor extends \Modularity\Options
      */
     public static function getPostModules($postId)
     {
+        if ($postType = \Modularity\Editor::isPageForPostType($postId)) {
+            $postId = 'archive-' . $postType;
+        }
+
         $modules = array();
         $retModules = array();
 

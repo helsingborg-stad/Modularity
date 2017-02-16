@@ -17,7 +17,7 @@
     </ul>
 </p>
 
-<div id="major-publishing-actions" style="margin: 0px -12px -12px; width: calc(100% + 24px);">
+<div id="major-publishing-actions" style="margin: 0px -12px -12px;">
     <div id="publishing-action">
         <span class="spinner"></span>
         <input type="submit" value="<?php _e('Save', 'modularity'); ?>" class="button button-primary button-large" id="publish" name="publish">
