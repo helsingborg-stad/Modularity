@@ -25,7 +25,7 @@ class Slider extends \Modularity\Module
         $classes = count($classes) > 0 ? 'class="' . implode(' ', $classes) . '"' : '';
 
         if (strpos($url, 'youtu') > -1) {
-            if (method_exists('\Municipio\Admin\UI\Editor', 'oembed') && MUNICIPIO_GOOGLEAPIS_KEY) {
+            if (method_exists('\Municipio\Admin\UI\Editor', 'oembed') && (defined('MUNICIPIO_GOOGLEAPIS_KEY') && MUNICIPIO_GOOGLEAPIS_KEY)) {
                 global $post;
                 return \Municipio\Admin\UI\Editor::oembed('', $url, array(), $post->ID, false);
             }
