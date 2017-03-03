@@ -177,7 +177,24 @@ class Display
     public function isModularitySidebarActive($sidebar)
     {
         $template = \Modularity\Helper\Post::getPostTemplate();
-        if (!file_exists($template)) {
+
+        //Where to look
+        $paths = apply_filters('Modularity/Theme/TemplatePath', array(
+            get_stylesheet_directory(),
+            get_template_directory(),
+            get_stylesheet_directory() . '/views/',
+            get_template_directory() . '/views/',
+        ));
+
+        //Check if exists
+        $template_exists = false;
+        foreach ((array) $paths as $path) {
+            if (file_exists($path.$template)) {
+                $template_exists = true;
+            }
+        }
+
+        if (!$template_exists) {
             $template = \Modularity\Helper\Wp::findCoreTemplates([$template, 'archive']);
         }
         $options = get_option('modularity-options');
