@@ -174,10 +174,10 @@ add_filter('Modularity/Display/AfterModule', function ($afterModule, $args, $mod
 
 ---
 
-#### Modularity/Module/TemplatePath
+#### Modularity/Module/TemplatePath & Modularity/Theme/TemplatePath
 
-> Modify (add/edit) paths where to look for module templates
-> Typically used for adding search path's for finding custom modules templates.
+> Modify (add/edit) paths where to look for module/theme templates
+> Typically used for adding search path's for finding custom modules/theme templates.
 > 
 > *Attention: Unsetting paths may cause issues displaying modules. Plase do not do this unless you know exacly what you are doing.*
 
@@ -189,6 +189,10 @@ $paths      The value to filter
 *Example:*
 ```php
 add_filter('Modularity/Module/TemplatePath', function ($paths) {
+    return $paths;
+});
+
+add_filter('Modularity/Theme/TemplatePath', function ($paths) {
     return $paths;
 });
 ```
