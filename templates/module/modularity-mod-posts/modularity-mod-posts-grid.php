@@ -1,4 +1,5 @@
 <div class="grid">
+
     <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
         <div class="grid-xs-12">
             <h2><?php echo $module->post_title; ?></h2>
@@ -8,10 +9,9 @@
     <?php
 
     $gridSize = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
-    $gridAlterSize = $gridSize * 2;
 
-    $columnSize = 'grid-md-' . $gridSize;
-    $columnHeight = false;
+    $columnSize     = 'grid-md-' . $gridSize;
+    $columnHeight   = false;
 
     $gridRand = array();
     switch ($gridSize) {
@@ -61,19 +61,20 @@
     foreach ($posts as $post) :
         $postNum++;
 
-        if (empty($gridRow)) {
-            $gridRow = $gridRand;
-        }
-
-        if (empty($gridColumns)) {
-            $gridColumns = $gridRow[0];
-            array_shift($gridRow);
-        }
-
-        $columnSize = 'grid-md-' . $gridColumns[0];
-        array_shift($gridColumns);
-
         if ($fields->posts_alter_columns) {
+
+            if (empty($gridRow)) {
+                $gridRow = $gridRand;
+            }
+
+            if (empty($gridColumns)) {
+                $gridColumns = $gridRow[0];
+                array_shift($gridRow);
+            }
+
+            $columnSize = 'grid-md-' . $gridColumns[0];
+            array_shift($gridColumns);
+
             switch ($gridSize) {
                 case 3:
                     $columnHeight = '280px';
