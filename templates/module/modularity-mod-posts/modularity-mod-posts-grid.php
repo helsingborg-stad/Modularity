@@ -135,7 +135,7 @@
             }
         }
 
-        $extended = get_extended($post->post_content);
+        $extended = get_extended(wp_strip_all_tags(strip_shortcodes($post->post_content)));
     ?>
     <div class="<?php echo $columnSize; ?>">
         <a href="<?php echo get_permalink($post->ID); ?>" class="box box-post-brick" <?php echo ($columnHeight) ? 'style="padding-bottom:0;height:' . $columnHeight . '"' : ''; ?>>
@@ -160,7 +160,7 @@
 
             <?php if (in_array('excerpt', $fields->posts_fields)) : ?>
             <div class="box-post-brick-lead">
-                <?php echo isset($extended['main']) && !empty($extended['main']) ? $extended['main'] : wp_trim_words($post->post_content, 100, '') ; ?>
+                <?php echo isset($extended['main']) && !empty($extended['main']) ? $extended['main'] : wp_trim_words(wp_strip_all_tags(strip_shortcodes($post->post_content)), 100, '') ; ?>
             </div>
             <?php endif; ?>
         </a>
