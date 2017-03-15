@@ -4,8 +4,6 @@ namespace Modularity\Module\WpWidget;
 
 class WpWidget extends \Modularity\Module
 {
-    private static $widgetIndexList;
-
     public function __construct()
     {
 
@@ -16,20 +14,6 @@ class WpWidget extends \Modularity\Module
             __('Wordpress Widgets', 'modularity'),
             __('Outputs a default widget in WordPress'),
             array('editor')
-        );
-
-        //Valid names
-        self::$widgetIndexList = array(
-            'WP_Widget_Archives' => __("Archives", 'modularity'),
-            'WP_Widget_Calendar' => __("Calendar", 'modularity'),
-            'WP_Widget_Categories' => __("Categories", 'modularity'),
-            'WP_Widget_Meta' => __("Meta", 'modularity'),
-            'WP_Widget_Pages' => __("Pages", 'modularity'),
-            'WP_Widget_Recent_Comments' => __("Recent comments", 'modularity'),
-            'WP_Widget_Recent_Posts' => __("Recent posts", 'modularity'),
-            'WP_Widget_RSS' => __("RSS", 'modularity'),
-            'WP_Widget_Search' => __("Search", 'modularity'),
-            'WP_Widget_Tag_Cloud' => __("Tag cloud", 'modularity')
         );
 
         //Add options to list of selectable widgets
@@ -45,7 +29,7 @@ class WpWidget extends \Modularity\Module
      */
     public static function displayWidget($widget, $instance = array())
     {
-        if (array_key_exists($widget, self::$widgetIndexList) && class_exists($widget)) {
+        if (array_key_exists($widget, \Modularity\Module\WpWidget\WpWidget::getWidgetIndexList()) && class_exists($widget)) {
             the_widget($widget, $instance);
         } else {
             echo "Error: Widget prohibited or class not found.";
@@ -58,7 +42,7 @@ class WpWidget extends \Modularity\Module
      */
     public function addWidgetOptionsList($field)
     {
-        $field['choices'] = self::$widgetIndexList;
+        $field['choices'] = $this->getWidgetIndexList();
         return $field;
     }
 
@@ -88,23 +72,15 @@ class WpWidget extends \Modularity\Module
     {
         switch ($widget_class) {
             case "WP_Widget_Archives":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'count' => get_field('wp_widget_archive_count', $post_id),
                             'dropdown' => get_field('wp_widget_archive_dropdown', $post_id)
                         );
                         break;
 
-            case "WP_Widget_Calendar":
-            case "WP_Widget_Meta":
-            case "WP_Widget_Search":
-                return  array(
-                            'title' => get_the_title($post_id)
-                        );
-                        break;
-
             case "WP_Widget_Categories":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'count' => get_field('wp_widget_cat_count', $post_id),
                             'hierarchical' => get_field('wp_widget_cat_hierarchical', $post_id),
@@ -113,7 +89,7 @@ class WpWidget extends \Modularity\Module
                         break;
 
             case "WP_Widget_Pages":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'sortby' => get_field('wp_widget_pages_sort_by', $post_id),
                             'exclude' => get_field('wp_widget_pages_exclude', $post_id)
@@ -121,21 +97,21 @@ class WpWidget extends \Modularity\Module
                         break;
 
             case "WP_Widget_Recent_Comments":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'comments' => get_field('wp_widget_comments_comments', $post_id)
                         );
                         break;
 
             case "WP_Widget_Recent_Posts":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'number' => get_field('wp_widget_posts_number', $post_id)
                         );
                         break;
 
             case "WP_Widget_RSS":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'url' => get_field('wp_widget_rss_url', $post_id), //rss url atom/rss-xml,
                             'items' => get_field('wp_widget_rss_items', $post_id), //Max number of items to show
@@ -145,13 +121,35 @@ class WpWidget extends \Modularity\Module
                         );
                         break;
             case "WP_Widget_Tag_Cloud":
-                return  array(
+                $settings = array(
                             'title' => get_the_title($post_id),
                             'taxonomy' => get_field('wp_widget_tag_cloud_taxonomy', $post_id)
                         );
                         break;
             default:
-                return new WP_Error('missing_class', __("Missing a valid classname!", 'modularity'));
+                $settings = array(
+                            'title' => get_the_title($post_id)
+                        );
         }
+
+        //Allow modifications of the settings
+        return apply_filters('Modularity/Module/WidgetSettings', $settings, $widget_class, $post_id);
+    }
+    public static function getWidgetIndexList() {
+        //Valid names
+        $widgetIndexList = array(
+            'WP_Widget_Archives' => __("Archives", 'modularity'),
+            'WP_Widget_Calendar' => __("Calendar", 'modularity'),
+            'WP_Widget_Categories' => __("Categories", 'modularity'),
+            'WP_Widget_Meta' => __("Meta", 'modularity'),
+            'WP_Widget_Pages' => __("Pages", 'modularity'),
+            'WP_Widget_Recent_Comments' => __("Recent comments", 'modularity'),
+            'WP_Widget_Recent_Posts' => __("Recent posts", 'modularity'),
+            'WP_Widget_RSS' => __("RSS", 'modularity'),
+            'WP_Widget_Search' => __("Search", 'modularity'),
+            'WP_Widget_Tag_Cloud' => __("Tag cloud", 'modularity')
+        );
+        //Allow modifications of the list
+        return apply_filters('Modularity/Module/WidgetIndexList', $widgetIndexList);
     }
 }
