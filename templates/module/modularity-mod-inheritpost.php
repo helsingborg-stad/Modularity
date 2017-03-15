@@ -3,7 +3,7 @@
     if ($inherit->post_status == 'publish') :
 ?>
 <article>
-    <?php if (!$module->hideTitle) : ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
         <h1><?php echo $module->post_title; ?></h1>
     <?php endif; ?>
 

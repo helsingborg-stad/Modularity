@@ -4,7 +4,7 @@
 ?>
 
 <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $module->post_type, $args)); ?>">
-    <?php if (!$module->hideTitle) : ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
     <h4 class="box-title"><?php echo $module->post_title; ?></h4>
     <?php endif; ?>
 

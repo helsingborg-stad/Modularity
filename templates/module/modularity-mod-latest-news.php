@@ -1,5 +1,5 @@
 <div class="grid">
-    <?php if (!$module->hideTitle) : ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
         <div class="grid-xs-12">
             <h2><?php echo $module->post_title; ?></h2>
         </div>

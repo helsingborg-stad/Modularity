@@ -76,7 +76,7 @@ $flickity = json_encode($flickity);
 ?>
 
 <div>
-    <?php if (!$module->hideTitle) : ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
         <h2><?php echo $module->post_title; ?></h2>
     <?php endif; ?>
 

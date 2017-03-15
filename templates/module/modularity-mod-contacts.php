@@ -39,7 +39,7 @@
     <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $fields->first_name; ?> <?php echo $fields->last_name; ?>">
     <?php endif; ?>
 
-    <?php if (!$module->hideTitle) : ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
     <h4 class="box-title"><?php echo $module->post_title; ?></h4>
     <?php endif; ?>
 
