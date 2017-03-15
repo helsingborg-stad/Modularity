@@ -498,7 +498,7 @@ class Posts extends \Modularity\Module
         }
 
         // Taxonomy filter
-        if ($fields->posts_taxonomy_filter === true) {
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array) $fields->posts_taxonomy_value;
 
