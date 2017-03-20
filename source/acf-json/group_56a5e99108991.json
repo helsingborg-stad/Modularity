@@ -11,12 +11,10 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25%",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 1,
             "choices": {
                 "default": "Default",
                 "circle": "Circle slides"
@@ -24,10 +22,12 @@
             "default_value": [
                 "default"
             ],
+            "allow_null": 1,
+            "multiple": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "return_format": "value",
+            "placeholder": ""
         },
         {
             "key": "field_573dce058a66e",
@@ -38,7 +38,7 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25%",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
@@ -67,12 +67,10 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25%",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": {
                 "1": "1",
                 "2": "2",
@@ -83,10 +81,12 @@
             "default_value": [
                 1
             ],
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "return_format": "value",
+            "placeholder": ""
         },
         {
             "key": "field_58934110b566e",
@@ -97,12 +97,10 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25%",
+                "width": "20",
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": {
                 "left": "V\u00e4nster",
                 "center": "Centrerad",
@@ -111,10 +109,43 @@
             "default_value": [
                 "center"
             ],
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_58cfe67cb211b",
+            "label": "Slider height",
+            "name": "slider_height",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_573dce058a66e",
+                        "operator": "==",
+                        "value": "ratio-10-3"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_573dce058a66e",
+                        "operator": "==",
+                        "value": "ratio-36-7"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "20",
+                "class": "",
+                "id": ""
+            },
+            "message": "Force slider to recomended minimum\/maximum height",
+            "default_value": 1
         },
         {
             "key": "field_56a5e994398d6",
@@ -1147,5 +1178,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1490013383
+    "modified": 1490020596
 }

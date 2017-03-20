@@ -25,6 +25,10 @@ if (get_field('show_navigation', $module->ID) == "hover") {
     $classes[] = 'slider-nav-hover';
 }
 
+if (get_field('slider_height', $module->ID)) {
+    $classes[] = 'slider-height-restrictions';
+}
+
 $slideColumns = get_field('slide_columns', $module->ID) ? get_field('slide_columns', $module->ID) : 1;
 
 // Flickity settings
