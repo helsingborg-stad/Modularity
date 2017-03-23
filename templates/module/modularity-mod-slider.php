@@ -4,10 +4,10 @@ $layout = get_field('slider_layout', $module->ID) ? get_field('slider_layout', $
 
 // Formats
 $imageSizes = array(
-    'ratio-16-9' => array(1140, 641),
-    'ratio-10-3' => array(1140, 342),
+    'ratio-16-9' => array(1250, 703),
+    'ratio-10-3' => array(1250, 375),
     'ratio-36-7' => array(1800, 350),
-    'ratio-4-3' => array(1140, 885)
+    'ratio-4-3' => array(1252, 939)
 );
 
 // Filter options
@@ -23,6 +23,10 @@ if (get_field('navigation_position', $module->ID) == 'bottom') {
 
 if (get_field('show_navigation', $module->ID) == "hover") {
     $classes[] = 'slider-nav-hover';
+}
+
+if (get_field('slider_height', $module->ID)) {
+    $classes[] = 'slider-height-restrictions';
 }
 
 $slideColumns = get_field('slide_columns', $module->ID) ? get_field('slide_columns', $module->ID) : 1;
