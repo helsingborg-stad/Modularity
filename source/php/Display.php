@@ -61,7 +61,7 @@ class Display
         global $post;
         global $wp_query;
 
-        if (is_admin()) {
+        if (is_admin() || is_feed()) {
             return;
         }
 
