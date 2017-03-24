@@ -12,6 +12,7 @@ class App
     public static $assetSuffix = 'dev';
 
     public static $display = null;
+    public static $moduleManager = null;
     public $editor = null;
 
 
@@ -34,7 +35,10 @@ class App
         new Ajax();
         new Options\General();
         new Options\Archives();
-        new ModuleManager();
+
+        self::$moduleManager = new ModuleManager();
+        self::$moduleManager->initBundledModules();
+
         $this->editor = new Editor();
         self::$display = new Display();
 
