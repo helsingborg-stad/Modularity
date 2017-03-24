@@ -67,23 +67,6 @@ class Module
     }
 
     /**
-     * Define avabile width classes
-     * @return array
-     */
-    public static function widthOptions()
-    {
-        return apply_filters('Modularity/Editor/WidthOptions', array(
-            'grid-md-12' => '100%',
-            'grid-md-9' => '75%',
-            'grid-md-8' => '66%',
-            'grid-md-6' => '50%',
-            'grid-md-4' => '33%',
-            'grid-md-3' => '25%'
-        ));
-    }
-
-
-    /**
      * (PLACEHOLDER) Enqueue styles
      * @return void
      */

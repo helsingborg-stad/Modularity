@@ -574,10 +574,26 @@ class Editor extends \Modularity\Options
     {
         $markup = '<option value="">' . __('Inherit', 'modularity') . '</option>' . "\n";
 
-        foreach (\Modularity\Module::widthOptions() as $key => $value) {
+        foreach (self::widthOptions() as $key => $value) {
             $markup .= '<option value="' . $key . '">' . $value . '</option>' . "\n";
         }
 
         return $markup;
+    }
+
+    /**
+     * Define avabile width classes
+     * @return array
+     */
+    public static function widthOptions()
+    {
+        return apply_filters('Modularity/Editor/WidthOptions', array(
+            'grid-md-12' => '100%',
+            'grid-md-9' => '75%',
+            'grid-md-8' => '66%',
+            'grid-md-6' => '50%',
+            'grid-md-4' => '33%',
+            'grid-md-3' => '25%'
+        ));
     }
 }
