@@ -29,31 +29,6 @@ class Module
     public static $options = array();
     public static $moduleSettings = array();
 
-    public function __construct()
-    {
-        self::$enabled = self::getEnabled();
-        $this->initBundledModules();
-
-        // Hide title option
-        add_action('edit_form_before_permalink', array($this, 'hideTitleCheckbox'));
-        add_action('save_post', array($this, 'saveHideTitleCheckbox'), 10, 2);
-    }
-
-    /**
-     * Get enabled modules id:s
-     * @return array
-     */
-    public static function getEnabled()
-    {
-        $options = get_option('modularity-options');
-
-        if (!isset($options['enabled-modules'])) {
-            return array();
-        }
-
-        return $options['enabled-modules'];
-    }
-
     /**
      * ACTION: Modularity/Module/<MODULE SLUG>/enqueue
      * Enqueue assets (css and/or js) to the add/edit pages of the given module
@@ -121,25 +96,6 @@ class Module
                 && (
                     $current_screen->action == 'add' || (isset($_GET['action']) && $_GET['action'] == 'edit')
                 );
-    }
-
-    /**
-     * Initializes bundled modules which is set to be active in the Modularity options
-     * @return void
-     */
-    private function initBundledModules()
-    {
-        $directory = MODULARITY_PATH . 'source/php/Module/';
-
-        foreach (@glob($directory . "*", GLOB_ONLYDIR) as $folder) {
-            $class = '\Modularity\Module\\' . basename($folder) . '\\' . basename($folder);
-
-            if (class_exists($class)) {
-                new $class;
-            } elseif (function_exists('error_log')) {
-                error_log(__("Error: Could not init '".$class."' module.", 'modularity'));
-            }
-        }
     }
 
     /**
@@ -253,10 +209,10 @@ class Module
          * Add to available (and depracated if it is) modules
          */
         if ($this->isDeprecated) {
-            self::$deprecated[] = $postTypeSlug;
+            \Modularity\ModuleManager::$deprecated[] = $postTypeSlug;
         }
 
-        self::$available[$postTypeSlug] = $args;
+        \Modularity\ModuleManager::$available[$postTypeSlug] = $args;
         $this->moduleSlug = $postTypeSlug;
 
         // Enqueue
@@ -303,6 +259,10 @@ class Module
         return $postTypeSlug;
     }
 
+    /**
+     * Adds checkbox to post edit page to hide title
+     * @return void
+     */
     public function hideTitleCheckbox()
     {
         global $post;
@@ -327,6 +287,12 @@ class Module
         </div>';
     }
 
+    /**
+     * Saves the hide title checkboc
+     * @param  int $postId
+     * @param  WP_Post $post
+     * @return void
+     */
     public function saveHideTitleCheckbox($postId, $post)
     {
         if (substr($post->post_type, 0, 4) != 'mod-') {
@@ -352,8 +318,6 @@ class Module
         add_action('manage_' . $this->moduleSlug . '_posts_custom_column', array($this, 'listTableColumnContent'), 10, 2);
         add_filter('manage_edit-' . $this->moduleSlug . '_sortable_columns', array($this, 'listTableColumnSorting'));
     }
-
-
 
     /**
      * Define list table columns
@@ -440,7 +404,7 @@ class Module
         add_meta_box('modularity-shortcode', 'Modularity Shortcode', function () {
             global $post;
             echo '<p>';
-            _e('Copy and paste this shortcode to display the module inline.', 'modularity');
+            echo __('Copy and paste this shortcode to display the module inline.', 'modularity');
             echo '</p><p>';
             echo '<label><input type="checkbox" class="modularity-inline-template" checked> Use inline template</label>';
             echo '<textarea style="margin-top:10px; overflow: hidden;width: 100%;height:30px;background:#f9f9f9;border:1px solid #ddd;padding:5px;">[modularity id="' . $post->ID . '"]</textarea>';

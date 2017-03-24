@@ -130,7 +130,7 @@ class General extends \Modularity\Options
 
         $postTypes = array_filter(get_post_types(), function ($item) {
             $disallowed = array_merge(
-                array_keys(\Modularity\Module::$available),
+                array_keys(\Modularity\ModuleManager::$available),
                 array(
                     'attachment',
                     'revision',
@@ -160,7 +160,7 @@ class General extends \Modularity\Options
      */
     public function metaBoxModules()
     {
-        $available = \Modularity\Module::$available;
+        $available = \Modularity\ModuleManager::$available;
 
         uasort($available, function ($a, $b) {
             return strcmp($a['labels']['name'], $b['labels']['name']);

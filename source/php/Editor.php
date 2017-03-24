@@ -180,9 +180,9 @@ class Editor extends \Modularity\Options
             'modularity-mb-modules',
             __('Enabled modules', 'modularity'),
             function () {
-                $enabled = \Modularity\Module::$enabled;
-                $available = \Modularity\Module::$available;
-                $deprecated = \Modularity\Module::$deprecated;
+                $enabled = \Modularity\ModuleManager::$enabled;
+                $available = \Modularity\ModuleManager::$available;
+                $deprecated = \Modularity\ModuleManager::$deprecated;
 
                 $modules = array();
                 foreach ($enabled as $module) {
@@ -352,8 +352,8 @@ class Editor extends \Modularity\Options
         $retModules = array();
 
         // Get enabled modules
-        $available = \Modularity\Module::$available;
-        $enabled = \Modularity\Module::$enabled;
+        $available = \Modularity\ModuleManager::$available;
+        $enabled = \Modularity\ModuleManager::$enabled;
 
         // Get modules structure
         $moduleIds = array();
@@ -435,7 +435,7 @@ class Editor extends \Modularity\Options
 
     public static function getModule($id, $moduleArgs = array())
     {
-        $available = \Modularity\Module::$available;
+        $available = \Modularity\ModuleManager::$available;
 
         // Basics
         $module = get_post($id);
@@ -446,7 +446,7 @@ class Editor extends \Modularity\Options
 
         $module->post_type_name = $available[$module->post_type]['labels']['name'];
         $module->meta = get_post_custom($module->ID);
-        $module->isDeprecated = in_array($module->post_type, \Modularity\Module::$deprecated);
+        $module->isDeprecated = in_array($module->post_type, \Modularity\ModuleManager::$deprecated);
 
         // Args
         if (count($moduleArgs) > 0) {

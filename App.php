@@ -34,7 +34,7 @@ class App
         new Ajax();
         new Options\General();
         new Options\Archives();
-        new Module();
+        new ModuleManager();
         $this->editor = new Editor();
         self::$display = new Display();
 

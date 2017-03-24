@@ -49,7 +49,7 @@ class Widget extends \WP_Widget
      */
     public function form($instance)
     {
-        $moduleTypes = \Modularity\Module::$available;
+        $moduleTypes = \Modularity\ModuleManager::$available;
         include MODULARITY_TEMPLATE_PATH . 'widget/form.php';
     }
 
