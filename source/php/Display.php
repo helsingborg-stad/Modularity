@@ -170,7 +170,7 @@ class Display
                 continue;
             }
 
-            $this->outputModule($module, $sidebarArgs, \Modularity\Module::$moduleSettings[get_post_type($module)]);
+            $this->outputModule($module, $sidebarArgs, \Modularity\ModuleManager::$moduleSettings[get_post_type($module)]);
         }
     }
 
