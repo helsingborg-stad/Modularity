@@ -27,6 +27,8 @@ if (get_field('show_navigation', $module->ID) == "hover") {
 
 if (get_field('slider_height', $module->ID)) {
     $classes[] = 'slider-height-restrictions';
+} else {
+    $classes[] = 'ratio-1-1-xs ratio-1-1-sm';
 }
 
 $slideColumns = get_field('slide_columns', $module->ID) ? get_field('slide_columns', $module->ID) : 1;
