@@ -17,12 +17,6 @@ class Module
     public $isDeprecated = false;
 
     /**
-     * Available and enabled modules
-     * @var array
-     */
-    public static $options = array();
-
-    /**
      * ACTION: Modularity/Module/<MODULE SLUG>/enqueue
      * Enqueue assets (css and/or js) to the add/edit pages of the given module
      * @return void
