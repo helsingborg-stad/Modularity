@@ -132,7 +132,7 @@ class ModuleManager
         }
 
         \Modularity\ModuleManager::$available[$postTypeSlug] = $args;
-        $this->moduleSlug = $postTypeSlug;
+        $moduleClass->moduleSlug = $postTypeSlug;
 
         // Enqueue
         add_action('admin_enqueue_scripts', array($moduleClass, 'enqueue'));
