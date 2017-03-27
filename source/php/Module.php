@@ -101,6 +101,14 @@ class Module
      */
     public function __construct(\WP_Post $post = null)
     {
+        $this->init();
+
+        // Defaults to the path of the class .php-file and subdir /views
+        // Example: my-module/my-module.php (module class)
+        //          my-module/views/        (views folder)
+        $reflector = new \ReflectionClass(get_class($this));
+        $this->templateDir = trailingslashit(dirname($reflector->getFileName())) . 'views/';
+
         if (is_numeric($post)) {
             $post = get_post($post);
         }
@@ -115,6 +123,10 @@ class Module
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
         }
+    }
+
+    public function init()
+    {
     }
 
     /**
@@ -159,6 +171,11 @@ class Module
         }
     }
 
+    public function data() : array
+    {
+        return $this->data;
+    }
+
     /**
      * Get module view
      * @return string
@@ -178,7 +195,7 @@ class Module
      */
     public function getViewData()
     {
-        $data = $this->data;
+        $data = $this->data();
 
         foreach ($this->extractedPostProperties as $property) {
             $data[$property] = $this->$property;
