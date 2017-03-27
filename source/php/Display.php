@@ -2,6 +2,8 @@
 
 namespace Modularity;
 
+use Philo\Blade\Blade;
+
 class Display
 {
     /**
@@ -162,6 +164,7 @@ class Display
         // Get modules
         $modules = $this->modules[$sidebar];
 
+        // Get sidebar arguments
         $sidebarArgs = $this->getSidebarArgs($sidebar);
 
         // Loop and output modules
@@ -228,6 +231,9 @@ class Display
             $args['id'] = 'no-id';
         }
 
+        $class = \Modularity\ModuleManager::$classes[$module->post_type];
+        $module = new $class($module);
+
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
         }
@@ -235,17 +241,20 @@ class Display
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
-            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+            $templatePath = $module->template();
 
             if (!$templatePath) {
                 return false;
             }
 
-            ob_start();
-            include $templatePath;
-            $moduleMarkup = ob_get_clean();
+            $moduleMarkup = '';
+            if (preg_match('/.blade.php$/i', $templatePath)) {
+                $moduleMarkup = $this->loadBladeTemplate($templatePath, $module);
+            } else {
+                $moduleMarkup = $this->loadTemplate();
+            }
 
-            if (strlen($moduleMarkup) === 0) {
+            if (empty($moduleMarkup)) {
                 return;
             }
 
@@ -301,6 +310,41 @@ class Display
         }
 
         return true;
+    }
+
+    /**
+     * Renders blade template for module
+     * @param  string $view   View file
+     * @param  class  $module Module class
+     * @return string         Template markup
+     */
+    public function loadBladeTemplate($view, $module)
+    {
+        \Modularity\Helper\File::maybeCreateDir(MODULARITY_CACHE_DIR);
+
+        if (!$module->templateDir) {
+            throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
+        }
+
+        $view = preg_replace('/.blade.php$/', '', $view);
+
+        $data = $module->getViewData();
+
+        $blade = new Blade($module->templateDir, MODULARITY_CACHE_DIR);
+        return $blade->view()->make($view, $data)->render();
+    }
+
+    /**
+     * Renders php template for module
+     * @param  string $view   View file
+     * @param  class  $module Module class
+     * @return string         Template markup
+     */
+    public function loadTemplate($view, $module)
+    {
+        ob_start();
+        include $view;
+        return ob_get_clean();
     }
 
     /**

@@ -46,4 +46,19 @@ class File
 
         return $namespace;
     }
+
+    /**
+     * Creates directory if needed
+     * @param  string $path
+     * @return string
+     */
+    public static function maybeCreateDir($path)
+    {
+        if (file_exists($path)) {
+            return $path;
+        }
+
+        mkdir($path, 0777, true);
+        return $path;
+    }
 }
