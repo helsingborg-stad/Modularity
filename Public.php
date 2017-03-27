@@ -1,5 +1,15 @@
 <?php
 
+if (!function_exists('modularity_register_module')) {
+    function modularity_register_module($path, $name)
+    {
+        add_filter('Modularity/Modules', function ($modules) use ($path, $name) {
+            $modules[$path] = $name;
+            return $modules;
+        });
+    }
+}
+
 if (!function_exists('modularity_decode_icon')) {
     function modularity_decode_icon($data)
     {
