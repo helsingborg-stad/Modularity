@@ -30,8 +30,8 @@ $loader->addPrefix('Modularity', MODULARITY_PATH . 'source/php/');
 $loader->register();
 
 // Start application
-add_action('init', function () {
+add_action('plugins_loaded', function () {
     new Modularity\App();
 });
 
-modularity_register_module(MODULARITY_PATH . 'Testmodul', 'TestModule');
+modularity_register_module(MODULARITY_PATH . 'Testmodul', 'Image');
