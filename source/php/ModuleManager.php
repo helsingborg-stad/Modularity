@@ -55,7 +55,7 @@ class ModuleManager
     public function __construct()
     {
         self::$enabled = self::getEnabled();
-        self::$registered = $this->getRegistered(false);
+        self::$registered = $this->getRegistered();
         $this->init();
 
         // Hide title option
@@ -139,6 +139,8 @@ class ModuleManager
 
             $this->register($class, $path);
         }
+
+        do_action('Modularity/Init', $this);
     }
 
     /**
@@ -149,6 +151,10 @@ class ModuleManager
      */
     public function register($class, string $path = '')
     {
+        if (empty($class->slug)) {
+            return;
+        }
+
         // Get post type slug
         $postTypeSlug = self::prefixSlug($class->slug);
         self::$classes[$postTypeSlug] = $class;
@@ -239,6 +245,8 @@ class ModuleManager
             'cache_ttl' => $class->cacheTtl,
             'hide_title' => $class->hideTitle
         );
+
+        $class->moduleSlug = $postTypeSlug;
 
         return $postTypeSlug;
     }
