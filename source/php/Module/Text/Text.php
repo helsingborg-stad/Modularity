@@ -26,6 +26,7 @@ class Text extends \Modularity\Module
         if (!$this->data['hide_box_frame']) {
             return 'box.blade.php';
         }
+
         return 'article.blade.php';
     }
 
