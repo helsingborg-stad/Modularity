@@ -17,6 +17,12 @@ class ModuleManager
     public static $moduleSettings = array();
 
     /**
+     * Holds a list of registered modules
+     * @var array
+     */
+    public static $registered = array();
+
+    /**
      * Holds a list of available (initialized) modules
      * @var array
      */
@@ -42,7 +48,7 @@ class ModuleManager
 
     public function __construct()
     {
-        self::$available = $this->getAvailable(false);
+        self::$registered = $this->getRegistered(false);
         $this->init();
     }
 
@@ -50,14 +56,14 @@ class ModuleManager
      * Get available modules (WP filter)
      * @return array
      */
-    public function getAvailable($getBundled = true)
+    public function getRegistered($getBundled = true)
     {
         if ($getBundled) {
             $bundeled = $this->getBundeled();
-            self::$available = array_merge(self::$available, $bundeled);
+            self::$registered = array_merge(self::$registered, $bundeled);
         }
 
-        return apply_filters('Modularity/Modules', self::$available);
+        return apply_filters('Modularity/Modules', self::$registered);
     }
 
     /**
@@ -82,7 +88,7 @@ class ModuleManager
      */
     public function init()
     {
-        foreach (self::$available as $path => $module) {
+        foreach (self::$registered as $path => $module) {
             $path = trailingslashit($path);
             $source = $path . $module . '.php';
             $namespace = \Modularity\Helper\File::getNamespace($source);
@@ -179,6 +185,8 @@ class ModuleManager
         if ($class::$isDeprecated) {
             \Modularity\ModuleManager::$deprecated[] = $postTypeSlug;
         }
+
+        \Modularity\ModuleManager::$available[$postTypeSlug] = $args;
 
         // Store settings of each module in static var
         self::$moduleSettings[$postTypeSlug] = array(
