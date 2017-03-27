@@ -19,6 +19,8 @@ class Image extends \Modularity\Module
 
     /**
      * Available "magic" methods for modules:
+     * init()            What to do on initialization (if you must, use __construct with care, this will probably break stuff!!)
+     * data()            Use to send data to view (return array)
      * style()           Enqueue style only when module is used on page
      * script            Enqueue script only when module is used on page
      * adminEnqueue()    Enqueue scripts for the module edit/add page in admin
