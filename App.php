@@ -37,7 +37,7 @@ class App
         new Options\Archives();
 
         self::$moduleManager = new ModuleManager();
-        self::$moduleManager->initBundledModules();
+        //self::$moduleManager->initBundledModules();
 
         $this->editor = new Editor();
         self::$display = new Display();
