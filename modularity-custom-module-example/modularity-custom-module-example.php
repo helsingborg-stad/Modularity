@@ -9,7 +9,10 @@
 
 define('IMAGE_MODULE_PATH', plugin_dir_path(__FILE__));
 
-add_action('Modularity', function () {
-    require_once IMAGE_MODULE_PATH . 'ImageModule.php';
-    new \BasicModule\Image();
-});
+/**
+ * Registers the module
+ */
+modularity_register_module(
+    IMAGE_MODULE_PATH, // The directory path of the module
+    'Image' // The class' file and class name (should be the same) withot .php extension
+);
