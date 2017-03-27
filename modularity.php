@@ -34,5 +34,3 @@ $loader->register();
 add_action('plugins_loaded', function () {
     new Modularity\App();
 });
-
-modularity_register_module(MODULARITY_PATH . 'Testmodul', 'Image');
