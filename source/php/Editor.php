@@ -443,7 +443,7 @@ class Editor extends \Modularity\Options
         // Basics
         $module = get_post($id);
 
-        if (!$module) {
+        if (!$module || !isset($available[$module->post_type])) {
             return false;
         }
 
