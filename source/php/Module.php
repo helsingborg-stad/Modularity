@@ -5,6 +5,13 @@ namespace Modularity;
 abstract class Module
 {
     /**
+     * WP_Post properties will automatically be extracted to properties of this class.
+     * This array contains the keys to the extracted properties.
+     * @var array
+     */
+    public $extractedPostProperties = array();
+
+    /**
      * The slug of the module
      * Example: image
      * @var string
@@ -70,6 +77,18 @@ abstract class Module
     public $isDeprecated = false;
 
     /**
+     * Path to template folder for this module
+     * @var string
+     */
+    public $templateDir = false;
+
+    /**
+     * View data (data that will be sent to the blade view)
+     * @var array
+     */
+    public $data = array();
+
+    /**
      * Constructs a module
      * @param int $postId
      */
@@ -91,13 +110,34 @@ abstract class Module
      */
     private function extractPostProperties(\WP_Post $post)
     {
+
         foreach ($post as $key => $value) {
+            $this->extractedPostProperties[] = $key;
             $this->$key = $value;
         }
     }
 
+    /**
+     * Get module view
+     * @return string
+     */
     public function template()
     {
         return $this->slug . '.blade.php';
+    }
+
+    /**
+     * Get module view data
+     * @return array
+     */
+    public function getViewData()
+    {
+        $data = $this->data;
+
+        foreach ($this->extractedPostProperties as $property) {
+            $data[$property] = $this->$property;
+        }
+
+        return $data;
     }
 }
