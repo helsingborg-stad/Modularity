@@ -64,21 +64,8 @@ if (count($slides) == $slideColumns || count($slides) < $slideColumns) {
     $slideColumns = count($slides);
 }
 
-//Fallback to default
-$currentImageSize = array(1800, 350);
-switch (get_field('slider_format', $module->ID)) {
-    case 'ratio-16-9':
-    case 'ratio-10-3':
-    case 'ratio-36-7':
-    case 'ratio-4-3':
-        $currentImageSize = $imageSizes[get_field('slider_format', $module->ID)];
-        break;
-    default:
-        $currentImageSize = array(1800, 350);
-        break;
-}
-
 $flickity = json_encode($flickity);
+
 ?>
 
 <div>
@@ -90,6 +77,21 @@ $flickity = json_encode($flickity);
     <div data-flickity='<?php echo $flickity; ?>'>
     <?php foreach ($slides as $slide) : ?>
         <?php
+
+            //Fallback to default
+            $currentImageSize = array(1800, 350);
+            switch (get_field('slider_format', $module->ID)) {
+                case 'ratio-16-9':
+                case 'ratio-10-3':
+                case 'ratio-36-7':
+                case 'ratio-4-3':
+                    $currentImageSize = $imageSizes[get_field('slider_format', $module->ID)];
+                    break;
+                default:
+                    $currentImageSize = array(1800, 350);
+                    break;
+            }
+
             // Special for video & featured
             if ($slide['acf_fc_layout'] == "video") {
                 $currentImageSize = array(1140,641);
