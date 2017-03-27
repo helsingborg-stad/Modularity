@@ -328,10 +328,8 @@ class Display
 
         $view = preg_replace('/.blade.php$/', '', $view);
 
-        $data = $module->getViewData();
-
         $blade = new Blade($module->templateDir, MODULARITY_CACHE_DIR);
-        return $blade->view()->make($view, $data)->render();
+        return $blade->view()->make($view, $module->getViewData())->render();
     }
 
     /**

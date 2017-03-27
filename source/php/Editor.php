@@ -402,6 +402,9 @@ class Editor extends \Modularity\Options
             foreach ($moduleSidebars as $key => $sidebar) {
                 $retModules[$key] = array(
                     'modules' => array(),
+
+                    // Todo: This will duplicate for every sidebar, move it to top level of array(?)
+                    // Alternatively only fetch options for the current sidebar (not all like now)
                     'options' => get_post_meta($postId, 'modularity-sidebar-options', true)
                 );
 
