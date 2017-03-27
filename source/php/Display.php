@@ -243,15 +243,20 @@ class Display
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
             $templatePath = $module->template();
 
+            // Get template for legacy modules
+            if (!$templatePath) {
+                $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+            }
+
             if (!$templatePath) {
                 return false;
             }
 
             $moduleMarkup = '';
             if (preg_match('/.blade.php$/i', $templatePath)) {
-                $moduleMarkup = $this->loadBladeTemplate($templatePath, $module);
+                $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
             } else {
-                $moduleMarkup = $this->loadTemplate();
+                $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
             }
 
             if (empty($moduleMarkup)) {
@@ -318,7 +323,7 @@ class Display
      * @param  class  $module Module class
      * @return string         Template markup
      */
-    public function loadBladeTemplate($view, $module)
+    public function loadBladeTemplate($view, $module, array $args = array())
     {
         \Modularity\Helper\File::maybeCreateDir(MODULARITY_CACHE_DIR);
 
@@ -338,7 +343,7 @@ class Display
      * @param  class  $module Module class
      * @return string         Template markup
      */
-    public function loadTemplate($view, $module)
+    public function loadTemplate($view, $module, array $args = array())
     {
         ob_start();
         include $view;

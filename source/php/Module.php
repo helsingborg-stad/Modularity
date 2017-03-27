@@ -167,7 +167,11 @@ class Module
      */
     public function template()
     {
-        return $this->slug . '.blade.php';
+        if (!empty($this->slug)) {
+            return $this->slug . '.blade.php';
+        }
+
+        return false;
     }
 
     /**
