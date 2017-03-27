@@ -135,6 +135,7 @@ class ModuleManager
 
             require_once $source;
             $class = $namespace . '\\' . $module;
+            $class = new $class();
 
             $this->register($class, $path);
         }
@@ -146,34 +147,34 @@ class ModuleManager
      * @param  string $path  Path to module
      * @return string        Module's post type slug
      */
-    public function register(string $class, string $path = '')
+    public function register($class, string $path = '')
     {
         // Get post type slug
-        $postTypeSlug = self::prefixSlug($class::$slug);
+        $postTypeSlug = self::prefixSlug($class->slug);
         self::$classes[$postTypeSlug] = $class;
 
         // Set labels
         $labels = array(
-            'name'               => _x($class::$nameSingular, 'post type general name', 'modularity'),
-            'singular_name'      => _x($class::$nameSingular, 'post type singular name', 'modularity'),
-            'menu_name'          => _x($class::$namePlural, 'admin menu', 'modularity'),
-            'name_admin_bar'     => _x($class::$nameSingular, 'add new on admin bar', 'modularity'),
+            'name'               => _x($class->nameSingular, 'post type general name', 'modularity'),
+            'singular_name'      => _x($class->nameSingular, 'post type singular name', 'modularity'),
+            'menu_name'          => _x($class->namePlural, 'admin menu', 'modularity'),
+            'name_admin_bar'     => _x($class->nameSingular, 'add new on admin bar', 'modularity'),
             'add_new'            => _x('Add New', 'add new button', 'modularity'),
-            'add_new_item'       => sprintf(__('Add new %s', 'modularity'), $class::$nameSingular),
-            'new_item'           => sprintf(__('New %s', 'modularity'), $class::$nameSingular),
-            'edit_item'          => sprintf(__('Edit %s', 'modularity'), $class::$nameSingular),
-            'view_item'          => sprintf(__('View %s', 'modularity'), $class::$nameSingular),
-            'all_items'          => sprintf(__('Edit %s', 'modularity'), $class::$namePlural),
-            'search_items'       => sprintf(__('Search %s', 'modularity'), $class::$namePlural),
-            'parent_item_colon'  => sprintf(__('Parent %s', 'modularity'), $class::$namePlural),
-            'not_found'          => sprintf(__('No %s', 'modularity'), $class::$namePlural),
-            'not_found_in_trash' => sprintf(__('No %s in trash', 'modularity'), $class::$namePlural)
+            'add_new_item'       => sprintf(__('Add new %s', 'modularity'), $class->nameSingular),
+            'new_item'           => sprintf(__('New %s', 'modularity'), $class->nameSingular),
+            'edit_item'          => sprintf(__('Edit %s', 'modularity'), $class->nameSingular),
+            'view_item'          => sprintf(__('View %s', 'modularity'), $class->nameSingular),
+            'all_items'          => sprintf(__('Edit %s', 'modularity'), $class->namePlural),
+            'search_items'       => sprintf(__('Search %s', 'modularity'), $class->namePlural),
+            'parent_item_colon'  => sprintf(__('Parent %s', 'modularity'), $class->namePlural),
+            'not_found'          => sprintf(__('No %s', 'modularity'), $class->namePlural),
+            'not_found_in_trash' => sprintf(__('No %s in trash', 'modularity'), $class->namePlural)
         );
 
         // Set args
         $args = array(
             'labels'               => $labels,
-            'description'          => __($class::$description, 'modularity'),
+            'description'          => __($class->description, 'modularity'),
             'public'               => false,
             'publicly_queriable'   => false,
             'show_ui'              => true,
@@ -184,8 +185,8 @@ class ModuleManager
             'hierarchical'         => false,
             'menu_position'        => 100,
             'exclude_from_search'  => false,
-            'menu_icon'            => $class::$icon,
-            'supports'             => array_merge($class::$supports, array('title', 'revisions')),
+            'menu_icon'            => $class->icon,
+            'supports'             => array_merge($class->supports, array('title', 'revisions')),
             'capabilities'         => array(
                 'edit_post'          => 'edit_module',
                 'edit_posts'         => 'edit_modules',
@@ -211,15 +212,15 @@ class ModuleManager
             });
 
             // Require plugins
-            if (is_array($class::$plugin)) {
-                foreach ($class::$plugin as $plugin) {
+            if (is_array($class->plugin)) {
+                foreach ($class->plugin as $plugin) {
                     require_once $plugin;
                 }
             }
         }
 
         // Check if module is deprecated
-        if ($class::$isDeprecated) {
+        if ($class->isDeprecated) {
             \Modularity\ModuleManager::$deprecated[] = $postTypeSlug;
         }
 
@@ -228,15 +229,15 @@ class ModuleManager
 
         // Store settings of each module in static var
         self::$moduleSettings[$postTypeSlug] = array(
-            'slug' => $class::$slug,
-            'singular_name' => $class::$nameSingular,
-            'plural_name' => $class::$namePlural,
-            'description' => $class::$description,
-            'supports' => $class::$supports,
-            'icon' => $class::$icon,
-            'plugin' => $class::$plugin,
-            'cache_ttl' => $class::$cacheTtl,
-            'hide_title' => $class::$hideTitle
+            'slug' => $class->slug,
+            'singular_name' => $class->nameSingular,
+            'plural_name' => $class->namePlural,
+            'description' => $class->description,
+            'supports' => $class->supports,
+            'icon' => $class->icon,
+            'plugin' => $class->plugin,
+            'cache_ttl' => $class->cacheTtl,
+            'hide_title' => $class->hideTitle
         );
 
         return $postTypeSlug;
@@ -274,8 +275,8 @@ class ModuleManager
         }
 
         // If fail to load (may happen on some systems) TODO: Make this more fancy
-        if (file_exists($path . preg_replace('/\s+/', '', ucwords($class::$nameSingular)). '/assets/icon.svg')) {
-            return file_get_contents($path . preg_replace('/\s+/', '', ucwords($class::$nameSingular)). '/assets/icon.svg');
+        if (file_exists($path . preg_replace('/\s+/', '', ucwords($class->nameSingular)). '/assets/icon.svg')) {
+            return file_get_contents($path . preg_replace('/\s+/', '', ucwords($class->nameSingular)). '/assets/icon.svg');
         }
 
         return '';

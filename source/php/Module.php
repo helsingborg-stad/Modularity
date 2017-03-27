@@ -9,63 +9,95 @@ abstract class Module
      * Example: image
      * @var string
      */
-    public static $slug = '';
+    public $slug = '';
 
     /**
      * Singular name of the modue
      * Example: Image
      * @var string
      */
-    public static $nameSingular = '';
+    public $nameSingular = '';
 
     /**
      * Plural name of the module
      * Example: Images
      * @var string
      */
-    public static $namePlural = '';
+    public $namePlural = '';
 
     /**
      * Module description
      * Shows a fixed with and height image
      * @var string
      */
-    public static $description = '';
+    public $description = '';
 
     /**
      * Module icon (Base64 endoced data uri)
      * @var string
      */
-    public static $icon = '';
+    public $icon = '';
 
     /**
      * What the module post type should support (title and revision will be added automatically)
      * Example: array('editor', 'attributes')
      * @var array
      */
-    public static $supports = array();
+    public $supports = array();
 
     /**
      * Any module plugins (path to file to include)
      * @var array
      */
-    public static $plugin = array();
+    public $plugin = array();
 
     /**
      * Cache ttl
      * @var integer
      */
-    public static $cacheTtl = 0;
+    public $cacheTtl = 0;
 
     /**
      * The initial setting for "hide title" of the module
      * @var boolean
      */
-    public static $hideTitle  = false;
+    public $hideTitle  = false;
 
     /**
      * Is the module deprecated?
      * @var boolean
      */
-    public static $isDeprecated = false;
+    public $isDeprecated = false;
+
+    /**
+     * Constructs a module
+     * @param int $postId
+     */
+    public function __construct(\WP_Post $post = null)
+    {
+        if (is_numeric($post)) {
+            $post = get_post($post);
+        }
+
+        if (is_a($post, '\WP_Post')) {
+            $this->extractPostProperties($post);
+        }
+    }
+
+    /**
+     * Extracts WP_Post properties into Module properties
+     * @param  \WP_Post $post
+     * @return void
+     */
+    private function extractPostProperties(\WP_Post $post)
+    {
+        foreach ($post as $key => $value) {
+            $this->$key = $value;
+        }
+    }
+
+    public function template()
+    {
+        return $this->slug . '.blade.php';
+    }
 }
