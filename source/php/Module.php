@@ -2,7 +2,7 @@
 
 namespace Modularity;
 
-abstract class Module
+class Module
 {
     /**
      * WP_Post properties will automatically be extracted to properties of this class.
@@ -17,6 +17,7 @@ abstract class Module
      * @var string
      */
     public $slug = '';
+    public $moduleSlug = '';
 
     /**
      * Singular name of the modue
@@ -104,13 +105,56 @@ abstract class Module
     }
 
     /**
+     * Registers a Modularity module
+     *
+     * @deprecated 2.0.0
+     * @deprecated No longer used by internal code and not recommended, exists as fallback for old third party modules
+     * @deprecated Now creates a "ghost" module class to initialize old module type
+     *
+     * @param  string $slug         Module id suffix (will be prefixed with constant MODULE_PREFIX)
+     * @param  string $nameSingular Singular name of the module
+     * @param  string $namePlural   Plural name of the module
+     * @param  string $description  Description of the module
+     * @param  array  $supports     Which core post type fileds this module supports
+     * @param  string $icon
+     * @param  string $plugin
+     * @param  int    $cache_ttl
+     * @param  bool   $hideTitle
+     * @return string               The prefixed module id/slug
+     */
+    public function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache_ttl = 0, $hideTitle = false)
+    {
+        //\Modularity\Helper\Wp::deprecatedFunction('Function $module->' . __FUNCTION__ . ' is deprecated since Modularity version 2.0.0');
+
+        if (empty($slug)) {
+            return;
+        }
+
+        add_action('Modularity/Init', function ($moduleManager) use ($slug, $nameSingular, $namePlural, $description, $supports, $icon, $plugin, $cache_ttl, $hideTitle) {
+            $module = new \Modularity\Module();
+            $module->slug = $slug;
+            $module->nameSingular = $nameSingular;
+            $module->namePlural = $namePlural;
+            $module->description = $description;
+            $module->supports = $supports;
+            $module->icon = $icon;
+            $module->plugin = $plugin;
+            $module->cacheTtl = $cache_ttl;
+            $module->hideTitle = $hideTitle;
+            $module->isDeprecated = $this->isDeprecated;
+            $module->ghost = true;
+
+            $moduleManager->register($module);
+        });
+    }
+
+    /**
      * Extracts WP_Post properties into Module properties
      * @param  \WP_Post $post
      * @return void
      */
     private function extractPostProperties(\WP_Post $post)
     {
-
         foreach ($post as $key => $value) {
             $this->extractedPostProperties[] = $key;
             $this->$key = $value;
