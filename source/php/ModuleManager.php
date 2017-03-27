@@ -30,7 +30,7 @@ class ModuleManager
 
     public function __construct()
     {
-        $this->getAvailable();
+        self::$available = $this->getAvailable(false);
         $this->initModules();
     }
 
@@ -38,15 +38,41 @@ class ModuleManager
      * Get available modules (WP filter)
      * @return array
      */
-    public function getAvailable()
+    public function getAvailable($getBundled = true)
     {
+        if ($getBundled) {
+            $bundeled = $this->getBundeled();
+            self::$available = array_merge(self::$available, $bundeled);
+        }
+
         return apply_filters('Modularity/Modules', self::$available);
     }
 
+    /**
+     * Gets bundeled modules
+     * @return array
+     */
+    public function getBundeled() : array
+    {
+        $directory = MODULARITY_PATH . 'source/php/Module/';
+        $bundeled = array();
+
+        foreach (@glob($directory . "*", GLOB_ONLYDIR) as $folder) {
+            $bundeled[$folder] = basename($folder);
+        }
+
+        return $bundeled;
+    }
+
+    /**
+     * Initializes modules
+     * @return void
+     */
     public function initModules()
     {
         foreach (self::$available as $path => $module) {
-
+            var_dump($path, $module);
+            exit;
         }
     }
 }
