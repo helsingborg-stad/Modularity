@@ -1,1 +1,1 @@
-<h2>{{ $module->post_title }}</h2>
+<h2>{{ $post_title }}</h2>

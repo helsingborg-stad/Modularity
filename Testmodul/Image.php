@@ -14,4 +14,6 @@ class Image extends \Modularity\Module
     public $cacheTtl = 0;
     public $hideTitle  = false;
     public $isDeprecated = false;
+
+    public $templateDir = MODULARITY_PATH . 'Testmodul/views';
 }
