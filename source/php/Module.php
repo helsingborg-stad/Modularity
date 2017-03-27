@@ -63,7 +63,7 @@ class Module
      * Cache ttl
      * @var integer
      */
-    public $cacheTtl = 0;
+    public $cacheTtl = 3600 * 24 * 7;
 
     /**
      * The initial setting for "hide title" of the module
