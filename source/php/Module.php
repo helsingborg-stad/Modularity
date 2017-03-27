@@ -116,6 +116,7 @@ class Module
 
         if (is_a($post, '\WP_Post')) {
             $this->extractPostProperties($post);
+            $this->collectViewData();
         }
 
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
@@ -169,12 +170,13 @@ class Module
         foreach ($post as $key => $value) {
             $this->extractedPostProperties[] = $key;
             $this->$key = $value;
+            $this->data[$key] = $value;
         }
     }
 
     public function data() : array
     {
-        return $this->data;
+        return array();
     }
 
     /**
@@ -194,15 +196,9 @@ class Module
      * Get module view data
      * @return array
      */
-    public function getViewData()
+    public function collectViewData()
     {
-        $data = $this->data();
-
-        foreach ($this->extractedPostProperties as $property) {
-            $data[$property] = $this->$property;
-        }
-
-        return $data;
+        $this->data = array_merge($this->data, $this->data());
     }
 
     /**
