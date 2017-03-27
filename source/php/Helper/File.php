@@ -9,9 +9,11 @@ class File
      * @param  string $source Path to file
      * @return string         Namespace
      */
-    public static function getNamespace(string $source) : string
+    public static function getNamespace(string $path) : string
     {
-        $tokens = token_get_all($src);
+        $source = file_get_contents($path);
+
+        $tokens = token_get_all($source);
         $count = count($tokens);
         $i = 0;
         $namespace = '';
@@ -39,7 +41,7 @@ class File
         }
 
         if (!$namespaceFound) {
-            return null;
+            return '';
         }
 
         return $namespace;
