@@ -99,8 +99,9 @@ class Module
      * Constructs a module
      * @param int $postId
      */
-    public function __construct(\WP_Post $post = null)
+    public function __construct(\WP_Post $post = null, $args = array())
     {
+        $this->args = $args;
         $this->init();
 
         // Defaults to the path of the class .php-file and subdir /views

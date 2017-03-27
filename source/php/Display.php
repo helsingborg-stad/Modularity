@@ -232,8 +232,7 @@ class Display
         }
 
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
-        $module = new $class($module);
-        $module->args = $args;
+        $module = new $class($module, $args);
 
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
@@ -335,7 +334,7 @@ class Display
         $view = preg_replace('/.blade.php$/', '', $view);
 
         $blade = new Blade($module->templateDir, MODULARITY_CACHE_DIR);
-        return $blade->view()->make($view, $module->getViewData())->render();
+        return $blade->view()->make($view, $module->data)->render();
     }
 
     /**
