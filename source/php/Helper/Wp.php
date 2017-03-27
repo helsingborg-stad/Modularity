@@ -219,4 +219,13 @@ class Wp
 
         return false;
     }
+
+    public static function deprecatedFunction($message)
+    {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            trigger_error($message);
+        } else {
+            echo $message;
+        }
+    }
 }
