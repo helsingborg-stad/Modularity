@@ -23,6 +23,12 @@ class ModuleManager
     public static $registered = array();
 
     /**
+     * Holds namespaces for each and every module class
+     * @var array
+     */
+    public static $classes = array();
+
+    /**
      * Holds a list of available (initialized) modules
      * @var array
      */
@@ -144,6 +150,7 @@ class ModuleManager
     {
         // Get post type slug
         $postTypeSlug = self::prefixSlug($class::$slug);
+        self::$classes[$postTypeSlug] = $class;
 
         // Set labels
         $labels = array(
