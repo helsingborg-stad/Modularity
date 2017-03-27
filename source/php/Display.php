@@ -233,6 +233,7 @@ class Display
 
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module);
+        $module->args = $args;
 
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;

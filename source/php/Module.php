@@ -72,6 +72,12 @@ class Module
     public $hideTitle  = false;
 
     /**
+     * Sidebar arguments
+     * @var array
+     */
+    public $args = array();
+
+    /**
      * Is the module deprecated?
      * @var boolean
      */
