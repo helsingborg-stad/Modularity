@@ -228,4 +228,19 @@ class Wp
             echo $message;
         }
     }
+
+    /**
+     * Check if current page is add new/edit post
+     * @return boolean
+     */
+    public static function isAddOrEditOfPostType($postType)
+    {
+        global $current_screen;
+
+        return $current_screen->base == 'post'
+                && $current_screen->id == $postType
+                && (
+                    $current_screen->action == 'add' || (isset($_GET['action']) && $_GET['action'] == 'edit')
+                );
+    }
 }

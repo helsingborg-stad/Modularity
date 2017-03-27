@@ -102,6 +102,109 @@ class Module
         if (is_a($post, '\WP_Post')) {
             $this->extractPostProperties($post);
         }
+
+        add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
+
+        if (!is_admin() && $this->hasModule()) {
+            add_action('wp_enqueue_scripts', array($this, 'style'));
+            add_action('wp_enqueue_scripts', array($this, 'script'));
+        }
+    }
+
+    /**
+     * Method to enqueu styles when module exists on page
+     * @return void
+     */
+    public function style()
+    {
+        // Put styles here
+    }
+
+    /**
+     * Method to enqueu scripts when module exists on page
+     * @return void
+     */
+    public function script()
+    {
+        // Put scripts here
+    }
+
+    /**
+     * Enqueue for admin
+     * @return void
+     */
+    public function adminEnqueue()
+    {
+        if (\Modularity\Helper\Wp::isAddOrEditOfPostType($this->moduleSlug)) {
+            do_action('Modularity/Module/' . $this->moduleSlug . '/enqueue');
+        }
+    }
+
+    /**
+     * Extracts WP_Post properties into Module properties
+     * @param  \WP_Post $post
+     * @return void
+     */
+    private function extractPostProperties(\WP_Post $post)
+    {
+        foreach ($post as $key => $value) {
+            $this->extractedPostProperties[] = $key;
+            $this->$key = $value;
+        }
+    }
+
+    /**
+     * Get module view
+     * @return string
+     */
+    public function template()
+    {
+        if (!empty($this->slug)) {
+            return $this->slug . '.blade.php';
+        }
+
+        return false;
+    }
+
+    /**
+     * Get module view data
+     * @return array
+     */
+    public function getViewData()
+    {
+        $data = $this->data;
+
+        foreach ($this->extractedPostProperties as $property) {
+            $data[$property] = $this->$property;
+        }
+
+        return $data;
+    }
+
+    /**
+     * Checks if a current page/post has module(s) of this type
+     * @return boolean
+     */
+    protected function hasModule()
+    {
+        global $post;
+
+        $postId = null;
+        $modules = array();
+        $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
+
+        if ($archiveSlug) {
+            $postId = $archiveSlug;
+        } elseif (isset($post->ID)) {
+            $postId = $post->ID;
+        } else {
+            return apply_filters('Modularity/hasModule', false, null);
+        }
+
+        $modules = \Modularity\Editor::getPostModules($postId);
+        $modules = json_encode($modules);
+
+        return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $this->moduleSlug . '"') == true, $archiveSlug);
     }
 
     /**
@@ -146,46 +249,5 @@ class Module
 
             $moduleManager->register($module);
         });
-    }
-
-    /**
-     * Extracts WP_Post properties into Module properties
-     * @param  \WP_Post $post
-     * @return void
-     */
-    private function extractPostProperties(\WP_Post $post)
-    {
-        foreach ($post as $key => $value) {
-            $this->extractedPostProperties[] = $key;
-            $this->$key = $value;
-        }
-    }
-
-    /**
-     * Get module view
-     * @return string
-     */
-    public function template()
-    {
-        if (!empty($this->slug)) {
-            return $this->slug . '.blade.php';
-        }
-
-        return false;
-    }
-
-    /**
-     * Get module view data
-     * @return array
-     */
-    public function getViewData()
-    {
-        $data = $this->data;
-
-        foreach ($this->extractedPostProperties as $property) {
-            $data[$property] = $this->$property;
-        }
-
-        return $data;
     }
 }
