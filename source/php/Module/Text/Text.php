@@ -5,9 +5,6 @@ namespace Modularity\Module\Text;
 class Text extends \Modularity\Module
 {
     public $slug = 'text';
-    public $nameSingular = 'Text';
-    public $namePlural = 'Texts';
-    public $description = 'Outputs a text';
     public $supports = array('editor');
 
     public function init()
@@ -22,6 +19,14 @@ class Text extends \Modularity\Module
         $data = get_fields($this->ID);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         return $data;
+    }
+
+    public function template()
+    {
+        if (!$this->data['hide_box_frame']) {
+            return 'box.blade.php';
+        }
+        return 'article.blade.php';
     }
 
     /**
