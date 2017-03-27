@@ -215,6 +215,7 @@ class ModuleManager
         if (in_array($postTypeSlug, self::$enabled)) {
             add_action('init', function () use ($postTypeSlug, $args) {
                 register_post_type($postTypeSlug, $args);
+                $this->setupListTableField($postTypeSlug);
             });
 
             // Require plugins
@@ -506,5 +507,88 @@ class ModuleManager
         }
 
         update_post_meta(intval($_POST['post_ID']), 'module-description', trim($_POST['modularity-module-description']));
+    }
+
+    /**
+     * Setup list table fields
+     * @return void
+     */
+    public function setupListTableField($slug)
+    {
+        add_filter('manage_edit-' . $slug . '_columns', array($this, 'listTableColumns'));
+        add_action('manage_' . $slug . '_posts_custom_column', array($this, 'listTableColumnContent'), 10, 2);
+        add_filter('manage_edit-' . $slug . '_sortable_columns', array($this, 'listTableColumnSorting'));
+    }
+
+    /**
+     * Define list table columns
+     * @param  array $columns  Default columns
+     * @return array           Modified columns
+     */
+    public function listTableColumns($columns)
+    {
+        $columns = array(
+            'cb'               => '<input type="checkbox">',
+            'title'            => __('Title'),
+            'description'      => __('Description'),
+            'usage'            => __('Usage', 'modularity'),
+            'date'             => __('Date')
+        );
+
+        return $columns;
+    }
+
+    /**
+     * List table column content
+     * @param  string $column  Column
+     * @param  integer $postId Post id
+     * @return void
+     */
+    public function listTableColumnContent($column, $postId)
+    {
+        switch ($column) {
+            case 'description':
+                $description = get_post_meta($postId, 'module-description', true);
+                echo !empty($description) ? $description : '';
+                break;
+
+            case 'usage':
+                $usage = self::getModuleUsage($postId, 3);
+
+                if (count($usage->data) == 0) {
+                    echo __('Not used', 'modularity');
+                    break;
+                }
+
+                $i = 0;
+
+                foreach ($usage->data as $item) {
+                    $i++;
+
+                    if ($i > 1) {
+                        echo ', ';
+                    }
+
+                    echo '<a href="' . get_permalink($item->post_id) . '">' . $item->post_title . '</a>';
+                }
+
+                if ($usage->more > 0) {
+                    echo ' (' . $usage->more . ' ' . __('more', 'modularity') . ')';
+                }
+
+                break;
+        }
+    }
+
+    /**
+     * Table list column sorting
+     * @param  array $columns Default sortable columns
+     * @return array          Modified sortable columns
+     */
+    public function listTableColumnSorting($columns)
+    {
+        $columns['description'] = 'description';
+        $columns['usage'] = 'usage';
+        return $columns;
     }
 }
