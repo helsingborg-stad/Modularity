@@ -48,6 +48,7 @@ class ModuleManager
 
     public function __construct()
     {
+        self::$enabled = self::getEnabled();
         self::$registered = $this->getRegistered(false);
         $this->init();
     }
@@ -64,6 +65,21 @@ class ModuleManager
         }
 
         return apply_filters('Modularity/Modules', self::$registered);
+    }
+
+    /**
+     * Get enabled modules id:s
+     * @return array
+     */
+    public static function getEnabled()
+    {
+        $options = get_option('modularity-options');
+
+        if (!isset($options['enabled-modules'])) {
+            return array();
+        }
+
+        return $options['enabled-modules'];
     }
 
     /**
@@ -186,6 +202,7 @@ class ModuleManager
             \Modularity\ModuleManager::$deprecated[] = $postTypeSlug;
         }
 
+        // Add to list of available modules
         \Modularity\ModuleManager::$available[$postTypeSlug] = $args;
 
         // Store settings of each module in static var
