@@ -361,6 +361,10 @@ class ModuleManager
      */
     public function shortcodeMetabox()
     {
+        if (empty(self::$enabled)) {
+            return;
+        }
+
         add_meta_box('modularity-shortcode', 'Modularity Shortcode', function () {
             global $post;
             echo '<p>';
@@ -392,6 +396,10 @@ class ModuleManager
      */
     public function whereUsedMetaBox()
     {
+        if (empty(self::$enabled)) {
+            return;
+        }
+
         global $post;
         $module = $this;
 
@@ -483,6 +491,10 @@ class ModuleManager
      */
     public function descriptionMetabox()
     {
+        if (empty(self::$enabled)) {
+            return;
+        }
+
         add_meta_box(
             'modularity-description',
             'Module description',
