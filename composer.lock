@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "25bca52781d71327ba64ffce2979684b",
+    "content-hash": "d682cd4c648a175b7a46091bc9a230a6",
     "packages": [
         {
             "name": "composer/installers",
@@ -179,6 +179,42 @@
                 "string"
             ],
             "time": "2015-11-06T14:35:42+00:00"
+        },
+        {
+            "name": "helsingborg-stad/acf-export-manager",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/acf-export-manager.git",
+                "reference": "5b97f28193669502b8d708d5b83e77138ea52b8b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-export-manager/zipball/5b97f28193669502b8d708d5b83e77138ea52b8b",
+                "reference": "5b97f28193669502b8d708d5b83e77138ea52b8b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AcfExportManager\\": "src"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kristoffer Svanmark",
+                    "email": "kristoffer.svanmark@knowit.se"
+                }
+            ],
+            "description": "ACF Export Manager is a extension that let's you automatically export specified your ACF fields on save.",
+            "support": {
+                "source": "https://github.com/helsingborg-stad/acf-export-manager/tree/1.0.2",
+                "issues": "https://github.com/helsingborg-stad/acf-export-manager/issues"
+            },
+            "time": "2017-03-16T13:51:47+00:00"
         },
         {
             "name": "illuminate/container",
