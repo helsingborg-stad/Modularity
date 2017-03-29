@@ -21,6 +21,16 @@ add_action('plugins_loaded', function () {
     load_plugin_textdomain('modularity', false, plugin_basename(dirname(__FILE__)) . '/languages');
 });
 
+// Autoload from plugin
+if (file_exists(MODULARITY_PATH . 'vendor/autoload.php')) {
+    require_once MODULARITY_PATH . 'vendor/autoload.php';
+}
+
+// Autoload from ABSPATH
+if (file_exists(dirname(ABSPATH) . '/vendor/autoload.php')) {
+    require_once dirname(ABSPATH) . '/vendor/autoload.php';
+}
+
 require_once MODULARITY_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once MODULARITY_PATH . 'Public.php';
 
@@ -29,6 +39,40 @@ $loader = new Modularity\Vendor\Psr4ClassLoader();
 $loader->addPrefix('Modularity', MODULARITY_PATH);
 $loader->addPrefix('Modularity', MODULARITY_PATH . 'source/php/');
 $loader->register();
+
+// Acf auto import and export
+$acfExportManager = new \AcfExportManager\AcfExportManager();
+$acfExportManager->setTextdomain('modularity');
+$acfExportManager->setExportFolder(MODULARITY_PATH . 'source/php/AcfFields/');
+$acfExportManager->autoExport(array(
+    'mod-booking'          => 'group_56a89f42b432b',
+    'mod-contact-info'     => 'group_56a0a3928c017',
+    'mod-contact-contacts' => 'group_5757b93da8d5c',
+    'mod-contacts'         => 'group_5805e5dc0a3be',
+    'mod-files'            => 'group_5756ce3e48782',
+    'mod-fileslist'        => 'group_5756ce3e48783',
+    'mod-gallery'          => 'group_5666af6d26b7c',
+    'mod-iframe'           => 'group_56c47016ea9d5',
+    'mod-image'            => 'group_570770ab8f064',
+    'mod-index'            => 'group_569ceab2c16ee',
+    'mod-inheritpost'      => 'group_56a8b4fd3567b',
+    'mod-inlaylist'        => 'group_569e054a7f9c2',
+    'mod-latest'           => 'group_56a8c4581d906',
+    'mod-mainnews'         => 'group_569e401dd4422',
+    'mod-notice'           => 'group_575a842dd1283',
+    'mod-posts-displau'    => 'group_571dfd3c07a77',
+    'mod-posts-filtering'  => 'group_571e045dd555d',
+    'mod-posts-sorting'    => 'group_571dffc63090c',
+    'mod-posts-source'     => 'group_571dfaabc3fc5',
+    'mod-script'           => 'group_56a8b9eddfced',
+    'mod-slider'           => 'group_56a5e99108991',
+    'mod-social'           => 'group_56dedc26e5327',
+    'mod-table'            => 'group_5666a2a71d806',
+    'mod-text'             => 'group_5891b49127038',
+    'mod-video'            => 'group_57454ae7b0e9a',
+    'mod-wpwidget'         => 'group_5729f4d3e7c7a',
+));
+$acfExportManager->import();
 
 // Start application
 add_action('plugins_loaded', function () {
