@@ -12,13 +12,9 @@ class Acf
     public function __construct()
     {
         add_action('init', array($this, 'includeAcf'), 11);
-        add_filter('acf/settings/load_json', array($this, 'jsonLoadPath'));
-        add_filter('acf/settings/save_json', array($this, 'jsonSavePath'));
         add_filter('acf/settings/l10n', function () {
             return true;
         });
-
-        //add_action('admin_init', array($this, 'importAcf'));
     }
 
     /**
@@ -40,57 +36,5 @@ class Acf
                      '</p></div>';
             });
         }
-    }
-
-    public function jsonLoadPath($paths)
-    {
-        $paths[] = MODULARITY_PATH . 'source/acf-json';
-        return $paths;
-    }
-
-    public function jsonSavePath($path)
-    {
-        if (isset($_POST['acf_field_group'])) {
-            foreach ($_POST['acf_field_group']['location'] as $rules) {
-                foreach ($rules as $rule) {
-                    if ($rule['param'] == 'post_type' && $rule['operator'] == '==' && substr($rule['value'], 0, 4) == 'mod-') {
-                        $path = MODULARITY_PATH . 'source/acf-json';
-                    }
-                }
-            }
-        }
-
-        return $path;
-    }
-
-    /**
-     * Search for ACF json exports with naming convention "acf-{name}.json"
-     * Create field groups for matches
-     * @return array Found/added field groups
-     */
-    public function importAcf()
-    {
-        $directory = new RecursiveDirectoryIterator(MODULARITY_PATH . 'source/acf-json/');
-        $iterator = new RecursiveIteratorIterator($directory);
-        $matches = new RegexIterator($iterator, '/acf-.+\.json$/i', RegexIterator::ALL_MATCHES, RegexIterator::USE_KEY);
-
-        $fieldgroups = array();
-
-        $acfImport = new \acf_settings_tools();
-
-        foreach ($matches as $path => $match) {
-            $_FILES['acf_import_file'] = array(
-                'name' => $match[0][0],
-                'type' => 'application/json',
-                'size' => filesize($path),
-                'tmp_name' => $path
-            );
-
-            $acfImport->import();
-        }
-
-        unset($acfImport);
-
-        return $fieldgroups;
     }
 }
