@@ -238,6 +238,7 @@ class Feed
      */
     public function getFacebookUser()
     {
+
         /**
          * Request a token from Facebook Graph API
          */
@@ -256,21 +257,20 @@ class Feed
             return $error;
         }
 
-        $token = explode('=', $token);
-        $token = $token[1];
+        //Decode token
+        $token = json_decode($token);
 
         /**
          * Request the posts
          */
         $endpoint = 'https://graph.facebook.com/' . $this->args['query'] . '/posts';
         $data = array(
-            'access_token' => $token,
+            'access_token' => $token->access_token,
             'fields'       => 'from, full_picture, picture, message, created_time, object_id, link, name, caption, description, icon, type, status_type, likes'
         );
         $feed = $curl->request('GET', $endpoint, $data);
-        $feed = json_decode($feed);
 
-        return $feed->data;
+        return json_decode($feed)->data;
     }
 
     /**
@@ -500,34 +500,38 @@ class Feed
             return;
         }
 
-        foreach ($this->feedData as $item) {
-            $int++;
+        if(!empty($this->feedData)) {
 
-            $date = new \DateTime($item->created_time);
-            $timeZone = new \DateTimeZone(get_option('timezone_string'));
-            $date->setTimezone($timeZone);
+            foreach ((array) $this->feedData as $item) {
+                $int++;
 
-            $this->addStory(
-                strtotime($date->format('Y-m-d H:i:s')),
-                array(
-                    'name' => $item->from->name,
-                    'picture' => '//graph.facebook.com/' . $item->from->id . '/picture?type=large'
-                ),
-                $item->message,
-                array(
-                    'type'         => isset($item->type) ? $item->type : null,
-                    'status_type'  => isset($item->status_type) ? $item->status_type : null,
-                    'name'         => isset($item->name) ? $item->name : null,
-                    'description'  => isset($item->description) ? $item->description : null,
-                    'caption'      => isset($item->caption) ? $item->caption : null,
-                    'link'         => isset($item->link) ? $item->link : null,
-                    'full_picture' => isset($item->full_picture) ? $item->full_picture : null
-                )
-            );
+                $date = new \DateTime($item->created_time);
+                $timeZone = new \DateTimeZone(get_option('timezone_string'));
+                $date->setTimezone($timeZone);
 
-            if ($int == $this->args['length']) {
-                break;
+                $this->addStory(
+                    strtotime($date->format('Y-m-d H:i:s')),
+                    array(
+                        'name' => $item->from->name,
+                        'picture' => '//graph.facebook.com/' . $item->from->id . '/picture?type=large'
+                    ),
+                    $item->message,
+                    array(
+                        'type'         => isset($item->type) ? $item->type : null,
+                        'status_type'  => isset($item->status_type) ? $item->status_type : null,
+                        'name'         => isset($item->name) ? $item->name : null,
+                        'description'  => isset($item->description) ? $item->description : null,
+                        'caption'      => isset($item->caption) ? $item->caption : null,
+                        'link'         => isset($item->link) ? $item->link : null,
+                        'full_picture' => isset($item->full_picture) ? $item->full_picture : null
+                    )
+                );
+
+                if ($int == $this->args['length']) {
+                    break;
+                }
             }
+
         }
     }
 
