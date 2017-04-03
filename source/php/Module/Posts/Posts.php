@@ -469,8 +469,8 @@ class Posts extends \Modularity\Module
         }
 
         $metaQuery = false;
-        $orderby = $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
-        $order = $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
+        $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
+        $order = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
 
         // Get post args
         $getPostsArgs = array(
