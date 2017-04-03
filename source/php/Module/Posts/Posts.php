@@ -216,7 +216,9 @@ class Posts extends \Modularity\Module
         $post = $_POST['post'];
 
         $result = array(
-            'tax' => get_terms($taxonomy),
+            'tax' => get_terms($taxonomy, array(
+                'hide_empty' => false,
+            )),
             'curr' => get_field('posts_taxonomy_value', $post)
         );
 
