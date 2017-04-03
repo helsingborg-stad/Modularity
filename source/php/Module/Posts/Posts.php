@@ -272,6 +272,10 @@ class Posts extends \Modularity\Module
             return false;
         }
 
+        $modules = array_filter($modules, function ($item) {
+            return !wp_is_post_revision($item);
+        });
+
         $fields = $this->getColumns($modules);
 
         add_meta_box(
