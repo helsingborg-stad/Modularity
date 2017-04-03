@@ -247,7 +247,7 @@ class Posts extends \Modularity\Module
         global $post;
         global $current_screen;
 
-        if (empty($post_type)) {
+        if (empty($post->post_type)) {
             return;
         }
 
