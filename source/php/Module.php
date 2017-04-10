@@ -267,7 +267,9 @@ class Module
             $module->isDeprecated = $this->isDeprecated;
             $module->ghost = true;
 
-            $moduleManager->register($module);
+            $class = get_class($this);
+            $class = explode('\\', $class);
+            $moduleManager->register($module, MODULARITY_PATH . 'source/php/Module/' . end($class));
         });
     }
 }
