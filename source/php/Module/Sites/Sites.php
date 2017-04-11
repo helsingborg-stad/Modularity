@@ -6,6 +6,7 @@ class Sites extends \Modularity\Module
 {
     public $slug = 'sites';
     public $supports = array();
+    public $multisiteOnly = true;
 
     public function init()
     {

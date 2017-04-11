@@ -155,6 +155,10 @@ class ModuleManager
             return;
         }
 
+        if (!is_multisite() && $class->multisiteOnly) {
+            return;
+        }
+
         // Get post type slug
         $postTypeSlug = self::prefixSlug($class->slug);
         self::$classes[$postTypeSlug] = $class;

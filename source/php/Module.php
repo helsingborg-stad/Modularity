@@ -84,6 +84,12 @@ class Module
     public $isDeprecated = false;
 
     /**
+     * Set to tro if only available for multisites
+     * @var boolean
+     */
+    public $multisiteOnly = false;
+
+    /**
      * Path to template folder for this module
      * @var string
      */
