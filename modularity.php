@@ -71,6 +71,7 @@ $acfExportManager->autoExport(array(
     'mod-text'             => 'group_5891b49127038',
     'mod-video'            => 'group_57454ae7b0e9a',
     'mod-wpwidget'         => 'group_5729f4d3e7c7a',
+    'mod-sites'            => 'group_58ecb6b6330f4',
 ));
 $acfExportManager->import();
 
