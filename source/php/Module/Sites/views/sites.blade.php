@@ -1,7 +1,7 @@
 <div class="grid">
     @foreach($sites as $site)
     <div class="grid-md-4">
-         <a class="box box-post-brick" href="#">
+         <a class="box box-post-brick" href="{{ $site->home }}">
             @if ($site->image_rendered)
             {!! $site->image_rendered !!}
             @elseif ($site->image)
