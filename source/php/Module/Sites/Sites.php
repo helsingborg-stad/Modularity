@@ -24,8 +24,14 @@ class Sites extends \Modularity\Module
     public function getSites()
     {
         $sites = get_sites();
+        $includeMainSite = get_field('include_main_site', $this->ID);
 
-        foreach ($sites as &$site) {
+        foreach ($sites as $key => &$site) {
+            if (!$includeMainSite && is_main_site($site->blog_id)) {
+                unset($sites[$key]);
+                continue;
+            }
+
             $site = get_blog_details($site->blog_id);
 
             switch_to_blog($site->blog_id);
