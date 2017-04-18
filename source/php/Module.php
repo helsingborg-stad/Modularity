@@ -110,6 +110,9 @@ class Module
         $this->args = $args;
         $this->init();
 
+
+
+
         // Defaults to the path of the class .php-file and subdir /views
         // Example: my-module/my-module.php (module class)
         //          my-module/views/        (views folder)

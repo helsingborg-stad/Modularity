@@ -221,11 +221,25 @@ class ModuleManager
                 register_post_type($postTypeSlug, $args);
                 $this->setupListTableField($postTypeSlug);
             });
+            $class->plugin = (array) $class->plugin;
 
-            // Require plugins
-            if (is_array($class->plugin)) {
+            if (!empty($class->plugin)) {
+
+                //Fallback to enable old modules to register their plugins
+                if (!is_array($class->plugin)) {
+                    $class->plugin = array($class->plugin);
+                }
+
+                //Ability to filter path
+                $class->plugin = apply_filters('Modularity/Register/Plugin', $class->plugin, $postTypeSlug);
+
+                //Include
                 foreach ($class->plugin as $plugin) {
-                    require_once $plugin;
+                    if (file_exists($plugin)) {
+                        require_once $plugin;
+                    } elseif (file_exists(MODULARITY_PATH . 'plugins/'. $plugin)) {
+                        require_once MODULARITY_PATH . 'plugins/'. $plugin;
+                    }
                 }
             }
         }
