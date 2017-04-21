@@ -35,7 +35,6 @@ class App
         new Ajax();
         new Options\General();
         new Options\Archives();
-        new Activation();
 
         self::$moduleManager = new ModuleManager();
 
