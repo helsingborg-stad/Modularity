@@ -500,8 +500,7 @@ class Feed
             return;
         }
 
-        if(!empty($this->feedData)) {
-
+        if (!empty($this->feedData)) {
             foreach ((array) $this->feedData as $item) {
                 $int++;
 
@@ -531,7 +530,6 @@ class Feed
                     break;
                 }
             }
-
         }
     }
 
