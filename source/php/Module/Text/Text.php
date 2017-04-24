@@ -23,7 +23,7 @@ class Text extends \Modularity\Module
 
     public function template()
     {
-        if (isset($this->data['hide_box_frame']) && !$this->data['hide_box_frame']) {
+        if (!isset($this->data['hide_box_frame']) || !$this->data['hide_box_frame']) {
             return 'box.blade.php';
         }
         return 'article.blade.php';
