@@ -9,7 +9,7 @@ if (substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
     $orderBy = str_replace('_metakey_', '', $fields->posts_sort_by);
 }
 
-$order = $fields->posts_sort_order;
+$order = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
 
 $filters = array(
     'orderby' => sanitize_text_field($sortBy),
