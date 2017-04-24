@@ -80,6 +80,8 @@ class Editor extends \Modularity\Options
                 );
             }
 
+            self::$isEditing = apply_filters('Modularity/is_editing', self::$isEditing);
+
             add_action('Modularity/options_page_title_suffix', function () {
                 echo ': ' . self::$isEditing['title'];
             });
