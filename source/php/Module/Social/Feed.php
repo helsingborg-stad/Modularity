@@ -515,7 +515,7 @@ class Feed
                         'name' => $item->from->name,
                         'picture' => '//graph.facebook.com/' . $item->from->id . '/picture?type=large'
                     ),
-                    $item->message,
+                    isset($item->message) ? $item->message : '',
                     array(
                         'type'         => isset($item->type) ? $item->type : null,
                         'status_type'  => isset($item->status_type) ? $item->status_type : null,
