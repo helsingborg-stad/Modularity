@@ -82,7 +82,7 @@ class Search
             }
 
             // Find module usage
-            $usage = \Modularity\Module::getModuleUsage($post->ID);
+            $usage = \Modularity\ModuleManager::getModuleUsage($post->ID);
 
             $usagePosts = array();
             foreach ($usage as $item) {
