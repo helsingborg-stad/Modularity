@@ -23,6 +23,9 @@ class App
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
 
+        // Main hook
+        do_action('Modularity');
+
         /**
          * Redirect top level Modularity page to the Modularity options page
          */
@@ -49,11 +52,6 @@ class App
         add_action('widgets_init', function () {
             register_widget('\Modularity\Widget');
         });
-
-        //Main hook
-        add_action('setup_theme', function () {
-            do_action('Modularity');
-        }, 11);
     }
 
     public function addCaps()
