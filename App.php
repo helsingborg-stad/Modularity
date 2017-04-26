@@ -112,12 +112,12 @@ class App
 
             global $wp_admin_bar;
             global $post;
+
             $editorLink = admin_url('options.php?page=modularity-editor&id=' . get_the_id());
 
             $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
-
-            if ($archiveSlug) {
-                $editorLink = admin_url('options.php?page=modularity-editor&id=' . $archiveSlug);
+            if ($archiveSlug && $postId = \Modularity\Editor::pageForPostTypeTranscribe($archiveSlug)) {
+                $editorLink = admin_url('options.php?page=modularity-editor&id=' . $postId);
             }
 
             if (isset($options['enabled-post-types']) && is_array($options['enabled-post-types']) && !in_array(get_post_type(), $options['enabled-post-types'])) {

@@ -30,12 +30,14 @@ class Archives
                     $postType = '?post_type=' . $postType;
                 }
 
+                $editorLink = 'options.php?page=modularity-editor&id=' . \Modularity\Editor::pageForPostTypeTranscribe('archive-' . $postTypeSlug);
+
                 add_submenu_page(
                     'edit.php' . $postType,
                     __('Archive modules', 'modularity'),
                     __('Archive modules', 'modularity'),
                     'edit_posts',
-                    'options.php?page=modularity-editor&id=archive-' . $postTypeSlug
+                    $editorLink
                 );
             }
         }, 10);

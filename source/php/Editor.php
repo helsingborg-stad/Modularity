@@ -132,12 +132,11 @@ class Editor extends \Modularity\Options
 
         foreach ($postTypes as $postType) {
             $option = get_option('page_for_' . $postType);
+            $pageContent = get_option('page_for_' . $postType . '_content');
 
-            if (!$option || $option !== $postId) {
-                continue;
+            if ($option && $option === $postId && !$pageContent) {
+                return $postType;
             }
-
-            return $postType;
         }
 
         return false;
@@ -339,6 +338,25 @@ class Editor extends \Modularity\Options
         include MODULARITY_TEMPLATE_PATH . 'editor/modularity-sidebar-drop-area.php';
     }
 
+    public static function pageForPostTypeTranscribe($postId)
+    {
+        if (is_numeric($postId) && $postType = \Modularity\Editor::isPageForPostType($postId)) {
+            $postId = 'archive-' . $postType;
+        }
+
+        if (substr($postId, 0, 8) === 'archive-') {
+            $postType = ltrim($postId, 'archive-');
+            $pageForPostType = get_option('page_for_' . $postType);
+            $contentFromPage = get_option('page_for_' . $postType . '_content');
+
+            if ($contentFromPage) {
+                $postId = (int) $pageForPostType;
+            }
+        }
+
+        return $postId;
+    }
+
     /**
      * Get modules added to a specific post
      * @param  integer $postId The post id
@@ -346,9 +364,7 @@ class Editor extends \Modularity\Options
      */
     public static function getPostModules($postId)
     {
-        if ($postType = \Modularity\Editor::isPageForPostType($postId)) {
-            $postId = 'archive-' . $postType;
-        }
+        $postId = self::pageForPostTypeTranscribe($postId);
 
         $modules = array();
         $retModules = array();
