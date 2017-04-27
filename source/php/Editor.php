@@ -345,7 +345,7 @@ class Editor extends \Modularity\Options
         }
 
         if (substr($postId, 0, 8) === 'archive-') {
-            $postType = ltrim($postId, 'archive-');
+            $postType = str_replace('archive-', '', $postId);
             $pageForPostType = get_option('page_for_' . $postType);
             $contentFromPage = get_option('page_for_' . $postType . '_content');
 
