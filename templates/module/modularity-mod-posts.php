@@ -4,7 +4,7 @@ $posts = \Modularity\Module\Posts\Posts::getPosts($module);
 
 $sortBy = false;
 $orderBy = false;
-if (substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
+if (isset($fields->posts_sort_by) && substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
     $sortBy = 'meta_key';
     $orderBy = str_replace('_metakey_', '', $fields->posts_sort_by);
 }
