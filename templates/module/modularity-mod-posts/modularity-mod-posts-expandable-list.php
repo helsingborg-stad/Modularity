@@ -35,9 +35,9 @@
                     ?>
                     <?php if (isset($column_values) && !empty($column_values)) : ?>
                         <span class="column-header"><?php echo apply_filters('the_title', $post->post_title); ?></span>
-                        <?php foreach ((array)$fields->posts_list_column_titles as $column) : ?>
+                        <?php if (is_array($fields->posts_list_column_titles)) : foreach ($fields->posts_list_column_titles as $column) : ?>
                             <span class="column-header"><?php echo isset($column_values[sanitize_title($column->column_header)]) ? $column_values[sanitize_title($column->column_header)] : ''; ?></span>
-                        <?php endforeach; ?>
+                        <?php endforeach; endif; ?>
                     <?php else : ?>
                         <span class="column-header"><?php echo apply_filters('the_title', $post->post_title); ?></span>
                     <?php endif; ?>
