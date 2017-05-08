@@ -63,7 +63,7 @@
 
             <div class="box-content">
                 <?php if (in_array('title', $fields->posts_fields)) : ?>
-                <h5 class="link-item link-item-light"><?php echo apply_filters('the_title', $post->post_title); ?></h5>
+                <h5 class="link-item link-item-lg link-item-light"><?php echo apply_filters('the_title', $post->post_title); ?></h5>
                 <?php endif; ?>
 
                 <?php if (in_array('date', $fields->posts_fields) && $fields->posts_data_source !== 'input') : ?>
