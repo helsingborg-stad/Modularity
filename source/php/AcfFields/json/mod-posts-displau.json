@@ -156,6 +156,33 @@
             }
         },
         {
+            "default_value": 0,
+            "message": "Yes, hide the title column",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "key": "field_591176fff96d6",
+            "label": "Hide the title column",
+            "name": "posts_hide_title_column",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "expandable-list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
+        },
+        {
             "default_value": "",
             "maxlength": "",
             "placeholder": "",
@@ -173,6 +200,11 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "expandable-list"
+                    },
+                    {
+                        "field": "field_591176fff96d6",
+                        "operator": "!=",
+                        "value": "1"
                     }
                 ]
             ],
@@ -249,8 +281,5 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "",
-    "modified": 1485442638,
-    "local": "json"
+    "description": ""
 }]
-

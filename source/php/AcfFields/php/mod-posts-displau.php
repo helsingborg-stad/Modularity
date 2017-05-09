@@ -1,9 +1,9 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
-    'title' => 'Data display',
+    'title' => __('Data display', 'modularity'),
     'fields' => array(
         0 => array(
             'layout' => 'horizontal',
@@ -159,15 +159,15 @@
             ),
         ),
         4 => array(
-            'default_value' => '',
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'key' => 'field_57e3bcae3826e',
-            'label' => __('Title column label', 'modularity'),
-            'name' => 'title_column_label',
-            'type' => 'text',
+            'default_value' => 0,
+            'message' => __('Yes, hide the title column', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_591176fff96d6',
+            'label' => __('Hide the title column', 'modularity'),
+            'name' => 'posts_hide_title_column',
+            'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => array(
@@ -186,6 +186,38 @@
             ),
         ),
         5 => array(
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+            'key' => 'field_57e3bcae3826e',
+            'label' => __('Title column label', 'modularity'),
+            'name' => 'title_column_label',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'expandable-list',
+                    ),
+                    1 => array(
+                        'field' => 'field_591176fff96d6',
+                        'operator' => '!=',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+        ),
+        6 => array(
             'sub_fields' => array(
                 0 => array(
                     'default_value' => '',
@@ -253,7 +285,5 @@
     'hide_on_screen' => '',
     'active' => 1,
     'description' => '',
-    'modified' => 1485442638,
-    'local' => 'json',
 ));
-}
+}
