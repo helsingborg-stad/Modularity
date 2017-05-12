@@ -109,6 +109,7 @@ class Post
     public static function isArchive()
     {
         global $archive;
+        global $post;
 
         if (defined('DOING_AJAX') && DOING_AJAX) {
             $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
@@ -116,6 +117,14 @@ class Post
 
         if (substr($archive, 0, 8) == 'archive-' || is_search()) {
             return $archive;
+        }
+
+        if (is_archive() && $post->post_type == 'post') {
+            return 'archive';
+        }
+
+        if (is_post_type_archive($post->post_type)) {
+            return 'archive-' . $post->post_type;
         }
 
         if (isset($_GET['id']) && $_GET['id'] == 'author') {
