@@ -17,7 +17,7 @@
     <?php endif; ?>
 
     <div class="accordion accordion-icon accordion-list">
-        <?php if (isset($fields->allow_freetext_filtering) && $fields->allow_freetext_filtering) : ?>
+        <?php if (!isset($fields->allow_freetext_filtering) || $fields->allow_freetext_filtering) : ?>
         <div class="accordion-search">
             <input type="text" name="accordion-search" placeholder="<?php _e('Filter on…', 'modularity'); ?>">
         </div>
