@@ -113,21 +113,15 @@ class Post
 
         if (defined('DOING_AJAX') && DOING_AJAX) {
             $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
-        }
 
-        if (substr($archive, 0, 8) == 'archive-' || is_search()) {
-            return $archive;
-        }
-
-        if (is_archive() && $post->post_type == 'post') {
+            if (substr($archive, 0, 8) == 'archive-' || is_search()) {
+                return $archive;
+            }
+        } elseif (is_archive() && $post->post_type == 'post') {
             return 'archive';
-        }
-
-        if (is_post_type_archive($post->post_type)) {
+        } elseif (is_post_type_archive($post->post_type) || is_search()) {
             return 'archive-' . $post->post_type;
-        }
-
-        if (isset($_GET['id']) && $_GET['id'] == 'author') {
+        } elseif (isset($_GET['id']) && $_GET['id'] == 'author') {
             return 'author';
         }
 
