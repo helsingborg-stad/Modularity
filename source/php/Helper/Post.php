@@ -117,9 +117,9 @@ class Post
             if (substr($archive, 0, 8) == 'archive-' || is_search()) {
                 return $archive;
             }
-        } elseif (is_archive() && $post->post_type == 'post') {
+        } elseif (is_archive() && (is_object($post->post_type) && $post->post_type == 'post')) {
             return 'archive';
-        } elseif (is_post_type_archive($post->post_type) || is_search()) {
+        } elseif (is_search() || (is_object($post->post_type) && is_post_type_archive($post->post_type))) {
             return 'archive-' . $post->post_type;
         } elseif (isset($_GET['id']) && $_GET['id'] == 'author') {
             return 'author';
