@@ -263,6 +263,33 @@
                 "class": "",
                 "id": ""
             }
+        },
+        {
+            "default_value": 1,
+            "message": "Allow freetext filtering",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "key": "field_59197c6dafb31",
+            "label": "Allow freetext filtering",
+            "name": "allow_freetext_filtering",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "expandable-list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
         }
     ],
     "location": [

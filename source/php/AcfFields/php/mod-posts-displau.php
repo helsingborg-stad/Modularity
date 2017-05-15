@@ -267,6 +267,33 @@ if (function_exists('acf_add_local_field_group')) {
                 'id' => '',
             ),
         ),
+        7 => array(
+            'default_value' => 1,
+            'message' => __('Allow freetext filtering', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_59197c6dafb31',
+            'label' => __('Allow freetext filtering', 'modularity'),
+            'name' => 'allow_freetext_filtering',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'expandable-list',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+        ),
     ),
     'location' => array(
         0 => array(
