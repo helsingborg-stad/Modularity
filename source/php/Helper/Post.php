@@ -119,9 +119,9 @@ class Post
             return $archive;
         }
 
-        if (is_archive() && (is_object($post->post_type) && $post->post_type == 'post')) {
+        if (is_archive() && (is_object($post) && $post->post_type == 'post')) {
             return 'archive';
-        } elseif (is_search() || (is_object($post->post_type) && is_post_type_archive($post->post_type))) {
+        } elseif (is_search() || (is_object($post) && is_post_type_archive($post->post_type))) {
             return 'archive-' . $post->post_type;
         } elseif (isset($_GET['id']) && $_GET['id'] == 'author') {
             return 'author';
