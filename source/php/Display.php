@@ -234,6 +234,15 @@ class Display
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
 
+        // Set class properties if needed
+        if (empty($module->slug)) {
+            foreach ($moduleSettings as $key => $value) {
+                $module->$key = $value;
+            }
+
+            $module->isLegacy = true;
+        }
+
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
         }
