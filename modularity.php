@@ -76,10 +76,9 @@ add_action('plugins_loaded', function () {
         'mod-sites'            => 'group_58ecb6b6330f4',
     ));
     $acfExportManager->import();
-
 });
 
 // Start application
 add_action('plugins_loaded', function () {
     new Modularity\App();
-});
+}, 20);
