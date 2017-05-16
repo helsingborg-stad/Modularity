@@ -221,19 +221,19 @@ class ModuleManager
                 register_post_type($postTypeSlug, $args);
                 $this->setupListTableField($postTypeSlug);
             });
+
             $class->plugin = (array) $class->plugin;
 
             if (!empty($class->plugin)) {
-
-                //Fallback to enable old modules to register their plugins
+                // Fallback to enable old modules to register their plugins
                 if (!is_array($class->plugin)) {
                     $class->plugin = array($class->plugin);
                 }
 
-                //Ability to filter path
+                // Ability to filter path
                 $class->plugin = apply_filters('Modularity/Register/Plugin', $class->plugin, $postTypeSlug);
 
-                //Include
+                // Include
                 foreach ($class->plugin as $plugin) {
                     if (file_exists($plugin)) {
                         require_once $plugin;
@@ -254,15 +254,16 @@ class ModuleManager
 
         // Store settings of each module in static var
         self::$moduleSettings[$postTypeSlug] = array(
-            'slug' => $class->slug,
+            'moduleSlug'    => $postTypeSlug,
+            'slug'          => $class->slug,
             'singular_name' => $class->nameSingular,
-            'plural_name' => $class->namePlural,
-            'description' => $class->description,
-            'supports' => $class->supports,
-            'icon' => $class->icon,
-            'plugin' => $class->plugin,
-            'cache_ttl' => $class->cacheTtl,
-            'hide_title' => $class->hideTitle
+            'plural_name'   => $class->namePlural,
+            'description'   => $class->description,
+            'supports'      => $class->supports,
+            'icon'          => $class->icon,
+            'plugin'        => $class->plugin,
+            'cache_ttl'     => $class->cacheTtl,
+            'hide_title'    => $class->hideTitle
         );
 
         $class->moduleSlug = $postTypeSlug;

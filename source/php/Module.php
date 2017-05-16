@@ -84,6 +84,12 @@ class Module
     public $isDeprecated = false;
 
     /**
+     * Is this module a legacy module (not updated to new registration methods)
+     * @var boolean
+     */
+    public $isLegacy = false;
+
+    /**
      * Set to tro if only available for multisites
      * @var boolean
      */
@@ -110,14 +116,13 @@ class Module
         $this->args = $args;
         $this->init();
 
-
-
-
         // Defaults to the path of the class .php-file and subdir /views
         // Example: my-module/my-module.php (module class)
         //          my-module/views/        (views folder)
-        $reflector = new \ReflectionClass(get_class($this));
-        $this->templateDir = trailingslashit(dirname($reflector->getFileName())) . 'views/';
+        if (!$this->templateDir) {
+            $reflector = new \ReflectionClass(get_class($this));
+            $this->templateDir = trailingslashit(dirname($reflector->getFileName())) . 'views/';
+        }
 
         if (is_numeric($post)) {
             $post = get_post($post);
@@ -194,7 +199,7 @@ class Module
      */
     public function template()
     {
-        if (!empty($this->slug)) {
+        if (!$this->isLegacy && !empty($this->slug)) {
             return $this->slug . '.blade.php';
         }
 
@@ -233,7 +238,12 @@ class Module
         $modules = \Modularity\Editor::getPostModules($postId);
         $modules = json_encode($modules);
 
-        return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $this->moduleSlug . '"') == true, $archiveSlug);
+        $moduleSlug = $this->moduleSlug;
+        if (empty($moduleSlug)) {
+            $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
+        }
+
+        return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $moduleSlug . '"') == true, $archiveSlug);
     }
 
     /**
