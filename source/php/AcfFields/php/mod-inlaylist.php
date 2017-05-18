@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_569e054a7f9c2',
     'title' => __('List', 'modularity'),
     'fields' => array(
@@ -166,7 +166,7 @@
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'post',
+                'value' => 'mod-inlaylist',
             ),
         ),
     ),
@@ -179,4 +179,4 @@
     'active' => 1,
     'description' => '',
 ));
-}
+}
