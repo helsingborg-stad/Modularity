@@ -3,5 +3,5 @@
     <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
     @endif
 
-    {{ $embed }}
+    {!! $embed !!}
 </div>
