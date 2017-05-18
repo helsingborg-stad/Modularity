@@ -323,12 +323,16 @@ class Posts extends \Modularity\Module
     {
         $columns = array();
 
-        foreach ($posts as $post) {
-            $values = get_field('posts_list_column_titles', $post);
+        if (is_array($posts)) {
 
-            foreach ($values as $value) {
-                $columns[] = $value['column_header'];
+            foreach ($posts as $post) {
+                $values = get_field('posts_list_column_titles', $post);
+
+                foreach ($values as $value) {
+                    $columns[] = $value['column_header'];
+                }
             }
+
         }
 
         return $columns;
