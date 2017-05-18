@@ -4,25 +4,46 @@ namespace Modularity\Module\Table;
 
 class Table extends \Modularity\Module
 {
-    public function __construct()
+    public $slug = 'table';
+    public $supports = array();
+    public $plugin = array(
+        'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php'
+    );
+
+    public function init()
     {
+        $this->nameSingular = __("Table", 'modularity');
+        $this->namePlural = __("Tables", 'modularity');
+        $this->description = __("Outputs a flexible table with options.", 'modularity');
 
-        //Register acf module
-        $this->register(
-            'table',
-            __("Table", 'modularity'),
-            __("Tables", 'modularity'),
-            __("Outputs a flexible table with options.", 'modularity'),
-            array(), //supports
-            null, //icon
-            'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php', //included plugin
-            3600*24*7
-        );
-
-        //Register stylesheets
         add_action('Modularity/Module/mod-table/enqueue', array($this, 'modAssets'));
-
         add_action('save_post', array($this, 'csvImport'), 999);
+    }
+
+    public function data() : array
+    {
+        $data = get_fields($this->ID);
+        $data['tableClasses'] = $this->getTableClasses($data);
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        return $data;
+    }
+
+    public function getTableClasses($data)
+    {
+        $classes = '';
+
+        if (isset($data['mod_table_classes']) && is_array($data['mod_table_classes'])) {
+            $classes = $data['mod_table_classes'];
+
+            if (isset($data['mod_table_size']) && !empty($data['mod_table_size'])) {
+                $classes[] = $data['mod_table_size'];
+            }
+
+            $classes = array_unique($classes);
+            $classes = implode(' ', $classes);
+        }
+
+        return $classes;
     }
 
     public function csvImport($post_id)
@@ -102,4 +123,14 @@ class Table extends \Modularity\Module
             'sSortDescending' => __('activate to sort column descending', 'modularity')
         ));
     }
+
+    /**
+     * Available "magic" methods for modules:
+     * init()            What to do on initialization
+     * data()            Use to send data to view (return array)
+     * style()           Enqueue style only when module is used on page
+     * script            Enqueue script only when module is used on page
+     * adminEnqueue()    Enqueue scripts for the module edit/add page in admin
+     * template()        Return the view template (blade) the module should use when displayed
+     */
 }
