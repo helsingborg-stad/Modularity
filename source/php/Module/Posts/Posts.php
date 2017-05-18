@@ -4,21 +4,18 @@ namespace Modularity\Module\Posts;
 
 class Posts extends \Modularity\Module
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
+    public $slug = 'posts';
+    public $supports = array();
+    public $icon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNC4zMzQgMjQuMzM0Ij48ZyBmaWxsPSIjMDMwMTA0Ij48cGF0aCBkPSJNMTAuMjk1IDBILjkzNUEuOTM2LjkzNiAwIDAgMCAwIC45MzZ2OS4zNmMwIC41MTYuNDIuOTM1LjkzNi45MzVoOS4zNmMuNTE2IDAgLjkzNS0uNDE4LjkzNS0uOTM1Vi45MzVBLjkzNi45MzYgMCAwIDAgMTAuMjk2IDB6TTIzLjM5OCAwaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzZjMCAuNTE2LjQyLjkzNS45MzYuOTM1aDkuMzU4Yy41MTcgMCAuOTM2LS40MTguOTM2LS45MzVWLjkzNUEuOTM2LjkzNiAwIDAgMCAyMy4zOTggMHptLS45MzYgOS4zNmgtNy40ODdWMS44N2g3LjQ4N1Y5LjM2ek0xMC4yOTUgMTMuMTAzSC45MzVBLjkzNi45MzYgMCAwIDAgMCAxNC4wNHY5LjM1OGMwIC41MTcuNDIuOTM2LjkzNi45MzZoOS4zNmMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNS45MzUgMCAwIDAtLjkzNS0uOTM1em0tNS44NzUgOS4zNmMuMTYtLjI3Ny4yNi0uNTk0LjI2LS45MzdhMS44NzIgMS44NzIgMCAwIDAtMS44NzItMS44NzJjLS4zNDMgMC0uNjYuMS0uOTM2LjI2di0yLjM5Yy4yNzYuMTYuNTkzLjI2LjkzNi4yNkExLjg3MiAxLjg3MiAwIDAgMCA0LjY4IDE1LjkxYzAtLjM0Mi0uMS0uNjYtLjI2LS45MzVoMi4zOWExLjg1IDEuODUgMCAwIDAtLjI2LjkzNmMwIDEuMDM1Ljg0IDEuODczIDEuODczIDEuODczLjM0MyAwIC42Ni0uMS45MzYtLjI2djIuMzlhMS44NSAxLjg1IDAgMCAwLS45MzctLjI2IDEuODcyIDEuODcyIDAgMCAwLTEuODcyIDEuODczYzAgLjM0My4xLjY2LjI2LjkzNkg0LjQyek0yMy4zOTggMTMuMTAzaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzU4YzAgLjUxNi40Mi45MzUuOTM2LjkzNWg5LjM1OGMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNC45MzQgMCAwIDAtLjkzNS0uOTM0em0tOC40MjMgNi4wMDNsNC4xMy00LjEzaDIuMDM0bC02LjE2NSA2LjE2M3YtMi4wMzR6bTAtNC4xM2gxLjQ4NGwtMS40ODUgMS40ODN2LTEuNDg1em03LjQ4NyAxLjMyMnYyLjAzMmwtNC4xMyA0LjEzMmgtMi4wMzRsNi4xNjQtNi4xNjR6bTAgNi4xNjRoLTEuNDg1bDEuNDg1LTEuNDg1djEuNDg1eiIvPjxjaXJjbGUgY3g9IjUuNjE2IiBjeT0iMTguNzE4IiByPSIxLjg3MiIvPjwvZz48L3N2Zz4=';
+    public $plugin = array(
+        'acf-post-type-field/acf-posttype-select.php'
+    );
+
+    public function init()
     {
-        // This will register the module
-        $this->register(
-            'posts',
-            __('Posts', 'modularity'),
-            __('Posts', 'modularity'),
-            __('Outputs selected posts in specified layout', 'modularity'),
-            array(),
-            'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNC4zMzQgMjQuMzM0Ij48ZyBmaWxsPSIjMDMwMTA0Ij48cGF0aCBkPSJNMTAuMjk1IDBILjkzNUEuOTM2LjkzNiAwIDAgMCAwIC45MzZ2OS4zNmMwIC41MTYuNDIuOTM1LjkzNi45MzVoOS4zNmMuNTE2IDAgLjkzNS0uNDE4LjkzNS0uOTM1Vi45MzVBLjkzNi45MzYgMCAwIDAgMTAuMjk2IDB6TTIzLjM5OCAwaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzZjMCAuNTE2LjQyLjkzNS45MzYuOTM1aDkuMzU4Yy41MTcgMCAuOTM2LS40MTguOTM2LS45MzVWLjkzNUEuOTM2LjkzNiAwIDAgMCAyMy4zOTggMHptLS45MzYgOS4zNmgtNy40ODdWMS44N2g3LjQ4N1Y5LjM2ek0xMC4yOTUgMTMuMTAzSC45MzVBLjkzNi45MzYgMCAwIDAgMCAxNC4wNHY5LjM1OGMwIC41MTcuNDIuOTM2LjkzNi45MzZoOS4zNmMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNS45MzUgMCAwIDAtLjkzNS0uOTM1em0tNS44NzUgOS4zNmMuMTYtLjI3Ny4yNi0uNTk0LjI2LS45MzdhMS44NzIgMS44NzIgMCAwIDAtMS44NzItMS44NzJjLS4zNDMgMC0uNjYuMS0uOTM2LjI2di0yLjM5Yy4yNzYuMTYuNTkzLjI2LjkzNi4yNkExLjg3MiAxLjg3MiAwIDAgMCA0LjY4IDE1LjkxYzAtLjM0Mi0uMS0uNjYtLjI2LS45MzVoMi4zOWExLjg1IDEuODUgMCAwIDAtLjI2LjkzNmMwIDEuMDM1Ljg0IDEuODczIDEuODczIDEuODczLjM0MyAwIC42Ni0uMS45MzYtLjI2djIuMzlhMS44NSAxLjg1IDAgMCAwLS45MzctLjI2IDEuODcyIDEuODcyIDAgMCAwLTEuODcyIDEuODczYzAgLjM0My4xLjY2LjI2LjkzNkg0LjQyek0yMy4zOTggMTMuMTAzaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzU4YzAgLjUxNi40Mi45MzUuOTM2LjkzNWg5LjM1OGMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNC45MzQgMCAwIDAtLjkzNS0uOTM0em0tOC40MjMgNi4wMDNsNC4xMy00LjEzaDIuMDM0bC02LjE2NSA2LjE2M3YtMi4wMzR6bTAtNC4xM2gxLjQ4NGwtMS40ODUgMS40ODN2LTEuNDg1em03LjQ4NyAxLjMyMnYyLjAzMmwtNC4xMyA0LjEzMmgtMi4wMzRsNi4xNjQtNi4xNjR6bTAgNi4xNjRoLTEuNDg1bDEuNDg1LTEuNDg1djEuNDg1eiIvPjxjaXJjbGUgY3g9IjUuNjE2IiBjeT0iMTguNzE4IiByPSIxLjg3MiIvPjwvZz48L3N2Zz4=',
-            'acf-post-type-field/acf-posttype-select.php'
-        );
+        $this->nameSingular = __('Posts', 'modularity');
+        $this->namePlural = __('Posts', 'modularity');
+        $this->description = __('Outputs selected posts in specified layout', 'modularity');
 
         add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
@@ -29,6 +26,103 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+    }
+
+    public function template()
+    {
+        $this->getTemplateData($this->data['posts_display_as']);
+        return apply_filters('Modularity/Module/Posts/template', $this->data['posts_display_as'] . '.blade.php', $this, $this->data);
+    }
+
+    public function getTemplateData($template)
+    {
+        $template = ucfirst($template);
+        $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
+
+        if (class_exists($class)) {
+            $controller = new $class($this, $this->args, $this->data);
+            $this->data = array_merge($this->data, $controller->data);
+        }
+    }
+
+    public function data() : array
+    {
+        $fields = json_decode(json_encode(get_fields($this->ID)));
+
+        $data['posts_display_as'] = $fields->posts_display_as;
+
+        // Posts
+        $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
+
+        // Sorting
+        $data['sortBy'] = false;
+        $data['orderBy'] = false;
+        if (isset($fields->posts_sort_by) && substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
+            $data['sortBy'] = 'meta_key';
+            $data['sortByKey'] = str_replace('_metakey_', '', $fields->posts_sort_by);
+        }
+
+        $data['order'] = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
+
+        // Setup filters
+        $filters = array(
+            'orderby' => sanitize_text_field($data['sortBy']),
+            'order'   => sanitize_text_field($data['order'])
+        );
+
+        if ($data['sortBy'] == 'meta_key') {
+            $filters['meta_key'] = $data['sortByKey'];
+        }
+
+        if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
+            $taxType = $fields->posts_taxonomy_type;
+            $taxValues = (array) $fields->posts_taxonomy_value;
+            $taxValues = implode('|', $taxValues);
+
+            $filters['term[]'] = $taxType . '|' . $taxValues;
+        }
+
+        $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
+
+        $data['posts_data_source'] = $fields->posts_data_source;
+        $data['posts_fields'] = $fields->posts_fields;
+        $data['archive_link'] = $fields->archive_link;
+
+        return $data;
+    }
+
+    public function getTaxonomyDisplay($fields)
+    {
+        if (!isset($fields->taxonomy_display)) {
+            return array();
+        }
+
+        $taxonomyDisplay = array();
+        $taxonomiesToDisplay = $fields->taxonomy_display;
+
+        foreach ((array)$taxonomiesToDisplay as $taxonomy) {
+            $placement = get_field('taxonomy_' . sanitize_title($taxonomy) . '_placement', $module->ID);
+
+            switch ($placement) {
+                case 'topleft':
+                case 'topright':
+                case 'bottomleft':
+                case 'bottomright':
+                case 'center':
+                    $taxonomyDisplay['top'][$taxonomy] = $placement;
+                    break;
+
+                case 'below':
+                    $taxonomyDisplay['below'][$taxonomy] = $placement;
+                    break;
+
+                default:
+                    $taxonomyDisplay[$placement][$taxonomy] = $placement;
+                    break;
+            }
+
+            return $taxonomyDisplay;
+        }
     }
 
     /**
@@ -280,15 +374,17 @@ class Posts extends \Modularity\Module
 
         $fields = $this->getColumns($modules);
 
-        add_meta_box(
-            'modularity-mod-posts-expandable-list',
-            'Modularity expandable list column values',
-            array($this, 'columnFieldsMetaBoxContent'),
-            null,
-            'normal',
-            'default',
-            array($fields)
-        );
+        if (!empty($fields)) {
+            add_meta_box(
+                'modularity-mod-posts-expandable-list',
+                'Modularity expandable list column values',
+                array($this, 'columnFieldsMetaBoxContent'),
+                null,
+                'normal',
+                'default',
+                array($fields)
+            );
+        }
     }
 
     /**
@@ -328,8 +424,10 @@ class Posts extends \Modularity\Module
             foreach ($posts as $post) {
                 $values = get_field('posts_list_column_titles', $post);
 
-                foreach ($values as $value) {
-                    $columns[] = $value['column_header'];
+                if (is_array($values)) {
+                    foreach ($values as $value) {
+                        $columns[] = $value['column_header'];
+                    }
                 }
             }
 
@@ -544,4 +642,14 @@ class Posts extends \Modularity\Module
 
         return get_posts($getPostsArgs);
     }
+
+    /**
+     * Available "magic" methods for modules:
+     * init()            What to do on initialization
+     * data()            Use to send data to view (return array)
+     * style()           Enqueue style only when module is used on page
+     * script            Enqueue script only when module is used on page
+     * adminEnqueue()    Enqueue scripts for the module edit/add page in admin
+     * template()        Return the view template (blade) the module should use when displayed
+     */
 }
