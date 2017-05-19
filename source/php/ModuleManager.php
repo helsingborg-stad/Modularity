@@ -54,9 +54,11 @@ class ModuleManager
 
     public function __construct()
     {
-        self::$enabled = self::getEnabled();
-        self::$registered = $this->getRegistered();
-        $this->init();
+        add_action('init', function () {
+            self::$enabled = self::getEnabled();
+            self::$registered = $this->getRegistered();
+            $this->init();
+        }, 1);
 
         // Hide title option
         add_action('edit_form_before_permalink', array($this, 'hideTitleCheckbox'));
