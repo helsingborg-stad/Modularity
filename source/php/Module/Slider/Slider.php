@@ -105,6 +105,10 @@ class Slider extends \Modularity\Module
             $classes[] = 'slider-nav-hover';
         }
 
+        if ($fields['slider_height'] == true) {
+            $classes[] = 'slider-height-restrictions';
+        }
+
         return implode(' ', $classes);
     }
 
