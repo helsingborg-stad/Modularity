@@ -9,7 +9,6 @@
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
             <a href="{{ $posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID) }}" class="{{ $classes }}" data-equal-item>
-
                 @if ($post->thumbnail && in_array('image', $posts_fields))
                     <div class="box-image-container">
                         <?php if (isset($taxonomyDisplay['top'])) : foreach ($taxonomyDisplay['top'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
