@@ -219,6 +219,26 @@ class Display
     }
 
     /**
+     * Fills module object with missing params if needed
+     * @param  object $module
+     * @param  array $moduleSettings
+     * @return object
+     */
+    public function fillMissingParams($module, $moduleSettings)
+    {
+        // Set class properties if needed
+        if (empty($module->slug)) {
+            foreach ($moduleSettings as $key => $value) {
+                $module->$key = $value;
+            }
+
+            $module->isLegacy = true;
+        }
+
+        return $module;
+    }
+
+    /**
      * Outputs a specific module
      * @param  object $module           The module data
      * @param  array $args              The sidebar data
@@ -233,15 +253,7 @@ class Display
 
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
-
-        // Set class properties if needed
-        if (empty($module->slug)) {
-            foreach ($moduleSettings as $key => $value) {
-                $module->$key = $value;
-            }
-
-            $module->isLegacy = true;
-        }
+        $module = $this->fillMissingParams($module, $moduleSettings);
 
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
@@ -250,56 +262,7 @@ class Display
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
 
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
-            $templatePath = $module->template();
-
-            // Get template for legacy modules
-            if (!$templatePath) {
-                $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
-            }
-
-            if (!$templatePath) {
-                return false;
-            }
-
-            $moduleMarkup = '';
-            if (preg_match('/.blade.php$/i', $templatePath)) {
-                $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
-            } else {
-                $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
-            }
-
-            if (empty($moduleMarkup)) {
-                return;
-            }
-
-            $classes = array(
-                'modularity-' . $module->post_type,
-                'modularity-' . $module->post_type . '-' . $module->ID
-            );
-
-            if (is_preview() && $module->hidden) {
-                $classes[] = 'modularity-preview-hidden';
-            }
-
-            $beforeModule = '';
-            $moduleEdit = '';
-            if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
-                $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity$moduleMarkup') . '</a></div>';
-            }
-
-            if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-                $beforeWidget = $module->columnWidth;
-
-                $classes[] = $beforeWidget;
-
-                $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . implode(' ', $classes) . '">', $args, $module->post_type, $module->ID);
-            } elseif (isset($args['before_widget'])) {
-                $beforeWidget = str_replace('%1$s', $module->post_type . '-' . $module->ID, $args['before_widget']);
-                $beforeWidget = str_replace('%2$s', implode(' ', $classes), $beforeWidget);
-                $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
-            }
-
-            $moduleMarkup = $beforeModule . $moduleEdit . $moduleMarkup;
+            $moduleMarkup = $this->getModuleMarkup($module, $args);
 
             if (isset($module->columnWidth) && !empty($module->columnWidth)) {
                 $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
@@ -324,6 +287,67 @@ class Display
         }
 
         return true;
+    }
+
+    /**
+     * Gets markup for a module
+     * @param  object $module The module object
+     * @param  array  $args   Module args
+     * @return string
+     */
+    public function getModuleMarkup($module, $args)
+    {
+        $templatePath = $module->template();
+
+        // Get template for legacy modules
+        if (!$templatePath) {
+            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+        }
+
+        if (!$templatePath) {
+            return false;
+        }
+
+        $moduleMarkup = '';
+        if (preg_match('/.blade.php$/i', $templatePath)) {
+            $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
+        } else {
+            $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
+        }
+
+        if (empty($moduleMarkup)) {
+            return;
+        }
+
+        $classes = array(
+            'modularity-' . $module->post_type,
+            'modularity-' . $module->post_type . '-' . $module->ID
+        );
+
+        if (is_preview() && $module->hidden) {
+            $classes[] = 'modularity-preview-hidden';
+        }
+
+        $beforeModule = '';
+        $moduleEdit = '';
+        if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
+            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity$moduleMarkup') . '</a></div>';
+        }
+
+        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
+            $beforeWidget = $module->columnWidth;
+
+            $classes[] = $beforeWidget;
+
+            $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . implode(' ', $classes) . '">', $args, $module->post_type, $module->ID);
+        } elseif (isset($args['before_widget'])) {
+            $beforeWidget = str_replace('%1$s', $module->post_type . '-' . $module->ID, $args['before_widget']);
+            $beforeWidget = str_replace('%2$s', implode(' ', $classes), $beforeWidget);
+            $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
+        }
+
+        $moduleMarkup = $beforeModule . $moduleEdit . $moduleMarkup;
+        return $moduleMarkup;
     }
 
     /**
@@ -377,23 +401,13 @@ class Display
 
         $module = \Modularity\Editor::getModule($args['id']);
 
-        if (substr($module->post_type, 0, 4) != 'mod-' || ($module->post_status == 'private' && !is_user_logged_in())) {
+        $class = \Modularity\ModuleManager::$classes[$module->post_type];
+        $module = new $class($module, $args);
+
+        $moduleMarkup = $this->getModuleMarkup($module, $args);
+        if (empty($moduleMarkup)) {
             return;
         }
-
-        $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module-inline', false);
-
-        if (!$templatePath || $args['inline'] !== true) {
-            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
-        }
-
-        if (!$templatePath) {
-            return false;
-        }
-
-        ob_start();
-        include $templatePath;
-        $moduleMarkup = ob_get_clean();
 
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
@@ -401,6 +415,11 @@ class Display
         return '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
     }
 
+    /**
+     * Removes nested shortcodes
+     * @param  WP_Post $post
+     * @return WP_Post
+     */
     public function filterNestedModuleShortocde($post)
     {
         if (is_admin()) {
