@@ -22,8 +22,8 @@
             <li><?php _e('No posts to show…', 'modularity'); ?></li>
         @endif
 
-        @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link)
-        <li><a class="read-more" href="{{ get_post_type_archive_link($fields->posts_data_post_type) }}?{{ http_build_query($filters) }}"><?php _e('Show more', 'modularity'); ?></a></li>
+        @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
+        <li><a class="read-more" href="{{ $archive_link_url }}?{{ http_build_query($filters) }}"><?php _e('Show more', 'modularity'); ?></a></li>
         @endif
     </ul>
 </div>
