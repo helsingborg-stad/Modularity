@@ -59,9 +59,9 @@
 
     @endif
 
-    <?php if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link) : ?>
+    @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link)
     <div class="grid-lg-12">
-        <a class="read-more" href="<?php echo get_post_type_archive_link($posts_data_post_type); echo '?' . http_build_query($filters);  ?>"><?php _e('Show more', 'modularity'); ?></a>
+        <a class="read-more" href="{{ get_post_type_archive_link($fields->posts_data_post_type) }}?{{ http_build_query($filters) }}"><?php _e('Show more', 'modularity'); ?></a>
     </div>
-    <?php endif; ?>
+    @endif
 </div>
