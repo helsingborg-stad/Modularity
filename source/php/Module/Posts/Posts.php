@@ -36,7 +36,9 @@ class Posts extends \Modularity\Module
 
     public function getTemplateData($template)
     {
-        $template = ucfirst($template);
+        $template = explode('-', $template);
+        $template = array_map('ucwords', $template);
+        $template = implode('', $template);
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
         if (class_exists($class)) {
