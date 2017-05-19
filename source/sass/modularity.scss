@@ -12,7 +12,8 @@
 @import 'partials/utilities';
 @import 'partials/spinner';
 
-[class*="modularity-mod-"] {
+[class*="modularity-mod-"],
+[class*="mod-"] {
     position: relative;
 
     .modularity-edit-module {
