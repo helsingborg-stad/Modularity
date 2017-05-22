@@ -6,9 +6,6 @@ class Table extends \Modularity\Module
 {
     public $slug = 'table';
     public $supports = array();
-    public $plugin = array(
-        'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php'
-    );
 
     public function init()
     {

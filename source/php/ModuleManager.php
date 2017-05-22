@@ -236,6 +236,12 @@ class ModuleManager
 
                 // Include
                 foreach ($class->plugin as $plugin) {
+                    /**
+                     * Deprecated
+                     * @todo  Remove……
+                     */
+                    trigger_error('Deprecation message: Modularity module "' . $postTypeSlug . '" is using a deprecated way of including plugins. Use the wp action "Modularity/Plugins" to load plugins instead.', E_USER_WARNING);
+
                     if (file_exists($plugin)) {
                         require_once $plugin;
                     } elseif (file_exists(MODULARITY_PATH . 'plugins/'. $plugin)) {
