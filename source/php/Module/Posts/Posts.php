@@ -529,7 +529,7 @@ class Posts extends \Modularity\Module
      * Enqueue scripts
      * @return void
      */
-    public function enqueueScripts()
+    public function adminEnqueue()
     {
         wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js', array(), '1.0.0', true);
 
