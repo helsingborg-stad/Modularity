@@ -144,7 +144,7 @@ class Slider extends \Modularity\Module
                 'cellAlign' => 'left'
             ));
 
-            $slideColumns = count($slides);
+            $slideColumns = count($fields['slides']);
         }
 
         $this->slideColumns = $slideColumns;
