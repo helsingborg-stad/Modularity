@@ -505,7 +505,7 @@ class Feed
                 $int++;
 
                 $date = new \DateTime($item->created_time);
-                $timeZone = new \DateTimeZone(get_option('timezone_string'));
+                $timeZone = new \DateTimeZone(!empty(get_option('timezone_string')) ? get_option('timezone_string') : date_default_timezone_get());
                 $date->setTimezone($timeZone);
 
                 $this->addStory(

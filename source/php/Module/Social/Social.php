@@ -26,7 +26,8 @@ class Social extends \Modularity\Module
 
     public function getFeed()
     {
-        $fields = json_decode(json_encode(get_fields($module->ID)));
+
+        $fields = json_decode(json_encode(get_fields($this->ID)));
 
         $feedArgs = array(
             'network'    => isset($fields->mod_social_type) ? $fields->mod_social_type : '',
