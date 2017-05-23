@@ -40,21 +40,43 @@ class Template
         $paths = apply_filters('Modularity/Module/TemplatePath', $paths);
         $paths = apply_filters('Modularity/Module/' . $module->post_type . '/TemplatePath', $paths);
 
-        // Search for blade template
+        // Search for Modularity v1 template (deprecated template structure)
         foreach ($paths as $path) {
-            $file = trailingslashit($path) . $module->post_type . '/' . $view . '.blade.php';
+            $file = trailingslashit($path) . 'modularity-' . $module->post_type . '.php';
 
             if (file_exists($file)) {
+                trigger_error('The ' . $module->post_type . ' module is using a deprecated template type. Please use blade template instead. Refer to the documentation at https://github.com/helsingborg-stad/Modularity/', E_USER_NOTICE);
                 return $file;
+            }
+        }
+
+        // Search for blade template
+        foreach ($paths as $path) {
+            $filename = $view . '.blade.php';
+            $fileWithSubfolder = trailingslashit($path) . trailingslashit($module->post_type) . $filename;
+            $fileWithoutSubfolder = trailingslashit($path) . $filename;
+
+            if (file_exists($fileWithSubfolder)) {
+                return $fileWithSubfolder;
+            }
+
+            if (file_exists($fileWithoutSubfolder)) {
+                return $fileWithoutSubfolder;
             }
         }
 
         // Search for php template
         foreach ($paths as $path) {
-            $file = trailingslashit($path) . $module->post_type . '/' . $view . '.php';
+            $filename = $view . '.php';
+            $fileWithSubfolder = trailingslashit($path) . trailingslashit($module->post_type) . $filename;
+            $fileWithoutSubfolder = trailingslashit($path) . $filename;
 
-            if (file_exists($file)) {
-                return $file;
+            if (file_exists($fileWithSubfolder)) {
+                return $fileWithSubfolder;
+            }
+
+            if (file_exists($fileWithoutSubfolder)) {
+                return $fileWithoutSubfolder;
             }
         }
 
