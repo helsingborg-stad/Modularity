@@ -97,15 +97,15 @@ class Posts extends \Modularity\Module
 
     public function getTaxonomyDisplay($fields)
     {
-        if (!isset($fields->taxonomy_display)) {
+        if (empty(get_field('taxonomy_display', $this->ID))) {
             return array();
         }
 
         $taxonomyDisplay = array();
-        $taxonomiesToDisplay = $fields->taxonomy_display;
+        $taxonomiesToDisplay = get_field('taxonomy_display', $this->ID);
 
         foreach ((array)$taxonomiesToDisplay as $taxonomy) {
-            $placement = get_field('taxonomy_' . sanitize_title($taxonomy) . '_placement', $module->ID);
+            $placement = get_field('taxonomy_' . sanitize_title($taxonomy) . '_placement', $this->ID);
 
             switch ($placement) {
                 case 'topleft':
@@ -124,9 +124,9 @@ class Posts extends \Modularity\Module
                     $taxonomyDisplay[$placement][$taxonomy] = $placement;
                     break;
             }
-
-            return $taxonomyDisplay;
         }
+
+        return $taxonomyDisplay;
     }
 
     /**
