@@ -85,9 +85,9 @@ class Posts extends \Modularity\Module
 
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
 
-        $data['posts_data_post_type'] = $fields->posts_data_post_type;
+        $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
         $data['posts_data_source'] = $fields->posts_data_source;
-        $data['posts_fields'] = $fields->posts_fields;
+        $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
 
         $data['archive_link'] = isset($fields->archive_link) ? $fields->archive_link : false;
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
