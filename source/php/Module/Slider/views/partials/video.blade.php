@@ -20,4 +20,9 @@
 
         </video>
     </div>
+
+    <!-- Text block -->
+    @if (isset($slide['activate_textblock']) && $slide['activate_textblock'])
+    @include('partials.textblock')'
+    @endif
 @endif

@@ -5,3 +5,8 @@
 @if ($slide['mobile_image_use'] !== false)
 <div class="slider-image slider-image-mobile {{ apply_filters('Modularity/slider/mobile_image_hidden', 'hidden-md hidden-lg') }}" style="background-image:url({{ ($slide['mobile_image_use'] !== false) ? $slide['mobile_image_use'][0] : '' }})"></div>
 @endif
+
+<!-- Text block -->
+@if (isset($slide['activate_textblock']) && $slide['activate_textblock'])
+@include('partials.textblock')'
+@endif

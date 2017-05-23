@@ -16,11 +16,6 @@
                 <!-- Slides -->
                 @include('partials.' . $slide['acf_fc_layout'])
 
-                <!-- Text block -->
-                @if (isset($slide['activate_textblock']) && $slide['activate_textblock'])
-                @include('partials.textblock')'
-                @endif
-
                 <!-- Link end -->
                 @if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false')
                 </a>

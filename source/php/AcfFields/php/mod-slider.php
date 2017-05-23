@@ -1,7 +1,7 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_56a5e99108991',
     'title' => 'Slider',
     'fields' => array(
@@ -672,7 +672,20 @@
                             'type' => 'select',
                             'instructions' => '',
                             'required' => 1,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_56b9f3dba4f22',
+                                        'operator' => '==',
+                                        'value' => '1',
+                                    ),
+                                    1 => array(
+                                        'field' => 'field_56a5eada398d7',
+                                        'operator' => '==',
+                                        'value' => 'upload',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
@@ -1193,4 +1206,4 @@
     'modified' => 1490020596,
     'local' => 'json',
 ));
-}
+}
