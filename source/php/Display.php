@@ -351,7 +351,7 @@ class Display
     }
 
     /**
-     * Renders blade template for module
+     * Check if template exists (first check for blade, then php) and renders the template
      * @param  string $view   View file
      * @param  class  $module Module class
      * @return string         Template markup
@@ -364,10 +364,17 @@ class Display
             throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
         }
 
-        $view = preg_replace('/.blade.php$/', '', $view);
+        $template = \Modularity\Helper\Template::getModuleTemplate($view, $module);
+        $templatePath = trailingslashit(dirname($template));
+        $view = basename($template, '.blade.php');
+        $view = basename($view, '.php');
 
-        $blade = new Blade($module->templateDir, MODULARITY_CACHE_DIR);
-        return $blade->view()->make($view, $module->data)->render();
+        if (\Modularity\Helper\Template::isBlade($template)) {
+            $blade = new Blade($templatePath, MODULARITY_CACHE_DIR);
+            return $blade->view()->make($view, $module->data)->render();
+        }
+
+        return $this->loadTemplate($template, $module, $args);
     }
 
     /**
