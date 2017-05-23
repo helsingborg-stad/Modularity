@@ -54,10 +54,15 @@ class ModuleManager
 
     public function __construct()
     {
-        self::$enabled = self::getEnabled();
-        self::$registered = $this->getRegistered();
 
-        $this->init();
+        // Init modules
+        add_action('init', function () {
+
+            self::$enabled = self::getEnabled();
+            self::$registered = $this->getRegistered();
+
+            $this->init();
+        }, 10);
 
         // Hide title option
         add_action('edit_form_before_permalink', array($this, 'hideTitleCheckbox'));
@@ -218,10 +223,9 @@ class ModuleManager
 
         // Register the post type if module is enabled
         if (in_array($postTypeSlug, self::$enabled)) {
-            add_action('init', function () use ($postTypeSlug, $args) {
-                register_post_type($postTypeSlug, $args);
-                $this->setupListTableField($postTypeSlug);
-            });
+
+            register_post_type($postTypeSlug, $args);
+            $this->setupListTableField($postTypeSlug);
 
             $class->plugin = (array) $class->plugin;
 
