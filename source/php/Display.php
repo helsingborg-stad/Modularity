@@ -251,6 +251,10 @@ class Display
             $args['id'] = 'no-id';
         }
 
+        if (!is_object($module)) {
+            return false;
+        }
+
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
         $module = $this->fillMissingParams($module, $moduleSettings);
