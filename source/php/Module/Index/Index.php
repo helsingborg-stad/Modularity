@@ -49,14 +49,26 @@ class Index extends \Modularity\Module
      */
     public function prepareItems($items)
     {
-        foreach ($items as &$item) {
-            global $post;
-            $post = $item['page'];
-            setup_postdata($item['page']);
-            $item['permalink'] = ($item['link_type'] == 'internal') ? get_permalink() : $item['link_url'];
-            $item['thumbnail'] = $this->getThumbnail($item);
-            $item['title'] = isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title();
-            $item['lead'] = isset($item['lead']) && !empty($item['lead']) ? $item['lead'] : get_the_excerpt();
+        if (is_array($items) && !empty($items)) {
+
+            foreach ($items as $key => $item) {
+                //Get post
+                global $post;
+                $post = $item['page'];
+                $post_data = setup_postdata($item['page']);
+
+                if ($post_data == true) {
+                    //Setup item
+                    $item['permalink'] = ($item['link_type'] == 'internal') ? get_permalink() : $item['link_url'];
+                    $item['thumbnail'] = $this->getThumbnail($item);
+                    $item['title'] = isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title();
+                    $item['lead'] = isset($item['lead']) && !empty($item['lead']) ? $item['lead'] : get_the_excerpt();
+                } else {
+                    //Delete item from list (this page has been remved)
+                    unset($items[$key]);
+                }
+            }
+
         }
 
         wp_reset_postdata();
