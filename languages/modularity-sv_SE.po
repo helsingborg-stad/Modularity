@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-03-29 11:16+0200\n"
-"PO-Revision-Date: 2017-03-29 11:47+0200\n"
+"POT-Creation-Date: 2017-05-29 15:41+0200\n"
+"PO-Revision-Date: 2017-05-29 15:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -20,45 +20,2236 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:137 App.php:168 App.php:199
+#: App.php:136 App.php:167 App.php:198 plugins/acf/core/fields/image.php:91
+#: plugins/acf/core/views/meta_box_fields.php:108
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:137 source/php/Editor.php:118 source/php/Options/General.php:93
+#: App.php:136 source/php/Editor.php:120 source/php/Options/General.php:93
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:169 App.php:200
+#: App.php:168 App.php:199
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:170 App.php:201
+#: App.php:169 App.php:200 plugins/acf/core/fields/image.php:90
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:171 App.php:202
+#: App.php:170 App.php:201
 msgid "Hide module"
 msgstr "Dölj modulen"
 
-#: App.php:172 App.php:203
+#: App.php:171 App.php:202
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:173 App.php:204
+#: App.php:172 App.php:203
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:174 App.php:205
+#: App.php:173 App.php:204
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:175 App.php:206
+#: App.php:174 App.php:205
 msgid "Width"
 msgstr "Bredd"
 
-#: App.php:177 App.php:208 templates/options/partials/modularity-modules.php:27
+#: App.php:176 App.php:207 templates/options/partials/modularity-modules.php:27
 msgid "Deprecated"
 msgstr "Utgående"
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:24
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:26
+msgid "Dynamic Table"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:79
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:208
+#, fuzzy
+#| msgid "Tables"
+msgid "Table Class"
+msgstr "Tabeller"
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:80
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:209
+msgid "Custom Table Class for the Front End"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:95
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:217
+msgid "Max Rows"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:96
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:218
+msgid "Sets the maximum rows for the table"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:111
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:224
+msgid "Disable Sort"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:112
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:225
+msgid "Disable Sort - this will disable drag and drop sorting of rows"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:122
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:143
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:230
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:243
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:87
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:106
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:78
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:91
+#: plugins/acf-website-field/website_url_v4.php:265
+#: plugins/acf-website-field/website_url_v4.php:289
+#: plugins/acf-website-field/website_url_v4.php:310
+#: plugins/acf-website-field/website_url_v5.php:265
+#: plugins/acf-website-field/website_url_v5.php:280
+#: plugins/acf-website-field/website_url_v5.php:297
+#: plugins/acf/core/controllers/field_group.php:461
+#: plugins/acf/core/fields/page_link.php:137
+#: plugins/acf/core/fields/page_link.php:158
+#: plugins/acf/core/fields/post_object.php:339
+#: plugins/acf/core/fields/post_object.php:360
+#: plugins/acf/core/fields/select.php:223
+#: plugins/acf/core/fields/select.php:242
+#: plugins/acf/core/fields/taxonomy.php:498
+#: plugins/acf/core/fields/user.php:331 plugins/acf/core/fields/wysiwyg.php:343
+#: plugins/acf/core/views/meta_box_fields.php:194
+#: plugins/acf/core/views/meta_box_fields.php:217
+#: source/php/AcfFields/php/mod-wpwidget.php:83
+#: source/php/AcfFields/php/mod-wpwidget.php:115
+#: source/php/AcfFields/php/mod-wpwidget.php:147
+#: source/php/AcfFields/php/mod-wpwidget.php:179
+#: source/php/AcfFields/php/mod-wpwidget.php:211
+msgid "Yes"
+msgstr "Ja"
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:123
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:144
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:231
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:244
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:88
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:107
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:79
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:92
+#: plugins/acf-website-field/website_url_v4.php:266
+#: plugins/acf-website-field/website_url_v4.php:290
+#: plugins/acf-website-field/website_url_v4.php:311
+#: plugins/acf-website-field/website_url_v5.php:266
+#: plugins/acf-website-field/website_url_v5.php:281
+#: plugins/acf-website-field/website_url_v5.php:298
+#: plugins/acf/core/controllers/field_group.php:460
+#: plugins/acf/core/fields/page_link.php:138
+#: plugins/acf/core/fields/page_link.php:159
+#: plugins/acf/core/fields/post_object.php:340
+#: plugins/acf/core/fields/post_object.php:361
+#: plugins/acf/core/fields/select.php:224
+#: plugins/acf/core/fields/select.php:243
+#: plugins/acf/core/fields/taxonomy.php:499
+#: plugins/acf/core/fields/user.php:332 plugins/acf/core/fields/wysiwyg.php:344
+#: plugins/acf/core/views/meta_box_fields.php:195
+#: plugins/acf/core/views/meta_box_fields.php:218
+#: source/php/AcfFields/php/mod-wpwidget.php:82
+#: source/php/AcfFields/php/mod-wpwidget.php:114
+#: source/php/AcfFields/php/mod-wpwidget.php:146
+#: source/php/AcfFields/php/mod-wpwidget.php:178
+#: source/php/AcfFields/php/mod-wpwidget.php:210
+#, fuzzy
+#| msgid "No "
+msgid "No"
+msgstr "Nej"
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:132
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:237
+#, fuzzy
+#| msgid "Columns"
+msgid "Fixed Columns"
+msgstr "Kolumner"
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:133
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:238
+msgid "Fixed columns - column count and set names"
+msgstr ""
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:153
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:250
+#, fuzzy
+#| msgid "Default"
+msgid "Default Headers"
+msgstr "Standard"
+
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:154
+#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:251
+msgid "Set default headers, one per line."
+msgstr ""
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:21
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:19
+#: plugins/acf/core/fields/relationship.php:641
+#, fuzzy
+#| msgid "Post Type Archive"
+msgid "Post Type Select"
+msgstr "Posttyp-arkiv"
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:22
+#: plugins/acf/core/fields/checkbox.php:20 plugins/acf/core/fields/radio.php:19
+#: plugins/acf/core/fields/select.php:19
+#: plugins/acf/core/fields/true_false.php:20
+msgid "Choice"
+msgstr ""
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:61
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:65
+#: plugins/acf/core/fields/checkbox.php:166
+#: plugins/acf/core/fields/color_picker.php:89
+#: plugins/acf/core/fields/email.php:106 plugins/acf/core/fields/number.php:116
+#: plugins/acf/core/fields/radio.php:196 plugins/acf/core/fields/select.php:197
+#: plugins/acf/core/fields/text.php:116
+#: plugins/acf/core/fields/textarea.php:103
+#: plugins/acf/core/fields/true_false.php:94
+#: plugins/acf/core/fields/wysiwyg.php:286
+#, fuzzy
+#| msgid "Default"
+msgid "Default Value"
+msgstr "Standard"
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:62
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:66
+#: plugins/acf/core/fields/checkbox.php:167
+#: plugins/acf/core/fields/select.php:198
+msgid "Enter each default value on a new line"
+msgstr ""
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:78
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:73
+#: plugins/acf/core/fields/page_link.php:127
+#: plugins/acf/core/fields/post_object.php:329
+#: plugins/acf/core/fields/select.php:214
+#: plugins/acf/core/fields/taxonomy.php:489
+#: plugins/acf/core/fields/user.php:322
+msgid "Allow Null?"
+msgstr ""
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:97
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:86
+#: plugins/acf/core/fields/page_link.php:148
+#: plugins/acf/core/fields/post_object.php:350
+#: plugins/acf/core/fields/select.php:233
+#, fuzzy
+#| msgid "Select values"
+msgid "Select multiple values?"
+msgstr "Valda värden"
+
+#: plugins/acf-post-type-field/acf-posttype-select-v4.php:163
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:125
+#: plugins/acf/core/fields/select.php:18 plugins/acf/core/fields/select.php:109
+#: plugins/acf/core/fields/taxonomy.php:480
+#: plugins/acf/core/fields/user.php:313
+#, fuzzy
+#| msgid "Select user"
+msgid "Select"
+msgstr "Välj användare"
+
+#: plugins/acf-post-type-field/acf-posttype-select-v5.php:30
+msgid "Error! Please enter a higher value"
+msgstr ""
+
+#: plugins/acf-website-field/website_url_v4.php:33
+#: plugins/acf-website-field/website_url_v5.php:33
+msgid "Website"
+msgstr ""
+
+#: plugins/acf-website-field/website_url_v4.php:253
+#: plugins/acf-website-field/website_url_v5.php:259
+#, fuzzy
+#| msgid "Show title"
+msgid "Show Title?"
+msgstr "Visa titel"
+
+#: plugins/acf-website-field/website_url_v4.php:278
+#: plugins/acf-website-field/website_url_v5.php:274
+msgid "Option to open in Current Window"
+msgstr ""
+
+#: plugins/acf-website-field/website_url_v4.php:299
+#: plugins/acf-website-field/website_url_v5.php:291
+msgid "Return array instead of Link"
+msgstr ""
+
+#: plugins/acf-website-field/website_url_v5.php:330
+msgid "Value must be a valid URL"
+msgstr ""
+
+#: plugins/acf/acf.php:485
+msgid "Field&nbsp;Groups"
+msgstr ""
+
+#: plugins/acf/acf.php:486 plugins/acf/core/controllers/field_groups.php:213
+msgid "Advanced Custom Fields"
+msgstr ""
+
+#: plugins/acf/acf.php:487
+#, fuzzy
+#| msgctxt "add new button"
+#| msgid "Add New"
+msgid "Add New"
+msgstr "Lägg till ny"
+
+#: plugins/acf/acf.php:488
+msgid "Add New Field Group"
+msgstr ""
+
+#: plugins/acf/acf.php:489
+msgid "Edit Field Group"
+msgstr ""
+
+#: plugins/acf/acf.php:490
+msgid "New Field Group"
+msgstr ""
+
+#: plugins/acf/acf.php:491
+msgid "View Field Group"
+msgstr ""
+
+#: plugins/acf/acf.php:492
+#, fuzzy
+#| msgid "Search page modules"
+msgid "Search Field Groups"
+msgstr "Moduler på söksida"
+
+#: plugins/acf/acf.php:493
+#, fuzzy
+#| msgid "No matching records found"
+msgid "No Field Groups found"
+msgstr "Inga matchande rader hittades"
+
+#: plugins/acf/acf.php:494
+msgid "No Field Groups found in Trash"
+msgstr ""
+
+#: plugins/acf/acf.php:579 plugins/acf/core/views/meta_box_options.php:99
+#, fuzzy
+#| msgid "Fields"
+msgid "Custom Fields"
+msgstr "Fält"
+
+#: plugins/acf/acf.php:597 plugins/acf/acf.php:600
+msgid "Field group updated."
+msgstr ""
+
+#: plugins/acf/acf.php:598
+msgid "Custom field updated."
+msgstr ""
+
+#: plugins/acf/acf.php:599
+msgid "Custom field deleted."
+msgstr ""
+
+#: plugins/acf/acf.php:602
+#, php-format
+msgid "Field group restored to revision from %s"
+msgstr ""
+
+#: plugins/acf/acf.php:603
+msgid "Field group published."
+msgstr ""
+
+#: plugins/acf/acf.php:604
+msgid "Field group saved."
+msgstr ""
+
+#: plugins/acf/acf.php:605
+msgid "Field group submitted."
+msgstr ""
+
+#: plugins/acf/acf.php:606
+msgid "Field group scheduled for."
+msgstr ""
+
+#: plugins/acf/acf.php:607
+msgid "Field group draft updated."
+msgstr ""
+
+#: plugins/acf/acf.php:742
+msgid "Thumbnail"
+msgstr ""
+
+#: plugins/acf/acf.php:743
+msgid "Medium"
+msgstr ""
+
+#: plugins/acf/acf.php:744 source/php/AcfFields/php/mod-notice.php:44
+#: source/php/AcfFields/php/mod-table.php:150
+#: source/php/AcfFields/php/mod-text.php:32
+msgid "Large"
+msgstr "Stor"
+
+#: plugins/acf/acf.php:745
+msgid "Full"
+msgstr ""
+
+#: plugins/acf/core/actions/export.php:26
+#: plugins/acf/core/views/meta_box_fields.php:58
+msgid "Error"
+msgstr ""
+
+#: plugins/acf/core/actions/export.php:33
+#, fuzzy
+#| msgid "Not selected"
+msgid "No ACF groups selected"
+msgstr "Inte vald"
+
+#: plugins/acf/core/api.php:1171
+msgid "Update"
+msgstr ""
+
+#: plugins/acf/core/api.php:1172
+#, fuzzy
+#| msgid "Post or page"
+msgid "Post updated"
+msgstr "Inlägg eller sida"
+
+#: plugins/acf/core/controllers/addons.php:42
+#: plugins/acf/core/controllers/field_groups.php:306
+msgid "Add-ons"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:130
+#: plugins/acf/core/controllers/field_groups.php:428
+msgid "Repeater Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:131
+msgid "Create infinite rows of repeatable data with this versatile interface!"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:137
+#: plugins/acf/core/controllers/field_groups.php:436
+#, fuzzy
+#| msgid "Galleries"
+msgid "Gallery Field"
+msgstr "Gallerier"
+
+#: plugins/acf/core/controllers/addons.php:138
+msgid "Create image galleries in a simple and intuitive interface!"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:144
+#: plugins/acf/core/controllers/field_groups.php:444
+#, fuzzy
+#| msgid "Options"
+msgid "Options Page"
+msgstr "Inställningar"
+
+#: plugins/acf/core/controllers/addons.php:145
+msgid "Create global data to use throughout your website!"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:151
+msgid "Flexible Content Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:152
+msgid "Create unique designs with a flexible content layout manager!"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:161
+msgid "Gravity Forms Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:162
+msgid "Creates a select field populated with Gravity Forms!"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:168
+msgid "Date & Time Picker"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:169
+msgid "jQuery date & time picker"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:175
+msgid "Location Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:176
+msgid "Find addresses and coordinates of a desired location"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:182
+msgid "Contact Form 7 Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:183
+msgid "Assign one or more contact form 7 forms to a post"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:193
+msgid "Advanced Custom Fields Add-Ons"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:196
+msgid ""
+"The following Add-ons are available to increase the functionality of the "
+"Advanced Custom Fields plugin."
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:197
+msgid ""
+"Each Add-on can be installed as a separate plugin (receives updates) or "
+"included in your theme (does not receive updates)."
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:219
+#: plugins/acf/core/controllers/addons.php:240
+msgid "Installed"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:221
+msgid "Purchase & Install"
+msgstr ""
+
+#: plugins/acf/core/controllers/addons.php:242
+#: plugins/acf/core/controllers/field_groups.php:421
+#: plugins/acf/core/controllers/field_groups.php:430
+#: plugins/acf/core/controllers/field_groups.php:438
+#: plugins/acf/core/controllers/field_groups.php:446
+#: plugins/acf/core/controllers/field_groups.php:454
+msgid "Download"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:50
+#: plugins/acf/core/controllers/export.php:159
+#, fuzzy
+#| msgid "Import"
+msgid "Export"
+msgstr "Importera"
+
+#: plugins/acf/core/controllers/export.php:216
+msgid "Export Field Groups"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:221
+#, fuzzy
+#| msgid "Fields"
+msgid "Field Groups"
+msgstr "Fält"
+
+#: plugins/acf/core/controllers/export.php:222
+msgid "Select the field groups to be exported"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:239
+#: plugins/acf/core/controllers/export.php:252
+msgid "Export to XML"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:242
+#: plugins/acf/core/controllers/export.php:267
+msgid "Export to PHP"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:253
+msgid ""
+"ACF will create a .xml export file which is compatible with the native WP "
+"import plugin."
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:254
+msgid ""
+"Imported field groups <b>will</b> appear in the list of editable field "
+"groups. This is useful for migrating fields groups between Wp websites."
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:256
+msgid "Select field group(s) from the list and click \"Export XML\""
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:257
+msgid "Save the .xml file when prompted"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:258
+msgid "Navigate to Tools &raquo; Import and select WordPress"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:259
+msgid "Install WP import plugin if prompted"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:260
+msgid "Upload and import your exported .xml file"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:261
+msgid "Select your user and ignore Import Attachments"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:262
+msgid "That's it! Happy WordPressing"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:268
+msgid "ACF will create the PHP code to include in your theme."
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:269
+#: plugins/acf/core/controllers/export.php:310
+msgid ""
+"Registered field groups <b>will not</b> appear in the list of editable field "
+"groups. This is useful for including fields in themes."
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:270
+#: plugins/acf/core/controllers/export.php:311
+msgid ""
+"Please note that if you export and register field groups within the same WP, "
+"you will see duplicate fields on your edit screens. To fix this, please move "
+"the original field group to the trash or remove the code from your functions."
+"php file."
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:272
+msgid "Select field group(s) from the list and click \"Create PHP\""
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:273
+#: plugins/acf/core/controllers/export.php:302
+msgid "Copy the PHP code generated"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:274
+#: plugins/acf/core/controllers/export.php:303
+msgid "Paste into your functions.php file"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:275
+#: plugins/acf/core/controllers/export.php:304
+msgid "To activate any Add-ons, edit and use the code in the first few lines."
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:295
+msgid "Export Field Groups to PHP"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:300
+#: plugins/acf/core/fields/tab.php:65
+msgid "Instructions"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:309
+msgid "Notes"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:316
+msgid "Include in theme"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:317
+msgid ""
+"The Advanced Custom Fields plugin can be included within a theme. To do so, "
+"move the ACF plugin inside your theme and add the following code to your "
+"functions.php file:"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:323
+msgid ""
+"To remove all visual interfaces from the ACF plugin, you can use a constant "
+"to enable lite mode. Add the following code to your functions.php file "
+"<b>before</b> the include_once code:"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:331
+msgid "Back to export"
+msgstr ""
+
+#: plugins/acf/core/controllers/export.php:400
+msgid "No field groups were selected"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:358
+msgid "Move to trash. Are you sure?"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:359
+msgid "checked"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:360
+msgid "No toggle fields available"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:361
+msgid "Field group title is required"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:362
+msgid "copy"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:363
+#: plugins/acf/core/views/meta_box_location.php:62
+#: plugins/acf/core/views/meta_box_location.php:159
+#, fuzzy
+#| msgid "more"
+msgid "or"
+msgstr "fler"
+
+#: plugins/acf/core/controllers/field_group.php:364
+#: plugins/acf/core/controllers/field_group.php:395
+#: plugins/acf/core/controllers/field_group.php:457
+#: plugins/acf/core/controllers/field_groups.php:148
+#: source/php/AcfFields/php/mod-fileslist.php:135
+#: source/php/AcfFields/php/mod-posts-displau.php:141
+msgid "Fields"
+msgstr "Fält"
+
+#: plugins/acf/core/controllers/field_group.php:365
+#, fuzzy
+#| msgid "Parent %s"
+msgid "Parent fields"
+msgstr "Förälder %s"
+
+#: plugins/acf/core/controllers/field_group.php:366
+msgid "Sibling fields"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:367
+msgid "Hide / Show All"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:396
+msgid "Location"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:397
+#: source/php/Options/General.php:11
+msgid "Options"
+msgstr "Inställningar"
+
+#: plugins/acf/core/controllers/field_group.php:459
+#, fuzzy
+#| msgid "Show title"
+msgid "Show Field Key:"
+msgstr "Visa titel"
+
+#: plugins/acf/core/controllers/field_group.php:633
+#, fuzzy
+#| msgid "Font size"
+msgid "Front Page"
+msgstr "Textstorlek"
+
+#: plugins/acf/core/controllers/field_group.php:634
+#, fuzzy
+#| msgid "Post or page"
+msgid "Posts Page"
+msgstr "Inlägg eller sida"
+
+#: plugins/acf/core/controllers/field_group.php:635
+msgid "Top Level Page (parent of 0)"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:636
+msgid "Parent Page (has children)"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:637
+msgid "Child Page (has parent)"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:645
+#, fuzzy
+#| msgid "Template"
+msgid "Default Template"
+msgstr "Mall"
+
+#: plugins/acf/core/controllers/field_group.php:727
+msgid "Published"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:728
+msgid "Pending Review"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:729
+msgid "Draft"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:730
+msgid "Future"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:731
+msgid "Private"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:732
+msgid "Revision"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:733
+msgid "Trash"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:746
+msgid "Super Admin"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_group.php:761
+#: plugins/acf/core/controllers/field_group.php:782
+#: plugins/acf/core/controllers/field_group.php:789
+#: plugins/acf/core/fields/file.php:186 plugins/acf/core/fields/image.php:177
+#: plugins/acf/core/fields/page_link.php:109
+#: plugins/acf/core/fields/post_object.php:286
+#: plugins/acf/core/fields/post_object.php:310
+#: plugins/acf/core/fields/relationship.php:588
+#: plugins/acf/core/fields/relationship.php:612
+#: plugins/acf/core/fields/user.php:276
+#, fuzzy
+#| msgid "All "
+msgid "All"
+msgstr "Alla"
+
+#: plugins/acf/core/controllers/field_groups.php:147
+#: source/php/ModuleManager.php:574
+msgid "Title"
+msgstr "Titel"
+
+#: plugins/acf/core/controllers/field_groups.php:215
+#: plugins/acf/core/controllers/field_groups.php:252
+msgid "Changelog"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:216
+#, php-format
+msgid "See what's new in %1$sversion %2$s%3$s"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:218
+#, fuzzy
+#| msgid "Data source"
+msgid "Resources"
+msgstr "Datakälla"
+
+#: plugins/acf/core/controllers/field_groups.php:220
+msgid "Getting Started"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:221
+#, fuzzy
+#| msgid "Fields"
+msgid "Field Types"
+msgstr "Fält"
+
+#: plugins/acf/core/controllers/field_groups.php:222
+#, fuzzy
+#| msgid "Options"
+msgid "Functions"
+msgstr "Inställningar"
+
+#: plugins/acf/core/controllers/field_groups.php:223
+#, fuzzy
+#| msgid "Options"
+msgid "Actions"
+msgstr "Inställningar"
+
+#: plugins/acf/core/controllers/field_groups.php:224
+#: plugins/acf/core/fields/relationship.php:631
+#, fuzzy
+#| msgid "Filter"
+msgid "Filters"
+msgstr "Filter"
+
+#: plugins/acf/core/controllers/field_groups.php:225
+msgid "'How to' guides"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:226
+msgid "Tutorials"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:231
+#, fuzzy
+#| msgid "Deprecated"
+msgid "Created by"
+msgstr "Utgående"
+
+#: plugins/acf/core/controllers/field_groups.php:243
+msgid "Welcome to Advanced Custom Fields"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:244
+msgid "Thank you for updating to the latest version!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:244
+#, php-format
+msgid ""
+"ACF %s is more polished and enjoyable than ever before. We hope you like it."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:251
+msgid "What’s New"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:254
+msgid "Download Add-ons"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:308
+msgid "Activation codes have grown into plugins!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:309
+msgid ""
+"Add-ons are now activated by downloading and installing individual plugins. "
+"Although these plugins will not be hosted on the wordpress.org repository, "
+"each Add-on will continue to receive updates in the usual way."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:315
+msgid "All previous Add-ons have been successfully installed"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:319
+msgid "This website uses premium Add-ons which need to be downloaded"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:319
+msgid "Download your activated Add-ons"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:324
+msgid ""
+"This website does not use premium Add-ons and will not be affected by this "
+"change."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:334
+msgid "Easier Development"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:336
+msgid "New Field Types"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:338
+#, fuzzy
+#| msgid "Taxonomy filter"
+msgid "Taxonomy Field"
+msgstr "Filtrera taxomnomi"
+
+#: plugins/acf/core/controllers/field_groups.php:339
+#, fuzzy
+#| msgid "Fields"
+msgid "User Field"
+msgstr "Fält"
+
+#: plugins/acf/core/controllers/field_groups.php:340
+msgid "Email Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:341
+msgid "Password Field"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:343
+msgid "Custom Field Types"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:344
+msgid ""
+"Creating your own field type has never been easier! Unfortunately, version 3 "
+"field types are not compatible with version 4."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:345
+#, php-format
+msgid ""
+"Migrating your field types is easy, please %sfollow this tutorial%s to learn "
+"more."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:347
+msgid "Actions &amp; Filters"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:348
+#, php-format
+msgid ""
+"All actions & filters have received a major facelift to make customizing ACF "
+"even easier! Please %sread this guide%s to find the updated naming "
+"convention."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:350
+msgid "Preview draft is now working!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:351
+msgid "This bug has been squashed along with many other little critters!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:351
+msgid "See the full changelog"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:355
+#, fuzzy
+#| msgid "Import"
+msgid "Important"
+msgstr "Importera"
+
+#: plugins/acf/core/controllers/field_groups.php:357
+msgid "Database Changes"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:358
+msgid ""
+"Absolutely <strong>no</strong> changes have been made to the database "
+"between versions 3 and 4. This means you can roll back to version 3 without "
+"any issues."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:360
+msgid "Potential Issues"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:361
+#, php-format
+msgid ""
+"Due to the sizable changes surounding Add-ons, field types and action/"
+"filters, your website may not operate correctly. It is important that you "
+"read the full %sMigrating from v3 to v4%s guide to view the full list of "
+"changes."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:364
+msgid "Really Important!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:364
+#, php-format
+msgid ""
+"If you updated the ACF plugin without prior knowledge of such changes, "
+"please roll back to the latest %sversion 3%s of this plugin."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:369
+msgid "Thank You"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:370
+msgid ""
+"A <strong>BIG</strong> thank you to everyone who has helped test the version "
+"4 beta and for all the support I have received."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:371
+msgid "Without you all, this release would not have been possible!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:375
+msgid "Changelog for"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:392
+#, fuzzy
+#| msgid "Read more"
+msgid "Learn more"
+msgstr "Läs mer"
+
+#: plugins/acf/core/controllers/field_groups.php:398
+msgid "Overview"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:400
+msgid ""
+"Previously, all Add-ons were unlocked via an activation code (purchased from "
+"the ACF Add-ons store). New to v4, all Add-ons act as separate plugins which "
+"need to be individually downloaded, installed and updated."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:402
+msgid ""
+"This page will assist you in downloading and installing each available Add-"
+"on."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:404
+msgid "Available Add-ons"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:406
+msgid "The following Add-ons have been detected as activated on this website."
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:419
+#: plugins/acf/core/fields/file.php:109
+msgid "Name"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:420
+msgid "Activation Code"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:452
+#, fuzzy
+#| msgid "Content"
+msgid "Flexible Content"
+msgstr "Innehåll"
+
+#: plugins/acf/core/controllers/field_groups.php:462
+msgid "Installation"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:464
+msgid "For each Add-on available, please perform the following:"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:466
+msgid "Download the Add-on plugin (.zip file) to your desktop"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:467
+#, php-format
+msgid "Navigate to %sPlugins > Add New > Upload%s"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:468
+msgid "Use the uploader to browse, select and install your Add-on (.zip file)"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:469
+msgid ""
+"Once the plugin has been uploaded and installed, click the 'Activate Plugin' "
+"link"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:470
+msgid "The Add-on is now installed and activated!"
+msgstr ""
+
+#: plugins/acf/core/controllers/field_groups.php:484
+msgid "Awesome. Let's get to work"
+msgstr ""
+
+#: plugins/acf/core/controllers/input.php:63
+#, fuzzy
+#| msgid "Expandable List"
+msgid "Expand Details"
+msgstr "Expanderbar lista"
+
+#: plugins/acf/core/controllers/input.php:64
+msgid "Collapse Details"
+msgstr ""
+
+#: plugins/acf/core/controllers/input.php:67
+msgid "Validation Failed. One or more fields below are required."
+msgstr ""
+
+#: plugins/acf/core/controllers/upgrade.php:77
+msgid "Upgrade"
+msgstr ""
+
+#: plugins/acf/core/controllers/upgrade.php:599
+msgid "Modifying field group options 'show on page'"
+msgstr ""
+
+#: plugins/acf/core/controllers/upgrade.php:653
+msgid "Modifying field option 'taxonomy'"
+msgstr ""
+
+#: plugins/acf/core/controllers/upgrade.php:750
+msgid "Moving user custom fields from wp_options to wp_usermeta"
+msgstr ""
+
+#: plugins/acf/core/fields/_base.php:124
+#: plugins/acf/core/views/meta_box_location.php:74
+msgid "Basic"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:19
+#: plugins/acf/core/fields/taxonomy.php:475
+msgid "Checkbox"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:146
+#: plugins/acf/core/fields/radio.php:147 plugins/acf/core/fields/select.php:177
+msgid "Choices"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:147
+#: plugins/acf/core/fields/select.php:178
+msgid "Enter each choice on a new line."
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:148
+#: plugins/acf/core/fields/select.php:179
+msgid "For more control, you may specify both a value and label like this:"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:149
+#: plugins/acf/core/fields/radio.php:153 plugins/acf/core/fields/select.php:180
+msgid "red : Red"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:149
+#: plugins/acf/core/fields/radio.php:154 plugins/acf/core/fields/select.php:180
+msgid "blue : Blue"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:183
+#: plugins/acf/core/fields/message.php:20 plugins/acf/core/fields/radio.php:212
+#: plugins/acf/core/fields/tab.php:20
+msgid "Layout"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:194
+#: plugins/acf/core/fields/radio.php:223
+msgid "Vertical"
+msgstr ""
+
+#: plugins/acf/core/fields/checkbox.php:195
+#: plugins/acf/core/fields/radio.php:224
+msgid "Horizontal"
+msgstr ""
+
+#: plugins/acf/core/fields/color_picker.php:19
+msgid "Color Picker"
+msgstr ""
+
+#: plugins/acf/core/fields/color_picker.php:20
+#: plugins/acf/core/fields/date_picker/date_picker.php:20
+#: plugins/acf/core/fields/google-map.php:19
+msgid "jQuery"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:19
+msgid "Date Picker"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:55
+msgid "Done"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:56
+msgid "Today"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:59
+msgid "Show a different month"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:126
+#, fuzzy
+#| msgid "Slider format"
+msgid "Save format"
+msgstr "Sliderformat"
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:127
+msgid ""
+"This format will determin the value saved to the database and returned via "
+"the API"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:128
+msgid "\"yymmdd\" is the most versatile save format. Read more about"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:128
+#: plugins/acf/core/fields/date_picker/date_picker.php:144
+msgid "jQuery date formats"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:142
+#, fuzzy
+#| msgid "Display as"
+msgid "Display format"
+msgstr "Visa som"
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:143
+msgid "This format will be seen by the user when entering a value"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:144
+msgid ""
+"\"dd/mm/yy\" or \"mm/dd/yy\" are the most used display formats. Read more "
+"about"
+msgstr ""
+
+#: plugins/acf/core/fields/date_picker/date_picker.php:158
+msgid "Week Starts On"
+msgstr ""
+
+#: plugins/acf/core/fields/dummy.php:19
+msgid "Dummy"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:19
+msgid "Email"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:107 plugins/acf/core/fields/number.php:117
+#: plugins/acf/core/fields/text.php:117
+#: plugins/acf/core/fields/textarea.php:104
+#: plugins/acf/core/fields/wysiwyg.php:287
+msgid "Appears when creating a new post"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:123 plugins/acf/core/fields/number.php:133
+#: plugins/acf/core/fields/password.php:105
+#: plugins/acf/core/fields/text.php:131
+#: plugins/acf/core/fields/textarea.php:118
+#, fuzzy
+#| msgid "Placeholder Image"
+msgid "Placeholder Text"
+msgstr "Affischbild"
+
+#: plugins/acf/core/fields/email.php:124 plugins/acf/core/fields/number.php:134
+#: plugins/acf/core/fields/password.php:106
+#: plugins/acf/core/fields/text.php:132
+#: plugins/acf/core/fields/textarea.php:119
+msgid "Appears within the input"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:138 plugins/acf/core/fields/number.php:148
+#: plugins/acf/core/fields/password.php:120
+#: plugins/acf/core/fields/text.php:146
+msgid "Prepend"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:139 plugins/acf/core/fields/number.php:149
+#: plugins/acf/core/fields/password.php:121
+#: plugins/acf/core/fields/text.php:147
+msgid "Appears before the input"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:153 plugins/acf/core/fields/number.php:163
+#: plugins/acf/core/fields/password.php:135
+#: plugins/acf/core/fields/text.php:161
+msgid "Append"
+msgstr ""
+
+#: plugins/acf/core/fields/email.php:154 plugins/acf/core/fields/number.php:164
+#: plugins/acf/core/fields/password.php:136
+#: plugins/acf/core/fields/text.php:162
+msgid "Appears after the input"
+msgstr ""
+
+#: plugins/acf/core/fields/file.php:19
+#: source/php/AcfFields/php/mod-fileslist.php:76
+#: source/php/Module/FilesList/views/fileslist.blade.php:10
+msgid "File"
+msgstr "Fil"
+
+#: plugins/acf/core/fields/file.php:20 plugins/acf/core/fields/image.php:20
+#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:119
+msgid "Content"
+msgstr "Innehåll"
+
+#: plugins/acf/core/fields/file.php:26
+#, fuzzy
+#| msgid "Select values"
+msgid "Select File"
+msgstr "Valda värden"
+
+#: plugins/acf/core/fields/file.php:27
+#, fuzzy
+#| msgid "Edit "
+msgid "Edit File"
+msgstr "Redigera"
+
+#: plugins/acf/core/fields/file.php:28
+msgid "Update File"
+msgstr ""
+
+#: plugins/acf/core/fields/file.php:29 plugins/acf/core/fields/image.php:30
+msgid "uploaded to this post"
+msgstr ""
+
+#: plugins/acf/core/fields/file.php:113
+#: source/php/AcfFields/php/mod-notice.php:55
+#: source/php/AcfFields/php/mod-table.php:158
+msgid "Size"
+msgstr "Storlek"
+
+#: plugins/acf/core/fields/file.php:123
+#, fuzzy
+#| msgid "Not selected"
+msgid "No File Selected"
+msgstr "Inte vald"
+
+#: plugins/acf/core/fields/file.php:123
+#, fuzzy
+#| msgid "Add file"
+msgid "Add File"
+msgstr "Lägg till fil"
+
+#: plugins/acf/core/fields/file.php:153 plugins/acf/core/fields/image.php:125
+#: plugins/acf/core/fields/taxonomy.php:523
+#, fuzzy
+#| msgid "Meta value"
+msgid "Return Value"
+msgstr "Metavärde"
+
+#: plugins/acf/core/fields/file.php:164
+msgid "File Object"
+msgstr ""
+
+#: plugins/acf/core/fields/file.php:165
+#, fuzzy
+#| msgid "File"
+msgid "File URL"
+msgstr "Fil"
+
+#: plugins/acf/core/fields/file.php:166
+#, fuzzy
+#| msgid "File"
+msgid "File ID"
+msgstr "Fil"
+
+#: plugins/acf/core/fields/file.php:175 plugins/acf/core/fields/image.php:165
+msgid "Library"
+msgstr ""
+
+#: plugins/acf/core/fields/file.php:187 plugins/acf/core/fields/image.php:178
+msgid "Uploaded to post"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:18
+msgid "Google Map"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:33
+msgid "Locating"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:34
+msgid "Sorry, this browser does not support geolocation"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:120
+#, fuzzy
+#| msgid "Core options"
+msgid "Clear location"
+msgstr "Core inställningar"
+
+#: plugins/acf/core/fields/google-map.php:125
+msgid "Find current location"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:126
+msgid "Search for address..."
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:162
+#, fuzzy
+#| msgid "Centered"
+msgid "Center"
+msgstr "Centrerad"
+
+#: plugins/acf/core/fields/google-map.php:163
+msgid "Center the initial map"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:199
+msgid "Zoom"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:200
+msgid "Set the initial zoom level"
+msgstr ""
+
+#: plugins/acf/core/fields/google-map.php:217
+#, fuzzy
+#| msgid "Max height"
+msgid "Height"
+msgstr "Maxhöjd"
+
+#: plugins/acf/core/fields/google-map.php:218
+msgid "Customise the map height"
+msgstr ""
+
+#: plugins/acf/core/fields/image.php:19
+#: source/php/AcfFields/php/mod-contact-contacts.php:57
+#: source/php/AcfFields/php/mod-contact-info.php:39
+#: source/php/AcfFields/php/mod-contacts.php:57
+#: source/php/AcfFields/php/mod-image.php:20
+#: source/php/AcfFields/php/mod-index.php:101
+#: source/php/Module/Image/Image.php:13
+msgid "Image"
+msgstr "Bild"
+
+#: plugins/acf/core/fields/image.php:27
+#, fuzzy
+#| msgid "Select values"
+msgid "Select Image"
+msgstr "Valda värden"
+
+#: plugins/acf/core/fields/image.php:28
+#, fuzzy
+#| msgid "Image"
+msgid "Edit Image"
+msgstr "Bild"
+
+#: plugins/acf/core/fields/image.php:29
+#, fuzzy
+#| msgid "Upload image"
+msgid "Update Image"
+msgstr "Ladda upp bild"
+
+#: plugins/acf/core/fields/image.php:97
+#, fuzzy
+#| msgid "Not selected"
+msgid "No image selected"
+msgstr "Inte vald"
+
+#: plugins/acf/core/fields/image.php:97
+#, fuzzy
+#| msgid "Image"
+msgid "Add Image"
+msgstr "Bild"
+
+#: plugins/acf/core/fields/image.php:126
+#: plugins/acf/core/fields/relationship.php:563
+msgid "Specify the returned value on front end"
+msgstr ""
+
+#: plugins/acf/core/fields/image.php:136
+#, fuzzy
+#| msgid "Image caption"
+msgid "Image Object"
+msgstr "Bildtext"
+
+#: plugins/acf/core/fields/image.php:137
+#, fuzzy
+#| msgid "Iframe URL"
+msgid "Image URL"
+msgstr "Iframe url"
+
+#: plugins/acf/core/fields/image.php:138
+#, fuzzy
+#| msgid "Page ID"
+msgid "Image ID"
+msgstr "Sidans ID"
+
+#: plugins/acf/core/fields/image.php:146
+msgid "Preview Size"
+msgstr ""
+
+#: plugins/acf/core/fields/image.php:147
+msgid "Shown when entering data"
+msgstr ""
+
+#: plugins/acf/core/fields/image.php:166
+msgid "Limit the media library choice"
+msgstr ""
+
+#: plugins/acf/core/fields/message.php:19
+#: plugins/acf/core/fields/message.php:70
+#: plugins/acf/core/fields/true_false.php:79
+#, fuzzy
+#| msgid "Usage"
+msgid "Message"
+msgstr "Användning"
+
+#: plugins/acf/core/fields/message.php:71
+msgid "Text &amp; HTML entered here will appear inline with the fields"
+msgstr ""
+
+#: plugins/acf/core/fields/message.php:72
+msgid "Please note that all text will first be passed through the wp function "
+msgstr ""
+
+#: plugins/acf/core/fields/number.php:19
+#, fuzzy
+#| msgid "Add number"
+msgid "Number"
+msgstr "Lägg till nummer"
+
+#: plugins/acf/core/fields/number.php:178
+msgid "Minimum Value"
+msgstr ""
+
+#: plugins/acf/core/fields/number.php:194
+#, fuzzy
+#| msgid "Meta value"
+msgid "Maximum Value"
+msgstr "Metavärde"
+
+#: plugins/acf/core/fields/number.php:210
+#, fuzzy
+#| msgid "Size"
+msgid "Step Size"
+msgstr "Storlek"
+
+#: plugins/acf/core/fields/page_link.php:18
+#, fuzzy
+#| msgid "Page ID"
+msgid "Page Link"
+msgstr "Sidans ID"
+
+#: plugins/acf/core/fields/page_link.php:19
+#: plugins/acf/core/fields/post_object.php:19
+#: plugins/acf/core/fields/relationship.php:19
+#: plugins/acf/core/fields/taxonomy.php:19 plugins/acf/core/fields/user.php:19
+msgid "Relational"
+msgstr ""
+
+#: plugins/acf/core/fields/page_link.php:103
+#: plugins/acf/core/fields/post_object.php:280
+#: plugins/acf/core/fields/relationship.php:582
+#: plugins/acf/core/fields/relationship.php:661
+#: plugins/acf/core/views/meta_box_location.php:75
+#, fuzzy
+#| msgid "Post type"
+msgid "Post Type"
+msgstr "Posttyp"
+
+#: plugins/acf/core/fields/password.php:19
+msgid "Password"
+msgstr ""
+
+#: plugins/acf/core/fields/post_object.php:18
+#, fuzzy
+#| msgid "Post type"
+msgid "Post Object"
+msgstr "Posttyp"
+
+#: plugins/acf/core/fields/post_object.php:194
+#: plugins/acf/core/fields/relationship.php:170
+#, fuzzy
+#| msgid "Work title"
+msgid "(no title)"
+msgstr "Jobbtitel"
+
+#: plugins/acf/core/fields/post_object.php:304
+#: plugins/acf/core/fields/relationship.php:606
+#, fuzzy
+#| msgid "Filter posts by taxonomy"
+msgid "Filter from Taxonomy"
+msgstr "Filtrera efter taxonomi"
+
+#: plugins/acf/core/fields/radio.php:18
+msgid "Radio Button"
+msgstr ""
+
+#: plugins/acf/core/fields/radio.php:105
+#: plugins/acf/core/views/meta_box_location.php:91
+#: source/php/AcfFields/php/mod-contact-contacts.php:258
+#: source/php/AcfFields/php/mod-contacts.php:277
+msgid "Other"
+msgstr "Annat"
+
+#: plugins/acf/core/fields/radio.php:148
+#, fuzzy
+#| msgid "Enter your embed url"
+msgid "Enter your choices one per line"
+msgstr "URL som ska embeddas"
+
+#: plugins/acf/core/fields/radio.php:150
+msgid "Red"
+msgstr ""
+
+#: plugins/acf/core/fields/radio.php:151
+msgid "Blue"
+msgstr ""
+
+#: plugins/acf/core/fields/radio.php:175
+msgid "Add 'other' choice to allow for custom values"
+msgstr ""
+
+#: plugins/acf/core/fields/radio.php:187
+msgid "Save 'other' values to the field's choices"
+msgstr ""
+
+#: plugins/acf/core/fields/relationship.php:18
+msgid "Relationship"
+msgstr ""
+
+#: plugins/acf/core/fields/relationship.php:29
+msgid "Maximum values reached ( {max} values )"
+msgstr ""
+
+#: plugins/acf/core/fields/relationship.php:457
+#, fuzzy
+#| msgid "Search"
+msgid "Search..."
+msgstr "Sök"
+
+#: plugins/acf/core/fields/relationship.php:468
+#, fuzzy
+#| msgid "Filter posts by taxonomy"
+msgid "Filter by post type"
+msgstr "Filtrera efter taxonomi"
+
+#: plugins/acf/core/fields/relationship.php:562
+#, fuzzy
+#| msgid "Slider format"
+msgid "Return Format"
+msgstr "Sliderformat"
+
+#: plugins/acf/core/fields/relationship.php:573
+#, fuzzy
+#| msgid "Post items"
+msgid "Post Objects"
+msgstr "Inläggsobjekt"
+
+#: plugins/acf/core/fields/relationship.php:574
+#, fuzzy
+#| msgid "Posts"
+msgid "Post IDs"
+msgstr "Inlägg"
+
+#: plugins/acf/core/fields/relationship.php:640
+#: source/php/Module/WpWidget/WpWidget.php:159
+msgid "Search"
+msgstr "Sök"
+
+#: plugins/acf/core/fields/relationship.php:649
+msgid "Elements"
+msgstr ""
+
+#: plugins/acf/core/fields/relationship.php:650
+msgid "Selected elements will be displayed in each result"
+msgstr ""
+
+#: plugins/acf/core/fields/relationship.php:659
+#: plugins/acf/core/views/meta_box_options.php:106
+#, fuzzy
+#| msgid "Use featured image"
+msgid "Featured Image"
+msgstr "Använd utvald bild"
+
+#: plugins/acf/core/fields/relationship.php:660
+#, fuzzy
+#| msgid "Post items"
+msgid "Post Title"
+msgstr "Inläggsobjekt"
+
+#: plugins/acf/core/fields/relationship.php:672
+msgid "Maximum posts"
+msgstr ""
+
+#: plugins/acf/core/fields/tab.php:19
+#, fuzzy
+#| msgid "Table"
+msgid "Tab"
+msgstr "Tabell"
+
+#: plugins/acf/core/fields/tab.php:68
+msgid ""
+"Use \"Tab Fields\" to better organize your edit screen by grouping your "
+"fields together under separate tab headings."
+msgstr ""
+
+#: plugins/acf/core/fields/tab.php:69
+msgid ""
+"All the fields following this \"tab field\" (or until another \"tab field\" "
+"is defined) will be grouped together."
+msgstr ""
+
+#: plugins/acf/core/fields/tab.php:70
+msgid "Use multiple tabs to divide your fields into sections."
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:18
+#: plugins/acf/core/fields/taxonomy.php:430
+#: source/php/AcfFields/php/mod-wpwidget.php:521
+msgid "Taxonomy"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:374
+#: plugins/acf/core/fields/taxonomy.php:383
+#: source/php/AcfFields/php/mod-image.php:192
+msgid "None"
+msgstr "Inget"
+
+#: plugins/acf/core/fields/taxonomy.php:464
+#: plugins/acf/core/fields/user.php:298
+#: plugins/acf/core/views/meta_box_fields.php:77
+#: plugins/acf/core/views/meta_box_fields.php:158
+#, fuzzy
+#| msgid "Widget Type"
+msgid "Field Type"
+msgstr "Typ av widget"
+
+#: plugins/acf/core/fields/taxonomy.php:474
+#: plugins/acf/core/fields/user.php:307
+msgid "Multiple Values"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:476
+#: plugins/acf/core/fields/user.php:309
+msgid "Multi Select"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:478
+#: plugins/acf/core/fields/user.php:311
+#, fuzzy
+#| msgid "Select values"
+msgid "Single Value"
+msgstr "Valda värden"
+
+#: plugins/acf/core/fields/taxonomy.php:479
+msgid "Radio Buttons"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:508
+msgid "Load & Save Terms to Post"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:516
+msgid ""
+"Load value based on the post's terms and update the post's terms on save"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:533
+msgid "Term Object"
+msgstr ""
+
+#: plugins/acf/core/fields/taxonomy.php:534
+msgid "Term ID"
+msgstr ""
+
+#: plugins/acf/core/fields/text.php:19 source/php/Module/Text/Text.php:12
+msgid "Text"
+msgstr "Text"
+
+#: plugins/acf/core/fields/text.php:176
+#: plugins/acf/core/fields/textarea.php:164
+msgid "Formatting"
+msgstr ""
+
+#: plugins/acf/core/fields/text.php:177
+#: plugins/acf/core/fields/textarea.php:165
+msgid "Effects value on front end"
+msgstr ""
+
+#: plugins/acf/core/fields/text.php:186
+#: plugins/acf/core/fields/textarea.php:174
+msgid "No formatting"
+msgstr ""
+
+#: plugins/acf/core/fields/text.php:187
+#: plugins/acf/core/fields/textarea.php:176
+msgid "Convert HTML into tags"
+msgstr ""
+
+#: plugins/acf/core/fields/text.php:195
+#: plugins/acf/core/fields/textarea.php:133
+msgid "Character Limit"
+msgstr ""
+
+#: plugins/acf/core/fields/text.php:196
+#: plugins/acf/core/fields/textarea.php:134
+msgid "Leave blank for no limit"
+msgstr ""
+
+#: plugins/acf/core/fields/textarea.php:19
+#, fuzzy
+#| msgid "Text overlay"
+msgid "Text Area"
+msgstr "Textlager"
+
+#: plugins/acf/core/fields/textarea.php:148
+msgid "Rows"
+msgstr ""
+
+#: plugins/acf/core/fields/textarea.php:149
+msgid "Sets the textarea height"
+msgstr ""
+
+#: plugins/acf/core/fields/textarea.php:175
+msgid "Convert new lines into &lt;br /&gt; tags"
+msgstr ""
+
+#: plugins/acf/core/fields/true_false.php:19
+msgid "True / False"
+msgstr ""
+
+#: plugins/acf/core/fields/true_false.php:80
+msgid "eg. Show extra content"
+msgstr ""
+
+#: plugins/acf/core/fields/user.php:18
+#: plugins/acf/core/views/meta_box_location.php:94
+#: source/php/AcfFields/php/mod-social.php:126
+msgid "User"
+msgstr "Användare"
+
+#: plugins/acf/core/fields/user.php:271
+#, fuzzy
+#| msgid "Filter files"
+msgid "Filter by role"
+msgstr "Filtrera filer"
+
+#: plugins/acf/core/fields/wysiwyg.php:19
+#, fuzzy
+#| msgid "Editor"
+msgid "Wysiwyg Editor"
+msgstr "Redigerare"
+
+#: plugins/acf/core/fields/wysiwyg.php:301
+msgid "Toolbar"
+msgstr ""
+
+#: plugins/acf/core/fields/wysiwyg.php:333
+msgid "Show Media Upload Buttons?"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:24
+#, fuzzy
+#| msgid "Fields"
+msgid "New Field"
+msgstr "Fält"
+
+#: plugins/acf/core/views/meta_box_fields.php:58
+msgid "Field type does not exist"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:74
+#, fuzzy
+#| msgid "Order"
+msgid "Field Order"
+msgstr "Ordna efter"
+
+#: plugins/acf/core/views/meta_box_fields.php:75
+#: plugins/acf/core/views/meta_box_fields.php:126
+msgid "Field Label"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:76
+#: plugins/acf/core/views/meta_box_fields.php:142
+#, fuzzy
+#| msgid "Fields"
+msgid "Field Name"
+msgstr "Fält"
+
+#: plugins/acf/core/views/meta_box_fields.php:78
+#, fuzzy
+#| msgid "Fields"
+msgid "Field Key"
+msgstr "Fält"
+
+#: plugins/acf/core/views/meta_box_fields.php:90
+msgid ""
+"No fields. Click the <strong>+ Add Field</strong> button to create your "
+"first field."
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:105
+#: plugins/acf/core/views/meta_box_fields.php:108
+msgid "Edit this Field"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:109
+msgid "Duplicate this Field"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:109
+#, fuzzy
+#| msgid "Deprecated"
+msgid "Duplicate"
+msgstr "Utgående"
+
+#: plugins/acf/core/views/meta_box_fields.php:110
+msgid "Delete this Field"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:110
+msgid "Delete"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:127
+msgid "This is the name which will appear on the EDIT page"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:143
+msgid "Single word, no spaces. Underscores and dashes allowed"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:172
+msgid "Field Instructions"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:173
+msgid "Instructions for authors. Shown when submitting data"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:186
+msgid "Required?"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:209
+#, fuzzy
+#| msgid "Additional options"
+msgid "Conditional Logic"
+msgstr "Fler inställningar"
+
+#: plugins/acf/core/views/meta_box_fields.php:260
+#: plugins/acf/core/views/meta_box_location.php:117
+msgid "is equal to"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:261
+#: plugins/acf/core/views/meta_box_location.php:118
+msgid "is not equal to"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:279
+#, fuzzy
+#| msgid "Show title"
+msgid "Show this field when"
+msgstr "Visa titel"
+
+#: plugins/acf/core/views/meta_box_fields.php:285
+#, fuzzy
+#| msgid "Small"
+msgid "all"
+msgstr "Liten"
+
+#: plugins/acf/core/views/meta_box_fields.php:286
+msgid "any"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:289
+msgid "these rules are met"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:303
+#, fuzzy
+#| msgid "Close"
+msgid "Close Field"
+msgstr "Stäng"
+
+#: plugins/acf/core/views/meta_box_fields.php:316
+msgid "Drag and drop to reorder"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_fields.php:317
+#, fuzzy
+#| msgid "Add file"
+msgid "+ Add Field"
+msgstr "Lägg till fil"
+
+#: plugins/acf/core/views/meta_box_location.php:48
+#, fuzzy
+#| msgid "Modules"
+msgid "Rules"
+msgstr "Moduler"
+
+#: plugins/acf/core/views/meta_box_location.php:49
+msgid ""
+"Create a set of rules to determine which edit screens will use these "
+"advanced custom fields"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_location.php:60
+msgid "Show this field group if"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_location.php:76
+msgid "Logged in User Type"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_location.php:78
+#: plugins/acf/core/views/meta_box_location.php:79
+#, fuzzy
+#| msgid "Posts"
+msgid "Post"
+msgstr "Inlägg"
+
+#: plugins/acf/core/views/meta_box_location.php:80
+#, fuzzy
+#| msgid "Post article"
+msgid "Post Category"
+msgstr "Inläggsartikel"
+
+#: plugins/acf/core/views/meta_box_location.php:81
+#, fuzzy
+#| msgid "Post or page"
+msgid "Post Format"
+msgstr "Inlägg eller sida"
+
+#: plugins/acf/core/views/meta_box_location.php:82
+#, fuzzy
+#| msgid "Post items"
+msgid "Post Status"
+msgstr "Inläggsobjekt"
+
+#: plugins/acf/core/views/meta_box_location.php:83
+#, fuzzy
+#| msgid "Taxonomy type"
+msgid "Post Taxonomy"
+msgstr "Taxonomi"
+
+#: plugins/acf/core/views/meta_box_location.php:85
+#: plugins/acf/core/views/meta_box_location.php:86
+#: source/php/AcfFields/php/mod-index.php:44
+msgid "Page"
+msgstr "Sida"
+
+#: plugins/acf/core/views/meta_box_location.php:87
+#, fuzzy
+#| msgid "Widget Type"
+msgid "Page Type"
+msgstr "Typ av widget"
+
+#: plugins/acf/core/views/meta_box_location.php:88
+#, fuzzy
+#| msgid "Parent "
+msgid "Page Parent"
+msgstr "Förälder"
+
+#: plugins/acf/core/views/meta_box_location.php:89
+#, fuzzy
+#| msgid "Template"
+msgid "Page Template"
+msgstr "Mall"
+
+#: plugins/acf/core/views/meta_box_location.php:92
+msgid "Attachment"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_location.php:93
+#, fuzzy
+#| msgid "Taxonomy filter"
+msgid "Taxonomy Term"
+msgstr "Filtrera taxomnomi"
+
+#: plugins/acf/core/views/meta_box_location.php:146
+#, fuzzy
+#| msgid "Random"
+msgid "and"
+msgstr "Slumpmässig"
+
+#: plugins/acf/core/views/meta_box_location.php:161
+msgid "Add rule group"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:25
+#, fuzzy
+#| msgid "Order"
+msgid "Order No."
+msgstr "Ordna efter"
+
+#: plugins/acf/core/views/meta_box_options.php:26
+msgid "Field groups are created in order <br />from lowest to highest"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:42
+#, fuzzy
+#| msgid "Text position"
+msgid "Position"
+msgstr "Textlagrets placering"
+
+#: plugins/acf/core/views/meta_box_options.php:52
+#, fuzzy
+#| msgid "Hide title"
+msgid "High (after title)"
+msgstr "Dölj titel"
+
+#: plugins/acf/core/views/meta_box_options.php:53
+msgid "Normal (after content)"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:54
+msgid "Side"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:64
+msgid "Style"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:74
+msgid "Seamless (no metabox)"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:75
+msgid "Standard (WP metabox)"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:84
+#, fuzzy
+#| msgid "Hide box frame"
+msgid "Hide on screen"
+msgstr "Göm textbox"
+
+#: plugins/acf/core/views/meta_box_options.php:85
+msgid "<b>Select</b> items to <b>hide</b> them from the edit screen"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:86
+msgid ""
+"If multiple field groups appear on an edit screen, the first field group's "
+"options will be used. (the one with the lowest order number)"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:96
+#: source/php/AcfFields/php/mod-posts-source.php:226
+msgid "Permalink"
+msgstr "Permalänk"
+
+#: plugins/acf/core/views/meta_box_options.php:97
+#, fuzzy
+#| msgid "Content"
+msgid "Content Editor"
+msgstr "Innehåll"
+
+#: plugins/acf/core/views/meta_box_options.php:98
+#, fuzzy
+#| msgid "Show excerpt"
+msgid "Excerpt"
+msgstr "Visa ingress"
+
+#: plugins/acf/core/views/meta_box_options.php:100
+msgid "Discussion"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:101
+#, fuzzy
+#| msgid "Comment count"
+msgid "Comments"
+msgstr "Antal kommentarer"
+
+#: plugins/acf/core/views/meta_box_options.php:102
+msgid "Revisions"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:103
+msgid "Slug"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:104
+msgid "Author"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:105
+msgid "Format"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:107
+#: source/php/Module/WpWidget/WpWidget.php:153
+msgid "Categories"
+msgstr "Kategorier"
+
+#: plugins/acf/core/views/meta_box_options.php:108
+msgid "Tags"
+msgstr ""
+
+#: plugins/acf/core/views/meta_box_options.php:109
+msgid "Send Trackbacks"
+msgstr ""
 
 #: source/php/AcfFields/php/mod-booking.php:13
 msgid "Datum"
@@ -114,15 +2305,6 @@ msgstr "Lista"
 msgid "Display mode"
 msgstr "Visningsläge"
 
-#: source/php/AcfFields/php/mod-contact-contacts.php:57
-#: source/php/AcfFields/php/mod-contact-info.php:39
-#: source/php/AcfFields/php/mod-contacts.php:57
-#: source/php/AcfFields/php/mod-image.php:20
-#: source/php/AcfFields/php/mod-index.php:101
-#: source/php/Module/Image/Image.php:15 source/php/Module/Image/Image.php:16
-msgid "Image"
-msgstr "Bild"
-
 #: source/php/AcfFields/php/mod-contact-contacts.php:76
 #: source/php/AcfFields/php/mod-contacts.php:76
 msgid "First name or place"
@@ -163,8 +2345,7 @@ msgstr "Adress"
 #: source/php/AcfFields/php/mod-contact-contacts.php:216
 #: source/php/AcfFields/php/mod-contact-info.php:247
 #: source/php/AcfFields/php/mod-contacts.php:235
-#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:103
-#: templates/module/modularity-mod-contacts/modularity-mod-contacts-cards.php:107
+#: source/php/Module/Contacts/views/cards.blade.php:51
 msgid "Visiting address"
 msgstr "Besöksadress"
 
@@ -173,11 +2354,6 @@ msgstr "Besöksadress"
 #: source/php/AcfFields/php/mod-contacts.php:256
 msgid "Opening hours"
 msgstr "Öppettider"
-
-#: source/php/AcfFields/php/mod-contact-contacts.php:258
-#: source/php/AcfFields/php/mod-contacts.php:277
-msgid "Other"
-msgstr "Annat"
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:285
 #: source/php/AcfFields/php/mod-contacts.php:304
@@ -249,13 +2425,12 @@ msgstr ""
 #: source/php/AcfFields/php/mod-fileslist.php:36
 #: source/php/AcfFields/php/mod-index.php:167
 #: source/php/AcfFields/php/mod-index.php:196
-#: source/php/AcfFields/php/mod-inlaylist.php:41
-#: source/php/AcfFields/php/mod-inlaylist.php:70
+#: source/php/AcfFields/php/mod-inlaylist.php:53
 #: source/php/AcfFields/php/mod-latest.php:64
 #: source/php/AcfFields/php/mod-posts-sorting.php:15
-#: source/php/AcfFields/php/mod-posts-source.php:166
+#: source/php/AcfFields/php/mod-posts-source.php:186
 #: source/php/AcfFields/php/mod-slider.php:275
-#: source/php/AcfFields/php/mod-slider.php:992
+#: source/php/AcfFields/php/mod-slider.php:1005
 #: source/php/AcfFields/php/mod-wpwidget.php:243
 msgid "Titel"
 msgstr ""
@@ -284,8 +2459,8 @@ msgstr "Telefonnummer"
 #: source/php/AcfFields/php/mod-files.php:21
 #: source/php/AcfFields/php/mod-fileslist.php:154
 #: source/php/Module/Files/Files.php:13 source/php/Module/Files/Files.php:14
-#: source/php/Module/FilesList/FilesList.php:11
 #: source/php/Module/FilesList/FilesList.php:12
+#: source/php/Module/FilesList/FilesList.php:13
 msgid "Files"
 msgstr "Filer"
 
@@ -302,11 +2477,6 @@ msgstr "Lägg till kolumn"
 msgid "The key should be used in each file's column value as reference."
 msgstr "Nyckeln ska användas på varje fil som värdets referens"
 
-#: source/php/AcfFields/php/mod-fileslist.php:76
-#: templates/module/modularity-mod-fileslist.php:16
-msgid "File"
-msgstr "Fil"
-
 #: source/php/AcfFields/php/mod-fileslist.php:97
 msgid "Column key"
 msgstr "Kolumnnyckel"
@@ -316,18 +2486,13 @@ msgid "Key reference from the column field"
 msgstr "Nyckelreferens från kolumnfält"
 
 #: source/php/AcfFields/php/mod-fileslist.php:116
-#: source/php/AcfFields/php/mod-posts-source.php:248
+#: source/php/AcfFields/php/mod-posts-source.php:285
 msgid "Value"
 msgstr "Värde"
 
 #: source/php/AcfFields/php/mod-fileslist.php:119
 msgid "The value for this column"
 msgstr "Värdet för denna raden"
-
-#: source/php/AcfFields/php/mod-fileslist.php:135
-#: source/php/AcfFields/php/mod-posts-displau.php:141
-msgid "Fields"
-msgstr "Fält"
 
 #: source/php/AcfFields/php/mod-fileslist.php:151
 msgid "Add file"
@@ -342,6 +2507,7 @@ msgid "Filter"
 msgstr "Filter"
 
 #: source/php/AcfFields/php/mod-gallery.php:21
+#: source/php/Module/Image/Image.php:14
 msgid "Images"
 msgstr "Bild"
 
@@ -412,32 +2578,28 @@ msgstr "Beskär till höjd"
 msgid "Image size"
 msgstr "Bildstorlek"
 
-#: source/php/AcfFields/php/mod-image.php:192
-msgid "None"
-msgstr "Inget"
-
 #: source/php/AcfFields/php/mod-image.php:193
 #: source/php/AcfFields/php/mod-index.php:13
 #: source/php/AcfFields/php/mod-slider.php:330
-#: source/php/AcfFields/php/mod-slider.php:688
-#: source/php/AcfFields/php/mod-slider.php:874
+#: source/php/AcfFields/php/mod-slider.php:701
+#: source/php/AcfFields/php/mod-slider.php:887
 msgid "Internal"
 msgstr "Intern"
 
 #: source/php/AcfFields/php/mod-image.php:194
 #: source/php/AcfFields/php/mod-index.php:14
 #: source/php/AcfFields/php/mod-slider.php:331
-#: source/php/AcfFields/php/mod-slider.php:689
-#: source/php/AcfFields/php/mod-slider.php:875
+#: source/php/AcfFields/php/mod-slider.php:702
+#: source/php/AcfFields/php/mod-slider.php:888
 msgid "External"
 msgstr "Extern"
 
 #: source/php/AcfFields/php/mod-image.php:202
-#: source/php/AcfFields/php/mod-inlaylist.php:104
-#: source/php/AcfFields/php/mod-inlaylist.php:155
+#: source/php/AcfFields/php/mod-inlaylist.php:72
+#: source/php/AcfFields/php/mod-inlaylist.php:129
 #: source/php/AcfFields/php/mod-slider.php:339
-#: source/php/AcfFields/php/mod-slider.php:697
-#: source/php/AcfFields/php/mod-slider.php:883
+#: source/php/AcfFields/php/mod-slider.php:710
+#: source/php/AcfFields/php/mod-slider.php:896
 msgid "Link"
 msgstr "Länk"
 
@@ -451,13 +2613,9 @@ msgid "Link page"
 msgstr "Länk till sida"
 
 #: source/php/AcfFields/php/mod-index.php:22
-#: source/php/AcfFields/php/mod-inlaylist.php:22
+#: source/php/AcfFields/php/mod-inlaylist.php:29
 msgid "Link type"
 msgstr "Typ av länk"
-
-#: source/php/AcfFields/php/mod-index.php:44
-msgid "Page"
-msgstr "Sida"
 
 #: source/php/AcfFields/php/mod-index.php:91
 msgid "Use featured image"
@@ -493,14 +2651,14 @@ msgid ""
 msgstr ""
 
 #: source/php/AcfFields/php/mod-index.php:276
-#: source/php/AcfFields/php/mod-inlaylist.php:179
-#: source/php/AcfFields/php/mod-posts-displau.php:215
+#: source/php/AcfFields/php/mod-inlaylist.php:24
+#: source/php/AcfFields/php/mod-posts-displau.php:247
 msgid "Lägg till rad"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-index.php:279
 #: source/php/AcfFields/php/mod-posts-displau.php:15
-#: source/php/Module/Index/Index.php:15 source/php/Module/Index/Index.php:16
+#: source/php/Module/Index/Index.php:16
 msgid "Index"
 msgstr "Index"
 
@@ -508,36 +2666,40 @@ msgstr "Index"
 msgid "Post or page"
 msgstr "Inlägg eller sida"
 
-#: source/php/AcfFields/php/mod-inlaylist.php:13
+#: source/php/AcfFields/php/mod-inlaylist.php:10
+msgid "Lista"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:42
 msgid "Internal link"
 msgstr "Intern länk"
 
-#: source/php/AcfFields/php/mod-inlaylist.php:14
+#: source/php/AcfFields/php/mod-inlaylist.php:43
 msgid "External link"
 msgstr "Extern länk"
 
-#: source/php/AcfFields/php/mod-inlaylist.php:44
-msgid "If empty, title will default to the linked post's/page's title"
-msgstr "Lämna tomt för att använda det valda sidans/inläggets titel"
+#: source/php/AcfFields/php/mod-inlaylist.php:56
+msgid ""
+"If empty, title will default to the linked post's/page's title on internal "
+"links."
+msgstr ""
+"För interna länkar kan fältet lämnas tomt för att använda det valda sidans/"
+"inläggets titel."
 
-#: source/php/AcfFields/php/mod-inlaylist.php:126
-msgid "Show publish date"
-msgstr "Visa publiceringsdatum"
-
-#: source/php/AcfFields/php/mod-inlaylist.php:131
-#: source/php/ModuleManager.php:547
+#: source/php/AcfFields/php/mod-inlaylist.php:102
+#: source/php/ModuleManager.php:577
 msgid "Date"
 msgstr "Datum"
 
-#: source/php/AcfFields/php/mod-inlaylist.php:134
+#: source/php/AcfFields/php/mod-inlaylist.php:105
 msgid ""
 "If checked, the publish/last modified date of the linked post will be "
 "displayed."
 msgstr "Välj för att visa publiceringsdatum och datum för senast uppdaterad"
 
-#: source/php/AcfFields/php/mod-inlaylist.php:182
-msgid "Lista"
-msgstr ""
+#: source/php/AcfFields/php/mod-inlaylist.php:122
+msgid "Show publish date"
+msgstr "Visa publiceringsdatum"
 
 #: source/php/AcfFields/php/mod-latest.php:13
 #: source/php/AcfFields/php/mod-posts-displau.php:13
@@ -623,7 +2785,7 @@ msgid "Order"
 msgstr "Ordna efter"
 
 #: source/php/AcfFields/php/mod-latest.php:132
-#: source/php/AcfFields/php/mod-posts-source.php:135
+#: source/php/AcfFields/php/mod-posts-source.php:128
 msgid "Number of posts"
 msgstr "Antal inlägg"
 
@@ -732,22 +2894,11 @@ msgstr ""
 msgid "Default"
 msgstr "Standard"
 
-#: source/php/AcfFields/php/mod-notice.php:44
-#: source/php/AcfFields/php/mod-table.php:150
-#: source/php/AcfFields/php/mod-text.php:32
-msgid "Large"
-msgstr "Stor"
-
 #: source/php/AcfFields/php/mod-notice.php:45
 #: source/php/AcfFields/php/mod-table.php:148
 #: source/php/AcfFields/php/mod-text.php:30
 msgid "Small"
 msgstr "Liten"
-
-#: source/php/AcfFields/php/mod-notice.php:55
-#: source/php/AcfFields/php/mod-table.php:158
-msgid "Size"
-msgstr "Storlek"
 
 #: source/php/AcfFields/php/mod-notice.php:76
 #, fuzzy
@@ -758,6 +2909,12 @@ msgstr "Notis"
 #: source/php/AcfFields/php/mod-notice.php:734
 msgid "Ikon"
 msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:6
+#, fuzzy
+#| msgid "Taxonomy display"
+msgid "Data display"
+msgstr "Visning av taxnomi"
 
 #: source/php/AcfFields/php/mod-posts-displau.php:12
 msgid "Expandable List"
@@ -795,25 +2952,44 @@ msgstr "Visa ingress"
 msgid "Show title"
 msgstr "Visa titel"
 
+#: source/php/AcfFields/php/mod-posts-displau.php:163
+#, fuzzy
+#| msgid "Yes, hide the box frame"
+msgid "Yes, hide the title column"
+msgstr "Ja, göm textbox (visa text som artikel)"
+
 #: source/php/AcfFields/php/mod-posts-displau.php:168
+#, fuzzy
+#| msgid "Hide title"
+msgid "Hide the title column"
+msgstr "Dölj titel"
+
+#: source/php/AcfFields/php/mod-posts-displau.php:195
 msgid "Title column label"
 msgstr "Titelkolumnents märkning"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:197
+#: source/php/AcfFields/php/mod-posts-displau.php:229
 msgid "Column header"
 msgstr "Kolumnhuvud"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:218
+#: source/php/AcfFields/php/mod-posts-displau.php:250
 msgid "List column labels"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-posts-displau.php:221
+#: source/php/AcfFields/php/mod-posts-displau.php:253
 msgid ""
 "A title field will always be added as the first column. You will need to go "
 "to each post in this list to give the values for each column."
 msgstr ""
 "Ett titelfält kommer alltid att läggas till som första kolumn. Du behöver få "
 "till varje inlägg och lägga till värden för varje kolumn."
+
+#: source/php/AcfFields/php/mod-posts-displau.php:272
+#: source/php/AcfFields/php/mod-posts-displau.php:277
+#, fuzzy
+#| msgid "Allow filtering"
+msgid "Allow freetext filtering"
+msgstr "Tillåt filtrering"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:6
 msgid "Data filtering"
@@ -852,81 +3028,72 @@ msgid "Do not sort"
 msgstr "Sortera inte"
 
 #: source/php/AcfFields/php/mod-posts-source.php:6
-#: source/php/AcfFields/php/mod-posts-source.php:24
+#: source/php/AcfFields/php/mod-posts-source.php:10
 msgid "Data source"
 msgstr "Datakälla"
 
-#: source/php/AcfFields/php/mod-posts-source.php:12
+#: source/php/AcfFields/php/mod-posts-source.php:24
 #: source/php/AcfFields/php/mod-posts-source.php:40
 #, fuzzy
 #| msgid "Post type"
 msgid "Posttyper"
 msgstr "Posttyper"
 
-#: source/php/AcfFields/php/mod-posts-source.php:13
+#: source/php/AcfFields/php/mod-posts-source.php:25
 msgid "Child posts"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-posts-source.php:14
+#: source/php/AcfFields/php/mod-posts-source.php:26
 msgid "Manually picked posts"
 msgstr "Manuellt utvalda inlägg"
 
-#: source/php/AcfFields/php/mod-posts-source.php:15
+#: source/php/AcfFields/php/mod-posts-source.php:27
 #: source/php/AcfFields/php/mod-table.php:11
 msgid "Manual input"
 msgstr "Manuell inmatning"
 
-#: source/php/AcfFields/php/mod-posts-source.php:76
+#: source/php/AcfFields/php/mod-posts-source.php:68
 msgid "Pick posts to display"
 msgstr "Välj inlägg att visa"
 
-#: source/php/AcfFields/php/mod-posts-source.php:106
+#: source/php/AcfFields/php/mod-posts-source.php:98
 msgid "Childs of"
 msgstr "Inlägg som har förälder"
 
-#: source/php/AcfFields/php/mod-posts-source.php:138
+#: source/php/AcfFields/php/mod-posts-source.php:131
 msgid "Set to -1 to show all"
 msgstr "Ange -1 för att visa alla"
 
-#: source/php/AcfFields/php/mod-posts-source.php:187
+#: source/php/AcfFields/php/mod-posts-source.php:159
+msgid "Data input"
+msgstr "Datainmatning"
+
+#: source/php/AcfFields/php/mod-posts-source.php:207
 #: source/php/AcfFields/php/mod-slider.php:304
 #: source/php/AcfFields/php/mod-slider.php:628
-#: source/php/AcfFields/php/mod-slider.php:1013
+#: source/php/AcfFields/php/mod-slider.php:1026
 msgid "Innehåll"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-posts-source.php:203
-msgid "Permalink"
-msgstr "Permalänk"
-
-#: source/php/AcfFields/php/mod-posts-source.php:227
+#: source/php/AcfFields/php/mod-posts-source.php:242
 msgid "Bild"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-posts-source.php:266
-#: source/php/AcfFields/php/mod-posts-source.php:285
-msgid "Add"
-msgstr "Lägg till"
-
-#: source/php/AcfFields/php/mod-posts-source.php:269
 msgid "Column values"
 msgstr "Kolumnvärden"
 
-#: source/php/AcfFields/php/mod-posts-source.php:272
+#: source/php/AcfFields/php/mod-posts-source.php:269
 msgid "Column values if expandable list is selected."
 msgstr "Kolumnvärden om expanderbar lista är vald"
 
-#: source/php/AcfFields/php/mod-posts-source.php:288
-msgid "Data input"
-msgstr "Datainmatning"
-
 #: source/php/AcfFields/php/mod-posts-source.php:310
-msgid "Yes, link to post type archive"
-msgstr "Ja, länka till posttypens arkiv"
-
-#: source/php/AcfFields/php/mod-posts-source.php:315
 msgid "Link to post type archive"
 msgstr "Länka till posttypens arkiv"
+
+#: source/php/AcfFields/php/mod-posts-source.php:330
+msgid "Yes, link to post type archive"
+msgstr "Ja, länka till posttypens arkiv"
 
 #: source/php/AcfFields/php/mod-script.php:15
 msgid "Embed code"
@@ -939,6 +3106,16 @@ msgid ""
 msgstr ""
 "Klistra in din skriptkod här (med &lt;style&gt; &lt;script&gt; taggar om det "
 "behövs). "
+
+#: source/php/AcfFields/php/mod-sites.php:6
+#: source/php/Module/Sites/Sites.php:13 source/php/Module/Sites/Sites.php:14
+msgid "Sites"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-sites.php:10
+#: source/php/AcfFields/php/mod-sites.php:15
+msgid "Include main site"
+msgstr ""
 
 #: source/php/AcfFields/php/mod-slider.php:13
 msgid "Circle slides"
@@ -981,7 +3158,7 @@ msgid "Vänster"
 msgstr "Väster"
 
 #: source/php/AcfFields/php/mod-slider.php:99
-#: source/php/AcfFields/php/mod-slider.php:1101
+#: source/php/AcfFields/php/mod-slider.php:1114
 msgid "Centrerad"
 msgstr "Centrerad"
 
@@ -1044,31 +3221,31 @@ msgid "Text position"
 msgstr "Textlagrets placering"
 
 #: source/php/AcfFields/php/mod-slider.php:329
-#: source/php/AcfFields/php/mod-slider.php:687
-#: source/php/AcfFields/php/mod-slider.php:873
+#: source/php/AcfFields/php/mod-slider.php:700
+#: source/php/AcfFields/php/mod-slider.php:886
 msgid "No link"
 msgstr "Ingen länk"
 
 #: source/php/AcfFields/php/mod-slider.php:355
-#: source/php/AcfFields/php/mod-slider.php:721
-#: source/php/AcfFields/php/mod-slider.php:933
+#: source/php/AcfFields/php/mod-slider.php:734
+#: source/php/AcfFields/php/mod-slider.php:946
 msgid "Url"
 msgstr "Url"
 
 #: source/php/AcfFields/php/mod-slider.php:384
-#: source/php/AcfFields/php/mod-slider.php:755
-#: source/php/AcfFields/php/mod-slider.php:904
+#: source/php/AcfFields/php/mod-slider.php:768
+#: source/php/AcfFields/php/mod-slider.php:917
 msgid "Sida"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-slider.php:406
-#: source/php/AcfFields/php/mod-slider.php:782
+#: source/php/AcfFields/php/mod-slider.php:795
 msgid "Yes, open link in new window"
 msgstr "Ja, öppna länken i nytt fönster"
 
 #: source/php/AcfFields/php/mod-slider.php:411
-#: source/php/AcfFields/php/mod-slider.php:787
-#: source/php/AcfFields/php/mod-slider.php:965
+#: source/php/AcfFields/php/mod-slider.php:800
+#: source/php/AcfFields/php/mod-slider.php:978
 msgid "New window"
 msgstr "Nytt fönster"
 
@@ -1106,83 +3283,83 @@ msgstr "Inbäddningslänk"
 msgid "Placeholder Image"
 msgstr "Affischbild"
 
-#: source/php/AcfFields/php/mod-slider.php:834
+#: source/php/AcfFields/php/mod-slider.php:847
 msgid "Desktop Image"
 msgstr "Bild för desktop"
 
-#: source/php/AcfFields/php/mod-slider.php:837
+#: source/php/AcfFields/php/mod-slider.php:850
 msgid "This image will be used in larger screens."
 msgstr "Denna bilden kommer att användas på större skärmar."
 
-#: source/php/AcfFields/php/mod-slider.php:858
+#: source/php/AcfFields/php/mod-slider.php:871
 msgid "Mobile Image"
 msgstr "Bild för mobil"
 
-#: source/php/AcfFields/php/mod-slider.php:861
+#: source/php/AcfFields/php/mod-slider.php:874
 msgid "This image will be used in smaller screens."
 msgstr "Denna bilden kommer användas på mindre skärmar."
 
-#: source/php/AcfFields/php/mod-slider.php:988
+#: source/php/AcfFields/php/mod-slider.php:1001
 msgid "Ange din titel här"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1036
+#: source/php/AcfFields/php/mod-slider.php:1049
 msgid "Slides"
 msgstr "Slides"
 
-#: source/php/AcfFields/php/mod-slider.php:1050
+#: source/php/AcfFields/php/mod-slider.php:1063
 msgid "Automatically slide between slides"
 msgstr "Bläddra automatiskt mellan slides"
 
-#: source/php/AcfFields/php/mod-slider.php:1055
+#: source/php/AcfFields/php/mod-slider.php:1068
 msgid "Autoslide"
 msgstr "Automatisk bläddring"
 
-#: source/php/AcfFields/php/mod-slider.php:1074
+#: source/php/AcfFields/php/mod-slider.php:1087
 msgid "seconds"
 msgstr "sekunder"
 
-#: source/php/AcfFields/php/mod-slider.php:1076
+#: source/php/AcfFields/php/mod-slider.php:1089
 msgid "Slide timeout"
 msgstr "Intervall för automatisk bläddring"
 
-#: source/php/AcfFields/php/mod-slider.php:1102
+#: source/php/AcfFields/php/mod-slider.php:1115
 msgid "Bottom"
 msgstr "Botten"
 
-#: source/php/AcfFields/php/mod-slider.php:1110
+#: source/php/AcfFields/php/mod-slider.php:1123
 msgid "Navigation position"
 msgstr "Navigeringsposition"
 
-#: source/php/AcfFields/php/mod-slider.php:1125
+#: source/php/AcfFields/php/mod-slider.php:1138
 msgid "Always visible"
 msgstr "Alltid synlig"
 
-#: source/php/AcfFields/php/mod-slider.php:1126
+#: source/php/AcfFields/php/mod-slider.php:1139
 msgid "Only on hover"
 msgstr "Bara på hover"
 
-#: source/php/AcfFields/php/mod-slider.php:1134
+#: source/php/AcfFields/php/mod-slider.php:1147
 msgid "Show navigation"
 msgstr "Visa navigering"
 
-#: source/php/AcfFields/php/mod-slider.php:1149
+#: source/php/AcfFields/php/mod-slider.php:1162
 msgid "Continues scroll (no ending slide)"
 msgstr "Börja om efter sista sliden"
 
-#: source/php/AcfFields/php/mod-slider.php:1150
+#: source/php/AcfFields/php/mod-slider.php:1163
 msgid "Pages dot navigation"
 msgstr "Pricknavigering"
 
-#: source/php/AcfFields/php/mod-slider.php:1151
+#: source/php/AcfFields/php/mod-slider.php:1164
 msgid "No scroll snapping"
 msgstr "Ingen ”scroll-snapping”"
 
-#: source/php/AcfFields/php/mod-slider.php:1152
+#: source/php/AcfFields/php/mod-slider.php:1165
 msgid "Group slides"
 msgstr "Gruppera slides"
 
-#: source/php/AcfFields/php/mod-slider.php:1163
+#: source/php/AcfFields/php/mod-slider.php:1176
 msgid "Additional options"
 msgstr "Fler inställningar"
 
@@ -1226,10 +3403,6 @@ msgstr "Facebook-användarnamn"
 #: source/php/AcfFields/php/mod-social.php:349
 msgid "Hashtag"
 msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:126
-msgid "User"
-msgstr "Användare"
 
 #: source/php/AcfFields/php/mod-social.php:134
 #: source/php/AcfFields/php/mod-table.php:20
@@ -1303,7 +3476,7 @@ msgstr ""
 "semikolon."
 
 #: source/php/AcfFields/php/mod-table.php:90
-#: source/php/Module/Table/Table.php:13
+#: source/php/Module/Table/Table.php:12
 msgid "Table"
 msgstr "Tabell"
 
@@ -1389,7 +3562,7 @@ msgid "Font size"
 msgstr "Textstorlek"
 
 #: source/php/AcfFields/php/mod-video.php:6
-#: source/php/Module/Video/Video.php:11 source/php/Module/Video/Video.php:12
+#: source/php/Module/Video/Video.php:12 source/php/Module/Video/Video.php:13
 msgid "Video"
 msgstr "Video"
 
@@ -1425,7 +3598,7 @@ msgid "Kategorier"
 msgstr "Kategorier"
 
 #: source/php/AcfFields/php/mod-wpwidget.php:14
-#: source/php/Module/WpWidget/WpWidget.php:144
+#: source/php/Module/WpWidget/WpWidget.php:154
 msgid "Meta"
 msgstr "Meta"
 
@@ -1442,7 +3615,7 @@ msgid "Senaste inläggen"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-wpwidget.php:18
-#: source/php/Module/WpWidget/WpWidget.php:148
+#: source/php/Module/WpWidget/WpWidget.php:158
 msgid "RSS"
 msgstr "RSS"
 
@@ -1469,24 +3642,6 @@ msgstr ""
 #: source/php/AcfFields/php/mod-wpwidget.php:45
 msgid "No options avabile"
 msgstr "Inga tillgängliga alternativ"
-
-#: source/php/AcfFields/php/mod-wpwidget.php:82
-#: source/php/AcfFields/php/mod-wpwidget.php:114
-#: source/php/AcfFields/php/mod-wpwidget.php:146
-#: source/php/AcfFields/php/mod-wpwidget.php:178
-#: source/php/AcfFields/php/mod-wpwidget.php:210
-#, fuzzy
-#| msgid "No "
-msgid "No"
-msgstr "Nej"
-
-#: source/php/AcfFields/php/mod-wpwidget.php:83
-#: source/php/AcfFields/php/mod-wpwidget.php:115
-#: source/php/AcfFields/php/mod-wpwidget.php:147
-#: source/php/AcfFields/php/mod-wpwidget.php:179
-#: source/php/AcfFields/php/mod-wpwidget.php:211
-msgid "Yes"
-msgstr "Ja"
 
 #: source/php/AcfFields/php/mod-wpwidget.php:91
 msgid "Show number of items indicator"
@@ -1584,11 +3739,7 @@ msgstr ""
 msgid "Ämne"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-wpwidget.php:521
-msgid "Taxonomy"
-msgstr ""
-
-#: source/php/Display.php:278 templates/widget/form.php:30
+#: source/php/Display.php:338 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -1596,31 +3747,27 @@ msgstr "Redigera modul"
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:117
-msgid "Content"
-msgstr "Innehåll"
-
-#: source/php/Editor.php:151
+#: source/php/Editor.php:152
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:152
+#: source/php/Editor.php:153
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:170
+#: source/php/Editor.php:171
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:181
+#: source/php/Editor.php:182
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:224
+#: source/php/Editor.php:225
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:226
+#: source/php/Editor.php:227
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -1628,11 +3775,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:495
+#: source/php/Editor.php:513
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:578
+#: source/php/Editor.php:596
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -1656,42 +3803,50 @@ msgid "Contacts"
 msgstr "Kontakter"
 
 #: source/php/Module/Contact/Contact.php:15
-#: source/php/Module/Contacts/Contacts.php:13
+#: source/php/Module/Contacts/Contacts.php:14
 msgid "Outputs one or more contacts"
 msgstr "Visar en eller flera kontakter"
 
-#: source/php/Module/Contacts/Contacts.php:11
 #: source/php/Module/Contacts/Contacts.php:12
+#: source/php/Module/Contacts/Contacts.php:13
 msgid "Contacts v2"
 msgstr "Kontakter v2"
 
+#: source/php/Module/Contacts/views/cards.blade.php:42
+msgid "Postal address"
+msgstr "Adress"
+
 #: source/php/Module/Files/Files.php:15
-#: source/php/Module/FilesList/FilesList.php:13
+#: source/php/Module/FilesList/FilesList.php:14
 msgid "Outputs a file archive."
 msgstr "Visa ett filarkiv"
 
-#: source/php/Module/Gallery/Gallery.php:11
+#: source/php/Module/FilesList/views/fileslist.blade.php:22
+msgid "Filter files"
+msgstr "Filtrera filer"
+
+#: source/php/Module/Gallery/Gallery.php:12
 msgid "Gallery"
 msgstr "Galleri"
 
-#: source/php/Module/Gallery/Gallery.php:12
+#: source/php/Module/Gallery/Gallery.php:13
 msgid "Galleries"
 msgstr "Gallerier"
 
-#: source/php/Module/Gallery/Gallery.php:13
+#: source/php/Module/Gallery/Gallery.php:14
 msgid "Outputs a gallery with images"
 msgstr "Visar ett galleri med bilder"
 
-#: source/php/Module/Iframe/Iframe.php:11
 #: source/php/Module/Iframe/Iframe.php:12
+#: source/php/Module/Iframe/Iframe.php:13
 msgid "Iframe"
 msgstr "Iframe"
 
-#: source/php/Module/Iframe/Iframe.php:13
+#: source/php/Module/Iframe/Iframe.php:14
 msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida"
 
-#: source/php/Module/Iframe/Iframe.php:26
+#: source/php/Module/Iframe/Iframe.php:33
 msgid ""
 "Your iframe link must start with http<strong>s</strong>://. Links without "
 "this prefix will not display."
@@ -1699,28 +3854,45 @@ msgstr ""
 "Dina iframe url måste börja med http<strong>s</strong>://. Länkar utan detta "
 "prefix kommer inte att visas."
 
+#: source/php/Module/Image/Image.php:15
+#, fuzzy
+#| msgid "Outputs a notice"
+msgid "Outputs an image"
+msgstr "Visar en notis"
+
 #: source/php/Module/Index/Index.php:17
+#, fuzzy
+#| msgid "Index"
+msgid "Indexes"
+msgstr "Index"
+
+#: source/php/Module/Index/Index.php:18
 msgid "Index card to use as an entry point for a \"content section\"."
 msgstr "Index-rutor att använda som ingångar till undersidor"
 
-#: source/php/Module/InheritPost/InheritPost.php:11
 #: source/php/Module/InheritPost/InheritPost.php:12
 msgid "Post article"
 msgstr "Inläggsartikel"
 
 #: source/php/Module/InheritPost/InheritPost.php:13
+#, fuzzy
+#| msgid "Post article"
+msgid "Post articles"
+msgstr "Inläggsartikel"
+
+#: source/php/Module/InheritPost/InheritPost.php:14
 msgid "Outputs title and content from any post or page"
 msgstr "Visar titel och brödtet från ett inlägg eller sida"
 
-#: source/php/Module/InlayList/InlayList.php:11
+#: source/php/Module/InlayList/InlayList.php:12
 msgid "Inlay List"
 msgstr "Lista"
 
-#: source/php/Module/InlayList/InlayList.php:12
+#: source/php/Module/InlayList/InlayList.php:13
 msgid "Inlay Lists"
 msgstr "Listor"
 
-#: source/php/Module/InlayList/InlayList.php:13
+#: source/php/Module/InlayList/InlayList.php:14
 msgid "Outputs one or more posts from selected post-type."
 msgstr "Visar en eller flera inlägg från vald posttyp"
 
@@ -1734,66 +3906,102 @@ msgstr "Senaste"
 msgid "Main News"
 msgstr "Huvudnyhet"
 
-#: source/php/Module/Notice/Notice.php:11
 #: source/php/Module/Notice/Notice.php:12
+#: source/php/Module/Notice/Notice.php:13
 msgid "Notice"
 msgstr "Notis"
 
-#: source/php/Module/Notice/Notice.php:13
+#: source/php/Module/Notice/Notice.php:14
 msgid "Outputs a notice"
 msgstr "Visar en notis"
 
-#: source/php/Module/Posts/Posts.php:15 source/php/Module/Posts/Posts.php:16
+#: source/php/Module/Posts/Posts.php:13 source/php/Module/Posts/Posts.php:14
 msgid "Posts"
 msgstr "Inlägg"
 
-#: source/php/Module/Posts/Posts.php:17
+#: source/php/Module/Posts/Posts.php:15
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
 
-#: source/php/Module/Posts/Posts.php:63
+#: source/php/Module/Posts/Posts.php:161
 msgid "Taxonomy display"
 msgstr "Visning av taxnomi"
 
-#: source/php/Module/Script/Script.php:11
+#: source/php/Module/Posts/views/circular.blade.php:54
+#: source/php/Module/Posts/views/grid.blade.php:51
+#: source/php/Module/Posts/views/index.blade.php:53
+#: source/php/Module/Posts/views/items.blade.php:64
+#: source/php/Module/Posts/views/list.blade.php:26
+#: source/php/Module/Posts/views/news.blade.php:58
+#: templates/module/modularity-mod-latest-list.php:58
+msgid "Show more"
+msgstr "Visa mer"
+
+#: source/php/Module/Posts/views/expandable-list.blade.php:22
+#, fuzzy
+#| msgid "Filter"
+msgid "Filter on…"
+msgstr "Filter"
+
+#: source/php/Module/Posts/views/expandable-list.blade.php:88
+msgid "Nothing to display…"
+msgstr "Inget att visa…"
+
+#: source/php/Module/Posts/views/grid.blade.php:44
+#: source/php/Module/Posts/views/items.blade.php:57
+#: source/php/Module/Posts/views/list.blade.php:22
+msgid "No posts to show…"
+msgstr "Inga inlägg att visa"
+
+#: source/php/Module/Posts/views/news.blade.php:38
+#: templates/module/modularity-mod-latest-news.php:61
+#: templates/module/modularity-mod-mainnews.php:45
+msgid "Read more"
+msgstr "Läs mer"
+
 #: source/php/Module/Script/Script.php:12
+#: source/php/Module/Script/Script.php:13
 msgid "Script"
 msgstr "Script"
 
-#: source/php/Module/Script/Script.php:13
+#: source/php/Module/Script/Script.php:14
 msgid "Outputs unsanitized code to widget area."
 msgstr "Matar ut kod"
 
-#: source/php/Module/Slider/Slider.php:11
+#: source/php/Module/Sites/Sites.php:15
+msgid "Outputs a grid list with att sites in the network."
+msgstr ""
+
+#: source/php/Module/Slider/Slider.php:21
 msgid "Slider"
 msgstr "Slider"
 
-#: source/php/Module/Slider/Slider.php:12
+#: source/php/Module/Slider/Slider.php:22
 msgid "Sliders"
 msgstr "Sliders"
 
-#: source/php/Module/Slider/Slider.php:13
+#: source/php/Module/Slider/Slider.php:23
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr "Visar flera bilder eller filmer i ett bildspel"
 
-#: source/php/Module/Slider/Slider.php:39
-#: source/php/Module/Slider/Slider.php:47
+#: source/php/Module/Slider/Slider.php:173
+#: source/php/Module/Slider/Slider.php:181
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
-#: source/php/Module/Social/Feed.php:573 source/php/Module/Social/Feed.php:612
+#: source/php/Module/Social/Feed.php:575 source/php/Module/Social/Feed.php:614
 msgid "ago"
 msgstr "sedan"
 
-#: source/php/Module/Social/Social.php:11
+#: source/php/Module/Social/Social.php:14
 msgid "Social Media Feed"
 msgstr "Social Media flöde"
 
-#: source/php/Module/Social/Social.php:12
+#: source/php/Module/Social/Social.php:15
 msgid "Sociala Media Feeds"
 msgstr "Sociala Medie flöden"
 
-#: source/php/Module/Social/Social.php:13
+#: source/php/Module/Social/Social.php:16
 msgid ""
 "Outputs a social media feed from desired username or hashtag (facebook, "
 "instagram, twitter, linkedin)."
@@ -1801,77 +4009,73 @@ msgstr ""
 "Visar ett socialt flöde från specificerat användarnamn eller hashtag "
 "(facebook, instagram, twitter, linkedin)."
 
-#: source/php/Module/Table/Table.php:14
+#: source/php/Module/Table/Table.php:13
 msgid "Tables"
 msgstr "Tabeller"
 
-#: source/php/Module/Table/Table.php:15
+#: source/php/Module/Table/Table.php:14
 msgid "Outputs a flexible table with options."
 msgstr "Visar en tabell"
 
-#: source/php/Module/Table/Table.php:45
+#: source/php/Module/Table/Table.php:63
 msgid "There was an error opening the selected .csv-file."
 msgstr "Det uppstod ett fel när den valda .csv-filen skulle öppnas."
 
-#: source/php/Module/Table/Table.php:89
+#: source/php/Module/Table/Table.php:107
 msgid "No data available in table"
 msgstr "Inga rader i tabellen"
 
-#: source/php/Module/Table/Table.php:90
+#: source/php/Module/Table/Table.php:108
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "Visar _START_ till _END_ av _TOTAL_ rader"
 
-#: source/php/Module/Table/Table.php:91
+#: source/php/Module/Table/Table.php:109
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "Visar 0 till 0 av 0 rader"
 
-#: source/php/Module/Table/Table.php:92
+#: source/php/Module/Table/Table.php:110
 msgid "filtered from _MAX_ total entries"
 msgstr "filtrerad från _MAX_ rader"
 
-#: source/php/Module/Table/Table.php:93
+#: source/php/Module/Table/Table.php:111
 msgid "Show _MENU_ entries"
 msgstr "Visa _MENU_ rader"
 
-#: source/php/Module/Table/Table.php:94
+#: source/php/Module/Table/Table.php:112
 msgid "Loading..."
 msgstr "Laddar…"
 
-#: source/php/Module/Table/Table.php:95
+#: source/php/Module/Table/Table.php:113
 msgid "Processing..."
 msgstr "Laddar–"
 
-#: source/php/Module/Table/Table.php:96
+#: source/php/Module/Table/Table.php:114
 msgid "No matching records found"
 msgstr "Inga matchande rader hittades"
 
-#: source/php/Module/Table/Table.php:97
+#: source/php/Module/Table/Table.php:115
 msgid "First"
 msgstr "Första"
 
-#: source/php/Module/Table/Table.php:98
+#: source/php/Module/Table/Table.php:116
 msgid "Last"
 msgstr "Sista"
 
-#: source/php/Module/Table/Table.php:99
+#: source/php/Module/Table/Table.php:117
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Table/Table.php:100
+#: source/php/Module/Table/Table.php:118
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Table/Table.php:101
+#: source/php/Module/Table/Table.php:119
 msgid "activate to sort column ascending"
 msgstr "aktivera för att sortera kolumnen i stigande ordning"
 
-#: source/php/Module/Table/Table.php:102
+#: source/php/Module/Table/Table.php:120
 msgid "activate to sort column descending"
 msgstr "aktivera för att sortera kolumnen i fallande ordning"
-
-#: source/php/Module/Text/Text.php:12
-msgid "Text"
-msgstr "Text"
 
 #: source/php/Module/Text/Text.php:13
 msgid "Texts"
@@ -1881,135 +4085,122 @@ msgstr "Texter"
 msgid "Outputs text"
 msgstr "Visar texter"
 
-#: source/php/Module/Video/Video.php:13
+#: source/php/Module/Video/Video.php:14
 msgid "Outputs an embedded Video."
 msgstr "Visar en inbäddad video"
 
+#: source/php/Module/WpWidget/WpWidget.php:12
 #: source/php/Module/WpWidget/WpWidget.php:13
-#: source/php/Module/WpWidget/WpWidget.php:14
 msgid "Wordpress Widgets"
 msgstr "WordPress Widget"
 
-#: source/php/Module/WpWidget/WpWidget.php:15
+#: source/php/Module/WpWidget/WpWidget.php:14
 msgid "Outputs a default widget in WordPress"
 msgstr "Visar en WordPress widger"
 
-#: source/php/Module/WpWidget/WpWidget.php:141
+#: source/php/Module/WpWidget/WpWidget.php:151
 #: source/php/Options/ArchivesList.php:11
 #: templates/options/modularity-archives.php:2
 msgid "Archives"
 msgstr "Arkiv"
 
-#: source/php/Module/WpWidget/WpWidget.php:142
+#: source/php/Module/WpWidget/WpWidget.php:152
 msgid "Calendar"
 msgstr "Kalender"
 
-#: source/php/Module/WpWidget/WpWidget.php:143
-msgid "Categories"
-msgstr "Kategorier"
-
-#: source/php/Module/WpWidget/WpWidget.php:145
+#: source/php/Module/WpWidget/WpWidget.php:155
 msgid "Pages"
 msgstr "Sidor"
 
-#: source/php/Module/WpWidget/WpWidget.php:146
+#: source/php/Module/WpWidget/WpWidget.php:156
 msgid "Recent comments"
 msgstr "Senaste kommentarerna"
 
-#: source/php/Module/WpWidget/WpWidget.php:147
+#: source/php/Module/WpWidget/WpWidget.php:157
 msgid "Recent posts"
 msgstr "Senaste inläggen"
 
-#: source/php/Module/WpWidget/WpWidget.php:149
-msgid "Search"
-msgstr "Sök"
-
-#: source/php/Module/WpWidget/WpWidget.php:150
+#: source/php/Module/WpWidget/WpWidget.php:160
 msgid "Tag cloud"
 msgstr "Taggmoln"
 
-#: source/php/ModuleManager.php:168
+#: source/php/ModuleManager.php:178
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/ModuleManager.php:169
+#: source/php/ModuleManager.php:179
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
 
-#: source/php/ModuleManager.php:170
+#: source/php/ModuleManager.php:180
 #, php-format
 msgid "New %s"
 msgstr "Ny %s"
 
-#: source/php/ModuleManager.php:171 source/php/ModuleManager.php:173
+#: source/php/ModuleManager.php:181 source/php/ModuleManager.php:183
 #, php-format
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-#: source/php/ModuleManager.php:172
+#: source/php/ModuleManager.php:182
 #, php-format
 msgid "View %s"
 msgstr "Visa %s"
 
-#: source/php/ModuleManager.php:174
+#: source/php/ModuleManager.php:184
 #, php-format
 msgid "Search %s"
 msgstr "Sök %s"
 
-#: source/php/ModuleManager.php:175
+#: source/php/ModuleManager.php:185
 #, php-format
 msgid "Parent %s"
 msgstr "Förälder %s"
 
-#: source/php/ModuleManager.php:176
+#: source/php/ModuleManager.php:186
 #, php-format
 msgid "No %s"
 msgstr "Inga %s"
 
-#: source/php/ModuleManager.php:177
+#: source/php/ModuleManager.php:187
 #, php-format
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/ModuleManager.php:332
+#: source/php/ModuleManager.php:362
 msgid "Hide title"
 msgstr "Dölj titel"
 
-#: source/php/ModuleManager.php:371
+#: source/php/ModuleManager.php:401
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
 
-#: source/php/ModuleManager.php:414
+#: source/php/ModuleManager.php:444
 msgid "This modules is not used yet."
 msgstr "Denna modulen används inte än."
 
-#: source/php/ModuleManager.php:418
+#: source/php/ModuleManager.php:448
 msgid "This module is used on the following places:"
 msgstr "Denna modulen används på följande ställen:"
 
-#: source/php/ModuleManager.php:544
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:9
-msgid "Title"
-msgstr "Titel"
-
-#: source/php/ModuleManager.php:545
+#: source/php/ModuleManager.php:575
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr "Beskrivning"
 
-#: source/php/ModuleManager.php:546
+#: source/php/ModuleManager.php:576
 msgid "Usage"
 msgstr "Användning"
 
-#: source/php/ModuleManager.php:571
+#: source/php/ModuleManager.php:601
 msgid "Not used"
 msgstr "Inte använd"
 
-#: source/php/ModuleManager.php:588
+#: source/php/ModuleManager.php:618
 msgid "more"
 msgstr "fler"
 
@@ -2017,7 +4208,7 @@ msgstr "fler"
 msgid "Options saved successfully"
 msgstr "Inställningarna sparades"
 
-#: source/php/Options/Archives.php:35 source/php/Options/Archives.php:36
+#: source/php/Options/Archives.php:37 source/php/Options/Archives.php:38
 msgid "Archive modules"
 msgstr "Arkivmoduler"
 
@@ -2048,10 +4239,6 @@ msgstr "Redigera moduler"
 #: source/php/Options/General.php:10
 msgid "Modularity Options"
 msgstr "Modularity inställningar"
-
-#: source/php/Options/General.php:11
-msgid "Options"
-msgstr "Inställningar"
 
 #: source/php/Options/General.php:22 source/php/Options/General.php:23
 msgid "Search page modules"
@@ -2117,41 +4304,6 @@ msgstr "efter"
 #: templates/editor/modularity-sidebar-drop-area.php:20
 msgid "Hide global widgets"
 msgstr "Dölj widgets i denna sidebar"
-
-#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:94
-#: templates/module/modularity-mod-contacts/modularity-mod-contacts-cards.php:98
-msgid "Postal address"
-msgstr "Adress"
-
-#: templates/module/modularity-mod-fileslist.php:28
-msgid "Filter files"
-msgstr "Filtrera filer"
-
-#: templates/module/modularity-mod-latest-list.php:58
-#: templates/module/modularity-mod-posts/modularity-mod-posts-circular.php:94
-#: templates/module/modularity-mod-posts/modularity-mod-posts-grid.php:178
-#: templates/module/modularity-mod-posts/modularity-mod-posts-index.php:89
-#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:99
-#: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:27
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:96
-msgid "Show more"
-msgstr "Visa mer"
-
-#: templates/module/modularity-mod-latest-news.php:61
-#: templates/module/modularity-mod-mainnews.php:45
-#: templates/module/modularity-mod-posts/modularity-mod-posts-news.php:76
-msgid "Read more"
-msgstr "Läs mer"
-
-#: templates/module/modularity-mod-posts/modularity-mod-posts-expandable-list.php:83
-msgid "Nothing to display…"
-msgstr "Inget att visa…"
-
-#: templates/module/modularity-mod-posts/modularity-mod-posts-grid.php:172
-#: templates/module/modularity-mod-posts/modularity-mod-posts-items.php:93
-#: templates/module/modularity-mod-posts/modularity-mod-posts-list.php:23
-msgid "No posts to show…"
-msgstr "Inga inlägg att visa"
 
 #: templates/options/partials/modularity-core-options.php:5
 msgid "Show module's post type in admin menu"
@@ -2256,6 +4408,9 @@ msgstr "Modulärt komponentssytem för WordPress"
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
+#~ msgid "Add"
+#~ msgstr "Lägg till"
+
 #~ msgid "Error: Could not init '"
 #~ msgstr "Fel: Kunde inte initisera"
 
@@ -2274,11 +4429,5 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "New "
 #~ msgstr "Ny"
 
-#~ msgid "Edit "
-#~ msgstr "Redigera"
-
 #~ msgid "View "
 #~ msgstr "Visa"
-
-#~ msgid "All "
-#~ msgstr "Alla"

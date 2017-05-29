@@ -50,29 +50,19 @@
                     "label": "Titel",
                     "name": "title",
                     "type": "text",
-                    "instructions": "If empty, title will default to the linked post's\/page's title",
+                    "instructions": "If empty, title will default to the linked post's\/page's title on internal links.",
                     "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_569e068b33f31",
-                                "operator": "==",
-                                "value": "internal"
-                            }
-                        ]
-                    ],
+                    "conditional_logic": 0,
                     "wrapper": {
                         "width": "",
                         "class": "",
                         "id": ""
                     },
                     "default_value": "",
-                    "maxlength": "",
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "readonly": 0,
-                    "disabled": 0
+                    "maxlength": ""
                 },
                 {
                     "key": "field_569e05bceb086",
@@ -174,3 +164,4 @@
     "active": 1,
     "description": ""
 }]
+

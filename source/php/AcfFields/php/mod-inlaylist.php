@@ -1,9 +1,9 @@
-<?php
+<?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_569e054a7f9c2',
-    'title' => __('List', 'modularity'),
+    'title' => 'List',
     'fields' => array(
         0 => array(
             'key' => 'field_569e0559eb084',
@@ -21,12 +21,12 @@ if (function_exists('acf_add_local_field_group')) {
             'min' => 1,
             'max' => 0,
             'layout' => 'block',
-            'button_label' => 'Lägg till rad',
+            'button_label' => __('Lägg till rad', 'modularity'),
             'collapsed' => '',
             'sub_fields' => array(
                 0 => array(
                     'key' => 'field_569e068b33f31',
-                    'label' => __(__(__('Link type', 'modularity'), 'modularity'), 'modularity'),
+                    'label' => __('Link type', 'modularity'),
                     'name' => 'type',
                     'type' => 'radio',
                     'instructions' => '',
@@ -39,8 +39,8 @@ if (function_exists('acf_add_local_field_group')) {
                     ),
                     'layout' => 'horizontal',
                     'choices' => array(
-                        'internal' => __(__(__('Internal link', 'modularity'), 'modularity'), 'modularity'),
-                        'external' => __(__(__('External link', 'modularity'), 'modularity'), 'modularity'),
+                        'internal' => __('Internal link', 'modularity'),
+                        'external' => __('External link', 'modularity'),
                     ),
                     'default_value' => 'internal',
                     'other_choice' => 0,
@@ -50,36 +50,26 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
                 1 => array(
                     'key' => 'field_569e0567eb085',
-                    'label' => __(__(__('Titel', 'modularity'), 'modularity'), 'modularity'),
+                    'label' => __('Titel', 'modularity'),
                     'name' => 'title',
                     'type' => 'text',
-                    'instructions' => __(__(__('If empty, title will default to the linked post\'s/page\'s title', 'modularity'), 'modularity'), 'modularity'),
+                    'instructions' => __('If empty, title will default to the linked post\'s/page\'s title on internal links.', 'modularity'),
                     'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_569e068b33f31',
-                                'operator' => '==',
-                                'value' => 'internal',
-                            ),
-                        ),
-                    ),
+                    'conditional_logic' => 0,
                     'wrapper' => array(
                         'width' => '',
                         'class' => '',
                         'id' => '',
                     ),
                     'default_value' => '',
-                    'maxlength' => '',
                     'placeholder' => '',
                     'prepend' => '',
                     'append' => '',
-                    'readonly' => 0,
-                    'disabled' => 0,
+                    'maxlength' => '',
                 ),
                 2 => array(
                     'key' => 'field_569e05bceb086',
-                    'label' => __(__(__('Link', 'modularity'), 'modularity'), 'modularity'),
+                    'label' => __('Link', 'modularity'),
                     'name' => 'link_internal',
                     'type' => 'post_object',
                     'instructions' => '',
@@ -109,10 +99,10 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
                 3 => array(
                     'key' => 'field_569e05f8eb087',
-                    'label' => __(__(__('Date', 'modularity'), 'modularity'), 'modularity'),
+                    'label' => __('Date', 'modularity'),
                     'name' => 'date',
                     'type' => 'true_false',
-                    'instructions' => __(__(__('If checked, the publish/last modified date of the linked post will be displayed.', 'modularity'), 'modularity'), 'modularity'),
+                    'instructions' => __('If checked, the publish/last modified date of the linked post will be displayed.', 'modularity'),
                     'required' => 0,
                     'conditional_logic' => array(
                         0 => array(
@@ -129,14 +119,14 @@ if (function_exists('acf_add_local_field_group')) {
                         'id' => '',
                     ),
                     'default_value' => 0,
-                    'message' => __(__(__('Show publish date', 'modularity'), 'modularity'), 'modularity'),
+                    'message' => __('Show publish date', 'modularity'),
                     'ui' => 0,
                     'ui_on_text' => '',
                     'ui_off_text' => '',
                 ),
                 4 => array(
                     'key' => 'field_569e06f633f32',
-                    'label' => __(__(__('Link', 'modularity'), 'modularity'), 'modularity'),
+                    'label' => __('Link', 'modularity'),
                     'name' => 'link_external',
                     'type' => 'url',
                     'instructions' => '',
@@ -179,4 +169,4 @@ if (function_exists('acf_add_local_field_group')) {
     'active' => 1,
     'description' => '',
 ));
-}
+}
