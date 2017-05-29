@@ -6,7 +6,7 @@
 @foreach ($contacts as $contact)
 <div class="{{ $columns }}">
     <div class="{{ $classes }}" itemscope itemtype="http://schema.org/Person">
-        @if ($contact['thumbnail'] !== false) : ?>
+        @if ($contact['thumbnail'] !== false)
         <img class="box-image" src="{{ $contact['thumbnail'][0] }}" alt="{{ $contact['full_name'] }}">
         @endif
 

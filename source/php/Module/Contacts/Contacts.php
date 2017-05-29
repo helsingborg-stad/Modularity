@@ -84,7 +84,7 @@ class Contacts extends \Modularity\Module
             $info['thumbnail'] = false;
             if (isset($info['image']) && !empty($info['image'])) {
                 $info['thumbnail'] = wp_get_attachment_image_src(
-                    $info['image']->id,
+                    $info['image']['id'],
                     apply_filters(
                         'Modularity/image/contact',
                         municipio_to_aspect_ratio('16:9', array(400, 400)),
