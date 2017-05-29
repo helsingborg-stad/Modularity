@@ -51,7 +51,7 @@ class Index extends \Modularity\Module
     {
         if (is_array($items) && !empty($items)) {
 
-            foreach ($items as $key => $item) {
+            foreach ($items as $key => &$item) {
                 //Get post
                 global $post;
                 $post = $item['page'];
