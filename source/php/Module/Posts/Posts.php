@@ -532,12 +532,14 @@ class Posts extends \Modularity\Module
 
         add_action('admin_head', function () {
             global $post;
+            global $archive;
 
-            if (empty($post)) {
+            $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
+            if (empty($id)) {
                 return;
             }
 
-            echo '<script>var modularity_current_post_id = ' . $post->ID . ';</script>';
+            echo '<script>var modularity_current_post_id = ' . $id . ';</script>';
         });
     }
 
