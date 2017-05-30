@@ -57,7 +57,7 @@ class Index extends \Modularity\Module
                 $post = $item['page'];
                 $post_data = setup_postdata($item['page']);
 
-                if ($post_data == true) {
+                if ($post_data || $item['link_type'] == 'external') {
                     //Setup item
                     $item['permalink'] = ($item['link_type'] == 'internal') ? get_permalink() : $item['link_url'];
                     $item['thumbnail'] = $this->getThumbnail($item);
