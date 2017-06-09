@@ -31,8 +31,10 @@ class FilesList extends \Modularity\Module
         foreach ($files as &$item) {
             $item['columns'] = array();
 
-            foreach ($item['fields'] as $column) {
-                $item['columns'][$column['key']] = $column['value'];
+            if (! empty($item['fields'])) {
+                foreach ($item['fields'] as $column) {
+                    $item['columns'][$column['key']] = $column['value'];
+                }
             }
 
             unset($item['fields']);
