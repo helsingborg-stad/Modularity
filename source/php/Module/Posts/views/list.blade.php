@@ -7,7 +7,11 @@
         @if (count($posts) > 0)
             @foreach ($posts as $post)
             <li>
-                <a href="{{ $posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID) }}">
+                @if ($post->post_type == 'attachment')
+                    <a href="{{ wp_get_attachment_url($post->ID) }}" target="_blank">
+                @else
+                    <a href="{{ $posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID) }}">
+                @endif
                     @if (in_array('title', $posts_fields))
                         <span class="link-item title">{{ apply_filters('the_title', $post->post_title) }}</span>
                     @endif
