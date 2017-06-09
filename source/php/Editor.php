@@ -459,7 +459,12 @@ class Editor extends \Modularity\Options
         $available = \Modularity\ModuleManager::$available;
 
         // Basics
-        $module = get_post($id);
+        $moduleList = get_posts(array(
+            'post_type' => 'any',
+            'include' => $id,
+            'suppress_filters' => false,
+        ));
+        $module = (isset($moduleList[0]) && !empty($moduleList[0])) ? $moduleList[0] : null;
 
         if (!$module || !isset($available[$module->post_type])) {
             return false;
