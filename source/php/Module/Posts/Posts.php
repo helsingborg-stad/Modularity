@@ -588,27 +588,28 @@ class Posts extends \Modularity\Module
             'post_type' => 'any'
         );
 
+        // Sort by meta key
+        if (strpos($orderby, '_metakey_') === 0) {
+            $orderby_key = substr($orderby, strlen('_metakey_'));
+            $orderby = 'order_clause';
+            $metaQuery = array(
+                array(
+                    'relation' => 'OR',
+                    'order_clause' => array(
+                        'key' => $orderby_key,
+                        'compare' => 'EXISTS'
+                    ),
+                    array(
+                        'key' => $orderby_key,
+                        'compare' => 'NOT EXISTS'
+                    )
+                )
+            );
+        }
+
         if ($orderby != 'false') {
             $getPostsArgs['order'] = $order;
             $getPostsArgs['orderby'] = $orderby;
-        }
-
-        // Sort by meta key
-        if (strpos($orderby, '_metakey_') > -1) {
-            $orderby = str_replace('_metakey_', '', $orderby);
-            $metaQuery = array(
-                'relation' => 'OR',
-                array(
-                    'key' => $orderby,
-                    'compare' => 'EXISTS'
-                ),
-                array(
-                    'key' => $orderby,
-                    'compare' => 'NOT EXISTS'
-                )
-            );
-
-            $orderby = 'meta_key';
         }
 
         // Taxonomy filter
