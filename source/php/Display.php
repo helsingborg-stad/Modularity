@@ -410,8 +410,15 @@ class Display
             return;
         }
 
+        //Get module details
         $module = \Modularity\Editor::getModule($args['id']);
 
+        //If not valid details, abort.
+        if (!is_object($module) || empty($module->post_type)) {
+            return "";
+        }
+
+        //Create instance
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
 
