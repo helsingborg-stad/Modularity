@@ -10,6 +10,10 @@ class Search
 
         add_filter('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
         add_filter('ep_post_sync_args_post_prepare_meta', array($this, 'elasticPressPreIndex'));
+
+        add_filter('posts_join', array($this, 'moduleSearchModuleDescriptionJoin'));
+        add_filter('posts_search', array($this, 'moduleSearchModuleDescription'));
+
     }
 
     /**
@@ -94,6 +98,58 @@ class Search
         }
 
         $wp_query->posts = array_values($searchResult);
+    }
+
+    /**
+     * Adds the OR condition to search the module description on module edit pages.
+     * @param string   $search Search SQL for WHERE clause.
+     * @return string
+     */
+    function moduleSearchModuleDescription($search)
+    {
+        global $wpdb;
+
+        if ($this->isModuleSearch()) {
+            $like = '%' . $wpdb->esc_like($_GET['s']) . '%';
+            $meta_description = $wpdb->prepare("OR ({$wpdb->postmeta}.meta_value LIKE %s)", $like);
+            // Add the meta description OR condition between one of the existing OR conditions.
+            $search = str_replace('OR', $meta_description . ' OR', $search);
+        }
+
+        return $search;
+    }
+
+    /**
+     * Adds a join for the module description.
+     * @param string   $join The JOIN clause of the query.
+     * @return string
+     */
+    function moduleSearchModuleDescriptionJoin($join)
+    {
+        global $wpdb;
+
+        if ($this->isModuleSearch()) {
+           $join .= "LEFT JOIN $wpdb->postmeta ON {$wpdb->posts}.ID = {$wpdb->postmeta}.post_id AND meta_key = 'module-description'";
+        }
+
+        return $join;
+    }
+
+    /**
+     * Helper method to determine if a module search is performed on a module edit page.
+     * @return bool
+     */
+    function isModuleSearch() {
+        global $pagenow;
+
+        if ($pagenow == 'edit.php' && isset($_GET['s']) && $_GET['s'] !== '') {
+            $enabled = \Modularity\ModuleManager::$enabled;
+            if (in_array($_GET['post_type'], $enabled)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
