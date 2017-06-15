@@ -211,7 +211,7 @@ class Display
             }
         */
 
-        if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, $options['enabled-areas'][$template])) {
+        if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, (array) $options['enabled-areas'][$template])) {
             return false;
         }
 
