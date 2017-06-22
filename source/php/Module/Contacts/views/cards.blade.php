@@ -34,31 +34,33 @@
             @if (!empty($module->post_content))
             <li class="small description">{!! apply_filters('the_content', $this->post_content) !!}</li>
             @endif
-            </ul>
 
             @if (isset($contact['address']) && !empty($contact['address']))
-            <div class="gutter gutter-top small">
+            <li class="gutter gutter-top small">
                 @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
                     <strong><?php _e('Postal address', 'modularity'); ?></strong>
                 @endif
                 {!! $contact['address'] !!}
-            </div>
+            </li>
             @endif
 
             @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
-            <div class="gutter gutter-top small">
+            <li class="gutter gutter-top small">
                 @if (isset($contact['address']) && !empty($contact['address']))
                     <strong><?php _e('Visiting address', 'modularity'); ?></strong>
                 @endif
                 {!! $contact['visiting_address'] !!}
-            </div>
-            <?php endif; ?>
+            </li>
+            @endif
 
             @if (isset($contact['other']) && !empty($contact['other']))
-            <div class="gutter gutter-top small">
+            <li class="gutter gutter-top small">
                 {!! $contact['other'] !!}
-            </div>
+            </li>
             @endif
+
+            </ul>
+
         </div>
     </div>
 </div>

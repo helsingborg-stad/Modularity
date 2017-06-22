@@ -11,7 +11,9 @@
             <h6 itemprop="name">{{ $contact['full_name'] }}</h6>
         </label>
         <div class="accordion-content">
+
             <ul>
+
                 @if ((isset($contact['work_title']) && !empty($contact['work_title'])) || (isset($contact['administration_unit']) && !empty($contact['administration_unit'])))
                     <li class="card-title">
                         <span itemprop="jobTitle">{{ (isset($contact['work_title']) && !empty($contact['work_title'])) ? $contact['work_title'] : '' }}</span>
@@ -27,6 +29,23 @@
 
                 @if (isset($contact['email']) && !empty($contact['email']))
                 <li><a itemprop="email" class="link-item truncate" href="mailto:{{ $contact['email'] }}">{{ $contact['email'] }}</a></li>
+                @endif
+
+                @if (!empty($module->post_content))
+                    <li class="small description">{!! apply_filters('the_content', $this->post_content) !!}</li>
+                @endif
+                </ul>
+
+                @if (isset($contact['address']) && !empty($contact['address']))
+                <div class="gutter gutter-top small">
+                    {!! $contact['address'] !!}
+                </div>
+                @endif
+
+                @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
+                <div class="gutter gutter-top small">
+                    {!! $contact['visiting_address'] !!}
+                </div>
                 @endif
 
                 @if (isset($contact['other']) && !empty($contact['other']))

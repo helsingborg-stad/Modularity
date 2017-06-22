@@ -3,19 +3,6 @@
     "title": "Contacts",
     "fields": [
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "cards": "Cards",
-                "list": "List"
-            },
-            "default_value": [
-                "cards"
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_5805e5dc1da44",
             "label": "Display mode",
             "name": "display_mode",
@@ -28,10 +15,38 @@
                 "class": "",
                 "id": ""
             },
-            "disabled": 0,
-            "readonly": 0
+            "choices": {
+                "cards": "Vertical cards (square image)",
+                "circular": "Vertical cards (circular image)",
+                "vertical": "Horizontal cards",
+                "list": "List"
+            },
+            "default_value": [
+                "cards"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         },
         {
+            "key": "field_5805e5dc1dc55",
+            "label": "Kontakter",
+            "name": "contacts",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "min": 1,
+            "max": "",
+            "button_label": "Add contact",
             "layouts": [
                 {
                     "key": "5757b95767730",
@@ -40,18 +55,8 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": "",
                             "key": "field_5805e5dc26dde",
-                            "label": "Image",
+                            "label": "Bild",
                             "name": "image",
                             "type": "image",
                             "instructions": "",
@@ -61,16 +66,21 @@
                                 "width": "",
                                 "class": "",
                                 "id": ""
-                            }
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": ""
                         },
                         {
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
                             "key": "field_5805e5dc27255",
-                            "label": "First name or place",
+                            "label": "F\u00f6rnamn eller plats",
                             "name": "first_name",
                             "type": "text",
                             "instructions": "",
@@ -80,16 +90,16 @@
                                 "width": "50",
                                 "class": "",
                                 "id": ""
-                            }
-                        },
-                        {
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": "",
+                            "append": ""
+                        },
+                        {
                             "key": "field_5805e5dc276e1",
-                            "label": "Last name",
+                            "label": "Efternamn",
                             "name": "last_name",
                             "type": "text",
                             "instructions": "",
@@ -99,16 +109,16 @@
                                 "width": "50",
                                 "class": "",
                                 "id": ""
-                            }
-                        },
-                        {
+                            },
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": "",
+                            "append": ""
+                        },
+                        {
                             "key": "field_5805e5dc2771c",
-                            "label": "Work title",
+                            "label": "Jobbtitel",
                             "name": "work_title",
                             "type": "text",
                             "instructions": "",
@@ -119,17 +129,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "readonly": 0,
-                            "disabled": 0
-                        },
-                        {
                             "default_value": "",
                             "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
                             "key": "field_5805e5dc277e3",
-                            "label": "Administration unit",
+                            "label": "F\u00f6rvaltning",
                             "name": "administration_unit",
                             "type": "text",
                             "instructions": "",
@@ -140,16 +150,17 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
                             "readonly": 0,
                             "disabled": 0
                         },
                         {
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
                             "key": "field_5805e5dc27b58",
-                            "label": "Epost",
+                            "label": "E-post",
                             "name": "email",
                             "type": "email",
                             "instructions": "",
@@ -159,37 +170,15 @@
                                 "width": "100",
                                 "class": "",
                                 "id": ""
-                            }
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": ""
                         },
                         {
-                            "sub_fields": [
-                                {
-                                    "default_value": "",
-                                    "maxlength": "",
-                                    "placeholder": "",
-                                    "prepend": "",
-                                    "append": "",
-                                    "key": "field_5805e64a94d10",
-                                    "label": "Phone number",
-                                    "name": "number",
-                                    "type": "text",
-                                    "instructions": "",
-                                    "required": 1,
-                                    "conditional_logic": 0,
-                                    "wrapper": {
-                                        "width": "",
-                                        "class": "",
-                                        "id": ""
-                                    }
-                                }
-                            ],
-                            "min": 0,
-                            "max": 0,
-                            "layout": "table",
-                            "button_label": "Add number",
-                            "collapsed": "",
                             "key": "field_5805e62f94d0f",
-                            "label": "Phone number(s)",
+                            "label": "Telefonnummer",
                             "name": "phone_numbers",
                             "type": "repeater",
                             "instructions": "",
@@ -199,14 +188,35 @@
                                 "width": "",
                                 "class": "",
                                 "id": ""
-                            }
+                            },
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "L\u00e4gg till nummer",
+                            "collapsed": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_5805e64a94d10",
+                                    "label": "Telefonnummer",
+                                    "name": "number",
+                                    "type": "text",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "maxlength": "",
+                                    "placeholder": "",
+                                    "prepend": "",
+                                    "append": ""
+                                }
+                            ]
                         },
                         {
-                            "default_value": "",
-                            "new_lines": "wpautop",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "rows": "",
                             "key": "field_5805e5dc28d3a",
                             "label": "Adress",
                             "name": "address",
@@ -219,17 +229,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "readonly": 0,
-                            "disabled": 0
-                        },
-                        {
                             "default_value": "",
                             "new_lines": "wpautop",
                             "maxlength": "",
                             "placeholder": "",
                             "rows": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
                             "key": "field_5805e5dc28e30",
-                            "label": "Visiting address",
+                            "label": "Bes\u00f6ksadress",
                             "name": "visiting_address",
                             "type": "textarea",
                             "instructions": "",
@@ -240,17 +250,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "readonly": 0,
-                            "disabled": 0
-                        },
-                        {
                             "default_value": "",
                             "new_lines": "wpautop",
                             "maxlength": "",
                             "placeholder": "",
                             "rows": "",
+                            "readonly": 0,
+                            "disabled": 0
+                        },
+                        {
                             "key": "field_5805e5dc29114",
-                            "label": "Opening hours",
+                            "label": "\u00d6ppettider",
                             "name": "opening_hours",
                             "type": "textarea",
                             "instructions": "",
@@ -261,17 +271,17 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "default_value": "",
+                            "new_lines": "wpautop",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "rows": "",
                             "readonly": 0,
                             "disabled": 0
                         },
                         {
-                            "tabs": "all",
-                            "toolbar": "full",
-                            "media_upload": 1,
-                            "default_value": "",
-                            "delay": 0,
                             "key": "field_5805e5dc29182",
-                            "label": "Other",
+                            "label": "Annat",
                             "name": "other",
                             "type": "wysiwyg",
                             "instructions": "",
@@ -281,7 +291,12 @@
                                 "width": "",
                                 "class": "",
                                 "id": ""
-                            }
+                            },
+                            "tabs": "all",
+                            "toolbar": "full",
+                            "media_upload": 1,
+                            "default_value": "",
+                            "delay": 0
                         }
                     ],
                     "min": "",
@@ -294,11 +309,8 @@
                     "display": "block",
                     "sub_fields": [
                         {
-                            "role": "",
-                            "multiple": 0,
-                            "allow_null": 0,
                             "key": "field_5805e5dc291c4",
-                            "label": "Select user",
+                            "label": "V\u00e4lj anv\u00e4ndare",
                             "name": "user",
                             "type": "user",
                             "instructions": "",
@@ -308,47 +320,20 @@
                                 "width": "",
                                 "class": "",
                                 "id": ""
-                            }
+                            },
+                            "role": "",
+                            "multiple": 0,
+                            "allow_null": 0
                         }
                     ],
                     "min": "",
                     "max": ""
                 }
-            ],
-            "min": 1,
-            "max": "",
-            "button_label": "Add contact",
-            "key": "field_5805e5dc1dc55",
-            "label": "Kontakter",
-            "name": "contacts",
-            "type": "flexible_content",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
+            ]
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "grid-md-12": "1",
-                "grid-md-6": "2",
-                "grid-md-4": "3",
-                "grid-md-3": "4"
-            },
-            "default_value": [
-                "grid-md-12"
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_5805e5dc1ddcd",
-            "label": "Columns",
+            "label": "Kolumner",
             "name": "columns",
             "type": "select",
             "instructions": "",
@@ -360,6 +345,13 @@
                         "operator": "==",
                         "value": "cards"
                     }
+                ],
+                [
+                    {
+                        "field": "field_5805e5dc1da44",
+                        "operator": "==",
+                        "value": "circular"
+                    }
                 ]
             ],
             "wrapper": {
@@ -367,8 +359,21 @@
                 "class": "",
                 "id": ""
             },
-            "disabled": 0,
-            "readonly": 0
+            "choices": {
+                "grid-md-12": "1",
+                "grid-md-6": "2",
+                "grid-md-4": "3",
+                "grid-md-3": "4"
+            },
+            "default_value": [
+                "grid-md-12"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
         }
     ],
     "location": [
@@ -387,8 +392,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "",
-    "modified": 1476781691,
-    "local": "json"
+    "description": ""
 }]
 

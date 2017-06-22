@@ -87,7 +87,7 @@ class Contacts extends \Modularity\Module
                     $info['image']['id'],
                     apply_filters(
                         'Modularity/image/contact',
-                        municipio_to_aspect_ratio('16:9', array(400, 400)),
+                        municipio_to_aspect_ratio('1:1', array(400, 400)),
                         $this->args
                     )
                 );
@@ -114,19 +114,31 @@ class Contacts extends \Modularity\Module
             switch ($displayMode) {
                 case 'cards':
                     $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $this->post_type, $this->args));
+                    $view = "cards";
+                    break;
+
+                case 'circular':
+                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'circular-card'), $this->post_type, $this->args));
+                    $view = "cards";
+                    break;
+
+                case 'vertical':
+                    $view = "cards";
+                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'vertical-card'), $this->post_type, $this->args));
+                    $this->data['columns'] = 'grid-md-12';
                     break;
 
                 case 'list':
-
+                    $view = "list";
                     break;
             }
 
-            return $displayMode . '.blade.php';
+            return $view . '.blade.php';
         }
 
         // Single contact template
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $this->post_type, $this->args));
-        $this->data['thumbnail'] = false;
+        $this->data['classes']      = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $this->post_type, $this->args));
+        $this->data['thumbnail']    = false;
 
         if (isset($fields->picture) && !empty($fields->picture)) {
             $this->data['thumbnail'] = wp_get_attachment_image_src(
