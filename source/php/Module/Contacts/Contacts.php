@@ -99,8 +99,6 @@ class Contacts extends \Modularity\Module
             $retContacts[] = $info;
         }
 
-        var_dump($retContacts);
-
         return $retContacts;
     }
 
