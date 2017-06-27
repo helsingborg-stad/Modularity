@@ -68,16 +68,17 @@ class Contacts extends \Modularity\Module
                 case 'user':
                     $info = apply_filters('Modularity/mod-contacts/contact-info', array(
                         'image'               => null,
-                        'first_name'          => $contact['user']->user_firstname,
-                        'last_name'           => $contact['user']->user_lastname,
+                        'first_name'          => $contact['user']['user_firstname'],
+                        'last_name'           => $contact['user']['user_lastname'],
                         'work_title'          => null,
                         'administration_unit' => null,
-                        'email'               => strtolower($contact['user']->user_email),
+                        'email'               => strtolower($contact['user']['user_email']),
                         'phone'               => null,
                         'address'             => null,
                         'visiting_address'    => null,
                         'opening_hours'       => null
                     ), $contact);
+
                     break;
             }
 
@@ -97,6 +98,8 @@ class Contacts extends \Modularity\Module
 
             $retContacts[] = $info;
         }
+
+        var_dump($retContacts);
 
         return $retContacts;
     }
