@@ -408,12 +408,17 @@ class Editor extends \Modularity\Options
             'post_status' => $postStatuses
         ));
 
+
+
+
         // Add module id's as keys in the array
         if (!empty($modulesPosts)) {
             foreach ($modulesPosts as $module) {
                 $modules[$module->ID] = $module;
             }
         }
+
+
 
         // Create an strucural correct array with module post data
         if (!empty($moduleSidebars)) {
@@ -458,11 +463,17 @@ class Editor extends \Modularity\Options
     {
         $available = \Modularity\ModuleManager::$available;
 
+        $postStatuses = array('publish');
+        if (is_user_logged_in()) {
+            $postStatuses[] = 'private';
+        }
+
         // Basics
         $moduleList = get_posts(array(
             'post_type' => 'any',
             'include' => $id,
             'suppress_filters' => false,
+            'post_status' => $postStatuses
         ));
         $module = (isset($moduleList[0]) && !empty($moduleList[0])) ? $moduleList[0] : null;
 
