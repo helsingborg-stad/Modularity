@@ -117,11 +117,6 @@ class Contacts extends \Modularity\Module
                     $view = "cards";
                     break;
 
-                case 'circular':
-                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'circular-card'), $this->post_type, $this->args));
-                    $view = "cards";
-                    break;
-
                 case 'vertical':
                     $view = "cards";
                     $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'vertical-card'), $this->post_type, $this->args));

@@ -19,8 +19,7 @@
                 'id' => '',
             ),
             'choices' => array(
-                'cards' => __('Vertical cards (square image)', 'modularity'),
-                'circular' => __('Vertical cards (circular image)', 'modularity'),
+                'cards' => __('Cards', 'modularity'),
                 'vertical' => __('Horizontal cards', 'modularity'),
                 'list' => __('List', 'modularity'),
             ),

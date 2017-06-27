@@ -16,8 +16,7 @@
                 "id": ""
             },
             "choices": {
-                "cards": "Vertical cards (square image)",
-                "circular": "Vertical cards (circular image)",
+                "cards": "Cards",
                 "vertical": "Horizontal cards",
                 "list": "List"
             },
