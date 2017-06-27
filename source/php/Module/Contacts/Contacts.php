@@ -32,6 +32,7 @@ class Contacts extends \Modularity\Module
      */
     public function prepareContacts($contacts)
     {
+
         $retContacts = array();
 
         foreach ($contacts as &$contact) {
@@ -67,6 +68,7 @@ class Contacts extends \Modularity\Module
 
                 case 'user':
                     $info = apply_filters('Modularity/mod-contacts/contact-info', array(
+                        'id'                  => contact['user']['ID'],
                         'image'               => null,
                         'first_name'          => $contact['user']['user_firstname'],
                         'last_name'           => $contact['user']['user_lastname'],
