@@ -62,7 +62,7 @@ class Contacts extends \Modularity\Module
                         'visiting_address'    => $contact['visiting_address'],
                         'opening_hours'       => $contact['opening_hours'],
                         'other'               => $contact['other']
-                    ), $contact);
+                    ), $contact, $contact['acf_fc_layout']);
                     break;
 
                 case 'user':
@@ -77,7 +77,7 @@ class Contacts extends \Modularity\Module
                         'address'             => null,
                         'visiting_address'    => null,
                         'opening_hours'       => null
-                    ), $contact);
+                    ), $contact, $contact['acf_fc_layout']);
 
                     break;
             }
