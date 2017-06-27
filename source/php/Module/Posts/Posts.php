@@ -75,12 +75,12 @@ class Posts extends \Modularity\Module
 
         $data['filters'] = array();
 
-        if (isset($fields->posts_taxonomy_type) && $fields->posts_taxonomy_type) {
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array) $fields->posts_taxonomy_value;
             $taxValues = implode('|', $taxValues);
 
-            $data['filters']['term[]'] = $taxType . '|' . $taxValues;
+            $data['filters']['filter[' . $taxType . ']'] = $taxValues;
         }
 
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
