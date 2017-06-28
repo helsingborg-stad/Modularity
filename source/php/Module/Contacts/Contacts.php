@@ -85,7 +85,7 @@ class Contacts extends \Modularity\Module
             }
 
             $info['thumbnail'] = false;
-            if (isset($info['image']) && !empty($info['image']) && is_numeric($info['image'])) {
+            if (isset($info['image']) && !empty($info['image']) && is_numeric($info['image']['id'])) {
                 $info['thumbnail'] = wp_get_attachment_image_src(
                     $info['image']['id'],
                     apply_filters(
@@ -110,6 +110,7 @@ class Contacts extends \Modularity\Module
 
     public function template()
     {
+
         //Reset
         $this->data['hasImages'] = false;
         $hasImages = "";
