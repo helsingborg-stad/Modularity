@@ -85,7 +85,7 @@ class Contacts extends \Modularity\Module
             }
 
             $info['thumbnail'] = false;
-            if (isset($info['image']) && !empty($info['image'])) {
+            if (isset($info['image']) && !empty($info['image']) && is_numeric($info['image'])) {
                 $info['thumbnail'] = wp_get_attachment_image_src(
                     $info['image']['id'],
                     apply_filters(
@@ -94,6 +94,10 @@ class Contacts extends \Modularity\Module
                         $this->args
                     )
                 );
+            }
+
+            if (isset($info['image']) && filter_var($info['image'], FILTER_VALIDATE_URL) !== false) {
+                $info['thumbnail'] = array($info['image'], 250, 250, false);
             }
 
             $info['full_name'] = trim($info['first_name'] . ' ' . $info['last_name']);
