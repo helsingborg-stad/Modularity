@@ -110,8 +110,23 @@ class Contacts extends \Modularity\Module
 
     public function template()
     {
+        //Reset
+        $this->data['hasImages'] = false;
+        $hasImages = "";
+
         // Multiple contacts template(s)
         if (isset($this->data['contacts']) && count($this->data['contacts']) > 0) {
+
+            //Indicates wheter this list has images or not.
+            foreach ($this->data['contacts'] as $item) {
+                if (isset($item['thumbnail']) && !empty(array_filter($item['thumbnail']))) {
+                    $hasImages = "has-image";
+                    $this->data['hasImages'] = true;
+                    break;
+                }
+            }
+
+            //Display mode
             $displayMode = 'cards';
 
             if (isset($this->data['display_mode']) && !empty($this->data['display_mode'])) {
@@ -120,13 +135,13 @@ class Contacts extends \Modularity\Module
 
             switch ($displayMode) {
                 case 'cards':
-                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $this->post_type, $this->args));
+                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', $hasImages), $this->post_type, $this->args));
                     $view = "cards";
                     break;
 
                 case 'vertical':
                     $view = "cards";
-                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'vertical-card'), $this->post_type, $this->args));
+                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'vertical-card', $hasImages), $this->post_type, $this->args));
                     $this->data['columns'] = 'grid-md-12';
                     break;
 
@@ -139,9 +154,9 @@ class Contacts extends \Modularity\Module
         }
 
         // Single contact template
-        $this->data['classes']      = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $this->post_type, $this->args));
         $this->data['thumbnail']    = false;
 
+        //Profile image
         if (isset($fields->picture) && !empty($fields->picture)) {
             $this->data['thumbnail'] = wp_get_attachment_image_src(
                 $fields->picture->id,
@@ -151,7 +166,12 @@ class Contacts extends \Modularity\Module
                     $args
                 )
             );
+            $hasImages = "has-image";
+            $this->data['hasImages'] = true;
         }
+
+        //Add casses
+        $this->data['classes']      = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', $hasImages), $this->post_type, $this->args));
 
         return 'contacts.blade.php';
     }
