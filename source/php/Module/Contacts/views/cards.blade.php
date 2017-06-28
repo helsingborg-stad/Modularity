@@ -12,7 +12,7 @@
         @endif
 
         @if ($contact['thumbnail'] === false && $hasImages)
-            <figure class="image-placeholder"></figure>
+            <figure class="image-placeholder ratio-1-1"></figure>
         @endif
 
         <div class="box-content">
