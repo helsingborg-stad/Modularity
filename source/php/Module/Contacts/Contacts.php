@@ -137,6 +137,9 @@ class Contacts extends \Modularity\Module
             switch ($displayMode) {
                 case 'cards':
                     $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', $hasImages), $this->post_type, $this->args));
+                    $this->data['equalItem'] = "data-equal-item";
+                    $this->data['equalContainer'] = "data-equal-container";
+
                     $view = "cards";
                     break;
 
