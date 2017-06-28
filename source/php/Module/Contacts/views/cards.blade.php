@@ -10,6 +10,10 @@
         <img class="box-image" src="{{ $contact['thumbnail'][0] }}" alt="{{ $contact['full_name'] }}">
         @endif
 
+        @if ($contact['thumbnail'] === false && $hasImages)
+            <figure class="image-placeholder"></figure>
+        @endif
+
         <div class="box-content">
             <h5 itemprop="name">{{ $contact['full_name'] }}</h5>
 
