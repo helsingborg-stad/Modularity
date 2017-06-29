@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-05-29 15:40+0200\n"
+"POT-Creation-Date: 2017-06-29 10:33+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -668,6 +668,7 @@ msgstr ""
 #: plugins/acf/core/controllers/field_groups.php:148
 #: source/php/AcfFields/php/mod-fileslist.php:135
 #: source/php/AcfFields/php/mod-posts-displau.php:141
+#: source/php/AcfFields/php/mod-rss.php:71
 msgid "Fields"
 msgstr ""
 
@@ -1379,7 +1380,6 @@ msgstr ""
 #: plugins/acf/core/fields/image.php:19
 #: source/php/AcfFields/php/mod-contact-contacts.php:57
 #: source/php/AcfFields/php/mod-contact-info.php:39
-#: source/php/AcfFields/php/mod-contacts.php:57
 #: source/php/AcfFields/php/mod-image.php:20
 #: source/php/AcfFields/php/mod-index.php:101
 #: source/php/Module/Image/Image.php:13
@@ -1509,7 +1509,6 @@ msgstr ""
 #: plugins/acf/core/fields/radio.php:105
 #: plugins/acf/core/views/meta_box_location.php:91
 #: source/php/AcfFields/php/mod-contact-contacts.php:258
-#: source/php/AcfFields/php/mod-contacts.php:277
 msgid "Other"
 msgstr ""
 
@@ -2010,6 +2009,7 @@ msgid "Slug"
 msgstr ""
 
 #: plugins/acf/core/views/meta_box_options.php:104
+#: source/php/AcfFields/php/mod-rss.php:84
 msgid "Author"
 msgstr ""
 
@@ -2068,46 +2068,41 @@ msgid "Länk till webbshop"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:12
-#: source/php/AcfFields/php/mod-contacts.php:12
+#: source/php/AcfFields/php/mod-contacts.php:22
 msgid "Cards"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:13
-#: source/php/AcfFields/php/mod-contacts.php:13
+#: source/php/AcfFields/php/mod-contacts.php:24
 #: source/php/AcfFields/php/mod-latest.php:12
 #: source/php/AcfFields/php/mod-posts-displau.php:11
 msgid "List"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:23
-#: source/php/AcfFields/php/mod-contacts.php:23
+#: source/php/AcfFields/php/mod-contacts.php:10
 msgid "Display mode"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:76
-#: source/php/AcfFields/php/mod-contacts.php:76
 msgid "First name or place"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:95
 #: source/php/AcfFields/php/mod-contact-info.php:79
-#: source/php/AcfFields/php/mod-contacts.php:95
 msgid "Last name"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:114
-#: source/php/AcfFields/php/mod-contacts.php:114
 msgid "Work title"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:135
-#: source/php/AcfFields/php/mod-contacts.php:135
 msgid "Administration unit"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:155
 #: source/php/AcfFields/php/mod-contact-info.php:163
-#: source/php/AcfFields/php/mod-contacts.php:155
 msgid "Epost"
 msgstr ""
 
@@ -2117,35 +2112,32 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:195
 #: source/php/AcfFields/php/mod-contact-info.php:226
-#: source/php/AcfFields/php/mod-contacts.php:214
 msgid "Adress"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:216
 #: source/php/AcfFields/php/mod-contact-info.php:247
-#: source/php/AcfFields/php/mod-contacts.php:235
-#: source/php/Module/Contacts/views/cards.blade.php:51
+#: source/php/Module/Contacts/views/cards.blade.php:55
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:103
 msgid "Visiting address"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:237
 #: source/php/AcfFields/php/mod-contact-info.php:268
-#: source/php/AcfFields/php/mod-contacts.php:256
 msgid "Opening hours"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:285
-#: source/php/AcfFields/php/mod-contacts.php:304
 msgid "Select user"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:306
-#: source/php/AcfFields/php/mod-contacts.php:325
+#: source/php/AcfFields/php/mod-contacts.php:38
 msgid "Kontakter"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:322
-#: source/php/AcfFields/php/mod-contacts.php:341
+#: source/php/AcfFields/php/mod-contacts.php:365
 #: source/php/AcfFields/php/mod-index.php:295
 #: source/php/AcfFields/php/mod-posts-displau.php:41
 #: source/php/AcfFields/php/mod-slider.php:68
@@ -2153,7 +2145,7 @@ msgid "1"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:323
-#: source/php/AcfFields/php/mod-contacts.php:342
+#: source/php/AcfFields/php/mod-contacts.php:366
 #: source/php/AcfFields/php/mod-index.php:296
 #: source/php/AcfFields/php/mod-posts-displau.php:42
 #: source/php/AcfFields/php/mod-slider.php:69
@@ -2161,7 +2153,7 @@ msgid "2"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:324
-#: source/php/AcfFields/php/mod-contacts.php:343
+#: source/php/AcfFields/php/mod-contacts.php:367
 #: source/php/AcfFields/php/mod-index.php:297
 #: source/php/AcfFields/php/mod-posts-displau.php:43
 #: source/php/AcfFields/php/mod-slider.php:70
@@ -2169,7 +2161,7 @@ msgid "3"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:325
-#: source/php/AcfFields/php/mod-contacts.php:344
+#: source/php/AcfFields/php/mod-contacts.php:368
 #: source/php/AcfFields/php/mod-index.php:298
 #: source/php/AcfFields/php/mod-posts-displau.php:44
 #: source/php/AcfFields/php/mod-slider.php:71
@@ -2177,7 +2169,6 @@ msgid "4"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-contacts.php:335
-#: source/php/AcfFields/php/mod-contacts.php:354
 #: source/php/AcfFields/php/mod-fileslist.php:55
 #: source/php/AcfFields/php/mod-index.php:308
 #: source/php/AcfFields/php/mod-posts-displau.php:54
@@ -2219,7 +2210,6 @@ msgid "Administration"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contact-info.php:184
-#: source/php/AcfFields/php/mod-contacts.php:176
 msgid "Phone number"
 msgstr ""
 
@@ -2227,12 +2217,17 @@ msgstr ""
 msgid "Web phone number"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-contacts.php:192
-msgid "Add number"
+#: source/php/AcfFields/php/mod-contacts.php:6
+#: source/php/Module/Contact/Contact.php:14
+msgid "Contacts"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-contacts.php:195
-msgid "Phone number(s)"
+#: source/php/AcfFields/php/mod-contacts.php:23
+msgid "Horizontal cards"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:338
+msgid "Kolumner"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-files.php:21
@@ -2462,7 +2457,7 @@ msgid ""
 msgstr ""
 
 #: source/php/AcfFields/php/mod-inlaylist.php:102
-#: source/php/ModuleManager.php:577
+#: source/php/AcfFields/php/mod-rss.php:85 source/php/ModuleManager.php:577
 msgid "Date"
 msgstr ""
 
@@ -2544,11 +2539,13 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-latest.php:98
 #: source/php/AcfFields/php/mod-posts-sorting.php:49
+#: source/php/AcfFields/php/mod-rss.php:59
 msgid "Descending"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-latest.php:99
 #: source/php/AcfFields/php/mod-posts-sorting.php:48
+#: source/php/AcfFields/php/mod-rss.php:60
 msgid "Ascending"
 msgstr ""
 
@@ -2820,6 +2817,7 @@ msgid "Childs of"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-posts-source.php:131
+#: source/php/AcfFields/php/mod-rss.php:29
 msgid "Set to -1 to show all"
 msgstr ""
 
@@ -2852,6 +2850,26 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-posts-source.php:330
 msgid "Yes, link to post type archive"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:10
+msgid "RSS feed URL"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:26
+msgid "Number of items"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:47
+msgid "Sort order"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:50
+msgid "Select order to sort the RSS feed"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:83
+msgid "Summary"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-script.php:15
@@ -3362,6 +3380,7 @@ msgid "Senaste inläggen"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-wpwidget.php:18
+#: source/php/Module/Rss/Rss.php:12 source/php/Module/Rss/Rss.php:13
 #: source/php/Module/WpWidget/WpWidget.php:158
 msgid "RSS"
 msgstr ""
@@ -3514,11 +3533,11 @@ msgid ""
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:513
+#: source/php/Editor.php:529
 msgid "Modules saved"
 msgstr ""
 
-#: source/php/Editor.php:596
+#: source/php/Editor.php:612
 msgid "Inherit"
 msgstr ""
 
@@ -3533,10 +3552,6 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: source/php/Module/Contact/Contact.php:14
-msgid "Contacts"
-msgstr ""
-
 #: source/php/Module/Contact/Contact.php:15
 #: source/php/Module/Contacts/Contacts.php:14
 msgid "Outputs one or more contacts"
@@ -3547,7 +3562,8 @@ msgstr ""
 msgid "Contacts v2"
 msgstr ""
 
-#: source/php/Module/Contacts/views/cards.blade.php:42
+#: source/php/Module/Contacts/views/cards.blade.php:46
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:94
 msgid "Postal address"
 msgstr ""
 
@@ -3658,7 +3674,7 @@ msgstr ""
 #: source/php/Module/Posts/views/grid.blade.php:51
 #: source/php/Module/Posts/views/index.blade.php:53
 #: source/php/Module/Posts/views/items.blade.php:64
-#: source/php/Module/Posts/views/list.blade.php:26
+#: source/php/Module/Posts/views/list.blade.php:30
 #: source/php/Module/Posts/views/news.blade.php:58
 #: templates/module/modularity-mod-latest-list.php:58
 msgid "Show more"
@@ -3674,7 +3690,7 @@ msgstr ""
 
 #: source/php/Module/Posts/views/grid.blade.php:44
 #: source/php/Module/Posts/views/items.blade.php:57
-#: source/php/Module/Posts/views/list.blade.php:22
+#: source/php/Module/Posts/views/list.blade.php:26
 msgid "No posts to show…"
 msgstr ""
 
@@ -3682,6 +3698,28 @@ msgstr ""
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
 msgid "Read more"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:14
+msgid "Outputs a RSS feed"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:43
+msgid "RSS feed URL is missing"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:49
+msgid "RSS Error:"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:55
+msgid ""
+"An error has occurred, which probably means the feed is down. Try again "
+"later."
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:80
+msgid "Untitled"
 msgstr ""
 
 #: source/php/Module/Script/Script.php:12

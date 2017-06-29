@@ -11,7 +11,7 @@ class Rss extends \Modularity\Module
     {
         $this->nameSingular = __("RSS", 'modularity');
         $this->namePlural = __("RSS", 'modularity');
-        $this->description = __("Outputs a RSS feed.", 'modularity');
+        $this->description = __("Outputs a RSS feed", 'modularity');
     }
 
     public function data() : array
@@ -46,13 +46,13 @@ class Rss extends \Modularity\Module
 
         if (is_wp_error($rss)) {
             if (is_admin() || current_user_can('manage_options')) {
-                $entries['error'] = __('RSS Error:') . ' ' . $rss->get_error_message();
+                $entries['error'] = __('RSS Error:', 'modularity') . ' ' . $rss->get_error_message();
             }
             return $entries;
         }
 
         if (!$rss->get_item_quantity()) {
-            $entries['error'] = __( 'An error has occurred, which probably means the feed is down. Try again later.');
+            $entries['error'] = __( 'An error has occurred, which probably means the feed is down. Try again later.', 'modularity');
             $rss->__destruct();
             unset($rss);
             return $entries;
@@ -77,7 +77,7 @@ class Rss extends \Modularity\Module
     public static function getRssTitle($title = '')
     {
         $title = esc_html(trim(strip_tags($title)));
-        $title = (empty($title)) ? __('Untitled') : $title;
+        $title = (empty($title)) ? __('Untitled', 'modularity') : $title;
 
         return $title;
     }
