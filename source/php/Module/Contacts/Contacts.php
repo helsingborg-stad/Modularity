@@ -128,9 +128,12 @@ class Contacts extends \Modularity\Module
 
             //Indicates wheter this list has images or not.
             foreach ($this->data['contacts'] as $item) {
-                if (isset($item['thumbnail']) && && is_array($item['thumbnail']) !empty(array_filter($item['thumbnail']))) {
-                    $hasImages = "has-image";
-                    $this->data['hasImages'] = true;
+                if (isset($item['thumbnail']) && is_array($item['thumbnail'])) {
+                    if (!empty(array_filter($item['thumbnail']))) {
+                        $hasImages = "has-image";
+                        $this->data['hasImages'] = true;
+                    }
+
                     break;
                 }
             }
