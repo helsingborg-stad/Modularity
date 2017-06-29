@@ -132,9 +132,8 @@ class Contacts extends \Modularity\Module
                     if (!empty(array_filter($item['thumbnail']))) {
                         $hasImages = "has-image";
                         $this->data['hasImages'] = true;
+                        break;
                     }
-
-                    break;
                 }
             }
 
