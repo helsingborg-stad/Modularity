@@ -102,11 +102,6 @@ class Contacts extends \Modularity\Module
                 $info['thumbnail'] = array($info['image'], 250, 250, false);
             }
 
-            //Block numbers that are to short
-            if (strlen($info['phone']) < 4) {
-                $info['phone'] = "";
-            }
-
             //Create full name
             $info['full_name'] = trim($info['first_name'] . ' ' . $info['last_name']);
 
