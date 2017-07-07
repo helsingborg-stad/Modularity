@@ -10,13 +10,15 @@
 				@if(\Modularity\Module\Rss\Rss::getRssLink($item->get_link()))
 					<a href="{{ \Modularity\Module\Rss\Rss::getRssLink($item->get_link()) }}">
 						<span class="link-item title">{{ \Modularity\Module\Rss\Rss::getRssTitle($item->get_title()) }}</span>
+						@if($date && $item->get_date('U'))
+							<time class="date text-sm text-dark-gray">{{ date_i18n(get_option('date_format'), $item->get_date('U')) }}</time>
+						@endif
 					</a>
 				@else
 					<span class="title">{{ \Modularity\Module\Rss\Rss::getRssTitle($item->get_title()) }}</span>
-				@endif
-
-				@if($date && $item->get_date('U'))
-					<time class="date text-sm text-dark-gray">{{ date_i18n(get_option('date_format'), $item->get_date('U')) }}</time>
+					@if($date && $item->get_date('U'))
+						<time class="date text-sm text-dark-gray">{{ date_i18n(get_option('date_format'), $item->get_date('U')) }}</time>
+					@endif
 				@endif
 
 				@if($summary && \Modularity\Module\Rss\Rss::getRssSummary($item->get_description()))
