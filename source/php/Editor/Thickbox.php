@@ -19,6 +19,22 @@ class Thickbox
     {
         add_action('admin_head', array($this, 'addJsVariables'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+        add_action('current_screen', function ($current_screen) {
+            add_action('views_edit-' . $current_screen->post_type, array($this, 'addFilterUrlParams'));
+        });
+    }
+
+    /**
+     * Add thickbox parameter to filter links (All, Publish, Trash etc.)
+     * @param array $views Default links
+     */
+    public function addFilterUrlParams($views)
+    {
+        foreach ($views as $index => $view) {
+            $views[$index] = preg_replace("/(?<=href=(\"|'))[^\"']+(?=(\"|'))/", '${0}&is_thickbox=true',  $views[$index]);
+        }
+
+        return $views;
     }
 
     /**
