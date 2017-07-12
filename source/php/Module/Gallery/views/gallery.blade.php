@@ -7,7 +7,7 @@
         @if (isset($mod_gallery_images))
         @foreach ($mod_gallery_images as $image)
         <li class="grid-md-3">
-            <a class="{{ $classes }} lightbox-trigger" href="{{ $image['sizes']['large'] }}" {{ (isset($image['caption']) && !empty($image['caption']) && !in_array(strtolower($image['caption']), array('caption text'))) ? 'data-caption="' . $image['caption'] . '"' : '' }}>
+            <a class="{{ $classes }} lightbox-trigger" href="{{ $image['sizes']['large'] }}" data-caption="{{ (isset($image['caption']) && !empty($image['caption']) && !in_array(strtolower($image['caption']), array('caption text'))) ? $image['caption'] : '' }}">
                 @if (isset($image['thumbnail']) && $image['thumbnail'])
                 <img src="{{ $image['thumbnail'][0] }}" alt="{{ $image['alt'] }}">
                 @else
