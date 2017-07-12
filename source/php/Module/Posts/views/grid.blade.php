@@ -32,7 +32,13 @@
 
                 @if (in_array('excerpt', $posts_fields))
                 <div class="box-post-brick-lead">
-                    {!! isset($extended['main']) && !empty($extended['main']) ? $extended['main'] : wp_trim_words(wp_strip_all_tags(strip_shortcodes($post->post_content)), 100, '') !!}
+                    @if(!empty(get_the_excerpt($post->ID)))
+                        {!! wp_strip_all_tags(strip_shortcodes(get_the_excerpt($post->ID))) !!}
+                    @elseif(isset($extended['main']) && !empty($extended['main']))
+                        {!! $extended['main'] !!}
+                    @else
+                        {!! wp_trim_words(wp_strip_all_tags(strip_shortcodes($post->post_content)), 100, '') !!}
+                    @endif
                 </div>
                 @endif
             </a>
