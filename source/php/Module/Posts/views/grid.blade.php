@@ -32,7 +32,7 @@
 
                 @if (in_array('excerpt', $posts_fields))
                 <div class="box-post-brick-lead">
-                    @if(!empty(get_the_excerpt($post->ID)))
+                    @if(has_excerpt($post->ID))
                         {!! wp_strip_all_tags(strip_shortcodes(get_the_excerpt($post->ID))) !!}
                     @elseif(isset($extended['main']) && !empty($extended['main']))
                         {!! $extended['main'] !!}
