@@ -236,10 +236,8 @@ class Module
         }
 
         $modules = \Modularity\Editor::getPostModules($postId);
-        $shortcodes = $this->getShortcodeModules($postId);
-        if (!empty($shortcodes)) {
-            $modules = array_merge($modules, $shortcodes);
-        }
+        $modules = array_merge($modules, $this->getShortcodeModules($postId));
+        $modules = array_merge($modules, $this->getOnePageModules($postId));
 
         $modules = json_encode($modules);
 
@@ -252,34 +250,73 @@ class Module
     }
 
     /**
+     * Get modules used in one page sections
+     * @return array Array with modules from one page sections
+     */
+    public function getOnePageModules() : array
+    {
+        $modules = array();
+
+        if (is_front_page() && is_plugin_active('modularity-onepage/modularity-onepage.php')) {
+            $postStatus = array('publish');
+            if (is_user_logged_in()) {
+                $postStatus[] = 'private';
+            }
+
+            $sections = get_posts(array(
+                'post_type' => 'onepage',
+                'post_status' => $postStatus,
+                'orderby' => 'menu_order',
+                'order' => 'asc',
+                'posts_per_page'   => -1
+            ));
+
+            foreach ($sections as $section) {
+                $section_modules = \Modularity\Editor::getPostModules($section->ID);
+
+                if (!isset($section_modules['onepage-sidebar'])) {
+                    continue;
+                }
+
+                $section_modules = $section_modules['onepage-sidebar']['modules'];
+                if (is_array($section_modules) && !empty($section_modules)) {
+                    foreach ($section_modules as $module) {
+                        if (!$module->hidden) {
+                            $modules[] = $module;
+                        }
+                    }
+                }
+            }
+        }
+
+        return $modules;
+    }
+
+    /**
      * Get modules used in shortcodes
      * @param  string $post_id Current post id
-     * @return array           Array with used module post types
+     * @return array           Array with module post types
      */
-    public function getShortcodeModules($post_id)
+    public function getShortcodeModules($post_id) : array
     {
         $post = get_post($post_id);
         $pattern = get_shortcode_regex();
-        $shortcodes = array();
+        $modules = array();
 
         if (preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches)
             && array_key_exists(2, $matches)
             && in_array('modularity', $matches[2])) {
 
             $shortcodes = preg_replace('/[^0-9]/', '', $matches[3]);
-            foreach ($shortcodes as $key => &$shortcode) {
-                if (get_post_type($shortcode)) {
-                    $shortcode = array(
-                        'ID' => $shortcode,
-                        'post_type' => get_post_type($shortcode)
-                    );
-                } else {
-                    unset($shortcodes[$key]);
-                }
+            foreach ($shortcodes as $key => $shortcode) {
+                $modules[] = array(
+                    'ID' => $shortcode,
+                    'post_type' => get_post_type($shortcode)
+                );
             }
         }
 
-        return $shortcodes;
+        return $modules;
     }
 
     /**
