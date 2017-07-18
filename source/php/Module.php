@@ -236,6 +236,11 @@ class Module
         }
 
         $modules = \Modularity\Editor::getPostModules($postId);
+        $shortcodes = $this->getShortcodeModules($postId);
+        if (!empty($shortcodes)) {
+            $modules = array_merge($modules, $shortcodes);
+        }
+
         $modules = json_encode($modules);
 
         $moduleSlug = $this->moduleSlug;
@@ -244,6 +249,37 @@ class Module
         }
 
         return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $moduleSlug . '"') == true, $archiveSlug);
+    }
+
+    /**
+     * Get modules used in shortcodes
+     * @param  string $post_id Current post id
+     * @return array           Array with used module post types
+     */
+    public function getShortcodeModules($post_id)
+    {
+        $post = get_post($post_id);
+        $pattern = get_shortcode_regex();
+        $shortcodes = array();
+
+        if (preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches)
+            && array_key_exists(2, $matches)
+            && in_array('modularity', $matches[2])) {
+
+            $shortcodes = preg_replace('/[^0-9]/', '', $matches[3]);
+            foreach ($shortcodes as $key => &$shortcode) {
+                if (get_post_type($shortcode)) {
+                    $shortcode = array(
+                        'ID' => $shortcode,
+                        'post_type' => get_post_type($shortcode)
+                    );
+                } else {
+                    unset($shortcodes[$key]);
+                }
+            }
+        }
+
+        return $shortcodes;
     }
 
     /**
