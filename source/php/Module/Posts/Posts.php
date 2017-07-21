@@ -585,7 +585,8 @@ class Posts extends \Modularity\Module
         // Get post args
         $getPostsArgs = array(
             'posts_per_page' => $fields->posts_count,
-            'post_type' => 'any'
+            'post_type' => 'any',
+            'suppress_filters' => false
         );
 
         // Sort by meta key
