@@ -248,6 +248,7 @@ class App
         $result = true;
 
         if (strpos($current_screen->id, 'modularity') === false
+            && strpos($current_screen->id, 'mod-') === false
             && ($current_screen->action != 'add'
                 && (
                     isset($_GET['action'])
