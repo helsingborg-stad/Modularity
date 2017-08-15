@@ -19,16 +19,24 @@ class Image extends \Modularity\Module
 
     public function data() : array
     {
+
+        //Get data
         $data = get_fields($this->ID);
         $data['args'] = $this->args;
 
+        //Do not use link
+        if ($data['mod_image_link'] == "false") {
+            $data['mod_image_link_url'] = "";
+        }
+
+        //Set image class
         $imgClasses = array();
         if ($data['mod_image_responsive'] === true) {
             $imgClasses[] = 'image-responsive';
         }
-
         $data['img_classes'] = implode(' ', $imgClasses);
 
+        //Crop image (if non existing)
         $data['img_src'] = $this->maybeCropImage($data);
 
         return $data;
@@ -37,7 +45,8 @@ class Image extends \Modularity\Module
     public function maybeCropImage($data)
     {
         if (!$data['mod_image_crop']) {
-            return $data['mod_image_image']['sizes'][$data['mod_image_size']];;
+            return $data['mod_image_image']['sizes'][$data['mod_image_size']];
+            ;
         }
 
         $imageSrc = wp_get_attachment_image_src(
