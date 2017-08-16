@@ -20,7 +20,7 @@ class Gallery extends \Modularity\Module
     {
         $data = get_fields($this->ID);
         $data['mod_gallery_images'] = $this->getThumbnails($data['mod_gallery_images']);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $this->post_type, $this->args));
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-gallery'), $this->post_type, $this->args));
         return $data;
     }
 
