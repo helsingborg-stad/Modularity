@@ -31,7 +31,7 @@ class Gallery extends \Modularity\Module
                 $image['id'],
                 apply_filters(
                     'modularity/image/gallery/thumbnail',
-                    municipio_to_aspect_ratio('16:9', array(200, 150)),
+                    municipio_to_aspect_ratio('16:9', array(400, 300)),
                     $this->args
                 )
             );
