@@ -70,6 +70,9 @@ class Editor extends \Modularity\Options
                     'id' => $post->ID,
                     'title' => $post->post_title
                 );
+
+                wp_reset_postdata();
+
             } else {
                 global $archive;
                 $archive = $_GET['id'];
