@@ -7,7 +7,7 @@
         @if (count($posts) > 0)
             @foreach ($posts as $post)
             <li>
-                @if ($post->post_type == 'attachment')
+                @if (!empty($post->post_type) && $post->post_type == 'attachment')
                     <a href="{{ wp_get_attachment_url($post->ID) }}" target="_blank">
                 @else
                     <a href="{{ $posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID) }}">
