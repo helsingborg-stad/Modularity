@@ -55,12 +55,12 @@ Modularity.Editor.DragAndDrop = (function ($) {
             start:  function( event, ui ) {
 
                 try {
-                    var validTargetAreas = jQuery(this).attr('data-sidebar-compability');
+                    var validTargetAreas = jQuery(this).attr('data-sidebar-incompability');
                         validTargetAreas = JSON.parse(validTargetAreas);
 
                         if (validTargetAreas && typeof validTargetAreas === "object") {
                             jQuery(".modularity-sidebar-area").each(function(index, sidebar) {
-                                if(validTargetAreas.includes(jQuery(this).attr('data-area-id'))) {
+                                if(!validTargetAreas.includes(jQuery(this).attr('data-area-id'))) {
                                     jQuery(this).parent().parent().removeClass("modularity-incompatible-area");
                                 } else {
                                     jQuery(this).parent().parent().addClass("modularity-incompatible-area");
@@ -69,7 +69,7 @@ Modularity.Editor.DragAndDrop = (function ($) {
                         }
                 }
                 catch(error) {
-                    console.log("Compability information not defined - " + error);
+                    console.log("Incompability information not defined - " + error);
                 }
             },
             stop: function( event, ui ) {

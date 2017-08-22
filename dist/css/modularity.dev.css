@@ -420,9 +420,7 @@ li.modularity-module {
       max-height: auto; } }
 
 .modularity-incompatible-area {
-  background: #DF606C; }
-  .modularity-incompatible-area h2 {
-    background: #fff; }
+  background: #ffc2c8; }
   .modularity-incompatible-area:after {
     content: "";
     position: absolute;
@@ -430,6 +428,22 @@ li.modularity-module {
     right: 0;
     bottom: 0;
     left: 0; }
+  .modularity-incompatible-area .modularity-sidebar-area:after {
+    display: none !important; }
+  .modularity-incompatible-area .modularity-sidebar-area:before {
+    font-family: dashicons;
+    content: "\f335";
+    font-size: 6em;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    opacity: .6;
+    z-index: 9; }
+  .modularity-incompatible-area h2 {
+    background: #fff; }
+  .modularity-incompatible-area .modularity-line-wrapper {
+    opacity: .2; }
 
 .modularity-usage-list li {
   display: inline-block;

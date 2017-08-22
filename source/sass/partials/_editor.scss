@@ -391,10 +391,7 @@
 }
 
 .modularity-incompatible-area {
-    background: #DF606C;
-    h2 {
-        background: #fff;
-    }
+    background: #ffc2c8;
 
     &:after {
         content: "";
@@ -403,6 +400,30 @@
         right: 0;
         bottom: 0;
         left: 0;
+    }
+
+    .modularity-sidebar-area:after  {
+        display: none !important;
+    }
+
+    .modularity-sidebar-area:before {
+        font-family: dashicons;
+        content: "\f335";
+        font-size: 6em;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        opacity: .6;
+        z-index: 9;
+    }
+
+    h2 {
+        background: #fff;
+    }
+
+    .modularity-line-wrapper {
+        opacity: .2;
     }
 }
 
