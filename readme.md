@@ -130,9 +130,9 @@ add_filter('Modularity/Editor/WidthOptions', function ($options) {
 ---
 
 
-#### Modularity/Editor/SidebarCompability
+#### Modularity/Editor/SidebarIncompability
 
-> Enables the theme to add compability indicators of specific module to an sidebar area. The user will not be able to drag and drop to unsupported areas. This filter may simplify the theme developers work by ruling out some cases. 
+> Enables the theme to add incompability indicators of specific module to an sidebar area. The user will not be able to drag and drop to unsupported areas. This filter may simplify the theme developers work by ruling out some cases. 
 
 *Params:*
 ```
