@@ -129,6 +129,29 @@ add_filter('Modularity/Editor/WidthOptions', function ($options) {
 
 ---
 
+
+#### Modularity/Editor/SidebarCompability
+
+> Enables the theme to add compability indicators of specific module to an sidebar area. The user will not be able to drag and drop to unsupported areas. This filter may simplify the theme developers work by ruling out some cases. 
+
+*Params:*
+```
+$moduleSpecification      The default options for the module post object. 
+```
+
+*Example:*
+
+```php
+add_filter('Modularity/Editor/WidthOptions', function ($moduleSpecification) {
+    
+    $moduleSpecification['sidebar_compability'] = array("content-area-top"); 
+
+    return $moduleSpecification;
+});
+```
+
+---
+
 #### Modularity/Display/BeforeModule
 
 > Filter module sidebar wrapper (before)
