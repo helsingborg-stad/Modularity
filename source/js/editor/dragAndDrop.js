@@ -51,7 +51,30 @@ Modularity.Editor.DragAndDrop = (function ($) {
             scroll: false,
             helper: 'clone',
             revert: 'invalid',
-            revertDuration: 200
+            revertDuration: 200,
+            start:  function( event, ui ) {
+
+                try {
+                    var validTargetAreas = jQuery(this).attr('data-sidebar-compability');
+                        validTargetAreas = JSON.parse(validTargetAreas);
+
+                        if (validTargetAreas && typeof validTargetAreas === "object") {
+                            jQuery(".modularity-sidebar-area").each(function(index, sidebar) {
+                                if(validTargetAreas.includes(jQuery(this).attr('data-area-id'))) {
+                                    jQuery(this).parent().parent().removeClass("modularity-incompatible-area");
+                                } else {
+                                    jQuery(this).parent().parent().addClass("modularity-incompatible-area");
+                                }
+                            });
+                        }
+                }
+                catch(error) {
+                    console.log("Compability information not defined - " + error);
+                }
+            },
+            stop: function( event, ui ) {
+                jQuery("[id^=modularity-mb-]").removeClass("modularity-incompatible-area");
+            },
         });
     };
 

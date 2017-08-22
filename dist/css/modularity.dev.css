@@ -419,6 +419,18 @@ li.modularity-module {
       min-height: none;
       max-height: auto; } }
 
+.modularity-incompatible-area {
+  background: #DF606C; }
+  .modularity-incompatible-area h2 {
+    background: #fff; }
+  .modularity-incompatible-area:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; }
+
 .modularity-usage-list li {
   display: inline-block;
   margin-right: 5px; }
