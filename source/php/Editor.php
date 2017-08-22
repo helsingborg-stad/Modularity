@@ -191,7 +191,7 @@ class Editor extends \Modularity\Options
                 if (is_array($enabled) && !empty($enabled)) {
                     foreach ($enabled as $module) {
                         if (isset($available[$module]) && !in_array($module, $deprecated)) {
-                            $modules[$module] = apply_filters('Modularity/Editor/SidebarCompability', $available[$module]);
+                            $modules[$module] = apply_filters('Modularity/Editor/SidebarCompability', $available[$module], $module);
                         }
                     }
                 }
