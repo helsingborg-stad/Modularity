@@ -610,7 +610,8 @@ body.modularity-loader-takeover::after {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%); }
+    transform: translateX(-50%);
+    z-index: 9999; }
   [class*="modularity-mod-"] .modularity-edit-module a,
   [class*="mod-"] .modularity-edit-module a {
     position: relative;
