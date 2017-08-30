@@ -16,6 +16,8 @@ class Index extends \Modularity\Module
         $this->nameSingular = __('Index', 'modularity');
         $this->namePlural = __('Indexes', 'modularity');
         $this->description = __('Index card to use as an entry point for a "content section".', 'modularity');
+
+        add_filter('acf/fields/post_object/query/key=field_569cf1252cfc9', array($this, 'postObjectQuery'), 10, 3);
     }
 
     /**
@@ -126,6 +128,28 @@ class Index extends \Modularity\Module
                 $this->thumbnailSize = array(400, 300);
                 return $this->thumbnailSize;
         }
+    }
+
+    /**
+     * Return results from certain post types
+     * @param  array $args    the WP_Query args used to find choices
+     * @param  array $field   the field array containing all attributes & settings
+     * @param  int   $post_id the current post ID being edited
+     * @return array          updated WP_Query args
+     */
+    public function postObjectQuery($args, $field, $post_id) {
+        $post_types = array('post', 'page');
+
+        $custom_post_types = get_field('avabile_dynamic_post_types', 'option');
+        if (is_array($custom_post_types) && !empty($custom_post_types)) {
+            foreach ($custom_post_types as $post_type) {
+                $post_types[] = sanitize_title(substr($post_type['post_type_name'], 0, 19));
+            }
+        }
+
+        $args['post_type'] = $post_types;
+
+        return $args;
     }
 
     /**
