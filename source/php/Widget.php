@@ -10,8 +10,8 @@ class Widget extends \WP_Widget
     public function __construct()
     {
         $widgetOptions = array(
-            'classname' => 'modularity-module',
-            'description' => 'Inser a Modularity module',
+            'classname' => '%2$s',
+            'description' => 'Insert a Modularity module',
         );
 
         parent::__construct('modularity-module', 'Modularity module', $widgetOptions);
@@ -31,11 +31,17 @@ class Widget extends \WP_Widget
 
         $display = \Modularity\App::$display;
 
+        $columnWidth = (isset($instance['module_size'])) ? $instance['module_size'] : 'grid-md-4';
+
+        if (isset($instance['module_type']) && $instance['module_type'] == 'mod-slider') {
+           $columnWidth = '';
+        }
+
         $module = \Modularity\Editor::getModule(
             $instance['module_id'],
             array(
                 'hidden' => false,
-                'columnWidth' => isset($instance['module_size']) ? $instance['module_size'] : 'grid-md-4'
+                'columnWidth' => $columnWidth
             )
         );
 
