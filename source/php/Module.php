@@ -303,7 +303,7 @@ class Module
         $pattern = get_shortcode_regex();
         $modules = array();
 
-        if (preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches)
+        if (is_object($post) && preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches)
             && array_key_exists(2, $matches)
             && in_array('modularity', $matches[2])) {
 
