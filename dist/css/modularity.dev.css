@@ -633,8 +633,8 @@ body.modularity-loader-takeover::after {
       border-left: 5px solid transparent;
       border-right: 5px solid transparent;
       border-top: 5px solid #000; }
-  [class*="modularity-mod-"]:hover .modularity-edit-module,
-  [class*="mod-"]:hover .modularity-edit-module {
+  [class*="modularity-mod-"]:hover > .modularity-edit-module,
+  [class*="mod-"]:hover > .modularity-edit-module {
     display: block; }
 
 .modularity-preview-hidden {
