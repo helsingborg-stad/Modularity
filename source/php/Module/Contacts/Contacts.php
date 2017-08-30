@@ -86,7 +86,7 @@ class Contacts extends \Modularity\Module
 
             //Parse thumbnail id's
             $info['thumbnail'] = false;
-            if (isset($info['image']) && !empty($info['image']) && is_numeric($info['image']['id'])) {
+            if (isset($info['image']) && !empty($info['image']) && isset($info['image']['id']) && is_numeric($info['image']['id'])) {
                 $info['thumbnail'] = wp_get_attachment_image_src(
                     $info['image']['id'],
                     apply_filters(
