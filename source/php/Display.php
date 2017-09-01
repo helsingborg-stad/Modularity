@@ -20,6 +20,8 @@ class Display
 
         add_shortcode('modularity', array($this, 'shortcodeDisplay'));
         add_filter('the_post', array($this, 'filterNestedModuleShortocde'));
+
+        add_filter('Modularity/Display/Markup', array($this, 'addGridToSidebar'), 10, 2);
     }
 
     /**
@@ -450,5 +452,24 @@ class Display
 
         $post->post_content = preg_replace('/\[modularity(.*)\]/', '', $content);
         return $post;
+    }
+
+    /**
+     * Add container grid to specified modules, in specified sidebars
+     * @param  $markup The module markup
+     * @return $module Module object
+     */
+
+    public function addGridToSidebar($markup, $module)
+    {
+        $sidebars = apply_filters('Modularity/Module/Container/Sidebars', array());
+        $modules = apply_filters('Modularity/Module/Container/Modules', array());
+        $template = apply_filters('Modularity/Module/Container/Template', '<div class="container"><div class="grid"><div class="grid-xs-12">{{module-markup}}</div></div></div>');
+
+        if (in_array($module->args['id'], $sidebars) && in_array($module->post_type, $modules)) {
+            return str_replace('{{module-markup}}', $markup, $template);
+        }
+
+        return $markup;
     }
 }
