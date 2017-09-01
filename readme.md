@@ -197,6 +197,39 @@ add_filter('Modularity/Display/AfterModule', function ($afterModule, $args, $mod
 
 ---
 
+#### Modularity/Module/Container/Sidebars
+
+> Container wrapper: Filter what sidebars that should support a containing wrapper on some modules
+
+*Params:*
+```
+$sidebars      A array of sidebar id's
+```
+
+---
+
+#### Modularity/Module/Container/Modules
+
+> Container wrapper: Filter what modules that should support a containing wrapper
+
+*Params:*
+```
+$modules      A array of module ids (post-type names)
+```
+
+---
+
+#### Modularity/Module/Container/Template
+
+> Container wrapper: Filter the template with html that should be wrapped around each module
+
+*Params:*
+```
+$markup      A string with markup containing {{module-markup}} replacement key
+```
+
+---
+
 #### Modularity/Module/TemplatePath & Modularity/Theme/TemplatePath
 
 > Modify (add/edit) paths where to look for module/theme templates
