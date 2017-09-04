@@ -16,7 +16,7 @@ class CircularTemplate
         $this->data = $data;
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news-circular'), $this->module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news-circular', 'no-color'), $this->module->post_type, $this->args));
         $this->data['posts_columns'] = $fields->posts_columns;
 
         $this->getThumbnails();
