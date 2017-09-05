@@ -601,6 +601,62 @@ body.modularity-loader-takeover::after {
   left: 50%;
   transform: translate(-50%, -50%); }
 
+.acf-fields .acf-tab-wrap .acf-tab-group li a {
+  font-size: 1.1em; }
+
+.acf-fields > .acf-field {
+  /* Style groups */
+  /* Additional classes designed for groups */
+  /* Image uploader */ }
+  .acf-fields > .acf-field.acf-field-group {
+    padding-bottom: 30px;
+    padding-top: 25px; }
+  .acf-fields > .acf-field.acf-field-group:last-child {
+    padding-bottom: 15px; }
+  .acf-fields > .acf-field.acf-field-group {
+    border-top: 2px solid #e5e4e4; }
+  .acf-fields > .acf-field.modularity-ui-additional {
+    background: #fbfbfb; }
+    .acf-fields > .acf-field.modularity-ui-additional:before {
+      background: rgba(0, 0, 0, 0.05);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), transparent);
+      content: "";
+      width: 100%;
+      height: 20px;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0; }
+  .acf-fields > .acf-field.modularity-ui-header > .acf-label > label {
+    font-size: 1.2em; }
+  .acf-fields > .acf-field.modularity-ui-highlight > .acf-input > .acf-fields {
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
+  .acf-fields > .acf-field .acf-image-uploader {
+    background: #fbfbfb;
+    display: block;
+    width: 150px;
+    height: 150px;
+    background: #eee;
+    line-height: 70px;
+    border: 1px solid #e5e4e4;
+    text-align: center; }
+    .acf-fields > .acf-field .acf-image-uploader .view.hide-if-value,
+    .acf-fields > .acf-field .acf-image-uploader .view.hide-if-value p {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      line-height: 130px; }
+      .acf-fields > .acf-field .acf-image-uploader .view.hide-if-value a.acf-button,
+      .acf-fields > .acf-field .acf-image-uploader .view.hide-if-value p a.acf-button {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+        left: 5px; }
+
 [class*="modularity-mod-"],
 [class*="mod-"] {
   position: relative; }
