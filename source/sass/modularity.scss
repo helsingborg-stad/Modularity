@@ -1,5 +1,7 @@
 @import 'config/z-index';
 
+@import 'mixin/gradient';
+
 @import 'general/admin-menu';
 
 @import 'partials/form';
@@ -11,6 +13,7 @@
 @import 'partials/loader-takeover';
 @import 'partials/utilities';
 @import 'partials/spinner';
+@import 'partials/module-fields';
 
 [class*="modularity-mod-"],
 [class*="mod-"] {
