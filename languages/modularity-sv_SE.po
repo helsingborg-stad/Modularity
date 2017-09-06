@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-06-29 10:33+0200\n"
-"PO-Revision-Date: 2017-06-29 10:35+0200\n"
+"POT-Creation-Date: 2017-09-06 12:01+0200\n"
+"PO-Revision-Date: 2017-09-06 12:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:136 source/php/Editor.php:120 source/php/Options/General.php:93
+#: App.php:136 source/php/Editor.php:122 source/php/Options/General.php:93
 msgid "Modules"
 msgstr "Moduler"
 
@@ -1353,7 +1353,7 @@ msgid "File"
 msgstr "Fil"
 
 #: plugins/acf/core/fields/file.php:20 plugins/acf/core/fields/image.php:20
-#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:119
+#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:121
 msgid "Content"
 msgstr "Innehåll"
 
@@ -1485,7 +1485,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-contact-info.php:39
 #: source/php/AcfFields/php/mod-image.php:20
 #: source/php/AcfFields/php/mod-index.php:101
-#: source/php/Module/Image/Image.php:13
+#: source/php/Module/Image/Image.php:17
 msgid "Image"
 msgstr "Bild"
 
@@ -1882,7 +1882,7 @@ msgstr ""
 
 #: plugins/acf/core/fields/user.php:18
 #: plugins/acf/core/views/meta_box_location.php:94
-#: source/php/AcfFields/php/mod-social.php:126
+#: source/php/AcfFields/php/mod-social.php:153
 msgid "User"
 msgstr "Användare"
 
@@ -2502,7 +2502,7 @@ msgid "Filter"
 msgstr "Filter"
 
 #: source/php/AcfFields/php/mod-gallery.php:21
-#: source/php/Module/Image/Image.php:14
+#: source/php/Module/Image/Image.php:18
 msgid "Images"
 msgstr "Bild"
 
@@ -2517,7 +2517,7 @@ msgstr "Iframe url"
 #: source/php/AcfFields/php/mod-iframe.php:31
 #: source/php/AcfFields/php/mod-image.php:96
 #: source/php/AcfFields/php/mod-image.php:127
-#: source/php/AcfFields/php/mod-social.php:418
+#: source/php/AcfFields/php/mod-social.php:430
 msgid "pixels"
 msgstr "pixlar"
 
@@ -3381,95 +3381,128 @@ msgstr "Gruppera slides"
 msgid "Additional options"
 msgstr "Fler inställningar"
 
-#: source/php/AcfFields/php/mod-social.php:11
-msgid "Facebook"
-msgstr ""
+#: source/php/AcfFields/php/mod-social.php:6
+#, fuzzy
+#| msgid "Social Media Feed"
+msgid "Social feed"
+msgstr "Social Media flöde"
 
-#: source/php/AcfFields/php/mod-social.php:12
-msgid "Instagram"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:13
-msgid "Twitter"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:14
-msgid "Pinterest"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:15
-msgid "Google Plus"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:23
+#: source/php/AcfFields/php/mod-social.php:10
 msgid "Feed type"
 msgstr "Typ av flöde"
 
-#: source/php/AcfFields/php/mod-social.php:42
+#: source/php/AcfFields/php/mod-social.php:23
+msgid "Facebook"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:24
+msgid "Instagram"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:25
+msgid "Twitter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:26
+msgid "Pinterest"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:27
+msgid "Google Plus"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:37
 msgid "Facebook App ID"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:71
+#: source/php/AcfFields/php/mod-social.php:66
 msgid "Facebook App Secret"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:100
+#: source/php/AcfFields/php/mod-social.php:95
 msgid "Facebook username"
 msgstr "Facebook-användarnamn"
 
-#: source/php/AcfFields/php/mod-social.php:125
-#: source/php/AcfFields/php/mod-social.php:349
-msgid "Hashtag"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:134
+#: source/php/AcfFields/php/mod-social.php:124
 #: source/php/AcfFields/php/mod-table.php:20
 msgid "Data type"
 msgstr "Datatyp"
 
-#: source/php/AcfFields/php/mod-social.php:164
-msgid "1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7"
+#: source/php/AcfFields/php/mod-social.php:152
+#: source/php/AcfFields/php/mod-social.php:344
+msgid "Hashtag"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:168
+#: source/php/AcfFields/php/mod-social.php:163
 msgid "Instagram Client ID / Access Token"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:202
+#: source/php/AcfFields/php/mod-social.php:189
+msgid "1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:197
 msgid "Twitter Consumer Key"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:231
+#: source/php/AcfFields/php/mod-social.php:226
 msgid "Twitter Consumer Secret"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:260
+#: source/php/AcfFields/php/mod-social.php:255
 msgid "Google+ Api Key"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:286
-msgid "@"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-social.php:289
+#: source/php/AcfFields/php/mod-social.php:284
 msgid "Username"
 msgstr "Användarnamn"
 
-#: source/php/AcfFields/php/mod-social.php:346
+#: source/php/AcfFields/php/mod-social.php:337
+msgid "@"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-social.php:383
 msgid "#"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-social.php:397
+#: source/php/AcfFields/php/mod-social.php:390
 msgid "Max items"
 msgstr "Max antal inlägg"
 
-#: source/php/AcfFields/php/mod-social.php:420
+#: source/php/AcfFields/php/mod-social.php:413
 msgid "Max height"
 msgstr "Maxhöjd"
 
-#: source/php/AcfFields/php/mod-social.php:443
+#: source/php/AcfFields/php/mod-social.php:436
 msgid "Images per row"
 msgstr "Bilder per rad"
+
+#: source/php/AcfFields/php/mod-social.php:474
+msgid "Link to page"
+msgstr "Länka till sida"
+
+#: source/php/AcfFields/php/mod-social.php:485
+msgid ""
+"Check this box if you want to display a button that links to the social "
+"media page."
+msgstr ""
+"Kryssa i rutan för att visa en knapp som länkar till sidan eller flödet."
+
+#: source/php/AcfFields/php/mod-social.php:493
+msgid "URL"
+msgstr "URL"
+
+#: source/php/AcfFields/php/mod-social.php:496
+msgid "Enter URL to the social media feed or page."
+msgstr "Ange URL till sidan eller flödet."
+
+#: source/php/AcfFields/php/mod-social.php:517
+msgid "Button text"
+msgstr "Knapptext"
+
+#: source/php/AcfFields/php/mod-social.php:520
+msgid "Enter button text."
+msgstr "Ange knapptext."
 
 #: source/php/AcfFields/php/mod-table.php:12
 msgid "CSV Import"
@@ -3758,7 +3791,7 @@ msgstr ""
 msgid "Ämne"
 msgstr ""
 
-#: source/php/Display.php:338 templates/widget/form.php:30
+#: source/php/Display.php:340 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -3766,27 +3799,27 @@ msgstr "Redigera modul"
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:152
+#: source/php/Editor.php:154
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:153
+#: source/php/Editor.php:155
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:171
+#: source/php/Editor.php:173
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:182
+#: source/php/Editor.php:184
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:225
+#: source/php/Editor.php:229
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:227
+#: source/php/Editor.php:231
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -3794,11 +3827,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:529
+#: source/php/Editor.php:533
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:612
+#: source/php/Editor.php:616
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -3870,7 +3903,7 @@ msgstr ""
 "Dina iframe url måste börja med http<strong>s</strong>://. Länkar utan detta "
 "prefix kommer inte att visas."
 
-#: source/php/Module/Image/Image.php:15
+#: source/php/Module/Image/Image.php:19
 msgid "Outputs an image"
 msgstr "Visar en bild"
 
@@ -3942,7 +3975,7 @@ msgid "Taxonomy display"
 msgstr "Visning av taxnomi"
 
 #: source/php/Module/Posts/views/circular.blade.php:54
-#: source/php/Module/Posts/views/grid.blade.php:51
+#: source/php/Module/Posts/views/grid.blade.php:57
 #: source/php/Module/Posts/views/index.blade.php:53
 #: source/php/Module/Posts/views/items.blade.php:64
 #: source/php/Module/Posts/views/list.blade.php:30
@@ -3961,7 +3994,7 @@ msgstr "Filter"
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 
-#: source/php/Module/Posts/views/grid.blade.php:44
+#: source/php/Module/Posts/views/grid.blade.php:50
 #: source/php/Module/Posts/views/items.blade.php:57
 #: source/php/Module/Posts/views/list.blade.php:26
 msgid "No posts to show…"
@@ -4029,7 +4062,7 @@ msgstr "Visar flera bilder eller filmer i ett bildspel"
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
-#: source/php/Module/Social/Feed.php:575 source/php/Module/Social/Feed.php:614
+#: source/php/Module/Social/Feed.php:582 source/php/Module/Social/Feed.php:621
 msgid "ago"
 msgstr "sedan"
 
@@ -4431,6 +4464,15 @@ msgstr "Modulbredd"
 msgid "Browse modules"
 msgstr "Bläddra moduler"
 
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:362
+msgid "Export with AcfExportManager"
+msgstr ""
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:406
+#, php-format
+msgid "Exported %d fieldgroup(s)."
+msgstr ""
+
 #. Plugin Name of the plugin/theme
 msgid "Modularity"
 msgstr "Modularity"
@@ -4447,6 +4489,9 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Page URL"
+#~ msgstr "URL"
 
 #~ msgid "Vertical cards (square image)"
 #~ msgstr "Vertikala kort (fyrkantig bild)"

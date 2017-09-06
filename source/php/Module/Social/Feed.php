@@ -19,7 +19,10 @@ class Feed
             'max_height' => 300,
             'row_length' => false,
             'api_user'   => '',
-            'api_secret' => ''
+            'api_secret' => '',
+            'page_link'  => false,
+            'link_url'   => '',
+            'link_text'  => ''
         );
 
         $this->args = array_merge($defaultArgs, $args);
@@ -416,6 +419,10 @@ class Feed
         }
 
         $this->markup .= '</ul>';
+
+        if ($this->args['page_link']) {
+            $this->markup .= '<ul class="social-feed-button"><li><a href="' . $this->args['link_url'] . '" target="_blank" class="btn btn-block">' . $this->args['link_text'] . '</a></li></ul>';
+        }
 
         echo $this->markup;
     }
