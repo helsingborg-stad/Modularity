@@ -393,26 +393,31 @@ class Feed
     {
         switch ($this->args['network']) {
             case 'instagram':
+            $this->markup .= '<div class="social-feed-wrapper">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-instagram social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderInstagram();
                 break;
 
             case 'facebook':
+                $this->markup .= '<div class="box-content">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-feed social-feed-facebook social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderFacebook();
                 break;
 
             case 'twitter':
+                $this->markup .= '<div class="box-content">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-feed social-feed-twitter social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderTwitter();
                 break;
 
             case 'pinterest':
+                $this->markup .= '<div class="social-feed-wrapper">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-pinterest social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderPinterest();
                 break;
 
             case 'googleplus':
+                $this->markup .= '<div class="box-content">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-feed social-feed-facebook social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
                 $this->renderGooglePlus();
                 break;
@@ -421,8 +426,10 @@ class Feed
         $this->markup .= '</ul>';
 
         if ($this->args['page_link']) {
-            $this->markup .= '<ul class="social-feed-button"><li><a href="' . $this->args['link_url'] . '" target="_blank" class="btn btn-block">' . $this->args['link_text'] . '</a></li></ul>';
+            $this->markup .= '<div class="social-feed-button"><a href="' . $this->args['link_url'] . '" target="_blank" class="btn btn-block">' . $this->args['link_text'] . '</a></div>';
         }
+
+        $this->markup .= '</div>';
 
         echo $this->markup;
     }
