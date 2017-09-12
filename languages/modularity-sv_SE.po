@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "POT-Creation-Date: 2017-09-06 12:01+0200\n"
-"PO-Revision-Date: 2017-09-06 12:01+0200\n"
+"PO-Revision-Date: 2017-09-12 09:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -3211,7 +3211,7 @@ msgstr "Bild för mobil"
 
 #: source/php/AcfFields/php/mod-slider.php:203
 msgid "This image will be used in smaller screens. Preferably a square image."
-msgstr "Denna bilden används på mindre skärmar."
+msgstr "Denna bilden används på mindre skärmar. Ange en kvadratisk bild (1:1)."
 
 #: source/php/AcfFields/php/mod-slider.php:214
 #: source/php/AcfFields/php/mod-slider.php:596
