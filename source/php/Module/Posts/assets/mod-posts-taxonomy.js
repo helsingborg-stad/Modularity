@@ -1,4 +1,7 @@
 jQuery(document).ready(function ($) {
+    if (pagenow !== 'mod-posts') {
+        return;
+    }
 
     /**
      * Posttype Meta keys
