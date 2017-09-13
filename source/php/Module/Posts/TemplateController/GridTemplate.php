@@ -71,7 +71,7 @@ class GridTemplate
 
                 switch ($this->data['gridSize']) {
                     case 3:
-                        $columnHeight = '280px';
+                        $columnHeight = '400px';
                         break;
 
                     case 4:
