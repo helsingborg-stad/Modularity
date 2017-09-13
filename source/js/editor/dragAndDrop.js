@@ -30,12 +30,32 @@ Modularity.Editor.DragAndDrop = (function ($) {
             handle: '.modularity-sortable-handle',
             connectWith: '.modularity-js-sortable',
             placeholder: 'ui-sortable-placeholder',
+            start:  function(e, ui) {
+
+                try {
+                    var validTargetAreas = jQuery(ui.item).attr('data-sidebar-incompability');
+                        validTargetAreas = JSON.parse(validTargetAreas);
+                        if (validTargetAreas && typeof validTargetAreas === "object") {
+                            jQuery(".modularity-sidebar-area").each(function(index, sidebar) {
+                                if(!validTargetAreas.includes(jQuery(this).attr('data-area-id'))) {
+                                    jQuery(this).parent().parent().removeClass("modularity-incompatible-area");
+                                } else {
+                                    jQuery(this).parent().parent().addClass("modularity-incompatible-area");
+                                }
+                            });
+                        }
+                }
+                catch(error) {
+                    console.log("Incompability information not defined - " + error);
+                }
+            },
             stop: function (e, ui) {
                 var sidebarId = ui.item.parents('ul').data('area-id');
                 ui.item.find('input[name^="modularity_modules"]').each(function (index, element) {
                     var newName = $(this).attr('name').replace(/\[(.*?)\]/i, '[' + sidebarId + ']');
                     $(this).attr('name', newName);
                 });
+                jQuery("[id^=modularity-mb-]").removeClass("modularity-incompatible-area");
             }
         }).bind(this);
     };
@@ -102,8 +122,9 @@ Modularity.Editor.DragAndDrop = (function ($) {
         var module = ui.draggable;
         var moduleName = module.find('.modularity-module-name').text();
         var moduleId = module.data('module-id');
+        var incompability = module.attr('data-sidebar-incompability');
 
-        Modularity.Editor.Module.addModule(e.target, moduleId, moduleName);
+        Modularity.Editor.Module.addModule(e.target, moduleId, moduleName, undefined, undefined, undefined, undefined, undefined, incompability);
     };
 
     return new DragAndDrop();
