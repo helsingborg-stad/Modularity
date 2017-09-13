@@ -44,7 +44,8 @@ Modularity.Editor.Module = (function ($) {
                         data.hidden = true;
                     }
 
-                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated);
+                    var incompability = (typeof data.sidebar_incompability != 'undefined' && !$.isEmptyObject(data.sidebar_incompability)) ? JSON.stringify(data.sidebar_incompability) : '';
+                    this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated, incompability);
                 }.bind(this));
 
                 sidebarElement.removeClass('modularity-spinner');
@@ -110,11 +111,12 @@ Modularity.Editor.Module = (function ($) {
      * @param {string} moduleId   The module id slug
      * @param {string} moduleName The module name
      */
-    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth, isDeprecated) {
+    Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth, isDeprecated, incompability) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
         deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(' + modularityAdminLanguage.deprecated + ')</span>' : '';
+        incompability = (typeof incompability != 'undefined') ? incompability : '';
 
         // Get thickbox url
         var thickboxUrl = this.getThickBoxUrl('add', {
@@ -146,7 +148,7 @@ Modularity.Editor.Module = (function ($) {
         var sidebarId = $(target).data('area-id');
         var itemRowId = Modularity.Helpers.uuid();
 
-        var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '">\
+        var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '" data-sidebar-incompability=\'' + incompability + '\'>\
                 <span class="modularity-line-wrapper">\
                     <span class="modularity-sortable-handle"></span>\
                     <span class="modularity-module-name">\
