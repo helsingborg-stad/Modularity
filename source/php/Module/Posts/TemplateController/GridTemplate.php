@@ -43,11 +43,11 @@ class GridTemplate
                     break;
 
                 case "grid-md-6":    //2-col
-                    $imageDimensions = array(800, 600);
+                    $imageDimensions = array(900, 675);
                     break;
 
                 default:
-                    $imageDimensions = array(400, 300);
+                    $imageDimensions = array(900, 675);
             }
         }
 
@@ -71,7 +71,7 @@ class GridTemplate
 
                 switch ($this->data['gridSize']) {
                     case 3:
-                        $columnHeight = '400px';
+                        $columnHeight = '280px';
                         break;
 
                     case 4:
