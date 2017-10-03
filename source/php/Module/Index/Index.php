@@ -69,11 +69,11 @@ class Index extends \Modularity\Module
                     //Delete item from list (this page has been remved)
                     unset($items[$key]);
                 }
+
+                wp_reset_postdata();
             }
 
         }
-
-        wp_reset_postdata();
 
         return $items;
     }
