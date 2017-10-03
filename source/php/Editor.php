@@ -191,9 +191,11 @@ class Editor extends \Modularity\Options
                 $deprecated = \Modularity\ModuleManager::$deprecated;
 
                 $modules = array();
-                foreach ($enabled as $module) {
-                    if (isset($available[$module]) && !in_array($module, $deprecated)) {
-                        $modules[$module] = $available[$module];
+                if (is_array($enabled) && !empty($enabled)) {
+                    foreach ($enabled as $module) {
+                        if (isset($available[$module]) && !in_array($module, $deprecated)) {
+                            $modules[$module] = apply_filters('Modularity/Editor/SidebarIncompability', $available[$module], $module);
+                        }
                     }
                 }
 
