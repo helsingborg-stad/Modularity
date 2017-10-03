@@ -47,7 +47,9 @@ class Editor extends \Modularity\Options
     {
         if (isset($_GET['id'])) {
             if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
+
                 $post = get_post($_GET['id']);
+
                 if (!$post) {
                     return;
                 }
@@ -72,6 +74,7 @@ class Editor extends \Modularity\Options
                 );
 
                 wp_reset_postdata();
+
             } else {
                 global $archive;
                 $archive = $_GET['id'];
@@ -188,11 +191,9 @@ class Editor extends \Modularity\Options
                 $deprecated = \Modularity\ModuleManager::$deprecated;
 
                 $modules = array();
-                if (is_array($enabled) && !empty($enabled)) {
-                    foreach ($enabled as $module) {
-                        if (isset($available[$module]) && !in_array($module, $deprecated)) {
-                            $modules[$module] = apply_filters('Modularity/Editor/SidebarIncompability', $available[$module], $module);
-                        }
+                foreach ($enabled as $module) {
+                    if (isset($available[$module]) && !in_array($module, $deprecated)) {
+                        $modules[$module] = $available[$module];
                     }
                 }
 
