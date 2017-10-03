@@ -226,14 +226,18 @@ class App
                 global $post;
                 global $archive;
 
-                $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
+                if (isset($_GET['id']) && is_numeric($_GET['id']) && get_post_status($_GET['id'])) {
+                    $id = $_GET['id'];
+                } else {
+                    $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
+                }
 
                 echo "
                     <script>
                         var modularity_post_id = " . $id . "
                     </script>
                 ";
-            });
+            }, 10);
         }
     }
 
