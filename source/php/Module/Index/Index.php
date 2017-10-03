@@ -26,6 +26,7 @@ class Index extends \Modularity\Module
      */
     public function data() : array
     {
+
         $data = array();
 
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $this->post_type, $this->args));
@@ -54,23 +55,19 @@ class Index extends \Modularity\Module
         if (is_array($items) && !empty($items)) {
 
             foreach ($items as $key => &$item) {
-                //Get post
-                global $post;
-                $post = $item['page'];
-                $post_data = setup_postdata($item['page']);
 
-                if ($post_data || $item['link_type'] == 'external') {
+                $post_data = get_post($item['page']);
+
+                if (($post_data && isset($post_data->ID)) || $item['link_type'] == 'external') {
                     //Setup item
-                    $item['permalink'] = ($item['link_type'] == 'internal') ? get_permalink() : $item['link_url'];
+                    $item['permalink'] = ($item['link_type'] == 'internal') ? get_permalink($post_data->ID) : $item['link_url'];
                     $item['thumbnail'] = $this->getThumbnail($item);
-                    $item['title'] = isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title();
-                    $item['lead'] = isset($item['lead']) && !empty($item['lead']) ? $item['lead'] : get_the_excerpt();
+                    $item['title'] = isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title($post_data->ID);
+                    $item['lead'] = isset($item['lead']) && !empty($item['lead']) ? $item['lead'] : get_the_excerpt($post_data->ID);
                 } else {
-                    //Delete item from list (this page has been remved)
+                    //Delete item from list (this page has been removed)
                     unset($items[$key]);
                 }
-
-                wp_reset_postdata();
             }
 
         }
