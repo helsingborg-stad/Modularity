@@ -26,7 +26,6 @@ class Index extends \Modularity\Module
      */
     public function data() : array
     {
-
         $data = array();
 
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $this->post_type, $this->args));
@@ -53,26 +52,59 @@ class Index extends \Modularity\Module
     public function prepareItems($items)
     {
         if (is_array($items) && !empty($items)) {
-
             foreach ($items as $key => &$item) {
 
-                $post_data = get_post($item['page']);
+                //Get linked post object.
+                $postData = is_object($item['page']) ? $item['page'] : false;
 
-                if (($post_data && isset($post_data->ID)) || $item['link_type'] == 'external') {
-                    //Setup item
-                    $item['permalink'] = ($item['link_type'] == 'internal') ? get_permalink($post_data->ID) : $item['link_url'];
-                    $item['thumbnail'] = $this->getThumbnail($item);
-                    $item['title'] = isset($item['title']) && !empty($item['title']) ? $item['title'] : get_the_title($post_data->ID);
-                    $item['lead'] = isset($item['lead']) && !empty($item['lead']) ? $item['lead'] : get_the_excerpt($post_data->ID);
-                } else {
-                    //Delete item from list (this page has been removed)
-                    unset($items[$key]);
+                //Retrive post content & lead
+                if (is_object($postData) && isset($postData->ID) && get_post_status($postData->ID)) {
+                    $item['title']          = $this->switchContent($item['title'], $postData->post_title);
+                    $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
                 }
-            }
 
+                //Linking
+                if ($item['link_type'] == 'external') {
+                    $item['permalink'] = $item['link_url'];
+                } elseif (is_object($postData) && isset($postData->ID) && $item['link_type'] == 'internal') {
+                    $item['permalink'] = get_permalink($postData->ID);
+                }
+
+                //Thumbnail
+                $item['thumbnail']      = $this->getThumbnail($item);
+            }
         }
 
         return $items;
+    }
+
+    /**
+     * Parse the excerpt from the content.
+     * @param  [string] $preferdValue       [The value preferd to output]
+     * @return [string] $secondaryValue     [The secondary fallback value]
+     */
+
+    public function parseExcerpt($postContent)
+    {
+        if (strpos($postContent, "<!--more-->")) {
+            return substr($postContent, 0, strpos($postContent, "<!--more-->"));
+        }
+        return wp_trim_words(apply_filters('get_the_excerpt', $postContent), 55, "&hellip;");
+    }
+
+    /**
+     * Enter a two value, if prefered value is empty. Use second value.
+     * @param  [string] $preferdValue       [The value preferd to output]
+     * @param [string] $secondaryValue     [The secondary fallback value]
+     * @return [string] [One of the values above]
+     */
+
+    public function switchContent($preferdValue, $secondaryValue)
+    {
+        if (!empty($preferdValue)) {
+            return $preferdValue;
+        }
+        return $secondaryValue;
     }
 
     /**
@@ -134,7 +166,8 @@ class Index extends \Modularity\Module
      * @param  int   $post_id the current post ID being edited
      * @return array          updated WP_Query args
      */
-    public function postObjectQuery($args, $field, $post_id) {
+    public function postObjectQuery($args, $field, $post_id)
+    {
         $post_types = array('post', 'page');
 
         $custom_post_types = get_field('avabile_dynamic_post_types', 'option');
