@@ -57,21 +57,27 @@ class Index extends \Modularity\Module
                 //Get linked post object.
                 $postData = is_object($item['page']) ? $item['page'] : false;
 
-                //Retrive post content & lead
-                if (is_object($postData) && isset($postData->ID) && get_post_status($postData->ID)) {
-                    $item['title']          = $this->switchContent($item['title'], $postData->post_title);
-                    $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
-                }
+                if($postData !== false) {
 
-                //Linking
-                if ($item['link_type'] == 'external') {
-                    $item['permalink'] = $item['link_url'];
-                } elseif (is_object($postData) && isset($postData->ID) && $item['link_type'] == 'internal') {
-                    $item['permalink'] = get_permalink($postData->ID);
-                }
+                    //Retrive post content & lead
+                    if (is_object($postData) && isset($postData->ID) && get_post_status($postData->ID)) {
+                        $item['title']          = $this->switchContent($item['title'], $postData->post_title);
+                        $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
+                    }
 
-                //Thumbnail
-                $item['thumbnail']      = $this->getThumbnail($item);
+                    //Linking
+                    if ($item['link_type'] == 'external') {
+                        $item['permalink'] = $item['link_url'];
+                    } elseif (is_object($postData) && isset($postData->ID) && $item['link_type'] == 'internal') {
+                        $item['permalink'] = get_permalink($postData->ID);
+                    }
+
+                    //Thumbnail
+                    $item['thumbnail']      = $this->getThumbnail($item);
+
+                } else {
+                    unset($item);
+                }
             }
         }
 
