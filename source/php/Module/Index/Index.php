@@ -57,10 +57,10 @@ class Index extends \Modularity\Module
                 //Get linked post object.
                 $postData = is_object($item['page']) ? $item['page'] : false;
 
-                if ($postData !== false) {
+                if ($postData !== false && get_post_status($postData->ID)) {
 
                     //Retrive post content & lead
-                    if (is_object($postData) && isset($postData->ID) && get_post_status($postData->ID)) {
+                    if (is_object($postData) && isset($postData->ID)) {
                         $item['title']          = $this->switchContent($item['title'], $postData->post_title);
                         $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
                     }
