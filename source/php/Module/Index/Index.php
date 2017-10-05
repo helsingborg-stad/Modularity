@@ -51,11 +51,19 @@ class Index extends \Modularity\Module
      */
     public function prepareItems($items)
     {
+
         if (is_array($items) && !empty($items)) {
             foreach ($items as $key => &$item) {
 
                 //Get linked post object.
                 $postData = is_object($item['page']) ? $item['page'] : false;
+
+                //Linking
+                if ($item['link_type'] == 'external') {
+                    $item['permalink'] = $item['link_url'];
+                } elseif (is_object($postData) && isset($postData->ID) && $item['link_type'] == 'internal') {
+                    $item['permalink'] = get_permalink($postData->ID);
+                }
 
                 if ($postData !== false && get_post_status($postData->ID)) {
 
@@ -63,13 +71,6 @@ class Index extends \Modularity\Module
                     if (is_object($postData) && isset($postData->ID)) {
                         $item['title']          = $this->switchContent($item['title'], $postData->post_title);
                         $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
-                    }
-
-                    //Linking
-                    if ($item['link_type'] == 'external') {
-                        $item['permalink'] = $item['link_url'];
-                    } elseif (is_object($postData) && isset($postData->ID) && $item['link_type'] == 'internal') {
-                        $item['permalink'] = get_permalink($postData->ID);
                     }
 
                     //Thumbnail
