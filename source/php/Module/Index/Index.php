@@ -92,9 +92,9 @@ class Index extends \Modularity\Module
     public function parseExcerpt($postContent)
     {
         if (strpos($postContent, "<!--more-->")) {
-            return substr($postContent, 0, strpos($postContent, "<!--more-->"));
+            return strip_tags(substr($postContent, 0, strpos($postContent, "<!--more-->")));
         }
-        return wp_trim_words(apply_filters('get_the_excerpt', $postContent), 55, "&hellip;");
+        return wp_trim_words(strip_tags(apply_filters('get_the_excerpt', $postContent)), 55, "&hellip;");
     }
 
     /**
