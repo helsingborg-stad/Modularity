@@ -340,6 +340,11 @@ class Posts extends \Modularity\Module
             return false;
         }
 
+        //Bail early if cron
+        if (defined('DOING_CRON') && DOING_CRON) {
+            return false;
+        }
+
         //Bail early if not a post request
         if (!isset($_POST) ||(is_array($_POST) && empty($_POST)) ||!is_array($_POST)) {
             return false;
