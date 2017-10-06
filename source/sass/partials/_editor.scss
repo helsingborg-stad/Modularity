@@ -445,3 +445,9 @@
         }
     }
 }
+
+body[class*="post-type-mod-"] {
+    .misc-pub-post-status {
+        display: none;
+    }
+}
