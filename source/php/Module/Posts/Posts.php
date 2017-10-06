@@ -160,9 +160,9 @@ class Posts extends \Modularity\Module
             'key' => 'group_' . md5('mod_posts_taxonomy_display'),
             'title' => __('Taxonomy display', 'municipio'),
             'fields' => array(),
-            'location' => array (
-                array (
-                    array (
+            'location' => array(
+                array(
+                    array(
                         'param' => 'post_type',
                         'operator' => '==',
                         'value' => 'mod-posts',
@@ -331,12 +331,28 @@ class Posts extends \Modularity\Module
      */
     public function saveColumnFields($postId)
     {
-        if (!isset($_POST['modularity-mod-posts-expandable-list'])) {
-            delete_post_meta($postId, 'modularity-mod-posts-expandable-list');
+
+        //Meta key
+        $metaKey = "modularity-mod-posts-expandable-list";
+
+        //Bail early if autosave
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return false;
+        }
+
+        //Bail early if not a post request
+        if (!isset($_POST) ||(is_array($_POST) && empty($_POST)) ||!is_array($_POST)) {
+            return false;
+        }
+
+        //Delete if not posted data
+        if (!isset($_POST[$metaKey])) {
+            delete_post_meta($postId, $metaKey);
             return;
         }
 
-        update_post_meta($postId, 'modularity-mod-posts-expandable-list', $_POST['modularity-mod-posts-expandable-list']);
+        //Save meta data
+        update_post_meta($postId, $metaKey, $_POST[$metaKey]);
     }
 
     /**
@@ -400,7 +416,7 @@ class Posts extends \Modularity\Module
     public function columnFieldsMetaBoxContent($post, $args)
     {
         $fields = $args['args'][0];
-        $fieldValues = get_post_meta( $post->ID, 'modularity-mod-posts-expandable-list', true);
+        $fieldValues = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
 
         foreach ($fields as $field) {
             $fieldSlug = sanitize_title($field);
@@ -424,7 +440,6 @@ class Posts extends \Modularity\Module
         $columns = array();
 
         if (is_array($posts)) {
-
             foreach ($posts as $post) {
                 $values = get_field('posts_list_column_titles', $post);
 
@@ -434,7 +449,6 @@ class Posts extends \Modularity\Module
                     }
                 }
             }
-
         }
 
         return $columns;
@@ -491,7 +505,6 @@ class Posts extends \Modularity\Module
         }
 
         return $posts;
-
     }
 
     /**
@@ -639,7 +652,9 @@ class Posts extends \Modularity\Module
 
             case 'manual':
                 $getPostsArgs['post__in'] = $fields->posts_data_posts;
-                if ($orderby == 'false') $getPostsArgs['orderby'] = 'post__in';
+                if ($orderby == 'false') {
+                    $getPostsArgs['orderby'] = 'post__in';
+                }
                 break;
         }
 
