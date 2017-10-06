@@ -65,6 +65,9 @@ class Index extends \Modularity\Module
                     $item['permalink'] = get_permalink($postData->ID);
                 }
 
+                //Thumbnail
+                $item['thumbnail'] = $this->getThumbnail($item);
+
                 if ($postData !== false && get_post_status($postData->ID)) {
 
                     //Retrive post content & lead
@@ -73,8 +76,6 @@ class Index extends \Modularity\Module
                         $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
                     }
 
-                    //Thumbnail
-                    $item['thumbnail']      = $this->getThumbnail($item);
                 } else {
                     unset($item);
                 }
