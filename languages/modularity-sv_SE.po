@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-09-06 12:01+0200\n"
-"PO-Revision-Date: 2017-09-12 09:49+0200\n"
+"POT-Creation-Date: 2017-10-06 11:10+0200\n"
+"PO-Revision-Date: 2017-10-06 11:12+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:136 source/php/Editor.php:122 source/php/Options/General.php:93
+#: App.php:136 source/php/Editor.php:125 source/php/Options/General.php:93
 msgid "Modules"
 msgstr "Moduler"
 
@@ -1353,7 +1353,7 @@ msgid "File"
 msgstr "Fil"
 
 #: plugins/acf/core/fields/file.php:20 plugins/acf/core/fields/image.php:20
-#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:121
+#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:124
 msgid "Content"
 msgstr "Innehåll"
 
@@ -3795,31 +3795,31 @@ msgstr ""
 msgid "Edit module"
 msgstr "Redigera modul"
 
-#: source/php/Editor.php:61
+#: source/php/Editor.php:63
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:154
+#: source/php/Editor.php:157
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:155
+#: source/php/Editor.php:158
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:173
+#: source/php/Editor.php:176
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:184
+#: source/php/Editor.php:187
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:229
+#: source/php/Editor.php:232
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:231
+#: source/php/Editor.php:234
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -3827,11 +3827,11 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:533
+#: source/php/Editor.php:536
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:616
+#: source/php/Editor.php:619
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -3974,6 +3974,10 @@ msgstr "Visar valda inlägg i en vald layout"
 msgid "Taxonomy display"
 msgstr "Visning av taxnomi"
 
+#: source/php/Module/Posts/Posts.php:405
+msgid "Modularity expandable list column values"
+msgstr "Expanderbar lista - kolumninnehåll"
+
 #: source/php/Module/Posts/views/circular.blade.php:54
 #: source/php/Module/Posts/views/grid.blade.php:57
 #: source/php/Module/Posts/views/index.blade.php:53
@@ -4062,7 +4066,7 @@ msgstr "Visar flera bilder eller filmer i ett bildspel"
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr "Videouppspelning är inte tillgänglig."
 
-#: source/php/Module/Social/Feed.php:582 source/php/Module/Social/Feed.php:621
+#: source/php/Module/Social/Feed.php:589 source/php/Module/Social/Feed.php:628
 msgid "ago"
 msgstr "sedan"
 
