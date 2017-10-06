@@ -458,6 +458,9 @@ li.modularity-module {
   .modularity-usage-list a:hover {
     text-decoration: underline; }
 
+body[class*="post-type-mod-"] .misc-pub-post-status {
+  display: none; }
+
 .modularity-modal-open {
   overflow: hidden; }
 
