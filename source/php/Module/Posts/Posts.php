@@ -381,7 +381,7 @@ class Posts extends \Modularity\Module
         if (!empty($fields)) {
             add_meta_box(
                 'modularity-mod-posts-expandable-list',
-                'Modularity expandable list column values',
+                __('Modularity expandable list column values', 'modularity'),
                 array($this, 'columnFieldsMetaBoxContent'),
                 null,
                 'normal',
