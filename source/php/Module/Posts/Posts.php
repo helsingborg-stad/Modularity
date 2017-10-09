@@ -331,7 +331,6 @@ class Posts extends \Modularity\Module
      */
     public function saveColumnFields($postId)
     {
-
         //Meta key
         $metaKey = "modularity-mod-posts-expandable-list";
 
@@ -350,14 +349,17 @@ class Posts extends \Modularity\Module
             return false;
         }
 
-        //Delete if not posted data
-        if (!isset($_POST[$metaKey])) {
-            delete_post_meta($postId, $metaKey);
-            return;
-        }
+        //Update if nonce verification succeed
+        if (isset($_POST['modularity_post_columns']) && wp_verify_nonce($_POST['modularity_post_columns'], 'save_columns')) {
+            //Delete if not posted data
+            if (!isset($_POST[$metaKey])) {
+                delete_post_meta($postId, $metaKey);
+                return;
+            }
 
-        //Save meta data
-        update_post_meta($postId, $metaKey, $_POST[$metaKey]);
+            //Save meta data
+            update_post_meta($postId, $metaKey, $_POST[$metaKey]);
+        }
     }
 
     /**
@@ -433,6 +435,8 @@ class Posts extends \Modularity\Module
                 </p>
             ';
         }
+
+        echo wp_nonce_field('save_columns', 'modularity_post_columns');
     }
 
     /**
