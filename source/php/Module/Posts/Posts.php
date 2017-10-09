@@ -368,9 +368,9 @@ class Posts extends \Modularity\Module
     public function addColumnFields()
     {
         global $post;
-        global $current_screen;
+        $screen = get_current_screen();
 
-        if (empty($post->post_type)) {
+        if (empty($post->post_type) || $screen->base != 'post') {
             return;
         }
 
