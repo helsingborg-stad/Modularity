@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-10-06 11:10+0200\n"
-"PO-Revision-Date: 2017-10-06 11:12+0200\n"
+"POT-Creation-Date: 2017-10-12 11:26+0200\n"
+"PO-Revision-Date: 2017-10-12 11:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -3974,7 +3974,7 @@ msgstr "Visar valda inlägg i en vald layout"
 msgid "Taxonomy display"
 msgstr "Visning av taxnomi"
 
-#: source/php/Module/Posts/Posts.php:405
+#: source/php/Module/Posts/Posts.php:407
 msgid "Modularity expandable list column values"
 msgstr "Expanderbar lista - kolumninnehåll"
 
@@ -3989,10 +3989,8 @@ msgid "Show more"
 msgstr "Visa mer"
 
 #: source/php/Module/Posts/views/expandable-list.blade.php:22
-#, fuzzy
-#| msgid "Filter"
 msgid "Filter on…"
-msgstr "Filter"
+msgstr "Filtrera på…"
 
 #: source/php/Module/Posts/views/expandable-list.blade.php:88
 msgid "Nothing to display…"

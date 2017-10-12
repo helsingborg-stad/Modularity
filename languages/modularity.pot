@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2017-09-06 12:01+0200\n"
+"POT-Creation-Date: 2017-10-12 11:26+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.3\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
-#: App.php:136 source/php/Editor.php:122 source/php/Options/General.php:93
+#: App.php:136 source/php/Editor.php:125 source/php/Options/General.php:93
 msgid "Modules"
 msgstr ""
 
@@ -1270,7 +1270,7 @@ msgid "File"
 msgstr ""
 
 #: plugins/acf/core/fields/file.php:20 plugins/acf/core/fields/image.php:20
-#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:121
+#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:124
 msgid "Content"
 msgstr ""
 
@@ -3533,41 +3533,41 @@ msgstr ""
 msgid "Edit module"
 msgstr ""
 
-#: source/php/Editor.php:61
+#: source/php/Editor.php:63
 msgid "View Page"
 msgstr ""
 
-#: source/php/Editor.php:154
+#: source/php/Editor.php:157
 msgid "Modularity editor"
 msgstr ""
 
-#: source/php/Editor.php:155
+#: source/php/Editor.php:158
 msgid "Editor"
 msgstr ""
 
-#: source/php/Editor.php:173
+#: source/php/Editor.php:176
 msgid "Save modules"
 msgstr ""
 
-#: source/php/Editor.php:184
+#: source/php/Editor.php:187
 msgid "Enabled modules"
 msgstr ""
 
-#: source/php/Editor.php:229
+#: source/php/Editor.php:232
 msgid "No active sidebar areas"
 msgstr ""
 
-#: source/php/Editor.php:231
+#: source/php/Editor.php:234
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
 msgstr ""
 
-#: source/php/Editor.php:533
+#: source/php/Editor.php:536
 msgid "Modules saved"
 msgstr ""
 
-#: source/php/Editor.php:616
+#: source/php/Editor.php:619
 msgid "Inherit"
 msgstr ""
 
@@ -3700,6 +3700,10 @@ msgstr ""
 msgid "Taxonomy display"
 msgstr ""
 
+#: source/php/Module/Posts/Posts.php:407
+msgid "Modularity expandable list column values"
+msgstr ""
+
 #: source/php/Module/Posts/views/circular.blade.php:54
 #: source/php/Module/Posts/views/grid.blade.php:57
 #: source/php/Module/Posts/views/index.blade.php:53
@@ -3782,7 +3786,7 @@ msgstr ""
 msgid "Video playback unavailable, please activate JavaScript to enable."
 msgstr ""
 
-#: source/php/Module/Social/Feed.php:582 source/php/Module/Social/Feed.php:621
+#: source/php/Module/Social/Feed.php:589 source/php/Module/Social/Feed.php:628
 msgid "ago"
 msgstr ""
 
