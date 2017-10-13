@@ -164,13 +164,15 @@ class Slider extends \Modularity\Module
                 return \Municipio\Admin\UI\Editor::oembed('', $url, array(), $post->ID, false);
             }
 
-            $id = parse_str(parse_url($url, PHP_URL_QUERY), $urlParts);
+            // Get YouTube video ID from url
+            $pattern = "/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/";
+            preg_match($pattern, $url, $matches);
 
-            if (!isset($urlParts['v'])) {
+            if (!isset($matches[1])) {
                 return null;
             }
 
-            $src = '<div ' . $classes  . '  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a data-unavailable="' . __('Video playback unavailable, please activate JavaScript to enable.', 'modularity') .'" href="#video-player-' . $urlParts['v']  . '" data-video-id="' . $urlParts['v'] . '"></a></div>';
+            $src = '<div ' . $classes  . '  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a data-unavailable="' . __('Video playback unavailable, please activate JavaScript to enable.', 'modularity') .'" href="#video-player-' . $matches[1]  . '" data-video-id="' . $matches[1] . '"></a></div>';
         } elseif (strpos($url, 'vimeo') > -1) {
             $id = preg_match_all('/.*\/([0-9]+)$/i', $url, $matches);
 
