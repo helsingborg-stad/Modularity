@@ -129,4 +129,29 @@ class Post
 
         return false;
     }
+
+    /**
+     * Get all (or area specific) modules posts attached to the post/page from given post_id
+     *
+     * @param $post_id
+     * @param null $selected_area
+     * @return array
+     */
+    public static function getPostModules($post_id, $selected_area = null)
+    {
+        $result = [];
+        $areas = get_post_meta($post_id, 'modularity-modules', true);
+        if ($areas) {
+            foreach ($areas as $key => $area) {
+                if ($selected_area == null || $selected_area == $key) {
+                    if ($area) {
+                        foreach ($area as $modules) {
+                            $result[] = $modules;
+                        }
+                    }
+                }
+            }
+        }
+        return $result;
+    }
 }
