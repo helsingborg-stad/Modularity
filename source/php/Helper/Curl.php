@@ -27,6 +27,10 @@ class Curl
             return $this->getCachedResponse();
         }
 
+        if (!defined(CURLOPT_CONNECTTIMEOUT_MS)) {
+            define('CURLOPT_CONNECTTIMEOUT_MS', 156);
+        }
+
         //Arguments are stored here
         $arguments = null;
 
