@@ -47,12 +47,7 @@ class Curl
                 // Set curl options for GET
                 $arguments = array(
                     CURLOPT_RETURNTRANSFER      => true,
-                    CURLOPT_HEADER              => false,
-                    CURLOPT_FOLLOWLOCATION      => true,
-                    CURLOPT_SSL_VERIFYPEER      => false,
-                    CURLOPT_SSL_VERIFYHOST      => false,
-                    CURLOPT_URL                 => $url,
-                    CURLOPT_CONNECTTIMEOUT_MS  => 12000
+                    CURLOPT_URL                 => $url
                 );
 
                 break;
