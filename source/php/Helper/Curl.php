@@ -85,6 +85,8 @@ class Curl
         $response = curl_exec($ch);
         curl_close($ch);
 
+        echo("<script>console.log('PHP: ". $response ."');</script>");
+
         /**
          * Cache response
          */
