@@ -27,10 +27,6 @@ class Feed
 
         $this->args = array_merge($defaultArgs, $args);
 
-        echo("<script>console.log('PHP: "); 
-        $var_dump($this->args);
-        echo ("');</script>");
-
         /**
          * Get feed depending on args
          */
