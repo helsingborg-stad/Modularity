@@ -13,7 +13,7 @@ class Feed
     {
         $defaultArgs = array(
             'network'    => 'instagram',
-            'type'       => 'hashtag',
+            'type'       => 'hashtagNoToken',
             'query'      => 'sweden',
             'length'     => 10,
             'max_height' => 300,
@@ -32,11 +32,7 @@ class Feed
          */
         switch ($this->args['network']) {
             case 'instagram':
-                if ($this->args['type'] == 'hashtag') {
-                    $this->feedData = $this->getInstagramHashtag();
-                } else {
-                    $this->feedData = $this->getIstagramUserProfileFeed();
-                }
+                 $this->feedData = $this->getInstagramHashtagNoToken(); 
                 break;
 
             case 'facebook':
@@ -389,6 +385,22 @@ class Feed
         return false;
     }
 
+    /**
+     * Get Instagram hashtag feed without accesstoken
+     * @return object Feed data
+     */
+    protected function getInstagramHashtagNoToken()
+    {
+
+        //Structure url to call
+        $endpoint = 'https://www.instagram.com/explore/tags/'.$this->args['query'].'/?__a=1';
+
+        //Call and return
+        $curl = new \Modularity\Helper\Curl();
+        $recent = $curl->request('GET', $endpoint);
+        return json_decode($recent);
+    }
+
     public function render()
     {
         switch ($this->args['network']) {
@@ -493,6 +505,36 @@ class Feed
                 $item->images->low_resolution->url,
                 isset($item->caption->text) ? $item->caption->text : null,
                 $item->link
+            );
+
+            if ($int == $this->args['length']) {
+                break;
+            }
+        }
+    }
+
+    /**
+     * Render Instagram images without token
+     * @return void
+     */
+    protected function renderInstagramNoToken()
+    {
+        $int = 0;       
+
+        $feedDataArray = json_decode(json_encode($this->feedData), true);
+
+        foreach ($feedDataArray["tag"]["media"]["nodes"] as $item) {
+            $int++;
+
+            $this->addImage(
+                $item["date"],
+                array(
+                    'name' => $feedDataArray["tag"]["name"],
+                    'picture' => $item["thumbnail_resources"]["4"]["src"]
+                ),
+                $item["thumbnail_resources"]["0"]["src"],
+                isset($item["caption"]) ? $item["caption"] : null,
+                $item["thumbnail_src"]
             );
 
             if ($int == $this->args['length']) {
