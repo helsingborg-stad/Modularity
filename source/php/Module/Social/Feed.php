@@ -32,7 +32,7 @@ class Feed
          */
         switch ($this->args['network']) {
             case 'instagram':
-                 $this->feedData = $this->getInstagramHashtagNoToken(); 
+                $this->feedData = $this->getInstagramHashtagNoToken();
                 break;
 
             case 'facebook':
@@ -519,7 +519,7 @@ class Feed
      */
     protected function renderInstagramNoToken()
     {
-        $int = 0;       
+        $int = 0;
 
         $feedDataArray = json_decode(json_encode($this->feedData), true);
 
