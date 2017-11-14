@@ -482,6 +482,10 @@ class Feed
     {
         $int = 0;
 
+        echo("<script>console.log('PHP: "); 
+        $var_dump(debug_backtrace());
+        echo ("');</script>");
+
         if (isset($this->feedData->meta->error_message) || !isset($this->feedData->data)) {
             $msg = 'No error message, sorry about that.';
 
