@@ -11,6 +11,11 @@ class Feed
 
     public function __construct($args = array())
     {
+
+        echo "<div style='display: none;'>";
+        print_r($args);
+        echo "</div>";
+        
         $defaultArgs = array(
             'network'    => 'instagram',
             'type'       => 'hashtagNoToken',
@@ -24,6 +29,8 @@ class Feed
             'link_url'   => '',
             'link_text'  => ''
         );
+
+
 
         $this->args = array_merge($defaultArgs, $args);
 
