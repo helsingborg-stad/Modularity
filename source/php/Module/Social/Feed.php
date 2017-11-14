@@ -482,10 +482,6 @@ class Feed
     {
         $int = 0;
 
-        echo("<script>console.log('PHP: "); 
-        $var_dump(debug_backtrace());
-        echo ("');</script>");
-
         if (isset($this->feedData->meta->error_message) || !isset($this->feedData->data)) {
             $msg = 'No error message, sorry about that.';
 
@@ -523,6 +519,10 @@ class Feed
      */
     protected function renderInstagramNoToken()
     {
+        echo("<script>console.log('PHP: "); 
+        $var_dump(debug_backtrace());
+        echo ("');</script>");
+        
         $int = 0;
 
         $feedDataArray = json_decode(json_encode($this->feedData), true);
