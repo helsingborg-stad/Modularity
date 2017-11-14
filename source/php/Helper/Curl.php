@@ -14,7 +14,7 @@ class Curl
      * @return string              The request response
      */
 
-    public $useCache = true;
+    public $useCache = false;
     private $cacheKey;
 
     public function request($type, $url, $data = null, $contentType = 'json', $headers = null)
