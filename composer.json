@@ -11,6 +11,14 @@
         {
             "name": "Sebastian Thulin",
             "email": "sebastian.thulin@helsingborg.se"
+        },
+        {
+            "name": "Nikolas Ramstedt",
+            "email": "rikolas.ramstedt@helsingborg.se"
+        },
+        {
+            "name": "Karl Pettersson",
+            "email": "karl.pettersson@helsingborg.se"
         }
     ],
     "repositories": [
