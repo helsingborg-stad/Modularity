@@ -19,13 +19,13 @@ class Curl
 
     public function request($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
-        //Create cache key as a reference
+       /* //Create cache key as a reference
         $this->cacheKey = $this->createCacheKey($type, $url, $data, $contentType, $headers);
 
         //Return cached data
         if ($this->useCache && $this->getCachedResponse() !== false && !empty($this->getCachedResponse())) {
             return $this->getCachedResponse();
-        }
+        }*/
 
         if (!defined(CURLOPT_CONNECTTIMEOUT_MS)) {
             define('CURLOPT_CONNECTTIMEOUT_MS', 156);
