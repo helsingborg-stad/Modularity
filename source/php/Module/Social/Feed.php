@@ -11,10 +11,6 @@ class Feed
 
     public function __construct($args = array())
     {
-
-        echo "<div style='display: none;'>";
-        print_r($args);
-        echo "</div>";
         
         $defaultArgs = array(
             'network'    => 'instagram',
@@ -414,7 +410,7 @@ class Feed
             case 'instagram':
             $this->markup .= '<div class="social-feed-wrapper">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-instagram social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
-                $this->renderInstagram();
+                $this->renderInstagramNoToken();
                 break;
 
             case 'facebook':

@@ -45,11 +45,6 @@ class Social extends \Modularity\Module
 
         $this->feedArgs = $feedArgs;
 
-        echo "<div style='display: none;'>";
-        print_r($feedArgs);
-        echo "</div>";
-
-
         return new \Modularity\Module\Social\Feed($feedArgs);
     }
 
