@@ -396,7 +396,7 @@ class Feed
     {
 
         //Structure url to call
-        $endpoint = 'https://www.instagram.com/explore/tags/'.$this->args['query'].'/?__a=1';
+        $endpoint = 'https://www.instagram.com/'.$this->args['query'].'/?__a=1';
 
         //Call and return
         $curl = new \Modularity\Helper\Curl();
@@ -526,13 +526,13 @@ class Feed
 
         $feedDataArray = json_decode(json_encode($this->feedData), true);
 
-        foreach ($feedDataArray["tag"]["media"]["nodes"] as $item) {
+        foreach ($feedDataArray["user"]["media"]["nodes"] as $item) {
             $int++;
 
             $this->addImage(
                 $item["date"],
                 array(
-                    'name' => $feedDataArray["tag"]["name"],
+                    'name' => $feedDataArray["user"]["full_name"],
                     'picture' => $item["thumbnail_resources"]["4"]["src"]
                 ),
                 $item["thumbnail_resources"]["0"]["src"],
