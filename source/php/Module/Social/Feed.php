@@ -9,12 +9,15 @@ class Feed
     protected $feedData = array();
     protected $markup = '';
 
+    private $username;
+    private $hashtag;
+
     public function __construct($args = array())
     {
         
         $defaultArgs = array(
             'network'    => 'instagram',
-            'type'       => 'hashtagNoToken',
+            'type'       => 'user',
             'query'      => 'sweden',
             'length'     => 10,
             'max_height' => 300,
@@ -25,8 +28,8 @@ class Feed
             'link_url'   => '',
             'link_text'  => ''
         );
-
-
+        
+        
 
         $this->args = array_merge($defaultArgs, $args);
 
@@ -35,7 +38,13 @@ class Feed
          */
         switch ($this->args['network']) {
             case 'instagram':
-                $this->feedData = $this->getInstagramHashtagNoToken();
+
+                if ($this->args['type'] == 'hashtag') {
+                    $this->feedData = $this->getHashtag($this->args['query']);
+                } else {
+                    $this->feedData = $this->getUser($this->args['query']);
+                }
+
                 break;
 
             case 'facebook':
@@ -389,19 +398,97 @@ class Feed
     }
 
     /**
-     * Get Instagram hashtag feed without accesstoken
-     * @return object Feed data
+     * Request the posts
      */
-    protected function getInstagramHashtagNoToken()
+
+    public function getUser($username = null)
     {
+        //Fallback to init username
+        if (empty($username)) {
+            $this->registerError("Not a valid username");
+            return false;
+        }
+        //Set to gobal
+        $this->username = $username;
 
-        //Structure url to call
-        $endpoint = 'https://www.instagram.com/'.$this->args['query'].'/?__a=1';
-
-        //Call and return
         $curl = new \Modularity\Helper\Curl();
-        $recent = $curl->request('GET', $endpoint);
-        return json_decode($recent);
+
+        //Call
+        $data = $curl->request('GET', 'https://igapi.ga/' .$username. '/media?count=20'); // Using a proxy for better stability
+        //Parse
+        if (json_decode($data)) {
+            return $this->formatResponse(json_decode($data), 'user');
+        }
+        //Error return
+        return false;
+    }
+
+    public function getHashtag($hashtag = null)
+    {
+        //Fallback to init hashtag
+        if (empty($hashtag)) {
+            $this->registerError("Not a valid hashtag");
+            return false;
+        }
+        //Set to gobal
+        $this->hashtag = $hashtag;
+
+        $curl = new \Modularity\Helper\Curl();
+
+        //Call
+        $data = $curl->request('GET', 'https://igapi.ga/explore/tags/'. $hashtag .'/media/?count=20'); // Using a proxy for better stability
+
+        //Parse
+        if (json_decode($data)) {
+            return $this->formatResponse(json_decode($data), 'hashtag');
+        }
+        //Error return
+        return false;
+    }
+
+    /**
+     * Format response to promise
+     */
+    public function formatResponse($response, $type = 'user')
+    {
+        $result = array();
+        if (isset($response->posts) && !empty($response->posts)) {
+            foreach ($response->posts as $item) {
+                if ($type == "user") {
+                    $result[] = array(
+                        'user_name' => "@" . $this->username,
+                        'timestamp' => $item->taken_at_timestamp,
+                        'content' => $item->edge_media_to_caption->edges[0]->node->text,
+                        'image_large' => $item->thumbnail_resources[4]->src,
+                        'image_small' => $item->thumbnail_resources[0]->src,
+                        'number_of_likes' => $item->edge_media_preview_like->count,
+                        'network_source' => 'https://www.instagram.com/p/'.$item->shortcode.'/',
+                        'network_name' => 'instagram',
+                        'link' => "",
+                        'link_title' => "",
+                        'link_content' => "",
+                        'link_og_image' => "",
+                    );
+                }
+                if ($type = "hashtag") {
+                    $result[] = array(
+                        'user_name' => "#" . $this->hashtag,
+                        'timestamp' => $item->taken_at_timestamp,
+                        'content' => $item->edge_media_to_caption->edges[0]->node->text,
+                        'image_large' => $item->thumbnail_resources[4]->src,
+                        'image_small' => $item->thumbnail_resources[0]->src,
+                        'number_of_likes' => $item->edge_liked_by->count,
+                        'network_source' => 'https://www.instagram.com/p/'.$item->shortcode.'/',
+                        'network_name' => 'instagram',
+                        'link' => "",
+                        'link_title' => "",
+                        'link_content' => "",
+                        'link_og_image' => "",
+                    );
+                }
+            }
+        }
+        return $result;
     }
 
     public function render()
@@ -410,7 +497,9 @@ class Feed
             case 'instagram':
             $this->markup .= '<div class="social-feed-wrapper">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-instagram social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
-                $this->renderInstagramNoToken();
+                
+                $this->renderInstagram();
+
                 break;
 
             case 'facebook':
@@ -483,9 +572,10 @@ class Feed
      */
     protected function renderInstagram()
     {
+
         $int = 0;
 
-        if (isset($this->feedData->meta->error_message) || !isset($this->feedData->data)) {
+        if (isset($this->feedData->meta->error_message) || !isset($this->feedData)) {
             $msg = 'No error message, sorry about that.';
 
             if (isset($this->feedData->meta->error_message)) {
@@ -496,48 +586,18 @@ class Feed
             return;
         }
 
-        foreach ($this->feedData->data as $item) {
+        foreach ($this->feedData as $item) {
             $int++;
 
             $this->addImage(
-                $item->created_time,
+                $item['timestamp'],
                 array(
-                    'name' => $item->user->username,
-                    'picture' => $item->user->profile_picture
+                    'name' => $item['user_name'],
+                    'picture' => ''
                 ),
-                $item->images->low_resolution->url,
-                isset($item->caption->text) ? $item->caption->text : null,
-                $item->link
-            );
-
-            if ($int == $this->args['length']) {
-                break;
-            }
-        }
-    }
-
-    /**
-     * Render Instagram images without token
-     * @return void
-     */
-    protected function renderInstagramNoToken()
-    {
-        $int = 0;
-
-        $feedDataArray = json_decode(json_encode($this->feedData), true);
-
-        foreach ($feedDataArray["user"]["media"]["nodes"] as $item) {
-            $int++;
-
-            $this->addImage(
-                $item["date"],
-                array(
-                    'name' => $feedDataArray["user"]["full_name"],
-                    'picture' => $item["thumbnail_resources"]["4"]["src"]
-                ),
-                $item["thumbnail_resources"]["0"]["src"],
-                isset($item["caption"]) ? $item["caption"] : null,
-                $item["thumbnail_src"]
+                $item['image_small'],
+                isset($item['content']) ? $item['content'] : null,
+                $item['network_source']
             );
 
             if ($int == $this->args['length']) {
