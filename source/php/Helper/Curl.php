@@ -15,7 +15,19 @@ class Curl
      */
 
     public $useCache = true;
+    public $cacheTTL = 15;
     private $cacheKey;
+
+    public function __construct($useCache = true, $cacheTTL = 15)
+    {
+        if (is_bool($useCache)) {
+            $this->useCache = $useCache;
+        }
+
+        if (is_numeric($cacheTTL)) {
+            $this->cacheTTL = $cacheTTL;
+        }
+    }
 
     public function request($type, $url, $data = null, $contentType = 'json', $headers = null)
     {
