@@ -60,8 +60,8 @@ class Curl
                     CURLOPT_SSL_VERIFYPEER      => false,
                     CURLOPT_SSL_VERIFYHOST      => false,
                     CURLOPT_URL                 => $url,
-                    CURLOPT_CONNECTTIMEOUT_MS   => 12000,
-                    CURLOPT_REFERER             =>  get_option('home_url'),
+                    CURLOPT_CONNECTTIMEOUT_MS  => 12000,
+                    CURLOPT_REFERER             =>  get_option('home_url')
                 );
 
                 break;
@@ -77,8 +77,8 @@ class Curl
                     CURLOPT_POST                => 1,
                     CURLOPT_HEADER              => false,
                     CURLOPT_POSTFIELDS          => http_build_query($data),
-                    CURLOPT_CONNECTTIMEOUT_MS   => 3000,
-                    CURLOPT_REFERER             =>  get_option('home_url'),
+                    CURLOPT_CONNECTTIMEOUT_MS  => 3000,
+                    CURLOPT_REFERER             =>  get_option('home_url')
                 );
 
                 break;
