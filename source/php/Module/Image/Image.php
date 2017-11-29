@@ -47,6 +47,9 @@ class Image extends \Modularity\Module
         //Crop image (if non existing)
         $data['img_src'] = $this->maybeCropImage($data);
 
+        //Add box classes
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-filled'), $this->post_type, $this->args));
+
         return $data;
     }
 
