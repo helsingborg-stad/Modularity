@@ -414,7 +414,7 @@ class Feed
         $curl = new \Modularity\Helper\Curl();
 
         //Call
-        $data = $curl->request('GET', 'https://igapi.ga/' .$username. '/media?count=20'); // Using a proxy for better stability
+        $data = $curl->request('GET', 'http://hbg-instagram-proxy.herokuapp.com/' .$username. '/media?count=20'); 
         //Parse
         if (json_decode($data)) {
             return $this->formatResponse(json_decode($data), 'user');
@@ -436,7 +436,7 @@ class Feed
         $curl = new \Modularity\Helper\Curl();
 
         //Call
-        $data = $curl->request('GET', 'https://igapi.ga/explore/tags/'. $hashtag .'/media/?count=20'); // Using a proxy for better stability
+        $data = $curl->request('GET', 'http://hbg-instagram-proxy.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20');
 
         //Parse
         if (json_decode($data)) {
