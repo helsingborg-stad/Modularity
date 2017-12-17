@@ -450,7 +450,7 @@ class Display
             return $post;
         }
 
-        $post->post_content = preg_replace('/\[modularity(.*)\]/', '', $content);
+        $post->post_content = preg_replace('/\[modularity(.*)\]/', '', $post->post_content);
         return $post;
     }
 
