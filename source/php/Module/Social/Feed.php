@@ -434,6 +434,9 @@ class Feed
         $this->hashtag = $hashtag;
 
         $curl = new \Modularity\Helper\Curl();
+        
+        //for proper handling of åäö
+        $hashtag = urlencode($hashtag);
 
         //Call
         $data = $curl->request('GET', 'http://hbg-instagram-proxy.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20');
