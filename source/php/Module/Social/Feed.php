@@ -473,7 +473,7 @@ class Feed
                         'link_og_image' => "",
                     );
                 }
-                if ($type = "hashtag") {
+                if ($type == "hashtag") {
                     $result[] = array(
                         'user_name' => "#" . $this->hashtag,
                         'timestamp' => $item->taken_at_timestamp,
