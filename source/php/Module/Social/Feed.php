@@ -414,7 +414,9 @@ class Feed
         $curl = new \Modularity\Helper\Curl();
 
         //Call
-        $data = $curl->request('GET', 'http://hbg-instagram-proxy.herokuapp.com/' .$username. '/media?count=20'); 
+        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/' .$username. '/media?count=20' : 'https://igapi.ga/' .$username. '/media?count=20';
+        $data = $curl->request('GET', $url);
+
         //Parse
         if (json_decode($data)) {
             return $this->formatResponse(json_decode($data), 'user');
@@ -439,7 +441,8 @@ class Feed
         $hashtag = urlencode($hashtag);
 
         //Call
-        $data = $curl->request('GET', 'http://hbg-instagram-proxy.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20');
+        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20' : 'https://igapi.ga/explore/tags/'. $hashtag .'/media/?count=20';
+        $data = $curl->request('GET', $url);
 
         //Parse
         if (json_decode($data)) {
@@ -477,7 +480,7 @@ class Feed
                     $result[] = array(
                         'user_name' => "#" . $this->hashtag,
                         'timestamp' => $item->taken_at_timestamp,
-                        'content' => $item->edge_media_to_caption->edges[0]->node->text,
+                        'content' => isset($item->edge_media_to_caption->edges[0]->node->text) ? $item->edge_media_to_caption->edges[0]->node->text : "",
                         'image_large' => $item->thumbnail_resources[4]->src,
                         'image_small' => $item->thumbnail_resources[0]->src,
                         'number_of_likes' => $item->edge_liked_by->count,
