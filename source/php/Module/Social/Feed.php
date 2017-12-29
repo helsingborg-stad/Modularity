@@ -414,7 +414,7 @@ class Feed
         $curl = new \Modularity\Helper\Curl();
 
         //Call
-        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/' .$username. '/media?count=20' : 'https://igapi.ga/' .$username. '/media?count=20';
+        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/' .$username. '/media?count=20' : 'https://hbg-instagram-proxy.herokuapp.com/' .$username. '/media?count=20';
         $data = $curl->request('GET', $url);
 
         //Parse
@@ -441,7 +441,7 @@ class Feed
         $hashtag = urlencode($hashtag);
 
         //Call
-        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20' : 'https://igapi.ga/explore/tags/'. $hashtag .'/media/?count=20';
+        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20' : 'https://hbg-instagram-proxy.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20';
         $data = $curl->request('GET', $url);
 
         //Parse
