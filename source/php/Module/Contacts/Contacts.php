@@ -67,6 +67,42 @@ class Contacts extends \Modularity\Module
                     break;
 
                 case 'user':
+
+                
+
+
+                if(get_field( 'advaced_mode', $this->ID ) == "1")
+                {
+                    
+                    $contact['image'] = wp_get_attachment_image_src(
+                        get_user_meta( $contact['user']['ID'], "_user_profile_picture_id", true),
+                        apply_filters(
+                            'Modularity/image/contact',
+                            municipio_to_aspect_ratio('1:1', array(400, 400)),
+                            $this->args
+                        )
+                    );
+
+                    
+                  /*$contact['first_name'] = get_user_meta( $contact['user']['ID'], "first_name", true);
+                  $contact['last_name'] = get_user_meta( $contact['user']['ID'], "last_name", true);
+                  $contact['work_title'] = get_user_meta( $contact['user']['ID'], "user_work_title", true);
+                  $contact['administration_unit'] = get_user_meta( $contact['user']['ID'], "user_administration_unit", true);
+                  $contact['phone_numbers'][] = array("number" => get_user_meta( $contact['user']['ID'], "nickname", true));
+                  $contact['address'] = get_user_meta( $contact['user']['ID'], "nickname", true);*/
+                  //$contact['visiting_address'] = get_user_meta( $contact['user']['ID'], "nickname", true);
+                  //$contact['opening_hours'] = get_user_meta( $contact['user']['ID'], "nickname", true);
+                  //$contact['other'] = get_user_meta( $contact['user']['ID'], "nickname", true);
+
+                }
+
+               
+
+                /*$phone[] = array("number" => "12222", "countrycode" => "+46");
+                $phone[] = array("number" => "53223", "countrycode" => "+12");*/
+                
+                //print_r(get_user_meta( $contact['user']['ID'], "nickname", true));
+
                     $info = apply_filters('Modularity/mod-contacts/contact-info', array(
                         'id'                  => $contact['user']['ID'],
                         'image'               => null,
@@ -75,11 +111,25 @@ class Contacts extends \Modularity\Module
                         'work_title'          => null,
                         'administration_unit' => null,
                         'email'               => strtolower($contact['user']['user_email']),
-                        'phone'               => null,
+                        'phone'               => $phone,
                         'address'             => null,
                         'visiting_address'    => null,
                         'opening_hours'       => null
                     ), $contact, $contact['acf_fc_layout']);
+
+                    /* $info = apply_filters('Modularity/mod-contacts/contact-info', array(
+                        'id'                  => $contact['user']['ID'],
+                        'image'               =>  $contact['image'],
+                        'first_name'          => $contact['user']['user_firstname'],
+                        'last_name'           => $contact['user']['user_lastname'],
+                        'work_title'          => $contact['work_title'],
+                        'administration_unit' => $contact['administration_unit'],
+                        'email'               => strtolower($contact['user']['user_email']),
+                        'phone'               => $contact['phone_numbers'],
+                        'address'             => null,
+                        'visiting_address'    => null,
+                        'opening_hours'       => null
+                    ), $contact, $contact['acf_fc_layout']);*/
 
                     break;
             }

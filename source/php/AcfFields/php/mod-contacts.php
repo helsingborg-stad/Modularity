@@ -1,7 +1,7 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_5805e5dc0a3be',
     'title' => __('Contacts', 'modularity'),
     'fields' => array(
@@ -334,6 +334,88 @@
             ),
         ),
         2 => array(
+            'default_value' => 0,
+            'message' => __('Advanced mode', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_876b09d737r12',
+            'label' => __('Advanced mode', 'modularity'),
+            'name' => 'advaced_mode',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+        ),
+        3 => array(
+            'multiple' => 0,
+            'allow_null' => 0,
+            'choices' => array(
+            ),
+            'default_value' => array(
+            ),
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'return_format' => 'value',
+            'key' => 'field_876b09d737r13',
+            'label' => __('Meta key', 'modularity'),
+            'name' => 'contacts_meta_key',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => 50,
+                'class' => '',
+                'id' => 'modularity-latest-meta-key',
+            ),
+            'disabled' => 0,
+            'readonly' => 0,
+        ),
+        4 => array(
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+            'key' => 'field_876b09d737r14',
+            'label' => __('Meta value', 'modularity'),
+            'name' => 'contacts_meta_value',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => 50,
+                'class' => '',
+                'id' => '',
+            ),
+            'readonly' => 0,
+            'disabled' => 0,
+        ),
+        5 => array(
             'key' => 'field_5805e5dc1ddcd',
             'label' => __('Kolumner', 'modularity'),
             'name' => 'columns',
@@ -396,4 +478,4 @@
     'active' => 1,
     'description' => '',
 ));
-}
+}
