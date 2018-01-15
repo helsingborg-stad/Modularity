@@ -106,19 +106,22 @@ class Contacts extends \Modularity\Module
 
             //Adds chosen user meta data or remvos the field completely and make it unvisible.
             if (get_field('advaced_mode', $this->ID) == "1") {
+
+                //Profile image
                 if (get_field('profile_image', $this->ID) == "1") {
                     $info['thumbnail'][0] = get_user_meta($contact['user']['ID'], "user_profile_picture", true);
                 } else {
                     unset($info['thumbnail']);
                 }
 
+                //About
                 if (get_field('other_user_info', $this->ID) == "1") {
                     $info['other'] = get_user_meta($contact['user']['ID'], "user_about", true);
                 } else {
                     unset($info['other']);
                 }
 
-
+                //Work title
                 if (get_field('work_title', $this->ID) == "1") {
                     $info['work_title'] = get_user_meta($contact['user']['ID'], "user_work_title", true);
                 } else {
