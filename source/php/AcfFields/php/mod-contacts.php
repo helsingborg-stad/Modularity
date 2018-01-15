@@ -1,7 +1,7 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_5805e5dc0a3be',
     'title' => __('Contacts', 'modularity'),
     'fields' => array(
@@ -334,6 +334,118 @@
             ),
         ),
         2 => array(
+            'default_value' => 0,
+            'message' => __('Advanced mode', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_876b09d737r12',
+            'label' => __('Advanced mode', 'modularity'),
+            'name' => 'advaced_mode',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+        ),
+        3 => array(
+            'default_value' => 0,
+            'message' => __('Profile image', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_453a98c989e23',
+            'label' => __('Profile image', 'modularity'),
+            'name' => 'profile_image',
+            'type' => 'radio',
+            'instructions' => '', 
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+           'choices' => array(
+                '1' => 'Show',
+                '0' => 'Hide',
+            ),
+        ),
+        4 => array(
+            'default_value' => 0,
+            'message' => __('Other user info', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_453f23b754d95',
+            'label' => __('Other user info', 'modularity'),
+            'name' => 'other_user_info',
+            'type' => 'radio',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+           'choices' => array(
+                '1' => 'Show',
+                '0' => 'Hide',
+            ),
+        ),
+        5 => array(
+            'default_value' => 0,
+            'message' => __('Work title', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_124g90w586e39',
+            'label' => __('Work title', 'modularity'),
+            'name' => 'work_title',
+            'type' => 'radio',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                '1' => 'Show',
+                '0' => 'Hide',
+            ),
+        ),
+        8 => array(
             'key' => 'field_5805e5dc1ddcd',
             'label' => __('Kolumner', 'modularity'),
             'name' => 'columns',
@@ -396,4 +508,4 @@
     'active' => 1,
     'description' => '',
 ));
-}
+}
