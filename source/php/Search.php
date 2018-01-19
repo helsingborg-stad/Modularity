@@ -8,19 +8,25 @@ class Search
     {
         add_action('wp', array($this, 'moduleSearch'));
 
+        add_filter('posts_join', array($this, 'moduleSearchModuleDescriptionJoin'));
+        add_filter('posts_search', array($this, 'moduleSearchModuleDescription'));
+
+        //Elasticpress
         add_filter('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
         add_filter('ep_post_sync_args_post_prepare_meta', array($this, 'elasticPressPreIndex'));
 
-        add_filter('posts_join', array($this, 'moduleSearchModuleDescriptionJoin'));
-        add_filter('posts_search', array($this, 'moduleSearchModuleDescription'));
+        //Algolia specific
+        add_filter('algolia_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
+        add_filter('algolia_searchable_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
     }
 
     /**
-     * Add modules to post_content before indexing a post (makes modules searchable)
+     * Render all modules on post
      * @param  WP_Post $post
-     * @return void
+     * @return string
      */
-    public function elasticPressPreIndex($post)
+
+    public function getRenderedPostModules($post)
     {
         if (!$post) {
             return;
@@ -54,6 +60,37 @@ class Search
             $markup = \Modularity\App::$display->outputModule($module, array('edit_module' => false), array(), false);
             $rendered .= $markup;
         }
+
+        return $rendered;
+    }
+
+    /**
+     * Add a attribute to algolia search
+     * @param array   $attributes
+     * @param WP_Post $post
+     * @return array
+     */
+    public function addAlgoliaModuleAttribute($attributes, $post)
+    {
+        //Get rendered data from module(s)
+        $rendered = strip_tags($this->getRenderedPostModules($post));
+
+        //Only add if not empty
+        if (!empty($rendered)) {
+            $attributes['modules'] = $rendered;
+        }
+
+        return $attributes;
+    }
+
+    /**
+     * Add modules to post_content before indexing a post (makes modules searchable)
+     * @param  WP_Post $post
+     * @return post object
+     */
+    public function elasticPressPreIndex($post)
+    {
+        $rendered = $this->getRenderedPostModules($post);
 
         if (is_array($post)) {
             $post['post_content'] .= $rendered;
