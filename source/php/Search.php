@@ -77,7 +77,7 @@ class Search
 
         //Only add if not empty
         if (!empty($rendered)) {
-            $attributes['modules'] = $rendered;
+            $attributes['modules'] = substr($rendered, 0, 10000);
         }
 
         return $attributes;
