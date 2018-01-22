@@ -192,7 +192,7 @@ class ModuleManager
             'labels'               => $labels,
             'description'          => __($class->description, 'modularity'),
             'public'               => false,
-            'publicly_queriable'   => false,
+            'publicly_queryable'   => false,
             'show_ui'              => true,
             'show_in_nav_menus'    => false,
             'show_in_menu'         => ($this->showInAdminMenu()) ? 'modularity' : false,
