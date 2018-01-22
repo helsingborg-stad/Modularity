@@ -15,7 +15,7 @@ class Search
         add_filter('ep_pre_index_post', array($this, 'elasticPressPreIndex'));
         add_filter('ep_post_sync_args_post_prepare_meta', array($this, 'elasticPressPreIndex'));
 
-        //Algolia specific
+        //Algolia
         add_filter('algolia_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
         add_filter('algolia_searchable_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
     }
