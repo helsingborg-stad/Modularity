@@ -371,10 +371,13 @@ class Editor extends \Modularity\Options
      */
     public static function getPostModules($postId)
     {
-        $postId = self::pageForPostTypeTranscribe($postId);
 
+        //Declarations
         $modules = array();
         $retModules = array();
+
+        //Get current post id
+        $postId = self::pageForPostTypeTranscribe($postId);
 
         // Get enabled modules
         $available = \Modularity\ModuleManager::$available;
@@ -390,6 +393,7 @@ class Editor extends \Modularity\Options
             $moduleSidebars = get_option('modularity_' . $postId . '_modules');
         }
 
+        //Create array of visible modules
         if (!empty($moduleSidebars)) {
             foreach ($moduleSidebars as $sidebar) {
                 foreach ($sidebar as $module) {
@@ -402,6 +406,7 @@ class Editor extends \Modularity\Options
             }
         }
 
+        //Get allowed post statuses
         $postStatuses = array('publish');
         if (is_user_logged_in()) {
             $postStatuses[] = 'private';
@@ -415,8 +420,7 @@ class Editor extends \Modularity\Options
             'post_status' => $postStatuses
         ));
 
-
-
+        //var_dump($modulesPosts);
 
         // Add module id's as keys in the array
         if (!empty($modulesPosts)) {
@@ -424,8 +428,6 @@ class Editor extends \Modularity\Options
                 $modules[$module->ID] = $module;
             }
         }
-
-
 
         // Create an strucural correct array with module post data
         if (!empty($moduleSidebars)) {
@@ -441,10 +443,10 @@ class Editor extends \Modularity\Options
                 $arrayIndex = 0;
 
                 foreach ($sidebar as $moduleUid => $module) {
+
                     if (!isset($module['postid'])) {
                         continue;
                     }
-
                     $moduleId = $module['postid'];
 
                     if (!isset($modules[$moduleId])) {
@@ -474,7 +476,6 @@ class Editor extends \Modularity\Options
         if (is_user_logged_in()) {
             $postStatuses[] = 'private';
         }
-
         // Basics
         $moduleList = get_posts(array(
             'post_type' => 'any',
@@ -482,6 +483,7 @@ class Editor extends \Modularity\Options
             'suppress_filters' => false,
             'post_status' => $postStatuses
         ));
+
         $module = (isset($moduleList[0]) && !empty($moduleList[0])) ? $moduleList[0] : null;
 
         if (!$module || !isset($available[$module->post_type])) {

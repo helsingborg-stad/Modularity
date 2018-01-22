@@ -193,6 +193,7 @@ class ModuleManager
             'description'          => __($class->description, 'modularity'),
             'public'               => false,
             'publicly_queryable'   => false,
+            'exclude_from_search'  => false,
             'show_ui'              => true,
             'show_in_nav_menus'    => false,
             'show_in_menu'         => ($this->showInAdminMenu()) ? 'modularity' : false,
@@ -200,7 +201,6 @@ class ModuleManager
             'rewrite'              => false,
             'hierarchical'         => false,
             'menu_position'        => 100,
-            'exclude_from_search'  => true,
             'menu_icon'            => $class->icon,
             'supports'             => array_merge($class->supports, array('title', 'revisions')),
             'capabilities'         => array(
@@ -214,6 +214,11 @@ class ModuleManager
             ),
             'map_meta_cap'         => true
         );
+
+        //Disable from search search pages (someone did a huge mistake designing this feature)
+        if (is_search()) {
+            $args['exclude_from_search'] = true;
+        }
 
         // Get menu icon
         if (empty($args['menu_icon']) && $icon = $this->getIcon($path, $class)) {
