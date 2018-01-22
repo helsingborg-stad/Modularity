@@ -200,7 +200,7 @@ class ModuleManager
             'rewrite'              => false,
             'hierarchical'         => false,
             'menu_position'        => 100,
-            'exclude_from_search'  => false,
+            'exclude_from_search'  => true,
             'menu_icon'            => $class->icon,
             'supports'             => array_merge($class->supports, array('title', 'revisions')),
             'capabilities'         => array(
