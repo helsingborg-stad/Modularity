@@ -188,6 +188,8 @@ class Display
             "",
             get_stylesheet_directory(),
             get_template_directory(),
+            get_stylesheet_directory() . '/',
+            get_template_directory() . '/',
             get_stylesheet_directory() . '/views/',
             get_template_directory() . '/views/',
         ));
