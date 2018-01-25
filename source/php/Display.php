@@ -186,8 +186,8 @@ class Display
         //Where to look
         $paths = apply_filters('Modularity/Theme/TemplatePath', array(
             "",
-            get_stylesheet_directory(),
-            get_template_directory(),
+            get_stylesheet_directory() . '/',
+            get_template_directory() . '/',
             get_stylesheet_directory() . '/views/',
             get_template_directory() . '/views/',
         ));
