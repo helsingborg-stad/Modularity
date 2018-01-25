@@ -205,14 +205,6 @@ class Display
         }
         $options = get_option('modularity-options');
 
-        /*
-            This check seems to mess things up.
-            Will cause a mis-match in admin (not a compatible function)
-            if (is_home()) {
-                $template = 'home';
-            }
-        */
-
         if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, (array) $options['enabled-areas'][$template])) {
             return false;
         }
