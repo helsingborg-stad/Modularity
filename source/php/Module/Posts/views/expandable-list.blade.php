@@ -27,8 +27,7 @@
         @foreach ($posts as $post)
 
         <section class="accordion-section">
-            <input type="radio" name="active-section" id="item-{{ $ID }}-{{ $post->ID }}">
-            <label class="accordion-toggle" for="item-{{ $ID }}-{{ $post->ID }}">
+            <label tabindex="0" class="accordion-toggle" for="item-{{ $ID }}-{{ $post->ID }}">
                 @if (isset($posts_list_column_titles) && count($posts_list_column_titles) > 0)
                     <span class="accordion-table">
                     @if (isset($post->column_values) && !empty($post->column_values))
