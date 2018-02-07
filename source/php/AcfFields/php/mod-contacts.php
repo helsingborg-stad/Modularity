@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
@@ -347,7 +347,7 @@ if (function_exists('acf_add_local_field_group')) {
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '',
+                'width' => '100',
                 'class' => '',
                 'id' => '',
             ),
@@ -362,7 +362,7 @@ if (function_exists('acf_add_local_field_group')) {
             'label' => __('Profile image', 'modularity'),
             'name' => 'profile_image',
             'type' => 'radio',
-            'instructions' => '', 
+            'instructions' => '',
             'required' => 0,
             'conditional_logic' => array(
                 0 => array(
@@ -373,8 +373,9 @@ if (function_exists('acf_add_local_field_group')) {
                     ),
                 ),
             ),
+            'layout' => 'horizontal',
             'wrapper' => array(
-                'width' => '',
+                'width' => '33',
                 'class' => '',
                 'id' => '',
             ),
@@ -404,8 +405,9 @@ if (function_exists('acf_add_local_field_group')) {
                     ),
                 ),
             ),
+            'layout' => 'horizontal',
             'wrapper' => array(
-                'width' => '',
+                'width' => '33',
                 'class' => '',
                 'id' => '',
             ),
@@ -435,8 +437,41 @@ if (function_exists('acf_add_local_field_group')) {
                     ),
                 ),
             ),
+            'layout' => 'horizontal',
             'wrapper' => array(
-                'width' => '',
+                'width' => '33',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                '1' => 'Show',
+                '0' => 'Hide',
+            ),
+        ),
+        6 => array(
+            'default_value' => 0,
+            'message' => __('Email', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_456d50e653b98',
+            'label' => __('Email', 'modularity'),
+            'name' => 'email',
+            'type' => 'radio',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'layout' => 'horizontal',
+            'wrapper' => array(
+                'width' => '33',
                 'class' => '',
                 'id' => '',
             ),
@@ -446,6 +481,70 @@ if (function_exists('acf_add_local_field_group')) {
             ),
         ),
         8 => array(
+            'default_value' => 0,
+            'message' => __('Phone', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_746k20c234d03',
+            'label' => __('Phone', 'modularity'),
+            'name' => 'phone',
+            'type' => 'radio',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'layout' => 'horizontal',
+            'wrapper' => array(
+                'width' => '33',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                '1' => 'Show',
+                '0' => 'Hide',
+            ),
+        ),
+        9 => array(
+            'default_value' => 0,
+            'message' => __('Address', 'modularity'),
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'key' => 'field_342k80d432w06',
+            'label' => __('Address', 'modularity'),
+            'name' => 'address',
+            'type' => 'radio',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_876b09d737r12',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'layout' => 'horizontal',
+            'wrapper' => array(
+                'width' => '33',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                '1' => 'Show',
+                '0' => 'Hide',
+            ),
+        ),
+        10 => array(
             'key' => 'field_5805e5dc1ddcd',
             'label' => __('Kolumner', 'modularity'),
             'name' => 'columns',

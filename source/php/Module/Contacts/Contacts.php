@@ -48,7 +48,6 @@ class Contacts extends \Modularity\Module
                 'opening_hours' => null
             );
 
-
             switch ($contact['acf_fc_layout']) {
                 case 'custom':
                     $info = apply_filters('Modularity/mod-contacts/contact-info', array(
@@ -76,7 +75,7 @@ class Contacts extends \Modularity\Module
                         'administration_unit' => null,
                         'email'               => strtolower($contact['user']['user_email']),
                         'phone'               => null,
-                        'address'             => null,
+                        'address'             => $contact['address'],
                         'visiting_address'    => null,
                         'opening_hours'       => null
                     ), $contact, $contact['acf_fc_layout']);
@@ -104,28 +103,37 @@ class Contacts extends \Modularity\Module
             //Create full name
             $info['full_name'] = trim($info['first_name'] . ' ' . $info['last_name']);
 
-            //Adds chosen user meta data or remvos the field completely and make it unvisible.
+            //Adds chosen user meta data or removes the field completely and make it unvisible.
             if (get_field('advaced_mode', $this->ID) == "1") {
 
-                //Profile image
                 if (get_field('profile_image', $this->ID) == "1") {
                     $info['thumbnail'][0] = get_user_meta($contact['user']['ID'], "user_profile_picture", true);
                 } else {
                     unset($info['thumbnail']);
                 }
 
-                //About
                 if (get_field('other_user_info', $this->ID) == "1") {
                     $info['other'] = get_user_meta($contact['user']['ID'], "user_about", true);
                 } else {
                     unset($info['other']);
                 }
 
-                //Work title
                 if (get_field('work_title', $this->ID) == "1") {
                     $info['work_title'] = get_user_meta($contact['user']['ID'], "user_work_title", true);
                 } else {
                     unset($info['work_title']);
+                }
+
+                if (get_field('email', $this->ID) != "1") {
+                    unset($info['email']);
+                }
+
+                if (get_field('address', $this->ID) != "1") {
+                    unset($info['address']);
+                }
+
+                if (get_field('phone', $this->ID) != "1") {
+                    unset($info['phone']);
                 }
             }
 
