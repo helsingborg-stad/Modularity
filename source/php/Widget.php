@@ -37,6 +37,8 @@ class Widget extends \WP_Widget
            $columnWidth = '';
         }
 
+        $columnWidth = apply_filters('Modularity/Widget/ColumnWidth', $columnWidth, $instance);
+
         $module = \Modularity\Editor::getModule(
             $instance['module_id'],
             array(
