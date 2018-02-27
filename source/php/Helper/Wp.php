@@ -11,8 +11,10 @@ class Wp
     public static function getCoreTemplates($extension = false)
     {
         $paths = apply_filters('Modularity/CoreTemplatesSearchPaths', array(
-            get_stylesheet_directory(),
-            get_template_directory()
+            get_stylesheet_directory() . '/',
+            get_template_directory() . '/',
+            get_stylesheet_directory() . '/views/',
+            get_template_directory() . '/views/'
         ));
 
         $fileExt = apply_filters('Modularity/CoreTemplatesSearchFileExtension', array(
