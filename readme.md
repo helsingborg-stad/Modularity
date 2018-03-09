@@ -108,6 +108,16 @@ add_action('Modularity/Options/Module', function () {
 
 Filter reference
 ----------------
+#### Modularity/Module/TemplateVersion3
+
+> Enable preview of the upcoming version 3 views with BEM formatting. 
+> This may be used already when progressing towards BEM. 
+
+*Example:*
+
+```php
+add_filter('Modularity/Module/TemplateVersion3', function(){return true;});
+```
 
 #### Modularity/Editor/WidthOptions
 

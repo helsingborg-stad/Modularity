@@ -50,6 +50,23 @@ class Template
             }
         }
 
+        // Search for blade template version 3
+        if (apply_filters('Modularity/Module/TemplateVersion3', false)) {
+            foreach ($paths as $path) {
+                $filename = $view . '-v3.blade.php';
+                $fileWithSubfolder = trailingslashit($path) . trailingslashit($module->post_type) . $filename;
+                $fileWithoutSubfolder = trailingslashit($path) . $filename;
+
+                if (file_exists($fileWithSubfolder)) {
+                    return $fileWithSubfolder;
+                }
+
+                if (file_exists($fileWithoutSubfolder)) {
+                    return $fileWithoutSubfolder;
+                }
+            }
+        }
+
         // Search for blade template
         foreach ($paths as $path) {
             $filename = $view . '.blade.php';
