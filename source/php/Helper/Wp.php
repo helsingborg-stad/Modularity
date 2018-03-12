@@ -193,7 +193,7 @@ class Wp
     {
         global $wp_query;
 
-        if ($wp_query && (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404())) {
+        if ($wp_query && !is_tax() && (is_post_type_archive() || is_archive() || is_home() || is_search() || is_404())) {
             $postType = get_post_type();
 
             if (isset($wp_query->query_vars['post_type']) && !empty($wp_query->query_vars['post_type'])) {
