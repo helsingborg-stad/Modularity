@@ -3,8 +3,14 @@
 @else
     <div class="slider-video" style="background-image:url('{{ ($slide['image_use'] !== false) ? $slide['image_use'][0] : '' }}');">
         <!-- Pause & Play icon -->
-        <div class="embeded-mini-toolbar"><i class="pricon pricon-sm pricon-badge pricon-pause embed-control embeded-pause"></i><i class="pricon pricon-sm pricon-badge pricon-play embed-control embeded-play hidden"></i></div>
-        
+        <div class="embeded-mini-toolbar
+            @if (isset($slide['slider-show-on-hover']) && !empty( $slide['slider-show-on-hover'])){{ $slide['slider-show-on-hover'] }} @endif
+            @if (isset($slide['slider-show-pause-icon']) && !empty($slide['slider-show-pause-icon'])) {{ $slide['slider-show-pause-icon'] }} @endif
+            @if (isset($slide['slider-icon-transparacy']) && !empty($slide['slider-icon-transparacy'])) slider-icon-opacity-{{ $slide['slider-icon-transparacy'] }} @endif ">
+            <i class="pricon pricon-lg pricon-badge pricon-pause embed-control embeded-pause"></i>
+            <i class="pricon pricon-lg pricon-badge pricon-play embed-control embeded-play hidden"></i>
+        </div>
+
         <video id="video_<?php echo uniqid(); ?>" poster="{{ ($slide['image_use'] !== false) ? $slide['image_use'][0] : '' }}" preload="auto" autoplay loop muted>
 
             <!-- Mp4 -->

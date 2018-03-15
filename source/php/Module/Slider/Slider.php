@@ -87,6 +87,19 @@ class Slider extends \Modularity\Module
             if (isset($slide['link_url']) && is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
                 $slide['link_url'] = get_permalink($slide['link_url']);
             }
+
+            if (isset($slide['show_pause_icon']) && $slide['show_pause_icon'] == true) {
+                $slide['slider-show-pause-icon'] = 'slider-show-pause-icon';
+            }
+
+            if (isset($slide['pause_icon_transparacy']) && $slide['pause_icon_transparacy'] == true) {
+                $slide['slider-icon-transparacy'] = $slide['pause_icon_transparacy'];
+            }
+
+            if (isset($slide['show_pause_icon_on_hover']) && $slide['show_pause_icon_on_hover'] == true) {
+                $slide['slider-show-on-hover'] = 'slider-show-on-hover';
+            }
+
         }
 
         return $data['slides'];
@@ -108,6 +121,8 @@ class Slider extends \Modularity\Module
         if (isset($fields['slider_height']) && $fields['slider_height'] == true) {
             $classes[] = 'slider-height-restrictions';
         }
+
+
 
         return implode(' ', $classes);
     }
