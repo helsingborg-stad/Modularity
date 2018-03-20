@@ -635,6 +635,12 @@ class Posts extends \Modularity\Module
             $getPostsArgs['orderby'] = $orderby;
         }
 
+        // Post statuses
+        $getPostsArgs['post_status'] = array('publish');
+        if (is_user_logged_in()) {
+            $getPostsArgs['post_status'][] = 'private';
+        }
+
         // Taxonomy filter
         if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
             $taxType = $fields->posts_taxonomy_type;
