@@ -636,7 +636,7 @@ class Posts extends \Modularity\Module
         }
 
         // Post statuses
-        $getPostsArgs['post_status'] = array('publish');
+        $getPostsArgs['post_status'] = array('publish','inherit');
         if (is_user_logged_in()) {
             $getPostsArgs['post_status'][] = 'private';
         }
