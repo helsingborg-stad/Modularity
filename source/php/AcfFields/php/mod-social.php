@@ -18,7 +18,6 @@
                 'class' => '',
                 'id' => '',
             ),
-            'layout' => 'horizontal',
             'choices' => array(
                 'facebook' => __('Facebook', 'modularity'),
                 'instagram' => __('Instagram', 'modularity'),
@@ -26,10 +25,11 @@
                 'pinterest' => __('Pinterest', 'modularity'),
                 'googleplus' => __('Google Plus', 'modularity'),
             ),
-            'default_value' => '',
+            'allow_null' => 0,
             'other_choice' => 0,
             'save_other_choice' => 0,
-            'allow_null' => 0,
+            'default_value' => '',
+            'layout' => 'horizontal',
             'return_format' => 'value',
         ),
         1 => array(
@@ -131,13 +131,6 @@
                     0 => array(
                         'field' => 'field_56dedc3548ed9',
                         'operator' => '==',
-                        'value' => 'instagram',
-                    ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_56dedc3548ed9',
-                        'operator' => '==',
                         'value' => 'twitter',
                     ),
                 ),
@@ -147,52 +140,18 @@
                 'class' => '',
                 'id' => '',
             ),
-            'layout' => 'horizontal',
             'choices' => array(
                 'hashtag' => __('Hashtag', 'modularity'),
                 'user' => __('User', 'modularity'),
             ),
-            'default_value' => 'hashtag',
+            'allow_null' => 0,
             'other_choice' => 0,
             'save_other_choice' => 0,
-            'allow_null' => 0,
+            'default_value' => 'hashtag',
+            'layout' => 'horizontal',
             'return_format' => 'value',
         ),
         5 => array(
-            'key' => 'field_56dede1448ede',
-            'label' => __('Instagram Client ID / Access Token', 'modularity'),
-            'name' => 'mod_social_api_user',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_56dedc3548ed9',
-                        'operator' => '==',
-                        'value' => 'instagram',
-                    ),
-                    1 => array(
-                        'field' => 'field_56deddcd48edd',
-                        'operator' => '==',
-                        'value' => 'hashtag',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => '1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7',
-            'maxlength' => '',
-            'placeholder' => __(__(__(__(__(__(__(__('1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7', 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'),
-            'prepend' => '',
-            'append' => '',
-            'readonly' => 0,
-            'disabled' => 0,
-        ),
-        6 => array(
             'key' => 'field_56dee0e1ed7ab',
             'label' => __('Twitter Consumer Key', 'modularity'),
             'name' => 'mod_social_api_user',
@@ -221,7 +180,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        7 => array(
+        6 => array(
             'key' => 'field_56dee104ed7ac',
             'label' => __('Twitter Consumer Secret', 'modularity'),
             'name' => 'mod_social_api_secret',
@@ -250,7 +209,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        8 => array(
+        7 => array(
             'key' => 'field_57629445bddd5',
             'label' => __('Google+ Api Key', 'modularity'),
             'name' => 'mod_social_api_user',
@@ -279,7 +238,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        9 => array(
+        8 => array(
             'key' => 'field_56dede6048ee0',
             'label' => __('Username', 'modularity'),
             'name' => 'mod_social_query',
@@ -334,12 +293,12 @@
             'default_value' => '',
             'maxlength' => '',
             'placeholder' => '',
-            'prepend' => __(__(__(__(__(__(__(__('@', 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'),
+            'prepend' => __('@', 'modularity'),
             'append' => '',
             'readonly' => 0,
             'disabled' => 0,
         ),
-        10 => array(
+        9 => array(
             'key' => 'field_56dedeaa48ee2',
             'label' => __('Hashtag', 'modularity'),
             'name' => 'mod_social_query',
@@ -348,18 +307,6 @@
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
-                    0 => array(
-                        'field' => 'field_56dedc3548ed9',
-                        'operator' => '==',
-                        'value' => 'instagram',
-                    ),
-                    1 => array(
-                        'field' => 'field_56deddcd48edd',
-                        'operator' => '==',
-                        'value' => 'hashtag',
-                    ),
-                ),
-                1 => array(
                     0 => array(
                         'field' => 'field_56dedc3548ed9',
                         'operator' => '==',
@@ -378,14 +325,12 @@
                 'id' => '',
             ),
             'default_value' => '',
-            'maxlength' => '',
             'placeholder' => '',
-            'prepend' => __(__(__(__(__(__(__(__('#', 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'),
+            'prepend' => __('#', 'modularity'),
             'append' => '',
-            'readonly' => 0,
-            'disabled' => 0,
+            'maxlength' => '',
         ),
-        11 => array(
+        10 => array(
             'key' => 'field_56dfe51e498cb',
             'label' => __('Max items', 'modularity'),
             'name' => 'mod_social_length',
@@ -408,7 +353,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        12 => array(
+        11 => array(
             'key' => 'field_56e01f2577390',
             'label' => __('Max height', 'modularity'),
             'name' => 'mod_social_max_height',
@@ -427,11 +372,11 @@
             'step' => '',
             'placeholder' => '',
             'prepend' => '',
-            'append' => __(__(__(__(__(__(__(__('pixels', 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'), 'modularity'),
+            'append' => __('pixels', 'modularity'),
             'readonly' => 0,
             'disabled' => 0,
         ),
-        13 => array(
+        12 => array(
             'key' => 'field_56e038fa40a78',
             'label' => __('Images per row', 'modularity'),
             'name' => 'mod_social_row_length',
@@ -469,7 +414,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        14 => array(
+        13 => array(
             'key' => 'field_59afbaef4019a',
             'label' => __('Link to page', 'modularity'),
             'name' => 'mod_social_link',
@@ -488,7 +433,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        15 => array(
+        14 => array(
             'key' => 'field_59afbc492866a',
             'label' => __('URL', 'modularity'),
             'name' => 'mod_social_link_url',
@@ -512,7 +457,7 @@
             'default_value' => '',
             'placeholder' => '',
         ),
-        16 => array(
+        15 => array(
             'key' => 'field_59afbbaa061a7',
             'label' => __('Button text', 'modularity'),
             'name' => 'mod_social_link_text',
