@@ -12,9 +12,13 @@ class Feed
     private $username;
     private $hashtag;
 
+    //Instagram
+    private $cache;
+    private $baseUrl = 'https://instagram.com/';
+
     public function __construct($args = array())
     {
-        
+
         $defaultArgs = array(
             'network'    => 'instagram',
             'type'       => 'user',
@@ -28,8 +32,8 @@ class Feed
             'link_url'   => '',
             'link_text'  => ''
         );
-        
-        
+
+
 
         $this->args = array_merge($defaultArgs, $args);
 
@@ -38,13 +42,7 @@ class Feed
          */
         switch ($this->args['network']) {
             case 'instagram':
-
-                if ($this->args['type'] == 'hashtag') {
-                    $this->feedData = $this->getHashtag($this->args['query']);
-                } else {
-                    $this->feedData = $this->getUser($this->args['query']);
-                }
-
+                $this->feedData = $this->getInstagramUser($this->args['query']);
                 break;
 
             case 'facebook':
@@ -284,217 +282,96 @@ class Feed
         return json_decode($feed)->data;
     }
 
-    /**
-     * Get Instagram self-user feed
-     * @return object Feed data
-     * @since 1.3.96
-     * @deprecated depricated since 1.4.2, 23 Jun 2016
-     */
-    protected function getInstagramSelfFeed()
+    public function getInstagramUser($username)
     {
-        $endpoint = 'https://api.instagram.com/v1/users/self/media/recent/';
-        $data = array(
-            'access_token' => $this->args['api_secret']
-        );
-
-        $curl = new \Modularity\Helper\Curl();
-        $recent = $curl->request('GET', $endpoint, $data);
-        return json_decode($recent);
-    }
-
-    /**
-     * Get Instagram user profile feed (/user/media/ un-documented endpoint)
-     * @return object Feed data
-     * @since 1.4.2
-     */
-    protected function getIstagramUserProfileFeed()
-    {
-        $endpoint   = 'https://www.instagram.com/'.$this->args['query'].'/media/';
-
-        $curl       = new \Modularity\Helper\Curl();
-        $recent     = $curl->request('GET', $endpoint, array());
-        $recent     = json_decode($recent);
-
-        //Rename object
-        if (isset($recent->items) && !isset($recent->data)) {
-            $recent->data = $recent->items;
-            unset($recent->items);
+        if (is_null($this->cache)) {
+            $this->cache = $this->parseInstagramMarkup(file_get_contents($this->baseUrl . $username));
         }
 
-        return $recent;
-    }
+        $response = array();
 
-    /**
-     * Get Instagram hashtag feed
-     * @return object Feed data
-     */
-    protected function getInstagramHashtag()
-    {
-        //Fallback to public api key
-        if (empty($this->args['api_user'])) {
-            $this->args['api_user'] = "1406045013.3a81a9f.7c505432dfd3455ba8e16af5a892b4f7";
-        }
+        if (isset($this->cache->entry_data->ProfilePage[0]->graphql->user->edge_owner_to_timeline_media->edges) && $items = $this->cache->entry_data->ProfilePage[0]->graphql->user->edge_owner_to_timeline_media->edges) {
+            if (!empty($items) && is_array($items)) {
+                foreach ($items as $item) {
 
-        //Structure url to call
-        $endpoint = 'https://api.instagram.com/v1/tags/'.$this->args['query'].'/media/recent/';
-        $data = array(
-            'access_token' => $this->args['api_user']
-        );
+                    $item = $item->node;
 
-        //Call and return
-        $curl = new \Modularity\Helper\Curl();
-        $recent = $curl->request('GET', $endpoint, $data);
-        return json_decode($recent);
-    }
+                    $response[] = array(
+                      'id' => $item->id . "-instagram",
+                      'user_name' => $this->getInstagramProfile()['name'],
+                      'profile_pic' => $this->getInstagramProfile()['profilepic'],
+                      'timestamp' => $item->taken_at_timestamp,
+                      'content' => wp_trim_words(str_replace("#", " #", $item->edge_media_to_caption->edges[0]->node->text), 40, "..."),
 
-    /**
-     * Get Instagram user feed
-     * @return object Feed data
-     * @deprecated depricated since 1.3.96, 3 Jun 2016
-     */
-    protected function getInstagramUser()
-    {
-        $userId = $this->getInstagramUserId($this->args['query']);
+                      'image_large' => $item->thumbnail_resources[4]->src,
+                      'image_small' => $item->thumbnail_resources[0]->src,
 
-        $endpoint = 'https://api.instagram.com/v1/users/' . $userId . '/media/recent/';
-        $data = array(
-            'client_id' => $this->args['api_user'],
-            'access_token' => $this->args['api_secret']
-        );
+                      'number_of_likes' => (isset($item->edge_liked_by) && isset($item->edge_liked_by->count) ? ($item->edge_liked_by->count ? $item->edge_liked_by->count : 0) : 0),
+                      'network_source' => 'https://www.instagram.com/p/'.$item->shortcode.'/',
+                      'network_name' => 'instagram',
 
-        $curl = new \Modularity\Helper\Curl();
-        $recent = $curl->request('GET', $endpoint, $data);
-        return json_decode($recent);
-    }
-
-    /**
-     * Get Instagram user ID from username
-     * @param  string   $username Username
-     * @return integer            User ID
-     * @deprecated depricated since 1.3.96, 3 Jun 2016
-     */
-    protected function getInstagramUserId($username)
-    {
-        $endpoint = 'https://api.instagram.com/v1/users/search';
-        $data = array(
-            'q' => $username,
-            'client_id' => $this->args['api_user'],
-            'access_token' => $this->args['api_secret']
-        );
-
-        $curl = new \Modularity\Helper\Curl();
-        $users = $curl->request('GET', $endpoint, $data);
-        $users = json_decode($users);
-
-        $userId = null;
-
-        foreach ($users->data as $user) {
-            if ($user->username == $username) {
-                return $user->id;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Request the posts
-     */
-
-    public function getUser($username = null)
-    {
-        //Fallback to init username
-        if (empty($username)) {
-            $this->registerError("Not a valid username");
-            return false;
-        }
-        //Set to gobal
-        $this->username = $username;
-
-        $curl = new \Modularity\Helper\Curl();
-
-        //Call
-        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/' .$username. '/media?count=20' : 'https://hbg-instagram-proxy.herokuapp.com/' .$username. '/media?count=20';
-        $data = $curl->request('GET', $url);
-
-        //Parse
-        if (json_decode($data)) {
-            return $this->formatResponse(json_decode($data), 'user');
-        }
-        //Error return
-        return false;
-    }
-
-    public function getHashtag($hashtag = null)
-    {
-        //Fallback to init hashtag
-        if (empty($hashtag)) {
-            $this->registerError("Not a valid hashtag");
-            return false;
-        }
-        //Set to gobal
-        $this->hashtag = $hashtag;
-
-        $curl = new \Modularity\Helper\Curl();
-        
-        //for proper handling of åäö
-        $hashtag = urlencode($hashtag);
-
-        //Call
-        $url = date('W')%2==0 ? 'https://hbg-instagram-proxy-second.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20' : 'https://hbg-instagram-proxy.herokuapp.com/explore/tags/'. $hashtag .'/media/?count=20';
-        $data = $curl->request('GET', $url);
-
-        //Parse
-        if (json_decode($data)) {
-            return $this->formatResponse(json_decode($data), 'hashtag');
-        }
-        //Error return
-        return false;
-    }
-
-    /**
-     * Format response to promise
-     */
-    public function formatResponse($response, $type = 'user')
-    {
-        $result = array();
-        if (isset($response->posts) && !empty($response->posts)) {
-            foreach ($response->posts as $item) {
-                if ($type == "user") {
-                    $result[] = array(
-                        'user_name' => "@" . $this->username,
-                        'timestamp' => $item->taken_at_timestamp,
-                        'content' => $item->edge_media_to_caption->edges[0]->node->text,
-                        'image_large' => $item->thumbnail_resources[4]->src,
-                        'image_small' => $item->thumbnail_resources[0]->src,
-                        'number_of_likes' => $item->edge_media_preview_like->count,
-                        'network_source' => 'https://www.instagram.com/p/'.$item->shortcode.'/',
-                        'network_name' => 'instagram',
-                        'link' => "",
-                        'link_title' => "",
-                        'link_content' => "",
-                        'link_og_image' => "",
-                    );
-                }
-                if ($type == "hashtag") {
-                    $result[] = array(
-                        'user_name' => "#" . $this->hashtag,
-                        'timestamp' => $item->taken_at_timestamp,
-                        'content' => isset($item->edge_media_to_caption->edges[0]->node->text) ? $item->edge_media_to_caption->edges[0]->node->text : "",
-                        'image_large' => $item->thumbnail_resources[4]->src,
-                        'image_small' => $item->thumbnail_resources[0]->src,
-                        'number_of_likes' => $item->edge_liked_by->count,
-                        'network_source' => 'https://www.instagram.com/p/'.$item->shortcode.'/',
-                        'network_name' => 'instagram',
-                        'link' => "",
-                        'link_title' => "",
-                        'link_content' => "",
-                        'link_og_image' => "",
+                      'link' => "",
+                      'link_title' => "",
+                      'link_content' => "",
+                      'link_og_image' => "",
                     );
                 }
             }
         }
-        return $result;
+
+        return $response;
+    }
+
+    /**
+     * Request the user profile
+     * @param string $username The usernanme to fetch profile of
+     * @return array/bool The data fetched from the service api or false if none
+     */
+
+    private function getInstagramProfile() : array
+    {
+        if (isset($this->cache->entry_data->ProfilePage[0]->graphql->user)) {
+            $user = $this->cache->entry_data->ProfilePage[0]->graphql->user;
+            return array(
+                'name' => $user->full_name,
+                'user_name' => $user->username,
+                'profilepic_sd' => $user->profile_pic_url,
+                'profilepic' => $user->profile_pic_url_hd,
+                'biography' => $user->biography,
+            );
+        }
+        return array();
+    }
+
+    /**
+    * Parse data recived
+    * @param  $markup Raw data from webpage
+    * @return Array with raw feed data
+    */
+    public function parseInstagramMarkup($markup)
+    {
+        //Define what to get
+        $startTag = '<script type="text/javascript">window._sharedData = ';
+        $endTag   = ';</script>';
+
+        //Match string with reguklar exp
+        $hasMatch = preg_match(
+                      "#" . preg_quote($startTag, "#")
+                      . '(.*?)'
+                      . preg_quote($endTag, "#")
+                      . "#"
+                      . 's', $markup, $matches);
+
+        //Return matches (if valid json)
+        if ($hasMatch && isset($matches[0])) {
+            $matches = str_replace($startTag, "", $matches[0]);
+            $matches = str_replace($endTag, "", $matches);
+
+            return json_decode($matches);
+        }
+
+        //Nothing found, return false.
+        return false;
     }
 
     public function render()
@@ -503,7 +380,7 @@ class Feed
             case 'instagram':
             $this->markup .= '<div class="social-feed-wrapper">';
                 $this->markup .= '<ul style="max-height:' . $this->args['max_height'] . 'px" class="social-feed social-feed-gallery social-feed-instagram social-feed-' . $this->args['type'] . '" data-query="' . $this->args['query'] . '">';
-                
+
                 $this->renderInstagram();
 
                 break;
@@ -601,7 +478,7 @@ class Feed
                     'name' => $item['user_name'],
                     'picture' => ''
                 ),
-                $item['image_small'],
+                $item['image_large'],
                 isset($item['content']) ? $item['content'] : null,
                 $item['network_source']
             );
