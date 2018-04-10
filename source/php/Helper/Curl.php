@@ -16,6 +16,7 @@ class Curl
 
     public $useCache = true;
     public $cacheTTL = 15;
+    private $curlOptions = [];
     private $cacheKey;
 
     public function __construct($useCache = true, $cacheTTL = 15)
@@ -85,6 +86,15 @@ class Curl
         }
 
         /**
+         * Set up external options
+         */
+        if (isset($this->curlOptions) && !empty($this->curlOptions) && is_array($this->curlOptions)) {
+            foreach ($this->curlOptions as $optionName => $optionValue) {
+                $arguments[$optionName] = $optionValue;
+            }
+        }
+
+        /**
          * Set up headers if given
          */
         if ($headers) {
@@ -149,5 +159,16 @@ class Curl
         } else {
             return false;
         }
+    }
+
+    /**
+     * Add/reset Curl option
+     * @param $response     Response to save in cache
+     * @param $minutes      Number of minutes to cache response
+     * @return string       The request response from cache
+     */
+    public function setOption($option, $value)
+    {
+        $this->curlOptions[] = array($option, $value);
     }
 }
