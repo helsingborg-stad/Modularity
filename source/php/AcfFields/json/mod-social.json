@@ -248,11 +248,6 @@
                         "field": "field_56dedc3548ed9",
                         "operator": "==",
                         "value": "instagram"
-                    },
-                    {
-                        "field": "field_56deddcd48edd",
-                        "operator": "==",
-                        "value": "user"
                     }
                 ],
                 [
@@ -288,12 +283,10 @@
                 "id": ""
             },
             "default_value": "",
-            "maxlength": "",
             "placeholder": "",
             "prepend": "@",
             "append": "",
-            "readonly": 0,
-            "disabled": 0
+            "maxlength": ""
         },
         {
             "key": "field_56dedeaa48ee2",

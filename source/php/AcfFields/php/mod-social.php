@@ -252,11 +252,6 @@
                         'operator' => '==',
                         'value' => 'instagram',
                     ),
-                    1 => array(
-                        'field' => 'field_56deddcd48edd',
-                        'operator' => '==',
-                        'value' => 'user',
-                    ),
                 ),
                 1 => array(
                     0 => array(
@@ -291,12 +286,10 @@
                 'id' => '',
             ),
             'default_value' => '',
-            'maxlength' => '',
             'placeholder' => '',
             'prepend' => __('@', 'modularity'),
             'append' => '',
-            'readonly' => 0,
-            'disabled' => 0,
+            'maxlength' => '',
         ),
         9 => array(
             'key' => 'field_56dedeaa48ee2',
