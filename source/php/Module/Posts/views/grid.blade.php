@@ -19,8 +19,7 @@
                     @if (in_array('date', $posts_fields) && $posts_data_source !== 'input')
                     <span class="box-post-brick-date">
                         <time>
-                            {{ get_the_time(get_option('date_format'), $post->ID) }}
-                            {{ get_the_time(get_option('time_format'), $post->ID) }}
+                            {{ apply_filters('Modularity/Module/Posts/Date', get_the_time(get_option('date_format'), $post->ID) . ' ' . get_the_time(get_option('time_format'), $post->ID), $post->ID, $post->post_type) }}
                         </time>
                     </span>
                     @endif

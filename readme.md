@@ -331,3 +331,21 @@ add_filter('Modularity/CoreTemplatesSearchTemplates', function ($templates) {
 });
 ```
 
+#### Modularity/Module/Posts/Date
+
+> Modify the displayed publish date in Post Modules
+
+*Params:*
+```
+$date
+$postId
+$postType
+```
+
+*Example:*
+```php
+add_filter('Modularity/Module/Posts/Date', function ($date, $postId, $postType) {
+    return $date;
+});
+```
+
