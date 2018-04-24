@@ -37,7 +37,7 @@ class InlayList extends \Modularity\Module
         $address = get_permalink($post->ID, false);
 
         if (! empty($address)) {
-            $title .= '<br/><span class="inlay-list-url-helper"> ( ' . str_replace(home_url(),"", $address) .  '/ ) </span>';
+            $title .= '<br/><span class="inlay-list-url-helper"> ( ' . str_replace(home_url(),"", $address) .  ' ) </span>';
         }
 
         return $title;
