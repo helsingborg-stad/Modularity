@@ -18,6 +18,7 @@ class Search
         //Algolia
         add_filter('algolia_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
         add_filter('algolia_searchable_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
+        add_filter('algolia_should_index_searchable_post', array($this, 'shouldIndexPost'), 10, 2);
     }
 
     /**
@@ -62,6 +63,28 @@ class Search
         }
 
         return $rendered;
+    }
+
+    /**
+     * Remove post types from index that are hidden for the user
+     * @param bool $should_index The decition originally done by algolia
+     * @param WpPost $post The post that should be indexed or not
+     * @param bool $includeCheckbox If the check should take the users decition in consideration
+     * @return bool True if add, false if not indexable
+     */
+
+    public function shouldIndexPost($should_index, $post, $includeCheckbox = true)
+    {
+        //Get post type object
+        if (isset($post->post_type)) {
+
+            //Do not index posts that belong to modularity
+            if(strpos($post->post_type, "mod-") === 0) {
+                return false;
+            }
+        }
+
+        return $should_index;
     }
 
     /**
