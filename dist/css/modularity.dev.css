@@ -16,6 +16,14 @@ a.wp-first-item[href="admin.php?page=modularity"] {
   padding-left: 25px;
   width: auto; }
 
+.inlay-list-url-helper {
+  font-style: italic;
+  font-size: 11px;
+  word-wrap: break-word; }
+
+.margin-bottom-20 {
+  margin-bottom: 20px !important; }
+
 .modularity-table {
   width: 100%;
   text-align: left;

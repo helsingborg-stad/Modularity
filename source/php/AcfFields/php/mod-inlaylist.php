@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_569e054a7f9c2',
-    'title' => 'List',
+    'title' => __('List', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_569e0559eb084',
@@ -18,11 +18,11 @@
                 'class' => '',
                 'id' => '',
             ),
+            'collapsed' => '',
             'min' => 1,
             'max' => 0,
             'layout' => 'block',
             'button_label' => __('Lägg till rad', 'modularity'),
-            'collapsed' => '',
             'sub_fields' => array(
                 0 => array(
                     'key' => 'field_569e068b33f31',
@@ -85,7 +85,7 @@
                     ),
                     'wrapper' => array(
                         'width' => '',
-                        'class' => '',
+                        'class' => 'margin-bottom-20',
                         'id' => '',
                     ),
                     'post_type' => array(

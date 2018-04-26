@@ -29,7 +29,7 @@
                     @endif
 
                     @if (in_array('date', $posts_fields) && $posts_data_source !== 'input')
-                    <p><time>{{ get_the_time('Y-m-d H:i', $post->ID) }}</time></p>
+                    <p><time>{{ apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d H:i', $post->ID), $post->ID, $post->post_type)  }}</time></p>
                     @endif
 
                     @if (in_array('excerpt', $posts_fields))

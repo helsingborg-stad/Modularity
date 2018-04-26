@@ -17,7 +17,7 @@
                     @endif
 
                     @if (in_array('date', $posts_fields) && $posts_data_source !== 'input')
-                    <time class="date text-sm text-dark-gray">{{ get_the_time('Y-m-d', $post->ID) }}</time>
+                    <time class="date text-sm text-dark-gray">{{ apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d', $post->ID), $post->ID, $post->post_type)  }}</time>
                     @endif
                 </a>
             </li>

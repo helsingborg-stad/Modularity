@@ -15,11 +15,11 @@
                 "class": "",
                 "id": ""
             },
+            "collapsed": "",
             "min": 1,
             "max": 0,
             "layout": "block",
             "button_label": "L\u00e4gg till rad",
-            "collapsed": "",
             "sub_fields": [
                 {
                     "key": "field_569e068b33f31",
@@ -82,7 +82,7 @@
                     ],
                     "wrapper": {
                         "width": "",
-                        "class": "",
+                        "class": "margin-bottom-20",
                         "id": ""
                     },
                     "post_type": [],

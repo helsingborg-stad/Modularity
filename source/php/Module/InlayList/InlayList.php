@@ -12,6 +12,8 @@ class InlayList extends \Modularity\Module
         $this->nameSingular = __("Inlay List", 'modularity');
         $this->namePlural = __("Inlay Lists", 'modularity');
         $this->description = __("Outputs one or more posts from selected post-type.", 'modularity');
+
+        add_filter('acf/fields/post_object/result/name=link_internal', array($this, 'acfLocationSelect'), 10, 4);
     }
 
     public function data() : array
@@ -21,6 +23,27 @@ class InlayList extends \Modularity\Module
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         return $data;
     }
+
+    /**
+     * Adding address to Location select box
+     * @param  string   $title    the text displayed for this post object
+     * @param  object   $post     the post object
+     * @param  array    $field    the field array containing all attributes & settings
+     * @param  int      $post_id  the current post ID being edited
+     * @return string             updated title
+     */
+    public function acfLocationSelect($title, $post, $field, $post_id)
+    {
+        $address = get_permalink($post->ID, false);
+
+        if (! empty($address)) {
+            $title .= '<br/><span class="inlay-list-url-helper"> ( ' . str_replace(home_url(),"", $address) .  ' ) </span>';
+        }
+
+        return $title;
+    }
+
+
 
     /**
      * Available "magic" methods for modules:
