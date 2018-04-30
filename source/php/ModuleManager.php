@@ -532,7 +532,7 @@ class ModuleManager
 
         add_meta_box(
             'modularity-description',
-            'Module description',
+            __('Module description', 'modularity'),
             function () {
                 $description = get_post_meta(get_the_id(), 'module-description', true);
                 include MODULARITY_TEMPLATE_PATH . 'editor/modularity-module-description.php';
