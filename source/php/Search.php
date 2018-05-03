@@ -18,7 +18,7 @@ class Search
         //Algolia
         add_filter('algolia_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
         add_filter('algolia_searchable_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
-        add_filter('algolia_should_index_searchable_post', array($this, 'shouldIndexPost'), 10, 2);
+        add_filter('algolia_should_index_searchable_post', array($this, 'shouldIndexPost'), 50, 2);
     }
 
     /**
