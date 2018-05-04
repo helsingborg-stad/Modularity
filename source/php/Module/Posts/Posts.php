@@ -662,6 +662,7 @@ class Posts extends \Modularity\Module
                 break;
 
             case 'children':
+                $getPostsArgs['post_type'] = get_post_type();
                 $getPostsArgs['post_parent'] = $fields->posts_data_child_of;
                 break;
 
