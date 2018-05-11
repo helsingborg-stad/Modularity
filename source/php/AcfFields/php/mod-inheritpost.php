@@ -6,16 +6,6 @@
     'title' => 'Post or page',
     'fields' => array(
         0 => array(
-            'post_type' => array(
-                0 => 'post',
-                1 => 'page',
-            ),
-            'taxonomy' => array(
-            ),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'return_format' => 'object',
-            'ui' => 1,
             'key' => 'field_56a8b505d4b00',
             'label' => __('Post or page', 'modularity'),
             'name' => 'page',
@@ -28,6 +18,16 @@
                 'class' => '',
                 'id' => '',
             ),
+            'post_type' => array(
+                0 => 'post',
+                1 => 'page',
+            ),
+            'taxonomy' => array(
+            ),
+            'allow_null' => 0,
+            'multiple' => 0,
+            'return_format' => 'object',
+            'ui' => 1,
         ),
     ),
     'location' => array(
@@ -48,6 +48,5 @@
     'active' => 1,
     'description' => '',
     'modified' => 1453897004,
-    'local' => 'json',
 ));
 }

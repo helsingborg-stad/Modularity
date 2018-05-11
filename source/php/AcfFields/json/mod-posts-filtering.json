@@ -3,11 +3,6 @@
     "title": "Data filtering",
     "fields": [
         {
-            "default_value": 0,
-            "message": "Yes, filter posts based on taxonomy",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
             "key": "field_571e046536f0f",
             "label": "Taxonomy filter",
             "name": "posts_taxonomy_filter",
@@ -19,17 +14,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": 0,
+            "message": "Yes, filter posts based on taxonomy",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": [],
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_571e048136f10",
             "label": "Taxonomy type",
             "name": "posts_taxonomy_type",
@@ -50,10 +42,6 @@
                 "class": "",
                 "id": "modularity-latest-taxonomy"
             },
-            "disabled": 0,
-            "readonly": 0
-        },
-        {
             "multiple": 0,
             "allow_null": 0,
             "choices": [],
@@ -62,6 +50,10 @@
             "ajax": 0,
             "placeholder": "",
             "return_format": "value",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
             "key": "field_571e049636f11",
             "label": "Taxonomy value",
             "name": "posts_taxonomy_value",
@@ -82,15 +74,18 @@
                 "class": "",
                 "id": "modularity-latest-taxonomy-value"
             },
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": [],
+            "default_value": [],
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "disabled": 0,
             "readonly": 0
         },
         {
-            "default_value": 0,
-            "message": "Yes, filter posts based on meta",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
             "key": "field_571e04a736f12",
             "label": "Meta filter",
             "name": "posts_meta_filter",
@@ -102,17 +97,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": 0,
+            "message": "Yes, filter posts based on meta",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": [],
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_571e04c736f13",
             "label": "Meta key",
             "name": "posts_meta_key",
@@ -133,15 +125,18 @@
                 "class": "",
                 "id": "modularity-latest-meta-key"
             },
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": [],
+            "default_value": [],
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "disabled": 0,
             "readonly": 0
         },
         {
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
             "key": "field_571e04da36f14",
             "label": "Meta value",
             "name": "posts_meta_value",
@@ -162,8 +157,121 @@
                 "class": "",
                 "id": ""
             },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
             "readonly": 0,
             "disabled": 0
+        },
+        {
+            "key": "field_5af2f2e486366",
+            "label": "Front End taxonomy filtering",
+            "name": "front_end_tax_filtering",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571e046536f0f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5af2f64510be1",
+            "label": "Front End Text search",
+            "name": "front_end_tax_filtering_text_search",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5af2f2e486366",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5af2f68810be2",
+            "label": "Front End Date range",
+            "name": "front_end_tax_filtering_dates",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5af2f2e486366",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5af2f6fb10be3",
+            "label": "Front End Taxonomy",
+            "name": "front_end_tax_filtering_taxonomy",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5af2f2e486366",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -182,8 +290,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "",
-    "modified": 1461586536,
-    "local": "php"
+    "description": ""
 }]
 

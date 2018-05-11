@@ -8,6 +8,7 @@ class Posts extends \Modularity\Module
     public $supports = array();
     public $icon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNC4zMzQgMjQuMzM0Ij48ZyBmaWxsPSIjMDMwMTA0Ij48cGF0aCBkPSJNMTAuMjk1IDBILjkzNUEuOTM2LjkzNiAwIDAgMCAwIC45MzZ2OS4zNmMwIC41MTYuNDIuOTM1LjkzNi45MzVoOS4zNmMuNTE2IDAgLjkzNS0uNDE4LjkzNS0uOTM1Vi45MzVBLjkzNi45MzYgMCAwIDAgMTAuMjk2IDB6TTIzLjM5OCAwaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzZjMCAuNTE2LjQyLjkzNS45MzYuOTM1aDkuMzU4Yy41MTcgMCAuOTM2LS40MTguOTM2LS45MzVWLjkzNUEuOTM2LjkzNiAwIDAgMCAyMy4zOTggMHptLS45MzYgOS4zNmgtNy40ODdWMS44N2g3LjQ4N1Y5LjM2ek0xMC4yOTUgMTMuMTAzSC45MzVBLjkzNi45MzYgMCAwIDAgMCAxNC4wNHY5LjM1OGMwIC41MTcuNDIuOTM2LjkzNi45MzZoOS4zNmMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNS45MzUgMCAwIDAtLjkzNS0uOTM1em0tNS44NzUgOS4zNmMuMTYtLjI3Ny4yNi0uNTk0LjI2LS45MzdhMS44NzIgMS44NzIgMCAwIDAtMS44NzItMS44NzJjLS4zNDMgMC0uNjYuMS0uOTM2LjI2di0yLjM5Yy4yNzYuMTYuNTkzLjI2LjkzNi4yNkExLjg3MiAxLjg3MiAwIDAgMCA0LjY4IDE1LjkxYzAtLjM0Mi0uMS0uNjYtLjI2LS45MzVoMi4zOWExLjg1IDEuODUgMCAwIDAtLjI2LjkzNmMwIDEuMDM1Ljg0IDEuODczIDEuODczIDEuODczLjM0MyAwIC42Ni0uMS45MzYtLjI2djIuMzlhMS44NSAxLjg1IDAgMCAwLS45MzctLjI2IDEuODcyIDEuODcyIDAgMCAwLTEuODcyIDEuODczYzAgLjM0My4xLjY2LjI2LjkzNkg0LjQyek0yMy4zOTggMTMuMTAzaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzU4YzAgLjUxNi40Mi45MzUuOTM2LjkzNWg5LjM1OGMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNC45MzQgMCAwIDAtLjkzNS0uOTM0em0tOC40MjMgNi4wMDNsNC4xMy00LjEzaDIuMDM0bC02LjE2NSA2LjE2M3YtMi4wMzR6bTAtNC4xM2gxLjQ4NGwtMS40ODUgMS40ODN2LTEuNDg1em03LjQ4NyAxLjMyMnYyLjAzMmwtNC4xMyA0LjEzMmgtMi4wMzRsNi4xNjQtNi4xNjR6bTAgNi4xNjRoLTEuNDg1bDEuNDg1LTEuNDg1djEuNDg1eiIvPjxjaXJjbGUgY3g9IjUuNjE2IiBjeT0iMTguNzE4IiByPSIxLjg3MiIvPjwvZz48L3N2Zz4=';
 
+
     public function init()
     {
         $this->nameSingular = __('Posts', 'modularity');
@@ -23,12 +24,14 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+
     }
 
     public function template()
     {
         $this->getTemplateData($this->data['posts_display_as']);
-        return apply_filters('Modularity/Module/Posts/template', $this->data['posts_display_as'] . '.blade.php', $this, $this->data);
+        return apply_filters('Modularity/Module/Posts/template', $this->data['posts_display_as'] . '.blade.php', $this,
+            $this->data);
     }
 
     public function getTemplateData($template)
@@ -44,7 +47,8 @@ class Posts extends \Modularity\Module
         }
     }
 
-    public function data() : array
+
+    public function data(): array
     {
         $fields = json_decode(json_encode(get_fields($this->ID)));
 
@@ -53,6 +57,33 @@ class Posts extends \Modularity\Module
         // Posts
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
 
+// START Johan
+        $data['frontEndTaxonomyFilters'] = false;
+        if (get_field('front_end_tax_filtering', $this->ID)) {
+
+            $data['frontEndTaxonomyFilters'] = true;
+            $data['frontEndFilters']['front_end_tax_filtering_text_search'] = get_field('front_end_tax_filtering_text_search',
+                $this->ID) ? true : false;
+            $data['frontEndFilters']['front_end_tax_filtering_dates'] = get_field('front_end_tax_filtering_dates',
+                $this->ID) ? true : false;
+            $data['frontEndFilters']['front_end_tax_filtering_taxonomy'] = get_field('front_end_tax_filtering_taxonomy',
+                $this->ID) ? true : false;
+
+            $postFilters = new \Modularity\Module\Posts\PostsFilters();
+
+            if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true, $this->ID)) {
+                $data['enabledTaxonomyFilters'] = $enabledTaxonomyFilters;
+            } else {
+                $data['enabledTaxonomyFilters'] = array();
+            }
+
+            $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
+            $data['pageUrl'] = $postFilters->getPostUrl();
+            $data['searchQuery'] = $postFilters->getSearchQuery();
+        }
+
+// END Johan
+//
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;
@@ -66,7 +97,7 @@ class Posts extends \Modularity\Module
         // Setup filters
         $filters = array(
             'orderby' => sanitize_text_field($data['sortBy']),
-            'order'   => sanitize_text_field($data['order'])
+            'order' => sanitize_text_field($data['order'])
         );
 
         if ($data['sortBy'] == 'meta_key') {
@@ -77,7 +108,7 @@ class Posts extends \Modularity\Module
 
         if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
             $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array) $fields->posts_taxonomy_value;
+            $taxValues = (array)$fields->posts_taxonomy_value;
             $taxValues = implode('|', $taxValues);
 
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
@@ -239,12 +270,14 @@ class Posts extends \Modularity\Module
                 'placeholder' => '',
                 'disabled' => 0,
                 'readonly' => 0,
-                "conditional_logic" => array(array(
+                "conditional_logic" => array(
                     array(
-                        'field' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
-                        'operator' => '==',
-                        'value' => $taxonomy->name
-                    ))
+                        array(
+                            'field' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
+                            'operator' => '==',
+                            'value' => $taxonomy->name
+                        )
+                    )
                 )
             );
         }
@@ -326,7 +359,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Saves column names if exandable list template is used
-     * @param  int $postId    The id of the post
+     * @param  int $postId The id of the post
      * @return void
      */
     public function saveColumnFields($postId)
@@ -345,12 +378,13 @@ class Posts extends \Modularity\Module
         }
 
         //Bail early if not a post request
-        if (!isset($_POST) ||(is_array($_POST) && empty($_POST)) ||!is_array($_POST)) {
+        if (!isset($_POST) || (is_array($_POST) && empty($_POST)) || !is_array($_POST)) {
             return false;
         }
 
         //Update if nonce verification succeed
-        if (isset($_POST['modularity_post_columns']) && wp_verify_nonce($_POST['modularity_post_columns'], 'save_columns')) {
+        if (isset($_POST['modularity_post_columns']) && wp_verify_nonce($_POST['modularity_post_columns'],
+                'save_columns')) {
             //Delete if not posted data
             if (!isset($_POST[$metaKey])) {
                 delete_post_meta($postId, $metaKey);
@@ -417,7 +451,7 @@ class Posts extends \Modularity\Module
     /**
      * Expandable list column value fields metabox content
      * @param  object $post Post object
-     * @param  array  $args Arguments
+     * @param  array $args Arguments
      * @return void
      */
     public function columnFieldsMetaBoxContent($post, $args)
@@ -550,7 +584,8 @@ class Posts extends \Modularity\Module
      */
     public function adminEnqueue()
     {
-        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js', array(), '1.0.0', true);
+        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js',
+            array(), '1.0.0', true);
 
         add_action('admin_head', function () {
             global $post;
@@ -567,7 +602,7 @@ class Posts extends \Modularity\Module
 
     /**
      * "Fake" WP_POST objects for manually inputted posts
-     * @param  array $data  The data to "fake"
+     * @param  array $data The data to "fake"
      * @return array        Faked data
      */
     public static function getManualInputPosts($data)
@@ -575,7 +610,7 @@ class Posts extends \Modularity\Module
         $posts = array();
 
         foreach ($data as $key => $item) {
-            $posts[] = array_merge((array) $item, array(
+            $posts[] = array_merge((array)$item, array(
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $item->post_content
@@ -594,6 +629,8 @@ class Posts extends \Modularity\Module
      */
     public static function getPosts($module)
     {
+
+
         $fields = json_decode(json_encode(get_fields($module->ID)));
 
         if ($fields->posts_data_source == 'input') {
@@ -636,7 +673,7 @@ class Posts extends \Modularity\Module
         }
 
         // Post statuses
-        $getPostsArgs['post_status'] = array('publish','inherit');
+        $getPostsArgs['post_status'] = array('publish', 'inherit');
         if (is_user_logged_in()) {
             $getPostsArgs['post_status'][] = 'private';
         }
@@ -644,13 +681,13 @@ class Posts extends \Modularity\Module
         // Taxonomy filter
         if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
             $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array) $fields->posts_taxonomy_value;
+            $taxValues = (array)$fields->posts_taxonomy_value;
 
             foreach ($taxValues as $term) {
                 $getPostsArgs['tax_query'][] = array(
                     'taxonomy' => $taxType,
-                    'field'    => 'slug',
-                    'terms'    => $term
+                    'field' => 'slug',
+                    'terms' => $term
                 );
             }
         }

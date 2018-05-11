@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
-    'title' => __('Data source', 'modularity'),
+    'title' => 'Data source',
     'fields' => array(
         0 => array(
             'key' => 'field_571dfaafe6984',
@@ -178,7 +178,7 @@
             'min' => 1,
             'max' => 0,
             'layout' => 'block',
-            'button_label' => 'Add',
+            'button_label' => __('Add', 'modularity'),
             'collapsed' => '',
             'sub_fields' => array(
                 0 => array(
@@ -277,7 +277,7 @@
                     'min' => 0,
                     'max' => 0,
                     'layout' => 'table',
-                    'button_label' => 'Add',
+                    'button_label' => __('Add', 'modularity'),
                     'collapsed' => '',
                     'sub_fields' => array(
                         0 => array(
@@ -351,6 +351,5 @@
     'active' => 1,
     'description' => '',
     'modified' => 1475146060,
-    'local' => 'php',
 ));
 }
