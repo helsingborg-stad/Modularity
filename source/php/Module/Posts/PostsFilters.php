@@ -42,6 +42,7 @@ class PostsFilters
             });
         }
 
+
         // Hide taxonomy if displaying a taxonomy
         if (is_a(get_queried_object(), 'WP_Term')) {
             $taxonomies = array_diff($taxonomies, (array)get_queried_object()->taxonomy);
@@ -66,6 +67,7 @@ class PostsFilters
             $grouped[$placement][$tax->name] = array(
                 'label' => $tax->label,
                 'type' => $type,
+                'slug' => $item,
                 'values' => $terms
             );
 
@@ -80,7 +82,6 @@ class PostsFilters
             $grouped = json_decode(json_encode($grouped));
             return $grouped;
         }
-
 
         return $ungrouped;
     }
@@ -111,10 +112,6 @@ class PostsFilters
 
         return $postType;
     }
-
-
-
-
 
 
     /**
