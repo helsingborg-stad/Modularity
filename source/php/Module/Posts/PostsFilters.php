@@ -4,9 +4,10 @@ namespace Modularity\Module\Posts;
 
 class PostsFilters
 {
-
+    private $ID;
     public function __construct()
     {
+ 
         add_filter('template_include', array($this, 'enablePostTypeArchiveSearch'), 1);
 
         add_action('posts_where', array($this, 'doPostDateFiltering'));
@@ -150,17 +151,14 @@ class PostsFilters
             return $query;
         }
 
-        // Do not execute this in admin view
-        if (is_admin() || !(is_archive() || is_home() || is_category() || is_tax() || is_tag()) || !$query->is_main_query()) {
-            return $query;
-        }
-
         $postType = $this->getPostType();
-        $filterable = $this->getEnabledTaxonomies($postType, false);
+        $filterable = $this->getEnabledTaxonomies($postType, $this->ID); // <----- Inget id FIXA FIXA
 
         if (empty($filterable)) {
             return $query;
         }
+
+        var_dump($query); // Solve this Monday.....
 
         $taxQuery = array('relation' => 'AND');
 
@@ -199,6 +197,7 @@ class PostsFilters
 
         $query->set('tax_query', $taxQuery);
         $query->set('post_type', $this->getPostType());
+
         return $query;
     }
 
@@ -369,6 +368,7 @@ class PostsFilters
         }
 
         $where = apply_filters('Municipio/archive/date_filter', $where, $from, $to);
+        //$where = apply_filters('Municipio/posts/date_filter', $where, $from, $to);
 
         return $where;
     }

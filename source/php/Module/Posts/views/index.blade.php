@@ -1,3 +1,5 @@
+@include('partials.post-filters')
+
 <div class="grid" data-equal-container>
     @if (!$hideTitle && !empty($post_title))
     <div class="grid-xs-12">

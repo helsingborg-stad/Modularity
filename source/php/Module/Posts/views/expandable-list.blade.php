@@ -1,3 +1,5 @@
+@include('partials.post-filters')
+
 <div class="{{ $classes }}">
 
     @if (!$hideTitle && !empty($post_title))
