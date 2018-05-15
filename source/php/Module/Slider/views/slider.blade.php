@@ -7,7 +7,7 @@
         <div data-flickity='{!! $flickity !!}'>
             @foreach ($slides as $slide)
 
-            <div class="slide type-{{ $slide['acf_fc_layout'] }} {{ (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : '' }}" style="width: {{ 100/$slideColumns }}%; position:relative;">
+            <div class="slide type-{{ $slide['acf_fc_layout'] }} {{ (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : '' }}" style="width: {{ $slideWidth }}%; position:relative;">
 
                 <!-- Link start -->
                 @if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false')

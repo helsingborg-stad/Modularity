@@ -35,6 +35,7 @@ class Slider extends \Modularity\Module
 
         $data['slides'] = $this->prepareSlides($data);
         $data['slideColumns'] = $this->slideColumns;
+        $data['slideWidth'] = (100/$this->slideColumns);
 
         return $data;
     }
