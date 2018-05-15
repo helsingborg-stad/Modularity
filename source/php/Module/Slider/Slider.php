@@ -122,14 +122,12 @@ class Slider extends \Modularity\Module
             $classes[] = 'slider-height-restrictions';
         }
 
-
-
         return implode(' ', $classes);
     }
 
     public function getFlickitySettings($fields)
     {
-        $slideColumns = isset($fields['slide_columns']) && !empty($fields['slide_columns']) ? $fields['slide_columns'] : 1;
+        $slideColumns = isset($fields['slide_columns']) && !empty($fields['slide_columns']) ? (int) $fields['slide_columns'] : 1;
 
         $flickity = array(
             'cellSelector'   => '.slide',
