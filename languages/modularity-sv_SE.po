@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2018-04-30 15:27+0200\n"
-"PO-Revision-Date: 2018-04-30 15:27+0200\n"
+"POT-Creation-Date: 2018-05-15 15:53+0200\n"
+"PO-Revision-Date: 2018-05-15 15:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:136 source/php/Editor.php:125 source/php/Options/General.php:93
+#: App.php:136 source/php/Editor.php:124 source/php/Options/General.php:93
 msgid "Modules"
 msgstr "Moduler"
 
@@ -1355,7 +1355,7 @@ msgid "File"
 msgstr "Fil"
 
 #: plugins/acf/core/fields/file.php:20 plugins/acf/core/fields/image.php:20
-#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:124
+#: plugins/acf/core/fields/wysiwyg.php:20 source/php/Editor.php:123
 msgid "Content"
 msgstr "Innehåll"
 
@@ -3717,7 +3717,7 @@ msgstr ""
 msgid "Ämne"
 msgstr ""
 
-#: source/php/Display.php:332 templates/widget/form.php:30
+#: source/php/Display.php:340 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -3725,27 +3725,27 @@ msgstr "Redigera modul"
 msgid "View Page"
 msgstr "Visa sida"
 
-#: source/php/Editor.php:157
+#: source/php/Editor.php:156
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:158
+#: source/php/Editor.php:157
 msgid "Editor"
 msgstr "Redigerare"
 
-#: source/php/Editor.php:176
+#: source/php/Editor.php:175
 msgid "Save modules"
 msgstr "Spara moduler"
 
-#: source/php/Editor.php:187
+#: source/php/Editor.php:186
 msgid "Enabled modules"
 msgstr "Aktiverade moduler"
 
-#: source/php/Editor.php:232
+#: source/php/Editor.php:231
 msgid "No active sidebar areas"
 msgstr "Inga aktiva sidebars"
 
-#: source/php/Editor.php:234
+#: source/php/Editor.php:233
 msgid ""
 "There's no active sidebars. Please activate sidebar areas in the Modularity "
 "Options to add modules."
@@ -3753,13 +3753,29 @@ msgstr ""
 "Det finns inga aktiva sidebars. Du kan aktivera sidebars under sidan "
 "”Modularity -> Options”."
 
-#: source/php/Editor.php:538
+#: source/php/Editor.php:536
 msgid "Modules saved"
 msgstr "Moduler sparades"
 
-#: source/php/Editor.php:621
+#: source/php/Editor.php:619
 msgid "Inherit"
 msgstr "Ärv"
+
+#: source/php/Editor.php:680
+msgid "Scope styling"
+msgstr "Utseende"
+
+#: source/php/Editor.php:684
+msgid "Select an apperance for this instance of module"
+msgstr "Välj ett alternativt utseende för den här modulen."
+
+#: source/php/Editor.php:687
+msgid ""
+"By selecting a scope for this class, they will appear in a different way "
+"than the standard layout."
+msgstr ""
+"Välj ett specialutseende för den här modulen som passar ditt syfte med "
+"innehållet. "
 
 #: source/php/Helper/Acf.php:35
 msgid ""
@@ -4401,6 +4417,23 @@ msgstr ""
 msgid "Exported %d fieldgroup(s)."
 msgstr ""
 
+#. Plugin Name of the plugin/theme
+msgid "Modularity"
+msgstr "Modularity"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "-"
+msgstr "-"
+
+#. Description of the plugin/theme
+msgid "Modular component system for WordPress"
+msgstr "Modulärt komponentssytem för WordPress"
+
+#. Author of the plugin/theme
+msgid "Kristoffer Svanmark, Sebastian Thulin"
+msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
 #~ msgid "Desktop image"
 #~ msgstr "Bild för desktop"
 
@@ -4454,18 +4487,6 @@ msgstr ""
 
 #~ msgid "This image will be used in smaller screens."
 #~ msgstr "Denna bilden kommer användas på mindre skärmar."
-
-#~ msgid "Modularity"
-#~ msgstr "Modularity"
-
-#~ msgid "-"
-#~ msgstr "-"
-
-#~ msgid "Modular component system for WordPress"
-#~ msgstr "Modulärt komponentssytem för WordPress"
-
-#~ msgid "Kristoffer Svanmark, Sebastian Thulin"
-#~ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Page URL"
 #~ msgstr "URL"

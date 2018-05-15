@@ -650,12 +650,13 @@ class Editor extends \Modularity\Options
         $scopes = apply_filters('Modularity/Editor/ModuleCssScope', array());
         if (is_array($scopes) && !empty($scopes)) {
             foreach ($scopes as $postType => $style) {
-                if (!empty($style) && is_array($style) && is_string($modKey)) {
+                if (!empty($style) && is_array($style) && is_string($postType)) {
                     $this->registerScopeMetaBox($postType, $style);
                 }
             }
         }
     }
+
     /**
      * Registers a scope metabox
      * @return WP_Error, true
@@ -676,14 +677,14 @@ class Editor extends \Modularity\Options
 
         acf_add_local_field_group(array(
             'key' => 'group_' . intval($postType, 36),
-            'title' => 'Scope styling',
+            'title' => __('Scope styling', 'modularity'),
             'fields' => array(
                 array(
                     'key' => 'field_5afad7f2ffc63',
-                    'label' => 'Select an apperance for this instance of module',
+                    'label' => __('Select an apperance for this instance of module', 'modularity'),
                     'name' => 'module_css_scope',
                     'type' => 'select',
-                    'instructions' => 'By selecting a scope for this class, they will appear in a different way than the standard layout.',
+                    'instructions' => __('By selecting a scope for this class, they will appear in a different way than the standard layout.', 'modularity'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
