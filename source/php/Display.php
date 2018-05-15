@@ -322,8 +322,16 @@ class Display
             'modularity-' . $module->post_type . '-' . $module->ID
         );
 
+        //Hide module if preview
         if (is_preview() && $module->hidden) {
             $classes[] = 'modularity-preview-hidden';
+        }
+
+        //Add selected scope class
+        if (isset($module->data['meta']) && isset($module->data['meta']['module_css_scope']) && is_array($module->data['meta']['module_css_scope'])) {
+            if (!empty($module->data['meta']['module_css_scope'][0])) {
+                $classes[] = $module->data['meta']['module_css_scope'][0];
+            }
         }
 
         $beforeModule = '';
