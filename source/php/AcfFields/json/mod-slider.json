@@ -1248,19 +1248,20 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "horizontal",
             "choices": {
                 "wrapAround": "Continues scroll (no ending slide)",
                 "pageDots": "Pages dot navigation",
                 "freeScroll": "No scroll snapping",
-                "groupCells": "Group slides"
+                "groupCells": "Group slides",
+                "allowBleed": "Make next and previous slide partially visible"
             },
+            "allow_custom": 0,
+            "save_custom": 0,
             "default_value": [
                 "wrapAround",
                 "pageDots"
             ],
-            "allow_custom": 0,
-            "save_custom": 0,
+            "layout": "horizontal",
             "toggle": 0,
             "return_format": "value"
         }
