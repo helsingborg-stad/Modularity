@@ -4,51 +4,131 @@ namespace Modularity\Module\Posts;
 
 class PostsFilters
 {
-    private $ID;
-    public function __construct()
-    {
- 
-        add_filter('template_include', array($this, 'enablePostTypeArchiveSearch'), 1);
+    public $moduleId;
+    public $postType;
+    public $taxonomies;
+    public $taxonomyType;
 
-        add_action('posts_where', array($this, 'doPostDateFiltering'));
+    public function __construct($module)
+    {
+        $this->moduleId = $module->ID;
+        $this->postType = get_field('posts_data_post_type', $this->moduleId);
+        $this->taxonomies = get_field('taxonomy_display', $this->moduleId);
+        $this->taxonomyType = get_field('posts_taxonomy_type', $this->moduleId);
+
+
+        //add_filter('template_include', array($this, 'enableSearch'), 10);
+
+        remove_action('pre_get_posts', array($this, 'doPostTaxonomyFiltering'));
+        add_filter('posts_where', array($this, 'doPostDateFiltering'), 10, 2);
         add_action('pre_get_posts', array($this, 'doPostTaxonomyFiltering'));
         add_action('pre_get_posts', array($this, 'doPostOrdering'));
-
+        add_action('pre_get_posts', array($this, 'getSearchQuery'));
         remove_filter('content_save_pre', 'wp_filter_post_kses');
         remove_filter('excerpt_save_pre', 'wp_filter_post_kses');
         remove_filter('content_filtered_save_pre', 'wp_filter_post_kses');
+
+        add_filter('query_vars', array($this, 'newQueryVars'));
+
     }
 
+    /**
+     * Register custom query vars
+     * @param array $vars The array of available query variables
+     */
+    function newQueryVars($vars)
+    {
+        $vars[] = 'search';
+        return $vars;
+    }
+
+
+    /**
+     * Do taxonomy fitering
+     * @param  object $query Query object
+     * @return object        Modified query
+     */
+    public function doPostTaxonomyFiltering($query)
+    {
+        //Only run on frontend
+        if (is_admin()) {
+            return $query;
+        }
+
+
+        $postType = $this->postType;
+        $filterable = $this->getEnabledTaxonomies($postType);
+
+        if (empty($filterable)) {
+            return $query;
+        }
+
+        $taxQuery = array('relation' => 'AND');
+
+        foreach ($filterable as $key => $value) {
+            if (!isset($_GET['filter'][$key]) || empty($_GET['filter'][$key]) || $_GET['filter'][$key] === '-1') {
+                continue;
+            }
+
+            $terms = (array)$_GET['filter'][$key];
+
+            $taxQuery[] = array(
+                'taxonomy' => $key,
+                'field' => 'slug',
+                'terms' => $terms,
+                'operator' => 'IN'
+            );
+        }
+
+        if (is_tax() || is_category() || is_tag()) {
+
+            $taxQuery = array(
+                'relation' => 'AND',
+                array(
+                    'relation' => 'AND',
+                    array(
+                        'taxonomy' => get_queried_object()->taxonomy,
+                        'field' => 'slug',
+                        'terms' => (array)get_queried_object()->slug,
+                        'operator' => 'IN'
+                    )
+                ),
+                $taxQuery
+            );
+        }
+
+        $query->set('tax_query', $taxQuery);
+        $query->set('post_type', get_field('posts_data_post_type', $this->moduleId));
+
+        return $query;
+    }
 
     /**
      * Get filterable taxonomies
      * @return array Taxonomies
      */
-    public function getEnabledTaxonomies($group = true, $modelID)
+    public function getEnabledTaxonomies($group = true)
     {
         $grouped = array();
         $ungrouped = array();
-        $taxonomies = get_field('taxonomy_display', $modelID);
+        $taxonomies = $this->taxonomies;
 
         if (!$taxonomies) {
             return array();
         }
 
-
         // Hide category filter if displaying a category
-        global $wp_query;
+        //global $wp_query;
         if (is_category()) {
             $taxonomies = array_filter($taxonomies, function ($item) {
                 return $item !== 'category';
             });
         }
 
-
         // Hide taxonomy if displaying a taxonomy
         if (is_a(get_queried_object(), 'WP_Term')) {
             $taxonomies = array_diff($taxonomies, (array)get_queried_object()->taxonomy);
         }
-
 
         foreach ($taxonomies as $key => $item) {
 
@@ -58,12 +138,12 @@ class PostsFilters
             ));
 
 
-            $placement = get_field('posts_taxonomy_type', $modelID);
+            $placement = $this->taxonomyType;
             if (is_null($placement)) {
                 $placement = 'secondary';
             }
 
-            $type = get_field('posts_taxonomy_type', $modelID);
+            $type = $this->taxonomyType;
 
             $grouped[$placement][$tax->name] = array(
                 'label' => $tax->label,
@@ -89,116 +169,25 @@ class PostsFilters
 
 
     /**
-     * Get post type
-     * @return string
-     */
-    public function getPostType()
-    {
-        global $wp_query;
-
-        // If taxonomy or category page and post type not isset then it's the "post" post type
-        if (is_home() || ((is_tax() || is_category() || is_tag()) && is_a(get_queried_object(),
-                    'WP_Term') && !get_post_type())) {
-            return 'post';
-        }
-
-        $postType = isset($wp_query->query['post_type']) ? $wp_query->query['post_type'] : false;
-        if (!$postType && isset($wp_query->query['category_name']) && !empty($wp_query->query['category_name'])) {
-            $postType = 'post';
-        }
-
-        if (is_array($postType)) {
-            $postType = end($postType);
-        }
-
-        return $postType;
-    }
-
-
-    /**
      * Use correct template when filtering a post type archive
      * @param  string $template Template path
      * @return string           Template path
      */
-    public function enablePostTypeArchiveSearch($template)
+    public function enableSearch($template)
     {
         $template = \Municipio\Helper\Template::locateTemplate($template);
 
-        if ((is_post_type_archive() || is_category() || is_date() || is_tax() || is_tag()) && is_search()) {
-            $archiveTemplate = \Municipio\Helper\Template::locateTemplate('post-' . get_post_type() . '.blade.php');
+        //if ((is_post_type_archive() || is_category() || is_date() || is_tax() || is_tag() || is_page() || is_single()) && is_search()) {
+        $archiveTemplate = \Municipio\Helper\Template::locateTemplate('archive-' . $this->postType . '.blade.php');
 
-            if (!$archiveTemplate) {
-                $archiveTemplate = \Municipio\Helper\Template::locateTemplate('post.blade.php');
-            }
-
-            $template = $archiveTemplate;
+        if (!$archiveTemplate) {
+            $archiveTemplate = \Municipio\Helper\Template::locateTemplate('archive.blade.php');
         }
+
+        $template = $archiveTemplate;
+        //}
 
         return $template;
-    }
-
-
-    /**
-     * Do taxonomy fitering
-     * @param  object $query Query object
-     * @return object        Modified query
-     */
-    public function doPostTaxonomyFiltering($query)
-    {
-
-        //Only run on frontend
-        if (is_admin()) {
-            return $query;
-        }
-
-        $postType = $this->getPostType();
-        $filterable = $this->getEnabledTaxonomies($postType, $this->ID); // <----- Inget id FIXA FIXA
-
-        if (empty($filterable)) {
-            return $query;
-        }
-
-        var_dump($query); // Solve this Monday.....
-
-        $taxQuery = array('relation' => 'AND');
-
-        foreach ($filterable as $key => $value) {
-            if (!isset($_GET['filter'][$key]) || empty($_GET['filter'][$key]) || $_GET['filter'][$key] === '-1') {
-                continue;
-            }
-
-            $terms = (array)$_GET['filter'][$key];
-
-            $taxQuery[] = array(
-                'taxonomy' => $key,
-                'field' => 'slug',
-                'terms' => $terms,
-                'operator' => 'IN'
-            );
-        }
-
-        if (is_tax() || is_category() || is_tag()) {
-            $taxQuery = array(
-                'relation' => 'AND',
-                array(
-                    'relation' => 'AND',
-                    array(
-                        'taxonomy' => get_queried_object()->taxonomy,
-                        'field' => 'slug',
-                        'terms' => (array)get_queried_object()->slug,
-                        'operator' => 'IN'
-                    )
-                ),
-                $taxQuery
-            );
-        }
-
-        $taxQuery = apply_filters('Municipio/posts/tax_query', $taxQuery, $query);
-
-        $query->set('tax_query', $taxQuery);
-        $query->set('post_type', $this->getPostType());
-
-        return $query;
     }
 
 
@@ -206,16 +195,45 @@ class PostsFilters
      * Returns escaped search query
      * @return string Search query
      */
-    public function getSearchQuery()
+    public function getSearchQuery($query)
     {
+
         $searchQuery = '';
-        if (!empty(get_search_query())) {
+        /*if (!empty(get_search_query())) {
             $searchQuery = get_search_query();
-        } elseif (!empty($_GET['s'])) {
-            $searchQuery = esc_attr($_GET['s']);
+        } elseif (!empty($_GET['search'])) {
+            $searchQuery = esc_attr($_GET['search']);
         }
 
-        return $searchQuery;
+        var_dump($searchQuery);
+        */
+
+
+        // check if the user is requesting an admin page
+        // or current query is not the main query
+        /*if ( is_admin() || ! $query->is_main_query() ){
+            return;
+        }*/
+
+        $query->set('post_title',  array(
+            array(
+                'key' => 'search',
+                'value' => get_query_var('search'),
+                'compare' => 'LIKE'
+            )
+        ));
+
+        $query->set('post_content', array(
+            array(
+                'key' => 'search',
+                'value' => get_query_var('search'),
+                'compare' => 'LIKE'
+            )
+        ));
+
+
+        //var_dump($query);
+        return $query;
     }
 
     /**
@@ -338,11 +356,11 @@ class PostsFilters
      * @param  string $where Original where clause
      * @return string        Modified where clause
      */
-    public function doPostDateFiltering($where)
+    public function doPostDateFiltering($where, $query)
     {
 
         //Only run on frontend
-        if (is_admin()) {
+        if (is_admin() || $query->is_main_query()) {
             return $where;
         }
 
@@ -351,12 +369,12 @@ class PostsFilters
         $from = null;
         $to = null;
 
-        if (isset($_GET['from']) && !empty($_GET['from'])) {
-            $from = sanitize_text_field($_GET['from']);
+        if (isset($_GET[$this->moduleId . 'f']) && !empty($_GET[$this->moduleId . 'f'])) {
+            $from = sanitize_text_field($_GET[$this->moduleId . 'f']);
         }
 
-        if (isset($_GET['to']) && !empty($_GET['to'])) {
-            $to = sanitize_text_field($_GET['to']);
+        if (isset($_GET[$this->moduleId . 't']) && !empty($_GET[$this->moduleId . 't'])) {
+            $to = sanitize_text_field($_GET[$this->moduleId . 't']);
         }
 
         if (!is_null($from) && !is_null($to)) {
@@ -366,9 +384,6 @@ class PostsFilters
         } elseif (is_null($from) && !is_null($to)) {
             $where .= " AND ($wpdb->posts.post_date <= '$to')";
         }
-
-        $where = apply_filters('Municipio/archive/date_filter', $where, $from, $to);
-        //$where = apply_filters('Municipio/posts/date_filter', $where, $from, $to);
 
         return $where;
     }
@@ -381,7 +396,7 @@ class PostsFilters
     public function doPostOrdering($query)
     {
         // Do not execute this in admin view
-        if (is_admin() || !(is_archive() || is_home()) || !$query->is_main_query()) {
+        if (is_admin() || !$query->is_main_query()) {
             return $query;
         }
 

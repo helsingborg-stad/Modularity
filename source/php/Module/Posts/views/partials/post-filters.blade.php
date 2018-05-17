@@ -2,27 +2,27 @@
 
     <section class="creamy creamy-border-bottom gutter-lg gutter-vertical sidebar-content-area post-filters">
 
-        <form method="get" action="{{ $pageUrl }}" class="container" id="post-filter">
+        <form method="get" action="" class="container" id="post-filter">
+            @if ( !empty($enabledTaxonomyFilters->category))
+                @foreach ($enabledTaxonomyFilters->category as $taxKey => $taxonomy)
 
-            @foreach ($enabledTaxonomyFilters->category as $taxKey => $taxonomy)
+                    @if(count( $taxonomy->values ) > 1)
+                        <div class="pos-relative">
+                            <button type="button" class="btn"
+                                    data-dropdown=".dropdown-{{ $taxKey }}"><?php printf(__('Select') . ' %s…',
+                                    $taxonomy->label); ?></button>
+                            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right dropdown-{{ $taxKey }}">
 
-                @if(count( $taxonomy->values ) > 1)
-                    <div class="pos-relative">
-                        <button type="button" class="btn"
-                                data-dropdown=".dropdown-{{ $taxKey }}"><?php printf(__('Select') . ' %s…',
-                                $taxonomy->label); ?></button>
-                        <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right dropdown-{{ $taxKey }}">
-
-                            <?php
-                            //$tax->slug = $taxKey;
-                            $dropdown = \Modularity\Module\Posts\PostsFilters::getMultiTaxDropdown($taxonomy,
-                                0, 'list-hierarchical'); ?>
-                            {!! $dropdown !!}
+                                <?php
+                                //$tax->slug = $taxKey;
+                                $dropdown = \Modularity\Module\Posts\PostsFilters::getMultiTaxDropdown($taxonomy,
+                                    0, 'list-hierarchical'); ?>
+                                {!! $dropdown !!}
+                            </div>
                         </div>
-                    </div>
-                @endif
-            @endforeach
-
+                    @endif
+                @endforeach
+            @endif
             <div class="grid">
                 @if ($frontEndFilters['front_end_tax_filtering_text_search'])
                     <div class="grid-sm-12 grid-md-auto">
@@ -30,7 +30,7 @@
                                 :</strong></label>
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" name="s" id="filter-keyword" class="form-control"
+                            <input type="text" name="search" id="filter-keyword" class="form-control"
                                    value="{{ $searchQuery }}" placeholder="<?php _e('Search', 'municipio'); ?>">
                         </div>
                     </div>
@@ -42,14 +42,14 @@
                                     'municipio'); ?>:</strong></label>
                         <div class="input-group">
                             <span class="input-group-addon"><?php _e('From', 'municipio'); ?>:</span>
-                            <input type="text" name="from" placeholder="<?php _e('From date', 'municipio'); ?>…"
+                            <input type="text" name="{{$modId}}f" placeholder="<?php _e('From date', 'municipio'); ?>…"
                                    id="filter-date-from" class="form-control datepicker-range datepicker-range-from"
-                                   value="{{ isset($_GET['from']) && !empty($_GET['from']) ? sanitize_text_field($_GET['from']) : '' }}"
+                                   value="{{ isset($_GET[$modId.'f']) && !empty($_GET[$modId.'f']) ? sanitize_text_field($_GET[$modId.'f']) : '' }}"
                                    readonly>
                             <span class="input-group-addon"><?php _e('To', 'municipio'); ?>:</span>
-                            <input type="text" name="to" placeholder="<?php _e('To date', 'municipio'); ?>"
+                            <input type="text" name="{{$modId}}t" placeholder="<?php _e('To date', 'municipio'); ?>"
                                    class="form-control datepicker-range datepicker-range-to"
-                                   value="{{ isset($_GET['to']) && !empty($_GET['to']) ? sanitize_text_field($_GET['to']) : '' }}"
+                                   value="{{ isset($_GET[$modId.'t']) && !empty($_GET[$modId.'t']) ? sanitize_text_field($_GET[$modId.'t']) : '' }}"
                                    readonly>
                         </div>
                     </div>
@@ -65,6 +65,7 @@
                     <input type="submit" value="<?php _e('Search', 'municipio'); ?>" class="btn btn-primary btn-block">
                 </div>
             </div>
+
 
         </form>
     </section>

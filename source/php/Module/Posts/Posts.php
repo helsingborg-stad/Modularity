@@ -25,6 +25,7 @@ class Posts extends \Modularity\Module
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
 
+
     }
 
     public function template()
@@ -51,15 +52,11 @@ class Posts extends \Modularity\Module
     public function data(): array
     {
         $fields = json_decode(json_encode(get_fields($this->ID)));
-
         $data['posts_display_as'] = $fields->posts_display_as;
 
-        // Posts
-        $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
-
-// START Johan
-
-        if (get_field('front_end_tax_filtering', $this->ID)) {
+        if (get_field('front_end_tax_filtering', $this->ID) && get_field('posts_data_post_type',
+                $this->ID) === 'post' || get_field('front_end_tax_filtering',
+                $this->ID) && get_field('posts_data_post_type', $this->ID) === 'page') {
 
             $this->enableFilters = true;
 
@@ -70,9 +67,9 @@ class Posts extends \Modularity\Module
             $data['frontEndFilters']['front_end_tax_filtering_taxonomy'] = get_field('front_end_tax_filtering_taxonomy',
                 $this->ID) ? true : false;
 
-            $postFilters = new \Modularity\Module\Posts\PostsFilters();
+            $postFilters = new \Modularity\Module\Posts\PostsFilters($this);
 
-            if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true, $this->ID)) {
+            if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true)) {
                 $data['enabledTaxonomyFilters'] = $enabledTaxonomyFilters;
             } else {
                 $data['enabledTaxonomyFilters'] = array();
@@ -80,12 +77,11 @@ class Posts extends \Modularity\Module
 
             $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
             $data['pageUrl'] = $postFilters->getPostUrl();
-            $data['searchQuery'] = $postFilters->getSearchQuery();
-
+            $data['searchQuery'] = get_query_var( 'search' ); //$postFilters->getSearchQuery();
         }
+        $data['modId'] = $this->ID;
+        $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
 
-// END Johan
-//
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;
@@ -127,6 +123,7 @@ class Posts extends \Modularity\Module
 
         return $data;
     }
+
 
     public function getTaxonomyDisplay($fields)
     {
@@ -632,7 +629,6 @@ class Posts extends \Modularity\Module
     public static function getPosts($module)
     {
 
-
         $fields = json_decode(json_encode(get_fields($module->ID)));
 
         if ($fields->posts_data_source == 'input') {
@@ -712,12 +708,6 @@ class Posts extends \Modularity\Module
                 break;
         }
 
-        /*$filterTaxonomy = filter_input(
-            INPUT_GET,             // Super global to use, in this case $_GET
-            'filterTaxonomy',           // The var to get a value from
-            FILTER_SANITIZE_STRING // Type of filter to apply, here sanitize the value as a string
-        );*/
-        var_dump($getPostsArgs);
         // Add metaquery to args
         if ($metaQuery) {
             $getPostsArgs['meta_query'] = $metaQuery;
