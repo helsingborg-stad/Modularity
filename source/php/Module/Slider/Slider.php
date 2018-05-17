@@ -205,6 +205,14 @@ class Slider extends \Modularity\Module
             $this->slideColumns = count($fields['slides']); //Less slides than specified number of columns avabile
         }
 
+        //Set slide height in js if circular
+        if ($fields['slider_layout'] === 'circle') {
+            $flickity = array_merge($flickity, array(
+                'setGallerySize' => true,
+                'resize' => true
+            ));
+        }
+
         //Return json
         return json_encode($flickity);
     }
