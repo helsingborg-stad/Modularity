@@ -29,14 +29,13 @@ class PostsFilters
         remove_filter('content_filtered_save_pre', 'wp_filter_post_kses');
 
         add_filter('query_vars', array($this, 'newQueryVars'));
-
     }
 
     /**
      * Register custom query vars
      * @param array $vars The array of available query variables
      */
-    function newQueryVars($vars)
+    public function newQueryVars($vars)
     {
         $vars[] = 'search';
         return $vars;
@@ -54,7 +53,6 @@ class PostsFilters
         if (is_admin()) {
             return $query;
         }
-
 
         $postType = $this->postType;
         $filterable = $this->getEnabledTaxonomies($postType);
@@ -81,7 +79,6 @@ class PostsFilters
         }
 
         if (is_tax() || is_category() || is_tag()) {
-
             $taxQuery = array(
                 'relation' => 'AND',
                 array(
@@ -118,7 +115,6 @@ class PostsFilters
         }
 
         // Hide category filter if displaying a category
-        //global $wp_query;
         if (is_category()) {
             $taxonomies = array_filter($taxonomies, function ($item) {
                 return $item !== 'category';
@@ -127,11 +123,10 @@ class PostsFilters
 
         // Hide taxonomy if displaying a taxonomy
         if (is_a(get_queried_object(), 'WP_Term')) {
-            $taxonomies = array_diff($taxonomies, (array)get_queried_object()->taxonomy);
+            $taxonomies = array_diff($taxonomies, (array) get_queried_object()->taxonomy);
         }
 
         foreach ($taxonomies as $key => $item) {
-
             $tax = get_taxonomy($item);
             $terms = get_terms($item, array(
                 'hide_empty' => false
@@ -197,7 +192,6 @@ class PostsFilters
      */
     public function getSearchQuery($query)
     {
-
         $searchQuery = '';
         /*if (!empty(get_search_query())) {
             $searchQuery = get_search_query();
@@ -247,7 +241,6 @@ class PostsFilters
         return $post->post_name;
     }
 
-
     /**
      * Trying to sort terms natural
      * @param $terms
@@ -263,7 +256,6 @@ class PostsFilters
 
         return $sort_terms;
     }
-
 
     public static function getMultiTaxDropdown($tax, int $parent = 0, string $class = '')
     {
@@ -366,8 +358,8 @@ class PostsFilters
 
         global $wpdb;
 
-        $from = null;
-        $to = null;
+        $from   = null;
+        $to     = null;
 
         if (isset($_GET[$this->moduleId . 'f']) && !empty($_GET[$this->moduleId . 'f'])) {
             $from = sanitize_text_field($_GET[$this->moduleId . 'f']);
@@ -445,5 +437,4 @@ class PostsFilters
 
         return $query;
     }
-
 }
