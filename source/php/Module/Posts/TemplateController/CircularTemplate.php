@@ -27,7 +27,7 @@ class CircularTemplate
         $hasImages = false;
 
         foreach ($this->data['posts'] as &$post) {
-            $image_dimensions = array(400, 300);
+            $image_dimensions = array(400, 400);
             $image = false;
 
             if ($this->data['posts_data_source'] !== 'input') {
@@ -35,7 +35,7 @@ class CircularTemplate
                     get_post_thumbnail_id($post->ID),
                     apply_filters(
                         'modularity/image/posts/news',
-                        municipio_to_aspect_ratio('16:9', $image_dimensions),
+                        municipio_to_aspect_ratio('1:1', $image_dimensions),
                         $this->args
                     )
                 );
@@ -45,7 +45,7 @@ class CircularTemplate
                         $post->image->ID,
                         apply_filters(
                             'modularity/image/posts/news',
-                            municipio_to_aspect_ratio('16:9', $image_dimensions),
+                            municipio_to_aspect_ratio('1:1', $image_dimensions),
                             $this->args
                         )
                     );
