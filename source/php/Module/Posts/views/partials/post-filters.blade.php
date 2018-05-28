@@ -14,7 +14,6 @@
                             <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right dropdown-{{ $taxKey }}">
 
                                 <?php
-                                //$tax->slug = $taxKey;
                                 $dropdown = \Modularity\Module\Posts\PostsFilters::getMultiTaxDropdown($taxonomy,
                                     0, 'list-hierarchical'); ?>
                                 {!! $dropdown !!}
@@ -37,7 +36,8 @@
                 @endif
 
                 @if ($frontEndFilters['front_end_tax_filtering_dates'])
-                    <div class="grid-sm-12 grid-md-auto">
+                        <i class="btn pricon pricon-lg show-date-filter pricon-calendar"> <?php _e('Date', 'municipio'); ?> </i>
+                        <div class="grid-sm-12 grid-md-auto hidden date-filter">
                         <label for="filter-date-from" class="text-sm sr-only"><strong><?php _e('Date published',
                                     'municipio'); ?>:</strong></label>
                         <div class="input-group">
@@ -58,7 +58,7 @@
                 @if($queryString)
                     <div class="grid-sm-12 hidden-sm hidden-xs grid-md-fit-content">
                         <a class="btn btn-block pricon pricon-close pricon-space-right"
-                           href="{{ $pageUrl }}"><?php _e('Clear filters', 'municipio'); ?></a>
+                           href="/{{ $pageUrl }}"><?php _e('Clear filters', 'municipio'); ?></a>
                     </div>
                 @endif
                 <div class="grid-sm-12 grid-md-fit-content">

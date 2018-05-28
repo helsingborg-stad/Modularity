@@ -16,24 +16,22 @@ class PostsFilters
         $this->taxonomies = get_field('taxonomy_display', $this->moduleId);
         $this->taxonomyType = get_field('posts_taxonomy_type', $this->moduleId);
 
-
-        //add_filter('template_include', array($this, 'enableSearch'), 10);
-
         remove_action('pre_get_posts', array($this, 'doPostTaxonomyFiltering'));
         add_filter('posts_where', array($this, 'doPostDateFiltering'), 10, 2);
         add_action('pre_get_posts', array($this, 'doPostTaxonomyFiltering'));
-        add_action('pre_get_posts', array($this, 'doPostOrdering'));
-        add_action('pre_get_posts', array($this, 'getSearchQuery'));
+
+        add_filter('posts_where', array($this, 'getSearchQuery'), 10, 2);
+        add_filter('query_vars', array($this, 'newQueryVars'));
         remove_filter('content_save_pre', 'wp_filter_post_kses');
         remove_filter('excerpt_save_pre', 'wp_filter_post_kses');
         remove_filter('content_filtered_save_pre', 'wp_filter_post_kses');
 
-        add_filter('query_vars', array($this, 'newQueryVars'));
     }
 
     /**
      * Register custom query vars
      * @param array $vars The array of available query variables
+     * @return array $vars
      */
     public function newQueryVars($vars)
     {
@@ -41,15 +39,13 @@ class PostsFilters
         return $vars;
     }
 
-
     /**
      * Do taxonomy fitering
      * @param  object $query Query object
-     * @return object        Modified query
+     * @return object Modified query
      */
     public function doPostTaxonomyFiltering($query)
     {
-        //Only run on frontend
         if (is_admin()) {
             return $query;
         }
@@ -114,16 +110,14 @@ class PostsFilters
             return array();
         }
 
-        // Hide category filter if displaying a category
         if (is_category()) {
             $taxonomies = array_filter($taxonomies, function ($item) {
                 return $item !== 'category';
             });
         }
 
-        // Hide taxonomy if displaying a taxonomy
         if (is_a(get_queried_object(), 'WP_Term')) {
-            $taxonomies = array_diff($taxonomies, (array) get_queried_object()->taxonomy);
+            $taxonomies = array_diff($taxonomies, (array)get_queried_object()->taxonomy);
         }
 
         foreach ($taxonomies as $key => $item) {
@@ -131,7 +125,6 @@ class PostsFilters
             $terms = get_terms($item, array(
                 'hide_empty' => false
             ));
-
 
             $placement = $this->taxonomyType;
             if (is_null($placement)) {
@@ -162,72 +155,23 @@ class PostsFilters
         return $ungrouped;
     }
 
-
     /**
-     * Use correct template when filtering a post type archive
-     * @param  string $template Template path
-     * @return string           Template path
+     * Returns  Add where clause to post query when free text search
+     * @return string refined Search query
      */
-    public function enableSearch($template)
+    public function getSearchQuery($where, $query)
     {
-        $template = \Municipio\Helper\Template::locateTemplate($template);
-
-        //if ((is_post_type_archive() || is_category() || is_date() || is_tax() || is_tag() || is_page() || is_single()) && is_search()) {
-        $archiveTemplate = \Municipio\Helper\Template::locateTemplate('archive-' . $this->postType . '.blade.php');
-
-        if (!$archiveTemplate) {
-            $archiveTemplate = \Municipio\Helper\Template::locateTemplate('archive.blade.php');
+        if (is_admin() || $query->is_main_query()) {
+            return $where;
         }
 
-        $template = $archiveTemplate;
-        //}
+        global $wpdb;
 
-        return $template;
-    }
-
-
-    /**
-     * Returns escaped search query
-     * @return string Search query
-     */
-    public function getSearchQuery($query)
-    {
-        $searchQuery = '';
-        /*if (!empty(get_search_query())) {
-            $searchQuery = get_search_query();
-        } elseif (!empty($_GET['search'])) {
-            $searchQuery = esc_attr($_GET['search']);
+        if (isset($_GET['search']) && !empty($_GET['search'])) {
+            $search = sanitize_text_field(esc_attr($_GET['search']));
+            $where .= " AND ($wpdb->posts.post_title LIKE '%$search%' ) OR ($wpdb->posts.post_content LIKE '%$search%' ) ";
         }
-
-        var_dump($searchQuery);
-        */
-
-
-        // check if the user is requesting an admin page
-        // or current query is not the main query
-        /*if ( is_admin() || ! $query->is_main_query() ){
-            return;
-        }*/
-
-        $query->set('post_title',  array(
-            array(
-                'key' => 'search',
-                'value' => get_query_var('search'),
-                'compare' => 'LIKE'
-            )
-        ));
-
-        $query->set('post_content', array(
-            array(
-                'key' => 'search',
-                'value' => get_query_var('search'),
-                'compare' => 'LIKE'
-            )
-        ));
-
-
-        //var_dump($query);
-        return $query;
+        return $where;
     }
 
     /**
@@ -238,6 +182,7 @@ class PostsFilters
     {
         $pageId = get_the_ID();
         $post = get_post($pageId);
+
         return $post->post_name;
     }
 
@@ -257,6 +202,11 @@ class PostsFilters
         return $sort_terms;
     }
 
+    /**
+     * Taxonomy dropdown
+     * @param $taxonomy
+     * @return markup
+     */
     public static function getMultiTaxDropdown($tax, int $parent = 0, string $class = '')
     {
         $termArgs = array(
@@ -350,16 +300,14 @@ class PostsFilters
      */
     public function doPostDateFiltering($where, $query)
     {
-
-        //Only run on frontend
         if (is_admin() || $query->is_main_query()) {
             return $where;
         }
 
         global $wpdb;
 
-        $from   = null;
-        $to     = null;
+        $from = null;
+        $to = null;
 
         if (isset($_GET[$this->moduleId . 'f']) && !empty($_GET[$this->moduleId . 'f'])) {
             $from = sanitize_text_field($_GET[$this->moduleId . 'f']);
@@ -380,61 +328,4 @@ class PostsFilters
         return $where;
     }
 
-    /**
-     * Do post ordering for archives
-     * @param  object $query Query
-     * @return object        Modified query
-     */
-    public function doPostOrdering($query)
-    {
-        // Do not execute this in admin view
-        if (is_admin() || !$query->is_main_query()) {
-            return $query;
-        }
-
-        $isMetaQuery = false;
-
-        $posttype = $query->get('post_type');
-        if (empty($posttype)) {
-            $posttype = 'post';
-        }
-
-        // Get orderby key, default to post_date
-        $orderby = (isset($_GET['orderby']) && !empty($_GET['orderby'])) ? sanitize_text_field($_GET['orderby']) : get_field('archive_' . sanitize_title($posttype) . '_sort_key',
-            'option');
-        if (empty($orderby)) {
-            $orderby = 'post_date';
-        }
-
-        if (in_array($orderby, array('post_date', 'post_modified', 'post_title'))) {
-            $orderby = str_replace('post_', '', $orderby);
-        } else {
-            $isMetaQuery = true;
-        }
-
-        // Get orderby order, default to desc
-        $order = (isset($_GET['order']) && !empty($_GET['order'])) ? sanitize_text_field($_GET['order']) : get_field('archive_' . sanitize_title($posttype) . '_sort_order',
-            'option');
-        if (empty($order) || !in_array(strtolower($order), array('asc', 'desc'))) {
-            $order = 'desc';
-        }
-
-        $query->set('order', $order);
-
-        // Return if not meta query
-        if (!$isMetaQuery) {
-            $query->set('orderby', $orderby);
-            return $query;
-        }
-
-        if (isset($_GET['orderby']) && $_GET['orderby'] == 'meta_key' && isset($_GET['meta_key']) && !empty($_GET['meta_key'])) {
-            $orderby = sanitize_text_field($_GET['meta_key']);
-        }
-
-        // Continue if meta query
-        $query->set('meta_key', $orderby);
-        $query->set('orderby', 'meta_value');
-
-        return $query;
-    }
 }

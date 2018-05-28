@@ -77,7 +77,7 @@ class Posts extends \Modularity\Module
 
             $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
             $data['pageUrl'] = $postFilters->getPostUrl();
-            $data['searchQuery'] = get_query_var( 'search' ); //$postFilters->getSearchQuery();
+            $data['searchQuery'] = get_query_var( 'search' );
         }
         $data['modId'] = $this->ID;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
