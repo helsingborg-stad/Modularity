@@ -272,6 +272,92 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_5b0d0c3f955b6",
+            "label": "Front End Button text",
+            "name": "front_end_button_text",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5af2f2e486366",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Search",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5b0d103f8dc5a",
+            "label": "Front End Hide date",
+            "name": "front_end_hide_date",
+            "type": "true_false",
+            "instructions": "Hide date range options behind a button",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5af2f2e486366",
+                        "operator": "==",
+                        "value": "1"
+                    },
+                    {
+                        "field": "field_5af2f68810be2",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_5b0d10e78dc5b",
+            "label": "Front End Display",
+            "name": "front_end_display",
+            "type": "true_false",
+            "instructions": "Show all filter options on same row",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5af2f2e486366",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [

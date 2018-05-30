@@ -67,6 +67,10 @@ class Posts extends \Modularity\Module
             $data['frontEndFilters']['front_end_tax_filtering_taxonomy'] = get_field('front_end_tax_filtering_taxonomy',
                 $this->ID) ? true : false;
 
+            $data['frontEndFilters']['front_end_button_text'] = get_field('front_end_button_text', $this->ID);
+            $data['frontEndFilters']['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
+            $data['frontEndFilters']['front_end_display'] = get_field('front_end_display', $this->ID);
+
             $postFilters = new \Modularity\Module\Posts\PostsFilters($this);
 
             if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true)) {

@@ -40,7 +40,7 @@ class PostsFilters
     }
 
     /**
-     * Do taxonomy fitering
+     * Do taxonomy filtering
      * @param  object $query Query object
      * @return object Modified query
      */

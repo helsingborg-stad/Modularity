@@ -282,6 +282,92 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
+        10 => array(
+            'key' => 'field_5b0d0c3f955b6',
+            'label' => __('Front End Button text', 'modularity'),
+            'name' => 'front_end_button_text',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_5af2f2e486366',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '33',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => 'Search',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+            'maxlength' => '',
+        ),
+        11 => array(
+            'key' => 'field_5b0d103f8dc5a',
+            'label' => __('Front End Hide date', 'modularity'),
+            'name' => 'front_end_hide_date',
+            'type' => 'true_false',
+            'instructions' => __('Hide date range options behind a button', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_5af2f2e486366',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                    1 => array(
+                        'field' => 'field_5af2f68810be2',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '33',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 1,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        12 => array(
+            'key' => 'field_5b0d10e78dc5b',
+            'label' => __('Front End Display', 'modularity'),
+            'name' => 'front_end_display',
+            'type' => 'true_false',
+            'instructions' => __('Show all filter options on same row', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_5af2f2e486366',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '33',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
     ),
     'location' => array(
         0 => array(
