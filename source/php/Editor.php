@@ -18,6 +18,7 @@ class Editor extends \Modularity\Options
         add_action('admin_head', array($this, 'registerTabs'));
         add_action('wp_ajax_save_modules', array($this, 'save'));
         add_action('wp_insert_post_data', array($this, 'avoidDuplicatePostName'), 10, 2);
+        add_action('init', array($this, 'registerScopeOption'));
 
         $this->registerEditorPage();
     }
@@ -47,7 +48,6 @@ class Editor extends \Modularity\Options
     {
         if (isset($_GET['id'])) {
             if (is_numeric($_GET['id']) && $_GET['id'] > 0) {
-
                 $post = get_post($_GET['id']);
 
                 if (!$post) {
@@ -74,7 +74,6 @@ class Editor extends \Modularity\Options
                 );
 
                 wp_reset_postdata();
-
             } else {
                 global $archive;
                 $archive = $_GET['id'];
@@ -443,7 +442,6 @@ class Editor extends \Modularity\Options
                 $arrayIndex = 0;
 
                 foreach ($sidebar as $moduleUid => $module) {
-
                     if (!isset($module['postid'])) {
                         continue;
                     }
@@ -641,5 +639,89 @@ class Editor extends \Modularity\Options
             'grid-md-4' => '33%',
             'grid-md-3' => '25%'
         ));
+    }
+
+    /**
+     * Adds an scope (style scope) selector to each module in array.
+     * @return void
+     */
+    public function registerScopeOption()
+    {
+        $scopes = apply_filters('Modularity/Editor/ModuleCssScope', array());
+        if (is_array($scopes) && !empty($scopes)) {
+            foreach ($scopes as $postType => $style) {
+                if (!empty($style) && is_array($style) && is_string($postType)) {
+                    $this->registerScopeMetaBox($postType, $style);
+                }
+            }
+        }
+    }
+
+    /**
+     * Registers a scope metabox
+     * @return WP_Error, true
+     */
+    public function registerScopeMetaBox($postType, $choises)
+    {
+        if (!is_string($postType)) {
+            return WP_Error("Post type variable must be of the type string.");
+        }
+
+        if (!is_array($choises)) {
+            return WP_Error("Choises variable must be of the type assoc array.");
+        }
+
+        if (!function_exists('acf_add_local_field_group')) {
+            return WP_Error("CCould not find required ACF function acf_add_local_field_group.");
+        }
+
+        acf_add_local_field_group(array(
+            'key' => 'group_' . intval($postType, 36),
+            'title' => __('Scope styling', 'modularity'),
+            'fields' => array(
+                array(
+                    'key' => 'field_5afad7f2ffc63',
+                    'label' => __('Select an apperance for this instance of module', 'modularity'),
+                    'name' => 'module_css_scope',
+                    'type' => 'select',
+                    'instructions' => __('By selecting a scope for this class, they will appear in a different way than the standard layout.', 'modularity'),
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => $choises,
+                    'default_value' => array(
+                    ),
+                    'allow_null' => 1,
+                    'multiple' => 0,
+                    'ui' => 0,
+                    'ajax' => 0,
+                    'return_format' => 'value',
+                    'placeholder' => '',
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => $postType,
+                    ),
+                ),
+            ),
+            'menu_order' => 0,
+            'position' => 'side',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => 1,
+            'description' => '',
+        ));
+
+        return true;
     }
 }

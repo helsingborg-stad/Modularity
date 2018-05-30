@@ -349,3 +349,24 @@ add_filter('Modularity/Module/Posts/Date', function ($date, $postId, $postType) 
 });
 ```
 
+#### Modularity/Editor/ModuleCssScope
+
+> Allow editors to select a unique appeance (provided by a theme etc) for a module. Adds a single class to the module wrapper, to allow scoping of css styles. 
+
+*Params:*
+```
+$scopes - Previously declared scopes. 
+```
+
+*Example:*
+```php
+add_filter('Modularity/Editor/ModuleCssScope',function($scopes) {
+        return array(
+            'mod-posts' => array(
+                's-buy-card' => __("Make this module sparkle!", 'modularity'),
+                's-user-list' => __("A boring user list is what i see", 'modularity')
+            )
+        );
+    });
+```
+
