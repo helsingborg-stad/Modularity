@@ -2,11 +2,46 @@
     @if (!$hideTitle && !empty($post_title))
         <h2>{!! apply_filters('the_title', $post_title) !!}</h2>
     @endif
+    <style>
+        .slider {
+            @if(!is_null($slidePaddingHeight))
+            padding-top: {{ $slidePaddingHeight }}%;
+            @endif
+        }
+        .slider .slide{
+            position: relative;
+            width: {{ $slideWidth }}% !important;
+        }
 
-    <div class="{{ $classes }} {{ $slider_format }} slider-layout-{{ $slider_layout }}">
+        @media only screen and (max-width: 900px) {
+            .slider {
+                @if(!is_null($slidePaddingHeight))
+                padding-top: {{ $slidePaddingHeightMobile }}%;
+                @endif
+            }
+            .slider .slide {
+                width: {{ $slideWidthMobile }}% !important;
+
+            }
+        }
+
+        @media only screen and (max-width: 600px) {
+            .slider {
+                @if(!is_null($slidePaddingHeight))
+                padding-top: {{ $slidePaddingHeightDefault }}%;
+                @endif
+            }
+            .slider .slide {
+                width: 100% !important;
+            }
+        }
+    </style>
+
+    <div class="{{ $classes }} slider-layout-{{ $slider_layout }}" >
         <div data-flickity='{!! $flickity !!}'>
             @foreach ($slides as $slide)
-            <div class="slide type-{{ $slide['acf_fc_layout'] }} {{ (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : '' }}" {{ $slideColumns > 1 ? 'style="width:' . 100/$slideColumns . '%;"' : '' }} style="position:relative;">
+
+            <div class="slide type-{{ $slide['acf_fc_layout'] }} {{ (isset($slide['activate_textblock']) && $slide['activate_textblock'] === true) ? 'has-text-block' : '' }}">
 
                 <!-- Link start -->
                 @if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false')

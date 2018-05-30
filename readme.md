@@ -35,8 +35,8 @@ class Article extends \Modularity\Module
         $description = 'Outputs a full article with title and content';
         $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
-        $plugin = '/path/to/include-file.php' // CAn also be an array of paths to include 
-        $cacheTTL = 60*60*24 //Time to live for fragment cache (stored in memcached). 
+        $plugin = '/path/to/include-file.php'; // Can also be an array of paths to include 
+        $cacheTTL = 60*60*24; // Time to live for fragment cache (stored in memcached). 
 
         $this->register(
             $id,
@@ -347,5 +347,26 @@ $postType
 add_filter('Modularity/Module/Posts/Date', function ($date, $postId, $postType) {
     return $date;
 });
+```
+
+#### Modularity/Editor/ModuleCssScope
+
+> Allow editors to select a unique appeance (provided by a theme etc) for a module. Adds a single class to the module wrapper, to allow scoping of css styles. 
+
+*Params:*
+```
+$scopes - Previously declared scopes. 
+```
+
+*Example:*
+```php
+add_filter('Modularity/Editor/ModuleCssScope',function($scopes) {
+        return array(
+            'mod-posts' => array(
+                's-buy-card' => __("Make this module sparkle!", 'modularity'),
+                's-user-list' => __("A boring user list is what i see", 'modularity')
+            )
+        );
+    });
 ```
 

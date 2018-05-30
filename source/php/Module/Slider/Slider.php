@@ -14,7 +14,18 @@ class Slider extends \Modularity\Module
         'ratio-4-3'  => array(1252, 939)
     );
 
+    public $paddingRatios = array(
+        'ratio-16-9' => 56.25,
+        'ratio-10-3' => 30,
+        'ratio-36-7' => 19.44,
+        'ratio-4-3'  => 75
+    );
+
     public $slideColumns;
+    public $slideColumnsMobile;
+
+    public $bleed = false;
+    public $bleedAmout = array(0.6,0.9,0.8,0.9,0.9);
 
     public function init()
     {
@@ -25,16 +36,47 @@ class Slider extends \Modularity\Module
 
     public function data() : array
     {
+
+        //Get settings
         $data = get_fields($this->ID);
+
+        //Toggle of bleed
+        if(in_array('allowBleed', (array) $data['additional_options'])) {
+            $this->bleed = true;
+        }
+
+        //Assign settings to objects
         $data['classes'] = $this->getClasses($data);
         $data['flickity'] = $this->getFlickitySettings($data);
 
-        if ($data['slider_layout'] === 'circles') {
-            $data['slider_format'] = null;
+        //Get slides & columns
+        $data['slides']         = $this->prepareSlides($data);
+        $data['slideColumns']   = $this->slideColumns;
+
+        //Duplicate output of slides if columnize. This is due to bad handlig of flickity [Avoids flickering on first/last slide].
+        if ($this->bleed) {
+            $data['slides'] = array_merge($data['slides'], $data['slides']);
         }
 
-        $data['slides'] = $this->prepareSlides($data);
-        $data['slideColumns'] = $this->slideColumns;
+        //Calculate slider size (with or without bleed option)
+        if ($this->bleed) {
+            $data['slideWidth'] = (100/$this->slideColumns) * $this->bleedAmout[$this->slideColumns-1];
+            $data['slidePaddingHeight'] = ($this->paddingRatios[$data['slider_format']] / $this->slideColumns) * $this->bleedAmout[$this->slideColumns-1];
+        } else {
+            $data['slideWidth'] = (100/$this->slideColumns);
+            $data['slidePaddingHeight'] = $this->paddingRatios[$data['slider_format']] / $this->slideColumns;
+        }
+
+        //Slide cols in smaller resolutions
+        $data['slideWidthMobile'] = $data['slideWidth']*2;
+        $data['slidePaddingHeightMobile'] = $data['slidePaddingHeight'] * 2;
+        $data['slidePaddingHeightDefault'] = $this->paddingRatios[$data['slider_format']];
+
+        //Exception for cicle model
+        if ($data['slider_layout'] === 'circle') {
+            $data['slider_format'] = null;
+            $data['slidePaddingHeight'] = null;
+        }
 
         return $data;
     }
@@ -99,7 +141,6 @@ class Slider extends \Modularity\Module
             if (isset($slide['show_pause_icon_on_hover']) && $slide['show_pause_icon_on_hover'] == true) {
                 $slide['slider-show-on-hover'] = 'slider-show-on-hover';
             }
-
         }
 
         return $data['slides'];
@@ -122,14 +163,14 @@ class Slider extends \Modularity\Module
             $classes[] = 'slider-height-restrictions';
         }
 
-
-
         return implode(' ', $classes);
     }
 
     public function getFlickitySettings($fields)
     {
-        $slideColumns = isset($fields['slide_columns']) && !empty($fields['slide_columns']) ? $fields['slide_columns'] : 1;
+
+        //Initial number of columns
+        $this->slideColumns = isset($fields['slide_columns']) && !empty($fields['slide_columns']) ? (int) $fields['slide_columns'] : 1;
 
         $flickity = array(
             'cellSelector'   => '.slide',
@@ -138,9 +179,11 @@ class Slider extends \Modularity\Module
             'pageDots'       => in_array('pageDots', (array) $fields['additional_options']),
             'freeScroll'     => in_array('freeScroll', (array) $fields['additional_options']),
             'groupCells'     => in_array('groupCells', (array) $fields['additional_options']),
-            'setGallerySize' => false
+            'setGallerySize' => true,
+            'dragThreshold'  => 10
         );
 
+        //Autoslider
         if ($fields['slides_autoslide'] === true) {
             $flickity['autoPlay'] = true;
             $flickity['pauseAutoPlayOnHover'] = true;
@@ -150,7 +193,8 @@ class Slider extends \Modularity\Module
             }
         }
 
-        if (count($fields['slides']) <= $slideColumns) {
+        //Not enough slides (multiple visible)
+        if (count($fields['slides']) <= $this->slideColumns && !$this->bleed) {
             $flickity = array_merge($flickity, array(
                 'draggable' => false,
                 'pageDots' => false,
@@ -158,14 +202,19 @@ class Slider extends \Modularity\Module
                 'autoPlay' => false,
                 'cellAlign' => 'left'
             ));
-
-            $slideColumns = count($fields['slides']);
+            $this->slideColumns = count($fields['slides']); //Less slides than specified number of columns avabile
         }
 
-        $this->slideColumns = $slideColumns;
+        //Set slide height in js if circular
+        if ($fields['slider_layout'] === 'circle') {
+            $flickity = array_merge($flickity, array(
+                'setGallerySize' => true,
+                'resize' => true
+            ));
+        }
 
-        $flickity = json_encode($flickity);
-        return $flickity;
+        //Return json
+        return json_encode($flickity);
     }
 
     public static function getEmbed($url, $classes = array(), $image = null)
