@@ -69,7 +69,7 @@ jQuery(document).ready(function ($) {
     $('.frontend-filter').hide();
 
     if ($('#modularity-latest-post-type select').val() === 'post' ||
-        $('#modularity-latest-post-type select').val() === 'post') {
+        $('#modularity-latest-post-type select').val() === 'page') {
         $('.frontend-filter').show();
     }
     $('body').on('change', '#modularity-latest-post-type select', function () {
