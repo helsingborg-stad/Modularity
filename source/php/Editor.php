@@ -676,7 +676,7 @@ class Editor extends \Modularity\Options
         }
 
         acf_add_local_field_group(array(
-            'key' => 'group_' . intval($postType, 36),
+            'key' => 'group_' . substr(md5($postType),0,13),
             'title' => __('Scope styling', 'modularity'),
             'fields' => array(
                 array(
