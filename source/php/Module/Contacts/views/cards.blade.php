@@ -2,7 +2,7 @@
 <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
 @endif
 
-<div class="grid" {{ $equalContainer }}>
+<div class="grid grid--columns" {{ $equalContainer }}>
 @foreach ($contacts as $contact)
 <div class="{{ $columns }}">
 
