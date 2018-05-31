@@ -672,7 +672,7 @@ class Editor extends \Modularity\Options
         }
 
         if (!function_exists('acf_add_local_field_group')) {
-            return WP_Error("CCould not find required ACF function acf_add_local_field_group.");
+            return WP_Error("Could not find required ACF function acf_add_local_field_group.");
         }
 
         acf_add_local_field_group(array(
