@@ -183,7 +183,7 @@
             ],
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "message": "",
@@ -210,7 +210,7 @@
             ],
             "wrapper": {
                 "width": "33",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "message": "",
@@ -237,7 +237,7 @@
             ],
             "wrapper": {
                 "width": "33",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "message": "",
@@ -264,7 +264,7 @@
             ],
             "wrapper": {
                 "width": "33",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "message": "",
@@ -291,7 +291,7 @@
             ],
             "wrapper": {
                 "width": "33",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "default_value": "Search",
@@ -323,7 +323,7 @@
             ],
             "wrapper": {
                 "width": "33",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "message": "",
@@ -350,7 +350,7 @@
             ],
             "wrapper": {
                 "width": "33",
-                "class": "",
+                "class": "frontend-filter",
                 "id": ""
             },
             "message": "",

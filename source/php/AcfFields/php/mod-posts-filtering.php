@@ -192,7 +192,7 @@
             ),
             'wrapper' => array(
                 'width' => '',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'message' => '',
@@ -219,7 +219,7 @@
             ),
             'wrapper' => array(
                 'width' => '33',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'message' => '',
@@ -246,7 +246,7 @@
             ),
             'wrapper' => array(
                 'width' => '33',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'message' => '',
@@ -273,7 +273,7 @@
             ),
             'wrapper' => array(
                 'width' => '33',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'message' => '',
@@ -300,7 +300,7 @@
             ),
             'wrapper' => array(
                 'width' => '33',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'default_value' => 'Search',
@@ -332,7 +332,7 @@
             ),
             'wrapper' => array(
                 'width' => '33',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'message' => '',
@@ -359,7 +359,7 @@
             ),
             'wrapper' => array(
                 'width' => '33',
-                'class' => '',
+                'class' => 'frontend-filter',
                 'id' => '',
             ),
             'message' => '',

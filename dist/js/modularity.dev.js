@@ -1,6 +1,6 @@
 var Modularity = Modularity || {};
 
-(function($){
+(function ($) {
     $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {
         var isChecked = $(this).is(':checked');
         var value = $(this).attr('value');
@@ -15,7 +15,7 @@ var Modularity = Modularity || {};
     });
 })(jQuery);
 
-(function($){
+(function ($) {
 
     // Show spinner when clicking save on Modularity options page
     $('#modularity-options #publish').on('click', function () {
@@ -47,13 +47,13 @@ var Modularity = Modularity || {};
 jQuery(document).ready(function ($) {
     if ($('#modularity-mb-modules').length) {
         var offset = $('#modularity-mb-modules').offset();
-    	$(document).scroll(function(){
-            if ($(window).scrollTop()+50 > offset.top && !$('#modularity-mb-modules').hasClass('is-fixed')) {
+        $(document).scroll(function () {
+            if ($(window).scrollTop() + 50 > offset.top && !$('#modularity-mb-modules').hasClass('is-fixed')) {
                 $('#modularity-mb-modules').addClass('is-fixed');
-            } else if ($(window).scrollTop()+50 < offset.top && $('#modularity-mb-modules').hasClass('is-fixed')) {
+            } else if ($(window).scrollTop() + 50 < offset.top && $('#modularity-mb-modules').hasClass('is-fixed')) {
                 $('#modularity-mb-modules').removeClass('is-fixed');
             }
-    	});
+        });
     }
 
     $('.modularity-edit-module a').on('click', function (e) {
@@ -64,6 +64,23 @@ jQuery(document).ready(function ($) {
     });
 });
 
+/* Post filters is visible in backend if posttype is set to post or page */
+jQuery(document).ready(function ($) {
+    $('.frontend-filter').hide();
+
+    if ($('#modularity-latest-post-type select').val() === 'post' ||
+        $('#modularity-latest-post-type select').val() === 'post') {
+        $('.frontend-filter').show();
+    }
+    $('body').on('change', '#modularity-latest-post-type select', function () {
+        if ($('#modularity-latest-post-type select').val() === 'post'
+            || $('#modularity-latest-post-type select').val() === 'page') {
+            $('.frontend-filter').show();
+        } else {
+            $('.frontend-filter').hide();
+        }
+    }).trigger("change");
+});
 Modularity = Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
 
@@ -608,7 +625,6 @@ Modularity.Helpers = (function ($) {
     return new Helpers();
 
 })(jQuery);
-
 
 jQuery.fn.serializeObject = function()
 {
