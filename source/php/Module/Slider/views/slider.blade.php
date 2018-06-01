@@ -37,7 +37,7 @@
         }
     </style>
 
-    <div class="{{ $classes }} slider-layout-{{ $slider_layout }}" >
+    <div class="{{ $classes }} {{ $slider_format }} slider-layout-{{ $slider_layout }}" >
         <div data-flickity='{!! $flickity !!}'>
             @foreach ($slides as $slide)
 
