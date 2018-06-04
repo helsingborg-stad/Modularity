@@ -2,40 +2,6 @@
     @if (!$hideTitle && !empty($post_title))
         <h2>{!! apply_filters('the_title', $post_title) !!}</h2>
     @endif
-    <style>
-        .slider {
-            @if(!is_null($slidePaddingHeight))
-            padding-top: {{ $slidePaddingHeight }}%;
-            @endif
-        }
-        .slider .slide{
-            position: relative;
-            width: {{ $slideWidth }}% !important;
-        }
-
-        @media only screen and (max-width: 900px) {
-            .slider {
-                @if(!is_null($slidePaddingHeight))
-                padding-top: {{ $slidePaddingHeightMobile }}%;
-                @endif
-            }
-            .slider .slide {
-                width: {{ $slideWidthMobile }}% !important;
-
-            }
-        }
-
-        @media only screen and (max-width: 600px) {
-            .slider {
-                @if(!is_null($slidePaddingHeight))
-                padding-top: {{ $slidePaddingHeightDefault }}%;
-                @endif
-            }
-            .slider .slide {
-                width: 100% !important;
-            }
-        }
-    </style>
 
     <div class="{{ $classes }} {{ $slider_format }} slider-layout-{{ $slider_layout }}" >
         <div data-flickity='{!! $flickity !!}'>
