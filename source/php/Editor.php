@@ -676,11 +676,11 @@ class Editor extends \Modularity\Options
         }
 
         acf_add_local_field_group(array(
-            'key' => 'group_' . substr(md5($postType),0,13),
+            'key' => 'group_' . substr(md5($postType . '_scope'),0,13),
             'title' => __('Scope styling', 'modularity'),
             'fields' => array(
                 array(
-                    'key' => 'field_5afad7f2ffc63',
+                    'key' => 'field_' . substr(md5($postType . '_scope'),0,13),
                     'label' => __('Select an apperance for this instance of module', 'modularity'),
                     'name' => 'module_css_scope',
                     'type' => 'select',
