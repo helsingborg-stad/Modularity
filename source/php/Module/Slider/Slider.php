@@ -62,7 +62,6 @@ class Slider extends \Modularity\Module
         if ($this->bleed) {
             $data['slideWidth'] = (100/$this->slideColumns) * $this->bleedAmout[$this->slideColumns-1];
             $data['slidePaddingHeight'] = ($this->paddingRatios[$data['slider_format']] / $this->slideColumns) * $this->bleedAmout[$this->slideColumns-1];
-            $data['dataBleed'] = true;
         } else {
             $data['slideWidth'] = (100/$this->slideColumns);
             $data['slidePaddingHeight'] = $this->paddingRatios[$data['slider_format']] / $this->slideColumns;
