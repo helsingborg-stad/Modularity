@@ -15,8 +15,6 @@
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 1,
             "choices": {
                 "default": "Default",
                 "circle": "Circle slides"
@@ -24,10 +22,12 @@
             "default_value": [
                 "default"
             ],
+            "allow_null": 1,
+            "multiple": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "return_format": "value",
+            "placeholder": ""
         },
         {
             "key": "field_573dce058a66e",
@@ -167,7 +167,7 @@
                 {
                     "key": "56a5ed29398db",
                     "name": "image",
-                    "label": "Image",
+                    "label": "Bild",
                     "display": "block",
                     "sub_fields": [
                         {
@@ -288,6 +288,13 @@
                                         "operator": "==",
                                         "value": "center"
                                     }
+                                ],
+                                [
+                                    {
+                                        "field": "field_56e7fa230ee09",
+                                        "operator": "==",
+                                        "value": "bottom"
+                                    }
                                 ]
                             ],
                             "wrapper": {
@@ -296,12 +303,10 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_56ab235393f04",
