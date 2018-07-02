@@ -42,18 +42,14 @@
 
             @if (isset($contact['address']) && !empty($contact['address']))
             <li class="gutter gutter-top small">
-                @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
                     <strong><?php _e('Postal address', 'modularity'); ?></strong>
-                @endif
                 {!! $contact['address'] !!}
             </li>
             @endif
 
             @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
             <li class="gutter gutter-top small">
-                @if (isset($contact['address']) && !empty($contact['address']))
-                    <strong><?php _e('Visiting address', 'modularity'); ?></strong>
-                @endif
+                <strong><?php _e('Visiting address', 'modularity'); ?></strong>
                 {!! $contact['visiting_address'] !!}
             </li>
             @endif
