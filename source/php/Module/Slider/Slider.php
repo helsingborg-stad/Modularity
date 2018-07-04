@@ -51,12 +51,13 @@ class Slider extends \Modularity\Module
 
         //Get slides & columns
         $data['slides']         = $this->prepareSlides($data);
+
         $data['slideColumns']   = $this->slideColumns;
 
         //Duplicate output of slides if columnize. This is due to bad handlig of flickity [Avoids flickering on first/last slide].
-        if ($this->bleed) {
-            $data['slides'] = array_merge($data['slides'], $data['slides']);
-        }
+        // if ($this->bleed) {
+        //     $data['slides'] = array_merge($data['slides'], $data['slides']);
+        // }
 
         //Calculate slider size (with or without bleed option)
         if ($this->bleed) {
