@@ -67,6 +67,7 @@ class Slider extends \Modularity\Module
         } else {
             $data['slideWidth'] = (100/$this->slideColumns);
             $data['slidePaddingHeight'] = $this->paddingRatios[$data['slider_format']] / $this->slideColumns;
+            $data['dataBleed'] = false;
         }
 
         //Slide cols in smaller resolutions
