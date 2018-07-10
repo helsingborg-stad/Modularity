@@ -30,7 +30,7 @@
 
         <section class="accordion-section">
             <label tabindex="0" class="accordion-toggle" for="item-{{ $ID }}-{{ $post->ID }}">
-                @if (isset($posts_list_column_titles) && count($posts_list_column_titles) > 0)
+                @if (!empty($posts_list_column_titles))
                     <span class="accordion-table">
                     @if (isset($post->column_values) && !empty($post->column_values))
                         @if ($posts_hide_title_column)
