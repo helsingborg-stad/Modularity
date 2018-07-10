@@ -20,7 +20,7 @@ class FilesList extends \Modularity\Module
         $data['listId'] = 'files_' . uniqid();
         $data['files'] = $this->prepareFiles(get_field('file_list', $this->ID));
         $data['columns'] = get_field('columns', $this->ID);
-        $data['showFilters'] = is_null(get_field('show_filter', $this->ID)) || get_field('show_filter', $this->ID) === true;
+        $data['showFilters'] = !empty(get_field('show_filter', $this->ID));
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
 
         return $data;
