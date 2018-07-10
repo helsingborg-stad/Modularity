@@ -27,7 +27,7 @@
             @foreach ($files as $item)
             <tr>
                 <td>
-                    <a target="_blank" class="link-item" href="{{ $item['file']['url'] }}" title="{{ $item['file']['title'] }}">
+                    <a class="link-item" href="{{ $item['file']['url'] }}" title="{{ $item['file']['title'] }}">
                         {{ $item['file']['title'] }}
                         ({{ pathinfo($item['file']['url'], PATHINFO_EXTENSION) }}, {{ size_format(filesize(get_attached_file($item['file']['ID'])), 2) }})
                     </a>
