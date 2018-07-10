@@ -28,7 +28,7 @@ class ExpandableListTemplate
 
     public function getColumnValues()
     {
-        if (!isset($this->data['posts_list_column_titles']) || count($this->data['posts_list_column_titles']) === 0) {
+        if (!isset($this->data['posts_list_column_titles']) || (isset($this->data['posts_list_column_titles']) && count($this->data['posts_list_column_titles']) === 0)) {
             return;
         }
 
