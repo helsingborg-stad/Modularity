@@ -189,7 +189,7 @@ function generateFields() {
         );
         array_push($template_fields, $active_sidebars);
 
-        $template_sidebars = get_field($template . '_active_sidebars', 'option');
+        $template_sidebars = get_field($id . '_active_sidebars', 'option');
         if($template_sidebars) {
             foreach ($template_sidebars as $sidebar) {
                 $sidebar_modules = array(
