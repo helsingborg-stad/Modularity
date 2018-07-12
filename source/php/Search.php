@@ -132,7 +132,7 @@ class Search
     {
         global $wp_query;
 
-        if (!$wp_query->is_search() || \Modularity\Helper\Wp::isThickBox()) {
+        if (!$wp_query->is_search() || \Modularity\Helper\Wp::isThickBox() || !$this->isModuleSearch()) {
             return;
         }
 
