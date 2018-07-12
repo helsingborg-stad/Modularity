@@ -61,7 +61,7 @@
 
                     </span>
                 @else
-                <h2><?php echo apply_filters('the_title', $post->post_title); ?></h2>
+                    <h4><?php echo apply_filters('the_title', $post->post_title); ?></h4>
                 @endif
             </label>
             <div class="accordion-content">
