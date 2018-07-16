@@ -170,6 +170,10 @@ class Slider extends \Modularity\Module
             return implode(' ', $classes);
         }
 
+        if ($this->bleed) {
+            return implode(' ', $classes);
+        }
+
         if (isset($field['slider_format']) && $field['slider_format']) {
             $classes[] = $field['slider_format'];
         } else {

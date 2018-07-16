@@ -3,21 +3,45 @@
         <h2>{!! apply_filters('the_title', $post_title) !!}</h2>
     @endif
 
-
-    @if (isset($dataBleed) && !empty($dataBleed))
+@if (isset($dataBleed) && !empty($dataBleed))
     <style>
+        .slider {
+            @if(!is_null($slidePaddingHeight))
+                padding-top: {{ $slidePaddingHeight }}%;
+            @endif
 
-        .slider .slide {
-            width: {{ $slideWidthMobile }}% !important;
         }
 
-        @media only screen and (min-width: 900px) {
+        .slider .slide {
+            position: relative;
+            width: {{ $slideWidth }}% !important;
+        }
+
+        @media only screen and (max-width: 900px) {
+            .slider {
+                @if(!is_null($slidePaddingHeight))
+                    padding-top: {{ $slidePaddingHeightMobile }}%;
+                @endif
+
+            }
+
             .slider .slide {
-                position: relative;
-                width: {{ $slideWidth }}% !important;
+                width: {{ $slideWidthMobile }}% !important;
             }
         }
 
+        @media only screen and (max-width: 600px) {
+            .slider {
+                @if(!is_null($slidePaddingHeight))
+                    padding-top: {{ $slidePaddingHeightDefault }}%;
+                @endif
+
+            }
+
+            .slider .slide {
+                width: 100% !important;
+            }
+        }
     </style>
     @endif
 
