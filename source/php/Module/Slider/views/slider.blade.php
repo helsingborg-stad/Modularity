@@ -6,43 +6,18 @@
 
     @if (isset($dataBleed) && !empty($dataBleed))
     <style>
-        .slider {
-            @if(!is_null($slidePaddingHeight))
-                padding-top: {{ $slidePaddingHeight }}%;
-            @endif
-
-        }
 
         .slider .slide {
-            position: relative;
-            width: {{ $slideWidth }}% !important;
+            width: {{ $slideWidthMobile }}% !important;
         }
 
-        @media only screen and (max-width: 900px) {
-            .slider {
-                @if(!is_null($slidePaddingHeight))
-                    padding-top: {{ $slidePaddingHeightMobile }}%;
-                @endif
-
-            }
-
+        @media only screen and (min-width: 900px) {
             .slider .slide {
-                width: {{ $slideWidthMobile }}% !important;
+                position: relative;
+                width: {{ $slideWidth }}% !important;
             }
         }
 
-        @media only screen and (max-width: 600px) {
-            .slider {
-                @if(!is_null($slidePaddingHeight))
-                    padding-top: {{ $slidePaddingHeightDefault }}%;
-                @endif
-
-            }
-
-            .slider .slide {
-                width: 100% !important;
-            }
-        }
     </style>
     @endif
 

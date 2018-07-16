@@ -166,6 +166,20 @@ class Slider extends \Modularity\Module
             $classes[] = 'slider-height-restrictions';
         }
 
+        if ($fields['slider_layout'] === 'circle') {
+            return implode(' ', $classes);
+        }
+
+        if (isset($field['slider_format']) && $field['slider_format']) {
+            $classes[] = $field['slider_format'];
+        } else {
+            $classes[] = 'ratio-1-1-xs';
+            $classes[] = 'ratio-4-3-sm';
+            $classes[] = 'ratio-16-9';
+        }
+
+
+
         return implode(' ', $classes);
     }
 
