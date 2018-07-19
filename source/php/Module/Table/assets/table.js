@@ -24,12 +24,18 @@ jQuery(document).ready(function ($) {
         $(e.target).parents('td').find('.table-tools').show();
     });
 
-    $('.acf-field-dynamic-table td:not([class]) input').on('focus', function (e) {
+    $('body').on('click', '.acf-field-dynamic-table td', function (){
+        var tableTool = $('.table-tools').html();
+        $('.table-tools').remove();
+        $(this).append('<div class="table-tools">'+tableTool+'</div>');
+    });
+
+    $('body').on('focus','.acf-field-dynamic-table td:not([class]) input', function (e) {
         $(this).siblings('.table-tools').show();
     });
 
     // Do action
-    $(document).on('click', '.table-tools [data-action]', function (e) {
+    $('body').on('click', '.table-tools [data-action]', function (e) {
         e.preventDefault();
 
         var $input = $(this).parents('td').find('input').first();
