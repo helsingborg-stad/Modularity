@@ -3,8 +3,7 @@
         <h2>{!! apply_filters('the_title', $post_title) !!}</h2>
     @endif
 
-
-    @if (isset($dataBleed) && !empty($dataBleed))
+@if (isset($dataBleed) && !empty($dataBleed))
     <style>
         .slider {
             @if(!is_null($slidePaddingHeight))

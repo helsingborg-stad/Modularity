@@ -51,12 +51,13 @@ class Slider extends \Modularity\Module
 
         //Get slides & columns
         $data['slides']         = $this->prepareSlides($data);
+
         $data['slideColumns']   = $this->slideColumns;
 
         //Duplicate output of slides if columnize. This is due to bad handlig of flickity [Avoids flickering on first/last slide].
-        if ($this->bleed) {
-            $data['slides'] = array_merge($data['slides'], $data['slides']);
-        }
+        // if ($this->bleed) {
+        //     $data['slides'] = array_merge($data['slides'], $data['slides']);
+        // }
 
         //Calculate slider size (with or without bleed option)
         if ($this->bleed) {
@@ -66,6 +67,7 @@ class Slider extends \Modularity\Module
         } else {
             $data['slideWidth'] = (100/$this->slideColumns);
             $data['slidePaddingHeight'] = $this->paddingRatios[$data['slider_format']] / $this->slideColumns;
+            $data['dataBleed'] = false;
         }
 
         //Slide cols in smaller resolutions
@@ -163,6 +165,24 @@ class Slider extends \Modularity\Module
         if (isset($fields['slider_height']) && $fields['slider_height'] == true) {
             $classes[] = 'slider-height-restrictions';
         }
+
+        if ($fields['slider_layout'] === 'circle') {
+            return implode(' ', $classes);
+        }
+
+        if ($this->bleed) {
+            return implode(' ', $classes);
+        }
+
+        if (isset($field['slider_format']) && $field['slider_format']) {
+            $classes[] = $field['slider_format'];
+        } else {
+            $classes[] = 'ratio-1-1-xs';
+            $classes[] = 'ratio-4-3-sm';
+            $classes[] = 'ratio-16-9';
+        }
+
+
 
         return implode(' ', $classes);
     }
