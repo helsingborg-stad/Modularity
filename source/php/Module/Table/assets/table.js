@@ -19,11 +19,13 @@ jQuery(document).ready(function ($) {
 
     }, 1000);
 
+
     $(document).on('click', function (e) {
         $('.table-tools').hide();
         $(e.target).parents('td').find('.table-tools').show();
     });
 
+    // Adding and removing Table tools on correct row
     $('body').on('click', '.acf-field-dynamic-table td', function (){
         var tableTool = $('.table-tools').html();
         $('.table-tools').remove();
