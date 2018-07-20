@@ -692,6 +692,15 @@ class Posts extends \Modularity\Module
             }
         }
 
+        // Meta filter
+        if (isset($fields->posts_meta_filter) && $fields->posts_meta_filter === true) {
+            $metaQuery[] = array(
+                'key' => $fields->posts_meta_key ?? '',
+                'value' => array($fields->posts_meta_value ?? ''),
+                'compare' => 'IN',
+            );
+        }
+
         // Data source
         switch ($fields->posts_data_source) {
             case 'posttype':
