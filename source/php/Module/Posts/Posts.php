@@ -232,7 +232,6 @@ class Posts extends \Modularity\Module
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
-            'disabled' => 0,
             'readonly' => 0,
         );
 
