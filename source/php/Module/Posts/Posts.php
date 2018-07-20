@@ -24,8 +24,6 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
-
-
     }
 
     public function template()
@@ -304,7 +302,8 @@ class Posts extends \Modularity\Module
 
         $response = array(
             'meta_keys' => $meta,
-            'curr' => get_field('posts_sort_by', $_POST['post'])
+            'sort_curr' => get_field('posts_sort_by', $_POST['post']),
+            'filter_curr' => get_field('posts_meta_key', $_POST['post']),
         );
 
         echo json_encode($response);

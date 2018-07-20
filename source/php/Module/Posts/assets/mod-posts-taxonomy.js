@@ -35,10 +35,11 @@ jQuery(document).ready(function ($) {
                 $('#modularity-sorted-by select').append('<optgroup label="Post meta">');
 
                 $.each(response.meta_keys, function (index, item) {
-                    var is_selected = (response.curr != null && item.meta_key == response.curr.replace('_metakey_', '')) ? 'selected' : '';
-                    $('#modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + is_selected + '>' + item.meta_key +'</option>');
+                    var sort_selected = (response.sort_curr != null && item.meta_key == response.sort_curr.replace('_metakey_', '')) ? 'selected' : '';
+                    var filter_selected = (response.filter_curr != null && item.meta_key == response.filter_curr.replace('_metakey_', '')) ? 'selected' : '';
 
-                    $('#modularity-latest-meta-key select').append('<option value="' + item.meta_key + '">' + item.meta_key + '</option>');
+                    $('#modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + sort_selected + '>' + item.meta_key +'</option>');
+                    $('#modularity-latest-meta-key select').append('<option value="' + item.meta_key + '" ' + filter_selected + '>' + item.meta_key + '</option>');
                 });
 
                 $('#modularity-sorted-by select').append('</optgroup>');
