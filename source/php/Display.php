@@ -337,7 +337,7 @@ class Display
         $beforeModule = '';
         $moduleEdit = '';
         if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
-            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . '</a></div>';
+            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . ' ' . $module->data['post_type_name'] .  '</a></div>';
         }
 
         if (isset($module->columnWidth) && !empty($module->columnWidth)) {
