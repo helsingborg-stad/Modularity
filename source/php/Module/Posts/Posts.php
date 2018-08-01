@@ -24,8 +24,6 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
-
-
     }
 
     public function template()
@@ -234,7 +232,6 @@ class Posts extends \Modularity\Module
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
-            'disabled' => 0,
             'readonly' => 0,
         );
 
@@ -304,7 +301,8 @@ class Posts extends \Modularity\Module
 
         $response = array(
             'meta_keys' => $meta,
-            'curr' => get_field('posts_sort_by', $_POST['post'])
+            'sort_curr' => get_field('posts_sort_by', $_POST['post']),
+            'filter_curr' => get_field('posts_meta_key', $_POST['post']),
         );
 
         echo json_encode($response);
@@ -692,6 +690,15 @@ class Posts extends \Modularity\Module
                     'terms' => $term
                 );
             }
+        }
+
+        // Meta filter
+        if (isset($fields->posts_meta_filter) && $fields->posts_meta_filter === true) {
+            $metaQuery[] = array(
+                'key' => $fields->posts_meta_key ?? '',
+                'value' => array($fields->posts_meta_value ?? ''),
+                'compare' => 'IN',
+            );
         }
 
         // Data source
