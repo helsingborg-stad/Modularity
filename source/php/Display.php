@@ -65,7 +65,7 @@ class Display
         global $post;
         global $wp_query;
 
-        if (is_admin() || is_feed() || is_tax()) {
+        if (is_admin() || is_feed() || is_tax() || post_password_required()) {
             return;
         }
 
