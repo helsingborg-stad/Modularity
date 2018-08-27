@@ -6,8 +6,6 @@ class Search
 {
     public function __construct()
     {
-        add_action('wp', array($this, 'moduleSearch'));
-
         add_filter('posts_join', array($this, 'moduleSearchModuleDescriptionJoin'));
         add_filter('posts_search', array($this, 'moduleSearchModuleDescription'));
 
@@ -122,41 +120,6 @@ class Search
         }
 
         return $post;
-    }
-
-    /**
-     * This method will switch module search results with posts the module is used in
-     * @return void
-     */
-    public function moduleSearch()
-    {
-        global $wp_query;
-
-        if (!$wp_query->is_search() || \Modularity\Helper\Wp::isThickBox()) {
-            return;
-        }
-
-        $searchResult = $wp_query->posts;
-
-        foreach ($wp_query->posts as $key => $post) {
-            // Continue if not a modularity post type
-            if (substr($post->post_type, 0, 4) != 'mod-') {
-                continue;
-            }
-
-            // Find module usage
-            $usage = \Modularity\ModuleManager::getModuleUsage($post->ID);
-
-            $usagePosts = array();
-            foreach ($usage as $item) {
-                $usagePosts[] = get_post($item->post_id);
-            }
-
-            $searchResult = $this->appendToArray($searchResult, $key, $usagePosts);
-            unset($searchResult[$key]);
-        }
-
-        $wp_query->posts = array_values($searchResult);
     }
 
     /**
