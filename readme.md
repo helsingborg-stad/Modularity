@@ -372,5 +372,6 @@ add_filter('Modularity/Editor/ModuleCssScope',function($scopes) {
 
 #Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.
-
-<img src="https://3fxtqy18kygf3on3bu39kh93-wpengine.netdna-ssl.com/wp-content/uploads/2018/03/header-logo.svg" alt="Browserstack logotype" style="width: 150px;"/>
+<a href="https://browserstack.com">
+<img src="https://utveckling.helsingborg.se/wp-content/uploads/sites/19/2018/09/browserstack-logo2x.png" alt="Browserstack logotype" style="width: 200px; max-width: 200px;"/>
+</a>
