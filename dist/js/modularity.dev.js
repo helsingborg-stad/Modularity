@@ -398,8 +398,7 @@ Modularity.Editor.Module = (function ($) {
                         ' + deprecated + '\
                         <span class="modularity-module-title">' + moduleTitle + '</span>\
                         <label class="modularity-module-hide">\
-                            <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="false" />\
-                            <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="true" ' + isHidden + ' />\
+                            <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="hidden" ' + isHidden + ' />\
                             ' + modularityAdminLanguage.langhide + '\
                         </label>\
                     </span>\
