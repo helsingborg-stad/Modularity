@@ -686,7 +686,8 @@ body.modularity-loader-takeover::after {
     padding: 5px 10px;
     background-color: #000;
     color: #fff !important;
-    font-size: 14px; }
+    font-size: 14px;
+    text-align: center; }
     [class*="modularity-mod-"] .modularity-edit-module a::after,
     [class*="mod-"] .modularity-edit-module a::after {
       position: absolute;

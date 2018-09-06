@@ -560,7 +560,8 @@ class Editor extends \Modularity\Options
     {
         // Save/remove modules
         if (isset($_POST['modularity_modules'])) {
-            update_post_meta($key, 'modularity-modules', $_POST['modularity_modules']);
+            $data = $this->sanitizeModuleData($_POST['modularity_modules']);
+            update_post_meta($key, 'modularity-modules', $data);
         } else {
             delete_post_meta($key, 'modularity-modules');
         }
@@ -723,5 +724,23 @@ class Editor extends \Modularity\Options
         ));
 
         return true;
+    }
+
+    /**
+     * Sanitize module data
+     * @param $sidebars
+     * @return array
+     */
+    public function sanitizeModuleData($sidebars)
+    {
+        foreach ($sidebars as &$sidebar) {
+            if (!empty($sidebar) && is_array($sidebar)) {
+                foreach ($sidebar as &$module) {
+                    $module['hidden'] = isset($module['hidden']) && $module['hidden'] == 'hidden';
+                }
+            }
+        }
+
+        return $sidebars;
     }
 }

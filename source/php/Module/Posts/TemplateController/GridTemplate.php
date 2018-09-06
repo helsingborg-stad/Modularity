@@ -168,6 +168,6 @@ class GridTemplate
                 break;
         }
 
-        return $gridRand;
+        return apply_filters('Modularity/Module/Posts/TemplateController/GridTemplate/Pattern', $gridRand, $gridSize);
     }
 }

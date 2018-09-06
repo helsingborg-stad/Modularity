@@ -18,8 +18,6 @@
                 'class' => '',
                 'id' => '',
             ),
-            'multiple' => 0,
-            'allow_null' => 1,
             'choices' => array(
                 'default' => __('Default', 'modularity'),
                 'circle' => __('Circle slides', 'modularity'),
@@ -27,10 +25,12 @@
             'default_value' => array(
                 0 => 'default',
             ),
+            'allow_null' => 1,
+            'multiple' => 0,
             'ui' => 0,
             'ajax' => 0,
-            'placeholder' => '',
             'return_format' => 'value',
+            'placeholder' => '',
         ),
         1 => array(
             'key' => 'field_573dce058a66e',
@@ -170,7 +170,7 @@
                 0 => array(
                     'key' => '56a5ed29398db',
                     'name' => 'image',
-                    'label' => __('Image', 'modularity'),
+                    'label' => __('Bild', 'modularity'),
                     'display' => 'block',
                     'sub_fields' => array(
                         0 => array(
@@ -292,6 +292,13 @@
                                         'value' => 'center',
                                     ),
                                 ),
+                                1 => array(
+                                    0 => array(
+                                        'field' => 'field_56e7fa230ee09',
+                                        'operator' => '==',
+                                        'value' => 'bottom',
+                                    ),
+                                ),
                             ),
                             'wrapper' => array(
                                 'width' => '',
@@ -299,12 +306,10 @@
                                 'id' => '',
                             ),
                             'default_value' => '',
-                            'maxlength' => '',
                             'placeholder' => '',
                             'prepend' => '',
                             'append' => '',
-                            'readonly' => 0,
-                            'disabled' => 0,
+                            'maxlength' => '',
                         ),
                         5 => array(
                             'key' => 'field_56ab235393f04',

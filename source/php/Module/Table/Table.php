@@ -20,9 +20,18 @@ class Table extends \Modularity\Module
     public function data() : array
     {
         $data = get_fields($this->ID);
+        $data['mod_table'] = self::unicodeConvert($data['mod_table']);
         $data['tableClasses'] = $this->getTableClasses($data);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         return $data;
+    }
+
+    public static function unicodeConvert($unicode)
+    {
+        $search = array('u00a5','u201e','u00b6','u2026','u00a4','u2013', 'u0152','u0160','u0161','ufffe','u20ac','u2026', 'u2020','	u201e','u201d','ufffe','u017d','u2122', 'u00c3', 'u00e2','u00e2u201au00ac', 'u00a9', 'u2030', 'u00c2u00b4', 'Äu02dc', 'u00db');
+        $replace = array('å','ä','ö','Å','Ä','Ö', 'å','ä','ö','Å','Ä','Ö', 'å','ä','ö','Å','Ä','Ö', '', '”', '€','é','É', '´', "'", '€');
+
+        return str_replace($search, $replace, $unicode);
     }
 
     public function getTableClasses($data)
@@ -45,6 +54,8 @@ class Table extends \Modularity\Module
 
     public function csvImport($post_id)
     {
+
+
         if (!isset($_POST['post_type']) || $_POST['post_type'] != $this->moduleSlug) {
             return;
         }
@@ -55,8 +66,10 @@ class Table extends \Modularity\Module
 
         ini_set('auto_detect_line_endings', true);
 
+
         $file = get_field('mod_table_csv_file', $post_id);
         $file = fopen($file['url'], 'r');
+
         $data = array();
 
         if (!$file) {
@@ -71,7 +84,7 @@ class Table extends \Modularity\Module
             }
 
             foreach ($row as &$value) {
-                $value = mb_convert_encoding($value, 'UTF-8', 'Windows-1252');
+                $value = mb_convert_encoding($value, 'UTF-8', 'WWINDOWS-1255');
             }
 
             array_push($data, $row);
