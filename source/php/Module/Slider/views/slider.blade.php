@@ -3,7 +3,7 @@
         <h2>{!! apply_filters('the_title', $post_title) !!}</h2>
     @endif
 
-@if (isset($dataBleed) && !empty($dataBleed))
+    @if (isset($dataBleed) && !empty($dataBleed))
     <style>
         .slider {
             @if(!is_null($slidePaddingHeight))
@@ -45,7 +45,7 @@
     </style>
     @endif
 
-    <div class="{{ $classes }}  @if (!$dataBleed) {{ $slider_format }} @endif slider-layout-{{ $slider_layout }}">
+    <div class="{{ $classes }}  @if (isset($dataBleed) && !$dataBleed) {{ $slider_format }} @endif slider-layout-{{ $slider_layout }}">
         <div data-flickity='{!! $flickity !!}'>
             @foreach ($slides as $slide)
 
