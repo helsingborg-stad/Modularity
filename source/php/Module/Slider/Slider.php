@@ -152,14 +152,17 @@ class Slider extends \Modularity\Module
         $classes = array();
         $classes[] = 'slider';
 
-        if ($fields['navigation_position'] == 'bottom') {
+        //Navigation placement
+        if (isset($fields['navigation_position']) && $fields['navigation_position'] == 'bottom') {
             $classes[] = 'slider-nav-bottom';
         }
 
-        if ($fields['show_navigation'] == "hover") {
+        //Navigation behaviour
+        if (isset($fields['show_navigation']) && $fields['show_navigation'] == "hover") {
             $classes[] = 'slider-nav-hover';
         }
 
+        //Slider max height class
         if (isset($fields['slider_height']) && $fields['slider_height'] == true) {
             $classes[] = 'slider-height-restrictions';
         }
