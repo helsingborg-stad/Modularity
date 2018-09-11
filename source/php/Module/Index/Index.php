@@ -79,6 +79,12 @@ class Index extends \Modularity\Module
                 } else {
                     unset($item);
                 }
+
+                //Removes empty objects from index
+                if(empty($item['title']) && empty($item['lead'])) {
+                    unset($items[$key]);
+                }
+
             }
         }
 
