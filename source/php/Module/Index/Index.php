@@ -80,8 +80,8 @@ class Index extends \Modularity\Module
                     unset($item);
                 }
 
-                //Removes empty objects from index
-                if(empty($item['title']) && empty($item['lead'])) {
+                //Removes empty/unfetchable objects from index
+                if($item['link_type'] == "internal" && empty($item['title']) && empty($item['lead']) && empty($item['thumbnail']) && empty($item['permalink'])) {
                     unset($items[$key]);
                 }
 
