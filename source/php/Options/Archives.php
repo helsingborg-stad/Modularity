@@ -41,6 +41,18 @@ class Archives
                 );
             }
         }, 10);
+
+        /* Fixes broken admin pages */
+        add_action('after_setup_theme',function() {
+            if(!is_admin()) {
+                return;
+            }
+            if(isset($_GET['post_type']) && isset($_GET['page']) && isset($_GET['id']) && substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor") {
+                wp_redirect(admin_url($_GET['page']. "&id=" . $_GET['id']), 302);
+                exit;
+            }
+
+        }, 1);
     }
 
     /**
