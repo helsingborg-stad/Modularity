@@ -586,10 +586,11 @@ class Editor extends \Modularity\Options
         $optionName = $key . '_modules';
 
         if (isset($_POST['modularity_modules'])) {
+            $data = $this->sanitizeModuleData($_POST['modularity_modules']);
             if (get_option($optionName)) {
-                update_option($optionName, $_POST['modularity_modules']);
+                update_option($optionName, $data);
             } else {
-                add_option($optionName, $_POST['modularity_modules'], '', 'no');
+                add_option($optionName, $data, '', 'no');
             }
         } else {
             delete_option($optionName);
