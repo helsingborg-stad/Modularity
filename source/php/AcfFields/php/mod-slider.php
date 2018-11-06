@@ -23,7 +23,7 @@
                 'circle' => __('Circle slides', 'modularity'),
             ),
             'default_value' => array(
-                0 => 'default',
+                0 => __('default', 'modularity'),
             ),
             'allow_null' => 1,
             'multiple' => 0,
@@ -45,8 +45,6 @@
                 'class' => '',
                 'id' => '',
             ),
-            'multiple' => 0,
-            'allow_null' => 1,
             'choices' => array(
                 'ratio-36-7' => __('Wide (36:7)', 'modularity'),
                 'ratio-10-3' => __('Wide (10:3)', 'modularity'),
@@ -54,12 +52,14 @@
                 'ratio-4-3' => __('Square (4:3)', 'modularity'),
             ),
             'default_value' => array(
-                0 => 'ratio-16-9',
+                0 => __('ratio-16-9', 'modularity'),
             ),
+            'allow_null' => 1,
+            'multiple' => 0,
             'ui' => 0,
             'ajax' => 0,
-            'placeholder' => '',
             'return_format' => 'value',
+            'placeholder' => '',
         ),
         2 => array(
             'key' => 'field_58934110b566f',
@@ -104,20 +104,20 @@
                 'class' => '',
                 'id' => '',
             ),
-            'multiple' => 0,
-            'allow_null' => 0,
             'choices' => array(
                 'left' => __('Vänster', 'modularity'),
                 'center' => __('Centrerad', 'modularity'),
                 'right' => __('Höger', 'modularity'),
             ),
             'default_value' => array(
-                0 => 'center',
+                0 => __('center', 'modularity'),
             ),
+            'allow_null' => 0,
+            'multiple' => 0,
             'ui' => 0,
             'ajax' => 0,
-            'placeholder' => '',
             'return_format' => 'value',
+            'placeholder' => '',
         ),
         4 => array(
             'key' => 'field_58cfe67cb211b',
@@ -170,7 +170,7 @@
                 0 => array(
                     'key' => '56a5ed29398db',
                     'name' => 'image',
-                    'label' => __('Bild', 'modularity'),
+                    'label' => __('Image', 'modularity'),
                     'display' => 'block',
                     'sub_fields' => array(
                         0 => array(
@@ -261,21 +261,18 @@
                                 'class' => '',
                                 'id' => '',
                             ),
-                            'multiple' => 0,
-                            'allow_null' => 0,
                             'choices' => array(
                                 'bottom' => 'Bottom banner',
-                                'center' => 'Centered',
                             ),
                             'default_value' => array(
                                 0 => 'bottom',
                             ),
+                            'allow_null' => 0,
+                            'multiple' => 0,
                             'ui' => 0,
                             'ajax' => 0,
-                            'placeholder' => '',
                             'return_format' => 'value',
-                            'disabled' => 0,
-                            'readonly' => 0,
+                            'placeholder' => '',
                         ),
                         4 => array(
                             'key' => 'field_5702597b7d869',
@@ -292,13 +289,6 @@
                                         'value' => 'center',
                                     ),
                                 ),
-                                1 => array(
-                                    0 => array(
-                                        'field' => 'field_56e7fa230ee09',
-                                        'operator' => '==',
-                                        'value' => 'bottom',
-                                    ),
-                                ),
                             ),
                             'wrapper' => array(
                                 'width' => '',
@@ -306,10 +296,12 @@
                                 'id' => '',
                             ),
                             'default_value' => '',
+                            'maxlength' => '',
                             'placeholder' => '',
                             'prepend' => '',
                             'append' => '',
-                            'maxlength' => '',
+                            'readonly' => 0,
+                            'disabled' => 0,
                         ),
                         5 => array(
                             'key' => 'field_56ab235393f04',
@@ -333,12 +325,10 @@
                                 'id' => '',
                             ),
                             'default_value' => '',
-                            'new_lines' => 'br',
-                            'maxlength' => '',
                             'placeholder' => '',
-                            'rows' => '',
-                            'readonly' => 0,
-                            'disabled' => 0,
+                            'maxlength' => 250,
+                            'rows' => 2,
+                            'new_lines' => 'br',
                         ),
                         6 => array(
                             'key' => 'field_56fa82a2d464d',
@@ -561,94 +551,6 @@
                             'mime_types' => 'ogg',
                         ),
                         4 => array(
-                            'key' => 'field_5aaa6576ed65f',
-                            'label' => 'Show pause Icon',
-                            'name' => 'show_pause_icon',
-                            'type' => 'true_false',
-                            'instructions' => '',
-                            'required' => 0,
-                            'conditional_logic' => 0,
-                            'wrapper' => array(
-                                'width' => '33',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'message' => 'Show pause icon',
-                            'default_value' => 1,
-                            'ui' => 0,
-                            'ui_on_text' => '',
-                            'ui_off_text' => '',
-                        ),
-                        5 => array(
-                            'key' => 'field_5aaa66deed660',
-                            'label' => 'Pause icon transparency',
-                            'name' => 'pause_icon_transparacy',
-                            'type' => 'select',
-                            'instructions' => '',
-                            'required' => 0,
-                            'conditional_logic' => array(
-                                0 => array(
-                                    0 => array(
-                                        'field' => 'field_5aaa6576ed65f',
-                                        'operator' => '==',
-                                        'value' => '1',
-                                    ),
-                                ),
-                            ),
-                            'wrapper' => array(
-                                'width' => '33',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'choices' => array(
-                                1 => '100%',
-                                9 => '90%',
-                                8 => '80%',
-                                7 => '70%',
-                                6 => '60%',
-                                5 => '50%',
-                                4 => '40%',
-                                3 => '30%',
-                                2 => '20%',
-                            ),
-                            'default_value' => array(
-                                0 => '60%',
-                            ),
-                            'allow_null' => 0,
-                            'multiple' => 0,
-                            'ui' => 0,
-                            'ajax' => 0,
-                            'return_format' => 'value',
-                            'placeholder' => '',
-                        ),
-                        6 => array(
-                            'key' => 'field_5aaa6e50f06ba',
-                            'label' => 'Show pause icon on hover',
-                            'name' => 'show_pause_icon_on_hover',
-                            'type' => 'true_false',
-                            'instructions' => '',
-                            'required' => 0,
-                            'conditional_logic' => array(
-                                0 => array(
-                                    0 => array(
-                                        'field' => 'field_5aaa6576ed65f',
-                                        'operator' => '==',
-                                        'value' => '1',
-                                    ),
-                                ),
-                            ),
-                            'wrapper' => array(
-                                'width' => '33',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'message' => '',
-                            'default_value' => 1,
-                            'ui' => 0,
-                            'ui_on_text' => '',
-                            'ui_off_text' => '',
-                        ),
-                        7 => array(
                             'key' => 'field_56a5ed47398dd',
                             'label' => 'Embed link',
                             'name' => 'embed_link',
@@ -672,7 +574,7 @@
                             'default_value' => '',
                             'placeholder' => '',
                         ),
-                        8 => array(
+                        5 => array(
                             'key' => 'field_56b9e2a221291',
                             'label' => 'Placeholder Image',
                             'name' => 'image',
@@ -696,7 +598,7 @@
                             'max_size' => '',
                             'mime_types' => 'png,jpg',
                         ),
-                        9 => array(
+                        6 => array(
                             'key' => 'field_56b9f3dba4f22',
                             'label' => 'Text overlay',
                             'name' => 'activate_textblock',
@@ -723,7 +625,7 @@
                             'ui_on_text' => '',
                             'ui_off_text' => '',
                         ),
-                        10 => array(
+                        7 => array(
                             'key' => 'field_56b9f3b8d7720',
                             'label' => 'Innehåll',
                             'name' => 'textblock_content',
@@ -757,7 +659,7 @@
                             'readonly' => 0,
                             'disabled' => 0,
                         ),
-                        11 => array(
+                        8 => array(
                             'key' => 'field_56e7fa620ee0a',
                             'label' => 'Text position',
                             'name' => 'textblock_position',
@@ -799,7 +701,7 @@
                             'disabled' => 0,
                             'readonly' => 0,
                         ),
-                        12 => array(
+                        9 => array(
                             'key' => 'field_56fa87ec3ace2',
                             'label' => 'Link',
                             'name' => 'link_type',
@@ -832,7 +734,7 @@
                             'allow_null' => 0,
                             'return_format' => 'value',
                         ),
-                        13 => array(
+                        10 => array(
                             'key' => 'field_56fa87fa3ace4',
                             'label' => 'Url',
                             'name' => 'link_url',
@@ -861,7 +763,7 @@
                             'default_value' => '',
                             'placeholder' => '',
                         ),
-                        14 => array(
+                        11 => array(
                             'key' => 'field_56fa88043ace5',
                             'label' => 'Sida',
                             'name' => 'link_url',
@@ -895,7 +797,7 @@
                             'multiple' => 0,
                             'allow_archives' => 1,
                         ),
-                        15 => array(
+                        12 => array(
                             'key' => 'field_56fa880c3ace6',
                             'label' => 'New window',
                             'name' => 'link_target',
@@ -1219,7 +1121,7 @@
                 'center' => __('Centrerad', 'modularity'),
                 'bottom' => __('Bottom', 'modularity'),
             ),
-            'default_value' => 'center',
+            'default_value' => __('center', 'modularity'),
             'other_choice' => 0,
             'save_other_choice' => 0,
             'allow_null' => 0,
@@ -1262,20 +1164,19 @@
                 'class' => '',
                 'id' => '',
             ),
+            'layout' => 'horizontal',
             'choices' => array(
                 'wrapAround' => __('Continues scroll (no ending slide)', 'modularity'),
                 'pageDots' => __('Pages dot navigation', 'modularity'),
                 'freeScroll' => __('No scroll snapping', 'modularity'),
                 'groupCells' => __('Group slides', 'modularity'),
-                'allowBleed' => __('Make next and previous slide partially visible', 'modularity'),
+            ),
+            'default_value' => array(
+                0 => __('wrapAround', 'modularity'),
+                1 => __('pageDots', 'modularity'),
             ),
             'allow_custom' => 0,
             'save_custom' => 0,
-            'default_value' => array(
-                0 => 'wrapAround',
-                1 => 'pageDots',
-            ),
-            'layout' => 'horizontal',
             'toggle' => 0,
             'return_format' => 'value',
         ),
