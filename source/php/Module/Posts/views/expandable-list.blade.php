@@ -65,6 +65,11 @@
                 @endif
             </label>
             <div class="accordion-content">
+                <noscript>
+                    <style type="text/css">
+                        .accordion-content { display: block; }
+                    </style>
+                </noscript>
                 <article>
                     <?php echo apply_filters('the_content', $post->post_content); ?>
                 </article>
