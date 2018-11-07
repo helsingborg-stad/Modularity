@@ -202,7 +202,7 @@ class ModuleManager
             'hierarchical'         => false,
             'menu_position'        => 100,
             'menu_icon'            => $class->icon,
-            'supports'             => array_merge($class->supports, array('title', 'revisions')),
+            'supports'             => array_merge($class->supports, array('title', 'revisions', 'author')),
             'capabilities'         => array(
                 'edit_post'          => 'edit_module',
                 'edit_posts'         => 'edit_modules',
