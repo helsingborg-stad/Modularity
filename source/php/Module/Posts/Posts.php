@@ -730,17 +730,17 @@ class Posts extends \Modularity\Module
      */
     public static function getPosts($module)
     {
-        return get_posts(self::getPostsArgs($module->ID));
-    }
-
-    public static function getPostsArgs($moduleId)
-    {
-
-        $fields = json_decode(json_encode(get_fields($moduleId)));
-
+        $fields = json_decode(json_encode(get_fields($module->ID)));
         if ($fields->posts_data_source == 'input') {
             return self::getManualInputPosts($fields->data);
         }
+
+        return get_posts(self::getPostArgs($module->ID));
+    }
+
+    public static function getPostArgs($id)
+    {
+        $fields = json_decode(json_encode(get_fields($id)));
 
         $metaQuery = false;
         $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
