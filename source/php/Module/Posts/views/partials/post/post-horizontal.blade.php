@@ -1,10 +1,10 @@
 <div class="grid-xs-12 grid-md-6">
     <a href="{{apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)}}">
-        <article class="full">
+        <article class="full u-mb-0">
             <div class="grid">
                 @if (in_array('image', $posts_fields) && $post->image && !get_field('posts_display_magazine_show_image_on_first_post_only', $ID))
                     <div class="grid-xs-2 grid-md-3">
-                        <img class="u-w-100" src="{{ $post->image }}" alt="{{ $post->post_title }}">
+                        <img class="u-w-100 u-pb-0" src="{{ $post->image }}" alt="{{ $post->post_title }}">
                     </div>
                 @endif
 
