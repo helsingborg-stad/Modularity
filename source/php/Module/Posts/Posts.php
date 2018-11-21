@@ -24,6 +24,7 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
 
         add_action('wp_ajax_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
+        add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
     }
