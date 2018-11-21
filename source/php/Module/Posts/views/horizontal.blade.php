@@ -36,9 +36,8 @@
                                         @endforeach
                                     @endif
 
-                                    @if (in_array('excerpt', $posts_fields))
-                                        {!! isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 45, null)) : '' !!}
-                                    @endif
+                                    {!! isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 45, null)) : '' !!}
+
                                 </article>
                             </a>
                         </div>
