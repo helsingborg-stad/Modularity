@@ -82,7 +82,7 @@ class Posts extends \Modularity\Module
         }
 
         //Get posts
-        $args = self::getPostsArgs($this->ID);
+        $args = self::getPostArgs($this->ID);
         $args['posts_per_page'] = $_POST['postsPerPage'];
         $args['offset'] = $_POST['offset'];
         $this->data['posts'] = get_posts($args);
