@@ -38,7 +38,7 @@ class HorizontalTemplate
         $i = 0;
 
         foreach ($this->data['posts'] as $post) {
-            if ($i == 0 && !get_field('posts_hightlight', $this->data['ID']) || $i > 0) {
+            if ($i == 0 && !get_field('posts_highlight', $this->data['ID']) || $i > 0) {
                 $imageRatio = '4:3';
                 $imageDimension = array(900, 675);
             }
