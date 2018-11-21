@@ -1,6 +1,6 @@
 @include('partials.post-filters')
 
-<div class="{{ $classes }}">
+<div class="{{ $classes }} posts-{{$posts_display_as}}">
         @if (!$hideTitle && !empty($post_title))
             <h4 class="box-title u-mb-4">{!! apply_filters('the_title', $post_title) !!}</h4>
         @endif
