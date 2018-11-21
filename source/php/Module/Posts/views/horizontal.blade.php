@@ -11,7 +11,7 @@
                     @if ($loop->first && get_field('posts_highlight', $ID))
                         <div class="grid-xs-12">
                             <a href="{{apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)}}">
-                                <article class="full u-mb-0">
+                                <article class="full u-mb-2">
                                     @if (in_array('image', $posts_fields) && $post->image)
                                         <img class="u-mb-3 u-w-100 u-pb-0" src="{{ $post->image }}" alt="{{ $post->post_title }}">
                                     @endif
