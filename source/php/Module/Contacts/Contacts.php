@@ -22,6 +22,13 @@ class Contacts extends \Modularity\Module
             $data['columns'] = 'grid-md-12';
         }
 
+        //Display settings
+        if (is_array($data['display_settings']) && !empty($data['display_settings'])) {
+            foreach ($data['display_settings'] as $fieldToHide) {
+                $data[$fieldToHide] = true;
+            }
+        }
+
         return $data;
     }
 
@@ -43,6 +50,7 @@ class Contacts extends \Modularity\Module
                 'administration_unit' => null,
                 'email' => null,
                 'phone' => null,
+                'social_media' => null,
                 'address' => null,
                 'visiting_address' => null,
                 'opening_hours' => null
@@ -58,6 +66,7 @@ class Contacts extends \Modularity\Module
                         'administration_unit' => $contact['administration_unit'],
                         'email'               => strtolower($contact['email']),
                         'phone'               => $contact['phone_numbers'],
+                        'social_media'        => $contact['social_media'],
                         'address'             => $contact['address'],
                         'visiting_address'    => $contact['visiting_address'],
                         'opening_hours'       => $contact['opening_hours'],
