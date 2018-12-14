@@ -285,7 +285,7 @@ class Feed
     public function getInstagramUser($username)
     {
         if (is_null($this->cache)) {
-            $curl = new \Modularity\Helper\Curl(true, 120);
+            $curl = new \Modularity\Helper\Curl(true, 60*15);
             $curl->setOption(CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
             $this->cache = $this->parseInstagramMarkup($curl->request('GET', $this->baseUrl . $username));
         }
