@@ -6,6 +6,10 @@ class React
 {
     public static function enqueue($version = false)
     {
+        if (isset($GLOBALS['wp_version']) && (int) $GLOBALS['wp_version'] >= 5) {
+            return;
+        }
+
         // Use minified libraries if SCRIPT_DEBUG is turned off
         $suffix = (defined('DEV_MODE') && DEV_MODE) ? 'development' : 'production.min';
 
