@@ -22,6 +22,6 @@
                 </a>
             </li>
             @endif
-        <?php endforeach; ?>
+        @endforeach
     </ul>
 </div>
