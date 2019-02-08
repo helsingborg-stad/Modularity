@@ -224,6 +224,7 @@ class Editor extends \Modularity\Options
 
         $activeAreas = $this->getActiveAreas($template);
 
+
         // Add no active sidebars message if no active sidebars exists
         if (count($activeAreas) === 0) {
             add_meta_box(
@@ -264,7 +265,14 @@ class Editor extends \Modularity\Options
     {
         $originalTemplate = $template;
         $options = get_option('modularity-options');
-        $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+
+        // Use the ACF-options for module areas if activated
+        if(get_field('acf_module_areas', 'option')) {
+            $template = str_replace('.blade.php', '', $template);
+            $active = get_field($template . '_active_sidebars', 'option');
+        } else {
+            $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+        }
 
         self::$isEditing['template'] = $template;
 
