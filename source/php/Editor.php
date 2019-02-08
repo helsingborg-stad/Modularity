@@ -226,7 +226,7 @@ class Editor extends \Modularity\Options
 
 
         // Add no active sidebars message if no active sidebars exists
-        if (count($activeAreas) === 0) {
+        if (is_array($activeAreas) && count($activeAreas) === 0) {
             add_meta_box(
                 'no-sidebars',
                 __('No active sidebar areas', 'modularity'),
@@ -242,15 +242,17 @@ class Editor extends \Modularity\Options
             return;
         }
 
-        foreach ($activeAreas as $area) {
-            if (isset($wp_registered_sidebars[$area])) {
-                $sidebars[$area] = $wp_registered_sidebars[$area];
+        if (is_array($activeAreas) && !empty($activeAreas)) {
+            foreach ($activeAreas as $area) {
+                if (isset($wp_registered_sidebars[$area])) {
+                    $sidebars[$area] = $wp_registered_sidebars[$area];
+                }
             }
-        }
 
-        if (is_array($sidebars)) {
-            foreach ($sidebars as $sidebar) {
-                $this->sidebarMetaBox($sidebar);
+            if (is_array($sidebars)) {
+                foreach ($sidebars as $sidebar) {
+                    $this->sidebarMetaBox($sidebar);
+                }
             }
         }
     }
@@ -267,7 +269,7 @@ class Editor extends \Modularity\Options
         $options = get_option('modularity-options');
 
         // Use the ACF-options for module areas if activated
-        if(get_field('acf_module_areas', 'option')) {
+        if (get_field('acf_module_areas', 'option')) {
             $template = str_replace('.blade.php', '', $template);
             $active = get_field($template . '_active_sidebars', 'option');
         } else {
@@ -277,7 +279,7 @@ class Editor extends \Modularity\Options
         self::$isEditing['template'] = $template;
 
         // Fallback
-        if (count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') !== false
+        if (is_array($active) && count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') !== false
             && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
             $template = explode('-', $template, 2)[0];
             self::$isEditing['template'] = $template;
@@ -686,11 +688,11 @@ class Editor extends \Modularity\Options
         }
 
         acf_add_local_field_group(array(
-            'key' => 'group_' . substr(md5($postType . '_scope'),0,13),
+            'key' => 'group_' . substr(md5($postType . '_scope'), 0, 13),
             'title' => __('Scope styling', 'modularity'),
             'fields' => array(
                 array(
-                    'key' => 'field_' . substr(md5($postType . '_scope'),0,13),
+                    'key' => 'field_' . substr(md5($postType . '_scope'), 0, 13),
                     'label' => __('Select an apperance for this instance of module', 'modularity'),
                     'name' => 'module_css_scope',
                     'type' => 'select',
