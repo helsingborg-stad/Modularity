@@ -429,8 +429,6 @@ class Editor extends \Modularity\Options
             'post_status' => $postStatuses
         ));
 
-        //var_dump($modulesPosts);
-
         // Add module id's as keys in the array
         if (!empty($modulesPosts)) {
             foreach ($modulesPosts as $module) {
