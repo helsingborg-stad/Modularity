@@ -18,7 +18,6 @@ class Feed
 
     public function __construct($args = array())
     {
-
         $defaultArgs = array(
             'network'    => 'instagram',
             'type'       => 'user',
@@ -32,8 +31,6 @@ class Feed
             'link_url'   => '',
             'link_text'  => ''
         );
-
-
 
         $this->args = array_merge($defaultArgs, $args);
 
@@ -279,7 +276,13 @@ class Feed
         );
         $feed = $curl->request('GET', $endpoint, $data);
 
-        return json_decode($feed)->data;
+        //Valid data object
+        if(isset(json_decode($feed)->data)) {
+            return json_decode($feed)->data;
+        }
+
+        //Return whatever exists, let error handler fix the rest. 
+        return json_decode($feed);
     }
 
     public function getInstagramUser($username)
