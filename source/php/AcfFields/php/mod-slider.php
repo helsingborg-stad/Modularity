@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
@@ -286,7 +286,7 @@
                                     0 => array(
                                         'field' => 'field_56e7fa230ee09',
                                         'operator' => '==',
-                                        'value' => 'center',
+                                        'value' => 'bottom',
                                     ),
                                 ),
                             ),
