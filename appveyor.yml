@@ -1,0 +1,44 @@
+image: ubuntu1804
+stack: node 8
+build: off
+
+for:
+  - deploy: off
+    branches:
+      except:
+        - sigma
+
+cache:
+  - node_modules -> package.json
+
+install:
+  - sudo apt-get update
+  - sudo apt-get -fy install composer httpie slugify
+  - npm install
+
+before_build:
+  - 'PROJECT="$(composer config name)"'
+  - 'TAG="$(git describe --tags --match="[0-9]*" --abbrev=0)"'
+  - 'BUILD="$TAG.$APPVEYOR_BUILD_NUMBER"'
+  - 'VERSION="${APPVEYOR_REPO_TAG_NAME:-$BUILD}"'
+  - 'ARTIFACT="$(slugify $PROJECT $VERSION).zip"'
+
+build_script:
+  - rm -rf dist/ vendor/*/
+  - composer config version "$VERSION"
+  - truncate -s 0 vendor/autoload.php
+  - npx --no-install gulp build
+
+after_build:
+  - zip -r "$ARTIFACT" . -x ".git*" -x "node_modules/*" -x "vendor/*/*"
+
+deploy_script: >
+  http --form POST
+  "$WPR_HOST/publish.php"
+  "Authorization: Key $WPR_KEY"
+  "files[]@$ARTIFACT"
+  --check-status
+  --timeout 600
+
+artifacts:
+  - path: '*.zip'
