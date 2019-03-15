@@ -35,8 +35,8 @@ class Article extends \Modularity\Module
         $description = 'Outputs a full article with title and content';
         $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
-        $plugin = '/path/to/include-file.php' // CAn also be an array of paths to include 
-        $cacheTTL = 60*60*24 //Time to live for fragment cache (stored in memcached). 
+        $plugin = '/path/to/include-file.php'; // Can also be an array of paths to include 
+        $cacheTTL = 60*60*24; // Time to live for fragment cache (stored in memcached). 
 
         $this->register(
             $id,
