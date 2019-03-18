@@ -27,7 +27,7 @@
 
             <div class="box-content">
                 @if (in_array('title', $posts_fields))
-                <h5 class="box-index-title link-item">{{ apply_filters('the_title', $post->post_title) }}</h5>
+                <h5 class="box-index-title link-item">{!! apply_filters('the_title', $post->post_title) !!}</h5>
                 @endif
 
                 @if (in_array('excerpt', $posts_fields))
