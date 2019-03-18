@@ -34,7 +34,7 @@
                     <span class="accordion-table">
                     @if (isset($post->column_values) && !empty($post->column_values))
                         @if ($posts_hide_title_column)
-                        <span class="column-header">{{ apply_filters('the_title', $post->post_title) }}</span>
+                        <span class="column-header">{!! apply_filters('the_title', $post->post_title) !!}</span>
                         @endif
 
                         @if (is_array($posts_list_column_titles))
