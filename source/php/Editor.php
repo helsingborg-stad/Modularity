@@ -132,17 +132,13 @@ class Editor extends \Modularity\Options
      */
     public static function isPageForPostType($postId)
     {
-        $postTypes = get_post_types();
+        $postType = get_post_type($postId);
+        $option = get_option('page_for_' . $postType);
+        $pageContent = get_option('page_for_' . $postType . '_content');
 
-        foreach ($postTypes as $postType) {
-            $option = get_option('page_for_' . $postType);
-            $pageContent = get_option('page_for_' . $postType . '_content');
-
-            if ($option && $option === $postId && !$pageContent) {
-                return $postType;
-            }
+        if ($option && $option === $postId && !$pageContent) {
+            return $postType;
         }
-
         return false;
     }
 
