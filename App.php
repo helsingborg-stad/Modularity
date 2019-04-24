@@ -95,7 +95,8 @@ class App
                 'edit_other_modules',
                 'publish_modules',
                 'read_modules',
-                'delete_module'
+                'delete_module',
+                'unfiltered_html'
             ),
             'editor' => array(
                 'edit_module',
@@ -103,14 +104,16 @@ class App
                 'edit_other_modules',
                 'publish_modules',
                 'read_modules',
-                'delete_module'
+                'delete_module',
+                'unfiltered_html'
             ),
             'author' => array(
                 'edit_module',
                 'edit_modules',
                 'edit_other_modules',
                 'publish_modules',
-                'read_modules'
+                'read_modules',
+                'unfiltered_html'
             )
         );
 
