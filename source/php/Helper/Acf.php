@@ -23,11 +23,7 @@ class Acf
      */
     public function includeAcf()
     {
-        include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-        if (!is_plugin_active('advanced-custom-fields-pro/acf.php')
-            && !is_plugin_active('advanced-custom-fields/acf.php')
-        ) {
+        if (!(class_exists('acf_pro') || class_exists('ACF'))) {
             require_once MODULARITY_PATH . 'plugins/acf/acf.php';
 
             add_action('admin_notices', function () {

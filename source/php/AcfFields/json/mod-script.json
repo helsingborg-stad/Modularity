@@ -3,16 +3,11 @@
     "title": "Embed",
     "fields": [
         {
-            "default_value": "",
-            "new_lines": "wpautop",
-            "maxlength": "",
-            "placeholder": "",
-            "rows": "",
             "key": "field_56a8b9f1902a6",
             "label": "Embed code",
             "name": "embed_code",
             "type": "textarea",
-            "instructions": "Paste your script code here (with &lt;style&gt; &lt;script&gt; tags if needed). ",
+            "instructions": "Paste your script code here (with &lt;style&gt; &lt;script&gt; tags if needed).",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -20,8 +15,11 @@
                 "class": "",
                 "id": ""
             },
-            "readonly": 0,
-            "disabled": 0
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
         }
     ],
     "location": [
@@ -40,8 +38,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "",
-    "modified": 1459423764,
-    "local": "json"
+    "description": ""
 }]
 

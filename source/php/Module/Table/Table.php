@@ -15,6 +15,26 @@ class Table extends \Modularity\Module
 
         add_action('Modularity/Module/mod-table/enqueue', array($this, 'modAssets'));
         add_action('save_post', array($this, 'csvImport'), 999);
+
+        //Remove html filter
+        add_action('save_post', array($this, 'disableHTMLFiltering'), 5);
+    }
+
+    /**
+     * Removes the filter of html & script data before save.
+     * @var int
+     */
+    public function disableHTMLFiltering($postId) {
+        
+        //Bail early if not a script module save
+        if(get_post_type($postId) !== "mod-" . $this->slug) {
+            return; 
+        }
+
+        //Disable filter temporarirly
+        add_filter('acf/allow_unfiltered_html', function($allow_unfiltered_html) {
+            return true;
+        });
     }
 
     public function data() : array

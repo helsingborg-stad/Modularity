@@ -53,7 +53,7 @@
 
                     <!-- Link start -->
                     @if (isset($slide['link_type']) && !empty($slide['link_type']) && $slide['link_type'] != 'false')
-                        <a href="{{ isset($slide['link_url']) && !empty($slide['link_url']) ? $slide['link_url'] : '#' }}" {{ (isset($slide['link_target']) && $slide['link_target'] === true) ? 'target="_blank"' : '' }}>
+                        <a href="{!! isset($slide['link_url']) && !empty($slide['link_url']) ? html_entity_decode($slide['link_url']) : '#' !!}" {{ (isset($slide['link_target']) && $slide['link_target'] === true) ? 'target="_blank"' : '' }}>
                         @endif
 
                         <!-- Slides -->

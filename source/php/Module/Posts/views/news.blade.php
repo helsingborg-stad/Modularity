@@ -30,7 +30,7 @@
 
             <div class="box-content">
                 @if (in_array('title', $posts_fields))
-                <h3 class="text-highlight">{{ apply_filters('the_title', $post->post_title) }}</h3>
+                <h3 class="text-highlight">{!! apply_filters('the_title', $post->post_title) !!}</h3>
                 @endif
 
                 @if (in_array('excerpt', $posts_fields))
