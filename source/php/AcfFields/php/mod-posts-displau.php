@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
-    'title' => __('Data display', 'modularity'),
+    'title' => 'Data display',
     'fields' => array(
         0 => array(
             'key' => 'field_571dfd4c0d9d9',

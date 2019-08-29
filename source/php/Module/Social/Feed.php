@@ -415,7 +415,7 @@ class Feed
         $this->markup .= '</ul>';
 
         if ($this->args['page_link']) {
-            $this->markup .= '<div class="social-feed-button"><a href="' . $this->args['link_url'] . '" target="_blank" class="btn btn-block">' . $this->args['link_text'] . '</a></div>';
+            $this->markup .= '<div class="social-feed-button"><a href="' . $this->args['link_url'] . '" target="_blank" class="btn btn-primary btn-lg btn-block">' . $this->args['link_text'] . '</a></div>';
         }
 
         $this->markup .= '</div>';
@@ -638,6 +638,8 @@ class Feed
 
         if ($attachment['description'] !== null) {
             $description = '<p>' . $attachment['description'] . '</p>';
+        } else {
+            return;
         }
 
         $att = '
