@@ -57,7 +57,13 @@ class Search
             }
 
             $markup = \Modularity\App::$display->outputModule($module, array('edit_module' => false), array(), false);
-            $rendered .= $markup;
+
+            if(!empty($markup)) {
+                $rendered .= " " . $markup;
+
+                
+            }
+            
         }
 
         return $rendered;
@@ -94,13 +100,30 @@ class Search
     public function addAlgoliaModuleAttribute($attributes, $post)
     {
         //Get rendered data from module(s)
-        $rendered = strip_tags($this->getRenderedPostModules($post));
+        $rendered = trim(
+            preg_replace(
+                '!\s+!',
+                ' ',
+                strip_tags($this->getRenderedPostModules($post))
+            )
+        );
+
+        //Calculate content bytes
+        if (is_array($post)) {
+            $contentBytes = strlen($post['post_content']);
+        } else {
+            $contentBytes = strlen($post->post_content);
+        }
 
         //Only add if not empty
         if (!empty($rendered)) {
-            $attributes['modules'] = substr($rendered, 0, 7000);
+            $attributes['modules'] = substr(
+                $rendered, 
+                0, 
+                (10000 - $contentBytes)
+            );
         }
-
+        
         return $attributes;
     }
 
