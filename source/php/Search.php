@@ -120,7 +120,7 @@ class Search
             $attributes['modules'] = substr(
                 $rendered, 
                 0, 
-                (10000 - $contentBytes)
+                (9000 - $contentBytes)
             );
         }
         
