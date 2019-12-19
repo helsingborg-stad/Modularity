@@ -6,6 +6,8 @@ class Social extends \Modularity\Module
 {
     public $slug = 'social';
     public $supports = array();
+    
+    public $isDeprecated = true;
 
     public $feedArgs;
 
