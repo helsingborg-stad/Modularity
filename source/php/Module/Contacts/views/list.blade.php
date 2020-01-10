@@ -32,7 +32,7 @@
                 @endif
 
                 @if (!empty($module->post_content))
-                    <li class="small description">{!! apply_filters('the_content', $this->post_content) !!}</li>
+                    <li class="small description">{!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}</li>
                 @endif
                 </ul>
 

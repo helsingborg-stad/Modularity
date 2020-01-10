@@ -4,6 +4,6 @@
     @endif
 
     <div class="box-content">
-        {!! apply_filters('the_content', $post_content) !!}
+        {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $post_content)) !!}
     </div>
 </div>
