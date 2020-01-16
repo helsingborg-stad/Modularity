@@ -232,7 +232,7 @@ class Module
         } elseif (isset($post->ID)) {
             $postId = $post->ID;
         } else {
-            return apply_filters('Modularity/hasModule', false, null);
+            return apply_filters('Modularity/hasModule', true, null);
         }
 
         $modules = \Modularity\Editor::getPostModules($postId);
