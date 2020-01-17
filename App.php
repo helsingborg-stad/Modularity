@@ -58,12 +58,15 @@ class App
 
     /**
      * Update modified date on related post when module is saved
-     * @return void
+     * @return boolean True if update(s) where made, otherwise false.
      */
     public function updateDate(int $postId, $postAfter)
     {
         $usedInPosts = self::$moduleManager->getModuleUsage($postId);
-        if(empty($usedInPosts)) return;
+        
+        if(empty($usedInPosts)) {
+            return false; 
+        } 
 
         $modified = $postAfter->post_modified;
 
@@ -74,6 +77,8 @@ class App
                 'post_modified_gmt' => get_gmt_from_date($modified)
             ]);
         }
+
+        return true; 
     }
 
     public function addCaps()
