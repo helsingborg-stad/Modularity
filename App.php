@@ -22,6 +22,7 @@ class App
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
+        add_action('post_updated', array($this, 'updateDate'), 10, 2);
 
         // Main hook
         do_action('Modularity');
@@ -53,6 +54,31 @@ class App
         add_action('widgets_init', function () {
             register_widget('\Modularity\Widget');
         });
+    }
+
+    /**
+     * Update modified date on related post when module is saved
+     * @return boolean True if update(s) where made, otherwise false.
+     */
+    public function updateDate(int $postId, $postAfter)
+    {
+        $usedInPosts = self::$moduleManager->getModuleUsage($postId);
+        
+        if(empty($usedInPosts)) {
+            return false; 
+        } 
+
+        $modified = $postAfter->post_modified;
+
+        foreach($usedInPosts as $p) {
+            wp_update_post([
+                'ID' => $p->post_id,
+                'post_modified' => $modified,
+                'post_modified_gmt' => get_gmt_from_date($modified)
+            ]);
+        }
+
+        return true; 
     }
 
     public function addCaps()
