@@ -30,6 +30,15 @@
     "require": {
         "composer/installers": "~1.0",
         "philo/laravel-blade": "^3.1",
+        "illuminate/container": "^5.8.36",
+        "illuminate/contracts": "^5.8.36",
+        "illuminate/events": "^5.8.36",
+        "illuminate/filesystem": "^5.8.36",
+        "illuminate/support": "^5.8.36",
+        "illuminate/view": "^5.8.36",
+        "symfony/finder": "^4.4.8",
+        "symfony/polyfill-mbstring": "^1.17.0",
+        "symfony/translation": "^5.0.8",
         "helsingborg-stad/acf-export-manager": ">=1.0.0"
     }
 }
