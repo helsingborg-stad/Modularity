@@ -6,6 +6,9 @@ class Search
 {
     public function __construct()
     {
+
+        add_action('wp', array($this, 'moduleSearch'));
+
         add_filter('posts_join', array($this, 'moduleSearchModuleDescriptionJoin'));
         add_filter('posts_search', array($this, 'moduleSearchModuleDescription'));
 
@@ -17,6 +20,65 @@ class Search
         add_filter('algolia_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
         add_filter('algolia_searchable_post_shared_attributes', array($this, 'addAlgoliaModuleAttribute'), 10, 2);
         add_filter('algolia_should_index_searchable_post', array($this, 'shouldIndexPost'), 50, 2);
+    }
+
+    /**
+     * This method will switch module search results with posts the module is used in
+     * @return void
+     */
+    public function moduleSearch()
+    {
+        global $wp_query;
+
+        //Only run on search
+        if (!$wp_query->is_search() || is_admin()) {
+            return;
+        }
+
+        //Store result
+        $searchResult = $wp_query->posts;
+
+        //Check for mod & get relations
+        foreach ($wp_query->posts as $key => $post) {
+            // Continue if not a modularity post type
+            if (substr($post->post_type, 0, 4) != 'mod-') {
+                continue;
+            }
+
+            // Find module usage
+            $usage = \Modularity\ModuleManager::getModuleUsage($post->ID);
+
+            $usagePosts = array();
+            foreach ($usage as $item) {
+                $usagePosts[] = get_post($item->post_id);
+            }
+
+            $searchResult = $this->appendToArray($searchResult, $key, $usagePosts);
+            unset($searchResult[$key]);
+        }
+
+        //Remove modularity duplicated
+        $searchResult = array_filter($searchResult, function ($object) {
+            if (substr($object->post_type, 0, 4) != 'mod-') {
+                return true;
+            }
+            return false; 
+        });
+
+        //Number of posts
+        $foundPosts = count($searchResult); 
+        
+        //"Return"
+        $wp_query->posts = array_values($searchResult);
+        $wp_query->found_posts = $foundPosts;
+        $wp_query->post_count = $foundPosts; 
+
+        //Calc number of posts
+        if($foundPosts != 0) {
+            $wp_query->max_num_pages = $foundPosts / get_option('posts_per_page'); 
+        } else {
+            $wp_query->max_num_pages = 0;
+        }
     }
 
     /**
