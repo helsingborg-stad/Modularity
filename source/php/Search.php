@@ -57,8 +57,6 @@ class Search
             unset($searchResult[$key]);
         }
 
-        $searchResult = array_values($searchResult);
-
         //Remove modularity duplicated
         $searchResult = array_filter($searchResult, function ($object) {
             if (substr($object->post_type, 0, 4) != 'mod-') {
@@ -67,8 +65,20 @@ class Search
             return false; 
         });
 
+        //Number of posts
+        $foundPosts = count($searchResult); 
+        
         //"Return"
-        $wp_query->posts = $searchResult;
+        $wp_query->posts = array_values($searchResult);
+        $wp_query->found_posts = $foundPosts;
+        $wp_query->post_count = $foundPosts; 
+
+        //Calc number of posts
+        if($foundPosts != 0) {
+            $wp_query->max_num_pages = $foundPosts / get_option('posts_per_page'); 
+        } else {
+            $wp_query->max_num_pages = 0;
+        }
     }
 
     /**
