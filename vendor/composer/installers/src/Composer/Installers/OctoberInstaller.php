@@ -32,15 +32,14 @@ class OctoberInstaller extends BaseInstaller
 
     protected function inflectPluginVars($vars)
     {
-        $vars['name'] = preg_replace('/^oc-|-plugin$/', '', $vars['name']);
-        $vars['vendor'] = preg_replace('/[^a-z0-9_]/i', '', $vars['vendor']);
+        $vars['name'] = preg_replace('/-plugin$/', '', $vars['name']);
 
         return $vars;
     }
 
     protected function inflectThemeVars($vars)
     {
-        $vars['name'] = preg_replace('/^oc-|-theme$/', '', $vars['name']);
+        $vars['name'] = preg_replace('/-theme$/', '', $vars['name']);
 
         return $vars;
     }

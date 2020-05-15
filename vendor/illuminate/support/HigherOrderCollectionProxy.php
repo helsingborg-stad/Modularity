@@ -2,9 +2,6 @@
 
 namespace Illuminate\Support;
 
-/**
- * @mixin \Illuminate\Support\Collection
- */
 class HigherOrderCollectionProxy
 {
     /**

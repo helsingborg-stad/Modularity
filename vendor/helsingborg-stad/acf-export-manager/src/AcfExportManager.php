@@ -11,7 +11,6 @@ class AcfExportManager
 
     public function __construct()
     {
-
         // Single
         add_action('acf/update_field_group', array($this, 'export'));
         //add_action('acf/delete_field_group', array($this, 'deleteExport'));
@@ -76,7 +75,7 @@ class AcfExportManager
     {
         $filename = $this->getExportFilename($fieldgroup);
 
-        $this->maybeUnlink($this->exportFolder . 'php/' . $filename['php']);
+        $this->maybeUunlink($this->exportFolder . 'php/' . $filename['php']);
         $this->maybeUnlink($this->exportFolder . 'json/' . $filename['json']);
 
         return true;
@@ -161,7 +160,7 @@ class AcfExportManager
     public function maybeCreateExportFolders()
     {
         if (!is_writable($this->exportFolder)) {
-            trigger_error('The export folder (' . $this->exportFolder .') is not writable. Exports will not be saved.', E_USER_ERROR);
+            trigger_error('The export folder (' . $folder .') is not writable. Exports will not be saved.', E_USER_ERROR);
         }
 
         if (!file_exists($this->exportFolder . 'json')) {
@@ -293,8 +292,7 @@ class AcfExportManager
      */
     public function translateFieldParams(array $field) : array
     {
-
-        $keys = array('prepend', 'append', 'placeholder', 'default_value');
+        $keys = array('prepend', 'append', 'placeholder');
 
         foreach ($keys as $key) {
             if (!isset($field[$key])) {

@@ -29,12 +29,10 @@ trait ManagesLoops
         $this->loopsStack[] = [
             'iteration' => 0,
             'index' => 0,
-            'remaining' => $length ?? null,
+            'remaining' => isset($length) ? $length : null,
             'count' => $length,
             'first' => true,
             'last' => isset($length) ? $length == 1 : null,
-            'odd' => false,
-            'even' => true,
             'depth' => count($this->loopsStack) + 1,
             'parent' => $parent ? (object) $parent : null,
         ];
@@ -53,8 +51,6 @@ trait ManagesLoops
             'iteration' => $loop['iteration'] + 1,
             'index' => $loop['iteration'],
             'first' => $loop['iteration'] == 0,
-            'odd' => ! $loop['odd'],
-            'even' => ! $loop['even'],
             'remaining' => isset($loop['count']) ? $loop['remaining'] - 1 : null,
             'last' => isset($loop['count']) ? $loop['iteration'] == $loop['count'] - 1 : null,
         ]);

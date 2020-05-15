@@ -5,9 +5,6 @@ namespace Illuminate\Support;
 use Countable;
 use Illuminate\Contracts\Support\MessageBag as MessageBagContract;
 
-/**
- * @mixin \Illuminate\Contracts\Support\MessageBag
- */
 class ViewErrorBag implements Countable
 {
     /**
@@ -116,15 +113,5 @@ class ViewErrorBag implements Countable
     public function __set($key, $value)
     {
         $this->put($key, $value);
-    }
-
-    /**
-     * Convert the default bag to its string representation.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->getBag('default');
     }
 }

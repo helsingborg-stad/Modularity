@@ -3,7 +3,6 @@
 namespace Illuminate\View\Concerns;
 
 use InvalidArgumentException;
-use Illuminate\Contracts\View\View;
 
 trait ManagesLayouts
 {
@@ -24,7 +23,7 @@ trait ManagesLayouts
     /**
      * The parent placeholder for the request.
      *
-     * @var mixed
+     * @var string
      */
     protected static $parentPlaceholder = [];
 
@@ -42,7 +41,7 @@ trait ManagesLayouts
                 $this->sectionStack[] = $section;
             }
         } else {
-            $this->extendSection($section, $content instanceof View ? $content : e($content));
+            $this->extendSection($section, e($content));
         }
     }
 
@@ -55,7 +54,7 @@ trait ManagesLayouts
      */
     public function inject($section, $content)
     {
-        $this->startSection($section, $content);
+        return $this->startSection($section, $content);
     }
 
     /**
@@ -77,7 +76,6 @@ trait ManagesLayouts
      *
      * @param  bool  $overwrite
      * @return string
-     *
      * @throws \InvalidArgumentException
      */
     public function stopSection($overwrite = false)
@@ -101,7 +99,6 @@ trait ManagesLayouts
      * Stop injecting content into a section and append it.
      *
      * @return string
-     *
      * @throws \InvalidArgumentException
      */
     public function appendSection()
@@ -146,7 +143,7 @@ trait ManagesLayouts
      */
     public function yieldContent($section, $default = '')
     {
-        $sectionContent = $default instanceof View ? $default : e($default);
+        $sectionContent = $default;
 
         if (isset($this->sections[$section])) {
             $sectionContent = $this->sections[$section];
@@ -189,12 +186,12 @@ trait ManagesLayouts
      * Get the contents of a section.
      *
      * @param  string  $name
-     * @param  string|null  $default
+     * @param  string  $default
      * @return mixed
      */
     public function getSection($name, $default = null)
     {
-        return $this->getSections()[$name] ?? $default;
+        return isset($this->getSections()[$name]) ? $this->getSections()[$name] : $default;
     }
 
     /**
