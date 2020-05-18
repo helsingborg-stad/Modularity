@@ -67,6 +67,11 @@ abstract class Options
      */
     public function isValidPostSave()
     {
+        //Prevent frontend to save
+        if(!is_admin()) {
+            return false; 
+        }
+
         return isset($_POST['modularity-action']) && $_POST['modularity-action'] == 'modularity-options' && wp_verify_nonce($_POST['_wpnonce'], 'modularity-options');
     }
 
