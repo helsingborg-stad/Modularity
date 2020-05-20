@@ -36,7 +36,7 @@ class Display
      */
     public function filterModularityShortcodes($value, $postId, $field)
     {
-        $value = preg_replace('/\[modularity(.*)\]/', '', $value);
+        $value = preg_replace('/\[modularity id="'.$postId.'"\]/', '', $value);
         return $value;
     }
 
