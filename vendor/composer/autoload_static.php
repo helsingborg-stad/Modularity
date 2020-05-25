@@ -29,7 +29,6 @@ class ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Container\\' => 14,
-            'Philo\\Blade\\' => 12,
         ),
         'I' => 
         array (
@@ -101,10 +100,6 @@ class ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
-        ),
-        'Philo\\Blade\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/philo/laravel-blade/src',
         ),
         'Illuminate\\View\\' => 
         array (

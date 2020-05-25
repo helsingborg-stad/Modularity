@@ -2,7 +2,8 @@
 
 namespace Modularity;
 
-use Philo\Blade\Blade;
+use \HelsingborgStad\GlobalBladeEngine as Blade;
+use BladeComponentLibrary as ComponentLibrary;
 
 class Display
 {
@@ -26,6 +27,46 @@ class Display
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
     }
+
+    /**
+     * @param $view
+     * @param array $data
+     * @return bool
+     * @throws \Exception
+     */
+    public function renderView($view, $data = array()): bool
+    {
+
+        try {
+            echo Blade::instance()->make(
+                $view,
+                array_merge(
+                    $data,
+                    array('errorMessage' => false)
+                )
+            )->render();
+
+        } catch (\Throwable $e) {
+            echo Blade::instance()->make(
+                '404',
+                array_merge(
+                    $data,
+                    array(
+                        'errorMessage' => $e,
+                        'post_type' => null,
+                        'heading' => __("Sorry! ", 'Modularity'),
+                        'subheading' => __("Something went wrong on this page. If this error is persistent please contact us!", 'municipio'),
+                        'debugHeading' => __("Detailed information", 'Modularity')
+                    )
+                )
+            )->render();
+        }
+
+        return false;
+    }
+
+
+
 
     /**
      * Removes modularity shortcodes wysiwyg fields to avoid infinity loops
@@ -386,9 +427,10 @@ class Display
 
     /**
      * Check if template exists (first check for blade, then php) and renders the template
-     * @param  string $view   View file
-     * @param  class  $module Module class
+     * @param string $view View file
+     * @param class $module Module class
      * @return string         Template markup
+     * @throws \Exception
      */
     public function loadBladeTemplate($view, $module, array $args = array())
     {
@@ -404,8 +446,10 @@ class Display
         $view = basename($view, '.php');
 
         if (\Modularity\Helper\Template::isBlade($template)) {
-            $blade = new Blade($templatePath, MODULARITY_CACHE_DIR);
-            return $blade->view()->make($view, $module->data)->render();
+            //$blade = new Blade($templatePath, MODULARITY_CACHE_DIR);
+            //return $blade->view()->make($view, $module->data)->render();
+           echo 8495698745678456;
+            return $this->renderView($view, $module->data);
         }
 
         return $this->loadTemplate($template, $module, $args);

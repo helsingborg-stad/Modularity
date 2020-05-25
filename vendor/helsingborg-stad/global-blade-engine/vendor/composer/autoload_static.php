@@ -15,7 +15,7 @@ class ComposerStaticInit51e38fd6de012fd50e6bf0d1693b0346
         'S' => 
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
-            'Symfony\\Contracts\\' => 18,
+            'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Component\\Translation\\' => 30,
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\Debug\\' => 24,
@@ -41,6 +41,7 @@ class ComposerStaticInit51e38fd6de012fd50e6bf0d1693b0346
         ),
         'D' => 
         array (
+            'Doctrine\\Inflector\\' => 19,
             'Doctrine\\Common\\Inflector\\' => 26,
         ),
         'C' => 
@@ -58,9 +59,9 @@ class ComposerStaticInit51e38fd6de012fd50e6bf0d1693b0346
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Contracts\\' => 
+        'Symfony\\Contracts\\Translation\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/contracts',
+            0 => __DIR__ . '/..' . '/symfony/translation-contracts',
         ),
         'Symfony\\Component\\Translation\\' => 
         array (
@@ -113,6 +114,10 @@ class ComposerStaticInit51e38fd6de012fd50e6bf0d1693b0346
         'HelsingborgStad\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'Doctrine\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Inflector',
         ),
         'Doctrine\\Common\\Inflector\\' => 
         array (

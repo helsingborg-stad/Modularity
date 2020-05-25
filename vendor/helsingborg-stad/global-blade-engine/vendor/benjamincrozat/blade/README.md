@@ -30,7 +30,7 @@ use BC\Blade\Blade;
 
 $blade = new Blade(__DIR__ . '/views', __DIR__ . '/cache');
 
-echo $blade->make('home', ['foo' => 'bar'))->render();
+echo $blade->make('home', ['foo' => 'bar'])->render();
 ```
 
 Add the `@hello('John')` directive:
@@ -39,7 +39,7 @@ Add the `@hello('John')` directive:
 $blade->directive('hello', function ($expression) {
     $expression = trim($expression, '\'"');
 
-    return '<?php echo "Hello $expression!"; ?>';
+    return "<?php echo 'Hello $expression!'; ?>";
 });
 ```
 

@@ -239,6 +239,7 @@ class Editor extends \Modularity\Options
         }
 
         if (is_array($activeAreas) && !empty($activeAreas)) {
+
             foreach ($activeAreas as $area) {
                 if (isset($wp_registered_sidebars[$area])) {
                     $sidebars[$area] = $wp_registered_sidebars[$area];
@@ -262,24 +263,30 @@ class Editor extends \Modularity\Options
     public function getActiveAreas($template)
     {
         $originalTemplate = $template;
-        $options = get_option('modularity-options');
 
+        $options = get_option('modularity-options');
         // Use the ACF-options for module areas if activated
         if (get_field('acf_module_areas', 'option')) {
             $template = str_replace('.blade.php', '', $template);
             $active = get_field($template . '_active_sidebars', 'option');
         } else {
             $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+
         }
 
         self::$isEditing['template'] = $template;
 
         // Fallback
-        if (is_array($active) && count($active) === 0 && !is_numeric($template) && strpos($template, 'archive-') !== false
+        if (is_array($active) && count($active) === 0
+            && !is_numeric($template)
+            && strpos($template, 'archive-') !== false
             && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
+
+
             $template = explode('-', $template, 2)[0];
             self::$isEditing['template'] = $template;
             $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+
         }
 
         if (self::$isEditing['title'] == 'archive-post') {
