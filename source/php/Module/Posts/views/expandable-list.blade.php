@@ -29,7 +29,7 @@
         @foreach ($posts as $post)
 
         <section class="accordion-section">
-            <button tabindex="0" class="accordion-toggle" for="item-{{ $ID }}-{{ $post->ID }}">
+            <button tabindex="0" class="accordion-toggle" aria-label="<?php echo apply_filters('the_title', $post->post_title); ?>" for="item-{{ $ID }}-{{ $post->ID }}">
                 @if (!empty($posts_list_column_titles))
                     <span class="accordion-table">
                     @if (isset($post->column_values) && !empty($post->column_values))
