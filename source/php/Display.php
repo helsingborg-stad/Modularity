@@ -24,7 +24,7 @@ class Display
         add_filter('Modularity/Display/Markup', array($this, 'addGridToSidebar'), 10, 2);
 
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
-        add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
+        add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10, 2);
     }
 
     /**
@@ -46,9 +46,9 @@ class Display
      * @param int     $postId   The post content
      * @return string
      */
-    public function sanitizeContent($content)
+    public function sanitizeContent($content, $postId)
     {
-        $content = preg_replace('/\[modularity(.*)\]/', '', $content);
+        $content = preg_replace('/\[modularity id="'.$postId.'"\]/', '', $content);
         return $content;
     }
 
