@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_570770ab8f064',
     'title' => 'Image',
     'fields' => array(
@@ -152,6 +154,7 @@
             'multiple' => 0,
             'allow_null' => 0,
             'choices' => array(
+                'icon' => 'icon',
                 'thumbnail' => 'thumbnail',
                 'medium' => 'medium',
                 'medium_large' => 'medium_large',
@@ -285,4 +288,5 @@
     'modified' => 1484129869,
     'local' => 'json',
 ));
-}
+
+}
