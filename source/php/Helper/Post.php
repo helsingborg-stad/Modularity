@@ -32,7 +32,7 @@ class Post
      * Gets the post template of the current editor page
      * @return string Template slug
      */
-    public static function getPostTemplate($id = null)
+    public static function getPostTemplate($id = null, $trim = false)
     {
         if ($archive = self::isArchive()) {
             return $archive;
@@ -64,6 +64,8 @@ class Post
         if (!$template) {
             $template = self::detectCoreTemplate($post);
         }
+
+        $template = $trim ? str_replace('.blade.php', '', $template) : $template;
 
         return $template;
     }

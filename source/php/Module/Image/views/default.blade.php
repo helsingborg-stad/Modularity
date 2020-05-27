@@ -1,4 +1,4 @@
-<div class="box box-plain">
+<div class="box box-plain wp-caption">
 @if (!$hideTitle && !empty($post_title))
     <h2>{!! apply_filters('the_title', $post_title) !!}</h2>
 @endif
@@ -10,6 +10,6 @@
 @endif
 
 @if (isset($mod_image_caption) && !empty($mod_image_caption))
-<p class="creamy gutter gutter-sm wp-caption-text">{!! $mod_image_caption !!}</p>
+<p class="gutter gutter-sm wp-caption-text">{!! $mod_image_caption !!}</p>
 @endif
 </div>

@@ -22,6 +22,34 @@ class Display
         add_filter('the_post', array($this, 'filterNestedModuleShortocde'));
 
         add_filter('Modularity/Display/Markup', array($this, 'addGridToSidebar'), 10, 2);
+
+        add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
+        add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10, 2);
+    }
+
+    /**
+     * Removes modularity shortcodes wysiwyg fields to avoid infinity loops
+     * @param mixed $value  The value which was loaded from the database
+     * @param mixed $postId The post ID from which the value was loaded
+     * @param array $field  An array containing all the field settings for the field which was used to upload the attachment
+     * @return mixed
+     */
+    public function filterModularityShortcodes($value, $postId, $field)
+    {
+        $value = preg_replace('/\[modularity id="'.$postId.'"\]/', '', $value);
+        return $value;
+    }
+
+    /**
+     * Removes modularity shortcodes from post content field to avoid infinity loops
+     * @param string  $content  The post content
+     * @param int     $postId   The post content
+     * @return string
+     */
+    public function sanitizeContent($content, $postId)
+    {
+        $content = preg_replace('/\[modularity id="'.$postId.'"\]/', '', $content);
+        return $content;
     }
 
     /**

@@ -27,6 +27,7 @@ class acf_controller_input
 		// actions
 		add_action('acf/input/admin_head', array($this, 'input_admin_head'));
 		add_action('acf/input/admin_enqueue_scripts', array($this, 'input_admin_enqueue_scripts'));
+
 	}
 	
 		
@@ -118,9 +119,7 @@ class acf_controller_input
 </script>
 		<?php
 	}
-	
-	
-	
+
 	/*
 	*  input_admin_enqueue_scripts
 	*

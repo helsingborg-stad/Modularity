@@ -32,7 +32,7 @@
         },
         {
             "key": "field_5805e5dc1dc55",
-            "label": "Kontakter",
+            "label": "Contacts",
             "name": "contacts",
             "type": "flexible_content",
             "instructions": "",
@@ -43,11 +43,8 @@
                 "class": "",
                 "id": ""
             },
-            "min": 1,
-            "max": "",
-            "button_label": "Add contact",
-            "layouts": [
-                {
+            "layouts": {
+                "5757b95767730": {
                     "key": "5757b95767730",
                     "name": "custom",
                     "label": "Custom",
@@ -55,7 +52,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5805e5dc26dde",
-                            "label": "Bild",
+                            "label": "Image",
                             "name": "image",
                             "type": "image",
                             "instructions": "",
@@ -79,7 +76,7 @@
                         },
                         {
                             "key": "field_5805e5dc27255",
-                            "label": "F\u00f6rnamn eller plats",
+                            "label": "First name or location",
                             "name": "first_name",
                             "type": "text",
                             "instructions": "",
@@ -91,14 +88,14 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": ""
+                            "append": "",
+                            "maxlength": ""
                         },
                         {
                             "key": "field_5805e5dc276e1",
-                            "label": "Efternamn",
+                            "label": "Last name",
                             "name": "last_name",
                             "type": "text",
                             "instructions": "",
@@ -110,56 +107,52 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": ""
+                            "append": "",
+                            "maxlength": ""
                         },
                         {
                             "key": "field_5805e5dc2771c",
-                            "label": "Jobbtitel",
+                            "label": "Work title",
                             "name": "work_title",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_5805e5dc277e3",
-                            "label": "F\u00f6rvaltning",
+                            "label": "Administration unit",
                             "name": "administration_unit",
                             "type": "text",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_5805e5dc27b58",
-                            "label": "E-post",
+                            "label": "E-mail",
                             "name": "email",
                             "type": "email",
                             "instructions": "",
@@ -177,7 +170,7 @@
                         },
                         {
                             "key": "field_5805e62f94d0f",
-                            "label": "Telefonnummer",
+                            "label": "Phone",
                             "name": "phone_numbers",
                             "type": "repeater",
                             "instructions": "",
@@ -189,11 +182,38 @@
                                 "id": ""
                             },
                             "collapsed": "",
-                            "min": "",
-                            "max": "",
+                            "min": 0,
+                            "max": 0,
                             "layout": "table",
                             "button_label": "L\u00e4gg till nummer",
                             "sub_fields": [
+                                {
+                                    "key": "field_5bf6aa828136b",
+                                    "label": "Typ",
+                                    "name": "type",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 0,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "20",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "phone": "Fasttelefon",
+                                        "smartphone": "Mobil"
+                                    },
+                                    "default_value": [
+                                        "phone"
+                                    ],
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "return_format": "value",
+                                    "ajax": 0,
+                                    "placeholder": ""
+                                },
                                 {
                                     "key": "field_5805e64a94d10",
                                     "label": "Telefonnummer",
@@ -216,50 +236,112 @@
                             ]
                         },
                         {
+                            "key": "field_5bf6a5fbc1b6b",
+                            "label": "Social Media",
+                            "name": "social_media",
+                            "type": "repeater",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "collapsed": "",
+                            "min": 0,
+                            "max": 0,
+                            "layout": "table",
+                            "button_label": "",
+                            "sub_fields": [
+                                {
+                                    "key": "field_5bf6a737c1b6c",
+                                    "label": "Media",
+                                    "name": "media",
+                                    "type": "select",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "choices": {
+                                        "facebook": "Facebook",
+                                        "linkedin": "LinkedIn",
+                                        "twitter": "Twitter",
+                                        "instagram": "Instagram"
+                                    },
+                                    "default_value": [
+                                        "facebook"
+                                    ],
+                                    "allow_null": 0,
+                                    "multiple": 0,
+                                    "ui": 0,
+                                    "return_format": "value",
+                                    "ajax": 0,
+                                    "placeholder": ""
+                                },
+                                {
+                                    "key": "field_5bf6a991c1b6d",
+                                    "label": "URL",
+                                    "name": "url",
+                                    "type": "url",
+                                    "instructions": "",
+                                    "required": 1,
+                                    "conditional_logic": 0,
+                                    "wrapper": {
+                                        "width": "",
+                                        "class": "",
+                                        "id": ""
+                                    },
+                                    "default_value": "",
+                                    "placeholder": ""
+                                }
+                            ]
+                        },
+                        {
                             "key": "field_5805e5dc28d3a",
-                            "label": "Adress",
+                            "label": "Address",
                             "name": "address",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
-                            "new_lines": "wpautop",
-                            "maxlength": "",
                             "placeholder": "",
+                            "maxlength": "",
                             "rows": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_5805e5dc28e30",
-                            "label": "Bes\u00f6ksadress",
+                            "label": "Visiting address",
                             "name": "visiting_address",
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
                             "default_value": "",
-                            "new_lines": "wpautop",
-                            "maxlength": "",
                             "placeholder": "",
+                            "maxlength": "",
                             "rows": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_5805e5dc29114",
-                            "label": "\u00d6ppettider",
+                            "label": "Opening hours",
                             "name": "opening_hours",
                             "type": "textarea",
                             "instructions": "",
@@ -271,16 +353,14 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "new_lines": "wpautop",
-                            "maxlength": "",
                             "placeholder": "",
+                            "maxlength": "",
                             "rows": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_5805e5dc29182",
-                            "label": "Annat",
+                            "label": "Other",
                             "name": "other",
                             "type": "wysiwyg",
                             "instructions": "",
@@ -291,17 +371,17 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "default_value": "",
                             "tabs": "all",
                             "toolbar": "full",
                             "media_upload": 1,
-                            "default_value": "",
                             "delay": 0
                         }
                     ],
                     "min": "",
                     "max": ""
                 },
-                {
+                "5757b97ffecc6": {
                     "key": "5757b97ffecc6",
                     "name": "user",
                     "label": "User",
@@ -309,7 +389,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5805e5dc291c4",
-                            "label": "V\u00e4lj anv\u00e4ndare",
+                            "label": "Select user",
                             "name": "user",
                             "type": "user",
                             "instructions": "",
@@ -321,18 +401,22 @@
                                 "id": ""
                             },
                             "role": "",
+                            "allow_null": 0,
                             "multiple": 0,
-                            "allow_null": 0
+                            "return_format": "array"
                         }
                     ],
                     "min": "",
                     "max": ""
                 }
-            ]
+            },
+            "button_label": "Add contact",
+            "min": 1,
+            "max": ""
         },
         {
             "key": "field_5805e5dc1ddcd",
-            "label": "Kolumner",
+            "label": "Columns",
             "name": "columns",
             "type": "select",
             "instructions": "",
@@ -349,7 +433,7 @@
                     {
                         "field": "field_5805e5dc1da44",
                         "operator": "==",
-                        "value": "circular"
+                        "value": "cards"
                     }
                 ]
             ],
@@ -370,9 +454,66 @@
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
-            "ajax": 0,
             "return_format": "value",
+            "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_5bffd2f45667f",
+            "label": "Compact mode",
+            "name": "compact_mode",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5805e5dc1da44",
+                        "operator": "==",
+                        "value": "cards"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "Enabled",
+            "ui_off_text": "Disabled"
+        },
+        {
+            "key": "field_5bf7eec6ce764",
+            "label": "Display settings",
+            "name": "display_settings",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "hide_work_title": "Hide Work Title",
+                "hide_administration_unit": "Hide Administration Unit",
+                "hide_thumbnail": "Hide Thumbnail",
+                "hide_email": "Hide Email",
+                "hide_phone": "Hide Phone",
+                "hide_social_media": "Hide Social media",
+                "hide_address": "Hide Adress",
+                "hide_visiting_address": "Hide Visiting Adress"
+            },
+            "allow_custom": 0,
+            "default_value": [],
+            "layout": "horizontal",
+            "toggle": 0,
+            "return_format": "value",
+            "save_custom": 0
         }
     ],
     "location": [

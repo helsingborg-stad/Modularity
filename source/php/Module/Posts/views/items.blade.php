@@ -27,7 +27,7 @@
 
                 <div class="box-content">
                     @if (in_array('title', $posts_fields))
-                    <h5 class="link-item link-item-light">{{ apply_filters('the_title', $post->post_title) }}</h5>
+                    <h5 class="link-item link-item-light">{!! apply_filters('the_title', $post->post_title) !!}</h5>
                     @endif
 
                     @if (in_array('date', $posts_fields) && $posts_data_source !== 'input')

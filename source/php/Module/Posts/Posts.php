@@ -23,7 +23,98 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
 
+        add_action('wp_ajax_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
+        add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
+
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+    }
+
+    public static function loadMoreButtonAttributes($module, $target, $bladeTemplate, $postsPerPage)
+    {
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            return '';
+        }
+
+        unset($module->data['posts']);
+
+        return json_encode(array(
+            'target' => $target,
+            'postsPerPage' => $postsPerPage,
+            'offset' => (get_field('posts_count', $module->data['ID']) > 0) ? get_field('posts_count', $module->data['ID']) : 0,
+            'module' => $module,
+            'bladeTemplate' => $bladeTemplate,
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('mod-posts-load-more')
+        ));
+    }
+
+    public function loadMorePostsUsingAjax()
+    {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            return false;
+            die;
+        }
+
+        //Nonce
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mod-posts-load-more')) {
+            die('Busted!');
+        }
+
+        $statusCodes = array(
+            'badRequest' => 400,
+            'noContent' => 204,
+            'success' => 200
+        );
+
+        //Make sure required post data exists
+        $requiredPostDataKeys = array('postsPerPage', 'offset', 'module', 'bladeTemplate');
+        foreach ($requiredPostDataKeys as $key) {
+            if (!isset($_POST[$key])) {
+                $error = 'Missing required $_POST[' . $key . '].';
+                error_log($error);
+                wp_send_json_error(['error' => $error], $statusCodes['badRequest']);
+                die;
+            }
+        }
+
+        //Append class propeties
+        foreach ($_POST['module'] as $key => $value) {
+            $this->$key = $value;
+        }
+
+        //Get posts
+        $args = self::getPostArgs($this->ID);
+        $args['posts_per_page'] = $_POST['postsPerPage'];
+        $args['offset'] = $_POST['offset'];
+        $this->data['posts'] = get_posts($args);
+        $this->getTemplateData($this->data['posts_display_as']); //Include template controller data
+
+        //No posts
+        if (empty($this->data['posts'])) {
+            wp_send_json(['Message' => 'Could not find more posts'], $statusCodes['noContent']);
+            die;
+        }
+
+
+        $blade = new \Philo\Blade\Blade([MODULARITY_PATH . 'source/php/Module/Posts/views'], MODULARITY_CACHE_DIR);
+
+        //Make sure blade template exists
+        if (!$blade->view()->exists($_POST['bladeTemplate'])) {
+            $msg = 'Blade template "' . $_POST['bladeTemplate'] . '" does not exists';
+            error_log($msg);
+            wp_send_json_error(['error' => $msg], $statusCodes['badRequest']);
+            die;
+        }
+
+        $posts = [];
+
+        foreach ($this->data['posts'] as $post) {
+            $posts[] = $blade->view()->make($_POST['bladeTemplate'], array_merge(['post' => $post], $this->data))->render();
+        }
+
+        wp_send_json($posts);
+
+        die;
     }
 
     public function template()
@@ -580,6 +671,16 @@ class Posts extends \Modularity\Module
     }
 
     /**
+     * Enqueue scripts (frontend)
+     * @return void
+     */
+    public function script()
+    {
+        wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-load-more-button.js',
+            array(), '1.0.0', true);
+    }
+
+    /**
      * Enqueue scripts
      * @return void
      */
@@ -630,12 +731,17 @@ class Posts extends \Modularity\Module
      */
     public static function getPosts($module)
     {
-
         $fields = json_decode(json_encode(get_fields($module->ID)));
-
         if ($fields->posts_data_source == 'input') {
             return self::getManualInputPosts($fields->data);
         }
+
+        return get_posts(self::getPostArgs($module->ID));
+    }
+
+    public static function getPostArgs($id)
+    {
+        $fields = json_decode(json_encode(get_fields($id)));
 
         $metaQuery = false;
         $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
@@ -725,7 +831,7 @@ class Posts extends \Modularity\Module
             $getPostsArgs['meta_query'] = $metaQuery;
         }
 
-        return get_posts($getPostsArgs);
+        return $getPostsArgs;
     }
 
     /**
