@@ -3,14 +3,8 @@
 namespace Modularity;
 
 use Throwable;
-
-use BladeComponentLibrary as ComponentLibrary;
-//use BC\Blade\Blade as Blade;
-use Modularity\LocalBladeEngine as Blade;
-use Modularity\Init as BladeInitiator;
-
-
-
+use HelsingborgStad\BladeEngineWrapper as Blade;
+use BladeComponentLibrary\Init as BladeInitiator;
 
 class Display
 {
@@ -23,7 +17,6 @@ class Display
 
     public function __construct()
     {
-        //add_action('init', array($this, 'initComonentLibrary'), 16);
         add_filter('wp', array($this, 'init'));
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
         
@@ -34,13 +27,6 @@ class Display
         
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
-
- 
-    }
-
-    public static function initComonentLibrary(): void
-    {
-        new ComponentLibrary\Init();
     }
 
     /**
