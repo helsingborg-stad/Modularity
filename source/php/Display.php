@@ -5,7 +5,11 @@ namespace Modularity;
 use Throwable;
 
 use BladeComponentLibrary as ComponentLibrary;
-use BC\Blade\Blade as Blade;
+//use BC\Blade\Blade as Blade;
+use Modularity\LocalBladeEngine as Blade;
+use Modularity\Init as BladeInitiator;
+
+
 
 
 class Display
@@ -19,6 +23,7 @@ class Display
 
     public function __construct()
     {
+        //add_action('init', array($this, 'initComonentLibrary'), 16);
         add_filter('wp', array($this, 'init'));
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
         
@@ -29,6 +34,13 @@ class Display
         
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
+
+ 
+    }
+
+    public static function initComonentLibrary(): void
+    {
+        new ComponentLibrary\Init();
     }
 
     /**
@@ -40,20 +52,18 @@ class Display
     public function renderView($view, $data = array()): bool
     {
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
- 
-        try {
-            $blade = new Blade([MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views'], '/private/var/tmp/global-blade-engine-cache');
+        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
+        $init = new BladeInitiator($moduleView);
+        $blade = $init->getEngine();
 
-            echo $blade->make($view, $data )->render();
+        try {
+            echo  $blade->make($view, $data )->render();
         } catch(Throwable $e) {
             echo $e;
         }
 
         return false;
     }
-
-
-
 
     /**
      * Removes modularity shortcodes wysiwyg fields to avoid infinity loops
