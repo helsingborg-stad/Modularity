@@ -2,8 +2,9 @@
 
 namespace Modularity;
 
-use \HelsingborgStad\GlobalBladeEngine as Blade;
-use BladeComponentLibrary as ComponentLibrary;
+use Throwable;
+use HelsingborgStad\BladeEngineWrapper as Blade;
+use BladeComponentLibrary\Init as BladeInitiator;
 
 class Display
 {
@@ -18,12 +19,12 @@ class Display
     {
         add_filter('wp', array($this, 'init'));
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
-
+        
         add_shortcode('modularity', array($this, 'shortcodeDisplay'));
         add_filter('the_post', array($this, 'filterNestedModuleShortocde'));
-
+        
         add_filter('Modularity/Display/Markup', array($this, 'addGridToSidebar'), 10, 2);
-
+        
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
     }
@@ -36,37 +37,19 @@ class Display
      */
     public function renderView($view, $data = array()): bool
     {
+        $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
+        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
+        $init = new BladeInitiator($moduleView);
+        $blade = $init->getEngine();
 
         try {
-            echo Blade::instance()->make(
-                $view,
-                array_merge(
-                    $data,
-                    array('errorMessage' => false)
-                )
-            )->render();
-
-        } catch (\Throwable $e) {
-            echo Blade::instance()->make(
-                '404',
-                array_merge(
-                    $data,
-                    array(
-                        'errorMessage' => $e,
-                        'post_type' => null,
-                        'heading' => __("Sorry! ", 'Modularity'),
-                        'subheading' => __("Something went wrong on this page. If this error is persistent please contact us!", 'municipio'),
-                        'debugHeading' => __("Detailed information", 'Modularity')
-                    )
-                )
-            )->render();
+            echo  $blade->make($view, $data )->render();
+        } catch(Throwable $e) {
+            echo $e;
         }
 
         return false;
     }
-
-
-
 
     /**
      * Removes modularity shortcodes wysiwyg fields to avoid infinity loops
@@ -231,15 +214,16 @@ class Display
         if (!isset($this->modules[$sidebar]) || !$this->isModularitySidebarActive($sidebar)) {
             return;
         }
-
+        
         // Get modules
         $modules = $this->modules[$sidebar];
-
+        
         // Get sidebar arguments
         $sidebarArgs = $this->getSidebarArgs($sidebar);
-
+        
         // Loop and output modules
         foreach ($modules['modules'] as $module) {
+          
             if (!is_preview() && $module->hidden == 'true') {
                 continue;
             }
@@ -257,8 +241,8 @@ class Display
             "",
             get_stylesheet_directory() . '/',
             get_template_directory() . '/',
-            get_stylesheet_directory() . '/views/',
-            get_template_directory() . '/views/',
+            get_stylesheet_directory() . '/views/v3/',
+            get_template_directory() . '/views/v3/',
         ));
 
         //Check if exists
@@ -313,24 +297,24 @@ class Display
         if (!isset($args['id'])) {
             $args['id'] = 'no-id';
         }
-
+        
         if (!is_object($module)) {
             return false;
         }
-
+        
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
         $module = $this->fillMissingParams($module, $moduleSettings);
-
+        
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
         }
-
+        
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
-
+        
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
             $moduleMarkup = $this->getModuleMarkup($module, $args);
-
+            
             if (isset($module->columnWidth) && !empty($module->columnWidth)) {
                 $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
             } elseif (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
@@ -338,21 +322,21 @@ class Display
             } elseif (isset($args['after_widget'])) {
                 $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
             }
-
+            
             $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
             $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
-
+            
             if (!$echo) {
                 return $moduleMarkup;
             }
-
+            
             echo $moduleMarkup;
-
+            
             if (!empty($moduleSettings['cache_ttl'])) {
                 $cache->stop();
             }
         }
-
+ 
         return true;
     }
 
@@ -365,37 +349,35 @@ class Display
     public function getModuleMarkup($module, $args)
     {
         $templatePath = $module->template();
-
         // Get template for legacy modules
         if (!$templatePath) {
             $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
         }
-
+        
         if (!$templatePath) {
             return false;
         }
-
         $moduleMarkup = '';
         if (preg_match('/.blade.php$/i', $templatePath)) {
             $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
         } else {
             $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
         }
-
+        
         if (empty($moduleMarkup)) {
             return;
         }
-
+        
         $classes = array(
             'modularity-' . $module->post_type,
             'modularity-' . $module->post_type . '-' . $module->ID
         );
-
+        
         //Hide module if preview
         if (is_preview() && $module->hidden) {
             $classes[] = 'modularity-preview-hidden';
         }
-
+        
         //Add selected scope class
         if (isset($module->data['meta']) && isset($module->data['meta']['module_css_scope']) && is_array($module->data['meta']['module_css_scope'])) {
             if (!empty($module->data['meta']['module_css_scope'][0])) {
@@ -440,15 +422,12 @@ class Display
             throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
         }
 
+
         $template = \Modularity\Helper\Template::getModuleTemplate($view, $module);
         $templatePath = trailingslashit(dirname($template));
         $view = basename($template, '.blade.php');
         $view = basename($view, '.php');
-
         if (\Modularity\Helper\Template::isBlade($template)) {
-            //$blade = new Blade($templatePath, MODULARITY_CACHE_DIR);
-            //return $blade->view()->make($view, $module->data)->render();
-           echo 8495698745678456;
             return $this->renderView($view, $module->data);
         }
 
