@@ -3,8 +3,7 @@
 namespace Modularity;
 
 use Throwable;
-use HelsingborgStad\BladeEngineWrapper as Blade;
-use BladeComponentLibrary\Init as BladeInitiator;
+use BladeComponentLibrary\Init as CompLibInitator;
 
 class Display
 {
@@ -39,13 +38,13 @@ class Display
     {
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
-        $init = new BladeInitiator($moduleView);
+        $init = new CompLibInitator([$moduleView]);
         $blade = $init->getEngine();
 
         try {
-            echo  $blade->make($view, $data )->render();
+            echo $blade->make($view, $data )->render();
         } catch(Throwable $e) {
-            echo $e;
+            echo '<pre>' . var_dump($e) . '</pre>';
         }
 
         return false;
@@ -84,6 +83,8 @@ class Display
      */
     public function isActiveSidebar($isActiveSidebar, $sidebar)
     {
+        
+        
         $widgets = wp_get_sidebars_widgets();
         $widgets = array_map('array_filter', $widgets);
         $visibleModules = false;
@@ -116,13 +117,13 @@ class Display
     {
         global $post;
         global $wp_query;
-
+        
         if (is_admin() || is_feed() || is_tax() || post_password_required()) {
             return;
         }
-
+        
         $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
-
+        
         if (isset($wp_query->query['modularity_template']) && !empty($wp_query->query['modularity_template'])) {
             $this->modules = \Modularity\Editor::getPostModules($wp_query->query['modularity_template']);
             $this->options = get_option('modularity_' . $wp_query->query['modularity_template'] . '_sidebar-options');
@@ -133,10 +134,9 @@ class Display
             $this->modules = \Modularity\Editor::getPostModules($post->ID);
             $this->options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
         }
-
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
         add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
-
+        
         add_filter('sidebars_widgets', array($this, 'hideWidgets'));
     }
 
@@ -148,15 +148,15 @@ class Display
     public function hideWidgets($sidebars)
     {
         $retSidebars = $sidebars;
-
+        
         foreach ($retSidebars as $sidebar => $widgets) {
             if (!empty($retSidebars[$sidebar]) && (!isset($this->options[$sidebar]['hide_widgets']) || $this->options[$sidebar]['hide_widgets'] != 'true')) {
                 continue;
             }
-
+            
             $retSidebars[$sidebar] = array('');
         }
-
+    
         return $retSidebars;
     }
 
@@ -200,7 +200,7 @@ class Display
         if (isset($this->options[$sidebar]['hook']) && $this->options[$sidebar]['hook'] != 'after') {
             return false;
         }
-
+        
         $this->output($sidebar);
     }
 
