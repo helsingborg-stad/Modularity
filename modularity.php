@@ -82,15 +82,21 @@ add_action('plugins_loaded', function () {
 // Make sure Advanced Custom Fields PRO is activated and throws an error otherwise
 function check_dependency()
 {
-    require_once(ABSPATH . 'wp-admin/includes/plugin.php');
-    $success = false;
-    $active_plugins = apply_filters('active_plugins', get_option('active_plugins'));
-    if (in_array('advanced-custom-fields-pro/acf.php', $active_plugins)) {
-        $success = true;
+    require_once(ABSPATH . 'wp-includes/pluggable.php');
+
+    if (!function_exists('is_plugin_active_for_network')) {
+        include_once(ABSPATH . '/wp-admin/includes/plugin.php');
     }
-    if (!$success) {
+    // Make sure class exists and ACF_PRO is defined
+    if (class_exists('acf_pro') && ACF_PRO === true) {
+        return;
+    }
+    if (current_user_can('activate_plugins')) {
+        // Deactivate the plugin.
         deactivate_plugins(plugin_basename(__FILE__));
-        die('To use the Modularity plugin, please install & activate the Advanced Custom Fields PRO plugin.');
+        // Throw an error in the WordPress admin console.
+        $error_message = 'To use the Modularity plugin, please install & activate the Advanced Custom Fields PRO plugin.';
+        die($error_message);
     }
 }
 
