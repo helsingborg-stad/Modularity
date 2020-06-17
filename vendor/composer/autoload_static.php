@@ -9,6 +9,7 @@ class ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'ff94b54cc49d91067b6c55e8792511c4' => __DIR__ . '/..' . '/aristath/kirki/kirki.php',
         '8ec4222c68e580a23520eef4abe4380f' => __DIR__ . '/..' . '/shortpixel/shortpixel-php/lib/ShortPixel.php',
         'c93afce03290e70ec0d051b69a50edb0' => __DIR__ . '/..' . '/shortpixel/shortpixel-php/lib/ShortPixel/Exception.php',
@@ -17,6 +18,7 @@ class ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Contracts\\Translation\\' => 30,
             'Symfony\\Component\\Translation\\' => 30,
@@ -65,6 +67,10 @@ class ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
+        ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
@@ -159,11 +165,17 @@ class ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6
         ),
     );
 
+    public static $classMap = array (
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit6436d5ad457ba4f1d8678fa03f1cafb6::$classMap;
 
         }, null, ClassLoader::class);
     }
