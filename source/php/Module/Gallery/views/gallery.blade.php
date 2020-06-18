@@ -8,10 +8,12 @@
 
     @endif
 
-    @gallery([
-        'list' => $image,
-        'classList' => [$classes, 'image-gallery']
-    ])
-    @endgallery
+    @if ($image)
+        @gallery([
+            'list' => $image,
+            'classList' => [$classes, 'image-gallery']
+        ])
+        @endgallery
+    @endif
 
 </div>

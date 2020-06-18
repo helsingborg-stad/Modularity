@@ -17,7 +17,6 @@ class Gallery extends \Modularity\Module
     }
 
     /**
-     * Data
      * @return array
      */
     public function data() : array
@@ -27,11 +26,17 @@ class Gallery extends \Modularity\Module
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box',
             'box-gallery'), $this->post_type, $this->args));
 
-        foreach ($data['mod_gallery_images'] as $i=>$image) {
-            $data['image'][$i]['largeImage']  = $image["sizes"]["large"];
-            $data['image'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
-            $data['image'][$i]['alt']  = $image["description"];
-            $data['image'][$i]['caption']  = $image["caption"];
+        if ($data['mod_gallery_images']) {
+
+            foreach ($data['mod_gallery_images'] as $i=>$image) {
+                $data['image'][$i]['largeImage']  = $image["sizes"]["large"];
+                $data['image'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
+                $data['image'][$i]['alt']  = $image["description"];
+                $data['image'][$i]['caption']  = $image["caption"];
+            }
+
+        } else {
+            return $data['image'] = null;
         }
 
         return $data;
