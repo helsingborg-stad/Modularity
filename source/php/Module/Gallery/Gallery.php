@@ -16,14 +16,28 @@ class Gallery extends \Modularity\Module
         $this->acfFields();
     }
 
+    /**
+     * Data
+     * @return array
+     */
     public function data() : array
     {
         $data = get_fields($this->ID);
-        $data['mod_gallery_images'] = $this->getThumbnails($data['mod_gallery_images']);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-gallery'), $this->post_type, $this->args));
+
+        //$data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box',
+        // 'box-gallery'), $this->post_type, $this->args));
+
+        foreach ($data['mod_gallery_images'] as $i=>$image) {
+            $data['image'][$i]['largeImage']  = $image["sizes"]["large"];
+            $data['image'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
+            $data['image'][$i]['alt']  = $image["description"];
+            $data['image'][$i]['caption']  = $image["caption"];
+        }
+
         return $data;
     }
 
+    /* To be removed ?
     public function getThumbnails($images)
     {
         foreach ($images as &$image) {
@@ -38,8 +52,11 @@ class Gallery extends \Modularity\Module
         }
 
         return $images;
-    }
+    }*/
 
+    /**
+     * ACF Fields for admin
+     */
     public function acfFields()
     {
         if (function_exists('acf_add_local_field_group')) {
