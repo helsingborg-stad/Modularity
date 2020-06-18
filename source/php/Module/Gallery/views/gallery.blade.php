@@ -8,9 +8,9 @@
 
     @endif
 
-    @if ($image)
+    @if ($images)
         @gallery([
-            'list' => $image,
+            'list' => $images,
             'classList' => [$classes, 'image-gallery']
         ])
         @endgallery

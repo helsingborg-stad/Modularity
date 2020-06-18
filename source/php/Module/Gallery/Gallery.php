@@ -29,14 +29,14 @@ class Gallery extends \Modularity\Module
         if ($data['mod_gallery_images']) {
 
             foreach ($data['mod_gallery_images'] as $i=>$image) {
-                $data['image'][$i]['largeImage']  = $image["sizes"]["large"];
-                $data['image'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
-                $data['image'][$i]['alt']  = $image["description"];
-                $data['image'][$i]['caption']  = $image["caption"];
+                $data['images'][$i]['largeImage']  = $image["sizes"]["large"];
+                $data['images'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
+                $data['images'][$i]['alt']  = $image["description"];
+                $data['images'][$i]['caption']  = $image["caption"];
             }
 
         } else {
-            return $data['image'] = null;
+            return $data['images'] = null;
         }
 
         return $data;
