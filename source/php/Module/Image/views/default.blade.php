@@ -20,7 +20,7 @@
                 ])
                 @endimage
             @endbutton
-        <a href="{{ $mod_image_link_url }}"><img src="{{ $img_src }}" alt="{{ $mod_image_image['alt'] }}" class="block-level {!! $img_classes !!}"></a>
+      
     @else
             @image([
                 'src'=> $img_src,
