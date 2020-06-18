@@ -10,7 +10,7 @@
 
     @gallery([
         'list' => $image,
-        'classList' => ['image-gallery']
+        'classList' => [$classes, 'image-gallery']
     ])
     @endgallery
 

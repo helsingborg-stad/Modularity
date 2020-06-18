@@ -24,8 +24,8 @@ class Gallery extends \Modularity\Module
     {
         $data = get_fields($this->ID);
 
-        //$data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box',
-        // 'box-gallery'), $this->post_type, $this->args));
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box',
+            'box-gallery'), $this->post_type, $this->args));
 
         foreach ($data['mod_gallery_images'] as $i=>$image) {
             $data['image'][$i]['largeImage']  = $image["sizes"]["large"];
