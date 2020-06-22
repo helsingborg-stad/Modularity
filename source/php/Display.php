@@ -44,7 +44,11 @@ class Display
         try {
             echo $blade->make($view, $data )->render();
         } catch(Throwable $e) {
-            echo '<pre>' . var_dump($e) . '</pre>';
+            echo '<pre style="border: 3px solid #f00; padding: 10px;">';
+                echo '<strong>' . $e->getMessage() . '</strong>';
+                echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
+                echo $e->getTraceAsString();
+            echo '</pre>';
         }
 
         return false;
