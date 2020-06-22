@@ -1,4 +1,5 @@
 <div class="box box-plain wp-caption">
+
     @if (!$hideTitle && !empty($post_title))
             @typography([
                 "variant" => "h2"
@@ -8,6 +9,7 @@
     @endif
 
     @if (isset($mod_image_link_url) && strlen($mod_image_link_url) > 0)
+
             @link([
                 'href' => $mod_image_link_url
             ])
@@ -20,7 +22,7 @@
                 ])
                 @endimage
             @endbutton
-      
+
     @else
             @image([
                 'src'=> $img_src,
