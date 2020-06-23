@@ -1,19 +1,28 @@
-@if (!$hideTitle && !empty($post_title))
-    @typography([
-        'element' => 'h4', 
-        'variant' => 'h2', 
-        'classList' => ['module-title']
-    ])
-        {!! apply_filters('the_title', $post_title) !!}
-    @endtypography
-@endif
-
-
 @slider([
-    'showStepper' => true,
-    'autoSlide' => $c_autoslide
+    'showStepper' => true
 ])
     @foreach ($slides as $slide)
-        @include('partials.' . $slide->acf_fc_layout, ['layout' => $slide_align])
+        @segment([
+            'title' => $slide['textblock_title'],
+            'text' => $slide['textblock_content'],
+            'background_image' => $slide['image_use'][0],
+            'overlay' => 'light',
+            'overlay_opacity' => 'high'
+        ])
+
+            @if ($slide['link_url']) 
+                @slot('bottom')
+                    @button([
+                        'text' => __('Read more', 'modularity'),
+                        'color' => 'primary',
+                        'type' => 'filled',
+                        'href' => $slide['link_url'],
+                        'target' => $slide['link_type'] === 'external' ? '_blank' : '_self' 
+                    ])
+                    @endbutton
+                @endslot
+            @endif
+            
+        @endsegment
     @endforeach
 @endslider
