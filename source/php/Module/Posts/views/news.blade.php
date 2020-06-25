@@ -1,9 +1,10 @@
 @include('partials.post-filters')
 
-@grid(["container" => true])
+<div>
 
     @if (!$hideTitle && !empty($post_title))
         @if (!$hideTitle && !empty($post_title))
+
             @typography([
                 'element' => "h4",
                 'classList' => ['box-title']
@@ -18,11 +19,6 @@
 
         <div class="grid-xs-12">
 
-            @link([
-                'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
-                'classList' => $classes
-            ])
-
             @if ($hasImages)
                     <div class="box-image-container">
 
@@ -31,36 +27,58 @@
                         ])
                         @endtags
 
-                        @if ($post->thumbnail && in_array('image', $posts_fields))
+                        @link([
+                            'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                            'classList' => $classes
+                        ])
 
-                            @image([
-                                'src'=> $post->thumbnail[0],
-                                'alt' => $post->post_title,
-                                'classList' => ['box-image'],
-                            ])
-                            @endimage
+                            @if ($post->thumbnail && in_array('image', $posts_fields))
 
-                        @else
-                            <figure class="image-placeholder"></figure>
-                        @endif
+                                @image([
+                                    'src'=> $post->thumbnail[0],
+                                    'alt' => $post->post_title,
+                                    'classList' => ['box-image'],
+                                ])
+                                @endimage
+
+                            @else
+                                <figure class="image-placeholder"></figure>
+                            @endif
+                        @endlink
                     </div>
                 @endif
 
                 <div class="box-content">
                     @if (in_array('title', $posts_fields))
-
-                        @typography([
-                            'element' => "h3",
-                            'classList' => ['text-highlight']
+                        @link([
+                            'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                            'classList' => $classes
                         ])
-                            {!! apply_filters('the_title', $post->post_title) !!}
-                        @endtypography
-
+                            @typography([
+                                'element' => "h3",
+                                'classList' => ['text-highlight']
+                            ])
+                                {!! apply_filters('the_title', $post->post_title) !!}
+                            @endtypography
+                        @endlink
                     @endif
 
                     @if (in_array('excerpt', $posts_fields))
-                        {!! isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : '' !!}
+                        {!! isset(get_extended($post->post_content)['main']) ?
+                                apply_filters('the_excerpt',
+                                wp_trim_words(
+                                    wp_strip_all_tags(
+                                        strip_shortcodes(
+                                            get_extended($post->post_content)['main']
+                                        )
+                                    ), 30, null)
+                                ) : ''
+                        !!}
                     @endif
+                    @link([
+                        'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                        'classList' => $classes
+                    ])
                         @typography([
                             'element' => "p"
                         ])
@@ -72,28 +90,33 @@
                             @endtypography
                         @endtypography
 
+                    @endlink
                     @if (isset($taxonomyDisplay['below']))
                         <div class="gutter gutter-top">
+
                             @tags([
                                 'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['below'])
                             ])
                             @endtags
+
                         </div>
                     @endif
                 </div>
-            @endlink
+
         </div>
     @endforeach
 
     @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
         <div>
+
             @link([
                 'href' => $archive_link_url ."?".http_build_query($filters) ,
                 'classList' => ['read-more']
             ])
             {{_e('Show more', 'modularity')}}
             @endlink
+
         </div>
     @endif
 
-@endgrid
+</div>
