@@ -206,7 +206,6 @@ class Posts extends \Modularity\Module
         }
 
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
-
         $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
         $data['posts_data_source'] = $fields->posts_data_source;
         $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
