@@ -2,18 +2,18 @@
 
 <div>
 
+
     @if (!$hideTitle && !empty($post_title))
-        @if (!$hideTitle && !empty($post_title))
 
-            @typography([
-                'element' => "h4",
-                'classList' => ['box-title']
-            ])
-                {!! apply_filters('the_title', $post_title) !!}
-            @endtypography
+        @typography([
+            'element' => "h4",
+            'classList' => ['box-title']
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
 
-        @endif
     @endif
+
 
     @foreach ($posts as $post)
 
@@ -75,6 +75,7 @@
                                 ) : ''
                         !!}
                     @endif
+
                     @link([
                         'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
                         'classList' => $classes
@@ -113,7 +114,7 @@
                 'href' => $archive_link_url ."?".http_build_query($filters) ,
                 'classList' => ['read-more']
             ])
-            {{_e('Show more', 'modularity')}}
+                {{_e('Show more', 'modularity')}}
             @endlink
 
         </div>
