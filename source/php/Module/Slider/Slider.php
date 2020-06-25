@@ -129,8 +129,13 @@ class Slider extends \Modularity\Module
             }
 
             // In some cases ACF will return an post-id instead of a link.
-            if (isset($slide['link_url']) && is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
-                $slide['link_url'] = get_permalink($slide['link_url']);
+            // Set link text
+            if (isset($slide['link_url'])) {
+                $slide['link_text'] = __('Read more', 'modularity');
+
+                if (is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
+                    $slide['link_url'] = get_permalink($slide['link_url']);
+                }
             }
 
             if (isset($slide['show_pause_icon']) && $slide['show_pause_icon'] == true) {
@@ -144,6 +149,8 @@ class Slider extends \Modularity\Module
             if (isset($slide['show_pause_icon_on_hover']) && $slide['show_pause_icon_on_hover'] == true) {
                 $slide['slider-show-on-hover'] = 'slider-show-on-hover';
             }
+
+            $slide = (object)$slide;
         }
 
         return $data['slides'];
