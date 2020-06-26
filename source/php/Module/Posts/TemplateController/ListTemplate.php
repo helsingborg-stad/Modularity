@@ -70,7 +70,7 @@ class ListTemplate
                     $postData['posts_fields']) &&
                 $postData['posts_data_source'] !== 'input') {
 
-                $list[$index]['label'] .= apply_filters('Modularity/Module/Posts/Date',
+                $list[$index]['label'] .= ', '.apply_filters('Modularity/Module/Posts/Date',
                     get_the_time('Y-m-d', $post->ID), $post->ID, $post->post_type);
             }
         }
