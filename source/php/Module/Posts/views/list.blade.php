@@ -1,6 +1,7 @@
 @include('partials.post-filters')
 
 <div class="{{ $classes }}">
+
     @if (!$hideTitle && !empty($post_title))
 
         @typography([
@@ -11,6 +12,12 @@
         @endtypography
 
     @endif
+
+    {{--
+    TODO: Fundera över om vi ska lägga till en extra parameter i listmodulen för datum eller
+    använda tabell component.
+
+    --}}
 
     @listing([
         'list' => $prepareList

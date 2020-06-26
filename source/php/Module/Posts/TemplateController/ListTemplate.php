@@ -28,11 +28,11 @@ class ListTemplate
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->module->post_type, $this->args));
 
         $this->data['prepareList'] = $this->prepare($module->data['posts'], $postData = array(
-            'posts_data_source' => $module->data['posts_data_source'],
-            'posts_fields' => $module->data['posts_fields'],
-            'archive_link' => $module->data['archive_link'],
-            'archive_link_url' => $module->data['archive_link_ur'],
-            'filters' => $module->data['filters']
+            'posts_data_source' => $module->data['posts_data_source'] ?? '',
+            'posts_fields' => $module->data['posts_fields'] ?? '',
+            'archive_link' => $module->data['archive_link'] ?? '',
+            'archive_link_url' => $module->data['archive_link_ur'] ?? '',
+            'filters' => $module->data['filters'] ?? ''
         ));
 
     }
