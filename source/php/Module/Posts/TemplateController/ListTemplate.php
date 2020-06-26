@@ -25,15 +25,15 @@ class ListTemplate
         $this->args = $args;
         $this->data = $data;
 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->module->post_type, $this->args));
-
-        $this->data['prepareList'] = $this->prepare($module->data['posts'], $postData = array(
-            'posts_data_source' => $module->data['posts_data_source'] ?? '',
-            'posts_fields' => $module->data['posts_fields'] ?? '',
-            'archive_link' => $module->data['archive_link'] ?? '',
-            'archive_link_url' => $module->data['archive_link_ur'] ?? '',
-            'filters' => $module->data['filters'] ?? ''
+        $this->data['prepareList'] = $this->prepare($this->module->data['posts'], $postData = array(
+            'posts_data_source' => $this->module->data['posts_data_source'] ?? '',
+            'posts_fields' => $this->module->data['posts_fields'] ?? '',
+            'archive_link' => $this->module->data['archive_link'] ?? '',
+            'archive_link_url' => $this->module->data['archive_link_ur'] ?? '',
+            'filters' => $this->module->data['filters'] ?? ''
         ));
+
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->module->post_type, $this->args));
 
     }
 
