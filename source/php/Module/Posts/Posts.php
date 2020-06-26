@@ -27,6 +27,7 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+
     }
 
     public static function loadMoreButtonAttributes($module, $target, $bladeTemplate, $postsPerPage)
