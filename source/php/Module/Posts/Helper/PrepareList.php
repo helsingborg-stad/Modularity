@@ -12,18 +12,12 @@ class PrepareList
      */
     public function prepare($posts, $postData)
     {
+        $list = array();
+        $index = 0;
 
         if (count($posts) < 1) {
-            return null;
-        } else {
             $list[0]['label'] = _e('No posts to show…', 'modularity');
-            if ($postData['posts_data_source'] !== 'input' && isset($postData['archive_link']) &&
-                $postData['archive_link'] && $postData[' $archive_link_url']) {
-
-                $list[0]['label'] = _e('Show more', 'modularity');
-                $list[0]['href'] = $postData['archive_link_url'] . "?" . http_build_query
-                    ($postData['filters']);
-            }
+            return $list;
         }
 
         foreach ($posts as $index => $post) {
@@ -39,15 +33,27 @@ class PrepareList
                 $list[$index]['label'] = apply_filters('the_title', $post->post_title);
             }
 
-            if (in_array('date', $postData['posts_fields']) &&
+            if (in_array('date',
+                    $postData['posts_fields']) &&
                 $postData['posts_data_source'] !== 'input') {
 
-                $list[$index]['label'] = "<span class='list-time'>" .
-                    apply_filters('Modularity/Module/Posts/Date',
-                        get_the_time('Y-m-d', $post->ID), $post->ID, $post->post_type) .
-                    "</span>";
+                $list[$index]['label'] .= apply_filters('Modularity/Module/Posts/Date',
+                        get_the_time('Y-m-d', $post->ID), $post->ID, $post->post_type);
             }
         }
+
+        if ($postData['posts_data_source'] !== 'input' &&
+            isset($postData['archive_link']) && $postData['archive_link'] &&
+            $postData['archive_link_url']) {
+
+            $list[$index]['label'] = _e('Show more', 'modularity');
+            if (isset($postData['filters'])) {
+                $list[$index]['href'] = $postData['archive_link_url'] . "?" . http_build_query
+                    ($postData['filters']);
+            }
+
+        }
+
         return $list;
 
     }

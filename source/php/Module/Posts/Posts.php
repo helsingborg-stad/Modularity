@@ -203,6 +203,7 @@ class Posts extends \Modularity\Module
             $taxValues = implode('|', $taxValues);
 
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
+
         }
 
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);

@@ -11,19 +11,16 @@
         @endtypography
 
     @endif
-    <?php
-
-
-        $postData = array(
-            'posts_data_source' => isset($posts_data_source),
-            'posts_fields' => isset($posts_fields),
-            'archive_link' => isset($archive_link),
-            'archive_link_url' => isset($archive_link_url),
-            'filters' => isset($filters)
-        );
-    ?>
+    {{-- 'list' => (new Modularity\Module\Posts\TemplateController\ListTemplate)->prepare($posts,
+     $postData = array( --}}
     @listing([
-        'list' => (new Modularity\Module\Posts\Helper\PrepareList)->prepare($posts, $postData)
+        'list' => (new Modularity\Module\Posts\Helper\PrepareList)->prepare($posts, $postData = array(
+            'posts_data_source' => $posts_data_source,
+            'posts_fields' => $posts_fields,
+            'archive_link' => $archive_link,
+            'archive_link_url' => $archive_link_url,
+            'filters' => $filters
+        ))
     ])
     @endlisting
 
