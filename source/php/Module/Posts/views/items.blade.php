@@ -13,7 +13,9 @@
     @endif
 
     @if (count($posts) > 0)
-        @foreach ($posts as $post)
+
+         @foreach ($posts as $post)
+
             <div class="{{ $posts_columns }}">
 
                 @tags([
@@ -50,6 +52,7 @@
                                 'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
                                 'classList' => $classes
                             ])
+
                                 @typography([
                                     'element' => "h5",
                                     'classList' => ['link-item', 'link-item-light']
@@ -65,12 +68,14 @@
 
                                 @typography([
                                         'element' => "p"
-                                    ])
+                                ])
+
                                     @typography([
                                         'element' => "time"
                                     ])
                                         {!! apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d H:i', $post->ID), $post->ID, $post->post_type !!}
                                     @endtypography
+
                                 @endtypography
 
                         @endif
@@ -120,7 +125,7 @@
                     'href' => $archive_link_url ."?".http_build_query($filters) ,
                     'classList' => ['read-more']
                 ])
-                {{_e('Show more', 'modularity')}}
+                    {{_e('Show more', 'modularity')}}
                 @endlink
 
             </div>
