@@ -12,7 +12,7 @@
         @endtypography
 
     @endif
-
+    
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
             @if ($post->thumbnail && in_array('image', $posts_fields))
