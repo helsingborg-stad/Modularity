@@ -33,7 +33,7 @@
                         @image([
                             'src'=> $post->thumbnail[0],
                             'alt' => $post->post_title,
-                            'classList' => ['box-image'],
+                            'classList' => ['box-image']
                         ])
                         @endimage
 
@@ -73,7 +73,8 @@
                                     @typography([
                                         'element' => "time"
                                     ])
-                                        {!! apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d H:i', $post->ID), $post->ID, $post->post_type !!}
+                                        {!! apply_filters('Modularity/Module/Posts/Date',
+                                        get_the_time('Y-m-d H:i', $post->ID), $post->ID, $post->post_type) !!}
                                     @endtypography
 
                                 @endtypography
@@ -93,11 +94,14 @@
                             @endif
                         @endif
 
-                            @tags([
+                        @if(isset($taxonomyDisplay['below']))
+
+                             @tags([
                                 'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['below'])
                             ])
                             @endtags
-
+                            
+                        @endif
                     </div>
 
             </div>
