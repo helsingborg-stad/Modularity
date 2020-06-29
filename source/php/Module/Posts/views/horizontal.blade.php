@@ -5,10 +5,10 @@
     @if (!$hideTitle && !empty($post_title))
 
         @typography([
-        'element' => "h4",
-        'classList' => ['box-title', 'u-mb-4']
+            'element' => "h4",
+            'classList' => ['box-title', 'u-mb-4']
         ])
-        {!! apply_filters('the_title', $post_title) !!}
+            {!! apply_filters('the_title', $post_title) !!}
         @endtypography
 
     @endif
@@ -20,65 +20,87 @@
                     <div class="grid-xs-12">
 
                         @link([
-                        'href' => apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)
+                            'href' => apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)
                         ])
-                        <article class="full u-mb-2">
 
-                            @if (in_array('image', $posts_fields) && $post->image)
-                                <img class="u-mb-3 u-w-100 u-pb-0" src="{{ $post->image }}" alt="{{ $post->post_title }}">
-                            @endif
+                            <article class="full u-mb-2">
 
+                                @if (in_array('image', $posts_fields) && $post->image)
 
-                            @if (in_array('title', $posts_fields))
+                                    @image([
+                                        'src'=> $post->image,
+                                        'alt' => $post->post_title,
+                                        'clasList' => ['u-mb-3','u-w-100','u-pb-0']
+                                    ])
+                                    @endimage
 
-                                @typography([
-                                'element' => "h4",
-                                'variant' => "h2"
-                                ])
-                                {{$post->post_title}}
-                                @endtypography
+                                @endif
 
-                            @endif
-
-                            @if (in_array('date', $posts_fields))
-                                <time datetime="{{get_the_time(get_option('date_format'), $post->ID) . ' ' . get_the_time(get_option('time_format'), $post->ID)}}">
-                                    @if ($post->humanReadableTime)
-                                        {{$post->humanReadableTime}}
-                                    @else
-                                        {{ apply_filters('Modularity/Module/Posts/Date', get_the_time(get_option('date_format'), $post->ID) . ' ' . get_the_time(get_option('time_format'), $post->ID), $post->ID, $post->post_type, $posts_display_as) }}
-                                    @endif
-                                </time>
-                            @endif
-
-                            @if (is_array($post->terms) && !empty($post->terms))
-
-                                @foreach ($post->terms as $term)
+                                @if (in_array('title', $posts_fields))
 
                                     @typography([
-                                    'element' => "span"
+                                        'element' => "h4",
+                                        'variant' => "h2"
                                     ])
-                                    - {{$term->name}}
+                                        {{$post->post_title}}
                                     @endtypography
 
-                                @endforeach
+                                @endif
 
-                            @endif
+                                @if (in_array('date', $posts_fields))
 
-                            {!! isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 45, null)) : '' !!}
+                                    <time datetime="{{get_the_time(get_option('date_format'), $post->ID) . ' ' . get_the_time(get_option('time_format'), $post->ID)}}">
+                                        @if ($post->humanReadableTime)
+                                            {{$post->humanReadableTime}}
+                                        @else
+                                            {{ apply_filters('Modularity/Module/Posts/Date', get_the_time(get_option('date_format'), $post->ID) . ' ' . get_the_time(get_option('time_format'), $post->ID), $post->ID, $post->post_type, $posts_display_as) }}
+                                        @endif
+                                    </time>
 
-                        </article>
+                                @endif
+
+                                @if (is_array($post->terms) && !empty($post->terms))
+
+                                    @foreach ($post->terms as $term)
+
+                                        @typography([
+                                            'element' => "span"
+                                        ])
+                                            - {{$term->name}}
+                                        @endtypography
+
+                                    @endforeach
+
+                                @endif
+
+                                {!! isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 45, null)) : '' !!}
+
+                            </article>
+
                         @endlink
+
                     </div>
                 @else
                     @include('partials.post.post-horizontal')
                 @endif
+
             @endforeach
         </div>
 
         @if (get_field('posts_count', $ID) > 0)
             <div class="grid">
                 <div class="grid-xs-12 text-center u-py-2">
-                    <button class="btn btn-primary js-mod-posts-load-more" data-mod-posts-load-more="{{$loadMorePostsAttributes}}">{{$loadMoreButtonText}}</button>
+
+                    @button([
+                        'text' => 'Secondary',
+                        'color' => 'secondary',
+                        'style' => 'basic',
+                        'attributeList' => ['data-mod-posts-load-more' => $loadMorePostsAttributes],
+                        'classList' => ['js-mod-posts-load-more']
+                    ])
+                        {{$loadMoreButtonText}}
+                    @endbutton
+
                 </div>
             </div>
         @endif
@@ -87,5 +109,6 @@
         <section>
             <?php _e('Nothing to display…', 'modularity'); ?>
         </section>
+
     @endif
 </div>
