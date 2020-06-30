@@ -17,7 +17,7 @@
     @if (count($posts) > 0)
         @foreach ($posts as $post)
             <div class="{{ isset($post->column_width) ? $post->column_width : $column_width }}">
-                <a href="{{ $posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID) }}" class="box box-post-brick" {!! isset($post->column_height) && !empty($post->column_height) ? 'style="padding-bottom:0;height:' . $post->column_height . '"' : '' !!}>
+
                     @if (isset($post->thumbnail) && is_array($post->thumbnail))
                         <div class="box-image" style="background-image:url({{ $post->thumbnail[0] }});">
 
@@ -31,6 +31,7 @@
                                     'alt' => $post->post_title
                                 ])
                                 @endimage
+
                             @endlink
                         </div>
                     @endif
@@ -70,17 +71,24 @@
                     @if (in_array('excerpt', $posts_fields))
                         <div class="box-post-brick-lead">
 
-                            @if(has_excerpt($post->ID))
-                                {!! wp_strip_all_tags(strip_shortcodes(get_the_excerpt($post->ID))) !!}
-                            @elseif(isset($extended['main']) && !empty($extended['main']))
-                                {!! $extended['main'] !!}
-                            @else
-                                {!! wp_trim_words(wp_strip_all_tags(strip_shortcodes($post->post_content)), 100, '') !!}
-                            @endif
+                            @link([
+                                'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                                'classList' => ['box', 'box-post-brick'],
+                                'attributeList' => ['style' =>  isset($post->column_height) && !empty($post->column_height) ?'padding-bottom:0;height:' .$post->column_height  : '']
+                            ])
+                                @if(has_excerpt($post->ID))
+                                    {!! wp_strip_all_tags(strip_shortcodes(get_the_excerpt($post->ID))) !!}
+                                @elseif(isset($extended['main']) && !empty($extended['main']))
+                                    {!! $extended['main'] !!}
+                                @else
+                                    {!! wp_trim_words(wp_strip_all_tags(strip_shortcodes($post->post_content)), 100, '') !!}
+                                @endif
+
+                            @endlink
 
                         </div>
                     @endif
-                </a>
+
             </div>
         @endforeach
     @else
