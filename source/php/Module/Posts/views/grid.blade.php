@@ -21,12 +21,17 @@
                     @if (isset($post->thumbnail) && is_array($post->thumbnail))
                         <div class="box-image" style="background-image:url({{ $post->thumbnail[0] }});">
 
-                            @image([
-                                'src'=> $post->thumbnail[0],
-                                'alt' => $post->post_title
+                            @link([
+                                'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                                'classList' => ['box', 'box-post-brick'],
+                                'attributeList' => ['style' =>  isset($post->column_height) && !empty($post->column_height) ?'padding-bottom:0;height:' .$post->column_height  : '']
                             ])
-                            @endimage
-
+                                @image([
+                                    'src'=> $post->thumbnail[0],
+                                    'alt' => $post->post_title
+                                ])
+                                @endimage
+                            @endlink
                         </div>
                     @endif
 
@@ -47,14 +52,18 @@
                         @endif
 
                         @if (in_array('title', $posts_fields))
-
-                            @typography([
-                                'element' => "h3",
-                                'classList' => ['post-title']
-                            ])
-                                {!! apply_filters('the_title', $post->post_title) !!}
-                            @endtypography
-
+                           @link([
+                                'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                                'classList' => ['box', 'box-post-brick'],
+                                'attributeList' => ['style' =>  isset($post->column_height) && !empty($post->column_height) ?'padding-bottom:0;height:' .$post->column_height  : '']
+                           ])
+                                @typography([
+                                    'element' => "h3",
+                                    'classList' => ['post-title']
+                                ])
+                                    {!! apply_filters('the_title', $post->post_title) !!}
+                                @endtypography
+                            @endlink
                         @endif
                     </div>
 
