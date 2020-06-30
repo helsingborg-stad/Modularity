@@ -1,8 +1,14 @@
 @if (!empty($enabledTaxonomyFilters))
 
     <section class="sidebar-content-area post-filters">
-        <form method="get" action="" id="post-filter"
-              class="gutter-lg gutter-vertical @if (!$frontEndFilters['front_end_hide_date']) disable-post-filter-js @endif">
+
+            @form([
+                'method' => 'GET',
+                'action' => '',
+                'attributeList' => ['id' => 'post-filter'],
+                'classList' => ['gutter-lg',' gutter-vertical', (!$frontEndFilters['front_end_hide_date']) ? disable-post-filter-js : '']
+            ])
+
             @if (!$frontEndFilters['front_end_display'])
                 @if ( !empty($enabledTaxonomyFilters->category))
                     @if ( $frontEndFilters['front_end_tax_filtering_taxonomy'] )
@@ -95,6 +101,6 @@
                            class="btn btn-primary btn-block">
                 </div>
             </div>
-        </form>
+        @endform
     </section>
 @endif
