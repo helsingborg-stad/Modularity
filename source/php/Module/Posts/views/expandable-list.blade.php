@@ -39,8 +39,10 @@
         </header>
     @endif
 
-    <div class="accordion accordion-icon accordion-list">
+
+    <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
+
             <div class="accordion-search">
                 @field([
                     'type' => 'text',
@@ -52,80 +54,27 @@
                 ])
                 @endfield
             </div>
+
         @endif
 
-        @if (count($posts) > 0)
-            @foreach ($posts as $post)
+        @if(count($prepareAccordion) > 0)
 
-                <section class="accordion-section">
-                    @accordion([
-                        'list'=> [
-                            ['heading' => "Your heading", 'content' => "Lorem ipsum dolor sit amet."],
-                        ]
-                    ])
-                    @endaccordion
+            @accordion([
+                'list'=> $prepareAccordion
+            ])
+            @endaccordion
 
-                    <label tabindex="0" class="accordion-toggle" for="item-{{ $ID }}-{{ $post->ID }}">
-                        @if (!empty($posts_list_column_titles))
-                            <span class="accordion-table">
-                            @if (isset($post->column_values) && !empty($post->column_values))
-                                @if ($posts_hide_title_column)
-                                <span class="column-header">{!! apply_filters('the_title', $post->post_title) !!}</span>
-                                @endif
-
-                                @if (is_array($posts_list_column_titles))
-                                @foreach ($posts_list_column_titles as $column)
-
-                                    <span class="column-header">{{ isset($post->column_values[sanitize_title($column->column_header)]) ? $post->column_values[sanitize_title($column->column_header)] : '' }}</span>
-                                @endforeach
-                                @endif
-                            @else
-                                <span class="column-header"><?php echo apply_filters('the_title', $post->post_title); ?></span>
-                            @endif
-
-                            <?php if (isset($taxonomyDisplay['top'])) : ?>
-                            <span class="column-header text-right">
-                            <?php foreach ($taxonomyDisplay['top'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
-                            <ul class="inline-block tags-<?php echo $taxonomy; ?>">
-                                <?php foreach ($terms as $term) : ?>
-                                    <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
-                                <?php endforeach; ?>
-                            </ul>
-                            <?php endif; endforeach; ?>
-                            </span>
-                            <?php endif; ?>
-
-                            </span>
-                        @else
-                            <h4><?php echo apply_filters('the_title', $post->post_title); ?></h4>
-                        @endif
-                    </label>
-
-
-                    <div class="accordion-content">
-                        <article>
-                            <?php echo apply_filters('the_content', $post->post_content); ?>
-                        </article>
-
-                        <?php if (isset($taxonomyDisplay['below'])) : ?>
-                        <div class="gutter gutter-top">
-                        <?php foreach ($taxonomyDisplay['below'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
-                        <ul class="tags tags-<?php echo $taxonomy; ?>">
-                            <?php foreach ($terms as $term) : ?>
-                                <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <?php endif; endforeach; ?>
-                        </div>
-                        <?php endif; ?>
-                    </div>
-                </section>
-
-            @endforeach
         @else
-        <section class="accordion-section">
-            <?php _e('Nothing to display…', 'modularity'); ?>
-        </section>
+
+            <section class="accordion-section">
+                @typography([
+                    'element' => "p"
+                ])
+                    _e('Nothing to display…', 'modularity');
+                @endtypography
+            </section>
+
         @endif
+
     </div>
 </div>

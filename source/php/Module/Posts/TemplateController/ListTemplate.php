@@ -66,8 +66,7 @@ class ListTemplate
                 $list[$index]['label'] = apply_filters('the_title', $post->post_title);
             }
 
-            if (in_array('date',
-                    $postData['posts_fields']) &&
+            if (in_array('date', $postData['posts_fields']) &&
                 $postData['posts_data_source'] !== 'input') {
 
                 $list[$index]['label'] .= ', '.apply_filters('Modularity/Module/Posts/Date',
