@@ -1,63 +1,123 @@
 @include('partials.post-filters')
 
-<div class="grid">
+<div>
+
+
     @if (!$hideTitle && !empty($post_title))
-    <div class="grid-xs-12">
-        <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
-    </div>
+
+        @typography([
+            'element' => "h4",
+            'classList' => ['box-title']
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
+
     @endif
 
+
     @foreach ($posts as $post)
-    <div class="grid-xs-12">
-        <a href="{{ $posts_data_source === 'input' ? $post->permalink : get_permalink($post->ID) }}" class="{{ $classes }}">
+
+        <div class="grid-xs-12">
+
             @if ($hasImages)
-                <div class="box-image-container">
-                    <?php if (isset($taxonomyDisplay['top'])) : foreach ($taxonomyDisplay['top'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
-                        <ul class="tags-<?php echo $taxonomy; ?> pos-absolute-<?php echo $placement; ?>">
-                            <?php foreach ($terms as $term) : ?>
-                                <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    <?php endif; endforeach; endif; ?>
+                    <div class="box-image-container">
 
-                    @if ($post->thumbnail && in_array('image', $posts_fields))
-                    <img src="{{ $post->thumbnail[0] }}" alt="{{ $post->post_title }}" class="box-image">
-                    @else
-                    <figure class="image-placeholder"></figure>
-                    @endif
-                </div>
-            @endif
+                        @tags([
+                            'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['top'])
+                        ])
+                        @endtags
 
-            <div class="box-content">
-                @if (in_array('title', $posts_fields))
-                <h3 class="text-highlight">{!! apply_filters('the_title', $post->post_title) !!}</h3>
-                @endif
+                        @link([
+                            'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                            'classList' => $classes
+                        ])
 
-                @if (in_array('excerpt', $posts_fields))
-                {!! isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : '' !!}
-                @endif
+                            @if ($post->thumbnail && in_array('image', $posts_fields))
 
-                <p><span class="link-item"><?php _e('Read more', 'modularity'); ?></span></p>
+                                @image([
+                                    'src'=> $post->thumbnail[0],
+                                    'alt' => $post->post_title,
+                                    'classList' => ['box-image'],
+                                ])
+                                @endimage
 
-                @if (isset($taxonomyDisplay['below']))
-                    <div class="gutter gutter-top">
-                        <?php foreach ($taxonomyDisplay['below'] as $taxonomy => $placement) : $terms = wp_get_post_terms($post->ID, $taxonomy); if (count($terms) > 0) : ?>
-                        <ul class="tags tags-<?php echo $taxonomy; ?>">
-                            <?php foreach ($terms as $term) : ?>
-                                <li class="tag tag-<?php echo $term->taxonomy; ?> tag-<?php echo $term->slug; ?>"><?php echo $term->name; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                        <?php endif; endforeach; ?>
+                            @else
+                                <figure class="image-placeholder"></figure>
+                            @endif
+                        @endlink
                     </div>
                 @endif
-            </div>
-        </a>
-    </div>
+
+                <div class="box-content">
+                    @if (in_array('title', $posts_fields))
+                        @link([
+                            'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                            'classList' => $classes
+                        ])
+                            @typography([
+                                'element' => "h3",
+                                'classList' => ['text-highlight']
+                            ])
+                                {!! apply_filters('the_title', $post->post_title) !!}
+                            @endtypography
+                        @endlink
+                    @endif
+
+                    @if (in_array('excerpt', $posts_fields))
+                        {!! isset(get_extended($post->post_content)['main']) ?
+                                apply_filters('the_excerpt',
+                                wp_trim_words(
+                                    wp_strip_all_tags(
+                                        strip_shortcodes(
+                                            get_extended($post->post_content)['main']
+                                        )
+                                    ), 30, null)
+                                ) : ''
+                        !!}
+                    @endif
+
+                    @link([
+                        'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
+                        'classList' => $classes
+                    ])
+                        @typography([
+                            'element' => "p"
+                        ])
+                            @typography([
+                                'element' => "span",
+                                'classList' => ['link-item']
+                            ])
+                                {!! _e('Read more', 'modularity') !!}
+                            @endtypography
+                        @endtypography
+
+                    @endlink
+                    @if (isset($taxonomyDisplay['below']))
+                        <div class="gutter gutter-top">
+
+                            @tags([
+                                'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['below'])
+                            ])
+                            @endtags
+
+                        </div>
+                    @endif
+                </div>
+
+        </div>
     @endforeach
 
     @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
-    <div class="grid-lg-12">
-        <a class="read-more" href="{{ $archive_link_url }}?{{ http_build_query($filters) }}"><?php _e('Show more', 'modularity'); ?></a>
-    </div>
+        <div>
+
+            @link([
+                'href' => $archive_link_url ."?".http_build_query($filters) ,
+                'classList' => ['read-more']
+            ])
+                {{_e('Show more', 'modularity')}}
+            @endlink
+
+        </div>
     @endif
+
 </div>

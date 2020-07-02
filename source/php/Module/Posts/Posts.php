@@ -27,6 +27,7 @@ class Posts extends \Modularity\Module
         add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
 
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+
     }
 
     public static function loadMoreButtonAttributes($module, $target, $bladeTemplate, $postsPerPage)
@@ -203,10 +204,10 @@ class Posts extends \Modularity\Module
             $taxValues = implode('|', $taxValues);
 
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
+
         }
 
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
-
         $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
         $data['posts_data_source'] = $fields->posts_data_source;
         $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
