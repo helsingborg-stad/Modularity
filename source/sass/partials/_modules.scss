@@ -97,5 +97,7 @@ li.modularity-module {
 }
 
 .mod-table {
-
+	label, .dataTables_info, a {
+		color: white !important;
+	}
 }
