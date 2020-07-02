@@ -66,20 +66,16 @@ class ListTemplate
                 $list[$index]['label'] = apply_filters('the_title', $post->post_title);
             }
 
-            if (in_array('date',
-                    $postData['posts_fields']) &&
-                $postData['posts_data_source'] !== 'input') {
-
-                $list[$index]['label'] .= ', '.apply_filters('Modularity/Module/Posts/Date',
-                    get_the_time('Y-m-d', $post->ID), $post->ID, $post->post_type);
+            if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
+                $list[$index]['label'] .= ', '.apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d', $post->ID), $post->ID, $post->post_type);
             }
         }
 
         if ($postData['posts_data_source'] !== 'input' &&
-            isset($postData['archive_link']) && $postData['archive_link'] &&
-            $postData['archive_link_url']) {
+            isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']) {
 
             $list[$index]['label'] = _e('Show more', 'modularity');
+          
             if (isset($postData['filters'])) {
                 $list[$index]['href'] = $postData['archive_link_url'] . "?" . http_build_query
                     ($postData['filters']);

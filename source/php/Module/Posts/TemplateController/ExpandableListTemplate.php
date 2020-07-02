@@ -2,6 +2,10 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+/**
+ * Class ExpandableListTemplate
+ * @package Modularity\Module\Posts\TemplateController
+ */
 class ExpandableListTemplate
 {
     protected $module;
@@ -23,17 +27,22 @@ class ExpandableListTemplate
         $this->data['title_column_label'] = isset($fields->title_column_label) ? $fields->title_column_label : false;
         $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
 
-        $this->getColumnValues();
+        $this->data['prepareAccordion'] = $this->prepare($this->module->data['posts'], $this->data);
     }
 
+    /**
+     * get correct column values
+     * @return array|mixed|void
+     */
     public function getColumnValues()
     {
         if (empty($this->data['posts_list_column_titles'])) {
             return;
         }
 
+        $column_values = array();
+
         foreach ($this->data['posts'] as $post) {
-            $column_values = array();
 
             if ($this->data['posts_data_source'] === 'input') {
                 if ($post->column_values !== false && count($post->column_values) > 0) {
@@ -44,8 +53,64 @@ class ExpandableListTemplate
             } else {
                 $column_values = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
             }
-
-            $post->column_values = $column_values;
         }
+
+        return $column_values;
+
     }
+
+    /**
+     * Prepare Data for accordion
+     * @param $posts
+     * @param $data
+     * @return array|null
+     */
+    public function prepare($posts, $data)
+    {
+
+        $column_values = $this->getColumnValues();
+        $accordion = array();
+
+        if (count($posts) > 0) {
+
+            foreach ($posts as $index => $post) {
+
+                $taxPosition = ($data['taxonomyDisplay']['top']) ? $data['taxonomyDisplay']['top'] :
+                    $data['taxonomyDisplay']['below'];
+
+                $accordion[$index]['taxonomy'] = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxPosition);
+                $accordion[$index]['taxonomyPosition'] = $taxPosition;
+
+                if (!empty($data['posts_list_column_titles'])) {
+
+                    if (isset($column_values) && !empty($column_values)) {
+
+                        if ($data['posts_hide_title_column']) {
+                            $accordion[$index]['heading'] = apply_filters('the_title',
+                                $post->post_title);
+                        }
+
+                        if (is_array($data['posts_list_column_titles'])) {
+                            foreach ($data['posts_list_column_titles'] as $column) {
+                                $accordion[$index]['heading'] .= isset(
+                                    $column_values[sanitize_title($column->column_header)]) ?
+                                    $column_values[sanitize_title($column->column_header)] : '';
+                            }
+                        }
+
+                    } else {
+                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
+                    }
+                }
+
+                $accordion[$index]['content'] = apply_filters('the_content', $post->post_content);
+            }
+        }
+
+        if ($accordion < 0)
+            return null;
+
+        return $accordion;
+    }
+
 }
