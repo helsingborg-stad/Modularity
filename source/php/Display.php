@@ -318,15 +318,6 @@ class Display
         
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
             $moduleMarkup = $this->getModuleMarkup($module, $args);
-            
-            if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-                $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
-            } elseif (isset($this->options[$args['id']]['after_module']) && !empty($this->options[$args['id']]['after_module'])) {
-                $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
-            } elseif (isset($args['after_widget'])) {
-                $moduleMarkup .= apply_filters('Modularity/Display/AfterModule', $args['after_widget'], $args, $module->post_type, $module->ID);
-            }
-            
             $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
             $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
             
@@ -390,6 +381,7 @@ class Display
         }
 
         $beforeModule = '';
+        $afterModule = '';
         $moduleEdit = '';
         if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
             $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '</a></div>';
@@ -407,8 +399,15 @@ class Display
             $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
         }
 
-        $moduleMarkup = $beforeModule . $moduleEdit . $moduleMarkup;
-        return $moduleMarkup;
+        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
+            $afterModule = apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
+        } elseif (isset($args['after_widget'])) {
+            $afterWidget = str_replace('%1$s', $module->post_type . '-' . $module->ID, $args['after_widget']);
+            $afterWidget = str_replace('%2$s', implode(' ', $classes), $afterWidget);
+            $afterModule = apply_filters('Modularity/Display/AfterModule', $afterWidget, $args, $module->post_type, $module->ID);
+        }
+
+        return $moduleEdit . $moduleMarkup;
     }
 
     /**
