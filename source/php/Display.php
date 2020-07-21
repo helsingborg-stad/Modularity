@@ -34,7 +34,7 @@ class Display
      * @return bool
      * @throws \Exception
      */
-    public function renderView($view, $data = array()): bool
+    public function renderView($view, $data = array()): string
     {
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
@@ -42,7 +42,7 @@ class Display
         $blade = $init->getEngine();
 
         try {
-            echo $blade->make($view, $data )->render();
+            return $blade->make($view, $data )->render();
         } catch(Throwable $e) {
             echo '<pre style="border: 3px solid #f00; padding: 10px;">';
                 echo '<strong>' . $e->getMessage() . '</strong>';
