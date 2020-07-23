@@ -19,7 +19,7 @@ class InlayList extends \Modularity\Module
     public function data() : array
     {
         $data = array();
-        $data['items'] = get_field('items', $this->ID);
+        $data['listData']['list'] = $this->buildListItems(get_field('items', $this->ID));
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         return $data;
     }
@@ -43,14 +43,49 @@ class InlayList extends \Modularity\Module
         return $title;
     }
 
+    /**
+     * Prepare list items to support list component
+     *
+     * @param $field
+     * @return object $list List data prepared for view
+     */
+    public function buildListItems ($field)
+    {
+        (object)$list = [];
 
+        foreach ($field as $item) {
+            $item = (object)$item;
+
+            if ($item->type === 'internal') {
+                $label = $item->title ? $item->title : $item->link_internal->post_title;
+
+                if ($item->date === true){
+                    $label .= " - " . date('Y-m-d', strtotime($item->link_internal->post_date));
+                }
+
+                $list[] = [
+                    'label'     => $label,
+                    'href'      => get_permalink($item->link_internal->ID)
+                ];
+            }
+            
+            if ($item->type === 'external') {
+                $list[] = [
+                    'label'     => $item->title,
+                    'href'      => $item->link_external,
+                ];
+            }
+        }
+
+        return $list;
+    }
 
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization
      * data()            Use to send data to view (return array)
      * style()           Enqueue style only when module is used on page
-     * script            Enqueue script only when module is used on page
+     * script            Enqueue script only en module is used on page
      * adminEnqueue()    Enqueue scripts for the module edit/add page in admin
      * template()        Return the view template (blade) the module should use when displayed
      */
