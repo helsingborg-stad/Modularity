@@ -1,3 +1,5 @@
+@php $slide = (array)$slide; @endphp
+
 @if ($slide['type'] == 'embed')
     <?php echo \Modularity\Module\Slider\Slider::getEmbed($slide['embed_link'], ['player'], $slide['image_use']); ?>
 @else

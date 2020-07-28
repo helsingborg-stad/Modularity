@@ -1,17 +1,22 @@
-<span class="text-block text-block-left">
-    <span>
-        <!-- Title -->
-        @if (isset($slide['textblock_title']) && !empty($slide['textblock_title']))
-            <em class="title block-level h1">{{ $slide['textblock_title'] }}</em>
-        @endif
+@segment([
+    'title' => $slide->textblock_title,
+    'text' => $slide->textblock_content,
+    'background_image' => $slide->image_use[0],
+    'overlay' => 'light',
+    'overlay_opacity' => 'high'
+])
 
-        <!-- Content -->
-        @if (isset($slide['textblock_content']) && !empty($slide['textblock_content']))
-        {{ $slide['textblock_content'] }}
-        @endif
-    </span>
-</span>
-
-<div class="slider-image slider-image-desktop hidden-xs hidden-sm" style="background-image:url({{ ($slide['image_use'] !== false) ? $slide['image_use'][0] : '' }})"></div>
-<div class="slider-image slider-image-mobile hidden-md hidden-lg" style="background-image:url({{ ($slide['mobile_image_use'] !== false) ? $slide['mobile_image_use'][0] : '' }})"></div>
-
+    @if ($slide->link_url) 
+        @slot('bottom')
+            @button([
+                'text' => $slide->link_text,
+                'color' => 'primary',
+                'type' => 'filled',
+                'href' => $slide->link_url,
+                'target' => $slide->link_type === 'external' ? '_blank' : '_self' 
+            ])
+            @endbutton
+        @endslot
+    @endif
+    
+@endsegment

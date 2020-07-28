@@ -1,11 +1,22 @@
-<span class="text-block {{ isset($slide['textblock_position']) && $slide['textblock_position'] == 'center' ? 'text-block-center' : '' }}">
-    <span>
-        @if (isset($slide['textblock_title']) && strlen($slide['textblock_title']) > 0)
-            <em class="title text-xl block-level">{!! do_shortcode($slide['textblock_title']) !!}</em>
-        @endif
+@segment([
+    'title' => $slide->textblock_title,
+    'text' => $slide->textblock_content,
+    'background_image' => $slide->image_use[0],
+    'overlay' => 'light',
+    'overlay_opacity' => 'high'
+])
 
-        @if (isset($slide['textblock_content']) && strlen($slide['textblock_content']) > 0)
-            {!! do_shortcode($slide['textblock_content']) !!}
-        @endif
-    </span>
-</span>
+    @if ($slide->link_url) 
+        @slot('bottom')
+            @button([
+                'text' => $slide->link_text,
+                'color' => 'primary',
+                'type' => 'filled',
+                'href' => $slide->link_url,
+                'target' => $slide->link_type === 'external' ? '_blank' : '_self' 
+            ])
+            @endbutton
+        @endslot
+    @endif
+    
+@endsegment
