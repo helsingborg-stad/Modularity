@@ -12,13 +12,21 @@ class Notice extends \Modularity\Module
         $this->nameSingular = __("Notice", 'modularity');
         $this->namePlural = __("Notice", 'modularity');
         $this->description = __("Outputs a notice", 'modularity');
+        
     }
 
     public function data() : array
     {
         $data = get_fields($this->ID);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['notice_size'] = $this->getSize($data['notice_size']);
+
         return $data;
+    }
+
+    public function getSize($notice_size) : string
+    {
+        return preg_replace('/notice-/i', '', $notice_size);
     }
 
     /**
