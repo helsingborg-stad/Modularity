@@ -12,7 +12,6 @@ class Notice extends \Modularity\Module
         $this->nameSingular = __("Notice", 'modularity');
         $this->namePlural = __("Notice", 'modularity');
         $this->description = __("Outputs a notice", 'modularity');
-        
     }
 
     public function data() : array
