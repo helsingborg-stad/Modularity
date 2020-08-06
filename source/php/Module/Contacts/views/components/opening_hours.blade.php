@@ -8,7 +8,7 @@
             'u-color__text--darkest'
         ]
     ])
-        <?php _e('Opening Hours', 'modularity'); ?>
+        <?php _e('Opening hours', 'modularity'); ?>
     @endtypography
 
     @typography([
