@@ -72,19 +72,14 @@
                     {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}
                 @endif
 
-                @if ($contact['opening_hours'])
-                    @include('components.opening_hours')
-                @endif
+                {{-- Opening Hours --}}
+                @includeWhen($contact['opening_hours'], 'components.opening_hours')
 
                 {{-- Address --}}
-                @if ($contact['address'])
-                    @include('components.adress')
-                @endif
+                @includeWhen($contact['address'], 'components.adress')
 
                 {{-- Visiting Address --}}
-                @if ($contact['visiting_address'])
-                    @include('components.visiting')
-                @endif
+                @includeWhen($contact['visiting_address'], 'components.visiting')
 
                 @if (isset($contact['other']) && !empty($contact['other']))
                     {!! $contact['other'] !!}

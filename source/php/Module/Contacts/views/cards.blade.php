@@ -80,19 +80,13 @@
                 @endif
 
                 {{-- Opening Hours --}}
-                @if ($contact['opening_hours'])
-                    @include('components.opening_hours')
-                @endif
+                @includeWhen($contact['opening_hours'], 'components.opening_hours')
 
                 {{-- Address --}}
-                @if ($contact['address'])
-                    @include('components.adress')
-                @endif
+                @includeWhen($contact['address'], 'components.adress')
 
                 {{-- Visiting Address --}}
-                @if ($contact['visiting_address'])
-                    @include('components.visiting')
-                @endif
+                @includeWhen($contact['visiting_address'], 'components.visiting')
 
                 {{-- Other --}}
                 @if ($contact['other'])
