@@ -4,10 +4,11 @@
         'attributeList' => ['itemprop' => 'adress'],
         'classList'     => [
             'u-margin__bottom--0',
+            'u-margin__top--2',
             'u-color__text--darkest'
         ]
     ])
-        <?php _e('Postal address', 'modularity'); ?>
+        <?php _e('Opening Hours', 'modularity'); ?>
     @endtypography
 
     @typography([
@@ -17,6 +18,6 @@
             'u-color__text--darker'
         ]
     ])
-        {!! $contact['address'] !!}
+        {!! $contact['opening_hours'] !!}
     @endtypography
 </div>

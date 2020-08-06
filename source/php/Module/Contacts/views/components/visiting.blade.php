@@ -9,7 +9,14 @@
     ])
         <?php _e('Visiting address', 'modularity'); ?>
     @endtypography
-    <span class="u-color__text--darker">
+
+    @typography([
+        "element"       => "p",
+        'classList'     => [
+            'u-margin__top--0',
+            'u-color__text--darker'
+        ]
+    ])
         {!! $contact['visiting_address'] !!}
-    </span>
+    @endtypography
 </div>

@@ -79,6 +79,11 @@
                     <div class="small description">{!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}</div>
                 @endif
 
+                {{-- Opening Hours --}}
+                @if ($contact['opening_hours'])
+                    @include('components.opening_hours')
+                @endif
+
                 {{-- Address --}}
                 @if ($contact['address'])
                     @include('components.adress')

@@ -13,18 +13,24 @@
             @typography([
                 "variant"       => "h2",
                 "element"       => "h2",
+                'classList'     => [
+                    'u-color__text--black'
+        ],
                 "attributeList" => [
                     'itemprop'      => 'name'
                 ]
             ])
-                {{ $contact['full_name'] }}
+                <strong>{{ $contact['full_name'] }}</strong>
             @endtypography
 
             <div>
                 @if ($contact['work_title'] || $contact['administration_unit'])
                     @typography([
-                        "variant"   => "h2",
+                        "variant"   => "h4",
                         "element"   => "h4",
+                        'classList' => [
+                            'u-margin__bottom--2',
+                        ]
                     ])
                         @if ($contact['work_title'])
                             <span itemprop="jobTitle">{{ $contact['work_title'] }}</span>
@@ -63,7 +69,11 @@
                 @endif
 
                 @if (!empty($module->post_content))
-                        {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}
+                    {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}
+                @endif
+
+                @if ($contact['opening_hours'])
+                    @include('components.opening_hours')
                 @endif
 
                 {{-- Address --}}
@@ -77,7 +87,7 @@
                 @endif
 
                 @if (isset($contact['other']) && !empty($contact['other']))
-                        {!! $contact['other'] !!}
+                    {!! $contact['other'] !!}
                 @endif
             </div>
         </section>

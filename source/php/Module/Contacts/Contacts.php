@@ -67,9 +67,9 @@ class Contacts extends \Modularity\Module
                         'email'               => strtolower($contact['email']),
                         'phone'               => $contact['phone_numbers'],
                         'social_media'        => $contact['social_media'],
-                        'address'             => $contact['address'],
-                        'visiting_address'    => $contact['visiting_address'],
-                        'opening_hours'       => $contact['opening_hours'],
+                        'address'             => strip_tags($contact['address'], '<br>'),
+                        'visiting_address'    => strip_tags($contact['visiting_address'], '<br>'),
+                        'opening_hours'       => strip_tags($contact['opening_hours'], '<br>'),
                         'other'               => $contact['other']
                     ), $contact, $contact['acf_fc_layout']);
                     break;
@@ -82,9 +82,9 @@ class Contacts extends \Modularity\Module
                         'last_name'           => $contact['user']['user_lastname'],
                         'work_title'          => null,
                         'administration_unit' => null,
-                        'email'               => strtolower($contact['user']['user_email']),
+                        'email'               => strtolower($contact['user']['user_email'], '<br>'),
                         'phone'               => null,
-                        'address'             => $contact['address'],
+                        'address'             => strip_tags($contact['address'], '<br>'),
                         'visiting_address'    => null,
                         'opening_hours'       => null
                     ), $contact, $contact['acf_fc_layout']);
