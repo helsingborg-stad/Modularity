@@ -17,7 +17,7 @@
     @foreach ($contacts as $contact)
         @grid([])
             @card([
-                'collapsible'   => true,
+                'collapsible'   => $contact['hasBody'],
                 'imageFirst'    => true,
                 'heading'       => $contact['full_name'],
                 'subHeading'    => $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'],
