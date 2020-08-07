@@ -1,61 +1,90 @@
-<div class="box no-padding">
+<div>
     @if (!$hideTitle && !empty($post_title))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+        @typography([
+            "variant"   => "h6",
+            "element"   => "h6"
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
     @endif
 
-    <div class="accordion accordion-icon accordion-list">
     @foreach ($contacts as $key => $contact)
-    <section class="accordion-section" itemscope="person" itemtype="http://schema.org/Organization">
-        <input type="radio" name="active-section" id="accordion-contacts-{{ $ID }}-{{ $key }}">
-        <label class="accordion-toggle" for="accordion-contacts-{{ $ID }}-{{ $key }}">
-            <h6 itemprop="name">{{ $contact['full_name'] }}</h6>
-        </label>
-        <div class="accordion-content">
+        <section itemscope="person" itemtype="http://schema.org/Organization">
+            @typography([
+                "variant"       => "h2",
+                "element"       => "h2",
+                'classList'     => [
+                    'u-color__text--black'
+        ],
+                "attributeList" => [
+                    'itemprop'      => 'name'
+                ]
+            ])
+                <strong>{{ $contact['full_name'] }}</strong>
+            @endtypography
 
-            <ul>
+            <div>
+                @if ($contact['work_title'] || $contact['administration_unit'])
+                    @typography([
+                        "variant"   => "h4",
+                        "element"   => "h4",
+                        'classList' => [
+                            'u-margin__bottom--2',
+                        ]
+                    ])
+                        @if ($contact['work_title'])
+                            <span itemprop="jobTitle">{{ $contact['work_title'] }}</span>
+                        @endif
 
-                @if ((isset($contact['work_title']) && !empty($contact['work_title'])) || (isset($contact['administration_unit']) && !empty($contact['administration_unit'])))
-                    <li class="card-title">
-                        <span itemprop="jobTitle">{{ (isset($contact['work_title']) && !empty($contact['work_title'])) ? $contact['work_title'] : '' }}</span>
-                        <span itemprop="department">{{ (isset($contact['administration_unit']) && !empty($contact['administration_unit'])) ? $contact['administration_unit'] : '' }}</span>
-                    </li>
+                        @if ($contact['work_title'] && $contact['administration_unit'])
+                        -
+                        @endif
+
+                        @if ($contact['administration_unit'])
+                            <span itemprop="department">{{ $contact['administration_unit'] }}</span>
+                        @endif
+                    @endtypography
                 @endif
 
                 @if (isset($contact['phone']) && !empty($contact['phone']))
-                @foreach ($contact['phone'] as $phone)
-                    <li><a itemprop="telephone" class="link-item" href="tel:{{ $phone['number'] }}">{{ $phone['number'] }}</a></li>
-                @endforeach
+                    @foreach ($contact['phone'] as $phone)
+                        @component('components.link', [
+                            'href'      => 'tel:' . $phone['number'],
+                            'icon'      => 'phone',
+                            'itemprop'  => 'telephone',
+                        ])
+                            {{$phone['number']}}
+                        @endcomponent
+                    @endforeach
                 @endif
 
                 @if (isset($contact['email']) && !empty($contact['email']))
-                <li><a itemprop="email" class="link-item truncate" href="mailto:{{ $contact['email'] }}">{{ $contact['email'] }}</a></li>
+                    @component('components.link', [
+                        'href'      => 'mailto:' . $contact['email'],
+                        'icon'      => 'email',
+                        'itemprop'  => 'email'
+                    ])
+                        {{$contact['email']}}
+                    @endcomponent
                 @endif
 
                 @if (!empty($module->post_content))
-                    <li class="small description">{!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}</li>
-                @endif
-                </ul>
-
-                @if (isset($contact['address']) && !empty($contact['address']))
-                <div class="gutter gutter-top small">
-                    {!! $contact['address'] !!}
-                </div>
+                    {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}
                 @endif
 
-                @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
-                <div class="gutter gutter-top small">
-                    {!! $contact['visiting_address'] !!}
-                </div>
-                @endif
+                {{-- Opening Hours --}}
+                @includeWhen($contact['opening_hours'], 'components.opening_hours')
+
+                {{-- Address --}}
+                @includeWhen($contact['address'], 'components.adress')
+
+                {{-- Visiting Address --}}
+                @includeWhen($contact['visiting_address'], 'components.visiting')
 
                 @if (isset($contact['other']) && !empty($contact['other']))
-                <div class="gutter gutter-top small">
                     {!! $contact['other'] !!}
-                </div>
                 @endif
-           </ul>
-        </div>
-    </section>
+            </div>
+        </section>
     @endforeach
-    </div>
 </div>

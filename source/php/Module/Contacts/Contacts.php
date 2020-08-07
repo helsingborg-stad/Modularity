@@ -67,9 +67,10 @@ class Contacts extends \Modularity\Module
                         'email'               => strtolower($contact['email']),
                         'phone'               => $contact['phone_numbers'],
                         'social_media'        => $contact['social_media'],
-                        'address'             => $contact['address'],
-                        'visiting_address'    => $contact['visiting_address'],
-                        'opening_hours'       => $contact['opening_hours'],
+                        'address'             => strip_tags($contact['address'], '<br>'),
+                        'visiting_address'    => strip_tags($contact['visiting_address'], '<br>'),
+                        'opening_hours'       => strip_tags($contact['opening_hours'], '<br>'),
+                        'hasBody'             => $this->hasBody($contact),
                         'other'               => $contact['other']
                     ), $contact, $contact['acf_fc_layout']);
                     break;
@@ -82,11 +83,12 @@ class Contacts extends \Modularity\Module
                         'last_name'           => $contact['user']['user_lastname'],
                         'work_title'          => null,
                         'administration_unit' => null,
-                        'email'               => strtolower($contact['user']['user_email']),
+                        'email'               => strtolower($contact['user']['user_email'], '<br>'),
                         'phone'               => null,
-                        'address'             => $contact['address'],
+                        'address'             => strip_tags($contact['address'], '<br>'),
                         'visiting_address'    => null,
-                        'opening_hours'       => null
+                        'opening_hours'       => null,
+                        'hasBody'             => $this->hasBody($contact)
                     ), $contact, $contact['acf_fc_layout']);
                     break;
             }
@@ -224,6 +226,25 @@ class Contacts extends \Modularity\Module
         $this->data['classes']      = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', $hasImages), $this->post_type, $this->args));
 
         return 'contacts.blade.php';
+    }
+
+    public function hasBody($contact)
+    {
+        $cases = array(
+            $contact['email'],
+            $contact['phone'],
+            $contact['social_media'],
+            $contact['opening_hours'],
+            $contact['address'],
+            $contact['visiting_address'],
+            $contact['other']
+        );
+
+        foreach ($cases as $case) {
+            if ($case) return true;
+        }
+
+        return false;
     }
 
     /**

@@ -1,121 +1,98 @@
 @if (!$hideTitle && !empty($post_title))
-<h4 class="box-title u-mb-4">{!! apply_filters('the_title', $post_title) !!}</h4>
+    @typography([
+        "variant" => "h4"
+    ])
+        {!! apply_filters('the_title', $post_title) !!}
+    @endtypography
 @endif
 
-<div class="grid grid--columns" {{ $equalContainer }}>
-@foreach ($contacts as $contact)
-<div class="{{ $columns }}">
+@grid([
+    "container" => true,
+    "columns"   => "auto-fit",
+    "min_width" => "300px",
+    "max_width" => "400px",
+    "col_gap"   => 5,
+    "row_gap"   => 5
+])
+    @foreach ($contacts as $contact)
+        @grid([])
+            @card([
+                'collapsible'   => $contact['hasBody'],
+                'imageFirst'    => true,
+                'heading'       => $contact['full_name'],
+                'subHeading'    => $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'],
+                'image'         => [
+                    'src'               => $contact['thumbnail'][0],
+                    'alt'               => $contact['full_name'],
+                    'backgroundColor'   => 'secondary',
+                ],
+                'attributeList' => [
+                    'itemscope'     => '',
+                    'itemtype'      => 'http://schema.org/Person'
+                ]
+            ])
 
-    <div class="{{ $classes }}" {{ $equalItem }} itemscope itemtype="http://schema.org/Person">
-        @if ($contact['thumbnail'] !== false)
-        <img class="box-image" src="{{ $contact['thumbnail'][0] }}" alt="{{ $contact['full_name'] }}">
-        @endif
-
-        @if ($contact['thumbnail'] === false && $hasImages)
-            <figure class="image-placeholder ratio-1-1"></figure>
-        @endif
-
-        <div class="box-content">
-            {{-- Name --}}
-            <h5 itemprop="name">{{ $contact['full_name'] }}</h5>
-            <ul>
-                {{-- Work Title & Administration Unit --}}
-                @if ((isset($contact['work_title']) && !empty($contact['work_title'])) || (isset($contact['administration_unit']) && !empty($contact['administration_unit'])))
-                    <li class="card-title">
-                        <span itemprop="jobTitle">{{ (isset($contact['work_title']) && !empty($contact['work_title'])) ? $contact['work_title'] : '' }}</span>
-                        <span itemprop="department">{{ (isset($contact['administration_unit']) && !empty($contact['administration_unit'])) ? $contact['administration_unit'] : '' }}</span>
-                    </li>
-                @endif
-
-                {{-- Compact mode wrapper --}}
-                @if (isset($compact_mode) && $compact_mode)
-                <li>
-                    <ul class="u-flex u-justify-content-center u-align-items-center">
-                @endif
-
-                {{-- E-mail --}}
-                @if (isset($contact['email']) && !empty($contact['email']))
-                    <li>
+                <div class="u-margin__bottom--4 u-margin__top--1">
+                    {{-- E-mail --}}
+                    @if ($contact['email'])
                         @component('components.link', [
-                            'href' => 'mailto:' . $contact['email'],
-                            'icon' => 'email',
-                            'itemprop' => 'email',
-                            'compact' => (isset($compact_mode) ? $compact_mode : false)]
+                            'href'      => 'mailto:' . $contact['email'],
+                            'icon'      => 'email',
+                            'itemprop'  => 'email',
+                            'compact'   => (isset($compact_mode) ? $compact_mode : false)]
                         )
                             {{$contact['email']}}
                         @endcomponent
-                    </li>
-                @endif
+                    @endif
 
-                {{-- Phone --}}
-                @if (isset($contact['phone']) && !empty($contact['phone']))
-                    @foreach ($contact['phone'] as $phone)
-                        <li>
+                    {{-- Phone --}}
+                    @if ($contact['phone'])
+                        @foreach ($contact['phone'] as $phone)
                             @component('components.link', [
-                                'href' => 'tel:' . $phone['number'],
-                                'icon' => (isset($phone['type']) ? $phone['type'] : 'phone'),
-                                'itemprop' => 'telephone',
-                                'compact' => (isset($compact_mode) ? $compact_mode : false)]
+                                'href'      => 'tel:' . $phone['number'],
+                                'icon'      => (isset($phone['type']) ? $phone['type'] : 'phone'),
+                                'itemprop'  => 'telephone',
+                                'compact'   => (isset($compact_mode) ? $compact_mode : false)]
                             )
                                 {{ $phone['number'] }}
                             @endcomponent
-                        </li>
-                    @endforeach
-                @endif
+                        @endforeach
+                    @endif
 
-                {{-- Social Media --}}
-                @if (isset($contact['social_media']) && !empty($contact['social_media']))
-                    @foreach ($contact['social_media'] as $media)
-                        <li>
+                    {{-- Social Media --}}
+                    @if ($contact['social_media'])
+                        @foreach ($contact['social_media'] as $media)
                             @component('components.link', [
-                                'href' => $media['url'],
-                                'icon' => $media['media'],
-                                'itemprop' => ucfirst($media['media']),
-                                'compact' => (isset($compact_mode) ? $compact_mode : false)]
+                                'href'      => $media['url'],
+                                'icon'      => $media['media'],
+                                'itemprop'  => ucfirst($media['media']),
+                                'compact'   => (isset($compact_mode) ? $compact_mode : false)]
                             )
                                 {{ ucfirst($media['media']) }}
                             @endcomponent
-                        </li>
-                    @endforeach
-                @endif
-
-                {{-- Compact mode wrapper --}}
-                @if (isset($compact_mode) && $compact_mode)
-                    </ul>
-                </li>
-                @endif
+                        @endforeach
+                    @endif
+                </div>
 
                 {{-- Description --}}
                 @if (!empty($module->post_content))
-                <li class="small description">{!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}</li>
+                    <div class="small description">{!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}</div>
                 @endif
+
+                {{-- Opening Hours --}}
+                @includeWhen($contact['opening_hours'], 'components.opening_hours')
 
                 {{-- Address --}}
-                @if (isset($contact['address']) && !empty($contact['address']))
-                <li class="gutter gutter-top small">
-                        <strong><?php _e('Postal address', 'modularity'); ?></strong>
-                    {!! $contact['address'] !!}
-                </li>
-                @endif
+                @includeWhen($contact['address'], 'components.adress')
 
                 {{-- Visiting Address --}}
-                @if (isset($contact['visiting_address']) && !empty($contact['visiting_address']))
-                <li class="gutter gutter-top small">
-                    <strong><?php _e('Visiting address', 'modularity'); ?></strong>
-                    {!! $contact['visiting_address'] !!}
-                </li>
-                @endif
+                @includeWhen($contact['visiting_address'], 'components.visiting')
 
                 {{-- Other --}}
-                @if (isset($contact['other']) && !empty($contact['other']))
-                <li class="gutter gutter-top small">
+                @if ($contact['other'])
                     {!! $contact['other'] !!}
-                </li>
                 @endif
-
-            </ul>
-        </div>
-    </div>
-</div>
-@endforeach
-</div>
+            @endcard
+        @endgrid
+    @endforeach
+@endgrid
