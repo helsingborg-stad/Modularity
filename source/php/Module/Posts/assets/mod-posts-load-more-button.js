@@ -11,7 +11,6 @@ Modularity.Posts.LoadMoreButton = (function ($) {
             var button = $(e.target).closest('.js-mod-posts-load-more');
            
             var attributes = JSON.parse(window.atob(button.attr('data-mod-posts-load-more')));
-
             //Make sure required attributes exists
             var requiredKeys = ['postsPerPage', 'offset', 'target', 'ajaxUrl', 'nonce', 'bladeTemplate'];
             if (!this.attributesExists(requiredKeys, Object.keys(attributes))) {
@@ -20,13 +19,13 @@ Modularity.Posts.LoadMoreButton = (function ($) {
 
             //Make sure target exists
             var target = $(attributes.target)[0];
-            if (typeof(target) == 'undefined') {
+            if (typeof(target) === 'undefined') {
                 throw 'Error: Could not find target "' + attributes.target + '"';
                 return;
             }
 
             this.toggleLoader(button);
-            this.loadMorePosts(button, target, attributes, button.attr('data-mod-posts-load-more'));
+            this.loadMorePosts(button, target, attributes);
 
         }.bind(this));
     };
@@ -54,7 +53,7 @@ Modularity.Posts.LoadMoreButton = (function ($) {
      * @param attributes
      * @param rawdata
      */
-    LoadMoreButton.prototype.loadMorePosts = function(button, target, attributes, rawdata)
+    LoadMoreButton.prototype.loadMorePosts = function(button, target, attributes)
     {
 
         var data = attributes;
@@ -68,8 +67,8 @@ Modularity.Posts.LoadMoreButton = (function ($) {
             success : function(posts, status) {
 
                 if (status === 'success') {
-                    //Append posts
                     
+                    //Append posts
                     $(target).append(JSON.parse(posts));
 
                     //Remove button if number of posts is less then queried post count
@@ -83,7 +82,7 @@ Modularity.Posts.LoadMoreButton = (function ($) {
 
                     //Increment offset
                     attributes.offset = parseInt(attributes.offset) + parseInt(attributes.postsPerPage);
-                    button.attr('data-mod-posts-load-more', rawdata);
+                    button.attr('data-mod-posts-load-more', window.btoa(JSON.stringify(attributes)));
                     return;
                 }
 
