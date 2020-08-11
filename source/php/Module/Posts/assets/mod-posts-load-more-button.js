@@ -8,8 +8,9 @@ Modularity.Posts.LoadMoreButton = (function ($) {
 
     LoadMoreButton.prototype.init = function() {
         $(document).on('click', '.js-mod-posts-load-more', function(e) {
-            var button = $(e.target);
-            var attributes = JSON.parse(button.attr('data-mod-posts-load-more'));
+            var button = $(e.target).closest('.js-mod-posts-load-more');
+           
+            var attributes = JSON.parse(window.atob(button.attr('data-mod-posts-load-more')));
 
             //Make sure required attributes exists
             var requiredKeys = ['postsPerPage', 'offset', 'target', 'ajaxUrl', 'nonce', 'bladeTemplate'];
@@ -25,7 +26,7 @@ Modularity.Posts.LoadMoreButton = (function ($) {
             }
 
             this.toggleLoader(button);
-            this.loadMorePosts(button, target, attributes);
+            this.loadMorePosts(button, target, attributes, button.attr('data-mod-posts-load-more'));
 
         }.bind(this));
     };
@@ -46,22 +47,25 @@ Modularity.Posts.LoadMoreButton = (function ($) {
         button.after('<div class="loading"><div></div><div></div><div></div><div></div></div>');
     }
 
-    LoadMoreButton.prototype.loadMorePosts = function(button, target, attributes)
+    LoadMoreButton.prototype.loadMorePosts = function(button, target, attributes, rawdata)
     {
-        console.log('loadMorePosts()');
+
         var data = attributes;
         data.action = 'mod_posts_load_more';
 
+        
         $.ajax({
             type : "post",
             url : data.ajaxUrl,
             data : data,
+            dataType: "html",
             success : function(posts, status) {
                 console.log(posts);
-                console.log(status);
+                //console.log(status);
                 if (status == 'success') {
                     //Append posts
-                    $(target).append(posts.join(''));
+                    
+                    $(target).append(JSON.parse(posts));
 
                     //Remove button if number of posts is less then queried post count
                     if (attributes.postsPerPage > posts.length) {
@@ -75,12 +79,12 @@ Modularity.Posts.LoadMoreButton = (function ($) {
 
                     //Increment offset
                     attributes.offset = parseInt(attributes.offset) + parseInt(attributes.postsPerPage);
-                    button.attr('data-mod-posts-load-more', JSON.stringify(attributes));
-
+                    button.attr('data-mod-posts-load-more', rawdata);
+                    console.log(rawdata);
                     return;
                 }
 
-                if (status  == 'nocontent') {
+                if (status  === 'nocontent') {
                     this.removeLoader(button);
                     button.after('<p>No more posts to show…</p>');
                     button.remove();
