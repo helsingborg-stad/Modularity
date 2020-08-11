@@ -45,14 +45,20 @@ Modularity.Posts.LoadMoreButton = (function ($) {
 
         //Create loader
         button.after('<div class="loading"><div></div><div></div><div></div><div></div></div>');
-    }
-
+    };
+    
+    /**
+     * Load more posts
+     * @param button
+     * @param target
+     * @param attributes
+     * @param rawdata
+     */
     LoadMoreButton.prototype.loadMorePosts = function(button, target, attributes, rawdata)
     {
 
         var data = attributes;
         data.action = 'mod_posts_load_more';
-
         
         $.ajax({
             type : "post",
@@ -60,9 +66,8 @@ Modularity.Posts.LoadMoreButton = (function ($) {
             data : data,
             dataType: "html",
             success : function(posts, status) {
-                console.log(posts);
-                //console.log(status);
-                if (status == 'success') {
+
+                if (status === 'success') {
                     //Append posts
                     
                     $(target).append(JSON.parse(posts));
@@ -71,7 +76,6 @@ Modularity.Posts.LoadMoreButton = (function ($) {
                     if (attributes.postsPerPage > posts.length) {
                         this.removeLoader(button);
                         button.remove();
-
                         return;
                     }
 
@@ -80,7 +84,6 @@ Modularity.Posts.LoadMoreButton = (function ($) {
                     //Increment offset
                     attributes.offset = parseInt(attributes.offset) + parseInt(attributes.postsPerPage);
                     button.attr('data-mod-posts-load-more', rawdata);
-                    console.log(rawdata);
                     return;
                 }
 
@@ -88,7 +91,7 @@ Modularity.Posts.LoadMoreButton = (function ($) {
                     this.removeLoader(button);
                     button.after('<p>No more posts to show…</p>');
                     button.remove();
-                    return
+                    return;
                 }
 
             }.bind(this),
