@@ -18,29 +18,42 @@ class FilesList extends \Modularity\Module
     {
         $data = array();
         $data['listId'] = 'files_' . uniqid();
-        $data['files'] = $this->prepareFiles(get_field('file_list', $this->ID));
-        $data['columns'] = get_field('columns', $this->ID);
+        $data['columnData'] = $this->prepareColumnData($files);
+        $data['headings'] = $this->prepareHeadings(['File', 'Description']);
         $data['showFilters'] = !empty(get_field('show_filter', $this->ID));
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
 
         return $data;
     }
 
-    public function prepareFiles($files)
+
+    private function prepareHeadings($headings) {
+        foreach($headings as &$heading) {
+            
+            $heading = translate($heading, 'modularity');
+        }
+        return $headings;
+    }
+
+    private function prepareColumnData()
     {
-        foreach ($files as &$item) {
-            $item['columns'] = array();
+        $files = get_field('file_list', $this->ID);
+        $columnData = [];
 
-            if (! empty($item['fields'])) {
-                foreach ($item['fields'] as $column) {
-                    $item['columns'][$column['key']] = $column['value'];
-                }
-            }
+        foreach ($files as $item) {
+            $columnData['href'] = $item['file']['url'];
 
-            unset($item['fields']);
+            $columnData[] = [
+                'columns' => 
+                [
+                    $item['file']['title'],
+                    $item['file']['description']
+                ],
+                'href' => $item['file']['url']
+            ];
         }
 
-        return $files;
+        return $columnData;
     }
 
     /**
