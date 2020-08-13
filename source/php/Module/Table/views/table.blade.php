@@ -1,21 +1,23 @@
 <div class="{{ $classes }}">
     @if (!$hideTitle && !empty($post_title))
-        <h4 class="box-title">{{ $post_title }}</h4>
+        @typography([
+            "element" => "h4",
+            "varaint" => "h4"
+        ])
+            {{ $post_title }}
+        @endtypography
     @endif
 
-    <?php
-    echo str_replace(
-        '<table class="',
-        sprintf(
-            '<table data-paging="%2$s" data-page-length="%3$s" data-searching="%4$s" data-ordering="%6$s" data-info="%5$s" class="datatable %1$s ',
-            $tableClasses,
-            $mod_table_pagination,
-            $mod_table_pagination_count,
-            $mod_table_search,
-            $mod_table_pagination || $mod_table_search,
-            isset($mod_table_ordering) ? $mod_table_ordering : true
-        ),
-        $mod_table
-    );
-?>
+    @table([
+        'headings'          => $m_table->data['headings'],
+        'list'              => $m_table->data['list'],
+        'showHeader'        => $m_table->showHeader,
+        'showFooter'        => $m_table->showFooter,
+        'hasZebraStripes'   => $m_table->zebraStripes,
+        'isBordered'        => $m_table->borderStyle,
+        'hasHoverEffect'    => $m_table->hoverEffect,
+        'isSmall'           => $m_table->isSmall,
+        'isLarge'           => $m_table->isLarge,
+    ])
+    @endtable
 </div>
