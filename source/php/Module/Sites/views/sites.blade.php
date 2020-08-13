@@ -1,23 +1,52 @@
-<div class="grid">
+@grid([
+    "container" => true,
+    "columns" => "auto-fit",
+    "min_width" => "25%",
+])
     @foreach($sites as $site)
-    <div class="grid-md-4">
-         <a class="box box-post-brick" href="{{ $site->home }}">
+        @grid([])
+            @link([
+                'href' => $site->home
+            ])
+
             @if ($site->image_rendered)
-            {!! $site->image_rendered !!}
+                {!! $site->image_rendered !!}
             @elseif ($site->image)
-            <div style="background-image:url({{ $site->image }});" class="box-image">
-               <img alt="{{ $site->blogname }}" src="{{ $site->image }}">
-            </div>
+
+                <div style="background-image:url({{ $site->image }});" class="box-image">
+                    @image([
+                        'src'=> $site->image,
+                        'alt' => $site->blogname
+                    ])
+                    @endimage
+                </div>
             @endif
 
             <div class="box-content">
-                <h3 class="post-title no-margin no-padding">{{ $site->blogname }}</h3>
-                <small style="color:#fff;">{{ explode('://', $site->home)[1] }}</small>
+                @typography([
+                    'element'   => "h3",
+                    'classList' => ['post-title']
+                ])
+                    {!!  $site->blogname !!}
+                @endtypography
+
+                @typography([
+                    'element'   => "small",
+                    'classList' => ['post-title']
+                ])
+                    {!!   explode('://', $site->home)[1] !!}
+                @endtypography
+
             </div>
+
             <div class="box-post-brick-lead">
-               <p>{{ $site->description }}</p>
+                @typography([
+                    'element'   => "p"
+                ])
+                    {!!   $site->description !!}
+                @endtypography
             </div>
-       </a>
-    </div>
+       @link
+    @endgrid
     @endforeach
-</div>
+@endgrid
