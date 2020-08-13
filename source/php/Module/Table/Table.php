@@ -51,6 +51,8 @@ class Table extends \Modularity\Module
             'hoverEffect'   => in_array('table-hover', $data['mod_table_classes']),
             'isSmall'       => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
             'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
+            'filterable'    => $data['mod_table_search'],
+            'sortable'      => $data['mod_table_ordering'],
         ];
         $data['mod_table'] = self::unicodeConvert($data['mod_table']);
         $data['tableClasses'] = $this->getTableClasses($data);
