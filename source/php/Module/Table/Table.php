@@ -39,10 +39,24 @@ class Table extends \Modularity\Module
 
     public function data() : array
     {
+        $post = $this->data;
         $data = get_fields($this->ID);
+        $data['m_table'] = [
+            'data'          => $this->tableList(json_decode($post['meta']['mod_table'][0])),
+            'showHeader'    => true,    //To-Do: Add this option in ACF
+            'showFooter'    => false,   //To-Do: Add this option in ACF
+            'classList'     => $this->getTableClasses($data),
+            'zebraStripes'  => in_array('table-striped', $data['mod_table_classes']),
+            'borderStyle'   => in_array('table-bordered', $data['mod_table_classes']),
+            'hoverEffect'   => in_array('table-hover', $data['mod_table_classes']),
+            'isSmall'       => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
+            'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
+        ];
         $data['mod_table'] = self::unicodeConvert($data['mod_table']);
         $data['tableClasses'] = $this->getTableClasses($data);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['m_table'] = (object)$data['m_table'];
+
         return $data;
     }
 
@@ -152,6 +166,21 @@ class Table extends \Modularity\Module
             'sSortAscending' => __('activate to sort column ascending', 'modularity'),
             'sSortDescending' => __('activate to sort column descending', 'modularity')
         ));
+    }
+
+    public function tableList($arr)
+    {
+        $data = [];
+
+        foreach ($arr as $row => $cols) {
+            if ($row !== 0) {
+                $data['list'][]['columns'] = array_values($arr[$row]);
+            } else {
+                $data['headings'] = array_values($arr[$row]);
+            }
+        }
+
+        return $data;
     }
 
     /**
