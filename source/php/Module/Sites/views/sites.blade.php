@@ -34,7 +34,7 @@
                     'element'   => "small",
                     'classList' => ['post-title']
                 ])
-                    {!!   explode('://', $site->home)[1] !!}
+                    {!! explode('://', $site->home)[1] !!}
                 @endtypography
 
             </div>
@@ -43,7 +43,7 @@
                 @typography([
                     'element'   => "p"
                 ])
-                    {!!   $site->description !!}
+                    {!! $site->description !!}
                 @endtypography
             </div>
        @link
