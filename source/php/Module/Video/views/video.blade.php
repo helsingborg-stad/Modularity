@@ -1,11 +1,18 @@
 <div class="{{ $classes }}">
+
     @if (!$hideTitle && !empty($post_title))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+
+        @typography([
+            "variant" => "h4"
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
+
     @endif
 
     @if ($type == 'upload')
 
-            <!-- Mp4 -->
+            <!-- Mp4 format -->
             @if (isset($video_mp4) && !empty($video_mp4))
                 @video([
                     'formats' => [
@@ -23,7 +30,7 @@
                 @endvideo
             @endif
 
-            <!-- Webm -->
+            <!-- Webm format -->
             @if (isset($fields['video_webm']) && !empty($fields['video_webm']))
                 @video([
                     'formats' => [
@@ -41,7 +48,7 @@
                 @endvideo
             @endif
 
-            <!-- Ogg -->
+            <!-- Ogg format -->
             @if (isset($fields['video_ogg']) && !empty($fields['video_ogg']))
                  @video([
                     'formats' => [
