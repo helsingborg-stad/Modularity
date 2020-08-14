@@ -67,6 +67,10 @@
             @endif
 
     @else
-        <?php echo \Modularity\Module\Slider\Slider::getEmbed($embed_link, ['player', 'ratio-16-9'], $image); ?>
+        @php
+            echo \Modularity\Module\Slider\Slider::getEmbed(
+                    $embed_link, ['player', 'ratio-16-9'], $image
+                );
+        @endphp
     @endif
 </div>
