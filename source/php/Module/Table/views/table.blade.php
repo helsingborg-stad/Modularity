@@ -22,4 +22,13 @@
         'sortable'          => $m_table->sortable,
     ])
     @endtable
+
+    @if ($m_table->pagination)
+        @pagination([
+            'list'      => $m_table->pagination['list'],
+            'current'   => $m_table->pagination['current'],
+            'parameter' => $m_table->pagination['param'],
+        ])
+        @endpagination
+    @endif
 </div>
