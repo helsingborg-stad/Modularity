@@ -1,6 +1,13 @@
 <div class="{{ $classes }}">
     @if (!$hideTitle && !empty($post_title))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+
+			@typography([
+				'element' => "h4",
+				'classList' => ['box-title']
+			])
+				{!! apply_filters('the_title', $post_title) !!}
+			@endtypography
+
     @endif
 
 	<ul>
@@ -8,31 +15,73 @@
 		@foreach($items as $item)
 			<li>
 				@if(\Modularity\Module\Rss\Rss::getRssLink($item->get_link()))
-					<a href="{{ \Modularity\Module\Rss\Rss::getRssLink($item->get_link()) }}">
-						<span class="link-item title">{{ \Modularity\Module\Rss\Rss::getRssTitle($item->get_title()) }}</span>
+
+					@link([
+						'href' =>  \Modularity\Module\Rss\Rss::getRssLink($item->get_link())
+					])
+						@typography([
+							'element' => "span",
+							'classList' => ['link-item','title']
+						])
+							{!! \Modularity\Module\Rss\Rss::getRssTitle($item->get_title()) !!}
+						@endtypography
+
 						@if($date && $item->get_date('U'))
-							<time class="date text-sm text-dark-gray">{{ date_i18n(get_option('date_format'), $item->get_date('U')) }}</time>
+
+							@typography([
+								'element' => "time",
+								'classList' => ['date','text-sm','text-dark-gray']
+							])
+								{!!  date_i18n(get_option('date_format'), $item->get_date('U')) !!}
+							@endtypography
+
 						@endif
-					</a>
+
+					@endlink
 				@else
-					<span class="title">{{ \Modularity\Module\Rss\Rss::getRssTitle($item->get_title()) }}</span>
+
+					@typography([
+							'element' => "span",
+							'classList' => ['link-item','title']
+					])
+							{!! \Modularity\Module\Rss\Rss::getRssTitle($item->get_title()) !!}
+					@endtypography
+
 					@if($date && $item->get_date('U'))
-						<time class="date text-sm text-dark-gray">{{ date_i18n(get_option('date_format'), $item->get_date('U')) }}</time>
+
+						@typography([
+								'element' => "time",
+								'classList' => ['date','text-sm','text-dark-gray']
+						])
+								{!!  date_i18n(get_option('date_format'), $item->get_date('U')) !!}
+						@endtypography
+
 					@endif
 				@endif
 
 				@if($summary && \Modularity\Module\Rss\Rss::getRssSummary($item->get_description()))
-					<p>{{ \Modularity\Module\Rss\Rss::getRssSummary($item->get_description()) }}</p>
+
+					@typography([
+								'element' => "p"
+						])
+								{!! \Modularity\Module\Rss\Rss::getRssSummary($item->get_description()) !!}
+					@endtypography
+
 				@endif
 
 				@if($author && \Modularity\Module\Rss\Rss::getRssAuthor($item->get_author()))
-					<p>{{ \Modularity\Module\Rss\Rss::getRssAuthor($item->get_author()) }}</p>
+					@typography([
+								'element' => "p"
+						])
+								{!! \Modularity\Module\Rss\Rss::getRssAuthor($item->get_author()) !!}
+					@endtypography
+
 				@endif
             </li>
 		@endforeach
 	@else
 		<li class="notice warning">
-			<i class="pricon pricon-notice-warning"></i> {{ $items['error'] }}
+			@icon(['icon' => 'warning', 'size' => 'sm']) @endicon {{ $items['error'] }}
 		</li>
 	@endif
 	</ul>
