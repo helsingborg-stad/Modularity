@@ -1,26 +1,76 @@
 <div class="{{ $classes }}">
+
     @if (!$hideTitle && !empty($post_title))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+
+        @typography([
+            "variant" => "h4"
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
+
     @endif
 
     @if ($type == 'upload')
-        <video class="ratio-16-9" poster="{{ ($image !== false) ? $image[0] : '' }}" preload="auto" autoplay loop muted>
-            <!-- Mp4 -->
+
+            <!-- Mp4 format -->
             @if (isset($video_mp4) && !empty($video_mp4))
-                <source src="{{ $video_mp4['url'] }}" type="video/mp4">
+                @video([
+                    'formats' => [
+                        ['src' => $video_mp4['url'] , 'type' => "mp4"],
+                    ],
+                    attributeList => [
+                        'poster' => ($image !== false) ? $image[0] : '',
+                        'preload' => 'auto',
+                        'autoplay' => true,
+                        'loop' => true,
+                        'muted' => true
+                    ],
+                    classList => ['ratio-16-9']
+                ])
+                @endvideo
             @endif
 
-            <!-- Webm -->
+            <!-- Webm format -->
             @if (isset($fields['video_webm']) && !empty($fields['video_webm']))
-                <source src="{{ $video_webm['url'] }}" type="video/webm">
+                @video([
+                    'formats' => [
+                        ['src' => $video_webm['url'] , 'type' => "webm"],
+                    ],
+                    attributeList => [
+                        'poster' => ($image !== false) ? $image[0] : '',
+                        'preload' => 'auto',
+                        'autoplay' => true,
+                        'loop' => true,
+                        'muted' => true
+                    ],
+                    classList => ['ratio-16-9']
+                ])
+                @endvideo
             @endif
 
-            <!-- Ogg -->
+            <!-- Ogg format -->
             @if (isset($fields['video_ogg']) && !empty($fields['video_ogg']))
-                <source src="{{ $video_ogg['url'] }}" type="video/ogg">
+                 @video([
+                    'formats' => [
+                        ['src' => $video_ogg['url'] , 'type' => "ogg"],
+                    ],
+                    attributeList => [
+                        'poster' => ($image !== false) ? $image[0] : '',
+                        'preload' => 'auto',
+                        'autoplay' => true,
+                        'loop' => true,
+                        'muted' => true
+                    ],
+                    classList => ['ratio-16-9']
+                ])
+                @endvideo
             @endif
-        </video>
+
     @else
-        <?php echo \Modularity\Module\Slider\Slider::getEmbed($embed_link, ['player', 'ratio-16-9'], $image); ?>
+        @php
+            echo \Modularity\Module\Slider\Slider::getEmbed(
+                    $embed_link, ['player', 'ratio-16-9'], $image
+                );
+        @endphp
     @endif
 </div>
