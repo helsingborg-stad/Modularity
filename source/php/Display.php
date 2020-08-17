@@ -36,8 +36,14 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
+        $path = MODULARITY_PATH;
+
+        if($data['post_type'] === 'mod-event') {
+            $path = EVENTMANAGERINTEGRATION_PATH;
+        } 
+
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
-        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
+        $moduleView = $path . 'source/php/Module/' . $moduleName . '/views';
         $init = new CompLibInitator([$moduleView]);
         $blade = $init->getEngine();
 
