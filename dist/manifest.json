@@ -1,0 +1,7 @@
+{
+  "css/modularity.css": "css/modularity.css",
+  "css/modularity-thickbox.css": "css/modularity-thickbox.css",
+  "js/modularity.js": "js/modularity.js",
+  "js/modularity-modules.js": "js/modularity-modules.js",
+  "images/modularity.scss": "images/import.svg"
+}

@@ -24,16 +24,16 @@ module.exports = {
      * Add your entry files here
      */
     entry: {
-        'js/modularity-js': glob.sync('./source/js/**/*.js'),
-        'js/modularity-modules-js': glob.sync('./source/php/Module/*/assets/*.js'),
-        'css/modularity-sass': glob.sync('./source/sass/modularity.scss'),
-        'css/modularity-modules-sass': glob.sync('./source/php/Module/*/assets/*.scss'),
-        'css/modularity-thickbox': glob.sync('./source/sass/modularity-thickbox-edit.scss'),
-    },  /**
+        'js/modularity': glob.sync('./source/js/**/*.js'),
+        'js/modularity-modules': glob.sync('./source/php/Module/*/assets/*.js'),
+        'css/modularity': './source/sass/modularity.scss',
+        'css/modularity-thickbox': './source/sass/modularity-thickbox-edit.scss',
+    },
+    /**
      * Output settings
      */
     output: {
-        filename: ifProduction('[name].[contenthash].js', '[name].[contenthash].js'),
+        filename: ifProduction('[name].js', '[name].js'),
         path: path.resolve(__dirname, 'dist'),
     },
     /**
@@ -94,7 +94,6 @@ module.exports = {
                     'import-glob-loader'
                 ],
             },
-
             /**
              * Images
              */
@@ -104,7 +103,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: ifProduction('[name].[contenthash:8].[ext]', '[name].[contenthash:8].[ext]'),
+                            name: ifProduction('[name].[ext]', '[name].[ext]'),
                             outputPath: 'images',
                             publicPath: '../images',
                         },
@@ -112,22 +111,6 @@ module.exports = {
                 ],
             },
 
-            /**
-             * Fonts
-             */
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: ifProduction('[name].[contenthash:8].[ext]', '[name].[contenthash:8].[ext]'),
-                            outputPath: 'fonts',
-                            publicPath: '../fonts',
-                        },
-                    },
-                ],
-            }
         ],
     },
     plugins: removeEmpty([
@@ -169,7 +152,7 @@ module.exports = {
          * Output CSS files
          */
         new MiniCssExtractPlugin({
-            filename: ifProduction('[name].[contenthash:8].css', '[name].[contenthash:8].css')
+            filename: ifProduction('[name].css', '[name].css')
         }),
 
         /**
