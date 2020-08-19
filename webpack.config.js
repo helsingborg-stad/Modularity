@@ -21,8 +21,11 @@ module.exports = {
      * Add your entry files here
      */
     entry: {
-        'js/modularity': glob.sync('./source/js/**/*.js'),
-        'js/modularity-modules': glob.sync('./source/php/Module/*/assets/*.js'),
+
+        'js/modularity': './source/js/modularity.js',
+        'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
+        
+        //'js/modularity-modules': glob.sync('./source/php/Module/*/assets/*.js'),
         'css/modularity': './source/sass/modularity.scss',
         'css/modularity-thickbox': './source/sass/modularity-thickbox-edit.scss',
     },

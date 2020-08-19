@@ -1,4 +1,4 @@
-jQuery.fn.serializeObject = function()
+export default jQuery.fn.serializeObject = function()
 {
     var o = {};
     var a = this.serializeArray();

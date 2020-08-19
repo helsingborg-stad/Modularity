@@ -1,7 +1,8 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
+import Module from './module.js';
+import Modal from '../prompt/modal.js';
+import Autosave from './autosave.js';
 
-Modularity.Editor.Thickbox = (function ($) {
+ export default (function ($) {
 
     /**
      * Attention: This variable should not be set manually
@@ -16,9 +17,9 @@ Modularity.Editor.Thickbox = (function ($) {
     }
 
     Thickbox.prototype.modulePostCreated = function (postId) {
-        Modularity.Prompt.Modal.close();
+        Modal.close();
 
-        var module = Modularity.Editor.Module.isEditingModule();
+        var module = Module.isEditingModule();
 
         var request = {
             action: 'get_post',
@@ -31,8 +32,8 @@ Modularity.Editor.Thickbox = (function ($) {
                 title: response.post_title
             };
 
-            Modularity.Editor.Module.updateModule(module, data);
-            Modularity.Editor.Autosave.save('form');
+            Module.updateModule(module, data);
+            Autosave.save('form');
         }, 'json');
     };
 

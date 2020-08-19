@@ -179,7 +179,7 @@ class App
         return $url;
     }
 
-    
+
     public function enqueueFront()
     {
         if (!current_user_can('edit_posts')) {

@@ -1,7 +1,4 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
-
-Modularity.Editor.Validate = (function ($) {
+export default (function ($) {
 
     var hasErrors = false;
     var errorClass = 'validation-error';

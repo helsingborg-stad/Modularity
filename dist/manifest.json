@@ -2,6 +2,6 @@
   "css/modularity.css": "css/modularity.min.css",
   "css/modularity-thickbox.css": "css/modularity-thickbox.min.css",
   "js/modularity.js": "js/modularity.min.js",
-  "js/modularity-modules.js": "js/modularity-modules.min.js",
+  "js/modularity-editor-modal.js": "js/modularity-editor-modal.min.js",
   "images/action_icons/modularity.scss": "images/action_icons/import.svg"
 }

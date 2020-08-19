@@ -1,6 +1,16 @@
-var Modularity = Modularity || {};
+import './modularity-editor-modal.js';
+import './editor/autosave';
+import './editor/dragAndDrop.js';
+import './editor/module.js';
+import Thickbox from './editor/thickbox.js';
 
-(function ($) {
+import './helpers/helpers.js';
+import './helpers/serializeObject.js';
+import './helpers/widget.js';
+
+import Modal from './prompt/modal.js';
+
+export default (function ($) {
     $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {
         var isChecked = $(this).is(':checked');
         var value = $(this).attr('value');
@@ -59,8 +69,8 @@ jQuery(document).ready(function ($) {
     $('.modularity-edit-module a').on('click', function (e) {
         e.preventDefault();
 
-        Modularity.Editor.Thickbox.postAction = 'edit-inline-not-saved';
-        Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
+       Thickbox.postAction = 'edit-inline-not-saved';
+       Modal.open($(e.target).closest('a').attr('href'));
     });
 });
 
@@ -79,5 +89,5 @@ jQuery(document).ready(function ($) {
         } else {
             $('.frontend-filter').hide();
         }
-    }).trigger("change");
+    }).trigger('change');
 });

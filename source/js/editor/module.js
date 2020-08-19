@@ -1,7 +1,8 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
+import Thickbox from './thickbox.js';
+import Helpers from '../helpers/helpers.js';
+import Modal from '../prompt/modal.js';
 
-Modularity.Editor.Module = (function ($) {
+export default (function ($) {
 
     var initCompleted = false;
 
@@ -124,14 +125,14 @@ Modularity.Editor.Module = (function ($) {
         });
 
         // Set thickbox action
-        Modularity.Editor.Thickbox.postAction = 'add';
+        Thickbox.postAction = 'add';
 
         if (postId) {
             thickboxUrl = this.getThickBoxUrl('edit', {
                 postId: postId
             });
 
-            Modularity.Editor.Thickbox.postAction = 'edit';
+            Thickbox.postAction = 'edit';
         }
 
         // Get import url
@@ -146,7 +147,7 @@ Modularity.Editor.Module = (function ($) {
         }
 
         var sidebarId = $(target).data('area-id');
-        var itemRowId = Modularity.Helpers.uuid();
+        var itemRowId = Helpers.uuid();
 
         var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '" data-sidebar-incompability=\'' + incompability + '\'>\
                 <span class="modularity-line-wrapper">\
@@ -237,8 +238,8 @@ Modularity.Editor.Module = (function ($) {
             var el = $(e.target).closest('a');
             editingModule = $(e.target).closest('li');
 
-            Modularity.Editor.Thickbox.postAction = 'import';
-            Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
+            Thickbox.postAction = 'import';
+            Modal.open($(e.target).closest('a').attr('href'));
         });
 
         // Edit
@@ -247,12 +248,12 @@ Modularity.Editor.Module = (function ($) {
 
             var el = $(e.target).closest('a');
             if (el.attr('href').indexOf('post.php') > -1) {
-                Modularity.Editor.Thickbox.postAction = 'edit';
+                Thickbox.postAction = 'edit';
             }
 
             editingModule = $(e.target).closest('li');
-
-            Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
+            Modal.open($(e.target).closest('a').attr('href'));
+            
         }.bind(this));
     };
 
