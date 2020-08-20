@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const path = require('path');
-const glob = require('glob');
 const webpack = require('webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
