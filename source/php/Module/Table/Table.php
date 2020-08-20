@@ -55,7 +55,7 @@ class Table extends \Modularity\Module
             'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
             'filterable'    => $data['mod_table_search'],
             'sortable'      => $data['mod_table_ordering'],
-            'pagination'    => $data['mod_table_pagination_count'],
+            'pagination'    => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
         ];
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
         $data['tableClasses']   = $this->getTableClasses($data);
