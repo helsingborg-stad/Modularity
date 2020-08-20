@@ -31,7 +31,7 @@ module.exports = {
         'js/Table/assets/table-init': './source/php/Module/Table/assets/table-init.js',
         'js/Table/assets/table': './source/php/Module/Table/assets/table.js',
         
-        'css/Table/assets/table': './source/php/Module/Table/assets/table.css',
+        'css/Table/assets/table': './source/php/Module/Table/assets/table.scss',
      
         //Modules - Posts
         'js/Posts/assets/mod-posts-load-more-button': './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
