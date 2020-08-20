@@ -6,7 +6,6 @@ class Table extends \Modularity\Module
 {
     public $slug = 'table';
     public $supports = array();
-    public static $url_param = "tp";
 
     public function init()
     {
@@ -42,18 +41,7 @@ class Table extends \Modularity\Module
     {
         $post = $this->data;
         $data = get_fields($this->ID);
-
         $tableList  = $this->tableList(json_decode($post['meta']['mod_table'][0]));
-        $pagination = false;
-
-        if(isset($_GET[$this::$url_param]) || $data['mod_table_pagination']) {
-            $list                   = $tableList['list'];
-            $tableLength            = $data['mod_table_pagination_count'];
-            $tableList['list']      = $this->paginationList($list, $tableLength);
-            $pagination['list']     = $this->paginationPages($list, $tableLength);
-            $pagination['param']    = $this::$url_param;
-            $pagination['current']  = $this->paginationCurrent();
-        }
 
         $data['m_table'] = [
             'data'          => $tableList,
@@ -67,7 +55,7 @@ class Table extends \Modularity\Module
             'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
             'filterable'    => $data['mod_table_search'],
             'sortable'      => $data['mod_table_ordering'],
-            'pagination'    => $pagination,
+            'pagination'    => $data['mod_table_pagination_count'],
         ];
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
         $data['tableClasses']   = $this->getTableClasses($data);
@@ -198,34 +186,6 @@ class Table extends \Modularity\Module
         }
 
         return $data;
-    }
-
-    public function paginationList($list, $tableLength) 
-    {
-        $page = $this->paginationCurrent();
-        $first = ($page - 1) * $tableLength;
-        $last = $page * $tableLength;
-
-        return array_slice($list, $first, $last);
-    }
-
-    public function paginationPages($list, $length)
-    {
-        $listLength = count($list);
-        $pages = intval(ceil($listLength / $length));
-        $list = [];
-
-        for ($i=0; $i < $pages; $i++) { 
-            $page = $i + 1;
-            $arr = ['href' => "?{$this::$url_param}={$page}", 'label' => "Table Page {$page}"];
-            array_push($list, $arr);
-        }
-
-        return $list;
-    }
-
-    public function paginationCurrent() {
-        return isset($_GET[$this::$url_param]) ? $_GET[$this::$url_param] : 1;
     }
 
     /**
