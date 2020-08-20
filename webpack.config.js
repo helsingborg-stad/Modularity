@@ -25,9 +25,24 @@ module.exports = {
         'js/modularity': './source/js/modularity.js',
         'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
         
-        //'js/modularity-modules': glob.sync('./source/php/Module/*/assets/*.js'),
         'css/modularity': './source/sass/modularity.scss',
         'css/modularity-thickbox': './source/sass/modularity-thickbox-edit.scss',
+        
+        //Modules - Table
+        'js/Table/assets/table-init': './source/php/Module/Table/assets/table-init.js',
+        'js/Table/assets/table': './source/php/Module/Table/assets/table.js',
+        
+        'css/Table/assets/table': './source/php/Module/Table/assets/table.min.css',
+     
+        //Modules - Posts
+        'js/Posts/assets/mod-posts-load-more-button': './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
+        'js/Posts/assets/mod-posts-taxonomy': './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
+        
+        //Modules - Latest
+        'js/Latest/assets/mod-latest-taxonomy': './source/php/Module/Latest/assets/mod-latest-taxonomy.js',
+
+        //ExpandableList - ????????
+        
     },
     /**
      * Output settings

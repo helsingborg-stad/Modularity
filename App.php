@@ -204,8 +204,6 @@ class App
         ));
         wp_enqueue_script('modularity');
 
-        wp_register_script('modularity-modules', MODULARITY_URL . '/dist/js/modularity-modules.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity-modules.' . self::$assetSuffix . '.js'), true);
-        wp_enqueue_script('modularity-modules');
     }
 
     /**
@@ -237,9 +235,6 @@ class App
             'deprecated' => __('Deprecated', 'modularity')
         ));
         wp_enqueue_script('modularity');
-
-        wp_register_script('modularity-modules', MODULARITY_URL . '/dist/js/modularity-modules.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity-modules.' . self::$assetSuffix . '.js'), true);
-        wp_enqueue_script('modularity-modules');
 
         add_action('admin_head', function () {
             echo "

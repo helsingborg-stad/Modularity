@@ -116,7 +116,8 @@ export default (function ($) {
         moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
         postId = (typeof postId != 'undefined') ? postId : '';
         columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
-        deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated" style="color:#ff0000;">(' + modularityAdminLanguage.deprecated + ')</span>' : '';
+        const deprecated = (isDeprecated === true) ? '<span class="modularity-deprecated"' +
+            ' style="color:#ff0000;">(' + modularityAdminLanguage.deprecated + ')</span>' : '';
         incompability = (typeof incompability != 'undefined') ? incompability : '';
 
         // Get thickbox url

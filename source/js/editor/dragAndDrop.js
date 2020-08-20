@@ -1,5 +1,5 @@
 import Modules from './module.js';
-module.exports(function ($) {
+export default (function ($) {
 
     var sortableIn;
 
