@@ -149,7 +149,7 @@ class Table extends \Modularity\Module
         }
 
         wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
-        wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.js', array(), '1.0.0', true);
+        wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.min.js', array(), '1.0.0', true);
         wp_localize_script('datatables-init', 'datatablesLang', array(
             'sEmptyTable' => __('No data available in table', 'modularity'),
             'sInfo' => __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity'),
