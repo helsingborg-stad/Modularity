@@ -36,10 +36,21 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
+
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
+
+        if($data['post_type'] == 'mod-json-render') {
+            $moduleView = MODULARITYJSONRENDER_MODULE_VIEW_PATH;
+        } else if($data['post_type'] == 'mod-event') {
+            $moduleView = EVENTMANAGERINTEGRATION_MODULE_VIEW_PATH;
+        }
+        
         $init = new CompLibInitator([$moduleView]);
         $blade = $init->getEngine();
+
+ 
+        
 
         try {
             return $blade->make($view, $data )->render();
