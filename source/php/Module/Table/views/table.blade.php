@@ -18,6 +18,9 @@
         'hasHoverEffect'    => $m_table->hoverEffect,
         'isSmall'           => $m_table->isSmall,
         'isLarge'           => $m_table->isLarge,
+        'filterable'        => $m_table->filterable,
+        'sortable'          => $m_table->sortable,
+        'pagination'        => $m_table->pagination,
     ])
     @endtable
 </div>

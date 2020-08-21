@@ -31,7 +31,7 @@ class Table extends \Modularity\Module
             return; 
         }
 
-        //Disable filter temporarirly
+        //Disable filter temporarily
         add_filter('acf/allow_unfiltered_html', function($allow_unfiltered_html) {
             return true;
         });
@@ -41,8 +41,10 @@ class Table extends \Modularity\Module
     {
         $post = $this->data;
         $data = get_fields($this->ID);
+        $tableList  = $this->tableList(json_decode($post['meta']['mod_table'][0]));
+
         $data['m_table'] = [
-            'data'          => $this->tableList(json_decode($post['meta']['mod_table'][0])),
+            'data'          => $tableList,
             'showHeader'    => true,    //To-Do: Add this option in ACF
             'showFooter'    => false,   //To-Do: Add this option in ACF
             'classList'     => $this->getTableClasses($data),
@@ -51,11 +53,14 @@ class Table extends \Modularity\Module
             'hoverEffect'   => in_array('table-hover', $data['mod_table_classes']),
             'isSmall'       => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
             'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
+            'filterable'    => $data['mod_table_search'],
+            'sortable'      => $data['mod_table_ordering'],
+            'pagination'    => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
         ];
-        $data['mod_table'] = self::unicodeConvert($data['mod_table']);
-        $data['tableClasses'] = $this->getTableClasses($data);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
-        $data['m_table'] = (object)$data['m_table'];
+        $data['mod_table']      = self::unicodeConvert($data['mod_table']);
+        $data['tableClasses']   = $this->getTableClasses($data);
+        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['m_table']        = (object)$data['m_table'];
 
         return $data;
     }
