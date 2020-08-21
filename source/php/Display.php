@@ -36,7 +36,6 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
-
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
 
@@ -48,9 +47,6 @@ class Display
         
         $init = new CompLibInitator([$moduleView]);
         $blade = $init->getEngine();
-
- 
-        
 
         try {
             return $blade->make($view, $data )->render();
