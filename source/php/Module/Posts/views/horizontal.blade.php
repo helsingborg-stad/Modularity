@@ -93,9 +93,10 @@
 
                     @button([
                         'text' => 'Secondary',
-                        'color' => 'secondary',
-                        'style' => 'basic',
-                        'attributeList' => ['data-mod-posts-load-more' => $loadMorePostsAttributes],
+                        'color' => 'default',
+                        'style' => 'filled',
+                        'attributeList' => ['data-mod-posts-load-more' =>
+                        base64_encode($loadMorePostsAttributes)],
                         'classList' => ['js-mod-posts-load-more']
                     ])
                         {{$loadMoreButtonText}}
