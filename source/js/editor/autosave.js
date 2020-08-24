@@ -1,7 +1,4 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
-
-Modularity.Editor.Autosave = (function ($) {
+export default (function ($) {
 
     function Autosave() {
         $(function(){

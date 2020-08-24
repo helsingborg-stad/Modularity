@@ -1,7 +1,5 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
-
-Modularity.Editor.DragAndDrop = (function ($) {
+import Modules from './module.js';
+export default (function ($) {
 
     var sortableIn;
 
@@ -124,7 +122,7 @@ Modularity.Editor.DragAndDrop = (function ($) {
         var moduleId = module.data('module-id');
         var incompability = module.attr('data-sidebar-incompability');
 
-        Modularity.Editor.Module.addModule(e.target, moduleId, moduleName, undefined, undefined, undefined, undefined, undefined, incompability);
+        Modules.addModule(e.target, moduleId, moduleName, undefined, undefined, undefined, undefined, undefined, incompability);
     };
 
     return new DragAndDrop();

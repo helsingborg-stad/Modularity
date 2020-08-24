@@ -1,7 +1,9 @@
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
+import Thickbox from '../editor/thickbox.js';
+import Module from '../editor/module.js';
+import Modal from '../prompt/modal.js';
 
-Modularity.Helpers.Widget = (function ($) {
+
+export default (function ($) {
 
     var editingWidget = false;
 
@@ -14,14 +16,14 @@ Modularity.Helpers.Widget = (function ($) {
 
                 editingWidget = $(e.target).parents('.widget-inside');
 
-                var importUrl = Modularity.Editor.Module.getImportUrl({
+                var importUrl = Module.getImportUrl({
                     postType: $(e.target).parents('.widget-inside').find('.modularity-widget-module-type select').val()
                 });
 
-                Modularity.Editor.Module.editingModule = $(e.target).closest('.widget-inside');
+                Module.editingModule = $(e.target).closest('.widget-inside');
 
-                Modularity.Editor.Thickbox.postAction = 'import-widget';
-                Modularity.Prompt.Modal.open(importUrl);
+                Thickbox.postAction = 'import-widget';
+                Modal.open(importUrl);
             });
 
 
@@ -31,12 +33,12 @@ Modularity.Helpers.Widget = (function ($) {
 
                 var el = $(e.target).closest('a');
                 if (el.attr('href').indexOf('post.php') > -1) {
-                    Modularity.Editor.Thickbox.postAction = 'edit';
+                    Thickbox.postAction = 'edit';
                 }
 
-                editingModule = $(e.target).closest('li');
+                const editingModule = $(e.target).closest('li');
 
-                Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
+                Modal.open($(e.target).closest('a').attr('href'));
             }.bind(this));
 
 

@@ -1,7 +1,4 @@
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
-
-Modularity.Helpers = (function ($) {
+export default (function ($) {
 
     function Helpers() {
         $(function(){

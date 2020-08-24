@@ -1,0 +1,13 @@
+{
+  "css/Table/assets/table.css": "css/Table/assets/table.min.css",
+  "css/modularity.css": "css/modularity.min.css",
+  "css/modularity-thickbox.css": "css/modularity-thickbox.min.css",
+  "js/Latest/assets/mod-latest-taxonomy.js": "js/Latest/assets/mod-latest-taxonomy.min.js",
+  "js/Posts/assets/mod-posts-load-more-button.js": "js/Posts/assets/mod-posts-load-more-button.min.js",
+  "js/Posts/assets/mod-posts-taxonomy.js": "js/Posts/assets/mod-posts-taxonomy.min.js",
+  "js/Table/assets/table.js": "js/Table/assets/table.min.js",
+  "js/Table/assets/table-init.js": "js/Table/assets/table-init.min.js",
+  "js/modularity.js": "js/modularity.min.js",
+  "js/modularity-editor-modal.js": "js/modularity-editor-modal.min.js",
+  "images/action_icons/modularity.scss": "images/action_icons/import.svg"
+}

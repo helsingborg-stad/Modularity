@@ -1,7 +1,4 @@
-Modularity = Modularity || {};
-Modularity.Prompt = Modularity.Prompt || {};
-
-Modularity.Prompt.Modal = (function ($) {
+export default  (function ($) {
 
     var isOpen = false;
 
