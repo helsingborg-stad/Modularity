@@ -19,7 +19,7 @@
             @if ($showFilters)
             <tr data-table-filter-exclude>
                 <td colspan="{{ is_array($columns) ? count($columns) + 1 : 1 }}" class="no-padding no-border">
-                    <input type="text" name="keyword" class="form-control gutter" placeholder="<?php _e('Filter files', 'modularity'); ?>…" style="margin: -1px;margin-top: 0;width: calc(100% + 2px);" data-table-filter-input="{{ $listId }}">
+                    <input aria-label="<?php _e('Filter files', 'modularity'); ?>…" type="text" name="keyword" class="form-control gutter" placeholder="<?php _e('Filter files', 'modularity'); ?>…" style="margin: -1px;margin-top: 0;width: calc(100% + 2px);" data-table-filter-input="{{ $listId }}">
                 </td>
             </tr>
             @endif
