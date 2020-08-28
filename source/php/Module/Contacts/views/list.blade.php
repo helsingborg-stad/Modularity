@@ -4,10 +4,15 @@
     @endif
 
     <div class="accordion accordion-icon accordion-list">
+
+	<?php
+		$uniqueId = rand(0, 1000);
+	?>
+
     @foreach ($contacts as $key => $contact)
     <section class="accordion-section" itemscope="person" itemtype="http://schema.org/Organization">
-        <input type="radio" name="active-section" id="accordion-contacts-{{ $ID }}-{{ $key }}">
-        <button class="accordion-toggle" for="accordion-contacts-{{ $ID }}-{{ $key }}">
+        <input type="radio" name="active-section" id="accordion-contacts-{{ $ID }}-{{ $key }}-{{ $uniqueId }}">
+        <button class="accordion-toggle" for="accordion-contacts-{{ $ID }}-{{ $key }}-{{ $uniqueId }}">
             <h6 itemprop="name">{{ $contact['full_name'] }}</h6>
         </button>
         <div class="accordion-content">
