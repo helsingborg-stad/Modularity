@@ -39,10 +39,10 @@ class Display
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
 
-        if($data['post_type'] == 'mod-json-render') {
-            $moduleView = MODULARITYJSONRENDER_MODULE_VIEW_PATH;
-        } else if($data['post_type'] == 'mod-event') {
-            $moduleView = EVENTMANAGERINTEGRATION_MODULE_VIEW_PATH;
+        $externalViewPaths = apply_filters( '/Modularity/externalViewPath', []);
+
+        if (isset($externalViewPaths[$data['post_type']])) {
+            $moduleView = $externalViewPaths[$data['post_type']];
         }
         
         $init = new CompLibInitator([$moduleView]);
