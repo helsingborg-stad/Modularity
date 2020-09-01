@@ -38,6 +38,13 @@ class Display
     {
         $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
+
+        $externalViewPaths = apply_filters( '/Modularity/externalViewPath', []);
+
+        if (isset($externalViewPaths[$data['post_type']])) {
+            $moduleView = $externalViewPaths[$data['post_type']];
+        }
+        
         $init = new CompLibInitator([$moduleView]);
         $blade = $init->getEngine();
 
