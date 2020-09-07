@@ -562,6 +562,24 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
     public const SATURDAY = 6;
 
     /**
+     * The month constants.
+     * These aren't used by Carbon itself but exist for
+     * convenience sake alone.
+     */
+    public const JANUARY = 1;
+    public const FEBRUARY = 2;
+    public const MARCH = 3;
+    public const APRIL = 4;
+    public const MAY = 5;
+    public const JUNE = 6;
+    public const JULY = 7;
+    public const AUGUST = 8;
+    public const SEPTEMBER = 9;
+    public const OCTOBER = 10;
+    public const NOVEMBER = 11;
+    public const DECEMBER = 12;
+
+    /**
      * Number of X in Y.
      */
     public const YEARS_PER_MILLENNIUM = 1000;
@@ -731,9 +749,9 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * @example $date->add(15, 'days')
      * @example $date->add(CarbonInterval::days(4))
      *
-     * @param string|DateInterval $unit
-     * @param int                 $value
-     * @param bool|null           $overflow
+     * @param string|DateInterval|Closure|CarbonConverterInterface $unit
+     * @param int                                                  $value
+     * @param bool|null                                            $overflow
      *
      * @return static
      */
@@ -999,7 +1017,7 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      *
      * @throws InvalidFormatException
      *
-     * @return static
+     * @return static|false
      */
     public static function create($year = 0, $month = 1, $day = 1, $hour = 0, $minute = 0, $second = 0, $tz = null);
 
@@ -2959,7 +2977,7 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * Get/set the locale for the current instance.
      *
      * @param string|null $locale
-     * @param string[]    ...$fallbackLocales
+     * @param string      ...$fallbackLocales
      *
      * @return $this|string
      */
@@ -3329,8 +3347,8 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * as it allows you to do Carbon::parse('Monday next week')->fn() rather
      * than (new Carbon('Monday next week'))->fn().
      *
-     * @param string|null              $time
-     * @param DateTimeZone|string|null $tz
+     * @param string|DateTimeInterface|null $time
+     * @param DateTimeZone|string|null      $tz
      *
      * @throws InvalidFormatException
      *
@@ -3399,6 +3417,15 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
     public function range($end = null, $interval = null, $unit = null);
 
     /**
+     * Call native PHP DateTime/DateTimeImmutable add() method.
+     *
+     * @param DateInterval $interval
+     *
+     * @return static
+     */
+    public function rawAdd(DateInterval $interval);
+
+    /**
      * Create a Carbon instance from a specific format.
      *
      * @param string                         $format Datetime format
@@ -3427,14 +3454,23 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * as it allows you to do Carbon::parse('Monday next week')->fn() rather
      * than (new Carbon('Monday next week'))->fn().
      *
-     * @param string|null              $time
-     * @param DateTimeZone|string|null $tz
+     * @param string|DateTimeInterface|null $time
+     * @param DateTimeZone|string|null      $tz
      *
      * @throws InvalidFormatException
      *
      * @return static
      */
     public static function rawParse($time = null, $tz = null);
+
+    /**
+     * Call native PHP DateTime/DateTimeImmutable sub() method.
+     *
+     * @param DateInterval $interval
+     *
+     * @return static
+     */
+    public function rawSub(DateInterval $interval);
 
     /**
      * Remove all macros and generic macros.
@@ -3678,7 +3714,7 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      *
      * /!\ Use this method for unit tests only.
      *
-     * @param Closure|static|string|null $testNow real or mock Carbon instance
+     * @param Closure|static|string|false|null $testNow real or mock Carbon instance
      */
     public static function setTestNow($testNow = null);
 
@@ -4067,9 +4103,9 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
      * @example $date->sub(15, 'days')
      * @example $date->sub(CarbonInterval::days(4))
      *
-     * @param string|DateInterval $unit
-     * @param int                 $value
-     * @param bool|null           $overflow
+     * @param string|DateInterval|Closure|CarbonConverterInterface $unit
+     * @param int                                                  $value
+     * @param bool|null                                            $overflow
      *
      * @return static
      */
@@ -4488,14 +4524,17 @@ interface CarbonInterface extends DateTimeInterface, JsonSerializable
     /**
      * Format the instance as RFC3339
      *
+     * @param bool $extended
+     *
      * @example
      * ```
-     * echo Carbon::now()->toRfc3339String();
+     * echo Carbon::now()->toRfc3339String() . "\n";
+     * echo Carbon::now()->toRfc3339String(true) . "\n";
      * ```
      *
      * @return string
      */
-    public function toRfc3339String();
+    public function toRfc3339String($extended = false);
 
     /**
      * Format the instance as RFC7231
