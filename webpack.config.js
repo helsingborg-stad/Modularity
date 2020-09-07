@@ -25,7 +25,7 @@ module.exports = {
         'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
         
         'css/modularity': './source/sass/modularity.scss',
-        'css/modularity-thickbox': './source/sass/modularity-thickbox-edit.scss',
+        'css/modularity-editor-modal': './source/sass/modularity-editor-modal.scss',
         
         //Modules - Table
         'js/Table/assets/table-init': './source/php/Module/Table/assets/table-init.js',

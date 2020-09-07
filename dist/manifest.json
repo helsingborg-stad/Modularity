@@ -1,7 +1,7 @@
 {
   "css/Table/assets/table.css": "css/Table/assets/table.min.css",
   "css/modularity.css": "css/modularity.min.css",
-  "css/modularity-thickbox.css": "css/modularity-thickbox.min.css",
+  "css/modularity-editor-modal.css": "css/modularity-editor-modal.min.css",
   "js/Latest/assets/mod-latest-taxonomy.js": "js/Latest/assets/mod-latest-taxonomy.min.js",
   "js/Posts/assets/mod-posts-load-more-button.js": "js/Posts/assets/mod-posts-load-more-button.min.js",
   "js/Posts/assets/mod-posts-taxonomy.js": "js/Posts/assets/mod-posts-taxonomy.min.js",
