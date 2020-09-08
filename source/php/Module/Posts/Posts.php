@@ -2,6 +2,13 @@
 
 namespace Modularity\Module\Posts;
 
+use Throwable;
+use BladeComponentLibrary\Init as CompLibInitator;
+
+/**
+ * Class Posts
+ * @package Modularity\Module\Posts
+ */
 class Posts extends \Modularity\Module
 {
     public $slug = 'posts';
@@ -49,6 +56,10 @@ class Posts extends \Modularity\Module
         ));
     }
 
+    /**
+     * Load more data with Ajax
+     * @return json data
+     */
     public function loadMorePostsUsingAjax()
     {
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
@@ -96,28 +107,30 @@ class Posts extends \Modularity\Module
             die;
         }
 
-
-        $blade = new \Philo\Blade\Blade([MODULARITY_PATH . 'source/php/Module/Posts/views'], MODULARITY_CACHE_DIR);
-
-        //Make sure blade template exists
-        if (!$blade->view()->exists($_POST['bladeTemplate'])) {
-            $msg = 'Blade template "' . $_POST['bladeTemplate'] . '" does not exists';
-            error_log($msg);
-            wp_send_json_error(['error' => $msg], $statusCodes['badRequest']);
-            die;
-        }
-
+        $moduleView = MODULARITY_PATH . 'source/php/Module/Posts/views';
+        $init = new CompLibInitator([$moduleView]);
+        $blade = $init->getEngine();
         $posts = [];
 
         foreach ($this->data['posts'] as $post) {
-            $posts[] = $blade->view()->make($_POST['bladeTemplate'], array_merge(['post' => $post], $this->data))->render();
+
+            try {
+                $posts[] = $blade->make($_POST['bladeTemplate'], array_merge(['post' => $post], $this->data))->render();
+            } catch (Throwable $e) {
+                echo '<pre style="border: 3px solid #f00; padding: 10px;">';
+                echo '<strong>' . $e->getMessage() . '</strong>';
+                echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
+                echo $e->getTraceAsString();
+                echo '</pre>';
+            }
         }
 
         wp_send_json($posts);
-
-        die;
     }
 
+    /**
+     * @return false|string
+     */
     public function template()
     {
         $this->getTemplateData($this->data['posts_display_as']);
@@ -125,6 +138,9 @@ class Posts extends \Modularity\Module
             $this->data);
     }
 
+    /**
+     * @param $template
+     */
     public function getTemplateData($template)
     {
         $template = explode('-', $template);
@@ -138,7 +154,9 @@ class Posts extends \Modularity\Module
         }
     }
 
-
+    /**
+     * @return array
+     */
     public function data(): array
     {
         $fields = json_decode(json_encode(get_fields($this->ID)));
@@ -171,7 +189,7 @@ class Posts extends \Modularity\Module
 
             $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
             $data['pageUrl'] = $postFilters->getPostUrl();
-            $data['searchQuery'] = get_query_var( 'search' );
+            $data['searchQuery'] = get_query_var('search');
         }
         $data['modId'] = $this->ID;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
@@ -218,7 +236,10 @@ class Posts extends \Modularity\Module
         return $data;
     }
 
-
+    /**
+     * @param $fields
+     * @return array
+     */
     public function getTaxonomyDisplay($fields)
     {
         if (empty(get_field('taxonomy_display', $this->ID))) {
@@ -452,7 +473,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Saves column names if exandable list template is used
-     * @param  int $postId The id of the post
+     * @param int $postId The id of the post
      * @return void
      */
     public function saveColumnFields($postId)
@@ -543,8 +564,8 @@ class Posts extends \Modularity\Module
 
     /**
      * Expandable list column value fields metabox content
-     * @param  object $post Post object
-     * @param  array $args Arguments
+     * @param object $post Post object
+     * @param array $args Arguments
      * @return void
      */
     public function columnFieldsMetaBoxContent($post, $args)
@@ -568,7 +589,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Get field columns
-     * @param  array $posts Post ids
+     * @param array $posts Post ids
      * @return array        Column names
      */
     public function getColumns($posts)
@@ -616,7 +637,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Check if current post is included in the data source post type
-     * @param  integer $id Postid
+     * @param integer $id Postid
      * @return array       Modules included in
      */
     public function checkIfPostType($id)
@@ -645,7 +666,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Check if current post is included in a manually picked data source in exapndable list
-     * @param  integer $id Post id
+     * @param integer $id Post id
      * @return array       Modules included in
      */
     public function checkIfManuallyPicked($id)
@@ -677,7 +698,7 @@ class Posts extends \Modularity\Module
      */
     public function script()
     {
-        wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-load-more-button.js',
+        wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-load-more-button.min.js',
             array(), '1.0.0', true);
     }
 
@@ -687,7 +708,7 @@ class Posts extends \Modularity\Module
      */
     public function adminEnqueue()
     {
-        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js',
+        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.min.js',
             array(), '1.0.0', true);
 
         add_action('admin_head', function () {
@@ -705,7 +726,7 @@ class Posts extends \Modularity\Module
 
     /**
      * "Fake" WP_POST objects for manually inputted posts
-     * @param  array $data The data to "fake"
+     * @param array $data The data to "fake"
      * @return array        Faked data
      */
     public static function getManualInputPosts($data)
@@ -727,7 +748,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Get included posts
-     * @param  object $module Module object
+     * @param object $module Module object
      * @return array          Array with post objects
      */
     public static function getPosts($module)

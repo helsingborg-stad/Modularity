@@ -31,7 +31,7 @@ class Table extends \Modularity\Module
             return; 
         }
 
-        //Disable filter temporarirly
+        //Disable filter temporarily
         add_filter('acf/allow_unfiltered_html', function($allow_unfiltered_html) {
             return true;
         });
@@ -41,8 +41,10 @@ class Table extends \Modularity\Module
     {
         $post = $this->data;
         $data = get_fields($this->ID);
+        $tableList  = $this->tableList(json_decode($post['meta']['mod_table'][0]));
+
         $data['m_table'] = [
-            'data'          => $this->tableList(json_decode($post['meta']['mod_table'][0])),
+            'data'          => $tableList,
             'showHeader'    => true,    //To-Do: Add this option in ACF
             'showFooter'    => false,   //To-Do: Add this option in ACF
             'classList'     => $this->getTableClasses($data),
@@ -51,11 +53,14 @@ class Table extends \Modularity\Module
             'hoverEffect'   => in_array('table-hover', $data['mod_table_classes']),
             'isSmall'       => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
             'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
+            'filterable'    => $data['mod_table_search'],
+            'sortable'      => $data['mod_table_ordering'],
+            'pagination'    => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
         ];
-        $data['mod_table'] = self::unicodeConvert($data['mod_table']);
-        $data['tableClasses'] = $this->getTableClasses($data);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
-        $data['m_table'] = (object)$data['m_table'];
+        $data['mod_table']      = self::unicodeConvert($data['mod_table']);
+        $data['tableClasses']   = $this->getTableClasses($data);
+        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['m_table']        = (object)$data['m_table'];
 
         return $data;
     }
@@ -135,7 +140,8 @@ class Table extends \Modularity\Module
 
     public function modAssets()
     {
-        wp_register_script('mod-table', MODULARITY_URL . '/dist/js/Table/assets/table.js', array(), '1.1.1', true);
+        wp_register_script('mod-table', MODULARITY_URL . '/dist/js/Table/assets/table.min.js', array
+        (), '1.1.1', true);
         wp_enqueue_script('mod-table');
 
         wp_register_style('mod-table', MODULARITY_URL . '/dist/css/Table/assets/table.min.css', array(), '1.1.1');
@@ -149,7 +155,7 @@ class Table extends \Modularity\Module
         }
 
         wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
-        wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.js', array(), '1.0.0', true);
+        wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.min.js', array(), '1.0.0', true);
         wp_localize_script('datatables-init', 'datatablesLang', array(
             'sEmptyTable' => __('No data available in table', 'modularity'),
             'sInfo' => __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity'),
