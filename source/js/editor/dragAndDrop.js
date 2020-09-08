@@ -5,11 +5,9 @@ export default (function ($) {
 
     function DragAndDrop() {
         $(function(){
-
             if (typeof pagenow !== 'undefined' && pagenow == 'admin_page_modularity-editor') {
                 this.init();
             }
-
         }.bind(this));
     }
 
