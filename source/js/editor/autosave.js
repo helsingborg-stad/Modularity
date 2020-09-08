@@ -1,9 +1,6 @@
 export default (function ($) {
 
     function Autosave() {
-        $(function(){
-            //this.handleEvents();
-        }.bind(this));
     }
 
     Autosave.prototype.save = function (selector) {
