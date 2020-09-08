@@ -126,14 +126,14 @@ export default (function ($) {
         });
 
         // Set thickbox action
-        Thickbox.postAction = 'add';
+        Thickbox.setPostAction('add');
 
         if (postId) {
             thickboxUrl = this.getThickBoxUrl('edit', {
                 postId: postId
             });
 
-            Thickbox.postAction = 'edit';
+            Thickbox.setPostAction('edit');
         }
 
         // Get import url
@@ -239,7 +239,7 @@ export default (function ($) {
             var el = $(e.target).closest('a');
             editingModule = $(e.target).closest('li');
 
-            Thickbox.postAction = 'import';
+            Thickbox.setPostAction('import');
             Modal.open($(e.target).closest('a').attr('href'));
         });
 
@@ -249,7 +249,7 @@ export default (function ($) {
 
             var el = $(e.target).closest('a');
             if (el.attr('href').indexOf('post.php') > -1) {
-                Thickbox.postAction = 'edit';
+                Thickbox.setPostAction('edit');
             }
 
             editingModule = $(e.target).closest('li');

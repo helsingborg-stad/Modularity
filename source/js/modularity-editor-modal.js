@@ -5,39 +5,40 @@ import Modal from './prompt/modal.js';
 import Widget from './helpers/widget.js';
 
 export default (function ($) {
+
     /**
      * Add new post callback
      */
-    if (Thickbox.postAction == 'add' && modularity_post_action == '') {
+    if (Thickbox.getPostAction() == 'add' && modularity_post_action == '') {
         Thickbox.modulePostCreated(modularity_post_id);
     }
     
-    if (Thickbox.postAction == 'edit-inline-saved') {
+    if (Thickbox.getPostAction() == 'edit-inline-saved') {
         parent.location.reload();
     }
     
     /**
      * Edit post callback
      */
-    if (Thickbox.postAction == 'edit' && modularity_post_action == '') {
+    if (Thickbox.getPostAction() == 'edit' && modularity_post_action == '') {
         jQuery(document).on('click', '#publish', function (e) {
-            Thickbox.postAction = 'add';
+            Thickbox.setPostAction('add');
         });
     }
     
     /**
      * Edit post callback
      */
-    if (Thickbox.postAction == 'edit-inline-not-saved') {
+    if (Thickbox.getPostAction() == 'edit-inline-not-saved') {
         jQuery(document).on('click', '#publish', function (e) {
-            Thickbox.postAction = 'edit-inline-saved';
+            Thickbox.setPostAction('edit-inline-saved');
         });
     }
     
     /**
      * Import post modifications and callback
      */
-    if (Thickbox.postAction == 'import') {
+    if (Thickbox.getPostAction() == 'import') {
         $('.check-column input[type="checkbox"]').remove();
         $('.wp-list-table').addClass('modularity-wp-list-table');
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
@@ -74,7 +75,7 @@ export default (function ($) {
     /**
      * Import post modifications and callback
      */
-    if (Thickbox.postAction == 'import-widget') {
+    if (Thickbox.getPostAction() == 'import-widget') {
         $('.check-column input[type="checkbox"]').remove();
         $('.wp-list-table').addClass('modularity-wp-list-table');
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');

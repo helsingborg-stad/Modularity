@@ -22,7 +22,7 @@ export default (function ($) {
 
                 Module.editingModule = $(e.target).closest('.widget-inside');
 
-                Thickbox.postAction = 'import-widget';
+                Thickbox.setPostAction('import-widget');
                 Modal.open(importUrl);
             });
 
@@ -33,7 +33,7 @@ export default (function ($) {
 
                 var el = $(e.target).closest('a');
                 if (el.attr('href').indexOf('post.php') > -1) {
-                    Thickbox.postAction = 'edit';
+                    Thickbox.setPostAction('edit');
                 }
 
                 const editingModule = $(e.target).closest('li');

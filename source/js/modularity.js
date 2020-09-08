@@ -69,7 +69,7 @@ jQuery(document).ready(function ($) {
     $('.modularity-edit-module a').on('click', function (e) {
         e.preventDefault();
 
-       Thickbox.postAction = 'edit-inline-not-saved';
+        Thickbox.setPostAction('edit-inline-not-saved');
        Modal.open($(e.target).closest('a').attr('href'));
     });
 });
