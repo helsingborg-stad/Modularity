@@ -10,17 +10,23 @@ import Autosave from './autosave.js';
      * Indicates if we are adding a new post or editing old one
      * @type {String}
      */
-    var postAction = 'add';
+    window.postAction = 'add';
 
     function Thickbox() {
 
     }
 
     Thickbox.prototype.getPostAction = function () {
-        return this.postAction; 
+
+        console.log("Retrived post action: " + window.postAction); 
+
+        return window.postAction; 
     }
     Thickbox.prototype.setPostAction = function (newPostAction) {
-        this.postAction = newPostAction; 
+
+        window.postAction = newPostAction; 
+
+        console.log("Set post action: " + window.postAction + "(" + newPostAction + ")")
     }
 
     Thickbox.prototype.modulePostCreated = function (postId) {

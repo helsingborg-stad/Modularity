@@ -9,8 +9,8 @@ export default (function ($) {
     /**
      * Add new post callback
      */
-    if (Thickbox.getPostAction() == 'add' && modularity_post_action == '') {
-        Thickbox.modulePostCreated(modularity_post_id);
+    if (Thickbox.getPostAction() == 'add' && window.modularity_post_action == '') {
+        Thickbox.modulePostCreated(window.modularity_post_id);
     }
     
     if (Thickbox.getPostAction() == 'edit-inline-saved') {
@@ -20,7 +20,7 @@ export default (function ($) {
     /**
      * Edit post callback
      */
-    if (Thickbox.getPostAction() == 'edit' && modularity_post_action == '') {
+    if (Thickbox.getPostAction() == 'edit' && window.modularity_post_action == '') {
         jQuery(document).on('click', '#publish', function (e) {
             Thickbox.setPostAction('add');
         });

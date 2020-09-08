@@ -20,7 +20,7 @@ export default (function ($) {
         $(function(){
             if (typeof pagenow !== 'undefined' && pagenow == 'admin_page_modularity-editor') {
                 this.handleEvents();
-                this.loadModules(modularity_post_id);
+                this.loadModules(window.modularity_post_id);
             }
         }.bind(this));
     }
@@ -196,6 +196,7 @@ export default (function ($) {
      * @return {void}
      */
     Module.prototype.updateModule = function (module, data) {
+
         // Href
         module.find('a.modularity-js-thickbox-open').attr('href', this.getThickBoxUrl('edit', {
             postId: data.post_id

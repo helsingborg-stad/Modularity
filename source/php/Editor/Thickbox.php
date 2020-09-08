@@ -52,8 +52,8 @@ class Thickbox
         if (substr($current_screen->post_type, 0, 4) == 'mod-' && ($current_screen->action == 'add' || $current_screen->action == '')) {
             echo "
                 <script>
-                    var modularity_post_id = ". $id . ";
-                    var modularity_post_action = '" . $current_screen->action . "';
+                    window.modularity_post_action  = ". $id . ";
+                    window.modularity_post_action = '" . $current_screen->action . "';
                 </script>
             ";
         }

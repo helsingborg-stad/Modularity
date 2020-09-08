@@ -6,7 +6,7 @@ export default (function ($) {
     Autosave.prototype.save = function (selector) {
         $('#modularity-options #publishing-action .spinner').css('visibility', 'visible');
         var request = $(selector).serializeObject();
-        request.id = modularity_post_id;
+        request.id = window.modularity_post_id;
         request.action = 'save_modules';
 
         $.post(ajaxurl, request, function (response) {

@@ -70,7 +70,7 @@ jQuery(document).ready(function ($) {
         e.preventDefault();
 
         Thickbox.setPostAction('edit-inline-not-saved');
-       Modal.open($(e.target).closest('a').attr('href'));
+        Modal.open($(e.target).closest('a').attr('href'));
     });
 });
 

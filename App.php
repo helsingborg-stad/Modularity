@@ -262,7 +262,7 @@ class App
 
                 echo "
                     <script>
-                        var modularity_post_id = " . $id . "
+                        window.modularity_post_id = " . $id . "
                     </script>
                 ";
             }, 10);
