@@ -1,8 +1,8 @@
-import Thickbox from './editor/thickbox.js';
 import Module from './editor/module.js';
 import Autosave from './editor/autosave.js';
 import Modal from './prompt/modal.js';
 import Widget from './helpers/widget.js';
+import Thickbox from './editor/thickbox.js';
 
 export default (function ($) {
 

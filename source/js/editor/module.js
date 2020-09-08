@@ -196,7 +196,7 @@ export default (function ($) {
      * @return {void}
      */
     Module.prototype.updateModule = function (module, data) {
-
+        console.log(module); 
         // Href
         module.find('a.modularity-js-thickbox-open').attr('href', this.getThickBoxUrl('edit', {
             postId: data.post_id
