@@ -1,7 +1,7 @@
 import Modules from './module.js';
 export default (function ($) {
 
-    var sortableIn;
+    let sortableIn;
 
     function DragAndDrop() {
         $(function(){

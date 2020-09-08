@@ -1,7 +1,7 @@
 export default (function ($) {
 
-    var hasErrors = false;
-    var errorClass = 'validation-error';
+    let hasErrors = false;
+    let errorClass = 'validation-error';
 
     function Validate() {
         this.handleEvents();

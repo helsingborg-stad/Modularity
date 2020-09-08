@@ -1,7 +1,10 @@
 {
   "css/Table/assets/table.css": "css/Table/assets/table.min.css",
+  "css/Table/assets/table.js": "css/Table/assets/table.min.js",
   "css/modularity.css": "css/modularity.min.css",
+  "css/modularity.js": "css/modularity.min.js",
   "css/modularity-editor-modal.css": "css/modularity-editor-modal.min.css",
+  "css/modularity-editor-modal.js": "css/modularity-editor-modal.min.js",
   "js/Latest/assets/mod-latest-taxonomy.js": "js/Latest/assets/mod-latest-taxonomy.min.js",
   "js/Posts/assets/mod-posts-load-more-button.js": "js/Posts/assets/mod-posts-load-more-button.min.js",
   "js/Posts/assets/mod-posts-taxonomy.js": "js/Posts/assets/mod-posts-taxonomy.min.js",

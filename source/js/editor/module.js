@@ -4,17 +4,17 @@ import Modal from '../prompt/modal.js';
 
 export default (function ($) {
 
-    var initCompleted = false;
+    let initCompleted = false;
 
     /**
      * Object to create Thickbox querystring from
      * @type {Object}
      */
-    var thickboxOptions = {
+    let thickboxOptions = {
         is_thickbox: true,
     };
 
-    var editingModule = false;
+    let editingModule = false;
 
     function Module() {
         $(function(){

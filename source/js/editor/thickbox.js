@@ -10,7 +10,7 @@ import Autosave from './autosave.js';
      * Indicates if we are adding a new post or editing old one
      * @type {String}
      */
-    var postAction = 'add';
+    let postAction = 'add';
 
     function Thickbox() {
 

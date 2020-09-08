@@ -154,7 +154,7 @@ module.exports = {
         /**
          * Fix CSS entry chunks generating js file
          */
-        new FixStyleOnlyEntriesPlugin(),
+        //new FixStyleOnlyEntriesPlugin(),
         
         /**
          * Clean dist folder
