@@ -67,9 +67,11 @@ class Client {
      * @throws ConnectionException
      */
     function request($method, $body = NULL, $header = array()){
-        foreach($body as $key => $val) {
-            if($val === null) {
-                unset($body[$key]);
+        if ($body) {
+            foreach($body as $key => $val) {
+                if($val === null) {
+                    unset($body[$key]);
+                }
             }
         }
 
@@ -298,6 +300,7 @@ class Client {
                 "message" => $message . "( " . $body . ")",
                 "Status" => (object)array("Code" => -1, "Message" => "ParseError: " . $message)
             );
+            ShortPixel::log("JSON Error while parsing response: " . json_encode($details));
         }
         return array($details, $headers, $status, $response);
     }

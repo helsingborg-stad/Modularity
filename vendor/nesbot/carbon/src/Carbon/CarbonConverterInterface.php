@@ -8,5 +8,11 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+namespace Carbon;
 
-return require __DIR__.'/ast.php';
+use DateTimeInterface;
+
+interface CarbonConverterInterface
+{
+    public function convertDate(DateTimeInterface $dateTime, bool $negated = false): CarbonInterface;
+}
