@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dff39a64c37656bfd40fc035930a707",
+    "content-hash": "3549a3d985eb9cfa64415b43d7179114",
     "packages": [
         {
             "name": "aristath/kirki",
@@ -1377,7 +1377,7 @@
     ],
     "packages-dev": [],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "helsingborg-stad/blade-component-library": 20
     },
