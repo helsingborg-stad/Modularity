@@ -54,6 +54,8 @@ class Slider extends \Modularity\Module
 
         $data['slideColumns']   = $this->slideColumns;
 
+        $data['c_autoslide'] = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
+
         //Duplicate output of slides if columnize. This is due to bad handlig of flickity [Avoids flickering on first/last slide].
         // if ($this->bleed) {
         //     $data['slides'] = array_merge($data['slides'], $data['slides']);
