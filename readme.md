@@ -3,6 +3,10 @@ Modularity
 
 Modular component system plugin for WordPress. Drag and drop the bundled modules or your custom modules to your page layout.
 
+## Download plugin.
+To download a complete out of the box working plugin without the need to compile or fetch dependencies.  
+Go [here](https://github.com/helsingborg-stad/Modularity/releases) and download the `full-release.zip` from the latest version.  
+
 Creating modules
 ----------------
 
