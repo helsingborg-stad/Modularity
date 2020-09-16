@@ -21,7 +21,7 @@
                     'classList' => ['block-level', $img_classes]
                 ])
                 @endimage
-            @endbutton
+            @endlink
 
     @else
             @image([

@@ -11,7 +11,7 @@
                     'classList' => ['box-image', $img_classes]
                 ])
                 @endimage
-            @endbutton
+            @endlink
 
     @else
         @image([
