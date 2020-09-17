@@ -372,7 +372,7 @@ class Display
         $classes = array(
             'modularity-' . $module->post_type,
             'modularity-' . $module->post_type . '-' . $module->ID,
-            $module->columnWidth ?: 'o-col-12@xs'
+            $module->columnWidth ?: 'o-col-12'
         );
 
         //Hide module if preview
