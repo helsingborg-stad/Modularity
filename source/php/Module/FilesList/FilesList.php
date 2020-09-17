@@ -17,6 +17,7 @@ class FilesList extends \Modularity\Module
     public function data() : array
     {
         $data = array();
+        // die(var_dump(get_field('columns', $this->ID)));
         $data['listId'] = 'files_' . uniqid();
         $data['columnData'] = $this->prepareColumnData($files);
         $data['headings'] = $this->prepareHeadings(['File', 'Description']);
@@ -28,6 +29,12 @@ class FilesList extends \Modularity\Module
 
 
     private function prepareHeadings($headings) {
+        $extraColumns = get_field('columns', $this->ID);
+
+        foreach($extraColumns as $col) {
+            $headings[$col['key']] = $col['title'];
+        }
+                
         foreach($headings as &$heading) {
             
             $heading = translate($heading, 'modularity');
@@ -40,20 +47,36 @@ class FilesList extends \Modularity\Module
         $files = get_field('file_list', $this->ID);
         $columnData = [];
 
-        foreach ($files as $item) {
+        foreach ($files as $key => $item) {
             $columnData['href'] = $item['file']['url'];
 
-            $columnData[] = [
+            $columnData[$key] = [
                 'columns' => 
                 [
-                    $item['file']['title'],
-                    $item['file']['description']
+                    'title' => $item['file']['title'],
+                    'description' => $item['file']['description']
                 ],
                 'href' => $item['file']['url']
             ];
+
+            $fields = $this->fieldsArray($item['fields']);
+
+            foreach(get_field('columns', $this->ID) as $col) {
+                $columnData[$key]['columns'][$col['key']] = $fields[$col['key']] ? $fields[$col['key']] : "";
+            }
         }
 
         return $columnData;
+    }
+
+    private function fieldsArray($arr)
+    {
+        $newArr = [];
+        foreach($arr as $item) {
+            $newArr[$item['key']] = $item['value'];
+        }
+
+        return $newArr;
     }
 
     /**
