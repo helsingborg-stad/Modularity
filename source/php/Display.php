@@ -36,10 +36,10 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
-        $moduleName = ucFirst((str_replace('mod-','',$data['post_type'])));
+        $moduleName = ucFirst((str_replace('mod-', '', $data['post_type'])));
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
 
-        $externalViewPaths = apply_filters( '/Modularity/externalViewPath', []);
+        $externalViewPaths = apply_filters('/Modularity/externalViewPath', []);
 
         if (isset($externalViewPaths[$data['post_type']])) {
             $moduleView = $externalViewPaths[$data['post_type']];
@@ -49,12 +49,12 @@ class Display
         $blade = $init->getEngine();
 
         try {
-            return $blade->make($view, $data )->render();
-        } catch(Throwable $e) {
+            return $blade->make($view, $data)->render();
+        } catch (Throwable $e) {
             echo '<pre style="border: 3px solid #f00; padding: 10px;">';
-                echo '<strong>' . $e->getMessage() . '</strong>';
-                echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
-                echo $e->getTraceAsString();
+            echo '<strong>' . $e->getMessage() . '</strong>';
+            echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
+            echo $e->getTraceAsString();
             echo '</pre>';
         }
 
@@ -94,8 +94,6 @@ class Display
      */
     public function isActiveSidebar($isActiveSidebar, $sidebar)
     {
-        
-        
         $widgets = wp_get_sidebars_widgets();
         $widgets = array_map('array_filter', $widgets);
         $visibleModules = false;
@@ -234,7 +232,6 @@ class Display
         
         // Loop and output modules
         foreach ($modules['modules'] as $module) {
-          
             if (!is_preview() && $module->hidden == 'true') {
                 continue;
             }
@@ -359,7 +356,9 @@ class Display
         if (!$templatePath) {
             return false;
         }
+
         $moduleMarkup = '';
+
         if (preg_match('/.blade.php$/i', $templatePath)) {
             $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
         } else {
@@ -372,9 +371,10 @@ class Display
         
         $classes = array(
             'modularity-' . $module->post_type,
-            'modularity-' . $module->post_type . '-' . $module->ID
+            'modularity-' . $module->post_type . '-' . $module->ID,
+            $module->columnWidth ?: 'o-col-12@xs'
         );
-        
+
         //Hide module if preview
         if (is_preview() && $module->hidden) {
             $classes[] = 'modularity-preview-hidden';
@@ -387,34 +387,29 @@ class Display
             }
         }
 
-        $beforeModule = '';
-        $afterModule = '';
+        // Build before & after module markup
+        $beforeModule = $args['before_widget'] ?: '<div class="%1$s" id="%2$s">';
+        $afterModule = $args['after_widget'] ?: '</div>';
+                
+        // Apply filter for classes
+        $classes = apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
+        
+        // Implode classNames
+        $beforeModule = sprintf($beforeModule, implode(' ', $classes), $module->post_type . '-' . $module->ID);
+        
+        // Append module edit to before markup
         $moduleEdit = '';
         if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
             $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '</a></div>';
         }
 
-        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-            $beforeWidget = $module->columnWidth;
+        $beforeModule .= $moduleEdit;
 
-            $classes[] = $beforeWidget;
-
-            $beforeModule = apply_filters('Modularity/Display/BeforeModule', '<div class="' . implode(' ', $classes) . '">', $args, $module->post_type, $module->ID);
-        } elseif (isset($args['before_widget'])) {
-            $beforeWidget = str_replace('%1$s', $module->post_type . '-' . $module->ID, $args['before_widget']);
-            $beforeWidget = str_replace('%2$s', implode(' ', $classes), $beforeWidget);
-            $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeWidget, $args, $module->post_type, $module->ID);
-        }
-
-        if (isset($module->columnWidth) && !empty($module->columnWidth)) {
-            $afterModule = apply_filters('Modularity/Display/AfterModule', '</div>', $args, $module->post_type, $module->ID);
-        } elseif (isset($args['after_widget'])) {
-            $afterWidget = str_replace('%1$s', $module->post_type . '-' . $module->ID, $args['after_widget']);
-            $afterWidget = str_replace('%2$s', implode(' ', $classes), $afterWidget);
-            $afterModule = apply_filters('Modularity/Display/AfterModule', $afterWidget, $args, $module->post_type, $module->ID);
-        }
-
-        return $moduleEdit . $moduleMarkup;
+        // Apply filter for before/after markup
+        $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeModule, $args, $module->post_type, $module->ID);
+        $afterModule = apply_filters('Modularity/Display/AfterModule', $afterModule, $args, $module->post_type, $module->ID);
+        
+        return $beforeModule . $moduleMarkup . $afterModule;
     }
 
     /**
