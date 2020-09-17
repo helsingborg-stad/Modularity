@@ -18,13 +18,18 @@ class IndexTemplate
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
         $this->data['posts_columns'] = $fields->posts_columns;
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $module->post_type, $args));
+        $this->data['classes'] = apply_filters('Modularity/Module/Classes', array(), $module->post_type, $args);
 
         $this->preparePosts();
     }
 
     public function preparePosts()
     {
+
+        
+
+
+
         /* Image size */
         $imageDimensions = array(400,300);
 
@@ -38,7 +43,9 @@ class IndexTemplate
                 break;
         }
 
+        
         foreach ($this->data['posts'] as $post) {
+
             /* Image */
             $image = null;
             if ($this->data['posts_data_source'] !== 'input') {
@@ -63,7 +70,27 @@ class IndexTemplate
                 }
             }
 
+            // Image fetch
             $post->thumbnail = $image;
+
+            // Get link for card, or tags 
+            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID); 
+            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, array_flip($this->data['taxonomyDisplayFlat']));
+            if(!empty($post->link) && is_array($post->tags) && !empty($post->tags)) {
+                foreach($post->tags as $tagKey => $tag) {
+                    $post->tags[$tagKey]['href'] = "";
+                }
+            }
+
+            // Get excerpt
+            $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : ''; 
+
+            //Booleans for hiding/showing stuff
+            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+            $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
+            $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
+            $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
+
         }
     }
 }
