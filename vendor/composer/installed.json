@@ -362,15 +362,15 @@
         "source": {
             "type": "git",
             "url": "https://github.com/helsingborg-stad/blade-component-library.git",
-            "reference": "a2b03d7a22a77cb40f8c65992a89d3ab298d8590"
+            "reference": "b0a20681c8efd5618101f6994b9ee4e94e87ec5f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/a2b03d7a22a77cb40f8c65992a89d3ab298d8590",
-            "reference": "a2b03d7a22a77cb40f8c65992a89d3ab298d8590",
+            "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/b0a20681c8efd5618101f6994b9ee4e94e87ec5f",
+            "reference": "b0a20681c8efd5618101f6994b9ee4e94e87ec5f",
             "shasum": ""
         },
-        "time": "2020-09-16T13:19:57+00:00",
+        "time": "2020-09-18T07:29:43+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -757,12 +757,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/briannesbitt/Carbon.git",
-            "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d"
+            "reference": "47877317e385831030ede076a54414602a868667"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/6c7646154181013ecd55e80c201b9fd873c6ee5d",
-            "reference": "6c7646154181013ecd55e80c201b9fd873c6ee5d",
+            "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/47877317e385831030ede076a54414602a868667",
+            "reference": "47877317e385831030ede076a54414602a868667",
             "shasum": ""
         },
         "require": {
@@ -781,7 +781,7 @@
             "phpunit/phpunit": "^7.5 || ^8.0",
             "squizlabs/php_codesniffer": "^3.4"
         },
-        "time": "2020-09-11T19:00:58+00:00",
+        "time": "2020-09-17T09:12:06+00:00",
         "bin": [
             "bin/carbon"
         ],
@@ -838,18 +838,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/container.git",
-            "reference": "fc1bc363ecf887921e3897c7b1dad3587ae154eb"
+            "reference": "b1fbdff230c2fae8b3e600ead18e711563f05a04"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/container/zipball/fc1bc363ecf887921e3897c7b1dad3587ae154eb",
-            "reference": "fc1bc363ecf887921e3897c7b1dad3587ae154eb",
+            "url": "https://api.github.com/repos/php-fig/container/zipball/b1fbdff230c2fae8b3e600ead18e711563f05a04",
+            "reference": "b1fbdff230c2fae8b3e600ead18e711563f05a04",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2019-10-04T14:07:35+00:00",
+        "time": "2020-09-18T06:44:01+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -869,7 +869,7 @@
         "authors": [
             {
                 "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
+                "homepage": "https://www.php-fig.org/"
             }
         ],
         "description": "Common Container Interface (PHP FIG PSR-11)",
@@ -889,18 +889,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
+            "reference": "dd738d0b4491f32725492cf345f6b501f5922fec"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-            "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/dd738d0b4491f32725492cf345f6b501f5922fec",
+            "reference": "dd738d0b4491f32725492cf345f6b501f5922fec",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2020-03-23T09:12:05+00:00",
+        "time": "2020-09-18T06:44:51+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -920,7 +920,7 @@
         "authors": [
             {
                 "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
+                "homepage": "https://www.php-fig.org/"
             }
         ],
         "description": "Common interface for logging libraries",
