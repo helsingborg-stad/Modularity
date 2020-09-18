@@ -1,3 +1,9 @@
 .DS_Store
 node_modules
-group_577279265d68a.json
+composer.lock
+.npmrc
+package-lock.json
+assets/dist/*
+vendor/
+.php_cs.cache
+.env
