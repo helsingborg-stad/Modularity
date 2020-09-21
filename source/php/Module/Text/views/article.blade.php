@@ -1,4 +1,5 @@
-<article class="no-margin full {{ isset($font_size) ? $font_size : '' }}">
+<article class="{{ isset($font_size) ? $font_size : '' }}">
+    
     @if (!$hideTitle && !empty($post_title))
         @typography([
                 "variant" => "h2"
