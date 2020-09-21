@@ -19,19 +19,22 @@ class Notice extends \Modularity\Module
         $data = get_fields($this->ID);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         $data['notice_size'] = $this->getSize($data['notice_size']);
-        $data['icon'] = $this->iconData($data['notice_icon'], $data['notice_size']);
+        $data['icon'] = $this->iconData($data['notice_type'], $data['notice_size']);
 
         return $data;
     }
 
     public function iconData($icon, $size)
     {
-        if(!isset($icon) || empty($icon) || !$icon || $icon === 'null') {
-            return [];
-        }
+        $icons = [
+            'info'      => 'info',
+            'success'   => 'check_circle',
+            'warning'   => 'warning',
+            'danger'    => 'error'
+        ];
 
         return [
-            'name' => $icon,
+            'name' => $icons[$icon],
             'size' => $this->getSize($size)
         ];
     }
