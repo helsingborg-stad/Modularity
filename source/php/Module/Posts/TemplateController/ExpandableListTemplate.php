@@ -101,6 +101,9 @@ class ExpandableListTemplate
                     } else {
                         $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
                     }
+
+                } else {
+                    $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
                 }
 
                 $accordion[$index]['content'] = apply_filters('the_content', $post->post_content);
