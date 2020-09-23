@@ -2,6 +2,7 @@
     "name": "helsingborg-stad/modularity",
     "description": "Modular component system for WordPress",
     "type": "wordpress-plugin",
+    "minimum-stability": "dev",
     "license": "MIT",
     "authors": [
         {
@@ -30,7 +31,7 @@
     "require": {
         "composer/installers": "~1.0",
         "helsingborg-stad/acf-export-manager": ">=1.0.0",
-        "helsingborg-stad/blade-component-library": "dev-master#0.5.8",
+        "helsingborg-stad/blade-component-library": "dev-master#0.9.3",
         "helsingborg-stad/global-blade-engine": "^1.2",
         "symfony/debug": "^4.0",
         "symfony/finder": "4.4.8",

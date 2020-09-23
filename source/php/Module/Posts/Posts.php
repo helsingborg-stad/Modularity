@@ -225,6 +225,7 @@ class Posts extends \Modularity\Module
 
         }
 
+        $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
         $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
         $data['posts_data_source'] = $fields->posts_data_source;
@@ -234,6 +235,19 @@ class Posts extends \Modularity\Module
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
 
         return $data;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getTaxonomyDisplayFlat()
+    {
+        if (empty(get_field('taxonomy_display', $this->ID))) {
+            return array();
+        }
+
+        return get_field('taxonomy_display', $this->ID);
     }
 
     /**

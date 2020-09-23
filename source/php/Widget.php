@@ -31,10 +31,13 @@ class Widget extends \WP_Widget
 
         $display = \Modularity\App::$display;
 
-        $columnWidth = (isset($instance['module_size'])) ? $instance['module_size'] : 'grid-md-4';
+        $columnWidth = $instance['module_size'] ?: 'o-col-12';
+
+        // Allow modularity to add classnames by re-applying the format placeholder
+        $args['before_widget'] = \str_replace($args['widget_id'], $args['widget_id'] . ' ' . '%1$s', $args['before_widget']);
 
         if (isset($instance['module_type']) && $instance['module_type'] == 'mod-slider') {
-           $columnWidth = '';
+            $columnWidth = '';
         }
 
         $columnWidth = apply_filters('Modularity/Widget/ColumnWidth', $columnWidth, $instance);

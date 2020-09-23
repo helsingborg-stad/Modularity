@@ -13,15 +13,13 @@
 
     @endif
 
-    {{--
-    TODO: Fundera över om vi ska lägga till en extra parameter i listmodulen för datum eller
-    använda tabell component.
-
-    --}}
-
-    @listing([
-        'list' => $prepareList
+    @table([
+        'list' => $prepareList,
+        'hasHoverEffect' => true,
+        'hasZebraStripes' => true,
+        'showHeader' => false,
+        'showFooter' => false
     ])
-    @endlisting
+    @endtable
 
 </div>
