@@ -9,7 +9,7 @@
 <div class="grid">
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
-            
+
             @card([
                 'heading' => $post->showTitle ? $post->post_title : '',
                 'image' => $post->showImage ? [
@@ -23,7 +23,7 @@
                 'tags' => $post->tags
             ])
 
-                @if($post->showDate) 
+                @if($post->showDate)
                     @date([
                         'action' => 'formatDate',
                         'timestamp' => $post->post_date
@@ -31,7 +31,7 @@
                     @enddate
                 @endif
 
-                @if($post->showExcerpt) 
+                @if($post->showExcerpt)
                     {!! $post->post_content !!}
                 @endif
 
