@@ -65,8 +65,11 @@ class ListTemplate
 
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
                 $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d', $post->ID),
-                    $post->ID, $post->post_type);
+                    $post->ID, $post->post_type) ;
+            } else {
+                $columnsDate = '';
             }
+
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle, $columnsDate]]);
 

@@ -75,8 +75,12 @@ class ExpandableListTemplate
 
             foreach ($posts as $index => $post) {
 
-                $taxPosition = ($data['taxonomyDisplay']['top']) ? $data['taxonomyDisplay']['top'] :
-                    $data['taxonomyDisplay']['below'];
+                $taxPosition = '';
+                if ((isset($data['taxonomyDisplay']['top']) && !empty($data['taxonomyDisplay']['top']))  ||
+                    (isset($data['taxonomyDisplay']['below']) && !empty($data['taxonomyDisplay']['below']))) {
+                    $taxPosition = ($data['taxonomyDisplay']['top']) ?: $data['taxonomyDisplay']['below'];
+                }
+
 
                 $accordion[$index]['taxonomy'] = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxPosition);
                 $accordion[$index]['taxonomyPosition'] = $taxPosition;
