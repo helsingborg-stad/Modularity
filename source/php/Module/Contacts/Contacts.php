@@ -231,13 +231,13 @@ class Contacts extends \Modularity\Module
     public function hasBody($contact)
     {
         $cases = array(
-            $contact['email'],
-            $contact['phone'],
-            $contact['social_media'],
-            $contact['opening_hours'],
-            $contact['address'],
-            $contact['visiting_address'],
-            $contact['other']
+            $contact['email'] ?? '',
+            $contact['phone'] ?? '',
+            $contact['social_media'] ?? '',
+            $contact['opening_hours'] ?? '',
+            $contact['address'] ?? '',
+            $contact['visiting_address'] ?? '',
+            $contact['other'] ?? ''
         );
 
         foreach ($cases as $case) {
