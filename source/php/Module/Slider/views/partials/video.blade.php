@@ -4,7 +4,7 @@
     'background_image' => $slide->image_use[0],
     'background_video' => $slide->video_mp4['url'],
     'overlay' => 'light',
-    'overlay_opacity' => 'high'
+    'overlay_opacity' => 'low'
 ])
     @if ($slide->link_url) 
         @slot('bottom')
