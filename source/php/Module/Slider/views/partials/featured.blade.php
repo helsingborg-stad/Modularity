@@ -3,7 +3,7 @@
     'text' => $slide->textblock_content,
     'background_image' => $slide->image_use[0],
     'overlay' => 'light',
-    'overlay_opacity' => 'high'
+    'overlay_opacity' => 'low'
 ])
 
     @if ($slide->link_url) 

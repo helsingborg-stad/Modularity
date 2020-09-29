@@ -3,7 +3,7 @@
     'text' => isset($slide->activate_textblock) && $slide->activate_textblock ? $slide->textblock_content : false,
     'background_image' => $slide->image_use[0],
     'overlay' => 'light',
-    'overlay_opacity' => 'high'
+    'overlay_opacity' => 'low'
 ])
 
     @if ($slide->link_url) 
