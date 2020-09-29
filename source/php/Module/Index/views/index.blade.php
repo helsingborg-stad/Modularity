@@ -9,7 +9,6 @@
         <div class="{{ $columnClass }}">
             @card([
                 'heading' => $item['title'],
-                'content' => $item['lead'],
                 'image' => [
                     'src' => $item['thumbnail'][0],
                     'alt' => $item['title'],
@@ -18,6 +17,7 @@
                 ],
                 'link' => $item['permalink']
             ])
+                {!! $item['lead'] !!}
             @endcard
         </div>
     @endforeach
