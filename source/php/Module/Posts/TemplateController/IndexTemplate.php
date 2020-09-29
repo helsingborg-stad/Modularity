@@ -26,10 +26,6 @@ class IndexTemplate
     public function preparePosts()
     {
 
-        
-
-
-
         /* Image size */
         $imageDimensions = array(400,300);
 
