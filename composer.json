@@ -31,7 +31,7 @@
     "require": {
         "composer/installers": "~1.0",
         "helsingborg-stad/acf-export-manager": ">=1.0.0",
-        "helsingborg-stad/blade-component-library": "dev-master#0.9.5",
+        "helsingborg-stad/blade-component-library": "dev-master#0.14.0",
         "helsingborg-stad/global-blade-engine": "^1.2",
         "symfony/debug": "^4.0",
         "symfony/finder": "4.4.8",

@@ -15,24 +15,41 @@ class NewsTemplate
         $this->args = $args;
         $this->data = $data;
 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $this->module->post_type, $this->args));
-        $this->getThumbnails();
+        $fields = json_decode(json_encode(get_fields($this->module->ID)));
+
+        $this->data['posts_columns'] = $fields->posts_columns;
+        $this->data['classes'] = apply_filters('Modularity/Module/Classes', array(), $module->post_type, $args);
+
+        $this->preparePosts();
     }
 
-    public function getThumbnails()
+    public function preparePosts()
     {
-        $hasImages = false;
 
-        foreach ($this->data['posts'] as &$post) {
-            $image_dimensions = array(400, 300);
-            $image = false;
+        /* Image size */
+        $imageDimensions = array(400,300);
 
+        switch ($this->data['posts_columns']) {
+            case "grid-md-12":    //1-col
+                $imageDimensions = array(1200,900);
+                break;
+
+            case "grid-md-6":    //2-col
+                $imageDimensions = array(800,600);
+                break;
+        }
+
+        
+        foreach ($this->data['posts'] as $post) {
+
+            /* Image */
+            $image = null;
             if ($this->data['posts_data_source'] !== 'input') {
                 $image = wp_get_attachment_image_src(
                     get_post_thumbnail_id($post->ID),
                     apply_filters(
-                        'modularity/image/posts/news',
-                        municipio_to_aspect_ratio('16:9', $image_dimensions),
+                        'modularity/image/posts/index',
+                        municipio_to_aspect_ratio('16:9', $imageDimensions),
                         $this->args
                     )
                 );
@@ -41,21 +58,35 @@ class NewsTemplate
                     $image = wp_get_attachment_image_src(
                         $post->image->ID,
                         apply_filters(
-                            'modularity/image/posts/news',
-                            municipio_to_aspect_ratio('16:9', $image_dimensions),
+                            'modularity/image/posts/index',
+                            municipio_to_aspect_ratio('16:9', $imageDimensions),
                             $this->args
                         )
                     );
                 }
             }
 
-            if ($image) {
-                $hasImages = true;
+            // Image fetch
+            $post->thumbnail = $image;
+
+            // Get link for card, or tags 
+            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID); 
+            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, array_flip($this->data['taxonomyDisplayFlat']));
+            if(!empty($post->link) && is_array($post->tags) && !empty($post->tags)) {
+                foreach($post->tags as $tagKey => $tag) {
+                    $post->tags[$tagKey]['href'] = "";
+                }
             }
 
-            $post->thumbnail = $image;
-        }
+            // Get excerpt
+            $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : ''; 
 
-        $this->data['hasImages'] = $hasImages;
+            //Booleans for hiding/showing stuff
+            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+            $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
+            $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
+            $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
+
+        }
     }
 }
