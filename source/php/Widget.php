@@ -31,7 +31,7 @@ class Widget extends \WP_Widget
 
         $display = \Modularity\App::$display;
 
-        $columnWidth = $instance['module_size'] ?: 'o-col-12';
+        $columnWidth = $instance['module_size'] ?: 'o-grid-12';
 
         // Allow modularity to add classnames by re-applying the format placeholder
         $args['before_widget'] = \str_replace($args['widget_id'], $args['widget_id'] . ' ' . '%1$s', $args['before_widget']);
