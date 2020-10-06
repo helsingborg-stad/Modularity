@@ -10,7 +10,7 @@
         @slot('bottom')
             @button([
                 'text' => $slide->link_text,
-                'color' => 'secondary',
+                'color' => 'default',
                 'type' => 'filled',
                 'href' => $slide->link_url,
                 'target' => $slide->link_type === 'external' ? '_blank' : '_self' 
