@@ -150,7 +150,8 @@ class Table extends \Modularity\Module
             'sNext' => __('Next', 'modularity'),
             'sPrevious' => __('Previous', 'modularity'),
             'sSortAscending' => __('activate to sort column ascending', 'modularity'),
-            'sSortDescending' => __('activate to sort column descending', 'modularity')
+						'sSortDescending' => __('activate to sort column descending', 'modularity'),
+						'sSearchLabel' => __('Search', 'modularity')
         ));
     }
 

@@ -13,7 +13,7 @@ $(document).ready(function () {
             "sLengthMenu": datatablesLang.sLengthMenu,
             "sLoadingRecords": datatablesLang.sLoadingRecords,
             "sProcessing": datatablesLang.sProcessing,
-            "sSearch": '',
+            "sSearch": '<span class="sr-only">' + datatablesLang.sSearchLabel + '</span>',
             "sZeroRecords": datatablesLang.sZeroRecords,
             "oPaginate": {
                 "sFirst": datatablesLang.sFirst,
