@@ -1,16 +1,17 @@
 @include('partials.post-filters')
 
-<div class="{{ $classes }}">
-
+@card([
+    'heading' => apply_filters('the_title', $post_title),
+    'classList' => [$classes]
+])
     @if (!$hideTitle && !empty($post_title))
-
-        @typography([
-            'element' => "h4",
-            'classList' => ['box-title']
-        ])
-            {!! apply_filters('the_title', $post_title) !!}
-        @endtypography
-
+        <div class="c-card__header">
+            @typography([
+                'element' => "h4"
+            ])
+                {!! apply_filters('the_title', $post_title) !!}
+            @endtypography
+        </div>
     @endif
 
     @if (isset($posts_list_column_titles) && $posts_list_column_titles)
@@ -38,6 +39,7 @@
             @endforeach
         </header>
     @endif
+
 
 
     <div>
@@ -77,4 +79,10 @@
         @endif
 
     </div>
-</div>
+
+@endcard
+
+{{-- <div class="{{ $classes }}">
+
+
+</div> --}}
