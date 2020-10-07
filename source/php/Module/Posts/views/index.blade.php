@@ -12,6 +12,7 @@
 
             @card([
                 'heading' => $post->showTitle ? $post->post_title : '',
+                'content' => $post->post_content,
                 'image' => $post->showImage ? [
                     'src' => $post->thumbnail[0],
                     'alt' => $post->post_title,
@@ -22,18 +23,6 @@
                 'classList' => $classes,
                 'tags' => $post->tags
             ])
-
-                @if($post->showDate)
-                    @date([
-                        'action' => 'formatDate',
-                        'timestamp' => $post->post_date
-                    ])
-                    @enddate
-                @endif
-
-                @if($post->showExcerpt)
-                    {!! $post->post_content !!}
-                @endif
 
             @endcard
 
