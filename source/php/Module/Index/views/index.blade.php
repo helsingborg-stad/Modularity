@@ -16,7 +16,8 @@
                     'backgroundColor' => 'secondary',
                     'padded' => false
                 ],
-                'link' => $item['permalink']
+                'link' => $item['permalink'],
+                'classList' => ['u-height--100', 'u-height-100']
             ])
             @endcard
         </div>
