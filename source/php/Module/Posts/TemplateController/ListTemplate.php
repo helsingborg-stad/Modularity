@@ -33,8 +33,7 @@ class ListTemplate
             'filters' => $this->module->data['filters'] ?? ''
         ));
 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->module->post_type, $this->args));
-
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel'), $this->module->post_type, $this->args));
     }
 
     /**
