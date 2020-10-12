@@ -14,12 +14,24 @@
         </div>
     @endif
 
-    @table([
-        'list' => $prepareList,
-        'hasHoverEffect' => true,
-        'hasZebraStripes' => true,
-        'showHeader' => false,
-        'showFooter' => false
-    ])
-    @endtable
+    @if (!empty($prepareList))
+        @collection([
+            'sharpTop' => true
+         ])
+            @foreach($prepareList as $post)
+                @if ($post['href'] && $post['columns'] && $post['columns'][0])
+                    @collection__item([
+                        'icon' => 'keyboard_arrow_right',
+                        'link' => $post['href']
+                        ])
+
+                    @typography(['element' => 'h4'])
+                        {{$post['columns'][0]}}
+                    @endtypography
+
+                    @endcollection__item
+                @endif
+            @endforeach
+        @endcollection
+    @endif
 @endcard

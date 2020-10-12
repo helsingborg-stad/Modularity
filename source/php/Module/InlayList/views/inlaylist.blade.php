@@ -1,4 +1,7 @@
-<div class="{{ $classes }}">
+@card([
+    'heading' => apply_filters('the_title', $post_title),
+    'classList' => [$classes]
+])
     @if (!$hideTitle && !empty($post_title))
         @typography([
             'element'   => 'h4',
@@ -9,10 +12,20 @@
         @endtypography
     @endif
 
-    @listing([
-        'list'          => $listData['list'],
-        'elementType'   => 'ul',
-        'classList'     => ['nav']
-    ])
-    @endlisting
-</div>
+    @if (!empty($items))
+        @collection([
+            'sharpTop' => true
+        ])
+        @foreach($items as $item)
+            @collection__item([
+                'icon' => 'keyboard_arrow_right',
+                'link' => $item['href']
+                ])
+                @typography(['element' => 'h4'])
+                    {{$item['label']}}
+                @endtypography
+            @endcollection__item
+        @endforeach
+        @endcollection
+    @endif
+@endcard

@@ -19,7 +19,7 @@ class InlayList extends \Modularity\Module
     public function data() : array
     {
         $data = array();
-        $data['listData']['list'] = $this->buildListItems(get_field('items', $this->ID));
+        $data['items'] = $this->buildListItems(get_field('items', $this->ID));
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         return $data;
     }
@@ -37,7 +37,7 @@ class InlayList extends \Modularity\Module
         $address = get_permalink($post->ID, false);
 
         if (! empty($address)) {
-            $title .= '<br/><span class="inlay-list-url-helper"> ( ' . str_replace(home_url(),"", $address) .  ' ) </span>';
+            $title .= '<br/><span class="inlay-list-url-helper"> ( ' . str_replace(home_url(), "", $address) .  ' ) </span>';
         }
 
         return $title;
@@ -49,7 +49,7 @@ class InlayList extends \Modularity\Module
      * @param $field
      * @return object $list List data prepared for view
      */
-    public function buildListItems ($field)
+    public function buildListItems($field)
     {
         (object)$list = [];
 
@@ -59,13 +59,14 @@ class InlayList extends \Modularity\Module
             if ($item->type === 'internal') {
                 $label = $item->title ? $item->title : $item->link_internal->post_title;
 
-                if ($item->date === true){
+                if ($item->date === true) {
                     $label .= " - " . date('Y-m-d', strtotime($item->link_internal->post_date));
                 }
 
                 $list[] = [
-                    'label'     => $label,
-                    'href'      => get_permalink($item->link_internal->ID)
+                    'label'    => $label,
+                    'href'     => get_permalink($item->link_internal->ID),
+                    'external' => false,
                 ];
             }
             
@@ -73,6 +74,7 @@ class InlayList extends \Modularity\Module
                 $list[] = [
                     'label'     => $item->title,
                     'href'      => $item->link_external,
+                    'external'  => true,
                 ];
             }
         }
