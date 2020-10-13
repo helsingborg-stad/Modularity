@@ -18,9 +18,9 @@
         ])
         @foreach($items as $item)
             @collection__item([
-                'icon' => 'keyboard_arrow_right',
-                'link' => $item['href']
-                ])
+                'icon' => 'arrow_forward',
+                'link' => $post['href']
+            ])
                 @typography(['element' => 'h4'])
                     {{$item['label']}}
                 @endtypography
