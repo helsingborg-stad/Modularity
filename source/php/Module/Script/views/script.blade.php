@@ -1,7 +1,17 @@
-<div class="box box-script no-padding">
+@card([
+    'heading' => apply_filters('the_title', $post_title),
+    'classList' => [$classes]
+])
     @if (!$hideTitle && !empty($post_title))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+        @typography([
+            'element'   => 'h4',
+            'variant'   => 'h4',
+            'classList' => ['box-title']
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
     @endif
 
     {!! $embed !!}
-</div>
+@endcard
+
