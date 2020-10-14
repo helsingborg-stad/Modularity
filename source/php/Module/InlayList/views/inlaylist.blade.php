@@ -19,7 +19,7 @@
         @foreach($items as $item)
             @collection__item([
                 'icon' => 'arrow_forward',
-                'link' => $post['href']
+                'link' => $item['href']
             ])
                 @typography(['element' => 'h4'])
                     {{$item['label']}}
