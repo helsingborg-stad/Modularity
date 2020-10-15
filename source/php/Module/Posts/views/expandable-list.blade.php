@@ -45,7 +45,7 @@
     <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
 
-            <div class="accordion-search">
+            <div class="c-card__body">
                 @field([
                     'type' => 'text',
                     'attributeList' => [
