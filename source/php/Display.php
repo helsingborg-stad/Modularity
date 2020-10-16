@@ -57,15 +57,9 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
-        // Get Module directory before adding to filter
-        $moduleName = $this->getModuleDirectory($data['post_type']);
-
-        if ($moduleName === null){
-            return  false;
-        }
 
         // Adding Module path to filter
-        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
+        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $this->getModuleDirectory($data['post_type']) . '/views';
         $externalViewPaths = apply_filters('/Modularity/externalViewPath', []);
 
         if (isset($externalViewPaths[$data['post_type']])) {
