@@ -6,6 +6,7 @@ class Contacts extends \Modularity\Module
 {
     public $slug = 'contacts';
     public $supports = array();
+    public $displaySettings = null;
 
     public function init()
     {
@@ -17,10 +18,6 @@ class Contacts extends \Modularity\Module
     public function data() : array
     {
         $data = get_fields($this->ID);
-        $data['contacts'] = $this->prepareContacts($data['contacts']);
-        if (!isset($data['columns'])) {
-            $data['columns'] = 'grid-md-12';
-        }
 
         //Display settings
         if (is_array($data['display_settings']) && !empty($data['display_settings'])) {
@@ -28,6 +25,16 @@ class Contacts extends \Modularity\Module
                 $data[$fieldToHide] = true;
             }
         }
+
+        $this->displaySettings = $data['display_settings'];
+
+        $data['contacts'] = $this->prepareContacts($data['contacts']);
+
+        if (!isset($data['columns'])) {
+            $data['columns'] = 'o-grid-12@md';
+        }
+
+        $data['columns'] = str_replace('grid-md-', 'o-grid-', $data['columns'] . '@md'); //TODO: Update grid values from ACF (?)
 
         return $data;
     }
@@ -59,16 +66,16 @@ class Contacts extends \Modularity\Module
             switch ($contact['acf_fc_layout']) {
                 case 'custom':
                     $info = apply_filters('Modularity/mod-contacts/contact-info', array(
-                        'image'               => $contact['image'],
+                        'image'               => $this->hideField('thumbnail') ? null : $contact['image'],
                         'first_name'          => $contact['first_name'],
                         'last_name'           => $contact['last_name'],
-                        'work_title'          => $contact['work_title'],
-                        'administration_unit' => $contact['administration_unit'],
-                        'email'               => strtolower($contact['email']),
-                        'phone'               => $contact['phone_numbers'],
-                        'social_media'        => $contact['social_media'],
-                        'address'             => strip_tags($contact['address'], '<br>'),
-                        'visiting_address'    => strip_tags($contact['visiting_address'], '<br>'),
+                        'work_title'          => $this->hideField('work_title') ? null : $contact['work_title'],
+                        'administration_unit' => $this->hideField('administration_unit') ? null : $contact['administration_unit'],
+                        'email'               => $this->hideField('email') ? null : strtolower($contact['email']),
+                        'phone'               => $this->hideField('phone') ? null : $contact['phone_numbers'],
+                        'social_media'        => $this->hideField('social_media') ? null : $contact['social_media'],
+                        'address'             => $this->hideField('address') ? null : strip_tags($contact['address'], '<br>'),
+                        'visiting_address'    => $this->hideField('visiting_address') ? null : strip_tags($contact['visiting_address'], '<br>'),
                         'opening_hours'       => strip_tags($contact['opening_hours'], '<br>'),
                         'hasBody'             => $this->hasBody($contact),
                         'other'               => $contact['other']
@@ -83,11 +90,12 @@ class Contacts extends \Modularity\Module
                         'last_name'           => $contact['user']['user_lastname'],
                         'work_title'          => null,
                         'administration_unit' => null,
-                        'email'               => strtolower($contact['user']['user_email'], '<br>'),
+                        'email'               => $this->hideField('email') ? null : strtolower($contact['user']['user_email']),
                         'phone'               => null,
-                        'address'             => strip_tags($contact['address'], '<br>'),
+                        'address'             => $this->hideField('address') ? null : strip_tags($contact['address'], '<br>'),
                         'visiting_address'    => null,
                         'opening_hours'       => null,
+                        'other'               => $contact['user']['user_description'],
                         'hasBody'             => $this->hasBody($contact)
                     ), $contact, $contact['acf_fc_layout']);
                     break;
@@ -191,10 +199,12 @@ class Contacts extends \Modularity\Module
                     $view = "cards";
                     break;
 
-                case 'vertical':
+                case 'vertical': //This option is the option which is called "Horizontal cards" in the editor
+                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', $hasImages), $this->post_type, $this->args));
+                    $this->data['equalItem'] = "data-equal-item";
+                    $this->data['equalContainer'] = "data-equal-container";
+
                     $view = "cards";
-                    $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', 'vertical-card', $hasImages), $this->post_type, $this->args));
-                    $this->data['columns'] = 'grid-md-12';
                     break;
 
                 case 'list':
@@ -226,6 +236,22 @@ class Contacts extends \Modularity\Module
         $this->data['classes']      = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card', $hasImages), $this->post_type, $this->args));
 
         return 'contacts.blade.php';
+    }
+
+    public function hideField($needle)
+    {
+        if(!$this->displaySettings) {
+            return false;
+        }
+
+        $needle = 'hide_' . $needle;
+
+        if(in_array($needle, $this->displaySettings)) {
+            return true;
+        }
+
+        return false;
+
     }
 
     public function hasBody($contact)
