@@ -1,9 +1,5 @@
 @collection([
-    'compact'   => (isset($compact_mode) ? $compact_mode : false),
-    'unbox'     => true,
-    'attributeList' => [
-        'style' => 'margin: 0 -16px'
-    ]
+    'compact'   => (isset($compact_mode) ? $compact_mode : false)
 ])
     @collection__item([
         'classList' => ['']

@@ -24,9 +24,9 @@
                     </div>
                 @endif
 
-                <div class="c-card__body">
+
                     @include('partials.information')
-                </div>
+
                 
             @endcard
         </div>
