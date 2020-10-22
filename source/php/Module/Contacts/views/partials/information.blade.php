@@ -4,13 +4,15 @@
     @collection__item([
         'classList' => ['']
     ])
-        @typography(['element' => 'h2'])
+        @typography(['element' => 'h4', 'variant' => 'h3'])
             {{ $contact['full_name'] }}
         @endtypography
 
-        @typography(['element' => 'h4'])
-            {{ $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'] }}
-        @endtypography
+        @if ($contact['work_title'])
+            @typography(['element' => 'h4', 'variant' => 'meta'])
+                {{ $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'] }}
+            @endtypography
+        @endif
     @endcollection
 
     {{-- E-mail --}}
