@@ -1,98 +1,34 @@
 @if (!$hideTitle && !empty($post_title))
-    @typography([
-        "variant" => "h4"
-    ])
-        {!! apply_filters('the_title', $post_title) !!}
+    @typography(['element' => 'h2', 'classList' => ['u-margin__bottom--2', 'u-margin__top--3']])
+        {!! apply_filters('the_title', $post_title)!!}
     @endtypography
 @endif
 
-@grid([
-    "container" => true,
-    "columns"   => "auto-fit",
-    "min_width" => "300px",
-    "max_width" => "400px",
-    "col_gap"   => 5,
-    "row_gap"   => 5
-])
+<div class="o-grid">
     @foreach ($contacts as $contact)
-        @grid([])
+        <div class="o-grid-12 {{$columns}}">
             @card([
                 'collapsible'   => $contact['hasBody'],
-                'imageFirst'    => true,
-                'heading'       => $contact['full_name'],
-                'subHeading'    => $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'],
-                'image'         => [
-                    'src'               => $contact['thumbnail'][0],
-                    'alt'               => $contact['full_name'],
-                    'backgroundColor'   => 'secondary',
-                ],
                 'attributeList' => [
                     'itemscope'     => '',
                     'itemtype'      => 'http://schema.org/Person'
+                ],
+                'classList'     => [
+                    'c-card--panel',
+                    'c-card--square-image'
                 ]
             ])
+                @if ($contact['image'])
+                    <div class="c-card__image c-card__image--secondary">
+                        <div class="c-card__image-background" alt="{{ $contact['full_name'] }}" style="background-image:url('{{ $contact['image']['url'] }}');"></div>
+                    </div>
+                @endif
 
-                <div class="u-margin__bottom--4 u-margin__top--1">
-                    {{-- E-mail --}}
-                    @if ($contact['email'])
-                        @component('components.link', [
-                            'href'      => 'mailto:' . $contact['email'],
-                            'icon'      => 'email',
-                            'itemprop'  => 'email',
-                            'compact'   => (isset($compact_mode) ? $compact_mode : false)]
-                        )
-                            {{$contact['email']}}
-                        @endcomponent
-                    @endif
-
-                    {{-- Phone --}}
-                    @if ($contact['phone'])
-                        @foreach ($contact['phone'] as $phone)
-                            @component('components.link', [
-                                'href'      => 'tel:' . $phone['number'],
-                                'icon'      => (isset($phone['type']) ? $phone['type'] : 'phone'),
-                                'itemprop'  => 'telephone',
-                                'compact'   => (isset($compact_mode) ? $compact_mode : false)]
-                            )
-                                {{ $phone['number'] }}
-                            @endcomponent
-                        @endforeach
-                    @endif
-
-                    {{-- Social Media --}}
-                    @if ($contact['social_media'])
-                        @foreach ($contact['social_media'] as $media)
-                            @component('components.link', [
-                                'href'      => $media['url'],
-                                'icon'      => $media['media'],
-                                'itemprop'  => ucfirst($media['media']),
-                                'compact'   => (isset($compact_mode) ? $compact_mode : false)]
-                            )
-                                {{ ucfirst($media['media']) }}
-                            @endcomponent
-                        @endforeach
-                    @endif
+                <div class="c-card__body">
+                    @include('partials.information')
                 </div>
-
-                {{-- Description --}}
-                @if (!empty($module->post_content))
-                    <div class="small description">{!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}</div>
-                @endif
-
-                {{-- Opening Hours --}}
-                @includeWhen($contact['opening_hours'], 'components.opening_hours')
-
-                {{-- Address --}}
-                @includeWhen($contact['address'], 'components.adress')
-
-                {{-- Visiting Address --}}
-                @includeWhen($contact['visiting_address'], 'components.visiting')
-
-                {{-- Other --}}
-                @if ($contact['other'])
-                    {!! $contact['other'] !!}
-                @endif
+                
             @endcard
-        @endgrid
+        </div>
     @endforeach
-@endgrid
+</div>
