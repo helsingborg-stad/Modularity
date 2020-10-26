@@ -31,7 +31,7 @@
     "require": {
         "composer/installers": "~1.0",
         "helsingborg-stad/acf-export-manager": ">=1.0.0",
-        "helsingborg-stad/blade-component-library": "dev-fix/case-insensitivve-collection-item-CU-9gq9wz",
+        "helsingborg-stad/blade-component-library": "dev-master",
         "helsingborg-stad/global-blade-engine": "^1.2",
         "symfony/debug": "^4.0",
         "symfony/finder": "4.4.8",
