@@ -20,7 +20,8 @@ $removables = [
     'composer.lock',
     'gulpfile.js',
     'node_modules',
-    'package.json'
+    'package.json',
+    '.vscode'
 ];
 
 $dirName = basename(dirname(__FILE__));
