@@ -5,7 +5,7 @@
     $icon = $icon == 'linkedin' ? 'link' : $icon;
 @endphp
 
-@collection__item([
+@collection__Item([
     'classListl' => ['c-collection__social'],
     'icon' => $icon,
     'link' => $media['url'],
@@ -14,4 +14,4 @@
     ]
 ])
     {{ ucfirst($media['media']) }}
-@endcollection__item
+@endcollection__Item

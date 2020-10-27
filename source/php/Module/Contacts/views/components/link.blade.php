@@ -1,4 +1,4 @@
-@collection__item([
+@collection__Item([
     'classList' => ['c-collection__link'],
     'icon' => $icon ?? false,
     'link' => $href,
@@ -7,4 +7,4 @@
     ]
 ])
     {{ $slot }}
-@endcollection__item
+@endcollection__Item

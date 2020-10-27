@@ -1,4 +1,4 @@
-@collection__item([
+@collection__Item([
     'classList' => ['c-collection__opening-hours'],
     'attributeList' => ['itemprop' => 'adress'],
 ])
@@ -9,4 +9,4 @@
     @typography([])
         {!! $contact['opening_hours'] !!}
     @endtypography
-@endcollection__item
+@endcollection__Item
