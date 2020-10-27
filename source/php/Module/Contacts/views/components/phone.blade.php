@@ -1,6 +1,6 @@
 @collection__item([
     'classList' => ['c-collection__phone'],
-    'icon' => isset($phone['type']) ? $phone['type'] : 'phone',
+    'icon' => $icon ?? false,
     'link' => 'tel:' . $phone['number'],
     'attributeList' => [
         'itemprop'  => 'telephone',

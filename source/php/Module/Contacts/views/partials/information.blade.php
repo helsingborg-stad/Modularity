@@ -16,12 +16,12 @@
     @endcollection
 
     {{-- E-mail --}}
-    @includeWhen($contact['email'], 'components.email')
+    @includeWhen($contact['email'], 'components.email', ['icon' => 'email'])
 
     {{-- Phone --}}
     @if ($contact['phone'])
         @foreach ($contact['phone'] as $phone)
-            @include('components.phone')
+            @include('components.phone', ['icon' => 'phone'])
         @endforeach
     @endif
 

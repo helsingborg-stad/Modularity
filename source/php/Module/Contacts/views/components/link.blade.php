@@ -1,6 +1,6 @@
 @collection__item([
     'classList' => ['c-collection__link'],
-    'icon' => isset($icon) ? $icon : false,
+    'icon' => $icon ?? false,
     'link' => $href,
     'attributeList' => [
         'itemprop' => $itemprop
