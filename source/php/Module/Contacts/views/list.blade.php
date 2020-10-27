@@ -19,14 +19,26 @@
     'classList' => ['u-padding__x--0']
     ])
         @foreach ($contacts as $key => $contact)
+
+        @php
+            // Title partials
+            $titlePropeties = ['full_name', 'administration_unit', 'work_title'];
+            // Build array
+            $title = array_filter(array_map(function($key) use ($contact) {
+                return $contact[$key] ?: false;
+            }, $titlePropeties), function($item) {return $item;});
+            // Array 2 String
+            $title = !empty($title) ? implode(' - ', $title) : false;
+        @endphp
+
             @accordion__item([
-                'heading' => $contact['full_name'],
+                'heading' => $title,
                 'attributeList' => [
                     'itemscope' => 'person',
                     'itemtype' => 'http://schema.org/Organization'
                 ]
             ])
-                @include('partials.list_info')
+               @include('partials.list_info')
             @endaccordion__item
         @endforeach
     @endaccordion

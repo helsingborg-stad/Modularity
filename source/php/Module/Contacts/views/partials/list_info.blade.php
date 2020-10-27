@@ -1,18 +1,10 @@
 @collection([
-    'compact'   => (isset($compact_mode) ? $compact_mode : false),
+    'compact'   => true,
     'unbox'     => true,
     'attributeList' => [
         'style' => 'margin: 0 -16px'
     ]
 ])
-    @collection__item([
-        'classList' => ['']
-    ])
-        @typography(['element' => 'h4'])
-            {{ $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'] }}
-        @endtypography
-    @endcollection
-
     {{-- E-mail --}}
     @includeWhen($contact['email'], 'components.email')
 
@@ -43,9 +35,7 @@
         @collection__item([
             'classList' => ['c-collection__content']
         ])
-            
                 {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $this->post_content)) !!}
-            
         @endcollection
     @endif
 
