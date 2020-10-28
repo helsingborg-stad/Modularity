@@ -21,7 +21,7 @@
          ])
             @foreach($prepareList as $post)
                 @if ($post['href'] && $post['columns'] && $post['columns'][0])
-                    @collection__Item([
+                    @collection__item([
                         'icon' => 'arrow_forward',
                         'link' => $post['href']
                         ])
@@ -30,7 +30,7 @@
                         {{$post['columns'][0]}}
                     @endtypography
 
-                    @endcollection__Item
+                    @endcollection__item
                 @endif
             @endforeach
         @endcollection

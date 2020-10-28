@@ -17,14 +17,14 @@
             'sharpTop' => true
         ])
         @foreach($items as $item)
-            @collection__Item([
+            @collection__item([
                 'icon' => 'arrow_forward',
                 'link' => $item['href']
             ])
                 @typography(['element' => 'h4'])
                     {{$item['label']}}
                 @endtypography
-            @endcollection__Item
+            @endcollection__item
         @endforeach
         @endcollection
     @endif
