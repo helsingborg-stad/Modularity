@@ -1,4 +1,4 @@
-@collection__Item([
+@collection__item([
     'classList' => ['c-collection__email'],
     'icon' => $icon ?? false,
     'link' => 'mailto:' . $contact['email'],
@@ -7,4 +7,4 @@
     ]
 ])
     {{$contact['email']}}
-@endcollection__Item
+@endcollection__item

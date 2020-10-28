@@ -1,4 +1,4 @@
-@collection__Item([
+@collection__item([
     'classList' => ['c-collection__phone'],
     'icon' => $icon ?? false,
     'link' => 'tel:' . $phone['number'],
@@ -7,4 +7,4 @@
     ]
 ])
     {{ $phone['number'] }}
-@endcollection__Item
+@endcollection__item

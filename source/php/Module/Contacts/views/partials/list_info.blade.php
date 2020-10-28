@@ -5,7 +5,7 @@
         'style' => 'margin: 0 -16px'
     ]
 ])
-    @collection__Item([
+    @collection__item([
         'classList' => ['']
     ])
         @typography(['element' => 'h4'])
@@ -40,7 +40,7 @@
     @includeWhen($contact['visiting_address'], 'components.visiting')
 
     @if (!empty($module->post_content))
-        @collection__Item([
+        @collection__item([
             'classList' => ['c-collection__content']
         ])
             
@@ -50,7 +50,7 @@
     @endif
 
     @if ($contact['other'])
-        @collection__Item([
+        @collection__item([
             'classList' => ['c-collection__other']
         ])
             {{-- Other --}}

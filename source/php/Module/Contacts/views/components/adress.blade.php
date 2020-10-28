@@ -1,4 +1,4 @@
-@collection__Item([
+@collection__item([
     'classList' => ['c-collection__adress'],
 ])
     @typography([
@@ -21,4 +21,4 @@
     ])
         {!! $contact['address'] !!}
     @endtypography
-@endcollection__Item
+@endcollection__item
