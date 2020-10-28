@@ -5,13 +5,6 @@
         'style' => 'margin: 0 -16px'
     ]
 ])
-    @collection__item([
-        'classList' => ['']
-    ])
-        @typography(['element' => 'h4'])
-            {{ $contact['administration_unit'] ? "{$contact['work_title']} - {$contact['administration_unit']}" : $contact['work_title'] }}
-        @endtypography
-    @endcollection
 
     {{-- E-mail --}}
     @includeWhen($contact['email'], 'components.email')
