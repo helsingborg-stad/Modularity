@@ -6,7 +6,7 @@
     @endtypography
 @endif
 
-<div class="grid">
+<div class="o-grid">
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
 

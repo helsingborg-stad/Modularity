@@ -2,7 +2,7 @@
 @include('partials.post-filters')
 
 
-<div class="grid">
+<div class="o-grid">
     @if (!$hideTitle && !empty($post_title))
 
         @typography([
@@ -93,7 +93,7 @@
         @endforeach
     @else
 
-        <div class="grid-md-12">
+        <div class="o-grid-12@md">
             <?php _e('No posts to show…', 'modularity'); ?>
         </div>
 

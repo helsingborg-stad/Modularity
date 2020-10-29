@@ -1,12 +1,12 @@
-<div class="grid-xs-12 grid-md-6">
+<div class="o-grid-12@xs o-grid-6@md">
     @link([
         'href' => apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)
     ])
 
         <article class="full u-mb-0">
-            <div class="grid">
+            <div class="o-grid">
                 @if (in_array('image', $posts_fields) && $post->image && !get_field('posts_display_magazine_show_image_on_first_post_only', $ID))
-                    <div class="grid-xs-2 grid-md-3">
+                    <div class="o-grid-2@xs o-grid-3@md">
 
                         @image([
                             'src'=> $post->image,
