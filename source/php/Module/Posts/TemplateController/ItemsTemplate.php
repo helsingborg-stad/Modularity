@@ -27,11 +27,11 @@ class ItemsTemplate
     {
         $imageDimension = array(400, 300);
         switch ($this->data['posts_columns']) {
-            case "grid-md-12":    //1-col
+            case "o-grid-12@md":    //1-col
                 $imageDimension = array(1200, 900);
                 break;
 
-            case "grid-md-6":    //2-col
+            case "o-grid-6@md":    //2-col
                 $imageDimension = array(800, 600);
                 break;
         }

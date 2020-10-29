@@ -31,7 +31,7 @@ class Index extends \Modularity\Module
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $this->post_type, $this->args));
 
         // Get column classes
-        $data['columnClass'] = 'grid-md-6';
+        $data['columnClass'] = 'o-grid-6@md';
         if (!empty(get_field('index_columns', $this->ID))) {
             $data['columnClass'] = get_field('index_columns', $this->ID);
         }
@@ -157,11 +157,11 @@ class Index extends \Modularity\Module
     public function getImageDimension($columnClass)
     {
         switch ($columnClass) {
-            case "grid-md-12": // 1-col
+            case "o-grid-12@md": // 1-col
                 $this->thumbnailSize = array(1200, 900);
                 return $this->thumbnailSize;
 
-            case "grid-md-6": // 2-col
+            case "o-grid-6@md": // 2-col
                 $this->thumbnailSize = array(800, 600);
                 return $this->thumbnailSize;
 
