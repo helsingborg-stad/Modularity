@@ -14,10 +14,10 @@
     @endif
 
     @if (count($posts) > 0)
-        <div class="grid grid--columns js-mod-posts-{{$ID}}">
+        <div class="o-grid grid--columns js-mod-posts-{{$ID}}">
             @foreach ($posts as $post)
                 @if ($loop->first && get_field('posts_highlight', $ID))
-                    <div class="grid-xs-12">
+                    <div class="o-grid-12@xs">
 
                         @link([
                             'href' => apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)
@@ -88,8 +88,8 @@
         </div>
 
         @if (get_field('posts_count', $ID) > 0)
-            <div class="grid">
-                <div class="grid-xs-12 text-center u-py-2">
+            <div class="o-grid">
+                <div class="go-rid-12@xs text-center u-py-2">
 
                     @button([
                         'text' => 'Secondary',

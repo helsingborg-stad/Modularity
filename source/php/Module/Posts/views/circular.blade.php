@@ -1,6 +1,6 @@
 @include('partials.post-filters')
 
-<div class="grid">
+<div class="o-grid">
 
     @typography([
         'element' => "h4",
