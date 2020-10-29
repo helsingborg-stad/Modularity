@@ -8,7 +8,7 @@
 
 <div class="o-grid">
     @foreach ($posts as $post)
-        <div class="{{ $posts_columns }}">
+        <div class="{{ apply_filters('Municipio/Controller/Archive/GridColumnClass', $posts_columns) }}">
 
             @card([
                 'heading' => $post->showTitle ? $post->post_title : '',

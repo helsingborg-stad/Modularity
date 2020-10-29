@@ -16,7 +16,7 @@
 
          @foreach ($posts as $post)
 
-            <div class="{{ $posts_columns }}">
+            <div class="{{ apply_filters('Municipio/Controller/Archive/GridColumnClass', $posts_columns, '') }}">
 
                 @tags([
                     'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['top'])
