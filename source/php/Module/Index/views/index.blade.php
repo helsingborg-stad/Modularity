@@ -4,9 +4,9 @@
     @endtypography
 @endif
 
-<div class="grid">
+<div class="o-grid">
     @foreach ($items as $item)
-        <div class="{{ $columnClass }}">
+        <div class="{{ apply_filters('Municipio/Controller/Archive/GridColumnClass', $columnClass) }}">
             @card([
                 'heading' => $item['title'],
                 'content' => $item['lead'],

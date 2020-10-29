@@ -10,7 +10,7 @@
     @endtypography
 
     @foreach ($posts as $post)
-        <div class="<?php echo $posts_columns; ?>">
+        <div class="<?php echo apply_filters('Municipio/Controller/Archive/GridColumnClass', $posts_columns, ''); ?>">
 
                 @if ($hasImages)
                     <div class="box-image-container">
