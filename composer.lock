@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "289fb0cd9f9e8bd888a88e5def25098f",
+    "content-hash": "2abcdace6dd2bbdb35ae5e2d976000c3",
     "packages": [
         {
             "name": "aristath/kirki",
@@ -358,12 +358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/blade-component-library.git",
-                "reference": "a4f11d8150fe1146ec7ec1d69e488a75f3232259"
+                "reference": "ae58e6d3361f5cd47e69212be14b45b537cfff06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/a4f11d8150fe1146ec7ec1d69e488a75f3232259",
-                "reference": "a4f11d8150fe1146ec7ec1d69e488a75f3232259",
+                "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/ae58e6d3361f5cd47e69212be14b45b537cfff06",
+                "reference": "ae58e6d3361f5cd47e69212be14b45b537cfff06",
                 "shasum": ""
             },
             "type": "library",
@@ -383,7 +383,7 @@
                 }
             ],
             "description": "A component library based upon blade engine.",
-            "time": "2020-10-15T15:05:04+00:00"
+            "time": "2020-10-28T13:14:07+00:00"
         },
         {
             "name": "helsingborg-stad/global-blade-engine",
@@ -737,12 +737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "c762e8994a0467b24fa17dd8f10bc52d375e75ff"
+                "reference": "c4a9caf97cfc53adfc219043bcecf42bc663acee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c762e8994a0467b24fa17dd8f10bc52d375e75ff",
-                "reference": "c762e8994a0467b24fa17dd8f10bc52d375e75ff",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/c4a9caf97cfc53adfc219043bcecf42bc663acee",
+                "reference": "c4a9caf97cfc53adfc219043bcecf42bc663acee",
                 "shasum": ""
             },
             "require": {
@@ -808,7 +808,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-10-15T06:57:01+00:00"
+            "time": "2020-10-23T06:02:30+00:00"
         },
         {
             "name": "psr/container",
@@ -1015,12 +1015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "ba95c0aa9b0a401cff29e1e826f015ab590b5702"
+                "reference": "c87adf3fc1cd0bf4758316a3a150d50a8f957ef4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/ba95c0aa9b0a401cff29e1e826f015ab590b5702",
-                "reference": "ba95c0aa9b0a401cff29e1e826f015ab590b5702",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/c87adf3fc1cd0bf4758316a3a150d50a8f957ef4",
+                "reference": "c87adf3fc1cd0bf4758316a3a150d50a8f957ef4",
                 "shasum": ""
             },
             "require": {
@@ -1035,9 +1035,6 @@
                 "symfony/http-kernel": "^3.4|^4.0|^5.0"
             },
             "type": "library",
-            "extra": {
-                "branch-version": "4.4"
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Debug\\": ""
@@ -1062,7 +1059,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2020-10-13T13:20:53+00:00"
+            "time": "2020-10-24T11:50:19+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1174,25 +1171,25 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "dev-master",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "c3616e7b303d0bd8c261de7921c72bf818b52b91"
+                "reference": "3a11f3dfb34ad50f978cb2b8cf936933b87739aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/c3616e7b303d0bd8c261de7921c72bf818b52b91",
-                "reference": "c3616e7b303d0bd8c261de7921c72bf818b52b91",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/3a11f3dfb34ad50f978cb2b8cf936933b87739aa",
+                "reference": "3a11f3dfb34ad50f978cb2b8cf936933b87739aa",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0.8"
+                "php": ">=7.1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.18-dev"
+                    "dev-main": "1.21-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -1236,7 +1233,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2020-09-14T10:02:33+00:00"
+            "time": "2020-10-26T13:35:45+00:00"
         },
         {
             "name": "symfony/translation",

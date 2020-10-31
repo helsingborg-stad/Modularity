@@ -29,6 +29,27 @@ class Display
     }
 
     /**
+     * Get module directory by post-type
+     * @param $postType
+     * @return mixed|null
+     */
+    public function getModuleDirectory($postType)
+    {
+        if (!is_dir(MODULARITY_PATH . 'source/php/Module/')) {
+            return null;
+        }
+
+        foreach (glob(MODULARITY_PATH . 'source/php/Module/*') as $dir) {
+            $pathinfo = pathinfo($dir);
+            if (strtolower(str_replace('mod-', '', $postType)) === strtolower($pathinfo['filename'])) {
+                return $pathinfo['filename'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * @param $view
      * @param array $data
      * @return bool
@@ -36,9 +57,9 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
-        $moduleName = ucFirst((str_replace('mod-', '', $data['post_type'])));
-        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $moduleName . '/views';
 
+        // Adding Module path to filter
+        $moduleView = MODULARITY_PATH . 'source/php/Module/' . $this->getModuleDirectory($data['post_type']) . '/views';
         $externalViewPaths = apply_filters('/Modularity/externalViewPath', []);
 
         if (isset($externalViewPaths[$data['post_type']])) {

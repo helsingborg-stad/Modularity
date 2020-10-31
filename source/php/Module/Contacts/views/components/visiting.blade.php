@@ -1,4 +1,6 @@
-<div>
+@collection__item([
+    'classList' => ['c-collection__visiting']
+])
     @typography([
         "element"       => "strong",
         'attributeList' => ['itemprop' => 'adress'],
@@ -19,4 +21,4 @@
     ])
         {!! $contact['visiting_address'] !!}
     @endtypography
-</div>
+@endcollection__item
