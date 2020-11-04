@@ -41,6 +41,4 @@
         @endtypography
     @endif
 
-
-
 @endcollection__item
