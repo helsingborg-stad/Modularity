@@ -67,10 +67,6 @@
             @endif
 
     @else
-        @php
-            echo \Modularity\Module\Slider\Slider::getEmbed(
-                    $embed_link, ['player', 'ratio-16-9'], $image
-                );
-        @endphp
+        {!! apply_filters('the_content', $embed_link) !!}
     @endif
 </div>
