@@ -216,7 +216,7 @@ class PostsFilters
             'hide_empty' => false,
             'parent' => $parent
         );
-        
+
         $terms = self::sortTerms(get_terms($tax->slug, $termArgs));
 
         $inputType = $tax->type === 'single' ? 'radio' : 'checkbox';
