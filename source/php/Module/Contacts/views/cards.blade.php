@@ -6,7 +6,7 @@
 
 <div class="o-grid">
     @foreach ($contacts as $contact)
-        <div class="o-grid-12 {{$columns}}">
+        <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([
                 'collapsible'   => $contact['hasBody'],
                 'attributeList' => [

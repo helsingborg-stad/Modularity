@@ -27,9 +27,9 @@
                     @endif
                 @endif
             @endif
-            <div class="grid">
+            <div class="o-grid">
                 @if ($frontEndFilters['front_end_tax_filtering_text_search'])
-                    <div class="grid-auto ">
+                    <div class="o-grid-auto ">
                         <label for="filter-keyword" class="text-sm sr-only"><strong><?php _e('Search', 'municipio'); ?>
                                 :</strong></label>
                         <div class="input-group">
@@ -42,11 +42,11 @@
 
                 @if ($frontEndFilters['front_end_tax_filtering_dates'])
                     @if ($frontEndFilters['front_end_hide_date'])
-                        <div data-tooltip="<?php _e('Date', 'municipio'); ?>" data-tooltip-top  class="grid-md-fit-content u-pt-1">
+                        <div data-tooltip="<?php _e('Date', 'municipio'); ?>" data-tooltip-top  class="o-grid-fit-content@md u-pt-1">
                             <i id="show-date-filter" data-toogle=".date-filter"
                                                             class="hidden-xs cursor pricon-calendar pricon pricon-lg toogle show-date-filter"></i></div>@endif
                     <div id="date-filter"
-                         class="grid-md-6 @if ($frontEndFilters['front_end_hide_date']) hidden date-filter @endif ">
+                         class="o-grid-6@md  @if ($frontEndFilters['front_end_hide_date']) hidden date-filter @endif ">
                         <label for="filter-date-from" class="text-sm sr-only"><strong><?php _e('Date published',
                                     'municipio'); ?>:</strong></label>
                         <div class="input-group">
@@ -68,7 +68,7 @@
                         @foreach ($enabledTaxonomyFilters->category as $taxKey => $taxonomy)
 
                             @if(count( $taxonomy->values ) > 1)
-                                <div class="pos-relative grid-auto">
+                                <div class="pos-relative o-grid-auto">
                                     <button type="button" class="btn "
                                             data-dropdown=".dropdown-{{ $taxKey }}"><?php printf(__('Select') . ' %s…',
                                             $taxonomy->label); ?></button>
@@ -85,12 +85,12 @@
                     @endif
                 @endif
                 @if($queryString)
-                    <div class="hidden-sm hidden-xs grid-md-fit-content u-pt-1" data-tooltip="<?php _e('Clear filters', 'municipio'); ?>" data-tooltip-top>
+                    <div class="hidden-sm hidden-xs o-grid-fit-content@md u-pt-1" data-tooltip="<?php _e('Clear filters', 'municipio'); ?>" data-tooltip-top>
                         <a  class="pricon-lg pricon pricon-close pricon-space-right"
                            href="/{{ $pageUrl }}"></a>
                     </div>
                 @endif
-                <div class="grid-sm-12 grid-md-fit-content u-pt-1@sm u-pt-1@xs">
+                <div class="o-grid-12@am o-grid-fit-content@md u-pt-1@sm u-pt-1@xs">
                     <input type="submit" value="{{$frontEndFilters['front_end_button_text']}}"
                            class="btn btn-primary btn-block">
                 </div>

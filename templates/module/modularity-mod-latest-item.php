@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="o-grid">
     <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
-        <div class="grid-xs-12">
+        <div class="o-grid-12@xs">
             <h2><?php echo $module->post_title; ?></h2>
         </div>
     <?php endif; ?>
@@ -10,11 +10,11 @@
     foreach ($posts as $post) :
 
         /* Image size */
-        switch ((isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3') {
-            case "grid-md-12":    //1-col
+        switch ((isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'o-grid-3@md') {
+            case "o-grid-12@md":    //1-col
                 $image_dimensions = array(1200,900);
                 break;
-            case "grid-md-6":    //2-col
+            case "o-grid-6@md":    //2-col
                 $image_dimensions = array(800,600);
                 break;
             default:
@@ -43,7 +43,7 @@
         }
 
     ?>
-    <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'grid-md-3' ?>">
+    <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'o-grid-3@md' ?>">
         <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>" data-meta-sort-by="<?php echo $meta_data; ?>">
             <?php if ($image && $fields->show_picture) : ?>
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
@@ -64,7 +64,7 @@
         </a>
     </div>
     <?php endforeach; else : ?>
-    <div class="grid-md-12">
+    <div class="o-grid-12@md">
         Inga inlägg att visa…
     </div>
     <?php endif; ?>

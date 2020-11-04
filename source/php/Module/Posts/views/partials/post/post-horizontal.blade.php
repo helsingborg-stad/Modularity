@@ -16,7 +16,7 @@
                     </div>
                 @endif
 
-                <div class="grid-auto">
+                <div class="o-grid-auto">
                     @if (in_array('title', $posts_fields))
                         @typography([
                             "element" => "h4",
