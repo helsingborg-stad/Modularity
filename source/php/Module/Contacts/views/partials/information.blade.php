@@ -2,6 +2,17 @@
     'compact'   => (isset($compact_mode) ? $compact_mode : false)
 ])
 
+    @php
+        // Title partials
+        $titlePropeties = ['full_name', 'administration_unit', 'work_title'];
+        // Build array
+        $title = array_filter(array_map(function($key) use ($contact) {
+            return $contact[$key] ?: false;
+        }, $titlePropeties), function($item) {return $item;});
+    @endphp
+
+    {{-- Title --}}
+    @includeWhen((count($title) > 0), 'components.title')
 
     {{-- E-mail --}}
     @includeWhen($contact['email'], 'components.email', ['icon' => 'email'])
