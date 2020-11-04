@@ -42,7 +42,7 @@
 
                 @if ($frontEndFilters['front_end_tax_filtering_dates'])
                     @if ($frontEndFilters['front_end_hide_date'])
-                        <div data-tooltip="<?php _e('Date', 'municipio'); ?>" data-tooltip-top  class="o-grid-fit-content@md u-pt-1">
+                        <div data-tooltip="<?php _e('Date', 'municipio'); ?>" data-tooltip-top  class="o-grid-fit@md u-pt-1">
                             <i id="show-date-filter" data-toogle=".date-filter"
                                                             class="hidden-xs cursor pricon-calendar pricon pricon-lg toogle show-date-filter"></i></div>@endif
                     <div id="date-filter"
@@ -85,12 +85,12 @@
                     @endif
                 @endif
                 @if($queryString)
-                    <div class="hidden-sm hidden-xs o-grid-fit-content@md u-pt-1" data-tooltip="<?php _e('Clear filters', 'municipio'); ?>" data-tooltip-top>
+                    <div class="hidden-sm hidden-xs o-grid-fit@md u-pt-1" data-tooltip="<?php _e('Clear filters', 'municipio'); ?>" data-tooltip-top>
                         <a  class="pricon-lg pricon pricon-close pricon-space-right"
                            href="/{{ $pageUrl }}"></a>
                     </div>
                 @endif
-                <div class="o-grid-12@am o-grid-fit-content@md u-pt-1@sm u-pt-1@xs">
+                <div class="o-grid-12@am o-grid-fit@md u-pt-1@sm u-pt-1@xs">
                     <input type="submit" value="{{$frontEndFilters['front_end_button_text']}}"
                            class="btn btn-primary btn-block">
                 </div>
