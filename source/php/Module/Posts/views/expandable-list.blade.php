@@ -7,13 +7,13 @@
     @endif
 
     @if (isset($posts_list_column_titles) && $posts_list_column_titles)
-    <div role="group" aria-labelledby="column-header-title" class="accordion-table accordion-table-head">
+    <div role="group" class="accordion-table accordion-table-head">
         @if ($posts_hide_title_column)
-        <span class="column-header" id="column-header-title">{{ isset($title_column_label) && !empty($title_column_label) ? $title_column_label : __('Title', 'modularity') }}</span>
+        <span class="column-header">{{ isset($title_column_label) && !empty($title_column_label) ? $title_column_label : __('Title', 'modularity') }}</span>
         @endif
 
         @foreach ($posts_list_column_titles as $column)
-            <span class="column-header" id="column-header-title">{{ $column->column_header }}</span>
+            <span class="column-header">{{ $column->column_header }}</span>
         @endforeach
     </div>
     @endif
