@@ -5,7 +5,7 @@ namespace Modularity\Module\FilesList;
 class FilesList extends \Modularity\Module
 {
     public $slug = 'fileslist';
-    public $supports = array();
+    public $supports = [];
 
     public function init()
     {
@@ -14,69 +14,62 @@ class FilesList extends \Modularity\Module
         $this->description = __("Outputs a file archive.", 'modularity');
     }
 
-    public function data() : array
+    /**
+     * Magic function for collecting template data.
+     *
+     * @return array Data for template.
+     */
+    public function data(): array
     {
-        $data = array();
-        // die(var_dump(get_field('columns', $this->ID)));
-        $data['listId'] = 'files_' . uniqid();
-        $data['columnData'] = $this->prepareColumnData($files);
-        $data['headings'] = $this->prepareHeadings(['File', 'Description']);
-        $data['showFilters'] = !empty(get_field('show_filter', $this->ID));
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data = [];
+        $data['rows'] = $this->prepareFileData();
+        $data['classes'] = implode(
+            ' ',
+            apply_filters(
+                'Modularity/Module/Classes',
+                array('c-card--panel', 'c-card--default'),
+                $this->post_type,
+                $this->args
+            )
+        );
 
         return $data;
     }
 
-
-    private function prepareHeadings($headings) {
-        $extraColumns = get_field('columns', $this->ID);
-
-        foreach($extraColumns as $col) {
-            $headings[$col['key']] = $col['title'];
-        }
-                
-        foreach($headings as &$heading) {
-            
-            $heading = translate($heading, 'modularity');
-        }
-        return $headings;
-    }
-
-    private function prepareColumnData()
+    /**
+     * Prepare array of file data into rows of the list.
+     *
+     * @return array All file data.
+     */
+    private function prepareFileData()
     {
         $files = get_field('file_list', $this->ID);
-        $columnData = [];
+        $rows = [];
 
         foreach ($files as $key => $item) {
-            $columnData['href'] = $item['file']['url'];
-
-            $columnData[$key] = [
-                'columns' => 
-                [
-                    'title' => $item['file']['title'],
-                    'description' => $item['file']['description']
-                ],
-                'href' => $item['file']['url']
+            $rows[$key] = [
+                'title' => $item['file']['title'],
+                'href' => $item['file']['url'],
+                'type' => $item['file']['subtype'],
+                'filesize' => $this->formatBytes($item['file']['filesize']),
+                'icon' => $item['file']['subtype'] === 'pdf' ? 'picture_as_pdf' : 'insert_drive_file'
             ];
-
-            $fields = $this->fieldsArray($item['fields']);
-
-            foreach(get_field('columns', $this->ID) as $col) {
-                $columnData[$key]['columns'][$col['key']] = $fields[$col['key']] ? $fields[$col['key']] : "";
-            }
         }
 
-        return $columnData;
+        return $rows;
     }
 
-    private function fieldsArray($arr)
+    /**
+     * Format bytes as KB, MB etc. representation of the size.
+     *
+     * @return string Largest suffix possible.
+     */
+    private function formatBytes($size, $precision = 2)
     {
-        $newArr = [];
-        foreach($arr as $item) {
-            $newArr[$item['key']] = $item['value'];
-        }
-
-        return $newArr;
+        $base = log($size, 1024);
+        $suffixes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    
+        return round(pow(1024, $base - floor($base)), $precision) . ' ' . $suffixes[floor($base)];
     }
 
     /**
@@ -89,4 +82,3 @@ class FilesList extends \Modularity\Module
      * template()        Return the view template (blade) the module should use when displayed
      */
 }
-
