@@ -1,16 +1,32 @@
-<div class="{{ $classes }}" js-filter-container="abc">
-    
+@card([
+    'heading' => apply_filters('the_title', $post_title),
+    'classList' => [$classes]
+])
     @if (!$hideTitle && !empty($post_title))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+        @typography([
+            'element'   => 'h4',
+            'variant'   => 'h4',
+            'classList' => ['box-title']
+        ])
+            {!! apply_filters('the_title', $post_title) !!}
+        @endtypography
     @endif
 
-    @table([
-        'list' => $columnData,
-        'headings' => $headings,
-        'showFooter' => false,
+    @collection([
+        'sharpTop' => true
     ])
-    @endtable
-    
-</div>
 
+        @foreach($rows as $row)
+            @collection__item([
+                'link' => $row['href'],
+                'icon' => $row['icon']
+            ])
 
+                @typography(['element' => 'span'])
+                    {{ $row['title'] }} ({{ $row['type'] }}, {{ $row['filesize'] }})
+                @endtypography
+
+            @endcollection__item
+        @endforeach
+    @endcollection
+@endcard
