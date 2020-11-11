@@ -27,7 +27,7 @@ class FilesList extends \Modularity\Module
             ' ',
             apply_filters(
                 'Modularity/Module/Classes',
-                array('box', 'box-panel'),
+                array('c-card--panel', 'c-card--default'),
                 $this->post_type,
                 $this->args
             )
