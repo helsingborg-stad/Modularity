@@ -227,7 +227,6 @@ class Posts extends \Modularity\Module
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
 
         }
-        $data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as'] );
 
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
