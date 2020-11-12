@@ -57,26 +57,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * For version 3.0 - Replace old post templates with existing replacement.
-     * @param $templateSlug
-     * @return mixed
-     */
-    public static function replaceDeprecatedTemplate($templateSlug){
-
-        // Add deprecated template/replacement slug to array.
-        $deprecated = [
-            'grid' => 'index'
-        ];
-
-        if (array_key_exists($templateSlug, $deprecated)){
-            return  $deprecated[$templateSlug];
-        }
-
-        return $templateSlug;
-    }
-
-
-    /**
      * Load more data with Ajax
      * @return json data
      */
@@ -893,6 +873,27 @@ class Posts extends \Modularity\Module
 
         return $getPostsArgs;
     }
+
+    /**
+     * For version 3.0 - Replace old post templates with existing replacement.
+     * @param $templateSlug
+     * @return mixed
+     */
+    public static function replaceDeprecatedTemplate($templateSlug){
+
+        // Add deprecated template/replacement slug to array.
+        $deprecatedTemplates = [
+            'grid' => 'index',
+            'circular' => 'index'
+        ];
+
+        if (array_key_exists($templateSlug, $deprecatedTemplates)){
+            return  $deprecatedTemplates[$templateSlug];
+        }
+
+        return $templateSlug;
+    }
+
 
     /**
      * Available "magic" methods for modules:
