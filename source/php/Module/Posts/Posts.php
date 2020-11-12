@@ -63,13 +63,13 @@ class Posts extends \Modularity\Module
      */
     public static function replaceDeprecatedTemplate($templateSlug){
 
-        /*$deprecated = [
-            'index' => 'grid'
+        $deprecated = [
+            'grid' => 'index'
         ];
 
         if (array_key_exists ($templateSlug, $deprecated)){
             return  $deprecated[$templateSlug];
-        }*/
+        }
         return $templateSlug;
     }
 
@@ -153,7 +153,7 @@ class Posts extends \Modularity\Module
     public function template()
     {
         $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ));
-        return apply_filters('Modularity/Module/Posts/template', $this->data['posts_display_as'] . '.blade.php', $this,
+        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this,
             $this->data);
     }
 
