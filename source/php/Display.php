@@ -26,6 +26,19 @@ class Display
         
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
+        add_filter('Modularity/Display/replaceGrid', array($this, 'replaceGridClasses'), 10);
+    }
+
+    public function replaceGridClasses($className)
+    {
+        $className = str_replace('grid-md-12', 'o-grid-12@md', $className);
+        $className = str_replace('grid-md-9', 'o-grid-9@md', $className);
+        $className = str_replace('grid-md-8', 'o-grid-8@md', $className);
+        $className = str_replace('grid-md-6', 'o-grid-6@md', $className);
+        $className = str_replace('grid-md-4', 'o-grid-4@md', $className);
+        $className = str_replace('grid-md-3', 'o-grid-3@md', $className);
+
+        return $className;
     }
 
     /**
