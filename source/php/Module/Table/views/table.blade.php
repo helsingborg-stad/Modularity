@@ -21,6 +21,7 @@
         'filterable'        => $m_table->filterable,
         'sortable'          => $m_table->sortable,
         'pagination'        => $m_table->pagination,
+        'labels'            => ['searchPlaceholder' => __('Search', 'municipio')]
     ])
     @endtable
 </div>
