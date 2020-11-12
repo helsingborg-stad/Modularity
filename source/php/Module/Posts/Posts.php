@@ -57,6 +57,24 @@ class Posts extends \Modularity\Module
     }
 
     /**
+     * For version 3.0 - Replace old post templates with other in array.
+     * @param $templateSlug
+     * @return mixed
+     */
+    public static function replaceDeprecatedTemplate($templateSlug){
+
+        /*$deprecated = [
+            'index' => 'grid'
+        ];
+
+        if (array_key_exists ($templateSlug, $deprecated)){
+            return  $deprecated[$templateSlug];
+        }*/
+        return $templateSlug;
+    }
+
+
+    /**
      * Load more data with Ajax
      * @return json data
      */
@@ -99,7 +117,8 @@ class Posts extends \Modularity\Module
         $args['posts_per_page'] = $_POST['postsPerPage'];
         $args['offset'] = $_POST['offset'];
         $this->data['posts'] = get_posts($args);
-        $this->getTemplateData($this->data['posts_display_as']); //Include template controller data
+
+        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'])); //Include template controller data
 
         //No posts
         if (empty($this->data['posts'])) {
@@ -133,7 +152,7 @@ class Posts extends \Modularity\Module
      */
     public function template()
     {
-        $this->getTemplateData($this->data['posts_display_as']);
+        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ));
         return apply_filters('Modularity/Module/Posts/template', $this->data['posts_display_as'] . '.blade.php', $this,
             $this->data);
     }
@@ -146,7 +165,9 @@ class Posts extends \Modularity\Module
         $template = explode('-', $template);
         $template = array_map('ucwords', $template);
         $template = implode('', $template);
+
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
+        $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as'] );
 
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
@@ -224,6 +245,7 @@ class Posts extends \Modularity\Module
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
 
         }
+        $data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as'] );
 
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
         $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
