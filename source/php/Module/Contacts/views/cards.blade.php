@@ -1,5 +1,5 @@
 @if (!$hideTitle && !empty($post_title))
-    @typography(['element' => 'h2', 'classList' => ['u-margin__bottom--2', 'u-margin__top--3']])
+    @typography(['element' => 'h4', 'classList' => ['module-title']])
         {!! apply_filters('the_title', $post_title)!!}
     @endtypography
 @endif
@@ -24,10 +24,7 @@
                     </div>
                 @endif
 
-
-                    @include('partials.information')
-
-                
+                @include('partials.information')               
             @endcard
         </div>
     @endforeach

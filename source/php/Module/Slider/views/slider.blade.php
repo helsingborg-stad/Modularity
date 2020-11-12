@@ -1,3 +1,13 @@
+@if (!$hideTitle && !empty($post_title))
+    @typography([
+        'element' => "h4",
+        'classList' => ['module-title']
+    ])
+        {!! apply_filters('the_title', $post_title) !!}
+    @endtypography
+@endif
+
+
 @slider([
     'showStepper' => true,
     'autoSlide' => $c_autoslide

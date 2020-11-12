@@ -6,7 +6,7 @@
 
         @typography([
             'element' => "h4",
-            'classList' => ['box-title', 'u-mb-4']
+            'classList' => ['module-title']
         ])
             {!! apply_filters('the_title', $post_title) !!}
         @endtypography

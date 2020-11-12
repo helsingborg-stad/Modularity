@@ -1,8 +1,9 @@
-<div class="box box-plain wp-caption">
+<div class="wp-caption">
 
     @if (!$hideTitle && !empty($post_title))
             @typography([
-                "variant" => "h2"
+                "variant" => "h4",
+                "classList" => ['module-title']
             ])
                 {!! apply_filters('the_title', $post_title) !!}
             @endtypography
