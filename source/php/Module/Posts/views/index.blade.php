@@ -15,19 +15,30 @@
         <div class="{{ $posts_columns }}">
 
             @card([
-                'heading' => $post->showTitle ? $post->post_title : '',
-                'content' => $post->post_content,
-                'image' => $post->showImage ? [
-                    'src' => !empty($post->thumbnail) && !empty($post->thumbnail[0]) ? $post->thumbnail[0] : false,
-                    'alt' => $post->post_title,
-                    'backgroundColor' => 'secondary',
-                    'padded' => false
-                ] : false,
                 'link' =>  $post->link,
-                'classList' => !empty($classes) ? $classes : [],
-                'tags' => $post->tags
-            ])
+                'classList' => $classes,
 
+            ])
+                <div class="c-card__image c-card__image--secondary">
+                    <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                </div>
+            
+                <div class="c-card__body">
+                    @typography([
+                        'element' => "h2",
+                    ])
+                        {{$post->showTitle ? $post->post_title : ''}}
+                    @endtypography
+           
+                    {!! $post->post_content !!}
+                    
+                </div>
+                @if($post->tags)
+                    <div class="c-card__footer">
+                        @tags ([$post->tags])
+                        @endtags
+                    </div>
+                @endif
             @endcard
 
         </div>
