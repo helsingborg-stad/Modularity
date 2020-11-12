@@ -60,11 +60,12 @@ class PostsFilters
         $taxQuery = array('relation' => 'AND');
 
         foreach ($filterable as $key => $value) {
-            if (!isset($_GET['filter'][$key]) || empty($_GET['filter'][$key]) || $_GET['filter'][$key] === '-1') {
+
+            if (!isset($_GET['filter']) || empty($_GET['filter']) || $_GET['filter'] === '-1') {
                 continue;
             }
 
-            $terms = (array)$_GET['filter'][$key];
+            $terms = (array)$_GET['filter'];
 
             $taxQuery[] = array(
                 'taxonomy' => $key,
@@ -92,7 +93,7 @@ class PostsFilters
 
         $query->set('tax_query', $taxQuery);
         $query->set('post_type', get_field('posts_data_post_type', $this->moduleId));
-
+        var_dump($squery);
         return $query;
     }
 
@@ -223,10 +224,9 @@ class PostsFilters
                 if(!empty($option->name)) {
 
                     $options[$option->slug] = ucfirst($option->slug) . " (" . $option->count . ")";
-                    // TODO: put this on pause untill we know if we are going to use this kind of filter.
-                    // TODO: Solve query parameter array.
-                    $isSelected = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $option->slug
-                            || in_array($option->slug, $_GET['filter'][$tax->slug]));
+
+                    $isSelected = isset($_GET['filter']) && ($_GET['filter'] === $option->slug
+                            || in_array($option->slug, $_GET['filter']));
                 }
             }
         }
@@ -237,7 +237,7 @@ class PostsFilters
             'required' => false,
             'attributeList' => [
                 'type' => 'text',
-                'name' => 'filter['.$tax->slug.']'
+                'name' => 'filter'
             ],
             'options' => $options
         ];

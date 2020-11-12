@@ -134,7 +134,8 @@ class Posts extends \Modularity\Module
     public function template()
     {
         $this->getTemplateData($this->data['posts_display_as']);
-        return apply_filters('Modularity/Module/Posts/template', $this->data['posts_display_as'] . '.blade.php', $this,
+        var_dump( $this->data['posts_display_as'] );
+        return apply_filters('Modularity/Module/Posts/template', str_repalce("grid","index",$this->data['posts_display_as']) . '.blade.php', $this,
             $this->data);
     }
 

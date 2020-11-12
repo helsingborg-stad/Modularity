@@ -153,14 +153,9 @@
                                 @endselect
                                 
                                 <div class="pos-relative grid-auto">
-                                    <button type="button" class="btn "
-                                            data-dropdown=".dropdown-{{ $taxKey }}"><?php printf(__('Select') . ' %s…',
-                                            $taxonomy->label); ?></button>
+                
                                     <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-arrow-right dropdown-{{ $taxKey }}">
-
-                                        
-                                        <?php var_dump($dropdown); ?>
-                                            
+                 
                                             {!! $dropdown !!}
                                     </div>
                                 </div>
@@ -176,8 +171,15 @@
                     </div>
                 @endif
                 <div class="grid-sm-12 grid-md-fit-content u-pt-1@sm u-pt-1@xs">
-                    <input type="submit" value="{{$frontEndFilters['front_end_button_text']}}"
-                           class="btn btn-primary btn-block">
+                    @button([
+                        'text' => __("Search", 'modularity'),
+                        'color' => 'primary',
+                        'style' => 'filled',
+                    'type' => 'submit',
+                        'value' => $frontEndFilters['front_end_button_text']
+                    ])
+                    @endbutton
+
                 </div>
             </div>
         </form>
