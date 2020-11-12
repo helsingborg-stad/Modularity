@@ -57,12 +57,13 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * For version 3.0 - Replace old post templates with other in array.
+     * For version 3.0 - Replace old post templates with existing replacement.
      * @param $templateSlug
      * @return mixed
      */
     public static function replaceDeprecatedTemplate($templateSlug){
 
+        // Add deprecated template slug to array and replacement.
         $deprecated = [
             'grid' => 'index'
         ];
@@ -70,6 +71,7 @@ class Posts extends \Modularity\Module
         if (array_key_exists ($templateSlug, $deprecated)){
             return  $deprecated[$templateSlug];
         }
+
         return $templateSlug;
     }
 
