@@ -884,7 +884,8 @@ class Posts extends \Modularity\Module
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'grid' => 'index',
-            'circular' => 'index'
+            'circular' => 'index',
+            'items' => 'index'
         ];
 
         if (array_key_exists($templateSlug, $deprecatedTemplates)){
