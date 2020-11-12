@@ -63,12 +63,12 @@ class Posts extends \Modularity\Module
      */
     public static function replaceDeprecatedTemplate($templateSlug){
 
-        // Add deprecated template slug to array and replacement.
+        // Add deprecated template/replacement slug to array.
         $deprecated = [
             'grid' => 'index'
         ];
 
-        if (array_key_exists ($templateSlug, $deprecated)){
+        if (array_key_exists($templateSlug, $deprecated)){
             return  $deprecated[$templateSlug];
         }
 
