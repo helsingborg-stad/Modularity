@@ -1,19 +1,17 @@
 
 @include('partials.post-filters')
 
+@if (!$hideTitle && !empty($post_title))
+    @typography([
+        'element' => 'h4', 
+        'variant' => 'h2', 
+        'classList' => ['module-title']
+    ])
+        {!! apply_filters('the_title', $post_title) !!}
+    @endtypography
+@endif
 
-<div class="grid">
-    @if (!$hideTitle && !empty($post_title))
-
-        @typography([
-            'element' => "h4",
-            'classList' => ['box-title']
-        ])
-            {!! apply_filters('the_title', $post_title) !!}
-        @endtypography
-
-    @endif
-
+<div class="o-grid">
     @if (count($posts) > 0)
         @foreach ($posts as $post)
             <div class="{{ isset($post->column_width) ? $post->column_width : $column_width }}">
@@ -93,7 +91,7 @@
         @endforeach
     @else
 
-        <div class="grid-md-12">
+        <div class="o-grid-12@md">
             <?php _e('No posts to show…', 'modularity'); ?>
         </div>
 

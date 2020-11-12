@@ -4,8 +4,9 @@
     @if (!$hideTitle && !empty($post_title))
 
         @typography([
-            'element' => "h4",
-            'classList' => ['box-title']
+            'element' => 'h4', 
+            'variant' => 'h2', 
+            'classList' => ['module-title']
         ])
             {!! apply_filters('the_title', $post_title) !!}
         @endtypography
@@ -14,11 +15,11 @@
 
     @foreach ($posts as $post)
 
-        <div class="grid u-margin__bottom--4">
+        <div class="o-grid u-margin__bottom--4">
 
-            @if($post->showImage) 
+            @if($post->showImage)
 
-                <div class="grid-xs-12 grid-md-4">
+                <div class="o-grid-12@xs o-grid-4@md">
                     @if ($post->thumbnail && $post->showImage)
 
                         @image([
@@ -38,7 +39,7 @@
 
             @endif
 
-            <div class="grid-xs-12 grid-md-{{$post->showImage ? '8' : '12' }}">
+            <div class="o-grid-12@xs o-grid-{{$post->showImage ? '8' : '12' }}@md">
 
                 @if ($post->showTitle)
                     @typography([
@@ -75,7 +76,7 @@
             </div>
 
         </div>
-        
+
     @endforeach
 
 

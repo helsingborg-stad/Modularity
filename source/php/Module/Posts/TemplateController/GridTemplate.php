@@ -21,7 +21,7 @@ class GridTemplate
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
 
         $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
-        $this->data['column_width'] = 'grid-md-' . $this->data['gridSize'];
+        $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'].'@md';
         $this->data['column_height'] = false;
 
         $this->preparePosts($fields);
@@ -38,11 +38,11 @@ class GridTemplate
 
         if (!$fields->posts_alter_columns) {
             switch ($fields->posts_columns) {
-                case "grid-md-12":    //1-col
+                case "o-grid-12@md":    //1-col
                     $imageDimensions = array(1200, 900);
                     break;
 
-                case "grid-md-6":    //2-col
+                case "o-grid-6@md":    //2-col
                     $imageDimensions = array(900, 675);
                     break;
 
@@ -65,7 +65,7 @@ class GridTemplate
                     array_shift($gridRow);
                 }
 
-                $columnSize = 'grid-md-' . $gridColumns[0];
+                $columnSize = 'o-grid-' . $gridColumns[0].'@md';
                 array_shift($gridColumns);
                 $columnHeight = null;
 

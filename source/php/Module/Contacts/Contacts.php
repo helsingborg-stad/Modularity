@@ -34,7 +34,7 @@ class Contacts extends \Modularity\Module
             $data['columns'] = 'o-grid-12@md';
         }
 
-        $data['columns'] = str_replace('grid-md-', 'o-grid-', $data['columns'] . '@md'); //TODO: Update grid values from ACF (?)
+        $data['columns'] = apply_filters('Municipio/Controller/Archive/GridColumnClass', $data['columns']);//str_replace('grid-md-', 'o-grid-', $data['columns'] . '@md'); //TODO: Update grid values from ACF (?)
 
         return $data;
     }

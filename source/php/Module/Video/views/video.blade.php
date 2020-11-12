@@ -1,13 +1,13 @@
-<div class="{{ $classes }}">
+@card(['classList' => ['c-card--panel']])
 
     @if (!$hideTitle && !empty($post_title))
-
-        @typography([
-            "variant" => "h4"
-        ])
-            {!! apply_filters('the_title', $post_title) !!}
-        @endtypography
-
+        <div class="c-card__header">
+            @typography([
+                "element" => "h4"
+            ])
+                {!! apply_filters('the_title', $post_title) !!}
+            @endtypography
+        </div>
     @endif
 
     @if ($type == 'upload')
@@ -69,4 +69,4 @@
     @else
         {!! apply_filters('the_content', $embed_link) !!}
     @endif
-</div>
+@endcard

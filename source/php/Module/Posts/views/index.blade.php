@@ -1,12 +1,16 @@
 @include('partials.post-filters')
 
 @if (!$hideTitle && !empty($post_title))
-    @typography(['element' => 'h2'])
+    @typography([
+        'element' => 'h4', 
+        'variant' => 'h2', 
+        'classList' => ['module-title']
+    ])
         {!! apply_filters('the_title', $post_title) !!}
     @endtypography
 @endif
 
-<div class="grid">
+<div class="o-grid">
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
 
@@ -14,13 +18,13 @@
                 'heading' => $post->showTitle ? $post->post_title : '',
                 'content' => $post->post_content,
                 'image' => $post->showImage ? [
-                    'src' => $post->thumbnail[0],
+                    'src' => !empty($post->thumbnail) && !empty($post->thumbnail[0]) ? $post->thumbnail[0] : false,
                     'alt' => $post->post_title,
                     'backgroundColor' => 'secondary',
                     'padded' => false
                 ] : false,
                 'link' =>  $post->link,
-                'classList' => $classes,
+                'classList' => !empty($classes) ? $classes : [],
                 'tags' => $post->tags
             ])
 

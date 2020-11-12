@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="o-grid">
     <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
-        <div class="grid-xs-12">
+        <div class="o-grid-12@xs">
             <h2><?php echo $module->post_title; ?></h2>
         </div>
     <?php endif; ?>
@@ -37,7 +37,7 @@ foreach ($posts as $post) {
         }
 
     ?>
-    <div class="grid-lg-12">
+    <div class="o-grid-12@lg">
         <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>" data-meta-sort-by="<?php echo $meta_data; ?>">
             <?php if ($hasImages) : ?>
                 <div class="box-image-container">

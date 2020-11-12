@@ -203,18 +203,20 @@ class PostsFilters
     }
 
     /**
-     * Taxonomy dropdown
-     * @param $taxonomy
-     * @return markup
+     *  Taxonomy dropdown
+     * @param             $tax
+     * @param int|int     $parent
+     * @param string|null $class
+     *
+     * @return string
      */
-    public static function getMultiTaxDropdown($tax, int $parent = 0, string $class = '')
+    public static function getMultiTaxDropdown($tax, int $parent = null, string $class = null)
     {
         $termArgs = array(
             'hide_empty' => false,
             'parent' => $parent
         );
 
-        $terms = get_terms($tax->slug, $termArgs);
         $terms = self::sortTerms(get_terms($tax->slug, $termArgs));
 
         $inputType = $tax->type === 'single' ? 'radio' : 'checkbox';
@@ -246,11 +248,16 @@ class PostsFilters
         return $html;
     }
 
+
     /**
      * Get filter options as list (refined getMultiTaxDropdown())
-     * @return string unordered list of terms as checkbox/radio
+     * @param             $tax
+     * @param int|int     $parent
+     * @param string|null $class
+     *
+     * @return string|void unordered list of terms as checkbox/radio
      */
-    public static function getFilterOptionsByTax($tax, int $parent = 0, string $class = '')
+    public static function getFilterOptionsByTax($tax, int $parent = null, string $class = null)
     {
         $termArgs = array(
             'hide_empty' => false,

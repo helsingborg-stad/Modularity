@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="o-grid">
     @foreach($sites as $site)
-    <div class="grid-md-4">
+    <div class="o-grid-4@md">
          <a class="box box-post-brick" href="{{ $site->home }}">
             @if ($site->image_rendered)
             {!! $site->image_rendered !!}

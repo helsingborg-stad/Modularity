@@ -1,12 +1,16 @@
 @if (!$hideTitle && !empty($post_title))
-    @typography(['element' => 'h2', 'classList' => ['u-margin__bottom--2', 'u-margin__top--3']])
+    @typography([
+        'element' => 'h4', 
+        'variant' => 'h2', 
+        'classList' => ['module-title']
+    ])
         {!! apply_filters('the_title', $post_title)!!}
     @endtypography
 @endif
 
 <div class="o-grid">
     @foreach ($contacts as $contact)
-        <div class="o-grid-12 {{$columns}}">
+        <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([
                 'collapsible'   => $contact['hasBody'],
                 'attributeList' => [
@@ -24,10 +28,7 @@
                     </div>
                 @endif
 
-
-                    @include('partials.information')
-
-                
+                @include('partials.information')               
             @endcard
         </div>
     @endforeach

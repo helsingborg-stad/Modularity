@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="o-grid">
 <?php
 $contacts = $fields->contacts;
 
@@ -63,7 +63,7 @@ if (isset($info['image']) && !empty($info['image'])) {
 }
 ?>
 
-<div class="<?php echo isset($fields->columns) && !empty($fields->columns) ? $fields->columns : 'grid-md-12'; ?>">
+<div class="<?php echo isset($fields->columns) && !empty($fields->columns) ? $fields->columns : 'o-grid-12@md'; ?>">
     <div class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-card'), $module->post_type, $args)); ?>" itemscope itemtype="http://schema.org/Person">
         <?php if ($image !== false) : ?>
         <img class="box-image" src="<?php echo $image[0]; ?>" alt="<?php echo $info['first_name']; ?> <?php echo isset($info['last_name']) && !empty($info['last_name']) ? $info['last_name'] : ''; ?>">

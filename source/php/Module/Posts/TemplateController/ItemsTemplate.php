@@ -17,6 +17,8 @@ class ItemsTemplate
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
+        $fields->posts_columns = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
+
         $this->data['posts_columns'] = $fields->posts_columns;
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
 
@@ -27,11 +29,11 @@ class ItemsTemplate
     {
         $imageDimension = array(400, 300);
         switch ($this->data['posts_columns']) {
-            case "grid-md-12":    //1-col
+            case "o-grid-12@md":    //1-col
                 $imageDimension = array(1200, 900);
                 break;
 
-            case "grid-md-6":    //2-col
+            case "o-grid-6@md":    //2-col
                 $imageDimension = array(800, 600);
                 break;
         }
