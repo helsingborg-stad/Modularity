@@ -188,6 +188,9 @@ class App
         wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . '/dist/css/modularity.' . self::$assetSuffix . '.css'));
         wp_enqueue_style('modularity');
 
+        wp_register_script('modularity-mod-post-tax', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js', false, date('YmdHi'), true);
+        wp_enqueue_script('modularity-mod-post-tax');
+
         wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
@@ -219,6 +222,8 @@ class App
         wp_enqueue_style('modularity');
 
         // Scripts
+        wp_register_script('modularity-mod-post-tax', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.js', false, date('YmdHi'), true);
+
         wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),

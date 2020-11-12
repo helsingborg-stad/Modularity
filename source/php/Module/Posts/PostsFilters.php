@@ -203,47 +203,51 @@ class PostsFilters
     }
 
     /**
-     * Taxonomy dropdown
-     * @param $taxonomy
-     * @return markup
+     * @param $tax
+     * @param $parent
+     *
+     * @return array
      */
-    public static function getMultiTaxDropdown($tax, int $parent = 0, string $class = '')
+    public static function getMultiTaxDropdown($tax, $parent)
     {
         $termArgs = array(
             'hide_empty' => false,
             'parent' => $parent
         );
 
-        $terms = get_terms($tax->slug, $termArgs);
         $terms = self::sortTerms(get_terms($tax->slug, $termArgs));
+        $options = [];
 
-        $inputType = $tax->type === 'single' ? 'radio' : 'checkbox';
+        if(is_array($terms) && !empty($terms)) {
+            foreach($terms as $option) {
+                if(!empty($option->name)) {
 
-        $html = '<ul';
-
-        if (!empty($class)) {
-            $html .= ' class="' . $class . '"';
+                    $options[$option->slug] = ucfirst($option->slug) . " (" . $option->count . ")";
+                    // TODO: put this on pause untill we know if we are going to use this kind of filter.
+                    // TODO: Solve query parameter array.
+                    $isSelected = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $option->slug
+                            || in_array($option->slug, $_GET['filter'][$tax->slug]));
+                }
+            }
         }
 
-        $html .= '>';
+        //Data
+        $taxonomyObject = [
+            'label' => (__("Select", 'municipio') . " " . strtolower($option->name)),
+            'required' => false,
+            'attributeList' => [
+                'type' => 'text',
+                'name' => 'filter['.$tax->slug.']'
+            ],
+            'options' => $options
+        ];
 
-        foreach ($terms as $term) {
-            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array($term->slug,
-                        $_GET['filter'][$tax->slug]));
-            $checked = checked(true, $isChecked, false);
-
-            $html .= '<li>';
-            $html .= '<label class="checkbox">';
-            $html .= '<input type="' . $inputType . '" name="filter[' . $tax->slug . '][]" value="' . $term->slug . '" ' . $checked . '> ' . $term->name;
-            $html .= '</label>';
-
-            $html .= self::getMultiTaxDropdown($tax, $term->term_id);
-            $html .= '</li>';
+        if (isset($_GET[$option->name]) && isset($isSelected)) {
+            $checked = checked(true, $isSelected, false);
+            $taxonomyObject['preselected'] = $isChecked;
         }
 
-        $html .= '</ul>';
-
-        return $html;
+        return $taxonomyObject;
     }
 
     /**
