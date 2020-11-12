@@ -1,7 +1,8 @@
 @if (!$hideTitle && !empty($post_title))
     @typography([
-        "variant" => "h4",
-        "classList" => ['module-title']
+        'element' => 'h4', 
+        'variant' => 'h2', 
+        'classList' => ['module-title']
     ])
         {!! apply_filters('the_title', $post_title) !!}
     @endtypography
