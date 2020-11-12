@@ -1,27 +1,27 @@
+@if (!$hideTitle && !empty($post_title))
+    @typography([
+        'element' => "h4",
+        'classList' => ['module-title']
+    ])
+        {!! apply_filters('the_title', $post_title) !!}
+    @endtypography
+@endif
+
 @include('partials.post-filters')
 
-<div data-equal-container>
-    @if (!$hideTitle && !empty($post_title))
-
-        @typography([
-            'element' => "h4",
-            'classList' => ['box-title']
-        ])
-            {!! apply_filters('the_title', $post_title) !!}
-        @endtypography
-
-    @endif
-
+<div class="o-grid">
     @if (count($posts) > 0)
 
          @foreach ($posts as $post)
 
             <div class="{{ $posts_columns }}">
 
-                @tags([
-                    'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['top'])
-                ])
-                @endtags
+                @if (!empty($taxonomyDisplay['top']))
+                    @tags([
+                        'tags' => (new Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxonomyDisplay['top'])
+                    ])
+                    @endtags
+                @endif
 
                 @link([
                     'href' => $posts_data_source === 'input' ? $post->permalink : get_permalink ($post->ID),
@@ -44,7 +44,7 @@
                 @endlink
 
 
-                    <div class="box-content">
+                    <article>
 
                         @if (in_array('title', $posts_fields))
 
@@ -102,7 +102,7 @@
                             @endtags
                             
                         @endif
-                    </div>
+                    </article>
 
             </div>
         @endforeach
