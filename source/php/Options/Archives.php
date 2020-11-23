@@ -11,6 +11,7 @@ class Archives
          */
         add_action('admin_menu', function () {
             $options = get_option('modularity-options');
+            $options['enabled-post-types'] = apply_filters('Modularity/Options/Archives/Modules::EnabledPostTypes', $options['enabled-post-types']);
 
             if (!isset($options['enabled-post-types']) || !is_array($options['enabled-post-types'])) {
                 return;
@@ -43,15 +44,14 @@ class Archives
         }, 10);
 
         /* Fixes broken admin pages */
-        add_action('after_setup_theme',function() {
-            if(!is_admin()) {
+        add_action('after_setup_theme', function () {
+            if (!is_admin()) {
                 return;
             }
-            if(isset($_GET['post_type']) && isset($_GET['page']) && isset($_GET['id']) && substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor") {
+            if (isset($_GET['post_type']) && isset($_GET['page']) && isset($_GET['id']) && substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor") {
                 wp_redirect(admin_url($_GET['page']. "&id=" . $_GET['id']), 302);
                 exit;
             }
-
         }, 1);
     }
 
