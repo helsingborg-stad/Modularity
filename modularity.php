@@ -79,6 +79,29 @@ add_action('plugins_loaded', function () {
     $acfExportManager->import();
 });
 
+// Make sure Advanced Custom Fields PRO is activated and throws an error otherwise
+function check_dependency()
+{
+    require_once(ABSPATH . 'wp-includes/pluggable.php');
+
+    if (!function_exists('is_plugin_active_for_network')) {
+        include_once(ABSPATH . '/wp-admin/includes/plugin.php');
+    }
+    // Make sure class exists and ACF_PRO is defined
+    if (class_exists('acf_pro') && ACF_PRO === true) {
+        return;
+    }
+    if (current_user_can('activate_plugins')) {
+        // Deactivate the plugin.
+        deactivate_plugins(plugin_basename(__FILE__));
+        // Throw an error in the WordPress admin console.
+        $error_message = 'To use the Modularity plugin, please install & activate the Advanced Custom Fields PRO plugin.';
+        die($error_message);
+    }
+}
+
+check_dependency();
+
 // Start application
 add_action('plugins_loaded', function () {
     new Modularity\App();
