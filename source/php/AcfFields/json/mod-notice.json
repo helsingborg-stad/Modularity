@@ -3,21 +3,6 @@
     "title": "Notice settings",
     "fields": [
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "success": "Success (green)",
-                "info": "Info (light blue)",
-                "warning": "Warning (yellow)",
-                "danger": "Danger (red)"
-            },
-            "default_value": [
-                "success"
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_575a8454ea3b4",
             "label": "Typ",
             "name": "notice_type",
@@ -26,28 +11,25 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": 50,
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "disabled": 0,
-            "readonly": 0
+            "choices": {
+                "success": "Success (green)",
+                "info": "Info (black)",
+                "warning": "Warning (yellow)",
+                "danger": "Danger (red)"
+            },
+            "default_value": "success",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "notice-md": "Default",
-                "notice-lg": "Large",
-                "notice-sm": "Small"
-            },
-            "default_value": [
-                "notice-md"
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_575a84bdea3b6",
             "label": "Size",
             "name": "notice_size",
@@ -60,15 +42,22 @@
                 "class": "",
                 "id": ""
             },
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": {
+                "notice-md": "Default",
+                "notice-lg": "Large",
+                "notice-sm": "Small"
+            },
+            "default_value": "notice-md",
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "disabled": 0,
             "readonly": 0
         },
         {
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": "",
-            "rows": "",
             "key": "field_575a8436ea3b3",
             "label": "Notis",
             "name": "notice_text",
@@ -81,10 +70,27 @@
                 "class": "",
                 "id": ""
             },
+            "default_value": "",
+            "new_lines": "br",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": "",
             "readonly": 0,
             "disabled": 0
         },
         {
+            "key": "field_575a84a0ea3b5",
+            "label": "Ikon",
+            "name": "notice_icon",
+            "type": "font-awesome",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "enqueue_fa": 0,
             "allow_null": 1,
             "save_format": "class",
@@ -726,18 +732,6 @@
                 "fa-youtube": "&#xf167; fa-youtube",
                 "fa-youtube-play": "&#xf16a; fa-youtube-play",
                 "fa-youtube-square": "&#xf166; fa-youtube-square"
-            },
-            "key": "field_575a84a0ea3b5",
-            "label": "Ikon",
-            "name": "notice_icon",
-            "type": "font-awesome",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
             }
         }
     ],
@@ -756,9 +750,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1465550671,
-    "local": "json"
+    "active": true,
+    "description": ""
 }]
 
