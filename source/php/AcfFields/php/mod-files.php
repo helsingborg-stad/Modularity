@@ -6,6 +6,18 @@
     'title' => 'Files',
     'fields' => array(
         0 => array(
+            'key' => 'field_5756ce4166341',
+            'label' => __('Filer', 'modularity'),
+            'name' => 'files',
+            'type' => 'gallery',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
             'library' => 'all',
             'min' => '',
             'max' => '',
@@ -17,19 +29,8 @@
             'max_size' => '',
             'mime_types' => '',
             'insert' => 'append',
-            'key' => 'field_5756ce4166341',
-            'label' => __('Files', 'modularity'),
-            'name' => 'files',
-            'type' => 'gallery',
-            'instructions' => '',
-            'required' => 1,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
             'preview_size' => 'thumbnail',
+            'return_format' => 'array',
         ),
     ),
     'location' => array(
@@ -47,9 +48,8 @@
     'label_placement' => 'top',
     'instruction_placement' => 'label',
     'hide_on_screen' => '',
-    'active' => 1,
+    'active' => true,
     'description' => '',
     'modified' => 1465384164,
-    'local' => 'json',
 ));
 }

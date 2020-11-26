@@ -3,6 +3,18 @@
     "title": "Files",
     "fields": [
         {
+            "key": "field_5756ce4166341",
+            "label": "Filer",
+            "name": "files",
+            "type": "gallery",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "library": "all",
             "min": "",
             "max": "",
@@ -14,19 +26,8 @@
             "max_size": "",
             "mime_types": "",
             "insert": "append",
-            "key": "field_5756ce4166341",
-            "label": "Files",
-            "name": "files",
-            "type": "gallery",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "preview_size": "thumbnail"
+            "preview_size": "thumbnail",
+            "return_format": "array"
         }
     ],
     "location": [
@@ -44,9 +45,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1465384164,
-    "local": "json"
+    "modified": 1465384164
 }]
 
