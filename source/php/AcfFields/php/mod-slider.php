@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_56a5e99108991',
-    'title' => __('Slider', 'modularity'),
+    'title' => 'Slider',
     'fields' => array(
         0 => array(
             'key' => 'field_573dce058a66t',
@@ -80,10 +80,10 @@
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_56a5ed2f398dc',
-                            'label' => 'Desktop image',
+                            'label' => __('Desktop image', 'modularity'),
                             'name' => 'image',
                             'type' => 'image',
-                            'instructions' => 'This image will be used in larger screens. Preferably a widescreen image.',
+                            'instructions' => __('This image will be used in larger screens. Preferably a widescreen image.', 'modularity'),
                             'required' => 1,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -104,10 +104,10 @@
                         ),
                         1 => array(
                             'key' => 'field_570f4e9b10c26',
-                            'label' => 'Mobile image',
+                            'label' => __('Mobile image', 'modularity'),
                             'name' => 'mobile_image',
                             'type' => 'image',
-                            'instructions' => 'This image will be used in smaller screens. Preferably a square image.',
+                            'instructions' => __('This image will be used in smaller screens. Preferably a square image.', 'modularity'),
                             'required' => 1,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -128,7 +128,7 @@
                         ),
                         2 => array(
                             'key' => 'field_56e7fa230ee09',
-                            'label' => 'Text position',
+                            'label' => __('Text position', 'modularity'),
                             'name' => 'textblock_position',
                             'type' => 'select',
                             'instructions' => '',
@@ -150,8 +150,8 @@
                             'multiple' => 0,
                             'allow_null' => 0,
                             'choices' => array(
-                                'bottom' => 'Bottom banner',
-                                'center' => 'Centered',
+                                'bottom' => __('Bottom banner', 'modularity'),
+                                'center' => __('Centered', 'modularity'),
                             ),
                             'default_value' => 'bottom',
                             'ui' => 0,
@@ -163,7 +163,7 @@
                         ),
                         3 => array(
                             'key' => 'field_5702597b7d869',
-                            'label' => 'Titel',
+                            'label' => __('Titel', 'modularity'),
                             'name' => 'textblock_title',
                             'type' => 'text',
                             'instructions' => '',
@@ -197,7 +197,7 @@
                         ),
                         4 => array(
                             'key' => 'field_56ab235393f04',
-                            'label' => 'Innehåll',
+                            'label' => __('Innehåll', 'modularity'),
                             'name' => 'textblock_content',
                             'type' => 'textarea',
                             'instructions' => '',
@@ -226,7 +226,7 @@
                         ),
                         5 => array(
                             'key' => 'field_56fa82a2d464d',
-                            'label' => 'Länk',
+                            'label' => __('Länk', 'modularity'),
                             'name' => 'link_type',
                             'type' => 'radio',
                             'instructions' => '',
@@ -239,9 +239,9 @@
                             ),
                             'layout' => 'horizontal',
                             'choices' => array(
-                                'false' => 'No link',
-                                'internal' => 'Intern',
-                                'external' => 'Extern',
+                                'false' => __('No link', 'modularity'),
+                                'internal' => __('Intern', 'modularity'),
+                                'external' => __('Extern', 'modularity'),
                             ),
                             'default_value' => 'false',
                             'other_choice' => 0,
@@ -251,7 +251,7 @@
                         ),
                         6 => array(
                             'key' => 'field_56fa8313d4650',
-                            'label' => 'Url',
+                            'label' => __('Url', 'modularity'),
                             'name' => 'link_url',
                             'type' => 'url',
                             'instructions' => '',
@@ -275,7 +275,7 @@
                         ),
                         7 => array(
                             'key' => 'field_56fa8331d4651',
-                            'label' => 'Sida',
+                            'label' => __('Sida', 'modularity'),
                             'name' => 'link_url',
                             'type' => 'page_link',
                             'instructions' => '',
@@ -304,7 +304,7 @@
                         ),
                         8 => array(
                             'key' => 'field_56fa82dcd464e',
-                            'label' => 'New window',
+                            'label' => __('New window', 'modularity'),
                             'name' => 'link_target',
                             'type' => 'true_false',
                             'instructions' => '',
@@ -324,7 +324,7 @@
                                 'id' => '',
                             ),
                             'default_value' => 0,
-                            'message' => 'Yes, open link in new window',
+                            'message' => __('Yes, open link in new window', 'modularity'),
                             'ui' => 0,
                             'ui_on_text' => '',
                             'ui_off_text' => '',
@@ -341,7 +341,7 @@
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_56a5eada398d7',
-                            'label' => 'Typ',
+                            'label' => __('Typ', 'modularity'),
                             'name' => 'type',
                             'type' => 'radio',
                             'instructions' => '',
@@ -354,8 +354,8 @@
                             ),
                             'layout' => 'horizontal',
                             'choices' => array(
-                                'upload' => 'Ladda upp video',
-                                'embed' => 'Bädda in (YouTube eller Vimeo-länk)',
+                                'upload' => __('Ladda upp video', 'modularity'),
+                                'embed' => __('Bädda in (YouTube eller Vimeo-länk)', 'modularity'),
                             ),
                             'default_value' => '',
                             'other_choice' => 0,
@@ -365,7 +365,7 @@
                         ),
                         1 => array(
                             'key' => 'field_56a5eb09398d8',
-                            'label' => 'Video: mp4',
+                            'label' => __('Video: mp4', 'modularity'),
                             'name' => 'video_mp4',
                             'type' => 'file',
                             'instructions' => '',
@@ -392,7 +392,7 @@
                         ),
                         2 => array(
                             'key' => 'field_56b9e2102128f',
-                            'label' => 'Video: webm',
+                            'label' => __('Video: webm', 'modularity'),
                             'name' => 'video_webm',
                             'type' => 'file',
                             'instructions' => '',
@@ -419,7 +419,7 @@
                         ),
                         3 => array(
                             'key' => 'field_56b9e26c21290',
-                            'label' => 'Video: ogg',
+                            'label' => __('Video: ogg', 'modularity'),
                             'name' => 'video_ogg',
                             'type' => 'file',
                             'instructions' => '',
@@ -446,7 +446,7 @@
                         ),
                         4 => array(
                             'key' => 'field_5aaa6576ed65f',
-                            'label' => 'Show pause Icon',
+                            'label' => __('Show pause Icon', 'modularity'),
                             'name' => 'show_pause_icon',
                             'type' => 'true_false',
                             'instructions' => '',
@@ -457,7 +457,7 @@
                                 'class' => '',
                                 'id' => '',
                             ),
-                            'message' => 'Show pause icon',
+                            'message' => __('Show pause icon', 'modularity'),
                             'default_value' => 1,
                             'ui' => 0,
                             'ui_on_text' => '',
@@ -465,7 +465,7 @@
                         ),
                         5 => array(
                             'key' => 'field_5aaa66deed660',
-                            'label' => 'Pause icon transparency',
+                            'label' => __('Pause icon transparency', 'modularity'),
                             'name' => 'pause_icon_transparacy',
                             'type' => 'select',
                             'instructions' => '',
@@ -485,15 +485,15 @@
                                 'id' => '',
                             ),
                             'choices' => array(
-                                1 => '100%',
-                                9 => '90%',
-                                8 => '80%',
-                                7 => '70%',
-                                6 => '60%',
-                                5 => '50%',
-                                4 => '40%',
-                                3 => '30%',
-                                2 => '20%',
+                                1 => __('100%', 'modularity'),
+                                9 => __('90%', 'modularity'),
+                                8 => __('80%', 'modularity'),
+                                7 => __('70%', 'modularity'),
+                                6 => __('60%', 'modularity'),
+                                5 => __('50%', 'modularity'),
+                                4 => __('40%', 'modularity'),
+                                3 => __('30%', 'modularity'),
+                                2 => __('20%', 'modularity'),
                             ),
                             'default_value' => '60%',
                             'allow_null' => 0,
@@ -505,7 +505,7 @@
                         ),
                         6 => array(
                             'key' => 'field_5aaa6e50f06ba',
-                            'label' => 'Show pause icon on hover',
+                            'label' => __('Show pause icon on hover', 'modularity'),
                             'name' => 'show_pause_icon_on_hover',
                             'type' => 'true_false',
                             'instructions' => '',
@@ -532,7 +532,7 @@
                         ),
                         7 => array(
                             'key' => 'field_56a5ed47398dd',
-                            'label' => 'Inbäddningslänk',
+                            'label' => __('Inbäddningslänk', 'modularity'),
                             'name' => 'embed_link',
                             'type' => 'url',
                             'instructions' => '',
@@ -556,7 +556,7 @@
                         ),
                         8 => array(
                             'key' => 'field_56b9e2a221291',
-                            'label' => 'Placeholder Image',
+                            'label' => __('Placeholder Image', 'modularity'),
                             'name' => 'image',
                             'type' => 'image',
                             'instructions' => '',
@@ -580,7 +580,7 @@
                         ),
                         9 => array(
                             'key' => 'field_56b9f3dba4f22',
-                            'label' => 'Text overlay',
+                            'label' => __('Text overlay', 'modularity'),
                             'name' => 'activate_textblock',
                             'type' => 'true_false',
                             'instructions' => '',
@@ -600,14 +600,14 @@
                                 'id' => '',
                             ),
                             'default_value' => 0,
-                            'message' => 'Enable text overlay on this slide',
+                            'message' => __('Enable text overlay on this slide', 'modularity'),
                             'ui' => 0,
                             'ui_on_text' => '',
                             'ui_off_text' => '',
                         ),
                         10 => array(
                             'key' => 'field_56b9f3b8d7720',
-                            'label' => 'Innehåll',
+                            'label' => __('Innehåll', 'modularity'),
                             'name' => 'textblock_content',
                             'type' => 'textarea',
                             'instructions' => '',
@@ -641,7 +641,7 @@
                         ),
                         11 => array(
                             'key' => 'field_56e7fa620ee0a',
-                            'label' => 'Text position',
+                            'label' => __('Text position', 'modularity'),
                             'name' => 'textblock_position',
                             'type' => 'select',
                             'instructions' => '',
@@ -668,8 +668,8 @@
                             'multiple' => 0,
                             'allow_null' => 0,
                             'choices' => array(
-                                'bottom' => 'Bottom banner',
-                                'center' => 'Centered',
+                                'bottom' => __('Bottom banner', 'modularity'),
+                                'center' => __('Centered', 'modularity'),
                             ),
                             'default_value' => 'bottom',
                             'ui' => 0,
@@ -681,7 +681,7 @@
                         ),
                         12 => array(
                             'key' => 'field_56fa87ec3ace2',
-                            'label' => 'Länk',
+                            'label' => __('Länk', 'modularity'),
                             'name' => 'link_type',
                             'type' => 'radio',
                             'instructions' => '',
@@ -702,9 +702,9 @@
                             ),
                             'layout' => 'horizontal',
                             'choices' => array(
-                                'false' => 'No link',
-                                'internal' => 'Intern',
-                                'external' => 'Extern',
+                                'false' => __('No link', 'modularity'),
+                                'internal' => __('Intern', 'modularity'),
+                                'external' => __('Extern', 'modularity'),
                             ),
                             'default_value' => 'false',
                             'other_choice' => 0,
@@ -714,7 +714,7 @@
                         ),
                         13 => array(
                             'key' => 'field_56fa87fa3ace4',
-                            'label' => 'Url',
+                            'label' => __('Url', 'modularity'),
                             'name' => 'link_url',
                             'type' => 'url',
                             'instructions' => '',
@@ -743,7 +743,7 @@
                         ),
                         14 => array(
                             'key' => 'field_56fa88043ace5',
-                            'label' => 'Sida',
+                            'label' => __('Sida', 'modularity'),
                             'name' => 'link_url',
                             'type' => 'page_link',
                             'instructions' => '',
@@ -777,7 +777,7 @@
                         ),
                         15 => array(
                             'key' => 'field_56fa880c3ace6',
-                            'label' => 'New window',
+                            'label' => __('New window', 'modularity'),
                             'name' => 'link_target',
                             'type' => 'true_false',
                             'instructions' => '',
@@ -802,7 +802,7 @@
                                 'id' => '',
                             ),
                             'default_value' => 0,
-                            'message' => 'Yes, open link in new window',
+                            'message' => __('Yes, open link in new window', 'modularity'),
                             'ui' => 0,
                             'ui_on_text' => '',
                             'ui_off_text' => '',
@@ -819,10 +819,10 @@
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_573d5ae726b8f',
-                            'label' => 'Desktop Image',
+                            'label' => __('Desktop Image', 'modularity'),
                             'name' => 'image',
                             'type' => 'image',
-                            'instructions' => 'This image will be used in larger screens.',
+                            'instructions' => __('This image will be used in larger screens.', 'modularity'),
                             'required' => 1,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -843,10 +843,10 @@
                         ),
                         1 => array(
                             'key' => 'field_573d5b5826b90',
-                            'label' => 'Mobile Image',
+                            'label' => __('Mobile Image', 'modularity'),
                             'name' => 'mobile_image',
                             'type' => 'image',
-                            'instructions' => 'This image will be used in smaller screens.',
+                            'instructions' => __('This image will be used in smaller screens.', 'modularity'),
                             'required' => 1,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -867,7 +867,7 @@
                         ),
                         2 => array(
                             'key' => 'field_573d5c0508765',
-                            'label' => 'Länk',
+                            'label' => __('Länk', 'modularity'),
                             'name' => 'link_type',
                             'type' => 'radio',
                             'instructions' => '',
@@ -880,9 +880,9 @@
                             ),
                             'layout' => 'horizontal',
                             'choices' => array(
-                                'false' => 'No link',
-                                'internal' => 'Intern',
-                                'external' => 'Extern',
+                                'false' => __('No link', 'modularity'),
+                                'internal' => __('Intern', 'modularity'),
+                                'external' => __('Extern', 'modularity'),
                             ),
                             'default_value' => 'false',
                             'other_choice' => 0,
@@ -892,7 +892,7 @@
                         ),
                         3 => array(
                             'key' => 'field_573d5c5c08766',
-                            'label' => 'Sida',
+                            'label' => __('Sida', 'modularity'),
                             'name' => 'link_url',
                             'type' => 'page_link',
                             'instructions' => '',
@@ -926,7 +926,7 @@
                         ),
                         4 => array(
                             'key' => 'field_573d5c6808768',
-                            'label' => 'Url',
+                            'label' => __('Url', 'modularity'),
                             'name' => 'link_url',
                             'type' => 'url',
                             'instructions' => '',
@@ -955,7 +955,7 @@
                         ),
                         5 => array(
                             'key' => 'field_573d5e48efd93',
-                            'label' => 'New window',
+                            'label' => __('New window', 'modularity'),
                             'name' => 'link_target',
                             'type' => 'true_false',
                             'instructions' => '',
@@ -982,7 +982,7 @@
                         ),
                         6 => array(
                             'key' => 'field_573d600eb104f',
-                            'label' => 'Titel',
+                            'label' => __('Titel', 'modularity'),
                             'name' => 'textblock_title',
                             'type' => 'text',
                             'instructions' => '',
@@ -995,7 +995,7 @@
                             ),
                             'default_value' => '',
                             'maxlength' => '',
-                            'placeholder' => 'Ange din titel här',
+                            'placeholder' => __('Ange din titel här', 'modularity'),
                             'prepend' => '',
                             'append' => '',
                             'readonly' => 0,
@@ -1003,7 +1003,7 @@
                         ),
                         7 => array(
                             'key' => 'field_573d604fb1050',
-                            'label' => 'Innehåll',
+                            'label' => __('Innehåll', 'modularity'),
                             'name' => 'textblock_content',
                             'type' => 'textarea',
                             'instructions' => '',
