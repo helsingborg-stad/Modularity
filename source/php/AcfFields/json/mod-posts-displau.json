@@ -20,10 +20,7 @@
                 "expandable-list": "Expandable List",
                 "items": "Post items",
                 "news": "News items",
-                "index": "Index",
-                "grid": "Grid",
-                "circular": "Circular",
-                "horizontal": "Horizontal"
+                "index": "Index"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -82,9 +79,7 @@
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": [
-                "grid-md-12"
-            ],
+            "default_value": "grid-md-12",
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
@@ -349,9 +344,7 @@
                 "default": "Default timestamp",
                 "readable": "Readable timestamp"
             },
-            "default_value": [
-                "default"
-            ],
+            "default_value": "default",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -412,7 +405,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": ""
 }]
 

@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
-    'title' => 'Data display',
+    'title' => __('Data display', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_571dfd4c0d9d9',
@@ -24,9 +24,6 @@
                 'items' => __('Post items', 'modularity'),
                 'news' => __('News items', 'modularity'),
                 'index' => __('Index', 'modularity'),
-                'grid' => __('Grid', 'modularity'),
-                'circular' => __('Circular', 'modularity'),
-                'horizontal' => __('Horizontal', 'modularity'),
             ),
             'allow_null' => 0,
             'other_choice' => 0,
@@ -85,9 +82,7 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => array(
-                0 => 'grid-md-12',
-            ),
+            'default_value' => 'grid-md-12',
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
@@ -352,9 +347,7 @@
                 'default' => __('Default timestamp', 'modularity'),
                 'readable' => __('Readable timestamp', 'modularity'),
             ),
-            'default_value' => array(
-                0 => 'default',
-            ),
+            'default_value' => 'default',
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -415,7 +408,7 @@
     'label_placement' => 'top',
     'instruction_placement' => 'label',
     'hide_on_screen' => '',
-    'active' => 1,
+    'active' => true,
     'description' => '',
 ));
 }
