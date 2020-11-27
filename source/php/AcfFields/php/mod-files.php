@@ -38,7 +38,7 @@
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'mod-files',
+                'value' => 'post',
             ),
         ),
     ),
@@ -50,6 +50,5 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
-    'modified' => 1465384164,
 ));
 }

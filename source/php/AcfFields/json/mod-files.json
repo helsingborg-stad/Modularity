@@ -35,7 +35,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "mod-files"
+                "value": "post"
             }
         ]
     ],
@@ -46,7 +46,6 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "",
-    "modified": 1465384164
+    "description": ""
 }]
 

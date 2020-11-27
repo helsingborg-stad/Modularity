@@ -16,10 +16,10 @@
                 "id": ""
             },
             "choices": {
-                "success": "Framg\u00e5ng (gr\u00f6n)",
-                "info": "Info (Svart)",
-                "warning": "Varning (gul)",
-                "danger": "Fara (r\u00f6d)"
+                "success": "Success (green)",
+                "info": "Info (black)",
+                "warning": "Warning (gul)",
+                "danger": "Danger (red)"
             },
             "default_value": "success",
             "allow_null": 0,
