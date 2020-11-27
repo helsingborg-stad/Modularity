@@ -14,20 +14,21 @@
             'required' => 1,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '20',
+                'width' => '50',
                 'class' => '',
                 'id' => '',
             ),
             'choices' => array(
                 'default' => __('Standard', 'modularity'),
                 'circle' => __('Cirkulära slides', 'modularity'),
+                'centerOverlay' => __('Center Overlay', 'modularity'),
             ),
             'default_value' => 'default',
             'allow_null' => 1,
             'multiple' => 0,
             'ui' => 0,
-            'ajax' => 0,
             'return_format' => 'value',
+            'ajax' => 0,
             'placeholder' => '',
         ),
         1 => array(
@@ -39,12 +40,10 @@
             'required' => 1,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '20',
+                'width' => '50',
                 'class' => '',
                 'id' => '',
             ),
-            'multiple' => 0,
-            'allow_null' => 1,
             'choices' => array(
                 'ratio-36-7' => __('Bred (36:7)', 'modularity'),
                 'ratio-10-3' => __('Bred (10:3)', 'modularity'),
@@ -52,100 +51,14 @@
                 'ratio-4-3' => __('Kvadrat (4:3)', 'modularity'),
             ),
             'default_value' => 'ratio-16-9',
+            'allow_null' => 1,
+            'multiple' => 0,
             'ui' => 0,
+            'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
-            'return_format' => 'value',
         ),
         2 => array(
-            'key' => 'field_58934110b566f',
-            'label' => __('Sliderkolumner', 'modularity'),
-            'name' => 'slide_columns',
-            'type' => 'select',
-            'instructions' => '',
-            'required' => 1,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '20',
-                'class' => '',
-                'id' => '',
-            ),
-            'multiple' => 0,
-            'allow_null' => 0,
-            'choices' => array(
-                1 => __('1', 'modularity'),
-                2 => __('2', 'modularity'),
-                3 => __('3', 'modularity'),
-                4 => __('4', 'modularity'),
-                5 => __('5', 'modularity'),
-            ),
-            'default_value' => 1,
-            'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'return_format' => 'value',
-        ),
-        3 => array(
-            'key' => 'field_58934110b566e',
-            'label' => __('Sliderjustering', 'modularity'),
-            'name' => 'slide_align',
-            'type' => 'select',
-            'instructions' => '',
-            'required' => 1,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '20',
-                'class' => '',
-                'id' => '',
-            ),
-            'multiple' => 0,
-            'allow_null' => 0,
-            'choices' => array(
-                'left' => __('Väster', 'modularity'),
-                'center' => __('Centrerad', 'modularity'),
-                'right' => __('Höger', 'modularity'),
-            ),
-            'default_value' => 'center',
-            'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'return_format' => 'value',
-        ),
-        4 => array(
-            'key' => 'field_58cfe67cb211b',
-            'label' => __('Höjd', 'modularity'),
-            'name' => 'slider_height',
-            'type' => 'true_false',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_573dce058a66e',
-                        'operator' => '==',
-                        'value' => 'ratio-10-3',
-                    ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_573dce058a66e',
-                        'operator' => '==',
-                        'value' => 'ratio-36-7',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '20',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 1,
-            'message' => __('Tvinga slider till rekommenderad min/max höjd', 'modularity'),
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
-        ),
-        5 => array(
             'key' => 'field_56a5e994398d6',
             'label' => __('Slides', 'modularity'),
             'name' => 'slides',
@@ -214,25 +127,6 @@
                             'mime_types' => 'png,jpg,jpeg',
                         ),
                         2 => array(
-                            'key' => 'field_56ab224ac2c28',
-                            'label' => 'Text overlay',
-                            'name' => 'activate_textblock',
-                            'type' => 'true_false',
-                            'instructions' => '',
-                            'required' => 0,
-                            'conditional_logic' => 0,
-                            'wrapper' => array(
-                                'width' => '',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'default_value' => 0,
-                            'message' => 'Enable text overlay on this slide',
-                            'ui' => 0,
-                            'ui_on_text' => '',
-                            'ui_off_text' => '',
-                        ),
-                        3 => array(
                             'key' => 'field_56e7fa230ee09',
                             'label' => 'Text position',
                             'name' => 'textblock_position',
@@ -267,7 +161,7 @@
                             'disabled' => 0,
                             'readonly' => 0,
                         ),
-                        4 => array(
+                        3 => array(
                             'key' => 'field_5702597b7d869',
                             'label' => 'Titel',
                             'name' => 'textblock_title',
@@ -301,7 +195,7 @@
                             'append' => '',
                             'maxlength' => '',
                         ),
-                        5 => array(
+                        4 => array(
                             'key' => 'field_56ab235393f04',
                             'label' => 'Innehåll',
                             'name' => 'textblock_content',
@@ -330,7 +224,7 @@
                             'readonly' => 0,
                             'disabled' => 0,
                         ),
-                        6 => array(
+                        5 => array(
                             'key' => 'field_56fa82a2d464d',
                             'label' => 'Länk',
                             'name' => 'link_type',
@@ -355,7 +249,7 @@
                             'allow_null' => 0,
                             'return_format' => 'value',
                         ),
-                        7 => array(
+                        6 => array(
                             'key' => 'field_56fa8313d4650',
                             'label' => 'Url',
                             'name' => 'link_url',
@@ -379,7 +273,7 @@
                             'default_value' => '',
                             'placeholder' => '',
                         ),
-                        8 => array(
+                        7 => array(
                             'key' => 'field_56fa8331d4651',
                             'label' => 'Sida',
                             'name' => 'link_url',
@@ -408,7 +302,7 @@
                             'multiple' => 0,
                             'allow_archives' => 1,
                         ),
-                        9 => array(
+                        8 => array(
                             'key' => 'field_56fa82dcd464e',
                             'label' => 'New window',
                             'name' => 'link_target',
@@ -1137,7 +1031,7 @@
             'max' => '',
             'button_label' => __('Add slide', 'modularity'),
         ),
-        6 => array(
+        3 => array(
             'key' => 'field_5731c6d886811',
             'label' => __('Automatisk bläddring', 'modularity'),
             'name' => 'slides_autoslide',
@@ -1156,7 +1050,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        7 => array(
+        4 => array(
             'key' => 'field_5731c78886813',
             'label' => __('Intervall för automatisk bläddring', 'modularity'),
             'name' => 'slides_slide_timeout',
@@ -1187,7 +1081,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        8 => array(
+        5 => array(
             'key' => 'field_573d8880abc96',
             'label' => __('Navigeringsposition', 'modularity'),
             'name' => 'navigation_position',
@@ -1211,7 +1105,7 @@
             'allow_null' => 0,
             'return_format' => 'value',
         ),
-        9 => array(
+        6 => array(
             'key' => 'field_58933fb6f5ed4',
             'label' => __('Fler inställningar', 'modularity'),
             'name' => 'additional_options',
@@ -1226,7 +1120,6 @@
             ),
             'choices' => array(
                 'wrapAround' => __('Börja om efter sista sliden', 'modularity'),
-                'allowBleed' => __('Make next and previous slide partially visible', 'modularity'),
             ),
             'allow_custom' => 0,
             'default_value' => array(

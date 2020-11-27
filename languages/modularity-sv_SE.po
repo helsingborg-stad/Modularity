@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2020-11-27 13:54+0100\n"
-"PO-Revision-Date: 2020-11-27 13:54+0100\n"
+"POT-Creation-Date: 2020-11-27 16:02+0100\n"
+"PO-Revision-Date: 2020-11-27 16:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -2383,7 +2383,6 @@ msgstr "Kontakter"
 #: source/php/AcfFields/php/mod-contacts.php:443
 #: source/php/AcfFields/php/mod-index.php:325
 #: source/php/AcfFields/php/mod-posts-displau.php:80
-#: source/php/AcfFields/php/mod-slider.php:76
 msgid "1"
 msgstr ""
 
@@ -2391,7 +2390,6 @@ msgstr ""
 #: source/php/AcfFields/php/mod-contacts.php:444
 #: source/php/AcfFields/php/mod-index.php:326
 #: source/php/AcfFields/php/mod-posts-displau.php:81
-#: source/php/AcfFields/php/mod-slider.php:77
 msgid "2"
 msgstr ""
 
@@ -2399,7 +2397,6 @@ msgstr ""
 #: source/php/AcfFields/php/mod-contacts.php:445
 #: source/php/AcfFields/php/mod-index.php:327
 #: source/php/AcfFields/php/mod-posts-displau.php:82
-#: source/php/AcfFields/php/mod-slider.php:78
 msgid "3"
 msgstr ""
 
@@ -2407,7 +2404,6 @@ msgstr ""
 #: source/php/AcfFields/php/mod-contacts.php:446
 #: source/php/AcfFields/php/mod-index.php:328
 #: source/php/AcfFields/php/mod-posts-displau.php:83
-#: source/php/AcfFields/php/mod-slider.php:79
 msgid "4"
 msgstr ""
 
@@ -2480,7 +2476,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-contacts.php:56
 #: source/php/AcfFields/php/mod-posts-source.php:242
-#: source/php/AcfFields/php/mod-slider.php:165
+#: source/php/AcfFields/php/mod-slider.php:78
 msgid "Bild"
 msgstr ""
 
@@ -2513,7 +2509,7 @@ msgid "Lägg till nummer"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contacts.php:193
-#: source/php/AcfFields/php/mod-notice.php:10
+#: source/php/AcfFields/php/mod-notice.php:12
 #: source/php/AcfFields/php/mod-video.php:20
 msgid "Typ"
 msgstr ""
@@ -3032,47 +3028,47 @@ msgstr "Lägg till rad"
 msgid "News items"
 msgstr "Nyhetsobjekt"
 
-#: source/php/AcfFields/php/mod-notice.php:6
+#: source/php/AcfFields/php/mod-notice.php:8
 msgid "Notice settings"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-notice.php:22
+#: source/php/AcfFields/php/mod-notice.php:24
 msgid "Success (green)"
 msgstr "Framgång (grön)"
 
-#: source/php/AcfFields/php/mod-notice.php:23
+#: source/php/AcfFields/php/mod-notice.php:25
 msgid "Info (black)"
 msgstr "Info (Svart) "
 
-#: source/php/AcfFields/php/mod-notice.php:24
+#: source/php/AcfFields/php/mod-notice.php:26
 msgid "Warning (gul)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-notice.php:25
+#: source/php/AcfFields/php/mod-notice.php:27
 msgid "Danger (red)"
 msgstr "Fara (röd)"
 
-#: source/php/AcfFields/php/mod-notice.php:37
+#: source/php/AcfFields/php/mod-notice.php:39
 #: source/php/AcfFields/php/mod-table.php:90
 msgid "Storlek"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-notice.php:51
+#: source/php/AcfFields/php/mod-notice.php:53
 #: source/php/AcfFields/php/mod-slider.php:22
 msgid "Standard"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-notice.php:52
+#: source/php/AcfFields/php/mod-notice.php:54
 #: source/php/AcfFields/php/mod-table.php:105
 msgid "Stor"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-notice.php:53
+#: source/php/AcfFields/php/mod-notice.php:55
 #: source/php/AcfFields/php/mod-table.php:103
 msgid "Liten"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-notice.php:65
+#: source/php/AcfFields/php/mod-notice.php:67
 #, fuzzy
 #| msgid "Notice"
 msgid "Notis"
@@ -3373,114 +3369,89 @@ msgstr ""
 msgid "Cirkulära slides"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:35
+#: source/php/AcfFields/php/mod-slider.php:24
+msgid "Center Overlay"
+msgstr "Vit text med transparent bakgrund"
+
+#: source/php/AcfFields/php/mod-slider.php:36
 msgid "Sliderformat"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:49
+#: source/php/AcfFields/php/mod-slider.php:48
 msgid "Bred (36:7)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:50
+#: source/php/AcfFields/php/mod-slider.php:49
 msgid "Bred (10:3)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:51
+#: source/php/AcfFields/php/mod-slider.php:50
 msgid "Normal (16:9, video)"
 msgstr "Normal (16:9, video)"
 
-#: source/php/AcfFields/php/mod-slider.php:52
+#: source/php/AcfFields/php/mod-slider.php:51
 msgid "Kvadrat (4:3)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:62
-msgid "Sliderkolumner"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:80
-msgid "5"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:90
-msgid "Sliderjustering"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:104
-msgid "Väster"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:105
-#: source/php/AcfFields/php/mod-slider.php:1205
-msgid "Centrerad"
-msgstr "Centrerad"
-
-#: source/php/AcfFields/php/mod-slider.php:106
-msgid "Höger"
-msgstr "Höger"
-
-#: source/php/AcfFields/php/mod-slider.php:116
-msgid "Höjd"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:143
-msgid "Tvinga slider till rekommenderad min/max höjd"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:150
+#: source/php/AcfFields/php/mod-slider.php:63
 msgid "Slides"
 msgstr "Slides"
 
-#: source/php/AcfFields/php/mod-slider.php:445
+#: source/php/AcfFields/php/mod-slider.php:339
 #: source/php/AcfFields/php/mod-video.php:6
 #: source/php/Module/Video/Video.php:12 source/php/Module/Video/Video.php:13
 msgid "Video"
 msgstr "Video"
 
-#: source/php/AcfFields/php/mod-slider.php:923
+#: source/php/AcfFields/php/mod-slider.php:817
 #, fuzzy
 #| msgid "Use featured image"
 msgid "Featured content"
 msgstr "Använd utvald bild"
 
-#: source/php/AcfFields/php/mod-slider.php:1138
+#: source/php/AcfFields/php/mod-slider.php:1032
 #, fuzzy
 #| msgid "Add file"
 msgid "Add slide"
 msgstr "Lägg till fil"
 
-#: source/php/AcfFields/php/mod-slider.php:1142
+#: source/php/AcfFields/php/mod-slider.php:1036
 msgid "Automatisk bläddring"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1154
+#: source/php/AcfFields/php/mod-slider.php:1048
 msgid "Bläddra automatiskt mellan slides"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1161
+#: source/php/AcfFields/php/mod-slider.php:1055
 msgid "Intervall för automatisk bläddring"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1186
+#: source/php/AcfFields/php/mod-slider.php:1080
 msgid "sekunder"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1192
+#: source/php/AcfFields/php/mod-slider.php:1086
 msgid "Navigeringsposition"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1206
+#: source/php/AcfFields/php/mod-slider.php:1099
+msgid "Centrerad"
+msgstr "Centrerad"
+
+#: source/php/AcfFields/php/mod-slider.php:1100
 msgid "Botten"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1216
+#: source/php/AcfFields/php/mod-slider.php:1110
 msgid "Fler inställningar"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1228
+#: source/php/AcfFields/php/mod-slider.php:1122
 msgid "Börja om efter sista sliden"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:1229
+#: source/php/AcfFields/php/mod-slider.php:1123
 msgid "Make next and previous slide partially visible"
 msgstr ""
 
@@ -5584,6 +5555,9 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Höger"
+#~ msgstr "Höger"
 
 #~ msgid "Horizontal cards"
 #~ msgstr "Horisontella kort"
