@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2020-11-27 16:02+0100\n"
-"PO-Revision-Date: 2020-11-27 16:05+0100\n"
+"POT-Creation-Date: 2020-11-30 15:18+0100\n"
+"PO-Revision-Date: 2020-11-30 15:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -2436,6 +2436,8 @@ msgstr ""
 #: source/php/AcfFields/php/mod-latest.php:64
 #: source/php/AcfFields/php/mod-posts-sorting.php:27
 #: source/php/AcfFields/php/mod-posts-source.php:186
+#: source/php/AcfFields/php/mod-slider.php:166
+#: source/php/AcfFields/php/mod-slider.php:985
 #: source/php/AcfFields/php/mod-wpwidget.php:243
 msgid "Titel"
 msgstr ""
@@ -2510,6 +2512,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-contacts.php:193
 #: source/php/AcfFields/php/mod-notice.php:12
+#: source/php/AcfFields/php/mod-slider.php:344
 #: source/php/AcfFields/php/mod-video.php:20
 msgid "Typ"
 msgstr ""
@@ -3054,7 +3057,6 @@ msgid "Storlek"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-notice.php:53
-#: source/php/AcfFields/php/mod-slider.php:22
 msgid "Standard"
 msgstr ""
 
@@ -3289,6 +3291,9 @@ msgid "Add"
 msgstr "Lägg till"
 
 #: source/php/AcfFields/php/mod-posts-source.php:207
+#: source/php/AcfFields/php/mod-slider.php:200
+#: source/php/AcfFields/php/mod-slider.php:610
+#: source/php/AcfFields/php/mod-slider.php:1006
 msgid "Innehåll"
 msgstr ""
 
@@ -3356,22 +3361,21 @@ msgstr ""
 msgid "Include main site"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:6
-#: source/php/Module/Slider/Slider.php:32 vendor/aristath/kirki/example.php:81
-msgid "Slider"
-msgstr "Slider"
-
 #: source/php/AcfFields/php/mod-slider.php:10
 msgid "Sliderlayout"
 msgstr ""
 
+#: source/php/AcfFields/php/mod-slider.php:22
+msgid "default: Bottom with card"
+msgstr "default: Nedre kant med index bricka (“Card”)"
+
 #: source/php/AcfFields/php/mod-slider.php:23
-msgid "Cirkulära slides"
+msgid "center: Centered"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-slider.php:24
-msgid "Center Overlay"
-msgstr "Vit text med transparent bakgrund"
+msgid "centerCard: Centered with card"
+msgstr "centerCard: Centrerad med bricka"
 
 #: source/php/AcfFields/php/mod-slider.php:36
 msgid "Sliderformat"
@@ -3397,17 +3401,207 @@ msgstr ""
 msgid "Slides"
 msgstr "Slides"
 
+#: source/php/AcfFields/php/mod-slider.php:83
+msgid "Desktop image"
+msgstr "Bild för desktop"
+
+#: source/php/AcfFields/php/mod-slider.php:86
+msgid ""
+"This image will be used in larger screens. Preferably a widescreen image."
+msgstr "Denna bilden används på större skärmar."
+
+#: source/php/AcfFields/php/mod-slider.php:107
+msgid "Mobile image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:110
+msgid "This image will be used in smaller screens. Preferably a square image."
+msgstr "Denna bilden används på mindre skärmar. Ange en kvadratisk bild (1:1)."
+
+#: source/php/AcfFields/php/mod-slider.php:131
+#: source/php/AcfFields/php/mod-slider.php:644
+msgid "Text position"
+msgstr "Textlagrets placering"
+
+#: source/php/AcfFields/php/mod-slider.php:153
+#: source/php/AcfFields/php/mod-slider.php:671
+msgid "Bottom banner"
+msgstr "Bottom banner"
+
+#: source/php/AcfFields/php/mod-slider.php:154
+#: source/php/AcfFields/php/mod-slider.php:672
+msgid "Centered"
+msgstr "Centrerad"
+
+#: source/php/AcfFields/php/mod-slider.php:229
+#: source/php/AcfFields/php/mod-slider.php:684
+#: source/php/AcfFields/php/mod-slider.php:870
+msgid "Länk"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:242
+#: source/php/AcfFields/php/mod-slider.php:705
+#: source/php/AcfFields/php/mod-slider.php:883
+msgid "No link"
+msgstr "Ingen länk"
+
+#: source/php/AcfFields/php/mod-slider.php:243
+#: source/php/AcfFields/php/mod-slider.php:706
+#: source/php/AcfFields/php/mod-slider.php:884
+msgid "Intern"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:244
+#: source/php/AcfFields/php/mod-slider.php:707
+#: source/php/AcfFields/php/mod-slider.php:885
+msgid "Extern"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:254
+#: source/php/AcfFields/php/mod-slider.php:717
+#: source/php/AcfFields/php/mod-slider.php:929
+msgid "Url"
+msgstr "Url"
+
+#: source/php/AcfFields/php/mod-slider.php:278
+#: source/php/AcfFields/php/mod-slider.php:746
+#: source/php/AcfFields/php/mod-slider.php:895
+msgid "Sida"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:307
+#: source/php/AcfFields/php/mod-slider.php:780
+#: source/php/AcfFields/php/mod-slider.php:958
+msgid "New window"
+msgstr "Nytt fönster"
+
+#: source/php/AcfFields/php/mod-slider.php:327
+#: source/php/AcfFields/php/mod-slider.php:805
+msgid "Yes, open link in new window"
+msgstr "Ja, öppna länken i nytt fönster"
+
 #: source/php/AcfFields/php/mod-slider.php:339
 #: source/php/AcfFields/php/mod-video.php:6
 #: source/php/Module/Video/Video.php:12 source/php/Module/Video/Video.php:13
 msgid "Video"
 msgstr "Video"
 
+#: source/php/AcfFields/php/mod-slider.php:357
+msgid "Ladda upp video"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:358
+msgid "Bädda in (YouTube eller Vimeo-länk)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:368
+#: source/php/AcfFields/php/mod-video.php:39
+msgid "Video: mp4"
+msgstr "Video: mp4"
+
+#: source/php/AcfFields/php/mod-slider.php:395
+#: source/php/AcfFields/php/mod-video.php:66
+msgid "Video: webm"
+msgstr "Video: webm"
+
+#: source/php/AcfFields/php/mod-slider.php:422
+#: source/php/AcfFields/php/mod-video.php:93
+msgid "Video: ogg"
+msgstr "Video: ogg"
+
+#: source/php/AcfFields/php/mod-slider.php:449
+msgid "Show pause Icon"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:460
+msgid "Show pause icon"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:468
+msgid "Pause icon transparency"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:488
+msgid "100%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:489
+msgid "90%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:490
+msgid "80%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:491
+msgid "70%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:492
+msgid "60%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:493
+msgid "50%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:494
+msgid "40%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:495
+msgid "30%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:496
+msgid "20%"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:508
+msgid "Show pause icon on hover"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:535
+msgid "Inbäddningslänk"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:559
+msgid "Placeholder Image"
+msgstr "Affischbild"
+
+#: source/php/AcfFields/php/mod-slider.php:583
+msgid "Text overlay"
+msgstr "Textlager"
+
+#: source/php/AcfFields/php/mod-slider.php:603
+msgid "Enable text overlay on this slide"
+msgstr "Aktivera textlager ovanpå sliden"
+
 #: source/php/AcfFields/php/mod-slider.php:817
 #, fuzzy
 #| msgid "Use featured image"
 msgid "Featured content"
 msgstr "Använd utvald bild"
+
+#: source/php/AcfFields/php/mod-slider.php:822
+msgid "Desktop Image"
+msgstr "Bild för desktop"
+
+#: source/php/AcfFields/php/mod-slider.php:825
+msgid "This image will be used in larger screens."
+msgstr "Denna bilden kommer att användas på större skärmar."
+
+#: source/php/AcfFields/php/mod-slider.php:846
+msgid "Mobile Image"
+msgstr "Bild för mobil"
+
+#: source/php/AcfFields/php/mod-slider.php:849
+msgid "This image will be used in smaller screens."
+msgstr "Denna bilden kommer användas på mindre skärmar."
+
+#: source/php/AcfFields/php/mod-slider.php:998
+msgid "Ange din titel här"
+msgstr ""
 
 #: source/php/AcfFields/php/mod-slider.php:1032
 #, fuzzy
@@ -3449,10 +3643,6 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-slider.php:1122
 msgid "Börja om efter sista sliden"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:1123
-msgid "Make next and previous slide partially visible"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-social.php:6
@@ -3634,18 +3824,6 @@ msgstr "Bädda in (YouTube eller Vimeo-länk)"
 #: source/php/AcfFields/php/mod-video.php:12
 msgid "Upload video"
 msgstr "Ladda upp video"
-
-#: source/php/AcfFields/php/mod-video.php:39
-msgid "Video: mp4"
-msgstr "Video: mp4"
-
-#: source/php/AcfFields/php/mod-video.php:66
-msgid "Video: webm"
-msgstr "Video: webm"
-
-#: source/php/AcfFields/php/mod-video.php:93
-msgid "Video: ogg"
-msgstr "Video: ogg"
 
 #: source/php/AcfFields/php/mod-video.php:117
 msgid "Embed link"
@@ -4118,6 +4296,10 @@ msgstr "Matar ut kod"
 #: source/php/Module/Sites/Sites.php:15
 msgid "Outputs a grid list with att sites in the network."
 msgstr ""
+
+#: source/php/Module/Slider/Slider.php:32 vendor/aristath/kirki/example.php:81
+msgid "Slider"
+msgstr "Slider"
 
 #: source/php/Module/Slider/Slider.php:33
 msgid "Sliders"
@@ -5556,6 +5738,9 @@ msgstr "Modulärt komponentssytem för WordPress"
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
+#~ msgid "Center Overlay"
+#~ msgstr "Vit text med transparent bakgrund"
+
 #~ msgid "Höger"
 #~ msgstr "Höger"
 
@@ -5771,60 +5956,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Data sorting"
 #~ msgstr "Sortera"
-
-#~ msgid "Desktop image"
-#~ msgstr "Bild för desktop"
-
-#~ msgid ""
-#~ "This image will be used in larger screens. Preferably a widescreen image."
-#~ msgstr "Denna bilden används på större skärmar."
-
-#~ msgid ""
-#~ "This image will be used in smaller screens. Preferably a square image."
-#~ msgstr ""
-#~ "Denna bilden används på mindre skärmar. Ange en kvadratisk bild (1:1)."
-
-#~ msgid "Enable text overlay on this slide"
-#~ msgstr "Aktivera textlager ovanpå sliden"
-
-#~ msgid "Text overlay"
-#~ msgstr "Textlager"
-
-#~ msgid "Bottom banner"
-#~ msgstr "Bottom banner"
-
-#~ msgid "Centered"
-#~ msgstr "Centrerad"
-
-#~ msgid "Text position"
-#~ msgstr "Textlagrets placering"
-
-#~ msgid "No link"
-#~ msgstr "Ingen länk"
-
-#~ msgid "Url"
-#~ msgstr "Url"
-
-#~ msgid "Yes, open link in new window"
-#~ msgstr "Ja, öppna länken i nytt fönster"
-
-#~ msgid "New window"
-#~ msgstr "Nytt fönster"
-
-#~ msgid "Placeholder Image"
-#~ msgstr "Affischbild"
-
-#~ msgid "Desktop Image"
-#~ msgstr "Bild för desktop"
-
-#~ msgid "This image will be used in larger screens."
-#~ msgstr "Denna bilden kommer att användas på större skärmar."
-
-#~ msgid "Mobile Image"
-#~ msgstr "Bild för mobil"
-
-#~ msgid "This image will be used in smaller screens."
-#~ msgstr "Denna bilden kommer användas på mindre skärmar."
 
 #~ msgid "Page URL"
 #~ msgstr "URL"

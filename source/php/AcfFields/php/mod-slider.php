@@ -19,9 +19,9 @@
                 'id' => '',
             ),
             'choices' => array(
-                'default' => __('Standard', 'modularity'),
-                'circle' => __('Cirkulära slides', 'modularity'),
-                'centerOverlay' => __('Center Overlay', 'modularity'),
+                'default: Bottom with card' => __('default: Bottom with card', 'modularity'),
+                'center: Centered' => __('center: Centered', 'modularity'),
+                'centerCard: Centered with card' => __('centerCard: Centered with card', 'modularity'),
             ),
             'default_value' => 'default',
             'allow_null' => 1,

@@ -16,9 +16,9 @@
                 "id": ""
             },
             "choices": {
-                "default": "Standard",
-                "circle": "Cirkul\u00e4ra slides",
-                "centerOverlay": "Center Overlay"
+                "default: Bottom with card": "default: Bottom with card",
+                "center: Centered": "center: Centered",
+                "centerCard: Centered with card": "centerCard: Centered with card"
             },
             "default_value": "default",
             "allow_null": 1,
