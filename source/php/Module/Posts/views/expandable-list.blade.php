@@ -41,8 +41,8 @@
     @endif
 
 
+    <div js-filter-container=''>
 
-    <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
 
             <div class="c-card__body">
@@ -51,7 +51,8 @@
                     'attributeList' => [
                         'type' => 'text',
                         'name' => 'accordion-search',
-                        'placeholder' =>  _e('Filter on…', 'modularity')
+                        'placeholder' =>  _e('Filter on…', 'modularity'),
+                        'js-filter-input' => ''
                     ]
                 ])
                 @endfield
@@ -62,8 +63,13 @@
         @if(count($prepareAccordion) > 0)
 
             @accordion([
-                'list'=> $prepareAccordion
+                
             ])
+                @foreach ($prepareAccordion as $accordionItem)
+                    @accordion__item(['heading' => $accordionItem['heading'],'attributeList' => ['js-filter-item' => '', 'js-filter-data' => '']])
+                        fisk!
+                    @endaccordion__item
+                @endforeach
             @endaccordion
 
         @else
