@@ -18,19 +18,22 @@
             'js-filter-container' => $id
         ]
     ])
-        @field([
-            'type' => 'text',
-            'classList' => [
-                'u-margin--2'
-            ],
-            'attributeList' => [
-                'type' => 'search',
-                'name' => 'search',
-                'js-filter-input' => $id
-            ],
-            'label' => __('Search', 'modularity')
-        ])
-        @endfield
+
+        @if($showFilter)
+            @field([
+                'type' => 'text',
+                'classList' => [
+                    'u-margin--2'
+                ],
+                'attributeList' => [
+                    'type' => 'search',
+                    'name' => 'search',
+                    'js-filter-input' => $id
+                ],
+                'label' => __('Search', 'modularity')
+            ])
+            @endfield
+        @endif
 
         @foreach($rows as $row)
             @collection__item([

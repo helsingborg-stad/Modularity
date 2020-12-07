@@ -21,6 +21,7 @@ class FilesList extends \Modularity\Module
      */
     public function data(): array
     {
+        
         $data = [];
         $data['rows'] = $this->prepareFileData();
         $data['classes'] = implode(
@@ -33,6 +34,7 @@ class FilesList extends \Modularity\Module
             )
         );
         $data['id'] = uniqid();
+        $data['showFilter'] = get_field('show_filter', $this->ID);
 
         return $data;
     }
