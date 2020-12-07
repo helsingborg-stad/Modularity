@@ -32,6 +32,7 @@ class FilesList extends \Modularity\Module
                 $this->args
             )
         );
+        $data['id'] = uniqid();
 
         return $data;
     }
