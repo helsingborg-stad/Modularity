@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const {ManifestPlugin} = require('webpack-manifest-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -157,6 +157,7 @@ module.exports = {
         new ManifestPlugin({
             // Filter manifest items
             filter: function (file) {
+                console.log(file);
                 // Don't include source maps
                 if (file.path.match(/\.(map)$/)) {
                     return false;
@@ -179,6 +180,7 @@ module.exports = {
                         file.name = pathParts[0].concat('.', pathParts[pathParts.length - 1]);
                     }
                 }
+                
                 return file;
             },
         }),
