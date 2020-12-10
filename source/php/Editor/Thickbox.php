@@ -66,16 +66,20 @@ class Thickbox
     public function enqueue()
     {
         // Script
-        wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-editor-modal.' . \Modularity\App::$assetSuffix . '.js', false, '1.0.0', true);
+        wp_register_script('modularity-thickbox', get_template_directory_uri(). '/dist/js/'
+        . \Modularity\Helper\CacheBust::name('js/modularity-editor-modal.js'));
+        // wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-editor-modal.' . \Modularity\App::$assetSuffix . '.js', false, '1.0.0', true);
         wp_enqueue_script('modularity-thickbox');
 
         // Style
-        wp_register_style(
-            'modularity-thickbox',
-            MODULARITY_URL . '/dist/css/modularity-thickbox-edit.' . \Modularity\App::$assetSuffix . '.css',
-            false,
-            '1.0.0'
-        );
+        wp_register_style('modularity-thickbox', get_template_directory_uri(). '/dist/css/'
+        . \Modularity\Helper\CacheBust::name('css/modularity-thickbox-edit.css'));
+        // wp_register_style(
+        //     'modularity-thickbox',
+        //     MODULARITY_URL . '/dist/css/modularity-thickbox-edit.' . \Modularity\App::$assetSuffix . '.css',
+        //     false,
+        //     '1.0.0'
+        // );
 
         wp_enqueue_style('modularity-thickbox');
     }
