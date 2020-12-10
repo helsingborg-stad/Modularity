@@ -157,7 +157,6 @@ module.exports = {
         new ManifestPlugin({
             // Filter manifest items
             filter: function (file) {
-                console.log(file);
                 // Don't include source maps
                 if (file.path.match(/\.(map)$/)) {
                     return false;
