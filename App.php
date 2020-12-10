@@ -9,7 +9,7 @@ class App
      * Should be "dev" or "min"
      * @var string
      */
-    public static $assetSuffix = 'dev';
+    public static $assetSuffix = 'min';
 
     public static $display = null;
     public static $moduleManager = null;
@@ -185,10 +185,17 @@ class App
             return;
         }
 
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . '/dist/css/modularity.' . self::$assetSuffix . '.css'));
+        wp_register_style('modularity', get_template_directory_uri(). '/dist/css/'
+        . \Modularity\Helper\CacheBust::name('css/modularity.css'));
+
+        // wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . '/dist/css/modularity.' . self::$assetSuffix . '.css'));
         wp_enqueue_style('modularity');
 
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
+
+        wp_register_script('modularity', get_template_directory_uri(). '/dist/js/'
+        . \Modularity\Helper\CacheBust::name('js/modularity.js'));
+
+        // wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
