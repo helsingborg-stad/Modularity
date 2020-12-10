@@ -61,6 +61,23 @@ class ExpandableListTemplate
     }
 
     /**
+     * Add proper html to heading
+     * @param array $columns
+     * @param string $heading (Optional) if included it will add the heading too
+     * @return string
+     */
+    public function prepareHeading($columns, $heading = false)
+    {
+        $html = $heading ? '<span class="column title">'.$heading.'</span>' : '';
+
+        foreach($columns as $key => $column) {
+            $html .= '<span class="column">' . $column . "</span>";
+        }
+
+        return $html;
+    }
+
+    /**
      * Prepare Data for accordion
      * @param $posts
      * @param $data
@@ -77,43 +94,39 @@ class ExpandableListTemplate
             foreach ($posts as $index => $post) {
 
                 $taxPosition = '';
-                if ((isset($data['taxonomyDisplay']['top']) && !empty($data['taxonomyDisplay']['top']))  ||
-                    (isset($data['taxonomyDisplay']['below']) && !empty($data['taxonomyDisplay']['below']))) {
+                if (!empty($data['taxonomyDisplay']['top']) || !empty($data['taxonomyDisplay']['below'])) {
                     $taxPosition = ($data['taxonomyDisplay']['top']) ?: $data['taxonomyDisplay']['below'];
                 }
 
-
                 $accordion[$index]['taxonomy'] = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxPosition);
                 $accordion[$index]['taxonomyPosition'] = $taxPosition;
+                $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
+                $accordion[$index]['content'] = apply_filters('the_content', $post->post_content);
+
+                $accordion[$index]['columns'] = null;
+
+                if (!$data['posts_hide_title_column']) {
+                    $accordion[$index]['heading'] = apply_filters('the_title',
+                        $post->post_title);
+                }
 
                 if (!empty($data['posts_list_column_titles'])) {
 
-                    if (isset($column_values) && !empty($column_values)) {
+                    if (!empty($column_values) || is_array($data['posts_list_column_titles'])) {
 
-                        if ($data['posts_hide_title_column']) {
-                            $accordion[$index]['heading'] = apply_filters('the_title',
-                                $post->post_title);
+                        foreach ($data['posts_list_column_titles'] as $column) {
+                            $accordion[$index]['columns'][sanitize_title($column->column_header)] = $column_values[sanitize_title($column->column_header)] ?: '';
                         }
-
-                        if (is_array($data['posts_list_column_titles'])) {
-                            foreach ($data['posts_list_column_titles'] as $column) {
-                                $accordion[$index]['heading'] .= isset(
-                                    $column_values[sanitize_title($column->column_header)]) ?
-                                    $column_values[sanitize_title($column->column_header)] : '';
-                            }
-                        }
-
-                    } else {
-                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
                     }
-
-                } else {
-                    $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
                 }
 
-                $accordion[$index]['content'] = apply_filters('the_content', $post->post_content);
+                $accordion[$index]['heading'] = $this->prepareHeading($accordion[$index]['columns'], $accordion[$index]['heading'] );
+
+                // die(var_dump($accordion));
             }
         }
+
+        // die(var_dump($accordion));
 
         if ($accordion < 0)
             return null;
