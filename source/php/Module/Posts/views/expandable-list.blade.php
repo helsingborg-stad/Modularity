@@ -64,6 +64,11 @@
             @accordion([
                 'list'=> $prepareAccordion
             ])
+                @foreach ($prepareAccordion as $accordionItem)
+                    @accordion__item(['heading' => $accordionItem['heading'],'attributeList' => ['js-filter-item' => '', 'js-filter-data' => '']])
+                        {!! $accordionItem['content'] !!}
+                    @endaccordion__item
+                @endforeach
             @endaccordion
 
         @else
