@@ -22,7 +22,7 @@ class Posts extends \Modularity\Module
         $this->namePlural = __('Posts', 'modularity');
         $this->description = __('Outputs selected posts in specified layout', 'modularity');
 
-        add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
+        // add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
         add_action('save_post', array($this, 'saveColumnFields'));
 
@@ -715,8 +715,8 @@ class Posts extends \Modularity\Module
      */
     public function script()
     {
-        wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-load-more-button.min.js',
-            array(), '1.0.0', true);
+        // wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-load-more-button.min.js',
+        //     array(), '1.0.0', true);
     }
 
     /**
@@ -725,8 +725,8 @@ class Posts extends \Modularity\Module
      */
     public function adminEnqueue()
     {
-        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.min.js',
-            array(), '1.0.0', true);
+        // wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.min.js',
+        //     array(), '1.0.0', true);
 
         add_action('admin_head', function () {
             global $post;

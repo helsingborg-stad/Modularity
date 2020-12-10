@@ -140,9 +140,9 @@ class Table extends \Modularity\Module
 
     public function modAssets()
     {
-        wp_register_script('mod-table', MODULARITY_URL . '/dist/js/Table/assets/table.min.js', array
-        (), '1.1.1', true);
-        wp_enqueue_script('mod-table');
+        // wp_register_script('mod-table', MODULARITY_URL . '/dist/js/Table/assets/table.min.js', array
+        // (), '1.1.1', true);
+        // wp_enqueue_script('mod-table');
 
         wp_register_style('mod-table', MODULARITY_URL . '/dist/css/Table/assets/table.min.css', array(), '1.1.1');
         wp_enqueue_style('mod-table');
@@ -154,8 +154,8 @@ class Table extends \Modularity\Module
             return;
         }
 
-        wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
-        wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.min.js', array(), '1.0.0', true);
+        // wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
+        // wp_enqueue_script('datatables-init', MODULARITY_URL . '/dist/js/Table/assets/table-init.min.js', array(), '1.0.0', true);
         wp_localize_script('datatables-init', 'datatablesLang', array(
             'sEmptyTable' => __('No data available in table', 'modularity'),
             'sInfo' => __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity'),
