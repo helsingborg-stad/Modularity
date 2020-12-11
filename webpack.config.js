@@ -12,10 +12,13 @@ const {getIfUtils, removeEmpty} = require('webpack-config-utils');
 const {ifProduction, ifNotProduction} = getIfUtils(process.env.NODE_ENV);
 var glob = require('glob');
 
-var filus = glob("./source/php/module/*/assets/*.js", {}, function (er, files) {
+var files = glob.sync("./source/php/module/*/assets/*.js")
+
+function blabla() {
     entryObject = {
         'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
         'js/modularity':                './source/js/modularity.js',
+        
         'css/modularity':               './source/sass/modularity.scss',
         'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
         // 'css/modules':                  '.source/php/Module/*/assets/*.scss'
@@ -26,9 +29,9 @@ var filus = glob("./source/php/module/*/assets/*.js", {}, function (er, files) {
         var fileNameWithoutExtension = fileName[0].match(/^[^.]*/g);
         entryObject[fileNameWithoutExtension] = files[file];  
     }
-    console.log(entryObject)
+    
     return entryObject;
-})
+}
 
 
 
@@ -38,13 +41,7 @@ module.exports = {
     /**
      * Add your entry files here
      */
-    entry: {
-        'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
-        'js/modularity':                './source/js/modularity.js',
-        'css/modularity':               './source/sass/modularity.scss',
-        'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
-        // 'css/modules':                  '.source/php/Module/*/assets/*.scss'
-    },
+    entry: blabla(),
     /**
      * Output settings
      */
