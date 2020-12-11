@@ -10,6 +10,26 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const {getIfUtils, removeEmpty} = require('webpack-config-utils');
 const {ifProduction, ifNotProduction} = getIfUtils(process.env.NODE_ENV);
+var glob = require('glob');
+
+var filus = glob("./source/php/module/*/assets/*.js", {}, function (er, files) {
+    entryObject = {
+        'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
+        'js/modularity':                './source/js/modularity.js',
+        'css/modularity':               './source/sass/modularity.scss',
+        'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
+        // 'css/modules':                  '.source/php/Module/*/assets/*.scss'
+    };
+
+    for(file in files) {
+        var fileName = files[file].match(/[^\\/:*?"<>|\r\n]+$/g);
+        var fileNameWithoutExtension = fileName[0].match(/^[^.]*/g);
+        entryObject[fileNameWithoutExtension] = files[file];  
+    }
+    console.log(entryObject)
+    return entryObject;
+})
+
 
 
 module.exports = {
@@ -19,10 +39,8 @@ module.exports = {
      * Add your entry files here
      */
     entry: {
-        'js/modules':                   './source/js/modules.js',
         'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
         'js/modularity':                './source/js/modularity.js',
-
         'css/modularity':               './source/sass/modularity.scss',
         'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
         // 'css/modules':                  '.source/php/Module/*/assets/*.scss'
@@ -143,7 +161,6 @@ module.exports = {
          * Clean dist folder
          */
         new CleanWebpackPlugin(),
-
         /**
          * Output CSS files
          */

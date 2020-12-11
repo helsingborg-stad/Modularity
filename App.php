@@ -182,10 +182,15 @@ class App
 
     public function enqueueFront()
     {
+        wp_register_script('modules', MODULARITY_URL . '/dist/js/modules.' . self::$assetSuffix . '.js', false, false, true);
+        wp_enqueue_script('modules');
+
+        wp_register_style('modules', MODULARITY_URL . '/dist/css/modules.' . self::$assetSuffix . '.css');
+        wp_enqueue_style('modules');
+
         if (!current_user_can('edit_posts')) {
             return;
         }
-
 
         // die(var_dump(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
 
@@ -292,7 +297,7 @@ class App
             && $current_screen->base != 'widgets') {
             $result = false;
         }
-
+        var_dump($current_screen);
         return $result;
     }
 
