@@ -10,35 +10,6 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const {getIfUtils, removeEmpty} = require('webpack-config-utils');
 const {ifProduction, ifNotProduction} = getIfUtils(process.env.NODE_ENV);
-var glob = require('glob');
-
-var entries = {
-    js: glob.sync("./source/php/module/*/assets/*.js"),
-    css: glob.sync("./source/php/module/*/assets/*.scss")
-}
-
-function blabla() {
-    entryObject = {
-        'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
-        'js/modularity':                './source/js/modularity.js',
-        
-        'css/modularity':               './source/sass/modularity.scss',
-        'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
-        // 'css/modules':                  '.source/php/Module/*/assets/*.scss'
-    };
-
-    for(prefixes in entries) {
-        for(paths in prefixes) {
-            var fileName = prefixes[paths].match(/[^\\/:*?"<>|\r\n]+$/g);
-            var fileNameWithoutExtension = fileName[0].match(/^[^.]*/g);
-            entryObject[fileNameWithoutExtension] = files[file];
-        }
-    }
-    
-    return entryObject;
-}
-
-
 
 module.exports = {
     mode: ifProduction('production', 'development'),
@@ -46,7 +17,21 @@ module.exports = {
     /**
      * Add your entry files here
      */
-    entry: blabla(),
+    entry: {
+        'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
+        'js/modularity':                './source/js/modularity.js',
+        'css/modularity':               './source/sass/modularity.scss',
+        'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
+
+        //Modules
+        'js/mod-latest-taxonomy':                  './source/php/Module/Latest/assets/mod-latest-taxonomy.js',
+        'js/mod-post-taxonomy':                  './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
+        'js/mod-posts-load-more-button':                  './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
+        'js/table-init':                  './source/php/Module/Table/assets/table-init.js',
+        'js/table':                  './source/php/Module/Table/assets/table.js',
+        'css/table':                  './source/php/Module/Table/assets/table.scss',
+    },
+    
     /**
      * Output settings
      */
