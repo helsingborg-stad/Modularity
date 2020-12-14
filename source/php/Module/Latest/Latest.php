@@ -108,7 +108,7 @@ class Latest extends \Modularity\Module
 
     public function enqueueScripts()
     {
-        // wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Latest/assets/mod-latest-taxonomy.min.js', array(), '1.0.0', true);
+        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/mod-latest-taxonomy.min.js', array(), '1.0.0', true);
 
         add_action('admin_head', function () {
             global $post;

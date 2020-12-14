@@ -715,8 +715,8 @@ class Posts extends \Modularity\Module
      */
     public function script()
     {
-        // wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-load-more-button.min.js',
-        //     array(), '1.0.0', true);
+        wp_enqueue_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/js/mod-posts-load-more-button.min.js',
+            array(), '1.0.0', true);
     }
 
     /**
@@ -725,8 +725,8 @@ class Posts extends \Modularity\Module
      */
     public function adminEnqueue()
     {
-        // wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/Posts/assets/mod-posts-taxonomy.min.js',
-        //     array(), '1.0.0', true);
+        wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/mod-posts-taxonomy.min.js',
+            array(), '1.0.0', true);
 
         add_action('admin_head', function () {
             global $post;
