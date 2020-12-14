@@ -140,6 +140,7 @@ class Table extends \Modularity\Module
 
     public function modAssets()
     {
+        die(var_dump(MODULARITY_URL . '/dist/js/table.min.js'));
         wp_register_script('mod-table', MODULARITY_URL . '/dist/js/table.min.js', array
         (), '1.1.1', true);
         wp_enqueue_script('mod-table');
