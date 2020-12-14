@@ -12,7 +12,10 @@ const {getIfUtils, removeEmpty} = require('webpack-config-utils');
 const {ifProduction, ifNotProduction} = getIfUtils(process.env.NODE_ENV);
 var glob = require('glob');
 
-var files = glob.sync("./source/php/module/*/assets/*.js")
+var entries = {
+    js: glob.sync("./source/php/module/*/assets/*.js"),
+    css: glob.sync("./source/php/module/*/assets/*.scss")
+}
 
 function blabla() {
     entryObject = {
@@ -24,10 +27,12 @@ function blabla() {
         // 'css/modules':                  '.source/php/Module/*/assets/*.scss'
     };
 
-    for(file in files) {
-        var fileName = files[file].match(/[^\\/:*?"<>|\r\n]+$/g);
-        var fileNameWithoutExtension = fileName[0].match(/^[^.]*/g);
-        entryObject[fileNameWithoutExtension] = files[file];  
+    for(prefixes in entries) {
+        for(paths in prefixes) {
+            var fileName = prefixes[paths].match(/[^\\/:*?"<>|\r\n]+$/g);
+            var fileNameWithoutExtension = fileName[0].match(/^[^.]*/g);
+            entryObject[fileNameWithoutExtension] = files[file];
+        }
     }
     
     return entryObject;
