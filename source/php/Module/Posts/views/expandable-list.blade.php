@@ -51,8 +51,8 @@
                     'attributeList' => [
                         'type' => 'text',
                         'name' => 'accordion-search',
-                        'placeholder' =>  _e('Filter on…', 'modularity')
-                    ]
+                    ],
+                    'label' =>  __('Filter on', 'modularity')
                 ])
                 @endfield
             </div>
