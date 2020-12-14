@@ -62,6 +62,8 @@
         @if(count($prepareAccordion) > 0)
 
             @accordion([
+                'beforeContent' => '', 
+                'afterContent' => '',
                 'list'=> $prepareAccordion
             ])
             @endaccordion
