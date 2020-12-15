@@ -1,25 +1,46 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
+// Modularity = Modularity || {};
+// Modularity.Editor = Modularity.Editor || {};
 
-Modularity.Editor.Autosave = (function ($) {
+// Modularity.Editor.Autosave = (function ($) {
 
-    function Autosave() {
-        $(function(){
-            //this.handleEvents();
-        }.bind(this));
-    }
+//     function Autosave() {
+//         $(function(){
+//             //this.handleEvents();
+//         }.bind(this));
+//     }
 
-    Autosave.prototype.save = function (selector) {
-        $('#modularity-options #publishing-action .spinner').css('visibility', 'visible');
-        var request = $(selector).serializeObject();
-        request.id = modularity_post_id;
-        request.action = 'save_modules';
+//     Autosave.prototype.save = function (selector) {
+//         $('#modularity-options #publishing-action .spinner').css('visibility', 'visible');
+//         var request = $(selector).serializeObject();
+//         request.id = modularity_post_id;
+//         request.action = 'save_modules';
 
-        $.post(ajaxurl, request, function (response) {
-            $('#modularity-options #publishing-action .spinner').css('visibility', 'hidden');
-        });
-    };
+//         $.post(ajaxurl, request, function (response) {
+//             $('#modularity-options #publishing-action .spinner').css('visibility', 'hidden');
+//         });
+//     };
 
-    return new Autosave();
+//     return new Autosave();
 
-})(jQuery);
+// })(jQuery);
+
+let lModularity = null;
+$ = jQuery;
+
+export default function Autosave(Modularity) {
+    lModularity = Modularity;
+    $(function(){
+        //this.handleEvents();
+    }.bind(this));
+}
+
+Autosave.prototype.save = function (selector) {
+    $('#modularity-options #publishing-action .spinner').css('visibility', 'visible');
+    var request = $(selector).serializeObject();
+    request.id = modularity_post_id;
+    request.action = 'save_modules';
+
+    $.post(ajaxurl, request, function (response) {
+        $('#modularity-options #publishing-action .spinner').css('visibility', 'hidden');
+    });
+};
