@@ -1,4 +1,30 @@
+import Autosave from './editor/autosave';
+import DragAndDrop from './editor/dragAndDrop';
+import Module from './editor/module';
+import Thickbox from './editor/thickbox';
+import Validate from './editor/validate';
+
+import Helpers from './helpers/helpers';
+import Widget from './helpers/widget';
+
+import Modal from './prompt/modal';
+
 var Modularity = Modularity || {};
+Modularity.Editor = Modularity.Editor || {};
+Modularity.Editor.Autosave =    new Autosave(Modularity);
+Modularity.Editor.DragAndDrop = new DragAndDrop(Modularity);
+Modularity.Editor.Module =      new Module(Modularity);
+Modularity.Editor.Thickbox =    new Thickbox(Modularity);
+Modularity.Editor.Validate =    new Validate(Modularity);
+
+Modularity.Helpers = Modularity.Helpers || {};
+Modularity.Helpers.Helpers =     new Helpers(Modularity);
+Modularity.Helpers.Widget =      new Widget(Modularity);
+
+Modularity.Prompt = Modularity.Prompt || {};
+Modularity.Prompt.Modal =        new Modal(Modularity)
+
+console.log(Modularity);
 
 (function ($) {
     $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {

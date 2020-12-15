@@ -1,17 +1,31 @@
-Modularity = Modularity || {};
-Modularity.Helpers = Modularity.Helpers || {};
+// Modularity = Modularity || {};
+// Modularity.Helpers = Modularity.Helpers || {};
 
-Modularity.Helpers = (function ($) {
+// Modularity.Helpers = (function ($) {
 
-    function Helpers() {
-        $(function(){
-        }.bind(this));
-    }
+//     function Helpers() {
+//         $(function(){
+//         }.bind(this));
+//     }
 
-    Helpers.prototype.uuid = function (separator) {
-        return Math.random().toString(36).substr(2, 9);
-    };
+//     Helpers.prototype.uuid = function (separator) {
+//         return Math.random().toString(36).substr(2, 9);
+//     };
 
-    return new Helpers();
+//     return new Helpers();
 
-})(jQuery);
+// })(jQuery);
+
+
+let lModularity = null;
+$ = jQuery;
+
+export default function Helpers(Modularity) {
+    lModularity = Modularity;
+    $(function(){
+    }.bind(this));
+}
+
+Helpers.prototype.uuid = function (separator) {
+    return Math.random().toString(36).substr(2, 9);
+};
