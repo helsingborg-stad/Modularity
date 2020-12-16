@@ -13,6 +13,8 @@ var Modularity = Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
 Modularity.Editor.Autosave =    new Autosave(Modularity);
 Modularity.Editor.DragAndDrop = new DragAndDrop(Modularity);
+console.log('Module def')
+console.log(parent)
 Modularity.Editor.Module =      new Module(Modularity);
 Modularity.Editor.Thickbox =    new Thickbox(Modularity);
 Modularity.Editor.Validate =    new Validate(Modularity);
@@ -24,7 +26,7 @@ Modularity.Helpers.Widget =      new Widget(Modularity);
 Modularity.Prompt = Modularity.Prompt || {};
 Modularity.Prompt.Modal =        new Modal(Modularity)
 
-console.log(Modularity);
+parent.Modularity = Modularity;
 
 (function ($) {
     $('input[type="checkbox"].sidebar-area-activator').on('click', function (e) {
@@ -107,3 +109,4 @@ jQuery(document).ready(function ($) {
         }
     }).trigger("change");
 });
+

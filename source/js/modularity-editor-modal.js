@@ -1,8 +1,9 @@
+let backup;
+
 (function($) {
     /**
      * Add new post callback
      */
-    console.log(parent)
     if (parent.Modularity.Editor.Thickbox.postAction == 'add' && modularity_post_action == '') {
         parent.Modularity.Editor.Thickbox.modulePostCreated(modularity_post_id);
     }
@@ -15,7 +16,7 @@
      * Edit post callback
      */
     if (parent.Modularity.Editor.Thickbox.postAction == 'edit' && modularity_post_action == '') {
-        jQuery(document).on('click', '#publish', function (e) {
+        jQuery(document).on('click', '#publish', (e) => {
             parent.Modularity.Editor.Thickbox.postAction = 'add';
         });
     }
@@ -24,7 +25,7 @@
      * Edit post callback
      */
     if (parent.Modularity.Editor.Thickbox.postAction == 'edit-inline-not-saved') {
-        jQuery(document).on('click', '#publish', function (e) {
+        jQuery(document).on('click', '#publish', (e) => {
             parent.Modularity.Editor.Thickbox.postAction = 'edit-inline-saved';
         });
     }
@@ -38,13 +39,17 @@
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
         $('#posts-filter').append('<input type="hidden" name="is_thickbox" value="true">');
 
-        $(document).on('click', '[data-modularity-action="import"]', function (e) {
+        $(document).on('click', '[data-modularity-action="import"]', (e) => {
             e.preventDefault();
 
             var postId = $(e.target).closest('tr').attr('id');
             postId = postId.split('-')[1];
 
             var module = parent.Modularity.Editor.Module.isEditingModule();
+
+            if(!module) {
+                module = backup;
+            }
 
             var request = {
                 action: 'get_post',
@@ -53,12 +58,14 @@
 
             $('body').addClass('modularity-loader-takeover');
 
-            $.post(ajaxurl, request, function (response) {
+            $.post(ajaxurl, request, (response) => {
                 var data = {
                     post_id: response.ID,
                     title: response.post_title
                 };
 
+                console.log(module)
+                console.log("hej")
                 parent.Modularity.Editor.Module.updateModule(module, data);
                 parent.Modularity.Editor.Autosave.save('form');
                 parent.Modularity.Prompt.Modal.close();
@@ -74,7 +81,7 @@
         $('.wp-list-table').addClass('modularity-wp-list-table');
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
 
-        $(document).on('click', '[data-modularity-action="import"]', function (e) {
+        $(document).on('click', '[data-modularity-action="import"]', (e) => {
             e.preventDefault();
 
             var postId = $(e.target).closest('tr').attr('id');
@@ -89,7 +96,7 @@
 
             $('body').addClass('modularity-loader-takeover');
 
-            $.post(ajaxurl, request, function (response) {
+            $.post(ajaxurl, request, (response) => {
                 var data = {
                     post_id: response.ID,
                     title: response.post_title
