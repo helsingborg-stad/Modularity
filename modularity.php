@@ -69,14 +69,19 @@ add_action('plugins_loaded', function () {
         'mod-rss'              => 'group_59535d940706c',
         'mod-script'           => 'group_56a8b9eddfced',
         'mod-slider'           => 'group_56a5e99108991',
-        'mod-social'           => 'group_56dedc26e5327',
+
         'mod-table'            => 'group_5666a2a71d806',
         'mod-text'             => 'group_5891b49127038',
         'mod-video'            => 'group_57454ae7b0e9a',
+
+        # Deactivated
+        'mod-social'           => 'group_56dedc26e5327',
         'mod-wpwidget'         => 'group_5729f4d3e7c7a',
         'mod-sites'            => 'group_58ecb6b6330f4',
+
     ));
     $acfExportManager->import();
+
 });
 
 // Start application

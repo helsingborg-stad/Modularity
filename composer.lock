@@ -358,12 +358,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/blade-component-library.git",
-                "reference": "da58c94a352c82469c1535ede10ed52669ffab60"
+                "reference": "ee0523ccf6528416d8350e0dd1b121ab8928240f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/da58c94a352c82469c1535ede10ed52669ffab60",
-                "reference": "da58c94a352c82469c1535ede10ed52669ffab60",
+                "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/ee0523ccf6528416d8350e0dd1b121ab8928240f",
+                "reference": "ee0523ccf6528416d8350e0dd1b121ab8928240f",
                 "shasum": ""
             },
             "type": "library",
@@ -383,7 +383,7 @@
                 }
             ],
             "description": "A component library based upon blade engine.",
-            "time": "2020-11-13T09:38:59+00:00"
+            "time": "2020-12-04T13:25:28+00:00"
         },
         {
             "name": "helsingborg-stad/global-blade-engine",
@@ -737,12 +737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "7826c3ae86da681dba45709cca5690923fe2c9eb"
+                "reference": "d0463779663437392fe42ff339ebc0213bd55498"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/7826c3ae86da681dba45709cca5690923fe2c9eb",
-                "reference": "7826c3ae86da681dba45709cca5690923fe2c9eb",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d0463779663437392fe42ff339ebc0213bd55498",
+                "reference": "d0463779663437392fe42ff339ebc0213bd55498",
                 "shasum": ""
             },
             "require": {
@@ -808,7 +808,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2020-11-08T12:37:00+00:00"
+            "time": "2020-11-28T14:25:28+00:00"
         },
         {
             "name": "psr/container",

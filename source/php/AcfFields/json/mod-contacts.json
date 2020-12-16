@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_5805e5dc1da44",
-            "label": "Display mode",
+            "label": "Visningsl\u00e4ge",
             "name": "display_mode",
             "type": "select",
             "instructions": "",
@@ -16,13 +16,11 @@
                 "id": ""
             },
             "choices": {
-                "cards": "Cards",
-                "vertical": "Horizontal cards",
-                "list": "List"
+                "cards": "Kort",
+                "vertical": "Horisontella kort",
+                "list": "Lista"
             },
-            "default_value": [
-                "cards"
-            ],
+            "default_value": "cards",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -32,7 +30,7 @@
         },
         {
             "key": "field_5805e5dc1dc55",
-            "label": "Contacts",
+            "label": "Kontakter",
             "name": "contacts",
             "type": "flexible_content",
             "instructions": "",
@@ -52,7 +50,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5805e5dc26dde",
-                            "label": "Image",
+                            "label": "Bild",
                             "name": "image",
                             "type": "image",
                             "instructions": "",
@@ -95,7 +93,7 @@
                         },
                         {
                             "key": "field_5805e5dc276e1",
-                            "label": "Last name",
+                            "label": "Efternamn",
                             "name": "last_name",
                             "type": "text",
                             "instructions": "",
@@ -114,7 +112,7 @@
                         },
                         {
                             "key": "field_5805e5dc2771c",
-                            "label": "Work title",
+                            "label": "Jobbtitel",
                             "name": "work_title",
                             "type": "text",
                             "instructions": "",
@@ -133,7 +131,7 @@
                         },
                         {
                             "key": "field_5805e5dc277e3",
-                            "label": "Administration unit",
+                            "label": "F\u00f6rvaltning",
                             "name": "administration_unit",
                             "type": "text",
                             "instructions": "",
@@ -170,7 +168,7 @@
                         },
                         {
                             "key": "field_5805e62f94d0f",
-                            "label": "Phone",
+                            "label": "Telefon",
                             "name": "phone_numbers",
                             "type": "repeater",
                             "instructions": "",
@@ -204,9 +202,7 @@
                                         "phone": "Fasttelefon",
                                         "smartphone": "Mobil"
                                     },
-                                    "default_value": [
-                                        "phone"
-                                    ],
+                                    "default_value": "phone",
                                     "allow_null": 0,
                                     "multiple": 0,
                                     "ui": 0,
@@ -273,9 +269,7 @@
                                         "twitter": "Twitter",
                                         "instagram": "Instagram"
                                     },
-                                    "default_value": [
-                                        "facebook"
-                                    ],
+                                    "default_value": "facebook",
                                     "allow_null": 0,
                                     "multiple": 0,
                                     "ui": 0,
@@ -322,7 +316,7 @@
                         },
                         {
                             "key": "field_5805e5dc28e30",
-                            "label": "Visiting address",
+                            "label": "Bes\u00f6ksadress",
                             "name": "visiting_address",
                             "type": "textarea",
                             "instructions": "",
@@ -341,7 +335,7 @@
                         },
                         {
                             "key": "field_5805e5dc29114",
-                            "label": "Opening hours",
+                            "label": "\u00d6ppettider",
                             "name": "opening_hours",
                             "type": "textarea",
                             "instructions": "",
@@ -360,7 +354,7 @@
                         },
                         {
                             "key": "field_5805e5dc29182",
-                            "label": "Other",
+                            "label": "Annat",
                             "name": "other",
                             "type": "wysiwyg",
                             "instructions": "",
@@ -384,12 +378,12 @@
                 "5757b97ffecc6": {
                     "key": "5757b97ffecc6",
                     "name": "user",
-                    "label": "User",
+                    "label": "Anv\u00e4ndare",
                     "display": "block",
                     "sub_fields": [
                         {
                             "key": "field_5805e5dc291c4",
-                            "label": "Select user",
+                            "label": "V\u00e4lj anv\u00e4ndare",
                             "name": "user",
                             "type": "user",
                             "instructions": "",
@@ -416,7 +410,7 @@
         },
         {
             "key": "field_5805e5dc1ddcd",
-            "label": "Columns",
+            "label": "Kolumner",
             "name": "columns",
             "type": "select",
             "instructions": "",
@@ -448,9 +442,7 @@
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": [
-                "grid-md-12"
-            ],
+            "default_value": "grid-md-12",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -482,7 +474,7 @@
             "message": "",
             "default_value": 0,
             "ui": 1,
-            "ui_on_text": "Enabled",
+            "ui_on_text": "Aktiverad",
             "ui_off_text": "Disabled"
         },
         {
@@ -531,7 +523,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": ""
 }]
 
