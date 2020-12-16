@@ -137,8 +137,7 @@ $ = jQuery;
 
 export default function DragAndDrop(Modularity) {
     lModularity = Modularity;
-    console.log(Modularity)
-    console.log(lModularity)
+
     $(function(){
 
         if (typeof pagenow !== 'undefined' && pagenow == 'admin_page_modularity-editor') {
