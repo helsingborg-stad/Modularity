@@ -48,12 +48,12 @@
             <div class="c-card__body">
                 @field([
                     'type' => 'text',
+                    'label' =>  __('Filter on…', 'modularity'),
                     'attributeList' => [
                         'type' => 'text',
                         'name' => 'accordion-search',
-                        'placeholder' =>  _e('Filter on…', 'modularity'),
                         'js-filter-input' => ''
-                    ]
+                    ],
                 ])
                 @endfield
             </div>
