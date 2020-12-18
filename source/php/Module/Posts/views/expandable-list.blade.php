@@ -76,7 +76,7 @@
                 @typography([
                     'element' => "p"
                 ])
-                    {{ __('Nothing to display…', 'modularity'); }}
+                    {{ __('Nothing to display…', 'modularity') }}
                 @endtypography
             </section>
 
