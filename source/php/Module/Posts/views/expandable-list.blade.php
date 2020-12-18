@@ -41,18 +41,19 @@
     @endif
 
 
+    <div js-filter-container=''>
 
-    <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
 
             <div class="c-card__body">
                 @field([
                     'type' => 'text',
+                    'label' =>  __('Filter on…', 'modularity'),
                     'attributeList' => [
                         'type' => 'text',
                         'name' => 'accordion-search',
+                        'js-filter-input' => ''
                     ],
-                    'label' =>  __('Filter on', 'modularity')
                 ])
                 @endfield
             </div>
@@ -61,11 +62,12 @@
 
         @if(count($prepareAccordion) > 0)
 
-            @accordion([
-                'beforeContent' => '', 
-                'afterContent' => '',
-                'list'=> $prepareAccordion
-            ])
+            @accordion([])
+                @foreach ($prepareAccordion as $accordionItem)
+                    @accordion__item(['heading' => $accordionItem['heading'],'attributeList' => ['js-filter-item' => '', 'js-filter-data' => '']])
+                        {!! $accordionItem['content'] !!}
+                    @endaccordion__item
+                @endforeach
             @endaccordion
 
         @else
@@ -74,7 +76,7 @@
                 @typography([
                     'element' => "p"
                 ])
-                    _e('Nothing to display…', 'modularity');
+                    {{ __('Nothing to display…', 'modularity') }}
                 @endtypography
             </section>
 
@@ -83,8 +85,3 @@
     </div>
 
 @endcard
-
-{{-- <div class="{{ $classes }}">
-
-
-</div> --}}
