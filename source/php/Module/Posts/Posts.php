@@ -21,19 +21,20 @@ class Posts extends \Modularity\Module
         $this->nameSingular = __('Posts', 'modularity');
         $this->namePlural = __('Posts', 'modularity');
         $this->description = __('Outputs selected posts in specified layout', 'modularity');
-
+        
         add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
         add_action('save_post', array($this, 'saveColumnFields'));
-
+        
         add_action('wp_ajax_get_taxonomy_types_v2', array($this, 'getTaxonomyTypes'));
         add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
-
+        
         add_action('wp_ajax_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
         add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
-
+        
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
+        
 
     }
 
@@ -229,7 +230,6 @@ class Posts extends \Modularity\Module
         }
 
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
-        $data['taxonomyDisplay'] = $this->getTaxonomyDisplay($fields);
         $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
         $data['posts_data_source'] = $fields->posts_data_source;
         $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
@@ -251,44 +251,6 @@ class Posts extends \Modularity\Module
         }
 
         return get_field('taxonomy_display', $this->ID);
-    }
-
-    /**
-     * @param $fields
-     * @return array
-     */
-    public function getTaxonomyDisplay($fields)
-    {
-        if (empty(get_field('taxonomy_display', $this->ID))) {
-            return array();
-        }
-
-        $taxonomyDisplay = array();
-        $taxonomiesToDisplay = get_field('taxonomy_display', $this->ID);
-
-        foreach ((array)$taxonomiesToDisplay as $taxonomy) {
-            $placement = get_field('taxonomy_' . sanitize_title($taxonomy) . '_placement', $this->ID);
-
-            switch ($placement) {
-                case 'topleft':
-                case 'topright':
-                case 'bottomleft':
-                case 'bottomright':
-                case 'center':
-                    $taxonomyDisplay['top'][$taxonomy] = $placement;
-                    break;
-
-                case 'below':
-                    $taxonomyDisplay['below'][$taxonomy] = $placement;
-                    break;
-
-                default:
-                    $taxonomyDisplay[$placement][$taxonomy] = $placement;
-                    break;
-            }
-        }
-
-        return $taxonomyDisplay;
     }
 
     /**
@@ -365,52 +327,6 @@ class Posts extends \Modularity\Module
             'readonly' => 0,
         );
 
-        foreach ($taxonomies as $taxonomy) {
-            $choices = array(
-                'topleft' => 'Top left',
-                'topright' => 'Top right',
-                'bottomleft' => 'Bottom left',
-                'bottomright' => 'Bottom right',
-                'center' => 'Centered',
-                'below' => 'Below'
-            );
-
-            $choices = apply_filters('Modularity/Module/mod-posts/TaxonomyDisplayChoises', $choices, $taxonomy);
-
-            $fieldgroup['fields'][] = array(
-                'key' => 'field_56f00fe21f918_' . md5($taxonomy->name),
-                'label' => 'Placement: ' . $taxonomy->label,
-                'name' => 'taxonomy_' . sanitize_title($taxonomy->name) . '_placement',
-                'type' => 'radio',
-                'layout' => 'horizontal',
-                'instructions' => '',
-                'required' => 0,
-                'conditional_logic' => 0,
-                'wrapper' => array(
-                    'width' => '',
-                    'class' => '',
-                    'id' => '',
-                ),
-                'choices' => $choices,
-                'default_value' => array(),
-                'allow_null' => 0,
-                'multiple' => 0,
-                'ui' => 0,
-                'ajax' => 0,
-                'placeholder' => '',
-                'disabled' => 0,
-                'readonly' => 0,
-                "conditional_logic" => array(
-                    array(
-                        array(
-                            'field' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
-                            'operator' => '==',
-                            'value' => $taxonomy->name
-                        )
-                    )
-                )
-            );
-        }
 
         acf_add_local_field_group($fieldgroup);
     }
@@ -882,8 +798,6 @@ class Posts extends \Modularity\Module
 
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
-            'grid' => 'index',
-            'circular' => 'index',
             'items' => 'index'
         ];
 
