@@ -62,12 +62,10 @@
 
         @if(count($prepareAccordion) > 0)
 
-            @accordion([
-                
-            ])
+            @accordion([])
                 @foreach ($prepareAccordion as $accordionItem)
                     @accordion__item(['heading' => $accordionItem['heading'],'attributeList' => ['js-filter-item' => '', 'js-filter-data' => '']])
-                        fisk!
+                        {!! $accordionItem['content'] !!}
                     @endaccordion__item
                 @endforeach
             @endaccordion
