@@ -8,12 +8,12 @@
     @endtypography
 @endif
 
-
 @slider([
-    'showStepper' => true,
-    'autoSlide' => $c_autoslide
+    'autoSlide'     => $autoslide,
+    'ratio'         => $ratio ?? '16:9',
+    'repeatSlide'   => $wrapAround
 ])
     @foreach ($slides as $slide)
-        @include('partials.' . $slide->acf_fc_layout, ['layout' => $slide_align])
+        @include('partials.item')
     @endforeach
 @endslider
