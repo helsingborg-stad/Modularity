@@ -795,10 +795,12 @@ class Posts extends \Modularity\Module
      * @return mixed
      */
     public static function replaceDeprecatedTemplate($templateSlug){
-
+  
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
-            'items' => 'index'
+            'items' => 'index',
+            'grid' => 'index',
+            'news' => 'index'
         ];
 
         if (array_key_exists($templateSlug, $deprecatedTemplates)){
