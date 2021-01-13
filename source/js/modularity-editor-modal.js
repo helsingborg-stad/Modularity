@@ -1,5 +1,3 @@
-let backup;
-
 (function($) {
     /**
      * Add new post callback
@@ -47,10 +45,6 @@ let backup;
 
             var module = parent.Modularity.Editor.Module.isEditingModule();
 
-            if(!module) {
-                module = backup;
-            }
-
             var request = {
                 action: 'get_post',
                 id: postId
@@ -64,8 +58,6 @@ let backup;
                     title: response.post_title
                 };
 
-                console.log(module)
-                console.log("hej")
                 parent.Modularity.Editor.Module.updateModule(module, data);
                 parent.Modularity.Editor.Autosave.save('form');
                 parent.Modularity.Prompt.Modal.close();
