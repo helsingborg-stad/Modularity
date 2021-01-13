@@ -53,10 +53,10 @@ class ExpandableListTemplate
                     }
                 }
             } else {
-                $column_values = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
+                $column_values[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
             }
         }
-
+        
         return $column_values;
 
     }
@@ -98,7 +98,7 @@ class ExpandableListTemplate
 
                         if (is_array($data['posts_list_column_titles'])) {
                             foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
-                                $accordion[$index]['column_values'][$colIndex] = $column_values[sanitize_title($column->column_header)] ?? '';
+                                $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title($column->column_header)] ?? '';
                             }
                         }
 
