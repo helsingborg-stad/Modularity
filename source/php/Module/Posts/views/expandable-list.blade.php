@@ -2,7 +2,10 @@
 
 @card([
     'heading' => apply_filters('the_title', $post_title),
-    'classList' => [$classes]
+    'classList' => [$classes],
+    'attributeList' => [
+        'js-filter-container' => $ID
+    ]
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
@@ -40,8 +43,6 @@
         </header>
     @endif
 
-
-
     <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
 
@@ -49,10 +50,11 @@
                 @field([
                     'type' => 'text',
                     'attributeList' => [
-                        'type' => 'text',
-                        'name' => 'accordion-search',
+                        'type' => 'search',
+                        'name' => 'search',
+                        'js-filter-input' => $ID
                     ],
-                    'label' =>  __('Filter on', 'modularity')
+                    'label' => __('Search', 'municipio')
                 ])
                 @endfield
             </div>
@@ -62,10 +64,18 @@
         @if(count($prepareAccordion) > 0)
 
             @accordion([
-                'beforeContent' => '', 
-                'afterContent' => '',
-                'list'=> $prepareAccordion
             ])
+                @foreach ($prepareAccordion as $accordionItem)
+                    @accordion__item([
+                        'heading' => $accordionItem['heading'],
+                        'attributeList' => [
+                            'js-filter-item' => '',
+                            'js-filter-data' => ''
+                            ]
+                        ])
+                        <p>{!! $accordionItem['content'] !!}</p>
+                    @endaccordion__item
+                @endforeach
             @endaccordion
 
         @else
