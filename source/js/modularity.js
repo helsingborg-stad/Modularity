@@ -9,12 +9,11 @@ import Widget from './helpers/widget';
 
 import Modal from './prompt/modal';
 
-var Modularity = Modularity || {};
+if (!parent.Modularity) {
+var Modularity = parent.Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
 Modularity.Editor.Autosave =    new Autosave(Modularity);
 Modularity.Editor.DragAndDrop = new DragAndDrop(Modularity);
-console.log('Module def')
-console.log(parent)
 Modularity.Editor.Module =      new Module(Modularity);
 Modularity.Editor.Thickbox =    new Thickbox(Modularity);
 Modularity.Editor.Validate =    new Validate(Modularity);
@@ -110,3 +109,4 @@ jQuery(document).ready(function ($) {
     }).trigger("change");
 });
 
+}

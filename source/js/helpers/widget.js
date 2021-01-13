@@ -16,7 +16,6 @@ export default function Widget(Modularity) {
             });
 
             Modularity.Editor.Module.editingModule = $(e.target).closest('.widget-inside');
-            console.log($(e.target).closest('.widget-inside'))
 
             Modularity.Editor.Thickbox.postAction = 'import-widget';
             Modularity.Prompt.Modal.open(importUrl);
@@ -33,7 +32,6 @@ export default function Widget(Modularity) {
             }
 
             editingModule = $(e.target).closest('li');
-            console.log($(e.target).closest('li'))
 
             Modularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
         }.bind(this));

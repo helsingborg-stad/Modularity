@@ -13,10 +13,9 @@ export default function Thickbox(Modularity) {
 }
 
 Thickbox.prototype.modulePostCreated = function (postId) {
-    console.log("module post created")
-    Modularity.Prompt.Modal.close();
+    lModularity.Prompt.Modal.close();
 
-    var module = Modularity.Editor.Module.isEditingModule();
+    var module = parent.Modularity.Editor.Module.isEditingModule();
 
     var request = {
         action: 'get_post',
@@ -28,11 +27,8 @@ Thickbox.prototype.modulePostCreated = function (postId) {
             post_id: response.ID,
             title: response.post_title
         };
-        console.log("module post sent")
 
-
-        console.log(module)
-        Modularity.Editor.Module.updateModule(module, data);
-        Modularity.Editor.Autosave.save('form');
+        lModularity.Editor.Module.updateModule(module, data);
+        lModularity.Editor.Autosave.save('form');
     }, 'json');
 };

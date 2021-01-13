@@ -13,7 +13,6 @@ var thickboxOptions = {
 var editingModule = false;
 
 export default function Module(Modularity) {
-    console.log("module init")
     lModularity = Modularity;
 
     $(function(){
@@ -61,7 +60,6 @@ Module.prototype.loadModules = function (postId) {
  * @return {boolean/string}
  */
 Module.prototype.isEditingModule = function() {
-    console.log(editingModule);
     return editingModule;
 };
 
@@ -196,7 +194,6 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
  */
 Module.prototype.updateModule = function (module, data) {
     // Href
-    console.log(module)
     module.find('a.modularity-js-thickbox-open').attr('href', this.getThickBoxUrl('edit', {
         postId: data.post_id
     }));
@@ -238,7 +235,6 @@ Module.prototype.handleEvents = function() {
 
         var el = $(e.target).closest('a');
         editingModule = $(e.target).closest('li');
-        console.log(editingModule);
 
         lModularity.Editor.Thickbox.postAction = 'import';
         lModularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
@@ -253,10 +249,7 @@ Module.prototype.handleEvents = function() {
             lModularity.Editor.Thickbox.postAction = 'edit';
         }
 
-        console.log(editingModule)
-
         editingModule = $(e.target).closest('li');
-        console.log(editingModule)
 
         lModularity.Prompt.Modal.open($(e.target).closest('a').attr('href'));
     }.bind(this));
