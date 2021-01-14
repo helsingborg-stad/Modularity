@@ -39,49 +39,15 @@ class Slider extends \Modularity\Module
 
         //Get settings
         $data = get_fields($this->ID);
-
-        //Toggle of bleed
-        if(in_array('allowBleed', (array) $data['additional_options'])) {
-            $this->bleed = true;
-        }
-
         //Assign settings to objects
         $data['classes'] = $this->getClasses($data);
         $data['flickity'] = $this->getFlickitySettings($data);
-
-        //Get slides & columns
+        $data['flickityDecode'] = json_decode($data['flickity']);
+        $data['autoslide'] = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
+        $data['ratio']   = preg_replace('/ratio-/', '', $data['slider_format']);
+        $data['wrapAround'] = in_array('wrapAround', $data['additional_options']);        
+        //Get slides
         $data['slides']         = $this->prepareSlides($data);
-
-        $data['slideColumns']   = $this->slideColumns;
-
-        $data['c_autoslide'] = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
-
-        //Duplicate output of slides if columnize. This is due to bad handlig of flickity [Avoids flickering on first/last slide].
-        // if ($this->bleed) {
-        //     $data['slides'] = array_merge($data['slides'], $data['slides']);
-        // }
-
-        //Calculate slider size (with or without bleed option)
-        if ($this->bleed) {
-            $data['slideWidth'] = (100/$this->slideColumns) * $this->bleedAmout[$this->slideColumns-1];
-            $data['slidePaddingHeight'] = ($this->paddingRatios[$data['slider_format']] / $this->slideColumns) * $this->bleedAmout[$this->slideColumns-1];
-            $data['dataBleed'] = true;
-        } else {
-            $data['slideWidth'] = (100/$this->slideColumns);
-            $data['slidePaddingHeight'] = $this->paddingRatios[$data['slider_format']] / $this->slideColumns;
-            $data['dataBleed'] = false;
-        }
-
-        //Slide cols in smaller resolutions
-        $data['slideWidthMobile'] = $data['slideWidth']*2;
-        $data['slidePaddingHeightMobile'] = $data['slidePaddingHeight'] * 2;
-        $data['slidePaddingHeightDefault'] = $this->paddingRatios[$data['slider_format']];
-
-        //Exception for cicle model
-        if ($data['slider_layout'] === 'circle') {
-            $data['slider_format'] = null;
-            $data['slidePaddingHeight'] = null;
-        }
 
         return $data;
     }
@@ -150,6 +116,10 @@ class Slider extends \Modularity\Module
 
             if (isset($slide['show_pause_icon_on_hover']) && $slide['show_pause_icon_on_hover'] == true) {
                 $slide['slider-show-on-hover'] = 'slider-show-on-hover';
+            }
+
+            if(!is_string($slide['textblock_position'])) {
+                $slide['textblock_position'] = 'bottom';
             }
 
             $slide = (object)$slide;

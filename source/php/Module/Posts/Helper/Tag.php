@@ -16,12 +16,12 @@ class Tag
      */
     public function getTags($postId, $tax)
     {
+        
         if (!$tax || !$postId) {
             return null;
         }
 
-        foreach ($tax as $taxonomy => $placement) {
-
+        foreach ($tax as $key => $taxonomy) {
             $terms = wp_get_post_terms($postId, $taxonomy);
 
             if (count($terms) > 0) {

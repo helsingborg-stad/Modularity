@@ -35,7 +35,7 @@
                 </div>
                 @if($post->tags)
                     <div class="c-card__footer">
-                        @tags ([$post->tags])
+                        @tags (['tags' => $post->tags])
                         @endtags
                     </div>
                 @endif
@@ -44,6 +44,7 @@
         </div>
     @endforeach
 </div>
+
 
 @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">

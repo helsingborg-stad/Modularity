@@ -84,7 +84,7 @@
                 @typography([
                     'element' => "p"
                 ])
-                    _e('Nothing to display…', 'modularity');
+                    {{ __('Nothing to display…', 'modularity') }}
                 @endtypography
             </section>
 
@@ -93,8 +93,3 @@
     </div>
 
 @endcard
-
-{{-- <div class="{{ $classes }}">
-
-
-</div> --}}
