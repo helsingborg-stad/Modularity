@@ -2,7 +2,10 @@
 
 @card([
     'heading' => apply_filters('the_title', $post_title),
-    'classList' => [$classes]
+    'classList' => [$classes],
+    'attributeList' => [
+        'js-filter-container' => $ID
+    ]
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
@@ -14,19 +17,44 @@
         </div>
     @endif
 
-    <div js-filter-container=''>
+    @if (isset($posts_list_column_titles) && $posts_list_column_titles)
+        <header class="accordion-table accordion-table-head">
+            @if ($posts_hide_title_column)
 
+                @typography([
+                    'element' => "span",
+                    'classList' => ['column-header']
+                ])
+                    {{ isset($title_column_label) && !empty($title_column_label) ? $title_column_label : __('Title', 'modularity') }}
+                @endtypography
+
+            @endif
+
+            @foreach ($posts_list_column_titles as $column)
+
+                    @typography([
+                        'element' => "span",
+                        'classList' => ['column-header']
+                    ])
+                        {{ $column->column_header }}
+                    @endtypography
+
+            @endforeach
+        </header>
+    @endif
+
+    <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
 
             <div class="c-card__body">
                 @field([
                     'type' => 'text',
-                    'label' =>  __('Filter on…', 'modularity'),
                     'attributeList' => [
-                        'type' => 'text',
-                        'name' => 'accordion-search',
-                        'js-filter-input' => ''
+                        'type' => 'search',
+                        'name' => 'search',
+                        'js-filter-input' => $ID
                     ],
+                    'label' => __('Search', 'municipio')
                 ])
                 @endfield
             </div>
@@ -61,7 +89,6 @@
         
         
         @if(count($prepareAccordion) > 0)
-           
             @accordion([])
                 @foreach ($prepareAccordion as $accordionItem)
 

@@ -59,7 +59,7 @@ class Table extends \Modularity\Module
         ];
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
         $data['tableClasses']   = $this->getTableClasses($data);
-        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel', 'c-card--default'), $this->post_type, $this->args));
         $data['m_table']        = (object)$data['m_table'];
 
         return $data;
