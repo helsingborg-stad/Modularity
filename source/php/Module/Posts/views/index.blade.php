@@ -19,9 +19,12 @@
                 'classList' => $classes,
 
             ])
-                <div class="c-card__image c-card__image--secondary">
-                    <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
-                </div>
+
+                @if(isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
+                    <div class="c-card__image c-card__image--secondary">
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                    </div>
+                @endif
             
                 <div class="c-card__body">
                     @typography([
