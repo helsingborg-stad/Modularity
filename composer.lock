@@ -125,12 +125,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d"
+                "reference": "df100b004465aa07b686f1c2245bbb4794498b07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d",
-                "reference": "1a0357fccad9d1cc1ea0c9a05b8847fbccccb78d",
+                "url": "https://api.github.com/repos/composer/installers/zipball/df100b004465aa07b686f1c2245bbb4794498b07",
+                "reference": "df100b004465aa07b686f1c2245bbb4794498b07",
                 "shasum": ""
             },
             "require": {
@@ -250,7 +250,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v1.10.0"
+                "source": "https://github.com/composer/installers/tree/main"
             },
             "funding": [
                 {
@@ -266,7 +266,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-14T11:07:16+00:00"
+            "time": "2021-01-14T20:30:14+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -407,12 +407,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/blade-component-library.git",
-                "reference": "eb9127c42e7c2b4277bc3bf965fa40ed0574d605"
+                "reference": "862a275eb5b2be15369c95182714ad4d7c94d2ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/eb9127c42e7c2b4277bc3bf965fa40ed0574d605",
-                "reference": "eb9127c42e7c2b4277bc3bf965fa40ed0574d605",
+                "url": "https://api.github.com/repos/helsingborg-stad/blade-component-library/zipball/862a275eb5b2be15369c95182714ad4d7c94d2ea",
+                "reference": "862a275eb5b2be15369c95182714ad4d7c94d2ea",
                 "shasum": ""
             },
             "default-branch": true,
@@ -437,7 +437,7 @@
                 "issues": "https://github.com/helsingborg-stad/blade-component-library/issues",
                 "source": "https://github.com/helsingborg-stad/blade-component-library/tree/master"
             },
-            "time": "2021-01-14T15:01:23+00:00"
+            "time": "2021-01-15T14:57:59+00:00"
         },
         {
             "name": "helsingborg-stad/global-blade-engine",
