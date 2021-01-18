@@ -11,24 +11,24 @@
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "100",
                 "class": "",
                 "id": ""
             },
             "choices": {
-                "ratio-36-7": "Bred (36:7)",
-                "ratio-10-3": "Bred (10:3)",
+                "ratio-36-7": "Wider (36:7)",
+                "ratio-10-3": "Wide (10:3)",
                 "ratio-16-9": "Normal (16:9, video)",
-                "ratio-4-3": "Kvadrat (4:3)"
+                "ratio-4-3": "Square (4:3)"
             },
             "default_value": [
                 "ratio-16-9"
             ],
             "allow_null": 1,
             "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
+            "ui": 1,
             "ajax": 0,
+            "return_format": "value",
             "placeholder": ""
         },
         {
@@ -40,7 +40,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "51",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -67,7 +67,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "49",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -81,14 +81,14 @@
         },
         {
             "key": "field_58933fb6f5ed4",
-            "label": "Additional settings",
+            "label": "Wrap around",
             "name": "additional_options",
             "type": "checkbox",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
@@ -117,8 +117,8 @@
                 "class": "",
                 "id": ""
             },
-            "layouts": [
-                {
+            "layouts": {
+                "56a5ed29398db": {
                     "key": "56a5ed29398db",
                     "name": "image",
                     "label": "Bild",
@@ -214,7 +214,7 @@
                             "label": "Text color",
                             "name": "text_color",
                             "type": "select",
-                            "instructions": "Vilken f\u00e4rg som ska anv\u00e4ndas p\u00e5 denna slide.",
+                            "instructions": "What color to use on this slide",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -223,9 +223,9 @@
                                 "id": ""
                             },
                             "choices": {
-                                "black": "Svart",
-                                "white": "Vit",
-                                "theme": "Theme based"
+                                "black": "Black",
+                                "white": "White",
+                                "theme": "Inherit theme"
                             },
                             "default_value": [
                                 "theme"
@@ -251,10 +251,10 @@
                                 "id": ""
                             },
                             "choices": {
-                                "none": "Ingen\/Transparent",
-                                "white": "Vit",
-                                "theme": "Thema Baserad",
-                                "theme-opacity": "Tema Baserad med Transparans"
+                                "none": "No background",
+                                "white": "White",
+                                "theme": "Inherit theme",
+                                "theme-opacity": "Inherit theme, add transparency"
                             },
                             "default_value": [
                                 "white"
@@ -407,7 +407,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "56a5e9a5bbaf1": {
                     "key": "56a5e9a5bbaf1",
                     "name": "video",
                     "label": "Video",
@@ -853,7 +853,7 @@
                     "min": "",
                     "max": ""
                 },
-                {
+                "573d5aca26b8e": {
                     "key": "573d5aca26b8e",
                     "name": "featured",
                     "label": "Featured content",
@@ -1035,10 +1035,10 @@
                     "min": "",
                     "max": ""
                 }
-            ],
+            },
+            "button_label": "Add slide",
             "min": 1,
-            "max": "",
-            "button_label": "Add slide"
+            "max": 6
         }
     ],
     "location": [

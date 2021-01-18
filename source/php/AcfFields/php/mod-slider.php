@@ -14,24 +14,24 @@
             'required' => 1,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '50',
+                'width' => '100',
                 'class' => '',
                 'id' => '',
             ),
             'choices' => array(
-                'ratio-36-7' => __('Bred (36:7)', 'modularity'),
-                'ratio-10-3' => __('Bred (10:3)', 'modularity'),
+                'ratio-36-7' => __('Wider (36:7)', 'modularity'),
+                'ratio-10-3' => __('Wide (10:3)', 'modularity'),
                 'ratio-16-9' => __('Normal (16:9, video)', 'modularity'),
-                'ratio-4-3' => __('Kvadrat (4:3)', 'modularity'),
+                'ratio-4-3' => __('Square (4:3)', 'modularity'),
             ),
             'default_value' => array(
                 0 => 'ratio-16-9',
             ),
             'allow_null' => 1,
             'multiple' => 0,
-            'ui' => 0,
-            'return_format' => 'value',
+            'ui' => 1,
             'ajax' => 0,
+            'return_format' => 'value',
             'placeholder' => '',
         ),
         1 => array(
@@ -43,7 +43,7 @@
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '51',
+                'width' => '33',
                 'class' => '',
                 'id' => '',
             ),
@@ -70,7 +70,7 @@
                 ),
             ),
             'wrapper' => array(
-                'width' => '49',
+                'width' => '33',
                 'class' => '',
                 'id' => '',
             ),
@@ -84,14 +84,14 @@
         ),
         3 => array(
             'key' => 'field_58933fb6f5ed4',
-            'label' => __('Additional settings', 'modularity'),
+            'label' => __('Wrap around', 'modularity'),
             'name' => 'additional_options',
             'type' => 'checkbox',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '',
+                'width' => '33',
                 'class' => '',
                 'id' => '',
             ),
@@ -121,7 +121,7 @@
                 'id' => '',
             ),
             'layouts' => array(
-                0 => array(
+                '56a5ed29398db' => array(
                     'key' => '56a5ed29398db',
                     'name' => 'image',
                     'label' => __('Bild', 'modularity'),
@@ -217,7 +217,7 @@
                             'label' => 'Text color',
                             'name' => 'text_color',
                             'type' => 'select',
-                            'instructions' => 'Vilken färg som ska användas på denna slide.',
+                            'instructions' => 'What color to use on this slide',
                             'required' => 1,
                             'conditional_logic' => 0,
                             'wrapper' => array(
@@ -226,9 +226,9 @@
                                 'id' => '',
                             ),
                             'choices' => array(
-                                'black' => 'Svart',
-                                'white' => 'Vit',
-                                'theme' => 'Theme based',
+                                'black' => 'Black',
+                                'white' => 'White',
+                                'theme' => 'Inherit theme',
                             ),
                             'default_value' => array(
                                 0 => 'theme',
@@ -254,10 +254,10 @@
                                 'id' => '',
                             ),
                             'choices' => array(
-                                'none' => 'Ingen/Transparent',
-                                'white' => 'Vit',
-                                'theme' => 'Thema Baserad',
-                                'theme-opacity' => 'Tema Baserad med Transparans',
+                                'none' => 'No background',
+                                'white' => 'White',
+                                'theme' => 'Inherit theme',
+                                'theme-opacity' => 'Inherit theme, add transparency',
                             ),
                             'default_value' => array(
                                 0 => 'white',
@@ -410,7 +410,7 @@
                     'min' => '',
                     'max' => '',
                 ),
-                1 => array(
+                '56a5e9a5bbaf1' => array(
                     'key' => '56a5e9a5bbaf1',
                     'name' => 'video',
                     'label' => __('Video', 'modularity'),
@@ -856,7 +856,7 @@
                     'min' => '',
                     'max' => '',
                 ),
-                2 => array(
+                '573d5aca26b8e' => array(
                     'key' => '573d5aca26b8e',
                     'name' => 'featured',
                     'label' => __('Featured content', 'modularity'),
@@ -1039,9 +1039,9 @@
                     'max' => '',
                 ),
             ),
-            'min' => 1,
-            'max' => '',
             'button_label' => __('Add slide', 'modularity'),
+            'min' => 1,
+            'max' => 6,
         ),
     ),
     'location' => array(
