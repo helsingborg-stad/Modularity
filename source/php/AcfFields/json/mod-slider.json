@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_573dce058a66e",
-            "label": "Sliderformat",
+            "label": "Slider ratio",
             "name": "slider_format",
             "type": "select",
             "instructions": "",
@@ -33,26 +33,26 @@
         },
         {
             "key": "field_5731c6d886811",
-            "label": "Automatisk bl\u00e4ddring",
+            "label": "Autoslide",
             "name": "slides_autoslide",
             "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": 51,
+                "width": "51",
                 "class": "",
                 "id": ""
             },
+            "message": "Slide automatically between views",
             "default_value": 0,
-            "message": "Bl\u00e4ddra automatiskt mellan slides",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
             "key": "field_5731c78886813",
-            "label": "Intervall f\u00f6r automatisk bl\u00e4ddring",
+            "label": "Slide interval",
             "name": "slides_slide_timeout",
             "type": "number",
             "instructions": "",
@@ -67,23 +67,21 @@
                 ]
             ],
             "wrapper": {
-                "width": 49,
+                "width": "49",
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "min": 1,
-            "max": 20,
-            "step": 1,
+            "default_value": 5,
             "placeholder": "",
             "prepend": "",
-            "append": "sekunder",
-            "readonly": 0,
-            "disabled": 0
+            "append": "seconds",
+            "min": 1,
+            "max": 20,
+            "step": 1
         },
         {
             "key": "field_58933fb6f5ed4",
-            "label": "Fler inst\u00e4llningar",
+            "label": "Additional settings",
             "name": "additional_options",
             "type": "checkbox",
             "instructions": "",
@@ -95,7 +93,7 @@
                 "id": ""
             },
             "choices": {
-                "wrapAround": "B\u00f6rja om efter sista sliden"
+                "wrapAround": "Go to first slide when last item is reached"
             },
             "allow_custom": 0,
             "default_value": [
@@ -213,7 +211,7 @@
                         },
                         {
                             "key": "field_5fca2b4da3be6",
-                            "label": "Text F\u00e4rg",
+                            "label": "Text color",
                             "name": "text_color",
                             "type": "select",
                             "instructions": "Vilken f\u00e4rg som ska anv\u00e4ndas p\u00e5 denna slide.",
@@ -227,9 +225,11 @@
                             "choices": {
                                 "black": "Svart",
                                 "white": "Vit",
-                                "theme": "Thema Baserad"
+                                "theme": "Theme based"
                             },
-                            "default_value": [],
+                            "default_value": [
+                                "theme"
+                            ],
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -239,10 +239,10 @@
                         },
                         {
                             "key": "field_5fca2bd1a3be7",
-                            "label": "Bakgrunds f\u00e4rg p\u00e5 texten",
+                            "label": "Background color text area",
                             "name": "background_color",
                             "type": "select",
-                            "instructions": "V\u00e4lj f\u00e4rg som ska finnas som en bricka bakom texten",
+                            "instructions": "Select a color for the wrapping area of the text",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
@@ -257,7 +257,7 @@
                                 "theme-opacity": "Tema Baserad med Transparans"
                             },
                             "default_value": [
-                                "none"
+                                "white"
                             ],
                             "allow_null": 0,
                             "multiple": 0,
@@ -268,7 +268,7 @@
                         },
                         {
                             "key": "field_5702597b7d869",
-                            "label": "Titel",
+                            "label": "Title",
                             "name": "textblock_title",
                             "type": "text",
                             "instructions": "",
@@ -302,7 +302,7 @@
                         },
                         {
                             "key": "field_56ab235393f04",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -310,9 +310,9 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_56ab224ac2c28",
+                                        "field": "field_573dce058a66e",
                                         "operator": "==",
-                                        "value": "1"
+                                        "value": ""
                                     }
                                 ]
                             ],
@@ -322,16 +322,14 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "new_lines": "br",
-                            "maxlength": "",
                             "placeholder": "",
+                            "maxlength": "",
                             "rows": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": "br"
                         },
                         {
                             "key": "field_56fa82a2d464d",
-                            "label": "L\u00e4nk",
+                            "label": "Link",
                             "name": "link_type",
                             "type": "radio",
                             "instructions": "",
@@ -342,17 +340,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "horizontal",
                             "choices": {
                                 "false": "No link",
-                                "internal": "Intern",
-                                "external": "Extern"
+                                "internal": "Internal",
+                                "external": "External"
                             },
-                            "default_value": "false",
-                            "other_choice": 0,
-                            "save_other_choice": 0,
                             "allow_null": 0,
-                            "return_format": "value"
+                            "other_choice": 0,
+                            "default_value": "false",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
                         },
                         {
                             "key": "field_56fa8313d4650",
@@ -380,7 +378,7 @@
                         },
                         {
                             "key": "field_56fa8331d4651",
-                            "label": "Sida",
+                            "label": "Page",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -399,38 +397,11 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "post_type": [],
-                            "taxonomy": [],
+                            "post_type": "",
+                            "taxonomy": "",
                             "allow_null": 0,
-                            "multiple": 0,
-                            "allow_archives": 1
-                        },
-                        {
-                            "key": "field_56fa82dcd464e",
-                            "label": "New window",
-                            "name": "link_target",
-                            "type": "true_false",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_56fa82a2d464d",
-                                        "operator": "!=",
-                                        "value": "false"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": 0,
-                            "message": "Yes, open link in new window",
-                            "ui": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": ""
+                            "allow_archives": 1,
+                            "multiple": 0
                         }
                     ],
                     "min": "",
@@ -442,30 +413,6 @@
                     "label": "Video",
                     "display": "block",
                     "sub_fields": [
-                        {
-                            "key": "field_56a5eada398d7",
-                            "label": "Typ",
-                            "name": "type",
-                            "type": "radio",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "layout": "horizontal",
-                            "choices": {
-                                "upload": "Ladda upp video",
-                                "embed": "B\u00e4dda in (YouTube eller Vimeo-l\u00e4nk)"
-                            },
-                            "default_value": "",
-                            "other_choice": 0,
-                            "save_other_choice": 0,
-                            "allow_null": 0,
-                            "return_format": "value"
-                        },
                         {
                             "key": "field_56a5eb09398d8",
                             "label": "Video: mp4",
@@ -712,7 +659,7 @@
                         },
                         {
                             "key": "field_56b9f3b8d7720",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -737,12 +684,34 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "new_lines": "br",
-                            "maxlength": "",
                             "placeholder": "",
+                            "maxlength": "",
                             "rows": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_56a5eada398d7",
+                            "label": "Type",
+                            "name": "type",
+                            "type": "radio",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "upload": "Ladda upp video",
+                                "embed": "B\u00e4dda in (YouTube eller Vimeo-l\u00e4nk)"
+                            },
+                            "allow_null": 0,
+                            "other_choice": 0,
+                            "default_value": "",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
                         },
                         {
                             "key": "field_56e7fa620ee0a",
@@ -788,7 +757,7 @@
                         },
                         {
                             "key": "field_56fa87ec3ace2",
-                            "label": "L\u00e4nk",
+                            "label": "Link",
                             "name": "link_type",
                             "type": "radio",
                             "instructions": "",
@@ -807,17 +776,17 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "horizontal",
                             "choices": {
                                 "false": "No link",
                                 "internal": "Intern",
                                 "external": "Extern"
                             },
-                            "default_value": "false",
-                            "other_choice": 0,
-                            "save_other_choice": 0,
                             "allow_null": 0,
-                            "return_format": "value"
+                            "other_choice": 0,
+                            "default_value": "false",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
                         },
                         {
                             "key": "field_56fa87fa3ace4",
@@ -850,7 +819,7 @@
                         },
                         {
                             "key": "field_56fa88043ace5",
-                            "label": "Sida",
+                            "label": "Page",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -874,43 +843,11 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "post_type": [],
-                            "taxonomy": [],
+                            "post_type": "",
+                            "taxonomy": "",
                             "allow_null": 0,
-                            "multiple": 0,
-                            "allow_archives": 1
-                        },
-                        {
-                            "key": "field_56fa880c3ace6",
-                            "label": "New window",
-                            "name": "link_target",
-                            "type": "true_false",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_56a5eada398d7",
-                                        "operator": "==",
-                                        "value": "upload"
-                                    },
-                                    {
-                                        "field": "field_56fa87ec3ace2",
-                                        "operator": "!=",
-                                        "value": "false"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": 0,
-                            "message": "Yes, open link in new window",
-                            "ui": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": ""
+                            "allow_archives": 1,
+                            "multiple": 0
                         }
                     ],
                     "min": "",
@@ -922,30 +859,6 @@
                     "label": "Featured content",
                     "display": "block",
                     "sub_fields": [
-                        {
-                            "key": "field_573d5ae726b8f",
-                            "label": "Desktop Image",
-                            "name": "image",
-                            "type": "image",
-                            "instructions": "This image will be used in larger screens.",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": 51,
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": "png,jpg,jpeg"
-                        },
                         {
                             "key": "field_573d5b5826b90",
                             "label": "Mobile Image",
@@ -972,32 +885,32 @@
                         },
                         {
                             "key": "field_573d5c0508765",
-                            "label": "L\u00e4nk",
+                            "label": "Link",
                             "name": "link_type",
                             "type": "radio",
                             "instructions": "",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 51,
+                                "width": "51",
                                 "class": "",
                                 "id": ""
                             },
-                            "layout": "horizontal",
                             "choices": {
                                 "false": "No link",
                                 "internal": "Intern",
                                 "external": "Extern"
                             },
-                            "default_value": "false",
-                            "other_choice": 0,
-                            "save_other_choice": 0,
                             "allow_null": 0,
-                            "return_format": "value"
+                            "other_choice": 0,
+                            "default_value": "false",
+                            "layout": "horizontal",
+                            "return_format": "value",
+                            "save_other_choice": 0
                         },
                         {
                             "key": "field_573d5c5c08766",
-                            "label": "Sida",
+                            "label": "Page",
                             "name": "link_url",
                             "type": "page_link",
                             "instructions": "",
@@ -1017,15 +930,15 @@
                                 ]
                             ],
                             "wrapper": {
-                                "width": 39,
+                                "width": "39",
                                 "class": "",
                                 "id": ""
                             },
-                            "post_type": [],
-                            "taxonomy": [],
+                            "post_type": "",
+                            "taxonomy": "",
                             "allow_null": 0,
-                            "multiple": 0,
-                            "allow_archives": 1
+                            "allow_archives": 1,
+                            "multiple": 0
                         },
                         {
                             "key": "field_573d5c6808768",
@@ -1057,35 +970,8 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_573d5e48efd93",
-                            "label": "New window",
-                            "name": "link_target",
-                            "type": "true_false",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_573d5c0508765",
-                                        "operator": "!=",
-                                        "value": "false"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": 10,
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": 0,
-                            "message": "",
-                            "ui": 0,
-                            "ui_on_text": "",
-                            "ui_off_text": ""
-                        },
-                        {
                             "key": "field_573d600eb104f",
-                            "label": "Titel",
+                            "label": "Title",
                             "name": "textblock_title",
                             "type": "text",
                             "instructions": "",
@@ -1097,16 +983,14 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "maxlength": "",
                             "placeholder": "Ange din titel h\u00e4r",
                             "prepend": "",
                             "append": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "maxlength": ""
                         },
                         {
                             "key": "field_573d604fb1050",
-                            "label": "Inneh\u00e5ll",
+                            "label": "Content",
                             "name": "textblock_content",
                             "type": "textarea",
                             "instructions": "",
@@ -1118,12 +1002,34 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "new_lines": "br",
-                            "maxlength": 250,
                             "placeholder": "",
+                            "maxlength": 250,
                             "rows": "",
-                            "readonly": 0,
-                            "disabled": 0
+                            "new_lines": "br"
+                        },
+                        {
+                            "key": "field_573d5ae726b8f",
+                            "label": "Desktop Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "This image will be used in larger screens.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": 51,
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "png,jpg,jpeg"
                         }
                     ],
                     "min": "",
