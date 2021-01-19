@@ -48,9 +48,9 @@ class Table extends \Modularity\Module
             'showHeader'    => true,    //To-Do: Add this option in ACF
             'showFooter'    => false,   //To-Do: Add this option in ACF
             'classList'     => $this->getTableClasses($data),
-            'zebraStripes'  => in_array('table-striped', $data['mod_table_classes']),
-            'borderStyle'   => in_array('table-bordered', $data['mod_table_classes']),
-            'hoverEffect'   => in_array('table-hover', $data['mod_table_classes']),
+            'zebraStripes'  => true,
+            'borderStyle'   => true,
+            'hoverEffect'   => true,
             'isSmall'       => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
             'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
             'filterable'    => $data['mod_table_search'],

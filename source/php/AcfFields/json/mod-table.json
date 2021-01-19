@@ -17,8 +17,8 @@
             },
             "layout": "horizontal",
             "choices": {
-                "manual": "Manuell inmatning",
-                "csv": "Importera CSV"
+                "manual": "Manual input",
+                "csv": "CSV Import"
             },
             "default_value": "",
             "other_choice": 0,
@@ -83,29 +83,35 @@
             "disabled": 0
         },
         {
-            "key": "field_57e8db8cf1ece",
-            "label": "Storlek",
-            "name": "mod_table_size",
-            "type": "radio",
-            "instructions": "",
+            "key": "field_5666a2ae23643",
+            "label": "Table",
+            "name": "mod_table",
+            "type": "dynamic_table",
+            "instructions": "Enter your table contents, and select appearance and functionality options below.",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_5731982808842",
+                        "operator": "==",
+                        "value": "manual"
+                    }
+                ]
+            ],
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "layout": "horizontal",
-            "choices": {
-                "table-sm": "Liten",
-                "table-md": "Medium (standard)",
-                "table-lg": "Stor"
-            },
-            "default_value": "table-md",
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "allow_null": 0,
-            "return_format": "value"
+            "tableclass": "modularity-table",
+            "maxrows": "",
+            "disable_sort": 0,
+            "fixed_columns": 0,
+            "default_headers": "",
+            "default_header": "",
+            "readonly": 0,
+            "disabled": 0,
+            "sub_fields": []
         },
         {
             "key": "field_5666a3e0d2d29",
@@ -121,7 +127,7 @@
                 "id": ""
             },
             "default_value": 1,
-            "message": "Ja, anv\u00e4nd sidbl\u00e4ddning f\u00f6r tabellen",
+            "message": "Yes, use pagination on this table",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -171,7 +177,7 @@
                 "id": ""
             },
             "default_value": 1,
-            "message": "Ja, aktivera s\u00f6k i denna tabell",
+            "message": "Yes, use search on this table",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -219,7 +225,7 @@
                 "id": ""
             },
             "default_value": 1,
-            "message": "Ja, aktivera sortering",
+            "message": "Yes, enable column sorting",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -243,4 +249,4 @@
     "active": true,
     "description": ""
 }]
-
+

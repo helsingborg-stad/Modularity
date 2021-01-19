@@ -1,9 +1,11 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5666a2a71d806',
-    'title' => 'Table Editor',
+    'title' => __('Table Editor', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5731982808842',
@@ -20,8 +22,8 @@
             ),
             'layout' => 'horizontal',
             'choices' => array(
-                'manual' => __('Manuell inmatning', 'modularity'),
-                'csv' => __('Importera CSV', 'modularity'),
+                'manual' => __('Manual input', 'modularity'),
+                'csv' => __('CSV Import', 'modularity'),
             ),
             'default_value' => '',
             'other_choice' => 0,
@@ -77,7 +79,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => ';',
+            'default_value' => __(';', 'modularity'),
             'maxlength' => '',
             'placeholder' => '',
             'prepend' => '',
@@ -86,29 +88,36 @@
             'disabled' => 0,
         ),
         3 => array(
-            'key' => 'field_57e8db8cf1ece',
-            'label' => __('Storlek', 'modularity'),
-            'name' => 'mod_table_size',
-            'type' => 'radio',
-            'instructions' => '',
+            'key' => 'field_5666a2ae23643',
+            'label' => __('Table', 'modularity'),
+            'name' => 'mod_table',
+            'type' => 'dynamic_table',
+            'instructions' => __('Enter your table contents, and select appearance and functionality options below.', 'modularity'),
             'required' => 1,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_5731982808842',
+                        'operator' => '==',
+                        'value' => 'manual',
+                    ),
+                ),
+            ),
             'wrapper' => array(
-                'width' => '50',
+                'width' => '',
                 'class' => '',
                 'id' => '',
             ),
-            'layout' => 'horizontal',
-            'choices' => array(
-                'table-sm' => __('Liten', 'modularity'),
-                'table-md' => __('Medium (standard)', 'modularity'),
-                'table-lg' => __('Stor', 'modularity'),
+            'tableclass' => 'modularity-table',
+            'maxrows' => '',
+            'disable_sort' => 0,
+            'fixed_columns' => 0,
+            'default_headers' => '',
+            'default_header' => '',
+            'readonly' => 0,
+            'disabled' => 0,
+            'sub_fields' => array(
             ),
-            'default_value' => 'table-md',
-            'other_choice' => 0,
-            'save_other_choice' => 0,
-            'allow_null' => 0,
-            'return_format' => 'value',
         ),
         4 => array(
             'key' => 'field_5666a3e0d2d29',
@@ -124,7 +133,7 @@
                 'id' => '',
             ),
             'default_value' => 1,
-            'message' => __('Ja, använd sidbläddning för tabellen', 'modularity'),
+            'message' => __('Yes, use pagination on this table', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
@@ -174,7 +183,7 @@
                 'id' => '',
             ),
             'default_value' => 1,
-            'message' => __('Ja, aktivera sök i denna tabell', 'modularity'),
+            'message' => __('Yes, use search on this table', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
@@ -200,7 +209,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => 'Search in list',
+            'default_value' => __('Search in list', 'modularity'),
             'maxlength' => '',
             'placeholder' => '',
             'prepend' => '',
@@ -222,7 +231,7 @@
                 'id' => '',
             ),
             'default_value' => 1,
-            'message' => __('Ja, aktivera sortering', 'modularity'),
+            'message' => __('Yes, enable column sorting', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
@@ -246,4 +255,5 @@
     'active' => true,
     'description' => '',
 ));
-}
+
+}
