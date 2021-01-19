@@ -1,13 +1,15 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5666a2a71d806',
     'title' => __('Table Editor', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5731982808842',
-            'label' => __('Data type', 'modularity'),
+            'label' => __('Datatyp', 'modularity'),
             'name' => 'mod_table_data_type',
             'type' => 'radio',
             'instructions' => '',
@@ -31,10 +33,10 @@
         ),
         1 => array(
             'key' => 'field_57319c3b08843',
-            'label' => __('CSV File', 'modularity'),
+            'label' => __('CSV-fil', 'modularity'),
             'name' => 'mod_table_csv_file',
             'type' => 'file',
-            'instructions' => __('CSV formatted file', 'modularity'),
+            'instructions' => __('CSV-formatterad fil', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -58,10 +60,10 @@
         ),
         2 => array(
             'key' => 'field_5731a138b52aa',
-            'label' => __('CSV Delimiter', 'modularity'),
+            'label' => __('CSV-avgränsare', 'modularity'),
             'name' => 'mod_table_csv_delimiter',
             'type' => 'text',
-            'instructions' => __('CSV Delimiter character. Usually comma or semicolon.', 'modularity'),
+            'instructions' => __('Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken eller semikolon.', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -119,7 +121,7 @@
         ),
         4 => array(
             'key' => 'field_5666a3e0d2d29',
-            'label' => __('Enable pagination', 'modularity'),
+            'label' => __('Sidbläddring', 'modularity'),
             'name' => 'mod_table_pagination',
             'type' => 'true_false',
             'instructions' => '',
@@ -138,7 +140,7 @@
         ),
         5 => array(
             'key' => 'field_5666a59673385',
-            'label' => __('Number of posts/page', 'modularity'),
+            'label' => __('Antal inlägg/sidor', 'modularity'),
             'name' => 'mod_table_pagination_count',
             'type' => 'number',
             'instructions' => '',
@@ -169,7 +171,7 @@
         ),
         6 => array(
             'key' => 'field_5666a459d2d2a',
-            'label' => __('Enable search', 'modularity'),
+            'label' => __('Aktivera sök', 'modularity'),
             'name' => 'mod_table_search',
             'type' => 'true_false',
             'instructions' => '',
@@ -188,7 +190,7 @@
         ),
         7 => array(
             'key' => 'field_5666a63a48379',
-            'label' => __('Search query', 'modularity'),
+            'label' => __('Sökfras', 'modularity'),
             'name' => 'mod_table_search_query',
             'type' => 'text',
             'instructions' => '',
@@ -217,7 +219,7 @@
         ),
         8 => array(
             'key' => 'field_56e181adef7ac',
-            'label' => __('Enable column soring', 'modularity'),
+            'label' => __('Aktivera kolumnsortering', 'modularity'),
             'name' => 'mod_table_ordering',
             'type' => 'true_false',
             'instructions' => '',
@@ -253,4 +255,5 @@
     'active' => true,
     'description' => '',
 ));
-}
+
+}

@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_5731982808842",
-            "label": "Data type",
+            "label": "Datatyp",
             "name": "mod_table_data_type",
             "type": "radio",
             "instructions": "",
@@ -28,10 +28,10 @@
         },
         {
             "key": "field_57319c3b08843",
-            "label": "CSV File",
+            "label": "CSV-fil",
             "name": "mod_table_csv_file",
             "type": "file",
-            "instructions": "CSV formatted file",
+            "instructions": "CSV-formatterad fil",
             "required": 1,
             "conditional_logic": [
                 [
@@ -55,10 +55,10 @@
         },
         {
             "key": "field_5731a138b52aa",
-            "label": "CSV Delimiter",
+            "label": "CSV-avgr\u00e4nsare",
             "name": "mod_table_csv_delimiter",
             "type": "text",
-            "instructions": "CSV Delimiter character. Usually comma or semicolon.",
+            "instructions": "Tecken som anv\u00e4nds i CSV-filen som avgr\u00e4nsare. Brukar vara kommatecken eller semikolon.",
             "required": 1,
             "conditional_logic": [
                 [
@@ -115,7 +115,7 @@
         },
         {
             "key": "field_5666a3e0d2d29",
-            "label": "Enable pagination",
+            "label": "Sidbl\u00e4ddring",
             "name": "mod_table_pagination",
             "type": "true_false",
             "instructions": "",
@@ -134,7 +134,7 @@
         },
         {
             "key": "field_5666a59673385",
-            "label": "Number of posts\/page",
+            "label": "Antal inl\u00e4gg\/sidor",
             "name": "mod_table_pagination_count",
             "type": "number",
             "instructions": "",
@@ -165,7 +165,7 @@
         },
         {
             "key": "field_5666a459d2d2a",
-            "label": "Enable search",
+            "label": "Aktivera s\u00f6k",
             "name": "mod_table_search",
             "type": "true_false",
             "instructions": "",
@@ -184,7 +184,7 @@
         },
         {
             "key": "field_5666a63a48379",
-            "label": "Search query",
+            "label": "S\u00f6kfras",
             "name": "mod_table_search_query",
             "type": "text",
             "instructions": "",
@@ -213,7 +213,7 @@
         },
         {
             "key": "field_56e181adef7ac",
-            "label": "Enable column soring",
+            "label": "Aktivera kolumnsortering",
             "name": "mod_table_ordering",
             "type": "true_false",
             "instructions": "",
@@ -249,4 +249,4 @@
     "active": true,
     "description": ""
 }]
-
+

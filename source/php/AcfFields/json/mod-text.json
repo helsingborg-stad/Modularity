@@ -3,13 +3,8 @@
     "title": "Text options",
     "fields": [
         {
-            "default_value": 0,
-            "message": "Yes, hide the box frame",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
             "key": "field_5891b6038c120",
-            "label": "Hide box frame",
+            "label": "G\u00f6m textbox",
             "name": "hide_box_frame",
             "type": "true_false",
             "instructions": "",
@@ -19,33 +14,12 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
-            "layout": "horizontal",
-            "choices": {
-                "text-sm": "Small",
-                "text-md": "Medium (default)",
-                "text-lg": "Large",
-                "text-xl": "Extra large"
             },
-            "default_value": "text-md",
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "allow_null": 0,
-            "return_format": "value",
-            "key": "field_5891b4982999e",
-            "label": "Font size",
-            "name": "font_size",
-            "type": "radio",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
+            "default_value": 0,
+            "message": "Ja, g\u00f6m textbox (visa text som artikel)",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -63,9 +37,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1485944357,
-    "local": "php"
+    "active": true,
+    "description": ""
 }]
 

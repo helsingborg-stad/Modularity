@@ -19,9 +19,12 @@
                 'classList' => $classes,
 
             ])
-                <div class="c-card__image c-card__image--secondary">
-                    <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
-                </div>
+
+                @if(isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
+                    <div class="c-card__image c-card__image--secondary">
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                    </div>
+                @endif
             
                 <div class="c-card__body">
                     @typography([
@@ -35,7 +38,7 @@
                 </div>
                 @if($post->tags)
                     <div class="c-card__footer">
-                        @tags ([$post->tags])
+                        @tags (['tags' => $post->tags])
                         @endtags
                     </div>
                 @endif
@@ -44,6 +47,7 @@
         </div>
     @endforeach
 </div>
+
 
 @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">

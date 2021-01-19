@@ -3,16 +3,6 @@
     "title": "Video",
     "fields": [
         {
-            "layout": "horizontal",
-            "choices": {
-                "embed": "Embed (YouTube or Vimeo link)",
-                "upload": "Upload video"
-            },
-            "default_value": "",
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "allow_null": 0,
-            "return_format": "value",
             "key": "field_57454c24d44d8",
             "label": "Typ",
             "name": "type",
@@ -24,19 +14,24 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "layout": "horizontal",
+            "choices": {
+                "embed": "B\u00e4dda in (YouTube eller Vimeo-l\u00e4nk)",
+                "upload": "Ladda upp video"
+            },
+            "default_value": "",
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "allow_null": 0,
+            "return_format": "value"
         },
         {
-            "return_format": "array",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": "mp4",
             "key": "field_57454c5ad44db",
             "label": "Video: mp4",
             "name": "video_mp4",
             "type": "file",
-            "instructions": "",
+            "instructions": "Upload or select file from library. The only valid file format is .mp4",
             "required": 1,
             "conditional_logic": [
                 [
@@ -51,67 +46,16 @@
                 "width": "33.3333",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "return_format": "array",
             "library": "all",
             "min_size": "",
             "max_size": "",
-            "mime_types": "webm",
-            "key": "field_57454c35d44d9",
-            "label": "Video: webm",
-            "name": "video_webm",
-            "type": "file",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_57454c24d44d8",
-                        "operator": "==",
-                        "value": "upload"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "33.3333",
-                "class": "",
-                "id": ""
-            }
+            "mime_types": "mp4"
         },
         {
-            "return_format": "array",
-            "library": "all",
-            "min_size": "",
-            "max_size": "",
-            "mime_types": "ogg",
-            "key": "field_57454c49d44da",
-            "label": "Video: ogg",
-            "name": "video_ogg",
-            "type": "file",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_57454c24d44d8",
-                        "operator": "==",
-                        "value": "upload"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "33.3333",
-                "class": "",
-                "id": ""
-            }
-        },
-        {
-            "default_value": "",
-            "placeholder": "",
             "key": "field_57454c7ad44dc",
-            "label": "Embed link",
+            "label": "Inb\u00e4ddningsl\u00e4nk",
             "name": "embed_link",
             "type": "url",
             "instructions": "",
@@ -129,9 +73,23 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
+            "key": "field_57454c91d44dd",
+            "label": "Affischbild",
+            "name": "placeholder_image",
+            "type": "image",
+            "instructions": "Affischbilden visas innan videon s\u00e4tts ig\u00e5ng.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "return_format": "array",
             "preview_size": "thumbnail",
             "library": "all",
@@ -141,19 +99,7 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": "",
-            "key": "field_57454c91d44dd",
-            "label": "Placeholder image",
-            "name": "placeholder_image",
-            "type": "image",
-            "instructions": "The placeholder image will be shown before the video starts playing.",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
+            "mime_types": ""
         }
     ],
     "location": [
@@ -171,9 +117,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1464160040,
-    "local": "php"
+    "active": true,
+    "description": ""
 }]
 

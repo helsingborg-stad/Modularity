@@ -3,22 +3,8 @@
     "title": "Sorted Posts",
     "fields": [
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "list": "List",
-                "items": "Post items",
-                "news": "News item"
-            },
-            "default_value": [
-                0
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_56d01a16eb9f3",
-            "label": "View as",
+            "label": "Visa som",
             "name": "view_as",
             "type": "select",
             "instructions": "",
@@ -29,12 +15,26 @@
                 "class": "",
                 "id": ""
             },
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": {
+                "list": "Lista",
+                "items": "Inl\u00e4ggsobjekt",
+                "news": "Nyhetsobjekt"
+            },
+            "default_value": [
+                0
+            ],
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "disabled": 0,
             "readonly": 0
         },
         {
             "key": "field_56a8c474647a6",
-            "label": "Post type",
+            "label": "Posttyp",
             "name": "post_type",
             "type": "posttype_select",
             "instructions": "",
@@ -53,28 +53,8 @@
             "readonly": 0
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "ID": "ID",
-                "post_author": "F\u00f6rfattare",
-                "post_title": "Titel",
-                "post_date": "Publiceringsdatum",
-                "post_modified": "Date modified",
-                "post_parent": "Parent",
-                "post_rand": "Random",
-                "post_comment_count": "Comment count",
-                "post_menu_order": "Menu order"
-            },
-            "default_value": [
-                "date"
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_56a8c5cc647ac",
-            "label": "Sort by",
+            "label": "Sortera efter",
             "name": "sorted_by",
             "type": "select",
             "instructions": "",
@@ -85,25 +65,32 @@
                 "class": "",
                 "id": "modularity-sorted-by"
             },
-            "disabled": 0,
-            "readonly": 0
-        },
-        {
             "multiple": 0,
             "allow_null": 0,
             "choices": {
-                "desc": "Descending",
-                "asc": "Ascending"
+                "ID": "ID",
+                "post_author": "F\u00f6rfattare",
+                "post_title": "Titel",
+                "post_date": "Publiceringsdatum",
+                "post_modified": "Senast uppdaterad",
+                "post_parent": "Parent",
+                "post_rand": "Slumpm\u00e4ssig",
+                "post_comment_count": "Antal kommentarer",
+                "post_menu_order": "Menyordning"
             },
             "default_value": [
-                "desc"
+                "date"
             ],
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "return_format": "value",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
             "key": "field_56d55ec58b9e3",
-            "label": "Order",
+            "label": "Ordna efter",
             "name": "order",
             "type": "select",
             "instructions": "",
@@ -114,19 +101,25 @@
                 "class": "",
                 "id": ""
             },
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": {
+                "desc": "Fallande",
+                "asc": "Stigande"
+            },
+            "default_value": [
+                "desc"
+            ],
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "disabled": 0,
             "readonly": 0
         },
         {
-            "default_value": 5,
-            "min": "",
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
             "key": "field_56a8c593647ab",
-            "label": "Number of posts",
+            "label": "Antal inl\u00e4gg",
             "name": "number_of_posts",
             "type": "number",
             "instructions": "",
@@ -137,17 +130,19 @@
                 "class": "",
                 "id": ""
             },
+            "default_value": 5,
+            "min": "",
+            "max": "",
+            "step": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
             "readonly": 0,
             "disabled": 0
         },
         {
-            "default_value": 0,
-            "message": "",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
             "key": "field_56a8c4c5647a7",
-            "label": "Show date",
+            "label": "Visa datum",
             "name": "show_date",
             "type": "true_false",
             "instructions": "",
@@ -157,16 +152,16 @@
                 "width": "33.333",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": 0,
             "message": "",
             "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_56a8c531647a8",
-            "label": "Show excerpt if avabile",
+            "label": "Visa ingress om m\u00f6jligt",
             "name": "show_excerpt",
             "type": "true_false",
             "instructions": "",
@@ -176,16 +171,16 @@
                 "width": "33.333",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": 0,
             "message": "",
             "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_56a8c554647a9",
-            "label": "Show post title",
+            "label": "Visa inl\u00e4ggets titel",
             "name": "show_title",
             "type": "true_false",
             "instructions": "",
@@ -195,16 +190,16 @@
                 "width": "33.333",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": 0,
             "message": "",
             "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_56a8c56a647aa",
-            "label": "Show featured image",
+            "label": "Visa utvald bild",
             "name": "show_picture",
             "type": "true_false",
             "instructions": "",
@@ -214,16 +209,16 @@
                 "width": "33.333",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": 0,
             "message": "",
             "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_57397624ab5ec",
-            "label": "Show \"view more\" button",
+            "label": "Visa \u201dvisa mer\u201d-knappen",
             "name": "show_view_more_button",
             "type": "true_false",
             "instructions": "",
@@ -233,16 +228,16 @@
                 "width": "33.333",
                 "class": "",
                 "id": ""
-            }
-        },
-        {
+            },
             "default_value": 0,
-            "message": "Filter posts by taxonomy",
+            "message": "",
             "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_56c6eebaa1de4",
-            "label": "Taxonomy filter",
+            "label": "Filtrera taxomnomi",
             "name": "taxonomy_filter",
             "type": "true_false",
             "instructions": "",
@@ -252,25 +247,16 @@
                 "width": "33.333",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": 0,
+            "message": "Filtrera efter taxonomi",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "category": "category",
-                "post_tag": "post_tag",
-                "nav_menu": "nav_menu",
-                "link_category": "link_category",
-                "post_format": "post_format"
-            },
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_56c6eee0a1de5",
-            "label": "Taxonomy type",
+            "label": "Taxonomi",
             "name": "filter_posts_taxonomy_type",
             "type": "select",
             "instructions": "",
@@ -289,20 +275,26 @@
                 "class": "",
                 "id": "modularity-latest-taxonomy"
             },
-            "disabled": 0,
-            "readonly": 0
-        },
-        {
-            "multiple": 1,
+            "multiple": 0,
             "allow_null": 0,
-            "choices": [],
+            "choices": {
+                "category": "category",
+                "post_tag": "post_tag",
+                "nav_menu": "nav_menu",
+                "link_category": "link_category",
+                "post_format": "post_format"
+            },
             "default_value": [],
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "return_format": "value",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
             "key": "field_56c6ef3ca1de6",
-            "label": "Select values",
+            "label": "Valda v\u00e4rden",
             "name": "filter_posts_by_tag",
             "type": "select",
             "instructions": "",
@@ -321,27 +313,20 @@
                 "class": "",
                 "id": "modularity-latest-taxonomy-value"
             },
-            "disabled": 0,
-            "readonly": 0
-        },
-        {
-            "multiple": 0,
+            "multiple": 1,
             "allow_null": 0,
-            "choices": {
-                "grid-md-12": 1,
-                "grid-md-6": 2,
-                "grid-md-4": 3,
-                "grid-md-3": 4
-            },
-            "default_value": [
-                "grid-md-12"
-            ],
+            "choices": [],
+            "default_value": [],
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "return_format": "value",
+            "disabled": 0,
+            "readonly": 0
+        },
+        {
             "key": "field_56eac0e900dab",
-            "label": "Item columns",
+            "label": "Objektkolumner",
             "name": "item_column_size",
             "type": "select",
             "instructions": "",
@@ -360,6 +345,21 @@
                 "class": "",
                 "id": ""
             },
+            "multiple": 0,
+            "allow_null": 0,
+            "choices": {
+                "grid-md-12": 1,
+                "grid-md-6": 2,
+                "grid-md-4": 3,
+                "grid-md-3": 4
+            },
+            "default_value": [
+                "grid-md-12"
+            ],
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "return_format": "value",
             "disabled": 0,
             "readonly": 0
         }
@@ -379,9 +379,8 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1463386320,
-    "local": "json"
+    "modified": 1463386320
 }]
 

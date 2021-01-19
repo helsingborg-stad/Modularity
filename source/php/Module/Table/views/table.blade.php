@@ -1,11 +1,14 @@
-<div class="{{ $classes }}">
+@card([
+    'classList' => [$classes]
+])
     @if (!$hideTitle && !empty($post_title))
-        @typography([
-            "element" => "h4",
-            "varaint" => "h4"
-        ])
-            {{ $post_title }}
-        @endtypography
+        <div class="c-card__header">
+            @typography([
+                'element' => "h4"
+            ])
+                {!! apply_filters('the_title', $post_title) !!}
+            @endtypography
+        </div>
     @endif
 
     @table([
@@ -24,4 +27,4 @@
         'labels'            => ['searchPlaceholder' => __('Search', 'municipio')]
     ])
     @endtable
-</div>
+@endcard

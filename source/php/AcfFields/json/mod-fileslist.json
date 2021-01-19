@@ -3,152 +3,8 @@
     "title": "Files",
     "fields": [
         {
-            "sub_fields": [
-                {
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "key": "field_57fb42b2cb415",
-                    "label": "Key",
-                    "name": "key",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "20",
-                        "class": "",
-                        "id": ""
-                    }
-                },
-                {
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "key": "field_57fb42bacb416",
-                    "label": "Titel",
-                    "name": "title",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    }
-                }
-            ],
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add column",
-            "collapsed": "",
-            "key": "field_57fb42a3cb414",
-            "label": "Columns",
-            "name": "columns",
-            "type": "repeater",
-            "instructions": "The key should be used in each file's column value as reference.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            }
-        },
-        {
-            "sub_fields": [
-                {
-                    "return_format": "array",
-                    "library": "all",
-                    "min_size": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "key": "field_57fb4218cb40f",
-                    "label": "File",
-                    "name": "file",
-                    "type": "file",
-                    "instructions": "",
-                    "required": 1,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    }
-                },
-                {
-                    "sub_fields": [
-                        {
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "key": "field_57fb4266cb411",
-                            "label": "Column key",
-                            "name": "key",
-                            "type": "text",
-                            "instructions": "Key reference from the column field",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "20",
-                                "class": "",
-                                "id": ""
-                            }
-                        },
-                        {
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "key": "field_57fb427fcb412",
-                            "label": "Value",
-                            "name": "value",
-                            "type": "text",
-                            "instructions": "The value for this column",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            }
-                        }
-                    ],
-                    "min": 0,
-                    "max": 0,
-                    "layout": "table",
-                    "button_label": "Add column",
-                    "collapsed": "",
-                    "key": "field_57fb423bcb410",
-                    "label": "Fields",
-                    "name": "fields",
-                    "type": "repeater",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    }
-                }
-            ],
-            "min": 1,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Add file",
-            "collapsed": "",
             "key": "field_57fb41f2cb40e",
-            "label": "Files",
+            "label": "Filer",
             "name": "file_list",
             "type": "repeater",
             "instructions": "",
@@ -158,14 +14,35 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "min": 1,
+            "max": 0,
+            "layout": "block",
+            "button_label": "L\u00e4gg till fil",
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_57fb4218cb40f",
+                    "label": "Fil",
+                    "name": "file",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "library": "all",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": ""
+                }
+            ]
         },
         {
-            "default_value": 1,
-            "message": "Allow filtering",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
             "key": "field_587600817ff7f",
             "label": "Filter",
             "name": "show_filter",
@@ -177,7 +54,12 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": 1,
+            "message": "Till\u00e5t filtrering",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -195,9 +77,7 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
-    "description": "",
-    "modified": 1484128422,
-    "local": "json"
+    "active": true,
+    "description": ""
 }]
 
