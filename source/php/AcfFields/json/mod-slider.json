@@ -678,6 +678,33 @@
                             "allow_null": 0,
                             "allow_archives": 1,
                             "multiple": 0
+                        },
+                        {
+                            "key": "field_60080ae377d79",
+                            "label": "Link text",
+                            "name": "link_text",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56fa87ec3ace2",
+                                        "operator": "!=",
+                                        "value": "false"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "Read more",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": 50
                         }
                     ],
                     "min": "",
@@ -689,6 +716,30 @@
                     "label": "Featured content",
                     "display": "block",
                     "sub_fields": [
+                        {
+                            "key": "field_573d5ae726b8f",
+                            "label": "Desktop Image",
+                            "name": "image",
+                            "type": "image",
+                            "instructions": "This image will be used in larger screens.",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": 51,
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "preview_size": "thumbnail",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "png,jpg,jpeg"
+                        },
                         {
                             "key": "field_573d5b5826b90",
                             "label": "Mobile Image",
@@ -712,6 +763,44 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": "png,jpg,jpeg"
+                        },
+                        {
+                            "key": "field_573d600eb104f",
+                            "label": "Title",
+                            "name": "textblock_title",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 1,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "Ange din titel h\u00e4r",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
+                        },
+                        {
+                            "key": "field_573d604fb1050",
+                            "label": "Content",
+                            "name": "textblock_content",
+                            "type": "textarea",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "maxlength": 250,
+                            "rows": "",
+                            "new_lines": "br"
                         },
                         {
                             "key": "field_573d5c0508765",
@@ -800,66 +889,31 @@
                             "placeholder": ""
                         },
                         {
-                            "key": "field_573d600eb104f",
-                            "label": "Title",
-                            "name": "textblock_title",
+                            "key": "field_60080ac877d78",
+                            "label": "Link text",
+                            "name": "link_text",
                             "type": "text",
                             "instructions": "",
                             "required": 1,
-                            "conditional_logic": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_573d5c0508765",
+                                        "operator": "!=",
+                                        "value": "false"
+                                    }
+                                ]
+                            ],
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "default_value": "",
-                            "placeholder": "Ange din titel h\u00e4r",
+                            "default_value": "Read more",
+                            "placeholder": "",
                             "prepend": "",
                             "append": "",
-                            "maxlength": ""
-                        },
-                        {
-                            "key": "field_573d604fb1050",
-                            "label": "Content",
-                            "name": "textblock_content",
-                            "type": "textarea",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "maxlength": 250,
-                            "rows": "",
-                            "new_lines": "br"
-                        },
-                        {
-                            "key": "field_573d5ae726b8f",
-                            "label": "Desktop Image",
-                            "name": "image",
-                            "type": "image",
-                            "instructions": "This image will be used in larger screens.",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": 51,
-                                "class": "",
-                                "id": ""
-                            },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
-                            "min_width": "",
-                            "min_height": "",
-                            "min_size": "",
-                            "max_width": "",
-                            "max_height": "",
-                            "max_size": "",
-                            "mime_types": "png,jpg,jpeg"
+                            "maxlength": 50
                         }
                     ],
                     "min": "",
