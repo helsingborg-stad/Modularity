@@ -14,6 +14,6 @@
     'repeatSlide'   => $wrapAround
 ])
     @foreach ($slides as $slide)
-        @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item']); 
+        @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])
     @endforeach
 @endslider
