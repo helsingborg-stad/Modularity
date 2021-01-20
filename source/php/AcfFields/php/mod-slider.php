@@ -231,7 +231,7 @@
                                 'theme' => 'Inherit theme',
                             ),
                             'default_value' => array(
-                                0 => 'theme',
+                                0 => 'black',
                             ),
                             'allow_null' => 0,
                             'multiple' => 0,
@@ -310,15 +310,7 @@
                             'type' => 'textarea',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => array(
-                                0 => array(
-                                    0 => array(
-                                        'field' => 'field_573dce058a66e',
-                                        'operator' => '==',
-                                        'value' => '',
-                                    ),
-                                ),
-                            ),
+                            'conditional_logic' => 0,
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
@@ -485,20 +477,7 @@
                             'type' => 'textarea',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => array(
-                                0 => array(
-                                    0 => array(
-                                        'field' => 'field_573dce058a66e',
-                                        'operator' => '==',
-                                        'value' => '',
-                                    ),
-                                    1 => array(
-                                        'field' => 'field_573dce058a66e',
-                                        'operator' => '==',
-                                        'value' => '',
-                                    ),
-                                ),
-                            ),
+                            'conditional_logic' => 0,
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
@@ -571,7 +550,7 @@
                                 'theme' => 'Inherit theme',
                             ),
                             'default_value' => array(
-                                0 => 'theme',
+                                0 => 'black',
                             ),
                             'allow_null' => 0,
                             'multiple' => 0,
