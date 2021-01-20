@@ -228,7 +228,7 @@
                                 "theme": "Inherit theme"
                             },
                             "default_value": [
-                                "theme"
+                                "black"
                             ],
                             "allow_null": 0,
                             "multiple": 0,
@@ -307,15 +307,7 @@
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_573dce058a66e",
-                                        "operator": "==",
-                                        "value": ""
-                                    }
-                                ]
-                            ],
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -482,20 +474,7 @@
                             "type": "textarea",
                             "instructions": "",
                             "required": 0,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_573dce058a66e",
-                                        "operator": "==",
-                                        "value": ""
-                                    },
-                                    {
-                                        "field": "field_573dce058a66e",
-                                        "operator": "==",
-                                        "value": ""
-                                    }
-                                ]
-                            ],
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
@@ -568,7 +547,7 @@
                                 "theme": "Inherit theme"
                             },
                             "default_value": [
-                                "theme"
+                                "black"
                             ],
                             "allow_null": 0,
                             "multiple": 0,

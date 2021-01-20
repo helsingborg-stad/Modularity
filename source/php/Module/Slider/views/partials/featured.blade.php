@@ -9,11 +9,13 @@
     @if ($slide->link_url) 
         @slot('bottom')
             @button([
+                'size' => 'sm',
                 'text' => $slide->link_text,
                 'color' => 'default',
                 'type' => 'filled',
                 'href' => $slide->link_url,
-                'target' => '_self' 
+                'target' => '_self',
+                'classList' => ['u-margin__top--2']
             ])
             @endbutton
         @endslot
