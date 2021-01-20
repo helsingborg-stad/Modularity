@@ -41,8 +41,6 @@ class Slider extends \Modularity\Module
         $data = get_fields($this->ID);
         //Assign settings to objects
         $data['classes'] = $this->getClasses($data);
-        $data['flickity'] = $this->getFlickitySettings($data);
-        $data['flickityDecode'] = json_decode($data['flickity']);
         $data['autoslide'] = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
         $data['ratio']   = preg_replace('/ratio-/', '', $data['slider_format']);
         $data['wrapAround'] = in_array('wrapAround', $data['additional_options']);        
@@ -167,90 +165,6 @@ class Slider extends \Modularity\Module
 
 
         return implode(' ', $classes);
-    }
-
-    public function getFlickitySettings($fields)
-    {
-
-        //Initial number of columns
-        $this->slideColumns = isset($fields['slide_columns']) && !empty($fields['slide_columns']) ? (int) $fields['slide_columns'] : 1;
-
-        $flickity = array(
-            'cellSelector'   => '.slide',
-            'cellAlign'      => $fields['slide_align'] ? $fields['slide_align'] : 'center',
-            'wrapAround'     => in_array('wrapAround', (array) $fields['additional_options']),
-            'pageDots'       => in_array('pageDots', (array) $fields['additional_options']),
-            'freeScroll'     => in_array('freeScroll', (array) $fields['additional_options']),
-            'groupCells'     => in_array('groupCells', (array) $fields['additional_options']),
-            'setGallerySize' => true,
-            'dragThreshold'  => 10
-        );
-
-        //Autoslider
-        if ($fields['slides_autoslide'] === true) {
-            $flickity['autoPlay'] = true;
-            $flickity['pauseAutoPlayOnHover'] = true;
-
-            if (!empty($fields['slides_slide_timeout'])) {
-                $flickity['autoPlay'] = (int) $fields['slides_slide_timeout'] * 1000;
-            }
-        }
-
-        //Not enough slides (multiple visible)
-        if (count($fields['slides']) <= $this->slideColumns && !$this->bleed) {
-            $flickity = array_merge($flickity, array(
-                'draggable' => false,
-                'pageDots' => false,
-                'prevNextButtons' => false,
-                'autoPlay' => false,
-                'cellAlign' => 'left'
-            ));
-            $this->slideColumns = count($fields['slides']); //Less slides than specified number of columns avabile
-        }
-
-        //Set slide height in js if circular
-        if ($fields['slider_layout'] === 'circle') {
-            $flickity = array_merge($flickity, array(
-                'setGallerySize' => true,
-                'resize' => true
-            ));
-        }
-
-        //Return json
-        return json_encode($flickity);
-    }
-
-    public static function getEmbed($url, $classes = array(), $image = null)
-    {
-        $src = null;
-        $classes = count($classes) > 0 ? 'class="' . implode(' ', $classes) . '"' : '';
-
-        if (strpos($url, 'youtu') > -1) {
-            if (method_exists('\Municipio\Admin\UI\Editor', 'oembed') && (defined('MUNICIPIO_GOOGLEAPIS_KEY') && MUNICIPIO_GOOGLEAPIS_KEY)) {
-                global $post;
-                return \Municipio\Admin\UI\Editor::oembed('', $url, array(), $post->ID, false);
-            }
-
-            // Get YouTube video ID from url
-            $pattern = "/^(?:http(?:s)?:\/\/)?(?:www\.)?(?:m\.)?(?:youtu\.be\/|youtube\.com\/(?:(?:watch)?\?(?:.*&)?v(?:i)?=|(?:embed|v|vi|user)\/))([^\?&\"'>]+)/";
-            preg_match($pattern, $url, $matches);
-
-            if (!isset($matches[1])) {
-                return null;
-            }
-
-            $src = '<div ' . $classes  . '  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a data-unavailable="' . __('Video playback unavailable, please activate JavaScript to enable.', 'modularity') .'" href="#video-player-' . $matches[1]  . '" data-video-id="' . $matches[1] . '"></a></div>';
-        } elseif (strpos($url, 'vimeo') > -1) {
-            $id = preg_match_all('/.*\/([0-9]+)$/i', $url, $matches);
-
-            if (!isset($matches[1][0])) {
-                return null;
-            }
-
-            $src = '<div class="player ratio-16-9 ' . $classes  . '"  style="background-image:url(\'' . (($image !== false) ? $image[0] : '') . '\');"><a data-unavailable="' . __('Video playback unavailable, please activate JavaScript to enable.', 'modularity') .'" href="#video-player-' . $matches[1][0]  . '" data-video-id="' . $matches[1][0] . '"></a></div>';
-        }
-
-        return $src;
     }
 
     /**

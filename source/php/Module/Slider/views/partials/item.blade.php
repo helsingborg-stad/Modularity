@@ -10,7 +10,4 @@
     'textColor'         => $slide->text_color,
     'link'              => $slide->link_url
 ])
-    @if($slider->type === 'embeded')
-        {!! apply_filters('the_content', $slider->embed_link) !!}
-    @endif
 @endslider__item

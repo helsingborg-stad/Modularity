@@ -13,7 +13,7 @@
                 'color' => 'default',
                 'type' => 'filled',
                 'href' => $slide->link_url,
-                'target' => $slide->link_type === 'external' ? '_blank' : '_self' 
+                'target' => '_self' 
             ])
             @endbutton
         @endslot
