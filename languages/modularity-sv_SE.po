@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-01-18 13:08+0100\n"
-"PO-Revision-Date: 2021-01-18 13:24+0100\n"
+"POT-Creation-Date: 2021-01-21 13:42+0100\n"
+"PO-Revision-Date: 2021-01-21 13:42+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -1034,7 +1034,6 @@ msgid "Danger (red)"
 msgstr "Fara (röd)"
 
 #: source/php/AcfFields/php/mod-notice.php:39
-#: source/php/AcfFields/php/mod-table.php:90
 msgid "Storlek"
 msgstr ""
 
@@ -1043,12 +1042,10 @@ msgid "Standard"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-notice.php:54
-#: source/php/AcfFields/php/mod-table.php:105
 msgid "Stor"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-notice.php:55
-#: source/php/AcfFields/php/mod-table.php:103
 msgid "Liten"
 msgstr ""
 
@@ -1235,6 +1232,7 @@ msgid "Manually picked posts"
 msgstr "Manuellt utvalda inlägg"
 
 #: source/php/AcfFields/php/mod-posts-source.php:27
+#: source/php/AcfFields/php/mod-table.php:25
 msgid "Manual input"
 msgstr "Manuell inmatning"
 
@@ -1329,7 +1327,8 @@ msgid ""
 "Paste your script code here (with &lt;style&gt; &lt;script&gt; tags if "
 "needed)."
 msgstr ""
-"Klistra in din skriptkod här (med <style> <script> -taggar om det behövs)."
+"Klistra in din skriptkod här (med &lt;style&gt; &lt;script&gt;  -taggar om "
+"det behövs)."
 
 #: source/php/AcfFields/php/mod-sites.php:6
 #: source/php/Module/Sites/Sites.php:13 source/php/Module/Sites/Sites.php:14
@@ -1342,7 +1341,7 @@ msgid "Include main site"
 msgstr "Inkludera huvudsidan"
 
 #: source/php/AcfFields/php/mod-slider.php:6
-#: source/php/Module/Slider/Slider.php:32 vendor/aristath/kirki/example.php:81
+#: source/php/Module/Slider/Slider.php:26 vendor/aristath/kirki/example.php:81
 msgid "Slider"
 msgstr "Slider"
 
@@ -1394,18 +1393,12 @@ msgstr "Återgå till den första vyn när det inte finns fler vyer att visa"
 msgid "Slides"
 msgstr "Vyer"
 
-#: source/php/AcfFields/php/mod-slider.php:416
+#: source/php/AcfFields/php/mod-slider.php:408
 #: source/php/Module/Video/Video.php:12 source/php/Module/Video/Video.php:13
 msgid "Video"
 msgstr "Video"
 
-#: source/php/AcfFields/php/mod-slider.php:862
-#, fuzzy
-#| msgid "Use featured image"
-msgid "Featured content"
-msgstr "Använd utvald bild"
-
-#: source/php/AcfFields/php/mod-slider.php:1042
+#: source/php/AcfFields/php/mod-slider.php:717
 #, fuzzy
 #| msgid "Add file"
 msgid "Add slide"
@@ -1513,71 +1506,88 @@ msgstr "Knapptext"
 msgid "Enter button text."
 msgstr "Ange knapptext."
 
-#: source/php/AcfFields/php/mod-table.php:10
+#: source/php/AcfFields/php/mod-table.php:8
+msgid "Table Editor"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:12
 msgid "Datatyp"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:23
-msgid "Manuell inmatning"
-msgstr ""
+#: source/php/AcfFields/php/mod-table.php:26
+msgid "CSV Import"
+msgstr "Importera CSV"
 
-#: source/php/AcfFields/php/mod-table.php:24
-msgid "Importera CSV"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-table.php:34
+#: source/php/AcfFields/php/mod-table.php:36
 msgid "CSV-fil"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:37
+#: source/php/AcfFields/php/mod-table.php:39
 msgid "CSV-formatterad fil"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:61
+#: source/php/AcfFields/php/mod-table.php:63
 msgid "CSV-avgränsare"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:64
+#: source/php/AcfFields/php/mod-table.php:66
 msgid ""
 "Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken eller "
 "semikolon."
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:104
-msgid "Medium (standard)"
+#: source/php/AcfFields/php/mod-table.php:82
+msgid ";"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:115
+#: source/php/AcfFields/php/mod-table.php:92
+#: source/php/Module/Table/Table.php:12
+msgid "Table"
+msgstr "Tabell"
+
+#: source/php/AcfFields/php/mod-table.php:95
+msgid ""
+"Enter your table contents, and select appearance and functionality options "
+"below."
+msgstr ""
+"Ange tabellens innehåll och välj utseende och funktionalitetsinställningar "
+"nedan."
+
+#: source/php/AcfFields/php/mod-table.php:124
 msgid "Sidbläddring"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:127
-msgid "Ja, använd sidbläddning för tabellen"
-msgstr ""
+#: source/php/AcfFields/php/mod-table.php:136
+msgid "Yes, use pagination on this table"
+msgstr "Ja, använd sidbläddning för tabellen"
 
-#: source/php/AcfFields/php/mod-table.php:134
+#: source/php/AcfFields/php/mod-table.php:143
 msgid "Antal inlägg/sidor"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:165
+#: source/php/AcfFields/php/mod-table.php:174
 msgid "Aktivera sök"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:177
-msgid "Ja, aktivera sök i denna tabell"
-msgstr ""
+#: source/php/AcfFields/php/mod-table.php:186
+msgid "Yes, use search on this table"
+msgstr "Ja, aktivera sök i denna tabell"
 
-#: source/php/AcfFields/php/mod-table.php:184
+#: source/php/AcfFields/php/mod-table.php:193
 msgid "Sökfras"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:213
+#: source/php/AcfFields/php/mod-table.php:212
+msgid "Search in list"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:222
 msgid "Aktivera kolumnsortering"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:225
-msgid "Ja, aktivera sortering"
-msgstr ""
+#: source/php/AcfFields/php/mod-table.php:234
+msgid "Yes, enable column sorting"
+msgstr "Ja, aktivera sortering"
 
 #: source/php/AcfFields/php/mod-text.php:10
 msgid "Göm textbox"
@@ -2094,24 +2104,19 @@ msgstr "Matar ut kod"
 msgid "Outputs a grid list with att sites in the network."
 msgstr "Matar ut ett rutmönster med webbplatser i nätverket. "
 
-#: source/php/Module/Slider/Slider.php:33
+#: source/php/Module/Slider/Slider.php:27
 msgid "Sliders"
 msgstr "Sliders"
 
-#: source/php/Module/Slider/Slider.php:34
+#: source/php/Module/Slider/Slider.php:28
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr "Visar flera bilder eller filmer i ett bildspel"
 
-#: source/php/Module/Slider/Slider.php:102
+#: source/php/Module/Slider/Slider.php:95
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
 msgid "Read more"
 msgstr "Läs mer"
-
-#: source/php/Module/Slider/Slider.php:242
-#: source/php/Module/Slider/Slider.php:250
-msgid "Video playback unavailable, please activate JavaScript to enable."
-msgstr "Videouppspelning är inte tillgänglig."
 
 #: source/php/Module/Social/Social.php:16
 msgid "Social Media Feed"
@@ -2128,10 +2133,6 @@ msgid ""
 msgstr ""
 "Visar ett socialt flöde från specificerat användarnamn eller hashtag "
 "(facebook, instagram, twitter, linkedin)."
-
-#: source/php/Module/Table/Table.php:12
-msgid "Table"
-msgstr "Tabell"
 
 #: source/php/Module/Table/Table.php:13
 msgid "Tables"
@@ -3618,6 +3619,14 @@ msgstr "Modulärt komponentssytem för WordPress"
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
+#, fuzzy
+#~| msgid "Use featured image"
+#~ msgid "Featured content"
+#~ msgstr "Använd utvald bild"
+
+#~ msgid "Video playback unavailable, please activate JavaScript to enable."
+#~ msgstr "Videouppspelning är inte tillgänglig."
+
 #~ msgid "Field&nbsp;Groups"
 #~ msgstr "Fältgrupper"
 
@@ -4515,9 +4524,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Group slides"
 #~ msgstr "Gruppera slides"
 
-#~ msgid "CSV Import"
-#~ msgstr "Importera CSV"
-
 #~ msgid "CSV File"
 #~ msgstr "CSV-fil"
 
@@ -4531,13 +4537,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr ""
 #~ "Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken "
 #~ "eller semikolon."
-
-#~ msgid ""
-#~ "Enter your table contents, and select appearance and functionality "
-#~ "options below."
-#~ msgstr ""
-#~ "Ange tabellens innehåll och välj utseende och "
-#~ "funktionalitetsinställningar nedan."
 
 #~ msgid "Striped rows"
 #~ msgstr "Färga varannan rad"
@@ -4554,26 +4553,17 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Medium (default)"
 #~ msgstr "Medium (standard)"
 
-#~ msgid "Yes, use pagination on this table"
-#~ msgstr "Ja, använd sidbläddning för tabellen"
-
 #~ msgid "Enable pagination"
 #~ msgstr "Sidbläddring"
 
 #~ msgid "Number of posts/page"
 #~ msgstr "Antal inlägg/sidor"
 
-#~ msgid "Yes, use search on this table"
-#~ msgstr "Ja, aktivera sök i denna tabell"
-
 #~ msgid "Enable search"
 #~ msgstr "Aktivera sök"
 
 #~ msgid "Search query"
 #~ msgstr "Sökfras"
-
-#~ msgid "Yes, enable column sorting"
-#~ msgstr "Ja, aktivera sortering"
 
 #~ msgid "Enable column soring"
 #~ msgstr "Aktivera kolumnsortering"
