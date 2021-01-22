@@ -12,7 +12,6 @@
             @endtypography
         </div>
     @endif
-
-    {!! $embed !!}
+    <div class="{{$cardPadding}}">{!! $embed !!}</div>
 @endcard
 

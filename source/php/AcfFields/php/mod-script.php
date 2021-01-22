@@ -24,6 +24,26 @@
             'rows' => '',
             'new_lines' => '',
         ),
+        1 => array(
+            'key' => 'field_60097ea2942bb',
+            'label' => __('Card Padding', 'modularity'),
+            'name' => 'embeded_card_padding',
+            'type' => 'range',
+            'instructions' => __('Add padding to card (default: 0, no padding)', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => 0,
+            'min' => '',
+            'max' => 4,
+            'step' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -40,7 +60,7 @@
     'label_placement' => 'top',
     'instruction_placement' => 'label',
     'hide_on_screen' => '',
-    'active' => 1,
+    'active' => true,
     'description' => '',
 ));
 }
