@@ -51,7 +51,6 @@ class Slider extends \Modularity\Module
         if (isset($this->imageSizes[$data['slider_format']])) {
             $imageSize = $this->imageSizes[$data['slider_format']];
         }
-
         
         foreach ($data['slides'] as &$slide) {
 
