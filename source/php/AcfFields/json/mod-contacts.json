@@ -476,36 +476,6 @@
             "ui": 1,
             "ui_on_text": "Aktiverad",
             "ui_off_text": "Disabled"
-        },
-        {
-            "key": "field_5bf7eec6ce764",
-            "label": "Display settings",
-            "name": "display_settings",
-            "type": "checkbox",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "hide_work_title": "Hide Work Title",
-                "hide_administration_unit": "Hide Administration Unit",
-                "hide_thumbnail": "Hide Thumbnail",
-                "hide_email": "Hide Email",
-                "hide_phone": "Hide Phone",
-                "hide_social_media": "Hide Social media",
-                "hide_address": "Hide Adress",
-                "hide_visiting_address": "Hide Visiting Adress"
-            },
-            "allow_custom": 0,
-            "default_value": [],
-            "layout": "horizontal",
-            "toggle": 0,
-            "return_format": "value",
-            "save_custom": 0
         }
     ],
     "location": [

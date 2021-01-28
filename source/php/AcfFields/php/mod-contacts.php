@@ -480,37 +480,6 @@
             'ui_on_text' => __('Aktiverad', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
         ),
-        4 => array(
-            'key' => 'field_5bf7eec6ce764',
-            'label' => __('Display settings', 'modularity'),
-            'name' => 'display_settings',
-            'type' => 'checkbox',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'choices' => array(
-                'hide_work_title' => __('Hide Work Title', 'modularity'),
-                'hide_administration_unit' => __('Hide Administration Unit', 'modularity'),
-                'hide_thumbnail' => __('Hide Thumbnail', 'modularity'),
-                'hide_email' => __('Hide Email', 'modularity'),
-                'hide_phone' => __('Hide Phone', 'modularity'),
-                'hide_social_media' => __('Hide Social media', 'modularity'),
-                'hide_address' => __('Hide Adress', 'modularity'),
-                'hide_visiting_address' => __('Hide Visiting Adress', 'modularity'),
-            ),
-            'allow_custom' => 0,
-            'default_value' => array(
-            ),
-            'layout' => 'horizontal',
-            'toggle' => 0,
-            'return_format' => 'value',
-            'save_custom' => 0,
-        ),
     ),
     'location' => array(
         0 => array(
