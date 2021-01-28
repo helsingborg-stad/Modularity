@@ -3,7 +3,7 @@
 namespace Modularity;
 
 use Throwable;
-use BladeComponentLibrary\Init as CompLibInitator;
+use ComponentLibrary\Init as CompLibInitator;
 
 class Display
 {
