@@ -51,18 +51,9 @@ class Slider extends \Modularity\Module
         if (isset($this->imageSizes[$data['slider_format']])) {
             $imageSize = $this->imageSizes[$data['slider_format']];
         }
-
+        
         foreach ($data['slides'] as &$slide) {
-            
-            $arrayToString = [
-                'text_color' => $slide['text_color'],
-                'background_color' => $slide['background_color']
-            ];
 
-            foreach ($arrayToString as $key => $string) {
-                $slide[$key] = $slide[$key][0]; 
-            }
-            
             $currentImageSize = $imageSize;
 
             if ($slide['acf_fc_layout'] === 'video') {
