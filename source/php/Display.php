@@ -3,7 +3,7 @@
 namespace Modularity;
 
 use Throwable;
-use BladeComponentLibrary\Init as CompLibInitator;
+use ComponentLibrary\Init as ComponentLibraryInit;
 
 class Display
 {
@@ -79,7 +79,7 @@ class Display
             $moduleView = $externalViewPaths[$data['post_type']];
         }
         
-        $init = new CompLibInitator([$moduleView]);
+        $init = new ComponentLibraryInit([$moduleView]);
         $blade = $init->getEngine();
 
         try {
