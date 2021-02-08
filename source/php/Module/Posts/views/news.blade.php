@@ -55,6 +55,7 @@
     </div>
     @endforeach
 
+
     @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
     <div class="grid-lg-12">
         <a class="read-more" href="{{ $archive_link_url }}?{{ http_build_query($filters) }}"><?php _e('Show more', 'modularity'); ?></a>
