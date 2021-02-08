@@ -7,7 +7,7 @@
     @endif
 
     @if (isset($posts_list_column_titles) && $posts_list_column_titles)
-    <header class="accordion-table accordion-table-head">
+    <div role="group" class="accordion-table accordion-table-head">
         @if ($posts_hide_title_column)
         <span class="column-header">{{ isset($title_column_label) && !empty($title_column_label) ? $title_column_label : __('Title', 'modularity') }}</span>
         @endif
@@ -15,13 +15,13 @@
         @foreach ($posts_list_column_titles as $column)
             <span class="column-header">{{ $column->column_header }}</span>
         @endforeach
-    </header>
+    </div>
     @endif
 
     <div class="accordion accordion-icon accordion-list">
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
         <div class="accordion-search">
-            <input type="text" name="accordion-search" placeholder="<?php _e('Filter on…', 'modularity'); ?>">
+            <input type="text" name="accordion-search" aria-label="<?php _e('Filter on…', 'modularity'); ?>" placeholder="<?php _e('Filter on…', 'modularity'); ?>">
         </div>
         @endif
 
@@ -29,7 +29,7 @@
         @foreach ($posts as $post)
 
         <section class="accordion-section">
-            <label tabindex="0" class="accordion-toggle" for="item-{{ $ID }}-{{ $post->ID }}">
+            <button tabindex="0" class="accordion-toggle" aria-label="<?php echo apply_filters('the_title', $post->post_title); ?>" for="item-{{ $ID }}-{{ $post->ID }}">
                 @if (!empty($posts_list_column_titles))
                     <span class="accordion-table">
                     @if (isset($post->column_values) && !empty($post->column_values))
@@ -63,8 +63,13 @@
                 @else
                     <h4><?php echo apply_filters('the_title', $post->post_title); ?></h4>
                 @endif
-            </label>
+            </button>
             <div class="accordion-content">
+                <noscript>
+                    <style type="text/css">
+                        .accordion-content { display: block; }
+                    </style>
+                </noscript>
                 <article>
                     <?php echo apply_filters('the_content', $post->post_content); ?>
                 </article>

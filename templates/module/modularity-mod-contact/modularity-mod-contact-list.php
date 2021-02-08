@@ -69,9 +69,9 @@ if (isset($info['image']) && !empty($info['image'])) {
 ?>
     <section class="accordion-section" itemscope="person" itemtype="http://schema.org/Organization">
         <input type="radio" name="active-section" id="accordion-contacts-<?php echo $module->ID; ?>-<?php echo $i; ?>">
-        <label class="accordion-toggle" for="accordion-contacts-<?php echo $module->ID; ?>-<?php echo $i; ?>">
+        <button class="accordion-toggle" for="accordion-contacts-<?php echo $module->ID; ?>-<?php echo $i; ?>">
             <h6 itemprop="name"><?php echo $info['first_name']; ?> <?php echo isset($info['last_name']) && !empty($info['last_name']) ? $info['last_name'] : ''; ?></h6>
-        </label>
+        </button>
         <div class="accordion-content">
             <ul>
                 <?php if ((isset($info['work_title']) && !empty($info['work_title'])) || (isset($info['administration_unit']) && !empty($info['administration_unit']))) : ?>

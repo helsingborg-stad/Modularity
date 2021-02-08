@@ -83,12 +83,14 @@ a.wp-first-item[href="admin.php?page=modularity"] {
   padding: 12px; }
 
 .modularity-module {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   display: block;
   text-align: left;
   overflow: hidden;
   background-color: #fff;
   border: 1px solid #eee;
+  -webkit-transition: 100ms background ease;
   transition: 100ms background ease; }
   .modularity-module:not(:last-child) {
     margin-bottom: 8px; }
@@ -100,8 +102,10 @@ a.wp-first-item[href="admin.php?page=modularity"] {
     background-color: #fff;
     width: 250px !important;
     min-width: 250px !important;
-    transform: rotate(-4deg) scale(1.1);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); }
+    -webkit-transform: rotate(-4deg) scale(1.1);
+            transform: rotate(-4deg) scale(1.1);
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); }
 
 li.modularity-module {
   line-height: auto; }
@@ -126,13 +130,17 @@ li.modularity-module {
   float: left;
   width: 50px;
   height: 50px;
-  transition: transform 200ms ease; }
+  -webkit-transition: -webkit-transform 200ms ease;
+  transition: -webkit-transform 200ms ease;
+  transition: transform 200ms ease;
+  transition: transform 200ms ease, -webkit-transform 200ms ease; }
   .modularity-module-icon svg,
   .modularity-module-icon img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     max-width: 60%;
     max-height: 60%;
     height: 100%;
@@ -142,7 +150,8 @@ li.modularity-module {
     fill: #4D4D4D !important; }
 
 .modularity-module:hover .modularity-module-icon {
-  transform: rotate(-10deg); }
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg); }
 
 .modularity-sortable-handle {
   line-height: 50px; }
@@ -183,7 +192,8 @@ li.modularity-module {
     height: 50px;
     border-radius: 1px;
     position: relative;
-    box-sizing: border-box; }
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
     @media (max-width: 1450px) {
       .modularity-sidebar-area li {
         height: 100px;
@@ -281,11 +291,15 @@ li.modularity-module {
         line-height: 50px;
         width: 33.33%;
         display: inline-block;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         text-align: center;
         position: relative;
         white-space: nowrap;
-        transition: background 200ms ease, color 200ms ease, transform 200ms ease; }
+        -webkit-transition: background 200ms ease, color 200ms ease, -webkit-transform 200ms ease;
+        transition: background 200ms ease, color 200ms ease, -webkit-transform 200ms ease;
+        transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+        transition: background 200ms ease, color 200ms ease, transform 200ms ease, -webkit-transform 200ms ease; }
         .modularity-sidebar-area li span.modularity-module-actions a:not(:last-child) {
           border-right: 1px solid #E5E5E5; }
         .modularity-sidebar-area li span.modularity-module-actions a > span {
@@ -300,6 +314,7 @@ li.modularity-module {
           left: 0;
           height: 0;
           background-color: rgba(203, 0, 80, 0.4);
+          -webkit-transition: height 100ms ease;
           transition: height 100ms ease; }
         .modularity-sidebar-area li span.modularity-module-actions a:before {
           content: "";
@@ -310,11 +325,11 @@ li.modularity-module {
           margin: -2px 0 -2px 0;
           background-size: contain; }
         .modularity-sidebar-area li span.modularity-module-actions a.modularity-js-thickbox-open:before {
-          background-image: url("../../dist/images/action_icons/edit.svg"); }
+          background-image: url("../../source/images/action_icons/edit.svg"); }
         .modularity-sidebar-area li span.modularity-module-actions a.modularity-js-thickbox-import:before {
-          background-image: url("../../dist/images/action_icons/import.svg"); }
+          background-image: url("../../source/images/action_icons/import.svg"); }
         .modularity-sidebar-area li span.modularity-module-actions a.modularity-module-remove:before {
-          background-image: url("../../dist/images/action_icons/delete.svg"); }
+          background-image: url("../../source/images/action_icons/delete.svg"); }
       @media (max-width: 600px) {
         .modularity-sidebar-area li span.modularity-module-actions a {
           width: 50%; }
@@ -353,7 +368,8 @@ li.modularity-module {
   cursor: move; }
 
 .modularity-js-droppable {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   position: relative;
   min-height: 100px;
   border-radius: 10px; }
@@ -364,7 +380,8 @@ li.modularity-module {
     width: 100%;
     text-align: center;
     top: 50%;
-    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
     font-size: 13pt;
     color: #999; }
   .modularity-js-droppable.modularity-spinner {
@@ -397,7 +414,8 @@ li.modularity-module {
   background-color: rgba(0, 0, 0, 0.015);
   text-align: center;
   width: 50px;
-  box-sizing: border-box; }
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
   @media (max-width: 1450px) {
     .modularity-sortable-handle {
       height: 100px !important;
@@ -445,7 +463,8 @@ li.modularity-module {
     top: 50%;
     left: 50%;
     position: absolute;
-    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
     opacity: .6;
     z-index: 9; }
   .modularity-incompatible-area h2 {
@@ -473,7 +492,8 @@ body[class*="post-type-mod-"] .misc-pub-post-status {
   overflow: hidden; }
 
 .modularity-modal-open #wpwrap {
-  filter: blur(10px); }
+  -webkit-filter: blur(10px);
+          filter: blur(10px); }
 
 #modularity-modal {
   position: fixed;
@@ -484,7 +504,8 @@ body[class*="post-type-mod-"] .misc-pub-post-status {
   right: 0;
   background-color: rgba(241, 241, 241, 0.95);
   opacity: 0;
-  animation: 200ms modal-fade-in forwards; }
+  -webkit-animation: 200ms modal-fade-in forwards;
+          animation: 200ms modal-fade-in forwards; }
   #modularity-modal .modularity-modal-close {
     position: absolute;
     top: 0;
@@ -506,12 +527,17 @@ body[class*="post-type-mod-"] .misc-pub-post-status {
   #modularity-modal .modularity-modal-iframe {
     position: relative;
     z-index: 2;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     width: 100vw;
     height: 100%; }
 
 .admin-bar:not(.wp-admin) #modularity-modal {
   top: 32px; }
+
+@-webkit-keyframes modal-fade-in {
+  100% {
+    opacity: 1; } }
 
 @keyframes modal-fade-in {
   100% {
@@ -542,13 +568,24 @@ body.modularity-loader-takeover::after {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  animation: 1000ms loading-ball ease-in-out infinite; }
+  -webkit-animation: 1000ms loading-ball ease-in-out infinite;
+          animation: 1000ms loading-ball ease-in-out infinite; }
+
+@-webkit-keyframes loading-ball {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1); }
+  50% {
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2); } }
 
 @keyframes loading-ball {
   0% {
-    transform: scale(1); }
+    -webkit-transform: scale(1);
+            transform: scale(1); }
   50% {
-    transform: scale(0.2); } }
+    -webkit-transform: scale(0.2);
+            transform: scale(0.2); } }
 
 .text-right {
   text-align: right; }
@@ -582,7 +619,8 @@ body.modularity-loader-takeover::after {
   left: 50%;
   margin: -10px;
   background-color: #888;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3) inset;
+  -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3) inset;
+          box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3) inset;
   border-radius: 50%; }
   .modularity-modal-spinner:after {
     content: '';
@@ -592,13 +630,21 @@ body.modularity-loader-takeover::after {
     background-color: #fff;
     height: 4px;
     width: 4px;
-    animation: modularity-spin 1s linear infinite;
+    -webkit-animation: modularity-spin 1s linear infinite;
+            animation: modularity-spin 1s linear infinite;
     border-radius: 50%;
-    transform-origin: 7.33333px; }
+    -webkit-transform-origin: 7.33333px;
+            transform-origin: 7.33333px; }
+
+@-webkit-keyframes modularity-spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 
 @keyframes modularity-spin {
   100% {
-    transform: rotate(360deg); } }
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
 
 .modularity-modal-spinner-container {
   background-color: #fff;
@@ -610,7 +656,8 @@ body.modularity-loader-takeover::after {
   z-index: 1;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); }
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
 
 .acf-fields .acf-tab-wrap .acf-tab-group li a {
   font-size: 1.1em; }
@@ -630,7 +677,8 @@ body.modularity-loader-takeover::after {
     background: #fbfbfb; }
     .acf-fields > .acf-field.modularity-ui-additional:before {
       background: rgba(0, 0, 0, 0.05);
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), transparent);
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.05)), to(rgba(0, 0, 0, 0)));
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
       content: "";
       width: 100%;
       height: 20px;
@@ -643,7 +691,8 @@ body.modularity-loader-takeover::after {
     font-size: 1.2em; }
   .acf-fields > .acf-field.modularity-ui-highlight > .acf-input > .acf-fields {
     border-radius: 2px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); }
   .acf-fields > .acf-field .acf-image-uploader {
     background: #fbfbfb;
     display: block;
@@ -677,7 +726,8 @@ body.modularity-loader-takeover::after {
     position: absolute;
     bottom: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
     z-index: 9999; }
   [class*="modularity-mod-"] .modularity-edit-module a,
   [class*="mod-"] .modularity-edit-module a {
@@ -693,7 +743,8 @@ body.modularity-loader-takeover::after {
       position: absolute;
       top: 100%;
       left: 50%;
-      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
       display: block;
       content: '';
       width: 0;
@@ -708,6 +759,7 @@ body.modularity-loader-takeover::after {
 .modularity-preview-hidden {
   position: relative;
   opacity: .5;
+  -webkit-transition: 500ms all;
   transition: 500ms all; }
   .modularity-preview-hidden::after {
     display: block;
@@ -718,18 +770,23 @@ body.modularity-loader-takeover::after {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1);
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
     background-color: #fff;
     border-radius: 50%;
     padding: 15px;
     height: 200px;
     width: 200px;
     opacity: 1;
-    transition: 500ms opacity, 300ms transform;
+    -webkit-transition: 500ms opacity, 300ms -webkit-transform;
+    transition: 500ms opacity, 300ms -webkit-transform;
+    transition: 500ms opacity, 300ms transform;
+    transition: 500ms opacity, 300ms transform, 300ms -webkit-transform;
     border: 5px solid currentColor;
     z-index: 1; }
   .modularity-preview-hidden:hover, .modularity-preview-hidden:focus {
     opacity: 1; }
     .modularity-preview-hidden:hover::after, .modularity-preview-hidden:focus::after {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0); }
+      -webkit-transform: translate(-50%, -50%) scale(0);
+              transform: translate(-50%, -50%) scale(0); }

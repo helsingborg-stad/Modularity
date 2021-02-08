@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5666a2a71d806',
     'title' => 'Table Editor',
     'fields' => array(
@@ -231,41 +233,12 @@
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => 50,
+                'width' => '50',
                 'class' => '',
                 'id' => '',
             ),
         ),
         9 => array(
-            'default_value' => 'Search in list',
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'key' => 'field_5666a63a48379',
-            'label' => __('Search query', 'modularity'),
-            'name' => 'mod_table_search_query',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_5666a459d2d2a',
-                        'operator' => '==',
-                        'value' => '1',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => 50,
-                'class' => '',
-                'id' => '',
-            ),
-            'readonly' => 0,
-            'disabled' => 0,
-        ),
-        10 => array(
             'default_value' => 1,
             'message' => __('Yes, enable column sorting', 'modularity'),
             'ui' => 0,
@@ -279,7 +252,7 @@
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '',
+                'width' => '50',
                 'class' => '',
                 'id' => '',
             ),
@@ -305,4 +278,5 @@
     'modified' => 1474878447,
     'local' => 'json',
 ));
-}
+
+}
