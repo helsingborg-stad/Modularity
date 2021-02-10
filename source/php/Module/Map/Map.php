@@ -20,7 +20,8 @@ class Map extends \Modularity\Module
     {
         //Get and sanitize url
         $map_url = get_field('map_url', $this->ID);
-        $map_url = str_replace(array('http://', 'https://'), '//', $map_url);
+        $map_url = str_replace(['http://', 'https://'], '//', $map_url); //Enforce ssl
+        $map_url = str_replace('disable_scroll=false', 'disable_scroll=true', $map_url); //Remove scroll arcgis
 
         //Create data array
         $data['map_url']            = $map_url;
