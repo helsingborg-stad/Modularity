@@ -71,9 +71,9 @@
                     @if( is_array($accordionItem['column_values'])  && !empty($accordionItem['column_values']))
                
                         @accordion__item([
-                            'heading' => ($title_column_label) ?
-                                array_merge( (array) $accordionItem['heading'], (array) $accordionItem['column_values'] ) :
-                                $accordionItem['column_values'],
+                            'heading' => ($accordionItem['heading']) ?
+                                array_merge( (array) $accordionItem['heading'],
+                                (array) $accordionItem['column_values'] ) : $accordionItem['heading'],
                             'attributeList' => [
                                 'js-filter-item' => '',
                                 'js-filter-data' => ''
