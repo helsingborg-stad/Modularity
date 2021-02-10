@@ -29,6 +29,7 @@
                 <div class="c-card__body">
                     @typography([
                         'element' => "h2",
+                        'classList' => ['c-card__heading'],
                     ])
                         {{$post->showTitle ? $post->post_title : ''}}
                     @endtypography
