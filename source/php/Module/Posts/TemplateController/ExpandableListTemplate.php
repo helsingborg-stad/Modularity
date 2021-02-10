@@ -25,6 +25,7 @@ class ExpandableListTemplate
         $this->data['posts_list_column_titles'] = !empty($fields->posts_list_column_titles) && is_array($fields->posts_list_column_titles) ? $fields->posts_list_column_titles : null;
         $this->data['posts_hide_title_column'] = ($fields->posts_hide_title_column) ? true : false;
         $this->data['title_column_label'] = $fields->title_column_label ?? null;
+
         $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
         $this->data['prepareAccordion'] = $this->prepare($this->module->data['posts'], $this->data);
 
@@ -89,8 +90,7 @@ class ExpandableListTemplate
 
                     if (isset($column_values) && !empty($column_values)) {
 
-                            $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
-
+                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
 
                         if (is_array($data['posts_list_column_titles'])) {
                             foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
