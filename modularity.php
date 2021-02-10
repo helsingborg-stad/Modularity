@@ -73,6 +73,7 @@ add_action('plugins_loaded', function () {
         'mod-table'            => 'group_5666a2a71d806',
         'mod-text'             => 'group_5891b49127038',
         'mod-video'            => 'group_57454ae7b0e9a',
+        'mod-map'              => 'group_602400d904b59',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
