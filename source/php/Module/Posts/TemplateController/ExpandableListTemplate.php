@@ -20,14 +20,12 @@ class ExpandableListTemplate
         $this->data = $data;
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
-        // $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel', 'c-card--panel'), $this->module->post_type, $this->args));
+
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel'), $this->module->post_type, $this->args));
-
         $this->data['posts_list_column_titles'] = !empty($fields->posts_list_column_titles) && is_array($fields->posts_list_column_titles) ? $fields->posts_list_column_titles : null;
-        $this->data['posts_hide_title_column'] = !isset($fields->posts_hide_title_column) || !$fields->posts_hide_title_column;
-        $this->data['title_column_label'] = isset($fields->title_column_label) ? $fields->title_column_label : false;
+        $this->data['posts_hide_title_column'] = ($fields->posts_hide_title_column) ? true : false;
+        $this->data['title_column_label'] = $fields->title_column_label;
         $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
-
         $this->data['prepareAccordion'] = $this->prepare($this->module->data['posts'], $this->data);
 
     }
@@ -56,7 +54,7 @@ class ExpandableListTemplate
                 $column_values[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
             }
         }
-        
+
         return $column_values;
 
     }
@@ -91,10 +89,8 @@ class ExpandableListTemplate
 
                     if (isset($column_values) && !empty($column_values)) {
 
-                        if ($data['posts_hide_title_column']) {
-                            $accordion[$index]['heading'] = apply_filters('the_title',
-                                $post->post_title);
-                        }
+                            $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
+
 
                         if (is_array($data['posts_list_column_titles'])) {
                             foreach ($data['posts_list_column_titles'] as $colIndex => $column) {

@@ -36,9 +36,10 @@
         @endif
     
             @if (isset($posts_list_column_titles) && $posts_list_column_titles)
-
+                
                 <header class="accordion-table__head">
-                    @if ($posts_hide_title_column)
+       
+                    @if (!$posts_hide_title_column)
                         @typography([
                             'element' => "span",
                             'classList' => ['accordion-table__head-column']
@@ -63,13 +64,14 @@
         
         
         @if(count($prepareAccordion) > 0)
+
             @accordion([])
                 @foreach ($prepareAccordion as $accordionItem)
 
                     @if( is_array($accordionItem['column_values'])  && !empty($accordionItem['column_values']))
                
                         @accordion__item([
-                            'heading' => ($posts_hide_title_column) ?
+                            'heading' => ($title_column_label) ?
                                 array_merge( (array) $accordionItem['heading'], (array) $accordionItem['column_values'] ) :
                                 $accordionItem['column_values'],
                             'attributeList' => [
