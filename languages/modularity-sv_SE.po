@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-01-21 14:42+0100\n"
-"PO-Revision-Date: 2021-01-21 14:57+0100\n"
+"POT-Creation-Date: 2021-02-10 17:06+0100\n"
+"PO-Revision-Date: 2021-02-10 17:08+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:162 App.php:193 App.php:224
+#: App.php:162 App.php:194 App.php:225
 msgid "Edit"
 msgstr "Redigera"
 
@@ -28,11 +28,11 @@ msgstr "Redigera"
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:194 App.php:225
+#: App.php:195 App.php:226
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:195 App.php:226
+#: App.php:196 App.php:227
 #: vendor/aristath/kirki/controls/php/class-kirki-control-background.php:62
 #: vendor/aristath/kirki/controls/php/class-kirki-control-base.php:133
 #: vendor/aristath/kirki/controls/php/class-kirki-control-repeater.php:386
@@ -42,28 +42,28 @@ msgstr "Importera"
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:196 App.php:227
+#: App.php:197 App.php:228
 msgid "Hide module"
 msgstr "Dölj modulen"
 
-#: App.php:197 App.php:228
+#: App.php:198 App.php:229
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:198 App.php:229
+#: App.php:199 App.php:230
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:199 App.php:230
+#: App.php:200 App.php:231
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:200 App.php:231
+#: App.php:201 App.php:232
 #: vendor/aristath/kirki/controls/php/class-kirki-control-dimensions.php:137
 msgid "Width"
 msgstr "Bredd"
 
-#: App.php:202 App.php:233 templates/options/partials/modularity-modules.php:27
+#: App.php:203 App.php:234 templates/options/partials/modularity-modules.php:27
 msgid "Deprecated"
 msgstr "Utgående"
 
@@ -593,42 +593,6 @@ msgstr ""
 msgid "Disabled"
 msgstr "Avaktiverad"
 
-#: source/php/AcfFields/php/mod-contacts.php:485
-msgid "Display settings"
-msgstr "Visningsinställningar"
-
-#: source/php/AcfFields/php/mod-contacts.php:497
-msgid "Hide Work Title"
-msgstr "Dölj arbetstitel"
-
-#: source/php/AcfFields/php/mod-contacts.php:498
-msgid "Hide Administration Unit"
-msgstr "Dölj administrationsenhet"
-
-#: source/php/AcfFields/php/mod-contacts.php:499
-msgid "Hide Thumbnail"
-msgstr "Dölj miniatyr"
-
-#: source/php/AcfFields/php/mod-contacts.php:500
-msgid "Hide Email"
-msgstr "Dölj e-post"
-
-#: source/php/AcfFields/php/mod-contacts.php:501
-msgid "Hide Phone"
-msgstr "Dölj Telefonnummer"
-
-#: source/php/AcfFields/php/mod-contacts.php:502
-msgid "Hide Social media"
-msgstr "Dölj sociala medier"
-
-#: source/php/AcfFields/php/mod-contacts.php:503
-msgid "Hide Adress"
-msgstr "Dölj adress"
-
-#: source/php/AcfFields/php/mod-contacts.php:504
-msgid "Hide Visiting Adress"
-msgstr "Dölj besöksadress"
-
 #: source/php/AcfFields/php/mod-files.php:10
 #: source/php/AcfFields/php/mod-fileslist.php:10
 msgid "Filer"
@@ -1012,6 +976,36 @@ msgstr "Lägg till rad"
 #: source/php/AcfFields/php/mod-posts-displau.php:25
 msgid "News items"
 msgstr "Nyhetsobjekt"
+
+#: source/php/AcfFields/php/mod-map.php:6 source/php/Module/Map/Map.php:12
+msgid "Map"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:10
+msgid "Map URL"
+msgstr "Kartans inbäddningsadress"
+
+#: source/php/AcfFields/php/mod-map.php:13
+#: source/php/AcfFields/php/mod-map.php:29
+msgid ""
+"<span style=\"color: #f00;\">Your map link must start with http<strong>s</"
+"strong>://. Links without this prefix will not display.</span>"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:26
+msgid "Show large version URL"
+msgstr "Länk till karta i större version (visas som länk)"
+
+#: source/php/AcfFields/php/mod-map.php:42
+#: vendor/aristath/kirki/controls/php/class-kirki-control-dimensions.php:138
+#, fuzzy
+#| msgid "Max height"
+msgid "Height"
+msgstr "Maxhöjd"
+
+#: source/php/AcfFields/php/mod-map.php:58
+msgid "px"
+msgstr ""
 
 #: source/php/AcfFields/php/mod-notice.php:8
 msgid "Notice settings"
@@ -1996,6 +1990,24 @@ msgstr "Senaste"
 msgid "Main News"
 msgstr "Huvudnyhet"
 
+#: source/php/Module/Map/Map.php:13
+msgid "Maps"
+msgstr ""
+
+#: source/php/Module/Map/Map.php:14
+msgid "Outputs an embedded map."
+msgstr ""
+
+#: source/php/Module/Map/Map.php:32
+msgid "Show larger map"
+msgstr "Visa större karta"
+
+#: source/php/Module/Map/Map.php:40
+msgid ""
+"Your map link must start with http<strong>s</strong>://. Links without this "
+"prefix will not display."
+msgstr "Din länk måste starta med http<strong>s</strong>://"
+
 #: source/php/Module/Notice/Notice.php:12
 #: source/php/Module/Notice/Notice.php:13
 msgid "Notice"
@@ -2154,59 +2166,59 @@ msgstr "Visar en tabell"
 msgid "There was an error opening the selected .csv-file."
 msgstr "Det uppstod ett fel när den valda .csv-filen skulle öppnas."
 
-#: source/php/Module/Table/Table.php:160
+#: source/php/Module/Table/Table.php:169
 msgid "No data available in table"
 msgstr "Inga rader i tabellen"
 
-#: source/php/Module/Table/Table.php:161
+#: source/php/Module/Table/Table.php:170
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "Visar _START_ till _END_ av _TOTAL_ rader"
 
-#: source/php/Module/Table/Table.php:162
+#: source/php/Module/Table/Table.php:171
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "Visar 0 till 0 av 0 rader"
 
-#: source/php/Module/Table/Table.php:163
+#: source/php/Module/Table/Table.php:172
 msgid "filtered from _MAX_ total entries"
 msgstr "filtrerad från _MAX_ rader"
 
-#: source/php/Module/Table/Table.php:164
+#: source/php/Module/Table/Table.php:173
 msgid "Show _MENU_ entries"
 msgstr "Visa _MENU_ rader"
 
-#: source/php/Module/Table/Table.php:165
+#: source/php/Module/Table/Table.php:174
 msgid "Loading..."
 msgstr "Laddar…"
 
-#: source/php/Module/Table/Table.php:166
+#: source/php/Module/Table/Table.php:175
 msgid "Processing..."
 msgstr "Bearbetar..."
 
-#: source/php/Module/Table/Table.php:167
+#: source/php/Module/Table/Table.php:176
 msgid "No matching records found"
 msgstr "Inga matchande rader hittades"
 
-#: source/php/Module/Table/Table.php:168
+#: source/php/Module/Table/Table.php:177
 msgid "First"
 msgstr "Första"
 
-#: source/php/Module/Table/Table.php:169
+#: source/php/Module/Table/Table.php:178
 msgid "Last"
 msgstr "Sista"
 
-#: source/php/Module/Table/Table.php:170
+#: source/php/Module/Table/Table.php:179
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Table/Table.php:171
+#: source/php/Module/Table/Table.php:180
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Table/Table.php:172
+#: source/php/Module/Table/Table.php:181
 msgid "activate to sort column ascending"
 msgstr "aktivera för att sortera kolumnen i stigande ordning"
 
-#: source/php/Module/Table/Table.php:173
+#: source/php/Module/Table/Table.php:182
 msgid "activate to sort column descending"
 msgstr "aktivera för att sortera kolumnen i fallande ordning"
 
@@ -2802,12 +2814,6 @@ msgstr "Storlek"
 #: vendor/aristath/kirki/controls/php/class-kirki-control-dimensions.php:136
 msgid "Spacing"
 msgstr "Mellanrum"
-
-#: vendor/aristath/kirki/controls/php/class-kirki-control-dimensions.php:138
-#, fuzzy
-#| msgid "Max height"
-msgid "Height"
-msgstr "Maxhöjd"
 
 #: vendor/aristath/kirki/controls/php/class-kirki-control-repeater.php:78
 msgid "row"
@@ -3626,6 +3632,33 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Display settings"
+#~ msgstr "Visningsinställningar"
+
+#~ msgid "Hide Work Title"
+#~ msgstr "Dölj arbetstitel"
+
+#~ msgid "Hide Administration Unit"
+#~ msgstr "Dölj administrationsenhet"
+
+#~ msgid "Hide Thumbnail"
+#~ msgstr "Dölj miniatyr"
+
+#~ msgid "Hide Email"
+#~ msgstr "Dölj e-post"
+
+#~ msgid "Hide Phone"
+#~ msgstr "Dölj Telefonnummer"
+
+#~ msgid "Hide Social media"
+#~ msgstr "Dölj sociala medier"
+
+#~ msgid "Hide Adress"
+#~ msgstr "Dölj adress"
+
+#~ msgid "Hide Visiting Adress"
+#~ msgstr "Dölj besöksadress"
 
 #, fuzzy
 #~| msgid "Use featured image"
