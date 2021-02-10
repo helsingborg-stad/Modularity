@@ -15,11 +15,11 @@
         </div>
     @endif
 
-    <iframe src="{{ $map_url }}" frameborder="0" class="u-width--100 u-display--block" style="height: {{ $height }}px;"></iframe>
+    <iframe src="{{ $map_url }}" frameborder="0" class="u-width--100 u-display--block" style="height: {{ $height }}px;" aria-label="{{ $map_description }}"></iframe>
 
-    @if($map_url_large)
+    @if($show_button)
         <div class="c-card__footer">
-            @button(['type' => 'filled', 'color' => 'primary', 'text' => $button_label, 'size' => 'sm', 'href' => $map_url_large])
+            @button(['type' => 'filled', 'color' => 'primary', 'text' => $button_label, 'size' => 'sm', 'href' => $button_url])
             @endbutton
         </div>
     @endif

@@ -14,23 +14,24 @@ class Map extends \Modularity\Module
         $this->description = __("Outputs an embedded map.", 'modularity');
 
         add_filter('acf/load_field/name=map_url', array($this,'sslNotice'));
-        add_filter('acf/load_field/name=map_url_large', array($this,'sslNotice'));
     }
 
     public function data() : array
     {
+        //Get and sanitize url
         $map_url = get_field('map_url', $this->ID);
-        $map_url_large = get_field('map_url_large', $this->ID);
-
         $map_url = str_replace(array('http://', 'https://'), '//', $map_url);
-        $map_url_large = str_replace(array('http://', 'https://'), '//', $map_url_large);
 
-        $data['map_url'] = $map_url;
-        $data['map_url_large'] = $map_url_large; 
+        //Create data array
+        $data['map_url']            = $map_url;
 
-        $data['height'] = get_field('height', $this->ID);
-        $data['button_label'] = __('Show larger map', 'modularity'); 
-
+        $data['height']             = get_field('height', $this->ID);
+        $data['map_description']    = get_field('map_description', $this->ID);
+        
+        $data['show_button']        = get_field('show_button', $this->ID);
+        $data['button_label']       = get_field('button_label', $this->ID);
+        $data['button_url']         = get_field('button_url', $this->ID);
+        
         return $data;
     }
 

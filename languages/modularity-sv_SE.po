@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-02-10 17:06+0100\n"
-"PO-Revision-Date: 2021-02-10 17:44+0100\n"
+"POT-Creation-Date: 2021-02-10 23:27+0100\n"
+"PO-Revision-Date: 2021-02-10 23:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -986,26 +986,52 @@ msgid "Map URL"
 msgstr "Kartans inbäddningsadress"
 
 #: source/php/AcfFields/php/mod-map.php:13
-#: source/php/AcfFields/php/mod-map.php:29
 msgid ""
 "<span style=\"color: #f00;\">Your map link must start with http<strong>s</"
 "strong>://. Links without this prefix will not display.</span>"
 msgstr ""
+"<span style=\"color: #f00;\">Din kartlänk måste börja med http<strong>s</"
+"strong>://.</span>"
 
-#: source/php/AcfFields/php/mod-map.php:26
-msgid "Show large version URL"
-msgstr "Länk till karta i större version (visas som länk)"
+#: source/php/AcfFields/php/mod-map.php:26 source/php/ModuleManager.php:599
+#: templates/options/partials/modularity-modules.php:19
+#: vendor/aristath/kirki/example.php:141 vendor/aristath/kirki/example.php:160
+#: vendor/aristath/kirki/example.php:452 vendor/aristath/kirki/example.php:463
+#: vendor/aristath/kirki/example.php:815 vendor/aristath/kirki/example.php:826
+#: vendor/aristath/kirki/example.php:851
+msgid "Description"
+msgstr "Beskrivning"
 
-#: source/php/AcfFields/php/mod-map.php:42
+#: source/php/AcfFields/php/mod-map.php:29
+msgid "Describe the contents of this map (not shown)"
+msgstr "Beskriv vad kartan illustrerar (endast skärmläsare)"
+
+#: source/php/AcfFields/php/mod-map.php:45
 #: vendor/aristath/kirki/controls/php/class-kirki-control-dimensions.php:138
 #, fuzzy
 #| msgid "Max height"
 msgid "Height"
 msgstr "Maxhöjd"
 
-#: source/php/AcfFields/php/mod-map.php:58
+#: source/php/AcfFields/php/mod-map.php:48
+msgid "Set a fixed height"
+msgstr "Sätt en fixerad höjd"
+
+#: source/php/AcfFields/php/mod-map.php:61
 msgid "px"
 msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:65
+msgid "Show button"
+msgstr "Visa knapp"
+
+#: source/php/AcfFields/php/mod-map.php:84
+msgid "Button label"
+msgstr "Knappens etikett"
+
+#: source/php/AcfFields/php/mod-map.php:111
+msgid "Button url"
+msgstr "Knappens länkmål"
 
 #: source/php/AcfFields/php/mod-notice.php:8
 msgid "Notice settings"
@@ -1998,11 +2024,7 @@ msgstr ""
 msgid "Outputs an embedded map."
 msgstr ""
 
-#: source/php/Module/Map/Map.php:32
-msgid "Show larger map"
-msgstr "Visa större karta"
-
-#: source/php/Module/Map/Map.php:40
+#: source/php/Module/Map/Map.php:41
 msgid ""
 "Your map link must start with http<strong>s</strong>://. Links without this "
 "prefix will not display."
@@ -2348,15 +2370,6 @@ msgstr "Modulbeskrivning"
 #: source/php/ModuleManager.php:598
 msgid "Title"
 msgstr "Titel"
-
-#: source/php/ModuleManager.php:599
-#: templates/options/partials/modularity-modules.php:19
-#: vendor/aristath/kirki/example.php:141 vendor/aristath/kirki/example.php:160
-#: vendor/aristath/kirki/example.php:452 vendor/aristath/kirki/example.php:463
-#: vendor/aristath/kirki/example.php:815 vendor/aristath/kirki/example.php:826
-#: vendor/aristath/kirki/example.php:851
-msgid "Description"
-msgstr "Beskrivning"
 
 #: source/php/ModuleManager.php:600
 msgid "Usage"
@@ -3632,6 +3645,12 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Show large version URL"
+#~ msgstr "Länk till karta i större version (visas som länk)"
+
+#~ msgid "Show larger map"
+#~ msgstr "Visa större karta"
 
 #~ msgid "Display settings"
 #~ msgstr "Visningsinställningar"
