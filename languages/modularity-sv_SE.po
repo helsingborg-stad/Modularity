@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "POT-Creation-Date: 2021-02-10 17:06+0100\n"
-"PO-Revision-Date: 2021-02-10 17:08+0100\n"
+"PO-Revision-Date: 2021-02-10 17:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -979,7 +979,7 @@ msgstr "Nyhetsobjekt"
 
 #: source/php/AcfFields/php/mod-map.php:6 source/php/Module/Map/Map.php:12
 msgid "Map"
-msgstr ""
+msgstr "Karta"
 
 #: source/php/AcfFields/php/mod-map.php:10
 msgid "Map URL"
