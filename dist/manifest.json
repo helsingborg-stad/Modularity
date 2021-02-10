@@ -1,0 +1,15 @@
+{
+  "css/modularity.css": "css/modularity.min.css",
+  "css/modularity-thickbox-edit.css": "css/modularity-thickbox-edit.min.css",
+  "css/table.css": "css/table.min.css",
+  "js/mod-latest-taxonomy.js": "js/mod-latest-taxonomy.min.js",
+  "js/mod-posts-load-more-button.js": "js/mod-posts-load-more-button.min.js",
+  "js/mod-posts-taxonomy.js": "js/mod-posts-taxonomy.min.js",
+  "js/modularity.js": "js/modularity.min.js",
+  "js/modularity-editor-modal.js": "js/modularity-editor-modal.min.js",
+  "js/table.js": "js/table.min.js",
+  "js/table-init.js": "js/table-init.min.js",
+  "images/action_icons/delete.svg": "images/action_icons/delete.svg",
+  "images/action_icons/edit.svg": "images/action_icons/edit.svg",
+  "images/action_icons/import.svg": "images/action_icons/import.svg"
+}
