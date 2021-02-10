@@ -19,7 +19,14 @@
 
     @if($show_button)
         <div class="c-card__footer">
-            @button(['type' => 'filled', 'color' => 'primary', 'text' => $button_label, 'size' => 'sm', 'href' => $button_url])
+            @button([
+                'type' => 'filled', 
+                'color' => 'primary', 
+                'text' => $button_label, 
+                'size' => 'sm', 
+                'href' => $button_url,
+                'classList' => ['u-display--block@xs', 'u-display--block@sm']
+            ])
             @endbutton
         </div>
     @endif
