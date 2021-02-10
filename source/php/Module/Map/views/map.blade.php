@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <iframe src="{{ $map_url }}" frameborder="0" class="u-width--100" style="height: {{ $height }}px;"></iframe>
+    <iframe src="{{ $map_url }}" frameborder="0" class="u-width--100 u-display--block" style="height: {{ $height }}px;"></iframe>
 
     @if($map_url_large)
         <div class="c-card__footer">
