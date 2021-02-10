@@ -24,7 +24,7 @@ class ExpandableListTemplate
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel'), $this->module->post_type, $this->args));
         $this->data['posts_list_column_titles'] = !empty($fields->posts_list_column_titles) && is_array($fields->posts_list_column_titles) ? $fields->posts_list_column_titles : null;
         $this->data['posts_hide_title_column'] = ($fields->posts_hide_title_column) ? true : false;
-        $this->data['title_column_label'] = $fields->title_column_label;
+        $this->data['title_column_label'] = $fields->title_column_label ?? null;
         $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
         $this->data['prepareAccordion'] = $this->prepare($this->module->data['posts'], $this->data);
 
