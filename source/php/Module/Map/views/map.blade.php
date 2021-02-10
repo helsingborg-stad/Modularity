@@ -8,7 +8,7 @@
         <div class="c-card__header">
             @typography([
                 'element' => 'h4', 
-                'variant' => 'h2'
+                'variant' => 'p'
             ])
                 {!! apply_filters('the_title', $post_title) !!}
             @endtypography
