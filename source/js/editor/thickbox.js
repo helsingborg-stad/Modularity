@@ -1,41 +1,34 @@
-Modularity = Modularity || {};
-Modularity.Editor = Modularity.Editor || {};
+/**
+ * Attention: This variable should not be set manually
+ *
+ * Indicates if we are adding a new post or editing old one
+ * @type {String}
+ */
+var postAction = 'add';
+let lModularity = null
+$ = jQuery;
 
-Modularity.Editor.Thickbox = (function ($) {
+export default function Thickbox(Modularity) {
+    lModularity = Modularity;
+}
 
-    /**
-     * Attention: This variable should not be set manually
-     *
-     * Indicates if we are adding a new post or editing old one
-     * @type {String}
-     */
-    var postAction = 'add';
+Thickbox.prototype.modulePostCreated = function (postId) {
+    lModularity.Prompt.Modal.close();
 
-    function Thickbox() {
+    var module = parent.Modularity.Editor.Module.isEditingModule();
 
-    }
-
-    Thickbox.prototype.modulePostCreated = function (postId) {
-        Modularity.Prompt.Modal.close();
-
-        var module = Modularity.Editor.Module.isEditingModule();
-
-        var request = {
-            action: 'get_post',
-            id: postId
-        };
-
-        $.post(ajaxurl, request, function (response) {
-            var data = {
-                post_id: response.ID,
-                title: response.post_title
-            };
-
-            Modularity.Editor.Module.updateModule(module, data);
-            Modularity.Editor.Autosave.save('form');
-        }, 'json');
+    var request = {
+        action: 'get_post',
+        id: postId
     };
 
-    return new Thickbox();
+    $.post(ajaxurl, request, function (response) {
+        var data = {
+            post_id: response.ID,
+            title: response.post_title
+        };
 
-})(jQuery);
+        lModularity.Editor.Module.updateModule(module, data);
+        lModularity.Editor.Autosave.save('form');
+    }, 'json');
+};

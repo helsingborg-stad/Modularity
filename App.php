@@ -9,7 +9,7 @@ class App
      * Should be "dev" or "min"
      * @var string
      */
-    public static $assetSuffix = 'dev';
+    public static $assetSuffix = 'min';
 
     public static $display = null;
     public static $moduleManager = null;
@@ -185,10 +185,11 @@ class App
             return;
         }
 
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . '/dist/css/modularity.' . self::$assetSuffix . '.css'));
+
+        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
         wp_enqueue_style('modularity');
 
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . 'dist/js/modularity.' . self::$assetSuffix . '.js'), true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
@@ -215,11 +216,11 @@ class App
         }
 
         // Style
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . '/dist/css/modularity.' . self::$assetSuffix . '.css'));
+        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
         wp_enqueue_style('modularity');
 
         // Scripts
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . '/dist/js/modularity.' . self::$assetSuffix . '.js'), true);
+        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . 'dist/js/modularity.' . self::$assetSuffix . '.js'), true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
@@ -288,7 +289,6 @@ class App
             && $current_screen->base != 'widgets') {
             $result = false;
         }
-
         return $result;
     }
 

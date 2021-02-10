@@ -14,7 +14,7 @@
      * Edit post callback
      */
     if (parent.Modularity.Editor.Thickbox.postAction == 'edit' && modularity_post_action == '') {
-        jQuery(document).on('click', '#publish', function (e) {
+        jQuery(document).on('click', '#publish', (e) => {
             parent.Modularity.Editor.Thickbox.postAction = 'add';
         });
     }
@@ -23,7 +23,7 @@
      * Edit post callback
      */
     if (parent.Modularity.Editor.Thickbox.postAction == 'edit-inline-not-saved') {
-        jQuery(document).on('click', '#publish', function (e) {
+        jQuery(document).on('click', '#publish', (e) => {
             parent.Modularity.Editor.Thickbox.postAction = 'edit-inline-saved';
         });
     }
@@ -37,7 +37,7 @@
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
         $('#posts-filter').append('<input type="hidden" name="is_thickbox" value="true">');
 
-        $(document).on('click', '[data-modularity-action="import"]', function (e) {
+        $(document).on('click', '[data-modularity-action="import"]', (e) => {
             e.preventDefault();
 
             var postId = $(e.target).closest('tr').attr('id');
@@ -52,7 +52,7 @@
 
             $('body').addClass('modularity-loader-takeover');
 
-            $.post(ajaxurl, request, function (response) {
+            $.post(ajaxurl, request, (response) => {
                 var data = {
                     post_id: response.ID,
                     title: response.post_title
@@ -73,7 +73,7 @@
         $('.wp-list-table').addClass('modularity-wp-list-table');
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
 
-        $(document).on('click', '[data-modularity-action="import"]', function (e) {
+        $(document).on('click', '[data-modularity-action="import"]', (e) => {
             e.preventDefault();
 
             var postId = $(e.target).closest('tr').attr('id');
@@ -88,7 +88,7 @@
 
             $('body').addClass('modularity-loader-takeover');
 
-            $.post(ajaxurl, request, function (response) {
+            $.post(ajaxurl, request, (response) => {
                 var data = {
                     post_id: response.ID,
                     title: response.post_title
