@@ -32,6 +32,7 @@ class Map extends \Modularity\Module
         $data['show_button']        = get_field('show_button', $this->ID);
         $data['button_label']       = get_field('button_label', $this->ID);
         $data['button_url']         = get_field('button_url', $this->ID);
+        $data['uid']                = uniqid();
         
         return $data;
     }
