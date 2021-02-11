@@ -44,12 +44,12 @@ class ExpandableListTemplate
 
         $column_values = array();
 
-        foreach ($this->data['posts'] as $post) {
+        foreach ($this->data['posts'] as $colIndex => $post) {
 
             if ($this->data['posts_data_source'] === 'input') {
                 if ($post->column_values !== false && count($post->column_values) > 0) {
                     foreach ($post->column_values as $key => $columnValue) {
-                        $column_values[sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value;
+                        $column_values[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value;
                     }
                 }
             } else {
@@ -69,6 +69,7 @@ class ExpandableListTemplate
     public function prepare($posts, $data): ?array
     {
         $column_values = $this->getColumnValues();
+   
         $accordion = array();
 
         if (count($posts) > 0) {
