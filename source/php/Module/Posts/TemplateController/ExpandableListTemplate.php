@@ -126,9 +126,7 @@ class ExpandableListTemplate
         foreach ($colArray as $value) {
             if (is_array($value)) {
                 $depth = $this->arrayDepth($value) + 1;
-                if ($depth > $maxDepth) {
-                    $maxDepth = $depth;
-                }
+                $maxDepth = ($depth > $maxDepth) ? $depth : $maxDepth;
             }
         }
 
