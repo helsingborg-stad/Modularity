@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Tag;
+
 /**
  * Class ExpandableListTemplate
  * @package Modularity\Module\Posts\TemplateController
@@ -31,23 +33,23 @@ class ExpandableListTemplate
     }
 
     /**
-     * get correct column values
-     * @return array|mixed|void
+     * Get correct column values
+     * @return array
      */
-    public function getColumnValues()
+    public function getColumnValues(): array
     {
         if (empty($this->data['posts_list_column_titles'])) {
-            return;
+            return [];
         }
 
         $column_values = array();
 
-        foreach ($this->data['posts'] as $post) {
+        foreach ($this->data['posts'] as $colIndex => $post) {
 
             if ($this->data['posts_data_source'] === 'input') {
                 if ($post->column_values !== false && count($post->column_values) > 0) {
                     foreach ($post->column_values as $key => $columnValue) {
-                        $column_values[sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value;
+                        $column_values[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value;
                     }
                 }
             } else {
@@ -64,10 +66,10 @@ class ExpandableListTemplate
      * @param $data
      * @return array|null
      */
-    public function prepare($posts, $data)
+    public function prepare($posts, $data): ?array
     {
-
         $column_values = $this->getColumnValues();
+   
         $accordion = array();
 
         if (count($posts) > 0) {
@@ -75,21 +77,24 @@ class ExpandableListTemplate
             foreach ($posts as $index => $post) {
 
                 $taxPosition = '';
-                if ((isset($data['taxonomyDisplay']['top']) && !empty($data['taxonomyDisplay']['top']))  ||
+                if ((isset($data['taxonomyDisplay']['top']) && !empty($data['taxonomyDisplay']['top'])) ||
                     (isset($data['taxonomyDisplay']['below']) && !empty($data['taxonomyDisplay']['below']))) {
                     $taxPosition = ($data['taxonomyDisplay']['top']) ?: $data['taxonomyDisplay']['below'];
                 }
 
-                $accordion[$index]['taxonomy'] = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $taxPosition);
+                $accordion[$index]['taxonomy'] = (new Tag)->getTags($post->ID, $taxPosition);
                 $accordion[$index]['taxonomyPosition'] = $taxPosition;
 
                 if (!empty($data['posts_list_column_titles'])) {
                     if (isset($column_values) && !empty($column_values)) {
                         $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
-
                         if (is_array($data['posts_list_column_titles'])) {
                             foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
-                                $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title($column->column_header)] ?? '';
+                                if ($this->arrayDepth($column_values) > 1) {
+                                    $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title($column->column_header)] ?? '';
+                                } else {
+                                    $accordion[$index]['column_values'][$colIndex] = $column_values[sanitize_title($column->column_header)];
+                                }
                             }
                         }
 
@@ -109,6 +114,24 @@ class ExpandableListTemplate
             return null;
 
         return $accordion;
+    }
+
+    /**
+     * Get array dimension depth
+     * @param array $colArray
+     * @return int
+     */
+    public function arrayDepth(array $colArray): int
+    {
+        $maxDepth = 1;
+        foreach ($colArray as $value) {
+            if (is_array($value)) {
+                $depth = $this->arrayDepth($value) + 1;
+                $maxDepth = ($depth > $maxDepth) ? $depth : $maxDepth;
+            }
+        }
+
+        return $maxDepth;
     }
 
 }
