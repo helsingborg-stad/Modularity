@@ -24,51 +24,52 @@ class Table extends \Modularity\Module
      * Removes the filter of html & script data before save.
      * @var int
      */
-    public function disableHTMLFiltering($postId) {
-        
+    public function disableHTMLFiltering($postId)
+    {
+
         //Bail early if not a script module save
-        if(get_post_type($postId) !== "mod-" . $this->slug) {
-            return; 
+        if (get_post_type($postId) !== "mod-" . $this->slug) {
+            return;
         }
 
         //Disable filter temporarily
-        add_filter('acf/allow_unfiltered_html', function($allow_unfiltered_html) {
+        add_filter('acf/allow_unfiltered_html', function ($allow_unfiltered_html) {
             return true;
         });
     }
 
-    public function data() : array
+    public function data(): array
     {
         $post = $this->data;
         $data = get_fields($this->ID);
-        $tableList  = $this->tableList(json_decode($post['meta']['mod_table'][0]));
-
+        $tableList = $this->tableList(json_decode($post['meta']['mod_table'][0]));
+        $data['mod_table_size'] = $data['mod_table_size'] ?? '';
         $data['m_table'] = [
-            'data'          => $tableList,
-            'showHeader'    => true,    //To-Do: Add this option in ACF
-            'showFooter'    => false,   //To-Do: Add this option in ACF
-            'classList'     => $this->getTableClasses($data),
-            'zebraStripes'  => true,
-            'borderStyle'   => true,
-            'hoverEffect'   => true,
-            'isSmall'       => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
-            'isLarge'       => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
-            'filterable'    => $data['mod_table_search'],
-            'sortable'      => $data['mod_table_ordering'],
-            'pagination'    => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
+            'data' => $tableList,
+            'showHeader' => true,    //To-Do: Add this option in ACF
+            'showFooter' => false,   //To-Do: Add this option in ACF
+            'classList' => $this->getTableClasses($data) ?? '',
+            'zebraStripes' => true,
+            'borderStyle' => true,
+            'hoverEffect' => true,
+            'isSmall' => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
+            'isLarge' => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
+            'filterable' => $data['mod_table_search'] ?? [],
+            'sortable' => $data['mod_table_ordering'] ?? [],
+            'pagination' => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
         ];
-        $data['mod_table']      = self::unicodeConvert($data['mod_table']);
-        $data['tableClasses']   = $this->getTableClasses($data);
-        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel', 'c-card--default'), $this->post_type, $this->args));
-        $data['m_table']        = (object)$data['m_table'];
+        $data['mod_table'] = self::unicodeConvert($data['mod_table']);
+        $data['tableClasses'] = $this->getTableClasses($data);
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel', 'c-card--default'), $this->post_type, $this->args));
+        $data['m_table'] = (object)$data['m_table'];
 
         return $data;
     }
 
     public static function unicodeConvert($unicode)
     {
-        $search = array('u00a5','u201e','u00b6','u2026','u00a4','u2013', 'u0152','u0160','u0161','ufffe','u20ac','u2026', 'u2020','	u201e','u201d','ufffe','u017d','u2122', 'u00c3', 'u00e2','u00e2u201au00ac', 'u00a9', 'u2030', 'u00c2u00b4', 'Äu02dc', 'u00db');
-        $replace = array('å','ä','ö','Å','Ä','Ö', 'å','ä','ö','Å','Ä','Ö', 'å','ä','ö','Å','Ä','Ö', '', '”', '€','é','É', '´', "'", '€');
+        $search = array('u00a5', 'u201e', 'u00b6', 'u2026', 'u00a4', 'u2013', 'u0152', 'u0160', 'u0161', 'ufffe', 'u20ac', 'u2026', 'u2020', '	u201e', 'u201d', 'ufffe', 'u017d', 'u2122', 'u00c3', 'u00e2', 'u00e2u201au00ac', 'u00a9', 'u2030', 'u00c2u00b4', 'Äu02dc', 'u00db');
+        $replace = array('å', 'ä', 'ö', 'Å', 'Ä', 'Ö', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö', 'å', 'ä', 'ö', 'Å', 'Ä', 'Ö', '', '”', '€', 'é', 'É', '´', "'", '€');
 
         return str_replace($search, $replace, $unicode);
     }
@@ -148,7 +149,6 @@ class Table extends \Modularity\Module
         wp_enqueue_script('mod-table');
 
 
-
         wp_register_style('mod-table', MODULARITY_URL . '/dist/css/table.min.css', array(), '1.1.1');
         wp_enqueue_style('mod-table');
     }
@@ -164,7 +164,7 @@ class Table extends \Modularity\Module
         wp_register_script('datatables-init', MODULARITY_URL . '/dist/js/table-init.min.js', false, filemtime(MODULARITY_PATH . 'dist/js/table-init.min.js'), false);
         wp_enqueue_script('datatables-init');
 
-        
+
         wp_localize_script('datatables-init', 'datatablesLang', array(
             'sEmptyTable' => __('No data available in table', 'modularity'),
             'sInfo' => __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity'),
