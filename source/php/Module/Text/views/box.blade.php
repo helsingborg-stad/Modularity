@@ -1,8 +1,14 @@
-@card(['classList' => ['c-card--panel']])
+@card([
+    'classList' => ['c-card--panel'],
+    'attributeList' => [
+        'aria-labelledby' => 'mod-text-' . $ID .'-label'
+    ]
+])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
             @typography([
                 "element" => "h4",
+                'id' => 'mod-text-' . $ID .'-label'
             ])
                 {{ $post_title }}
             @endtypography
