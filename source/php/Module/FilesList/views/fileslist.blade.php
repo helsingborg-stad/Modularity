@@ -2,12 +2,14 @@
     'heading'       => apply_filters('the_title', $post_title),
     'classList'     => [$classes],
     'attributeList' => [
-        'js-filter-container' => $uID
+        'js-filter-container'   => $uID,
+        "aria-labelledby"       => 'mod-fileslist-' . $ID .'-label',
     ]
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
             @typography([
+                'id'      => 'mod-fileslist-' . $ID .'-label',
                 'element' => "h4"
             ])
                 {!! apply_filters('the_title', $post_title) !!}
