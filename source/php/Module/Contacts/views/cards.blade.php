@@ -1,14 +1,15 @@
 @if (!$hideTitle && !empty($post_title))
     @typography([
-        'element' => 'h4', 
-        'variant' => 'h2', 
+        'id'        => 'mod-text-' . $ID .'-label',
+        'element'   => 'h4', 
+        'variant'   => 'h2', 
         'classList' => ['module-title']
     ])
         {!! apply_filters('the_title', $post_title)!!}
     @endtypography
 @endif
 
-<div class="o-grid">
+<div class="o-grid" aria-labelledby={{'mod-text-' . $ID .'-label'}}>
     @foreach ($contacts as $contact)
         <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([

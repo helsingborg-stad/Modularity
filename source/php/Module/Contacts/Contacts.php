@@ -18,6 +18,7 @@ class Contacts extends \Modularity\Module
     public function data() : array
     {
         $data = get_fields($this->ID);
+        $data['ID'] = $this->ID;
 
         //Display settings
         if (is_array($data['display_settings']) && !empty($data['display_settings'])) {
