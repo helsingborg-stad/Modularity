@@ -8,4 +8,4 @@
     @endtypography
 @endif
 
-<iframe src="{{ $url }}" frameborder="0" style="width: 100%; height: {{ $height }}px;"></iframe>
+<iframe src="{{ $url }}" title="{!! apply_filters('the_title', $post_title) !!}" frameborder="0" style="width: 100%; height: {{ $height }}px;"></iframe>
