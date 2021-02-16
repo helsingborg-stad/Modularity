@@ -33,6 +33,7 @@ class Video extends \Modularity\Module
         }
 
         $data['source'] = $data['video_mp4']['url'];
+        $data['id'] = $this->ID;
 
         return $data;
     }
