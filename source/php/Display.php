@@ -406,7 +406,7 @@ class Display
         $classes = array(
             'modularity-' . $module->post_type,
             'modularity-' . $module->post_type . '-' . $module->ID,
-            $module->columnWidth ?: 'o-grid-12'
+            (property_exists ( $module, 'columnWidth')) ? $module->columnWidth :  'o-grid-12'
         );
 
         //Hide module if preview
@@ -415,15 +415,17 @@ class Display
         }
         
         //Add selected scope class
-        if (isset($module->data['meta']) && isset($module->data['meta']['module_css_scope']) && is_array($module->data['meta']['module_css_scope'])) {
+        if (isset($module->data['meta']) && isset($module->data['meta']['module_css_scope']) &&
+            is_array($module->data['meta']['module_css_scope'])) {
             if (!empty($module->data['meta']['module_css_scope'][0])) {
                 $classes[] = $module->data['meta']['module_css_scope'][0];
             }
         }
 
         // Build before & after module markup
-        $beforeModule = $args['before_widget'] ?: '<div class="%1$s" id="%2$s">';
-        $afterModule = $args['after_widget'] ?: '</div>';
+        $beforeModule = (array_key_exists ('before_widget', $args)) ? $args['before_widget'] :
+            '<div class="%1$s" id="%2$s">';
+        $afterModule = (array_key_exists ('after_widget', $args)) ? $args['after_widget'] : '</div>';
                 
         // Apply filter for classes
         $classes = apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
@@ -433,8 +435,11 @@ class Display
         
         // Append module edit to before markup
         $moduleEdit = '';
-        if (!(isset($args['edit_module']) && $args['edit_module'] === false) && current_user_can('edit_module', $module->ID)) {
-            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID . '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '</a></div>';
+        if (!(isset($args['edit_module']) && $args['edit_module'] === false) &&
+            current_user_can('edit_module', $module->ID)) {
+            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID .
+                    '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . ': ' .
+                    $module->data['post_type_name'] .  '</a></div>';
         }
 
         $beforeModule .= $moduleEdit;

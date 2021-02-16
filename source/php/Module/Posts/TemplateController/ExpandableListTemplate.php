@@ -49,11 +49,11 @@ class ExpandableListTemplate
             if ($this->data['posts_data_source'] === 'input') {
                 if ($post->column_values !== false && count($post->column_values) > 0) {
                     foreach ($post->column_values as $key => $columnValue) {
-                        $column_values[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value;
+                        $column_values[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value ?? '';
                     }
                 }
             } else {
-                $column_values[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
+                $column_values[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true) ?? '';
             }
         }
 
@@ -91,22 +91,26 @@ class ExpandableListTemplate
                         if (is_array($data['posts_list_column_titles'])) {
                             foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
                                 if ($this->arrayDepth($column_values) > 1) {
-                                    $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title($column->column_header)] ?? '';
+                                    $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title(
+                                        $column->column_header
+                                        )] ?? '';
                                 } else {
-                                    $accordion[$index]['column_values'][$colIndex] = $column_values[sanitize_title($column->column_header)];
+                                    $accordion[$index]['column_values'][$colIndex] = $column_values[sanitize_title(
+                                        $column->column_header
+                                        )] ?? '';
                                 }
                             }
                         }
 
                     } else {
-                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
+                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                     }
 
                 } else {
-                    $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
+                    $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                 }
 
-                $accordion[$index]['content'] = apply_filters('the_content', $post->post_content);
+                $accordion[$index]['content'] = apply_filters('the_content', $post->post_content) ?? '';
             }
         }
 
