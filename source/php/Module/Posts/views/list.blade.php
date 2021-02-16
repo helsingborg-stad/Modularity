@@ -1,13 +1,17 @@
 @include('partials.post-filters')
 
 @card([
-    'heading' => apply_filters('the_title', $post_title),
-    'classList' => [$classes]
+    'heading'       => apply_filters('the_title', $post_title),
+    'classList'     => [$classes],
+    'attributeList' => [
+        'aria-labelledby' => 'mod-posts-' . $ID . '-label'
+    ]
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
             @typography([
-                'element' => "h4"
+                'id'        => 'mod-posts-' . $ID . '-label',
+                'element'   => "h4"
             ])
                 {!! apply_filters('the_title', $post_title) !!}
             @endtypography

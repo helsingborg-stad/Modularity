@@ -4,13 +4,15 @@
     'heading' => apply_filters('the_title', $post_title),
     'classList' => [$classes],
     'attributeList' => [
-        'js-filter-container' => $ID
+        'js-filter-container'   => $ID,
+        'aria-labelledby'       => 'mod-posts-' . $ID . '-label'
     ]
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
             @typography([
-                'element' => "h4"
+                'id'        => 'mod-posts-' . $ID . '-label',
+                'element'   => "h4"
             ])
                 {!! apply_filters('the_title', $post_title) !!}
             @endtypography
@@ -20,7 +22,7 @@
     <div>
         @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
 
-            <div class="c-card__body">
+            <div class="c-card__body" aria-label="{{ __('Search', 'municipio') }}">
                 @field([
                     'type' => 'text',
                     'attributeList' => [

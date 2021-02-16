@@ -1,6 +1,6 @@
 @include('partials.post-filters')
 
-<div>
+<div aria-label="yo">
     @if (!$hideTitle && !empty($post_title))
 
         @typography([
