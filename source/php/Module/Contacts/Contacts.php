@@ -21,13 +21,14 @@ class Contacts extends \Modularity\Module
         $data['ID'] = $this->ID;
 
         //Display settings
-        if (is_array($data['display_settings']) && !empty($data['display_settings'])) {
+        if (array_key_exists ('display_settings', $data ) && !empty($data['display_settings'])) {
             foreach ($data['display_settings'] as $fieldToHide) {
                 $data[$fieldToHide] = true;
             }
         }
 
-        $this->displaySettings = $data['display_settings'];
+        $this->displaySettings = (array_key_exists ('display_settings', $data )) ?
+            $data['display_settings'] : '';
 
         $data['contacts'] = $this->prepareContacts($data['contacts']);
 

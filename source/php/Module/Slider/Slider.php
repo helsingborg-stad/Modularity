@@ -104,7 +104,7 @@ class Slider extends \Modularity\Module
                 }
             }
 
-            if(!is_string($slide['textblock_position'])) {
+            if(isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
                 $slide['textblock_position'] = 'bottom';
             }
 
