@@ -2,15 +2,16 @@
 
 @if (!$hideTitle && !empty($post_title))
     @typography([
+        'id' => 'mod-posts-' . $ID . '-label',
         'element' => 'h4', 
         'variant' => 'h2', 
         'classList' => ['module-title']
     ])
-        {!! apply_filters('the_title', $post_title) !!}
+        {!! apply_filters('the_title', $post_title) !!} INDEXZ
     @endtypography
 @endif
 
-<div class="o-grid">
+<div class="o-grid" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
 

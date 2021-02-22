@@ -1,9 +1,17 @@
-@card(['classList' => ['c-card--panel']])
+@card([
+    'classList' => [
+        'c-card--panel'
+    ],
+    'attributeList' => [
+        'aria-labelledby' => 'mod-video-' . $ID . '-label'
+    ]
+])
 
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
             @typography([
-                "element" => "h4"
+                "id"        => "mod-video-" . $ID . "-label",
+                "element"   => "h4"
             ])
                 {!! apply_filters('the_title', $post_title) !!}
             @endtypography

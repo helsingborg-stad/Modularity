@@ -18,6 +18,7 @@ class Text extends \Modularity\Module
     {
         $data = get_fields($this->ID);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['ID'] = $this->ID;
         return $data;
     }
 

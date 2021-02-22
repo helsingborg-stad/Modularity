@@ -1,10 +1,14 @@
 @card([
-    'classList' => [$classes]
+    'classList'     => [$classes],
+    'attributeList' => [
+        'aria-labelledby' =>'mod-table-' . $ID .'-label'
+    ]
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
             @typography([
-                'element' => "h4"
+                'id'        => 'mod-table-' . $ID .'-label',
+                'element'   => "h4",
             ])
                 {!! apply_filters('the_title', $post_title) !!}
             @endtypography

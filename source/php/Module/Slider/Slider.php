@@ -41,6 +41,7 @@ class Slider extends \Modularity\Module
 
         //Get slides
         $data['slides']         = $this->prepareSlides($data);
+        $data['id'] = $this->ID;
 
         return $data;
     }

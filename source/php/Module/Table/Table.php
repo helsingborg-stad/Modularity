@@ -58,10 +58,13 @@ class Table extends \Modularity\Module
             'sortable' => $data['mod_table_ordering'] ?? [],
             'pagination' => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
         ];
-        $data['mod_table'] = self::unicodeConvert($data['mod_table']);
-        $data['tableClasses'] = $this->getTableClasses($data);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel', 'c-card--default'), $this->post_type, $this->args));
-        $data['m_table'] = (object)$data['m_table'];
+
+        $data['mod_table']      = self::unicodeConvert($data['mod_table']);
+        $data['tableClasses']   = $this->getTableClasses($data);
+        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--panel', 'c-card--default'), $this->post_type, $this->args));
+        $data['m_table']        = (object)$data['m_table'];
+        $data['id'] = $this->ID;
+
 
         return $data;
     }
