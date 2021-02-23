@@ -40,5 +40,6 @@
     {{-- Visiting Address --}}
     @includeWhen($contact['visiting_address'], 'components.visiting')
 
-
+    {{-- Other content data --}}
+    @includeWhen($contact['other'], 'components.other')
 @endcollection
