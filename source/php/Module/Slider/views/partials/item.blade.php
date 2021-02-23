@@ -7,6 +7,7 @@
     'background_video'  => $slide->video_mp4['url'] ?? false,
     'containerColor'    => $slide->background_color ?? 'none',
     'textColor'         => $slide->text_color,
-    'link'              => $slide->link_url
+    'link'              => $slide->link_url,
+    'alt'               => $slide->image['alt']
 ])
 @endslider__item
