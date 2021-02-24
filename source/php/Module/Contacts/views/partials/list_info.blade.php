@@ -47,8 +47,7 @@
             'classList' => ['c-collection__other']
         ])
             {{-- Other --}}
-            
-                {!! $contact['other'] !!}
+            {!! $contact['other'] !!}
         @endcollection
     @endif
 

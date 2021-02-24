@@ -27,10 +27,12 @@
         @php
             // Title partials
             $titlePropeties = ['full_name', 'administration_unit', 'work_title'];
+            
             // Build array
             $title = array_filter(array_map(function($key) use ($contact) {
                 return $contact[$key] ?: false;
             }, $titlePropeties), function($item) {return $item;});
+            
             // Array 2 String
             $title = !empty($title) ? implode(' - ', $title) : false;
         @endphp
