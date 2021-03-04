@@ -8,6 +8,7 @@
     'containerColor'    => $slide->background_color ?? 'none',
     'textColor'         => $slide->text_color,
     'link'              => $slide->link_url,
-    'alt'               => $slide->image['alt']
+    'alt'               => $slide->image['alt'],
+    'altMobile'         => $slide->mobile_image['alt']
 ])
 @endslider__item
