@@ -7,7 +7,7 @@
         'variant' => 'h2', 
         'classList' => ['module-title']
     ])
-        {!! apply_filters('the_title', $post_title) !!} INDEXZ
+        {!! apply_filters('the_title', $post_title) !!} 
     @endtypography
 @endif
 
