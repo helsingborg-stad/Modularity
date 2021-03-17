@@ -99,3 +99,22 @@ li.modularity-module {
 .mod-table {
 
 }
+
+.modularity-mod-map {
+    .c-card__header {
+        i, h4 {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        h4 {
+            margin-top: 0px;
+        }
+    }
+
+    &__button {
+        position: absolute !important;
+        right: calc(var(--sizing-base, 8px) * 3);
+        bottom: calc(var(--sizing-base, 8px) * 3);
+    }
+}
