@@ -32,9 +32,16 @@ class Map extends \Modularity\Module
         $data['show_button']        = get_field('show_button', $this->ID);
         $data['button_label']       = get_field('button_label', $this->ID);
         $data['button_url']         = get_field('button_url', $this->ID);
+        $data['more_info_button']   = get_field('more_info_button', $this->ID);
+        $data['more_info']          = get_field('more_info', $this->ID);
+        $data['more_info_title']    = get_field('more_info_title', $this->ID);
+
+        $data['cardMapCss']         = ($data['more_info_button']) ? 'o-grid-12@xs o-grid-8@md' : 'o-grid-12@md';
+        $data['cardMoreInfoCss']    = ($data['more_info_button']) ? 'o-grid-12@xs o-grid-4@md' : '';
+
         $data['uid']                = uniqid();
         $data['id']                 = $this->ID;
-        
+
         return $data;
     }
 
