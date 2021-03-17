@@ -79,7 +79,7 @@
                         @endtypography
                     </div>
                 @endif
-                <div class="c-card__body">
+                <div class="c-card__body" style="height: {{$height}}px">
                     {!! $more_info !!}
                 </div>
             
