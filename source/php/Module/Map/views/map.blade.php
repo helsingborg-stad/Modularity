@@ -1,5 +1,5 @@
 <!-- Map --> {{$cardMoreCardCss}}
-<div class="o-grid">
+<div class="o-grid modularity-map-container">
     <div class="{{$cardMapCss}}">
         @card([
             'classList' => [
