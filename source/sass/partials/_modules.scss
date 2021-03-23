@@ -103,3 +103,8 @@ li.modularity-module {
         bottom: calc(var(--sizing-base, 8px) * 3);
     }
 }
+
+.modularity-mod-contacts .c-card .c-card__image-background {
+    background-image: url('../images/profile.svg');
+    background-position: center;
+}
