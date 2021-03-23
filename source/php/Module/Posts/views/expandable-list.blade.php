@@ -70,7 +70,7 @@
             @accordion([])
                 @foreach ($prepareAccordion as $accordionItem)
 
-                    @if( is_array($accordionItem['column_values'])  && !empty($accordionItem['column_values']))
+                    @if(isset($accordionItem['column_values']) && is_array($accordionItem['column_values'])  && !empty($accordionItem['column_values']))
                
                         @accordion__item([
                             'heading' => ($accordionItem['heading']) ?
