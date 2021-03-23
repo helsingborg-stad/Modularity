@@ -11,7 +11,7 @@
                 'heading' => $item['title'],
                 'content' => $item['lead'],
                 'image' => [
-                    'src' => $item['thumbnail'][0],
+                    'src' => $item['thumbnail'][0] ?? null,
                     'alt' => $item['title'],
                     'backgroundColor' => 'secondary',
                     'padded' => false
