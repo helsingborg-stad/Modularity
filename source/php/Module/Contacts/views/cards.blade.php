@@ -24,7 +24,7 @@
                 ]
             ])
 
-                <div class="c-card__image c-card__image--secondary">
+                <div class="c-card__image">
                     <div class="c-card__image-background" alt="{{ $contact['full_name'] }}" style="{{ $contact['image']['inlineStyle'] }}"></div>
                 </div>
 
