@@ -103,6 +103,11 @@ class Contacts extends \Modularity\Module
                     break;
             }
 
+            //Build style to be used for inline CSS
+            if (!empty($info['image']['url'])) {
+                $info['image']['inlineStyle']  = "background-image:url('" . $info['image']['url'] . "');";
+            }
+
             //Parse thumbnail id's
             $info['thumbnail'] = false;
             if (isset($info['image']) && !empty($info['image']) && isset($info['image']['id']) && is_numeric($info['image']['id'])) {
@@ -159,6 +164,7 @@ class Contacts extends \Modularity\Module
             }
 
             $retContacts[] = $info;
+
         }
 
         return $retContacts;
