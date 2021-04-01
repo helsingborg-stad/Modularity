@@ -2,12 +2,10 @@
 <div class="o-grid modularity-map-container">
     <div class="{{$cardMapCss}}">
         @card([
-            'classList' => [
-                'c-card--panel'
-            ],
             'attributeList' => [
                 'aria-labelledby' => 'mod-map-' . $id .'-label'
-            ]
+            ],
+            'context' => 'map'
         ])
             @if (!$hideTitle && !empty($post_title))
                 <div class="c-card__header">
@@ -57,12 +55,10 @@
         
         <div class="{{$cardMoreInfoCss}}">
             @card([
-                'classList' => [
-                    'c-card--panel'
-                ],
                 'attributeList' => [
                     'aria-labelledby' => 'mod-map-' . $id .'-label-moreinfo'
-                ]
+                ],
+                'context' => 'map'
             ])
                 @if (!$hideTitle && !empty($post_title))
                     <div class="c-card__header">

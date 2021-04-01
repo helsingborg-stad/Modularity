@@ -1,8 +1,8 @@
 @card([
-    'classList' => ['c-card--panel'],
     'attributeList' => [
         'aria-labelledby' => 'mod-text-' . $ID .'-label'
-    ]
+    ],
+    'context' => 'textBox'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

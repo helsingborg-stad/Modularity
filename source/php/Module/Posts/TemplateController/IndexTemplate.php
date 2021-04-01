@@ -20,6 +20,12 @@ class IndexTemplate
         $this->data['posts_columns'] = $fields->posts_columns;
         $this->data['classes'] = apply_filters('Modularity/Module/Classes', array('u-height--100', 'u-height-100'), $module->post_type, $args);
 
+        // global $moduleData;
+        // echo "sdaj";
+        // var_dump($moduleData);
+        // echo "sdaj";
+        // die();
+
         $this->preparePosts();
     }
 

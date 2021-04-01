@@ -1,8 +1,8 @@
 @card([
-    'classList'     => ['c-card--panel'],
     'attributeList' => [
         'aria-labelledby' => 'mod-inlaylist' . $id . '-label'
-    ]
+    ],
+    'context' => 'inlayList'
 ])
 
     @if (!$hideTitle && !empty($post_title))
