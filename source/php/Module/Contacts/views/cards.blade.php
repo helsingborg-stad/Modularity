@@ -19,9 +19,9 @@
                     'itemtype'      => 'http://schema.org/Person'
                 ],
                 'classList'     => [
-                    'c-card--panel',
                     'c-card--square-image'
-                ]
+                ],
+                'context' => 'contactsCard'
             ])
 
                 <div class="c-card__image">

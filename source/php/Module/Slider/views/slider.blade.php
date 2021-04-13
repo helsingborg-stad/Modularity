@@ -15,7 +15,8 @@
     'repeatSlide'   => $wrapAround,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
-    ]
+    ],
+    'context'       => 'slider'
 ])
     @foreach ($slides as $slide)
         @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])

@@ -18,7 +18,8 @@
             @card([
                 'link' =>  $post->link,
                 'classList' => $classes,
-
+                'context' => 'postsIndex',
+                'hasAction' => true,
             ])
 
                 @if(isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))

@@ -9,6 +9,7 @@
         'text' => $moduleHeading . $notice_text,
         'size' => $notice_size
     ],
-    'icon' => $icon
+    'icon' => $icon,
+    'context' => 'notice'
 ])
 @endnotice

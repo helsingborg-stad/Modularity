@@ -6,7 +6,8 @@
     'attributeList' => [
         'js-filter-container'   => $ID,
         'aria-labelledby'       => 'mod-posts-' . $ID . '-label'
-    ]
+    ],
+    'context' => 'postsExpandableList'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

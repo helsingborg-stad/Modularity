@@ -1,10 +1,8 @@
 @card([
-    'classList' => [
-        'c-card--panel'
-    ],
     'attributeList' => [
         'aria-labelledby' => 'mod-video-' . $ID . '-label'
-    ]
+    ],
+    'context' => 'video'
 ])
 
     @if (!$hideTitle && !empty($post_title))

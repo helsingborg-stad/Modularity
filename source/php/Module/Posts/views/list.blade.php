@@ -5,7 +5,8 @@
     'classList'     => [$classes],
     'attributeList' => [
         'aria-labelledby' => 'mod-posts-' . $ID . '-label'
-    ]
+    ],
+    'context'       => 'postsList'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

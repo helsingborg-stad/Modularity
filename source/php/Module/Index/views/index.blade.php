@@ -17,7 +17,8 @@
                     'padded' => false
                 ],
                 'link' => $item['permalink'],
-                'classList' => ['u-height--100', 'u-height-100']
+                'classList' => ['u-height--100', 'u-height-100'],
+                'context' => 'index'
             ])
             @endcard
         </div>
