@@ -265,12 +265,14 @@ class Display
         $sidebarArgs = $this->getSidebarArgs($sidebar);
         
         // Loop and output modules
-        foreach ($modules['modules'] as $module) {
-            if (!is_preview() && $module->hidden == 'true') {
-                continue;
-            }
+        if(isset($modules['modules']) && is_array($modules['modules']) && !empty($modules['modules'])) {
+            foreach ($modules['modules'] as $module) {
+                if (!is_preview() && $module->hidden == 'true') {
+                    continue;
+                }
 
-            $this->outputModule($module, $sidebarArgs, \Modularity\ModuleManager::$moduleSettings[get_post_type($module)]);
+                $this->outputModule($module, $sidebarArgs, \Modularity\ModuleManager::$moduleSettings[get_post_type($module)]);
+            }
         }
     }
 
