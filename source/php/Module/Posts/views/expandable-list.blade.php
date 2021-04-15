@@ -47,7 +47,7 @@
                             'element' => "span",
                             'classList' => ['accordion-table__head-column']
                         ])
-                            {{ isset($title_column_label) && !empty($title_column_label) ? $title_column_label : __('Title', 'modularity') }}
+                            {{ isset($title_column_label) && !empty($title_column_label) && is_string($title_column_label) ? $title_column_label : __('Title', 'modularity') }}
                         @endtypography
                     @endif
               
