@@ -22,19 +22,22 @@
                 'hasAction' => true,
             ])
 
-                @if(isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
+                @if(!$hide_image && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">
                         <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
                     </div>
                 @endif
             
+                
                 <div class="c-card__body">
-                    @typography([
-                        'element' => "h2",
-                        'classList' => ['c-card__heading'],
-                    ])
-                        {{$post->showTitle ? $post->post_title : ''}}
-                    @endtypography
+                    @if(!$hide_title)
+                        @typography([
+                            'element' => "h2",
+                            'classList' => ['c-card__heading'],
+                        ])
+                            {{$post->showTitle ? $post->post_title : ''}}
+                        @endtypography
+                    @endif
            
                     {!! $post->post_content !!}
                     
