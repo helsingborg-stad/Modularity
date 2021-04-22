@@ -8,18 +8,31 @@
     @foreach ($items as $item)
         <div class="{{ apply_filters('Municipio/Controller/Archive/GridColumnClass', $columnClass) }}">
             @card([
-                'heading' => $item['title'],
-                'content' => $item['lead'],
-                'image' => [
-                    'src' => $item['thumbnail'][0] ?? null,
-                    'alt' => $item['title'],
-                    'backgroundColor' => 'secondary',
-                    'padded' => false
-                ],
-                'link' => $item['permalink'],
+                'link'      => $item['permalink'],
                 'classList' => ['u-height--100', 'u-height-100'],
-                'context' => 'index'
+                'context'   => 'index',
+                'hasAction' => true,
             ])
+
+                @if($item['thumbnail'][0])
+                    <div class="c-card__image c-card__image--secondary">
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $item['title'] }}" style="height:initial; background-image:url('{{ $item['thumbnail'][0] }}');"></div>
+                    </div>
+                @endif
+
+                <div class="c-card__body">
+                    @if (!empty($item['title']))
+                        @typography([
+                            'element' => "h2",
+                            'classList' => ['c-card__heading'],
+                        ])
+                            {{ $item['title'] }}
+                        @endtypography
+                    @endif
+
+                    {!! $item['lead'] !!}
+                    
+                </div>
             @endcard
         </div>
     @endforeach
