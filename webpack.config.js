@@ -24,7 +24,6 @@ module.exports = {
         'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
 
         //Modules
-        'js/mod-latest-taxonomy':                  './source/php/Module/Latest/assets/mod-latest-taxonomy.js',
         'js/mod-posts-taxonomy':                  './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
         'js/mod-posts-load-more-button':                  './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
         'js/table-init':                  './source/php/Module/Table/assets/table-init.js',

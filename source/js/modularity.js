@@ -91,22 +91,4 @@ jQuery(document).ready(function ($) {
     });
 });
 
-/* Post filters is visible in backend if posttype is set to post or page */
-jQuery(document).ready(function ($) {
-    $('.frontend-filter').hide();
-
-    if ($('#modularity-latest-post-type select').val() === 'post' ||
-        $('#modularity-latest-post-type select').val() === 'page') {
-        $('.frontend-filter').show();
-    }
-    $('body').on('change', '#modularity-latest-post-type select', function () {
-        if ($('#modularity-latest-post-type select').val() === 'post'
-            || $('#modularity-latest-post-type select').val() === 'page') {
-            $('.frontend-filter').show();
-        } else {
-            $('.frontend-filter').hide();
-        }
-    }).trigger("change");
-});
-
 }

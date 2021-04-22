@@ -641,8 +641,6 @@ class Posts extends \Modularity\Module
      */
     public function adminEnqueue()
     {
-        // wp_enqueue_script('mod-latest-taxonomy', MODULARITY_URL . '/dist/js/mod-posts-taxonomy.min.js',array(), '1.0.0', true);
-
         wp_register_script('mod-posts-taxonomy', MODULARITY_URL . '/dist/js/mod-posts-taxonomy.min.js', false, filemtime(MODULARITY_PATH . 'dist/js/mod-posts-taxonomy.min.js'), false);
         wp_enqueue_script('mod-posts-taxonomy');
 
