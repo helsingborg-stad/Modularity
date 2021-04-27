@@ -181,11 +181,6 @@ class App
 
     public function enqueueFront()
     {
-        if (!current_user_can('edit_posts')) {
-            return;
-        }
-
-
         wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
         wp_enqueue_style('modularity');
 
@@ -203,6 +198,11 @@ class App
             'deprecated' => __('Deprecated', 'modularity')
         ));
         wp_enqueue_script('modularity');
+
+        if (!current_user_can('edit_posts')) {
+            return;
+        }
+        //Register admin specific scripts/styling here
     }
 
     /**
