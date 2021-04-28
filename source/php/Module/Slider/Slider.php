@@ -108,6 +108,16 @@ class Slider extends \Modularity\Module
                 $slide['textblock_position'] = 'bottom';
             }
 
+            //Call To Action Options
+            if ($slide['call_to_action'][0]) {
+                $slide['call_to_action'] = array(
+                    'title' => $slide['call_to_action_options']['title'],
+                    'link' => $slide['call_to_action_options']['link']
+                );
+            } else {
+                $slide['call_to_action'] = false;
+            }
+
             $slide = (object) $slide;
         }
 
