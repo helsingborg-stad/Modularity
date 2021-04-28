@@ -25,7 +25,7 @@
                 'ratio-4-3' => __('Square (4:3)', 'modularity'),
             ),
             'default_value' => array(
-                0 => 'ratio-16-9',
+                0 => __('ratio-16-9', 'modularity'),
             ),
             'allow_null' => 1,
             'multiple' => 0,
@@ -100,7 +100,7 @@
             ),
             'allow_custom' => 0,
             'default_value' => array(
-                0 => 'wrapAround',
+                0 => __('wrapAround', 'modularity'),
             ),
             'layout' => 'horizontal',
             'toggle' => 0,
@@ -348,6 +348,72 @@
                             'save_other_choice' => 0,
                         ),
                         8 => array(
+                            'key' => 'field_608915f2b15f7',
+                            'label' => 'Link Style',
+                            'name' => 'link_style',
+                            'type' => 'radio',
+                            'instructions' => '',
+                            'required' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_56fa82a2d464d',
+                                        'operator' => '==',
+                                        'value' => 'internal',
+                                    ),
+                                ),
+                                1 => array(
+                                    0 => array(
+                                        'field' => 'field_56fa82a2d464d',
+                                        'operator' => '==',
+                                        'value' => 'external',
+                                    ),
+                                ),
+                            ),
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'choices' => array(
+                                'cover' => 'Cover slide',
+                                'button' => 'Button',
+                            ),
+                            'allow_null' => 0,
+                            'other_choice' => 0,
+                            'default_value' => 'cover',
+                            'layout' => 'horizontal',
+                            'return_format' => 'value',
+                            'save_other_choice' => 0,
+                        ),
+                        9 => array(
+                            'key' => 'field_60891647b15f8',
+                            'label' => 'Link Text',
+                            'name' => 'link_text',
+                            'type' => 'text',
+                            'instructions' => '',
+                            'required' => 1,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_608915f2b15f7',
+                                        'operator' => '==',
+                                        'value' => 'button',
+                                    ),
+                                ),
+                            ),
+                            'wrapper' => array(
+                                'width' => '',
+                                'class' => '',
+                                'id' => '',
+                            ),
+                            'default_value' => 'Read More',
+                            'placeholder' => '',
+                            'prepend' => '',
+                            'append' => '',
+                            'maxlength' => '',
+                        ),
+                        10 => array(
                             'key' => 'field_56fa8313d4650',
                             'label' => 'Url',
                             'name' => 'link_url',
@@ -371,7 +437,7 @@
                             'default_value' => '',
                             'placeholder' => '',
                         ),
-                        9 => array(
+                        11 => array(
                             'key' => 'field_56fa8331d4651',
                             'label' => 'Page',
                             'name' => 'link_url',
