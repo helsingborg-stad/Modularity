@@ -108,14 +108,17 @@ class Slider extends \Modularity\Module
                 $slide['textblock_position'] = 'bottom';
             }
 
-            //Call To Action Options
-            if ($slide['call_to_action'][0]) {
+            //Set call to action default value
+            $slide['call_to_action'] = false;
+
+            if ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video') {
                 $slide['call_to_action'] = array(
-                    'title' => $slide['call_to_action_options']['title'],
-                    'link' => $slide['call_to_action_options']['link']
+                    'title' => $slide['link_text'],
+                    'href' => $slide['link_url']
                 );
-            } else {
-                $slide['call_to_action'] = false;
+
+                //remove link url, instead use CTA
+                $slide['link_url'] = false;
             }
 
             $slide = (object) $slide;
