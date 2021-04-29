@@ -24,9 +24,11 @@
                 'context' => 'contactsCard'
             ])
 
+                @if($showImages)
                 <div class="c-card__image">
                     <div class="c-card__image-background" alt="{{ $contact['full_name'] }}" style="{{ $contact['image']['inlineStyle'] }}"></div>
                 </div>
+                @endif
 
                 @include('partials.information')               
             @endcard

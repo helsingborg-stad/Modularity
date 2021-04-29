@@ -38,6 +38,15 @@ class Contacts extends \Modularity\Module
 
         $data['columns'] = apply_filters('Municipio/Controller/Archive/GridColumnClass', $data['columns']);//str_replace('grid-md-', 'o-grid-', $data['columns'] . '@md'); //TODO: Update grid values from ACF (?)
 
+        $data['showImages'] = false;
+
+        //Check if there is at least one contact with image, then add svg to others, else hide all
+        if(empty($this->data['display_mode']) || $this->data['display_mode'] == 'card') {
+            foreach($data['contacts'] as $contact) {
+                $data['showImages'] = $contact['image'] ? true : $data['showImages'];
+            }
+        }
+
         return $data;
     }
 
