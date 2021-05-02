@@ -234,8 +234,11 @@ class Posts extends \Modularity\Module
         $data['posts_data_source'] = $fields->posts_data_source;
         $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
 
-        $data['archive_link'] = isset($fields->archive_link) ? $fields->archive_link : false;
+        $hasArchive = get_post_type_object($data['posts_data_post_type'])->has_archive;
+        $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;
+
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
+        
 
         return $data;
     }
