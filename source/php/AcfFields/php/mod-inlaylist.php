@@ -42,7 +42,7 @@
                         'internal' => __('Internal link', 'modularity'),
                         'external' => __('External link', 'modularity'),
                     ),
-                    'default_value' => 'internal',
+                    'default_value' => __('internal', 'modularity'),
                     'other_choice' => 0,
                     'save_other_choice' => 0,
                     'allow_null' => 0,
@@ -55,7 +55,15 @@
                     'type' => 'text',
                     'instructions' => __('If empty, title will default to the linked post\'s/page\'s title on internal links.', 'modularity'),
                     'required' => 0,
-                    'conditional_logic' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_569e068b33f31',
+                                'operator' => '==',
+                                'value' => 'internal',
+                            ),
+                        ),
+                    ),
                     'wrapper' => array(
                         'width' => '',
                         'class' => '',
@@ -68,6 +76,33 @@
                     'maxlength' => '',
                 ),
                 2 => array(
+                    'key' => 'field_608e69429b2f7',
+                    'label' => __('Titel', 'modularity'),
+                    'name' => 'titel',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 1,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_569e068b33f31',
+                                'operator' => '==',
+                                'value' => 'external',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'maxlength' => '',
+                ),
+                3 => array(
                     'key' => 'field_569e05bceb086',
                     'label' => __('Link', 'modularity'),
                     'name' => 'link_internal',
@@ -97,7 +132,7 @@
                     'return_format' => 'object',
                     'ui' => 1,
                 ),
-                3 => array(
+                4 => array(
                     'key' => 'field_569e05f8eb087',
                     'label' => __('Date', 'modularity'),
                     'name' => 'date',
@@ -124,7 +159,7 @@
                     'ui_on_text' => '',
                     'ui_off_text' => '',
                 ),
-                4 => array(
+                5 => array(
                     'key' => 'field_569e06f633f32',
                     'label' => __('Link', 'modularity'),
                     'name' => 'link_external',
@@ -166,7 +201,7 @@
     'label_placement' => 'top',
     'instruction_placement' => 'label',
     'hide_on_screen' => '',
-    'active' => 1,
+    'active' => true,
     'description' => '',
 ));
 }
