@@ -53,10 +53,10 @@ class FilesList extends \Modularity\Module
             $rows[$key] = [
                 'title' => $item['file']['title'],
                 'href' => $item['file']['url'],
-                'type' => $item['file']['subtype'],
+                'type' => pathInfo($item['file']['url'], PATHINFO_EXTENSION),
                 'filesize' => $this->formatBytes($item['file']['filesize']),
                 'icon' => $item['file']['subtype'] === 'pdf' ? 'picture_as_pdf' : 'insert_drive_file'
-            ];
+            ];        
         }
 
         return $rows;
