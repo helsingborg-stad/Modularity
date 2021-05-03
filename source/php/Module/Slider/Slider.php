@@ -37,11 +37,12 @@ class Slider extends \Modularity\Module
         //Assign settings to objects
         $data['autoslide']  = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
         $data['ratio']      = preg_replace('/ratio-/', '', $data['slider_format']);
-        $data['wrapAround'] = in_array('wrapAround', $data['additional_options']);  
+        $data['wrapAround'] = in_array('wrapAround', $data['additional_options']); 
 
         //Get slides
         $data['slides']         = $this->prepareSlides($data);
         $data['id'] = $this->ID;
+
 
         return $data;
     }
@@ -120,6 +121,9 @@ class Slider extends \Modularity\Module
                 //remove link url, instead use CTA
                 $slide['link_url'] = false;
             }
+
+            //Use hero styling
+            $slide['heroStyle'] = $slide['hero_style'][0] === "true" ? true : false; 
 
             $slide = (object) $slide;
         }
