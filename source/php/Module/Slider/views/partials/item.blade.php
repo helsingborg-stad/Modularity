@@ -9,6 +9,7 @@
     'textColor'         => $slide->text_color,
     'link'              => $slide->link_url,
     'alt'               => $slide->image['alt'],
-    'altMobile'         => $slide->mobile_image['alt']
+    'altMobile'         => $slide->mobile_image['alt'],
+    'cta'               => $slide->call_to_action
 ])
-@endslider__item
+@endslider__item 
