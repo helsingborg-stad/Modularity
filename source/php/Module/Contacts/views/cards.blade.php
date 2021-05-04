@@ -30,7 +30,9 @@
                 </div>
                 @endif
 
-                @include('partials.information')               
+                <div class="c-card__body u-padding--0">
+                    @include('partials.information')
+                </div>
             @endcard
         </div>
     @endforeach
