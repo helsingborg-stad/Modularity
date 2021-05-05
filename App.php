@@ -203,6 +203,10 @@ class App
             return;
         }
         //Register admin specific scripts/styling here
+
+        if(wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
+            wp_enqueue_script('jquery');
+        }
     }
 
     /**
