@@ -9,7 +9,7 @@
         ])
             @if (!$hideTitle && !empty($post_title))
                 <div class="c-card__header">
-                    @icon(['icon' => 'room', 'size' => 'md', 'color' => 'primary'])
+                    @icon(['icon' => 'room', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
                     @endicon
         
                     @typography([
@@ -62,7 +62,7 @@
             ])
                 @if (!$hideTitle && !empty($post_title))
                     <div class="c-card__header">
-                        @icon(['icon' => 'info', 'size' => 'md', 'color' => 'primary'])
+                        @icon(['icon' => 'info', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
                         @endicon
                         
                         @typography([
