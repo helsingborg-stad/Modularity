@@ -104,9 +104,16 @@ class Slider extends \Modularity\Module
                     $slide['link_url'] = get_permalink($slide['link_url']);
                 }
             }
+            
+            $slide['heroStyle'] = false;
+            
+            if($slide['textblock_position'] === 'hero') {
+                $slide['heroStyle'] = true;
+                $slide['textblock_position'] = 'center';
+            }
 
             if(isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
-                $slide['textblock_position'] = 'bottom';
+                $slide['textblock_position'] = 'bottom';            
             }
 
             //Set call to action default value
@@ -122,8 +129,6 @@ class Slider extends \Modularity\Module
                 $slide['link_url'] = false;
             }
 
-            //Use hero styling
-            $slide['heroStyle'] = $slide['hero_style'][0] === "true" ? true : false; 
 
             $slide = (object) $slide;
         }

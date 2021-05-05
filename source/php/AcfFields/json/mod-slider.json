@@ -174,40 +174,31 @@
                         },
                         {
                             "key": "field_56e7fa230ee09",
-                            "label": "Text position",
+                            "label": "Template",
                             "name": "textblock_position",
                             "type": "select",
                             "instructions": "",
                             "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_56ab224ac2c28",
-                                        "operator": "==",
-                                        "value": "1"
-                                    }
-                                ]
-                            ],
+                            "conditional_logic": 0,
                             "wrapper": {
                                 "width": "",
                                 "class": "",
                                 "id": ""
                             },
-                            "multiple": 0,
-                            "allow_null": 0,
                             "choices": {
                                 "bottom": "Bottom banner",
-                                "center": "Centered"
+                                "center": "Centered",
+                                "hero": "Hero"
                             },
                             "default_value": [
                                 "bottom"
                             ],
+                            "allow_null": 0,
+                            "multiple": 0,
                             "ui": 0,
-                            "ajax": 0,
-                            "placeholder": "",
                             "return_format": "value",
-                            "disabled": 0,
-                            "readonly": 0
+                            "ajax": 0,
+                            "placeholder": ""
                         },
                         {
                             "key": "field_5fca2b4da3be6",
@@ -286,6 +277,13 @@
                                         "field": "field_56e7fa230ee09",
                                         "operator": "==",
                                         "value": "bottom"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_56e7fa230ee09",
+                                        "operator": "==",
+                                        "value": "hero"
                                     }
                                 ]
                             ],
@@ -460,31 +458,6 @@
                             "allow_null": 0,
                             "allow_archives": 1,
                             "multiple": 0
-                        },
-                        {
-                            "key": "field_608fef4e2e66f",
-                            "label": "Hero Style",
-                            "name": "hero_style",
-                            "type": "checkbox",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "true": "Give hero styling"
-                            },
-                            "allow_custom": 0,
-                            "default_value": [
-                                "false"
-                            ],
-                            "layout": "vertical",
-                            "toggle": 0,
-                            "return_format": "value",
-                            "save_custom": 0
                         }
                     ],
                     "min": "",
