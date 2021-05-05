@@ -460,6 +460,31 @@
                             "allow_null": 0,
                             "allow_archives": 1,
                             "multiple": 0
+                        },
+                        {
+                            "key": "field_608fef4e2e66f",
+                            "label": "Hero Style",
+                            "name": "hero_style",
+                            "type": "checkbox",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "true": "Give hero styling"
+                            },
+                            "allow_custom": 0,
+                            "default_value": [
+                                "false"
+                            ],
+                            "layout": "vertical",
+                            "toggle": 0,
+                            "return_format": "value",
+                            "save_custom": 0
                         }
                     ],
                     "min": "",

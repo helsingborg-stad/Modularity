@@ -10,6 +10,7 @@
     'link'              => $slide->link_url,
     'alt'               => $slide->image['alt'],
     'altMobile'         => $slide->mobile_image['alt'],
-    'cta'               => $slide->call_to_action
+    'cta'               => $slide->call_to_action,
+    'heroStyle'        => $slide->heroStyle
 ])
 @endslider__item 
