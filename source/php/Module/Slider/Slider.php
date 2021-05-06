@@ -32,15 +32,18 @@ class Slider extends \Modularity\Module
     {
 
         //Get settings
-        $data = get_fields($this->ID);
+        $fields = get_fields($this->ID);
+        $data = [];
         
         //Assign settings to objects
-        $data['autoslide']  = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
-        $data['ratio']      = preg_replace('/ratio-/', '', $data['slider_format']);
-        $data['wrapAround'] = in_array('wrapAround', $data['additional_options']); 
-
+        $data['autoslide']  = $fields['slides_autoslide'] ? intval($fields['slides_slide_timeout']) : false;
+        $data['ratio']      = preg_replace('/ratio-/', '', $fields['slider_format']);
+        $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']); 
+        $data['sliderShadow'] = $fields['slider_shadow'];
+        $data['title'] = $fields['post_title'];
+        
         //Get slides
-        $data['slides']         = $this->prepareSlides($data);
+        $data['slides'] = $this->prepareSlides($fields);
         $data['id'] = $this->ID;
 
 
@@ -104,16 +107,9 @@ class Slider extends \Modularity\Module
                     $slide['link_url'] = get_permalink($slide['link_url']);
                 }
             }
-            
-            $slide['heroStyle'] = false;
-            
-            if($slide['textblock_position'] === 'hero') {
-                $slide['heroStyle'] = true;
-                $slide['textblock_position'] = 'center';
-            }
 
             if(isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
-                $slide['textblock_position'] = 'bottom';            
+                $slide['textblock_position'] = 'bottom';
             }
 
             //Set call to action default value
@@ -129,6 +125,8 @@ class Slider extends \Modularity\Module
                 $slide['link_url'] = false;
             }
 
+            //Use hero styling
+            $slide['heroStyle'] = $slide['hero_style'][0] === "true" ? true : false; 
 
             $slide = (object) $slide;
         }
