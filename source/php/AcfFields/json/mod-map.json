@@ -39,10 +39,10 @@
         },
         {
             "key": "field_602401605c3f6",
-            "label": "Height",
+            "label": "Miniumum Height",
             "name": "height",
             "type": "range",
-            "instructions": "Set a fixed height",
+            "instructions": "Set a minumum height",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -51,7 +51,7 @@
                 "id": ""
             },
             "default_value": 400,
-            "min": 96,
+            "min": 256,
             "max": 720,
             "step": 16,
             "prepend": "",
