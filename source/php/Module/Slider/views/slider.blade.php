@@ -13,6 +13,7 @@
     'autoSlide'     => $autoslide,
     'ratio'         => $ratio ?? '16:9',
     'repeatSlide'   => $wrapAround,
+    'shadow'        => $sliderShadow,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
     ],

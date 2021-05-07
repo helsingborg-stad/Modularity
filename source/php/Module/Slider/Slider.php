@@ -32,15 +32,18 @@ class Slider extends \Modularity\Module
     {
 
         //Get settings
-        $data = get_fields($this->ID);
+        $fields = get_fields($this->ID);
+        $data = [];
         
         //Assign settings to objects
-        $data['autoslide']  = $data['slides_autoslide'] ? intval($data['slides_slide_timeout']) : false;
-        $data['ratio']      = preg_replace('/ratio-/', '', $data['slider_format']);
-        $data['wrapAround'] = in_array('wrapAround', $data['additional_options']); 
-
+        $data['autoslide']  = $fields['slides_autoslide'] ? intval($fields['slides_slide_timeout']) : false;
+        $data['ratio']      = preg_replace('/ratio-/', '', $fields['slider_format']);
+        $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']); 
+        $data['sliderShadow'] = $fields['slider_shadow'];
+        $data['title'] = $fields['post_title'];
+        
         //Get slides
-        $data['slides']         = $this->prepareSlides($data);
+        $data['slides'] = $this->prepareSlides($fields);
         $data['id'] = $this->ID;
 
 
