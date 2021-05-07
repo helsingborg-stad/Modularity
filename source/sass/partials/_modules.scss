@@ -108,3 +108,23 @@ li.modularity-module {
     background-image: url('../images/profile.svg');
     background-position: center;
 }
+
+.modularity-map-container {
+    &__map {
+        display: flex;
+        flex-direction: column;
+
+        .c-card__header {
+            flex: 0 1 auto;
+        }
+    
+        .c-card__body {
+            padding: 0;
+            flex: 1 1 auto;
+        }
+    
+        iframe {
+            height: 100%;
+        }
+    }
+}
