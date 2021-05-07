@@ -1,7 +1,10 @@
 <!-- Map --> {{$cardMoreCardCss}}
-<div class="o-grid modularity-map-container">
+<div class="o-grid o-grid--equal-elements modularity-map-container">
     <div class="{{$cardMapCss}}">
         @card([
+            'classList' => [
+                'modularity-map-container__map',
+            ],
             'attributeList' => [
                 'aria-labelledby' => 'mod-map-' . $id .'-label'
             ],
@@ -45,7 +48,9 @@
                 <iframe src="{{ $button_url }}" frameborder="0" class="u-width--100 u-display--block" style="height: 100vh;" aria-label="{{ $map_description }}"></iframe>
             @endmodal
         
-            <iframe src="{{ $map_url }}" frameborder="0" class="u-width--100 u-display--block" style="height: {{ $height }}px;" title="{{ $map_description }}"></iframe>
+            <div class="c-card__body">
+                <iframe src="{{ $map_url }}" frameborder="0" class="u-width--100 u-display--block" style="min-height: {{ $height }}px;" title="{{ $map_description }}"></iframe>
+            </div>
         
         @endcard
     </div>
@@ -75,7 +80,7 @@
                         @endtypography
                     </div>
                 @endif
-                <div class="c-card__body" style="height: {{$height}}px">
+                <div class="c-card__body" style="min-height: {{$height}}px">
                     {!! $more_info !!}
                 </div>
             
