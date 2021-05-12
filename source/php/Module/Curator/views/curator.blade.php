@@ -52,7 +52,7 @@
                             @enddate
                         @endtypography   
 
-                        @typography(['element' => 'div'])
+                        @typography(['element' => 'div', 'classList' => ['u-margin__top--1']])
                             {{ $post->text }}
                         @endtypography
                     </div>
