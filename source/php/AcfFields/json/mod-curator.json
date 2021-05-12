@@ -1,0 +1,81 @@
+[{
+    "key": "group_609b788ad04bb",
+    "title": "Curator Social Media",
+    "fields": [
+        {
+            "key": "field_609b7894869ce",
+            "label": "Embed Code",
+            "name": "embed_code",
+            "type": "textarea",
+            "instructions": "Add your curator embed code here. Thios should be the full javascript. Appeance settings in the javascript configurator will not apply.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": ""
+        },
+        {
+            "key": "field_609b7d2ba3004",
+            "label": "Number of posts",
+            "name": "number_of_posts",
+            "type": "number",
+            "instructions": "Set the number items to show.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 12,
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 4,
+            "max": 24,
+            "step": ""
+        },
+        {
+            "key": "field_609baae15568c",
+            "label": "Usage of the curator social media integration",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "This is an integration module for https:\/\/curator.io. The module requires an account at the service. To integrate a feed, please head over to curator.io and follow the steps below. We assume that you already have an account, with a connected feed. \r\n\r\n1. Login to you account. \r\n2. Click on \"style\" in the sidebar navigation. \r\n3. Click on \"publish feed\" (style won't matter). \r\n4. Paste the embed code in the field above. \r\n5. Save. Your feed should no be displayed.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mod-curator"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": ""
+}]
+
