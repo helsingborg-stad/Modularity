@@ -41,8 +41,8 @@
             'placeholder' => '',
             'prepend' => '',
             'append' => '',
-            'min' => '',
-            'max' => '',
+            'min' => 4,
+            'max' => 24,
             'step' => '',
         ),
         2 => array(
