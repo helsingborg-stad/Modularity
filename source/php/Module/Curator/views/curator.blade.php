@@ -45,7 +45,9 @@
                     @endimage
 
                     <div class="c-card__body">
-                        @typography(['element' => 'span', 'variant' => 'meta'])
+                        @typography(['element' => 'span', 'variant' => 'meta', 'classList' => ['u-display--flex']])
+                            @icon(['icon' => 'date_range', 'size' => 'sm', 'classList' => ['u-margin__right--1']])
+                            @endicon
                             @date(['action' => 'formatDate', 'timestamp' => $post->source_created_at])
                             @enddate
                         @endtypography   
