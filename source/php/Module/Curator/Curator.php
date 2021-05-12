@@ -46,6 +46,7 @@ class Curator extends \Modularity\Module
         if(is_array($data['posts']) && !empty($data['posts'])) {
             foreach($data['posts'] as &$post) {
                 $post->user_readable_name = $this->getUserName($post->user_screen_name); 
+                $post->text = wp_trim_words($post->text, 20, "...");
             }
         }
 
