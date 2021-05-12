@@ -60,7 +60,7 @@
 
         <div class="o-grid-12">
             @typography(['element' => 'div', 'variant' => 'meta', 'classList' => ['u-text-align--right']])
-                <a href="https://curator.io" target="_blank">Powered by Curator.io</a>
+                <a href="https://curator.io" target="_blank" rel="nofollow">Powered by Curator.io</a>
             @endtypography
         </div>
     </div>
