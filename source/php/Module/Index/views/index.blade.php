@@ -1,9 +1,13 @@
 @if (!$hideTitle && !empty($post_title))
-    @typography(['element' => 'h2'])
-        {!! apply_filters('the_title', $post_title) !!}
+    @typography([
+        'id' => 'mod-posts-' . $ID . '-label',
+        'element' => 'h4', 
+        'variant' => 'h2', 
+        'classList' => ['module-title']
+    ])
+        {!! apply_filters('the_title', $post_title) !!} 
     @endtypography
 @endif
-
 <div class="o-grid">
     @foreach ($items as $item)
         <div class="{{ apply_filters('Municipio/Controller/Archive/GridColumnClass', $columnClass) }}">
