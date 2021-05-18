@@ -1,6 +1,8 @@
 
 /* Description: File containing css for the right hand side menu */ 
 
+$base: var(--base, 8px);
+
 $module-line-height: 50px;
 
 .modularity-modules {
@@ -125,6 +127,20 @@ li.modularity-module {
     
         iframe {
             height: 100%;
+        }
+    }
+}
+
+.s-footer {
+    .modularity-map-container {
+        &__map-box {
+            padding-right: calc(#{$base} * 4);
+        }
+
+        &__more-info {
+            padding-left: 0;
+            margin-left: -4px;
+            padding-right: calc(#{$base} * 1.5);
         }
     }
 }
