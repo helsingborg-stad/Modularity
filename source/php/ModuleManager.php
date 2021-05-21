@@ -61,8 +61,7 @@ class ModuleManager
 
         // Init modules
         add_action('init', function () {            
-            self::$enabled = self::getEnabled();
-            self::$blockManager->modules = self::$enabled;
+            self::$enabled = self::getEnabled();        
             self::$registered = $this->getRegistered();
 
             $this->init();
@@ -146,10 +145,13 @@ class ModuleManager
             require_once $source;
             $class = $namespace . '\\' . $module;
             $class = new $class();
-
+            
             $this->register($class, $path);
+            self::$blockManager->classes[$class->slug] = $class;
         }
-        
+
+        self::$blockManager->registerBlocks();
+
         do_action('Modularity/Init', $this);
     }
 
@@ -172,9 +174,8 @@ class ModuleManager
         // Get post type slug
         $postTypeSlug = self::prefixSlug($class->slug);
 
-        self::$blockManager->registerBlock($class->slug);
         
-        
+    
         self::$classes[$postTypeSlug] = $class;
 
         // Set labels
