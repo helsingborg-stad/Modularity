@@ -87,7 +87,7 @@ class Module
      * Is the module deprecated?
      * @var boolean
      */
-    public $isGutenbergReady = false;
+    public $isBlockCompatible = true;
 
     /**
      * Is this module a legacy module (not updated to new registration methods)
