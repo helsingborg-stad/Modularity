@@ -114,12 +114,12 @@
             $display = new Display();
             $postType = \Modularity\ModuleManager::prefixSlug($block['title']);
             $class = \Modularity\ModuleManager::$classes[$postType];
-            $module = new \Modularity\Module\Notice\Notice();
+            $module = new $class;
             $module->data = $block['data'];
-            
+            $view = str_replace('.blade.php', '', $module->template());
             //echo '<pre>', print_r($block['data']), '</pre>';
             $viewData = array_merge(['post_type' => $block['postType']], $module->data());
             
-            echo  $display->renderView($block['title'], $viewData);
+            echo  $display->renderView($view, $viewData);
         }
     }
