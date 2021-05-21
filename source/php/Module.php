@@ -84,6 +84,12 @@ class Module
     public $isDeprecated = false;
 
     /**
+     * Is the module deprecated?
+     * @var boolean
+     */
+    public $isGutenbergReady = false;
+
+    /**
      * Is this module a legacy module (not updated to new registration methods)
      * @var boolean
      */
@@ -346,6 +352,9 @@ class Module
         }
 
         add_action('Modularity/Init', function ($moduleManager) use ($slug, $nameSingular, $namePlural, $description, $supports, $icon, $plugin, $cache_ttl, $hideTitle) {
+            add_filter('acf/load_field_group', function() {
+                var_dump("FUCK");
+            });
             $module = new \Modularity\Module();
             $module->slug = $slug;
             $module->nameSingular = $nameSingular;

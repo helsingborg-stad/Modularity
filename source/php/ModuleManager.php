@@ -2,6 +2,7 @@
 
 namespace Modularity;
 
+use BladeComponentLibrary\Init as CompLibInitator;
 class ModuleManager
 {
     /**
@@ -52,13 +53,16 @@ class ModuleManager
      */
     public static $widths = array();
 
+    public static $blockManager = null;
+
     public function __construct()
     {
+        self::$blockManager = new \Modularity\BlockManager();
 
         // Init modules
-        add_action('init', function () {
-
+        add_action('init', function () {            
             self::$enabled = self::getEnabled();
+            self::$blockManager->modules = self::$enabled;
             self::$registered = $this->getRegistered();
 
             $this->init();
@@ -92,7 +96,7 @@ class ModuleManager
 
         return apply_filters('Modularity/Modules', self::$registered);
     }
-
+    
     /**
      * Get enabled modules id:s
      * @return array
@@ -130,7 +134,7 @@ class ModuleManager
      */
     public function init()
     {
-        foreach (self::$registered as $path => $module) {
+        foreach (self::$registered as $path => $module) {            
             $path = trailingslashit($path);
             $source = $path . $module . '.php';
             $namespace = \Modularity\Helper\File::getNamespace($source);
@@ -145,7 +149,7 @@ class ModuleManager
 
             $this->register($class, $path);
         }
-
+        
         do_action('Modularity/Init', $this);
     }
 
@@ -167,6 +171,10 @@ class ModuleManager
 
         // Get post type slug
         $postTypeSlug = self::prefixSlug($class->slug);
+
+        self::$blockManager->registerBlock($class->slug);
+        
+        
         self::$classes[$postTypeSlug] = $class;
 
         // Set labels
