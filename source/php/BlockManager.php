@@ -21,12 +21,6 @@
                 }                                   
             }
 
-            foreach($this->classes as $class) {
-                if(!$class->isBlockCompatible) {
-                    unset($registeredBlocks['acf/' . $class->slug]);
-                }
-            }
-
             return array_keys($registeredBlocks);                        
         }
 
@@ -46,14 +40,16 @@
             // Register module as a block
             if( function_exists('acf_register_block_type') ) {                                
                 foreach($this->classes as $class) {
-                    acf_register_block_type(array(
-                        'name'              => $class->slug,
-                        'title'             => __($class->slug),
-                        'description'       => __('A custom testimonial block.'),
-                        'render_callback'   => array($this, 'renderBlock'),
-                        'category'          => 'modules',
-                        'moduleName'          => $class->slug
-                    ));
+                    if($class->isBlockCompatible) {
+                        acf_register_block_type(array(
+                            'name'              => $class->slug,
+                            'title'             => __($class->slug),
+                            'description'       => __('A custom testimonial block.'),
+                            'render_callback'   => array($this, 'renderBlock'),
+                            'category'          => 'modules',
+                            'moduleName'          => $class->slug
+                        ));
+                    }
                 }
             }
 
