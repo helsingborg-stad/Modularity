@@ -84,7 +84,7 @@ class Module
     public $isDeprecated = false;
 
     /**
-     * Is the module deprecated?
+     * Will the module work as a block?
      * @var boolean
      */
     public $isBlockCompatible = true;
@@ -352,9 +352,6 @@ class Module
         }
 
         add_action('Modularity/Init', function ($moduleManager) use ($slug, $nameSingular, $namePlural, $description, $supports, $icon, $plugin, $cache_ttl, $hideTitle) {
-            add_filter('acf/load_field_group', function() {
-                var_dump("FUCK");
-            });
             $module = new \Modularity\Module();
             $module->slug = $slug;
             $module->nameSingular = $nameSingular;

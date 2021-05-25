@@ -171,11 +171,7 @@ class ModuleManager
             return;
         }
 
-        // Get post type slug
-        $postTypeSlug = self::prefixSlug($class->slug);
-
-        
-    
+        $postTypeSlug = self::prefixSlug($class->slug);    
         self::$classes[$postTypeSlug] = $class;
 
         // Set labels
