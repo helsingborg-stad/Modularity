@@ -84,6 +84,12 @@ class Module
     public $isDeprecated = false;
 
     /**
+     * Will the module work as a block?
+     * @var boolean
+     */
+    public $isBlockCompatible = true;
+
+    /**
      * Is this module a legacy module (not updated to new registration methods)
      * @var boolean
      */
