@@ -6,6 +6,7 @@ class WpWidget extends \Modularity\Module
 {
     public $slug = 'wpwidget';
     public $supports = array('editor');
+    public $isBlockCompatible = false;
 
     public function init()
     {
