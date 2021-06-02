@@ -47,6 +47,9 @@ class Contacts extends \Modularity\Module
             }
         }
 
+        //Translation
+        $data['OpeningHours'] = __('Opening hours', 'modularity');
+
         return $data;
     }
 
