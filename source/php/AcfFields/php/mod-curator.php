@@ -74,7 +74,14 @@
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'mod-curator',
+                'value' => 'post',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/curator',
             ),
         ),
     ),

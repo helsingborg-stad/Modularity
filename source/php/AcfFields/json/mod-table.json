@@ -103,7 +103,7 @@
                 "class": "",
                 "id": ""
             },
-            "tableclass": "modularity-table",
+            "tableclass": "",
             "maxrows": "",
             "disable_sort": 0,
             "fixed_columns": 0,
@@ -249,4 +249,4 @@
     "active": true,
     "description": ""
 }]
-
+
