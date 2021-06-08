@@ -20,20 +20,18 @@ class ListTemplate
      */
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
-
-        $this->module = $module;
         $this->args = $args;
         $this->data = $data;
-
-        $this->data['prepareList'] = $this->prepare($this->module->data['posts'], $postData = array(
-            'posts_data_source' => $this->module->data['posts_data_source'] ?? '',
-            'posts_fields' => $this->module->data['posts_fields'] ?? '',
-            'archive_link' => $this->module->data['archive_link'] ?? '',
-            'archive_link_url' => $this->module->data['archive_link_ur'] ?? '',
-            'filters' => $this->module->data['filters'] ?? ''
+        $this->data['prepareList'] = $this->prepare($data['posts'], $postData = array(
+            'posts_data_source' => $data['posts_data_source'] ?? '',
+            'archive_link' => $data['archive_link'] ?? '',
+            'posts_fields' => $data['posts_fields'] ?? '',
+            'archive_link_url' => $data['archive_link_ur'] ?? '',
+            'filters' => $data['filters'] ?? ''
         ));
-
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array(), $this->module->post_type, $this->args));
+        
+        //echo '<pre>', print_r($this->data['prepareList']), '</pre>';
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array(), $module->post_type, $this->args));
     }
 
     /**
@@ -44,14 +42,16 @@ class ListTemplate
     public function prepare($posts, $postData)
     {
         $list = array();
-
+        
+        
         if (count($posts) < 1) {
             array_push($list, ['columns' => _e('No posts to show…', 'modularity')]);
             return $list;
         }
 
         foreach ($posts as $post) {
-
+            
+            
             if (!empty($post->post_type) && $post->post_type == 'attachment') {
                 $href = wp_get_attachment_url($post->ID);
             } else {
@@ -86,7 +86,6 @@ class ListTemplate
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle]]);
         }
-
         return $list;
 
     }

@@ -134,10 +134,13 @@ class Posts extends \Modularity\Module
      * @return false|string
      */
     public function template()
-    {
+    {        
         $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ));
-        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this,
-            $this->data);
+        if(!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
+            return 'list';
+        }
+        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this,$this->data);
+        
     }
 
     /**
@@ -150,10 +153,11 @@ class Posts extends \Modularity\Module
         $template = implode('', $template);
 
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
+        
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as'] );
-
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
+            //echo '<pre>', print_r($controller->data), '</pre>';
             $this->data = array_merge($this->data, $controller->data);
         }
     }
@@ -164,7 +168,11 @@ class Posts extends \Modularity\Module
     public function data(): array
     {
         $fields = json_decode(json_encode(get_fields($this->ID)));
+        
+        
         $data['posts_display_as'] = $fields->posts_display_as;
+        
+        
 
         if (get_field('front_end_tax_filtering', $this->ID) && get_field('posts_data_post_type',
                 $this->ID) === 'post' || get_field('front_end_tax_filtering',

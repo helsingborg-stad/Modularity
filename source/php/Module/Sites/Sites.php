@@ -7,6 +7,7 @@ class Sites extends \Modularity\Module
     public $slug = 'sites';
     public $supports = array();
     public $multisiteOnly = true;
+    public $isBlockCompatible = false;
 
     public function init()
     {
