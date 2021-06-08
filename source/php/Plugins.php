@@ -7,6 +7,7 @@ class Plugins
     public $plugins = array(
         'acf-post-type-field/acf-posttype-select.php',
         'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php',
+        'advanced-custom-fields-table-field/acf-table.php',
     );
 
     public function __construct()
