@@ -37,14 +37,13 @@
         }
         
         public function registerBlocks() {
-            // Register module as a block
             if( function_exists('acf_register_block_type') ) {                                
                 foreach($this->classes as $class) {
                     if($class->isBlockCompatible) {
                         acf_register_block_type(array(
                             'name'              => $class->slug,
                             'title'             => __($class->slug),
-                            'description'       => __('A custom testimonial block.'),
+                            'description'       => __($class->description),
                             'render_callback'   => array($this, 'renderBlock'),
                             'category'          => 'modules',
                             'moduleName'          => $class->slug
@@ -56,9 +55,10 @@
         }
 
         public function addLocationRule($group) {
-            $enabledModules = \Modularity\ModuleManager::$enabled;            
+            $enabledModules = \Modularity\ModuleManager::$enabled;      
+            unset($enabledModules['mod-table']);
             
-            foreach($group['location'] as $location) {
+            foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
                     $valueIsModule = in_array($locationRule['value'], $enabledModules);            
                     if($valueIsModule && $locationRule['operator'] === '==') {
@@ -77,13 +77,14 @@
             return $group;
         }
 
-        public function renderBlock($block) {
+        public function renderBlock($block) {                    
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
             $module->data = $block['data'];
+            $module->data = $module->data();            
             $view = str_replace('.blade.php', '', $module->template());
-            $view = !empty($view) ? $view : $block['moduleName'];
-            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data());
+            $view = !empty($view) ? $view : $block['moduleName'];       
+            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);            
             
             echo  $display->renderView($view, $viewData);
         }
