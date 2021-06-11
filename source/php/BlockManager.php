@@ -55,9 +55,12 @@
         }
 
         public function addLocationRule($group) {
-            $enabledModules = \Modularity\ModuleManager::$enabled;      
-            unset($enabledModules['mod-table']);
-            
+            $enabledModules = \Modularity\ModuleManager::$enabled;  
+
+            if (($key = array_search('mod-table', $enabledModules)) !== false) {
+                unset($enabledModules[$key]);
+            } 
+                                    
             foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
                     $valueIsModule = in_array($locationRule['value'], $enabledModules);            
@@ -77,15 +80,38 @@
             return $group;
         }
 
-        public function renderBlock($block) {                    
+        private function setDefaultValues($data, $defaultValues) {
+            foreach($data as $key => &$dataPoint) {
+                if(empty($dataPoint)) {
+                    $dataPoint = $defaultValues['_' . $key];
+                }
+            }
+
+            return $data;
+        }
+
+        private function getDefaultValues($blockData) {
+            $fieldDefaultValues = [];
+            foreach($blockData as $key => $dataPoint) {
+                if($defaultValue = get_field_object($dataPoint)['default_value']) {
+                    $fieldDefaultValues[$key] = $defaultValue;
+                }                
+            }
+
+            return $fieldDefaultValues;
+        }
+
+        public function renderBlock($block) {                            
+            $defaultValues = $this->getDefaultValues($block['data']);                            
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
             $module->data = $block['data'];
-            $module->data = $module->data();            
+            $module->data = $module->data();  
+            $module->data = $this->setDefaultValues($module->data, $defaultValues); 
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];       
             $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);            
-            
+            var_dump($view);
             echo  $display->renderView($view, $viewData);
         }
     }
