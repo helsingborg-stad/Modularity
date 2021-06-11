@@ -30,7 +30,6 @@ class ListTemplate
             'filters' => $data['filters'] ?? ''
         ));
         
-        //echo '<pre>', print_r($this->data['prepareList']), '</pre>';
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array(), $module->post_type, $this->args));
     }
 
@@ -50,7 +49,6 @@ class ListTemplate
         }
 
         foreach ($posts as $post) {
-            
             
             if (!empty($post->post_type) && $post->post_type == 'attachment') {
                 $href = wp_get_attachment_url($post->ID);

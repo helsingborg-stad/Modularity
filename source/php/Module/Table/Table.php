@@ -60,8 +60,6 @@ class Table extends \Modularity\Module
         } else {
             $tableData = $data['mod_table'];
         }
-
-        //$tableData = empty($data['mod_table']) ? $this->formatCsvData($data['mod_table_csv_file'], $data['mod_table_csv_delimiter']) : json_decode($post['meta']['mod_table'][0]) ;
         
         $tableList = $this->tableList($tableData);
         $data['mod_table_size'] = $data['mod_table_size'] ?? '';
@@ -131,10 +129,6 @@ class Table extends \Modularity\Module
             if (count($row) === 0) {
                 continue;
             }
-
-            /* foreach ($row as &$value) {
-                $value = mb_convert_encoding($value, 'UTF-8', 'WWINDOWS-1255');
-            } */
 
             array_push($data, $row);
         }
