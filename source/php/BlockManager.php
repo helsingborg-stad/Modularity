@@ -111,7 +111,7 @@
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];       
             $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);            
-            var_dump($view);
+
             echo  $display->renderView($view, $viewData);
         }
     }
