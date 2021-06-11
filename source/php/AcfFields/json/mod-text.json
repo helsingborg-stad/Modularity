@@ -29,6 +29,13 @@
                 "operator": "==",
                 "value": "mod-text"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/text"
+            }
         ]
     ],
     "menu_order": 0,

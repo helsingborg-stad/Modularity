@@ -6,6 +6,7 @@ class Rss extends \Modularity\Module
 {
     public $slug = 'rss';
     public $supports = array();
+    public $isBlockCompatible = false;
 
     public function init()
     {

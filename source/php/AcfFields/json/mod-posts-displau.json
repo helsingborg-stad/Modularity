@@ -79,7 +79,9 @@
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": "grid-md-12",
+            "default_value": [
+                "grid-md-12"
+            ],
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
@@ -344,7 +346,9 @@
                 "default": "Default timestamp",
                 "readable": "Readable timestamp"
             },
-            "default_value": "default",
+            "default_value": [
+                "default"
+            ],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -396,6 +400,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-posts"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/posts"
             }
         ]
     ],

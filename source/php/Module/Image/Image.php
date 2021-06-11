@@ -50,6 +50,8 @@ class Image extends \Modularity\Module
         //Add box classes
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-filled'), $this->post_type, $this->args));
 
+        $data['template'] = $this->template();
+
         return $data;
     }
 

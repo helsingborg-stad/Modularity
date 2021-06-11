@@ -134,10 +134,13 @@ class Posts extends \Modularity\Module
      * @return false|string
      */
     public function template()
-    {
+    {        
         $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ));
-        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this,
-            $this->data);
+        if(!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
+            return 'list';
+        }
+        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this,$this->data);
+        
     }
 
     /**
@@ -150,8 +153,8 @@ class Posts extends \Modularity\Module
         $template = implode('', $template);
 
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
+        
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as'] );
-
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
             $this->data = array_merge($this->data, $controller->data);

@@ -8,6 +8,6 @@
                 {!! apply_filters('the_title', $post_title) !!}
         @endtypography
     @endif
-
-    {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $post_content)) !!}
+    
+    {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $content)) !!}
 </article>

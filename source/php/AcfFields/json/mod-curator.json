@@ -65,7 +65,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "mod-curator"
+                "value": "post"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/curator"
             }
         ]
     ],

@@ -28,7 +28,7 @@ class ExpandableListTemplate
         $this->data['posts_hide_title_column'] = ($fields->posts_hide_title_column) ? true : false;
         $this->data['title_column_label'] = $fields->title_column_label ?? null;
         $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
-        $this->data['prepareAccordion'] = $this->prepare($this->module->data['posts'], $this->data);
+        $this->data['prepareAccordion'] = $this->prepare($data['posts'], $this->data);
 
     }
 

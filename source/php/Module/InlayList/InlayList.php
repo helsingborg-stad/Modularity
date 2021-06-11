@@ -6,6 +6,7 @@ class InlayList extends \Modularity\Module
 {
     public $slug = 'inlaylist';
     public $supports = array();
+    public $isBlockCompatible = false;
 
     public function init()
     {
