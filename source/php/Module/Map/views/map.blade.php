@@ -1,6 +1,6 @@
 <!-- Map --> {{$cardMoreCardCss}}
 <div class="o-grid o-grid--equal-elements modularity-map-container">
-    <div class="{{$cardMapCss}}">
+    <div class="modularity-map-container__map-box {{$cardMapCss}}">
         @card([
             'classList' => [
                 'modularity-map-container__map',
@@ -58,7 +58,7 @@
     <!-- More information -->
     @if ($more_info_button)
         
-        <div class="{{$cardMoreInfoCss}}">
+        <div class="modularity-map-container__more-info {{$cardMoreInfoCss}}">
             @card([
                 'attributeList' => [
                     'aria-labelledby' => 'mod-map-' . $id .'-label-moreinfo'
@@ -83,7 +83,6 @@
                 <div class="c-card__body" style="min-height: {{$height}}px">
                     {!! $more_info !!}
                 </div>
-            
             @endcard
         </div>
         
