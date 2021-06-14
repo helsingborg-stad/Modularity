@@ -115,8 +115,6 @@
             $module->data = $block['data'];
             $module->data = $module->data();  
             $module->data = $this->setDefaultValues($module->data, $defaultValues); 
-            echo '<pre>', print_r($defaultValues), '</pre>';
-            echo '<pre>', print_r($module->data), '</pre>';
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];       
             $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);            
