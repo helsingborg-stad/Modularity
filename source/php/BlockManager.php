@@ -83,7 +83,14 @@
         private function setDefaultValues($data, $defaultValues) {
             foreach($data as $key => &$dataPoint) {
                 if(empty($dataPoint)) {
-                    $dataPoint = $defaultValues['_' . $key];
+                    $isSnakeCased = \str_contains($key, '_');
+
+                    if($isSnakeCased) {
+                        $dataPoint = $defaultValues['_' . $key];
+                    } else {
+                        $key = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $key));
+                        $dataPoint = $defaultValues['_' . $key];
+                    }
                 }
             }
 
@@ -108,6 +115,8 @@
             $module->data = $block['data'];
             $module->data = $module->data();  
             $module->data = $this->setDefaultValues($module->data, $defaultValues); 
+            echo '<pre>', print_r($defaultValues), '</pre>';
+            echo '<pre>', print_r($module->data), '</pre>';
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];       
             $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);            
