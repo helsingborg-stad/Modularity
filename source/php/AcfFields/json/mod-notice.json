@@ -21,7 +21,9 @@
                 "warning": "Warning (gul)",
                 "danger": "Danger (red)"
             },
-            "default_value": "success",
+            "default_value": [
+                "success"
+            ],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -49,7 +51,9 @@
                 "notice-lg": "Stor",
                 "notice-sm": "Liten"
             },
-            "default_value": "notice-md",
+            "default_value": [
+                "notice-md"
+            ],
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
@@ -86,6 +90,13 @@
                 "operator": "==",
                 "value": "mod-notice"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/notice"
+            }
         ]
     ],
     "menu_order": 0,
@@ -97,4 +108,4 @@
     "active": true,
     "description": ""
 }]
-
+

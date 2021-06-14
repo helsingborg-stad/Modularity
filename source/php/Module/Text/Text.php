@@ -19,14 +19,17 @@ class Text extends \Modularity\Module
         $data = get_fields($this->ID);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
         $data['ID'] = $this->ID;
+        $data['content'] = !empty($data['post_content']) ? $data['post_content'] : $data['content'];
         return $data;
     }
 
     public function template()
     {
-        if (!isset($this->data['hide_box_frame']) || !$this->data['hide_box_frame']) {
+        if (!$this->data['hide_box_frame']) {
             return 'box.blade.php';
         }
+
+
         return 'article.blade.php';
     }
 

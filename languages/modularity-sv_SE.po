@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-05-20 08:54+0200\n"
-"PO-Revision-Date: 2021-05-20 08:55+0200\n"
+"POT-Creation-Date: 2021-06-08 09:32+0200\n"
+"PO-Revision-Date: 2021-06-08 09:32+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,19 +20,20 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:162 App.php:189 App.php:229
+#: App.php:162 App.php:189 App.php:255
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:162 source/php/Editor.php:124 source/php/Options/General.php:178
+#: App.php:162 source/php/BlockManager.php:33 source/php/Editor.php:124
+#: source/php/Options/General.php:178
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:190 App.php:230
+#: App.php:190 App.php:256
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:191 App.php:231
+#: App.php:191 App.php:257
 #: vendor/aristath/kirki/controls/php/class-kirki-control-background.php:62
 #: vendor/aristath/kirki/controls/php/class-kirki-control-base.php:133
 #: vendor/aristath/kirki/controls/php/class-kirki-control-repeater.php:386
@@ -42,30 +43,218 @@ msgstr "Importera"
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:192 App.php:232
+#: App.php:192 App.php:258
 msgid "Hide module"
 msgstr "Dölj modulen"
 
-#: App.php:193 App.php:233
+#: App.php:193 App.php:259
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:194 App.php:234
+#: App.php:194 App.php:260
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:195 App.php:235
+#: App.php:195 App.php:261
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:196 App.php:236
+#: App.php:196 App.php:262
 #: vendor/aristath/kirki/controls/php/class-kirki-control-dimensions.php:137
 msgid "Width"
 msgstr "Bredd"
 
-#: App.php:198 App.php:238 templates/options/partials/modularity-modules.php:27
+#: App.php:198 App.php:264 templates/options/partials/modularity-modules.php:27
 msgid "Deprecated"
 msgstr "Utgående"
+
+#: App.php:242
+msgid "Edit Modules"
+msgstr "Redigera moduler"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:27
+#: source/php/Module/WpWidget/WpWidget.php:152
+#: source/php/Options/ArchivesList.php:11
+#: templates/options/modularity-archives.php:2
+msgid "Archives"
+msgstr "Arkiv"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:45
+msgid "Select Year"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:48
+msgid "Select Month"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:51
+msgid "Select Day"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:54
+msgid "Select Week"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:57
+msgid "Select Post"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:97
+msgid "No archives to show."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/block/index.php:32
+#, php-format
+msgid ""
+"Could not render Reusable Block <strong>%s</strong>. Block cannot be "
+"rendered inside itself."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/block/index.php:46
+#: node_modules/@wordpress/block-library/src/post-content/index.php:41
+#: node_modules/@wordpress/block-library/src/template-part/index.php:93
+msgid "[block rendering halted]"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/categories/index.php:30
+msgid "Select Category"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/latest-comments/index.php:31
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:103
+#: node_modules/@wordpress/block-library/src/rss/index.php:31
+#, fuzzy
+#| msgid "Work title"
+msgid "(no title)"
+msgstr "Jobbtitel"
+
+#: node_modules/@wordpress/block-library/src/latest-comments/index.php:99
+#, php-format
+msgid "%1$s on %2$s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/latest-comments/index.php:141
+msgid "No comments to show."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:115
+#: node_modules/@wordpress/block-library/src/rss/index.php:60
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:139
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:154
+msgid "This content is password protected."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation-link/index.php:268
+msgid "Post Format Link"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation-link/index.php:269
+msgid "A link to a post format"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation/index.php:189
+msgid "Open menu"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation/index.php:190
+msgid "Close menu"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/post-comments-link/index.php:35
+#, php-format
+msgid "No comments<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/post-comments-link/index.php:42
+#, php-format
+msgid "%1$s comment<span class=\"screen-reader-text\"> on %2$s</span>"
+msgid_plural "%1$s comments<span class=\"screen-reader-text\"> on %2$s</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: node_modules/@wordpress/block-library/src/post-content/index.php:30
+#, php-format
+msgid ""
+"Could not render Post Content block with post ID: <code>%s</code>. Block "
+"cannot be rendered inside itself."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/post-navigation-link/index.php:34
+msgctxt "label for next post link"
+msgid "Next"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/post-navigation-link/index.php:34
+msgctxt "label for previous post link"
+msgid "Previous"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/query-pagination-next/index.php:23
+msgid "Next Page &raquo;"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/query-pagination-previous/index.php:22
+msgid "&laquo; Previous Page"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/rss/index.php:19
+#: source/php/Module/Rss/Rss.php:49
+msgid "RSS Error:"
+msgstr "RSS-fel:"
+
+#: node_modules/@wordpress/block-library/src/rss/index.php:23
+#: source/php/Module/Rss/Rss.php:55
+msgid ""
+"An error has occurred, which probably means the feed is down. Try again "
+"later."
+msgstr ""
+"Ett fel har uppstått, vilket antagligen betyder att flödet är nere. Försök "
+"igen senare."
+
+#: node_modules/@wordpress/block-library/src/search/index.php:25
+#: node_modules/@wordpress/block-library/src/search/index.php:26
+#: node_modules/@wordpress/block-library/src/search/index.php:52
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:33
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:38
+#: source/php/Module/WpWidget/WpWidget.php:160
+msgid "Search"
+msgstr "Sök"
+
+#: node_modules/@wordpress/block-library/src/site-logo/index.php:42
+msgid "(Home link, opens in a new tab)"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/site-logo/index.php:76
+msgid "Site logo."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/social-link/index.php:24
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/tag-cloud/index.php:28
+#, php-format
+msgid ""
+"Your site doesn&#8217;t have any %s, so there&#8217;s nothing to display "
+"here at the moment."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/template-part/index.php:70
+#, php-format
+msgid "Template part has been deleted or is unavailable: %s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/template-part/index.php:80
+#, php-format
+msgid ""
+"Could not render Template Part block with the attributes: <code>%s</code>. "
+"Block cannot be rendered inside itself."
+msgstr ""
 
 #: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:24
 #: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:26
@@ -764,7 +953,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-inlaylist.php:137
 #: source/php/AcfFields/php/mod-rss.php:85
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:45
-#: source/php/ModuleManager.php:601 vendor/aristath/kirki/example.php:64
+#: source/php/ModuleManager.php:606 vendor/aristath/kirki/example.php:64
 msgid "Date"
 msgstr "Datum"
 
@@ -792,7 +981,7 @@ msgid ""
 "strong>://</span>"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-map.php:26 source/php/ModuleManager.php:599
+#: source/php/AcfFields/php/mod-map.php:26 source/php/ModuleManager.php:604
 #: templates/options/partials/modularity-modules.php:19
 #: vendor/aristath/kirki/example.php:141 vendor/aristath/kirki/example.php:160
 #: vendor/aristath/kirki/example.php:452 vendor/aristath/kirki/example.php:463
@@ -1352,7 +1541,7 @@ msgid "Kategorier"
 msgstr "Kategorier"
 
 #: source/php/AcfFields/php/mod-wpwidget.php:14
-#: source/php/Module/WpWidget/WpWidget.php:154
+#: source/php/Module/WpWidget/WpWidget.php:155
 msgid "Meta"
 msgstr "Meta"
 
@@ -1370,7 +1559,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-wpwidget.php:18
 #: source/php/Module/Rss/Rss.php:12 source/php/Module/Rss/Rss.php:13
-#: source/php/Module/WpWidget/WpWidget.php:158
+#: source/php/Module/WpWidget/WpWidget.php:159
 msgid "RSS"
 msgstr "RSS"
 
@@ -1500,6 +1689,10 @@ msgstr ""
 msgid "Taxonomy"
 msgstr "Kategori"
 
+#: source/php/BlockManager.php:47
+msgid "A custom testimonial block."
+msgstr ""
+
 #: source/php/Display.php:443 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
@@ -1591,10 +1784,6 @@ msgstr "Visar en eller flera kontakter"
 #: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:94
 msgid "Postal address"
 msgstr "Adress"
-
-#: source/php/Module/Contacts/views/components/opening_hours.blade.php:6
-msgid "Opening hours"
-msgstr "Öppettider"
 
 #: source/php/Module/Contacts/views/components/visiting.blade.php:12
 #: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:103
@@ -1752,12 +1941,6 @@ msgstr "Visa mer"
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 
-#: source/php/Module/Posts/views/partials/post-filters.blade.php:33
-#: source/php/Module/Posts/views/partials/post-filters.blade.php:38
-#: source/php/Module/WpWidget/WpWidget.php:159
-msgid "Search"
-msgstr "Sök"
-
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:50
 msgid "Date published"
 msgstr "Publiceringsdatum"
@@ -1789,18 +1972,6 @@ msgstr "Visar ett RSS-flöde"
 #: source/php/Module/Rss/Rss.php:43
 msgid "RSS feed URL is missing"
 msgstr "RSS-flödets URL saknas"
-
-#: source/php/Module/Rss/Rss.php:49
-msgid "RSS Error:"
-msgstr "RSS-fel:"
-
-#: source/php/Module/Rss/Rss.php:55
-msgid ""
-"An error has occurred, which probably means the feed is down. Try again "
-"later."
-msgstr ""
-"Ett fel har uppstått, vilket antagligen betyder att flödet är nere. Försök "
-"igen senare."
 
 #: source/php/Module/Rss/Rss.php:80
 #, fuzzy
@@ -1927,126 +2098,120 @@ msgstr "Video"
 msgid "Outputs an embedded Video."
 msgstr "Visar en inbäddad video"
 
-#: source/php/Module/WpWidget/WpWidget.php:12
 #: source/php/Module/WpWidget/WpWidget.php:13
+#: source/php/Module/WpWidget/WpWidget.php:14
 msgid "Wordpress Widgets"
 msgstr "WordPress Widget"
 
-#: source/php/Module/WpWidget/WpWidget.php:14
+#: source/php/Module/WpWidget/WpWidget.php:15
 msgid "Outputs a default widget in WordPress"
 msgstr "Visar en WordPress widger"
 
-#: source/php/Module/WpWidget/WpWidget.php:151
-#: source/php/Options/ArchivesList.php:11
-#: templates/options/modularity-archives.php:2
-msgid "Archives"
-msgstr "Arkiv"
-
-#: source/php/Module/WpWidget/WpWidget.php:152
+#: source/php/Module/WpWidget/WpWidget.php:153
 msgid "Calendar"
 msgstr "Kalender"
 
-#: source/php/Module/WpWidget/WpWidget.php:153
+#: source/php/Module/WpWidget/WpWidget.php:154
 msgid "Categories"
 msgstr "Kategorier"
 
-#: source/php/Module/WpWidget/WpWidget.php:155
+#: source/php/Module/WpWidget/WpWidget.php:156
 msgid "Pages"
 msgstr "Sidor"
 
-#: source/php/Module/WpWidget/WpWidget.php:156
+#: source/php/Module/WpWidget/WpWidget.php:157
 msgid "Recent comments"
 msgstr "Senaste kommentarerna"
 
-#: source/php/Module/WpWidget/WpWidget.php:157
+#: source/php/Module/WpWidget/WpWidget.php:158
 msgid "Recent posts"
 msgstr "Senaste inläggen"
 
-#: source/php/Module/WpWidget/WpWidget.php:160
+#: source/php/Module/WpWidget/WpWidget.php:161
 msgid "Tag cloud"
 msgstr "Taggmoln"
 
-#: source/php/ModuleManager.php:178
+#: source/php/ModuleManager.php:183
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/ModuleManager.php:179
+#: source/php/ModuleManager.php:184
 #: vendor/aristath/kirki/controls/php/class-kirki-control-repeater.php:87
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
 
-#: source/php/ModuleManager.php:180
+#: source/php/ModuleManager.php:185
 #, php-format
 msgid "New %s"
 msgstr "Ny %s"
 
-#: source/php/ModuleManager.php:181 source/php/ModuleManager.php:183
+#: source/php/ModuleManager.php:186 source/php/ModuleManager.php:188
 #, php-format
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-#: source/php/ModuleManager.php:182
+#: source/php/ModuleManager.php:187
 #, php-format
 msgid "View %s"
 msgstr "Visa %s"
 
-#: source/php/ModuleManager.php:184
+#: source/php/ModuleManager.php:189
 #, php-format
 msgid "Search %s"
 msgstr "Sök %s"
 
-#: source/php/ModuleManager.php:185
+#: source/php/ModuleManager.php:190
 #, php-format
 msgid "Parent %s"
 msgstr "Förälder %s"
 
-#: source/php/ModuleManager.php:186
+#: source/php/ModuleManager.php:191
 #, php-format
 msgid "No %s"
 msgstr "Inga %s"
 
-#: source/php/ModuleManager.php:187
+#: source/php/ModuleManager.php:192
 #, php-format
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/ModuleManager.php:367
+#: source/php/ModuleManager.php:372
 msgid "Hide title"
 msgstr "Dölj titel"
 
-#: source/php/ModuleManager.php:406
+#: source/php/ModuleManager.php:411
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
 
-#: source/php/ModuleManager.php:449
+#: source/php/ModuleManager.php:454
 msgid "This modules is not used yet."
 msgstr "Denna modulen används inte än."
 
-#: source/php/ModuleManager.php:453
+#: source/php/ModuleManager.php:458
 msgid "This module is used on the following places:"
 msgstr "Denna modulen används på följande ställen:"
 
-#: source/php/ModuleManager.php:554
+#: source/php/ModuleManager.php:559
 msgid "Module description"
 msgstr "Modulbeskrivning"
 
-#: source/php/ModuleManager.php:598
+#: source/php/ModuleManager.php:603
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/ModuleManager.php:600
+#: source/php/ModuleManager.php:605
 msgid "Usage"
 msgstr "Användning"
 
-#: source/php/ModuleManager.php:625
+#: source/php/ModuleManager.php:630
 msgid "Not used"
 msgstr "Inte använd"
 
-#: source/php/ModuleManager.php:642
+#: source/php/ModuleManager.php:647
 msgid "more"
 msgstr "fler"
 
@@ -3390,6 +3555,9 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Adress"
 #~ msgstr "Adress"
 
+#~ msgid "Opening hours"
+#~ msgstr "Öppettider"
+
 #~ msgid "Other"
 #~ msgstr "Annat"
 
@@ -4009,11 +4177,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Post type"
 #~ msgid "Post Object"
 #~ msgstr "Posttyp"
-
-#, fuzzy
-#~| msgid "Work title"
-#~ msgid "(no title)"
-#~ msgstr "Jobbtitel"
 
 #, fuzzy
 #~| msgid "Filter posts by taxonomy"

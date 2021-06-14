@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5891b49127038',
-    'title' => 'Text options',
+    'title' => __('Text options', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5891b6038c120',
@@ -31,6 +31,13 @@
                 'param' => 'post_type',
                 'operator' => '==',
                 'value' => 'mod-text',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/text',
             ),
         ),
     ),

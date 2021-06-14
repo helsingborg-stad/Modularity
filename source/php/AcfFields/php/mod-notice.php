@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_575a842dd1283',
     'title' => __('Notice settings', 'modularity'),
     'fields' => array(
@@ -26,7 +24,9 @@ if (function_exists('acf_add_local_field_group')) {
                 'warning' => __('Warning (gul)', 'modularity'),
                 'danger' => __('Danger (red)', 'modularity'),
             ),
-            'default_value' => 'success',
+            'default_value' => array(
+                0 => __('success', 'modularity'),
+            ),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -54,7 +54,9 @@ if (function_exists('acf_add_local_field_group')) {
                 'notice-lg' => __('Stor', 'modularity'),
                 'notice-sm' => __('Liten', 'modularity'),
             ),
-            'default_value' => 'notice-md',
+            'default_value' => array(
+                0 => __('notice-md', 'modularity'),
+            ),
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
@@ -92,6 +94,13 @@ if (function_exists('acf_add_local_field_group')) {
                 'value' => 'mod-notice',
             ),
         ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/notice',
+            ),
+        ),
     ),
     'menu_order' => 0,
     'position' => 'normal',
@@ -102,5 +111,4 @@ if (function_exists('acf_add_local_field_group')) {
     'active' => true,
     'description' => '',
 ));
-
-}
+}
