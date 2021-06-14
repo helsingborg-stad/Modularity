@@ -1,6 +1,6 @@
 ( function( window, wp ){
     // check if gutenberg's editor root element is present.
-    var editorEl = document.getElementById( 'editor' );
+    const editorEl = document.getElementById( 'editor' );
     if( !editorEl ){
         return; // do nothing if there's no gutenberg root element on page.
     }
@@ -28,10 +28,10 @@
     label.appendChild(labelText);
     button.appendChild(label);
 
-    var unsubscribe = wp.data.subscribe( function () {
+    const unsubscribe = wp.data.subscribe( function () {
         setTimeout( function () {
             if ( !document.getElementById( buttonID ) ) {
-                var toolbalEl = editorEl.querySelector( '.edit-post-header__toolbar' );
+                const toolbalEl = editorEl.querySelector( '.edit-post-header__toolbar' );
                 if( toolbalEl instanceof HTMLElement ){
                     toolbalEl.appendChild( button );
                 }
