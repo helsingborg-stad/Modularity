@@ -3,7 +3,7 @@
     'attributeList' => ['itemprop' => 'adress'],
 ])
     @typography(['element' => 'h4'])
-        {{ _e('Opening hours', 'modularity') }}
+        {{ $OpeningHours }}
     @endtypography
 
     @typography([])
