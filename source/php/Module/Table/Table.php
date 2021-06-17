@@ -53,8 +53,8 @@ class Table extends \Modularity\Module
         $post = $this->data;
         $data = get_fields($this->ID);
 
-        if(!empty($data['mod_table_csv_file'])) {
-            $tableData = $this->formatCsvData($data['mod_table_csv_file'], $data['mod_table_csv_delimiter']);
+        if(!empty($data['mod_table_block_csv_file'])) {
+            $tableData = $this->formatCsvData($data['mod_table_block_csv_file'], $data['mod_table_csv_delimiter']);
         } else if(!empty(json_decode($post['meta']['mod_table'][0]))) {
             $tableData = json_decode($post['meta']['mod_table'][0]);                        
         } else {
