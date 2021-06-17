@@ -33,7 +33,7 @@ if( function_exists('acf_add_local_field_group') ):
             array(
                 'key' => 'field_60b9dd6efc445',
                 'label' => 'CSV-fil',
-                'name' => 'mod_table_csv_file',
+                'name' => 'mod_table_block_csv_file',
                 'type' => 'file',
                 'instructions' => 'CSV-formatterad fil',
                 'required' => 1,
