@@ -219,32 +219,6 @@ class App
             return;
         }
 
-        //Custom link script
-        wp_register_script( 'custom-link-in-toolbar', plugin_dir_url( __FILE__ ) . 'source/js/edit-modules-block-editor.js', array(), '1.0', true );
-        
-        global $post;
-
-        if (!$post && !isset($_GET['page_for'])) {
-            return;
-        }
-
-        if (!$post && isset($_GET['page_for']) && !empty($_GET['page_for'])) {
-            $post = get_post($_GET['page_for']);
-        }
-
-        $modulesEditorId = false;
-
-        if ($post) {
-            $modulesEditorId = $post->ID;
-        }
-
-        wp_localize_script('custom-link-in-toolbar', 'blockeditior', array(
-            'langeditmodules' => __('Edit Modules', 'modularity'),
-            'hrefeditmodules' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
-        ));
-
-        wp_enqueue_script( 'custom-link-in-toolbar');
-
         // Style
         wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
         wp_enqueue_style('modularity');
@@ -272,6 +246,18 @@ class App
                 </script>
             ";
         });
+
+        // If gutenberg editor
+        if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
+            wp_register_script( 'custom-link-in-toolbar', plugin_dir_url( __FILE__ ) . 'source/js/edit-modules-block-editor.js', array(), '1.0', true );
+
+            wp_localize_script('custom-link-in-toolbar', 'blockeditior', array(
+                'langeditmodules' => __('Edit Modules', 'modularity'),
+                'hrefeditmodules' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
+            ));
+
+            wp_enqueue_script( 'custom-link-in-toolbar');
+        }
 
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {

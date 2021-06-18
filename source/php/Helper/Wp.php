@@ -186,6 +186,24 @@ class Wp
     }
 
     /**
+     * Check if gutenberg editor mode (Modularity)
+     * @return boolean
+     */
+    public static function isGutenbergEditor()
+    {
+        global $post; 
+
+        if (!$post && isset($_GET['page_for']) && !empty($_GET['page_for'])) {
+            $post = get_post($_GET['page_for']);
+        }
+
+        if(use_block_editor_for_post($post)){
+            return $post->ID; 
+        }
+        return false; 
+    }
+
+    /**
      * Fetches current archive slug
      * @return mixed (string, boolean) False if not archive else archive slug
      */
