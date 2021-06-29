@@ -1897,7 +1897,7 @@ msgstr ""
 msgid "Outputs an embedded page."
 msgstr ""
 
-#: source/php/Module/Iframe/Iframe.php:33
+#: source/php/Module/Iframe/Iframe.php:34
 msgid ""
 "Your iframe link must start with http<strong>s</strong>://. Links without "
 "this prefix will not display."
