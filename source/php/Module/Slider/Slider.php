@@ -132,7 +132,10 @@ class Slider extends \Modularity\Module
             }
 
             // Replace image alt text with link description
-            if (isset($slide['image']) && $slide['link_type'] !== 'false' && $slide['link_url_description']) {
+            if (isset($slide['image'])
+                && !empty($slide['link_type'])
+                && $slide['link_type'] !== 'false'
+                && !empty($slide['link_url_description'])) {
                 $slide['image']['alt'] = $slide['link_url_description'];
             }
 
