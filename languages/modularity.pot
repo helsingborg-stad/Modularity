@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-06-29 15:56+0200\n"
+"POT-Creation-Date: 2021-07-01 13:44+0200\n"
 "PO-Revision-Date: 2016-02-24 08:51+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -566,8 +566,18 @@ msgstr ""
 msgid "Images"
 msgstr ""
 
+#: source/php/AcfFields/php/mod-iframe.php:6
+msgid "Iframe settings"
+msgstr ""
+
 #: source/php/AcfFields/php/mod-iframe.php:10
 msgid "Iframe URL"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:13
+msgid ""
+"<span style=\"color: #f00;\">Your iframe link must start with http<strong>s</"
+"strong>://. Links without this prefix will not display.</span>"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-iframe.php:22
@@ -582,6 +592,17 @@ msgstr ""
 #: source/php/AcfFields/php/mod-image.php:96
 #: source/php/AcfFields/php/mod-image.php:127
 msgid "pixels"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:49
+#: source/php/AcfFields/php/mod-map.php:26
+#: source/php/AcfFields/php/mod-slider.php:459 source/php/ModuleManager.php:604
+#: templates/options/partials/modularity-modules.php:19
+msgid "Description"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:52
+msgid "Describe the contents of this Iframe (not shown)."
 msgstr ""
 
 #: source/php/AcfFields/php/mod-image.php:20
@@ -810,12 +831,6 @@ msgstr ""
 msgid ""
 "<span style=\"color: #f00;\">Din länk måste starta med http<strong>s</"
 "strong>://</span>"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-map.php:26
-#: source/php/AcfFields/php/mod-slider.php:459 source/php/ModuleManager.php:604
-#: templates/options/partials/modularity-modules.php:19
-msgid "Description"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-map.php:29

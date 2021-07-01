@@ -86,48 +86,6 @@
                 'value' => 'acf/iframe',
             ),
         ),
-        3 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/iframe',
-            ),
-        ),
-        4 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/iframe',
-            ),
-        ),
-        5 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/iframe',
-            ),
-        ),
-        6 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/iframe',
-            ),
-        ),
-        7 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/iframe',
-            ),
-        ),
-        8 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/iframe',
-            ),
-        ),
     ),
     'menu_order' => 0,
     'position' => 'normal',
