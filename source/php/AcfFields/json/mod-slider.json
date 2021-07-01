@@ -21,9 +21,7 @@
                 "ratio-16-9": "Normal (16:9, video)",
                 "ratio-4-3": "Square (4:3)"
             },
-            "default_value": [
-                "ratio-16-9"
-            ],
+            "default_value": "ratio-16-9",
             "allow_null": 1,
             "multiple": 0,
             "ui": 1,
@@ -190,9 +188,7 @@
                                 "center": "Centered",
                                 "hero": "Hero"
                             },
-                            "default_value": [
-                                "bottom"
-                            ],
+                            "default_value": "bottom",
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -218,9 +214,7 @@
                                 "white": "White",
                                 "theme": "Inherit theme"
                             },
-                            "default_value": [
-                                "black"
-                            ],
+                            "default_value": "black",
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -247,9 +241,7 @@
                                 "theme": "Inherit theme",
                                 "theme-opacity": "Inherit theme, add transparency"
                             },
-                            "default_value": [
-                                "white"
-                            ],
+                            "default_value": "white",
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -458,6 +450,40 @@
                             "allow_null": 0,
                             "allow_archives": 1,
                             "multiple": 0
+                        },
+                        {
+                            "key": "field_60db1cc88b16d",
+                            "label": "Description",
+                            "name": "link_url_description",
+                            "type": "text",
+                            "instructions": "Describe the purpose of the link, or what visitors can expect to find when they click on it (not shown).",
+                            "required": 1,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_56fa82a2d464d",
+                                        "operator": "==",
+                                        "value": "external"
+                                    }
+                                ],
+                                [
+                                    {
+                                        "field": "field_56fa82a2d464d",
+                                        "operator": "==",
+                                        "value": "internal"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -582,9 +608,7 @@
                                 "bottom": "Bottom banner",
                                 "center": "Centered"
                             },
-                            "default_value": [
-                                "bottom"
-                            ],
+                            "default_value": "bottom",
                             "ui": 0,
                             "ajax": 0,
                             "placeholder": "",
@@ -610,9 +634,7 @@
                                 "white": "White",
                                 "theme": "Inherit theme"
                             },
-                            "default_value": [
-                                "black"
-                            ],
+                            "default_value": "black",
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -639,9 +661,7 @@
                                 "theme": "Inherit theme",
                                 "theme-opacity": "Inherit theme, add transparency"
                             },
-                            "default_value": [
-                                "white"
-                            ],
+                            "default_value": "white",
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -805,6 +825,20 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-slider"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/slider"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/slider"
             }
         ],
         [

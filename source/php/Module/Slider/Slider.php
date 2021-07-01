@@ -34,14 +34,14 @@ class Slider extends \Modularity\Module
         //Get settings
         $fields = get_fields($this->ID);
         $data = [];
-        
+
         //Assign settings to objects
         $data['autoslide']  = $fields['slides_autoslide'] ? intval($fields['slides_slide_timeout']) : false;
         $data['ratio']      = preg_replace('/ratio-/', '', $fields['slider_format']);
-        $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']); 
+        $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']);
         $data['sliderShadow'] = $fields['slider_shadow'];
         $data['title'] = $fields['post_title'];
-        
+
         //Get slides
         $data['slides'] = $this->prepareSlides($fields);
         $data['id'] = $this->ID;
@@ -56,9 +56,8 @@ class Slider extends \Modularity\Module
         if (isset($this->imageSizes[$data['slider_format']])) {
             $imageSize = $this->imageSizes[$data['slider_format']];
         }
-        
-        foreach ($data['slides'] as &$slide) {
 
+        foreach ($data['slides'] as &$slide) {
             $currentImageSize = $imageSize;
 
             if ($slide['acf_fc_layout'] === 'video') {
@@ -94,29 +93,29 @@ class Slider extends \Modularity\Module
                     )
                 );
             }
-            
+
             // Set link text
-            if(empty($slide['link_text'])) {
+            if (empty($slide['link_text'])) {
                 $slide['link_text'] = __('Read more', 'modularity');
             }
 
             // In some cases ACF will return an post-id instead of a link.
-            
+
             if (isset($slide['link_url'])) {
                 if (is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
                     $slide['link_url'] = get_permalink($slide['link_url']);
                 }
             }
-            
+
             $slide['heroStyle'] = false;
-            
-            if($slide['textblock_position'] === 'hero') {
+
+            if ($slide['textblock_position'] === 'hero') {
                 $slide['heroStyle'] = true;
                 $slide['textblock_position'] = 'center';
             }
 
-            if(isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
-                $slide['textblock_position'] = 'bottom';            
+            if (isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
+                $slide['textblock_position'] = 'bottom';
             }
 
             //Set call to action default value
@@ -132,6 +131,13 @@ class Slider extends \Modularity\Module
                 $slide['link_url'] = false;
             }
 
+            // Replace image alt text with link description
+            if (isset($slide['image'])
+                && !empty($slide['link_type'])
+                && $slide['link_type'] !== 'false'
+                && !empty($slide['link_url_description'])) {
+                $slide['image']['alt'] = $slide['link_url_description'];
+            }
 
             $slide = (object) $slide;
         }
