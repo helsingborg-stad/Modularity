@@ -5,9 +5,10 @@ namespace Modularity;
 class Plugins
 {
     public $plugins = array(
-        'acf-post-type-field/acf-posttype-select.php',
-        'acf-dynamic-table-field/acf-anagram_dynamic_table_field.php',
-        'advanced-custom-fields-table-field/acf-table.php',
+        "acf-field/focus-point/acf-focuspoint.php",
+        "acf-field/table/advanced-custom-fields-table-field/trunk/acf-table.php",
+        "acf-field/post-type-select/acf-posttype-select.php",
+        "acf-field/website/acf-website_field.php"
     );
 
     public function __construct()
@@ -15,10 +16,13 @@ class Plugins
         $this->plugins = apply_filters('Modularity/Plugins', $this->plugins);
 
         foreach ($this->plugins as $plugin) {
-            if (file_exists($plugin)) {
-                require_once $plugin;
-            } elseif (file_exists(MODULARITY_PATH . 'plugins/'. $plugin)) {
-                require_once MODULARITY_PATH . 'plugins/'. $plugin;
+
+            $pluginPath = MODULARITY_PATH . "vendor/" . $plugin; 
+
+            if (file_exists($pluginPath)) {
+                require_once $pluginPath;
+            } else {
+                error_log("A plugin not existing tried to enqueue to acf in modularity."); 
             }
         }
     }
