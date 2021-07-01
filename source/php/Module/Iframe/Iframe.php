@@ -23,6 +23,7 @@ class Iframe extends \Modularity\Module
 
         $data['url'] = $url;
         $data['height'] = get_field('iframe_height', $this->ID);
+        $data['description'] = get_field('iframe_description', $this->ID);
 
         return $data;
     }

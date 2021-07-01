@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-06-29 15:56+0200\n"
-"PO-Revision-Date: 2021-06-29 15:57+0200\n"
+"POT-Creation-Date: 2021-07-01 13:44+0200\n"
+"PO-Revision-Date: 2021-07-01 13:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -601,9 +601,19 @@ msgstr ""
 msgid "Images"
 msgstr "Bild"
 
+#: source/php/AcfFields/php/mod-iframe.php:6
+msgid "Iframe settings"
+msgstr ""
+
 #: source/php/AcfFields/php/mod-iframe.php:10
 msgid "Iframe URL"
 msgstr "Iframe url"
+
+#: source/php/AcfFields/php/mod-iframe.php:13
+msgid ""
+"<span style=\"color: #f00;\">Your iframe link must start with http<strong>s</"
+"strong>://. Links without this prefix will not display.</span>"
+msgstr ""
 
 #: source/php/AcfFields/php/mod-iframe.php:22
 msgid "Enter your embed url"
@@ -618,6 +628,17 @@ msgstr "Iframe höjd"
 #: source/php/AcfFields/php/mod-image.php:127
 msgid "pixels"
 msgstr "pixlar"
+
+#: source/php/AcfFields/php/mod-iframe.php:49
+#: source/php/AcfFields/php/mod-map.php:26
+#: source/php/AcfFields/php/mod-slider.php:459 source/php/ModuleManager.php:604
+#: templates/options/partials/modularity-modules.php:19
+msgid "Description"
+msgstr "Beskrivning"
+
+#: source/php/AcfFields/php/mod-iframe.php:52
+msgid "Describe the contents of this Iframe (not shown)."
+msgstr "Beskriv innehållet i denna Iframe (endast skärmläsare)."
 
 #: source/php/AcfFields/php/mod-image.php:20
 #: source/php/AcfFields/php/mod-index.php:108
@@ -850,12 +871,6 @@ msgid ""
 "<span style=\"color: #f00;\">Din länk måste starta med http<strong>s</"
 "strong>://</span>"
 msgstr ""
-
-#: source/php/AcfFields/php/mod-map.php:26
-#: source/php/AcfFields/php/mod-slider.php:459 source/php/ModuleManager.php:604
-#: templates/options/partials/modularity-modules.php:19
-msgid "Description"
-msgstr "Beskrivning"
 
 #: source/php/AcfFields/php/mod-map.php:29
 msgid "Describe the contents of this map (not shown)"
@@ -1978,7 +1993,7 @@ msgstr "Iframe"
 msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida"
 
-#: source/php/Module/Iframe/Iframe.php:33
+#: source/php/Module/Iframe/Iframe.php:34
 msgid ""
 "Your iframe link must start with http<strong>s</strong>://. Links without "
 "this prefix will not display."
