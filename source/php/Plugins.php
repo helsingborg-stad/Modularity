@@ -5,10 +5,10 @@ namespace Modularity;
 class Plugins
 {
     public $plugins = array(
-        "acf-field/focus-point/acf-focuspoint.php",
-        "acf-field/table/advanced-custom-fields-table-field/trunk/acf-table.php",
-        "acf-field/post-type-select/acf-posttype-select.php",
-        "acf-field/website/acf-website_field.php"
+        "johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table.php",
+        "clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select.php",
+        "jeradin/acf-website-field/acf-website_field.php",
+        "ooksanen/acf-focuspoint/acf-focuspoint.php"
     );
 
     public function __construct()

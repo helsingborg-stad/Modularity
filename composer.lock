@@ -4,48 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1bbe1c15136bcb3dc0962934e3503406",
+    "content-hash": "5aa43aa7874f69572303f335abe1eddc",
     "packages": [
-        {
-            "name": "acf-field/focus-point",
-            "version": "1.1.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ooksanen/acf-focuspoint",
-                "reference": "master"
-            },
-            "type": "library"
-        },
-        {
-            "name": "acf-field/post-type-select",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Clark-Nikdel-Powell/Post-Type-Select-for-ACF",
-                "reference": "master"
-            },
-            "type": "library"
-        },
-        {
-            "name": "acf-field/table",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/johannheyne/advanced-custom-fields-table-field",
-                "reference": "master"
-            },
-            "type": "library"
-        },
-        {
-            "name": "acf-field/website",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Jeradin/acf-website-field",
-                "reference": "master"
-            },
-            "type": "library"
-        },
         {
             "name": "benjamincrozat/blade",
             "version": "2.0.1",
@@ -96,6 +56,38 @@
                 "source": "https://github.com/benjamincrozat/blade/tree/2.0.1"
             },
             "time": "2020-02-06T09:55:11+00:00"
+        },
+        {
+            "name": "clark-nikdel-powell/post-type-select-for-acf",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/Post-Type-Select-for-ACF.git",
+                "reference": "6c4726c988436b538f7d3c2949eeb3c4ed87a6e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/Post-Type-Select-for-ACF/zipball/6c4726c988436b538f7d3c2949eeb3c4ed87a6e3",
+                "reference": "6c4726c988436b538f7d3c2949eeb3c4ed87a6e3",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "acf-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Glenn Welser",
+                    "email": "info@cnpagency.com"
+                }
+            ],
+            "description": "Post type select field for ACF",
+            "support": {
+                "source": "https://github.com/helsingborg-stad/Post-Type-Select-for-ACF/tree/master"
+            },
+            "time": "2021-07-02T09:35:18+00:00"
         },
         {
             "name": "composer/installers",
@@ -794,17 +786,81 @@
             "time": "2019-06-20T13:13:59+00:00"
         },
         {
+            "name": "jeradin/acf-website-field",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/acf-website-field.git",
+                "reference": "6ddc6361538f72a75e594cba0b62338bf9a16936"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-website-field/zipball/6ddc6361538f72a75e594cba0b62338bf9a16936",
+                "reference": "6ddc6361538f72a75e594cba0b62338bf9a16936",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "acf-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Geet Jacobs",
+                    "email": "geet@meowwolf.com"
+                }
+            ],
+            "description": "Website field for ACF",
+            "support": {
+                "source": "https://github.com/helsingborg-stad/acf-website-field/tree/master"
+            },
+            "time": "2021-07-02T09:35:32+00:00"
+        },
+        {
+            "name": "johannheyne/advanced-custom-fields-table-field",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/advanced-custom-fields-table-field.git",
+                "reference": "624629b6e4b5a822d84ba12fdc6b12fc3b578288"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/advanced-custom-fields-table-field/zipball/624629b6e4b5a822d84ba12fdc6b12fc3b578288",
+                "reference": "624629b6e4b5a822d84ba12fdc6b12fc3b578288",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "acf-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Johann Heyne",
+                    "email": "mail@johannheyne.de"
+                }
+            ],
+            "description": "Table field for ACF",
+            "support": {
+                "source": "https://github.com/helsingborg-stad/advanced-custom-fields-table-field/tree/master"
+            },
+            "time": "2021-07-02T09:35:10+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "8794301fc67df7ee19c6a4f1c52f841174a405f2"
+                "reference": "cf1583b15bd4f060b8e01e2fbcf25073418f65ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8794301fc67df7ee19c6a4f1c52f841174a405f2",
-                "reference": "8794301fc67df7ee19c6a4f1c52f841174a405f2",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/cf1583b15bd4f060b8e01e2fbcf25073418f65ca",
+                "reference": "cf1583b15bd4f060b8e01e2fbcf25073418f65ca",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +941,52 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-01T08:44:06+00:00"
+            "time": "2021-07-01T17:17:31+00:00"
+        },
+        {
+            "name": "ooksanen/acf-focuspoint",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/acf-focuspoint.git",
+                "reference": "04f5f661e34a6b72131a77efb78381927c24e912"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-focuspoint/zipball/04f5f661e34a6b72131a77efb78381927c24e912",
+                "reference": "04f5f661e34a6b72131a77efb78381927c24e912",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "acf-plugin",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oskari Oksanen",
+                    "email": "hello@oskarioksanen.fi"
+                }
+            ],
+            "description": "Focuspoint field for ACF",
+            "support": {
+                "source": "https://github.com/helsingborg-stad/acf-focuspoint/tree/master"
+            },
+            "funding": [
+                {
+                    "type": "custom",
+                    "url": "https://paypal.me/ooksanen\"] # Replace with up to 4 custom sponsorship URLs e.g."
+                },
+                {
+                    "type": "custom",
+                    "url": "['link1"
+                },
+                {
+                    "type": "custom",
+                    "url": "link2"
+                }
+            ],
+            "time": "2021-07-02T09:35:00+00:00"
         },
         {
             "name": "psr/container",
@@ -1553,7 +1654,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "helsingborg-stad/blade-component-library": 20
+        "helsingborg-stad/blade-component-library": 20,
+        "johannheyne/advanced-custom-fields-table-field": 20,
+        "clark-nikdel-powell/post-type-select-for-acf": 20,
+        "jeradin/acf-website-field": 20,
+        "ooksanen/acf-focuspoint": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
