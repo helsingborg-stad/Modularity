@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5aa43aa7874f69572303f335abe1eddc",
+    "content-hash": "976bf2d576781d37027deeb0ba38630f",
     "packages": [
         {
             "name": "benjamincrozat/blade",
@@ -949,16 +949,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acf-focuspoint.git",
-                "reference": "04f5f661e34a6b72131a77efb78381927c24e912"
+                "reference": "366d1fad1fd387e811e35519f8ad57124f5aff2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/acf-focuspoint/zipball/04f5f661e34a6b72131a77efb78381927c24e912",
-                "reference": "04f5f661e34a6b72131a77efb78381927c24e912",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-focuspoint/zipball/366d1fad1fd387e811e35519f8ad57124f5aff2e",
+                "reference": "366d1fad1fd387e811e35519f8ad57124f5aff2e",
                 "shasum": ""
             },
             "default-branch": true,
             "type": "acf-plugin",
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -968,25 +969,17 @@
                     "email": "hello@oskarioksanen.fi"
                 }
             ],
-            "description": "Focuspoint field for ACF",
+            "description": "Adds a image focus field",
             "support": {
                 "source": "https://github.com/helsingborg-stad/acf-focuspoint/tree/master"
             },
             "funding": [
                 {
-                    "type": "custom",
-                    "url": "https://paypal.me/ooksanen\"] # Replace with up to 4 custom sponsorship URLs e.g."
-                },
-                {
-                    "type": "custom",
-                    "url": "['link1"
-                },
-                {
-                    "type": "custom",
-                    "url": "link2"
+                    "url": "https://www.paypal.com/paypalme/ooksanen",
+                    "type": "other"
                 }
             ],
-            "time": "2021-07-02T09:35:00+00:00"
+            "time": "2021-07-02T10:00:04+00:00"
         },
         {
             "name": "psr/container",
