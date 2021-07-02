@@ -26,10 +26,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/helsingborg-stad/acf-focuspoint.git"
         }
     ],
     "require": {
