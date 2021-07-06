@@ -31,7 +31,9 @@ class Search
         global $wp_query;
 
         //Only run on search
-        if (!$wp_query->is_search() || is_admin()) {
+        if (!$wp_query->is_search()
+            || is_admin()
+            || $wp_query->query_vars['post_type'] !== 'any') {
             return;
         }
 
