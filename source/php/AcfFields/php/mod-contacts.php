@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5805e5dc0a3be',
-    'title' => 'Contacts',
+    'title' => __('Contacts', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5805e5dc1da44',
@@ -23,7 +23,9 @@
                 'vertical' => __('Horisontella kort', 'modularity'),
                 'list' => __('Lista', 'modularity'),
             ),
-            'default_value' => 'cards',
+            'default_value' => array(
+                0 => __('cards', 'modularity'),
+            ),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -53,7 +55,7 @@
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_5805e5dc26dde',
-                            'label' => __('Bild', 'modularity'),
+                            'label' => 'Bild',
                             'name' => 'image',
                             'type' => 'image',
                             'instructions' => '',
@@ -77,7 +79,7 @@
                         ),
                         1 => array(
                             'key' => 'field_5805e5dc27255',
-                            'label' => __('First name or location', 'modularity'),
+                            'label' => 'First name or location',
                             'name' => 'first_name',
                             'type' => 'text',
                             'instructions' => '',
@@ -96,7 +98,7 @@
                         ),
                         2 => array(
                             'key' => 'field_5805e5dc276e1',
-                            'label' => __('Efternamn', 'modularity'),
+                            'label' => 'Efternamn',
                             'name' => 'last_name',
                             'type' => 'text',
                             'instructions' => '',
@@ -115,7 +117,7 @@
                         ),
                         3 => array(
                             'key' => 'field_5805e5dc2771c',
-                            'label' => __('Jobbtitel', 'modularity'),
+                            'label' => 'Jobbtitel',
                             'name' => 'work_title',
                             'type' => 'text',
                             'instructions' => '',
@@ -134,7 +136,7 @@
                         ),
                         4 => array(
                             'key' => 'field_5805e5dc277e3',
-                            'label' => __('Förvaltning', 'modularity'),
+                            'label' => 'Förvaltning',
                             'name' => 'administration_unit',
                             'type' => 'text',
                             'instructions' => '',
@@ -153,7 +155,7 @@
                         ),
                         5 => array(
                             'key' => 'field_5805e5dc27b58',
-                            'label' => __('E-mail', 'modularity'),
+                            'label' => 'E-mail',
                             'name' => 'email',
                             'type' => 'email',
                             'instructions' => '',
@@ -171,7 +173,7 @@
                         ),
                         6 => array(
                             'key' => 'field_5805e62f94d0f',
-                            'label' => __('Telefon', 'modularity'),
+                            'label' => 'Telefon',
                             'name' => 'phone_numbers',
                             'type' => 'repeater',
                             'instructions' => '',
@@ -186,11 +188,11 @@
                             'min' => 0,
                             'max' => 0,
                             'layout' => 'table',
-                            'button_label' => __('Lägg till nummer', 'modularity'),
+                            'button_label' => 'Lägg till nummer',
                             'sub_fields' => array(
                                 0 => array(
                                     'key' => 'field_5bf6aa828136b',
-                                    'label' => __('Typ', 'modularity'),
+                                    'label' => 'Typ',
                                     'name' => 'type',
                                     'type' => 'select',
                                     'instructions' => '',
@@ -202,10 +204,12 @@
                                         'id' => '',
                                     ),
                                     'choices' => array(
-                                        'phone' => __('Fasttelefon', 'modularity'),
-                                        'smartphone' => __('Mobil', 'modularity'),
+                                        'phone' => 'Fasttelefon',
+                                        'smartphone' => 'Mobil',
                                     ),
-                                    'default_value' => 'phone',
+                                    'default_value' => array(
+                                        0 => 'phone',
+                                    ),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -215,7 +219,7 @@
                                 ),
                                 1 => array(
                                     'key' => 'field_5805e64a94d10',
-                                    'label' => __('Telefonnummer', 'modularity'),
+                                    'label' => 'Telefonnummer',
                                     'name' => 'number',
                                     'type' => 'text',
                                     'instructions' => '',
@@ -236,7 +240,7 @@
                         ),
                         7 => array(
                             'key' => 'field_5bf6a5fbc1b6b',
-                            'label' => __('Social Media', 'modularity'),
+                            'label' => 'Social Media',
                             'name' => 'social_media',
                             'type' => 'repeater',
                             'instructions' => '',
@@ -255,7 +259,7 @@
                             'sub_fields' => array(
                                 0 => array(
                                     'key' => 'field_5bf6a737c1b6c',
-                                    'label' => __('Media', 'modularity'),
+                                    'label' => 'Media',
                                     'name' => 'media',
                                     'type' => 'select',
                                     'instructions' => '',
@@ -267,12 +271,14 @@
                                         'id' => '',
                                     ),
                                     'choices' => array(
-                                        'facebook' => __('Facebook', 'modularity'),
-                                        'linkedin' => __('LinkedIn', 'modularity'),
-                                        'twitter' => __('Twitter', 'modularity'),
-                                        'instagram' => __('Instagram', 'modularity'),
+                                        'facebook' => 'Facebook',
+                                        'linkedin' => 'LinkedIn',
+                                        'twitter' => 'Twitter',
+                                        'instagram' => 'Instagram',
                                     ),
-                                    'default_value' => 'facebook',
+                                    'default_value' => array(
+                                        0 => 'facebook',
+                                    ),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -282,7 +288,7 @@
                                 ),
                                 1 => array(
                                     'key' => 'field_5bf6a991c1b6d',
-                                    'label' => __('URL', 'modularity'),
+                                    'label' => 'URL',
                                     'name' => 'url',
                                     'type' => 'url',
                                     'instructions' => '',
@@ -300,7 +306,7 @@
                         ),
                         8 => array(
                             'key' => 'field_5805e5dc28d3a',
-                            'label' => __('Address', 'modularity'),
+                            'label' => 'Address',
                             'name' => 'address',
                             'type' => 'textarea',
                             'instructions' => '',
@@ -319,7 +325,7 @@
                         ),
                         9 => array(
                             'key' => 'field_5805e5dc28e30',
-                            'label' => __('Besöksadress', 'modularity'),
+                            'label' => 'Besöksadress',
                             'name' => 'visiting_address',
                             'type' => 'textarea',
                             'instructions' => '',
@@ -338,7 +344,7 @@
                         ),
                         10 => array(
                             'key' => 'field_5805e5dc29114',
-                            'label' => __('Öppettider', 'modularity'),
+                            'label' => 'Öppettider',
                             'name' => 'opening_hours',
                             'type' => 'textarea',
                             'instructions' => '',
@@ -357,7 +363,7 @@
                         ),
                         11 => array(
                             'key' => 'field_5805e5dc29182',
-                            'label' => __('Annat', 'modularity'),
+                            'label' => 'Annat',
                             'name' => 'other',
                             'type' => 'wysiwyg',
                             'instructions' => '',
@@ -386,7 +392,7 @@
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_5805e5dc291c4',
-                            'label' => __('Välj användare', 'modularity'),
+                            'label' => 'Välj användare',
                             'name' => 'user',
                             'type' => 'user',
                             'instructions' => '',
@@ -445,7 +451,9 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => 'grid-md-12',
+            'default_value' => array(
+                0 => __('grid-md-12', 'modularity'),
+            ),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -487,6 +495,13 @@
                 'param' => 'post_type',
                 'operator' => '==',
                 'value' => 'mod-contacts',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/contacts',
             ),
         ),
     ),

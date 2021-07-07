@@ -9,7 +9,7 @@
                 "name": "mod_table_data_type",
                 "type": "radio",
                 "instructions": "",
-                "required": 1,
+                "required": 0,
                 "conditional_logic": 0,
                 "wrapper": {
                     "width": "",
@@ -22,7 +22,7 @@
                 },
                 "allow_null": 0,
                 "other_choice": 0,
-                "default_value": "",
+                "default_value": "manual",
                 "layout": "horizontal",
                 "return_format": "value",
                 "save_other_choice": 0
@@ -87,7 +87,7 @@
                 "name": "mod_table",
                 "type": "table",
                 "instructions": "",
-                "required": 0,
+                "required": 1,
                 "conditional_logic": [
                     [
                         {

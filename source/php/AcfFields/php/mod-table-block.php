@@ -12,7 +12,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'name' => 'mod_table_data_type',
                 'type' => 'radio',
                 'instructions' => '',
-                'required' => 1,
+                'required' => 0,
                 'conditional_logic' => 0,
                 'wrapper' => array(
                     'width' => '',
@@ -25,7 +25,7 @@ if( function_exists('acf_add_local_field_group') ):
                 ),
                 'allow_null' => 0,
                 'other_choice' => 0,
-                'default_value' => '',
+                'default_value' => 'manual',
                 'layout' => 'horizontal',
                 'return_format' => 'value',
                 'save_other_choice' => 0,
@@ -90,7 +90,7 @@ if( function_exists('acf_add_local_field_group') ):
                 'name' => 'mod_table',
                 'type' => 'table',
                 'instructions' => '',
-                'required' => 0,
+                'required' => 1,
                 'conditional_logic' => array(
                     array(
                         array(
