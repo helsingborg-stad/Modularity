@@ -20,7 +20,9 @@
                 "vertical": "Horisontella kort",
                 "list": "Lista"
             },
-            "default_value": "cards",
+            "default_value": [
+                "cards"
+            ],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -202,7 +204,9 @@
                                         "phone": "Fasttelefon",
                                         "smartphone": "Mobil"
                                     },
-                                    "default_value": "phone",
+                                    "default_value": [
+                                        "phone"
+                                    ],
                                     "allow_null": 0,
                                     "multiple": 0,
                                     "ui": 0,
@@ -269,7 +273,9 @@
                                         "twitter": "Twitter",
                                         "instagram": "Instagram"
                                     },
-                                    "default_value": "facebook",
+                                    "default_value": [
+                                        "facebook"
+                                    ],
                                     "allow_null": 0,
                                     "multiple": 0,
                                     "ui": 0,
@@ -442,7 +448,9 @@
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": "grid-md-12",
+            "default_value": [
+                "grid-md-12"
+            ],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -484,6 +492,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-contacts"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/contacts"
             }
         ]
     ],

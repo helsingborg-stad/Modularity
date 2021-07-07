@@ -12,6 +12,10 @@
             add_filter( 'allowed_block_types', array($this, 'filterBlockTypes') );
         }
 
+        /**
+         * Filter out all of the native block types except freeform, aka classic
+         * @return array
+         */
         public function filterBlockTypes($allowedBlocks) {
             $registeredBlocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
             
@@ -24,6 +28,10 @@
             return array_keys($registeredBlocks);                        
         }
 
+        /**
+         * Add a module category
+         * @return array
+         */
         public function filterCategories( $categories, $post ) {            
             
             return array_merge(
@@ -36,6 +44,10 @@
             );
         }
         
+        /**
+         * Register all registered and compatible modules as blocks
+         * @return void
+         */
         public function registerBlocks() {
             if( function_exists('acf_register_block_type') ) {                                
                 foreach($this->classes as $class) {
@@ -54,6 +66,10 @@
 
         }
 
+        /**
+         * Add location rule to each field group to make them avaible to corresponding block
+         * @return array
+         */
         public function addLocationRule($group) {
             $enabledModules = \Modularity\ModuleManager::$enabled;  
 
@@ -80,6 +96,11 @@
             return $group;
         }
 
+
+        /**
+         * Set the default value of fields if value is missing
+         * @return array
+         */
         private function setDefaultValues($data, $defaultValues) {
             foreach($data as $key => &$dataPoint) {
                 if(empty($dataPoint)) {
@@ -97,9 +118,14 @@
             return $data;
         }
 
+        /**
+         * Get the default values of fields
+         * @return array
+         */
         private function getDefaultValues($blockData) {
             $fieldDefaultValues = [];
             foreach($blockData as $key => $dataPoint) {
+                
                 if($defaultValue = get_field_object($dataPoint)['default_value']) {
                     $fieldDefaultValues[$key] = $defaultValue;
                 }                
@@ -108,6 +134,10 @@
             return $fieldDefaultValues;
         }
 
+        /**
+         * The callback used by registerBlocks to render either a block or a notice if validation failed
+         * @return void
+         */
         public function renderBlock($block) {                            
             $defaultValues = $this->getDefaultValues($block['data']);                            
             $display = new Display();            
@@ -117,8 +147,62 @@
             $module->data = $this->setDefaultValues($module->data, $defaultValues); 
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];       
-            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);            
+            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);                        
+            $validatedCorrectly = $this->validateFields($block['data']);
 
-            echo  $display->renderView($view, $viewData);
+            if($validatedCorrectly) {
+                // Render block view if validated correctly
+                echo  $display->renderView($view, $viewData);
+            } elseif(is_user_logged_in()) {
+                // Render a notice warning the user of required fields not filled in.
+                echo '<div class="c-notice c-notice--danger">
+                        <span class="c-notice__icon">
+                                    
+                            <i class="c-icon c-icon--size-md material-icons">
+                                report
+                            </i>            
+                        </span>
+                        <span class="c-notice__message--sm">
+                            ['. $module->nameSingular .'] Please fill in all required fields
+                                    
+                        </span>
+                    </div>';
+            }
+        }
+
+        /**
+         * Validates the required fields
+         * @return boolean
+         */
+        private function validateFields($fields) {        
+            $valid = true;
+
+            foreach($fields as $key => $value) {    
+                
+                if(is_string($key) && is_string($value)) {
+                    
+                    if(str_contains($key, 'field_')) {
+                        $field = $key;
+                    }elseif(str_contains($value, 'field_')){
+                        $field = $value;
+                    }
+                    
+                }
+
+                $fieldObject = get_field_object($field);
+
+                //Skip validation of decendants
+                if(isset($fieldObject['parent']) && str_contains($fieldObject['parent'], 'field_')) {
+                    continue;
+                }
+                
+                //Check if required field has a value
+                if($fieldObject['required'] && !$fieldObject['value']) {
+                    $valid = false;
+                }
+                
+            }
+
+            return $valid;
         }
     }
