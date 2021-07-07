@@ -96,8 +96,9 @@
             return $group;
         }
 
+
         /**
-         * Add location rule to each field group to make them avaible to corresponding block
+         * Set the default value of fields if value is missing
          * @return array
          */
         private function setDefaultValues($data, $defaultValues) {
@@ -117,6 +118,10 @@
             return $data;
         }
 
+        /**
+         * Get the default values of fields
+         * @return array
+         */
         private function getDefaultValues($blockData) {
             $fieldDefaultValues = [];
             foreach($blockData as $key => $dataPoint) {
@@ -129,6 +134,10 @@
             return $fieldDefaultValues;
         }
 
+        /**
+         * The callback used by registerBlocks to render either a block or a notice if validation failed
+         * @return void
+         */
         public function renderBlock($block) {                            
             $defaultValues = $this->getDefaultValues($block['data']);                            
             $display = new Display();            
@@ -142,8 +151,10 @@
             $validatedCorrectly = $this->validateFields($block['data']);
 
             if($validatedCorrectly) {
+                // Render block view if validated correctly
                 echo  $display->renderView($view, $viewData);
-            } else {
+            } elseif(is_user_logged_in()) {
+                // Render a notice warning the user of required fields not filled in.
                 echo '<div class="c-notice c-notice--danger">
                         <span class="c-notice__icon">
                                     
@@ -159,23 +170,33 @@
             }
         }
 
+        /**
+         * Validates the required fields
+         * @return boolean
+         */
         private function validateFields($fields) {        
             $valid = true;
 
             foreach($fields as $key => $value) {    
                 
                 if(is_string($key) && is_string($value)) {
-
+                    
                     if(str_contains($key, 'field_')) {
                         $field = $key;
-                    }else if(str_contains($value, 'field_')){
+                    }elseif(str_contains($value, 'field_')){
                         $field = $value;
                     }
+                    
+                }
 
+                $fieldObject = get_field_object($field);
+
+                //Skip validation of decendants
+                if(isset($fieldObject['parent']) && str_contains($fieldObject['parent'], 'field_')) {
+                    continue;
                 }
                 
-                $fieldObject = get_field_object($field);
-                
+                //Check if required field has a value
                 if($fieldObject['required'] && !$fieldObject['value']) {
                     $valid = false;
                 }
