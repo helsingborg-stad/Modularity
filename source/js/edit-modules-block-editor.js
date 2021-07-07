@@ -1,4 +1,7 @@
+/* const { link } = require("fs");
+ */
 ( function( window, wp ){
+    
     // check if gutenberg's editor root element is present.
     const editorEl = document.getElementById( 'editor' );
     if( !editorEl ){
@@ -45,7 +48,7 @@
         for(const mutation of mutationsList) {
             if (mutation.type === 'childList') {
                 //Items has changed, check if it was a block
-                const typewriter = editorEl.querySelector('.block-editor__typewriter');
+                const typewriter = editorEl.querySelector('.edit-post-visual-editor');
                 const links = typewriter.querySelectorAll('[href]');
 
                 //remove href from new items
