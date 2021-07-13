@@ -10,13 +10,66 @@
             add_filter( 'block_categories', array($this, 'filterCategories'), 10, 2 );
             add_filter('acf/load_field_group', array($this, 'addLocationRule'));
             add_filter( 'allowed_block_types', array($this, 'filterBlockTypes') );
+            add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
+            add_filter('render_block_data', [$this, 'block_data_pre_render'], 10, 2);
+
+        }
+
+        /**
+         * Add missing width to columns
+         * @return array
+         */
+        function block_data_pre_render($block_content, $block) {
+           
+            if($block['blockName'] === 'core/columns') {                
+                foreach($block['innerBlocks'] as &$innerBlock) {
+                    if(!$innerBlock['attrs']['width']) {
+                        //Calculate the missing width and format number to two decimal points
+                        $width = 100 / count($block['innerBlocks']);
+                        $width = number_format((float)$width, 2, '.', '') . '%';
+                        $innerBlock['attrs']['width'] = $width;
+                        var_dump($width);
+                    }
+                }                
+            }
+
+            $content = '<div width=33>'. $block_content . '</div>';
+ 
+            return $block;
+        }
+
+        /**
+         * Render a custom grid around each column
+         * @return string
+         */
+        function renderCustomGrid (string $block_content, array $block): string 
+        {
+            $widths = [
+                '100.00%' => 'grid-md-12',
+                '75.00%'  => 'grid-md-9',
+                '66.66%'  => 'grid-md-8',
+                '50.00%'  => 'grid-md-6',
+                '33.33%'  => 'grid-md-4',
+                '25.00%'  => 'grid-md-3'
+            ];
+            
+            if ( 'core/column' === $block['blockName'] ) {                                
+                $block_content = '<div class="'. $widths[$block['attrs']['width']] .'">' . $block_content . '</div>';                
+            }
+
+            return $block_content;            
         }
 
         public function filterBlockTypes($allowedBlocks) {
             $registeredBlocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
             
             foreach($registeredBlocks as $type => $block) {
-                if(str_contains($type, 'core/') && $type !== 'core/freeform') {
+                $allowedCoreBlocks = array(
+                    'core/columns',
+                    'core/freeform'
+                );
+                
+                if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
                     unset($registeredBlocks[$type]);
                 }                                   
             }
@@ -80,6 +133,10 @@
             return $group;
         }
 
+        /**
+         * Set the default value of fields if value is missing
+         * @return array
+         */
         private function setDefaultValues($data, $defaultValues) {
             foreach($data as $key => &$dataPoint) {
                 if(empty($dataPoint)) {
