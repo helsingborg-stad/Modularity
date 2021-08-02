@@ -11,14 +11,14 @@
             add_filter('acf/load_field_group', array($this, 'addLocationRule'));
             add_filter( 'allowed_block_types', array($this, 'filterBlockTypes') );
             add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
-            add_filter('render_block_data', [$this, 'block_data_pre_render'], 10, 2);
+            add_filter('render_block_data', [$this, 'blockDataPreRender'], 10, 2);
         }
 
         /**
          * Add missing width to columns
          * @return array
          */
-        function block_data_pre_render($block_content, $block) {
+        function blockDataPreRender($block_content, $block) {
            
             if($block['blockName'] === 'core/columns') {
                 foreach($block['innerBlocks'] as &$innerBlock) {
