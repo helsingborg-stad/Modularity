@@ -26,11 +26,11 @@
                     if (!isset($innerBlock['attrs']['width'])) {
                         $innerBlock['attrs']['width'] = false;
                     }
-
+                    
                     if(!$innerBlock['attrs']['width']) {
                         //Calculate the missing width and format number to two decimal points
                         $width = 100 / count($block['innerBlocks']);
-                        $width = number_format((float)$width, 2, '.', '') . '%';
+                        $width = (string) round($width, 0) . '%';
                         $innerBlock['attrs']['width'] = $width;
                     }
                 }
@@ -46,19 +46,12 @@
         function renderCustomGrid (string $block_content, array $block): string 
         {
             $widths = [
-                '100.00%' => 'grid-md-12',
-                '75.00%'  => 'grid-md-9',
-                '66.66%'  => 'grid-md-8',
-                '50.00%'  => 'grid-md-6',
-                '33.33%'  => 'grid-md-4',
-                '25.00%'  => 'grid-md-3',
-
-                '100' => 'grid-md-12',
-                '75'  => 'grid-md-9',
-                '66'  => 'grid-md-8',
-                '50'  => 'grid-md-6',
-                '33'  => 'grid-md-4',
-                '25'  => 'grid-md-3'
+                '100%' => 'grid-md-12',
+                '75%'  => 'grid-md-9',
+                '66%'  => 'grid-md-8',
+                '50%'  => 'grid-md-6',
+                '33%'  => 'grid-md-4',
+                '25%'  => 'grid-md-3'
             ];
             
             if ( 'core/column' === $block['blockName'] ) {
