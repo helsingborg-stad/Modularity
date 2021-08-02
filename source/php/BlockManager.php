@@ -71,17 +71,29 @@
          * @return array
          */
         public function addLocationRule($group) {
+
+            $newGroup = $group;
+
             $enabledModules = \Modularity\ModuleManager::$enabled;  
 
             if (($key = array_search('mod-table', $enabledModules)) !== false) {
                 unset($enabledModules[$key]);
             } 
-                                    
+
             foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
-                    $valueIsModule = in_array($locationRule['value'], $enabledModules);            
+                    $valueIsModule = in_array($locationRule['value'], $enabledModules);  
+                    $locationRuleExists = str_contains($locationRule['value'], 'acf/');
+
+                    // If the location rule that we are trying to add already exists, return original group
+                    if($locationRuleExists && $locationRule['param'] === 'block') {
+                        
+                        return $group;
+                    }
+
                     if($valueIsModule && $locationRule['operator'] === '==') {
-                        $group['location'][] = [
+                                                                        
+                        $newGroup['location'][] = [
                             [
                                 'param' => 'block',
                                 'operator' => '==', 
@@ -93,7 +105,7 @@
                 }
             }
 
-            return $group;
+            return $newGroup;
         }
 
 

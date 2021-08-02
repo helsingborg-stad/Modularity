@@ -1,4 +1,7 @@
+/* const { link } = require("fs");
+ */
 ( function( window, wp ){
+    
     // check if gutenberg's editor root element is present.
     const editorEl = document.getElementById( 'editor' );
     if( !editorEl ){
@@ -40,6 +43,25 @@
     } );
     // unsubscribe is a function - it's not used right now 
     // but in case you'll need to stop this link from being reappeared at any point you can just call unsubscribe();
+
+    const callback = function(mutationsList, observer) {
+        for(const mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                //Items has changed, check if it was a block
+                const typewriter = editorEl.querySelector('.edit-post-visual-editor');
+                const links = typewriter.querySelectorAll('[href]');
+
+                //remove href from new items
+                links.forEach(link => {
+                    link.removeAttribute('href');
+                })
+            }
+        }
+    };
+
+    //Add observer for editor
+    const observer = new MutationObserver(callback);
+    observer.observe(editorEl, { childList: true, subtree: true });
 
 } )( window, wp )
 
