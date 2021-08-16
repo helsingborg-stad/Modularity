@@ -28,7 +28,7 @@ class Slider extends \Modularity\Module
         $this->description = __("Outputs multiple images or videos in a sliding apperance.", 'modularity');
 
         //Adds backwards compability to when we didn't have focal points
-        add_filter('acf/load_field/key=field_56a5ed2f398dc', array($this,'filterDesktopImage'));
+        add_filter('acf/load_value/key=field_56a5ed2f398dc', array($this,'filterDesktopImage'), 10, 3);
     }
 
     /**
@@ -37,11 +37,17 @@ class Slider extends \Modularity\Module
      * @param array $field
      * @return array $field
      */
-    public function filterDesktopImage($field) {
+    public function filterDesktopImage($value, $postId, $field) {
 
-        var_dump($field); 
-
-        return $field; 
+        if(!is_array($value) && is_numeric($value)) {
+            return [
+                'id' => $value,
+                'top' => "0",
+                'left' => "0"
+            ]; 
+        }
+        
+        return $value; 
     }
 
     public function data() : array
