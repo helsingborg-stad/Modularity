@@ -26,6 +26,22 @@ class Slider extends \Modularity\Module
         $this->nameSingular = __("Slider", 'modularity');
         $this->namePlural = __("Sliders", 'modularity');
         $this->description = __("Outputs multiple images or videos in a sliding apperance.", 'modularity');
+
+        //Adds backwards compability to when we didn't have focal points
+        add_filter('acf/load_field/key=field_56a5ed2f398dc', array($this,'filterDesktopImage'));
+    }
+
+    /**
+     * Adds backwards compability to sliders created before focal point support. 
+     *
+     * @param array $field
+     * @return array $field
+     */
+    public function filterDesktopImage($field) {
+
+        var_dump($field); 
+
+        return $field; 
     }
 
     public function data() : array
