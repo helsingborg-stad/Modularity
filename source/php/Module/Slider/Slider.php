@@ -39,14 +39,14 @@ class Slider extends \Modularity\Module
      */
     public function filterDesktopImage($value, $postId, $field) {
 
-        if(!is_array($value) && is_numeric($value)) {
+        if(!is_array($value) && is_numeric($value) && $field['type'] == "focuspoint") {
             return [
                 'id' => $value,
-                'top' => "0",
-                'left' => "0"
+                'top' => "40",
+                'left' => "50"
             ]; 
         }
-        
+
         return $value; 
     }
 
