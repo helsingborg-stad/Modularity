@@ -80,6 +80,7 @@ add_action('plugins_loaded', function () {
         'mod-social'           => 'group_56dedc26e5327',
         'mod-wpwidget'         => 'group_5729f4d3e7c7a',
         'mod-sites'            => 'group_58ecb6b6330f4',
+        'mod-table-block'      => 'group_60b8bf5bbc4d7'
 
     ));
     $acfExportManager->import();

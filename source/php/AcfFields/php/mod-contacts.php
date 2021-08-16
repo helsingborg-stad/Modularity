@@ -23,7 +23,9 @@
                 'vertical' => __('Horisontella kort', 'modularity'),
                 'list' => __('Lista', 'modularity'),
             ),
-            'default_value' => 'cards',
+            'default_value' => array(
+                0 => __('cards', 'modularity'),
+            ),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -205,7 +207,9 @@
                                         'phone' => __('Fasttelefon', 'modularity'),
                                         'smartphone' => __('Mobil', 'modularity'),
                                     ),
-                                    'default_value' => 'phone',
+                                    'default_value' => array(
+                                        0 => __('phone', 'modularity'),
+                                    ),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -272,7 +276,9 @@
                                         'twitter' => __('Twitter', 'modularity'),
                                         'instagram' => __('Instagram', 'modularity'),
                                     ),
-                                    'default_value' => 'facebook',
+                                    'default_value' => array(
+                                        0 => __('facebook', 'modularity'),
+                                    ),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -445,7 +451,9 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => 'grid-md-12',
+            'default_value' => array(
+                0 => __('grid-md-12', 'modularity'),
+            ),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -487,6 +495,13 @@
                 'param' => 'post_type',
                 'operator' => '==',
                 'value' => 'mod-contacts',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/contacts',
             ),
         ),
     ),
