@@ -6,10 +6,59 @@
         public $modules = [];
         public $classes = [];
 
-        public function __construct() {            
+        public function __construct() {
             add_filter( 'block_categories', array($this, 'filterCategories'), 10, 2 );
             add_filter('acf/load_field_group', array($this, 'addLocationRule'));
             add_filter( 'allowed_block_types', array($this, 'filterBlockTypes') );
+            add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
+            add_filter('render_block_data', [$this, 'blockDataPreRender'], 10, 2);
+        }
+
+        /**
+         * Add missing width to columns
+         * @return array
+         */
+        function blockDataPreRender($block_content, $block) {
+           
+            if($block['blockName'] === 'core/columns') {
+                foreach($block['innerBlocks'] as &$innerBlock) {
+
+                    if (!isset($innerBlock['attrs']['width'])) {
+                        $innerBlock['attrs']['width'] = false;
+                    }
+                    
+                    if(!$innerBlock['attrs']['width']) {
+                        //Calculate the missing width and format number to two decimal points
+                        $width = 100 / count($block['innerBlocks']);
+                        $width = (string) round($width, 0) . '%';
+                        $innerBlock['attrs']['width'] = $width;
+                    }
+                }
+            }
+ 
+            return $block;
+        }
+
+        /**
+         * Render a custom grid around each column
+         * @return string
+         */
+        function renderCustomGrid (string $block_content, array $block): string 
+        {
+            $widths = [
+                '100%' => 'grid-md-12',
+                '75%'  => 'grid-md-9',
+                '66%'  => 'grid-md-8',
+                '50%'  => 'grid-md-6',
+                '33%'  => 'grid-md-4',
+                '25%'  => 'grid-md-3'
+            ];
+            
+            if ( 'core/column' === $block['blockName'] ) {
+                $block_content = '<div class="'. $widths[$block['attrs']['width']] .'">' . $block_content . '</div>';
+            }
+
+            return $block_content;
         }
 
         /**
@@ -20,12 +69,17 @@
             $registeredBlocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
             
             foreach($registeredBlocks as $type => $block) {
-                if(str_contains($type, 'core/') && $type !== 'core/freeform') {
+                $allowedCoreBlocks = array(
+                    'core/columns',
+                    'core/freeform'
+                );
+                
+                if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
                     unset($registeredBlocks[$type]);
-                }                                   
+                }
             }
 
-            return array_keys($registeredBlocks);                        
+            return array_keys($registeredBlocks);
         }
 
         /**
@@ -49,7 +103,7 @@
          * @return void
          */
         public function registerBlocks() {
-            if( function_exists('acf_register_block_type') ) {                                
+            if( function_exists('acf_register_block_type') ) {
                 foreach($this->classes as $class) {
                     if($class->isBlockCompatible) {
                         acf_register_block_type(array(
@@ -58,7 +112,7 @@
                             'description'       => __($class->description),
                             'render_callback'   => array($this, 'renderBlock'),
                             'category'          => 'modules',
-                            'moduleName'          => $class->slug
+                            'moduleName'        => $class->slug
                         ));
                     }
                 }
@@ -101,13 +155,12 @@
                             ]
                         ];  
                         
-                    }                    
+                    }
                 }
             }
 
             return $newGroup;
         }
-
 
         /**
          * Set the default value of fields if value is missing
@@ -140,7 +193,7 @@
                 
                 if($defaultValue = get_field_object($dataPoint)['default_value']) {
                     $fieldDefaultValues[$key] = $defaultValue;
-                }                
+                }
             }
 
             return $fieldDefaultValues;
@@ -155,7 +208,7 @@
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
             $module->data = $block['data'];
-            $module->data = $module->data();  
+            $module->data = $module->data();
             $module->data = $this->setDefaultValues($module->data, $defaultValues); 
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];       
