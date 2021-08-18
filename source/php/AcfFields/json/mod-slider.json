@@ -126,25 +126,22 @@
                             "key": "field_56a5ed2f398dc",
                             "label": "Desktop image",
                             "name": "image",
-                            "type": "image",
+                            "type": "focuspoint",
                             "instructions": "This image will be used in larger screens. Preferably a widescreen image.",
                             "required": 1,
                             "conditional_logic": 0,
                             "wrapper": {
-                                "width": 50,
+                                "width": "50",
                                 "class": "",
                                 "id": ""
                             },
-                            "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
+                            "preview_size": "medium",
                             "min_width": "",
                             "min_height": "",
                             "min_size": "",
                             "max_width": "",
                             "max_height": "",
-                            "max_size": "",
-                            "mime_types": "png,jpg,jpeg"
+                            "max_size": ""
                         },
                         {
                             "key": "field_570f4e9b10c26",
@@ -825,6 +822,20 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-slider"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/slider"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/slider"
             }
         ],
         [

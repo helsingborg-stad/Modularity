@@ -11,6 +11,7 @@
     'alt'               => $slide->image['alt'],
     'altMobile'         => $slide->mobile_image['alt'],
     'cta'               => $slide->call_to_action,
-    'heroStyle'        => $slide->heroStyle
+    'heroStyle'         => $slide->heroStyle,
+    'focusPoint'        => $slide->focusPoint, 
 ])
 @endslider__item 

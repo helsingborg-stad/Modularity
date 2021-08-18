@@ -26,6 +26,28 @@ class Slider extends \Modularity\Module
         $this->nameSingular = __("Slider", 'modularity');
         $this->namePlural = __("Sliders", 'modularity');
         $this->description = __("Outputs multiple images or videos in a sliding apperance.", 'modularity');
+
+        //Adds backwards compability to when we didn't have focal points
+        add_filter('acf/load_value/key=field_56a5ed2f398dc', array($this,'filterDesktopImage'), 10, 3);
+    }
+
+    /**
+     * Adds backwards compability to sliders created before focal point support. 
+     *
+     * @param array $field
+     * @return array $field
+     */
+    public function filterDesktopImage($value, $postId, $field) {
+
+        if(!is_array($value) && is_numeric($value) && $field['type'] == "focuspoint") {
+            return [
+                'id' => $value,
+                'top' => "40",
+                'left' => "50"
+            ]; 
+        }
+
+        return $value; 
     }
 
     public function data() : array
@@ -138,6 +160,17 @@ class Slider extends \Modularity\Module
                 && !empty($slide['link_url_description'])) {
                 $slide['image']['alt'] = $slide['link_url_description'];
             }
+
+            $focusPoint = false;
+
+            if(array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
+                $focusPoint = [
+                    'top'   => $slide['image']['top'],
+                    'left'  => $slide['image']['left']
+                ];
+            }
+
+            $slide['focusPoint'] = $focusPoint;
 
             $slide = (object) $slide;
         }
