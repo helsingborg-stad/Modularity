@@ -161,6 +161,17 @@ class Slider extends \Modularity\Module
                 $slide['image']['alt'] = $slide['link_url_description'];
             }
 
+            $focusPoint = false;
+
+            if(array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
+                $focusPoint = [
+                    'top'   => $slide['image']['top'],
+                    'left'  => $slide['image']['left']
+                ];
+            }
+
+            $slide['focusPoint'] = $focusPoint;
+
             $slide = (object) $slide;
         }
 
