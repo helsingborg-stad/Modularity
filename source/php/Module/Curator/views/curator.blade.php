@@ -39,7 +39,7 @@
                     @image([
                         'src'=> $post->image,
                         'alt' => $post->text,
-                        'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--lightest'],
+                        'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--complementary-lightest'],
                         'rounded' => false,
                     ])
                     @endimage
