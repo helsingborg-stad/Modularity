@@ -426,14 +426,14 @@ class Display
 
         // Build before & after module markup
         $beforeModule = (array_key_exists ('before_widget', $args)) ? $args['before_widget'] :
-            '<div class="%1$s" id="%2$s">';
+            '<div id="%1$s" class="%2$s" >';
         $afterModule = (array_key_exists ('after_widget', $args)) ? $args['after_widget'] : '</div>';
                 
         // Apply filter for classes
-        $classes = apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
+        $classes = (array) apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
         
         // Implode classNames
-        $beforeModule = sprintf($beforeModule, implode(' ', $classes), $module->post_type . '-' . $module->ID);
+        $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID, implode(' ', $classes));
         
         // Append module edit to before markup
         $moduleEdit = '';
