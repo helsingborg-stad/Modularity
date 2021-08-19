@@ -75,6 +75,7 @@ add_action('plugins_loaded', function () {
         'mod-video'            => 'group_57454ae7b0e9a',
         'mod-map'              => 'group_602400d904b59',
         'mod-curator'          => 'group_609b788ad04bb',
+        'mod-spacer'           => 'group_611cffa40276a',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
