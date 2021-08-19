@@ -11,10 +11,14 @@ class File
      */
     public static function getNamespace(string $path) : string
     {
-        $source = file_get_contents($path);
+        if(!file_exists($path)) {
+            return '';
+        }
+
+        $source = file_get_contents($path); 
 
         if($source === false) {
-            add_action( 'admin_notices',function() use($path) {
+            add_action('admin_notices', function() use($path) {
                 $malfunctionalPlugin = array_pop(get_plugins( "/" . explode( '/', plugin_basename( $path ))[0]));
                 printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr('notice notice-error'), esc_html("ERROR: Could not find module definition (file) in " . $malfunctionalPlugin['Name']));
             });
