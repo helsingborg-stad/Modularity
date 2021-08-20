@@ -65,7 +65,7 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "mod-curator"
             }
         ],
         [

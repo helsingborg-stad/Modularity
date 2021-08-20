@@ -74,7 +74,7 @@
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'post',
+                'value' => 'mod-curator',
             ),
         ),
         1 => array(
