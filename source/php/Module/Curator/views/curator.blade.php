@@ -31,7 +31,7 @@
                         [
                             'name' => $post->user_readable_name,
                             'size' => 'sm',
-                            'classList' => ['u-position--absolute', 'u-level-1', 'u-box-shadow--1', 'u-margin--2']
+                            'classList' => ['u-position--absolute', 'u-level-1', 'u-box-shadow--1', 'u-margin--3']
                         ]
                     )
                     @endavatar
@@ -39,7 +39,7 @@
                     @image([
                         'src'=> $post->image,
                         'alt' => $post->text,
-                        'classList' => ['c-card__image', 'u-padding__top--1', 'u-padding__x--1', 'u-color__bg--lightest'],
+                        'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--complementary-lightest'],
                         'rounded' => false,
                     ])
                     @endimage

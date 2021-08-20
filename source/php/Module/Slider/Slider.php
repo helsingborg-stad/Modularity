@@ -103,19 +103,6 @@ class Slider extends \Modularity\Module
                 );
             }
 
-            // Mobile image
-            $slide['mobile_image_use'] = $slide['image_use'];
-            if (isset($slide['mobile_image']) && !empty($slide['mobile_image'])) {
-                $slide['mobile_image_use'] = wp_get_attachment_image_src(
-                    $slide['mobile_image']['id'],
-                    apply_filters(
-                        'Modularity/slider/mobile_image',
-                        array(500, 500),
-                        $this->args
-                    )
-                );
-            }
-
             // Set link text
             if (empty($slide['link_text'])) {
                 $slide['link_text'] = __('Read more', 'modularity');
