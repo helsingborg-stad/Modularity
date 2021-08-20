@@ -8,10 +8,10 @@ class Slider extends \Modularity\Module
     public $supports = array();
 
     public $imageSizes = array(
-        'ratio-16-9' => array(1250, 703),
-        'ratio-10-3' => array(1250, 375),
-        'ratio-36-7' => array(1800, 350),
-        'ratio-4-3'  => array(1252, 939)
+        'ratio-16-9' => array(1250, false),
+        'ratio-10-3' => array(1250, false),
+        'ratio-36-7' => array(1800, false),
+        'ratio-4-3'  => array(1252, false)
     );
 
     public $paddingRatios = array(
@@ -83,7 +83,7 @@ class Slider extends \Modularity\Module
             $currentImageSize = $imageSize;
 
             if ($slide['acf_fc_layout'] === 'video') {
-                $currentImageSize = array(1140,641);
+                $currentImageSize = array(1140, false);
             }
 
             if ($slide['acf_fc_layout'] == "featured") {
