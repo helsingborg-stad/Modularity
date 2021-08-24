@@ -108,11 +108,14 @@
                     if($class->isBlockCompatible) {
                         acf_register_block_type(array(
                             'name'              => $class->slug,
-                            'title'             => __($class->slug),
+                            'title'             => __($class->nameSingular),
                             'description'       => __($class->description),
                             'render_callback'   => array($this, 'renderBlock'),
                             'category'          => 'modules',
-                            'moduleName'        => $class->slug
+                            'moduleName'        => $class->slug,
+                            'supports'          => array(
+                                'jsx' => true
+                            ),
                         ));
                     }
                 }
