@@ -54,6 +54,7 @@
         "clark-nikdel-powell/post-type-select-for-acf": "dev-master",
         "jeradin/acf-website-field": "dev-master",
         "ooksanen/acf-focuspoint": "dev-master",
-        "jeradin/acf-dynamic-table-field": "dev-master"
+        "jeradin/acf-dynamic-table-field": "dev-master",
+        "enshrined/svg-sanitize": "dev-master"
     }
 }

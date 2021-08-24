@@ -108,6 +108,12 @@ class Module
     public $templateDir = false;
 
     /**
+     * Path to assets folder for this module
+     * @var string
+     */
+    public $assetDir = false;
+
+    /**
      * View data (data that will be sent to the blade view)
      * @var array
      */
@@ -128,6 +134,11 @@ class Module
         if (!$this->templateDir) {
             $reflector = new \ReflectionClass(get_class($this));
             $this->templateDir = trailingslashit(dirname($reflector->getFileName())) . 'views/';
+        }
+
+        if (!$this->assetDir) {
+            $reflector = new \ReflectionClass(get_class($this));
+            $this->assetDir = trailingslashit(dirname($reflector->getFileName())) . 'assets/';
         }
 
         if (is_numeric($post)) {

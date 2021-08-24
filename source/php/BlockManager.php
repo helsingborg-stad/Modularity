@@ -1,17 +1,19 @@
 <?php
     namespace Modularity;
 
+    use enshrined\svgSanitize\Sanitizer as SVGSanitize;
+
     class BlockManager {
 
         public $modules = [];
         public $classes = [];
 
         public function __construct() {
-            add_filter( 'block_categories', array($this, 'filterCategories'), 10, 2 );
+            add_filter('block_categories', array($this, 'filterCategories'), 10, 2);
             add_filter('acf/load_field_group', array($this, 'addLocationRule'));
-            add_filter( 'allowed_block_types', array($this, 'filterBlockTypes') );
+            add_filter('allowed_block_types', array($this, 'filterBlockTypes'));
             add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
-            add_filter('render_block_data', [$this, 'blockDataPreRender'], 10, 2);
+            add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
         }
 
         /**
@@ -106,9 +108,24 @@
             if( function_exists('acf_register_block_type') ) {
                 foreach($this->classes as $class) {
                     if($class->isBlockCompatible) {
+
+                        //Look for icon (including cleaning)
+                        if($class->assetDir && file_exists($class->assetDir. 'icon.svg')) {
+                            $sanitizer = new SVGSanitize();
+                            $sanitizer->minify(true);
+                            $sanitizer->removeXMLTag(true); 
+                            $icon = $sanitizer->sanitize(
+                                file_get_contents($class->assetDir . 'icon.svg')
+                            );
+                        } else {
+                            $icon = ''; 
+                        }
+
+                        //Create block
                         acf_register_block_type(array(
                             'name'              => $class->slug,
                             'title'             => __($class->nameSingular),
+                            'icon'              => $icon,
                             'description'       => __($class->description),
                             'render_callback'   => array($this, 'renderBlock'),
                             'category'          => 'modules',
