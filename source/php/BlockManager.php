@@ -131,8 +131,9 @@
                             'category'          => 'modules',
                             'moduleName'        => $class->slug,
                             'supports'          => array(
-                                'jsx' => true
-                            ),
+                                'jsx' => true,
+                                'align' => false
+                            )
                         ));
                     }
                 }
