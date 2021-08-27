@@ -94,7 +94,7 @@
                 $categories,
                 array([
                     'slug' => 'modules',
-                    'title' => __( 'Modules', 'modularity' ),
+                    'title' => __('Modules', 'modularity'),
                     'icon' => 'wordpress'
                 ])
             );
@@ -121,8 +121,8 @@
                             $icon = ''; 
                         }
 
-                        //Create block
-                        acf_register_block_type(array(
+                        //Allow block filtering
+                        $blockSettings = apply_filters('Modularity/Block/Settings', array(
                             'name'              => $class->slug,
                             'title'             => __($class->nameSingular),
                             'icon'              => $icon,
@@ -132,9 +132,14 @@
                             'moduleName'        => $class->slug,
                             'supports'          => array(
                                 'jsx' => true,
-                                'align' => false
+                                'align' => false,
+                                'align_text' => false,
+                                'align_content' => false
                             )
-                        ));
+                        ), $class->slug); 
+
+                        //Create block
+                        acf_register_block_type($blockSettings);
                     }
                 }
             }
@@ -162,20 +167,17 @@
 
                     // If the location rule that we are trying to add already exists, return original group
                     if($locationRuleExists && $locationRule['param'] === 'block') {
-                        
                         return $group;
                     }
 
-                    if($valueIsModule && $locationRule['operator'] === '==') {
-                                                                        
+                    if($valueIsModule && $locationRule['operator'] === '==') {                                             
                         $newGroup['location'][] = [
                             [
                                 'param' => 'block',
                                 'operator' => '==', 
                                 'value' => \str_replace('mod-', 'acf/', $locationRule['value'])
                             ]
-                        ];  
-                        
+                        ];
                     }
                 }
             }
@@ -225,34 +227,45 @@
          * @return void
          */
         public function renderBlock($block) {                            
-            $defaultValues = $this->getDefaultValues($block['data']);                            
+            
+            //Init display
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
-            $module->data = $block['data'];
-            $module->data = $module->data();
-            $module->data = $this->setDefaultValues($module->data, $defaultValues); 
-            $view = str_replace('.blade.php', '', $module->template());
-            $view = !empty($view) ? $view : $block['moduleName'];       
-            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);                        
-            $validatedCorrectly = $this->validateFields($block['data']);
+            
+            //Get module data
+            $module->data = $this->setDefaultValues(
+                $module->data(), 
+                $this->getDefaultValues($block['data'])
+            );
 
-            if($validatedCorrectly) {
+            //Get view name
+            $view = str_replace('.blade.php', '', $module->template());
+            $view = !empty($view) ? $view : $block['moduleName'];
+
+            //Add post type 
+            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);
+            
+
+            //Filter view data
+            $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
+
+            if($this->validateFields($block['data'])) {
                 // Render block view if validated correctly
-                echo  $display->renderView($view, $viewData);
+                echo $display->renderView($view, $viewData);
             } elseif(is_user_logged_in()) {
                 // Render a notice warning the user of required fields not filled in.
-                echo '<div class="c-notice c-notice--danger">
-                        <span class="c-notice__icon">
-                                    
+                echo '
+                    <div class="c-notice c-notice--info">
+                        <span class="c-notice__icon">   
                             <i class="c-icon c-icon--size-md material-icons">
                                 report
                             </i>            
                         </span>
                         <span class="c-notice__message--sm">
-                            ['. $module->nameSingular .'] Please fill in all required fields
-                                    
+                            <strong>'. $module->nameSingular .':</strong> ' . __("Please fill in all required fields.", 'municipio') . '    
                         </span>
-                    </div>';
+                    </div>
+                ';
             }
         }
 
@@ -261,18 +274,17 @@
          * @return boolean
          */
         private function validateFields($fields) {        
+            
             $valid = true;
 
             foreach($fields as $key => $value) {    
                 
                 if(is_string($key) && is_string($value)) {
-                    
                     if(str_contains($key, 'field_')) {
                         $field = $key;
-                    }elseif(str_contains($value, 'field_')){
+                    } elseif(str_contains($value, 'field_')) {
                         $field = $value;
                     }
-                    
                 }
 
                 $fieldObject = get_field_object($field);
@@ -283,7 +295,7 @@
                 }
                 
                 //Check if required field has a value
-                if($fieldObject['required'] && !$fieldObject['value']) {
+                if($fieldObject['required'] && (!$fieldObject['value'] && $fieldObject['value'] !== "0")) {
                     $valid = false;
                 }
                 
