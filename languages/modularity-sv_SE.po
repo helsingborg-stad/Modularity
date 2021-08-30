@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-08-18 14:59+0200\n"
-"PO-Revision-Date: 2021-08-18 15:02+0200\n"
+"POT-Creation-Date: 2021-08-30 16:35+0200\n"
+"PO-Revision-Date: 2021-08-30 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,328 +20,52 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:162 App.php:189 App.php:229
+#: App.php:163 App.php:190 App.php:230
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:162 source/php/BlockManager.php:95 source/php/Editor.php:124
+#: App.php:163 source/php/BlockManager.php:99 source/php/Editor.php:124
 #: source/php/Options/General.php:178
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:190 App.php:230
+#: App.php:191 App.php:231
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:191 App.php:231
+#: App.php:192 App.php:232
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:192 App.php:232
+#: App.php:193 App.php:233
 msgid "Hide module"
 msgstr "Dölj modulen"
 
-#: App.php:193 App.php:233
+#: App.php:194 App.php:234
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:194 App.php:234
+#: App.php:195 App.php:235
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:195 App.php:235
+#: App.php:196 App.php:236
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:196 App.php:236
+#: App.php:197 App.php:237
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:140
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:169
 msgid "Width"
 msgstr "Bredd"
 
-#: App.php:198 App.php:238 templates/options/partials/modularity-modules.php:27
+#: App.php:199 App.php:239 templates/options/partials/modularity-modules.php:27
 msgid "Deprecated"
 msgstr "Utgående"
 
-#: App.php:255
+#: App.php:256
 msgid "Edit Modules"
 msgstr "Redigera moduler"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:24
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:26
-msgid "Dynamic Table"
-msgstr "Dynamisk tabell"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:79
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:208
-#, fuzzy
-#| msgid "Tables"
-msgid "Table Class"
-msgstr "Tabeller"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:80
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:209
-msgid "Custom Table Class for the Front End"
-msgstr "Anpassad tabell-klass för front end"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:95
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:217
-msgid "Max Rows"
-msgstr "Max rader"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:96
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:218
-msgid "Sets the maximum rows for the table"
-msgstr "Ställer in maximala rader för tabellen"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:111
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:224
-msgid "Disable Sort"
-msgstr "Inaktivera sortering"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:112
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:225
-msgid "Disable Sort - this will disable drag and drop sorting of rows"
-msgstr ""
-"Inaktivera sortering - detta inaktiverar dra och släpp sortering av rader"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:122
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:143
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:230
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:243
-#: source/php/AcfFields/php/mod-wpwidget.php:83
-#: source/php/AcfFields/php/mod-wpwidget.php:115
-#: source/php/AcfFields/php/mod-wpwidget.php:147
-#: source/php/AcfFields/php/mod-wpwidget.php:179
-#: source/php/AcfFields/php/mod-wpwidget.php:211
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:87
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:106
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:78
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:91
-#: vendor/jeradin/acf-website-field/website_url_v4.php:265
-#: vendor/jeradin/acf-website-field/website_url_v4.php:289
-#: vendor/jeradin/acf-website-field/website_url_v4.php:310
-#: vendor/jeradin/acf-website-field/website_url_v5.php:265
-#: vendor/jeradin/acf-website-field/website_url_v5.php:280
-#: vendor/jeradin/acf-website-field/website_url_v5.php:297
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:98
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:186
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:125
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:182
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:98
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:186
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:125
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:174
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:104
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:192
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:131
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:180
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:102
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:222
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:246
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:125
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:138
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:196
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:102
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:209
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:233
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:125
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:138
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:196
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:102
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:209
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:233
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:125
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:138
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:196
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:108
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:228
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:252
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:131
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:144
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:202
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:108
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:228
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:252
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:131
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:144
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:202
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:108
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:228
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:252
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:131
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:144
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:202
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:108
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:228
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:252
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:131
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:144
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:202
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:110
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:230
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:254
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:133
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:146
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:204
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:110
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:230
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:254
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:133
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:146
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:204
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:110
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:230
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:254
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:133
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:146
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:204
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:110
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:230
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:254
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:133
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:146
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:204
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:110
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:230
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:254
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:133
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:146
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:204
-msgid "Yes"
-msgstr "Ja"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:123
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:144
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:231
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:244
-#: source/php/AcfFields/php/mod-wpwidget.php:82
-#: source/php/AcfFields/php/mod-wpwidget.php:114
-#: source/php/AcfFields/php/mod-wpwidget.php:146
-#: source/php/AcfFields/php/mod-wpwidget.php:178
-#: source/php/AcfFields/php/mod-wpwidget.php:210
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:88
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:107
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:79
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:92
-#: vendor/jeradin/acf-website-field/website_url_v4.php:266
-#: vendor/jeradin/acf-website-field/website_url_v4.php:290
-#: vendor/jeradin/acf-website-field/website_url_v4.php:311
-#: vendor/jeradin/acf-website-field/website_url_v5.php:266
-#: vendor/jeradin/acf-website-field/website_url_v5.php:281
-#: vendor/jeradin/acf-website-field/website_url_v5.php:298
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:97
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:187
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:126
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:181
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:97
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:187
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:126
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:173
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:103
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:193
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:132
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:179
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:101
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:223
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:247
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:126
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:139
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:195
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:101
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:210
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:234
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:126
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:139
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:195
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:101
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:210
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:234
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:126
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:139
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:195
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:107
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:229
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:253
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:132
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:145
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:201
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:107
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:229
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:253
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:132
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:145
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:201
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:107
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:229
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:253
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:132
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:145
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:201
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:107
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:229
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:253
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:132
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:145
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:201
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:109
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:231
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:255
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:134
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:147
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:203
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:109
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:231
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:255
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:134
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:147
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:203
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:109
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:231
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:255
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:134
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:147
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:203
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:109
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:231
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:255
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:134
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:147
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:203
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:109
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:231
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:255
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:134
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:147
-#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:203
-#, fuzzy
-#| msgid "No "
-msgid "No"
-msgstr "Nej"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:132
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:237
-#, fuzzy
-#| msgid "Columns"
-msgid "Fixed Columns"
-msgstr "Kolumner"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:133
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:238
-msgid "Fixed columns - column count and set names"
-msgstr "Fasta kolumner - kolumner och ange namn"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:153
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:250
-#, fuzzy
-#| msgid "Default"
-msgid "Default Headers"
-msgstr "Standard"
-
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:154
-#: plugins/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:251
-msgid "Set default headers, one per line."
-msgstr "Ställ in standardrubriker, en per rad."
 
 #: source/php/AcfFields/php/mod-booking.php:13
 msgid "Datum"
@@ -1381,10 +1105,6 @@ msgstr "Normal (16:9, video)"
 msgid "Square (4:3)"
 msgstr "Kvadrat (4:3)"
 
-#: source/php/AcfFields/php/mod-slider.php:27
-msgid "ratio-16-9"
-msgstr ""
-
 #: source/php/AcfFields/php/mod-slider.php:37
 msgid "Autoslide"
 msgstr "Automatisk bläddring"
@@ -1409,27 +1129,35 @@ msgstr "Återgå till början"
 msgid "Go to first slide when last item is reached"
 msgstr "Återgå till den första vyn när det inte finns fler vyer att visa"
 
-#: source/php/AcfFields/php/mod-slider.php:101
-msgid "wrapAround"
-msgstr ""
-
 #: source/php/AcfFields/php/mod-slider.php:110
 msgid "Slides"
 msgstr "Vyer"
 
-#: source/php/AcfFields/php/mod-slider.php:495
+#: source/php/AcfFields/php/mod-slider.php:490
 #: source/php/Module/Video/Video.php:12 source/php/Module/Video/Video.php:13
 msgid "Video"
 msgstr "Video"
 
-#: source/php/AcfFields/php/mod-slider.php:798
+#: source/php/AcfFields/php/mod-slider.php:793
 #, fuzzy
 #| msgid "Add file"
 msgid "Add slide"
 msgstr "Lägg till fil"
 
-#: source/php/AcfFields/php/mod-slider.php:804
+#: source/php/AcfFields/php/mod-slider.php:799
 msgid "Shadow"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-spacer.php:6
+msgid "Whitespace"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-spacer.php:10
+msgid "Amount of whitespace"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-spacer.php:13
+msgid "All space will be multiplied by 8."
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:10
@@ -1675,6 +1403,220 @@ msgstr ""
 msgid "No options avabile"
 msgstr "Inga tillgängliga alternativ"
 
+#: source/php/AcfFields/php/mod-wpwidget.php:82
+#: source/php/AcfFields/php/mod-wpwidget.php:114
+#: source/php/AcfFields/php/mod-wpwidget.php:146
+#: source/php/AcfFields/php/mod-wpwidget.php:178
+#: source/php/AcfFields/php/mod-wpwidget.php:210
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:88
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:107
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:79
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:92
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:123
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:144
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:231
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:244
+#: vendor/jeradin/acf-website-field/website_url_v4.php:266
+#: vendor/jeradin/acf-website-field/website_url_v4.php:290
+#: vendor/jeradin/acf-website-field/website_url_v4.php:311
+#: vendor/jeradin/acf-website-field/website_url_v5.php:266
+#: vendor/jeradin/acf-website-field/website_url_v5.php:281
+#: vendor/jeradin/acf-website-field/website_url_v5.php:298
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:97
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:187
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:181
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:97
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:187
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:173
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:103
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:193
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:179
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:223
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:247
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:195
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:210
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:234
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:195
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:210
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:234
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:195
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:203
+#, fuzzy
+#| msgid "No "
+msgid "No"
+msgstr "Nej"
+
+#: source/php/AcfFields/php/mod-wpwidget.php:83
+#: source/php/AcfFields/php/mod-wpwidget.php:115
+#: source/php/AcfFields/php/mod-wpwidget.php:147
+#: source/php/AcfFields/php/mod-wpwidget.php:179
+#: source/php/AcfFields/php/mod-wpwidget.php:211
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:87
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:106
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:78
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:91
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:122
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:143
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:230
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:243
+#: vendor/jeradin/acf-website-field/website_url_v4.php:265
+#: vendor/jeradin/acf-website-field/website_url_v4.php:289
+#: vendor/jeradin/acf-website-field/website_url_v4.php:310
+#: vendor/jeradin/acf-website-field/website_url_v5.php:265
+#: vendor/jeradin/acf-website-field/website_url_v5.php:280
+#: vendor/jeradin/acf-website-field/website_url_v5.php:297
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:98
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:186
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:182
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:98
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:186
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:174
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:104
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:192
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:180
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:102
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:222
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:246
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:138
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:196
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:102
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:209
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:233
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:138
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:196
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:102
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:209
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:233
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:138
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:196
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:204
+msgid "Yes"
+msgstr "Ja"
+
 #: source/php/AcfFields/php/mod-wpwidget.php:91
 msgid "Show number of items indicator"
 msgstr "Visa antal"
@@ -1776,6 +1718,14 @@ msgstr ""
 #: source/php/AcfFields/php/mod-wpwidget.php:521
 msgid "Taxonomy"
 msgstr "Kategori"
+
+#: source/php/BlockManager.php:326
+msgid "Block settings"
+msgstr "Inställningar för block"
+
+#: source/php/BlockManager.php:331 source/php/ModuleManager.php:603
+msgid "Title"
+msgstr "Titel"
 
 #: source/php/Display.php:443 templates/widget/form.php:30
 msgid "Edit module"
@@ -2112,7 +2062,7 @@ msgstr "Sliders"
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr "Visar flera bilder eller filmer i ett bildspel"
 
-#: source/php/Module/Slider/Slider.php:121
+#: source/php/Module/Slider/Slider.php:108
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
 msgid "Read more"
@@ -2319,10 +2269,6 @@ msgstr "Denna modulen används på följande ställen:"
 #: source/php/ModuleManager.php:559
 msgid "Module description"
 msgstr "Modulbeskrivning"
-
-#: source/php/ModuleManager.php:603
-msgid "Title"
-msgstr "Titel"
 
 #: source/php/ModuleManager.php:605
 msgid "Usage"
@@ -2612,6 +2558,68 @@ msgstr ""
 #, php-format
 msgid "Exported %d fieldgroup(s)."
 msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:24
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:26
+msgid "Dynamic Table"
+msgstr "Dynamisk tabell"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:79
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:208
+#, fuzzy
+#| msgid "Tables"
+msgid "Table Class"
+msgstr "Tabeller"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:80
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:209
+msgid "Custom Table Class for the Front End"
+msgstr "Anpassad tabell-klass för front end"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:95
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:217
+msgid "Max Rows"
+msgstr "Max rader"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:96
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:218
+msgid "Sets the maximum rows for the table"
+msgstr "Ställer in maximala rader för tabellen"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:111
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:224
+msgid "Disable Sort"
+msgstr "Inaktivera sortering"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:112
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:225
+msgid "Disable Sort - this will disable drag and drop sorting of rows"
+msgstr ""
+"Inaktivera sortering - detta inaktiverar dra och släpp sortering av rader"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:132
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:237
+#, fuzzy
+#| msgid "Columns"
+msgid "Fixed Columns"
+msgstr "Kolumner"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:133
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:238
+msgid "Fixed columns - column count and set names"
+msgstr "Fasta kolumner - kolumner och ange namn"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:153
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:250
+#, fuzzy
+#| msgid "Default"
+msgid "Default Headers"
+msgstr "Standard"
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:154
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:251
+msgid "Set default headers, one per line."
+msgstr "Ställ in standardrubriker, en per rad."
 
 #: vendor/jeradin/acf-website-field/website_url_v4.php:33
 #: vendor/jeradin/acf-website-field/website_url_v5.php:33
