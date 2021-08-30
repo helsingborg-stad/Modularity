@@ -11,6 +11,8 @@
         public function __construct() {
             add_filter('block_categories', array($this, 'filterCategories'), 10, 2);
             add_filter('acf/load_field_group', array($this, 'addLocationRule'));
+            add_action('init', array($this, 'addBlockFieldGroup'));
+            add_filter('acf/load_field_group', array($this, 'addLocationRulesToBlockGroup'));
             add_filter('allowed_block_types', array($this, 'filterBlockTypes'));
             add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
             add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
@@ -154,7 +156,7 @@
             if (($key = array_search('mod-table', $enabledModules)) !== false) {
                 unset($enabledModules[$key]);
             } 
-
+            
             foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
                     $valueIsModule = in_array($locationRule['value'], $enabledModules);  
@@ -179,9 +181,34 @@
                     }
                 }
             }
-
+            
+            
             return $newGroup;
         }
+
+        public function addLocationRulesToBlockGroup($group) {
+
+            if($group['key'] === 'group_block_specific') {
+
+                foreach($this->classes as $moduleName => $moduleObject) {
+                    
+                    if($moduleObject->expectsTitleField) {
+
+                        $group['location'][] = [
+                            [
+                                'param' => 'block',
+                                'operator' => '==', 
+                                'value' => 'acf/' . $moduleName
+                            ]
+                        ];  
+                        
+                    }
+                }
+            }
+                        
+            return $group;
+        }
+
 
         /**
          * Set the default value of fields if value is missing
@@ -290,5 +317,22 @@
             }
 
             return $valid;
+        }
+
+        public function addBlockFieldGroup() {
+            
+            acf_add_local_field_group(array(
+                'key' => 'group_block_specific',
+                'title' => 'Block specific',
+                'location' => array (),
+                'fields' => array (
+                    array (
+                        'key' => 'field_block_title',
+                        'label' => 'Title',
+                        'name' => 'block_title',
+                        'type' => 'text',
+                    )
+                )
+            ));
         }
     }
