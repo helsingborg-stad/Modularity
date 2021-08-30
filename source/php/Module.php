@@ -90,6 +90,12 @@ class Module
     public $isBlockCompatible = true;
 
     /**
+     * A field to replace the post title if module is used as a block.
+     * @var boolean
+     */
+    public $expectsTitleField = true;
+
+    /**
      * Is this module a legacy module (not updated to new registration methods)
      * @var boolean
      */
@@ -151,11 +157,26 @@ class Module
         }
 
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
+        add_filter( 'the_title', array($this, 'setBlockTitle'), 10, 2 );
 
         if (!is_admin() && $this->hasModule()) {
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
         }
+    }
+
+    /**
+     * If used as block and has a block_title field return it,
+     * otherwise return the post title
+     * @return void
+     */
+    public function setBlockTitle( $title, $id = null ) {    
+
+        if($titleField = get_field('block_title', $this->ID)) {
+            return $titleField;        
+        }
+
+        return $title;
     }
 
     public function init()
