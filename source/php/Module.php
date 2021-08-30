@@ -168,7 +168,7 @@ class Module
     /**
      * If used as block and has a block_title field return it,
      * otherwise return the post title
-     * @return void
+     * @return string
      */
     public function setBlockTitle( $title, $id = null ) {    
 
