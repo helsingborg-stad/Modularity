@@ -323,12 +323,12 @@
             
             acf_add_local_field_group(array(
                 'key' => 'group_block_specific',
-                'title' => 'Block specific',
+                'title' => __("Block settings", 'modularity'),
                 'location' => array (),
                 'fields' => array (
                     array (
                         'key' => 'field_block_title',
-                        'label' => 'Title',
+                        'label' => __("Title", 'modularity'),
                         'name' => 'block_title',
                         'type' => 'text',
                     )
