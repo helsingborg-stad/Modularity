@@ -331,6 +331,11 @@
             return $valid;
         }
 
+        /**
+         * Add block containing custom block title field
+         *
+         * @return void
+         */
         public function addBlockFieldGroup() {
             
             acf_add_local_field_group(array(
@@ -341,7 +346,7 @@
                     array (
                         'key' => 'field_block_title',
                         'label' => __("Title", 'modularity'),
-                        'name' => 'block_title',
+                        'name' => 'custom_block_title',
                         'type' => 'text',
                     )
                 )
