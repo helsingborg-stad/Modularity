@@ -331,6 +331,11 @@
             return $valid;
         }
 
+        /**
+         * Add block containing custom block title field
+         *
+         * @return void
+         */
         public function addBlockFieldGroup() {
             
             acf_add_local_field_group(array(
