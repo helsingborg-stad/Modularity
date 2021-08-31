@@ -23,7 +23,7 @@ class App
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
         add_action('post_updated', array($this, 'updateDate'), 10, 2);
-        add_filter('acf/load_field/name=block_title', array($this, 'displayBlockTitleField'));
+        add_filter('acf/load_field/name=custom_block_title', array($this, 'displayBlockTitleField'));
 
         // Main hook
         do_action('Modularity');

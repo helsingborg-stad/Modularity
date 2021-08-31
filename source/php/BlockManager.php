@@ -341,7 +341,7 @@
                     array (
                         'key' => 'field_block_title',
                         'label' => __("Title", 'modularity'),
-                        'name' => 'block_title',
+                        'name' => 'custom_block_title',
                         'type' => 'text',
                     )
                 )

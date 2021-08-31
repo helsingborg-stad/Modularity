@@ -166,13 +166,13 @@ class Module
     }
 
     /**
-     * If used as block and has a block_title field return it,
+     * If used as block and has a custom_block_title field return it,
      * otherwise return the post title
      * @return string
      */
     public function setBlockTitle( $title, $id = null ) {    
 
-        if($titleField = get_field('block_title', $this->ID)) {
+        if($titleField = get_field('custom_block_title', $this->ID)) {
             return $titleField;        
         }
 
