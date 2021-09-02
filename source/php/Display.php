@@ -14,6 +14,8 @@ class Display
     public $modules = array();
     public $options = null;
 
+    private static $sidebarState = []; //Holds state of sidebars.
+
     public function __construct()
     {
         add_filter('wp', array($this, 'init'));
@@ -128,6 +130,12 @@ class Display
      */
     public function isActiveSidebar($isActiveSidebar, $sidebar)
     {
+
+        //Just figure out the state of a sidebar once
+        if(isset(self::$sidebarState[$sidebar])) {
+            return self::$sidebarState[$sidebar]; 
+        }
+        
         $widgets = wp_get_sidebars_widgets();
         $widgets = array_map('array_filter', $widgets);
         $visibleModules = false;
@@ -146,10 +154,10 @@ class Display
         $hasModules = ($visibleModules && isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
 
         if ($hasWidgets || $hasModules) {
-            return true;
+            return self::$sidebarState[$sidebar] = true; 
         }
 
-        return false;
+        return self::$sidebarState[$sidebar] = false;
     }
 
     /**

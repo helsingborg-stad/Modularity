@@ -11,6 +11,8 @@
         public function __construct() {
             add_filter('block_categories', array($this, 'filterCategories'), 10, 2);
             add_filter('acf/load_field_group', array($this, 'addLocationRule'));
+            add_action('init', array($this, 'addBlockFieldGroup'));
+            add_filter('acf/load_field_group', array($this, 'addLocationRulesToBlockGroup'));
             add_filter('allowed_block_types', array($this, 'filterBlockTypes'));
             add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
             add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
@@ -94,7 +96,7 @@
                 $categories,
                 array([
                     'slug' => 'modules',
-                    'title' => __( 'Modules', 'modularity' ),
+                    'title' => __('Modules', 'modularity'),
                     'icon' => 'wordpress'
                 ])
             );
@@ -121,10 +123,8 @@
                             $icon = ''; 
                         }
 
-                        $blockName = $class->slug;                       
-
-                        //Create block
-                        acf_register_block_type(array(
+                        //Allow block filtering
+                        $blockSettings = apply_filters('Modularity/Block/Settings', array(
                             'name'              => str_replace('mod-', '', $class->moduleSlug),
                             'title'             => __($class->nameSingular),
                             'icon'              => $icon,
@@ -134,9 +134,14 @@
                             'moduleName'        => $class->slug,
                             'supports'          => array(
                                 'jsx' => true,
-                                'align' => false
+                                'align' => false,
+                                'align_text' => false,
+                                'align_content' => false
                             )
-                        ));
+                        ), $class->slug); 
+
+                        //Create block
+                        acf_register_block_type($blockSettings);
                     }
                 }
             }
@@ -164,9 +169,6 @@
 
             $newGroup = $group;
 
-           /*  if (($key = array_search('mod-table', $enabledModules)) !== false) {
-                unset($enabledModules[$key]);
-            }   */                 
             
             foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
@@ -175,26 +177,49 @@
                     $locationRuleExists = str_contains($locationRule['value'], 'acf/');
 
                     // If the location rule that we are trying to add already exists, return original group
-                    if($locationRuleExists && $locationRule['param'] === 'block') {                        
+                    if($locationRuleExists && $locationRule['param'] === 'block') {
                         return $group;
                     }
 
-                    if($valueIsModule && $locationRule['operator'] === '==') {    
-                                                                                                    
+                    if($valueIsModule && $locationRule['operator'] === '==') {                                             
                         $newGroup['location'][] = [
                             [
                                 'param' => 'block',
                                 'operator' => '==', 
                                 'value' => \str_replace('mod-', 'acf/', $locationRule['value'])
                             ]
+                        ];
+                    }
+                }
+            }
+            
+            
+            return $newGroup;
+        }
+
+        public function addLocationRulesToBlockGroup($group) {
+
+            if($group['key'] === 'group_block_specific') {
+
+                foreach($this->classes as $moduleName => $moduleObject) {
+                    
+                    if($moduleObject->expectsTitleField) {
+
+                        $group['location'][] = [
+                            [
+                                'param' => 'block',
+                                'operator' => '==', 
+                                'value' => 'acf/' . $moduleName
+                            ]
                         ];  
                         
                     }
                 }
             }
-
-            return $newGroup;
+                        
+            return $group;
         }
+
 
         /**
          * Set the default value of fields if value is missing
@@ -237,35 +262,46 @@
          * The callback used by registerBlocks to render either a block or a notice if validation failed
          * @return void
          */
-        public function renderBlock($block) {                                        
-            $defaultValues = $this->getDefaultValues($block['data']);                            
+        public function renderBlock($block) {                            
+            
+            //Init display
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
-            $module->data = $block['data'];
-            $module->data = $module->data();
-            $module->data = $this->setDefaultValues($module->data, $defaultValues); 
-            $view = str_replace('.blade.php', '', $module->template());
-            $view = !empty($view) ? $view : $block['moduleName'];       
-            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);                        
-            $validatedCorrectly = $this->validateFields($block['data']);
+            
+            //Get module data
+            $module->data = $this->setDefaultValues(
+                $module->data(), 
+                $this->getDefaultValues($block['data'])
+            );
 
-            if($validatedCorrectly) {
+            //Get view name
+            $view = str_replace('.blade.php', '', $module->template());
+            $view = !empty($view) ? $view : $block['moduleName'];
+
+            //Add post type 
+            $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);
+            
+
+            //Filter view data
+            $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
+
+            if($this->validateFields($block['data'])) {
                 // Render block view if validated correctly
-                echo  $display->renderView($view, $viewData);
+                echo $display->renderView($view, $viewData);
             } elseif(is_user_logged_in()) {
                 // Render a notice warning the user of required fields not filled in.
-                echo '<div class="c-notice c-notice--danger">
-                        <span class="c-notice__icon">
-                                    
+                echo '
+                    <div class="c-notice c-notice--info">
+                        <span class="c-notice__icon">   
                             <i class="c-icon c-icon--size-md material-icons">
                                 report
                             </i>            
                         </span>
                         <span class="c-notice__message--sm">
-                            ['. $module->nameSingular .'] Please fill in all required fields
-                                    
+                            <strong>'. $module->nameSingular .':</strong> ' . __("Please fill in all required fields.", 'municipio') . '    
                         </span>
-                    </div>';
+                    </div>
+                ';
             }
         }
 
@@ -274,18 +310,17 @@
          * @return boolean
          */
         private function validateFields($fields) {        
+            
             $valid = true;
 
             foreach($fields as $key => $value) {    
                 
                 if(is_string($key) && is_string($value)) {
-                    
                     if(str_contains($key, 'field_')) {
                         $field = $key;
-                    }elseif(str_contains($value, 'field_')){
+                    } elseif(str_contains($value, 'field_')) {
                         $field = $value;
                     }
-                    
                 }
 
                 $fieldObject = get_field_object($field);
@@ -296,12 +331,34 @@
                 }
                 
                 //Check if required field has a value
-                if($fieldObject['required'] && !$fieldObject['value']) {
+                if($fieldObject['required'] && (!$fieldObject['value'] && $fieldObject['value'] !== "0")) {
                     $valid = false;
                 }
                 
             }
 
             return $valid;
+        }
+
+        /**
+         * Add block containing custom block title field
+         *
+         * @return void
+         */
+        public function addBlockFieldGroup() {
+            
+            acf_add_local_field_group(array(
+                'key' => 'group_block_specific',
+                'title' => __("Block settings", 'modularity'),
+                'location' => array (),
+                'fields' => array (
+                    array (
+                        'key' => 'field_block_title',
+                        'label' => __("Title", 'modularity'),
+                        'name' => 'custom_block_title',
+                        'type' => 'text',
+                    )
+                )
+            ));
         }
     }
