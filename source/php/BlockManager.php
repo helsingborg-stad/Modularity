@@ -125,7 +125,7 @@
 
                         //Allow block filtering
                         $blockSettings = apply_filters('Modularity/Block/Settings', array(
-                            'name'              => $class->slug,
+                            'name'              => str_replace('mod-', '', $class->moduleSlug),
                             'title'             => __($class->nameSingular),
                             'icon'              => $icon,
                             'description'       => __($class->description),
@@ -148,6 +148,19 @@
 
         }
 
+        private function isModule($value) {
+            foreach($this->classes as $moduleName => $object) {
+                
+
+                
+                if($object->moduleSlug === $value) {
+                    return $object->moduleSlug;
+                }
+            }
+
+            return false;
+        }
+
         /**
          * Add location rule to each field group to make them avaible to corresponding block
          * @return array
@@ -156,15 +169,11 @@
 
             $newGroup = $group;
 
-            $enabledModules = \Modularity\ModuleManager::$enabled;  
-
-            if (($key = array_search('mod-table', $enabledModules)) !== false) {
-                unset($enabledModules[$key]);
-            } 
             
             foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
-                    $valueIsModule = in_array($locationRule['value'], $enabledModules);  
+                    
+                    $valueIsModule = $this->isModule($locationRule['value']);                                   
                     $locationRuleExists = str_contains($locationRule['value'], 'acf/');
 
                     // If the location rule that we are trying to add already exists, return original group
