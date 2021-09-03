@@ -88,6 +88,12 @@ class Module
      * @var boolean
      */
     public $isBlockCompatible = true;
+    
+    /**
+     * Will the module work as an inner block?
+     * @var boolean
+     */
+    public $innerBlockCompatible = true;
 
     /**
      * A field to replace the post title if module is used as a block.

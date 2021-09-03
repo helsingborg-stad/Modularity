@@ -136,7 +136,8 @@
                                 'jsx' => true,
                                 'align' => false,
                                 'align_text' => false,
-                                'align_content' => false
+                                'align_content' => false,
+                                'inserter' => $class->innerBlockCompatible
                             )
                         ), $class->slug); 
 
