@@ -76,12 +76,13 @@ add_action('plugins_loaded', function () {
         'mod-map'              => 'group_602400d904b59',
         'mod-curator'          => 'group_609b788ad04bb',
         'mod-spacer'           => 'group_611cffa40276a',
+        'mod-table-block'      => 'group_60b8bf5bbc4d7',
+        'mod-text-block'       => 'group_60ab6d6ba3621',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
         'mod-wpwidget'         => 'group_5729f4d3e7c7a',
-        'mod-sites'            => 'group_58ecb6b6330f4',
-        'mod-table-block'      => 'group_60b8bf5bbc4d7'
+        'mod-sites'            => 'group_58ecb6b6330f4'
 
     ));
     $acfExportManager->import();
