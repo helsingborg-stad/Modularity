@@ -31,7 +31,7 @@
                         'name' => 'search',
                         'js-filter-input' => $ID
                     ],
-                    'label' => __('Search', 'municipio')
+                    'placeholder' => __('Search', 'municipio')
                 ])
                 @endfield
             </div>
