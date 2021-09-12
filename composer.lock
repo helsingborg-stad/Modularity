@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0249298f946459c287fad6e2d6acddf5",
+    "content-hash": "7dadf27890d1e27d67d3dc53576ca8a6",
     "packages": [
         {
             "name": "benjamincrozat/blade",
@@ -928,17 +928,59 @@
             "time": "2021-07-02T09:35:10+00:00"
         },
         {
+            "name": "mcguffin/acf-wp-objects",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mcguffin/acf-wp-objects.git",
+                "reference": "086429e6faa8f7c11b92b97d56af3e63fd742916"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mcguffin/acf-wp-objects/zipball/086429e6faa8f7c11b92b97d56af3e63fd742916",
+                "reference": "086429e6faa8f7c11b92b97d56af3e63fd742916",
+                "shasum": ""
+            },
+            "require": {
+                "composer/installers": "~1.2",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "pheromone/phpcs-security-audit": "*",
+                "phpcompatibility/php-compatibility": "*",
+                "squizlabs/php_codesniffer": "*",
+                "wp-coding-standards/wpcs": "*"
+            },
+            "default-branch": true,
+            "type": "wordpress-plugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Integrating WordPress and ACF",
+            "homepage": "https://github.com/mcguffin/acf-wp-object.git",
+            "keywords": [
+                "plugin",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/mcguffin/acf-wp-objects/issues",
+                "source": "https://github.com/mcguffin/acf-wp-objects/tree/0.5.19"
+            },
+            "time": "2021-09-09T07:51:55+00:00"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4d60e20e4beddefe3c0fdfede050ae345cd4daf4"
+                "reference": "6903cba31b75b7ef271854ecd77bd543e8b9dd15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d60e20e4beddefe3c0fdfede050ae345cd4daf4",
-                "reference": "4d60e20e4beddefe3c0fdfede050ae345cd4daf4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/6903cba31b75b7ef271854ecd77bd543e8b9dd15",
+                "reference": "6903cba31b75b7ef271854ecd77bd543e8b9dd15",
                 "shasum": ""
             },
             "require": {
@@ -950,7 +992,7 @@
             },
             "require-dev": {
                 "doctrine/orm": "^2.7",
-                "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
+                "friendsofphp/php-cs-fixer": "^3.0",
                 "kylekatarnls/multi-tester": "^2.0",
                 "phpmd/phpmd": "^2.9",
                 "phpstan/extension-installer": "^1.0",
@@ -1020,7 +1062,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-16T21:57:57+00:00"
+            "time": "2021-09-11T05:54:12+00:00"
         },
         {
             "name": "ooksanen/acf-focuspoint",
@@ -1730,7 +1772,8 @@
         "jeradin/acf-website-field": 20,
         "ooksanen/acf-focuspoint": 20,
         "jeradin/acf-dynamic-table-field": 20,
-        "enshrined/svg-sanitize": 20
+        "enshrined/svg-sanitize": 20,
+        "mcguffin/acf-wp-objects": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

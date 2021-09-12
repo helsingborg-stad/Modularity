@@ -28,6 +28,13 @@
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
         }
     ],
+    "extra": {
+        "installer-paths": {
+            "vendor/{$name}": [
+                "mcguffin/acf-wp-objects"
+            ]
+        }
+    },
     "require": {
         "composer/installers": "~1.0",
         "helsingborg-stad/acf-export-manager": ">=1.0.0",
@@ -55,6 +62,7 @@
         "jeradin/acf-website-field": "dev-master",
         "ooksanen/acf-focuspoint": "dev-master",
         "jeradin/acf-dynamic-table-field": "dev-master",
-        "enshrined/svg-sanitize": "dev-master"
+        "enshrined/svg-sanitize": "dev-master",
+        "mcguffin/acf-wp-objects": "dev-master"
     }
 }
