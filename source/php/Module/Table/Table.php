@@ -72,7 +72,8 @@ class Table extends \Modularity\Module
             'sortable' => $data['mod_table_ordering'] ?? [],
             'pagination' => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
             'multidimensional' => $data['mod_table_multidimensional'],
-            'sum'=> $data['mod_table_sum']
+            'showSum'=> $data['mod_table_sum'],
+            'fullscreen' => $data['mod_table_fullscreen']
         ];
 
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
@@ -80,6 +81,8 @@ class Table extends \Modularity\Module
         $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--default'), $this->post_type, $this->args));
         $data['m_table']        = (object)$data['m_table'];
         $data['id'] = $this->ID;
+
+        
 
         return $data;
     }

@@ -10,13 +10,15 @@
 @endif
 
 @table([
-    'headings'          => $m_table->data['headings'],
-    'list'              => $m_table->data['list'],
-    'showHeader'        => $m_table->showHeader,
-    'filterable'        => $m_table->filterable,
-    'sortable'          => $m_table->sortable,
-    'pagination'        => $m_table->pagination,
-    'isMultidimensional'=> $m_table->multidimensional,
-    'labels'            => ['searchPlaceholder' => __('Search', 'municipio')]
+    'headings'              => $m_table->data['headings'],
+    'list'                  => $m_table->data['list'],
+    'showHeader'            => $m_table->showHeader,
+    'filterable'            => $m_table->filterable,
+    'sortable'              => $m_table->sortable,
+    'pagination'            => $m_table->pagination,
+    'fullscreen'            => $m_table->fullscreen, 
+    'isMultidimensional'    => $m_table->multidimensional,
+    'showSum'               => $m_table->showSum,
+    'labels'                => ['searchPlaceholder' => __('Search', 'municipio')]
 ])
 @endtable

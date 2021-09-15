@@ -150,9 +150,7 @@
 
         private function isModule($value) {
             foreach($this->classes as $moduleName => $object) {
-                
-
-                
+                                
                 if($object->moduleSlug === $value) {
                     return $object->moduleSlug;
                 }
@@ -168,13 +166,16 @@
         public function addLocationRule($group) {
 
             $newGroup = $group;
-
             
             foreach($group['location'] as $location) {                
                 foreach($location as $locationRule) {
                     
+                    if($locationRule['value'] === 'mod-table') {
+                        continue;
+                    }
+                    
                     $valueIsModule = $this->isModule($locationRule['value']);                                   
-                    $locationRuleExists = str_contains($locationRule['value'], 'acf/');
+                    $locationRuleExists = str_contains($locationRule['value'], 'acf/');                  
 
                     // If the location rule that we are trying to add already exists, return original group
                     if($locationRuleExists && $locationRule['param'] === 'block') {

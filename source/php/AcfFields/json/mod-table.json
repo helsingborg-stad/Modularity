@@ -267,6 +267,25 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_6141dc72e5dcd",
+            "label": "Helsk\u00e4rmsl\u00e4ge",
+            "name": "mod_table_fullscreen",
+            "type": "true_false",
+            "instructions": "Renderar en ikon i h\u00f6gra h\u00f6rnet som m\u00f6jligg\u00f6r helsk\u00e4rmsl\u00e4ge f\u00f6r tabellen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -275,13 +294,6 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-table"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/table"
             }
         ]
     ],

@@ -272,6 +272,25 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
+        11 => array(
+            'key' => 'field_6141dc72e5dcd',
+            'label' => __('Helskärmsläge', 'modularity'),
+            'name' => 'mod_table_fullscreen',
+            'type' => 'true_false',
+            'instructions' => __('Renderar en ikon i högra hörnet som möjliggör helskärmsläge för tabellen.', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -279,13 +298,6 @@
                 'param' => 'post_type',
                 'operator' => '==',
                 'value' => 'mod-table',
-            ),
-        ),
-        1 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/table',
             ),
         ),
     ),
