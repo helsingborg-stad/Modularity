@@ -229,6 +229,44 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_6141aad011c4e",
+            "label": "Multidimensionell",
+            "name": "mod_table_multidimensional",
+            "type": "true_false",
+            "instructions": "Anv\u00e4nd den f\u00f6rsta kolumnen som en andra dimension av tabellrubriker. Detta val l\u00e5ser ocks\u00e5 den f\u00f6rsta kolumnen vid scroll.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_6141b4af3a835",
+            "label": "Summering",
+            "name": "mod_table_sum",
+            "type": "true_false",
+            "instructions": "L\u00e4gger till en rad i slutet av tabellen som summerar varje kolumns celler.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -237,6 +275,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-table"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/table"
             }
         ]
     ],

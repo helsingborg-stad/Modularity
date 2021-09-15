@@ -68,14 +68,11 @@ class Table extends \Modularity\Module
             'showHeader' => true,    //To-Do: Add this option in ACF
             'showFooter' => false,   //To-Do: Add this option in ACF
             'classList' => $this->getTableClasses($data) ?? '',
-            'zebraStripes' => true,
-            'borderStyle' => true,
-            'hoverEffect' => true,
-            'isSmall' => boolval(preg_match("/table-sm/i", $data['mod_table_size'])),
-            'isLarge' => boolval(preg_match("/table-lg/i", $data['mod_table_size'])),
             'filterable' => $data['mod_table_search'] ?? [],
             'sortable' => $data['mod_table_ordering'] ?? [],
             'pagination' => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
+            'multidimensional' => $data['mod_table_multidimensional'],
+            'sum'=> $data['mod_table_sum']
         ];
 
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
@@ -83,7 +80,6 @@ class Table extends \Modularity\Module
         $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--default'), $this->post_type, $this->args));
         $data['m_table']        = (object)$data['m_table'];
         $data['id'] = $this->ID;
-
 
         return $data;
     }
