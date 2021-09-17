@@ -36,7 +36,6 @@ class App
 
         $this->setupAdminBar();
 
-        new Plugins();
         new Ajax();
         new Options\General();
         new Options\Archives();

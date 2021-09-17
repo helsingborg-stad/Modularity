@@ -40,6 +40,9 @@ $loader->addPrefix('Modularity', MODULARITY_PATH);
 $loader->addPrefix('Modularity', MODULARITY_PATH . 'source/php/');
 $loader->register();
 
+// Require plugins
+new \Modularity\Plugins();
+
 // Acf auto import and export
 add_action('plugins_loaded', function () {
 
