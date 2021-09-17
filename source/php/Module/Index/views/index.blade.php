@@ -14,7 +14,7 @@
             @card([
                 'link'      => $item['permalink'],
                 'classList' => ['u-height--100', 'u-height-100'],
-                'context'   => 'index',
+                'context'   => 'module.index',
                 'hasAction' => true,
             ])
 

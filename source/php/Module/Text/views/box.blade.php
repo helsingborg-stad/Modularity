@@ -2,7 +2,7 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-text-' . $ID .'-label'
     ],
-    'context' => 'textBox'
+    'context' => 'module.text.box'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

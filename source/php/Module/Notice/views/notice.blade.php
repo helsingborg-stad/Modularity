@@ -10,6 +10,6 @@
         'size' => $notice_size
     ],
     'icon' => $icon,
-    'context' => 'notice'
+    'context' => ['notice', 'module.notice']
 ])
 @endnotice
