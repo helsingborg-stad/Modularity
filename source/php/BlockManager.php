@@ -75,7 +75,8 @@
             foreach($registeredBlocks as $type => $block) {
                 $allowedCoreBlocks = array(
                     'core/columns',
-                    'core/freeform'
+                    'core/freeform',
+                    'core/paragraph'
                 );
                 
                 if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
