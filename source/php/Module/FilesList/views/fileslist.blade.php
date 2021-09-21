@@ -5,7 +5,7 @@
         'js-filter-container'   => $uID,
         "aria-labelledby"       => 'mod-fileslist-' . $ID .'-label',
     ],
-    'context' => 'filesList'
+    'context' => 'module.files.list'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

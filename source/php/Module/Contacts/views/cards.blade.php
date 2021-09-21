@@ -21,7 +21,7 @@
                 'classList'     => [
                     'c-card--square-image'
                 ],
-                'context' => 'contactsCard'
+                'context' => 'module.contacts.card'
             ])
 
                 @if($showImages)

@@ -3,7 +3,7 @@
     'attributeList' => [
         'aria-labelledby' =>'mod-table-' . $ID .'-label'
     ],
-    'context'       => 'table'
+    'context'       => 'module.table'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

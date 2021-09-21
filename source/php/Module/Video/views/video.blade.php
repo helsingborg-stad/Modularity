@@ -2,7 +2,7 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-video-' . $ID . '-label'
     ],
-    'context' => 'video'
+    'context' => 'module.video'
 ])
 
     @if (!$hideTitle && !empty($post_title))
