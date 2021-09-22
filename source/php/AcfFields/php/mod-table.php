@@ -1,13 +1,15 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5666a2a71d806',
     'title' => __('Table Editor', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5731982808842',
-            'label' => __('Datatyp', 'modularity'),
+            'label' => __('Datatype', 'modularity'),
             'name' => 'mod_table_data_type',
             'type' => 'radio',
             'instructions' => '',
@@ -31,10 +33,10 @@
         ),
         1 => array(
             'key' => 'field_57319c3b08843',
-            'label' => __('CSV-fil', 'modularity'),
+            'label' => __('CSV-file', 'modularity'),
             'name' => 'mod_table_csv_file',
             'type' => 'file',
-            'instructions' => __('CSV-formatterad fil', 'modularity'),
+            'instructions' => __('CSV-formatted file', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -58,10 +60,10 @@
         ),
         2 => array(
             'key' => 'field_5731a138b52aa',
-            'label' => __('CSV-avgränsare', 'modularity'),
+            'label' => __('CSV-delimiter', 'modularity'),
             'name' => 'mod_table_csv_delimiter',
             'type' => 'text',
-            'instructions' => __('Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken eller semikolon.', 'modularity'),
+            'instructions' => __('The character that is used in the CSV-file as a delimiter. Usually is a comma or semicolon.', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -77,7 +79,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => __(';', 'modularity'),
+            'default_value' => ';',
             'maxlength' => '',
             'placeholder' => '',
             'prepend' => '',
@@ -119,7 +121,7 @@
         ),
         4 => array(
             'key' => 'field_5666a3e0d2d29',
-            'label' => __('Sidbläddring', 'modularity'),
+            'label' => __('Pagination', 'modularity'),
             'name' => 'mod_table_pagination',
             'type' => 'true_false',
             'instructions' => '',
@@ -138,7 +140,7 @@
         ),
         5 => array(
             'key' => 'field_5666a59673385',
-            'label' => __('Antal inlägg/sidor', 'modularity'),
+            'label' => __('Number of pages', 'modularity'),
             'name' => 'mod_table_pagination_count',
             'type' => 'number',
             'instructions' => '',
@@ -169,7 +171,7 @@
         ),
         6 => array(
             'key' => 'field_5666a459d2d2a',
-            'label' => __('Aktivera sök', 'modularity'),
+            'label' => __('Activate filtering', 'modularity'),
             'name' => 'mod_table_search',
             'type' => 'true_false',
             'instructions' => '',
@@ -181,14 +183,14 @@
                 'id' => '',
             ),
             'default_value' => 1,
-            'message' => __('Yes, use search on this table', 'modularity'),
+            'message' => __('Yes, use filtering on this table', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
         7 => array(
             'key' => 'field_5666a63a48379',
-            'label' => __('Sökfras', 'modularity'),
+            'label' => __('Filter placeholder', 'modularity'),
             'name' => 'mod_table_search_query',
             'type' => 'text',
             'instructions' => '',
@@ -207,7 +209,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => __('Search in list', 'modularity'),
+            'default_value' => __('Filter table', 'modularity'),
             'maxlength' => '',
             'placeholder' => '',
             'prepend' => '',
@@ -217,7 +219,7 @@
         ),
         8 => array(
             'key' => 'field_56e181adef7ac',
-            'label' => __('Aktivera kolumnsortering', 'modularity'),
+            'label' => __('Activate sorting', 'modularity'),
             'name' => 'mod_table_ordering',
             'type' => 'true_false',
             'instructions' => '',
@@ -236,10 +238,10 @@
         ),
         9 => array(
             'key' => 'field_6141aad011c4e',
-            'label' => __('Multidimensionell', 'modularity'),
+            'label' => __('Multidimensional', 'modularity'),
             'name' => 'mod_table_multidimensional',
             'type' => 'true_false',
-            'instructions' => __('Använd den första kolumnen som en andra dimension av tabellrubriker. Detta val låser också den första kolumnen vid scroll.', 'modularity'),
+            'instructions' => __('Use the first column as a second dimension of table headers. This option also locks the first column while scrolling.', 'modularity'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
@@ -255,7 +257,7 @@
         ),
         10 => array(
             'key' => 'field_6141b4af3a835',
-            'label' => __('Summering', 'modularity'),
+            'label' => __('Sum', 'modularity'),
             'name' => 'mod_table_sum',
             'type' => 'true_false',
             'instructions' => __('Lägger till en rad i slutet av tabellen som summerar varje kolumns celler.', 'modularity'),
@@ -274,7 +276,7 @@
         ),
         11 => array(
             'key' => 'field_6141dc72e5dcd',
-            'label' => __('Helskärmsläge', 'modularity'),
+            'label' => __('Fullscreen', 'modularity'),
             'name' => 'mod_table_fullscreen',
             'type' => 'true_false',
             'instructions' => __('Renderar en ikon i högra hörnet som möjliggör helskärmsläge för tabellen.', 'modularity'),
@@ -310,4 +312,5 @@
     'active' => true,
     'description' => '',
 ));
-}
+
+}
