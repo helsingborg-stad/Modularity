@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-08-30 16:35+0200\n"
-"PO-Revision-Date: 2021-08-30 16:36+0200\n"
+"POT-Creation-Date: 2021-09-23 15:40+0200\n"
+"PO-Revision-Date: 2021-09-23 15:42+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -20,50 +20,51 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: App.php:163 App.php:190 App.php:230
+#: App.php:162 App.php:189 App.php:229
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:78
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:163 source/php/BlockManager.php:99 source/php/Editor.php:124
+#: App.php:162 source/php/BlockManager.php:100 source/php/Editor.php:124
 #: source/php/Options/General.php:178
 msgid "Modules"
 msgstr "Moduler"
 
-#: App.php:191 App.php:231
+#: App.php:190 App.php:230
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:192 App.php:232
+#: App.php:191 App.php:231
 msgid "Remove"
 msgstr "Ta bort"
 
-#: App.php:193 App.php:233
+#: App.php:192 App.php:232
 msgid "Hide module"
 msgstr "Dölj modulen"
 
-#: App.php:194 App.php:234
+#: App.php:193 App.php:233
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: App.php:195 App.php:235
+#: App.php:194 App.php:234
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: App.php:196 App.php:236
+#: App.php:195 App.php:235
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:197 App.php:237
+#: App.php:196 App.php:236
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:140
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:169
 msgid "Width"
 msgstr "Bredd"
 
-#: App.php:199 App.php:239 templates/options/partials/modularity-modules.php:27
+#: App.php:198 App.php:238 templates/options/partials/modularity-modules.php:27
 msgid "Deprecated"
 msgstr "Utgående"
 
-#: App.php:256
+#: App.php:255
 msgid "Edit Modules"
 msgstr "Redigera moduler"
 
@@ -194,6 +195,7 @@ msgid "Social Media"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contacts.php:262
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:60
 msgid "Media"
 msgstr ""
 
@@ -380,6 +382,91 @@ msgstr ""
 #: source/php/Module/Image/Image.php:18
 msgid "Images"
 msgstr "Bild"
+
+#: source/php/AcfFields/php/mod-hero.php:6 source/php/Module/Hero/Hero.php:12
+msgid "Hero"
+msgstr "Hero"
+
+#: source/php/AcfFields/php/mod-hero.php:10
+msgid "Byline"
+msgstr "Byline"
+
+#: source/php/AcfFields/php/mod-hero.php:13
+msgid "A clear byline, to say something else."
+msgstr "En tydlig byline, om du vill berätta något mer. "
+
+#: source/php/AcfFields/php/mod-hero.php:24
+msgid "Hero title"
+msgstr "Titel för heroyta"
+
+#: source/php/AcfFields/php/mod-hero.php:34
+msgid "Body"
+msgstr "Innehåll"
+
+#: source/php/AcfFields/php/mod-hero.php:37
+msgid ""
+"A short and concise text about this site. What's it about? Maximum 500 "
+"characters."
+msgstr ""
+"En kort och koncis text som berättar vad webbplatsen handlar om. Maximalt "
+"500 tecken. "
+
+#: source/php/AcfFields/php/mod-hero.php:57
+msgid "Background image"
+msgstr "Bakgrundsbild"
+
+#: source/php/AcfFields/php/mod-hero.php:87
+msgid "Overlay type"
+msgstr "Typ av färgfilter"
+
+#: source/php/AcfFields/php/mod-hero.php:102
+msgid "Neutral"
+msgstr "Neutral"
+
+#: source/php/AcfFields/php/mod-hero.php:103
+msgid "Vibrant"
+msgstr "Färgrik"
+
+#: source/php/AcfFields/php/mod-hero.php:105
+msgid "vibrant"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:121
+msgid "Font color"
+msgstr "Färg på typsnitt"
+
+#: source/php/AcfFields/php/mod-hero.php:136
+msgid "Light"
+msgstr "Ljus"
+
+#: source/php/AcfFields/php/mod-hero.php:137
+msgid "Dark"
+msgstr "Mörk"
+
+#: source/php/AcfFields/php/mod-hero.php:139
+msgid "light"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:155
+msgid "Size"
+msgstr "Storlek"
+
+#: source/php/AcfFields/php/mod-hero.php:170
+msgid "Small"
+msgstr "Liten"
+
+#: source/php/AcfFields/php/mod-hero.php:171
+msgid "Normal"
+msgstr "Normal"
+
+#: source/php/AcfFields/php/mod-hero.php:172
+#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:101
+msgid "Large"
+msgstr "Stor"
+
+#: source/php/AcfFields/php/mod-hero.php:174
+msgid "normal"
+msgstr ""
 
 #: source/php/AcfFields/php/mod-iframe.php:6
 msgid "Iframe settings"
@@ -899,6 +986,8 @@ msgid "Do not sort"
 msgstr "Sortera inte"
 
 #: source/php/AcfFields/php/mod-posts-sorting.php:25
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:159
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:125
 msgid "ID"
 msgstr "ID"
 
@@ -1408,6 +1497,19 @@ msgstr "Inga tillgängliga alternativ"
 #: source/php/AcfFields/php/mod-wpwidget.php:146
 #: source/php/AcfFields/php/mod-wpwidget.php:178
 #: source/php/AcfFields/php/mod-wpwidget.php:210
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:202
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:220
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:238
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:194
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:212
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:232
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:251
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:270
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:197
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:215
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:235
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:254
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:273
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:88
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:107
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:79
@@ -1516,6 +1618,19 @@ msgstr "Nej"
 #: source/php/AcfFields/php/mod-wpwidget.php:147
 #: source/php/AcfFields/php/mod-wpwidget.php:179
 #: source/php/AcfFields/php/mod-wpwidget.php:211
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:201
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:219
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:237
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:193
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:211
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:231
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:250
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:269
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:196
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:214
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:234
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:253
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:272
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:87
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:106
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:78
@@ -1719,15 +1834,19 @@ msgstr ""
 msgid "Taxonomy"
 msgstr "Kategori"
 
-#: source/php/BlockManager.php:326
+#: source/php/BlockManager.php:305
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: source/php/BlockManager.php:356
 msgid "Block settings"
 msgstr "Inställningar för block"
 
-#: source/php/BlockManager.php:331 source/php/ModuleManager.php:603
+#: source/php/BlockManager.php:361 source/php/ModuleManager.php:603
 msgid "Title"
 msgstr "Titel"
 
-#: source/php/Display.php:443 templates/widget/form.php:30
+#: source/php/Display.php:451 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -1859,6 +1978,14 @@ msgstr "Gallerier"
 msgid "Outputs a gallery with images"
 msgstr "Visar ett galleri med bilder"
 
+#: source/php/Module/Hero/Hero.php:13
+msgid "Heros"
+msgstr ""
+
+#: source/php/Module/Hero/Hero.php:14
+msgid "Outputs a hero"
+msgstr ""
+
 #: source/php/Module/Iframe/Iframe.php:12
 #: source/php/Module/Iframe/Iframe.php:13
 msgid "Iframe"
@@ -1939,19 +2066,19 @@ msgstr "Notis"
 msgid "Outputs a notice"
 msgstr "Visar en notis"
 
-#: source/php/Module/Posts/Posts.php:21 source/php/Module/Posts/Posts.php:22
+#: source/php/Module/Posts/Posts.php:22 source/php/Module/Posts/Posts.php:23
 msgid "Posts"
 msgstr "Inlägg"
 
-#: source/php/Module/Posts/Posts.php:23
+#: source/php/Module/Posts/Posts.php:24
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
 
-#: source/php/Module/Posts/Posts.php:291
+#: source/php/Module/Posts/Posts.php:292
 msgid "Taxonomy display"
 msgstr "Visning av taxnomi"
 
-#: source/php/Module/Posts/Posts.php:494
+#: source/php/Module/Posts/Posts.php:495
 msgid "Modularity expandable list column values"
 msgstr "Expanderbar lista - kolumninnehåll"
 
@@ -1978,6 +2105,7 @@ msgstr "Inget att visa…"
 
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:14
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:73
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:393
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:163
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:125
 #, fuzzy
@@ -2508,6 +2636,529 @@ msgstr "Modulbredd"
 msgid "Browse modules"
 msgstr "Bläddra moduler"
 
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/LayoutAccordion.php:45
+msgid "Accordion"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/LayoutAccordion.php:46
+msgid "Close other layouts when opening a Layout."
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:63
+msgid "ID Field"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:64
+msgid "ID Fields are always unique and required."
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:71
+msgid "Edit Once"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:72
+msgid "Disable input, if field has a value."
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:84
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:160
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:160
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:126
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:154
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:133
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:157
+msgid "Slug"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:85
+msgid "Convert input to slug (only letters, digits and dashes)."
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:27
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/ImageSweetSpot.php:31
+msgid "Sweet Spot"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:28
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:30
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:28
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:28
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:28
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:28
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:28
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:24
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:24
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:24
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:24
+msgid "WordPress"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:75
+msgid "X"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:88
+msgid "Y"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/Includer.php:22
+msgid "Include Fields"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/Includer.php:60
+msgid "Field Group"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/Includer.php:61
+msgid "Include all fields from selected Field Group"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:29
+msgid "Select Image Size"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:109
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:122
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:76
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:104
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:83
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:107
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:78
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:73
+msgid "Allow Null?"
+msgstr "Tillåt tomt värde"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:119
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:86
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:114
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:93
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:117
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:97
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:86
+#, fuzzy
+#| msgid "Select values"
+msgid "Select multiple values?"
+msgstr "Valda värden"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:129
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:131
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:96
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:124
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:103
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:127
+msgid "Stylised UI"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:138
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:140
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:105
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:133
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:112
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:136
+msgid "Use AJAX to lazy load choices?"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:153
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:154
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:119
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:147
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:126
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:150
+#, fuzzy
+#| msgid "Meta value"
+msgid "Return Value"
+msgstr "Metavärde"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:154
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:120
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:148
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:127
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:151
+msgid "Specify the returned value on front end"
+msgstr "Specificera värdet som ska visas för besökare"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:159
+msgid "Size Array"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:169
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:162
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:165
+msgid "Pick from List"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:178
+msgid "Select Image Sizes"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:186
+msgid "All Image Sizes"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:196
+msgid "Named "
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:200
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:218
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:236
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:192
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:210
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:230
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:249
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:268
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:195
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:213
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:233
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:252
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:271
+msgid "Any"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:214
+msgid "Cropped "
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:232
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:206
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:209
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:67
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:58
+msgid "Builtin"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:27
+msgid "Select Nav-Menu"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:83
+msgid "Create Menu"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:161
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:127
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:153
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:132
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:156
+msgid "Label"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:162
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:128
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:155
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:158
+msgid "Object"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:167
+msgid "Menu Location"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:168
+msgid "Save selected menu in in menu location"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:27
+msgid "Select Nav Menu Location"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:27
+msgid "Select Post Type"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:171
+msgid "Select Post Types"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:179
+msgid "All Post Types"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:188
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:191
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:68
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:59
+msgid "Public"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:226
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:229
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:69
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:60
+msgid "Show UI"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:245
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:248
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:70
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:61
+msgid "Show in Menus"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:264
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:267
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:71
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:62
+msgid "Show in Nav Menus"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:27
+msgid "Select Role"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:134
+msgid "Role Object"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:140
+msgid "Select User Role"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:148
+msgid "All Roles"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:27
+msgid "Select Taxonomy"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:174
+msgid "Select Taxonomies"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:182
+msgid "All Taxonomies"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:21
+msgid "Select Template File"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:22
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/Everywhere.php:24
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PageLayouts.php:21
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TemplateFileSettings.php:23
+msgid "Generic"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:66
+msgid "Template Type"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:223
+msgid "Template Settings"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:23
+msgid "Post Editor"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:55
+msgid "Block Editor"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:56
+msgid "Classic Editor"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/Everywhere.php:23
+msgid "Other"
+msgstr "Annat"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/Everywhere.php:45
+msgid "Everywhere"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PageLayouts.php:20
+msgid "Page Layout"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:23
+msgid "Post Type Property"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:23
+msgid "Taxonomy Property"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TemplateFileSettings.php:22
+msgid "Template File Settings"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:23
+msgid "WP Options Page"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:56
+msgid "General"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:57
+msgid "Writing"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:58
+msgid "Reading"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:59
+msgid "Discussion"
+msgstr "Diskussion"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:61
+msgid "Permalinks"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:129
+msgid "Add section"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:213
+#, php-format
+msgid "To render this field group place a template file in your theme: %s"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:220
+msgid "Row Layout Slug"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:230
+msgid "Min Layouts"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:239
+msgid "Max Layouts"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:122
+msgid "Repeater Row"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:137
+msgid "Get choices from repeater"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:146
+msgid "Repeater Field"
+msgstr "Repeaterfält"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:163
+msgid "Value Field"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:184
+msgid "Label Field"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:206
+msgid "Visualize field"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:229
+msgid "Post ID"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:230
+msgid "Leave empty for current Post ID."
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:233
+msgid "Current Post"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:551
+msgid "(Index)"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:40
+msgid "Blogname"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:41
+msgid "Blog description"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:42
+#, fuzzy
+#| msgid "Post items"
+msgid "Post Title"
+msgstr "Inläggsobjekt"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:43
+msgid "Term Title"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:46
+msgid "Post Excerpt"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:47
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:51
+msgid "Term Description"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:50
+msgid "Post Content"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:54
+msgid "Custom Logo"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:56
+msgid "Post Thumbnail"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:59
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:63
+msgid "Page for Posts"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:60
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:64
+msgid "Page on Front"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:67
+msgid "Post Attachments"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:385
+msgid "WordPress Object"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Core/Core.php:95
+#, php-format
+msgid ""
+"The <strong>ACF WP-Objects</strong> plugin requires <a href=\"%1$s\" target="
+"\"_blank\" rel=\"noopener noreferrer\">ACF version 5.8 or later</a>. You can "
+"disable and uninstall it on the <a href=\"%2$s\">plugins page</a>."
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:99
+msgid "Thumbnail"
+msgstr "Tumnagelbild"
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:100
+msgid "Medium"
+msgstr ""
+
+#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:102
+msgid "Full Size"
+msgstr ""
+
+#: vendor/acf-wp-objects/test/test.php:123
+msgid "ACFWPO Test Page Layouts"
+msgstr ""
+
+#: vendor/acf-wp-objects/test/test.php:181
+msgid "WP Objects Template Test"
+msgstr ""
+
+#: vendor/acf-wp-objects/test/test.php:182
+msgid "WP Objects Template"
+msgstr ""
+
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:21
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:19
 #, fuzzy
@@ -2530,18 +3181,6 @@ msgstr "Standard"
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:66
 msgid "Enter each default value on a new line"
 msgstr "Ange varje standardvärde på en ny rad"
-
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:78
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:73
-msgid "Allow Null?"
-msgstr "Tillåt tomt värde"
-
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:97
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:86
-#, fuzzy
-#| msgid "Select values"
-msgid "Select multiple values?"
-msgstr "Valda värden"
 
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:30
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:60
@@ -3069,9 +3708,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Center"
 #~ msgstr "Centrerad"
 
-#~ msgid "Size"
-#~ msgstr "Storlek"
-
 #~ msgid "Spacing"
 #~ msgstr "Mellanrum"
 
@@ -3159,9 +3795,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Adress"
 #~ msgstr "Adress"
-
-#~ msgid "Other"
-#~ msgstr "Annat"
 
 #~ msgid "Select user"
 #~ msgstr "Välj användare"
@@ -3379,12 +4012,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Field group draft updated."
 #~ msgstr "Fältgruppsutkast uppdaterat."
 
-#~ msgid "Thumbnail"
-#~ msgstr "Tumnagelbild"
-
-#~ msgid "Large"
-#~ msgstr "Stor"
-
 #~ msgid "Error"
 #~ msgstr "Fel"
 
@@ -3403,9 +4030,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Add-ons"
 #~ msgstr "Tillägg"
-
-#~ msgid "Repeater Field"
-#~ msgstr "Repeaterfält"
 
 #~ msgid ""
 #~ "Create infinite rows of repeatable data with this versatile interface!"
@@ -3656,11 +4280,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "uppladdad till detta inlägg"
 
 #, fuzzy
-#~| msgid "Meta value"
-#~ msgid "Return Value"
-#~ msgstr "Metavärde"
-
-#, fuzzy
 #~| msgid "File"
 #~ msgid "File URL"
 #~ msgstr "Fil"
@@ -3713,9 +4332,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Upload image"
 #~ msgid "Update Image"
 #~ msgstr "Ladda upp bild"
-
-#~ msgid "Specify the returned value on front end"
-#~ msgstr "Specificera värdet som ska visas för besökare"
 
 #, fuzzy
 #~| msgid "Image caption"
@@ -3825,11 +4441,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Use featured image"
 #~ msgid "Featured Image"
 #~ msgstr "Använd utvald bild"
-
-#, fuzzy
-#~| msgid "Post items"
-#~ msgid "Post Title"
-#~ msgstr "Inläggsobjekt"
 
 #~ msgid "Maximum posts"
 #~ msgstr "Max antal inlägg"
@@ -4023,9 +4634,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Excerpt"
 #~ msgstr "Visa ingress"
 
-#~ msgid "Discussion"
-#~ msgstr "Diskussion"
-
 #, fuzzy
 #~| msgid "Comment count"
 #~ msgid "Comments"
@@ -4138,9 +4746,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Warning (yellow)"
 #~ msgstr "Varning (gul)"
-
-#~ msgid "Small"
-#~ msgstr "Liten"
 
 #~ msgid "Slider layout"
 #~ msgstr "Sliderlayout"
