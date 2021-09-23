@@ -75,7 +75,8 @@
             foreach($registeredBlocks as $type => $block) {
                 $allowedCoreBlocks = array(
                     'core/columns',
-                    'core/freeform'
+                    'core/freeform',
+                    'core/paragraph'
                 );
                 
                 if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
@@ -107,9 +108,12 @@
          * @return void
          */
         public function registerBlocks() {
+            $enabledModules = \Modularity\ModuleManager::$enabled;
+
             if( function_exists('acf_register_block_type') ) {
                 foreach($this->classes as $class) {
-                    if($class->isBlockCompatible) {
+                    
+                    if($class->isBlockCompatible && in_array($class->moduleSlug, $enabledModules)) {
 
                         //Look for icon (including cleaning)
                         if($class->assetDir && file_exists($class->assetDir. 'icon.svg')) {

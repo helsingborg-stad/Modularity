@@ -1,6 +1,6 @@
 @card([
     'heading' => apply_filters('the_title', $post_title),
-    'context' => 'script'
+    'context' => 'module.script'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">

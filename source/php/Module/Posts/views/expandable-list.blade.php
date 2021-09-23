@@ -7,7 +7,7 @@
         'js-filter-container'   => $ID,
         'aria-labelledby'       => 'mod-posts-' . $ID . '-label'
     ],
-    'context' => 'postsExpandableList'
+    'context' => 'module.posts.expandablelist'
 ])
     @if (!$hideTitle && !empty($post_title))
         <div class="c-card__header">
@@ -31,7 +31,7 @@
                         'name' => 'search',
                         'js-filter-input' => $ID
                     ],
-                    'label' => __('Search', 'municipio')
+                    'placeholder' => __('Search', 'municipio')
                 ])
                 @endfield
             </div>

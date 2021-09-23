@@ -19,6 +19,7 @@
     'fullscreen'            => $m_table->fullscreen, 
     'isMultidimensional'    => $m_table->multidimensional,
     'showSum'               => $m_table->showSum,
-    'labels'                => ['searchPlaceholder' => __('Search', 'municipio')]
+    'labels'                => ['searchPlaceholder' => __('Search', 'municipio')],
+    'context'               => 'module.table'
 ])
 @endtable

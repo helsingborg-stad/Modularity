@@ -18,7 +18,7 @@
             @card([
                 'link' =>  $post->link,
                 'classList' => $classes,
-                'context' => 'postsIndex',
+                'context' => 'module.posts.index',
                 'hasAction' => true,
             ])
 

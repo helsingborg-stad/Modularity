@@ -8,7 +8,7 @@
             'attributeList' => [
                 'aria-labelledby' => 'mod-map-' . $id .'-label'
             ],
-            'context' => 'map'
+            'context' => 'module.map'
         ])
             @if (!$hideTitle && !empty($post_title))
                 <div class="c-card__header">
@@ -63,7 +63,7 @@
                 'attributeList' => [
                     'aria-labelledby' => 'mod-map-' . $id .'-label-moreinfo'
                 ],
-                'context' => 'map'
+                'context' => 'module.map'
             ])
                 @if (!$hideTitle && !empty($post_title))
                     <div class="c-card__header">

@@ -17,7 +17,7 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
     ],
-    'context'       => 'slider'
+    'context'       => 'module.slider'
 ])
     @foreach ($slides as $slide)
         @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])

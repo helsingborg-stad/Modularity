@@ -2,7 +2,7 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-inlaylist' . $id . '-label'
     ],
-    'context' => 'inlayList'
+    'context' => 'module.inlay.list'
 ])
 
     @if (!$hideTitle && !empty($post_title))
