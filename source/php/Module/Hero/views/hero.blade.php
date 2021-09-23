@@ -6,6 +6,7 @@
     "color" => $modHeroFontColor,
     "title" => $customBlockTitle,
     "byline" => $modHeroByline,
-    "paragraph" => $modHeroBody
+    "paragraph" => $modHeroBody,
+    "stretch" => $stretch
 ])
 @endhero

@@ -12,6 +12,15 @@ class Hero extends \Modularity\Module
         $this->nameSingular = __('Hero', 'modularity');
         $this->namePlural = __('Heros', 'modularity');
         $this->description = __('Outputs a hero', 'modularity');
+
+        //Add classes to mod element
+        add_filter('Modularity/Display/BeforeModule', array($this, 'addClass'), 10, 4);
+
+        //Add full-width capabilty to blocks
+        add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
+
+        //Add full width data to view
+        add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
     }
 
     public function data() : array
@@ -32,6 +41,50 @@ class Hero extends \Modularity\Module
 
         //Send to view
         return (array) \Modularity\Helper\FormatObject::camelCase($data); 
+    }
+
+    /**
+     * Add full width setting to frontend. 
+     *
+     * @param [array] $viewData
+     * @param [array] $block
+     * @param [object] $module
+     * @return array
+     */
+    public function blockData($viewData, $block, $module) {
+        
+        if($block['align'] == 'full' && !is_admin()) {
+            $viewData['stretch'] = true;
+        }
+
+        return $viewData; 
+    }
+
+    /**
+     * Allow full-width alignment on section blocks
+     *
+     * @param array $data
+     * @param string $slug
+     * @return array
+     */
+    public function blockSettings($data, $slug) {
+        if(strpos($slug, 'hero') === 0 && isset($data['supports'])) {
+            $data['supports']['align'] = ['full']; 
+        }
+        return $data; 
+    }
+
+    /**
+     * Add class to modules to prevent builtin margins
+     * @return string
+     */
+    public function addClass($markup, $args, $moduleType, $moduleId)
+    {
+        if (in_array(str_replace("mod-section-", "", $moduleType), array('full', 'featured', 'split'))) {
+            $markup = str_replace($moduleType . " ", $moduleType . " u-margin--0 ", $markup);
+        }
+
+        return $markup;
     }
 
     /**
