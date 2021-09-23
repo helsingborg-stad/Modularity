@@ -5,7 +5,7 @@ namespace Modularity\Module\Hero;
 class Hero extends \Modularity\Module
 {
     public $slug = 'hero';
-    public $supports = array('editor');
+    public $supports = array();
 
     public function init()
     {
