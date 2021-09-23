@@ -4,7 +4,7 @@
     "size" => $modHeroSize,
     "overlay" => $modHeroOverlayType,
     "color" => $modHeroFontColor,
-    "title" => $customBlockTitle,
+    "title" => apply_filters('the_title', $post_title),
     "byline" => $modHeroByline,
     "paragraph" => $modHeroBody,
     "stretch" => $stretch
