@@ -13,9 +13,6 @@ class Hero extends \Modularity\Module
         $this->namePlural = __('Heros', 'modularity');
         $this->description = __('Outputs a hero', 'modularity');
 
-        //Add classes to mod element
-        add_filter('Modularity/Display/BeforeModule', array($this, 'addClass'), 10, 4);
-
         //Add full-width capabilty to blocks
         add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
 
@@ -52,8 +49,8 @@ class Hero extends \Modularity\Module
      * @return array
      */
     public function blockData($viewData, $block, $module) {
-        
-        if($block['align'] == 'full' && !is_admin()) {
+
+        if($block['name'] == "acf/hero" && $block['align'] == 'full' && !is_admin()) {
             $viewData['stretch'] = true;
         }
 
@@ -61,7 +58,7 @@ class Hero extends \Modularity\Module
     }
 
     /**
-     * Allow full-width alignment on section blocks
+     * Allow full-width alignment on hero blocks
      *
      * @param array $data
      * @param string $slug
@@ -72,19 +69,6 @@ class Hero extends \Modularity\Module
             $data['supports']['align'] = ['full']; 
         }
         return $data; 
-    }
-
-    /**
-     * Add class to modules to prevent builtin margins
-     * @return string
-     */
-    public function addClass($markup, $args, $moduleType, $moduleId)
-    {
-        if (in_array(str_replace("mod-section-", "", $moduleType), array('full', 'featured', 'split'))) {
-            $markup = str_replace($moduleType . " ", $moduleType . " u-margin--0 ", $markup);
-        }
-
-        return $markup;
     }
 
     /**
