@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_60b8bf5bbc4d7',
-    'title' => 'Table - Block settings',
+    'title' => __('Table - Block settings', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_60b8c0d61b71e',
@@ -219,6 +219,29 @@
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
+        ),
+        9 => array(
+            'key' => 'field_6141de4c43487',
+            'label' => '',
+            'name' => '',
+            'type' => 'clone',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'clone' => array(
+                0 => 'field_6141aad011c4e',
+                1 => 'field_6141b4af3a835',
+                2 => 'field_6141dc72e5dcd',
+            ),
+            'display' => 'seamless',
+            'layout' => 'block',
+            'prefix_label' => 0,
+            'prefix_name' => 0,
         ),
     ),
     'location' => array(

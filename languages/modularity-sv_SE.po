@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2021-09-23 15:40+0200\n"
-"PO-Revision-Date: 2021-09-23 15:42+0200\n"
+"POT-Creation-Date: 2021-08-30 16:35+0200\n"
+"PO-Revision-Date: 2021-08-30 16:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 2.3\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -25,7 +25,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:162 source/php/BlockManager.php:100 source/php/Editor.php:124
+#: App.php:163 source/php/BlockManager.php:99 source/php/Editor.php:124
 #: source/php/Options/General.php:178
 msgid "Modules"
 msgstr "Moduler"
@@ -34,7 +34,7 @@ msgstr "Moduler"
 msgid "Import"
 msgstr "Importera"
 
-#: App.php:191 App.php:231
+#: App.php:192 App.php:232
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -54,7 +54,7 @@ msgstr "Sparar…"
 msgid "Close"
 msgstr "Stäng"
 
-#: App.php:196 App.php:236
+#: App.php:197 App.php:237
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:140
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:169
 msgid "Width"
@@ -67,6 +67,210 @@ msgstr "Utgående"
 #: App.php:255
 msgid "Edit Modules"
 msgstr "Redigera moduler"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:27
+#: source/php/Module/WpWidget/WpWidget.php:152
+#: source/php/Options/ArchivesList.php:11
+#: templates/options/modularity-archives.php:2
+msgid "Archives"
+msgstr "Arkiv"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:45
+#, fuzzy
+#| msgid "Select user"
+msgid "Select Year"
+msgstr "Välj användare"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:48
+#, fuzzy
+#| msgid "Select user"
+msgid "Select Month"
+msgstr "Välj användare"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:51
+#, fuzzy
+#| msgid "Select user"
+msgid "Select Day"
+msgstr "Välj användare"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:54
+#, fuzzy
+#| msgid "Select values"
+msgid "Select Week"
+msgstr "Valda värden"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:57
+#, fuzzy
+#| msgid "Select user"
+msgid "Select Post"
+msgstr "Välj användare"
+
+#: node_modules/@wordpress/block-library/src/archives/index.php:97
+#, fuzzy
+#| msgid "No posts to show…"
+msgid "No archives to show."
+msgstr "Inga inlägg att visa"
+
+#: node_modules/@wordpress/block-library/src/block/index.php:32
+#, php-format
+msgid ""
+"Could not render Reusable Block <strong>%s</strong>. Block cannot be "
+"rendered inside itself."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/block/index.php:46
+#: node_modules/@wordpress/block-library/src/post-content/index.php:41
+#: node_modules/@wordpress/block-library/src/template-part/index.php:93
+msgid "[block rendering halted]"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/categories/index.php:30
+#, fuzzy
+#| msgid "Post article"
+msgid "Select Category"
+msgstr "Inläggsartikel"
+
+#: node_modules/@wordpress/block-library/src/latest-comments/index.php:31
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:103
+#: node_modules/@wordpress/block-library/src/rss/index.php:31
+#, fuzzy
+#| msgid "Work title"
+msgid "(no title)"
+msgstr "Jobbtitel"
+
+#: node_modules/@wordpress/block-library/src/latest-comments/index.php:99
+#, php-format
+msgid "%1$s on %2$s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/latest-comments/index.php:141
+#, fuzzy
+#| msgid "Number of comments to show"
+msgid "No comments to show."
+msgstr "Antal kommentarer att visa"
+
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:115
+#: node_modules/@wordpress/block-library/src/rss/index.php:60
+#, php-format
+msgid "by %s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:139
+#: node_modules/@wordpress/block-library/src/latest-posts/index.php:154
+msgid "This content is password protected."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation-link/index.php:268
+#, fuzzy
+#| msgid "Post or page"
+msgid "Post Format Link"
+msgstr "Inlägg eller sida"
+
+#: node_modules/@wordpress/block-library/src/navigation-link/index.php:269
+msgid "A link to a post format"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation/index.php:189
+msgid "Open menu"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/navigation/index.php:190
+#, fuzzy
+#| msgid "Close"
+msgid "Close menu"
+msgstr "Stäng"
+
+#: node_modules/@wordpress/block-library/src/post-comments-link/index.php:35
+#, php-format
+msgid "No comments<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/post-comments-link/index.php:42
+#, php-format
+msgid "%1$s comment<span class=\"screen-reader-text\"> on %2$s</span>"
+msgid_plural "%1$s comments<span class=\"screen-reader-text\"> on %2$s</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: node_modules/@wordpress/block-library/src/post-content/index.php:30
+#, php-format
+msgid ""
+"Could not render Post Content block with post ID: <code>%s</code>. Block "
+"cannot be rendered inside itself."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/post-navigation-link/index.php:34
+#, fuzzy
+#| msgid "Next"
+msgctxt "label for next post link"
+msgid "Next"
+msgstr "Nästa"
+
+#: node_modules/@wordpress/block-library/src/post-navigation-link/index.php:34
+#, fuzzy
+#| msgid "Previous"
+msgctxt "label for previous post link"
+msgid "Previous"
+msgstr "Föregående"
+
+#: node_modules/@wordpress/block-library/src/query-pagination-next/index.php:23
+msgid "Next Page &raquo;"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/query-pagination-previous/index.php:22
+msgid "&laquo; Previous Page"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/rss/index.php:19
+#: source/php/Module/Rss/Rss.php:50
+msgid "RSS Error:"
+msgstr "RSS-fel:"
+
+#: node_modules/@wordpress/block-library/src/rss/index.php:23
+#: source/php/Module/Rss/Rss.php:56
+msgid ""
+"An error has occurred, which probably means the feed is down. Try again "
+"later."
+msgstr ""
+"Ett fel har uppstått, vilket antagligen betyder att flödet är nere. Försök "
+"igen senare."
+
+#: node_modules/@wordpress/block-library/src/search/index.php:25
+#: node_modules/@wordpress/block-library/src/search/index.php:26
+#: node_modules/@wordpress/block-library/src/search/index.php:52
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:33
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:38
+#: source/php/Module/WpWidget/WpWidget.php:160
+msgid "Search"
+msgstr "Sök"
+
+#: node_modules/@wordpress/block-library/src/site-logo/index.php:40
+msgid "(Home link, opens in a new tab)"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/social-link/index.php:24
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/tag-cloud/index.php:28
+#, php-format
+msgid ""
+"Your site doesn&#8217;t have any %s, so there&#8217;s nothing to display "
+"here at the moment."
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/template-part/index.php:70
+#, php-format
+msgid "Template part has been deleted or is unavailable: %s"
+msgstr ""
+
+#: node_modules/@wordpress/block-library/src/template-part/index.php:80
+#, php-format
+msgid ""
+"Could not render Template Part block with the attributes: <code>%s</code>. "
+"Block cannot be rendered inside itself."
+msgstr ""
 
 #: source/php/AcfFields/php/mod-booking.php:13
 msgid "Datum"
@@ -131,6 +335,7 @@ msgid "Kontakter"
 msgstr "Kontakter"
 
 #: source/php/AcfFields/php/mod-contacts.php:53
+#: vendor/aristath/kirki/example.php:62
 msgid "Custom"
 msgstr ""
 
@@ -298,6 +503,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-contacts.php:489
 #: source/php/AcfFields/php/mod-map.php:151
 #: source/php/AcfFields/php/mod-posts-displau.php:320
+#: vendor/aristath/kirki/example.php:831
 msgid "Disabled"
 msgstr "Avaktiverad"
 
@@ -499,6 +705,10 @@ msgstr "pixlar"
 #: source/php/AcfFields/php/mod-iframe.php:49
 #: source/php/AcfFields/php/mod-map.php:26 source/php/ModuleManager.php:604
 #: templates/options/partials/modularity-modules.php:19
+#: vendor/aristath/kirki/example.php:141 vendor/aristath/kirki/example.php:160
+#: vendor/aristath/kirki/example.php:452 vendor/aristath/kirki/example.php:463
+#: vendor/aristath/kirki/example.php:815 vendor/aristath/kirki/example.php:826
+#: vendor/aristath/kirki/example.php:851
 msgid "Description"
 msgstr "Beskrivning"
 
@@ -508,7 +718,7 @@ msgstr "Beskriv innehållet i denna Iframe (endast skärmläsare)."
 
 #: source/php/AcfFields/php/mod-image.php:20
 #: source/php/AcfFields/php/mod-index.php:108
-#: source/php/Module/Image/Image.php:17
+#: source/php/Module/Image/Image.php:17 vendor/aristath/kirki/example.php:70
 msgid "Image"
 msgstr "Bild"
 
@@ -561,6 +771,8 @@ msgid "Image size"
 msgstr "Bildstorlek"
 
 #: source/php/AcfFields/php/mod-image.php:192
+#: vendor/aristath/kirki/controls/php/class-kirki-control-typography.php:180
+#: vendor/aristath/kirki/controls/php/class-kirki-control-typography.php:196
 msgid "None"
 msgstr "Inget"
 
@@ -699,7 +911,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-inlaylist.php:137
 #: source/php/AcfFields/php/mod-rss.php:85
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:45
-#: source/php/ModuleManager.php:606
+#: source/php/ModuleManager.php:606 vendor/aristath/kirki/example.php:64
 msgid "Date"
 msgstr "Datum"
 
@@ -773,6 +985,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-posts-displau.php:319
 #: templates/options/partials/modularity-modules.php:16
 #: templates/options/partials/modularity-post-types.php:8
+#: vendor/aristath/kirki/example.php:830
 msgid "Enabled"
 msgstr "Aktiverad"
 
@@ -1057,7 +1270,7 @@ msgstr "Manuellt utvalda inlägg"
 
 #: source/php/AcfFields/php/mod-posts-source.php:27
 #: source/php/AcfFields/php/mod-table-block.php:22
-#: source/php/AcfFields/php/mod-table.php:23
+#: source/php/AcfFields/php/mod-table.php:25
 msgid "Manual input"
 msgstr "Manuell inmatning"
 
@@ -1170,7 +1383,7 @@ msgid "Include main site"
 msgstr "Inkludera huvudsidan"
 
 #: source/php/AcfFields/php/mod-slider.php:6
-#: source/php/Module/Slider/Slider.php:26
+#: source/php/Module/Slider/Slider.php:26 vendor/aristath/kirki/example.php:81
 msgid "Slider"
 msgstr "Slider"
 
@@ -1249,13 +1462,18 @@ msgstr ""
 msgid "All space will be multiplied by 8."
 msgstr ""
 
+#: source/php/AcfFields/php/mod-table-block.php:6
+#, fuzzy
+#| msgid "Block settings"
+msgid "Table - Block settings"
+msgstr "Inställningar för block"
+
 #: source/php/AcfFields/php/mod-table-block.php:10
-#: source/php/AcfFields/php/mod-table.php:10
 msgid "Datatyp"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:23
-#: source/php/AcfFields/php/mod-table.php:24
+#: source/php/AcfFields/php/mod-table.php:26
 msgid "CSV Import"
 msgstr "Importera CSV"
 
@@ -1264,34 +1482,29 @@ msgid "manual"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:34
-#: source/php/AcfFields/php/mod-table.php:34
 msgid "CSV-fil"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:37
-#: source/php/AcfFields/php/mod-table.php:37
 msgid "CSV-formatterad fil"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:61
-#: source/php/AcfFields/php/mod-table.php:61
 msgid "CSV-avgränsare"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:64
-#: source/php/AcfFields/php/mod-table.php:64
 msgid ""
 "Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken eller "
 "semikolon."
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:80
-#: source/php/AcfFields/php/mod-table.php:80
 msgid ";"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:88
-#: source/php/AcfFields/php/mod-table.php:90
+#: source/php/AcfFields/php/mod-table.php:92
 #: source/php/Module/Table/Table.php:12
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:24
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:38
@@ -1327,50 +1540,74 @@ msgid "Table"
 msgstr "Tabell"
 
 #: source/php/AcfFields/php/mod-table-block.php:112
-#: source/php/AcfFields/php/mod-table.php:122
 msgid "Sidbläddring"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:123
-#: source/php/AcfFields/php/mod-table.php:134
+#: source/php/AcfFields/php/mod-table.php:136
 msgid "Yes, use pagination on this table"
 msgstr "Ja, använd sidbläddning för tabellen"
 
 #: source/php/AcfFields/php/mod-table-block.php:131
-#: source/php/AcfFields/php/mod-table.php:141
 msgid "Antal inlägg/sidor"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:160
-#: source/php/AcfFields/php/mod-table.php:172
 msgid "Aktivera sök"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:179
-#: source/php/AcfFields/php/mod-table.php:191
 msgid "Sökfras"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:198
-#: source/php/AcfFields/php/mod-table.php:210
 msgid "Search in list"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:206
-#: source/php/AcfFields/php/mod-table.php:220
 msgid "Aktivera kolumnsortering"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:217
-#: source/php/AcfFields/php/mod-table.php:232
+#: source/php/AcfFields/php/mod-table.php:234
 msgid "Yes, enable column sorting"
-msgstr "Ja, aktivera sortering"
+msgstr "Ja, aktivera kolumnsortering"
 
-#: source/php/AcfFields/php/mod-table.php:6
+#: source/php/AcfFields/php/mod-table.php:8
 msgid "Table Editor"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-table.php:93
+#: source/php/AcfFields/php/mod-table.php:12
+#, fuzzy
+#| msgid "Data type"
+msgid "Datatype"
+msgstr "Datatyp"
+
+#: source/php/AcfFields/php/mod-table.php:36
+msgid "CSV-file"
+msgstr "CSV-fil"
+
+#: source/php/AcfFields/php/mod-table.php:39
+#, fuzzy
+#| msgid "CSV formatted file"
+msgid "CSV-formatted file"
+msgstr "CSV-formatterad fil"
+
+#: source/php/AcfFields/php/mod-table.php:63
+#, fuzzy
+#| msgid "CSV Delimiter"
+msgid "CSV-delimiter"
+msgstr "CSV-avgränsare"
+
+#: source/php/AcfFields/php/mod-table.php:66
+msgid ""
+"The character that is used in the CSV-file as a delimiter. Usually is a "
+"comma or semicolon."
+msgstr ""
+"Det tecken som används som avgränsade i CSV-filen. Är vanligtvis ett "
+"kommatecken eller ett semikolon."
+
+#: source/php/AcfFields/php/mod-table.php:95
 msgid ""
 "Enter your table contents, and select appearance and functionality options "
 "below."
@@ -1378,9 +1615,73 @@ msgstr ""
 "Ange tabellens innehåll och välj utseende och funktionalitetsinställningar "
 "nedan."
 
-#: source/php/AcfFields/php/mod-table.php:184
-msgid "Yes, use search on this table"
-msgstr "Ja, aktivera sök i denna tabell"
+#: source/php/AcfFields/php/mod-table.php:124
+#, fuzzy
+#| msgid "Enable pagination"
+msgid "Pagination"
+msgstr "Sidbläddring"
+
+#: source/php/AcfFields/php/mod-table.php:143
+#, fuzzy
+#| msgid "Number of posts/page"
+msgid "Number of pages"
+msgstr "Antal inlägg/sidor"
+
+#: source/php/AcfFields/php/mod-table.php:174
+msgid "Activate filtering"
+msgstr "Aktivera filtrering"
+
+#: source/php/AcfFields/php/mod-table.php:186
+#, fuzzy
+#| msgid "Yes, use pagination on this table"
+msgid "Yes, use filtering on this table"
+msgstr "Ja, använd sidbläddning för tabellen"
+
+#: source/php/AcfFields/php/mod-table.php:193
+msgid "Filter placeholder"
+msgstr "Platshållare för filtreringsrutan"
+
+#: source/php/AcfFields/php/mod-table.php:212
+msgid "Filter table"
+msgstr "Filtrera tabell"
+
+#: source/php/AcfFields/php/mod-table.php:222
+msgid "Activate sorting"
+msgstr "Aktivera sortering"
+
+#: source/php/AcfFields/php/mod-table.php:241
+msgid "Multidimensional"
+msgstr "Multidimensionell"
+
+#: source/php/AcfFields/php/mod-table.php:244
+#, fuzzy
+#| msgid ""
+#| "Use the first column as a second dimension of table headings. This "
+#| "options also locks the first column in place while scrolling."
+msgid ""
+"Use the first column as a second dimension of table headers. This option "
+"also locks the first column while scrolling."
+msgstr ""
+"Använd den första kolumnen som en andra dimension av tabellrubriker. Detta "
+"val låser också den första kolumnen vid scroll."
+
+#: source/php/AcfFields/php/mod-table.php:260
+msgid "Sum"
+msgstr "Summering"
+
+#: source/php/AcfFields/php/mod-table.php:263
+msgid ""
+"Lägger till en rad i slutet av tabellen som summerar varje kolumns celler."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:279
+msgid "Fullscreen"
+msgstr "Helskärmsläge"
+
+#: source/php/AcfFields/php/mod-table.php:282
+msgid ""
+"Renderar en ikon i högra hörnet som möjliggör helskärmsläge för tabellen."
+msgstr ""
 
 #: source/php/AcfFields/php/mod-text.php:6
 msgid "Text options"
@@ -1834,15 +2135,11 @@ msgstr ""
 msgid "Taxonomy"
 msgstr "Kategori"
 
-#: source/php/BlockManager.php:305
-msgid "Please fill in all required fields."
-msgstr ""
-
-#: source/php/BlockManager.php:356
+#: source/php/BlockManager.php:326
 msgid "Block settings"
 msgstr "Inställningar för block"
 
-#: source/php/BlockManager.php:361 source/php/ModuleManager.php:603
+#: source/php/BlockManager.php:331 source/php/ModuleManager.php:603
 msgid "Title"
 msgstr "Titel"
 
@@ -1862,7 +2159,7 @@ msgstr "Innehåll"
 msgid "Modularity editor"
 msgstr "Modularity redigerare"
 
-#: source/php/Editor.php:153
+#: source/php/Editor.php:153 vendor/aristath/kirki/example.php:67
 msgid "Editor"
 msgstr "Redigerare"
 
@@ -1891,6 +2188,9 @@ msgid "Modules saved"
 msgstr "Moduler sparades"
 
 #: source/php/Editor.php:632
+#: vendor/aristath/kirki/controls/php/class-kirki-control-typography.php:143
+#: vendor/aristath/kirki/controls/php/class-kirki-control-typography.php:185
+#: vendor/aristath/kirki/controls/php/class-kirki-control-typography.php:201
 msgid "Inherit"
 msgstr "Ärv"
 
@@ -2105,19 +2405,12 @@ msgstr "Inget att visa…"
 
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:14
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:73
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:393
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:163
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:125
 #, fuzzy
 #| msgid "Select user"
 msgid "Select"
 msgstr "Välj användare"
-
-#: source/php/Module/Posts/views/partials/post-filters.blade.php:33
-#: source/php/Module/Posts/views/partials/post-filters.blade.php:38
-#: source/php/Module/WpWidget/WpWidget.php:160
-msgid "Search"
-msgstr "Sök"
 
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:50
 msgid "Date published"
@@ -2150,18 +2443,6 @@ msgstr "Visar ett RSS-flöde"
 #: source/php/Module/Rss/Rss.php:44
 msgid "RSS feed URL is missing"
 msgstr "RSS-flödets URL saknas"
-
-#: source/php/Module/Rss/Rss.php:50
-msgid "RSS Error:"
-msgstr "RSS-fel:"
-
-#: source/php/Module/Rss/Rss.php:56
-msgid ""
-"An error has occurred, which probably means the feed is down. Try again "
-"later."
-msgstr ""
-"Ett fel har uppstått, vilket antagligen betyder att flödet är nere. Försök "
-"igen senare."
 
 #: source/php/Module/Rss/Rss.php:81
 #, fuzzy
@@ -2216,63 +2497,63 @@ msgstr "Tabeller"
 msgid "Outputs a flexible table with options."
 msgstr "Visar en tabell"
 
-#: source/php/Module/Table/Table.php:123 source/php/Module/Table/Table.php:162
+#: source/php/Module/Table/Table.php:122 source/php/Module/Table/Table.php:161
 msgid "There was an error opening the selected .csv-file."
 msgstr "Det uppstod ett fel när den valda .csv-filen skulle öppnas."
 
-#: source/php/Module/Table/Table.php:215
+#: source/php/Module/Table/Table.php:214
 msgid "No data available in table"
 msgstr "Inga rader i tabellen"
 
-#: source/php/Module/Table/Table.php:216
+#: source/php/Module/Table/Table.php:215
 msgid "Showing _START_ to _END_ of _TOTAL_ entries"
 msgstr "Visar _START_ till _END_ av _TOTAL_ rader"
 
-#: source/php/Module/Table/Table.php:217
+#: source/php/Module/Table/Table.php:216
 msgid "Showing 0 to 0 of 0 entries"
 msgstr "Visar 0 till 0 av 0 rader"
 
-#: source/php/Module/Table/Table.php:218
+#: source/php/Module/Table/Table.php:217
 msgid "filtered from _MAX_ total entries"
 msgstr "filtrerad från _MAX_ rader"
 
-#: source/php/Module/Table/Table.php:219
+#: source/php/Module/Table/Table.php:218
 msgid "Show _MENU_ entries"
 msgstr "Visa _MENU_ rader"
 
-#: source/php/Module/Table/Table.php:220
+#: source/php/Module/Table/Table.php:219
 msgid "Loading..."
 msgstr "Laddar…"
 
-#: source/php/Module/Table/Table.php:221
+#: source/php/Module/Table/Table.php:220
 msgid "Processing..."
 msgstr "Bearbetar..."
 
-#: source/php/Module/Table/Table.php:222
+#: source/php/Module/Table/Table.php:221
 msgid "No matching records found"
 msgstr "Inga matchande rader hittades"
 
-#: source/php/Module/Table/Table.php:223
+#: source/php/Module/Table/Table.php:222
 msgid "First"
 msgstr "Första"
 
-#: source/php/Module/Table/Table.php:224
+#: source/php/Module/Table/Table.php:223
 msgid "Last"
 msgstr "Sista"
 
-#: source/php/Module/Table/Table.php:225
+#: source/php/Module/Table/Table.php:224
 msgid "Next"
 msgstr "Nästa"
 
-#: source/php/Module/Table/Table.php:226
+#: source/php/Module/Table/Table.php:225
 msgid "Previous"
 msgstr "Föregående"
 
-#: source/php/Module/Table/Table.php:227
+#: source/php/Module/Table/Table.php:226
 msgid "activate to sort column ascending"
 msgstr "aktivera för att sortera kolumnen i stigande ordning"
 
-#: source/php/Module/Table/Table.php:228
+#: source/php/Module/Table/Table.php:227
 msgid "activate to sort column descending"
 msgstr "aktivera för att sortera kolumnen i fallande ordning"
 
@@ -2300,12 +2581,6 @@ msgstr "WordPress Widget"
 #: source/php/Module/WpWidget/WpWidget.php:15
 msgid "Outputs a default widget in WordPress"
 msgstr "Visar en WordPress widger"
-
-#: source/php/Module/WpWidget/WpWidget.php:152
-#: source/php/Options/ArchivesList.php:11
-#: templates/options/modularity-archives.php:2
-msgid "Archives"
-msgstr "Arkiv"
 
 #: source/php/Module/WpWidget/WpWidget.php:153
 msgid "Calendar"
@@ -2337,6 +2612,7 @@ msgid "Add New"
 msgstr "Lägg till ny"
 
 #: source/php/ModuleManager.php:184
+#: vendor/aristath/kirki/controls/php/class-kirki-control-repeater.php:87
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
@@ -2635,529 +2911,6 @@ msgstr "Modulbredd"
 #: templates/widget/form.php:28
 msgid "Browse modules"
 msgstr "Bläddra moduler"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/LayoutAccordion.php:45
-msgid "Accordion"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/LayoutAccordion.php:46
-msgid "Close other layouts when opening a Layout."
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:63
-msgid "ID Field"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:64
-msgid "ID Fields are always unique and required."
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:71
-msgid "Edit Once"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:72
-msgid "Disable input, if field has a value."
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:84
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:160
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:160
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:126
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:154
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:133
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:157
-msgid "Slug"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/FieldOption/TextID.php:85
-msgid "Convert input to slug (only letters, digits and dashes)."
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:27
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/ImageSweetSpot.php:31
-msgid "Sweet Spot"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:28
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:30
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:28
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:28
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:28
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:28
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:28
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:24
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:24
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:24
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:24
-msgid "WordPress"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:75
-msgid "X"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/ImageSweetSpot.php:88
-msgid "Y"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/Includer.php:22
-msgid "Include Fields"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/Includer.php:60
-msgid "Field Group"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/Includer.php:61
-msgid "Include all fields from selected Field Group"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:29
-msgid "Select Image Size"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:109
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:122
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:76
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:104
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:83
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:107
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:78
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:73
-msgid "Allow Null?"
-msgstr "Tillåt tomt värde"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:119
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:86
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:114
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:93
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:117
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:97
-#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:86
-#, fuzzy
-#| msgid "Select values"
-msgid "Select multiple values?"
-msgstr "Valda värden"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:129
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:131
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:96
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:124
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:103
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:127
-msgid "Stylised UI"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:138
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:140
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:105
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:133
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:112
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:136
-msgid "Use AJAX to lazy load choices?"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:153
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:154
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:119
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:147
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:126
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:150
-#, fuzzy
-#| msgid "Meta value"
-msgid "Return Value"
-msgstr "Metavärde"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:154
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:120
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:148
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:127
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:151
-msgid "Specify the returned value on front end"
-msgstr "Specificera värdet som ska visas för besökare"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:159
-msgid "Size Array"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:169
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:162
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:165
-msgid "Pick from List"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:178
-msgid "Select Image Sizes"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:186
-msgid "All Image Sizes"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:196
-msgid "Named "
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:200
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:218
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:236
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:192
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:210
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:230
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:249
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:268
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:195
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:213
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:233
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:252
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:271
-msgid "Any"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:214
-msgid "Cropped "
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectImageSize.php:232
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:206
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:209
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:67
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:58
-msgid "Builtin"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:27
-msgid "Select Nav-Menu"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:83
-msgid "Create Menu"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:161
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:127
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:153
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:132
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:156
-msgid "Label"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:162
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:128
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:155
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:158
-msgid "Object"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:167
-msgid "Menu Location"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenu.php:168
-msgid "Save selected menu in in menu location"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectNavMenuLocation.php:27
-msgid "Select Nav Menu Location"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:27
-msgid "Select Post Type"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:171
-msgid "Select Post Types"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:179
-msgid "All Post Types"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:188
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:191
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:68
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:59
-msgid "Public"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:226
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:229
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:69
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:60
-msgid "Show UI"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:245
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:248
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:70
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:61
-msgid "Show in Menus"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectPostType.php:264
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:267
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:71
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:62
-msgid "Show in Nav Menus"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:27
-msgid "Select Role"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:134
-msgid "Role Object"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:140
-msgid "Select User Role"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectRole.php:148
-msgid "All Roles"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:27
-msgid "Select Taxonomy"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:174
-msgid "Select Taxonomies"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/SelectTaxonomy.php:182
-msgid "All Taxonomies"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:21
-msgid "Select Template File"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:22
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/Everywhere.php:24
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PageLayouts.php:21
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TemplateFileSettings.php:23
-msgid "Generic"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:66
-msgid "Template Type"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Fields/TemplateFileSelect.php:223
-msgid "Template Settings"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:23
-msgid "Post Editor"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:55
-msgid "Block Editor"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/ClassicEditor.php:56
-msgid "Classic Editor"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/Everywhere.php:23
-msgid "Other"
-msgstr "Annat"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/Everywhere.php:45
-msgid "Everywhere"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PageLayouts.php:20
-msgid "Page Layout"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/PostTypeProp.php:23
-msgid "Post Type Property"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TaxonomyProp.php:23
-msgid "Taxonomy Property"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/TemplateFileSettings.php:22
-msgid "Template File Settings"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:23
-msgid "WP Options Page"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:56
-msgid "General"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:57
-msgid "Writing"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:58
-msgid "Reading"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:59
-msgid "Discussion"
-msgstr "Diskussion"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/Location/WPOptionsPage.php:61
-msgid "Permalinks"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:129
-msgid "Add section"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:213
-#, php-format
-msgid "To render this field group place a template file in your theme: %s"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:220
-msgid "Row Layout Slug"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:230
-msgid "Min Layouts"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/PageLayout.php:239
-msgid "Max Layouts"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:122
-msgid "Repeater Row"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:137
-msgid "Get choices from repeater"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:146
-msgid "Repeater Field"
-msgstr "Repeaterfält"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:163
-msgid "Value Field"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:184
-msgid "Label Field"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:206
-msgid "Visualize field"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:229
-msgid "Post ID"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:230
-msgid "Leave empty for current Post ID."
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:233
-msgid "Current Post"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/RepeaterChoices.php:551
-msgid "(Index)"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:40
-msgid "Blogname"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:41
-msgid "Blog description"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:42
-#, fuzzy
-#| msgid "Post items"
-msgid "Post Title"
-msgstr "Inläggsobjekt"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:43
-msgid "Term Title"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:46
-msgid "Post Excerpt"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:47
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:51
-msgid "Term Description"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:50
-msgid "Post Content"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:54
-msgid "Custom Logo"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:56
-msgid "Post Thumbnail"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:59
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:63
-msgid "Page for Posts"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:60
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:64
-msgid "Page on Front"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:67
-msgid "Post Attachments"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Compat/ACF/WPObjects.php:385
-msgid "WordPress Object"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Core/Core.php:95
-#, php-format
-msgid ""
-"The <strong>ACF WP-Objects</strong> plugin requires <a href=\"%1$s\" target="
-"\"_blank\" rel=\"noopener noreferrer\">ACF version 5.8 or later</a>. You can "
-"disable and uninstall it on the <a href=\"%2$s\">plugins page</a>."
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:99
-msgid "Thumbnail"
-msgstr "Tumnagelbild"
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:100
-msgid "Medium"
-msgstr ""
-
-#: vendor/acf-wp-objects/include/ACFWPObjects/Core/WP.php:102
-msgid "Full Size"
-msgstr ""
-
-#: vendor/acf-wp-objects/test/test.php:123
-msgid "ACFWPO Test Page Layouts"
-msgstr ""
-
-#: vendor/acf-wp-objects/test/test.php:181
-msgid "WP Objects Template Test"
-msgstr ""
-
-#: vendor/acf-wp-objects/test/test.php:182
-msgid "WP Objects Template"
-msgstr ""
 
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:21
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:19
@@ -3537,13 +3290,6 @@ msgstr ""
 msgid "Restrict which images can be uploaded. Note: this is not working yet!"
 msgstr ""
 
-#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:148
-#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:177
-#, fuzzy
-#| msgid "Max height"
-msgid "Height"
-msgstr "Maxhöjd"
-
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:157
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:186
 msgid "File size"
@@ -3552,18 +3298,6 @@ msgstr ""
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:165
 msgid "Maximum"
 msgstr ""
-
-#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:258
-#, fuzzy
-#| msgid "Not selected"
-msgid "No image selected"
-msgstr "Inte vald"
-
-#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:258
-#, fuzzy
-#| msgid "Image"
-msgid "Add Image"
-msgstr "Bild"
 
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:568
 #, php-format
@@ -3612,6 +3346,22 @@ msgstr "Modulärt komponentssytem för WordPress"
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
+#~ msgid "Yes, use search on this table"
+#~ msgstr "Ja, aktivera sök i denna tabell"
+
+#~ msgid "Search label"
+#~ msgstr "Söketikett"
+
+#~ msgid "Adds a row in the end that shows the sum of each cell in a column."
+#~ msgstr ""
+#~ "Lägger till en rad i slutet av tabellen som summerar varje kolumns celler."
+
+#~ msgid ""
+#~ "Renders an icon in the top right corner that enabled you to view the "
+#~ "table in fullscreen."
+#~ msgstr ""
+#~ "Renderar en ikon i högra hörnet som möjliggör helskärmsläge för tabellen."
+
 #~ msgid "Desktop image"
 #~ msgstr "Bild för desktop"
 
@@ -3626,9 +3376,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Bottom banner"
 #~ msgstr "Bottom banner"
-
-#~ msgid "Centered"
-#~ msgstr "Centrerad"
 
 #~ msgid "No link"
 #~ msgstr "Ingen länk"
@@ -3707,6 +3454,9 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Centered"
 #~ msgid "Center"
 #~ msgstr "Centrerad"
+
+#~ msgid "Size"
+#~ msgstr "Storlek"
 
 #~ msgid "Spacing"
 #~ msgstr "Mellanrum"
@@ -3796,6 +3546,9 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Adress"
 #~ msgstr "Adress"
 
+#~ msgid "Other"
+#~ msgstr "Annat"
+
 #~ msgid "Select user"
 #~ msgstr "Välj användare"
 
@@ -3813,9 +3566,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Web phone number"
 #~ msgstr "Telefonnummer (webb)"
-
-#~ msgid "Sorted Posts"
-#~ msgstr "Sorterade inlägg"
 
 #~ msgid "category"
 #~ msgstr "kategori"
@@ -3844,9 +3594,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Facebook username"
 #~ msgstr "Facebook-användarnamn"
 
-#~ msgid "Data type"
-#~ msgstr "Datatyp"
-
 #~ msgid "User"
 #~ msgstr "Användare"
 
@@ -3874,14 +3621,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Enter URL to the social media feed or page."
 #~ msgstr "Ange URL till sidan eller flödet."
 
-#~ msgid "Button text"
-#~ msgstr "Knapptext"
-
 #~ msgid "Enter button text."
 #~ msgstr "Ange knapptext."
-
-#~ msgid "Contact"
-#~ msgstr "Kontakt"
 
 #~ msgid "Contacts"
 #~ msgstr "Kontakter"
@@ -4036,18 +3777,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr ""
 #~ "Skapa oändliga rader av repeterbara data med detta mångsidiga gränssnitt!"
 
-#, fuzzy
-#~| msgid "Galleries"
-#~ msgid "Gallery Field"
-#~ msgstr "Gallerier"
-
 #~ msgid "Create image galleries in a simple and intuitive interface!"
 #~ msgstr "Skapa bildgallerier i ett enkelt och intuitivt gränssnitt!"
-
-#, fuzzy
-#~| msgid "Options"
-#~ msgid "Options Page"
-#~ msgstr "Inställningar"
 
 #~ msgid "Create global data to use throughout your website!"
 #~ msgstr "Skapa globala data som ska användas på din webbplats!"
@@ -4060,19 +3791,11 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Export"
 #~ msgstr "Importera"
 
-#, fuzzy
-#~| msgid "Fields"
-#~ msgid "Field Groups"
-#~ msgstr "Fält"
-
 #~ msgid "Instructions"
 #~ msgstr "Instruktioner"
 
 #~ msgid "Notes"
 #~ msgstr "Anteckningar"
-
-#~ msgid "Include in theme"
-#~ msgstr "Inkludera i tema"
 
 #~ msgid "checked"
 #~ msgstr "markerad"
@@ -4090,14 +3813,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Parent fields"
 #~ msgstr "Förälder %s"
 
-#~ msgid "Sibling fields"
-#~ msgstr "Syskonfält"
-
 #~ msgid "Hide / Show All"
 #~ msgstr "Dölj / Visa alla"
-
-#~ msgid "Location"
-#~ msgstr "Plats"
 
 #, fuzzy
 #~| msgid "Show title"
@@ -4113,14 +3830,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Post or page"
 #~ msgid "Posts Page"
 #~ msgstr "Inlägg eller sida"
-
-#, fuzzy
-#~| msgid "Template"
-#~ msgid "Default Template"
-#~ msgstr "Mall"
-
-#~ msgid "Published"
-#~ msgstr "Publicerad"
 
 #~ msgid "Pending Review"
 #~ msgstr "Inväntar granskning"
@@ -4170,11 +3879,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "Inställningar"
 
 #, fuzzy
-#~| msgid "Options"
-#~ msgid "Actions"
-#~ msgstr "Inställningar"
-
-#, fuzzy
 #~| msgid "Filter"
 #~ msgid "Filters"
 #~ msgstr "Filter"
@@ -4186,22 +3890,9 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "Guider"
 
 #, fuzzy
-#~| msgid "Deprecated"
-#~ msgid "Created by"
-#~ msgstr "Utgående"
-
-#, fuzzy
-#~| msgid "Taxonomy filter"
-#~ msgid "Taxonomy Field"
-#~ msgstr "Filtrera taxomnomi"
-
-#, fuzzy
 #~| msgid "Fields"
 #~ msgid "User Field"
 #~ msgstr "Fält"
-
-#~ msgid "Email Field"
-#~ msgstr "E-postfält"
 
 #~ msgid "Password Field"
 #~ msgstr "Lösenordsfält"
@@ -4222,9 +3913,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Learn more"
 #~ msgstr "Läs mer"
 
-#~ msgid "Name"
-#~ msgstr "Namn"
-
 #, fuzzy
 #~| msgid "Content"
 #~ msgid "Flexible Content"
@@ -4237,9 +3925,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Choices"
 #~ msgstr "Val"
-
-#~ msgid "Color Picker"
-#~ msgstr "Färgväljare"
 
 #~ msgid "Date Picker"
 #~ msgstr "Datumväljare"
@@ -4267,11 +3952,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "File"
 #~ msgstr "Fil"
-
-#, fuzzy
-#~| msgid "Edit "
-#~ msgid "Edit File"
-#~ msgstr "Redigera"
 
 #~ msgid "Update File"
 #~ msgstr "Uppdatera fil"
@@ -4319,16 +3999,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "Anpassa karthöjden"
 
 #, fuzzy
-#~| msgid "Select values"
-#~ msgid "Select Image"
-#~ msgstr "Valda värden"
-
-#, fuzzy
-#~| msgid "Image"
-#~ msgid "Edit Image"
-#~ msgstr "Bild"
-
-#, fuzzy
 #~| msgid "Upload image"
 #~ msgid "Update Image"
 #~ msgstr "Ladda upp bild"
@@ -4337,16 +4007,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Image caption"
 #~ msgid "Image Object"
 #~ msgstr "Bildtext"
-
-#, fuzzy
-#~| msgid "Iframe URL"
-#~ msgid "Image URL"
-#~ msgstr "Iframe url"
-
-#, fuzzy
-#~| msgid "Page ID"
-#~ msgid "Image ID"
-#~ msgstr "Sidans ID"
 
 #~ msgid "Shown when entering data"
 #~ msgstr "Visas när du matar in data"
@@ -4380,18 +4040,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Relational"
 #~ msgstr "Relationer"
 
-#, fuzzy
-#~| msgid "Post type"
-#~ msgid "Post Type"
-#~ msgstr "Posttyp"
-
 #~ msgid "Password"
 #~ msgstr "Lösenord"
-
-#, fuzzy
-#~| msgid "Post type"
-#~ msgid "Post Object"
-#~ msgstr "Posttyp"
 
 #, fuzzy
 #~| msgid "Filter posts by taxonomy"
@@ -4429,11 +4079,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Post Objects"
 #~ msgstr "Inläggsobjekt"
 
-#, fuzzy
-#~| msgid "Posts"
-#~ msgid "Post IDs"
-#~ msgstr "Inlägg"
-
 #~ msgid "Selected elements will be displayed in each result"
 #~ msgstr "Markerade element visas i varje resultat"
 
@@ -4457,29 +4102,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Multiple Values"
 #~ msgstr "Flera värden"
-
-#~ msgid "Multi Select"
-#~ msgstr "Flera val"
-
-#, fuzzy
-#~| msgid "Select values"
-#~ msgid "Single Value"
-#~ msgstr "Valda värden"
-
-#, fuzzy
-#~| msgid "Text overlay"
-#~ msgid "Text Area"
-#~ msgstr "Textlager"
-
-#, fuzzy
-#~| msgid "Filter files"
-#~ msgid "Filter by role"
-#~ msgstr "Filtrera filer"
-
-#, fuzzy
-#~| msgid "Editor"
-#~ msgid "Wysiwyg Editor"
-#~ msgstr "Redigerare"
 
 #, fuzzy
 #~| msgid "Fields"
@@ -4537,11 +4159,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "Liten"
 
 #, fuzzy
-#~| msgid "Close"
-#~ msgid "Close Field"
-#~ msgstr "Stäng"
-
-#, fuzzy
 #~| msgid "Add file"
 #~ msgid "+ Add Field"
 #~ msgstr "Lägg till fil"
@@ -4557,47 +4174,14 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "Inlägg"
 
 #, fuzzy
-#~| msgid "Post article"
-#~ msgid "Post Category"
-#~ msgstr "Inläggsartikel"
-
-#, fuzzy
-#~| msgid "Post or page"
-#~ msgid "Post Format"
-#~ msgstr "Inlägg eller sida"
-
-#, fuzzy
 #~| msgid "Post items"
 #~ msgid "Post Status"
 #~ msgstr "Inläggsobjekt"
 
 #, fuzzy
-#~| msgid "Taxonomy type"
-#~ msgid "Post Taxonomy"
-#~ msgstr "Taxonomi"
-
-#, fuzzy
 #~| msgid "Widget Type"
 #~ msgid "Page Type"
 #~ msgstr "Typ av widget"
-
-#, fuzzy
-#~| msgid "Parent "
-#~ msgid "Page Parent"
-#~ msgstr "Förälder"
-
-#, fuzzy
-#~| msgid "Template"
-#~ msgid "Page Template"
-#~ msgstr "Mall"
-
-#~ msgid "Attachment"
-#~ msgstr "Bilagor"
-
-#, fuzzy
-#~| msgid "Taxonomy filter"
-#~ msgid "Taxonomy Term"
-#~ msgstr "Filtrera taxomnomi"
 
 #, fuzzy
 #~| msgid "Random"
@@ -4634,6 +4218,9 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Excerpt"
 #~ msgstr "Visa ingress"
 
+#~ msgid "Discussion"
+#~ msgstr "Diskussion"
+
 #, fuzzy
 #~| msgid "Comment count"
 #~ msgid "Comments"
@@ -4662,9 +4249,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Taxonomy type"
 #~ msgstr "Taxonomi"
-
-#~ msgid "Select values"
-#~ msgstr "Valda värden"
 
 #~ msgid "Item columns"
 #~ msgstr "Objektkolumner"
@@ -4810,12 +4394,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "CSV File"
 #~ msgstr "CSV-fil"
 
-#~ msgid "CSV formatted file"
-#~ msgstr "CSV-formatterad fil"
-
-#~ msgid "CSV Delimiter"
-#~ msgstr "CSV-avgränsare"
-
 #~ msgid "CSV Delimiter character. Usually comma or semicolon."
 #~ msgstr ""
 #~ "Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken "
@@ -4836,12 +4414,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Medium (default)"
 #~ msgstr "Medium (standard)"
 
-#~ msgid "Enable pagination"
-#~ msgstr "Sidbläddring"
-
-#~ msgid "Number of posts/page"
-#~ msgstr "Antal inlägg/sidor"
-
 #~ msgid "Enable search"
 #~ msgstr "Aktivera sök"
 
@@ -4859,9 +4431,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Extra large"
 #~ msgstr "Extra stor"
-
-#~ msgid "Font size"
-#~ msgstr "Textstorlek"
 
 #, fuzzy
 #~| msgid "Mobile image"
@@ -4890,9 +4459,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Filter on…"
 #~ msgstr "Filtrera på…"
 
-#~ msgid "Data sorting"
-#~ msgstr "Sortera"
-
 #~ msgid "Enable text overlay on this slide"
 #~ msgstr "Aktivera textlager ovanpå sliden"
 
@@ -4902,14 +4468,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Yes, open link in new window"
 #~ msgstr "Ja, öppna länken i nytt fönster"
 
-#~ msgid "New window"
-#~ msgstr "Nytt fönster"
-
 #~ msgid "Desktop Image"
 #~ msgstr "Bild för desktop"
-
-#~ msgid "This image will be used in larger screens."
-#~ msgstr "Denna bilden kommer att användas på större skärmar."
 
 #~ msgid "Mobile Image"
 #~ msgstr "Bild för mobil"
