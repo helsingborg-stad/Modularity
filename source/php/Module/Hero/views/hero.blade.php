@@ -4,7 +4,7 @@
     "size" => $modHeroSize,
     "overlay" => $modHeroOverlayType,
     "color" => $modHeroFontColor,
-    "title" => apply_filters('the_title', $post_title),
+    "title" => !$hideTitle ? apply_filters('the_title', $post_title) : false,
     "byline" => $modHeroByline,
     "paragraph" => $modHeroBody,
     "stretch" => $stretch
