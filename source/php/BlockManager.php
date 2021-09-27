@@ -283,9 +283,11 @@
             $view = str_replace('.blade.php', '', $module->template());
             $view = !empty($view) ? $view : $block['moduleName'];
 
+            //Add post title
+            $module->data['postTitle'] = apply_filters( 'the_title', $post_title );     
+
             //Add post type 
             $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);
-            
 
             //Filter view data
             $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);

@@ -1,4 +1,4 @@
-@if (!$hideTitle && !empty($post_title))
+@if (!$hideTitle && !empty($postTitle))
     @typography([
         'id'        => 'mod-slider-' . $ID . '-label',
         'element'   => 'h4', 

@@ -1,4 +1,4 @@
-@if (!$hideTitle && !empty($post_title))
+@if (!$hideTitle && !empty($postTitle))
     @typography([
         'element' => 'h4',
         'variant' => 'h2',
