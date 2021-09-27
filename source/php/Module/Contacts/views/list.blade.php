@@ -4,7 +4,7 @@
     ],
     'context' => 'module.contacts.list'
 ])
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 'id'        => 'mod-text-' . $ID .'-label',

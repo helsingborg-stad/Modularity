@@ -2,7 +2,7 @@
 
 <div class="{{ $classes }} posts-{{$posts_display_as}}">
 
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
 
         @typography([
             'element' => 'h4', 

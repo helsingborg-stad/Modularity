@@ -1,6 +1,6 @@
 @include('partials.post-filters')
 
-@if (!$hideTitle && !empty($post_title))
+@if (!$hideTitle && !empty($postTitle))
     @typography([
         'id' => 'mod-posts-' . $ID . '-label',
         'element' => 'h4', 

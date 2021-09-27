@@ -10,7 +10,7 @@
             ],
             'context' => 'module.map'
         ])
-            @if (!$hideTitle && !empty($post_title))
+            @if (!$hideTitle && !empty($postTitle))
                 <div class="c-card__header">
                     @icon(['icon' => 'room', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
                     @endicon
@@ -65,7 +65,7 @@
                 ],
                 'context' => 'module.map'
             ])
-                @if (!$hideTitle && !empty($post_title))
+                @if (!$hideTitle && !empty($postTitle))
                     <div class="c-card__header">
                         @icon(['icon' => 'info', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
                         @endicon

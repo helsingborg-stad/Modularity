@@ -4,7 +4,7 @@
     <img class="box-image" src="{{ $thumbnail[0] }}" alt="{{ $first_name }} {{ $last_name }}">
     @endif
 
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
     <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
     @endif
 

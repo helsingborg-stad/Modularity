@@ -159,6 +159,10 @@ class Module
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
         add_filter( 'the_title', array($this, 'setBlockTitle'), 10, 2 );
 
+        if($post->post_title) {
+            $this->data['postTitle'] = $post->post_title;
+        }
+
         if (!is_admin() && $this->hasModule()) {
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
@@ -172,7 +176,8 @@ class Module
      */
     public function setBlockTitle( $title, $id = null ) {    
 
-        if($titleField = get_field('custom_block_title', $this->ID)) {
+        
+        if($titleField = get_field('custom_block_title')) {
             return $titleField;        
         }
 
