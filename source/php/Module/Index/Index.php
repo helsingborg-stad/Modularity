@@ -72,6 +72,7 @@ class Index extends \Modularity\Module
                     //Retrive post content & lead
                     if (is_object($postData) && isset($postData->ID)) {
                         $item['title']          = $this->switchContent($item['title'], $postData->post_title);
+                        $item['lead']           = preg_replace('#</?a(\s[^>]*)?>#i', '', $item['lead']);
                         $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
                     }
 
