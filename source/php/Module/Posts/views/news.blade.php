@@ -46,7 +46,7 @@
                         'element' => "h3",
                         'classList' => ['text-highlight']
                     ])
-                        {!! apply_filters('the_title', $post->post_title) !!}
+                        {!! $post->post_title !!}
                     @endtypography
                 @endif
 
