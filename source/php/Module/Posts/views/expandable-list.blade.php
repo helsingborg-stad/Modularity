@@ -1,7 +1,7 @@
 @include('partials.post-filters')
 
 @card([
-    'heading' => apply_filters('the_title', $post_title),
+    'heading' => $postTitle,
     'classList' => [$classes],
     'attributeList' => [
         'js-filter-container'   => $ID,

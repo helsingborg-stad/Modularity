@@ -57,7 +57,7 @@ class ListTemplate
             }
 
             if (in_array('title', $postData['posts_fields'])) {
-                $columnsTitle = apply_filters('the_title', $post->post_title);
+                $columnsTitle = $post->post_title;
             }
 
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
