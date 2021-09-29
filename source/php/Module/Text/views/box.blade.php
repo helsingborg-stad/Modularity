@@ -4,13 +4,13 @@
     ],
     'context' => 'module.text.box'
 ])
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 "element" => "h4",
                 'id' => 'mod-text-' . $ID .'-label'
             ])
-                {{ $post_title }}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

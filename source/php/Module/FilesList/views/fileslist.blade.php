@@ -1,5 +1,5 @@
 @card([
-    'heading'       => apply_filters('the_title', $post_title),
+    'heading'       => $postTitle,
     'classList'     => [$classes],
     'attributeList' => [
         'js-filter-container'   => $uID,
@@ -7,13 +7,13 @@
     ],
     'context' => 'module.files.list'
 ])
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 'id'      => 'mod-fileslist-' . $ID .'-label',
                 'element' => "h4"
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

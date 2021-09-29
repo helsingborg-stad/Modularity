@@ -1,14 +1,14 @@
 @include('partials.post-filters')
 
 <div aria-label="yo">
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
 
         @typography([
             'element' => 'h4', 
             'variant' => 'h2', 
             'classList' => ['module-title']
         ])
-            {!! apply_filters('the_title', $post_title) !!}
+            {!! $postTitle !!}
         @endtypography
 
     @endif

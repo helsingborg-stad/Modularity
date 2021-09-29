@@ -5,14 +5,14 @@
     'context' => 'module.inlay.list'
 ])
 
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 'id'        =>  'mod-inlaylist' . $id . '-label',
                 'element'   => 'h4',
                 'classList' => []
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

@@ -9,13 +9,13 @@
     ],
     'context' => 'module.posts.expandablelist'
 ])
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 'id'        => 'mod-posts-' . $ID . '-label',
                 'element'   => "h4"
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

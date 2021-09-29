@@ -10,7 +10,7 @@
             ],
             'context' => 'module.map'
         ])
-            @if (!$hideTitle && !empty($post_title))
+            @if (!$hideTitle && !empty($postTitle))
                 <div class="c-card__header">
                     @icon(['icon' => 'room', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
                     @endicon
@@ -21,7 +21,7 @@
                         'id'      => 'mod-map-' . $id .'-label'
                     ])
                         
-                        {!! apply_filters('the_title', $post_title) !!}
+                        {!! $postTitle !!}
                     @endtypography
                 </div>
             @endif
@@ -65,7 +65,7 @@
                 ],
                 'context' => 'module.map'
             ])
-                @if (!$hideTitle && !empty($post_title))
+                @if (!$hideTitle && !empty($postTitle))
                     <div class="c-card__header">
                         @icon(['icon' => 'info', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
                         @endicon

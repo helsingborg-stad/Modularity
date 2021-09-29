@@ -1,6 +1,6 @@
 @if ($inherit->post_status == 'publish') :
 <article>
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
             @typography([
                 'element' => 'h1'
             ])

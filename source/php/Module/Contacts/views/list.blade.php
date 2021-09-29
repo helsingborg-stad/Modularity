@@ -4,7 +4,7 @@
     ],
     'context' => 'module.contacts.list'
 ])
-    @if (!$hideTitle && !empty($post_title))
+    @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 'id'        => 'mod-text-' . $ID .'-label',
@@ -12,7 +12,7 @@
                 "element"   => "h4",
                 "classList" => ['u-padding--0', 'u-padding__x--3']
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif
