@@ -12,7 +12,7 @@
                 'element'   => 'h4',
                 'classList' => []
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

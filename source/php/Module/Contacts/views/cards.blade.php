@@ -5,7 +5,7 @@
         'variant'   => 'h2', 
         'classList' => ['module-title']
     ])
-        {!! apply_filters('the_title', $post_title)!!}
+        {!! $postTitle !!}
     @endtypography
 @endif
 

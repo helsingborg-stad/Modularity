@@ -11,7 +11,7 @@
                 "id"        => "mod-video-" . $ID . "-label",
                 "element"   => "h4"
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

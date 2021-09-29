@@ -12,7 +12,7 @@
                 "element"   => "h4",
                 "classList" => ['u-padding--0', 'u-padding__x--3']
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

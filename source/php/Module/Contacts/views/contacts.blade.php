@@ -1,11 +1,11 @@
 <div class="{{ $classes }}" itemscope="person" itemtype="http://schema.org/Organization">
 
     @if ($thumbnail !== false)
-    <img class="box-image" src="{{ $thumbnail[0] }}" alt="{{ $first_name }} {{ $last_name }}">
+        <img class="box-image" src="{{ $thumbnail[0] }}" alt="{{ $first_name }} {{ $last_name }}">
     @endif
 
     @if (!$hideTitle && !empty($postTitle))
-    <h4 class="box-title">{!! apply_filters('the_title', $post_title) !!}</h4>
+        <h4 class="box-title">{!! $postTitle !!}</h4>
     @endif
 
     <div class="box-content">
