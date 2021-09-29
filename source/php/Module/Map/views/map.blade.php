@@ -21,7 +21,7 @@
                         'id'      => 'mod-map-' . $id .'-label'
                     ])
                         
-                        {!! apply_filters('the_title', $post_title) !!}
+                        {!! $postTitle !!}
                     @endtypography
                 </div>
             @endif

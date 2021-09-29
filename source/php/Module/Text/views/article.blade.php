@@ -5,7 +5,7 @@
                 "variant" => "h2",
                 "id" => 'mod-text-' . $ID .'-label'
         ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
         @endtypography
     @endif
     

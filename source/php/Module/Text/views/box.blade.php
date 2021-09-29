@@ -10,7 +10,7 @@
                 "element" => "h4",
                 'id' => 'mod-text-' . $ID .'-label'
             ])
-                {{ $post_title }}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif

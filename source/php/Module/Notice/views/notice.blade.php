@@ -1,6 +1,6 @@
 @php
     $moduleHeading = (!$hideTitle && !empty($postTitle)) ?
-        '<b>'.apply_filters('the_title', $post_title).'</b><br/>' : '';
+        '<b>'. $postTitle.'</b><br/>' : '';
 @endphp
 
 @notice([

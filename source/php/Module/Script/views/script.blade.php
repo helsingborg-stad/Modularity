@@ -8,7 +8,7 @@
                 'element'   => 'h4',
                 'classList' => ['card-title']
             ])
-                {!! apply_filters('the_title', $post_title) !!}
+                {!! $postTitle !!}
             @endtypography
         </div>
     @endif
