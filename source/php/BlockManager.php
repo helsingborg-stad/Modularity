@@ -75,7 +75,6 @@
             foreach($registeredBlocks as $type => $block) {
                 $allowedCoreBlocks = array(
                     'core/columns',
-                    'core/freeform',
                     'core/paragraph'
                 );
                 
