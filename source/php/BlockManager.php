@@ -76,7 +76,10 @@
                 $allowedCoreBlocks = array(
                     'core/columns',
                     'core/freeform',
-                    'core/paragraph'
+                    'core/heading',
+                    'core/paragraph',
+                    'core/more',
+                    'core/classic'
                 );
                 
                 if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
