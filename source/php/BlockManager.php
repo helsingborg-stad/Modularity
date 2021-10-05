@@ -66,7 +66,7 @@
         }
 
         /**
-         * Filter out all of the native block types except freeform, aka classic
+         * Filter out redundant block types except these.
          * @return array
          */
         public function filterBlockTypes($allowedBlocks) {
@@ -79,7 +79,8 @@
                     'core/heading',
                     'core/paragraph',
                     'core/more',
-                    'core/classic'
+                    'core/list',
+                    'core/shortcode'
                 );
                 
                 if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
