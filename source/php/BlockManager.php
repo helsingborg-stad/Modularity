@@ -80,7 +80,8 @@
                     'core/paragraph',
                     'core/more',
                     'core/list',
-                    'core/shortcode'
+                    'core/shortcode',
+                    'core/reusableBlock'
                 );
                 
                 if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
