@@ -1,15 +1,5 @@
-@if (!$hideTitle && !empty($postTitle))
-    <div class="c-card__header">
-        @typography([
-            'id'        => 'mod-table-' . $ID .'-label',
-            'element'   => "h4",
-        ])
-            {!! $postTitle !!}
-        @endtypography
-    </div>
-@endif
-
 @table([
+    'title'                 => !$hideTitle ? $postTitle : '',
     'headings'              => $m_table->data['headings'],
     'list'                  => $m_table->data['list'],
     'showHeader'            => $m_table->showHeader,
