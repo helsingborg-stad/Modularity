@@ -51,9 +51,12 @@
                 const typewriter = editorEl.querySelector('.edit-post-visual-editor');
                 const links = typewriter.querySelectorAll('[href]');
 
-                //remove href from new items
+                //block href from new items
                 links.forEach(link => {
-                    link.removeAttribute('href');
+                    link.onclick = function(event) {
+                        console.log("Prevented opening of link in browser."); 
+                        event.preventDefault();
+                    }
                 })
             }
         }
