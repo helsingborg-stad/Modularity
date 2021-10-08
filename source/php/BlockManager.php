@@ -274,7 +274,7 @@
          * @return void
          */
         public function renderBlock($block) {                            
-            echo "render"; 
+            
             //Init display
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
