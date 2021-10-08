@@ -81,7 +81,8 @@
                     'core/more',
                     'core/list',
                     'core/shortcode',
-                    'core/reusableBlock'
+                    'core/reusableBlock',
+                    'core/image'
                 );
                 
                 if(str_contains($type, 'core/') && !in_array($type, $allowedCoreBlocks)) {
@@ -273,7 +274,7 @@
          * @return void
          */
         public function renderBlock($block) {                            
-            
+            echo "render"; 
             //Init display
             $display = new Display();            
             $module = $this->classes[$block['moduleName']];
@@ -310,7 +311,7 @@
                             </i>            
                         </span>
                         <span class="c-notice__message--sm">
-                            <strong>'. $module->nameSingular .':</strong> ' . __("Please fill in all required fields.", 'municipio') . '    
+                            <strong>'. $module->nameSingular .': </strong> ' . __("Please fill in all required fields.", 'municipio') . '    
                         </span>
                     </div>
                 ';
