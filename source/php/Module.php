@@ -157,9 +157,9 @@ class Module
         }
 
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
-        add_filter( 'the_title', array($this, 'setBlockTitle'), 10, 2 );
+        add_filter('the_title', array($this, 'setBlockTitle'), 10, 2 );
 
-        if($post->post_title) {
+        if(is_a($post, '\WP_Post') && $post->post_title) {
             $this->data['postTitle'] = $post->post_title;
         }
 
@@ -175,8 +175,6 @@ class Module
      * @return string
      */
     public function setBlockTitle( $title, $id = null ) {    
-
-        
         if($titleField = get_field('custom_block_title')) {
             return $titleField;        
         }
