@@ -73,7 +73,7 @@ class InlayList extends \Modularity\Module
             
             if ($item->type === 'external') {
                 $list[] = [
-                    'label'     => $item->title,
+                    'label'     => $item->titel,
                     'href'      => $item->link_external,
                     'external'  => true,
                 ];
