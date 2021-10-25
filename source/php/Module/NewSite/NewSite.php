@@ -18,7 +18,11 @@ class NewSite extends \Modularity\Module
 
         //Handle new site form
         if($this->isFormSent()) {
-            $this->formResponse = new NewSiteForm(); 
+            $newSiteForm = new NewSiteForm();
+            
+            if(is_wp_error($newSiteForm)) {
+                $formErrors = $newSiteForm
+            }
         }
     }
 
@@ -36,7 +40,7 @@ class NewSite extends \Modularity\Module
                 'action' => $this->formAction()
             ],
             'isFormSent' => $this->isFormSent(),
-            'formResponse' => (object) $this->formResponse
+            'formErrors' => (object) $this->formErrors
         ];
     }
 
