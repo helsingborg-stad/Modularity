@@ -19,7 +19,8 @@
                     'itemtype'      => 'http://schema.org/Person'
                 ],
                 'classList'     => [
-                    'c-card--square-image'
+                    'c-card--square-image',
+                    'u-height--100'
                 ],
                 'context' => 'module.contacts.card'
             ])
