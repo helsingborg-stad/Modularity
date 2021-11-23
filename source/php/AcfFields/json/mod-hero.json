@@ -74,40 +74,6 @@
             "max_size": ""
         },
         {
-            "key": "field_614b4098d06b1",
-            "label": "Font color",
-            "name": "mod_hero_font_color",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "repeater_choices": 0,
-            "repeater_field": "",
-            "repeater_label_field": "",
-            "repeater_value_field": "",
-            "repeater_post_id": 0,
-            "repeater_display_value": 0,
-            "render_type": "",
-            "filter_context": "",
-            "share_option": 0,
-            "choices": {
-                "light": "Light",
-                "dark": "Dark"
-            },
-            "default_value": "light",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
             "key": "field_614b43a186da4",
             "label": "Size",
             "name": "mod_hero_size",
