@@ -361,6 +361,7 @@
         public function addBlockFieldGroup() {
             
             acf_add_local_field_group(array(
+                'menu_order' => -1,
                 'key' => 'group_block_specific',
                 'title' => __("Block settings", 'modularity'),
                 'location' => array (),
