@@ -181,7 +181,6 @@
                             'choices' => array(
                                 'bottom' => 'Bottom banner',
                                 'center' => 'Centered',
-                                'hero' => 'Hero',
                             ),
                             'default_value' => 'bottom',
                             'allow_null' => 0,
@@ -192,59 +191,6 @@
                             'placeholder' => '',
                         ),
                         3 => array(
-                            'key' => 'field_5fca2b4da3be6',
-                            'label' => 'Text color',
-                            'name' => 'text_color',
-                            'type' => 'select',
-                            'instructions' => 'What color to use on this slide',
-                            'required' => 1,
-                            'conditional_logic' => 0,
-                            'wrapper' => array(
-                                'width' => '',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'choices' => array(
-                                'black' => 'Black',
-                                'white' => 'White',
-                                'theme' => 'Inherit theme',
-                            ),
-                            'default_value' => 'black',
-                            'allow_null' => 0,
-                            'multiple' => 0,
-                            'ui' => 0,
-                            'return_format' => 'value',
-                            'ajax' => 0,
-                            'placeholder' => '',
-                        ),
-                        4 => array(
-                            'key' => 'field_5fca2bd1a3be7',
-                            'label' => 'Background color text area',
-                            'name' => 'background_color',
-                            'type' => 'select',
-                            'instructions' => 'Select a color for the wrapping area of the text',
-                            'required' => 1,
-                            'conditional_logic' => 0,
-                            'wrapper' => array(
-                                'width' => '',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'choices' => array(
-                                'none' => 'No background',
-                                'white' => 'White',
-                                'theme' => 'Inherit theme',
-                                'theme-opacity' => 'Inherit theme, add transparency',
-                            ),
-                            'default_value' => 'white',
-                            'allow_null' => 0,
-                            'multiple' => 0,
-                            'ui' => 0,
-                            'return_format' => 'value',
-                            'ajax' => 0,
-                            'placeholder' => '',
-                        ),
-                        5 => array(
                             'key' => 'field_5702597b7d869',
                             'label' => 'Title',
                             'name' => 'textblock_title',
@@ -285,7 +231,7 @@
                             'append' => '',
                             'maxlength' => '',
                         ),
-                        6 => array(
+                        4 => array(
                             'key' => 'field_56ab235393f04',
                             'label' => 'Content',
                             'name' => 'textblock_content',
@@ -304,7 +250,7 @@
                             'rows' => '',
                             'new_lines' => 'br',
                         ),
-                        7 => array(
+                        5 => array(
                             'key' => 'field_56fa82a2d464d',
                             'label' => 'Link',
                             'name' => 'link_type',
@@ -329,7 +275,7 @@
                             'return_format' => 'value',
                             'save_other_choice' => 0,
                         ),
-                        8 => array(
+                        6 => array(
                             'key' => 'field_608915f2b15f7',
                             'label' => 'Link Style',
                             'name' => 'link_style',
@@ -368,7 +314,7 @@
                             'return_format' => 'value',
                             'save_other_choice' => 0,
                         ),
-                        9 => array(
+                        7 => array(
                             'key' => 'field_60891647b15f8',
                             'label' => 'Link Text',
                             'name' => 'link_text',
@@ -395,7 +341,7 @@
                             'append' => '',
                             'maxlength' => '',
                         ),
-                        10 => array(
+                        8 => array(
                             'key' => 'field_56fa8313d4650',
                             'label' => 'Url',
                             'name' => 'link_url',
@@ -419,7 +365,7 @@
                             'default_value' => '',
                             'placeholder' => '',
                         ),
-                        11 => array(
+                        9 => array(
                             'key' => 'field_56fa8331d4651',
                             'label' => 'Page',
                             'name' => 'link_url',
@@ -446,7 +392,7 @@
                             'allow_archives' => 1,
                             'multiple' => 0,
                         ),
-                        12 => array(
+                        10 => array(
                             'key' => 'field_60db1cc88b16d',
                             'label' => 'Description',
                             'name' => 'link_url_description',
@@ -807,7 +753,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'message' => '',
+            'message' => __('Add a shadow around the slider.', 'modularity'),
             'default_value' => 1,
             'ui' => 0,
             'ui_on_text' => '',
