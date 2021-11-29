@@ -1,11 +1,7 @@
-@php
-    $moduleHeading = (!$hideTitle && !empty($postTitle)) ?
-        '<b>'. $postTitle.'</b><br/>' : '';
-@endphp
-
 @notice([
     'type' => $notice_type,
     'message' => [
+        'title' => !$hideTitle && !empty($postTitle) ? $postTitle : null,
         'text' => $moduleHeading . $notice_text,
         'size' => $notice_size
     ],
