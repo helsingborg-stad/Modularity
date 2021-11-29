@@ -50,12 +50,12 @@
         function renderCustomGrid (string $block_content, array $block): string 
         {
             $widths = [
-                '100%' => 'grid-md-12',
-                '75%'  => 'grid-md-9',
-                '66%'  => 'grid-md-8',
-                '50%'  => 'grid-md-6',
-                '33%'  => 'grid-md-4',
-                '25%'  => 'grid-md-3'
+                '100%' => 'o-grid-12@md',
+                '75%'  => 'o-grid-9@md',
+                '66%'  => 'o-grid-8@md',
+                '50%'  => 'o-grid-6@md',
+                '33%'  => 'o-grid-4@md',
+                '25%'  => 'o-grid-3@md'
             ];
             
             if ( 'core/column' === $block['blockName'] ) {
