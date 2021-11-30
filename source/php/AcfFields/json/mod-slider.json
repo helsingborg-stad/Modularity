@@ -177,63 +177,9 @@
                             },
                             "choices": {
                                 "bottom": "Bottom banner",
-                                "center": "Centered",
-                                "hero": "Hero"
+                                "center": "Centered"
                             },
                             "default_value": "bottom",
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5fca2b4da3be6",
-                            "label": "Text color",
-                            "name": "text_color",
-                            "type": "select",
-                            "instructions": "What color to use on this slide",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "black": "Black",
-                                "white": "White",
-                                "theme": "Inherit theme"
-                            },
-                            "default_value": "black",
-                            "allow_null": 0,
-                            "multiple": 0,
-                            "ui": 0,
-                            "return_format": "value",
-                            "ajax": 0,
-                            "placeholder": ""
-                        },
-                        {
-                            "key": "field_5fca2bd1a3be7",
-                            "label": "Background color text area",
-                            "name": "background_color",
-                            "type": "select",
-                            "instructions": "Select a color for the wrapping area of the text",
-                            "required": 1,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "choices": {
-                                "none": "No background",
-                                "white": "White",
-                                "theme": "Inherit theme",
-                                "theme-opacity": "Inherit theme, add transparency"
-                            },
-                            "default_value": "white",
                             "allow_null": 0,
                             "multiple": 0,
                             "ui": 0,
@@ -804,7 +750,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "",
+            "message": "Add a shadow around the slider.",
             "default_value": 1,
             "ui": 0,
             "ui_on_text": "",
