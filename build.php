@@ -7,7 +7,8 @@ if (php_sapi_name() !== 'cli') {
 
 // Any command needed to run and build plugin assets when newly cheched out of repo.
 $buildCommands = [
-    'npm install --no-progress',
+    'npx -y browserslist@latest --update-db',
+    'npm ci --no-progress',
     'npm run build',
     'composer install --prefer-dist --no-progress --no-suggest'
 ];
@@ -23,6 +24,7 @@ $removables = [
     'gulpfile.js',
     'node_modules',
     'package.json',
+    'package-lock.json',
     '.vscode'
 ];
 

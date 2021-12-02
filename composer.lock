@@ -95,12 +95,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "1e8a1614adc33d455f81e9b5381d4f661565fe90"
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/1e8a1614adc33d455f81e9b5381d4f661565fe90",
-                "reference": "1e8a1614adc33d455f81e9b5381d4f661565fe90",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
                 "shasum": ""
             },
             "require": {
@@ -199,6 +199,7 @@
                 "modx",
                 "moodle",
                 "osclass",
+                "pantheon",
                 "phpbb",
                 "piwik",
                 "ppi",
@@ -221,7 +222,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/1.x"
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
             },
             "funding": [
                 {
@@ -237,7 +238,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-23T09:01:08+00:00"
+            "time": "2021-09-13T08:19:44+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -933,12 +934,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "4d60e20e4beddefe3c0fdfede050ae345cd4daf4"
+                "reference": "d37c3dfc52e5b8d2e3612f0740604d8c10d92d48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/4d60e20e4beddefe3c0fdfede050ae345cd4daf4",
-                "reference": "4d60e20e4beddefe3c0fdfede050ae345cd4daf4",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d37c3dfc52e5b8d2e3612f0740604d8c10d92d48",
+                "reference": "d37c3dfc52e5b8d2e3612f0740604d8c10d92d48",
                 "shasum": ""
             },
             "require": {
@@ -949,8 +950,9 @@
                 "symfony/translation": "^3.4 || ^4.0 || ^5.0"
             },
             "require-dev": {
+                "doctrine/dbal": "^2.0 || ^3.0",
                 "doctrine/orm": "^2.7",
-                "friendsofphp/php-cs-fixer": "^2.14 || ^3.0",
+                "friendsofphp/php-cs-fixer": "^3.0",
                 "kylekatarnls/multi-tester": "^2.0",
                 "phpmd/phpmd": "^2.9",
                 "phpstan/extension-installer": "^1.0",
@@ -1007,6 +1009,7 @@
                 "time"
             ],
             "support": {
+                "docs": "https://carbon.nesbot.com/docs",
                 "issues": "https://github.com/briannesbitt/Carbon/issues",
                 "source": "https://github.com/briannesbitt/Carbon"
             },
@@ -1020,7 +1023,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-16T21:57:57+00:00"
+            "time": "2021-11-17T23:04:52+00:00"
         },
         {
             "name": "ooksanen/acf-focuspoint",
@@ -1062,20 +1065,20 @@
         },
         {
             "name": "psr/container",
-            "version": "1.1.x-dev",
+            "version": "1.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "autoload": {
@@ -1104,9 +1107,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.x"
+                "source": "https://github.com/php-fig/container/tree/1.1.2"
             },
-            "time": "2021-03-05T17:36:06+00:00"
+            "time": "2021-11-05T16:50:12+00:00"
         },
         {
             "name": "psr/log",
@@ -1160,22 +1163,21 @@
         },
         {
             "name": "psr/simple-cache",
-            "version": "dev-master",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/simple-cache.git",
-                "reference": "5a7b96b1dda5d957e01bc1bfe77dcca09c5a7474"
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/5a7b96b1dda5d957e01bc1bfe77dcca09c5a7474",
-                "reference": "5a7b96b1dda5d957e01bc1bfe77dcca09c5a7474",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
+                "reference": "408d5eafb83c57f6365a3ca330ff23aa4a5fa39b",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1208,20 +1210,20 @@
             "support": {
                 "source": "https://github.com/php-fig/simple-cache/tree/master"
             },
-            "time": "2020-04-21T06:43:17+00:00"
+            "time": "2017-10-23T01:57:42+00:00"
         },
         {
             "name": "shortpixel/shortpixel-php",
-            "version": "V1.7.3",
+            "version": "v1.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/short-pixel-optimizer/shortpixel-php.git",
-                "reference": "2b654571c203399c3db967318db23e82233f632d"
+                "reference": "3ce73d6d5c11031579bb036d7059b570b00e2255"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/short-pixel-optimizer/shortpixel-php/zipball/2b654571c203399c3db967318db23e82233f632d",
-                "reference": "2b654571c203399c3db967318db23e82233f632d",
+                "url": "https://api.github.com/repos/short-pixel-optimizer/shortpixel-php/zipball/3ce73d6d5c11031579bb036d7059b570b00e2255",
+                "reference": "3ce73d6d5c11031579bb036d7059b570b00e2255",
                 "shasum": ""
             },
             "require": {
@@ -1234,6 +1236,9 @@
                 "phpunit/phpunit": "~4.0",
                 "symfony/yaml": "~2.0"
             },
+            "bin": [
+                "bin/shortpixel"
+            ],
             "type": "library",
             "autoload": {
                 "files": [
@@ -1266,9 +1271,9 @@
             "support": {
                 "email": "support@shortpixel.com",
                 "issues": "https://github.com/short-pixel-optimizer/shortpixel-php/issues",
-                "source": "https://github.com/short-pixel-optimizer/shortpixel-php/tree/V1.7.3"
+                "source": "https://github.com/short-pixel-optimizer/shortpixel-php/tree/v1.8.7"
             },
-            "time": "2021-03-09T12:29:46+00:00"
+            "time": "2021-11-24T17:05:21+00:00"
         },
         {
             "name": "symfony/debug",
@@ -1276,12 +1281,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "2f9160e92eb64c95da7368c867b663a8e34e980c"
+                "reference": "346e1507eeb3f566dcc7a116fefaa407ee84691b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/2f9160e92eb64c95da7368c867b663a8e34e980c",
-                "reference": "2f9160e92eb64c95da7368c867b663a8e34e980c",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/346e1507eeb3f566dcc7a116fefaa407ee84691b",
+                "reference": "346e1507eeb3f566dcc7a116fefaa407ee84691b",
                 "shasum": ""
             },
             "require": {
@@ -1321,7 +1326,7 @@
             "description": "Provides tools to ease debugging PHP code",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/debug/tree/v4.4.27"
+                "source": "https://github.com/symfony/debug/tree/4.4"
             },
             "funding": [
                 {
@@ -1337,7 +1342,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-22T07:21:39+00:00"
+            "time": "2021-11-29T08:40:48+00:00"
         },
         {
             "name": "symfony/finder",
@@ -1487,12 +1492,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be"
+                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/1100343ed1a92e3a38f9ae122fc0eb21602547be",
-                "reference": "1100343ed1a92e3a38f9ae122fc0eb21602547be",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/57b712b08eddb97c762a8caa32c84e037892d2e9",
+                "reference": "57b712b08eddb97c762a8caa32c84e037892d2e9",
                 "shasum": ""
             },
             "require": {
@@ -1547,7 +1552,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.23.1"
+                "source": "https://github.com/symfony/polyfill-php80/tree/main"
             },
             "funding": [
                 {
@@ -1563,7 +1568,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-28T13:41:28+00:00"
+            "time": "2021-09-13T13:58:33+00:00"
         },
         {
             "name": "symfony/translation",
