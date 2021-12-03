@@ -16,15 +16,17 @@ class Plugins
     {
         $this->plugins = apply_filters('Modularity/Plugins', $this->plugins);
 
-        if(is_array($this->plugins) && !empty($this->plugins)) {
+        if (is_array($this->plugins) && !empty($this->plugins)) {
             foreach ($this->plugins as $plugin) {
+                $pluginPath = MODULARITY_PATH . "vendor/" . $plugin;
+                $rootPath = dirname(ABSPATH) . "/vendor/" . $plugin;
 
-                $pluginPath = MODULARITY_PATH . "vendor/" . $plugin; 
-
-                if (file_exists($pluginPath)) {
+                if (file_exists($rootPath)) {
+                    require_once $rootPath;
+                } elseif (file_exists($pluginPath)) {
                     require_once $pluginPath;
                 } else {
-                    error_log("A plugin not existing tried to enqueue to acf in modularity. Have you run composer install?"); 
+                    error_log("A plugin not existing tried to enqueue to acf in modularity. Have you run composer install?");
                 }
             }
         } else {
