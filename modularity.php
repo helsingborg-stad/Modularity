@@ -21,15 +21,20 @@ add_action('plugins_loaded', function () {
     load_plugin_textdomain('modularity', false, plugin_basename(dirname(__FILE__)) . '/languages');
 });
 
-// Autoload from plugin
-if (file_exists(MODULARITY_PATH . 'vendor/autoload.php')) {
-    require_once MODULARITY_PATH . 'vendor/autoload.php';
+
+
+// Autoload from ABSPATH first and plugin path as alternative.
+$rootAutoload = dirname(ABSPATH) . '/vendor/autoload.php';
+$pluginAutoload = MODULARITY_PATH . '/vendor/autoload.php';
+
+if (file_exists($rootAutoload)) {
+    require_once $rootAutoload;
+} elseif (file_exists($pluginAutoload)) {
+    require_once $pluginAutoload;
+} else {
+    die('Cant find autoload, run composer install!');
 }
 
-// Autoload from ABSPATH
-if (file_exists(dirname(ABSPATH) . '/vendor/autoload.php')) {
-    require_once dirname(ABSPATH) . '/vendor/autoload.php';
-}
 
 require_once MODULARITY_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once MODULARITY_PATH . 'Public.php';

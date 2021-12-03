@@ -9,8 +9,7 @@ if (php_sapi_name() !== 'cli') {
 $buildCommands = [
     'npx -y browserslist@latest --update-db',
     'npm ci --no-progress',
-    'npm run build',
-    'composer install --prefer-dist --no-progress --no-suggest'
+    'npm run build'
 ];
 
 // Files and directories not suitable for prod to be removed.
