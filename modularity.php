@@ -32,7 +32,7 @@ if (file_exists($rootAutoload)) {
 } elseif (file_exists($pluginAutoload)) {
     require_once $pluginAutoload;
 } else {
-    die('Cant find autoload, run composer install!');
+    error_log('Missing autoload.php, have you run composer install?');
 }
 
 
