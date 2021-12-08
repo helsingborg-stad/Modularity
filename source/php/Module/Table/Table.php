@@ -26,7 +26,6 @@ class Table extends \Modularity\Module
      */
     public function disableHTMLFiltering($postId)
     {
-
         //Bail early if not a script module save
         if (get_post_type($postId) !== "mod-" . $this->slug) {
             return;
@@ -38,29 +37,19 @@ class Table extends \Modularity\Module
         });
     }
 
-    private function getTableData($data) {
-        if($data['mod_table_data_type'] === 'csv') {
-            
-        }
-
-        if($data['mod_table_data_type'] === 'manual') {
-
-        }
-    }
-
     public function data(): array
     {
         $post = $this->data;
         $data = get_fields($this->ID);
 
-        if(!empty($data['mod_table_block_csv_file'])) {
+        if (!empty($data['mod_table_block_csv_file'])) {
             $tableData = $this->formatCsvData($data['mod_table_block_csv_file'], $data['mod_table_csv_delimiter']);
-        } else if(!empty(json_decode($post['meta']['mod_table'][0]))) {
-            $tableData = json_decode($post['meta']['mod_table'][0]);                        
+        } elseif (!empty(json_decode($post['meta']['mod_table'][0]))) {
+            $tableData = json_decode($post['meta']['mod_table'][0]);
         } else {
             $tableData = $data['mod_table'];
         }
-        
+
         $tableList = $this->tableList($tableData);
         $data['mod_table_size'] = $data['mod_table_size'] ?? '';
         $data['m_table'] = [
@@ -72,7 +61,7 @@ class Table extends \Modularity\Module
             'sortable' => $data['mod_table_ordering'] ?? [],
             'pagination' => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
             'multidimensional' => $data['mod_table_multidimensional'],
-            'showSum'=> $data['mod_table_sum'],
+            'showSum' => $data['mod_table_sum'],
             'fullscreen' => $data['mod_table_fullscreen']
         ];
 
@@ -81,8 +70,6 @@ class Table extends \Modularity\Module
         $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--default'), $this->post_type, $this->args));
         $data['m_table']        = (object)$data['m_table'];
         $data['id'] = $this->ID;
-
-        
 
         return $data;
     }
@@ -139,8 +126,6 @@ class Table extends \Modularity\Module
 
     public function csvImport($post_id)
     {
-
-
         if (!isset($_POST['post_type']) || $_POST['post_type'] != $this->moduleSlug) {
             return;
         }
@@ -186,14 +171,6 @@ class Table extends \Modularity\Module
 
     public function modAssets()
     {
-        // die(var_dump(MODULARITY_URL . '/dist/js/table.min.js'));
-        wp_register_script('mod-table', MODULARITY_URL . '/dist/js/mod-table.min.js', false, filemtime(MODULARITY_PATH . 'dist/js/mod-table.min.js'), false);
-
-        // wp_register_script('mod-table', MODULARITY_URL . '/dist/js/table.min.js', array
-        // (), '1.1.1', true);
-        wp_enqueue_script('mod-table');
-
-
         wp_register_style('mod-table', MODULARITY_URL . '/dist/css/table.min.css', array(), '1.1.1');
         wp_enqueue_style('mod-table');
     }
@@ -231,24 +208,21 @@ class Table extends \Modularity\Module
     public function tableList($arr)
     {
         $data = [];
-        
-        if(array_key_exists('header', $arr)) {
-            foreach($arr['header'] as $heading) {
+
+        if (array_key_exists('header', $arr)) {
+            foreach ($arr['header'] as $heading) {
                 $data['headings'][] = $heading['c']; 
             }
-            
-            foreach($arr['body'] as $row) {
+            foreach ($arr['body'] as $row) {
                 $columns = [];
-                foreach($row as $column) {
+                foreach ($row as $column) {
                     $columns[] = $column['c'];
                 }
                 $data['list'][]['columns'] = $columns;
             }
 
             return $data;
-        }    
-        
-       
+        }
 
         foreach ($arr as $row => $cols) {
             if ($row !== 0) {

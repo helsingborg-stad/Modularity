@@ -1,15 +1,13 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_5666a2a71d806',
     'title' => __('Table Editor', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5731982808842',
-            'label' => __('Datatype', 'modularity'),
+            'label' => __('Datatyp', 'modularity'),
             'name' => 'mod_table_data_type',
             'type' => 'radio',
             'instructions' => '',
@@ -33,10 +31,10 @@ if (function_exists('acf_add_local_field_group')) {
         ),
         1 => array(
             'key' => 'field_57319c3b08843',
-            'label' => __('CSV-file', 'modularity'),
+            'label' => __('CSV-fil', 'modularity'),
             'name' => 'mod_table_csv_file',
             'type' => 'file',
-            'instructions' => __('CSV-formatted file', 'modularity'),
+            'instructions' => __('CSV-formatterad fil', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -60,10 +58,10 @@ if (function_exists('acf_add_local_field_group')) {
         ),
         2 => array(
             'key' => 'field_5731a138b52aa',
-            'label' => __('CSV-delimiter', 'modularity'),
+            'label' => __('CSV-avgränsare', 'modularity'),
             'name' => 'mod_table_csv_delimiter',
             'type' => 'text',
-            'instructions' => __('The character that is used in the CSV-file as a delimiter. Usually is a comma or semicolon.', 'modularity'),
+            'instructions' => __('Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken eller semikolon.', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -120,58 +118,8 @@ if (function_exists('acf_add_local_field_group')) {
             ),
         ),
         4 => array(
-            'key' => 'field_5666a3e0d2d29',
-            'label' => __('Pagination', 'modularity'),
-            'name' => 'mod_table_pagination',
-            'type' => 'true_false',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => 50,
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 1,
-            'message' => __('Yes, use pagination on this table', 'modularity'),
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
-        ),
-        5 => array(
-            'key' => 'field_5666a59673385',
-            'label' => __('Number of pages', 'modularity'),
-            'name' => 'mod_table_pagination_count',
-            'type' => 'number',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_5666a3e0d2d29',
-                        'operator' => '==',
-                        'value' => '1',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => 50,
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 10,
-            'min' => 1,
-            'max' => 500,
-            'step' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'readonly' => 0,
-            'disabled' => 0,
-        ),
-        6 => array(
             'key' => 'field_5666a459d2d2a',
-            'label' => __('Activate filtering', 'modularity'),
+            'label' => __('Aktivera sök', 'modularity'),
             'name' => 'mod_table_search',
             'type' => 'true_false',
             'instructions' => '',
@@ -183,43 +131,14 @@ if (function_exists('acf_add_local_field_group')) {
                 'id' => '',
             ),
             'default_value' => 1,
-            'message' => __('Yes, use filtering on this table', 'modularity'),
+            'message' => __('Yes, use search on this table', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        7 => array(
-            'key' => 'field_5666a63a48379',
-            'label' => __('Filter placeholder', 'modularity'),
-            'name' => 'mod_table_search_query',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_5666a459d2d2a',
-                        'operator' => '==',
-                        'value' => '1',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => 50,
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => __('Filter table', 'modularity'),
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'readonly' => 0,
-            'disabled' => 0,
-        ),
-        8 => array(
+        5 => array(
             'key' => 'field_56e181adef7ac',
-            'label' => __('Activate sorting', 'modularity'),
+            'label' => __('Aktivera kolumnsortering', 'modularity'),
             'name' => 'mod_table_ordering',
             'type' => 'true_false',
             'instructions' => '',
@@ -236,12 +155,12 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        9 => array(
+        6 => array(
             'key' => 'field_6141aad011c4e',
             'label' => __('Multidimensional', 'modularity'),
             'name' => 'mod_table_multidimensional',
             'type' => 'true_false',
-            'instructions' => __('Use the first column as a second dimension of table headers. This option also locks the first column while scrolling.', 'modularity'),
+            'instructions' => __('Använd den första kolumnen som en andra dimension av tabellrubriker. Detta val låser också den första kolumnen vid scroll.', 'modularity'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
@@ -255,7 +174,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        10 => array(
+        7 => array(
             'key' => 'field_6141b4af3a835',
             'label' => __('Sum', 'modularity'),
             'name' => 'mod_table_sum',
@@ -274,7 +193,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        11 => array(
+        8 => array(
             'key' => 'field_6141dc72e5dcd',
             'label' => __('Fullscreen', 'modularity'),
             'name' => 'mod_table_fullscreen',
@@ -312,5 +231,4 @@ if (function_exists('acf_add_local_field_group')) {
     'active' => true,
     'description' => '',
 ));
-
-}
+}
