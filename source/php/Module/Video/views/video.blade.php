@@ -51,7 +51,7 @@
                     'size' => 'md',
                     'color' => 'white'
                 ],
-                'classList' => (!$hideTitle && !empty($postTitle)) ? ['u-margin__x--2', 'u-margin__bottom--2'] : ['u-margin--2'],
+                'classList' => ['u-margin--2'],
             ])
             @endnotice
         @endif
