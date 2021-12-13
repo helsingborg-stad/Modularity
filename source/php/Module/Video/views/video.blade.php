@@ -17,7 +17,6 @@
     @endif
 
     @if ($type == 'upload')
-
         <div class="embed embed__ratio--16-9">
                 @video([
                     'formats' => [
@@ -52,7 +51,7 @@
                     'size' => 'md',
                     'color' => 'white'
                 ],
-                'classList' => ['u-margin__x--2', 'u-margin__bottom--2'],
+                'classList' => !$hasTitle ? ['u-margin__x--2', 'u-margin__bottom--2'] : ['u-margin--2'],
             ])
             @endnotice
         @endif

@@ -39,8 +39,13 @@ class Video extends \Modularity\Module
             );
         }
 
+        //Has title
+        $data['hasTitle'] = (bool) !$hideTitle && !empty($postTitle);
+
         //Uploaded
-        $data['source'] = $data['video_mp4']['url'];
+        if ($data['type'] == 'upload') {
+            $data['source'] = $data['video_mp4']['url'];
+        }
 
         //Lang
         $data['lang'] = (object) [
@@ -58,6 +63,7 @@ class Video extends \Modularity\Module
      */
     private function getEmbedMarkup($embedLink)
     {
+        return false; 
         return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720 ));
     }
 
