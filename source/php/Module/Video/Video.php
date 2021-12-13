@@ -46,7 +46,7 @@ class Video extends \Modularity\Module
 
         //Lang
         $data['lang'] = (object) [
-            'embedFailed' => __('This video could not be embedded.', 'modularity'),
+            'embedFailed' => __('This video could not be embedded. <a href="%s" target="_blank">View the video by visiting embedded page.</a>', 'modularity'),
         ];
 
         return $data;
