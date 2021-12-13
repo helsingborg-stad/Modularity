@@ -39,9 +39,6 @@ class Video extends \Modularity\Module
             );
         }
 
-        //Has title
-        $data['hasTitle'] = (bool) !$hideTitle && !empty($postTitle);
-
         //Uploaded
         if ($data['type'] == 'upload') {
             $data['source'] = $data['video_mp4']['url'];
@@ -49,7 +46,7 @@ class Video extends \Modularity\Module
 
         //Lang
         $data['lang'] = (object) [
-            'embedFailed' => __('This video could not be embedded. <a href="%s" target="_blank">View the video by visiting embedded page.</a>', 'modularity'),
+            'embedFailed' => __('This video could not be embedded.', 'modularity'),
         ];
 
         return $data;
