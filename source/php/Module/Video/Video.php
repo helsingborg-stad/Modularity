@@ -14,10 +14,17 @@ class Video extends \Modularity\Module
         $this->description = __("Outputs an embedded Video.", 'modularity');
     }
 
-    public function data() : array
+    /**
+     * Manage view data
+     *
+     * @return array
+     */
+    public function data(): array
     {
         $data = get_fields($this->ID);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel', 'embedded-video'), $this->post_type, $this->args));
+
+        //Embed code
+        $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
 
         // Image
         $data['image'] = false;
@@ -32,10 +39,26 @@ class Video extends \Modularity\Module
             );
         }
 
+        //Uploaded
         $data['source'] = $data['video_mp4']['url'];
-        $data['id'] = $this->ID;
+
+        //Lang
+        $data['lang'] = (object) [
+            'embedFailed' => __('This video could not be embedded. <a href="%s" target="_blank">View the video by visiting embedded page.</a>', 'modularity'),
+        ];
 
         return $data;
+    }
+
+    /**
+     * Embed
+     *
+     * @param [type] $embedLink
+     * @return bool|string
+     */
+    private function getEmbedMarkup($embedLink)
+    {
+        return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720 ));
     }
 
     /**

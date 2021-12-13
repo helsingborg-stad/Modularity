@@ -25,22 +25,36 @@
                     ],
                     'width' => 1080,
                     'height' => 720,
-                    attributeList => [
+                    'attributeList' => [
                         'poster' => ($image !== false) ? $image[0] : '',
                         'preload' => 'auto',
                         'autoplay' => true,
                         'loop' => true,
                         'muted' => true
                     ],
-                    classList => ['ratio-16-9', 'embed__fit--cover']
+                    'classList' => ['ratio-16-9', 'embed__fit--cover']
                 ])
                 @endvideo
         </div>
     @else
-        
-        <div class="embed embed__ratio--16-9">
-            {!! wp_oembed_get( $embed_link, array( 'width' => 1080, 'height' => 720 )) !!}
-        </div>
-        
+        @if($embedCode)
+            <div class="embed embed__ratio--16-9">
+                {!! $embedCode !!}
+            </div>
+        @else
+            @notice([
+                'type' => 'info',
+                'message' => [
+                    'text' => sprintf($lang->embedFailed, $embed_link),
+                ],
+                'icon' => [
+                    'name' => 'report',
+                    'size' => 'md',
+                    'color' => 'white'
+                ],
+                'classList' => ['u-margin__x--2', 'u-margin__bottom--2'],
+            ])
+            @endnotice
+        @endif
     @endif
 @endcard
