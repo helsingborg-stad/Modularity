@@ -63,7 +63,6 @@ class Video extends \Modularity\Module
      */
     private function getEmbedMarkup($embedLink)
     {
-        return false; 
         return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720 ));
     }
 
