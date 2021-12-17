@@ -79,6 +79,7 @@ add_action('plugins_loaded', function () {
         'mod-table-block'      => 'group_60b8bf5bbc4d7',
         'mod-text-block'       => 'group_60ab6d6ba3621',
         'mod-hero'             => 'group_614b3f1a751bf',
+        'mod-logogrid'         => 'group_61bc951d73494',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
