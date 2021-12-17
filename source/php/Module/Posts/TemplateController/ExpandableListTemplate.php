@@ -69,7 +69,7 @@ class ExpandableListTemplate
     public function prepare($posts, $data): ?array
     {
         $column_values = $this->getColumnValues();
-   
+
         $accordion = array();
 
         if (count($posts) > 0) {

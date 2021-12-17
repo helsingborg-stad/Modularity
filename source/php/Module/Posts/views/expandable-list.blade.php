@@ -72,9 +72,13 @@
                 @foreach ($prepareAccordion as $accordionItem)
 
                     @if(isset($accordionItem['column_values']) && is_array($accordionItem['column_values'])  && !empty($accordionItem['column_values']))
-               
+                        
+                        @if($posts_hide_title_column)
+                            @php $accordionItem['heading'] = []; @endphp
+                        @endif
+
                         @accordion__item([
-                            'heading' => ($accordionItem['heading']) ?
+                            'heading' => ($accordionItem['column_values']) ?
                                 array_merge( (array) $accordionItem['heading'],
                                 (array) $accordionItem['column_values'] ) : $accordionItem['heading'],
                             'attributeList' => [
