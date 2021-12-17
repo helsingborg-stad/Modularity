@@ -3,6 +3,7 @@
     @if (!$hideTitle && !empty($postTitle))
         @typography([
                 "variant" => "h2",
+                "element" => "h4",
                 "id" => 'mod-text-' . $ID .'-label'
         ])
                 {!! $postTitle !!}
