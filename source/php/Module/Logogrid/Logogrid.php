@@ -21,7 +21,7 @@ class Logogrid extends \Modularity\Module
         $stack = [];
         if (is_array($logotypes) && !empty($logotypes)) {
             foreach ($logotypes as $logotype) {
-                $stack[] = (object) [
+                $stack[] = [
                     'alt' => $logotype['mod_logogrid_name'],
                     'logo' => $logotype['mod_logogrid_image'],
                     'url' => $logotype['mod_logogrid_link']
@@ -29,19 +29,7 @@ class Logogrid extends \Modularity\Module
             }
         }
 
-        if (count($stack) == 2) {
-            $gridClass = 'o-grid-6@sm';
-        }
-
-        if (count($stack) == 3) {
-            $gridClass = 'o-grid-6@sm o-grid-4@md';
-        }
-
-        if (count($stack) <= 4) {
-            $gridClass = 'o-grid-6@sm o-grid-4@md o-grid-3@lg';
-        }
-
-        return ['list' => $stack, 'gridClass' => $gridClass];
+        return ['list' => $stack];
     }
 
     public function template(): string
