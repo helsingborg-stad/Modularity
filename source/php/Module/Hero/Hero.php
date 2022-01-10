@@ -65,10 +65,10 @@ class Hero extends \Modularity\Module
      * @return array
      */
     public function blockSettings($data, $slug) {
-        if(strpos($slug, 'hero') === 0 && isset($data['supports'])) {
-            $data['supports']['align'] = ['full']; 
+        if (strpos($slug, 'hero') === 0 && isset($data['supports'])) {
+            $data['supports']['align'] = ['full'];
         }
-        return $data; 
+        return $data;
     }
 
     /**

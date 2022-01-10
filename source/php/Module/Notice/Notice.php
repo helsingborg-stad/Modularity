@@ -12,6 +12,12 @@ class Notice extends \Modularity\Module
         $this->nameSingular = __("Notice", 'modularity');
         $this->namePlural = __("Notice", 'modularity');
         $this->description = __("Outputs a notice", 'modularity');
+
+        //Add full-width capabilty to blocks
+        add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
+
+        //Add full width data to view
+        add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
     }
 
     public function data() : array
@@ -42,6 +48,39 @@ class Notice extends \Modularity\Module
     public function getSize($notice_size) : string
     {
         return preg_replace('/notice-/i', '', $notice_size);
+    }
+
+    /**
+     * Add full width setting to frontend.
+     *
+     * @param [array] $viewData
+     * @param [array] $block
+     * @param [object] $module
+     * @return array
+     */
+    public function blockData($viewData, $block, $module)
+    {
+
+        if ($block['name'] == "acf/notice" && $block['align'] == 'full' && !is_admin()) {
+            $viewData['stretch'] = true;
+        }
+
+        return $viewData;
+    }
+
+    /**
+     * Allow full-width alignment on hero blocks
+     *
+     * @param array $data
+     * @param string $slug
+     * @return array
+     */
+    public function blockSettings($data, $slug)
+    {
+        if (strpos($slug, 'notice') === 0 && isset($data['supports'])) {
+            $data['supports']['align'] = ['full'];
+        }
+        return $data;
     }
 
     /**
