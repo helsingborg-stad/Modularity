@@ -34,14 +34,14 @@ class Hero extends \Modularity\Module
         ]; 
 
         //Remove old image object
-        unset($data['mod_hero_background_image']); 
+        unset($data['mod_hero_background_image']);
 
         //Send to view
         return (array) \Modularity\Helper\FormatObject::camelCase($data); 
     }
 
     /**
-     * Add full width setting to frontend. 
+     * Add full width setting to frontend.
      *
      * @param [array] $viewData
      * @param [array] $block
@@ -50,11 +50,11 @@ class Hero extends \Modularity\Module
      */
     public function blockData($viewData, $block, $module) {
 
-        if($block['name'] == "acf/hero" && $block['align'] == 'full' && !is_admin()) {
+        if ($block['name'] == "acf/hero" && $block['align'] == 'full' && !is_admin()) {
             $viewData['stretch'] = true;
         }
 
-        return $viewData; 
+        return $viewData;
     }
 
     /**
