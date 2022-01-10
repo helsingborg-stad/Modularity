@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_614b3f1a751bf',
     'title' => __('Hero', 'modularity'),
     'fields' => array(
@@ -21,7 +23,7 @@
             'render_type' => '',
             'filter_context' => '',
             'share_option' => 0,
-            'default_value' => 'Hero title',
+            'default_value' => '',
             'placeholder' => '',
             'prepend' => '',
             'append' => '',
@@ -137,4 +139,5 @@
     'active' => true,
     'description' => '',
 ));
-}
+
+}

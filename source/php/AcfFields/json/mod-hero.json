@@ -18,7 +18,7 @@
             "render_type": "",
             "filter_context": "",
             "share_option": 0,
-            "default_value": "Hero title",
+            "default_value": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
@@ -134,4 +134,4 @@
     "active": true,
     "description": ""
 }]
-
+
