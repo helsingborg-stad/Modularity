@@ -32,22 +32,13 @@
                     'color' => 'primary',
                     'text' => $button_label,
                     'size' => 'sm',
-                    'attributeList' => ['data-open' => 'modal-' . $uid],
-                    'classList' => ['u-display--block@xs', 'u-display--block@sm', 'modularity-mod-map__button ']
+                    'href' => $button_url,
+                    'classList' => ['u-display--block@xs', 'u-display--block@sm', 'modularity-mod-map__button'],
+                    'target' => '_blank'
                 ])
                 @endbutton
             @endif
             
-            @modal([
-                    'id' => 'modal-' . $uid,
-                    'isPanel' => true,
-                    'animation' => 'slide-up',
-                    'padding' => 0,
-                    'heading' => $post_title
-            ])
-                <iframe src="{!! $button_url !!}" frameborder="0" class="u-width--100 u-display--block" style="height: 100vh;" aria-label="{{ $map_description }}"></iframe>
-            @endmodal
-        
             <div class="c-card__body">
                 <iframe src="{!! $map_url !!}" frameborder="0" class="u-width--100 u-display--block" style="min-height: {{ $height }}px;" title="{{ $map_description }}"></iframe>
             </div>
