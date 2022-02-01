@@ -279,6 +279,7 @@ class Module
         $modules = \Modularity\Editor::getPostModules($postId);
         $modules = array_merge($modules, $this->getShortcodeModules($postId));
         $modules = array_merge($modules, $this->getOnePageModules($postId));
+        $modules = array_merge($modules, $this->getBlocks($postId));
 
         $modules = json_encode($modules);
 
@@ -288,6 +289,31 @@ class Module
         }
 
         return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $moduleSlug . '"') == true, $archiveSlug);
+    }
+
+    /**
+     * Check for use of block modules
+     * @return array Array with modules from one page sections
+     */
+    public function getBlocks($postId): array
+    {
+        if (!has_blocks($postId)) {
+            return [];
+        }
+
+        if ($currentPost = get_post($postId)) {
+
+            $blocks = parse_blocks($currentPost->post_content);
+
+            if (is_array($blocks) && !empty($blocks)) {
+                foreach ($blocks as $block) {
+                    $modules[] = str_replace('acf/', 'mod-', $block['blockName']);
+                }
+                return $modules;
+            }
+        }
+
+        return [];
     }
 
     /**
