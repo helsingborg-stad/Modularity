@@ -1,15 +1,13 @@
 const path = require('path');
-const webpack = require('webpack');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const {getIfUtils, removeEmpty} = require('webpack-config-utils');
-const {ifProduction, ifNotProduction} = getIfUtils(process.env.NODE_ENV);
+const RemoveEmptyScripts = require('webpack-remove-empty-scripts');
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
+const { getIfUtils, removeEmpty } = require('webpack-config-utils');
+const { ifProduction } = getIfUtils(process.env.NODE_ENV);
 
 module.exports = {
     mode: ifProduction('production', 'development'),
@@ -18,25 +16,25 @@ module.exports = {
      * Add your entry files here
      */
     entry: {
-        'js/modularity-editor-modal':   './source/js/modularity-editor-modal.js',
-        'js/modularity':                './source/js/modularity.js',
-        'css/modularity':               './source/sass/modularity.scss',
+        'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
+        'js/modularity': './source/js/modularity.js',
+        'css/modularity': './source/sass/modularity.scss',
         'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
 
         //Modules
-        'js/mod-posts-taxonomy':                  './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
-        'js/mod-posts-load-more-button':                  './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
-        'js/table-init':                  './source/php/Module/Table/assets/table-init.js',
-        'js/table':                  './source/php/Module/Table/assets/table.js',
-        'css/table':                  './source/php/Module/Table/assets/table.scss',
+        'js/mod-posts-taxonomy': './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
+        'js/mod-posts-load-more-button': './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
+        'js/table-init': './source/php/Module/Table/assets/table-init.js',
+        'css/table': './source/php/Module/Table/assets/table.scss',
     },
     
     /**
      * Output settings
      */
     output: {
-        filename: ifProduction('[name].min.js', '[name].min.js'),
+        filename: ifProduction('[name].[contenthash].js', '[name].js'),
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '',
     },
     /**
      * Define external dependencies here
@@ -76,21 +74,15 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             importLoaders: 3, // 0 => no loaders (default); 1 => postcss-loader; 2 => sass-loader
-                            sourceMap: true,
-                        },
+                    },
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            // plugins: [autoprefixer, require('postcss-object-fit-images')],
-                            sourceMap: true,
-                        },
+                        options: {},
                     },
                     {
                         loader: 'sass-loader',
-                        options: {
-                            sourceMap: true,
-                        }
+                        options: {}
                     },
                     'import-glob-loader'
                 ],
@@ -100,18 +92,11 @@ module.exports = {
              */
             {
                 test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: ifProduction('[name].[ext]', '[name].[ext]'),
-                            outputPath: 'images/action_icons',
-                            publicPath: '../images/action_icons',
-                        },
-                    },
-                ],
+                type: 'asset/resource',
+                generator: {
+                    filename: 'images/action_icons/[name][ext]',
+                },
             },
-
         ],
     },
     plugins: removeEmpty([
@@ -141,7 +126,7 @@ module.exports = {
         /**
          * Fix CSS entry chunks generating js file
          */
-        new FixStyleOnlyEntriesPlugin(),
+         new RemoveEmptyScripts(),
 
         /**
          * Clean dist folder
@@ -151,13 +136,13 @@ module.exports = {
          * Output CSS files
          */
         new MiniCssExtractPlugin({
-            filename: ifProduction('[name].min.css', '[name].min.css')
+            filename: ifProduction('[name].[contenthash:8].css', '[name].css')
         }),
 
         /**
          * Output manifest.json for cache busting
          */
-        new ManifestPlugin({
+        new WebpackManifestPlugin({
             // Filter manifest items
             filter: function (file) {
                 // Don't include source maps
@@ -188,11 +173,6 @@ module.exports = {
         }),
 
         /**
-         * Required to enable sourcemap from node_modules assets
-         */
-        new webpack.SourceMapDevToolPlugin(),
-
-        /**
          * Enable build OS notifications (when using watch command)
          */
         new WebpackNotifierPlugin({alwaysNotify: true, skipFirstNotification: true}),
@@ -200,15 +180,18 @@ module.exports = {
         /**
          * Minimize CSS assets
          */
-        ifProduction(new OptimizeCssAssetsPlugin({
-            cssProcessorPluginOptions: {
-                preset: ['default', {discardComments: {removeAll: true}}],
+         ifProduction(new CssMinimizerWebpackPlugin({
+            minimizerOptions: {
+                preset: [
+                    "default",
+                    {
+                        discardComments: { removeAll: true },
+                    },
+                ],
             },
-        })),
-
-        //new BundleAnalyzerPlugin()
+        }))
 
     ]).filter(Boolean),
-    devtool: ifProduction('none', 'eval-source-map'),
+    devtool: 'source-map',
     stats: {children: false}
 };

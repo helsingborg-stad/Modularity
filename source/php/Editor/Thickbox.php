@@ -66,21 +66,13 @@ class Thickbox
     public function enqueue()
     {
         // Script
-        wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-editor-modal.min.js', false, filemtime(MODULARITY_PATH . 'dist/js/modularity-editor-modal.min.js'), true);
-
-        // wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/js/modularity-editor-modal.min.js', false, '1.0.0', true);
-
-
+        wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('js/modularity-editor-modal.js'));
         wp_enqueue_script('modularity-thickbox');
 
         // Style
-        wp_register_style(
-            'modularity-thickbox',
-            MODULARITY_URL . '/dist/css/modularity-thickbox-edit.' . \Modularity\App::$assetSuffix . '.css',
-            false,
-            '1.0.0'
-        );
-
+        wp_register_style('modularity-thickbox', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('css/modularity-thickbox-edit.css'));
         wp_enqueue_style('modularity-thickbox');
     }
 }

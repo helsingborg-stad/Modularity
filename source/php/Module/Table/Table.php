@@ -171,7 +171,9 @@ class Table extends \Modularity\Module
 
     public function modAssets()
     {
-        wp_register_style('mod-table', MODULARITY_URL . '/dist/css/table.min.css', array(), '1.1.1');
+        wp_register_style('mod-table', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('css/table.css'));
+
         wp_enqueue_style('mod-table');
     }
 
@@ -183,7 +185,8 @@ class Table extends \Modularity\Module
 
         wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
 
-        wp_register_script('datatables-init', MODULARITY_URL . '/dist/js/table-init.min.js', false, filemtime(MODULARITY_PATH . 'dist/js/table-init.min.js'), false);
+        wp_register_script('datatables-init', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/table-init.js'));
         wp_enqueue_script('datatables-init');
 
 
