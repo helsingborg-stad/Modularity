@@ -2,6 +2,10 @@
   "name": "modularity",
   "version": "1.6.5",
   "description": "Modular component system for WordPress",
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.17.2",
