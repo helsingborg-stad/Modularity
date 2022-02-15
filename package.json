@@ -2,9 +2,7 @@
   "name": "modularity",
   "version": "1.6.5",
   "description": "Modular component system for WordPress",
-  "dependencies": {
-    "node-gyp": "^7.1.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
