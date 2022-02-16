@@ -23,7 +23,8 @@ $removables = [
     'composer.lock',
     'node_modules',
     'package.json',
-    'package-lock.json'
+    'package-lock.json',
+    '.vscode'
 ];
 
 $dirName = basename(dirname(__FILE__));
