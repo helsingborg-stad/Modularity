@@ -30,9 +30,6 @@ jobs:
     - name: Execute buildscripts in themes and plugins folders
       run: php ./build.php --cleanup
 
-    - name: Cleanup .npmrc
-      run: rm ~/.npmrc
-
     - name: rsync deployment to www-data user.
       uses: burnett01/rsync-deployments@4.1
       with:
