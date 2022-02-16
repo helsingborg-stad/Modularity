@@ -24,7 +24,8 @@ $removables = [
     'node_modules',
     'package.json',
     'package-lock.json',
-    '.vscode'
+    '.vscode',
+    'modularity-custom-module-example'
 ];
 
 $dirName = basename(dirname(__FILE__));
