@@ -4,13 +4,6 @@ namespace Modularity;
 
 class App
 {
-    /**
-     * JS and CSS suffix
-     * Should be "dev" or "min"
-     * @var string
-     */
-    public static $assetSuffix = 'min';
-
     public static $display = null;
     public static $moduleManager = null;
     public $editor = null;
@@ -181,10 +174,13 @@ class App
 
     public function enqueueFront()
     {
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
+        wp_register_style('modularity', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('css/modularity.css'));
         wp_enqueue_style('modularity');
 
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . 'dist/js/modularity.' . self::$assetSuffix . '.js'), true);
+        wp_register_script('modularity', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('js/modularity.js'));
+
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
@@ -204,7 +200,7 @@ class App
         }
         //Register admin specific scripts/styling here
 
-        if(wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
+        if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
             wp_enqueue_script('jquery');
         }
     }
@@ -219,12 +215,12 @@ class App
             return;
         }
 
-        // Style
-        wp_register_style('modularity', MODULARITY_URL . '/dist/css/modularity.' . self::$assetSuffix . '.css', false, filemtime(MODULARITY_PATH . 'dist/css/modularity.' . self::$assetSuffix . '.css'));
+        wp_register_style('modularity', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('css/modularity.css'));
         wp_enqueue_style('modularity');
 
-        // Scripts
-        wp_register_script('modularity', MODULARITY_URL . '/dist/js/modularity.' . self::$assetSuffix . '.js', false, filemtime(MODULARITY_PATH . 'dist/js/modularity.' . self::$assetSuffix . '.js'), true);
+        wp_register_script('modularity', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/modularity.js'));
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
@@ -249,14 +245,20 @@ class App
 
         // If gutenberg editor
         if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
-            wp_register_script( 'custom-link-in-toolbar', plugin_dir_url( __FILE__ ) . 'source/js/edit-modules-block-editor.js', array(), '1.0', true );
+            wp_register_script(
+                'custom-link-in-toolbar',
+                plugin_dir_url(__FILE__) . 'source/js/edit-modules-block-editor.js',
+                array(),
+                '1.0',
+                true
+            );
 
             wp_localize_script('custom-link-in-toolbar', 'blockeditior', array(
                 'langeditmodules' => __('Edit Modules', 'modularity'),
                 'hrefeditmodules' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
             ));
 
-            wp_enqueue_script( 'custom-link-in-toolbar');
+            wp_enqueue_script('custom-link-in-toolbar');
         }
 
         // If editor

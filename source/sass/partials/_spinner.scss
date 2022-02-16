@@ -1,11 +1,11 @@
 // Variables
 $circleDiam: 20px;
-$innerCircleDiam: $circleDiam/3;
-$rotatingCircleDiam: $circleDiam/5;
+$innerCircleDiam: calc($circleDiam / 3);
+$rotatingCircleDiam: calc($circleDiam / 5);
 
-$innerCirclePos: ($circleDiam - $innerCircleDiam)/2;
-$rotatingCirclePosLeft: ($circleDiam - $innerCircleDiam)/2 - $rotatingCircleDiam;
-$rotatingCirclePosTop: $circleDiam/2 - $rotatingCircleDiam/2;
+$innerCirclePos: calc(($circleDiam - $innerCircleDiam) / 2);
+$rotatingCirclePosLeft: calc(($circleDiam - $innerCircleDiam) / 2) - $rotatingCircleDiam;
+$rotatingCirclePosTop: calc($circleDiam / 2) - calc($rotatingCircleDiam / 2);
 
 //The circle wrapper
 .modularity-modal-spinner {
@@ -14,7 +14,7 @@ $rotatingCirclePosTop: $circleDiam/2 - $rotatingCircleDiam/2;
     height: $circleDiam;
     position: fixed;
     top: 50%; left: 50%;
-    margin: -$circleDiam/2;
+    margin: calc($circleDiam / 2) * -1;
     background-color: #888;
     box-shadow: 0 2px 1px rgba(0,0,0,.3) inset;
     border-radius: 50%;
@@ -30,7 +30,7 @@ $rotatingCirclePosTop: $circleDiam/2 - $rotatingCircleDiam/2;
         width: $rotatingCircleDiam;
         animation: modularity-spin 1s linear infinite;
         border-radius: 50%;
-        transform-origin: $innerCirclePos/2 + $rotatingCircleDiam;
+        transform-origin: calc($innerCirclePos / 2) + $rotatingCircleDiam;
     }
 }
 
