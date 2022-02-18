@@ -49,6 +49,8 @@ class Thickbox
 
         $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
 
+        var_dump($current_screen->action); 
+
         if (substr($current_screen->post_type, 0, 4) == 'mod-' && ($current_screen->action == 'add' || $current_screen->action == '')) {
             echo "
                 <script>
@@ -66,13 +68,20 @@ class Thickbox
     public function enqueue()
     {
         // Script
-        wp_register_script('modularity-thickbox', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/modularity-editor-modal.js'));
+        wp_register_script(
+            'modularity-thickbox', 
+            MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/modularity-editor-modal.js'),
+            [],
+            '1.0.0',
+            true
+        );
         wp_enqueue_script('modularity-thickbox');
 
         // Style
-        wp_register_style('modularity-thickbox', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('css/modularity-thickbox-edit.css'));
+        wp_register_style(
+            'modularity-thickbox', 
+            MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('css/modularity-thickbox-edit.css')
+        );
         wp_enqueue_style('modularity-thickbox');
     }
 }
