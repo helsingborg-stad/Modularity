@@ -179,7 +179,7 @@ class App
         wp_enqueue_style('modularity');
 
         wp_register_script('modularity', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/modularity.js'));
+            . \Modularity\Helper\CacheBust::name('js/modularity.js'), [], null, true);
 
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
@@ -220,7 +220,7 @@ class App
         wp_enqueue_style('modularity');
 
         wp_register_script('modularity', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/modularity.js'));
+        . \Modularity\Helper\CacheBust::name('js/modularity.js'), [], null, true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
