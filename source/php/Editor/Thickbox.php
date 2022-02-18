@@ -49,8 +49,6 @@ class Thickbox
 
         $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
 
-        var_dump($current_screen->action); 
-
         if (substr($current_screen->post_type, 0, 4) == 'mod-' && ($current_screen->action == 'add' || $current_screen->action == '')) {
             echo "
                 <script>
