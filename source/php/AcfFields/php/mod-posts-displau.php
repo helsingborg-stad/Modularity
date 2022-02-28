@@ -134,6 +134,11 @@ if (function_exists('acf_add_local_field_group')) {
                         'operator' => '!=',
                         'value' => 'expandable-list',
                     ),
+                    1 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '!=',
+                        'value' => 'block',
+                    ),
                 ),
             ),
             'wrapper' => array(
