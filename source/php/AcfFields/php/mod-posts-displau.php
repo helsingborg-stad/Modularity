@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
     'title' => __('Data display', 'modularity'),
     'fields' => array(
@@ -24,6 +26,7 @@
                 'items' => __('Post items', 'modularity'),
                 'news' => __('News items', 'modularity'),
                 'index' => __('Index', 'modularity'),
+                'block' => __('Block', 'modularity'),
             ),
             'allow_null' => 0,
             'other_choice' => 0,
@@ -58,7 +61,7 @@
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'grid',
+                        'value' => 'block',
                     ),
                 ),
                 3 => array(
@@ -102,7 +105,7 @@
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'grid',
+                        'value' => 'block',
                     ),
                 ),
             ),
@@ -396,6 +399,41 @@
             'max_size' => '',
             'mime_types' => '',
         ),
+        11 => array(
+            'key' => 'field_571dfdf50d9d3',
+            'label' => __('Ratio', 'modularity'),
+            'name' => 'ratio',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'block',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'multiple' => 0,
+            'allow_null' => 0,
+            'choices' => array(
+                '4:3' => __('4:3', 'modularity'),
+                '12:16' => __('12:16', 'modularity'),
+            ),
+            'default_value' => array(
+                '4:3' => __('4:3', 'modularity'),
+            ),
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'return_format' => 'value',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -422,4 +460,5 @@
     'active' => true,
     'description' => '',
 ));
-}
+
+}
