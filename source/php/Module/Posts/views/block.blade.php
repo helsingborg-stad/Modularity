@@ -14,11 +14,10 @@
 <div class="o-grid" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
-
             @block([
                 'heading' => $post->post_title,
                 'ratio' => $ratio,
-                'meta' => 'Meta',
+                'meta' => $post->tags,
                 'filled' => true,
                 'image' => [
                     'src' => $post->thumbnail[0],
@@ -28,41 +27,6 @@
                 'link' => $post->link,
             ])
             @endblock
-
-            <?php /*@card([
-                'link' =>  $post->link,
-                'classList' => $classes,
-                'context' => 'module.posts.index',
-                'hasAction' => true,
-            ])
-
-                 @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
-                    <div class="c-card__image c-card__image--secondary">
-                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
-                    </div>
-                @endif
-            
-                <div class="c-card__body">
-                    @if ($post->showTitle)
-                        @typography([
-                            'element' => "h2",
-                            'classList' => ['c-card__heading'],
-                        ])
-                            {{$post->post_title}}
-                        @endtypography
-                    @endif
-           
-                    {!! $post->post_content !!}
-                    
-                </div>
-                @if($post->tags)
-                    <div class="c-card__footer">
-                        @tags (['tags' => $post->tags])
-                        @endtags
-                    </div>
-                @endif
-            @endcard */ ?>
-
         </div>
     @endforeach
 </div>
