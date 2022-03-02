@@ -26,7 +26,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'items' => __('Post items', 'modularity'),
                 'news' => __('News items', 'modularity'),
                 'index' => __('Index', 'modularity'),
-                'block' => __('Block', 'modularity'),
+                'grid' => __('Blocks', 'modularity'),
             ),
             'allow_null' => 0,
             'other_choice' => 0,
@@ -61,7 +61,7 @@ if (function_exists('acf_add_local_field_group')) {
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'block',
+                        'value' => 'grid',
                     ),
                 ),
                 3 => array(
@@ -105,7 +105,7 @@ if (function_exists('acf_add_local_field_group')) {
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'block',
+                        'value' => 'grid',
                     ),
                 ),
             ),
@@ -137,7 +137,7 @@ if (function_exists('acf_add_local_field_group')) {
                     1 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '!=',
-                        'value' => 'block',
+                        'value' => 'grid',
                     ),
                 ),
             ),
@@ -416,7 +416,7 @@ if (function_exists('acf_add_local_field_group')) {
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'block',
+                        'value' => 'grid',
                     ),
                 ),
             ),
