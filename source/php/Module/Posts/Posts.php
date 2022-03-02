@@ -807,7 +807,6 @@ class Posts extends \Modularity\Module
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
-            'grid' => 'index',
             'news' => 'index'
         ];
 
