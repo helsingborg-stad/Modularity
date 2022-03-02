@@ -22,7 +22,9 @@
                 'image' => [
                     'src' => $post->thumbnail[0],
                     'alt' => $contact['full_name'],
+                    'backgroundColor' => 'secondary',
                 ],
+                'classList' => ['t-posts-block'],
                 'context' => 'module.posts.block',
                 'link' => $post->link,
             ])
