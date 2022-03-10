@@ -18,6 +18,7 @@
             @card([
                 'link' =>  $post->link,
                 'classList' => $classes,
+                'hasFooter' => $post->tags ? true : false,
                 'context' => 'module.posts.index',
                 'containerAware' => true,
                 'hasAction' => true,
