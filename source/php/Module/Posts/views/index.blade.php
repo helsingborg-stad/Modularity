@@ -19,12 +19,13 @@
                 'link' =>  $post->link,
                 'classList' => $classes,
                 'context' => 'module.posts.index',
+                'containerAware' => true,
                 'hasAction' => true,
             ])
 
                  @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">
-                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
                     </div>
                 @endif
             
