@@ -73,6 +73,8 @@ class Display
     public function renderView($view, $data = array()): string
     {
 
+        $data['sidebarContext'] = \Modularity\Helper\Context::get();
+
         // Adding Module path to filter
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $this->getModuleDirectory($data['post_type']) . '/views';
         $externalViewPaths = apply_filters('/Modularity/externalViewPath', []);
@@ -271,9 +273,16 @@ class Display
         
         // Get sidebar arguments
         $sidebarArgs = $this->getSidebarArgs($sidebar);
-        
+
+        // Update context
+        if (isset($sidebarArgs['id'])) {
+            \Modularity\Helper\Context::set(
+                "sidebar." . $sidebarArgs['id']
+            );
+        }
+
         // Loop and output modules
-        if(isset($modules['modules']) && is_array($modules['modules']) && !empty($modules['modules'])) {
+        if (isset($modules['modules']) && is_array($modules['modules']) && !empty($modules['modules'])) {
             foreach ($modules['modules'] as $module) {
                 if (!is_preview() && $module->hidden == 'true') {
                     continue;
@@ -281,6 +290,11 @@ class Display
 
                 $this->outputModule($module, $sidebarArgs, \Modularity\ModuleManager::$moduleSettings[get_post_type($module)]);
             }
+        }
+
+        //Reset context
+        if (isset($sidebarArgs['id'])) {
+            \Modularity\Helper\Context::set(false);
         }
     }
 
