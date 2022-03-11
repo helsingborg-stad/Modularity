@@ -18,10 +18,11 @@ class GridTemplate
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
         $this->data['posts_columns'] = $fields->posts_columns;
+        $this->data['ratio'] = $fields->ratio;
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
 
         $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
-        $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'].'@md';
+        $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'] . '@md';
         $this->data['column_height'] = false;
 
         $this->preparePosts($fields);
@@ -65,7 +66,7 @@ class GridTemplate
                     array_shift($gridRow);
                 }
 
-                $columnSize = 'o-grid-' . $gridColumns[0].'@md';
+                $columnSize = 'o-grid-' . $gridColumns[0] . '@md';
                 array_shift($gridColumns);
                 $columnHeight = null;
 
@@ -97,12 +98,12 @@ class GridTemplate
 
             /* Image */
             $image = null;
-            if ($fields->posts_data_source !== 'input') {
+            if ($this->data['posts_data_source'] !== 'input') {
                 $image = wp_get_attachment_image_src(
                     get_post_thumbnail_id($post->ID),
                     apply_filters(
-                        'modularity/image/posts/items',
-                        municipio_to_aspect_ratio('16:9', $imageDimensions),
+                        'modularity/image/posts/index',
+                        municipio_to_aspect_ratio($fields->ratio, $imageDimensions),
                         $this->args
                     )
                 );
@@ -111,16 +112,20 @@ class GridTemplate
                     $image = wp_get_attachment_image_src(
                         $post->image->ID,
                         apply_filters(
-                            'modularity/image/posts/items',
-                            municipio_to_aspect_ratio('16:9', $imageDimensions),
+                            'modularity/image/posts/index',
+                            municipio_to_aspect_ratio($fields->ratio, $imageDimensions),
                             $this->args
                         )
                     );
                 }
             }
 
+            // Image fetch
             $post->thumbnail = $image;
-            $post->extended = get_extended(wp_strip_all_tags(strip_shortcodes($post->post_content)));
+
+            // Get link for card, or tags
+            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
+            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
         }
     }
 
@@ -168,6 +173,6 @@ class GridTemplate
                 break;
         }
 
-        return apply_filters('Modularity/Module/Posts/TemplateController/GridTemplate/Pattern', $gridRand, $gridSize);
+        return apply_filters('Modularity/Module/Posts/TemplateController/BlockTemplate/Pattern', $gridRand, $gridSize);
     }
 }

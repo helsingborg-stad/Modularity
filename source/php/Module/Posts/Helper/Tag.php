@@ -29,7 +29,7 @@ class Tag
                 foreach ($terms as $index => $term) {
                     $tags[$index]['label'] = $term->name;
                     $tags[$index]['color'] = 'secondary';
-                    $tags[$index]['href'] = get_term_link( $term->term_id);
+                    $tags[$index]['href'] = get_term_link($term->term_id);
                 }
 
                 if (!isset($tags)) {
