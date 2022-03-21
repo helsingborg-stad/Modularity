@@ -235,7 +235,10 @@ class Posts extends \Modularity\Module
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
         $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
         $data['posts_data_source'] = $fields->posts_data_source;
+
         $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
+        $data['showDate'] = is_array($data['posts_fields']) && in_array('date', $data['posts_fields']);
+        $data['dateSource'] = $fields->posts_date_source ?? false;
 
         $hasArchive = get_post_type_object($data['posts_data_post_type'])->has_archive;
         $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;

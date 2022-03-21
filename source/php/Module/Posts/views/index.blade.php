@@ -22,6 +22,7 @@
                 'context' => 'module.posts.index',
                 'containerAware' => true,
                 'hasAction' => true,
+                'date' => '2022-01-14'
             ])
 
                  @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
@@ -39,6 +40,8 @@
                             {{$post->post_title}}
                         @endtypography
                     @endif
+
+                    @includeWhen($showDate, 'partials.date')
            
                     {!! $post->post_content !!}
                     

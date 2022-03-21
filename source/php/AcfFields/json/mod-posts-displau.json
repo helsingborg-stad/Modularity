@@ -20,7 +20,8 @@
                 "expandable-list": "Expandable List",
                 "items": "Post items",
                 "news": "News items",
-                "index": "Index"
+                "index": "Index",
+                "block": "Block"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -55,14 +56,21 @@
                     {
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
-                        "value": "grid"
+                        "value": "list"
                     }
                 ],
                 [
                     {
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
-                        "value": "circular"
+                        "value": "list"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "block"
                     }
                 ]
             ],
@@ -71,21 +79,19 @@
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": {
                 "grid-md-12": "1",
                 "grid-md-6": "2",
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": [
-                "grid-md-12"
-            ],
+            "default_value": "grid-md-12",
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
+            "return_format": "value",
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "placeholder": ""
         },
         {
             "key": "field_571e046536f0e",
@@ -136,7 +142,7 @@
                 "id": ""
             },
             "choices": {
-                "date": "Show date published",
+                "date": "Show date",
                 "excerpt": "Show excerpt",
                 "title": "Show title",
                 "image": "Show featured image"
@@ -152,6 +158,39 @@
             "toggle": 0,
             "return_format": "value",
             "save_custom": 0
+        },
+        {
+            "key": "field_62387e4b55b75",
+            "label": "Date source",
+            "name": "posts_date_source",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571e01e7f246c",
+                        "operator": "==",
+                        "value": "date"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "post_date": "Date published",
+                "post_modified": "Date modified"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_591176fff96d6",
@@ -346,9 +385,7 @@
                 "default": "Default timestamp",
                 "readable": "Readable timestamp"
             },
-            "default_value": [
-                "default"
-            ],
+            "default_value": "default",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -417,6 +454,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0
 }]
 
