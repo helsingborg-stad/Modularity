@@ -61,7 +61,6 @@ class Slider extends \Modularity\Module
         $data['autoslide']  = $fields['slides_autoslide'] ? intval($fields['slides_slide_timeout']) : false;
         $data['ratio']      = preg_replace('/ratio-/', '', $fields['slider_format']);
         $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']);
-        $data['sliderShadow'] = $fields['slider_shadow'];
         $data['title'] = isset($fields['post_title']) ? $fields['post_title'] : '';
 
         //Get slides
