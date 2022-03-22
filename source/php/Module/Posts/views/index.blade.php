@@ -25,9 +25,9 @@
                 'date' => '2022-01-14'
             ])
 
-                 @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
+                @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">
-                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $post->post_title }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
                     </div>
                 @endif
             
