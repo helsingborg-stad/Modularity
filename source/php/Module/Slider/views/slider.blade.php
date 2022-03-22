@@ -13,7 +13,7 @@
     'autoSlide'     => $autoslide,
     'ratio'         => $ratio ?? '16:9',
     'repeatSlide'   => $wrapAround,
-    'shadow'        => $sidebarContext === 'sidebar.slider-area' ? false : $sliderShadow,
+    'shadow'        => $sidebarContext !== 'sidebar.slider-area',
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
     ],
