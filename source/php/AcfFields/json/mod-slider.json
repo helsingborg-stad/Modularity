@@ -737,25 +737,6 @@
             "min": 1,
             "max": 6
         },
-        {
-            "key": "field_6093ac63b2bc3",
-            "label": "Shadow",
-            "name": "slider_shadow",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Add a shadow around the slider.",
-            "default_value": 1,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        }
     ],
     "location": [
         [
@@ -838,4 +819,4 @@
     "active": true,
     "description": ""
 }]
-
+
