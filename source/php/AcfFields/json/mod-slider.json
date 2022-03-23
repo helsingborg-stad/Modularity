@@ -736,7 +736,7 @@
             "button_label": "Add slide",
             "min": 1,
             "max": 6
-        },
+        }
     ],
     "location": [
         [
