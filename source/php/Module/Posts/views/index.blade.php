@@ -41,7 +41,7 @@
                         @endtypography
                     @endif
 
-                    @includeWhen($showDate, 'partials.date')
+                    @includeWhen($post->showDate, 'partials.date')
            
                     {!! $post->post_content !!}
                     

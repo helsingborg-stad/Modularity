@@ -184,8 +184,18 @@
                 'id' => '',
             ),
             'choices' => array(
-                'post_date' => __('Date published', 'modularity'),
-                'post_modified' => __('Date modified', 'modularity'),
+                0 =>                 (object) array(
+                     'meta_key' => 'post_single_show_featured_image',
+                ),
+                1 =>                 (object) array(
+                     'meta_key' => 'hide_in_menu',
+                ),
+                2 =>                 (object) array(
+                     'meta_key' => 'custom_menu_title',
+                ),
+                3 =>                 (object) array(
+                     'meta_key' => 'modularity-mod-posts-expandable-list',
+                ),
             ),
             'default_value' => false,
             'allow_null' => 0,

@@ -180,10 +180,20 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "post_date": "Date published",
-                "post_modified": "Date modified"
-            },
+            "choices": [
+                {
+                    "meta_key": "post_single_show_featured_image"
+                },
+                {
+                    "meta_key": "hide_in_menu"
+                },
+                {
+                    "meta_key": "custom_menu_title"
+                },
+                {
+                    "meta_key": "modularity-mod-posts-expandable-list"
+                }
+            ],
             "default_value": false,
             "allow_null": 0,
             "multiple": 0,
