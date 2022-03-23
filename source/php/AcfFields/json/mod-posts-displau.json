@@ -20,8 +20,7 @@
                 "expandable-list": "Expandable List",
                 "items": "Post items",
                 "news": "News items",
-                "index": "Index",
-                "block": "Block"
+                "index": "Index"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -56,21 +55,14 @@
                     {
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
-                        "value": "list"
+                        "value": "grid"
                     }
                 ],
                 [
                     {
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
-                        "value": "list"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "block"
+                        "value": "circular"
                     }
                 ]
             ],
@@ -79,19 +71,21 @@
                 "class": "",
                 "id": ""
             },
+            "multiple": 0,
+            "allow_null": 0,
             "choices": {
                 "grid-md-12": "1",
                 "grid-md-6": "2",
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": "grid-md-12",
-            "allow_null": 0,
-            "multiple": 0,
+            "default_value": [
+                "grid-md-12"
+            ],
             "ui": 0,
-            "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "return_format": "value"
         },
         {
             "key": "field_571e046536f0e",
@@ -395,7 +389,9 @@
                 "default": "Default timestamp",
                 "readable": "Readable timestamp"
             },
-            "default_value": "default",
+            "default_value": [
+                "default"
+            ],
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -464,7 +460,5 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "",
-    "show_in_rest": 0
+    "description": ""
 }]
-

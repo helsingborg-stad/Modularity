@@ -1,7 +1,7 @@
 <?php 
+if (function_exists('acf_add_local_field_group')) {
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
     'title' => __('Data display', 'modularity'),
     'fields' => array(
@@ -24,7 +24,7 @@
                 'items' => __('Post items', 'modularity'),
                 'news' => __('News items', 'modularity'),
                 'index' => __('Index', 'modularity'),
-                'block' => __('Block', 'modularity'),
+                'grid' => __('Blocks', 'modularity'),
             ),
             'allow_null' => 0,
             'other_choice' => 0,
@@ -59,21 +59,14 @@
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'list',
+                        'value' => 'grid',
                     ),
                 ),
                 3 => array(
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
-                        'value' => 'list',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'block',
+                        'value' => 'circular',
                     ),
                 ),
             ),
@@ -82,19 +75,21 @@
                 'class' => '',
                 'id' => '',
             ),
+            'multiple' => 0,
+            'allow_null' => 0,
             'choices' => array(
                 'grid-md-12' => __('1', 'modularity'),
                 'grid-md-6' => __('2', 'modularity'),
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => __('grid-md-12', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
+            'default_value' => array(
+                0 => __('grid-md-12', 'modularity'),
+            ),
             'ui' => 0,
-            'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
+            'return_format' => 'value',
         ),
         2 => array(
             'key' => 'field_571e046536f0e',
@@ -136,6 +131,11 @@
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '!=',
                         'value' => 'expandable-list',
+                    ),
+                    1 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '!=',
+                        'value' => 'grid',
                     ),
                 ),
             ),
@@ -184,18 +184,8 @@
                 'id' => '',
             ),
             'choices' => array(
-                0 =>                 (object) array(
-                     'meta_key' => 'post_single_show_featured_image',
-                ),
-                1 =>                 (object) array(
-                     'meta_key' => 'hide_in_menu',
-                ),
-                2 =>                 (object) array(
-                     'meta_key' => 'custom_menu_title',
-                ),
-                3 =>                 (object) array(
-                     'meta_key' => 'modularity-mod-posts-expandable-list',
-                ),
+                'post_date' => __('Date published', 'modularity'),
+                'post_modified' => __('Date modified', 'modularity'),
             ),
             'default_value' => false,
             'allow_null' => 0,
@@ -398,7 +388,9 @@
                 'default' => __('Default timestamp', 'modularity'),
                 'readable' => __('Readable timestamp', 'modularity'),
             ),
-            'default_value' => __('default', 'modularity'),
+            'default_value' => array(
+                0 => __('default', 'modularity'),
+            ),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -443,6 +435,41 @@
             'max_size' => '',
             'mime_types' => '',
         ),
+        12 => array(
+            'key' => 'field_571dfdf50d9d3',
+            'label' => __('Ratio', 'modularity'),
+            'name' => 'ratio',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'grid',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'multiple' => 0,
+            'allow_null' => 0,
+            'choices' => array(
+                '4:3' => __('4:3', 'modularity'),
+                '12:16' => __('12:16', 'modularity'),
+            ),
+            'default_value' => array(
+                '4:3' => __('4:3', 'modularity'),
+            ),
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'return_format' => 'value',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -468,6 +495,6 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
-    'show_in_rest' => 0,
 ));
-}
+
+}
