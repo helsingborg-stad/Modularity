@@ -7,7 +7,7 @@
     'link'              => $slide->link_url,
     'alt'               => $slide->alt_text,
     'cta'               => $slide->call_to_action,
-    'heroStyle'         => $slide->heroStyle,
+    'heroStyle'         => $sidebarContext === 'sidebar.slider-area',
     'focusPoint'        => $slide->focusPoint,
     'context'           => ['module.slider-item', $sidebarContext . '.module.slider-item']
 ])
