@@ -35,7 +35,8 @@ class Posts extends \Modularity\Module
         
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
         
-        add_filter('acf/load_field/name=posts_date_source', array($this, 'getDateSource'));
+        add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
+        add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
     }
 
     /**
@@ -44,12 +45,10 @@ class Posts extends \Modularity\Module
      * @param string $postType
      * @return array
      */
-    public function getDateSource($field): array
+    public function getDateSource($postType): array
     {
-        $postType = get_field('posts_data_post_type', $this->ID);
-
         if(empty($postType)) {
-            return $field;
+            return false;
         }
 
         $metaKeys = array(
@@ -65,7 +64,29 @@ class Posts extends \Modularity\Module
             }
         }
   
-        $field['choices'] = $metaKeys;
+        return $metaKeys;
+    }
+
+    public function loadDateFieldAjax()
+    {
+        $postType = $_POST['state'] ?? false;
+
+        if(empty($postType)) {
+            return false;
+        }
+
+        wp_send_json($this->getDateSource($postType));
+    }
+
+    public function loadDateField($field = [])
+    {
+        $postType = get_field('posts_data_post_type', $this->ID);
+
+        if(empty($postType)) {
+            return $field;
+        }
+
+        $field['choices'] = $this->getDateSource($postType);
 
         return $field;
     }
