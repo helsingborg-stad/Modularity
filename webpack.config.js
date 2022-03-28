@@ -21,6 +21,9 @@ module.exports = {
         'css/modularity': './source/sass/modularity.scss',
         'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
 
+        //Admin
+        'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
+
         //Modules
         'js/mod-posts-taxonomy': './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
         'js/mod-posts-load-more-button': './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
