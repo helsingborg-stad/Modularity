@@ -136,7 +136,7 @@
                 "id": ""
             },
             "choices": {
-                "date": "Show date published",
+                "date": "Show date",
                 "excerpt": "Show excerpt",
                 "title": "Show title",
                 "image": "Show featured image"
@@ -152,6 +152,49 @@
             "toggle": 0,
             "return_format": "value",
             "save_custom": 0
+        },
+        {
+            "key": "field_62387e4b55b75",
+            "label": "Date source",
+            "name": "posts_date_source",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571e01e7f246c",
+                        "operator": "==",
+                        "value": "date"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [
+                {
+                    "meta_key": "post_single_show_featured_image"
+                },
+                {
+                    "meta_key": "hide_in_menu"
+                },
+                {
+                    "meta_key": "custom_menu_title"
+                },
+                {
+                    "meta_key": "modularity-mod-posts-expandable-list"
+                }
+            ],
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_591176fff96d6",
@@ -419,4 +462,3 @@
     "active": true,
     "description": ""
 }]
-

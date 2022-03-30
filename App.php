@@ -235,6 +235,10 @@ class App
         ));
         wp_enqueue_script('modularity');
 
+        wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'));
+        wp_enqueue_script('dynamic-acf');
+
         add_action('admin_head', function () {
             echo "
                 <script>

@@ -35,7 +35,60 @@ class Posts extends \Modularity\Module
         
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
         
+        add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
+        add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
+    }
 
+    /**
+     * Get list of date sources
+     *
+     * @param string $postType
+     * @return array
+     */
+    public function getDateSource($postType): array
+    {
+        if(empty($postType)) {
+            return false;
+        }
+
+        $metaKeys = array(
+            'post_date'  => 'Date published',
+            'post_modified' => 'Date modified',
+        );
+
+        $metaKeysRaw = \Municipio\Helper\Post::getPosttypeMetaKeys($postType);
+
+        if (isset($metaKeysRaw) && is_array($metaKeysRaw) && !empty($metaKeysRaw)) {
+            foreach ($metaKeysRaw as $metaKey) {
+                $metaKeys[$metaKey] = $metaKey;
+            }
+        }
+  
+        return $metaKeys;
+    }
+
+    public function loadDateFieldAjax()
+    {
+        $postType = $_POST['state'] ?? false;
+
+        if(empty($postType)) {
+            return false;
+        }
+
+        wp_send_json($this->getDateSource($postType));
+    }
+
+    public function loadDateField($field = [])
+    {
+        $postType = get_field('posts_data_post_type', $this->ID);
+
+        if(empty($postType)) {
+            return $field;
+        }
+
+        $field['choices'] = $this->getDateSource($postType);
+
+        return $field;
     }
 
     public static function loadMoreButtonAttributes($module, $target, $bladeTemplate, $postsPerPage)
@@ -199,6 +252,12 @@ class Posts extends \Modularity\Module
             $data['searchQuery'] = get_query_var('search');
         }
         $data['modId'] = $this->ID;
+
+        // Posts
+        $data['posts_fields'] = $fields->posts_fields ?? false;
+        $data['posts_date_source'] = $fields->posts_date_source ?? false;
+        $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
+        $data['posts_data_source'] = $fields->posts_data_source ?? false;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
 
         // Sorting
@@ -233,9 +292,6 @@ class Posts extends \Modularity\Module
         }
 
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
-        $data['posts_data_post_type'] = isset($fields->posts_data_post_type) ? $fields->posts_data_post_type : false;
-        $data['posts_data_source'] = $fields->posts_data_source;
-        $data['posts_fields'] = isset($fields->posts_fields) ? $fields->posts_fields : false;
 
         $hasArchive = get_post_type_object($data['posts_data_post_type'])->has_archive;
         $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;

@@ -92,6 +92,37 @@ class IndexTemplate
             $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
             $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
             $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
+
+            if($post->showDate) {
+                $post->postDate = $this->getDate($post, $this->data['posts_date_source']);
+            }
         }
+    }
+
+    /**
+     * Prepare a date to show in view
+     *
+     * @param   array $posts    The posts
+     * @return  array           The posts - with archive date
+     */
+    public function getDate($post, $dateSource = 'post_date')
+    {
+        if(!$dateSource) {
+            return false;
+        }
+
+        $isMetaKey = in_array($dateSource, ['post_date', 'post_modified']) ? false : true;
+
+        if($isMetaKey == true) {
+            $postDate = get_post_meta($post->ID, $dateSource, true);
+        } else {
+            $postDate = $post->{$dateSource};
+        }
+
+        if (!is_string($postDate) || empty($postDate) || strtotime($postDate) === false) {
+            $postDate = false;
+        }
+
+        return $postDate;
     }
 }
