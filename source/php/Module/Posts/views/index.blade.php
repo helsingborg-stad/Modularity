@@ -18,13 +18,16 @@
             @card([
                 'link' =>  $post->link,
                 'classList' => $classes,
+                'hasFooter' => $post->tags ? true : false,
                 'context' => 'module.posts.index',
+                'containerAware' => true,
                 'hasAction' => true,
+                'date' => '2022-01-14'
             ])
 
-                 @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
+                @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">
-                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $contact['full_name'] }}" style="height:initial; background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $post->post_title }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
                     </div>
                 @endif
             
@@ -37,6 +40,8 @@
                             {{$post->post_title}}
                         @endtypography
                     @endif
+
+                    @includeWhen($post->showDate, 'partials.date')
            
                     {!! $post->post_content !!}
                     
