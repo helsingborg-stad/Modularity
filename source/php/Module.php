@@ -157,13 +157,13 @@ class Module
         }
 
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
-        add_filter('the_title', array($this, 'setBlockTitle'), 10, 2 );
+        add_filter('the_title', array($this, 'setBlockTitle'), 10, 2);
 
-        if(is_a($post, '\WP_Post') && $post->post_title) {
+        if (is_a($post, '\WP_Post') && $post->post_title) {
             $this->data['postTitle'] = $post->post_title;
         }
 
-        if (!is_admin() && $this->hasModule()) {
+        if (!is_admin() && $this->hasModule($post)) {
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
         }
@@ -276,19 +276,48 @@ class Module
             return apply_filters('Modularity/hasModule', true, null);
         }
 
+        //Collect all modules active
         $modules = \Modularity\Editor::getPostModules($postId);
         $modules = array_merge($modules, $this->getShortcodeModules($postId));
-        $modules = array_merge($modules, $this->getOnePageModules($postId));
         $modules = array_merge($modules, $this->getBlocks($postId));
 
-        $modules = json_encode($modules);
+        //Sort out active module post types
+        $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
 
+        //Look for
         $moduleSlug = $this->moduleSlug;
         if (empty($moduleSlug)) {
             $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
         }
 
-        return apply_filters('Modularity/hasModule', strpos($modules, '"post_type":"' . $moduleSlug . '"') == true, $archiveSlug);
+        return apply_filters(
+            'Modularity/hasModule',
+            in_array($moduleSlug, $modules),
+            $archiveSlug
+        );
+    }
+
+    /**
+     * Get values from array recursively
+     *
+     * @param array $haystack
+     * @param string $needle
+     * @return array
+     */
+    private function getValueFromKeyRecursive(array $haystack, $needle)
+    {
+        $stack = [];
+        $iterator  = new \RecursiveArrayIterator($haystack);
+        $recursive = new \RecursiveIteratorIterator(
+            $iterator,
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
+        foreach ($recursive as $key => $value) {
+            if ($key === $needle) {
+                $stack[] = $value;
+            }
+        }
+        return array_unique(array_filter($stack));
     }
 
     /**
@@ -314,49 +343,6 @@ class Module
         }
 
         return [];
-    }
-
-    /**
-     * Get modules used in one page sections
-     * @return array Array with modules from one page sections
-     */
-    public function getOnePageModules() : array
-    {
-        $modules = array();
-
-        if (is_front_page() && is_plugin_active('modularity-onepage/modularity-onepage.php')) {
-            $postStatus = array('publish');
-            if (is_user_logged_in()) {
-                $postStatus[] = 'private';
-            }
-
-            $sections = get_posts(array(
-                'post_type' => 'onepage',
-                'post_status' => $postStatus,
-                'orderby' => 'menu_order',
-                'order' => 'asc',
-                'posts_per_page'   => -1
-            ));
-
-            foreach ($sections as $section) {
-                $section_modules = \Modularity\Editor::getPostModules($section->ID);
-
-                if (!isset($section_modules['onepage-sidebar'])) {
-                    continue;
-                }
-
-                $section_modules = $section_modules['onepage-sidebar']['modules'];
-                if (is_array($section_modules) && !empty($section_modules)) {
-                    foreach ($section_modules as $module) {
-                        if (!$module->hidden) {
-                            $modules[] = $module;
-                        }
-                    }
-                }
-            }
-        }
-
-        return $modules;
     }
 
     /**

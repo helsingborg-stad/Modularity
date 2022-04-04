@@ -72,7 +72,6 @@ class Display
      */
     public function renderView($view, $data = array()): string
     {
-
         $data['sidebarContext'] = \Modularity\Helper\Context::get();
 
         // Adding Module path to filter
