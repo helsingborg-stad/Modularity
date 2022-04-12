@@ -22,15 +22,16 @@ class Script extends \Modularity\Module
      * Removes the filter of html & script data before save.
      * @var int
      */
-    public function disableHTMLFiltering($postId) {
+    public function disableHTMLFiltering($postId)
+    {
         
         //Bail early if not a script module save
-        if(get_post_type($postId) !== "mod-" . $this->slug) {
-            return; 
+        if (get_post_type($postId) !== "mod-" . $this->slug) {
+            return;
         }
 
         //Disable filter temporarirly
-        add_filter('acf/allow_unfiltered_html', function($allow_unfiltered_html) {
+        add_filter('acf/allow_unfiltered_html', function ($allow_unfiltered_html) {
             return true;
         });
     }
@@ -39,6 +40,16 @@ class Script extends \Modularity\Module
     {
         $data = array();
         $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
+
+        $placeholder = get_field('embedded_placeholder_image', $this->ID);
+        $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
+
+        $data['placeholder'] = [
+            'url' => $attachment[0],
+            'width' => $attachment[1],
+            'height' => $attachment[2],
+            'alt' => $placeholder['alt']
+        ];
 
         $data['cardPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
             "u-padding__y--".get_post_meta($this->ID, 'embeded_card_padding', true)." u-padding__x--".
