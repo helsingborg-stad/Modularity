@@ -195,6 +195,8 @@ class General extends \Modularity\Options
 	    return $a['name'] > $b['name'];
 	});
 
+	$wp_registered_sidebars = apply_filters('Modularity/Templates/Sidebars', $wp_registered_sidebars);
+
 	$coreTemplates = \Modularity\Helper\Wp::getCoreTemplates();
 	$coreTemplates = apply_filters('Modularity/CoreTemplatesInTheme', $coreTemplates);
 	$customTemplates = get_page_templates();
