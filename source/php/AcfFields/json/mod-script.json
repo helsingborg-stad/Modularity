@@ -30,7 +30,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
@@ -40,6 +40,30 @@
             "step": "",
             "prepend": "",
             "append": ""
+        },
+        {
+            "key": "field_624f3a552ed05",
+            "label": "Placeholder image",
+            "name": "embedded_placeholder_image",
+            "type": "image",
+            "instructions": "Add a placeholder image to show where scripts cannot be rendered card",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
         }
     ],
     "location": [
@@ -60,4 +84,4 @@
     "active": true,
     "description": ""
 }]
-
+

@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_56a8b9eddfced',
     'title' => __('Embed', 'modularity'),
     'fields' => array(
@@ -33,7 +34,7 @@
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
-                'width' => '',
+                'width' => '50',
                 'class' => '',
                 'id' => '',
             ),
@@ -44,6 +45,30 @@
             'prepend' => '',
             'append' => '',
         ),
+        2 => array(
+            'key' => 'field_624f3a552ed05',
+            'label' => 'Placeholder image',
+            'name' => 'embedded_placeholder_image',
+            'type' => 'image',
+            'instructions' => __('Add a placeholder image to show where scripts cannot be rendered card', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '50',
+                'class' => '',
+                'id' => '',
+            ),
+            'return_format' => 'array',
+            'preview_size' => 'medium',
+            'library' => 'all',
+            'min_width' => '',
+            'min_height' => '',
+            'min_size' => '',
+            'max_width' => '',
+            'max_height' => '',
+            'max_size' => '',
+            'mime_types' => '',
+        )
     ),
     'location' => array(
         0 => array(
@@ -63,4 +88,4 @@
     'active' => true,
     'description' => '',
 ));
-}
+}
