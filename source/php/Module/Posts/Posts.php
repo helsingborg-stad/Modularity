@@ -37,6 +37,9 @@ class Posts extends \Modularity\Module
         
         add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
+
+        //Add full-width capabilty to blocks
+        add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
     }
 
     /**
@@ -65,6 +68,21 @@ class Posts extends \Modularity\Module
         }
   
         return $metaKeys;
+    }
+
+    /**
+     * Allow full-width alignment on posts blocks
+     *
+     * @param array $data
+     * @param string $slug
+     * @return array
+     */
+    public function blockSettings($data, $slug)
+    {
+        if (strpos($slug, 'posts') === 0 && isset($data['supports'])) {
+            $data['supports']['align'] = ['full'];
+        }
+        return $data;
     }
 
     public function loadDateFieldAjax()
