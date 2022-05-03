@@ -20,12 +20,12 @@ class Display
     {
         add_filter('wp', array($this, 'init'));
         add_filter('is_active_sidebar', array($this, 'isActiveSidebar'), 10, 2);
-        
+
         add_shortcode('modularity', array($this, 'shortcodeDisplay'));
         add_filter('the_post', array($this, 'filterNestedModuleShortocde'));
-        
+
         add_filter('Modularity/Display/Markup', array($this, 'addGridToSidebar'), 10, 2);
-        
+
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
         add_filter('Modularity/Display/replaceGrid', array($this, 'replaceGridClasses'), 10);
@@ -81,7 +81,7 @@ class Display
         if (isset($externalViewPaths[$data['post_type']])) {
             $moduleView = $externalViewPaths[$data['post_type']];
         }
-        
+
         $init = new ComponentLibraryInit([$moduleView]);
         $blade = $init->getEngine();
 
@@ -134,9 +134,9 @@ class Display
 
         //Just figure out the state of a sidebar once
         if(isset(self::$sidebarState[$sidebar])) {
-            return self::$sidebarState[$sidebar]; 
+            return self::$sidebarState[$sidebar];
         }
-        
+
         $widgets = wp_get_sidebars_widgets();
         $widgets = array_map('array_filter', $widgets);
         $visibleModules = false;
@@ -155,7 +155,7 @@ class Display
         $hasModules = ($visibleModules && isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
 
         if ($hasWidgets || $hasModules) {
-            return self::$sidebarState[$sidebar] = true; 
+            return self::$sidebarState[$sidebar] = true;
         }
 
         return self::$sidebarState[$sidebar] = false;
@@ -169,13 +169,23 @@ class Display
     {
         global $post;
         global $wp_query;
-        
-        if (is_admin() || is_feed() || is_tax() || post_password_required()) {
+
+        if (!$wp_query->is_main_query()) {
             return;
         }
-        
+
+        if (defined('PAGE_FOR_POSTTYPE_ID') && is_numeric(PAGE_FOR_POSTTYPE_ID)) {
+            $realPostID = PAGE_FOR_POSTTYPE_ID;
+        } else {
+            $realPostID = $post->ID;
+        }
+
+        if (is_admin() || is_feed() || is_tax() || post_password_required($realPostID)) {
+            return;
+        }
+
         $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
-        
+
         if (isset($wp_query->query['modularity_template']) && !empty($wp_query->query['modularity_template'])) {
             $this->modules = \Modularity\Editor::getPostModules($wp_query->query['modularity_template']);
             $this->options = get_option('modularity_' . $wp_query->query['modularity_template'] . '_sidebar-options');
@@ -184,11 +194,11 @@ class Display
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
         } else {
             $this->modules = \Modularity\Editor::getPostModules($post->ID);
-            $this->options = get_post_meta($post->ID, 'modularity-sidebar-options', true);
+            $this->options = get_post_meta($realPostID, 'modularity-sidebar-options', true);
         }
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
         add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
-        
+
         add_filter('sidebars_widgets', array($this, 'hideWidgets'));
     }
 
@@ -200,15 +210,15 @@ class Display
     public function hideWidgets($sidebars)
     {
         $retSidebars = $sidebars;
-        
+
         foreach ($retSidebars as $sidebar => $widgets) {
             if (!empty($retSidebars[$sidebar]) && (!isset($this->options[$sidebar]['hide_widgets']) || $this->options[$sidebar]['hide_widgets'] != 'true')) {
                 continue;
             }
-            
+
             $retSidebars[$sidebar] = array('');
         }
-    
+
         return $retSidebars;
     }
 
@@ -252,7 +262,7 @@ class Display
         if (isset($this->options[$sidebar]['hook']) && $this->options[$sidebar]['hook'] != 'after') {
             return false;
         }
-        
+
         $this->output($sidebar);
     }
 
@@ -266,10 +276,10 @@ class Display
         if (!isset($this->modules[$sidebar]) || !$this->isModularitySidebarActive($sidebar)) {
             return;
         }
-        
+
         // Get modules
         $modules = $this->modules[$sidebar];
-        
+
         // Get sidebar arguments
         $sidebarArgs = $this->getSidebarArgs($sidebar);
 
@@ -362,37 +372,37 @@ class Display
         if (!isset($args['id'])) {
             $args['id'] = 'no-id';
         }
-        
+
         if (!is_object($module)) {
             return false;
         }
-        
+
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
         $module = $this->fillMissingParams($module, $moduleSettings);
-        
+
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
         }
-        
+
         $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
-        
+
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
             $moduleMarkup = $this->getModuleMarkup($module, $args);
             $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
             $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
-            
+
             if (!$echo) {
                 return $moduleMarkup;
             }
-            
+
             echo $moduleMarkup;
-            
+
             if (!empty($moduleSettings['cache_ttl'])) {
                 $cache->stop();
             }
         }
- 
+
         return true;
     }
 
@@ -409,7 +419,7 @@ class Display
         if (!$templatePath) {
             $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
         }
-        
+
         if (!$templatePath) {
             return false;
         }
@@ -421,11 +431,11 @@ class Display
         } else {
             $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
         }
-        
+
         if (empty($moduleMarkup)) {
             return;
         }
-        
+
         $classes = array(
             'modularity-' . $module->post_type,
             'modularity-' . $module->post_type . '-' . $module->ID,
@@ -436,7 +446,7 @@ class Display
         if (is_preview() && $module->hidden) {
             $classes[] = 'modularity-preview-hidden';
         }
-        
+
         //Add selected scope class
         if (isset($module->data['meta']) && isset($module->data['meta']['module_css_scope']) &&
             is_array($module->data['meta']['module_css_scope'])) {
@@ -449,13 +459,13 @@ class Display
         $beforeModule = (array_key_exists ('before_widget', $args)) ? $args['before_widget'] :
             '<div id="%1$s" class="%2$s" >';
         $afterModule = (array_key_exists ('after_widget', $args)) ? $args['after_widget'] : '</div>';
-                
+
         // Apply filter for classes
         $classes = (array) apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
-        
+
         // Implode classNames
         $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID, implode(' ', $classes));
-        
+
         // Append module edit to before markup
         $moduleEdit = '';
         if (!(isset($args['edit_module']) && $args['edit_module'] === false) &&
@@ -470,7 +480,7 @@ class Display
         // Apply filter for before/after markup
         $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeModule, $args, $module->post_type, $module->ID);
         $afterModule = apply_filters('Modularity/Display/AfterModule', $afterModule, $args, $module->post_type, $module->ID);
-        
+
         return $beforeModule . $moduleMarkup . $afterModule;
     }
 
