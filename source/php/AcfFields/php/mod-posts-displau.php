@@ -459,6 +459,7 @@ if (function_exists('acf_add_local_field_group')) {
             'multiple' => 0,
             'allow_null' => 0,
             'choices' => array(
+                '1:1' => __('1:1', 'modularity'),
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
             ),
