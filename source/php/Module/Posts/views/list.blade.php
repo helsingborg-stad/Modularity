@@ -20,24 +20,28 @@
     @endif
 
     @if (!empty($prepareList))
-        @collection([
-            'sharpTop' => true,
-            'bordered' => true
-         ])
-            @foreach($prepareList as $post)
-                @if ($post['href'] && $post['columns'] && $post['columns'][0])
-                    @collection__item([
-                        'icon' => 'arrow_forward',
-                        'link' => $post['href']
-                        ])
+        <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }}">
+            <div class="o-grid-12">
+                @collection([
+                    'sharpTop' => true,
+                    'bordered' => true
+                ])
+                    @foreach($prepareList as $post)
+                        @if ($post['href'] && $post['columns'] && $post['columns'][0])
+                            @collection__item([
+                                'icon' => 'arrow_forward',
+                                'link' => $post['href']
+                                ])
 
-                    @typography(['element' => 'h4'])
-                        {{$post['columns'][0]}}
-                    @endtypography
+                            @typography(['element' => 'h4'])
+                                {{$post['columns'][0]}}
+                            @endtypography
 
-                    @endcollection__item
-                @endif
-            @endforeach
-        @endcollection
+                            @endcollection__item
+                        @endif
+                    @endforeach
+                @endcollection
+            </div>
+        </div>
     @endif
 @endcard

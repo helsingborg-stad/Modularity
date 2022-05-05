@@ -15,7 +15,7 @@
     @endif
 
     @if (count($posts) > 0)
-        <div class="o-grid grid--columns js-mod-posts-{{$ID}}">
+        <div class="o-grid grid--columns js-mod-posts-{{$ID}} {{ $stretch ? 'o-grid--stretch' : '' }}">
             @foreach ($posts as $post)
                 @if ($loop->first && get_field('posts_highlight', $ID))
                     <div class="o-grid-12@xs">

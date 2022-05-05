@@ -82,7 +82,7 @@ class Posts extends \Modularity\Module
      */
     public function blockSettings($data, $slug)
     {
-        if ($block['name'] == 'acf/posts' && isset($data['supports'])) {
+        if (in_array($data['name'], ['posts', 'acf/posts']) && isset($data['supports'])) {
             $data['supports']['align'] = ['full'];
         }
         return $data;
@@ -97,8 +97,12 @@ class Posts extends \Modularity\Module
      * @return array
      */
     public function blockData($viewData, $block, $module) {
-        if ($block['name'] == 'acf/posts' && $block['align'] == 'full' && !is_admin()) {
-            $viewData['stretch'] = true;
+        $viewData['noGutter'] = false;
+        if (in_array($block['name'], ['posts', 'acf/posts']) && $block['align'] == 'full') {
+            if (!is_admin()) {
+                $viewData['stretch'] = true;
+            }
+            $viewData['noGutter'] = true;
         }
 
         return $viewData;
