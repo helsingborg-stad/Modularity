@@ -43,7 +43,9 @@
 
                     @includeWhen($post->showDate, 'partials.date')
            
-                    {!! $post->post_content !!}
+                    @if($post->showExcerpt)
+                        {!! $post->post_content !!}
+                    @endif
                     
                 </div>
                 @if($post->tags)
