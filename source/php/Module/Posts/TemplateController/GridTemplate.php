@@ -126,6 +126,12 @@ class GridTemplate
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
+        
+            //Booleans for hiding/showing stuff
+            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+            $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
+            $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
+            $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
         }
     }
 
