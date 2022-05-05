@@ -15,16 +15,17 @@
     @foreach ($posts as $post)
         <div class="{{ $posts_columns }}">
             @block([
-                'heading' => $post->post_title,
-                'content' => $post->post_content,
+                'heading' => ($post->showTitle ? $post->post_title : false),
+                'content' => ($post->showExcerpt ? $post->post_content : false),
                 'ratio' => $ratio,
                 'meta' => $post->tags,
+                'date' => ($post->showDate ? $post->post_date : false),
                 'filled' => true,
-                'image' => [
+                'image' => ($post->showImage ? [
                     'src' => $post->thumbnail[0],
                     'alt' => $contact['full_name'],
                     'backgroundColor' => 'secondary',
-                ],
+                ] : false),
                 'classList' => ['t-posts-block'],
                 'context' => 'module.posts.block',
                 'link' => $post->link,
@@ -34,6 +35,8 @@
     @endforeach
 </div>
 
+<!-- //$post->showDate     = (bool) in_array('date', $this->data['posts_fields']); -->
+  
 
 @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
