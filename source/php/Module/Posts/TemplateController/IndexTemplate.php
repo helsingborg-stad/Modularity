@@ -2,7 +2,7 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-class IndexTemplate
+class IndexTemplate extends AbstractController
 {
     protected $module;
     protected $args;
@@ -21,6 +21,7 @@ class IndexTemplate
         $this->data['classes'] = apply_filters('Modularity/Module/Classes', array('u-height--100', 'u-height-100'), $module->post_type, $args);
 
         $this->preparePosts();
+        $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 
     public function preparePosts()
