@@ -3,9 +3,16 @@
     @if ($thumbnail !== false)
         <img class="box-image" src="{{ $thumbnail[0] }}" alt="{{ $first_name }} {{ $last_name }}">
     @endif
-
+    
     @if (!$hideTitle && !empty($postTitle))
-        <h4 class="box-title">{!! $postTitle !!}</h4>
+        @typography([
+            'id'        => 'mod-text-' . $ID .'-label',
+            'element'   => 'h4', 
+            'variant'   => 'h2', 
+            'classList' => ['module-title']
+        ])
+            {!! $postTitle !!}
+        @endtypography
     @endif
 
     <div class="box-content">
