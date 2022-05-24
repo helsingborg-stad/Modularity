@@ -26,6 +26,7 @@
                     'alt' => $contact['full_name'],
                     'backgroundColor' => 'secondary',
                 ] : false),
+                'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
                 'classList' => ['t-posts-block'],
                 'context' => 'module.posts.block',
                 'link' => $post->link,

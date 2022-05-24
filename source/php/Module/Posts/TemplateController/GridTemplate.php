@@ -2,7 +2,7 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-class GridTemplate
+class GridTemplate extends AbstractController
 {
     protected $module;
     protected $args;
@@ -26,6 +26,7 @@ class GridTemplate
         $this->data['column_height'] = false;
 
         $this->preparePosts($fields);
+        $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 
     public function preparePosts($fields)
