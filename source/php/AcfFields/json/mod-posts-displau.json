@@ -20,7 +20,8 @@
                 "expandable-list": "Expandable List",
                 "items": "Post items",
                 "news": "News items",
-                "index": "Index"
+                "index": "Index",
+                "grid": "Blocks"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -62,7 +63,7 @@
                     {
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
-                        "value": "circular"
+                        "value": "news"
                     }
                 ]
             ],
@@ -71,21 +72,67 @@
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": {
                 "grid-md-12": "1",
                 "grid-md-6": "2",
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": [
-                "grid-md-12"
-            ],
+            "default_value": "grid-md-12",
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
+            "return_format": "value",
             "ajax": 0,
-            "placeholder": "",
-            "return_format": "value"
+            "placeholder": ""
+        },
+        {
+            "key": "field_628e0ffba7da4",
+            "label": "Highlight first post",
+            "name": "posts_highlight_first",
+            "type": "true_false",
+            "instructions": "Makes the first post bigger",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "items"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "index"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "news"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_571e046536f0e",
@@ -174,20 +221,10 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [
-                {
-                    "meta_key": "post_single_show_featured_image"
-                },
-                {
-                    "meta_key": "hide_in_menu"
-                },
-                {
-                    "meta_key": "custom_menu_title"
-                },
-                {
-                    "meta_key": "modularity-mod-posts-expandable-list"
-                }
-            ],
+            "choices": {
+                "post_date": "Date published",
+                "post_modified": "Date modified"
+            },
             "default_value": false,
             "allow_null": 0,
             "multiple": 0,
@@ -389,9 +426,7 @@
                 "default": "Default timestamp",
                 "readable": "Readable timestamp"
             },
-            "default_value": [
-                "default"
-            ],
+            "default_value": "default",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
@@ -435,6 +470,40 @@
             "max_height": "",
             "max_size": "",
             "mime_types": ""
+        },
+        {
+            "key": "field_628e0f242aa5f",
+            "label": "Ratio",
+            "name": "ratio",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1:1": "1:1",
+                "4:3": "4:3",
+                "12:16": "12:16"
+            },
+            "default_value": "4:3",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -460,5 +529,12 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
+

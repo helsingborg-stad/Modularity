@@ -13,7 +13,7 @@
 
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
-        <div class="{{ $posts_columns }}">
+        <div class="{{ $loop->first && $first_column ? $first_column : $posts_columns }}">
             @card([
                 'link' => $post->link,
                 'imageFirst' => true,

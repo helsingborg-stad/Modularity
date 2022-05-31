@@ -13,7 +13,7 @@
 
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
-        <div class="{{ $posts_columns }}">
+        <div class="{{ $loop->first && $first_column ? $first_column : $posts_columns }}">
             @block([
                 'heading' => ($post->showTitle ? $post->post_title : false),
                 'content' => ($post->showExcerpt ? $post->post_content : false),
@@ -27,7 +27,7 @@
                     'backgroundColor' => 'secondary',
                 ] : false),
                 'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
-                'classList' => ['t-posts-block'],
+                'classList' => ['t-posts-block', ' u-height--100'],
                 'context' => 'module.posts.block',
                 'link' => $post->link,
             ])

@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+
 class CircularTemplate
 {
     protected $module;
@@ -19,6 +21,10 @@ class CircularTemplate
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news-circular', 'no-color'), $this->module->post_type, $this->args));
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
 
+        if($fields->posts_highlight_first ?? false) {
+            $this->data['first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
+        }
+        
         $this->getThumbnails();
     }
 

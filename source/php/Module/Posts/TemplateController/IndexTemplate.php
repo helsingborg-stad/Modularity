@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+
 class IndexTemplate extends AbstractController
 {
     protected $module;
@@ -20,6 +22,10 @@ class IndexTemplate extends AbstractController
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['classes'] = apply_filters('Modularity/Module/Classes', array('u-height--100', 'u-height-100'), $module->post_type, $args);
 
+        if($fields->posts_highlight_first ?? false) {
+            $this->data['first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
+        }
+
         $this->preparePosts();
         $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
@@ -34,7 +40,6 @@ class IndexTemplate extends AbstractController
             case "o-grid-12@md":    //1-col
                 $imageDimensions = array(1200,900);
                 break;
-
             case "o-grid-6@md":    //2-col
                 $imageDimensions = array(800,600);
                 break;

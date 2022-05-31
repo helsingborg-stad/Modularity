@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+
 class GridTemplate extends AbstractController
 {
     protected $module;
@@ -21,6 +23,10 @@ class GridTemplate extends AbstractController
         $this->data['ratio'] = $fields->ratio;
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
 
+        if($fields->posts_highlight_first ?? false) {
+            $this->data['first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
+        }
+        
         $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
         $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'] . '@md';
         $this->data['column_height'] = false;
