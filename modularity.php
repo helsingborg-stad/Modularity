@@ -80,6 +80,7 @@ add_action('plugins_loaded', function () {
         'mod-text-block'       => 'group_60ab6d6ba3621',
         'mod-hero'             => 'group_614b3f1a751bf',
         'mod-logogrid'         => 'group_61bc951d73494',
+        'mod-divider'          => 'group_62816d604ae46',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
