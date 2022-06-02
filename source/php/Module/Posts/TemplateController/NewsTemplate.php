@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+
 class NewsTemplate
 {
     protected $module;
@@ -19,6 +21,10 @@ class NewsTemplate
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['classes'] = apply_filters('Modularity/Module/Classes', array(), $module->post_type, $args);
+        
+        if($fields->posts_highlight_first ?? false) {
+            $this->data['first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
+        }
 
         $this->preparePosts();
     }

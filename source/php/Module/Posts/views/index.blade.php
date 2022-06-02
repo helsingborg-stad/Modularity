@@ -13,49 +13,28 @@
 
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
-        <div class="{{ $posts_columns }}">
-
+        <div class="{{ $loop->first && $first_column ? $first_column : $posts_columns }}">
             @card([
-                'link' =>  $post->link,
+                'link' => $post->link,
+                'imageFirst' => true,
+                'image' =>  $post->thumbnail,
+                'heading' => $post->post_title,
                 'classList' => $classes,
                 'hasFooter' => $post->tags ? true : false,
-                'context' => 'module.posts.index',
+                'context' => ['module.posts.index'],
+                'content' => $post->post_content,
+                'tags' => $post->tags,
+                'date' => $post->postDate,
                 'containerAware' => true,
                 'hasAction' => true,
-                'date' => '2022-01-14'
+                'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
+                'image' => $post->showImage ? [
+                    'src' => $post->thumbnail[0],
+                    'alt' => $post->post_title,
+                    'backgroundColor' => 'secondary',
+                ] : []
             ])
-
-                @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
-                    <div class="c-card__image c-card__image--secondary">
-                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $post->post_title }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
-                    </div>
-                @endif
-            
-                <div class="c-card__body">
-                    @if ($post->showTitle)
-                        @typography([
-                            'element' => "h2",
-                            'classList' => ['c-card__heading'],
-                        ])
-                            {{$post->post_title}}
-                        @endtypography
-                    @endif
-
-                    @includeWhen($post->showDate, 'partials.date')
-           
-                    @if($post->showExcerpt)
-                        {!! $post->post_content !!}
-                    @endif
-                    
-                </div>
-                @if($post->tags)
-                    <div class="c-card__footer">
-                        @tags (['tags' => $post->tags])
-                        @endtags
-                    </div>
-                @endif
             @endcard
-
         </div>
     @endforeach
 </div>

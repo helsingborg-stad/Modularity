@@ -27,7 +27,7 @@ class Gallery extends \Modularity\Module
             'box-gallery'), $this->post_type, $this->args));
 
         if ($data['mod_gallery_images']) {
-
+            $data['mod_gallery_images'] = $this->getThumbnails($data['mod_gallery_images']);
             foreach ($data['mod_gallery_images'] as $i=>$image) {
                 $data['images'][$i]['largeImage']  = $image["sizes"]["large"];
                 $data['images'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
@@ -42,22 +42,25 @@ class Gallery extends \Modularity\Module
         return $data;
     }
 
-    /* To be removed ?
-    public function getThumbnails($images)
+
+    private function getThumbnails($images)
     {
         foreach ($images as &$image) {
-            $image['thumbnail'] = wp_get_attachment_image_src(
+            $thumbnail = wp_get_attachment_image_src(
                 $image['id'],
                 apply_filters(
                     'modularity/image/gallery/thumbnail',
-                    municipio_to_aspect_ratio('16:9', array(400, 300)),
+                    municipio_to_aspect_ratio('1:1', array(300, 300)),
                     $this->args
                 )
             );
+            $image['sizes']['thumbnail'] = $thumbnail[0];
+            $image['sizes']['thumbnail-width'] = $thumbnail[1];
+            $image['sizes']['thumbnail-height'] = $thumbnail[2];
         }
 
         return $images;
-    }*/
+    }
 
     /**
      * ACF Fields for admin
