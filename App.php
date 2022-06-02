@@ -56,28 +56,28 @@ class App
     public function updateDate(int $postId, $postAfter)
     {
         $usedInPosts = self::$moduleManager->getModuleUsage($postId);
-        
-        if(empty($usedInPosts)) {
-            return false; 
-        } 
+
+        if (empty($usedInPosts)) {
+            return false;
+        }
 
         $modified = $postAfter->post_modified;
 
-        foreach($usedInPosts as $p) {
+        foreach ($usedInPosts as $post) {
             wp_update_post([
-                'ID' => $p->post_id,
+                'ID' => $post->post_id,
                 'post_modified' => $modified,
                 'post_modified_gmt' => get_gmt_from_date($modified)
             ]);
         }
 
-        return true; 
+        return true;
     }
 
     public function addCaps()
     {
         $admin = get_role('administrator');
-        if ($admin->has_cap('edit_module')) {
+        if (is_a($admin, 'WP_Role') && $admin->has_cap('edit_module')) {
             return;
         }
 
