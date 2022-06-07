@@ -135,6 +135,39 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_629f1b34ef9fc",
+            "label": "Display highlighted post as",
+            "name": "posts_display_highlighted_as",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_628e0ffba7da4",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "block": "Block",
+                "card": "Card"
+            },
+            "default_value": "block",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
             "key": "field_571e046536f0e",
             "label": "Altering grid size",
             "name": "posts_alter_columns",

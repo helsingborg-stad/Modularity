@@ -23,7 +23,8 @@ class IndexTemplate extends AbstractController
         $this->data['classes'] = apply_filters('Modularity/Module/Classes', array('u-height--100', 'u-height-100'), $module->post_type, $args);
 
         if($fields->posts_highlight_first ?? false) {
-            $this->data['first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
+            $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
+            $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
         }
 
         $this->preparePosts();
