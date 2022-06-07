@@ -27,9 +27,9 @@ class ListTemplate
             'archive_link' => $data['archive_link'] ?? '',
             'posts_fields' => $data['posts_fields'] ?? '',
             'archive_link_url' => $data['archive_link_ur'] ?? '',
-            'filters' => $data['filters'] ?? ''
+            'filters' => $data['filters'] ?? '',
         ));
-        
+
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array(), $module->post_type, $this->args));
     }
 
@@ -41,15 +41,14 @@ class ListTemplate
     public function prepare($posts, $postData)
     {
         $list = array();
-        
-        
+
         if (count($posts) < 1) {
             array_push($list, ['columns' => _e('No posts to show…', 'modularity')]);
             return $list;
         }
 
         foreach ($posts as $post) {
-            
+
             if (!empty($post->post_type) && $post->post_type == 'attachment') {
                 $href = wp_get_attachment_url($post->ID);
             } else {
@@ -61,12 +60,11 @@ class ListTemplate
             }
 
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
-                $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time('Y-m-d', $post->ID),
-                    $post->ID, $post->post_type) ;
+                $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time(\Modularity\Helper\Date::getDate('date'), $post->ID),
+                    $post->ID, $post->post_type);
             } else {
                 $columnsDate = '';
             }
-
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle, $columnsDate]]);
 
