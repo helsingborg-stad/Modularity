@@ -2,9 +2,12 @@
 
 namespace Modularity\Helper;
 
-/*
+/**
  * Returns format for date and time
+ * @param  string $format      A string that is either date or time or date-time
+ * @return string              The format for date/time
  */
+
 class Date
 {
     public static function getDateFormat($format)
