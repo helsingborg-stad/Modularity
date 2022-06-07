@@ -27,5 +27,7 @@ class Date
         } elseif ($format === 'date-time') {
             return $dateFormat . ' ' . $timeFormat;
         }
+
+        return $dateFormat . ' ' . $timeFormat;
     }
 }
