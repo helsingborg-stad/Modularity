@@ -61,7 +61,7 @@ class InlayList extends \Modularity\Module
                 $label = $item->title ? $item->title : $item->link_internal->post_title;
 
                 if ($item->date === true) {
-                    $label .= " - " . wp_date(\Modularity\Helper\Date::getDate('date-time'), strtotime($item->link_internal->post_date));
+                    $label .= " - " . wp_date(\Modularity\Helper\Date::getDateFormat('date'), strtotime($item->link_internal->post_date));
 
                 }
 

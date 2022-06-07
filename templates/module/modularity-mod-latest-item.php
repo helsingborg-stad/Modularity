@@ -57,7 +57,7 @@ if (count($posts) > 0):
                 <?php endif;?>
 
                 <?php if ($fields->show_date): ?>
-                <p><time><?php echo get_the_time(\Modularity\Helper\Date::getDate('date-time'), $post->ID); ?></time>
+                <p><time><?php echo get_the_time(\Modularity\Helper\Date::getDateFormat('date-time'), $post->ID); ?></time>
                 </p>
                 <?php endif;?>
 

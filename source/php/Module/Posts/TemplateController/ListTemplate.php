@@ -60,7 +60,7 @@ class ListTemplate
             }
 
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
-                $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time(\Modularity\Helper\Date::getDate('date'), $post->ID),
+                $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID),
                     $post->ID, $post->post_type);
             } else {
                 $columnsDate = '';

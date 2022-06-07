@@ -29,7 +29,7 @@ if (count($posts) > 0):
 
                 <?php if ($fields->show_date): ?>
                 <time
-                    class="date text-sm text-dark-gray"><?php echo get_the_time(\Modularity\Helper\Date::getDate('date'), $post->ID); ?></time>
+                    class="date text-sm text-dark-gray"><?php echo get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID); ?></time>
                 <?php endif;?>
             </a>
         </li>
