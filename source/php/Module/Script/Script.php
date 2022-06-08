@@ -38,8 +38,10 @@ class Script extends \Modularity\Module
 
     public function data() : array
     {
+        // $fields = json_decode(json_encode(get_fields($this->ID)));
         $data = array();
         $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
+        $data['script_display_as'] = get_field('script_display_as', $this->ID);
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
         $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
@@ -55,6 +57,11 @@ class Script extends \Modularity\Module
             "u-padding__y--".get_post_meta($this->ID, 'embeded_card_padding', true)." u-padding__x--".
                 get_post_meta($this->ID, 'embeded_card_padding', true) : "";
         return $data;
+    }
+
+    public function template()
+    {
+        return $this->data['script_display_as'] . '.blade.php';
     }
 
     /**
