@@ -23,7 +23,7 @@
                     'date' => ($post->showDate ? $post->post_date : false),
                     'filled' => true,
                     'image' => ($post->showImage ? [
-                        'src' => $post->thumbnail[0],
+                        'src' => get_the_post_thumbnail_url($post->ID, 'large'),
                         'alt' => $contact['full_name'],
                         'backgroundColor' => 'secondary',
                     ] : false),
