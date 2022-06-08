@@ -40,6 +40,7 @@ class Script extends \Modularity\Module
     {
         $data = array();
         $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
+        $data['script_wrap_with'] = get_field('script_wrap_with', $this->ID);
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
         $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
@@ -51,10 +52,15 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['cardPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
+        $data['scriptPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
             "u-padding__y--".get_post_meta($this->ID, 'embeded_card_padding', true)." u-padding__x--".
                 get_post_meta($this->ID, 'embeded_card_padding', true) : "";
         return $data;
+    }
+
+    public function template()
+    {
+        return $this->data['script_wrap_with'] . '.blade.php';
     }
 
     /**
