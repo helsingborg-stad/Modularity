@@ -38,7 +38,6 @@ class Script extends \Modularity\Module
 
     public function data() : array
     {
-        // $fields = json_decode(json_encode(get_fields($this->ID)));
         $data = array();
         $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
         $data['script_wrap_with'] = get_field('script_wrap_with', $this->ID);
