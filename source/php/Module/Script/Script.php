@@ -53,7 +53,7 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['cardPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
+        $data['scriptPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
             "u-padding__y--".get_post_meta($this->ID, 'embeded_card_padding', true)." u-padding__x--".
                 get_post_meta($this->ID, 'embeded_card_padding', true) : "";
         return $data;

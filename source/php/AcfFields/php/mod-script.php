@@ -51,20 +51,12 @@ if (function_exists('acf_add_local_field_group')) {
             ),
             array(
                 'key' => 'field_60097ea2942bb',
-                'label' => __('Card Padding', 'modularity'),
+                'label' => __('Script embed padding', 'modularity'),
                 'name' => 'embeded_card_padding',
                 'type' => 'range',
-                'instructions' => __('Add padding to card (default: 0, no padding)', 'modularity'),
+                'instructions' => __('Add padding to script embed (default: 0, no padding)', 'modularity'),
                 'required' => 0,
-                'conditional_logic' => array(
-                    0 => array(
-                        0 => array(
-                            'field' => 'field_62a05ea1e4147',
-                            'operator' => '==',
-                            'value' => 'card',
-                        ),
-                    ),
-                ),
+                'conditional_logic' => 0,
                 'wrapper' => array(
                     'width' => '50',
                     'class' => '',

@@ -9,7 +9,7 @@
             @endtypography
         </div>
     @endif
-    <div class="{{$cardPadding}}">{!! $embed !!}</div>
+    <div class="{{$scriptPadding}}">{!! $embed !!}</div>
     
     @image([
             'src'=> $placeholder['url'],
