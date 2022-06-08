@@ -1,9 +1,9 @@
-<div class="{{ $classes }} posts-{{$script_display_as}}">
+<div class="{{ $classes }} script-{{$script_wrap_with}}">
     @if (!$hideTitle && !empty($postTitle))
-        <div class="script__header">
+        <div class="script-{{$script_wrap_with}}__header">
             @typography([
                 'element'   => 'h4',
-                'classList' => ['script-title']
+                'classList' => ['script-{{$script_wrap_with}}-title']
             ])
                 {!! $postTitle !!}
             @endtypography
