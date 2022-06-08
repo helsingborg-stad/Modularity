@@ -27,8 +27,8 @@ if (function_exists('acf_add_local_field_group')) {
             ),
             array(
                 'key' => 'field_62a05ea1e4147',
-                'label' => __('Display as', 'modularity'),
-                'name' => 'script_display_as',
+                'label' => __('Wrap with', 'modularity'),
+                'name' => 'script_wrap_with',
                 'type' => 'radio',
                 'instructions' => '',
                 'required' => 1,
@@ -40,7 +40,7 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
                 'choices' => array(
                     'card' => __('Card', 'modularity'),
-                    'floating' => __('Floating', 'modularity'),
+                    'nothing' => __('Nothing', 'modularity'),
                 ),
                 'allow_null' => 0,
                 'other_choice' => 0,

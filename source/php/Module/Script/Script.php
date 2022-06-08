@@ -41,7 +41,7 @@ class Script extends \Modularity\Module
         // $fields = json_decode(json_encode(get_fields($this->ID)));
         $data = array();
         $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
-        $data['script_display_as'] = get_field('script_display_as', $this->ID);
+        $data['script_wrap_with'] = get_field('script_wrap_with', $this->ID);
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
         $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
@@ -61,7 +61,7 @@ class Script extends \Modularity\Module
 
     public function template()
     {
-        return $this->data['script_display_as'] . '.blade.php';
+        return $this->data['script_wrap_with'] . '.blade.php';
     }
 
     /**
