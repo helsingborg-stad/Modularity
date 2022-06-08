@@ -18,7 +18,7 @@
                 @block([
                     'heading' => ($post->showTitle ? $post->post_title : false),
                     'content' => ($post->showExcerpt ? $post->post_content : false),
-                    'ratio' => $ratio,
+                    'ratio' => '16:9',
                     'meta' => $post->tags,
                     'date' => ($post->showDate ? $post->post_date : false),
                     'filled' => true,
