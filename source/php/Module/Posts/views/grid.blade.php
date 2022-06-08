@@ -45,7 +45,7 @@
                     'filled' => true,
                     'image' => ($post->showImage ? [
                         'src' => $loop->first && $highlight_first_column
-                                    ? get_the_post_thumbnail_url($post->ID, 'large')
+                                    ? get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2])
                                     : $post->thumbnail[0],
                         'alt' => $contact['full_name'],
                         'backgroundColor' => 'secondary',
