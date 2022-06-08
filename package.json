@@ -6,7 +6,6 @@
     "> 1%",
     "not dead"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.17.2",
     "@babel/plugin-proposal-class-properties": "^7.16.7",
@@ -20,9 +19,9 @@
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.6.0",
+    "css-minimizer-webpack-plugin": "^3.4.1",
     "import-glob-loader": "^1.1.0",
     "mini-css-extract-plugin": "^2.5.3",
-    "css-minimizer-webpack-plugin": "^3.4.1",
     "postcss-loader": "^6.2.1",
     "postcss-object-fit-images": "^1.1.2",
     "sass": "^1.49.7",
@@ -31,9 +30,9 @@
     "webpack-cli": "^4.9.2",
     "webpack-config-utils": "^2.3.1",
     "webpack-dev-server": "^4.7.4",
-    "webpack-remove-empty-scripts": "^0.7.3",
     "webpack-manifest-plugin": "^4.1.1",
     "webpack-notifier": "^1.15.0",
+    "webpack-remove-empty-scripts": "^0.7.3",
     "webpack-shell-plugin": "^0.5.0"
   },
   "scripts": {
