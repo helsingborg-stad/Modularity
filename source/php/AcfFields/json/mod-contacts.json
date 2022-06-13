@@ -17,17 +17,14 @@
             },
             "choices": {
                 "cards": "Kort",
-                "vertical": "Horisontella kort",
                 "list": "Lista"
             },
-            "default_value": [
-                "cards"
-            ],
+            "default_value": "cards",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
-            "ajax": 0,
             "return_format": "value",
+            "ajax": 0,
             "placeholder": ""
         },
         {
@@ -204,9 +201,7 @@
                                         "phone": "Fasttelefon",
                                         "smartphone": "Mobil"
                                     },
-                                    "default_value": [
-                                        "phone"
-                                    ],
+                                    "default_value": "phone",
                                     "allow_null": 0,
                                     "multiple": 0,
                                     "ui": 0,
@@ -273,9 +268,7 @@
                                         "twitter": "Twitter",
                                         "instagram": "Instagram"
                                     },
-                                    "default_value": [
-                                        "facebook"
-                                    ],
+                                    "default_value": "facebook",
                                     "allow_null": 0,
                                     "multiple": 0,
                                     "ui": 0,
@@ -379,7 +372,15 @@
                         }
                     ],
                     "min": "",
-                    "max": ""
+                    "max": "",
+                    "acfe_flexible_render_template": false,
+                    "acfe_flexible_render_style": false,
+                    "acfe_flexible_render_script": false,
+                    "acfe_flexible_thumbnail": false,
+                    "acfe_flexible_settings": false,
+                    "acfe_flexible_settings_size": "medium",
+                    "acfe_flexible_modal_edit_size": false,
+                    "acfe_flexible_category": false
                 },
                 "5757b97ffecc6": {
                     "key": "5757b97ffecc6",
@@ -407,12 +408,44 @@
                         }
                     ],
                     "min": "",
-                    "max": ""
+                    "max": "",
+                    "acfe_flexible_render_template": false,
+                    "acfe_flexible_render_style": false,
+                    "acfe_flexible_render_script": false,
+                    "acfe_flexible_thumbnail": false,
+                    "acfe_flexible_settings": false,
+                    "acfe_flexible_settings_size": "medium",
+                    "acfe_flexible_modal_edit_size": false,
+                    "acfe_flexible_category": false
                 }
             },
-            "button_label": "Add contact",
+            "button_label": "L\u00e4gg till kontakt",
             "min": 1,
-            "max": ""
+            "max": "",
+            "acfe_flexible_advanced": false,
+            "acfe_flexible_stylised_button": false,
+            "acfe_flexible_hide_empty_message": false,
+            "acfe_flexible_empty_message": "",
+            "acfe_flexible_layouts_templates": false,
+            "acfe_flexible_layouts_previews": false,
+            "acfe_flexible_layouts_placeholder": false,
+            "acfe_flexible_layouts_thumbnails": false,
+            "acfe_flexible_layouts_settings": false,
+            "acfe_flexible_async": [],
+            "acfe_flexible_add_actions": [],
+            "acfe_flexible_remove_button": [],
+            "acfe_flexible_layouts_state": false,
+            "acfe_flexible_modal_edit": {
+                "acfe_flexible_modal_edit_enabled": false,
+                "acfe_flexible_modal_edit_size": "large"
+            },
+            "acfe_flexible_modal": {
+                "acfe_flexible_modal_enabled": false,
+                "acfe_flexible_modal_title": false,
+                "acfe_flexible_modal_size": "full",
+                "acfe_flexible_modal_col": "4",
+                "acfe_flexible_modal_categories": false
+            }
         },
         {
             "key": "field_5805e5dc1ddcd",
@@ -448,42 +481,13 @@
                 "grid-md-4": "3",
                 "grid-md-3": "4"
             },
-            "default_value": [
-                "grid-md-12"
-            ],
+            "default_value": "o-grid-12@md",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_5bffd2f45667f",
-            "label": "Compact mode",
-            "name": "compact_mode",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5805e5dc1da44",
-                        "operator": "==",
-                        "value": "cards"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "Aktiverad",
-            "ui_off_text": "Disabled"
         }
     ],
     "location": [
@@ -509,6 +513,12 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
 
