@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5805e5dc0a3be',
-    'title' => 'Contacts',
+    'title' => __('Contacts', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_5805e5dc1da44',
@@ -20,17 +20,14 @@
             ),
             'choices' => array(
                 'cards' => __('Kort', 'modularity'),
-                'vertical' => __('Horisontella kort', 'modularity'),
                 'list' => __('Lista', 'modularity'),
             ),
-            'default_value' => array(
-                0 => __('cards', 'modularity'),
-            ),
+            'default_value' => __('cards', 'modularity'),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
-            'ajax' => 0,
             'return_format' => 'value',
+            'ajax' => 0,
             'placeholder' => '',
         ),
         1 => array(
@@ -207,9 +204,7 @@
                                         'phone' => __('Fasttelefon', 'modularity'),
                                         'smartphone' => __('Mobil', 'modularity'),
                                     ),
-                                    'default_value' => array(
-                                        0 => __('phone', 'modularity'),
-                                    ),
+                                    'default_value' => __('phone', 'modularity'),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -276,9 +271,7 @@
                                         'twitter' => __('Twitter', 'modularity'),
                                         'instagram' => __('Instagram', 'modularity'),
                                     ),
-                                    'default_value' => array(
-                                        0 => __('facebook', 'modularity'),
-                                    ),
+                                    'default_value' => __('facebook', 'modularity'),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -383,6 +376,14 @@
                     ),
                     'min' => '',
                     'max' => '',
+                    'acfe_flexible_render_template' => false,
+                    'acfe_flexible_render_style' => false,
+                    'acfe_flexible_render_script' => false,
+                    'acfe_flexible_thumbnail' => false,
+                    'acfe_flexible_settings' => false,
+                    'acfe_flexible_settings_size' => 'medium',
+                    'acfe_flexible_modal_edit_size' => false,
+                    'acfe_flexible_category' => false,
                 ),
                 '5757b97ffecc6' => array(
                     'key' => '5757b97ffecc6',
@@ -411,11 +412,46 @@
                     ),
                     'min' => '',
                     'max' => '',
+                    'acfe_flexible_render_template' => false,
+                    'acfe_flexible_render_style' => false,
+                    'acfe_flexible_render_script' => false,
+                    'acfe_flexible_thumbnail' => false,
+                    'acfe_flexible_settings' => false,
+                    'acfe_flexible_settings_size' => 'medium',
+                    'acfe_flexible_modal_edit_size' => false,
+                    'acfe_flexible_category' => false,
                 ),
             ),
-            'button_label' => __('Add contact', 'modularity'),
+            'button_label' => __('Lägg till kontakt', 'modularity'),
             'min' => 1,
             'max' => '',
+            'acfe_flexible_advanced' => false,
+            'acfe_flexible_stylised_button' => false,
+            'acfe_flexible_hide_empty_message' => false,
+            'acfe_flexible_empty_message' => '',
+            'acfe_flexible_layouts_templates' => false,
+            'acfe_flexible_layouts_previews' => false,
+            'acfe_flexible_layouts_placeholder' => false,
+            'acfe_flexible_layouts_thumbnails' => false,
+            'acfe_flexible_layouts_settings' => false,
+            'acfe_flexible_async' => array(
+            ),
+            'acfe_flexible_add_actions' => array(
+            ),
+            'acfe_flexible_remove_button' => array(
+            ),
+            'acfe_flexible_layouts_state' => false,
+            'acfe_flexible_modal_edit' => array(
+                'acfe_flexible_modal_edit_enabled' => false,
+                'acfe_flexible_modal_edit_size' => 'large',
+            ),
+            'acfe_flexible_modal' => array(
+                'acfe_flexible_modal_enabled' => false,
+                'acfe_flexible_modal_title' => false,
+                'acfe_flexible_modal_size' => 'full',
+                'acfe_flexible_modal_col' => '4',
+                'acfe_flexible_modal_categories' => false,
+            ),
         ),
         2 => array(
             'key' => 'field_5805e5dc1ddcd',
@@ -451,42 +487,13 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => array(
-                0 => __('grid-md-12', 'modularity'),
-            ),
+            'default_value' => __('o-grid-12@md', 'modularity'),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
             'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
-        ),
-        3 => array(
-            'key' => 'field_5bffd2f45667f',
-            'label' => __('Compact mode', 'modularity'),
-            'name' => 'compact_mode',
-            'type' => 'true_false',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_5805e5dc1da44',
-                        'operator' => '==',
-                        'value' => 'cards',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'message' => '',
-            'default_value' => 0,
-            'ui' => 1,
-            'ui_on_text' => __('Aktiverad', 'modularity'),
-            'ui_off_text' => __('Disabled', 'modularity'),
         ),
     ),
     'location' => array(
@@ -513,5 +520,11 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
+    'acfe_display_title' => '',
+    'acfe_autosync' => '',
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
 ));
 }
