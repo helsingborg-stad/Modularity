@@ -1,24 +1,24 @@
 <div class="o-grid">
-    <?php if (!$module->hideTitle && !empty($module->post_title)) : ?>
-        <div class="o-grid-12@xs">
-            <h2><?php echo $module->post_title; ?></h2>
-        </div>
-    <?php endif; ?>
+    <?php if (!$module->hideTitle && !empty($module->post_title)): ?>
+    <div class="o-grid-12@xs">
+        <h2><?php echo $module->post_title; ?></h2>
+    </div>
+    <?php endif;?>
 
     <?php
-    if (count($posts) > 0) :
-    foreach ($posts as $post) :
+if (count($posts) > 0):
+    foreach ($posts as $post):
 
         /* Image size */
         switch ((isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'o-grid-3@md') {
-            case "o-grid-12@md":    //1-col
-                $image_dimensions = array(1200,900);
+            case "o-grid-12@md": //1-col
+                $image_dimensions = array(1200, 900);
                 break;
-            case "o-grid-6@md":    //2-col
-                $image_dimensions = array(800,600);
+            case "o-grid-6@md": //2-col
+                $image_dimensions = array(800, 600);
                 break;
             default:
-                $image_dimensions = array(400,300);
+                $image_dimensions = array(400, 300);
         }
 
         /* Image */
@@ -42,30 +42,35 @@
             $meta_data = "";
         }
 
-    ?>
-    <div class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'o-grid-3@md' ?>">
-        <a href="<?php echo get_permalink($post->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>" data-meta-sort-by="<?php echo $meta_data; ?>">
-            <?php if ($image && $fields->show_picture) : ?>
+        ?>
+    <div
+        class="<?php echo (isset($fields->item_column_size) && !empty($fields->item_column_size)) ? $fields->item_column_size : 'o-grid-3@md' ?>">
+        <a href="<?php echo get_permalink($post->ID); ?>"
+            class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $module->post_type, $args)); ?>"
+            data-meta-sort-by="<?php echo $meta_data; ?>">
+            <?php if ($image && $fields->show_picture): ?>
             <img src="<?php echo $image[0]; ?>" alt="<?php echo $post->post_title; ?>">
-            <?php endif; ?>
+            <?php endif;?>
             <div class="box-content" data-meta-sort-by="<?php echo $meta_data; ?>">
-                <?php if ($fields->show_title) : ?>
+                <?php if ($fields->show_title): ?>
                 <h5 class="link-item link-item-light"><?php echo apply_filters('the_title', $post->post_title); ?></h5>
-                <?php endif; ?>
+                <?php endif;?>
 
-                <?php if ($fields->show_date) : ?>
-                <p><time><?php echo get_the_time('Y-m-d H:i', $post->ID); ?></time></p>
-                <?php endif; ?>
+                <?php if ($fields->show_date): ?>
+                <p><time><?php echo get_the_time(\Modularity\Helper\Date::getDateFormat('date-time'), $post->ID); ?></time>
+                </p>
+                <?php endif;?>
 
-                <?php if ($fields->show_excerpt) : ?>
-                <p><?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : ''; ?></p>
-                <?php endif; ?>
+                <?php if ($fields->show_excerpt): ?>
+                <p><?php echo isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : ''; ?>
+                </p>
+                <?php endif;?>
             </div>
         </a>
     </div>
-    <?php endforeach; else : ?>
+    <?php endforeach;else: ?>
     <div class="o-grid-12@md">
         Inga inlägg att visa…
     </div>
-    <?php endif; ?>
+    <?php endif;?>
 </div>
