@@ -37,6 +37,7 @@ class Posts extends \Modularity\Module
         
         add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
+        add_filter('acf/load_field/key=field_62a309f9c59bb', array($this, 'addIconsList'));
 
         //Add full-width capabilty to blocks
         add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
@@ -108,6 +109,27 @@ class Posts extends \Modularity\Module
         return $viewData;
     }
 
+    /**
+     * Add list to dropdown
+     *
+     * @param array $field  Field definition
+     * @return array $field Field definition with choices
+     */
+    public function addIconsList($field) : array 
+    {
+        
+        $choices = \Modularity\Helper\Icons::getIcons();
+
+        if(is_array($choices) && !empty($choices)) {
+        foreach($choices as $choice) {
+            $field['choices'][ $choice ] = '<i class="material-icons" style="float: left;">'. $choice .'</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">'. $choice . '</span>';
+        }
+        } else {
+        $field['choices'] = []; 
+        }
+
+        return $field; 
+    }
 
     public function loadDateFieldAjax()
     {

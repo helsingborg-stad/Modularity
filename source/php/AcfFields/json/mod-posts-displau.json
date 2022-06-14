@@ -21,7 +21,8 @@
                 "items": "Post items",
                 "news": "News items",
                 "index": "Index",
-                "grid": "Blocks"
+                "grid": "Blocks",
+                "features-grid": "Features grid"
             },
             "allow_null": 0,
             "other_choice": 0,
@@ -64,6 +65,13 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "news"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "features-grid"
                     }
                 ]
             ],
@@ -517,6 +525,13 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "grid"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "features-grid"
                     }
                 ]
             ],
