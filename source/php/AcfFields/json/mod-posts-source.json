@@ -23,7 +23,7 @@
                 "manual": "Manually picked posts",
                 "input": "Manual input"
             },
-            "default_value": [],
+            "default_value": false,
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
@@ -254,6 +254,30 @@
                     "mime_types": ""
                 },
                 {
+                    "key": "field_62a309f9c59bb",
+                    "label": "Icon",
+                    "name": "item_icon",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {},
+                    "default_value": false,
+                    "allow_null": 1,
+                    "multiple": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "return_format": "value",
+                    "allow_custom": 0,
+                    "placeholder": "",
+                    "search_placeholder": ""
+                },
+                {
                     "key": "field_57625a3e188da",
                     "label": "Column values",
                     "name": "column_values",
@@ -332,6 +356,13 @@
                 "operator": "==",
                 "value": "mod-posts"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/posts"
+            }
         ]
     ],
     "menu_order": 1,
@@ -340,8 +371,13 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1475146060
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
-
+

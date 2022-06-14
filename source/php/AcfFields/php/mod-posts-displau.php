@@ -25,6 +25,7 @@
                 'news' => __('News items', 'modularity'),
                 'index' => __('Index', 'modularity'),
                 'grid' => __('Blocks', 'modularity'),
+                'features-grid' => __('Features grid', 'modularity'),
             ),
             'allow_null' => 0,
             'other_choice' => 0,
@@ -67,6 +68,13 @@
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
                         'value' => 'news',
+                    ),
+                ),
+                4 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'features-grid',
                     ),
                 ),
             ),
@@ -520,6 +528,13 @@
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
                         'value' => 'grid',
+                    ),
+                ),
+                1 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'features-grid',
                     ),
                 ),
             ),
