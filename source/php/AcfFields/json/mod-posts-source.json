@@ -207,10 +207,10 @@
                         "class": "",
                         "id": ""
                     },
+                    "default_value": "",
                     "tabs": "all",
                     "toolbar": "full",
-                    "media_upload": 1,
-                    "default_value": "",
+                    "media_upload": 0,
                     "delay": 0
                 },
                 {
@@ -266,7 +266,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "choices": {},
+                    "choices": [],
                     "default_value": false,
                     "allow_null": 1,
                     "multiple": 0,
@@ -380,4 +380,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
