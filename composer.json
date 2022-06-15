@@ -61,5 +61,15 @@
         "allow-plugins": {
             "composer/installers": true
         }
+    },
+    "extra": {
+        "builder": {
+            "commands": [
+                "echo hejsan"
+            ],
+            "removables": [
+                "test.txt"
+            ]
+        }
     }
 }
