@@ -100,7 +100,7 @@ class AbstractController
         return $postDate;
     }
 
-    protected function getPostImage($post, $postsDataSource, array $imageDimensions, string $ratio, string $hook = 'index'): array
+    protected function getPostImage($post, $postsDataSource, array $imageDimensions, $ratio, string $hook = 'index')
     {
         $image = null;
 
