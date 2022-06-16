@@ -60,29 +60,32 @@ class ListTemplate
             }
 
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
-                $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID),
-                    $post->ID, $post->post_type);
+                $columnsDate = apply_filters(
+                    'Modularity/Module/Posts/Date',
+                    get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID),
+                    $post->ID,
+                    $post->post_type
+                );
             } else {
                 $columnsDate = '';
             }
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle, $columnsDate]]);
-
         }
 
-        if ($postData['posts_data_source'] !== 'input' &&
-            isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']) {
+        if (
+            $postData['posts_data_source'] !== 'input' &&
+            isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']
+        ) {
 
             $columnsTitle = _e('Show more', 'modularity');
 
             if (isset($postData['filters'])) {
-                $href = $postData['archive_link_url'] . "?" . http_build_query
-                    ($postData['filters']);
+                $href = $postData['archive_link_url'] . "?" . http_build_query($postData['filters']);
             }
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle]]);
         }
         return $list;
-
     }
 }
