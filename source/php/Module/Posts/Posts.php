@@ -12,7 +12,7 @@ use BladeComponentLibrary\Init as CompLibInitator;
 class Posts extends \Modularity\Module
 {
     public $slug = 'posts';
-    public $supports = array();
+    public $supports = [];
     public $icon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNC4zMzQgMjQuMzM0Ij48ZyBmaWxsPSIjMDMwMTA0Ij48cGF0aCBkPSJNMTAuMjk1IDBILjkzNUEuOTM2LjkzNiAwIDAgMCAwIC45MzZ2OS4zNmMwIC41MTYuNDIuOTM1LjkzNi45MzVoOS4zNmMuNTE2IDAgLjkzNS0uNDE4LjkzNS0uOTM1Vi45MzVBLjkzNi45MzYgMCAwIDAgMTAuMjk2IDB6TTIzLjM5OCAwaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzZjMCAuNTE2LjQyLjkzNS45MzYuOTM1aDkuMzU4Yy41MTcgMCAuOTM2LS40MTguOTM2LS45MzVWLjkzNUEuOTM2LjkzNiAwIDAgMCAyMy4zOTggMHptLS45MzYgOS4zNmgtNy40ODdWMS44N2g3LjQ4N1Y5LjM2ek0xMC4yOTUgMTMuMTAzSC45MzVBLjkzNi45MzYgMCAwIDAgMCAxNC4wNHY5LjM1OGMwIC41MTcuNDIuOTM2LjkzNi45MzZoOS4zNmMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNS45MzUgMCAwIDAtLjkzNS0uOTM1em0tNS44NzUgOS4zNmMuMTYtLjI3Ny4yNi0uNTk0LjI2LS45MzdhMS44NzIgMS44NzIgMCAwIDAtMS44NzItMS44NzJjLS4zNDMgMC0uNjYuMS0uOTM2LjI2di0yLjM5Yy4yNzYuMTYuNTkzLjI2LjkzNi4yNkExLjg3MiAxLjg3MiAwIDAgMCA0LjY4IDE1LjkxYzAtLjM0Mi0uMS0uNjYtLjI2LS45MzVoMi4zOWExLjg1IDEuODUgMCAwIDAtLjI2LjkzNmMwIDEuMDM1Ljg0IDEuODczIDEuODczIDEuODczLjM0MyAwIC42Ni0uMS45MzYtLjI2djIuMzlhMS44NSAxLjg1IDAgMCAwLS45MzctLjI2IDEuODcyIDEuODcyIDAgMCAwLTEuODcyIDEuODczYzAgLjM0My4xLjY2LjI2LjkzNkg0LjQyek0yMy4zOTggMTMuMTAzaC05LjM2YS45MzYuOTM2IDAgMCAwLS45MzUuOTM2djkuMzU4YzAgLjUxNi40Mi45MzUuOTM2LjkzNWg5LjM1OGMuNTE2IDAgLjkzNS0uNDIuOTM1LS45MzZ2LTkuMzZhLjkzNC45MzQgMCAwIDAtLjkzNS0uOTM0em0tOC40MjMgNi4wMDNsNC4xMy00LjEzaDIuMDM0bC02LjE2NSA2LjE2M3YtMi4wMzR6bTAtNC4xM2gxLjQ4NGwtMS40ODUgMS40ODN2LTEuNDg1em03LjQ4NyAxLjMyMnYyLjAzMmwtNC4xMyA0LjEzMmgtMi4wMzRsNi4xNjQtNi4xNjR6bTAgNi4xNjRoLTEuNDg1bDEuNDg1LTEuNDg1djEuNDg1eiIvPjxjaXJjbGUgY3g9IjUuNjE2IiBjeT0iMTguNzE4IiByPSIxLjg3MiIvPjwvZz48L3N2Zz4=';
     private $enableFilters = false;
 
@@ -58,10 +58,10 @@ class Posts extends \Modularity\Module
             return false;
         }
 
-        $metaKeys = array(
+        $metaKeys = [
             'post_date'  => 'Date published',
             'post_modified' => 'Date modified',
-        );
+        ];
 
         $metaKeysRaw = \Municipio\Helper\Post::getPosttypeMetaKeys($postType);
 
@@ -164,7 +164,7 @@ class Posts extends \Modularity\Module
 
         unset($module->data['posts']);
 
-        return json_encode(array(
+        return json_encode([
             'target' => $target,
             'postsPerPage' => $postsPerPage,
             'offset' => (get_field('posts_count', $module->data['ID']) > 0) ? get_field('posts_count', $module->data['ID']) : 0,
@@ -172,7 +172,7 @@ class Posts extends \Modularity\Module
             'bladeTemplate' => $bladeTemplate,
             'ajaxUrl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mod-posts-load-more')
-        ));
+        ]);
     }
 
     /**
@@ -191,14 +191,14 @@ class Posts extends \Modularity\Module
             die('Busted!');
         }
 
-        $statusCodes = array(
+        $statusCodes = [
             'badRequest' => 400,
             'noContent' => 204,
             'success' => 200
-        );
+        ];
 
         //Make sure required post data exists
-        $requiredPostDataKeys = array('postsPerPage', 'offset', 'module', 'bladeTemplate');
+        $requiredPostDataKeys = ['postsPerPage', 'offset', 'module', 'bladeTemplate'];
         foreach ($requiredPostDataKeys as $key) {
             if (!isset($_POST[$key])) {
                 $error = 'Missing required $_POST[' . $key . '].';
@@ -318,7 +318,7 @@ class Posts extends \Modularity\Module
             if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true)) {
                 $data['enabledTaxonomyFilters'] = $enabledTaxonomyFilters;
             } else {
-                $data['enabledTaxonomyFilters'] = array();
+                $data['enabledTaxonomyFilters'] = [];
             }
 
             $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
@@ -345,16 +345,16 @@ class Posts extends \Modularity\Module
         $data['order'] = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
 
         // Setup filters
-        $filters = array(
+        $filters = [
             'orderby' => sanitize_text_field($data['sortBy']),
             'order' => sanitize_text_field($data['order'])
-        );
+        ];
 
         if ($data['sortBy'] == 'meta_key') {
             $filters['meta_key'] = $data['sortByKey'];
         }
 
-        $data['filters'] = array();
+        $data['filters'] = [];
 
         if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
             $taxType = $fields->posts_taxonomy_type;
@@ -382,7 +382,7 @@ class Posts extends \Modularity\Module
     public function getTaxonomyDisplayFlat()
     {
         if (empty(get_field('taxonomy_display', $this->ID))) {
-            return array();
+            return [];
         }
 
         return get_field('taxonomy_display', $this->ID);
@@ -399,14 +399,14 @@ class Posts extends \Modularity\Module
         }
 
         $taxonomies = get_taxonomies();
-        $taxonomies = array_diff($taxonomies, array(
+        $taxonomies = array_diff($taxonomies, [
             'nav_menu',
             'link_category'
-        ));
+        ]);
 
-        $taxonomyDisplayChoices = array();
+        $taxonomyDisplayChoices = [];
 
-        $taxonomiesNew = array();
+        $taxonomiesNew = [];
         foreach ($taxonomies as $taxonomy) {
             $tax = get_taxonomy($taxonomy);
             $taxonomiesNew[] = $tax;
@@ -415,19 +415,19 @@ class Posts extends \Modularity\Module
 
         $taxonomies = $taxonomiesNew;
 
-        $fieldgroup = array(
+        $fieldgroup = [
             'key' => 'group_' . md5('mod_posts_taxonomy_display'),
             'title' => __('Taxonomy display', 'municipio'),
-            'fields' => array(),
-            'location' => array(
-                array(
-                    array(
+            'fields' => [],
+            'location' => [
+                [
+                    [
                         'param' => 'post_type',
                         'operator' => '==',
                         'value' => 'mod-posts',
-                    ),
-                ),
-            ),
+                    ],
+                ],
+            ],
             'menu_order' => 20,
             'position' => 'normal',
             'style' => 'default',
@@ -436,9 +436,9 @@ class Posts extends \Modularity\Module
             'hide_on_screen' => '',
             'active' => 1,
             'description' => '',
-        );
+        ];
 
-        $fieldgroup['fields'][] = array(
+        $fieldgroup['fields'][] = [
             'key' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
             'label' => 'Taxonomies to display',
             'name' => 'taxonomy_display',
@@ -447,20 +447,20 @@ class Posts extends \Modularity\Module
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
-            'wrapper' => array(
+            'wrapper' => [
                 'width' => '',
                 'class' => '',
                 'id' => '',
-            ),
+            ],
             'choices' => $taxonomyDisplayChoices,
-            'default_value' => array(),
+            'default_value' => [],
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'readonly' => 0,
-        );
+        ];
 
 
         acf_add_local_field_group($fieldgroup);
@@ -480,11 +480,11 @@ class Posts extends \Modularity\Module
 
         $meta = \Modularity\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
 
-        $response = array(
+        $response = [
             'meta_keys' => $meta,
             'sort_curr' => get_field('posts_sort_by', $_POST['post']),
             'filter_curr' => get_field('posts_meta_key', $_POST['post']),
-        );
+        ];
 
         echo json_encode($response);
         die();
@@ -504,10 +504,10 @@ class Posts extends \Modularity\Module
 
         $post = $_POST['post'];
 
-        $result = array(
+        $result = [
             'types' => get_object_taxonomies($_POST['posttype'], 'object'),
             'curr' => get_field('posts_taxonomy_type', $post)
-        );
+        ];
 
         echo json_encode($result);
         die();
@@ -528,12 +528,12 @@ class Posts extends \Modularity\Module
         $taxonomy = $_POST['tax'];
         $post = $_POST['post'];
 
-        $result = array(
-            'tax' => get_terms($taxonomy, array(
+        $result = [
+            'tax' => get_terms($taxonomy, [
                 'hide_empty' => false,
-            )),
+            ]),
             'curr' => get_field('posts_taxonomy_value', $post)
-        );
+        ];
 
         echo json_encode($result);
         die();
@@ -592,7 +592,7 @@ class Posts extends \Modularity\Module
             return;
         }
 
-        $modules = array();
+        $modules = [];
 
         // If manually picked
         if ($newModules = $this->checkIfManuallyPicked($post->ID)) {
@@ -623,11 +623,11 @@ class Posts extends \Modularity\Module
             add_meta_box(
                 'modularity-mod-posts-expandable-list',
                 __('Modularity expandable list column values', 'modularity'),
-                array($this, 'columnFieldsMetaBoxContent'),
+                [$this, 'columnFieldsMetaBoxContent'],
                 null,
                 'normal',
                 'default',
-                array($fields)
+                [$fields]
             );
         }
     }
@@ -664,7 +664,7 @@ class Posts extends \Modularity\Module
      */
     public function getColumns($posts)
     {
-        $columns = array();
+        $columns = [];
 
         if (is_array($posts)) {
             foreach ($posts as $post) {
@@ -697,7 +697,7 @@ class Posts extends \Modularity\Module
             return false;
         }
 
-        $posts = array();
+        $posts = [];
         foreach ($result as $item) {
             $posts[] = $item->post_id;
         }
@@ -726,7 +726,7 @@ class Posts extends \Modularity\Module
             return false;
         }
 
-        $posts = array();
+        $posts = [];
         foreach ($result as $item) {
             $posts[] = $item->post_id;
         }
@@ -754,7 +754,7 @@ class Posts extends \Modularity\Module
             return false;
         }
 
-        $posts = array();
+        $posts = [];
         foreach ($result as $item) {
             $posts[] = $item->post_id;
         }
@@ -803,14 +803,14 @@ class Posts extends \Modularity\Module
      */
     public static function getManualInputPosts($data)
     {
-        $posts = array();
+        $posts = [];
 
         foreach ($data as $key => $item) {
-            $posts[] = array_merge((array)$item, array(
+            $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $item->post_content
-            ));
+            ]);
         }
 
         $posts = json_decode(json_encode($posts));
@@ -842,29 +842,29 @@ class Posts extends \Modularity\Module
         $order = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
 
         // Get post args
-        $getPostsArgs = array(
+        $getPostsArgs = [
             'posts_per_page' => $fields->posts_count,
             'post_type' => 'any',
             'suppress_filters' => false
-        );
+        ];
 
         // Sort by meta key
         if (strpos($orderby, '_metakey_') === 0) {
             $orderby_key = substr($orderby, strlen('_metakey_'));
             $orderby = 'order_clause';
-            $metaQuery = array(
-                array(
+            $metaQuery = [
+                [
                     'relation' => 'OR',
-                    'order_clause' => array(
+                    'order_clause' => [
                         'key' => $orderby_key,
                         'compare' => 'EXISTS'
-                    ),
-                    array(
+                    ],
+                    [
                         'key' => $orderby_key,
                         'compare' => 'NOT EXISTS'
-                    )
-                )
-            );
+                    ]
+                ]
+            ];
         }
 
         if ($orderby != 'false') {
@@ -873,7 +873,7 @@ class Posts extends \Modularity\Module
         }
 
         // Post statuses
-        $getPostsArgs['post_status'] = array('publish', 'inherit');
+        $getPostsArgs['post_status'] = ['publish', 'inherit'];
         if (is_user_logged_in()) {
             $getPostsArgs['post_status'][] = 'private';
         }
@@ -884,21 +884,21 @@ class Posts extends \Modularity\Module
             $taxValues = (array)$fields->posts_taxonomy_value;
 
             foreach ($taxValues as $term) {
-                $getPostsArgs['tax_query'][] = array(
+                $getPostsArgs['tax_query'][] = [
                     'taxonomy' => $taxType,
                     'field' => 'slug',
                     'terms' => $term
-                );
+                ];
             }
         }
 
         // Meta filter
         if (isset($fields->posts_meta_filter) && $fields->posts_meta_filter === true) {
-            $metaQuery[] = array(
+            $metaQuery[] = [
                 'key' => $fields->posts_meta_key ?? '',
-                'value' => array($fields->posts_meta_value ?? ''),
+                'value' => [$fields->posts_meta_value ?? ''],
                 'compare' => 'IN',
-            );
+            ];
         }
 
         // Data source

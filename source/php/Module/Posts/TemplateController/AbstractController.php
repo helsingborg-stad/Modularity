@@ -117,7 +117,7 @@ class AbstractController
         return $image;
     }
 
-    public function getAttachmentUrl($attachmentId, array $dimension = array(1200, 900), string $ratio = '16:9')
+    public function getAttachmentUrl($attachmentId, array $dimension = [1200, 900], string $ratio = '16:9')
     {
         return wp_get_attachment_image_src(
             $attachmentId,

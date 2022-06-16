@@ -9,7 +9,7 @@ class GridTemplate extends AbstractController
     protected $module;
     protected $args;
 
-    public $data = array();
+    public $data = [];
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
@@ -21,7 +21,7 @@ class GridTemplate extends AbstractController
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', ['box', 'box-news'], $this->module->post_type, $this->args));
 
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
@@ -40,10 +40,10 @@ class GridTemplate extends AbstractController
     {
         $postNum = 0;
         $gridRand = $this->getGridPattern($this->data['gridSize']);
-        $gridRow = array();
+        $gridRow = [];
 
         /* Image size */
-        $imageDimensions = array(1200, 900);
+        $imageDimensions = [1200, 900];
 
         if (!$fields->posts_alter_columns) {
             $imageDimensions = $this->getImageDimensions($fields->posts_columns, [900, 675]);
@@ -106,45 +106,45 @@ class GridTemplate extends AbstractController
 
     public function getGridPattern($gridSize)
     {
-        $gridRand = array();
+        $gridRand = [];
 
         switch ($gridSize) {
             case 12:
-                $gridRand = array(
-                    array(12)
-                );
+                $gridRand = [
+                    [12]
+                ];
                 break;
 
             case 6:
-                $gridRand = array(
-                    array(12),
-                    array(6, 6),
-                    array(6, 6)
-                );
+                $gridRand = [
+                    [12],
+                    [6, 6],
+                    [6, 6]
+                ];
                 break;
 
             case 4:
-                $gridRand = array(
-                    array(8, 4),
-                    array(4, 4, 4),
-                    array(4, 8)
-                );
+                $gridRand = [
+                    [8, 4],
+                    [4, 4, 4],
+                    [4, 8]
+                ];
                 break;
 
             case 3:
-                $gridRand = array(
-                    array(6, 3, 3),
-                    array(3, 3, 3, 3),
-                    array(3, 3, 6),
-                    array(3, 3, 3, 3),
-                    array(3, 6, 3)
-                );
+                $gridRand = [
+                    [6, 3, 3],
+                    [3, 3, 3, 3],
+                    [3, 3, 6],
+                    [3, 3, 3, 3],
+                    [3, 6, 3]
+                ];
                 break;
 
             default:
-                $gridRand = array(
-                    array(12)
-                );
+                $gridRand = [
+                    [12]
+                ];
                 break;
         }
 

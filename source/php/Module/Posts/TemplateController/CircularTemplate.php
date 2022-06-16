@@ -9,7 +9,7 @@ class CircularTemplate extends AbstractController
     protected $module;
     protected $args;
 
-    public $data = array();
+    public $data = [];
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
@@ -19,7 +19,7 @@ class CircularTemplate extends AbstractController
         $this->data = $data;
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news-circular', 'no-color'), $this->module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', ['box', 'box-news-circular', 'no-color'], $this->module->post_type, $this->args));
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
 
         if ($fields->posts_highlight_first ?? false) {
@@ -35,7 +35,7 @@ class CircularTemplate extends AbstractController
         $hasImages = false;
 
         foreach ($this->data['posts'] as &$post) {
-            $imageDimensions = array(400, 400);
+            $imageDimensions = [400, 400];
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '1:1');
 
             if ($image) {

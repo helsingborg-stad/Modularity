@@ -9,7 +9,7 @@ class NewsTemplate extends AbstractController
     protected $module;
     protected $args;
 
-    public $data = array();
+    public $data = [];
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
@@ -20,7 +20,7 @@ class NewsTemplate extends AbstractController
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['classes'] = apply_filters('Modularity/Module/Classes', array(), $module->post_type, $args);
+        $this->data['classes'] = apply_filters('Modularity/Module/Classes', [], $module->post_type, $args);
 
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);

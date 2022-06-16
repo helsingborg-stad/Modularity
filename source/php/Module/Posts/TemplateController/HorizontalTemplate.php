@@ -7,7 +7,7 @@ class HorizontalTemplate extends AbstractController
     protected $module;
     protected $args;
 
-    public $data = array();
+    public $data = [];
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
@@ -33,15 +33,15 @@ class HorizontalTemplate extends AbstractController
             return;
         }
 
-        $posts = array();
-        $imageDimension = array(1200, 675);
+        $posts = [];
+        $imageDimension = [1200, 675];
         $imageRatio = '16:9';
         $i = 0;
 
         foreach ($this->data['posts'] as $post) {
             if ($i == 0 && !get_field('posts_highlight', $this->data['ID']) || $i > 0) {
                 $imageRatio = '4:3';
-                $imageDimension = array(900, 675);
+                $imageDimension = [900, 675];
             }
 
 
@@ -74,7 +74,7 @@ class HorizontalTemplate extends AbstractController
         }
 
 
-        $terms = array();
+        $terms = [];
         if (!empty($taxonomies)) {
             foreach ($taxonomies as $taxonomy) {
                 $terms = array_merge($terms, get_the_terms($post->ID, $taxonomy));

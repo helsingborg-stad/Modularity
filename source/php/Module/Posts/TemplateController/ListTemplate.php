@@ -10,7 +10,7 @@ class ListTemplate
 {
     protected $module;
     protected $args;
-    public $data = array();
+    public $data = [];
 
     /**
      * ListTemplate constructor.
@@ -22,15 +22,15 @@ class ListTemplate
     {
         $this->args = $args;
         $this->data = $data;
-        $this->data['prepareList'] = $this->prepare($data['posts'], $postData = array(
+        $this->data['prepareList'] = $this->prepare($data['posts'], $postData = [
             'posts_data_source' => $data['posts_data_source'] ?? '',
             'archive_link' => $data['archive_link'] ?? '',
             'posts_fields' => $data['posts_fields'] ?? '',
             'archive_link_url' => $data['archive_link_ur'] ?? '',
             'filters' => $data['filters'] ?? '',
-        ));
+        ]);
 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array(), $module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $module->post_type, $this->args));
     }
 
     /**
@@ -40,7 +40,7 @@ class ListTemplate
      */
     public function prepare($posts, $postData)
     {
-        $list = array();
+        $list = [];
 
         if (count($posts) < 1) {
             array_push($list, ['columns' => _e('No posts to show…', 'modularity')]);
