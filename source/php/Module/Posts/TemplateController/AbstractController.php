@@ -4,6 +4,8 @@ namespace Modularity\Module\Posts\TemplateController;
 
 class AbstractController
 {
+    protected $hookName = 'index';
+
     protected function anyPostHasImage(array $posts)
     {
         foreach ($posts as $post) {
@@ -105,27 +107,26 @@ class AbstractController
         $image = null;
 
         if ($postsDataSource !== 'input') {
-            $image = wp_get_attachment_image_src(
-                get_post_thumbnail_id($post->ID),
-                apply_filters(
-                    'modularity/image/posts/' . $hook,
-                    municipio_to_aspect_ratio($ratio, $imageDimensions),
-                    $this->args
-                )
-            );
+            $image = $this->getAttachmentUrl(get_post_thumbnail_id($post->ID), $imageDimensions, $ratio);
         } else {
             if ($post->image) {
-                $image = wp_get_attachment_image_src(
-                    $post->image->ID,
-                    apply_filters(
-                        'modularity/image/posts/' . $hook,
-                        municipio_to_aspect_ratio($ratio, $imageDimensions),
-                        $this->args
-                    )
-                );
+                $image = $this->getAttachmentUrl($post->image->ID, $imageDimensions, $ratio);
             }
         }
 
         return $image;
+    }
+
+    public function getAttachmentUrl($attachmentId, array $dimension = array(1200, 900), string $ratio = '16:9')
+    {
+        return wp_get_attachment_image_src(
+            $attachmentId,
+            apply_filters(
+                'modularity/image/posts/' . $this->hookName,
+                municipio_to_aspect_ratio($ratio, $dimension),
+                $this->args,
+                $this->module
+            )
+        );
     }
 }

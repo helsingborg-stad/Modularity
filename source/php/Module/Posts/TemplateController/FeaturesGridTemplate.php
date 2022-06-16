@@ -20,6 +20,7 @@ class FeaturesGridTemplate extends AbstractController
      */
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
+        $this->hookName = 'featuresGrid';
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
@@ -37,7 +38,7 @@ class FeaturesGridTemplate extends AbstractController
         $imageDimensions = [400, 225];
 
         foreach ($this->data['posts'] as $post) {
-            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9', 'featuresGrid');
+            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
 
             $post->thumbnail = $image;
 

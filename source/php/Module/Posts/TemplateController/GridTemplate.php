@@ -94,7 +94,7 @@ class GridTemplate extends AbstractController
             }
 
             /* Image */
-            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, $fields->ratio, 'index');
+            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, $fields->ratio);
 
             // Image fetch
             $post->thumbnail = $image;

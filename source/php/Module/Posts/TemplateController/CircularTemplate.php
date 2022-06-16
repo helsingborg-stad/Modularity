@@ -13,6 +13,7 @@ class CircularTemplate extends AbstractController
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
+        $this->hookName = 'news';
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
@@ -35,7 +36,7 @@ class CircularTemplate extends AbstractController
 
         foreach ($this->data['posts'] as &$post) {
             $imageDimensions = array(400, 400);
-            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '1:1', 'news');
+            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '1:1');
 
             if ($image) {
                 $hasImages = true;

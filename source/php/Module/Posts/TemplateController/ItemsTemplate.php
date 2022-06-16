@@ -13,6 +13,7 @@ class ItemsTemplate extends AbstractController
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
+        $this->hookName = 'items';
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
@@ -35,7 +36,7 @@ class ItemsTemplate extends AbstractController
         $imageDimension = $this->getImageDimensions($this->data['posts_columns']);
 
         foreach ($this->data['posts'] as $post) {
-            $image = $this->getPostImage($post, $fields->posts_data_source, $imageDimension, '16:9', 'items');
+            $image = $this->getPostImage($post, $fields->posts_data_source, $imageDimension, '16:9');
 
             $post->thumbnail = $image;
         }

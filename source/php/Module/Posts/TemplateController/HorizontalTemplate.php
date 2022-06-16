@@ -2,7 +2,7 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-class HorizontalTemplate
+class HorizontalTemplate extends AbstractController
 {
     protected $module;
     protected $args;
@@ -11,6 +11,7 @@ class HorizontalTemplate
 
     public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
     {
+        $this->hookName = 'items';
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
@@ -114,21 +115,8 @@ class HorizontalTemplate
      * @param string $unixtime The timestamp in unixtime format
      * @return string Humean readable time
      */
-    public function readableTimeStamp($unixtime) : string
+    public function readableTimeStamp($unixtime): string
     {
         return human_time_diff($unixtime, current_time('timestamp'));
-    }
-
-    public function getAttachmentUrl($attachmentId, array $dimension = array(1200, 900), string $ratio = '16:9')
-    {
-        return wp_get_attachment_image_src(
-            $attachmentId,
-            apply_filters(
-                'modularity/image/posts/items',
-                municipio_to_aspect_ratio($ratio, $dimension),
-                $this->args,
-                $this->module
-            )
-        );
     }
 }
