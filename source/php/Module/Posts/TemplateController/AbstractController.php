@@ -38,7 +38,7 @@ class AbstractController
         $imageDimensions = $this->getImageDimensions($this->data['posts_columns']);
 
         foreach ($this->data['posts'] as $post) {
-            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9', 'index');
+            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
 
             // Image fetch
             $post->thumbnail = $image;
@@ -102,7 +102,7 @@ class AbstractController
         return $postDate;
     }
 
-    protected function getPostImage($post, $postsDataSource, array $imageDimensions, $ratio, string $hook = 'index')
+    protected function getPostImage($post, $postsDataSource, array $imageDimensions, $ratio)
     {
         $image = null;
 
