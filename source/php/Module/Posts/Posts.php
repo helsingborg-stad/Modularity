@@ -25,23 +25,23 @@ class Posts extends \Modularity\Module
         add_action('Modularity/Module/' . $this->moduleSlug . '/enqueue', array($this, 'enqueueScripts'));
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
         add_action('save_post', array($this, 'saveColumnFields'));
-        
+
         add_action('wp_ajax_get_taxonomy_types_v2', array($this, 'getTaxonomyTypes'));
         add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
         add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
-        
+
         add_action('wp_ajax_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
         add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
-        
+
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
-        
+
         add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
         add_filter('acf/load_field/key=field_62a309f9c59bb', array($this, 'addIconsList'));
 
         //Add full-width capabilty to blocks
         add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
-        
+
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
     }
@@ -54,7 +54,7 @@ class Posts extends \Modularity\Module
      */
     public function getDateSource($postType): array
     {
-        if(empty($postType)) {
+        if (empty($postType)) {
             return false;
         }
 
@@ -70,7 +70,7 @@ class Posts extends \Modularity\Module
                 $metaKeys[$metaKey] = $metaKey;
             }
         }
-  
+
         return $metaKeys;
     }
 
@@ -97,7 +97,8 @@ class Posts extends \Modularity\Module
      * @param [object] $module
      * @return array
      */
-    public function blockData($viewData, $block, $module) {
+    public function blockData($viewData, $block, $module)
+    {
         $viewData['noGutter'] = false;
         if (in_array($block['name'], ['posts', 'acf/posts']) && $block['align'] == 'full') {
             if (!is_admin()) {
@@ -115,27 +116,27 @@ class Posts extends \Modularity\Module
      * @param array $field  Field definition
      * @return array $field Field definition with choices
      */
-    public function addIconsList($field) : array 
+    public function addIconsList($field): array
     {
-        
+
         $choices = \Modularity\Helper\Icons::getIcons();
 
-        if(is_array($choices) && !empty($choices)) {
-        foreach($choices as $choice) {
-            $field['choices'][ $choice ] = '<i class="material-icons" style="float: left;">'. $choice .'</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">'. $choice . '</span>';
-        }
+        if (is_array($choices) && !empty($choices)) {
+            foreach ($choices as $choice) {
+                $field['choices'][$choice] = '<i class="material-icons" style="float: left;">' . $choice . '</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">' . $choice . '</span>';
+            }
         } else {
-        $field['choices'] = []; 
+            $field['choices'] = [];
         }
 
-        return $field; 
+        return $field;
     }
 
     public function loadDateFieldAjax()
     {
         $postType = $_POST['state'] ?? false;
 
-        if(empty($postType)) {
+        if (empty($postType)) {
             return false;
         }
 
@@ -146,7 +147,7 @@ class Posts extends \Modularity\Module
     {
         $postType = get_field('posts_data_post_type', $this->ID);
 
-        if(empty($postType)) {
+        if (empty($postType)) {
             return $field;
         }
 
@@ -251,13 +252,12 @@ class Posts extends \Modularity\Module
      * @return false|string
      */
     public function template()
-    {        
-        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ));
-        if(!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
+    {
+        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as']));
+        if (!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
             return 'list';
         }
-        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this,$this->data);
-        
+        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this, $this->data);
     }
 
     /**
@@ -270,8 +270,8 @@ class Posts extends \Modularity\Module
         $template = implode('', $template);
 
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
-        
-        $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as'] );
+
+        $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
             $this->data = array_merge($this->data, $controller->data);
@@ -286,18 +286,28 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode(get_fields($this->ID)));
         $data['posts_display_as'] = $fields->posts_display_as;
 
-        if (get_field('front_end_tax_filtering', $this->ID) && get_field('posts_data_post_type',
-                $this->ID) === 'post' || get_field('front_end_tax_filtering',
-                $this->ID) && get_field('posts_data_post_type', $this->ID) === 'page') {
+        if (get_field('front_end_tax_filtering', $this->ID) && get_field(
+            'posts_data_post_type',
+            $this->ID
+        ) === 'post' || get_field(
+            'front_end_tax_filtering',
+            $this->ID
+        ) && get_field('posts_data_post_type', $this->ID) === 'page') {
 
             $this->enableFilters = true;
 
-            $data['frontEndFilters']['front_end_tax_filtering_text_search'] = get_field('front_end_tax_filtering_text_search',
-                $this->ID) ? true : false;
-            $data['frontEndFilters']['front_end_tax_filtering_dates'] = get_field('front_end_tax_filtering_dates',
-                $this->ID) ? true : false;
-            $data['frontEndFilters']['front_end_tax_filtering_taxonomy'] = get_field('front_end_tax_filtering_taxonomy',
-                $this->ID) ? true : false;
+            $data['frontEndFilters']['front_end_tax_filtering_text_search'] = get_field(
+                'front_end_tax_filtering_text_search',
+                $this->ID
+            ) ? true : false;
+            $data['frontEndFilters']['front_end_tax_filtering_dates'] = get_field(
+                'front_end_tax_filtering_dates',
+                $this->ID
+            ) ? true : false;
+            $data['frontEndFilters']['front_end_tax_filtering_taxonomy'] = get_field(
+                'front_end_tax_filtering_taxonomy',
+                $this->ID
+            ) ? true : false;
 
             $data['frontEndFilters']['front_end_button_text'] = get_field('front_end_button_text', $this->ID);
             $data['frontEndFilters']['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
@@ -352,7 +362,6 @@ class Posts extends \Modularity\Module
             $taxValues = implode('|', $taxValues);
 
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
-
         }
 
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
@@ -361,7 +370,7 @@ class Posts extends \Modularity\Module
         $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;
 
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
-        
+
 
         return $data;
     }
@@ -556,8 +565,10 @@ class Posts extends \Modularity\Module
         }
 
         //Update if nonce verification succeed
-        if (isset($_POST['modularity_post_columns']) && wp_verify_nonce($_POST['modularity_post_columns'],
-                'save_columns')) {
+        if (isset($_POST['modularity_post_columns']) && wp_verify_nonce(
+            $_POST['modularity_post_columns'],
+            'save_columns'
+        )) {
             //Delete if not posted data
             if (!isset($_POST[$metaKey])) {
                 delete_post_meta($postId, $metaKey);
@@ -758,7 +769,7 @@ class Posts extends \Modularity\Module
     public function script()
     {
         wp_register_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/mod-posts-load-more-button.js'));
+            . \Modularity\Helper\CacheBust::name('js/mod-posts-load-more-button.js'));
         wp_enqueue_script('mod-posts-load-more-button');
     }
 
@@ -922,15 +933,16 @@ class Posts extends \Modularity\Module
      * @param $templateSlug
      * @return mixed
      */
-    public static function replaceDeprecatedTemplate($templateSlug){
-  
+    public static function replaceDeprecatedTemplate($templateSlug)
+    {
+
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
             'news' => 'index'
         ];
 
-        if (array_key_exists($templateSlug, $deprecatedTemplates)){
+        if (array_key_exists($templateSlug, $deprecatedTemplates)) {
             return  $deprecatedTemplates[$templateSlug];
         }
 
