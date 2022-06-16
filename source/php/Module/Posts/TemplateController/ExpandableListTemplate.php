@@ -29,7 +29,6 @@ class ExpandableListTemplate
         $this->data['title_column_label'] = $fields->title_column_label ?? null;
         $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
         $this->data['prepareAccordion'] = $this->prepare($data['posts'], $this->data);
-
     }
 
     /**
@@ -78,7 +77,8 @@ class ExpandableListTemplate
 
                 $taxPosition = '';
                 if ((isset($data['taxonomyDisplay']['top']) && !empty($data['taxonomyDisplay']['top'])) ||
-                    (isset($data['taxonomyDisplay']['below']) && !empty($data['taxonomyDisplay']['below']))) {
+                    (isset($data['taxonomyDisplay']['below']) && !empty($data['taxonomyDisplay']['below']))
+                ) {
                     $taxPosition = ($data['taxonomyDisplay']['top']) ?: $data['taxonomyDisplay']['below'];
                 }
 
@@ -93,19 +93,17 @@ class ExpandableListTemplate
                                 if ($this->arrayDepth($column_values) > 1) {
                                     $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title(
                                         $column->column_header
-                                        )] ?? '';
+                                    )] ?? '';
                                 } else {
                                     $accordion[$index]['column_values'][$colIndex] = $column_values[sanitize_title(
                                         $column->column_header
-                                        )] ?? '';
+                                    )] ?? '';
                                 }
                             }
                         }
-
                     } else {
                         $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                     }
-
                 } else {
                     $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                 }
@@ -137,5 +135,4 @@ class ExpandableListTemplate
 
         return $maxDepth;
     }
-
 }

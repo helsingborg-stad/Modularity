@@ -25,7 +25,6 @@ class PostsFilters
         remove_filter('content_save_pre', 'wp_filter_post_kses');
         remove_filter('excerpt_save_pre', 'wp_filter_post_kses');
         remove_filter('content_filtered_save_pre', 'wp_filter_post_kses');
-
     }
 
     /**
@@ -230,8 +229,10 @@ class PostsFilters
         $html .= '>';
 
         foreach ($terms as $term) {
-            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array($term->slug,
-                        $_GET['filter'][$tax->slug]));
+            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array(
+                $term->slug,
+                $_GET['filter'][$tax->slug]
+            ));
             $checked = checked(true, $isChecked, false);
 
             $html .= '<li>';
@@ -281,8 +282,10 @@ class PostsFilters
         $html .= '>';
 
         foreach ($terms as $term) {
-            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array($term->slug,
-                        $_GET['filter'][$tax->slug]));
+            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array(
+                $term->slug,
+                $_GET['filter'][$tax->slug]
+            ));
             $checked = checked(true, $isChecked, false);
 
             $html .= '<li>';
@@ -334,5 +337,4 @@ class PostsFilters
 
         return $where;
     }
-
 }
