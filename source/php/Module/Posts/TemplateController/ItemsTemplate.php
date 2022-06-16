@@ -4,7 +4,7 @@ namespace Modularity\Module\Posts\TemplateController;
 
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 
-class ItemsTemplate
+class ItemsTemplate extends AbstractController
 {
     protected $module;
     protected $args;
@@ -22,7 +22,7 @@ class ItemsTemplate
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
 
-        if($fields->posts_highlight_first ?? false) {
+        if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
             $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
         }
@@ -32,41 +32,10 @@ class ItemsTemplate
 
     public function getImages($fields)
     {
-        $imageDimension = array(400, 300);
-        switch ($this->data['posts_columns']) {
-            case "o-grid-12@md":    //1-col
-                $imageDimension = array(1200, 900);
-                break;
-
-            case "o-grid-6@md":    //2-col
-                $imageDimension = array(800, 600);
-                break;
-        }
+        $imageDimension = $this->getImageDimensions($this->data['posts_columns']);
 
         foreach ($this->data['posts'] as $post) {
-            /* Image */
-            $image = null;
-            if ($fields->posts_data_source !== 'input') {
-                $image = wp_get_attachment_image_src(
-                    get_post_thumbnail_id($post->ID),
-                    apply_filters(
-                        'modularity/image/posts/items',
-                        municipio_to_aspect_ratio('16:9', $imageDimension),
-                        $this->args
-                    )
-                );
-            } else {
-                if ($post->image) {
-                    $image = wp_get_attachment_image_src(
-                        $post->image->ID,
-                        apply_filters(
-                            'modularity/image/posts/items',
-                            municipio_to_aspect_ratio('16:9', $imageDimension),
-                            $this->args
-                        )
-                    );
-                }
-            }
+            $image = $this->getPostImage($post, $fields->posts_data_source, $imageDimension, '16:9', 'items');
 
             $post->thumbnail = $image;
         }

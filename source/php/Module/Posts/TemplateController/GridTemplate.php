@@ -23,20 +23,20 @@ class GridTemplate extends AbstractController
         $this->data['ratio'] = $fields->ratio;
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news'), $this->module->post_type, $this->args));
 
-        if($fields->posts_highlight_first ?? false) {
+        if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
             $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
         }
-        
+
         $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
         $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'] . '@md';
         $this->data['column_height'] = false;
 
-        $this->preparePosts($fields);
+        $this->prepare($fields);
         $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 
-    public function preparePosts($fields)
+    public function prepare($fields)
     {
         $postNum = 0;
         $gridRand = $this->getGridPattern($this->data['gridSize']);
@@ -46,18 +46,7 @@ class GridTemplate extends AbstractController
         $imageDimensions = array(1200, 900);
 
         if (!$fields->posts_alter_columns) {
-            switch ($fields->posts_columns) {
-                case "o-grid-12@md":    //1-col
-                    $imageDimensions = array(1200, 900);
-                    break;
-
-                case "o-grid-6@md":    //2-col
-                    $imageDimensions = array(900, 675);
-                    break;
-
-                default:
-                    $imageDimensions = array(900, 675);
-            }
+            $imageDimensions = $this->getImageDimensions($fields->posts_columns, [900, 675]);
         }
 
         foreach ($this->data['posts'] as $post) {
@@ -105,28 +94,7 @@ class GridTemplate extends AbstractController
             }
 
             /* Image */
-            $image = null;
-            if ($this->data['posts_data_source'] !== 'input') {
-                $image = wp_get_attachment_image_src(
-                    get_post_thumbnail_id($post->ID),
-                    apply_filters(
-                        'modularity/image/posts/index',
-                        municipio_to_aspect_ratio($fields->ratio, $imageDimensions),
-                        $this->args
-                    )
-                );
-            } else {
-                if ($post->image) {
-                    $image = wp_get_attachment_image_src(
-                        $post->image->ID,
-                        apply_filters(
-                            'modularity/image/posts/index',
-                            municipio_to_aspect_ratio($fields->ratio, $imageDimensions),
-                            $this->args
-                        )
-                    );
-                }
-            }
+            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, $fields->ratio, 'index');
 
             // Image fetch
             $post->thumbnail = $image;
@@ -134,16 +102,8 @@ class GridTemplate extends AbstractController
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
-        
-            //Booleans for hiding/showing stuff
-            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
-            $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
-            $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
-            $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
 
-            if ($post->showDate) {
-                $post->postDate = $this->getDate($post, $this->data['posts_date_source']);
-            }
+            $this->setPostBooleans($post);
         }
     }
 
@@ -155,13 +115,13 @@ class GridTemplate extends AbstractController
      */
     public function getDate($post, $dateSource = 'post_date')
     {
-        if(!$dateSource) {
+        if (!$dateSource) {
             return false;
         }
 
         $isMetaKey = in_array($dateSource, ['post_date', 'post_modified']) ? false : true;
 
-        if($isMetaKey == true) {
+        if ($isMetaKey == true) {
             $postDate = get_post_meta($post->ID, $dateSource, true);
         } else {
             $postDate = $post->{$dateSource};

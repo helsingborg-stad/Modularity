@@ -6,7 +6,7 @@ namespace Modularity\Module\Posts\TemplateController;
  * Class ListTemplate
  * @package Modularity\Module\Posts\TemplateController
  */
-class FeaturesGridTemplate
+class FeaturesGridTemplate extends AbstractController
 {
     protected $module;
     protected $args;
@@ -32,53 +32,20 @@ class FeaturesGridTemplate
         $this->preparePosts($fields);
     }
 
-    public function preparePosts($fields)
+    public function preparePosts()
     {
-        $postNum = 0;
+        $imageDimensions = [400, 225];
 
         foreach ($this->data['posts'] as $post) {
-            $postNum++;
-
-            /* Image */
-            $image = null;
-            $imageDimensions = [400,225];
-            if ($this->data['posts_data_source'] !== 'input') {
-                $image = wp_get_attachment_image_src(
-                    get_post_thumbnail_id($post->ID),
-                    apply_filters(
-                        'modularity/image/posts/featuresGrid',
-                        municipio_to_aspect_ratio('16:9', $imageDimensions),
-                        $this->args
-                    )
-                );
-            } else {
-                if ($post->image) {
-                    $image = wp_get_attachment_image_src(
-                        $post->image->ID,
-                        apply_filters(
-                            'modularity/image/posts/featuresGrid',
-                            municipio_to_aspect_ratio('16:9', $imageDimensions),
-                            $this->args
-                        )
-                    );
-                }
-            }
+            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9', 'featuresGrid');
 
             $post->thumbnail = $image;
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
-        
-            //Booleans for hiding/showing stuff
-            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
-            $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
-            $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
-            $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
 
-            if ($post->showDate) {
-                $post->postDate = $this->getDate($post, $this->data['posts_date_source']);
-            }
+            $this->setPostBooleans($post);
         }
     }
 
@@ -90,13 +57,13 @@ class FeaturesGridTemplate
      */
     public function getDate($post, $dateSource = 'post_date')
     {
-        if(!$dateSource) {
+        if (!$dateSource) {
             return false;
         }
 
         $isMetaKey = in_array($dateSource, ['post_date', 'post_modified']) ? false : true;
 
-        if($isMetaKey == true) {
+        if ($isMetaKey == true) {
             $postDate = get_post_meta($post->ID, $dateSource, true);
         } else {
             $postDate = $post->{$dateSource};
@@ -108,5 +75,4 @@ class FeaturesGridTemplate
 
         return $postDate;
     }
-
 }
