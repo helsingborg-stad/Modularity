@@ -60,14 +60,14 @@ class AbstractController
             // Get excerpt
             $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : '';
 
-            $this->setPostBooleans($post);
+            $this->setPostFlags($post);
         }
     }
 
     /**
      * Booleans for hiding/showing stuff
      */
-    public function setPostBooleans(&$post)
+    public function setPostFlags(&$post)
     {
         //Booleans for hiding/showing stuff
         $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);

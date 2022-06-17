@@ -59,7 +59,7 @@ class FeaturesGridTemplate extends AbstractController
                 $this->data['taxonomyDisplayFlat']
             );
 
-            $this->setPostBooleans($post);
+            $this->setPostFlags($post);
         }
     }
 }

@@ -66,29 +66,7 @@ class GridTemplate extends AbstractController
 
                 $columnSize = 'o-grid-' . $gridColumns[0] . '@md';
                 array_shift($gridColumns);
-                $columnHeight = null;
-
-                switch ($this->data['gridSize']) {
-                    case 3:
-                        $columnHeight = '280px';
-                        break;
-
-                    case 4:
-                        $columnHeight = '400px';
-                        break;
-
-                    case 6:
-                        $columnHeight = '500px';
-                        break;
-
-                    case 12:
-                        $columnHeight = '500px';
-                        break;
-
-                    default:
-                        $columnHeight = false;
-                        break;
-                }
+                $columnHeight = $this->getColumnHeight($this->data['gridSize']);
 
                 $post->column_width = $columnSize;
                 $post->column_height = $columnHeight;
@@ -101,7 +79,7 @@ class GridTemplate extends AbstractController
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             $post->tags = (new TagHelper)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
 
-            $this->setPostBooleans($post);
+            $this->setPostFlags($post);
         }
     }
 
@@ -150,5 +128,21 @@ class GridTemplate extends AbstractController
         }
 
         return apply_filters('Modularity/Module/Posts/TemplateController/BlockTemplate/Pattern', $gridRand, $gridSize);
+    }
+
+    private function getColumnHeight($gridSize): ?string
+    {
+        switch ($gridSize) {
+            case 3:
+                return '280px';
+            case 4:
+                return '400px';
+            case 6:
+                return '500px';
+            case 12:
+                return '500px';
+            default:
+                return null;
+        }
     }
 }

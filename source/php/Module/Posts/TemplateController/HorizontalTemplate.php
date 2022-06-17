@@ -97,11 +97,9 @@ class HorizontalTemplate extends AbstractController
     public function getTerms($post)
     {
         $taxonomies = get_field('taxonomy_display', $this->data['ID']);
-
         if (empty($taxonomies)) {
             return [];
         }
-
 
         $terms = [];
         if (!empty($taxonomies)) {

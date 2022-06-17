@@ -282,35 +282,9 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode(get_fields($this->ID)));
         $data['posts_display_as'] = $fields->posts_display_as;
 
-        if (
-            get_field('front_end_tax_filtering', $this->ID)
-            && get_field(
-                'posts_data_post_type',
-                $this->ID
-            ) === 'post' || get_field(
-                'front_end_tax_filtering',
-                $this->ID
-            ) && get_field('posts_data_post_type', $this->ID) === 'page'
-        ) {
-
-            $this->enableFilters = true;
-
-            $data['frontEndFilters']['front_end_tax_filtering_text_search'] = get_field(
-                'front_end_tax_filtering_text_search',
-                $this->ID
-            ) ? true : false;
-            $data['frontEndFilters']['front_end_tax_filtering_dates'] = get_field(
-                'front_end_tax_filtering_dates',
-                $this->ID
-            ) ? true : false;
-            $data['frontEndFilters']['front_end_tax_filtering_taxonomy'] = get_field(
-                'front_end_tax_filtering_taxonomy',
-                $this->ID
-            ) ? true : false;
-
-            $data['frontEndFilters']['front_end_button_text'] = get_field('front_end_button_text', $this->ID);
-            $data['frontEndFilters']['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
-            $data['frontEndFilters']['front_end_display'] = get_field('front_end_display', $this->ID);
+        $this->enableFilters = $this->enableFilters();
+        if ($this->enableFilters) {
+            $data['frontEndFilters'] = $this->getFrontendFilters();
 
             $postFilters = new PostsFilters($this);
 
@@ -369,7 +343,6 @@ class Posts extends \Modularity\Module
         $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;
 
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
-
 
         return $data;
     }
@@ -797,6 +770,37 @@ class Posts extends \Modularity\Module
 
             echo '<script>var modularity_current_post_id = ' . $id . ';</script>';
         });
+    }
+
+    private function getFrontendFilters()
+    {
+        $frontendFilters = [];
+        $frontendFilters['front_end_tax_filtering_text_search'] = get_field(
+            'front_end_tax_filtering_text_search',
+            $this->ID
+        ) ? true : false;
+        $frontendFilters['front_end_tax_filtering_dates'] = get_field(
+            'front_end_tax_filtering_dates',
+            $this->ID
+        ) ? true : false;
+        $frontendFilters['front_end_tax_filtering_taxonomy'] = get_field(
+            'front_end_tax_filtering_taxonomy',
+            $this->ID
+        ) ? true : false;
+
+        $frontendFilters['front_end_button_text'] = get_field('front_end_button_text', $this->ID);
+        $frontendFilters['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
+        $frontendFilters['front_end_display'] = get_field('front_end_display', $this->ID);
+
+        return $frontendFilters;
+    }
+
+    private function enableFilters()
+    {
+        return get_field('front_end_tax_filtering', $this->ID)
+            && get_field('posts_data_post_type', $this->ID) === 'post'
+            || get_field('front_end_tax_filtering', $this->ID)
+            && get_field('posts_data_post_type', $this->ID) === 'page';
     }
 
     /**
