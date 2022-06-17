@@ -76,15 +76,7 @@ class ExpandableListTemplate
 
         if (count($posts) > 0) {
             foreach ($posts as $index => $post) {
-                $taxPosition = '';
-                if ($this->hasTaxonomyDisplayPosition($data['taxonomyDisplay'])) {
-                    $taxPosition = ($data['taxonomyDisplay']['top']) ?: $data['taxonomyDisplay']['below'];
-                }
-
-                $accordion[$index]['taxonomy'] = (new Tag)->getTags($post->ID, $taxPosition);
-                $accordion[$index]['taxonomyPosition'] = $taxPosition;
-
-                if ($this->hasColumnValues($data, $columnValues) && $this->hasColumnTitles($data)) {
+                if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($data)) {
                     foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
                         $sanitizedTitle = sanitize_title($column->column_header);
                         if ($this->arrayDepth($columnValues) > 1) {
@@ -124,13 +116,7 @@ class ExpandableListTemplate
         return $maxDepth;
     }
 
-    private function hasTaxonomyDisplayPosition($taxonomyDisplay): bool
-    {
-        return (isset($taxonomyDisplay['top']) && !empty($taxonomyDisplay['top'])) ||
-            (isset($taxonomyDisplay['below']) && !empty($taxonomyDisplay['below']));
-    }
-
-    private function hasColumnValues($data, $columnValues): bool
+    private function hasColumnValues($columnValues): bool
     {
         return isset($columnValues)
             && !empty($columnValues);
