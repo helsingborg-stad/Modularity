@@ -8,7 +8,6 @@ namespace Modularity\Module\Posts\Helper;
  */
 class Column
 {
-
     /**
      * @param $postId
      * @param $tax
@@ -28,4 +27,3 @@ class Column
         }
     }
 }
-

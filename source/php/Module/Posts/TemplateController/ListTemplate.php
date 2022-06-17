@@ -30,7 +30,10 @@ class ListTemplate
             'filters' => $data['filters'] ?? '',
         ]);
 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $module->post_type, $this->args));
+        $this->data['classes'] = implode(
+            ' ',
+            apply_filters('Modularity/Module/Classes', [], $module->post_type, $this->args)
+        );
     }
 
     /**

@@ -29,7 +29,12 @@ class FeaturesGridTemplate extends AbstractController
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
-        $this->data['classes'] = apply_filters('Modularity/Module/Classes', ['u-height--100', 'u-height-100'], $module->post_type, $args);
+        $this->data['classes'] = apply_filters(
+            'Modularity/Module/Classes',
+            ['u-height--100', 'u-height-100'],
+            $module->post_type,
+            $args
+        );
         $this->preparePosts($fields);
     }
 
@@ -38,11 +43,19 @@ class FeaturesGridTemplate extends AbstractController
         $imageDimensions = [400, 225];
 
         foreach ($this->data['posts'] as $post) {
-            $post->thumbnail = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
+            $post->thumbnail = $this->getPostImage(
+                $post,
+                $this->data['posts_data_source'],
+                $imageDimensions,
+                '16:9'
+            );
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
+            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags(
+                $post->ID,
+                $this->data['taxonomyDisplayFlat']
+            );
 
             $this->setPostBooleans($post);
         }

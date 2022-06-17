@@ -123,7 +123,11 @@ class Posts extends \Modularity\Module
 
         if (is_array($choices) && !empty($choices)) {
             foreach ($choices as $choice) {
-                $field['choices'][$choice] = '<i class="material-icons" style="float: left;">' . $choice . '</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">' . $choice . '</span>';
+                $field['choices'][$choice] = '<i class="material-icons" style="float: left;">'
+                    . $choice
+                    . '</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">'
+                    . $choice
+                    . '</span>';
             }
         } else {
             $field['choices'] = [];
@@ -154,25 +158,6 @@ class Posts extends \Modularity\Module
         $field['choices'] = $this->getDateSource($postType);
 
         return $field;
-    }
-
-    public static function loadMoreButtonAttributes($module, $target, $bladeTemplate, $postsPerPage)
-    {
-        if (defined('DOING_AJAX') && DOING_AJAX) {
-            return '';
-        }
-
-        unset($module->data['posts']);
-
-        return json_encode([
-            'target' => $target,
-            'postsPerPage' => $postsPerPage,
-            'offset' => (get_field('posts_count', $module->data['ID']) > 0) ? get_field('posts_count', $module->data['ID']) : 0,
-            'module' => $module,
-            'bladeTemplate' => $bladeTemplate,
-            'ajaxUrl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('mod-posts-load-more')
-        ]);
     }
 
     /**
@@ -219,7 +204,11 @@ class Posts extends \Modularity\Module
         $args['offset'] = $_POST['offset'];
         $this->data['posts'] = get_posts($args);
 
-        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'])); //Include template controller data
+        $this->getTemplateData(
+            self::replaceDeprecatedTemplate(
+                $this->data['posts_display_as']
+            )
+        ); //Include template controller data
 
         //No posts
         if (empty($this->data['posts'])) {
@@ -257,7 +246,13 @@ class Posts extends \Modularity\Module
         if (!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
             return 'list';
         }
-        return apply_filters('Modularity/Module/Posts/template', self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php', $this, $this->data);
+
+        return apply_filters(
+            'Modularity/Module/Posts/template',
+            self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php',
+            $this,
+            $this->data
+        );
     }
 
     /**
@@ -286,13 +281,16 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode(get_fields($this->ID)));
         $data['posts_display_as'] = $fields->posts_display_as;
 
-        if (get_field('front_end_tax_filtering', $this->ID) && get_field(
-            'posts_data_post_type',
-            $this->ID
-        ) === 'post' || get_field(
-            'front_end_tax_filtering',
-            $this->ID
-        ) && get_field('posts_data_post_type', $this->ID) === 'page') {
+        if (
+            get_field('front_end_tax_filtering', $this->ID)
+            && get_field(
+                'posts_data_post_type',
+                $this->ID
+            ) === 'post' || get_field(
+                'front_end_tax_filtering',
+                $this->ID
+            ) && get_field('posts_data_post_type', $this->ID) === 'page'
+        ) {
 
             $this->enableFilters = true;
 
@@ -565,10 +563,13 @@ class Posts extends \Modularity\Module
         }
 
         //Update if nonce verification succeed
-        if (isset($_POST['modularity_post_columns']) && wp_verify_nonce(
-            $_POST['modularity_post_columns'],
-            'save_columns'
-        )) {
+        if (
+            isset($_POST['modularity_post_columns'])
+            && wp_verify_nonce(
+                $_POST['modularity_post_columns'],
+                'save_columns'
+            )
+        ) {
             //Delete if not posted data
             if (!isset($_POST[$metaKey])) {
                 delete_post_meta($postId, $metaKey);
@@ -645,7 +646,8 @@ class Posts extends \Modularity\Module
 
         foreach ($fields as $field) {
             $fieldSlug = sanitize_title($field);
-            $value = isset($fieldValues[$fieldSlug]) && !empty($fieldValues[$fieldSlug]) ? $fieldValues[$fieldSlug] : '';
+            $value = isset($fieldValues[$fieldSlug]) && !empty($fieldValues[$fieldSlug])
+                ? $fieldValues[$fieldSlug] : '';
             echo '
                 <p>
                     <label for="mod-' . $fieldSlug . '">' . $field . ':</label>

@@ -16,10 +16,36 @@ class HorizontalTemplate extends AbstractController
         $this->args = $args;
         $this->data = $data;
 
-        $this->data['loadMorePostsAttributes'] = \Modularity\Module\Posts\Posts::loadMoreButtonAttributes($module, '.js-mod-posts-' . $module->ID, 'partials.post.post-horizontal', 6);
+        $this->data['loadMorePostsAttributes'] = $this->loadMoreButtonAttributes(
+            $module,
+            '.js-mod-posts-' . $module->ID,
+            'partials.post.post-horizontal',
+            6
+        );
 
         $this->data['loadMoreButtonText'] = __('Load more', 'modularity');
         $this->mapPosts();
+    }
+
+    private function loadMoreButtonAttributes($module, $target, $bladeTemplate, $postsPerPage)
+    {
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            return '';
+        }
+
+        unset($module->data['posts']);
+
+        $postsCount = get_field('posts_count', $module->data['ID']);
+
+        return json_encode([
+            'target' => $target,
+            'postsPerPage' => $postsPerPage,
+            'offset' => ($postsCount > 0) ? $postsCount : 0,
+            'module' => $module,
+            'bladeTemplate' => $bladeTemplate,
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('mod-posts-load-more')
+        ]);
     }
 
     /**
@@ -48,7 +74,10 @@ class HorizontalTemplate extends AbstractController
             $post->image = $this->getFeaturedImageSource($post, $imageDimension, $imageRatio);
             $post->terms = $this->getTerms($post);
 
-            $post->humanReadableTime = (get_field('posts_date_format', $this->data['ID']) == 'readable') ? $this->readableTimeStamp(strtotime($post->post_date)) . ' ' . __('ago', 'modularity') : false;
+            $post->humanReadableTime = false;
+            if (get_field('posts_date_format', $this->data['ID']) == 'readable') {
+                $post->humanReadableTime = $this->readableTimeStamp(strtotime($post->post_date)) . ' ' . __('ago', 'modularity');
+            }
 
             $posts[] = $post;
 
@@ -103,8 +132,9 @@ class HorizontalTemplate extends AbstractController
         }
 
         //User defined placeholder (if exists within the module)
-        if (!$image && get_field('posts_placeholder', $this->data['ID'])) {
-            $image = $this->getAttachmentUrl(get_field('posts_placeholder', $this->data['ID'])['ID'], $imageDimension, $imageRatio)[0];
+        $postsPlaceholder = get_field('posts_placeholder', $this->data['ID']);
+        if (!$image && $postsPlaceholder) {
+            $image = $this->getAttachmentUrl($postsPlaceholder['ID'], $imageDimension, $imageRatio)[0];
         }
 
         return $image;

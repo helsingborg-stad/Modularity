@@ -45,7 +45,10 @@ class AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags($post->ID, $this->data['taxonomyDisplayFlat']);
+            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags(
+                $post->ID,
+                $this->data['taxonomyDisplayFlat']
+            );
             if (!empty($post->link) && is_array($post->tags) && !empty($post->tags)) {
                 foreach ($post->tags as $tagKey => $tag) {
                     $post->tags[$tagKey]['href'] = "";
