@@ -62,6 +62,7 @@ class ListTemplate
                 $columnsTitle = $post->post_title;
             }
 
+            $columnsDate = '';
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
                 $columnsDate = apply_filters(
                     'Modularity/Module/Posts/Date',
@@ -69,8 +70,6 @@ class ListTemplate
                     $post->ID,
                     $post->post_type
                 );
-            } else {
-                $columnsDate = '';
             }
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle, $columnsDate]]);
