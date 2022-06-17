@@ -22,7 +22,7 @@ class GridTemplate extends AbstractController
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', ['box', 'box-news'], $this->module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $this->module->post_type, $this->args));
 
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);

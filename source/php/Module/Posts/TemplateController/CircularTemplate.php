@@ -19,7 +19,7 @@ class CircularTemplate extends AbstractController
         $this->data = $data;
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
-        $classes = apply_filters('Modularity/Module/Classes', ['box', 'box-news-circular', 'no-color'], $this->module->post_type, $this->args);
+        $classes = apply_filters('Modularity/Module/Classes', ['no-color'], $this->module->post_type, $this->args);
         $this->data['classes'] = implode(' ', $classes);
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
 
