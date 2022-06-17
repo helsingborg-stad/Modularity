@@ -31,7 +31,6 @@ class GridTemplate extends AbstractController
 
         $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
         $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'] . '@md';
-        $this->data['column_height'] = false;
 
         $this->prepare($fields);
         $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
@@ -40,8 +39,6 @@ class GridTemplate extends AbstractController
     public function prepare($fields)
     {
         $postNum = 0;
-        $gridRand = $this->getGridPattern($this->data['gridSize']);
-        $gridRow = [];
 
         /* Image size */
         $imageDimensions = [1200, 900];
@@ -52,25 +49,6 @@ class GridTemplate extends AbstractController
 
         foreach ($this->data['posts'] as $post) {
             $postNum++;
-
-            // Get altering grid size
-            if ($fields->posts_alter_columns) {
-                if (empty($gridRow)) {
-                    $gridRow = $gridRand;
-                }
-
-                if (empty($gridColumns)) {
-                    $gridColumns = $gridRow[0];
-                    array_shift($gridRow);
-                }
-
-                $columnSize = 'o-grid-' . $gridColumns[0] . '@md';
-                array_shift($gridColumns);
-                $columnHeight = $this->getColumnHeight($this->data['gridSize']);
-
-                $post->column_width = $columnSize;
-                $post->column_height = $columnHeight;
-            }
 
             /* Image */
             $post->thumbnail = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, $fields->ratio);
@@ -128,21 +106,5 @@ class GridTemplate extends AbstractController
         }
 
         return apply_filters('Modularity/Module/Posts/TemplateController/BlockTemplate/Pattern', $gridRand, $gridSize);
-    }
-
-    private function getColumnHeight($gridSize): ?string
-    {
-        switch ($gridSize) {
-            case 3:
-                return '280px';
-            case 4:
-                return '400px';
-            case 6:
-                return '500px';
-            case 12:
-                return '500px';
-            default:
-                return null;
-        }
     }
 }
