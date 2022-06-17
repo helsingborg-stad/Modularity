@@ -22,9 +22,10 @@ class Tag
 
         foreach ($tax as $key => $taxonomy) {
             $terms = wp_get_post_terms($postId, $taxonomy);
-
             if (count($terms) > 0) {
+                $tags = [];
                 foreach ($terms as $index => $term) {
+                    $tags[$index] = [];
                     $tags[$index]['label'] = $term->name;
                     $tags[$index]['color'] = 'secondary';
                     $tags[$index]['href'] = get_term_link($term->term_id);

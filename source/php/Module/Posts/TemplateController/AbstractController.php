@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Tag as TagHelper;
+
 class AbstractController
 {
     protected $hookName = 'index';
@@ -45,7 +47,7 @@ class AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags(
+            $post->tags = (new TagHelper)->getTags(
                 $post->ID,
                 $this->data['taxonomyDisplayFlat']
             );
@@ -111,10 +113,8 @@ class AbstractController
 
         if ($postsDataSource !== 'input') {
             $image = $this->getAttachmentUrl(get_post_thumbnail_id($post->ID), $imageDimensions, $ratio);
-        } else {
-            if ($post->image) {
-                $image = $this->getAttachmentUrl($post->image->ID, $imageDimensions, $ratio);
-            }
+        } elseif ($post->image) {
+            $image = $this->getAttachmentUrl($post->image->ID, $imageDimensions, $ratio);
         }
 
         return $image;

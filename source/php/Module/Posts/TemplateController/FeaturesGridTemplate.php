@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Tag as TagHelper;
+
 /**
  * Class ListTemplate
  * @package Modularity\Module\Posts\TemplateController
@@ -52,7 +54,7 @@ class FeaturesGridTemplate extends AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new \Modularity\Module\Posts\Helper\Tag)->getTags(
+            $post->tags = (new TagHelper)->getTags(
                 $post->ID,
                 $this->data['taxonomyDisplayFlat']
             );

@@ -4,6 +4,7 @@ namespace Modularity\Module\Posts;
 
 use Throwable;
 use BladeComponentLibrary\Init as CompLibInitator;
+use \Modularity\Module\Posts\PostsFilters;
 
 /**
  * Class Posts
@@ -121,6 +122,7 @@ class Posts extends \Modularity\Module
 
         $choices = \Modularity\Helper\Icons::getIcons();
 
+        $field['choices'] = [];
         if (is_array($choices) && !empty($choices)) {
             foreach ($choices as $choice) {
                 $field['choices'][$choice] = '<i class="material-icons" style="float: left;">'
@@ -129,8 +131,6 @@ class Posts extends \Modularity\Module
                     . $choice
                     . '</span>';
             }
-        } else {
-            $field['choices'] = [];
         }
 
         return $field;
@@ -278,6 +278,7 @@ class Posts extends \Modularity\Module
      */
     public function data(): array
     {
+        $data = [];
         $fields = json_decode(json_encode(get_fields($this->ID)));
         $data['posts_display_as'] = $fields->posts_display_as;
 
@@ -311,12 +312,11 @@ class Posts extends \Modularity\Module
             $data['frontEndFilters']['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
             $data['frontEndFilters']['front_end_display'] = get_field('front_end_display', $this->ID);
 
-            $postFilters = new \Modularity\Module\Posts\PostsFilters($this);
+            $postFilters = new PostsFilters($this);
 
+            $data['enabledTaxonomyFilters'] = [];
             if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true)) {
                 $data['enabledTaxonomyFilters'] = $enabledTaxonomyFilters;
-            } else {
-                $data['enabledTaxonomyFilters'] = [];
             }
 
             $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
