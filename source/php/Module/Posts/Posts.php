@@ -315,7 +315,8 @@ class Posts extends \Modularity\Module
             $postFilters = new PostsFilters($this);
 
             $data['enabledTaxonomyFilters'] = [];
-            if ($enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true)) {
+            $enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true);
+            if ($enabledTaxonomyFilters) {
                 $data['enabledTaxonomyFilters'] = $enabledTaxonomyFilters;
             }
 
