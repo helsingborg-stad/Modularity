@@ -25,7 +25,6 @@ class PostsFilters
         remove_filter('content_save_pre', 'wp_filter_post_kses');
         remove_filter('excerpt_save_pre', 'wp_filter_post_kses');
         remove_filter('content_filtered_save_pre', 'wp_filter_post_kses');
-
     }
 
     /**
@@ -57,7 +56,7 @@ class PostsFilters
             return $query;
         }
 
-        $taxQuery = array('relation' => 'AND');
+        $taxQuery = ['relation' => 'AND'];
 
         foreach ($filterable as $key => $value) {
             if (!isset($_GET['filter'][$key]) || empty($_GET['filter'][$key]) || $_GET['filter'][$key] === '-1') {
@@ -66,28 +65,28 @@ class PostsFilters
 
             $terms = (array)$_GET['filter'][$key];
 
-            $taxQuery[] = array(
+            $taxQuery[] = [
                 'taxonomy' => $key,
                 'field' => 'slug',
                 'terms' => $terms,
                 'operator' => 'IN'
-            );
+            ];
         }
 
         if (is_tax() || is_category() || is_tag()) {
-            $taxQuery = array(
+            $taxQuery = [
                 'relation' => 'AND',
-                array(
+                [
                     'relation' => 'AND',
-                    array(
+                    [
                         'taxonomy' => get_queried_object()->taxonomy,
                         'field' => 'slug',
                         'terms' => (array)get_queried_object()->slug,
                         'operator' => 'IN'
-                    )
-                ),
+                    ]
+                ],
                 $taxQuery
-            );
+            ];
         }
 
         $query->set('tax_query', $taxQuery);
@@ -102,12 +101,12 @@ class PostsFilters
      */
     public function getEnabledTaxonomies($group = true)
     {
-        $grouped = array();
-        $ungrouped = array();
+        $grouped = [];
+        $ungrouped = [];
         $taxonomies = $this->taxonomies;
 
         if (!$taxonomies) {
-            return array();
+            return [];
         }
 
         if (is_category()) {
@@ -122,9 +121,9 @@ class PostsFilters
 
         foreach ($taxonomies as $key => $item) {
             $tax = get_taxonomy($item);
-            $terms = get_terms($item, array(
+            $terms = get_terms($item, [
                 'hide_empty' => false
-            ));
+            ]);
 
             $placement = $this->taxonomyType;
             if (is_null($placement)) {
@@ -133,18 +132,18 @@ class PostsFilters
 
             $type = $this->taxonomyType;
 
-            $grouped[$placement][$tax->name] = array(
+            $grouped[$placement][$tax->name] = [
                 'label' => $tax->label,
                 'type' => $type,
                 'slug' => $item,
                 'values' => $terms
-            );
+            ];
 
-            $ungrouped[$tax->name] = array(
+            $ungrouped[$tax->name] = [
                 'label' => $tax->label,
                 'type' => $type,
                 'values' => $terms
-            );
+            ];
         }
 
         if ($group) {
@@ -193,7 +192,7 @@ class PostsFilters
      */
     public static function sortTerms($terms)
     {
-        $sort_terms = array();
+        $sort_terms = [];
         foreach ($terms as $term) {
             $sort_terms[$term->name] = $term;
         }
@@ -212,10 +211,10 @@ class PostsFilters
      */
     public static function getMultiTaxDropdown($tax, int $parent = null, string $class = null)
     {
-        $termArgs = array(
+        $termArgs = [
             'hide_empty' => false,
             'parent' => $parent
-        );
+        ];
 
         $terms = self::sortTerms(get_terms($tax->slug, $termArgs));
 
@@ -230,8 +229,10 @@ class PostsFilters
         $html .= '>';
 
         foreach ($terms as $term) {
-            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array($term->slug,
-                        $_GET['filter'][$tax->slug]));
+            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array(
+                $term->slug,
+                $_GET['filter'][$tax->slug]
+            ));
             $checked = checked(true, $isChecked, false);
 
             $html .= '<li>';
@@ -259,10 +260,10 @@ class PostsFilters
      */
     public static function getFilterOptionsByTax($tax, int $parent = null, string $class = null)
     {
-        $termArgs = array(
+        $termArgs = [
             'hide_empty' => false,
             'parent' => $parent
-        );
+        ];
 
         $terms = get_terms($tax->slug, $termArgs);
 
@@ -281,8 +282,10 @@ class PostsFilters
         $html .= '>';
 
         foreach ($terms as $term) {
-            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array($term->slug,
-                        $_GET['filter'][$tax->slug]));
+            $isChecked = isset($_GET['filter'][$tax->slug]) && ($_GET['filter'][$tax->slug] === $term->slug || in_array(
+                $term->slug,
+                $_GET['filter'][$tax->slug]
+            ));
             $checked = checked(true, $isChecked, false);
 
             $html .= '<li>';
@@ -334,5 +337,4 @@ class PostsFilters
 
         return $where;
     }
-
 }

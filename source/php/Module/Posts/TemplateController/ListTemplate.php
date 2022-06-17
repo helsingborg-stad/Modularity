@@ -10,7 +10,7 @@ class ListTemplate
 {
     protected $module;
     protected $args;
-    public $data = array();
+    public $data = [];
 
     /**
      * ListTemplate constructor.
@@ -22,15 +22,18 @@ class ListTemplate
     {
         $this->args = $args;
         $this->data = $data;
-        $this->data['prepareList'] = $this->prepare($data['posts'], $postData = array(
+        $this->data['prepareList'] = $this->prepare($data['posts'], $postData = [
             'posts_data_source' => $data['posts_data_source'] ?? '',
             'archive_link' => $data['archive_link'] ?? '',
             'posts_fields' => $data['posts_fields'] ?? '',
             'archive_link_url' => $data['archive_link_ur'] ?? '',
             'filters' => $data['filters'] ?? '',
-        ));
+        ]);
 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array(), $module->post_type, $this->args));
+        $this->data['classes'] = implode(
+            ' ',
+            apply_filters('Modularity/Module/Classes', [], $module->post_type, $this->args)
+        );
     }
 
     /**
@@ -40,7 +43,7 @@ class ListTemplate
      */
     public function prepare($posts, $postData)
     {
-        $list = array();
+        $list = [];
 
         if (count($posts) < 1) {
             array_push($list, ['columns' => _e('No posts to show…', 'modularity')]);
@@ -59,30 +62,32 @@ class ListTemplate
                 $columnsTitle = $post->post_title;
             }
 
+            $columnsDate = '';
             if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
-                $columnsDate = apply_filters('Modularity/Module/Posts/Date', get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID),
-                    $post->ID, $post->post_type);
-            } else {
-                $columnsDate = '';
+                $columnsDate = apply_filters(
+                    'Modularity/Module/Posts/Date',
+                    get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID),
+                    $post->ID,
+                    $post->post_type
+                );
             }
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle, $columnsDate]]);
-
         }
 
-        if ($postData['posts_data_source'] !== 'input' &&
-            isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']) {
+        if (
+            $postData['posts_data_source'] !== 'input' &&
+            isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']
+        ) {
 
             $columnsTitle = _e('Show more', 'modularity');
 
             if (isset($postData['filters'])) {
-                $href = $postData['archive_link_url'] . "?" . http_build_query
-                    ($postData['filters']);
+                $href = $postData['archive_link_url'] . "?" . http_build_query($postData['filters']);
             }
 
             array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle]]);
         }
         return $list;
-
     }
 }
