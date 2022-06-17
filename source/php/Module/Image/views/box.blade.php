@@ -1,8 +1,8 @@
 <div class="{{ $classes }}">
     @if (isset($mod_image_link_url) && strlen($mod_image_link_url) > 0)
             @link([
-                'href' => $mod_image_link_url
-                'classList' => ['u-no-decoration'],
+                'href' => $mod_image_link_url,
+                'classList' => ['u-no-decoration']
 
             ])
                 @image([
