@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
     'title' => __('Data source', 'modularity'),
     'fields' => array(
@@ -216,10 +214,10 @@ if (function_exists('acf_add_local_field_group')) {
                         'class' => '',
                         'id' => '',
                     ),
+                    'default_value' => '',
                     'tabs' => 'all',
                     'toolbar' => 'full',
-                    'media_upload' => 1,
-                    'default_value' => '',
+                    'media_upload' => 0,
                     'delay' => 0,
                 ),
                 2 => array(
@@ -275,7 +273,8 @@ if (function_exists('acf_add_local_field_group')) {
                         'class' => '',
                         'id' => '',
                     ),
-                    'choices' => array(),
+                    'choices' => array(
+                    ),
                     'default_value' => false,
                     'allow_null' => 1,
                     'multiple' => 0,
@@ -389,5 +388,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
