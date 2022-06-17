@@ -45,22 +45,21 @@ class ExpandableListTemplate
             return [];
         }
 
-        $column_values = [];
+        $columnValues = [];
 
         foreach ($this->data['posts'] as $colIndex => $post) {
-
             if ($this->data['posts_data_source'] === 'input') {
                 if ($post->column_values !== false && count($post->column_values) > 0) {
                     foreach ($post->column_values as $key => $columnValue) {
-                        $column_values[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value ?? '';
+                        $columnValues[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value ?? '';
                     }
                 }
             } else {
-                $column_values[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true) ?? '';
+                $columnValues[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true) ?? '';
             }
         }
 
-        return $column_values;
+        return $columnValues;
     }
 
     /**
@@ -71,47 +70,32 @@ class ExpandableListTemplate
      */
     public function prepare($posts, $data): ?array
     {
-        $column_values = $this->getColumnValues();
+        $columnValues = $this->getColumnValues();
 
         $accordion = [];
 
         if (count($posts) > 0) {
-
             foreach ($posts as $index => $post) {
-
                 $taxPosition = '';
-                if ((isset($data['taxonomyDisplay']['top']) && !empty($data['taxonomyDisplay']['top'])) ||
-                    (isset($data['taxonomyDisplay']['below']) && !empty($data['taxonomyDisplay']['below']))
-                ) {
+                if ($this->hasTaxonomyDisplayPosition($data['taxonomyDisplay'])) {
                     $taxPosition = ($data['taxonomyDisplay']['top']) ?: $data['taxonomyDisplay']['below'];
                 }
 
                 $accordion[$index]['taxonomy'] = (new Tag)->getTags($post->ID, $taxPosition);
                 $accordion[$index]['taxonomyPosition'] = $taxPosition;
 
-                if (!empty($data['posts_list_column_titles'])) {
-                    if (isset($column_values) && !empty($column_values)) {
-                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title);
-                        if (is_array($data['posts_list_column_titles'])) {
-                            foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
-                                if ($this->arrayDepth($column_values) > 1) {
-                                    $accordion[$index]['column_values'][$colIndex] = $column_values[$index][sanitize_title(
-                                        $column->column_header
-                                    )] ?? '';
-                                } else {
-                                    $accordion[$index]['column_values'][$colIndex] = $column_values[sanitize_title(
-                                        $column->column_header
-                                    )] ?? '';
-                                }
-                            }
+                if ($this->hasColumnValues($data, $columnValues) && $this->hasColumnTitles($data)) {
+                    foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
+                        $sanitizedTitle = sanitize_title($column->column_header);
+                        if ($this->arrayDepth($columnValues) > 1) {
+                            $accordion[$index]['column_values'][$colIndex] = $columnValues[$index][$sanitizedTitle] ?? '';
+                        } else {
+                            $accordion[$index]['column_values'][$colIndex] = $columnValues[$sanitizedTitle] ?? '';
                         }
-                    } else {
-                        $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                     }
-                } else {
-                    $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                 }
 
+                $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
                 $accordion[$index]['content'] = apply_filters('the_content', $post->post_content) ?? '';
             }
         }
@@ -138,5 +122,23 @@ class ExpandableListTemplate
         }
 
         return $maxDepth;
+    }
+
+    private function hasTaxonomyDisplayPosition($taxonomyDisplay): bool
+    {
+        return (isset($taxonomyDisplay['top']) && !empty($taxonomyDisplay['top'])) ||
+            (isset($taxonomyDisplay['below']) && !empty($taxonomyDisplay['below']));
+    }
+
+    private function hasColumnValues($data, $columnValues): bool
+    {
+        return isset($columnValues)
+            && !empty($columnValues);
+    }
+
+    private function hasColumnTitles($data): bool
+    {
+        return !empty($data['posts_list_column_titles'])
+            && is_array($data['posts_list_column_titles']);
     }
 }
