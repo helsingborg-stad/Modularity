@@ -65,11 +65,24 @@
     "extra": {
         "builder": {
             "commands": [
-                "composer install",
-                "npm ci"
+                "npm ci --no-progress --no-audit",
+                "npx --yes browserslist@latest --update-db",
+                "npm run build",
+                "composer install --prefer-dist --no-progress"
             ],
             "removables": [
-                "test.txt"
+                ".git",
+                ".gitignore",
+                ".github",
+                "build.php",
+                "composer.json",
+                "composer.lock",
+                "node_modules",
+                "package.json",
+                "package-lock.json",
+                ".vscode",
+                "modularity-custom-module-example",
+                "webpack.config.js"
             ]
         }
     }
