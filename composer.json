@@ -65,7 +65,8 @@
     "extra": {
         "builder": {
             "commands": [
-                "echo hejsan"
+                "composer install",
+                "npm ci"
             ],
             "removables": [
                 "test.txt"
