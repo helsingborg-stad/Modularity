@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts;
 
-use Throwable;
-use BladeComponentLibrary\Init as CompLibInitator;
 use \Modularity\Module\Posts\PostsFilters;
 
 /**
@@ -27,16 +25,8 @@ class Posts extends \Modularity\Module
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
         add_action('save_post', array($this, 'saveColumnFields'));
 
-        add_action('wp_ajax_get_taxonomy_types_v2', array($this, 'getTaxonomyTypes'));
-        add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
-        add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
-
-        add_action('wp_ajax_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
-        add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
-
         add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
 
-        add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
         add_filter('acf/load_field/key=field_62a309f9c59bb', array($this, 'addIconsList'));
 
@@ -45,6 +35,8 @@ class Posts extends \Modularity\Module
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
+
+        new PostsAjax($this);
     }
 
     /**
@@ -136,17 +128,6 @@ class Posts extends \Modularity\Module
         return $field;
     }
 
-    public function loadDateFieldAjax()
-    {
-        $postType = $_POST['state'] ?? false;
-
-        if (empty($postType)) {
-            return false;
-        }
-
-        wp_send_json($this->getDateSource($postType));
-    }
-
     public function loadDateField($field = [])
     {
         $postType = get_field('posts_data_post_type', $this->ID);
@@ -158,83 +139,6 @@ class Posts extends \Modularity\Module
         $field['choices'] = $this->getDateSource($postType);
 
         return $field;
-    }
-
-    /**
-     * Load more data with Ajax
-     * @return json data
-     */
-    public function loadMorePostsUsingAjax()
-    {
-        if (!defined('DOING_AJAX') || !DOING_AJAX) {
-            return false;
-            die;
-        }
-
-        //Nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mod-posts-load-more')) {
-            die('Busted!');
-        }
-
-        $statusCodes = [
-            'badRequest' => 400,
-            'noContent' => 204,
-            'success' => 200
-        ];
-
-        //Make sure required post data exists
-        $requiredPostDataKeys = ['postsPerPage', 'offset', 'module', 'bladeTemplate'];
-        foreach ($requiredPostDataKeys as $key) {
-            if (!isset($_POST[$key])) {
-                $error = 'Missing required $_POST[' . $key . '].';
-                error_log($error);
-                wp_send_json_error(['error' => $error], $statusCodes['badRequest']);
-                die;
-            }
-        }
-
-        //Append class propeties
-        foreach ($_POST['module'] as $key => $value) {
-            $this->$key = $value;
-        }
-
-        //Get posts
-        $args = self::getPostArgs($this->ID);
-        $args['posts_per_page'] = $_POST['postsPerPage'];
-        $args['offset'] = $_POST['offset'];
-        $this->data['posts'] = get_posts($args);
-
-        $this->getTemplateData(
-            self::replaceDeprecatedTemplate(
-                $this->data['posts_display_as']
-            )
-        ); //Include template controller data
-
-        //No posts
-        if (empty($this->data['posts'])) {
-            wp_send_json(['Message' => 'Could not find more posts'], $statusCodes['noContent']);
-            die;
-        }
-
-        $moduleView = MODULARITY_PATH . 'source/php/Module/Posts/views';
-        $init = new CompLibInitator([$moduleView]);
-        $blade = $init->getEngine();
-        $posts = [];
-
-        foreach ($this->data['posts'] as $post) {
-
-            try {
-                $posts[] = $blade->make($_POST['bladeTemplate'], array_merge(['post' => $post], $this->data))->render();
-            } catch (Throwable $e) {
-                echo '<pre style="border: 3px solid #f00; padding: 10px;">';
-                echo '<strong>' . $e->getMessage() . '</strong>';
-                echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
-                echo $e->getTraceAsString();
-                echo '</pre>';
-            }
-        }
-
-        wp_send_json($posts);
     }
 
     /**
@@ -459,55 +363,6 @@ class Posts extends \Modularity\Module
         ];
 
         echo json_encode($response);
-        die();
-    }
-
-    /**
-     * AJAX CALLBACK
-     * Get availabel taxonomies for a post type
-     * @return void
-     */
-    public function getTaxonomyTypes()
-    {
-        if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
-            echo '0';
-            die();
-        }
-
-        $post = $_POST['post'];
-
-        $result = [
-            'types' => get_object_taxonomies($_POST['posttype'], 'object'),
-            'curr' => get_field('posts_taxonomy_type', $post)
-        ];
-
-        echo json_encode($result);
-        die();
-    }
-
-    /**
-     * AJAX CALLBACK
-     * Gets a taxonomies available values
-     * @return void
-     */
-    public function getTaxonomyValues()
-    {
-        if (!isset($_POST['tax']) || empty($_POST['tax'])) {
-            echo '0';
-            die();
-        }
-
-        $taxonomy = $_POST['tax'];
-        $post = $_POST['post'];
-
-        $result = [
-            'tax' => get_terms($taxonomy, [
-                'hide_empty' => false,
-            ]),
-            'curr' => get_field('posts_taxonomy_value', $post)
-        ];
-
-        echo json_encode($result);
         die();
     }
 
@@ -942,7 +797,6 @@ class Posts extends \Modularity\Module
      */
     public static function replaceDeprecatedTemplate($templateSlug)
     {
-
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
