@@ -29,6 +29,8 @@ module.exports = {
         'js/mod-posts-load-more-button': './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
         'js/table-init': './source/php/Module/Table/assets/table-init.js',
         'css/table': './source/php/Module/Table/assets/table.scss',
+        'js/video': './source/php/Module/Video/assets/video.js',
+        'css/video': './source/php/Module/Video/assets/video.scss',
     },
     
     /**

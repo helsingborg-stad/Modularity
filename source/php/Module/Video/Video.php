@@ -37,6 +37,9 @@ class Video extends \Modularity\Module
                     $this->args
                 )
             );
+            if ($data['embedCode']) {
+                $data['embedCode'] = str_replace('<iframe', '<iframe class="u-display--none"', $data['embedCode']);
+            }
         }
 
         //Uploaded
@@ -61,6 +64,22 @@ class Video extends \Modularity\Module
     private function getEmbedMarkup($embedLink)
     {
         return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720 ));
+    }
+
+    public function style()
+    {
+        wp_register_style('mod-video-style', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('css/video.css'));
+
+        wp_enqueue_style('mod-video-style');
+    }
+
+    public function script()
+    {
+        wp_register_script('mod-video-script', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/video.js'));
+
+        wp_enqueue_script('mod-video-script');
     }
 
     /**
