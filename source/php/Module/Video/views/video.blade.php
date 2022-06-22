@@ -27,7 +27,6 @@
                     'attributeList' => [
                         'poster' => ($image !== false) ? $image[0] : '',
                         'preload' => 'auto',
-                        'autoplay' => true,
                         'loop' => true,
                         'muted' => true
                     ],
