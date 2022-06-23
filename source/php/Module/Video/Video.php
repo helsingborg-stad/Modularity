@@ -26,6 +26,8 @@ class Video extends \Modularity\Module
         //Embed code
         $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
 
+        $data['id'] = uniqid('embed');
+
         // Image
         $data['image'] = false;
         if (isset($data['placeholder_image']) && !empty($data['placeholder_image'])) {
@@ -37,9 +39,6 @@ class Video extends \Modularity\Module
                     $this->args
                 )
             );
-            if ($data['embedCode']) {
-                $data['embedCode'] = str_replace('<iframe', '<iframe class="u-display--none"', $data['embedCode']);
-            }
         }
 
         //Uploaded
