@@ -6,21 +6,18 @@
                 'modularity-map-container__map',
             ],
             'attributeList' => [
-                'aria-labelledby' => 'mod-map-' . $id .'-label'
+                'aria-labelledby' => 'mod-map-' . $id .'-label',
+                'style' => 'min-height: ' . $height . 'px;'
             ],
             'context' => 'module.map'
         ])
             @if (!$hideTitle && !empty($postTitle))
-                <div class="c-card__header">
-                    @icon(['icon' => 'room', 'size' => 'md', 'color' => 'primary', 'classList' => ['u-margin__right--1']])
-                    @endicon
-        
+                <div class="c-card__header">        
                     @typography([
                         'element' => 'h4',
                         'variant' => 'p',
                         'id'      => 'mod-map-' . $id .'-label'
                     ])
-                        
                         {!! $postTitle !!}
                     @endtypography
                 </div>
@@ -40,7 +37,7 @@
             @endif
             
             <div class="c-card__body">
-                <iframe src="{!! $map_url !!}" frameborder="0" class="u-width--100 u-display--block" style="min-height: {{ $height }}px;" title="{{ $map_description }}"></iframe>
+                <iframe src="{!! $map_url !!}" frameborder="0" class="u-width--100 u-display--block" title="{{ $map_description }}"></iframe>
             </div>
         
         @endcard
