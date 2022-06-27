@@ -1,5 +1,10 @@
 .embed__poster {
   cursor: pointer;
+  width: 100%;
+
+  .embed__poster__image {
+    width: 100%;
+  }
 
   &::before {
     content: "";

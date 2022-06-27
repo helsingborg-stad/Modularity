@@ -39,7 +39,7 @@
             <div class="embed embed__ratio--16-9">
                 @if($image !== false)
                     <div class="embed__poster" data-embed-id="{{ $id }}">
-                        <img src="{{ $image[0] }}" alt="{{ $postTitle }}" />
+                        <img src="{{ $image[0] }}" alt="{{ $postTitle }}" class="embed__poster__image" />
                     </div>
                     <script id="{{ $id }}" type="x-video-embed">
                         {!! $embedCode !!}
