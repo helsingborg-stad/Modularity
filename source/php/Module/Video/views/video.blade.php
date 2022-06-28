@@ -27,7 +27,6 @@
                     'attributeList' => [
                         'poster' => ($image !== false) ? $image[0] : '',
                         'preload' => 'auto',
-                        'autoplay' => true,
                         'loop' => true,
                         'muted' => true
                     ],
@@ -38,7 +37,16 @@
     @else
         @if($embedCode)
             <div class="embed embed__ratio--16-9">
-                {!! $embedCode !!}
+                @if($image !== false)
+                    <div class="embed__poster" data-embed-id="{{ $id }}">
+                        <img src="{{ $image[0] }}" alt="{{ $postTitle }}" class="embed__poster__image" />
+                    </div>
+                    <script id="{{ $id }}" type="x-video-embed">
+                        {!! $embedCode !!}
+                    </script>
+                @else
+                    {!! $embedCode !!}
+                @endif
             </div>
         @else
             @notice([
