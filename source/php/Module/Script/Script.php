@@ -6,7 +6,7 @@ class Script extends \Modularity\Module
 {
     public $slug = 'script';
     public $supports = array();
-    public $isBlockCompatible = false;
+    public $isBlockCompatible = true;
 
     public function init()
     {
