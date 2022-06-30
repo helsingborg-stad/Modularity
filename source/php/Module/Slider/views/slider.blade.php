@@ -14,6 +14,7 @@
     'ratio'         => $ratio ?? '16:9',
     'repeatSlide'   => $wrapAround,
     'shadow'        => $sidebarContext !== 'sidebar.slider-area',
+    'heroStyle'     => $sidebarContext === 'sidebar.slider-area',
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
     ],
