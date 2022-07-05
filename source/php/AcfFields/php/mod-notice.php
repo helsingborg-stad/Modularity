@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_575a842dd1283',
     'title' => __('Notice settings', 'modularity'),
     'fields' => array(
@@ -35,36 +37,6 @@
             'placeholder' => '',
         ),
         1 => array(
-            'key' => 'field_575a84bdea3b6',
-            'label' => __('Storlek', 'modularity'),
-            'name' => 'notice_size',
-            'type' => 'select',
-            'instructions' => '',
-            'required' => 1,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => 50,
-                'class' => '',
-                'id' => '',
-            ),
-            'multiple' => 0,
-            'allow_null' => 0,
-            'choices' => array(
-                'notice-md' => __('Standard', 'modularity'),
-                'notice-lg' => __('Stor', 'modularity'),
-                'notice-sm' => __('Liten', 'modularity'),
-            ),
-            'default_value' => array(
-                0 => __('notice-md', 'modularity'),
-            ),
-            'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'return_format' => 'value',
-            'disabled' => 0,
-            'readonly' => 0,
-        ),
-        2 => array(
             'key' => 'field_575a8436ea3b3',
             'label' => __('Notis', 'modularity'),
             'name' => 'notice_text',
@@ -111,4 +83,5 @@
     'active' => true,
     'description' => '',
 ));
-}
+
+}
