@@ -175,8 +175,8 @@ class Module
      * @return string
      */
     public function setBlockTitle( $title, $id = null ) {    
-        if($titleField = get_field('custom_block_title')) {
-            return $titleField;        
+        if(!$title && $titleField = get_field('custom_block_title')) {
+            return $titleField;
         }
 
         return $title;

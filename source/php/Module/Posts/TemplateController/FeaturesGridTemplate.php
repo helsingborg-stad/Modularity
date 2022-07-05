@@ -5,7 +5,7 @@ namespace Modularity\Module\Posts\TemplateController;
 use Modularity\Module\Posts\Helper\Tag as TagHelper;
 
 /**
- * Class ListTemplate
+ * Class FeaturesGridTemplate
  * @package Modularity\Module\Posts\TemplateController
  */
 class FeaturesGridTemplate extends AbstractController
@@ -15,7 +15,7 @@ class FeaturesGridTemplate extends AbstractController
     public $data = [];
 
     /**
-     * ListTemplate constructor.
+     * FeaturesGridTemplate constructor.
      * @param \Modularity\Module\Posts\Posts $module
      * @param array $args
      * @param $data
