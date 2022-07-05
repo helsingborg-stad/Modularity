@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_614b3f1a751bf',
     'title' => __('Hero', 'modularity'),
     'fields' => array(
@@ -55,21 +53,51 @@ if (function_exists('acf_add_local_field_group')) {
             'wp_object' => '',
         ),
         2 => array(
-            'key' => 'field_614b3f786ed4c',
-            'label' => __('Background image', 'modularity'),
-            'name' => 'mod_hero_background_image',
-            'type' => 'focuspoint',
+            'key' => 'field_62c3f89f983b1',
+            'label' => __('Background type', 'modularity'),
+            'name' => 'mod_hero_background_type',
+            'type' => 'select',
             'instructions' => '',
-            'required' => 1,
+            'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '',
                 'class' => '',
                 'id' => '',
             ),
-            'render_type' => '',
-            'filter_context' => '',
-            'share_option' => 0,
+            'choices' => array(
+                'image' => __('Image', 'modularity'),
+                'video' => __('Video', 'modularity'),
+            ),
+            'default_value' => false,
+            'allow_null' => 0,
+            'multiple' => 0,
+            'ui' => 0,
+            'return_format' => 'value',
+            'ajax' => 0,
+            'placeholder' => '',
+        ),
+        3 => array(
+            'key' => 'field_614b3f786ed4c',
+            'label' => __('Background image', 'modularity'),
+            'name' => 'mod_hero_background_image',
+            'type' => 'focuspoint',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_62c3f89f983b1',
+                        'operator' => '==',
+                        'value' => 'image',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
             'preview_size' => 'large',
             'min_width' => '',
             'min_height' => '',
@@ -78,7 +106,34 @@ if (function_exists('acf_add_local_field_group')) {
             'max_height' => '',
             'max_size' => '',
         ),
-        3 => array(
+        4 => array(
+            'key' => 'field_62c3f8fa57719',
+            'label' => __('Background video', 'modularity'),
+            'name' => 'mod_hero_background_video',
+            'type' => 'file',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_62c3f89f983b1',
+                        'operator' => '==',
+                        'value' => 'video',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'return_format' => 'url',
+            'library' => 'all',
+            'min_size' => '',
+            'max_size' => '',
+            'mime_types' => 'mp4',
+        ),
+        5 => array(
             'key' => 'field_614b43a186da4',
             'label' => __('Size', 'modularity'),
             'name' => 'mod_hero_size',
@@ -105,7 +160,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'normal' => __('Normal', 'modularity'),
                 'large' => __('Large', 'modularity'),
             ),
-            'default_value' => 'normal',
+            'default_value' => __('normal', 'modularity'),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -138,6 +193,6 @@ if (function_exists('acf_add_local_field_group')) {
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
 ));
-
-}
+}
