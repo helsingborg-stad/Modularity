@@ -37,7 +37,10 @@ class Posts extends \Modularity\Module
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
 
         new PostsAjax($this);
+
     }
+
+    
 
     /**
      * Get list of date sources
@@ -47,6 +50,7 @@ class Posts extends \Modularity\Module
      */
     public function getDateSource($postType): array
     {
+
         if (empty($postType)) {
             return false;
         }
@@ -285,6 +289,7 @@ class Posts extends \Modularity\Module
         $taxonomiesNew = [];
         foreach ($taxonomies as $taxonomy) {
             $tax = get_taxonomy($taxonomy);
+            //var_dump($tax->label);
             $taxonomiesNew[] = $tax;
             $taxonomyDisplayChoices[$tax->name] = $tax->label;
         }

@@ -14,6 +14,7 @@
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
+          
             @if($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
                     'heading' => ($post->showTitle ? $post->post_title : false),
@@ -34,13 +35,14 @@
                 ])
                 @endblock
             @else
+     
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
                     'image' =>  $post->thumbnail,
                     'heading' => $post->post_title,
                     'classList' => $classes,
-                    'hasFooter' => $post->tags ? true : false,
+                    'hasFooter' => true,
                     'context' => ['module.posts.index'],
                     'content' => $post->post_content,
                     'tags' => $post->tags,
@@ -55,6 +57,18 @@
                     ] : []
                 ])
                 @endcard
+
+    {{--                      @foreach ($post->tags as $tag)
+           {{$tag['label']}} 
+
+            @endforeach --}}
+                
+           {{--       @if($post->tags)
+                    <div class="c-card__footer">
+                        @tags (['tags' => $post->tags])
+                        @endtags
+                    </div>
+                @endif --}}
             @endif
         </div>
     @endforeach

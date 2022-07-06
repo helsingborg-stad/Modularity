@@ -1,5 +1,4 @@
 @if (!empty($enabledTaxonomyFilters))
-
     <section class="sidebar-content-area post-filters">
         <form method="get" action="" id="post-filter"
               class="gutter-lg gutter-vertical @if (!$frontEndFilters['front_end_hide_date']) disable-post-filter-js @endif">
