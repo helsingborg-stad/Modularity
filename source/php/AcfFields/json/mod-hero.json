@@ -50,21 +50,51 @@
             "wp_object": ""
         },
         {
-            "key": "field_614b3f786ed4c",
-            "label": "Background image",
-            "name": "mod_hero_background_image",
-            "type": "focuspoint",
+            "key": "field_62c3f89f983b1",
+            "label": "Background type",
+            "name": "mod_hero_background_type",
+            "type": "select",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "render_type": "",
-            "filter_context": "",
-            "share_option": 0,
+            "choices": {
+                "image": "Image",
+                "video": "Video"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_614b3f786ed4c",
+            "label": "Background image",
+            "name": "mod_hero_background_image",
+            "type": "focuspoint",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62c3f89f983b1",
+                        "operator": "==",
+                        "value": "image"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
             "preview_size": "large",
             "min_width": "",
             "min_height": "",
@@ -72,6 +102,33 @@
             "max_width": "",
             "max_height": "",
             "max_size": ""
+        },
+        {
+            "key": "field_62c3f8fa57719",
+            "label": "Background video",
+            "name": "mod_hero_background_video",
+            "type": "file",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62c3f89f983b1",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "url",
+            "library": "all",
+            "min_size": "",
+            "max_size": "",
+            "mime_types": "mp4"
         },
         {
             "key": "field_614b43a186da4",
@@ -132,6 +189,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0
 }]
-
+

@@ -25,16 +25,21 @@ class Hero extends \Modularity\Module
         //Get module data
         $data = get_fields($this->ID);
 
-        //Structure image
-        $data['mod_hero_image'] = (object) []; 
-        $data['mod_hero_image']->url = wp_get_attachment_image_src($data['mod_hero_background_image']['id'], [1366])[0];
-        $data['mod_hero_image']->focus = [
-            'top' =>  $data['mod_hero_background_image']['top'], 
-            'left' => $data['mod_hero_background_image']['left']
-        ]; 
+        if ($data['mod_hero_background_type'] === 'image') {
+            //Structure image
+            $data['mod_hero_image'] = (object) [];
+            $data['mod_hero_image']->url = wp_get_attachment_image_src($data['mod_hero_background_image']['id'], [1366])[0];
+            $data['mod_hero_image']->focus = [
+                'top' =>  $data['mod_hero_background_image']['top'], 
+                'left' => $data['mod_hero_background_image']['left']
+            ]; 
 
-        //Remove old image object
-        unset($data['mod_hero_background_image']);
+            //Remove old image object
+            unset($data['mod_hero_background_image']);
+        } else if($data['mod_hero_background_type'] === 'video') {
+            $data['mod_hero_video'] = (object) [];
+            $data['mod_hero_video']->url = $data['mod_hero_background_video'];
+        }
 
         //Send to view
         return (array) \Modularity\Helper\FormatObject::camelCase($data); 
