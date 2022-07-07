@@ -21,45 +21,13 @@
                 "warning": "Warning (gul)",
                 "danger": "Danger (red)"
             },
-            "default_value": [
-                "success"
-            ],
+            "default_value": "success",
             "allow_null": 0,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_575a84bdea3b6",
-            "label": "Storlek",
-            "name": "notice_size",
-            "type": "select",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": 50,
-                "class": "",
-                "id": ""
-            },
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "notice-md": "Standard",
-                "notice-lg": "Stor",
-                "notice-sm": "Liten"
-            },
-            "default_value": [
-                "notice-md"
-            ],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
         },
         {
             "key": "field_575a8436ea3b3",
@@ -106,6 +74,12 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
 

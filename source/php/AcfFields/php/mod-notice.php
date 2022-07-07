@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_575a842dd1283',
     'title' => __('Notice settings', 'modularity'),
     'fields' => array(
@@ -26,9 +24,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'warning' => __('Warning (gul)', 'modularity'),
                 'danger' => __('Danger (red)', 'modularity'),
             ),
-            'default_value' => array(
-                0 => __('success', 'modularity'),
-            ),
+            'default_value' => __('success', 'modularity'),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -82,6 +78,11 @@ if (function_exists('acf_add_local_field_group')) {
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
+    'acfe_display_title' => '',
+    'acfe_autosync' => '',
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
 ));
-
-}
+}
