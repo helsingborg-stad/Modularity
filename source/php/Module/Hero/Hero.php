@@ -25,6 +25,8 @@ class Hero extends \Modularity\Module
         //Get module data
         $data = get_fields($this->ID);
 
+        $data['mod_hero_background_type'] = $data['mod_hero_background_type'] ?? 'image';
+
         if ($data['mod_hero_background_type'] === 'image') {
             //Structure image
             $data['mod_hero_image'] = (object) [];
