@@ -24,13 +24,12 @@ class Notice extends \Modularity\Module
     {
         $data = get_fields($this->ID);
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
-        $data['notice_size'] = $this->getSize($data['notice_size']);
-        $data['icon'] = $this->iconData($data['notice_type'], $data['notice_size']);
+        $data['icon'] = $this->iconData($data['notice_type']);
 
         return $data;
     }
 
-    public function iconData($icon, $size)
+    public function iconData($icon)
     {
         $icons = [
             'info'      => 'info',
@@ -41,13 +40,7 @@ class Notice extends \Modularity\Module
 
         return [
             'name' => $icons[$icon],
-            'size' => $this->getSize($size)
         ];
-    }
-
-    public function getSize($notice_size) : string
-    {
-        return preg_replace('/notice-/i', '', $notice_size);
     }
 
     /**
