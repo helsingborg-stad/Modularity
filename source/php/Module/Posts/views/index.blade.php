@@ -57,18 +57,6 @@
                     ] : []
                 ])
                 @endcard
-
-    {{--                      @foreach ($post->tags as $tag)
-           {{$tag['label']}} 
-
-            @endforeach --}}
-                
-           {{--       @if($post->tags)
-                    <div class="c-card__footer">
-                        @tags (['tags' => $post->tags])
-                        @endtags
-                    </div>
-                @endif --}}
             @endif
         </div>
     @endforeach
