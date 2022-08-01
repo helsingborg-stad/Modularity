@@ -289,7 +289,6 @@ class Posts extends \Modularity\Module
         $taxonomiesNew = [];
         foreach ($taxonomies as $taxonomy) {
             $tax = get_taxonomy($taxonomy);
-            //var_dump($tax->label);
             $taxonomiesNew[] = $tax;
             $taxonomyDisplayChoices[$tax->name] = $tax->label;
         }
