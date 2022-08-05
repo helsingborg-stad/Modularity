@@ -39,7 +39,9 @@ class Script extends \Modularity\Module
     public function data() : array
     {
         $data = array();
-        $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
+        $embed = get_field('embed_code', $this->ID);
+        $data['embed'] = (is_admin()) ? '<pre>'.htmlspecialchars($embed).'</pre>' : $embed;
+        
         $data['script_wrap_with'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
@@ -52,9 +54,10 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['scriptPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
-            "u-padding__y--".get_post_meta($this->ID, 'embeded_card_padding', true)." u-padding__x--".
-                get_post_meta($this->ID, 'embeded_card_padding', true) : "";
+        $data['scriptPadding'] = (get_field('embeded_card_padding', $this->ID)) ?
+            "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
+                get_field('embeded_card_padding', $this->ID) : "";
+
         return $data;
     }
 
