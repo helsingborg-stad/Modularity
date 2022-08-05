@@ -27,14 +27,6 @@
                     'classList' => ['u-height--100']
                 ])
                     
-                    @image([
-                        'src'=> $post->image,
-                        'alt' => $post->text,
-                        'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--complementary-lightest'],
-                        'rounded' => false,
-                    ])
-                    @endimage
-
                     @avatar(
                         [
                             'name' => $post->user_readable_name,
@@ -44,6 +36,13 @@
                     )
                     @endavatar
 
+                    @image([
+                        'src'=> $post->image,
+                        'alt' => $post->text,
+                        'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--complementary-lightest'],
+                        'rounded' => false,
+                    ])
+                    @endimage
 
                     <div class="c-card__body">
                         @typography(['element' => 'span', 'variant' => 'meta', 'classList' => ['u-display--flex']])
