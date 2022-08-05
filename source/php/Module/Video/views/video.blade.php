@@ -36,16 +36,73 @@
         </div>
     @else
         @if($embedCode)
-            <div class="embed embed__ratio--16-9">
+            <div class="embed embed__ratio--16-9" iframe="mod-video">
                 @if($image !== false)
                     <div class="embed__poster" data-embed-id="{{ $id }}">
                         <img src="{{ $image[0] }}" alt="{{ $postTitle }}" class="embed__poster__image" />
                     </div>
+
                     <script id="{{ $id }}" type="x-video-embed">
                         {!! $embedCode !!}
                     </script>
+                    
                 @else
-                    {!! $embedCode !!}
+
+
+
+
+
+
+
+
+  
+                    <div style="height: 1000px;">
+                        <div class="u-level-top u-position--absolute u-align--middle u-padding__x--3" iframe-acceptance-wrapper style="top:20%;">
+                            @typography([
+                                'variant' => 'h2',
+                                'element' => 'h4',
+                            ])
+                                Informationen i den här rutan hämtas från en extern leverantör
+                            @endtypography
+                            @typography([
+                                'classList' => ['u-padding__bottom--4']
+                            ])
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget viverra ex, in facilisis ex. Praesent sit amet massa felis. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                            @endtypography
+                            @button([
+                                'text' => 'Visa informationen',
+                                'color' => 'primary',
+                                'attributeList' => [
+                                    'data-js-toggle-trigger' => 'show-iframe'
+                                ],
+                            ])
+                            @endbutton
+                        </div>
+                        <div style="filter:blur(20px)">
+             {!! $embedCode !!}   
+            </div>
+                    </div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 @endif
             </div>
         @else

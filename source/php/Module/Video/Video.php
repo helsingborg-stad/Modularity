@@ -25,6 +25,10 @@ class Video extends \Modularity\Module
 
         //Embed code
         $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
+        $url = $data['embed_link'];
+        
+        $data['url'] = $url;
+        var_dump($url);
 
         $data['id'] = uniqid('embed');
 
@@ -52,7 +56,7 @@ class Video extends \Modularity\Module
         ];
 
         return $data;
-    }
+    } 
 
     /**
      * Embed
