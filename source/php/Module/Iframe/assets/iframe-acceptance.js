@@ -7,7 +7,6 @@ button.addEventListener('click', showIframe);
 let url = iframe.getAttribute('url');
 iframe.setAttribute("src", url);
 
-localStorage.clear();
 if (accepted === "accepted"){
     showIframe();
 }
