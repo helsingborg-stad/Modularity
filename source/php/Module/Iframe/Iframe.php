@@ -14,13 +14,22 @@ class Iframe extends \Modularity\Module
         $this->description = __("Outputs an embedded page.", 'modularity');
 
         add_filter('acf/load_field/name=iframe_url', array($this,'sslNotice'));
+
     }
+
+    public function script() {
+          wp_register_script('iframe-acceptance', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('js/iframe-acceptance.js'));
+        wp_enqueue_script('iframe-acceptance');
+    }
+
+
 
     public function data() : array
     {
         $url = get_field('iframe_url', $this->ID);
         $url = str_replace(array('http://', 'https://'), '//', $url);
-
+ 
         $data['url'] = $url;
         $data['height'] = get_field('iframe_height', $this->ID);
         $data['description'] = get_field('iframe_description', $this->ID);

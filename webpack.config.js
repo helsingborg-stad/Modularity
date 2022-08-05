@@ -27,6 +27,7 @@ module.exports = {
         //Modules
         'js/mod-posts-taxonomy': './source/php/Module/Posts/assets/mod-posts-taxonomy.js',
         'js/mod-posts-load-more-button': './source/php/Module/Posts/assets/mod-posts-load-more-button.js',
+        'js/iframe-acceptance': './source/php/Module/Iframe/assets/iframe-acceptance.js',
         'js/table-init': './source/php/Module/Table/assets/table-init.js',
         'css/table': './source/php/Module/Table/assets/table.scss',
         'js/video': './source/php/Module/Video/assets/video.js',
