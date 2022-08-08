@@ -8,8 +8,8 @@
     @endtypography
 @endif   
 
-<div iframe-container="mod-iframe" style="height: {{ $height }}px;">
-<div class="u-level-top u-position--absolute u-align--middle u-padding__x--3" iframe-acceptance-wrapper="mod-iframe" style="top:20%;">
+<div iframe-container style="height: {{ $height }}px;">
+<div class="u-level-top u-position--absolute u-align--middle u-padding__x--3" iframe-acceptance-wrapper style="top:20%;">
     @typography([
         'variant' => 'h2',
         'element' => 'h4',
@@ -30,5 +30,5 @@
     ])
     @endbutton
 </div>
-    <iframe iframe="mod-iframe" src="{{$url}}" title="{!! $description ?? apply_filters('the_title', $post_title) !!}" frameborder="0" style="width: 100%;height:100%; filter:blur(20px);pointer-events:none;"></iframe>
+    <iframe src="{{$url}}" title="{!! $description ?? apply_filters('the_title', $post_title) !!}" frameborder="0" style="width: 100%;height:100%; filter:blur(20px);pointer-events:none;"></iframe>
 </div> 
