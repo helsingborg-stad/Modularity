@@ -21,6 +21,7 @@ function showIframe () {
         let iframe = iframeContainer.querySelector('iframe');
         iframeAcceptanceWrapper.style.display = 'none';
         iframe.style.filter = "none";
+        iframe.style.pointerEvents = "auto";
         console.log(accepted);
    
     }

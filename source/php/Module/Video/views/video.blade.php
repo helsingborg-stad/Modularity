@@ -48,8 +48,8 @@
                     
                 @else
                     <div style="height: 1000px;" iframe-container>
-                        <div style="position:absolute; height:100%;width:100%; backdrop-filter:blur(20px);z-index:999;" iframe-acceptance-wrapper>
-                        <div class="u-level-top u-position--absolute u-align--middle u-padding__x--3" style="top:20%;">
+                        <div class="u-level-top u-overflow--auto u-position--absolute" style="height:100%;width:100%; backdrop-filter:blur(20px);" iframe-acceptance-wrapper>
+                        <div class="u-padding__x--3 u-padding__y--4">
                             @typography([
                                 'variant' => 'h2',
                                 'element' => 'h4',

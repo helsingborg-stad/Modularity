@@ -9,7 +9,7 @@
 @endif   
 
 <div iframe-container style="height: {{ $height }}px;">
-<div class="u-level-top u-position--absolute u-align--middle u-padding__x--3" iframe-acceptance-wrapper style="top:20%;">
+<div class="u-level-top u-position--absolute u-align--middle u-padding__x--3" iframe-acceptance-wrapper style="top:5%;">
     @typography([
         'variant' => 'h2',
         'element' => 'h4',
