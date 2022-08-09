@@ -28,7 +28,6 @@ class Video extends \Modularity\Module
         $url = $data['embed_link'];
         
         $data['url'] = $url;
-        var_dump($url);
 
         $data['id'] = uniqid('embed');
 
