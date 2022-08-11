@@ -1,8 +1,29 @@
-jQuery(document).ready(function ($) {
-    if (pagenow !== 'mod-posts') {
-        return;
+checkAdminPage(modularity_current_post_id);
+
+function checkAdminPage(mcpid) {
+    if (pagenow === 'page') {
+        let blockLoaded = false;
+        let blockLoadedInterval = setInterval(function() {
+            if (document.getElementById('modularity-latest-post-type')) {
+                postsTaxonomy(mcpid);
+                blockLoaded = true;
+            }
+            if (blockLoaded) {
+                clearInterval(blockLoadedInterval);
+            }
+        }, 500);
     }
 
+    if (pagenow === 'mod-posts') {
+        jQuery(document).ready(function(mcpid) {
+            postsTaxonomy(mcpid);  
+        });
+    }
+}
+
+
+function postsTaxonomy(modularity_current_post_id) {
+    var $ = (jQuery);
     /**
      * Posttype Meta keys
      */
@@ -19,35 +40,6 @@ jQuery(document).ready(function ($) {
             'post': modularity_current_post_id
         });
     });
-
-    function getPostMeta(data) {
-        if ($('#modularity-sorted-by select optgroup[label="Post fields"]').length === 0) {
-            $('#modularity-sorted-by select').prepend('<optgroup label="Post fields">').append('</optgroup>');
-        }
-
-        $('#modularity-latest-meta-key label, #modularity-sorted-by label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>')
-
-        $.post(ajaxurl, data, function (response) {
-            $('#modularity-sorted-by select option[value^="_metakey_"], #modularity-sorted-by select optgroup[label="Post meta"]').remove();
-            $('#modularity-latest-meta-key select').empty();
-
-            if (response.meta_keys.length > 2) {
-                $('#modularity-sorted-by select').append('<optgroup label="Post meta">');
-
-                $.each(response.meta_keys, function (index, item) {
-                    var sort_selected = (response.sort_curr != null && item.meta_key == response.sort_curr.replace('_metakey_', '')) ? 'selected' : '';
-                    var filter_selected = (response.filter_curr != null && item.meta_key == response.filter_curr.replace('_metakey_', '')) ? 'selected' : '';
-
-                    $('#modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + sort_selected + '>' + item.meta_key +'</option>');
-                    $('#modularity-latest-meta-key select').append('<option value="' + item.meta_key + '" ' + filter_selected + '>' + item.meta_key + '</option>');
-                });
-
-                $('#modularity-sorted-by select').append('</optgroup>');
-            }
-
-            $('#modularity-latest-meta-key .spinner, #modularity-sorted-by .spinner').remove();
-        }, 'json');
-    }
 
     /**
      * Taxonomy type update
@@ -66,31 +58,6 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    function getTaxonomyTypes(data) {
-        $('#modularity-latest-taxonomy select').empty();
-        $('#modularity-latest-taxonomy .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
-
-        $.post(ajaxurl, data, function (response) {
-            if (response.types.length === 0) {
-                $('#modularity-latest-taxonomy .acf-label label .spinner').remove();
-                return;
-            }
-
-            $.each(response.types, function (index, item) {
-                var is_selected = (item.name == response.curr) ? 'selected' : '';
-                $('#modularity-latest-taxonomy select').append('<option value="' + item.name+ '" ' + is_selected + '>' + item.label + '</option>');
-            });
-
-            $('#modularity-latest-taxonomy .acf-label label .spinner').remove();
-
-            getTaxonomyValues({
-                'action': 'get_taxonomy_values_v2',
-                'tax': $('#modularity-latest-taxonomy select').val(),
-                'post': modularity_current_post_id
-            });
-        }, 'json');
-    }
-
     /**
      * Taxonomy values update
      */
@@ -102,18 +69,72 @@ jQuery(document).ready(function ($) {
         });
     });
 
-    function getTaxonomyValues(data) {
-        $('#modularity-latest-taxonomy-value select').empty();
-        $('#modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
+}
 
-        $.post(ajaxurl, data, function (response) {
-            $.each(response.tax, function (index, item) {
-                var is_selected = (item.slug == response.curr) ? 'selected' : '';
-                $('#modularity-latest-taxonomy-value select').append('<option value="' + item.slug + '" ' + is_selected + '>' + item.name + '</option>');
-            });
-
-            $('#modularity-latest-taxonomy-value .acf-label label .spinner').remove();
-        }, 'json');
+function getPostMeta(data) {
+    if ($('#modularity-sorted-by select optgroup[label="Post fields"]').length === 0) {
+        $('#modularity-sorted-by select').prepend('<optgroup label="Post fields">').append('</optgroup>');
     }
 
-});
+    $('#modularity-latest-meta-key label, #modularity-sorted-by label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>')
+
+    $.post(ajaxurl, data, function (response) {
+        $('#modularity-sorted-by select option[value^="_metakey_"], #modularity-sorted-by select optgroup[label="Post meta"]').remove();
+        $('#modularity-latest-meta-key select').empty();
+
+        if (response.meta_keys.length > 2) {
+            $('#modularity-sorted-by select').append('<optgroup label="Post meta">');
+
+            $.each(response.meta_keys, function (index, item) {
+                var sort_selected = (response.sort_curr != null && item.meta_key == response.sort_curr.replace('_metakey_', '')) ? 'selected' : '';
+                var filter_selected = (response.filter_curr != null && item.meta_key == response.filter_curr.replace('_metakey_', '')) ? 'selected' : '';
+
+                $('#modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + sort_selected + '>' + item.meta_key +'</option>');
+                $('#modularity-latest-meta-key select').append('<option value="' + item.meta_key + '" ' + filter_selected + '>' + item.meta_key + '</option>');
+            });
+
+            $('#modularity-sorted-by select').append('</optgroup>');
+        }
+
+        $('#modularity-latest-meta-key .spinner, #modularity-sorted-by .spinner').remove();
+    }, 'json');
+}
+
+function getTaxonomyTypes(data) {
+    $('#modularity-latest-taxonomy select').empty();
+    $('#modularity-latest-taxonomy .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
+
+    $.post(ajaxurl, data, function (response) {
+        if (response.types.length === 0) {
+            $('#modularity-latest-taxonomy .acf-label label .spinner').remove();
+            return;
+        }
+
+        $.each(response.types, function (index, item) {
+            var is_selected = (item.name == response.curr) ? 'selected' : '';
+            $('#modularity-latest-taxonomy select').append('<option value="' + item.name+ '" ' + is_selected + '>' + item.label + '</option>');
+        });
+
+        $('#modularity-latest-taxonomy .acf-label label .spinner').remove();
+
+        getTaxonomyValues({
+            'action': 'get_taxonomy_values_v2',
+            'tax': $('#modularity-latest-taxonomy select').val(),
+            'post': modularity_current_post_id
+        });
+    }, 'json');
+}
+
+function getTaxonomyValues(data) {
+    $('#modularity-latest-taxonomy-value select').empty();
+    $('#modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
+
+    $.post(ajaxurl, data, function (response) {
+        $.each(response.tax, function (index, item) {
+            var is_selected = (item.slug == response.curr) ? 'selected' : '';
+            $('#modularity-latest-taxonomy-value select').append('<option value="' + item.slug + '" ' + is_selected + '>' + item.name + '</option>');
+        });
+
+        $('#modularity-latest-taxonomy-value .acf-label label .spinner').remove();
+    }, 'json');
+}
