@@ -623,7 +623,7 @@ class Posts extends \Modularity\Module
                 return;
             }
 
-            echo '<script>var modularity_current_post_id = ' . $id . ';</script>';
+            echo '<script>modularity_current_post_id = ' . $id . ';</script>';
         });
     }
 

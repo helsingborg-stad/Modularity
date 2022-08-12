@@ -1,4 +1,7 @@
-checkAdminPage(modularity_current_post_id);
+jQuery(document).ready(function() {
+    checkAdminPage(modularity_current_post_id);
+});
+
 
 function checkAdminPage(mcpid) {
     if (pagenow === 'page') {
@@ -15,9 +18,9 @@ function checkAdminPage(mcpid) {
     }
 
     if (pagenow === 'mod-posts') {
-        jQuery(document).ready(function(mcpid) {
+    //    jQuery(document).ready(function(mcpid) {
             postsTaxonomy(mcpid);  
-        });
+    //    });
     }
 }
 
