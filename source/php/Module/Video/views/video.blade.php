@@ -47,8 +47,8 @@
                     </script>
                     
                 @else
-                    <div style="height: 1000px;" iframe-container>
-                        <div class="u-level-top u-overflow--auto u-position--absolute" style="height:100%;width:100%; backdrop-filter:blur(20px);" iframe-acceptance-wrapper>
+                    <div style="height: 1000px;" data-iframe-container>
+                        <div class="u-level-top u-overflow--auto u-position--absolute" style="height:100%;width:100%; backdrop-filter:blur(20px);" data-iframe-acceptance-wrapper>
                         <div class="u-padding__x--3 u-padding__y--4">
                             @typography([
                                 'variant' => 'h2',
