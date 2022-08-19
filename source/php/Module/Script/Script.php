@@ -42,7 +42,7 @@ class Script extends \Modularity\Module
         $embed = get_field('embed_code', $this->ID);
         $data['embed'] = (is_admin()) ? '<pre>'.htmlspecialchars($embed).'</pre>' : $embed;
         
-        $data['script_wrap_with'] = get_field('script_wrap_with', $this->ID) ?? 'card';
+        $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
         $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
