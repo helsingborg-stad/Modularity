@@ -63,7 +63,7 @@ class Script extends \Modularity\Module
 
     public function template()
     {
-        return $this->data['script_wrap_with'] . '.blade.php';
+        return $this->data['scriptWrapWithClassName'] . '.blade.php';
     }
 
     /**
