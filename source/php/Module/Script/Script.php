@@ -39,8 +39,10 @@ class Script extends \Modularity\Module
     public function data() : array
     {
         $data = array();
-        $data['embed'] = get_post_meta($this->ID, 'embed_code', true);
-        $data['script_wrap_with'] = get_field('script_wrap_with', $this->ID) ?? 'card';
+        $embed = get_field('embed_code', $this->ID);
+        $data['embed'] = (is_admin()) ? '<pre>'.htmlspecialchars($embed).'</pre>' : $embed;
+        
+        $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
         $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
@@ -52,15 +54,16 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['scriptPadding'] = (get_post_meta($this->ID, 'embeded_card_padding', true)) ?
-            "u-padding__y--".get_post_meta($this->ID, 'embeded_card_padding', true)." u-padding__x--".
-                get_post_meta($this->ID, 'embeded_card_padding', true) : "";
+        $data['scriptPadding'] = (get_field('embeded_card_padding', $this->ID)) ?
+            "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
+                get_field('embeded_card_padding', $this->ID) : "";
+
         return $data;
     }
 
     public function template()
     {
-        return $this->data['script_wrap_with'] . '.blade.php';
+        return $this->data['scriptWrapWithClassName'] . '.blade.php';
     }
 
     /**

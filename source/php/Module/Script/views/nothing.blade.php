@@ -1,9 +1,12 @@
-<div class="{{ $classes }} script-{{$script_wrap_with}}">
+<div class="{{ $classes }} script-{{$scriptWrapWithClassName}}">
     @if (!$hideTitle && !empty($postTitle))
-        <div class="script-{{$script_wrap_with}}__header">
+        <div class="script-{{$scriptWrapWithClassName}}__header">
+            @php
+                $wrappingClass = 'script-'.$scriptWrapWithClassName.'-title';
+            @endphp
             @typography([
                 'element'   => 'h4',
-                'classList' => ['script-{{$script_wrap_with}}-title']
+                'classList' => [$wrappingClass]
             ])
                 {!! $postTitle !!}
             @endtypography
