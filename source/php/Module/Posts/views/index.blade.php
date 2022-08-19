@@ -42,7 +42,6 @@
                     'image' =>  $post->thumbnail,
                     'heading' => $post->post_title,
                     'classList' => $classes,
-                    'hasFooter' => true,
                     'context' => ['module.posts.index'],
                     'content' => $post->post_content,
                     'tags' => $post->tags,
