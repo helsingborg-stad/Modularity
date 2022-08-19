@@ -11,6 +11,7 @@
     @endtypography
 @endif
 
+
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
         <div class="o-grid-12">

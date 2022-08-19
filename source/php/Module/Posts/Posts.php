@@ -37,7 +37,10 @@ class Posts extends \Modularity\Module
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
 
         new PostsAjax($this);
+
     }
+
+    
 
     /**
      * Get list of date sources
@@ -47,6 +50,7 @@ class Posts extends \Modularity\Module
      */
     public function getDateSource($postType): array
     {
+
         if (empty($postType)) {
             return false;
         }
