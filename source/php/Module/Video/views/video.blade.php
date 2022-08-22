@@ -36,7 +36,7 @@
         </div>
     @else
         @if($embedCode)
-            <div class="embed embed__ratio--16-9">
+            <div class="embed embed__ratio--16-9 js-suppressed-iframe">
                 @if($image !== false)
                     <div class="embed__poster" data-embed-id="{{ $id }}">
                         <img src="{{ $image[0] }}" alt="{{ $postTitle }}" class="embed__poster__image" />
