@@ -18,9 +18,7 @@ function checkAdminPage(mcpid) {
     }
 
     if (pagenow === 'mod-posts') {
-    //    jQuery(document).ready(function(mcpid) {
-            postsTaxonomy(mcpid);  
-    //    });
+        postsTaxonomy(mcpid);  
     }
 }
 
