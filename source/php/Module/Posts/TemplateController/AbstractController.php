@@ -8,8 +8,12 @@ class AbstractController
 {
     protected $hookName = 'index';
 
-    protected function anyPostHasImage(array $posts)
+    protected function anyPostHasImage($posts)
     {
+        if (!is_array($posts)) {
+            return false;
+        }
+
         foreach ($posts as $post) {
             if (!empty($post->thumbnail) && !isset($post->thumbnail['src'])) {
                 return true;
