@@ -1,6 +1,6 @@
 <!-- Map --> {{$cardMoreCardCss}}
 <div class="o-grid o-grid--equal-elements modularity-map-container">
-    <div class="modularity-map-container__map-box js-suppressed-iframe {{$cardMapCss}}">
+    <div class="modularity-map-container__map-box {{$cardMapCss}}">
         @card([
             'classList' => [
                 'modularity-map-container__map',
@@ -37,7 +37,9 @@
             @endif
             
             <div class="c-card__body">
-                <iframe src="{!! $map_url !!}" frameborder="0" class="u-width--100 u-display--block" title="{{ $map_description }}"></iframe>
+                <div class="js-suppressed-iframe">
+                    <iframe src="{!! $map_url !!}" frameborder="0" class="u-width--100 u-display--block" title="{{ $map_description }}"></iframe>
+                </div>
             </div>
         
         @endcard
