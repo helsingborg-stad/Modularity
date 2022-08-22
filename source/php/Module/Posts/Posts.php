@@ -689,14 +689,15 @@ class Posts extends \Modularity\Module
      * @param object $module Module object
      * @return array          Array with post objects
      */
-    public static function getPosts($module)
+    public static function getPosts($module): array
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
+
         if ($fields->posts_data_source == 'input') {
-            return self::getManualInputPosts($fields->data);
+            return (array) self::getManualInputPosts($fields->data);
         }
 
-        return get_posts(self::getPostArgs($module->ID));
+        return (array) get_posts(self::getPostArgs($module->ID));
     }
 
     public static function getPostArgs($id)
