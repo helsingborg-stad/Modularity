@@ -25,8 +25,6 @@ class Posts extends \Modularity\Module
         add_action('add_meta_boxes', array($this, 'addColumnFields'));
         add_action('save_post', array($this, 'saveColumnFields'));
 
-        add_action('admin_init', array($this, 'addTaxonomyDisplayOptions'));
-
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
         add_filter('acf/load_field/key=field_62a309f9c59bb', array($this, 'addIconsList'));
 
@@ -268,83 +266,6 @@ class Posts extends \Modularity\Module
         return get_field('taxonomy_display', $this->ID);
     }
 
-    /**
-     * Add options fields to setup taxonomy display
-     * i.e where to display taxonomy labels in the layout
-     */
-    public function addTaxonomyDisplayOptions()
-    {
-        if (!function_exists('acf_add_local_field_group')) {
-            return;
-        }
-
-        $taxonomies = get_taxonomies();
-        $taxonomies = array_diff($taxonomies, [
-            'nav_menu',
-            'link_category'
-        ]);
-
-        $taxonomyDisplayChoices = [];
-
-        $taxonomiesNew = [];
-        foreach ($taxonomies as $taxonomy) {
-            $tax = get_taxonomy($taxonomy);
-            $taxonomiesNew[] = $tax;
-            $taxonomyDisplayChoices[$tax->name] = $tax->label;
-        }
-
-        $taxonomies = $taxonomiesNew;
-
-        $fieldgroup = [
-            'key' => 'group_' . md5('mod_posts_taxonomy_display'),
-            'title' => __('Taxonomy display', 'municipio'),
-            'fields' => [],
-            'location' => [
-                [
-                    [
-                        'param' => 'post_type',
-                        'operator' => '==',
-                        'value' => 'mod-posts',
-                    ],
-                ],
-            ],
-            'menu_order' => 20,
-            'position' => 'normal',
-            'style' => 'default',
-            'label_placement' => 'top',
-            'instruction_placement' => 'label',
-            'hide_on_screen' => '',
-            'active' => 1,
-            'description' => '',
-        ];
-
-        $fieldgroup['fields'][] = [
-            'key' => 'field_56f00fe21f918_' . md5('display_taxonomies'),
-            'label' => 'Taxonomies to display',
-            'name' => 'taxonomy_display',
-            'type' => 'checkbox',
-            'layout' => 'horizontal',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => [
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ],
-            'choices' => $taxonomyDisplayChoices,
-            'default_value' => [],
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'readonly' => 0,
-        ];
-
-
-        acf_add_local_field_group($fieldgroup);
-    }
 
     /**
      * AJAX CALLBACK
@@ -627,7 +548,7 @@ class Posts extends \Modularity\Module
                 return;
             }
 
-            echo '<script>var modularity_current_post_id = ' . $id . ';</script>';
+            echo '<script>modularity_current_post_id = ' . $id . ';</script>';
         });
     }
 
