@@ -10,7 +10,7 @@ class Plugins
         "jeradin/acf-website-field/acf-website_field.php",
         "ooksanen/acf-focuspoint/acf-focuspoint.php",
         "jeradin/acf-dynamic-table-field/acf-anagram_dynamic_table_field.php",
-        "acf-extended/acf-extended/acf-extended.php"
+        "wpackagist-plugin/acf-extended/acf-extended.php"
     );
 
     public function __construct()

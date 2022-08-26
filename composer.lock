@@ -4,18 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3094b7174ccca634e3060115cce82d8",
+    "content-hash": "2a461be15dfaae7e3e4cc1bb78b4fd36",
     "packages": [
-        {
-            "name": "acf-extended/acf-extended",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/acf-extended/ACF-Extended.git",
-                "reference": "master"
-            },
-            "type": "acf-plugin"
-        },
         {
             "name": "benjamincrozat/blade",
             "version": "2.0.1",
@@ -1740,6 +1730,24 @@
                 "source": "https://github.com/symfony/translation-contracts/tree/v2.0.1"
             },
             "time": "2019-11-18T17:27:11+00:00"
+        },
+        {
+            "name": "wpackagist-plugin/acf-extended",
+            "version": "0.8.8.7",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/acf-extended/",
+                "reference": "tags/0.8.8.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/acf-extended.0.8.8.7.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/acf-extended/"
         }
     ],
     "packages-dev": [],
@@ -1752,8 +1760,7 @@
         "jeradin/acf-website-field": 20,
         "ooksanen/acf-focuspoint": 20,
         "jeradin/acf-dynamic-table-field": 20,
-        "enshrined/svg-sanitize": 20,
-        "acf-extended/acf-extended": 20
+        "enshrined/svg-sanitize": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

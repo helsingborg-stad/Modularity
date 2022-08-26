@@ -28,18 +28,12 @@
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
         },
         {
-            "type":"package",
-            "package": {
-              "name": "acf-extended/acf-extended",
-              "type": "acf-plugin",
-              "version":"dev-master",
-              "source": {
-                  "url": "https://github.com/acf-extended/ACF-Extended.git",
-                  "type": "git",
-                  "reference":"master"
-                }
-            }
-        }        
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*"
+            ]
+        }         
     ],
     "require": {
         "composer/installers": "~1.0",
@@ -69,11 +63,16 @@
         "ooksanen/acf-focuspoint": "dev-master",
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
-        "acf-extended/acf-extended": "dev-master"
+        "wpackagist-plugin/acf-extended": "0.8.8.7"
     },
     "config": {
         "allow-plugins": {
             "composer/installers": true
         }
-    }
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}/": ["vendor:wpackagist-plugin"]
+        }
+    }    
 }

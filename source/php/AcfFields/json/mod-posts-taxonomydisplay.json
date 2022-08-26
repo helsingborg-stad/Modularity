@@ -1,10 +1,10 @@
 [{
         "key": "group_630645d822841",
-        "title": "Visning av taxonomier",
+        "title": "Taxonomies to display",
         "fields": [
             {
                 "key": "field_630645dcff161",
-                "label": "Visning av taxonomier",
+                "label": "Taxonomies to display",
                 "name": "taxonomy_display",
                 "type": "acfe_taxonomies",
                 "instructions": "",
