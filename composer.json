@@ -26,7 +26,14 @@
         {
             "type": "vcs",
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
-        }
+        },
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org",
+            "only": [
+                "wpackagist-plugin/*"
+            ]
+        }         
     ],
     "require": {
         "composer/installers": "~1.0",
@@ -55,11 +62,17 @@
         "jeradin/acf-website-field": "dev-master",
         "ooksanen/acf-focuspoint": "dev-master",
         "jeradin/acf-dynamic-table-field": "dev-master",
-        "enshrined/svg-sanitize": "dev-master"
+        "enshrined/svg-sanitize": "dev-master",
+        "wpackagist-plugin/acf-extended": "0.8.8.7"
     },
     "config": {
         "allow-plugins": {
             "composer/installers": true
         }
-    }
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}/": ["vendor:wpackagist-plugin"]
+        }
+    }    
 }

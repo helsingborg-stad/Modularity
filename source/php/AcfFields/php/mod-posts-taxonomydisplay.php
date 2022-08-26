@@ -5,12 +5,11 @@ if (function_exists('acf_add_local_field_group')) {
 
 acf_add_local_field_group(array(
 	'key' => 'group_630645d822841',
-	'title' => __('Visning av taxonomier', 'modularity'),
+	'title' => __('Taxonomies to display', 'modularity'),
 	'fields' => array(
 		array(
 			'key' => 'field_630645dcff161',
-			'label' => 'Visning av taxonomier',
-            'label' => __('Visning av taxonomier', 'modularity'),
+      'label' => __('Taxonomies to display', 'modularity'),
 			'name' => 'taxonomy_display',
 			'type' => 'acfe_taxonomies',
 			'instructions' => '',
