@@ -45,13 +45,7 @@ class ListTemplate
     {
         $list = [];
 
-        if (count($posts) < 1) {
-            array_push($list, ['columns' => _e('No posts to show…', 'modularity')]);
-            return $list;
-        }
-
         foreach ($posts as $post) {
-
             if (!empty($post->post_type) && $post->post_type == 'attachment') {
                 $href = wp_get_attachment_url($post->ID);
             } else {
