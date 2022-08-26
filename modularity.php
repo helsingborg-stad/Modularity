@@ -66,6 +66,7 @@ add_action('plugins_loaded', function () {
         'mod-posts-filtering'  => 'group_571e045dd555d',
         'mod-posts-sorting'    => 'group_571dffc63090c',
         'mod-posts-source'     => 'group_571dfaabc3fc5',
+        'mod-posts-taxonomydisplay' => 'group_630645d822841',
         'mod-rss'              => 'group_59535d940706c',
         'mod-script'           => 'group_56a8b9eddfced',
         'mod-slider'           => 'group_56a5e99108991',

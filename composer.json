@@ -26,7 +26,20 @@
         {
             "type": "vcs",
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
-        }
+        },
+        {
+            "type":"package",
+            "package": {
+              "name": "acf-extended/acf-extended",
+              "type": "acf-plugin",
+              "version":"dev-master",
+              "source": {
+                  "url": "https://github.com/acf-extended/ACF-Extended.git",
+                  "type": "git",
+                  "reference":"master"
+                }
+            }
+        }        
     ],
     "require": {
         "composer/installers": "~1.0",
@@ -55,7 +68,8 @@
         "jeradin/acf-website-field": "dev-master",
         "ooksanen/acf-focuspoint": "dev-master",
         "jeradin/acf-dynamic-table-field": "dev-master",
-        "enshrined/svg-sanitize": "dev-master"
+        "enshrined/svg-sanitize": "dev-master",
+        "acf-extended/acf-extended": "dev-master"
     },
     "config": {
         "allow-plugins": {
