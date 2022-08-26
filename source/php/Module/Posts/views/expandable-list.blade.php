@@ -4,7 +4,7 @@
 
         @card([
             'heading' => $postTitle,
-            'classList' => [$classes],
+            'classList' => [$classes, "c-card--panel"],
             'attributeList' => [
                 'js-filter-container'   => $ID,
                 'aria-labelledby'       => 'mod-posts-' . $ID . '-label'
