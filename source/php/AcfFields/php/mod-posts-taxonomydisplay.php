@@ -9,7 +9,7 @@ acf_add_local_field_group(array(
 	'fields' => array(
 		array(
 			'key' => 'field_630645dcff161',
-            'label' => __('Taxonomies to display', 'modularity'),
+      'label' => __('Taxonomies to display', 'modularity'),
 			'name' => 'taxonomy_display',
 			'type' => 'acfe_taxonomies',
 			'instructions' => '',
