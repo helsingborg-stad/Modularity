@@ -212,9 +212,11 @@ class Table extends \Modularity\Module
     {
         $data = [];
 
-        if (array_key_exists('header', $arr)) {
-            foreach ($arr['header'] as $heading) {
-                $data['headings'][] = $heading['c']; 
+        if (array_key_exists('header', $arr)) { 
+           if (!empty($arr['header'])) {
+                foreach ($arr['header'] as $heading) {
+                    $data['headings'][] = $heading['c']; 
+                }
             }
             foreach ($arr['body'] as $row) {
                 $columns = [];
@@ -223,7 +225,6 @@ class Table extends \Modularity\Module
                 }
                 $data['list'][]['columns'] = $columns;
             }
-
             return $data;
         }
 
