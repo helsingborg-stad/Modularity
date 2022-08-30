@@ -213,8 +213,10 @@ class Table extends \Modularity\Module
         $data = [];
 
         if (array_key_exists('header', $arr)) {
-            foreach ($arr['header'] as $heading) {
-                $data['headings'][] = $heading['c']; 
+           if (!is_bool($arr['header'])) {
+                foreach ($arr['header'] as $heading) {
+                    $data['headings'][] = $heading['c']; 
+                }
             }
             foreach ($arr['body'] as $row) {
                 $columns = [];
