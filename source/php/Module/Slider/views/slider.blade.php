@@ -15,6 +15,7 @@
     'repeatSlide'   => $wrapAround,
     'shadow'        => $sidebarContext !== 'sidebar.slider-area',
     'heroStyle'     => $sidebarContext === 'sidebar.slider-area',
+    'classList'     => [$classes],
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
     ],
