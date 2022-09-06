@@ -41,7 +41,7 @@
                     <div class="embed__poster" data-embed-id="{{ $id }}">
                         <img src="{{ $image[0] }}" alt="{{ $postTitle }}" class="embed__poster__image" />
                     </div>
-                    <script id="{{ $id }}" type="x-video-embed">
+                    <script id="{{ $id }}" type="x-video-embed" defer>
                         {!! $embedCode !!}
                     </script>
                 @else
