@@ -67,8 +67,6 @@ class Slider extends \Modularity\Module
         $data['slides'] = $this->prepareSlides($fields);
         $data['id'] = $this->ID;
 
-        //Classes
-         $data['classes'] = count($data['slides']) > 1 ? 'c-slider--slides' : '';
 
         return $data;
     }
