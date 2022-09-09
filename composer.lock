@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2a461be15dfaae7e3e4cc1bb78b4fd36",
+    "content-hash": "9680af8da12dcf49564272e502fe3b2b",
     "packages": [
         {
             "name": "benjamincrozat/blade",
@@ -1760,7 +1760,8 @@
         "jeradin/acf-website-field": 20,
         "ooksanen/acf-focuspoint": 20,
         "jeradin/acf-dynamic-table-field": 20,
-        "enshrined/svg-sanitize": 20
+        "enshrined/svg-sanitize": 20,
+        "symfony/polyfill-php80": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
