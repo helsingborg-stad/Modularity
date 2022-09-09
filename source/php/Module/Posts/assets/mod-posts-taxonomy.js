@@ -9,7 +9,6 @@ jQuery(document).on('click', '.acf-block-preview', function(){
     let blockLoadedInterval = setInterval(function() {
         if (document.getElementById('modularity-latest-taxonomy-value')) { 
             const block = wp.data.select('core/block-editor').getSelectedBlock();
-            //console.log(block.attributes.data);  
             postsTaxonomy(modularity_current_post_id, block.attributes.data);               
             blockLoaded = true;      
         }
@@ -22,8 +21,8 @@ jQuery(document).on('click', '.acf-block-preview', function(){
 
 function postsTaxonomy(modularity_current_post_id, data = null) {
     var $ = (jQuery);
-    var taxType = (data == null)? null : data.posts_taxonomy_type;
-    var taxValue = (data == null)? null : data.posts_taxonomy_value;
+    const taxType = (data == null)? null : data.posts_taxonomy_type;
+    const taxValue = (data == null)? null : data.posts_taxonomy_value;
     /**
      * Posttype Meta keys
      */
