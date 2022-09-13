@@ -27,7 +27,7 @@ class IndexTemplate extends AbstractController
             $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
         }
 
-        if($fields->posts_flat_cards) {
+        if(get_theme_mod('mod_posts_flat_card')) {
             array_push($this->data['classes'], "c-card--flat");
         }
 

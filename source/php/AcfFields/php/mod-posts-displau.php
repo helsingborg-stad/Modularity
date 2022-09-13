@@ -556,33 +556,6 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
-        15 => array(
-            'key' => 'field_63104add89789',
-            'label' => __('Flat card', 'modularity'),
-            'name' => 'posts_flat_cards',
-            'type' => 'true_false',
-            'instructions' => __('No background, border or spacing within the card', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'message' => '',
-            'default_value' => 0,
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
-        ),
     ),
     'location' => array(
         0 => array(
