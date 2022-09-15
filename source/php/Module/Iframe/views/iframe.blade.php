@@ -8,4 +8,4 @@
     @endtypography
 @endif
 
-<iframe loading="lazy" src="{{ $url }}" height="{{$height}}" width="100%" title="{!! $description ?? apply_filters('the_title', $post_title) !!}" frameborder="0"></iframe>
+<iframe class="js-suppressed-iframe" loading="lazy" src="{{ $url }}" height="{{$height}}" width="100%" title="{!! $description ?? apply_filters('the_title', $post_title) !!}" frameborder="0"></iframe>
