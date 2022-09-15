@@ -7,5 +7,9 @@
         {!! apply_filters('the_title', $post_title) !!}
     @endtypography
 @endif
-
-<iframe src="{{ $url }}" height="{{$height}}" width="100%" title="{!! $description ?? apply_filters('the_title', $post_title) !!}" frameborder="0"></iframe>
+@iframe([
+	'src' => $url,
+	'height' => $height,
+	'title' => $description ?? $post_title,
+])
+@endiframe
