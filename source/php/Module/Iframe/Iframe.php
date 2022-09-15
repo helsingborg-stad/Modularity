@@ -28,7 +28,7 @@ class Iframe extends \Modularity\Module
         $data['suppressedIframeOptions'] = [
             'labels' => [
                 'titleText' => __('We need your consent to continue', 'modularity'),
-                'infoText' => __('This part of the website shows content from another website. By continuing, you are accepting <a href="#policy" target="_blank">GDPR and privacy policy.</a>', 'modularity'),
+                'infoText' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
                 'buttonText' => __('I understand, continue.', 'modularity'),
             ]
         ];
