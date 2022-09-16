@@ -63,7 +63,8 @@
         "ooksanen/acf-focuspoint": "dev-master",
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
-        "wpackagist-plugin/acf-extended": "0.8.8.7"
+        "wpackagist-plugin/acf-extended": "0.8.8.7",
+        "symfony/polyfill-php80": "1.26.x-dev"
     },
     "config": {
         "allow-plugins": {
