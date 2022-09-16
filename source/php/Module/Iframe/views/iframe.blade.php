@@ -10,6 +10,6 @@
 @iframe([
 	'src' => $url,
 	'height' => $height,
-	'title' => $description ?? $post_title,
+	'title' => $description ?? $post_title
 ])
 @endiframe
