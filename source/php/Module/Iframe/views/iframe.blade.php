@@ -7,9 +7,13 @@
         {!! apply_filters('the_title', $post_title) !!}
     @endtypography
 @endif
+
 @iframe([
 	'src' => $url,
 	'height' => $height,
-	'title' => $description ?? $post_title
+	'title' => $description ?? $post_title,
+    	'classList' => ['js-suppressed-iframe'],
+    	'data-suppressed-iframe-options' => json_encode($suppressedIframeOptions),
 ])
 @endiframe
+

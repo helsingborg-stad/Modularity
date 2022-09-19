@@ -1,0 +1,4415 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Modularity\n"
+"POT-Creation-Date: 2022-09-15 16:39+0200\n"
+"PO-Revision-Date: 2022-09-15 16:40+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.12\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: modularity.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: App.php:155 App.php:185 App.php:225
+msgid "Edit"
+msgstr ""
+
+#: App.php:155 source/php/BlockManager.php:103 source/php/Editor.php:124
+#: source/php/Options/General.php:178
+msgid "Modules"
+msgstr ""
+
+#: App.php:186 App.php:226
+msgid "Import"
+msgstr ""
+
+#: App.php:187 App.php:227
+msgid "Remove"
+msgstr ""
+
+#: App.php:188 App.php:228
+msgid "Hide module"
+msgstr ""
+
+#: App.php:189 App.php:229
+msgid "Are you sure you want to remove this module?"
+msgstr ""
+
+#: App.php:190 App.php:230
+msgid "Saving…"
+msgstr ""
+
+#: App.php:191 App.php:231
+msgid "Close"
+msgstr ""
+
+#: App.php:192 App.php:232
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:140
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:169
+msgid "Width"
+msgstr ""
+
+#: App.php:194 App.php:234 templates/options/partials/modularity-modules.php:27
+msgid "Deprecated"
+msgstr ""
+
+#: App.php:261
+msgid "Edit Modules"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:13
+msgid "Datum"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:32
+msgid "Tid"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:35
+msgid "Ange tid"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:55
+msgid "Pris"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:58
+msgid "Ange pris"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:76
+msgid "Alternativ pris"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:79
+msgid ""
+"Om det finns ett ungdoms, eller ett rabatterat pris går det att ange här"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:97
+msgid "Rubrik köpknapp"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-booking.php:115
+msgid "Länk till webbshop"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:6
+msgid "Contacts"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:10
+msgid "Visningsläge"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:22
+msgid "Kort"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:23
+#: source/php/AcfFields/php/mod-inlaylist.php:10
+msgid "Lista"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:25
+msgid "cards"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:35
+msgid "Kontakter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:50
+msgid "Custom"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:55
+#: source/php/AcfFields/php/mod-posts-source.php:241
+#: source/php/AcfFields/php/mod-slider.php:125
+msgid "Bild"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:79
+msgid "First name or location"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:98
+msgid "Efternamn"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:117
+msgid "Jobbtitel"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:136
+msgid "Förvaltning"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:155
+msgid "E-mail"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:173
+msgid "Telefon"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:188
+msgid "Lägg till nummer"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:192
+#: source/php/AcfFields/php/mod-notice.php:10
+#: source/php/AcfFields/php/mod-video.php:10
+msgid "Typ"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:204
+msgid "Fasttelefon"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:205
+msgid "Mobil"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:207
+msgid "phone"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:217
+msgid "Telefonnummer"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:238
+msgid "Social Media"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:257
+msgid "Media"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:269
+msgid "Facebook"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:270
+msgid "LinkedIn"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:271
+msgid "Twitter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:272
+msgid "Instagram"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:274
+msgid "facebook"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:284
+msgid "URL"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:302
+msgid "Address"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:321
+msgid "Besöksadress"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:340
+msgid "Öppettider"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:359
+msgid "Annat"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:391
+msgid "Användare"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:396
+msgid "Välj användare"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:425
+msgid "Lägg till kontakt"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:458
+msgid "Kolumner"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:485
+#: source/php/AcfFields/php/mod-index.php:325
+#: source/php/AcfFields/php/mod-posts-displau.php:87
+msgid "1"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:486
+#: source/php/AcfFields/php/mod-index.php:326
+#: source/php/AcfFields/php/mod-posts-displau.php:88
+msgid "2"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:487
+#: source/php/AcfFields/php/mod-index.php:327
+#: source/php/AcfFields/php/mod-posts-displau.php:89
+msgid "3"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:488
+#: source/php/AcfFields/php/mod-index.php:328
+#: source/php/AcfFields/php/mod-posts-displau.php:90
+msgid "4"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-contacts.php:490
+msgid "o-grid-12@md"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:6
+#: source/php/Module/Curator/Curator.php:13
+#: source/php/Module/Curator/Curator.php:14
+msgid "Curator Social Media"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:10
+msgid "Embed Code"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:13
+msgid ""
+"Add your curator embed code here. Thios should be the full javascript. "
+"Appeance settings in the javascript configurator will not apply."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:29
+#: source/php/AcfFields/php/mod-posts-source.php:127
+msgid "Number of posts"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:32
+msgid "Set the number items to show."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:50
+msgid "Usage of the curator social media integration"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:61
+msgid ""
+"This is an integration module for https://curator.io. The module requires an "
+"account at the service. To integrate a feed, please head over to curator.io "
+"and follow the steps below. We assume that you already have an account, with "
+"a connected feed. \r\n"
+"\r\n"
+"1. Login to you account. \r\n"
+"2. Click on \"style\" in the sidebar navigation. \r\n"
+"3. Click on \"publish feed\" (style won't matter). \r\n"
+"4. Paste the embed code in the field above. \r\n"
+"5. Save. Your feed should no be displayed."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:6
+#: source/php/Module/Divider/Divider.php:13
+msgid "Divider"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:10 source/php/BlockManager.php:356
+#: source/php/ModuleManager.php:603
+msgid "Title"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:13
+msgid "This text will be displayed in the divider (optional)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:29
+msgid "Title variant"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:41
+msgid "H1"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:42
+msgid "H2"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:43
+msgid "H3"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:44
+msgid "H4"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-divider.php:46
+msgid "h2"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-fileslist.php:10
+msgid "Filer"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-fileslist.php:24
+msgid "Lägg till fil"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-fileslist.php:29
+msgid "Fil"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-fileslist.php:50
+msgid "Filter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-fileslist.php:62
+msgid "Tillåt filtrering"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-gallery.php:21
+#: source/php/Module/Image/Image.php:19
+msgid "Images"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:6 source/php/Module/Hero/Hero.php:12
+msgid "Hero"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:10
+msgid "Byline"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:13
+msgid "A clear byline, to say something else."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:34
+msgid "Body"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:37
+msgid ""
+"A short and concise text about this site. What's it about? Maximum 500 "
+"characters."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:57
+msgid "Background type"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:69
+#: source/php/AcfFields/php/mod-image.php:20
+#: source/php/AcfFields/php/mod-index.php:108
+#: source/php/Module/Image/Image.php:18
+msgid "Image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:70
+#: source/php/AcfFields/php/mod-slider.php:436
+#: source/php/Module/Video/Video.php:12 source/php/Module/Video/Video.php:13
+msgid "Video"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:82
+msgid "Background image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:111
+msgid "Background video"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:138
+msgid "Size"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:159
+msgid "Small"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:160
+msgid "Normal"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:161
+msgid "Large"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:163
+msgid "normal"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:6
+msgid "Iframe settings"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:10
+msgid "Iframe URL"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:13
+msgid ""
+"<span style=\"color: #f00;\">Your iframe link must start with http<strong>s</"
+"strong>://. Links without this prefix will not display.</span>"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:22
+msgid "Enter your embed url"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:26
+msgid "Iframe height"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:43
+#: source/php/AcfFields/php/mod-image.php:96
+#: source/php/AcfFields/php/mod-image.php:127
+msgid "pixels"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:49
+#: source/php/AcfFields/php/mod-map.php:26 source/php/ModuleManager.php:604
+#: templates/options/partials/modularity-modules.php:19
+msgid "Description"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-iframe.php:52
+msgid "Describe the contents of this Iframe (not shown)."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:23
+msgid "Allowed file types: jpg, png, gif"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:39
+msgid "Image caption"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:53
+msgid "Crop image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:58
+msgid "Cropping"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:61
+msgid "Check if you wold like to crop your image to a specific size"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:72
+msgid "Yes, make this image responsive"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:77
+msgid "Responsive"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:80
+msgid ""
+"Make the image responsive if you would like it to automatically resize to "
+"fit inside its container."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:98
+msgid "Crop width"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:129
+msgid "Crop height"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:167
+msgid "Image size"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:192
+msgid "None"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:193
+#: source/php/AcfFields/php/mod-index.php:41
+msgid "Internal"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:194
+#: source/php/AcfFields/php/mod-index.php:42
+msgid "External"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:202
+#: source/php/AcfFields/php/mod-inlaylist.php:107
+#: source/php/AcfFields/php/mod-inlaylist.php:164
+#: source/php/AcfFields/php/mod-logogrid.php:72
+msgid "Link"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:218
+#: source/php/AcfFields/php/mod-index.php:84
+msgid "Link url"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-image.php:247
+msgid "Link page"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:6
+#: source/php/AcfFields/php/mod-index.php:10
+#: source/php/AcfFields/php/mod-posts-displau.php:26
+#: source/php/Module/Index/Index.php:16
+msgid "Index"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:24
+#: source/php/AcfFields/php/mod-inlaylist.php:25
+#: source/php/AcfFields/php/mod-posts-displau.php:363
+msgid "Lägg till rad"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:29
+#: source/php/AcfFields/php/mod-inlaylist.php:29
+msgid "Link type"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:43
+msgid "No Link"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:54
+msgid "Page"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:128
+msgid "Use featured image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:129
+msgid "Upload custom image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:130
+msgid "Hide image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:134
+msgid "featured"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:141
+msgid "Upload image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:187
+#: source/php/AcfFields/php/mod-index.php:214
+#: source/php/AcfFields/php/mod-inlaylist.php:53
+#: source/php/AcfFields/php/mod-inlaylist.php:80
+#: source/php/AcfFields/php/mod-posts-sorting.php:27
+#: source/php/AcfFields/php/mod-posts-source.php:185
+#: source/php/AcfFields/php/mod-wpwidget.php:243
+msgid "Titel"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:190
+msgid ""
+"Om du inte vill använda den underliggande sidans titel kan du skriva in en "
+"annan titel här."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:248
+#: source/php/AcfFields/php/mod-index.php:275
+msgid "Lead"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:251
+msgid ""
+"Om du inte vill använda den underliggande sidans ingress kan du skriva in en "
+"annan ingress här."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:311
+#: source/php/AcfFields/php/mod-posts-displau.php:39
+msgid "Columns"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-index.php:331
+#: source/php/AcfFields/php/mod-posts-displau.php:92
+msgid "grid-md-12"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inheritpost.php:10
+msgid "Post or page"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:6
+#: source/php/AcfFields/php/mod-posts-displau.php:22
+msgid "List"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:42
+msgid "Internal link"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:43
+msgid "External link"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:45
+msgid "internal"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:56
+msgid ""
+"If empty, title will default to the linked post's/page's title on internal "
+"links."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:137
+#: source/php/AcfFields/php/mod-rss.php:85
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:44
+#: source/php/ModuleManager.php:606
+msgid "Date"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:140
+msgid ""
+"If checked, the publish/last modified date of the linked post will be "
+"displayed."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-inlaylist.php:157
+msgid "Show publish date"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-logogrid.php:6
+#: source/php/Module/Logogrid/Logogrid.php:12
+msgid "Logotype grid"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-logogrid.php:10
+msgid "Add some brands"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-logogrid.php:25
+msgid "Add new logotype"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-logogrid.php:29
+msgid "Image/logotype"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-logogrid.php:53
+msgid "Name"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:6 source/php/Module/Map/Map.php:12
+msgid "Map"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:10
+msgid "Map URL"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:13
+msgid ""
+"<span style=\"color: #f00;\">Din länk måste starta med http<strong>s</"
+"strong>://</span>"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:29
+msgid "Describe the contents of this map (not shown)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:45
+msgid "Miniumum Height"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:48
+msgid "Set a minumum height"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:61
+msgid "px"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:65
+msgid "Show button"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:84
+msgid "Button label"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:111
+msgid "Button url"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:135
+msgid "Extra info"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:138
+msgid ""
+"Do you want to add Extra info?\r\n"
+"The information will be placed in a card on the right side of the map."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:147
+msgid "The extra info card is disabled by default"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:150
+#: source/php/AcfFields/php/mod-posts-displau.php:440
+#: templates/options/partials/modularity-modules.php:16
+#: templates/options/partials/modularity-post-types.php:8
+msgid "Enabled"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:151
+#: source/php/AcfFields/php/mod-posts-displau.php:441
+msgid "Disabled"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:155
+msgid "Extra info title"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:182
+msgid "Extra information"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-map.php:185
+msgid "Add extra information such as opening hours or map location."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:6
+msgid "Notice settings"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:22
+msgid "Success (green)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:23
+msgid "Info (black)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:24
+msgid "Warning (gul)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:25
+msgid "Danger (red)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:27
+msgid "success"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-notice.php:37
+msgid "Notis"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:6
+msgid "Data display"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:10
+msgid "Display as"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:23
+msgid "Expandable List"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:24
+msgid "Post items"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:25
+msgid "News items"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:27
+msgid "Blocks"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:28
+msgid "Features grid"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:32
+msgid "list"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:102
+msgid "Highlight first post"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:105
+msgid "Makes the first post bigger"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:150
+msgid "Display highlighted post as"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:170
+msgid "Block"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:171
+#: source/php/AcfFields/php/mod-script.php:42
+msgid "Card"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:173
+msgid "block"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:183
+msgid "Altering grid size"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:203
+msgid "Yes, alter grid size automatically"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:210
+#: source/php/AcfFields/php/mod-rss.php:71
+msgid "Fields"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:230
+#: source/php/AcfFields/php/mod-wpwidget.php:483
+msgid "Show date"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:231
+msgid "Show excerpt"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:232
+msgid "Show title"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:233
+msgid "Show featured image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:237
+msgid "date"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:238
+msgid "excerpt"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:239
+msgid "title"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:240
+msgid "image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:249
+msgid "Date source"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:269
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:49
+msgid "Date published"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:270
+#: source/php/AcfFields/php/mod-posts-sorting.php:29
+msgid "Date modified"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:282
+msgid "Hide the title column"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:302
+msgid "Yes, hide the title column"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:309
+msgid "Title column label"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:341
+msgid "List column labels"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:344
+msgid ""
+"A title field will always be added as the first column. You will need to go "
+"to each post in this list to give the values for each column."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:368
+msgid "Column header"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:391
+#: source/php/AcfFields/php/mod-posts-displau.php:411
+msgid "Allow freetext filtering"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:418
+msgid "Highlight post"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:445
+msgid "Date format"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:470
+msgid "Default timestamp"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:471
+msgid "Readable timestamp"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:473
+msgid "default"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:483
+msgid "Placeholder image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:520
+msgid "Ratio"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:547
+msgid "1:1"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:548
+#: source/php/AcfFields/php/mod-posts-displau.php:551
+msgid "4:3"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:549
+msgid "12:16"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:561
+msgid "Flat card"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:564
+msgid "No background, border or spacing within the card"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:6
+msgid "Data filtering"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:10
+msgid "Taxonomy filter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:22
+msgid "Yes, filter posts based on taxonomy"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:29
+msgid "Taxonomy type"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:62
+msgid "Taxonomy value"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:95
+msgid "Meta filter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:107
+msgid "Yes, filter posts based on meta"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:114
+msgid "Meta key"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-filtering.php:147
+msgid "Meta value"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:10
+#: source/php/AcfFields/php/mod-wpwidget.php:254
+msgid "Sort by"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:24
+msgid "Do not sort"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:25
+msgid "ID"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:26
+msgid "Författare"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:28
+msgid "Publiceringsdatum"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:30
+msgid "Parent"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:31
+msgid "Random"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:32
+msgid "Comment count"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:33
+#: source/php/AcfFields/php/mod-wpwidget.php:244
+msgid "Menu order"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:47
+msgid "Order"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:60
+#: source/php/AcfFields/php/mod-rss.php:60
+msgid "Ascending"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-sorting.php:61
+#: source/php/AcfFields/php/mod-rss.php:59
+msgid "Descending"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:6
+#: source/php/AcfFields/php/mod-posts-source.php:10
+msgid "Data source"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:24
+#: source/php/AcfFields/php/mod-posts-source.php:39
+msgid "Posttyper"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:25
+msgid "Child posts"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:26
+msgid "Manually picked posts"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:27
+#: source/php/AcfFields/php/mod-table-block.php:22
+#: source/php/AcfFields/php/mod-table.php:23
+msgid "Manual input"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:67
+msgid "Pick posts to display"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:97
+msgid "Childs of"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:130
+#: source/php/AcfFields/php/mod-rss.php:29
+msgid "Set to -1 to show all"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:158
+msgid "Data input"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:180
+#: source/php/AcfFields/php/mod-posts-source.php:304
+msgid "Add"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:206
+msgid "Innehåll"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:225
+msgid "Permalink"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:265
+msgid "Icon"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:290
+msgid "Column values"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:293
+msgid "Column values if expandable list is selected."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:309
+msgid "Value"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:334
+msgid "Link to post type archive"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-source.php:354
+msgid "Yes, link to post type archive"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-taxonomydisplay.php:8
+#: source/php/AcfFields/php/mod-posts-taxonomydisplay.php:12
+msgid "Taxonomies to display"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:10
+msgid "RSS feed URL"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:26
+msgid "Number of items"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:47
+msgid "Sort order"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:50
+msgid "Select order to sort the RSS feed"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:83
+msgid "Summary"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-rss.php:84
+msgid "Author"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:7
+msgid "Embed"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:11
+msgid "Embed code"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:14
+msgid ""
+"Paste your script code here (with &lt;style&gt; &lt;script&gt; tags if "
+"needed)."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:30
+msgid "Wrap with"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:43
+msgid "Nothing"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:47
+msgid "card"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:54
+msgid "Script embed padding"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:57
+msgid "Add padding to script embed (default: 0, no padding)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-script.php:77
+msgid "Add a placeholder image to show where scripts cannot be rendered card"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-sites.php:6
+#: source/php/Module/Sites/Sites.php:14 source/php/Module/Sites/Sites.php:15
+msgid "Sites"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-sites.php:10
+#: source/php/AcfFields/php/mod-sites.php:15
+msgid "Include main site"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:6
+#: source/php/Module/Slider/Slider.php:26
+msgid "Slider"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:10
+msgid "Slider ratio"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:22
+msgid "Wider (36:7)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:23
+msgid "Wide (10:3)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:24
+msgid "Normal (16:9, video)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:25
+msgid "Square (4:3)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:37
+msgid "Autoslide"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:48
+msgid "Slide automatically between views"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:56
+msgid "Slide interval"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:78
+msgid "seconds"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:85
+msgid "Wrap around"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:97
+msgid "Go to first slide when last item is reached"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:110
+msgid "Slides"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:739
+msgid "Add slide"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-spacer.php:6
+msgid "Whitespace"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-spacer.php:10
+msgid "Amount of whitespace"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-spacer.php:13
+msgid "All space will be multiplied by 8."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:6
+msgid "Table - Block settings"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:10
+#: source/php/AcfFields/php/mod-table.php:10
+msgid "Datatyp"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:23
+#: source/php/AcfFields/php/mod-table.php:24
+msgid "CSV Import"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:27
+msgid "manual"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:34
+#: source/php/AcfFields/php/mod-table.php:34
+msgid "CSV-fil"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:37
+#: source/php/AcfFields/php/mod-table.php:37
+msgid "CSV-formatterad fil"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:61
+#: source/php/AcfFields/php/mod-table.php:61
+msgid "CSV-avgränsare"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:64
+#: source/php/AcfFields/php/mod-table.php:64
+msgid ""
+"Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken eller "
+"semikolon."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:80
+msgid ";"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:88
+#: source/php/AcfFields/php/mod-table.php:90
+#: source/php/Module/Table/Table.php:12
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:38
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:24
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:38
+msgid "Table"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:112
+msgid "Sidbläddring"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:123
+msgid "Yes, use pagination on this table"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:131
+msgid "Antal inlägg/sidor"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:160
+#: source/php/AcfFields/php/mod-table.php:122
+msgid "Aktivera sök"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:179
+msgid "Sökfras"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:198
+msgid "Search in list"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:206
+#: source/php/AcfFields/php/mod-table.php:141
+msgid "Aktivera kolumnsortering"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table-block.php:217
+#: source/php/AcfFields/php/mod-table.php:153
+msgid "Yes, enable column sorting"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:6
+msgid "Table Editor"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:93
+msgid ""
+"Enter your table contents, and select appearance and functionality options "
+"below."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:134
+msgid "Yes, use search on this table"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:160
+msgid "Multidimensional"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:163
+msgid ""
+"Använd den första kolumnen som en andra dimension av tabellrubriker. Detta "
+"val låser också den första kolumnen vid scroll."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:179
+msgid "Sum"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:182
+msgid ""
+"Lägger till en rad i slutet av tabellen som summerar varje kolumns celler."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:198
+msgid "Fullscreen"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-table.php:201
+msgid ""
+"Renderar en ikon i högra hörnet som möjliggör helskärmsläge för tabellen."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-text.php:6
+msgid "Text options"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-text.php:10
+msgid "Göm textbox"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-text.php:22
+msgid "Ja, göm textbox (visa text som artikel)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:23
+msgid "Bädda in (YouTube eller Vimeo-länk)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:24
+msgid "Ladda upp video"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:34
+msgid "Video: mp4"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:37
+msgid "Upload or select file from library. The only valid file format is .mp4"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:61
+msgid "Inbäddningslänk"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:85
+msgid "Affischbild"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:88
+msgid "Affischbilden visas innan videon sätts igång."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:6
+msgid "Wordpress Widget"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:11
+msgid "Arkiv"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:12
+msgid "Kalender"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:13
+#: source/php/AcfFields/php/mod-wpwidget.php:507
+msgid "Kategorier"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:14
+#: source/php/Module/WpWidget/WpWidget.php:155
+msgid "Meta"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:15
+msgid "Sidor"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:16
+msgid "Senaste kommentarerna"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:17
+msgid "Senaste inläggen"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:18
+#: source/php/Module/Rss/Rss.php:13 source/php/Module/Rss/Rss.php:14
+#: source/php/Module/WpWidget/WpWidget.php:159
+msgid "RSS"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:19
+msgid "Sök"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:20
+msgid "Taggmoln"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:28
+msgid "Widget Type"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:41
+msgid ""
+"There are no options available for this widget type.<br> <style>.acf-"
+"field-57309aa0b176d {background-color: #FFDFDF;}</style>"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:45
+msgid "No options avabile"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:82
+#: source/php/AcfFields/php/mod-wpwidget.php:114
+#: source/php/AcfFields/php/mod-wpwidget.php:146
+#: source/php/AcfFields/php/mod-wpwidget.php:178
+#: source/php/AcfFields/php/mod-wpwidget.php:210
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:88
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:107
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:79
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:92
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:123
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:144
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:231
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:244
+#: vendor/jeradin/acf-website-field/website_url_v4.php:266
+#: vendor/jeradin/acf-website-field/website_url_v4.php:290
+#: vendor/jeradin/acf-website-field/website_url_v4.php:311
+#: vendor/jeradin/acf-website-field/website_url_v5.php:266
+#: vendor/jeradin/acf-website-field/website_url_v5.php:281
+#: vendor/jeradin/acf-website-field/website_url_v5.php:298
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:97
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:187
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:181
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:97
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:187
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:173
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:103
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:193
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:179
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:223
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:247
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:195
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:210
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:234
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:195
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:210
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:234
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:195
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:253
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:145
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:203
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:109
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:231
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:255
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:147
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:203
+msgid "No"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:83
+#: source/php/AcfFields/php/mod-wpwidget.php:115
+#: source/php/AcfFields/php/mod-wpwidget.php:147
+#: source/php/AcfFields/php/mod-wpwidget.php:179
+#: source/php/AcfFields/php/mod-wpwidget.php:211
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:87
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:106
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:78
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:91
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:122
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:143
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:230
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:243
+#: vendor/jeradin/acf-website-field/website_url_v4.php:265
+#: vendor/jeradin/acf-website-field/website_url_v4.php:289
+#: vendor/jeradin/acf-website-field/website_url_v4.php:310
+#: vendor/jeradin/acf-website-field/website_url_v5.php:265
+#: vendor/jeradin/acf-website-field/website_url_v5.php:280
+#: vendor/jeradin/acf-website-field/website_url_v5.php:297
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:98
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:186
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:182
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:98
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:186
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:174
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:104
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:192
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:180
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:102
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:222
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:246
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:138
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:196
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:102
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:209
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:233
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:138
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:196
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:102
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:209
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:233
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:138
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:196
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:108
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:228
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:252
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:131
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:144
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:202
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:204
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:110
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:230
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:254
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:146
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:204
+msgid "Yes"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:91
+msgid "Show number of items indicator"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:123
+msgid "Show as dropdown list"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:155
+msgid "Show number of category items indicator"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:187
+msgid "Show as hierarchial list"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:219
+msgid "Show as dropdown"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:245
+msgid "Page ID"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:257
+msgid "Select how to sort the pages"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:283
+msgid "Exclude"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:286
+msgid "ID:s of pages to exclude. Separated by comma."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:314
+msgid "Number of comments to show"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:345
+msgid "Number of posts to show"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:371
+msgid "RSS Url"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:400
+msgid "Items to show"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:424
+msgid "Yes, show summary"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:429
+msgid "Show summary"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:451
+msgid "Yes, show author"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:456
+msgid "Visa författare"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:478
+msgid "Yes, show date"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:508
+msgid "Taggar"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:509
+msgid "Länkkategorier"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:510
+msgid "Kategori"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:511
+msgid "Plats"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:512
+msgid "Ämne"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-wpwidget.php:521
+msgid "Taxonomy"
+msgstr ""
+
+#: source/php/BlockManager.php:303
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: source/php/BlockManager.php:351
+msgid "Block settings"
+msgstr ""
+
+#: source/php/Display.php:474 templates/widget/form.php:30
+msgid "Edit module"
+msgstr ""
+
+#: source/php/Editor.php:63
+msgid "View Page"
+msgstr ""
+
+#: source/php/Editor.php:123
+msgid "Content"
+msgstr ""
+
+#: source/php/Editor.php:152
+msgid "Modularity editor"
+msgstr ""
+
+#: source/php/Editor.php:153
+msgid "Editor"
+msgstr ""
+
+#: source/php/Editor.php:171
+msgid "Save modules"
+msgstr ""
+
+#: source/php/Editor.php:182
+msgid "Enabled modules"
+msgstr ""
+
+#: source/php/Editor.php:228
+msgid "No active sidebar areas"
+msgstr ""
+
+#: source/php/Editor.php:230
+msgid ""
+"There's no active sidebars. Please activate sidebar areas in the Modularity "
+"Options to add modules."
+msgstr ""
+
+#: source/php/Editor.php:547
+msgid "Modules saved"
+msgstr ""
+
+#: source/php/Editor.php:632
+msgid "Inherit"
+msgstr ""
+
+#: source/php/Editor.php:693
+msgid "Scope styling"
+msgstr ""
+
+#: source/php/Editor.php:697
+msgid "Select an apperance for this instance of module"
+msgstr ""
+
+#: source/php/Editor.php:700
+msgid ""
+"By selecting a scope for this class, they will appear in a different way "
+"than the standard layout."
+msgstr ""
+
+#: source/php/Helper/Acf.php:31
+msgid ""
+"To get the full expirience of the <strong>Modularity</strong> plugin, please "
+"activate the <a href=\"http://www.advancedcustomfields.com/pro/\" target="
+"\"_blank\">Advanced Custom Fields Pro</a> plugin."
+msgstr ""
+
+#: source/php/Helper/Post.php:197
+msgid "Item is missing content"
+msgstr ""
+
+#: source/php/Module/Contacts/Contacts.php:13
+#: source/php/Module/Contacts/Contacts.php:14
+msgid "Contacts v2"
+msgstr ""
+
+#: source/php/Module/Contacts/Contacts.php:15
+msgid "Outputs one or more contacts"
+msgstr ""
+
+#: source/php/Module/Contacts/Contacts.php:51
+msgid "Opening hours"
+msgstr ""
+
+#: source/php/Module/Contacts/views/components/adress.blade.php:12
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:94
+msgid "Postal address"
+msgstr ""
+
+#: source/php/Module/Contacts/views/components/visiting.blade.php:12
+#: templates/module/modularity-mod-contact/modularity-mod-contact-cards.php:103
+msgid "Visiting address"
+msgstr ""
+
+#: source/php/Module/Curator/Curator.php:15
+msgid "Output social media flow via curator."
+msgstr ""
+
+#: source/php/Module/Curator/Curator.php:55
+msgid "A invalid embed code was provided, please try enter it again."
+msgstr ""
+
+#: source/php/Module/Curator/Curator.php:57
+msgid ""
+"Could not get the instagram feed at this moment, please try again later."
+msgstr ""
+
+#: source/php/Module/Divider/Divider.php:14
+msgid "Dividers"
+msgstr ""
+
+#: source/php/Module/Divider/Divider.php:15
+msgid "Add a content divider."
+msgstr ""
+
+#: source/php/Module/FilesList/FilesList.php:12
+#: source/php/Module/FilesList/FilesList.php:13
+msgid "Files"
+msgstr ""
+
+#: source/php/Module/FilesList/FilesList.php:14
+msgid "Outputs a file archive."
+msgstr ""
+
+#: source/php/Module/Gallery/Gallery.php:12
+msgid "Gallery"
+msgstr ""
+
+#: source/php/Module/Gallery/Gallery.php:13
+msgid "Galleries"
+msgstr ""
+
+#: source/php/Module/Gallery/Gallery.php:14
+msgid "Outputs a gallery with images"
+msgstr ""
+
+#: source/php/Module/Hero/Hero.php:13
+msgid "Heros"
+msgstr ""
+
+#: source/php/Module/Hero/Hero.php:14
+msgid "Outputs a hero"
+msgstr ""
+
+#: source/php/Module/Iframe/Iframe.php:12
+#: source/php/Module/Iframe/Iframe.php:13
+msgid "Iframe"
+msgstr ""
+
+#: source/php/Module/Iframe/Iframe.php:14
+msgid "Outputs an embedded page."
+msgstr ""
+
+#: source/php/Module/Iframe/Iframe.php:30
+msgid "We need your consent to continue"
+msgstr "Vi behöver ditt godkännande för att ta dig vidare"
+
+#: source/php/Module/Iframe/Iframe.php:31
+msgid ""
+"This part of the website shows content from another website. By continuing, "
+"you are accepting GDPR and privacy policy."
+msgstr ""
+"Den här delen av hemsidan visar innehåll från en annan webbplats. Genom att "
+"fortsätta godkänner du GDPR och Sekretesspolicyn."
+
+#: source/php/Module/Iframe/Iframe.php:32
+msgid "I understand, continue."
+msgstr "Jag förstår, fortsätt."
+
+#: source/php/Module/Iframe/Iframe.php:42
+msgid ""
+"Your iframe link must start with http<strong>s</strong>://. Links without "
+"this prefix will not display."
+msgstr ""
+
+#: source/php/Module/Iframe/Iframe.php:63
+msgid "We need your consent to continue."
+msgstr "Vi behöver ditt godkännande för att ta dig vidare."
+
+#: source/php/Module/Image/Image.php:20
+msgid "Outputs an image"
+msgstr ""
+
+#: source/php/Module/Index/Index.php:17
+msgid "Indexes"
+msgstr ""
+
+#: source/php/Module/Index/Index.php:18
+msgid "Index card to use as an entry point for a \"content section\"."
+msgstr ""
+
+#: source/php/Module/InheritPost/InheritPost.php:12
+msgid "Post article"
+msgstr ""
+
+#: source/php/Module/InheritPost/InheritPost.php:13
+msgid "Post articles"
+msgstr ""
+
+#: source/php/Module/InheritPost/InheritPost.php:14
+msgid "Outputs title and content from any post or page"
+msgstr ""
+
+#: source/php/Module/InlayList/InlayList.php:13
+msgid "Inlay List"
+msgstr ""
+
+#: source/php/Module/InlayList/InlayList.php:14
+msgid "Inlay Lists"
+msgstr ""
+
+#: source/php/Module/InlayList/InlayList.php:15
+msgid "Outputs one or more posts from selected post-type."
+msgstr ""
+
+#: source/php/Module/Logogrid/Logogrid.php:13
+msgid "Logotype grids"
+msgstr ""
+
+#: source/php/Module/Logogrid/Logogrid.php:14
+msgid "Outputs a grid of logotypes"
+msgstr ""
+
+#: source/php/Module/Map/Map.php:13
+msgid "Maps"
+msgstr ""
+
+#: source/php/Module/Map/Map.php:14
+msgid "Outputs an embedded map."
+msgstr ""
+
+#: source/php/Module/Map/Map.php:51
+msgid ""
+"Your map link must start with http<strong>s</strong>://. Links without this "
+"prefix will not display."
+msgstr ""
+
+#: source/php/Module/Notice/Notice.php:12
+#: source/php/Module/Notice/Notice.php:13
+msgid "Notice"
+msgstr ""
+
+#: source/php/Module/Notice/Notice.php:14
+msgid "Outputs a notice"
+msgstr ""
+
+#: source/php/Module/Posts/Posts.php:20 source/php/Module/Posts/Posts.php:21
+msgid "Posts"
+msgstr ""
+
+#: source/php/Module/Posts/Posts.php:22
+msgid "Outputs selected posts in specified layout"
+msgstr ""
+
+#: source/php/Module/Posts/Posts.php:380
+msgid "Modularity expandable list column values"
+msgstr ""
+
+#: source/php/Module/Posts/TemplateController/HorizontalTemplate.php:26
+msgid "Load more"
+msgstr ""
+
+#: source/php/Module/Posts/TemplateController/HorizontalTemplate.php:79
+msgid "ago"
+msgstr ""
+
+#: source/php/Module/Posts/TemplateController/ListTemplate.php:77
+#: templates/module/modularity-mod-latest-list.php:61
+msgid "Show more"
+msgstr ""
+
+#: source/php/Module/Posts/views/horizontal.blade.php:112
+msgid "Nothing to display…"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:13
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:72
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:163
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:125
+msgid "Select"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:32
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:37
+#: source/php/Module/WpWidget/WpWidget.php:160
+msgid "Search"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:52
+msgid "From"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:53
+msgid "From date"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:57
+msgid "To"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:58
+msgid "To date"
+msgstr ""
+
+#: source/php/Module/Posts/views/partials/post-filters.blade.php:87
+msgid "Clear filters"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:15
+msgid "Outputs a RSS feed"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:44
+msgid "RSS feed URL is missing"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:50
+msgid "RSS Error:"
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:56
+msgid ""
+"An error has occurred, which probably means the feed is down. Try again "
+"later."
+msgstr ""
+
+#: source/php/Module/Rss/Rss.php:81
+msgid "Untitled"
+msgstr ""
+
+#: source/php/Module/Script/Script.php:13
+#: source/php/Module/Script/Script.php:14
+msgid "Script"
+msgstr ""
+
+#: source/php/Module/Script/Script.php:15
+msgid "Outputs unsanitized code to widget area."
+msgstr ""
+
+#: source/php/Module/Sites/Sites.php:16
+msgid "Outputs a grid list with att sites in the network."
+msgstr ""
+
+#: source/php/Module/Slider/Slider.php:27
+msgid "Sliders"
+msgstr ""
+
+#: source/php/Module/Slider/Slider.php:28
+msgid "Outputs multiple images or videos in a sliding apperance."
+msgstr ""
+
+#: source/php/Module/Slider/Slider.php:107
+#: templates/module/modularity-mod-latest-news.php:61
+#: templates/module/modularity-mod-mainnews.php:45
+msgid "Read more"
+msgstr ""
+
+#: source/php/Module/Spacer/Spacer.php:12
+msgid "Spacer"
+msgstr ""
+
+#: source/php/Module/Spacer/Spacer.php:13
+msgid "Spacers"
+msgstr ""
+
+#: source/php/Module/Spacer/Spacer.php:14
+msgid "Outputs whitespace."
+msgstr ""
+
+#: source/php/Module/Table/Table.php:13
+msgid "Tables"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:14
+msgid "Outputs a flexible table with options."
+msgstr ""
+
+#: source/php/Module/Table/Table.php:109 source/php/Module/Table/Table.php:146
+msgid "There was an error opening the selected .csv-file."
+msgstr ""
+
+#: source/php/Module/Table/Table.php:194
+msgid "No data available in table"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:195
+msgid "Showing _START_ to _END_ of _TOTAL_ entries"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:196
+msgid "Showing 0 to 0 of 0 entries"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:197
+msgid "filtered from _MAX_ total entries"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:198
+msgid "Show _MENU_ entries"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:199
+msgid "Loading..."
+msgstr ""
+
+#: source/php/Module/Table/Table.php:200
+msgid "Processing..."
+msgstr ""
+
+#: source/php/Module/Table/Table.php:201
+msgid "No matching records found"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:202
+msgid "First"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:203
+msgid "Last"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:204
+msgid "Next"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:205
+msgid "Previous"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:206
+msgid "activate to sort column ascending"
+msgstr ""
+
+#: source/php/Module/Table/Table.php:207
+msgid "activate to sort column descending"
+msgstr ""
+
+#: source/php/Module/Text/Text.php:12
+msgid "Text"
+msgstr ""
+
+#: source/php/Module/Text/Text.php:13
+msgid "Texts"
+msgstr ""
+
+#: source/php/Module/Text/Text.php:14
+msgid "Outputs text"
+msgstr ""
+
+#: source/php/Module/Video/Video.php:14
+msgid "Outputs an embedded Video."
+msgstr ""
+
+#: source/php/Module/Video/Video.php:51
+#, php-format
+msgid ""
+"This video could not be embedded. <a href=\"%s\" target=\"_blank\">View the "
+"video by visiting embedded page.</a>"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:13
+#: source/php/Module/WpWidget/WpWidget.php:14
+msgid "Wordpress Widgets"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:15
+msgid "Outputs a default widget in WordPress"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:152
+#: source/php/Options/ArchivesList.php:11
+#: templates/options/modularity-archives.php:2
+msgid "Archives"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:153
+msgid "Calendar"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:154
+msgid "Categories"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:156
+msgid "Pages"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:157
+msgid "Recent comments"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:158
+msgid "Recent posts"
+msgstr ""
+
+#: source/php/Module/WpWidget/WpWidget.php:161
+msgid "Tag cloud"
+msgstr ""
+
+#: source/php/ModuleManager.php:183
+msgctxt "add new button"
+msgid "Add New"
+msgstr ""
+
+#: source/php/ModuleManager.php:184
+#, php-format
+msgid "Add new %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:185
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:186 source/php/ModuleManager.php:188
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:187
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:189
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:190
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:191
+#, php-format
+msgid "No %s"
+msgstr ""
+
+#: source/php/ModuleManager.php:192
+#, php-format
+msgid "No %s in trash"
+msgstr ""
+
+#: source/php/ModuleManager.php:372
+msgid "Hide title"
+msgstr ""
+
+#: source/php/ModuleManager.php:411
+msgid "Copy and paste this shortcode to display the module inline."
+msgstr ""
+
+#: source/php/ModuleManager.php:454
+msgid "This modules is not used yet."
+msgstr ""
+
+#: source/php/ModuleManager.php:458
+msgid "This module is used on the following places:"
+msgstr ""
+
+#: source/php/ModuleManager.php:559
+msgid "Module description"
+msgstr ""
+
+#: source/php/ModuleManager.php:605
+msgid "Usage"
+msgstr ""
+
+#: source/php/ModuleManager.php:630
+msgid "Not used"
+msgstr ""
+
+#: source/php/ModuleManager.php:647
+msgid "more"
+msgstr ""
+
+#: source/php/Options.php:93
+msgid "Options saved successfully"
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:6
+msgid "Sidebar & Module Restrictions"
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:29
+msgid "Settings"
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:33
+msgid "Template Areas"
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:45
+msgid "Checking this will override the default module area settings."
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:55
+msgid "Module Restrictions"
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:67
+msgid ""
+"Checking this will filter the default module settings for each template."
+msgstr ""
+
+#: source/php/Options/AcfFields/acf-module-restrictions.php:161
+msgid "Active Sidebars"
+msgstr ""
+
+#: source/php/Options/Archives.php:37 source/php/Options/Archives.php:38
+msgid "Archive modules"
+msgstr ""
+
+#: source/php/Options/ArchivesList.php:10
+msgid "Archive"
+msgstr ""
+
+#: source/php/Options/ArchivesList.php:18
+msgid "There's no archives to display"
+msgstr ""
+
+#: source/php/Options/ArchivesList.php:24
+msgid "Post Type Archive"
+msgstr ""
+
+#: source/php/Options/ArchivesList.php:25
+msgid "Has modules"
+msgstr ""
+
+#: source/php/Options/ArchivesList.php:60
+msgid "View"
+msgstr ""
+
+#: source/php/Options/ArchivesList.php:61
+msgid "Edit modules"
+msgstr ""
+
+#: source/php/Options/General.php:10
+msgid "Modularity Options"
+msgstr ""
+
+#: source/php/Options/General.php:11
+msgid "Options"
+msgstr ""
+
+#: source/php/Options/General.php:22 source/php/Options/General.php:23
+msgid "Search page modules"
+msgstr ""
+
+#: source/php/Options/General.php:30 source/php/Options/General.php:31
+msgid "Restrictive Options"
+msgstr ""
+
+#: source/php/Options/General.php:124
+msgid "Save options"
+msgstr ""
+
+#: source/php/Options/General.php:136
+msgid "Core options"
+msgstr ""
+
+#: source/php/Options/General.php:148
+msgid "Module options"
+msgstr ""
+
+#: source/php/Options/General.php:160
+msgid "Post types"
+msgstr ""
+
+#: source/php/Options/General.php:169
+msgid "Template areas"
+msgstr ""
+
+#: templates/editor/modularity-module-description.php:2
+msgid ""
+"Only visible for administrators/editors. Please keep the description short "
+"and concisely."
+msgstr ""
+
+#: templates/editor/modularity-publish.php:5
+msgid "Page:"
+msgstr ""
+
+#: templates/editor/modularity-publish.php:14
+msgid "Using template:"
+msgstr ""
+
+#: templates/editor/modularity-publish.php:23
+#: templates/options/partials/modularity-publish.php:4
+msgid "Save"
+msgstr ""
+
+#: templates/editor/modularity-sidebar-drop-area.php:3
+msgid "Drag your modules here…"
+msgstr ""
+
+#: templates/editor/modularity-sidebar-drop-area.php:10
+msgid "Show modules"
+msgstr ""
+
+#: templates/editor/modularity-sidebar-drop-area.php:12
+msgid "before"
+msgstr ""
+
+#: templates/editor/modularity-sidebar-drop-area.php:13
+msgid "after"
+msgstr ""
+
+#: templates/editor/modularity-sidebar-drop-area.php:20
+msgid "Hide global widgets"
+msgstr ""
+
+#: templates/options/partials/modularity-core-options.php:5
+msgid "Show module's post type in admin menu"
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:2
+msgid "Enable and/or disable modules."
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:3
+msgid ""
+"Note: You will not lose any data from disabling a module. However the "
+"modules will not be displayed on your site."
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:8
+msgid "Deprecated modules"
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:9
+msgid ""
+"Some of your modules is set as deprecated. That means that the modules "
+"already created will still be available to display and edit, but the option "
+"to create new modules is disabled."
+msgstr ""
+
+#: templates/options/partials/modularity-modules.php:17
+#: templates/options/partials/modularity-modules.php:18
+msgid "Module"
+msgstr ""
+
+#: templates/options/partials/modularity-post-types.php:2
+msgid "Select which post types you would like to enable Modularity on."
+msgstr ""
+
+#: templates/options/partials/modularity-post-types.php:9
+msgid "Post type"
+msgstr ""
+
+#: templates/options/partials/modularity-template-areas.php:2
+msgid "Enable and/or disable areas in a specific template."
+msgstr ""
+
+#: templates/options/partials/modularity-template-areas.php:3
+msgid "Pro tip:"
+msgstr ""
+
+#: templates/options/partials/modularity-template-areas.php:3
+msgid "Shift click on a checkbox to check/uncheck the area in all templates."
+msgstr ""
+
+#: templates/options/partials/modularity-template-areas.php:9
+msgid "Template"
+msgstr ""
+
+#: templates/options/partials/modularity-template-areas.php:10
+msgid "Areas"
+msgstr ""
+
+#: templates/widget/form.php:2
+msgid "Selected module"
+msgstr ""
+
+#: templates/widget/form.php:4 templates/widget/form.php:7
+msgid "Not selected"
+msgstr ""
+
+#: templates/widget/form.php:11
+msgid "Module type"
+msgstr ""
+
+#: templates/widget/form.php:19
+msgid "Module width"
+msgstr ""
+
+#: templates/widget/form.php:28
+msgid "Browse modules"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:21
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:19
+msgid "Post Type Select"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:22
+msgid "Choice"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:61
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:65
+msgid "Default Value"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:62
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:66
+msgid "Enter each default value on a new line"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:78
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:73
+msgid "Allow Null?"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:97
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:86
+msgid "Select multiple values?"
+msgstr ""
+
+#: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:30
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:60
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:60
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:60
+msgid "Error! Please enter a higher value"
+msgstr ""
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:364
+msgid "Export with AcfExportManager"
+msgstr ""
+
+#: vendor/helsingborg-stad/acf-export-manager/src/AcfExportManager.php:408
+#, php-format
+msgid "Exported %d fieldgroup(s)."
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:24
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:26
+msgid "Dynamic Table"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:79
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:208
+msgid "Table Class"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:80
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:209
+msgid "Custom Table Class for the Front End"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:95
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:217
+msgid "Max Rows"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:96
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:218
+msgid "Sets the maximum rows for the table"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:111
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:224
+msgid "Disable Sort"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:112
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:225
+msgid "Disable Sort - this will disable drag and drop sorting of rows"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:132
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:237
+msgid "Fixed Columns"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:133
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:238
+msgid "Fixed columns - column count and set names"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:153
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:250
+msgid "Default Headers"
+msgstr ""
+
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v4.php:154
+#: vendor/jeradin/acf-dynamic-table-field/acf-dynamic_table_field-v5.php:251
+msgid "Set default headers, one per line."
+msgstr ""
+
+#: vendor/jeradin/acf-website-field/website_url_v4.php:33
+#: vendor/jeradin/acf-website-field/website_url_v5.php:33
+msgid "Website"
+msgstr ""
+
+#: vendor/jeradin/acf-website-field/website_url_v4.php:253
+#: vendor/jeradin/acf-website-field/website_url_v5.php:259
+msgid "Show Title?"
+msgstr ""
+
+#: vendor/jeradin/acf-website-field/website_url_v4.php:278
+#: vendor/jeradin/acf-website-field/website_url_v5.php:274
+msgid "Option to open in Current Window"
+msgstr ""
+
+#: vendor/jeradin/acf-website-field/website_url_v4.php:299
+#: vendor/jeradin/acf-website-field/website_url_v5.php:291
+msgid "Return array instead of Link"
+msgstr ""
+
+#: vendor/jeradin/acf-website-field/website_url_v5.php:330
+msgid "Value must be a valid URL"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:25
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:25
+msgid "Layout"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:95
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:179
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:95
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:171
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:101
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:177
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:99
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:193
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:99
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:193
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:99
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:193
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:105
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:199
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:105
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:199
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:105
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:199
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:105
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:199
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:201
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:107
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:201
+msgid "use table header"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:175
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:119
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:175
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:119
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:181
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:211
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:119
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:198
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:119
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:198
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:119
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:217
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:217
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:217
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:217
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:125
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:219
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:127
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:219
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:127
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:219
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:127
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:219
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:127
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:219
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:127
+msgid "Table Header"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v4.php:185
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:124
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v4.php:185
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:124
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v4.php:191
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:130
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:221
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:124
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:208
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:124
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:208
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:124
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:227
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:130
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:227
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:130
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:227
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:130
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:227
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:130
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:132
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:229
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:132
+msgid "Optional"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.5/acf-table-v5.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.6/acf-table-v5.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.2.7/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:212
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:199
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:199
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:218
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:218
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:218
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:218
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:126
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:220
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:128
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:220
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:128
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:220
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:128
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:220
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:128
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:220
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:128
+msgid "Presetting the usage of table header"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:114
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:208
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:114
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:208
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:114
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:208
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:214
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:214
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:214
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:120
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:214
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:122
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:216
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:122
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:216
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:122
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:216
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:122
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:216
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:122
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:216
+msgid "table caption"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:236
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:223
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:223
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:133
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:242
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:242
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:242
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:242
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:139
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:244
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:141
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:244
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:141
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:244
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:141
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:244
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:141
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:244
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:141
+msgid "Table Caption"
+msgstr ""
+
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v4.php:237
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.0/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v4.php:224
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta2/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v4.php:224
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1-beta3/acf-table-v5.php:134
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v4.php:243
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.1/acf-table-v5.php:140
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v4.php:243
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.2/acf-table-v5.php:140
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v4.php:243
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.3/acf-table-v5.php:140
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v4.php:243
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.4/acf-table-v5.php:140
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v4.php:245
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.5/acf-table-v5.php:142
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v4.php:245
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.6/acf-table-v5.php:142
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:245
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v5.php:142
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:245
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v5.php:142
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:245
+#: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:142
+msgid "Presetting the usage of table caption"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:40
+msgid "FocusPoint"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:126
+msgid "Preview Size"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:127
+msgid ""
+"Image used to create a FocusPoint. Should be around the same image ratio as "
+"Image Size"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:136
+msgid "Minimum"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:137
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:166
+msgid "Restrict which images can be uploaded. Note: this is not working yet!"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:148
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:177
+msgid "Height"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:157
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:186
+msgid "File size"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:165
+msgid "Maximum"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:258
+msgid "No image selected"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:258
+msgid "Add Image"
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:568
+#, php-format
+msgid "Image width must be at least %dpx."
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:571
+#, php-format
+msgid "Image height must be at least %dpx."
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:574
+#, php-format
+msgid "File size must be at least %d&nbsp;KB."
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:577
+#, php-format
+msgid "Image width must not exceed %dpx."
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:580
+#, php-format
+msgid "Image height must not exceed %dpx."
+msgstr ""
+
+#: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:583
+#, php-format
+msgid "File size must not exceed %d&nbsp;KB."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Modularity"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "-"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Modular component system for WordPress"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Kristoffer Svanmark, Sebastian Thulin"
+msgstr ""
+
+#~ msgid ""
+#~ "This part of the website shows content from another website. By "
+#~ "continuing, you are accepting <a href=\"#policy\" target=\"_blank\">GDPR "
+#~ "and privacy policy.</a>"
+#~ msgstr ""
+#~ "Den här delen av hemsidan visar innehåll från en annan webbplats. Genom "
+#~ "att fortsätta godkänner du GDPR och Sekretesspolicyn."
+
+#~ msgid "No posts to show…"
+#~ msgstr "Inga inlägg att visa…"
+
+#~ msgid "Add contact"
+#~ msgstr "Lägg till kontakt"
+
+#~ msgid "Compact mode"
+#~ msgstr "Kompakt visningsläge"
+
+#~ msgid "Select Year"
+#~ msgstr "Välj år"
+
+#~ msgid "Select Month"
+#~ msgstr "Välj månad"
+
+#~ msgid "Select Day"
+#~ msgstr "Välj dag"
+
+#~ msgid "Select Week"
+#~ msgstr "Välj vecka"
+
+#~ msgid "Select Post"
+#~ msgstr "Välj inlägg"
+
+#, fuzzy
+#~| msgid "No posts to show…"
+#~ msgid "No archives to show."
+#~ msgstr "Inga inlägg att visa"
+
+#, fuzzy
+#~| msgid "Post article"
+#~ msgid "Select Category"
+#~ msgstr "Inläggsartikel"
+
+#, fuzzy
+#~| msgid "Work title"
+#~ msgid "(no title)"
+#~ msgstr "Jobbtitel"
+
+#, fuzzy
+#~| msgid "Number of comments to show"
+#~ msgid "No comments to show."
+#~ msgstr "Antal kommentarer att visa"
+
+#, fuzzy
+#~| msgid "Post or page"
+#~ msgid "Post Format Link"
+#~ msgstr "Inlägg eller sida"
+
+#, fuzzy
+#~| msgid "Close"
+#~ msgid "Close menu"
+#~ msgstr "Stäng"
+
+#, fuzzy
+#~| msgid "Next"
+#~ msgctxt "label for next post link"
+#~ msgid "Next"
+#~ msgstr "Nästa"
+
+#, fuzzy
+#~| msgid "Previous"
+#~ msgctxt "label for previous post link"
+#~ msgid "Previous"
+#~ msgstr "Föregående"
+
+#~ msgid "Hero title"
+#~ msgstr "Titel för heroyta"
+
+#~ msgid "Overlay type"
+#~ msgstr "Typ av färgfilter"
+
+#~ msgid "Neutral"
+#~ msgstr "Neutral"
+
+#~ msgid "Vibrant"
+#~ msgstr "Färgrik"
+
+#~ msgid "Font color"
+#~ msgstr "Färg på typsnitt"
+
+#~ msgid "Dark"
+#~ msgstr "Mörk"
+
+#~ msgid "Show date published"
+#~ msgstr "Visa publiceringsdatum"
+
+#~ msgid "Card Padding"
+#~ msgstr "Luft vid kortets sidor"
+
+#, fuzzy
+#~| msgid "Data type"
+#~ msgid "Datatype"
+#~ msgstr "Datatyp"
+
+#~ msgid "CSV-file"
+#~ msgstr "CSV-fil"
+
+#, fuzzy
+#~| msgid "CSV formatted file"
+#~ msgid "CSV-formatted file"
+#~ msgstr "CSV-formatterad fil"
+
+#, fuzzy
+#~| msgid "CSV Delimiter"
+#~ msgid "CSV-delimiter"
+#~ msgstr "CSV-avgränsare"
+
+#~ msgid ""
+#~ "The character that is used in the CSV-file as a delimiter. Usually is a "
+#~ "comma or semicolon."
+#~ msgstr ""
+#~ "Det tecken som används som avgränsade i CSV-filen. Är vanligtvis ett "
+#~ "kommatecken eller ett semikolon."
+
+#, fuzzy
+#~| msgid "Enable pagination"
+#~ msgid "Pagination"
+#~ msgstr "Sidbläddring"
+
+#, fuzzy
+#~| msgid "Number of posts/page"
+#~ msgid "Number of pages"
+#~ msgstr "Antal inlägg/sidor"
+
+#~ msgid "Activate filtering"
+#~ msgstr "Aktivera filtrering"
+
+#, fuzzy
+#~| msgid "Yes, use pagination on this table"
+#~ msgid "Yes, use filtering on this table"
+#~ msgstr "Ja, använd sidbläddning för tabellen"
+
+#~ msgid "Filter placeholder"
+#~ msgstr "Platshållare för filtreringsrutan"
+
+#~ msgid "Filter table"
+#~ msgstr "Filtrera tabell"
+
+#~ msgid "Activate sorting"
+#~ msgstr "Aktivera sortering"
+
+#, fuzzy
+#~| msgid ""
+#~| "Use the first column as a second dimension of table headings. This "
+#~| "options also locks the first column in place while scrolling."
+#~ msgid ""
+#~ "Use the first column as a second dimension of table headers. This option "
+#~ "also locks the first column while scrolling."
+#~ msgstr ""
+#~ "Använd den första kolumnen som en andra dimension av tabellrubriker. "
+#~ "Detta val låser också den första kolumnen vid scroll."
+
+#~ msgid "Search label"
+#~ msgstr "Söketikett"
+
+#~ msgid "Adds a row in the end that shows the sum of each cell in a column."
+#~ msgstr ""
+#~ "Lägger till en rad i slutet av tabellen som summerar varje kolumns celler."
+
+#~ msgid ""
+#~ "Renders an icon in the top right corner that enabled you to view the "
+#~ "table in fullscreen."
+#~ msgstr ""
+#~ "Renderar en ikon i högra hörnet som möjliggör helskärmsläge för tabellen."
+
+#~ msgid "Desktop image"
+#~ msgstr "Bild för desktop"
+
+#~ msgid ""
+#~ "This image will be used in larger screens. Preferably a widescreen image."
+#~ msgstr "Denna bilden används på större skärmar."
+
+#~ msgid ""
+#~ "This image will be used in smaller screens. Preferably a square image."
+#~ msgstr ""
+#~ "Denna bilden används på mindre skärmar. Ange en kvadratisk bild (1:1)."
+
+#~ msgid "Bottom banner"
+#~ msgstr "Bottom banner"
+
+#~ msgid "No link"
+#~ msgstr "Ingen länk"
+
+#~ msgid "Url"
+#~ msgstr "Url"
+
+#~ msgid ""
+#~ "Describe the purpose of the link, or what visitors can expect to find "
+#~ "when they click on it (not shown)."
+#~ msgstr ""
+#~ "Beskriv syftet med länken, eller vad besökare kan förvänta sig hitta när "
+#~ "de klickar på den (endast skärmläsare)."
+
+#~ msgid "Placeholder Image"
+#~ msgstr "Affischbild"
+
+#~ msgid "Text position"
+#~ msgstr "Textlagrets placering"
+
+#, fuzzy
+#~| msgid "Work title"
+#~ msgid "Background Color"
+#~ msgstr "Bakgrundsfärg"
+
+#~ msgid "Background Image"
+#~ msgstr "Bakgrundsbild"
+
+#, fuzzy
+#~| msgid "Not selected"
+#~ msgid "No File Selected"
+#~ msgstr "Inte vald"
+
+#, fuzzy
+#~| msgid "Select values"
+#~ msgid "Select File"
+#~ msgstr "Valda värden"
+
+#~ msgid "No Repeat"
+#~ msgstr "Upprepa inte"
+
+#~ msgid "Repeat All"
+#~ msgstr "Upprepa allt"
+
+#~ msgid "Repeat Horizontally"
+#~ msgstr "Repetera horisontellt"
+
+#~ msgid "Repeat Vertically"
+#~ msgstr "Repetera vertikalt"
+
+#~ msgid "Background Position"
+#~ msgstr "Bakgrundsposition"
+
+#~ msgid "Default"
+#~ msgstr "Standard"
+
+#~ msgid "Top"
+#~ msgstr "Topp"
+
+#~ msgid "Bottom"
+#~ msgstr "Botten"
+
+#~ msgid "Left"
+#~ msgstr "Vänster"
+
+#~ msgid "Right"
+#~ msgstr "Höger"
+
+#, fuzzy
+#~| msgid "Centered"
+#~ msgid "Center"
+#~ msgstr "Centrerad"
+
+#~ msgid "Spacing"
+#~ msgstr "Mellanrum"
+
+#~ msgid "row"
+#~ msgstr "rad"
+
+#~ msgid "Select a Page"
+#~ msgstr "Välj en sida"
+
+#~ msgid "Limit: %s rows"
+#~ msgstr "Begränsning: %s rader"
+
+#~ msgid "Hex Value"
+#~ msgstr "Hex-värde"
+
+#~ msgid "Change Image"
+#~ msgstr "Ändra bild"
+
+#, fuzzy
+#~| msgid "Add file"
+#~ msgid "Add File"
+#~ msgstr "Lägg till fil"
+
+#~ msgid "Change File"
+#~ msgstr "Byt fil"
+
+#~ msgid "Reset"
+#~ msgstr "Återställ"
+
+#~ msgid "On"
+#~ msgstr "På"
+
+#~ msgid "Off"
+#~ msgstr "Av"
+
+#~ msgid "Color"
+#~ msgstr "Färg"
+
+#~ msgid "Select image"
+#~ msgstr "Välj bild"
+
+#~ msgid "Change image"
+#~ msgstr "Ändra bild"
+
+#~ msgid "Choose image"
+#~ msgstr "Välj bild"
+
+#~ msgid "Checkbox"
+#~ msgstr "Checkbox"
+
+#, fuzzy
+#~| msgid "Add number"
+#~ msgid "Number"
+#~ msgstr "Lägg till nummer"
+
+#~ msgid "Set a fixed height"
+#~ msgstr "Sätt en fixerad höjd"
+
+#~ msgid "Display mode"
+#~ msgstr "Visningsläge"
+
+#~ msgid "First name or place"
+#~ msgstr "Förnamn eller plats"
+
+#~ msgid "Last name"
+#~ msgstr "Efternamn"
+
+#~ msgid "Work title"
+#~ msgstr "Jobbtitel"
+
+#~ msgid "Administration unit"
+#~ msgstr "Förvaltning"
+
+#~ msgid "Epost"
+#~ msgstr "E-post"
+
+#~ msgid "Phone"
+#~ msgstr "Telefon"
+
+#~ msgid "Adress"
+#~ msgstr "Adress"
+
+#~ msgid "Other"
+#~ msgstr "Annat"
+
+#~ msgid "Select user"
+#~ msgstr "Välj användare"
+
+#~ msgid "Secret"
+#~ msgstr "Hemlig"
+
+#~ msgid "First name"
+#~ msgstr "Förnamn"
+
+#~ msgid "Alias"
+#~ msgstr "Alias"
+
+#~ msgid "Phone number"
+#~ msgstr "Telefonnummer"
+
+#~ msgid "Web phone number"
+#~ msgstr "Telefonnummer (webb)"
+
+#~ msgid "category"
+#~ msgstr "kategori"
+
+#~ msgid "News item"
+#~ msgstr "Nyhetsobjekt"
+
+#~ msgid "Add Row"
+#~ msgstr "Lägg till rad"
+
+#~ msgid ""
+#~ "<span style=\"color: #f00;\">Your map link must start with http<strong>s</"
+#~ "strong>://. Links without this prefix will not display.</span>"
+#~ msgstr ""
+#~ "<span style=\"color: #f00;\">Din kartlänk måste börja med http<strong>s</"
+#~ "strong>://.</span>"
+
+#, fuzzy
+#~| msgid "Social Media Feed"
+#~ msgid "Social feed"
+#~ msgstr "Social Media flöde"
+
+#~ msgid "Feed type"
+#~ msgstr "Typ av flöde"
+
+#~ msgid "Facebook username"
+#~ msgstr "Facebook-användarnamn"
+
+#~ msgid "User"
+#~ msgstr "Användare"
+
+#~ msgid "Username"
+#~ msgstr "Användarnamn"
+
+#~ msgid "Max items"
+#~ msgstr "Max antal inlägg"
+
+#~ msgid "Max height"
+#~ msgstr "Maxhöjd"
+
+#~ msgid "Images per row"
+#~ msgstr "Bilder per rad"
+
+#~ msgid "Link to page"
+#~ msgstr "Länka till sida"
+
+#~ msgid ""
+#~ "Check this box if you want to display a button that links to the social "
+#~ "media page."
+#~ msgstr ""
+#~ "Kryssa i rutan för att visa en knapp som länkar till sidan eller flödet."
+
+#~ msgid "Enter URL to the social media feed or page."
+#~ msgstr "Ange URL till sidan eller flödet."
+
+#~ msgid "Enter button text."
+#~ msgstr "Ange knapptext."
+
+#~ msgid "Latest"
+#~ msgstr "Senaste"
+
+#~ msgid "Main News"
+#~ msgstr "Huvudnyhet"
+
+#~ msgid "Social Media Feed"
+#~ msgstr "Social Media flöde"
+
+#~ msgid "Sociala Media Feeds"
+#~ msgstr "Sociala Medie flöden"
+
+#~ msgid ""
+#~ "Outputs a social media feed from desired username or hashtag (facebook, "
+#~ "instagram, twitter, linkedin)."
+#~ msgstr ""
+#~ "Visar ett socialt flöde från specificerat användarnamn eller hashtag "
+#~ "(facebook, instagram, twitter, linkedin)."
+
+#~ msgid "Show large version URL"
+#~ msgstr "Länk till karta i större version (visas som länk)"
+
+#~ msgid "Show larger map"
+#~ msgstr "Visa större karta"
+
+#~ msgid "Display settings"
+#~ msgstr "Visningsinställningar"
+
+#~ msgid "Hide Work Title"
+#~ msgstr "Dölj arbetstitel"
+
+#~ msgid "Hide Administration Unit"
+#~ msgstr "Dölj administrationsenhet"
+
+#~ msgid "Hide Thumbnail"
+#~ msgstr "Dölj miniatyr"
+
+#~ msgid "Hide Email"
+#~ msgstr "Dölj e-post"
+
+#~ msgid "Hide Phone"
+#~ msgstr "Dölj Telefonnummer"
+
+#~ msgid "Hide Social media"
+#~ msgstr "Dölj sociala medier"
+
+#~ msgid "Hide Adress"
+#~ msgstr "Dölj adress"
+
+#~ msgid "Hide Visiting Adress"
+#~ msgstr "Dölj besöksadress"
+
+#, fuzzy
+#~| msgid "Use featured image"
+#~ msgid "Featured content"
+#~ msgstr "Använd utvald bild"
+
+#~ msgid "Video playback unavailable, please activate JavaScript to enable."
+#~ msgstr "Videouppspelning är inte tillgänglig."
+
+#~ msgid "Field&nbsp;Groups"
+#~ msgstr "Fältgrupper"
+
+#, fuzzy
+#~| msgctxt "add new button"
+#~| msgid "Add New"
+#~ msgid "Add New"
+#~ msgstr "Lägg till ny"
+
+#~ msgid "Add New Field Group"
+#~ msgstr "Lägg till ny fältgrupp"
+
+#~ msgid "Edit Field Group"
+#~ msgstr "Redigera fältgrupp"
+
+#~ msgid "New Field Group"
+#~ msgstr "Ny fältgrupp"
+
+#~ msgid "View Field Group"
+#~ msgstr "Visa fältgrupp"
+
+#, fuzzy
+#~| msgid "Search page modules"
+#~ msgid "Search Field Groups"
+#~ msgstr "Moduler på söksida"
+
+#, fuzzy
+#~| msgid "No matching records found"
+#~ msgid "No Field Groups found"
+#~ msgstr "Inga matchande rader hittades"
+
+#~ msgid "No Field Groups found in Trash"
+#~ msgstr "Inga fältgrupper hittades i papperskorgen"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Custom Fields"
+#~ msgstr "Fält"
+
+#~ msgid "Field group updated."
+#~ msgstr "Fältgrupp uppdaterad."
+
+#~ msgid "Custom field updated."
+#~ msgstr "Anpassat fält uppdaterat."
+
+#~ msgid "Custom field deleted."
+#~ msgstr "Anpassat fält borttaget."
+
+#~ msgid "Field group restored to revision from %s"
+#~ msgstr "Fältgrupp återställd till revision från %s"
+
+#~ msgid "Field group published."
+#~ msgstr "Fältgrupp publicerad."
+
+#~ msgid "Field group saved."
+#~ msgstr "Fältgrupp sparad."
+
+#~ msgid "Field group submitted."
+#~ msgstr "Fältgrupp skickad."
+
+#~ msgid "Field group scheduled for."
+#~ msgstr "Fältgrupp schemalagd för."
+
+#~ msgid "Field group draft updated."
+#~ msgstr "Fältgruppsutkast uppdaterat."
+
+#~ msgid "Error"
+#~ msgstr "Fel"
+
+#, fuzzy
+#~| msgid "Not selected"
+#~ msgid "No ACF groups selected"
+#~ msgstr "Inte vald"
+
+#~ msgid "Update"
+#~ msgstr "Uppdatera"
+
+#, fuzzy
+#~| msgid "Post or page"
+#~ msgid "Post updated"
+#~ msgstr "Inlägg eller sida"
+
+#~ msgid "Add-ons"
+#~ msgstr "Tillägg"
+
+#~ msgid ""
+#~ "Create infinite rows of repeatable data with this versatile interface!"
+#~ msgstr ""
+#~ "Skapa oändliga rader av repeterbara data med detta mångsidiga gränssnitt!"
+
+#~ msgid "Create image galleries in a simple and intuitive interface!"
+#~ msgstr "Skapa bildgallerier i ett enkelt och intuitivt gränssnitt!"
+
+#~ msgid "Create global data to use throughout your website!"
+#~ msgstr "Skapa globala data som ska användas på din webbplats!"
+
+#~ msgid "Flexible Content Field"
+#~ msgstr "Flexibelt innehållsfält"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Export"
+#~ msgstr "Importera"
+
+#~ msgid "Instructions"
+#~ msgstr "Instruktioner"
+
+#~ msgid "Notes"
+#~ msgstr "Anteckningar"
+
+#~ msgid "checked"
+#~ msgstr "markerad"
+
+#~ msgid "copy"
+#~ msgstr "kopiera"
+
+#, fuzzy
+#~| msgid "more"
+#~ msgid "or"
+#~ msgstr "fler"
+
+#, fuzzy
+#~| msgid "Parent %s"
+#~ msgid "Parent fields"
+#~ msgstr "Förälder %s"
+
+#~ msgid "Hide / Show All"
+#~ msgstr "Dölj / Visa alla"
+
+#, fuzzy
+#~| msgid "Show title"
+#~ msgid "Show Field Key:"
+#~ msgstr "Visa titel"
+
+#, fuzzy
+#~| msgid "Font size"
+#~ msgid "Front Page"
+#~ msgstr "Textstorlek"
+
+#, fuzzy
+#~| msgid "Post or page"
+#~ msgid "Posts Page"
+#~ msgstr "Inlägg eller sida"
+
+#~ msgid "Pending Review"
+#~ msgstr "Inväntar granskning"
+
+#~ msgid "Draft"
+#~ msgstr "Utkast"
+
+#~ msgid "Future"
+#~ msgstr "Framtid"
+
+#~ msgid "Private"
+#~ msgstr "Privat"
+
+#~ msgid "Revision"
+#~ msgstr "Revision"
+
+#~ msgid "Trash"
+#~ msgstr "Papperskorg"
+
+#~ msgid "Super Admin"
+#~ msgstr "Superadmin"
+
+#, fuzzy
+#~| msgid "All "
+#~ msgid "All"
+#~ msgstr "Alla"
+
+#~ msgid "Changelog"
+#~ msgstr "Ändringslogg"
+
+#, fuzzy
+#~| msgid "Data source"
+#~ msgid "Resources"
+#~ msgstr "Datakälla"
+
+#~ msgid "Getting Started"
+#~ msgstr "Komma igång"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Field Types"
+#~ msgstr "Fält"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Functions"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid "Filter"
+#~ msgid "Filters"
+#~ msgstr "Filter"
+
+#~ msgid "'How to' guides"
+#~ msgstr "Guider"
+
+#~ msgid "Tutorials"
+#~ msgstr "Guider"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "User Field"
+#~ msgstr "Fält"
+
+#~ msgid "Password Field"
+#~ msgstr "Lösenordsfält"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Important"
+#~ msgstr "Importera"
+
+#~ msgid "Database Changes"
+#~ msgstr "Databasförändringar"
+
+#~ msgid "Potential Issues"
+#~ msgstr "Potentiella problem"
+
+#, fuzzy
+#~| msgid "Read more"
+#~ msgid "Learn more"
+#~ msgstr "Läs mer"
+
+#, fuzzy
+#~| msgid "Content"
+#~ msgid "Flexible Content"
+#~ msgstr "Innehåll"
+
+#, fuzzy
+#~| msgid "Expandable List"
+#~ msgid "Expand Details"
+#~ msgstr "Expanderbar lista"
+
+#~ msgid "Choices"
+#~ msgstr "Val"
+
+#~ msgid "Date Picker"
+#~ msgstr "Datumväljare"
+
+#, fuzzy
+#~| msgid "Slider format"
+#~ msgid "Save format"
+#~ msgstr "Sliderformat"
+
+#, fuzzy
+#~| msgid "Display as"
+#~ msgid "Display format"
+#~ msgstr "Visa som"
+
+#~ msgid "Week Starts On"
+#~ msgstr "Veckan startar på"
+
+#~ msgid "Email"
+#~ msgstr "Epost"
+
+#, fuzzy
+#~| msgid "Placeholder Image"
+#~ msgid "Placeholder Text"
+#~ msgstr "Affischbild"
+
+#~ msgid "File"
+#~ msgstr "Fil"
+
+#~ msgid "Update File"
+#~ msgstr "Uppdatera fil"
+
+#~ msgid "uploaded to this post"
+#~ msgstr "uppladdad till detta inlägg"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgid "File URL"
+#~ msgstr "Fil"
+
+#, fuzzy
+#~| msgid "File"
+#~ msgid "File ID"
+#~ msgstr "Fil"
+
+#~ msgid "Library"
+#~ msgstr "Bibliotek "
+
+#~ msgid "Uploaded to post"
+#~ msgstr "Uppladdad till post"
+
+#~ msgid "Sorry, this browser does not support geolocation"
+#~ msgstr "Tyvärr, den här webbläsaren stöder inte geolocation"
+
+#, fuzzy
+#~| msgid "Core options"
+#~ msgid "Clear location"
+#~ msgstr "Core inställningar"
+
+#~ msgid "Find current location"
+#~ msgstr "Hitta aktuell plats"
+
+#~ msgid "Search for address..."
+#~ msgstr "Sök efter adress…"
+
+#~ msgid "Center the initial map"
+#~ msgstr "Centrera kartan"
+
+#~ msgid "Set the initial zoom level"
+#~ msgstr "Ställ in den ursprungliga zoomnivån"
+
+#~ msgid "Customise the map height"
+#~ msgstr "Anpassa karthöjden"
+
+#, fuzzy
+#~| msgid "Upload image"
+#~ msgid "Update Image"
+#~ msgstr "Ladda upp bild"
+
+#, fuzzy
+#~| msgid "Image caption"
+#~ msgid "Image Object"
+#~ msgstr "Bildtext"
+
+#~ msgid "Shown when entering data"
+#~ msgstr "Visas när du matar in data"
+
+#~ msgid "Limit the media library choice"
+#~ msgstr "Begränsa mediebibliotekets val"
+
+#, fuzzy
+#~| msgid "Usage"
+#~ msgid "Message"
+#~ msgstr "Användning"
+
+#~ msgid "Minimum Value"
+#~ msgstr "Minsta värde"
+
+#, fuzzy
+#~| msgid "Meta value"
+#~ msgid "Maximum Value"
+#~ msgstr "Metavärde"
+
+#, fuzzy
+#~| msgid "Size"
+#~ msgid "Step Size"
+#~ msgstr "Storlek"
+
+#, fuzzy
+#~| msgid "Page ID"
+#~ msgid "Page Link"
+#~ msgstr "Sidans ID"
+
+#~ msgid "Password"
+#~ msgstr "Lösenord"
+
+#, fuzzy
+#~| msgid "Filter posts by taxonomy"
+#~ msgid "Filter from Taxonomy"
+#~ msgstr "Filtrera efter taxonomi"
+
+#, fuzzy
+#~| msgid "Enter your embed url"
+#~ msgid "Enter your choices one per line"
+#~ msgstr "URL som ska embeddas"
+
+#~ msgid "Relationship"
+#~ msgstr "Relation"
+
+#~ msgid "Maximum values reached ( {max} values )"
+#~ msgstr "Maximalt antal värden nåddes ({max} värden)"
+
+#, fuzzy
+#~| msgid "Search"
+#~ msgid "Search..."
+#~ msgstr "Sök"
+
+#, fuzzy
+#~| msgid "Filter posts by taxonomy"
+#~ msgid "Filter by post type"
+#~ msgstr "Filtrera efter taxonomi"
+
+#, fuzzy
+#~| msgid "Slider format"
+#~ msgid "Return Format"
+#~ msgstr "Sliderformat"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "Post Objects"
+#~ msgstr "Inläggsobjekt"
+
+#~ msgid "Selected elements will be displayed in each result"
+#~ msgstr "Markerade element visas i varje resultat"
+
+#~ msgid "Maximum posts"
+#~ msgstr "Max antal inlägg"
+
+#, fuzzy
+#~| msgid "Table"
+#~ msgid "Tab"
+#~ msgstr "Tabell"
+
+#, fuzzy
+#~| msgid "Widget Type"
+#~ msgid "Field Type"
+#~ msgstr "Typ av widget"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "New Field"
+#~ msgstr "Fält"
+
+#, fuzzy
+#~| msgid "Order"
+#~ msgid "Field Order"
+#~ msgstr "Ordna efter"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Field Name"
+#~ msgstr "Fält"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Field Key"
+#~ msgstr "Fält"
+
+#~ msgid "Edit this Field"
+#~ msgstr "Redigera detta fält"
+
+#~ msgid "Duplicate this Field"
+#~ msgstr "Duplicera detta fält"
+
+#, fuzzy
+#~| msgid "Deprecated"
+#~ msgid "Duplicate"
+#~ msgstr "Utgående"
+
+#~ msgid "Delete this Field"
+#~ msgstr "Ta bort det här fältet"
+
+#~ msgid "Delete"
+#~ msgstr "Radera"
+
+#~ msgid "Required?"
+#~ msgstr "Obligatorisk?"
+
+#, fuzzy
+#~| msgid "Additional options"
+#~ msgid "Conditional Logic"
+#~ msgstr "Fler inställningar"
+
+#, fuzzy
+#~| msgid "Show title"
+#~ msgid "Show this field when"
+#~ msgstr "Visa titel"
+
+#, fuzzy
+#~| msgid "Small"
+#~ msgid "all"
+#~ msgstr "Liten"
+
+#, fuzzy
+#~| msgid "Add file"
+#~ msgid "+ Add Field"
+#~ msgstr "Lägg till fil"
+
+#, fuzzy
+#~| msgid "Modules"
+#~ msgid "Rules"
+#~ msgstr "Moduler"
+
+#, fuzzy
+#~| msgid "Posts"
+#~ msgid "Post"
+#~ msgstr "Inlägg"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "Post Status"
+#~ msgstr "Inläggsobjekt"
+
+#, fuzzy
+#~| msgid "Widget Type"
+#~ msgid "Page Type"
+#~ msgstr "Typ av widget"
+
+#, fuzzy
+#~| msgid "Random"
+#~ msgid "and"
+#~ msgstr "Slumpmässig"
+
+#, fuzzy
+#~| msgid "Order"
+#~ msgid "Order No."
+#~ msgstr "Ordna efter"
+
+#, fuzzy
+#~| msgid "Text position"
+#~ msgid "Position"
+#~ msgstr "Textlagrets placering"
+
+#, fuzzy
+#~| msgid "Hide title"
+#~ msgid "High (after title)"
+#~ msgstr "Dölj titel"
+
+#, fuzzy
+#~| msgid "Hide box frame"
+#~ msgid "Hide on screen"
+#~ msgstr "Göm textbox"
+
+#, fuzzy
+#~| msgid "Content"
+#~ msgid "Content Editor"
+#~ msgstr "Innehåll"
+
+#, fuzzy
+#~| msgid "Show excerpt"
+#~ msgid "Excerpt"
+#~ msgstr "Visa ingress"
+
+#~ msgid "Discussion"
+#~ msgstr "Diskussion"
+
+#, fuzzy
+#~| msgid "Comment count"
+#~ msgid "Comments"
+#~ msgstr "Antal kommentarer"
+
+#~ msgid "Tags"
+#~ msgstr "Taggar"
+
+#~ msgid "View as"
+#~ msgstr "Visa som"
+
+#~ msgid "Show excerpt if avabile"
+#~ msgstr "Visa ingress om möjligt"
+
+#~ msgid "Show post title"
+#~ msgstr "Visa inläggets titel"
+
+#~ msgid "Show \"view more\" button"
+#~ msgstr "Visa ”visa mer”-knappen"
+
+#~ msgid "Filter posts by taxonomy"
+#~ msgstr "Filtrera efter taxonomi"
+
+#~ msgid "Item columns"
+#~ msgstr "Objektkolumner"
+
+#~ msgid "Hide date range options behind a button"
+#~ msgstr "Dölj alternativ för datumintervall bakom en knapp"
+
+#~ msgid "Centrerad"
+#~ msgstr "Centrerad"
+
+#~ msgid "Höger"
+#~ msgstr "Höger"
+
+#~ msgid "Make next and previous slide partially visible"
+#~ msgstr "Gör nästa och föregående bild delvis synlig"
+
+#~ msgid "Embed (YouTube or Vimeo link)"
+#~ msgstr "Bädda in (YouTube eller Vimeo-länk)"
+
+#~ msgid "Upload video"
+#~ msgstr "Ladda upp video"
+
+#~ msgid "Video: webm"
+#~ msgstr "Video: webm"
+
+#~ msgid "Video: ogg"
+#~ msgstr "Video: ogg"
+
+#~ msgid "Embed link"
+#~ msgstr "Inbäddningslänk"
+
+#~ msgid "The placeholder image will be shown before the video starts playing."
+#~ msgstr "Affischbilden visas innan videon sätts igång."
+
+#~ msgid "Horizontal cards"
+#~ msgstr "Horisontella kort"
+
+#~ msgid "Key"
+#~ msgstr "Nyckel"
+
+#~ msgid "Add column"
+#~ msgstr "Lägg till kolumn"
+
+#~ msgid "The key should be used in each file's column value as reference."
+#~ msgstr "Nyckeln ska användas på varje fil som värdets referens"
+
+#~ msgid "Column key"
+#~ msgstr "Kolumnnyckel"
+
+#~ msgid "Key reference from the column field"
+#~ msgstr "Nyckelreferens från kolumnfält"
+
+#~ msgid "The value for this column"
+#~ msgstr "Värdet för denna raden"
+
+#~ msgid "Add file"
+#~ msgstr "Lägg till fil"
+
+#~ msgid "Allow filtering"
+#~ msgstr "Tillåt filtrering"
+
+#~ msgid "Warning (yellow)"
+#~ msgstr "Varning (gul)"
+
+#~ msgid "Slider layout"
+#~ msgstr "Sliderlayout"
+
+#~ msgid "Circle slides"
+#~ msgstr "Cirkulära slides"
+
+#~ msgid "Slider format"
+#~ msgstr "Sliderformat"
+
+#~ msgid "Wide (36:7)"
+#~ msgstr "Bred (36:7)"
+
+#~ msgid "Slide columns"
+#~ msgstr "Sliderkolumner"
+
+#~ msgid "Slide alignment"
+#~ msgstr "Sliderjustering"
+
+#~ msgid "Vänster"
+#~ msgstr "Väster"
+
+#~ msgid "Slider height"
+#~ msgstr "Höjd"
+
+#~ msgid "Force slider to recomended minimum/maximum height"
+#~ msgstr "Tvinga slider till rekommenderad min/max höjd"
+
+#~ msgid "Automatically slide between slides"
+#~ msgstr "Bläddra automatiskt mellan slides"
+
+#~ msgid "Slide timeout"
+#~ msgstr "Intervall för automatisk bläddring"
+
+#~ msgid "Navigation position"
+#~ msgstr "Navigeringsposition"
+
+#~ msgid "Show navigation"
+#~ msgstr "Visa navigering"
+
+#~ msgid "Always visible"
+#~ msgstr "Alltid synlig"
+
+#~ msgid "Only on hover"
+#~ msgstr "Bara på hover"
+
+#~ msgid "Additional options"
+#~ msgstr "Fler inställningar"
+
+#~ msgid "Continues scroll (no ending slide)"
+#~ msgstr "Börja om efter sista sliden"
+
+#~ msgid "Pages dot navigation"
+#~ msgstr "Pricknavigering"
+
+#~ msgid "No scroll snapping"
+#~ msgstr "Ingen ”scroll-snapping”"
+
+#~ msgid "Group slides"
+#~ msgstr "Gruppera slides"
+
+#~ msgid "CSV File"
+#~ msgstr "CSV-fil"
+
+#~ msgid "CSV Delimiter character. Usually comma or semicolon."
+#~ msgstr ""
+#~ "Tecken som används i CSV-filen som avgränsare. Brukar vara kommatecken "
+#~ "eller semikolon."
+
+#~ msgid "Striped rows"
+#~ msgstr "Färga varannan rad"
+
+#~ msgid "Bordered rows"
+#~ msgstr "Ram runt rader"
+
+#~ msgid "Mouseover indication on rows"
+#~ msgstr "Indikera fokuserad rad"
+
+#~ msgid "Display options"
+#~ msgstr "Visningsalternativ"
+
+#~ msgid "Medium (default)"
+#~ msgstr "Medium (standard)"
+
+#~ msgid "Enable search"
+#~ msgstr "Aktivera sök"
+
+#~ msgid "Search query"
+#~ msgstr "Sökfras"
+
+#~ msgid "Enable column soring"
+#~ msgstr "Aktivera kolumnsortering"
+
+#~ msgid "Yes, hide the box frame"
+#~ msgstr "Ja, göm textbox (visa text som artikel)"
+
+#~ msgid "Hide box frame"
+#~ msgstr "Göm textbox"
+
+#~ msgid "Extra large"
+#~ msgstr "Extra stor"
+
+#, fuzzy
+#~| msgid "Mobile image"
+#~ msgid "Profile image"
+#~ msgstr "Bild för mobil"
+
+#~ msgid "Info (light blue)"
+#~ msgstr "Info (ljusblå)"
+
+#~ msgid "Grid"
+#~ msgstr "Rutnät"
+
+#~ msgid "Circular"
+#~ msgstr "Cirkulär"
+
+#~ msgid ""
+#~ "Paste your script code here (with &lt;style&gt; &lt;script&gt; tags if "
+#~ "needed). "
+#~ msgstr ""
+#~ "Klistra in din skriptkod här (med &lt;style&gt; &lt;script&gt; taggar om "
+#~ "det behövs). "
+
+#~ msgid "Filter files"
+#~ msgstr "Filtrera filer"
+
+#~ msgid "Filter on…"
+#~ msgstr "Filtrera på…"
+
+#~ msgid "Enable text overlay on this slide"
+#~ msgstr "Aktivera textlager ovanpå sliden"
+
+#~ msgid "Text overlay"
+#~ msgstr "Textlager"
+
+#~ msgid "Yes, open link in new window"
+#~ msgstr "Ja, öppna länken i nytt fönster"
+
+#~ msgid "Desktop Image"
+#~ msgstr "Bild för desktop"
+
+#~ msgid "Mobile Image"
+#~ msgstr "Bild för mobil"
+
+#~ msgid "This image will be used in smaller screens."
+#~ msgstr "Denna bilden kommer användas på mindre skärmar."
+
+#~ msgid "Page URL"
+#~ msgstr "URL"
+
+#~ msgid "Vertical cards (square image)"
+#~ msgstr "Vertikala kort (fyrkantig bild)"
+
+#~ msgid "Vertical cards (circular image)"
+#~ msgstr "Vertikala kort (rund bild)"
+
+#~ msgid "Add number"
+#~ msgstr "Lägg till nummer"
+
+#~ msgid "Phone number(s)"
+#~ msgstr "Telefonnummer"
+
+#~ msgid "Error: Could not init '"
+#~ msgstr "Fel: Kunde inte initisera"
+
+#~ msgid "Missing a valid classname!"
+#~ msgstr "Saknar ett godkänt class-namn."
+
+#~ msgid "Hide"
+#~ msgstr "Göm"
+
+#~ msgid "Unspecified"
+#~ msgstr "Ospecificerad"
+
+#~ msgid "Add New "
+#~ msgstr "Lägg till ny"
+
+#~ msgid "New "
+#~ msgstr "Ny"
+
+#~ msgid "View "
+#~ msgstr "Visa"
