@@ -14,6 +14,8 @@ class Iframe extends \Modularity\Module
         $this->description = __("Outputs an embedded page.", 'modularity');
 
         add_filter('acf/load_field/name=iframe_url', array($this,'sslNotice'));
+
+       
     }
 
     public function data() : array
