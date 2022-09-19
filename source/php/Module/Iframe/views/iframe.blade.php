@@ -8,4 +8,15 @@
     @endtypography
 @endif
 
-<iframe class="js-suppressed-iframe" data-suppressed-iframe-options="{{ json_encode($suppressedIframeOptions) }}" loading="lazy" src="{{ $url }}" height="{{$height}}" width="100%" title="{!! $description ?? apply_filters('the_title', $post_title) !!}" frameborder="0"></iframe>
+@iframe([
+	'src' => $url,
+	'height' => $height,
+    'width' => '100%',
+    'frameborder' => '0',
+	'title' => $description ?? $post_title,
+    'classList' => ['js-suppressed-iframe'],
+    'data-suppressed-iframe-options' => json_encode($suppressedIframeOptions),
+    'loading' => 'lazy'
+])
+@endiframe
+
