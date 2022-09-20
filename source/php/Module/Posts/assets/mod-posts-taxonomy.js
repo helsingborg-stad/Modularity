@@ -2,13 +2,38 @@ jQuery(document).ready(function() {
     if (pagenow === 'mod-posts') {
         postsTaxonomy(modularity_current_post_id);  
     }
+    if (pagenow === 'page') {
+        console.log('hej');
+/*
+for (const [key, theblock] of Object.entries(blocks)) {
+  console.log(`${key}: ${theblock.name}`);
+}  
+*/ 
+    let blocksLoaded = false;
+    let blocksLoadedInterval = setInterval(function() {
+        const blocks = wp.data.select('core/block-editor').getBlocks();
+        console.log(blocks);    
+        if (blocks.length != 0) { 
+            console.log('kodd');             
+            blocksLoaded = true;     
+            for (const [key, theblock] of Object.entries(blocks)) {
+                console.log(`${key}: ${theblock.name}`);
+            }   
+        }
+        if (blocksLoaded) {
+            clearInterval(blocksLoadedInterval);
+        }
+    }, 500);   
+
+        
+    }
 });
 
 jQuery(document).on('click', '.acf-block-preview', function(){    
     let blockLoaded = false;
     let blockLoadedInterval = setInterval(function() {
         if (document.getElementById('modularity-latest-taxonomy-value')) { 
-            const block = wp.data.select('core/block-editor').getSelectedBlock();
+            const block = wp.data.select('core/block-editor').getSelectedBlock();         
             postsTaxonomy(modularity_current_post_id, block.attributes.data);               
             blockLoaded = true;      
         }
@@ -17,6 +42,10 @@ jQuery(document).on('click', '.acf-block-preview', function(){
         }
     }, 500);    
 });
+
+function pollTaxonomies() {
+
+}
 
 
 function postsTaxonomy(modularity_current_post_id, data = null) {
