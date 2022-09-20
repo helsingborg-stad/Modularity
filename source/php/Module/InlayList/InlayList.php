@@ -67,7 +67,7 @@ class InlayList extends \Modularity\Module
 
                 $list[] = [
                     'label' => $label,
-                    'href' => $item->link_internal->post_type === "attachment" ? $item->link_internal->guid : get_permalink($item->link_internal->ID),
+                    'href' => $item->link_internal->post_type === "attachment" ? wp_get_attachment_url($item->link_internal->ID) : get_permalink($item->link_internal->ID),
                     'external' => false,
                 ];
             }
