@@ -1,10 +1,10 @@
 [{
     "key": "group_571dfaabc3fc5",
-    "title": "Data source",
+    "title": "Datak\u00e4lla",
     "fields": [
         {
             "key": "field_571dfaafe6984",
-            "label": "Data source",
+            "label": "Datak\u00e4lla",
             "name": "posts_data_source",
             "type": "select",
             "instructions": "",
@@ -19,9 +19,9 @@
             "allow_null": 0,
             "choices": {
                 "posttype": "Posttyper",
-                "children": "Child posts",
-                "manual": "Manually picked posts",
-                "input": "Manual input"
+                "children": "Underordnade inl\u00e4gg",
+                "manual": "Manuellt utvalda inl\u00e4gg",
+                "input": "Manuell inmatning"
             },
             "default_value": false,
             "ui": 0,
@@ -49,7 +49,7 @@
             ],
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "modularity-latest-post-type",
                 "id": "modularity-latest-post-type"
             },
             "default_value": "",
@@ -61,7 +61,7 @@
         },
         {
             "key": "field_571dfc6ff8115",
-            "label": "Pick posts to display",
+            "label": "V\u00e4lj inl\u00e4gg att visa",
             "name": "posts_data_posts",
             "type": "post_object",
             "instructions": "",
@@ -89,7 +89,7 @@
         },
         {
             "key": "field_571dfcd6b5cf9",
-            "label": "Childs of",
+            "label": "Inl\u00e4gg som har f\u00f6r\u00e4lder",
             "name": "posts_data_child_of",
             "type": "post_object",
             "instructions": "",
@@ -117,10 +117,10 @@
         },
         {
             "key": "field_571dff4eb46c3",
-            "label": "Number of posts",
+            "label": "Antal inl\u00e4gg",
             "name": "posts_count",
             "type": "number",
-            "instructions": "Set to -1 to show all",
+            "instructions": "Ange -1 f\u00f6r att visa alla",
             "required": 1,
             "conditional_logic": [
                 [
@@ -148,7 +148,7 @@
         },
         {
             "key": "field_576258d3110b0",
-            "label": "Data input",
+            "label": "Datainmatning",
             "name": "data",
             "type": "repeater",
             "instructions": "",
@@ -170,7 +170,7 @@
             "min": 1,
             "max": 0,
             "layout": "block",
-            "button_label": "Add",
+            "button_label": "L\u00e4gg till",
             "collapsed": "",
             "sub_fields": [
                 {
@@ -215,7 +215,7 @@
                 },
                 {
                     "key": "field_576261c3ef10e",
-                    "label": "Permalink",
+                    "label": "Permal\u00e4nk",
                     "name": "permalink",
                     "type": "url",
                     "instructions": "",
@@ -255,7 +255,7 @@
                 },
                 {
                     "key": "field_62a309f9c59bb",
-                    "label": "Icon",
+                    "label": "Ikon",
                     "name": "item_icon",
                     "type": "select",
                     "instructions": "",
@@ -279,10 +279,10 @@
                 },
                 {
                     "key": "field_57625a3e188da",
-                    "label": "Column values",
+                    "label": "Kolumnv\u00e4rden",
                     "name": "column_values",
                     "type": "repeater",
-                    "instructions": "Column values if expandable list is selected.",
+                    "instructions": "Kolumnv\u00e4rden om expanderbar lista \u00e4r vald.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -293,12 +293,12 @@
                     "min": 0,
                     "max": 0,
                     "layout": "table",
-                    "button_label": "Add",
+                    "button_label": "L\u00e4gg till",
                     "collapsed": "",
                     "sub_fields": [
                         {
                             "key": "field_57625a67188db",
-                            "label": "Value",
+                            "label": "V\u00e4rde",
                             "name": "value",
                             "type": "text",
                             "instructions": "",
@@ -323,7 +323,7 @@
         },
         {
             "key": "field_57ecf1007b749",
-            "label": "Link to post type archive",
+            "label": "L\u00e4nka till posttypens arkiv",
             "name": "archive_link",
             "type": "true_false",
             "instructions": "",
@@ -343,7 +343,7 @@
                 "id": ""
             },
             "default_value": 0,
-            "message": "Yes, link to post type archive",
+            "message": "Ja, l\u00e4nka till posttypens arkiv",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""

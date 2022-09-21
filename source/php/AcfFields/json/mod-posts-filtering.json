@@ -1,10 +1,10 @@
 [{
     "key": "group_571e045dd555d",
-    "title": "Data filtering",
+    "title": "Filtrera data",
     "fields": [
         {
             "key": "field_571e046536f0f",
-            "label": "Taxonomy filter",
+            "label": "Filtrera taxomnomi",
             "name": "posts_taxonomy_filter",
             "type": "true_false",
             "instructions": "",
@@ -16,14 +16,14 @@
                 "id": ""
             },
             "default_value": 0,
-            "message": "Yes, filter posts based on taxonomy",
+            "message": "Ja, filtrera data baserat p\u00e5 taxonomi",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
             "key": "field_571e048136f10",
-            "label": "Taxonomy type",
+            "label": "Taxonomi",
             "name": "posts_taxonomy_type",
             "type": "select",
             "instructions": "",
@@ -38,24 +38,22 @@
                 ]
             ],
             "wrapper": {
-                "width": 50,
-                "class": "",
+                "width": "50",
+                "class": "modularity-latest-taxonomy",
                 "id": "modularity-latest-taxonomy"
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": [],
             "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_571e049636f11",
-            "label": "Taxonomy value",
+            "label": "Taxonomiv\u00e4rde",
             "name": "posts_taxonomy_value",
             "type": "select",
             "instructions": "",
@@ -70,24 +68,22 @@
                 ]
             ],
             "wrapper": {
-                "width": 50,
-                "class": "",
+                "width": "50",
+                "class": "modularity-latest-taxonomy-value",
                 "id": "modularity-latest-taxonomy-value"
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": [],
             "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_571e04a736f12",
-            "label": "Meta filter",
+            "label": "Metafilter",
             "name": "posts_meta_filter",
             "type": "true_false",
             "instructions": "",
@@ -99,14 +95,14 @@
                 "id": ""
             },
             "default_value": 0,
-            "message": "Yes, filter posts based on meta",
+            "message": "Ja, filtrera inl\u00e4gg baserat p\u00e5 inl\u00e4ggsmeta",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
             "key": "field_571e04c736f13",
-            "label": "Meta key",
+            "label": "Metanyckel",
             "name": "posts_meta_key",
             "type": "select",
             "instructions": "",
@@ -121,24 +117,22 @@
                 ]
             ],
             "wrapper": {
-                "width": 50,
-                "class": "",
+                "width": "50",
+                "class": "modularity-latest-meta-key",
                 "id": "modularity-latest-meta-key"
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": [],
             "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_571e04da36f14",
-            "label": "Meta value",
+            "label": "Metav\u00e4rde",
             "name": "posts_meta_value",
             "type": "text",
             "instructions": "",

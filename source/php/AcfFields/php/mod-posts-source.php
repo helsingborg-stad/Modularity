@@ -3,11 +3,11 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
-    'title' => __('Data source', 'modularity'),
+    'title' => __('Datakälla', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_571dfaafe6984',
-            'label' => __('Data source', 'modularity'),
+            'label' => __('Datakälla', 'modularity'),
             'name' => 'posts_data_source',
             'type' => 'select',
             'instructions' => '',
@@ -22,9 +22,9 @@
             'allow_null' => 0,
             'choices' => array(
                 'posttype' => __('Posttyper', 'modularity'),
-                'children' => __('Child posts', 'modularity'),
-                'manual' => __('Manually picked posts', 'modularity'),
-                'input' => __('Manual input', 'modularity'),
+                'children' => __('Underordnade inlägg', 'modularity'),
+                'manual' => __('Manuellt utvalda inlägg', 'modularity'),
+                'input' => __('Manuell inmatning', 'modularity'),
             ),
             'default_value' => false,
             'ui' => 0,
@@ -52,7 +52,7 @@
             ),
             'wrapper' => array(
                 'width' => '',
-                'class' => '',
+                'class' => 'modularity-latest-post-type',
                 'id' => 'modularity-latest-post-type',
             ),
             'default_value' => '',
@@ -64,7 +64,7 @@
         ),
         2 => array(
             'key' => 'field_571dfc6ff8115',
-            'label' => __('Pick posts to display', 'modularity'),
+            'label' => __('Välj inlägg att visa', 'modularity'),
             'name' => 'posts_data_posts',
             'type' => 'post_object',
             'instructions' => '',
@@ -94,7 +94,7 @@
         ),
         3 => array(
             'key' => 'field_571dfcd6b5cf9',
-            'label' => __('Childs of', 'modularity'),
+            'label' => __('Inlägg som har förälder', 'modularity'),
             'name' => 'posts_data_child_of',
             'type' => 'post_object',
             'instructions' => '',
@@ -124,10 +124,10 @@
         ),
         4 => array(
             'key' => 'field_571dff4eb46c3',
-            'label' => __('Number of posts', 'modularity'),
+            'label' => __('Antal inlägg', 'modularity'),
             'name' => 'posts_count',
             'type' => 'number',
-            'instructions' => __('Set to -1 to show all', 'modularity'),
+            'instructions' => __('Ange -1 för att visa alla', 'modularity'),
             'required' => 1,
             'conditional_logic' => array(
                 0 => array(
@@ -155,7 +155,7 @@
         ),
         5 => array(
             'key' => 'field_576258d3110b0',
-            'label' => __('Data input', 'modularity'),
+            'label' => __('Datainmatning', 'modularity'),
             'name' => 'data',
             'type' => 'repeater',
             'instructions' => '',
@@ -177,7 +177,7 @@
             'min' => 1,
             'max' => 0,
             'layout' => 'block',
-            'button_label' => __('Add', 'modularity'),
+            'button_label' => __('Lägg till', 'modularity'),
             'collapsed' => '',
             'sub_fields' => array(
                 0 => array(
@@ -222,7 +222,7 @@
                 ),
                 2 => array(
                     'key' => 'field_576261c3ef10e',
-                    'label' => __('Permalink', 'modularity'),
+                    'label' => __('Permalänk', 'modularity'),
                     'name' => 'permalink',
                     'type' => 'url',
                     'instructions' => '',
@@ -262,7 +262,7 @@
                 ),
                 4 => array(
                     'key' => 'field_62a309f9c59bb',
-                    'label' => __('Icon', 'modularity'),
+                    'label' => __('Ikon', 'modularity'),
                     'name' => 'item_icon',
                     'type' => 'select',
                     'instructions' => '',
@@ -287,10 +287,10 @@
                 ),
                 5 => array(
                     'key' => 'field_57625a3e188da',
-                    'label' => __('Column values', 'modularity'),
+                    'label' => __('Kolumnvärden', 'modularity'),
                     'name' => 'column_values',
                     'type' => 'repeater',
-                    'instructions' => __('Column values if expandable list is selected.', 'modularity'),
+                    'instructions' => __('Kolumnvärden om expanderbar lista är vald.', 'modularity'),
                     'required' => 0,
                     'conditional_logic' => 0,
                     'wrapper' => array(
@@ -301,12 +301,12 @@
                     'min' => 0,
                     'max' => 0,
                     'layout' => 'table',
-                    'button_label' => __('Add', 'modularity'),
+                    'button_label' => __('Lägg till', 'modularity'),
                     'collapsed' => '',
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_57625a67188db',
-                            'label' => __('Value', 'modularity'),
+                            'label' => __('Värde', 'modularity'),
                             'name' => 'value',
                             'type' => 'text',
                             'instructions' => '',
@@ -331,7 +331,7 @@
         ),
         6 => array(
             'key' => 'field_57ecf1007b749',
-            'label' => __('Link to post type archive', 'modularity'),
+            'label' => __('Länka till posttypens arkiv', 'modularity'),
             'name' => 'archive_link',
             'type' => 'true_false',
             'instructions' => '',
@@ -351,7 +351,7 @@
                 'id' => '',
             ),
             'default_value' => 0,
-            'message' => __('Yes, link to post type archive', 'modularity'),
+            'message' => __('Ja, länka till posttypens arkiv', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
