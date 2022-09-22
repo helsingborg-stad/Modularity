@@ -15,6 +15,12 @@ class Iframe extends \Modularity\Module
 
         add_filter('acf/load_field/name=iframe_url', array($this,'sslNotice'));
 
+		add_filter( 'ComponentLibrary\Component\Iframe\Iframe\GetSuppliers', function($data){
+
+			echo '<pre>' . print_r( $data, true ) . '</pre>';
+			return $data;
+		},10, 1 );
+
        
     }
 
@@ -28,11 +34,17 @@ class Iframe extends \Modularity\Module
         $data['description'] = get_field('iframe_description', $this->ID);
 
         $data['suppressedIframeOptions'] = [
-            'labels' => [
+            'unknownSupplierLabels' => [
                 'titleText' => __('We need your consent to continue', 'modularity'),
                 'infoText' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
                 'buttonText' => __('I understand, continue.', 'modularity'),
-            ]
+            ],
+            'knownSupplierLabels' => [
+                'titleText' => __('We need your consent to continue', 'modularity'),
+                'infoText' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
+                'buttonText' => __('I understand, continue.', 'modularity'),
+            ] 
+             
         ];
 
         return $data;
