@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-09-22 12:06+0200\n"
-"PO-Revision-Date: 2022-09-22 12:19+0200\n"
+"POT-Creation-Date: 2022-09-23 14:50+0200\n"
+"PO-Revision-Date: 2022-09-23 15:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -2171,24 +2171,11 @@ msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida."
 
 #: source/php/Module/Iframe/Iframe.php:32
-#: source/php/Module/Iframe/Iframe.php:37
+#: source/php/Module/Iframe/Iframe.php:38
 msgid "We need your consent to continue"
 msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
 #: source/php/Module/Iframe/Iframe.php:33
-msgid ""
-"This part of the website shows content from another website. By continuing, "
-"you are accepting GDPR and privacy policy."
-msgstr ""
-"Den här delen av hemsidan visar innehåll från en annan webbplats. Genom att "
-"fortsätta godkänner du GDPR och Sekretesspolicyn"
-
-#: source/php/Module/Iframe/Iframe.php:34
-#: source/php/Module/Iframe/Iframe.php:41
-msgid "I understand, continue."
-msgstr "Jag förstår, fortsätt."
-
-#: source/php/Module/Iframe/Iframe.php:39
 #, php-format
 msgid ""
 "This part of the website shows content from %s. By continuing, <a href=\"%s"
@@ -2197,7 +2184,20 @@ msgstr ""
 "Den här delen av hemsidan visar innehåll från en annan %s. Genom att "
 "fortsätta godkänner du <a href=\"%s\">GDPR och Sekretesspolicyn</a>"
 
-#: source/php/Module/Iframe/Iframe.php:52
+#: source/php/Module/Iframe/Iframe.php:34
+#: source/php/Module/Iframe/Iframe.php:40
+msgid "I understand, continue."
+msgstr "Jag förstår, fortsätt."
+
+#: source/php/Module/Iframe/Iframe.php:39
+msgid ""
+"This part of the website shows content from another website. By continuing, "
+"you are accepting GDPR and privacy policy."
+msgstr ""
+"Den här delen av hemsidan visar innehåll från en annan webbplats. Genom att "
+"fortsätta godkänner du GDPR och Sekretesspolicyn"
+
+#: source/php/Module/Iframe/Iframe.php:50
 msgid ""
 "Your iframe link must start with http<strong>s</strong>://. Links without "
 "this prefix will not display."
@@ -2205,9 +2205,9 @@ msgstr ""
 "Dina iframe url måste börja med http<strong>s</strong>://. Länkar utan detta "
 "prefix kommer inte att visas."
 
-#: source/php/Module/Iframe/Iframe.php:73
+#: source/php/Module/Iframe/Iframe.php:71
 msgid "We need your consent to continue."
-msgstr ""
+msgstr "Vi behöver ditt godkännande för att ta dig vidare."
 
 #: source/php/Module/Image/Image.php:20
 msgid "Outputs an image"
