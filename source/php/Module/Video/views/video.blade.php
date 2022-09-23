@@ -6,7 +6,7 @@
 ])
 
     @if (!$hideTitle && !empty($postTitle))
-        <div class="c-card__header">
+        <div class="c-card__header c-card__header--video">
             @typography([
                 "id"        => "mod-video-" . $ID . "-label",
                 "element"   => "h4"
