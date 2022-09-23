@@ -12,7 +12,7 @@
             'context' => 'module.map'
         ])
             @if (!$hideTitle && !empty($postTitle))
-                <div class="c-card__header">        
+                <div class="c-card__header c-card__header--map">        
                     @typography([
                         'element' => 'h4',
                         'variant' => 'p',
