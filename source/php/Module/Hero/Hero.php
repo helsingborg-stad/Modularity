@@ -30,11 +30,14 @@ class Hero extends \Modularity\Module
         if ($data['mod_hero_background_type'] === 'image') {
             //Structure image
             $data['mod_hero_image'] = (object) [];
-            $data['mod_hero_image']->url = wp_get_attachment_image_src($data['mod_hero_background_image']['id'], [1366])[0];
+            $data['mod_hero_image']->url = wp_get_attachment_image_src(
+                $data['mod_hero_background_image']['id'],
+                [1366, false]
+            )[0];
             $data['mod_hero_image']->focus = [
                 'top' =>  $data['mod_hero_background_image']['top'], 
                 'left' => $data['mod_hero_background_image']['left']
-            ]; 
+            ];
 
             //Remove old image object
             unset($data['mod_hero_background_image']);
