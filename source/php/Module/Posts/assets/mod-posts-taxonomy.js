@@ -213,14 +213,14 @@ function getTaxonomyTypes(data) {
         });
 
         $(blockContainer + ' .modularity-latest-taxonomy .acf-label label .spinner').remove();
-        if (pagenow === 'mod-posts') {
+        //if (pagenow === 'mod-posts') {
             getTaxonomyValues({
                 'action': 'get_taxonomy_values_v2',
                 'tax': $(blockContainer + ' .modularity-latest-taxonomy select').val(),
                 'post': modularity_current_post_id,
                 'container': blockContainer
             });
-        }
+        //}
     }, 'json');
 }
 
