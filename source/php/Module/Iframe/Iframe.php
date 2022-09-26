@@ -13,15 +13,7 @@ class Iframe extends \Modularity\Module
         $this->namePlural = __('Iframe', 'modularity');
         $this->description = __("Outputs an embedded page.", 'modularity');
 
-        add_filter('acf/load_field/name=iframe_url', array($this,'sslNotice'));
-
-		add_filter( 'ComponentLibrary\Component\Iframe\Iframe\GetSuppliers', function($data){
-
-			echo '<pre>' . print_r( $data, true ) . '</pre>';
-			return $data;
-		},10, 1 );
-
-       
+        add_filter('acf/load_field/name=iframe_url', array($this,'sslNotice'));       
     }
 
     public function data() : array
