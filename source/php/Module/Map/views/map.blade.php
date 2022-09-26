@@ -4,6 +4,7 @@
         @card([
             'classList' => [
                 'modularity-map-container__map',
+                'c-card__map'
             ],
             'attributeList' => [
                 'aria-labelledby' => 'mod-map-' . $id .'-label',
@@ -12,7 +13,7 @@
             'context' => 'module.map'
         ])
             @if (!$hideTitle && !empty($postTitle))
-                <div class="c-card__header c-card__header--map">        
+                <div class="c-card__header">        
                     @typography([
                         'element' => 'h4',
                         'variant' => 'p',
