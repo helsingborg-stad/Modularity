@@ -2,7 +2,8 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-video-' . $ID . '-label'
     ],
-    'context' => 'module.video'
+    'context' => 'module.video',
+    'classList' => ['c-card__video']
 ])
 
     @if (!$hideTitle && !empty($postTitle))
