@@ -2,11 +2,12 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-video-' . $ID . '-label'
     ],
-    'context' => 'module.video'
+    'context' => 'module.video',
+    'classList' => ['c-card__video']
 ])
 
     @if (!$hideTitle && !empty($postTitle))
-        <div class="c-card__header c-card__header--video">
+        <div class="c-card__header">
             @typography([
                 "id"        => "mod-video-" . $ID . "-label",
                 "element"   => "h4"
