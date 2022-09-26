@@ -51,7 +51,17 @@ jQuery(window).load(function() {
     }
 });
 
-jQuery(document).on('click', '.acf-block-preview', function(){   
+/*
+jQuery(document).on('click', 'button.editor-block-list-item-acf-posts', function(){   
+    console.log('klick på knapp');
+    var bl = wp.data.select('core/block-editor').getSelectedBlock(); 
+    console.log(bl);  
+    pollContainerContent(bl, '.components-panel');    
+});
+*/
+
+
+jQuery(document).on('click', '.acf-block-preview, .editor-block-list-item-acf-posts', function(){   
     console.log('klick på .acf-block-preview');
     var block = wp.data.select('core/block-editor').getSelectedBlock();  
     pollContainerContent(block, '.components-panel');
@@ -86,7 +96,7 @@ function pollContainerContent(block, container) {
     }, 500);     
 }
 
-function postsTaxonomy(modularity_current_post_id, data = null, blockContainer) {
+function postsTaxonomy(modularity_current_post_id, data = null, blockContainer = '') {
     var $ = (jQuery);
     const taxType = (data == null)? null : data.posts_taxonomy_type;
     const taxValue = (data == null)? null : data.posts_taxonomy_value;
@@ -203,13 +213,14 @@ function getTaxonomyTypes(data) {
         });
 
         $(blockContainer + ' .modularity-latest-taxonomy .acf-label label .spinner').remove();
-
-        getTaxonomyValues({
-            'action': 'get_taxonomy_values_v2',
-            'tax': $('#modularity-latest-taxonomy select').val(),
-            'post': modularity_current_post_id,
-            'container': blockContainer
-        });
+        if (pagenow === 'mod-posts') {
+            getTaxonomyValues({
+                'action': 'get_taxonomy_values_v2',
+                'tax': $(blockContainer + ' .modularity-latest-taxonomy select').val(),
+                'post': modularity_current_post_id,
+                'container': blockContainer
+            });
+        }
     }, 'json');
 }
 
