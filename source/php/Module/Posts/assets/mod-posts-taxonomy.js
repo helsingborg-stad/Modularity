@@ -2,97 +2,37 @@ jQuery(document).ready(function() {
     if (pagenow === 'mod-posts') {
         postsTaxonomy(modularity_current_post_id);  
     }
-    if (pagenow === 'page') {
-        /*
-        var blocks = wp.data.select('core/block-editor').getBlocks();
-        console.log(blocks);          
-        console.log('hej');
-        */
-/*
-for (const [key, theblock] of Object.entries(blocks)) {
-  console.log(`${key}: ${theblock.name}`);
-}  
-*/ 
-/*
-    let blocksLoaded = false;
-    let blocksLoadedInterval = setInterval(function() {
-        const blocks = wp.data.select('core/block-editor').getBlocks();
-        console.log(blocks);    
-        if (blocks.length != 0) { 
-            console.log('kodd');             
-            blocksLoaded = true;     
-            for (const [key, theblock] of Object.entries(blocks)) {
-                console.log(`${key}: ${theblock.name}`);
-            }   
-        }
-        if (blocksLoaded) {
-            clearInterval(blocksLoadedInterval);
-        }
-    }, 500);   
-*/
-        
-    }
 });
 
 jQuery(window).load(function() { 
     if (pagenow === 'page') {
         var blocks = wp.data.select('core/block-editor').getBlocks();
-       // console.log(blocks);  
         for (const [key, theblock] of Object.entries(blocks)) {
             if (theblock.name === 'acf/posts' && theblock.attributes.mode === 'edit') {
                 var blockId = '#block-' + theblock.clientId;
-                pollContainerContent(theblock, blockId);
-                //var blockId = '#block-' + theblock.clientId;
-                //postsTaxonomy(modularity_current_post_id, theblock.attributes.data, blockId);     
+                pollContainerContent(theblock, blockId);   
             }
-           // console.log(`${key}: ${theblock.name}`);
         }      
-       // console.log('ftang');
     }
 });
 
-/*
-jQuery(document).on('click', 'button.editor-block-list-item-acf-posts', function(){   
-    console.log('klick på knapp');
-    var bl = wp.data.select('core/block-editor').getSelectedBlock(); 
-    console.log(bl);  
-    pollContainerContent(bl, '.components-panel');    
-});
-*/
-
 
 jQuery(document).on('click', '.acf-block-preview, .editor-block-list-item-acf-posts', function(){   
-    console.log('klick på .acf-block-preview');
     var block = wp.data.select('core/block-editor').getSelectedBlock();  
     pollContainerContent(block, '.components-panel');
-/*    let blockLoaded = false;
-    let blockLoadedInterval = setInterval(function() {
-        if (document.getElementById('modularity-latest-taxonomy-value')) { 
-            const block = wp.data.select('core/block-editor').getSelectedBlock();         
-            postsTaxonomy(modularity_current_post_id, block.attributes.data);               
-            blockLoaded = true;      
-        }
-        if (blockLoaded) {
-            clearInterval(blockLoadedInterval);
-        }
-    }, 500);    */
 });
 
 
 function pollContainerContent(block, container) {
-    console.log(block);
     var blockLoaded = false;
     var blockLoadedInterval = setInterval(function() {
-        console.log('h');
-        //if (document.getElementById('modularity-latest-taxonomy-value')) { 
-        if ($(container + ' .modularity-latest-taxonomy-value').length) {    
-            //const block = wp.data.select('core/block-editor').getSelectedBlock();         
-            postsTaxonomy(modularity_current_post_id, block.attributes.data, container);               
-            blockLoaded = true;      
-        }
-        if (blockLoaded) {
-            clearInterval(blockLoadedInterval);
-        }
+    if ($(container + ' .modularity-latest-taxonomy-value').length) {             
+        postsTaxonomy(modularity_current_post_id, block.attributes.data, container);               
+        blockLoaded = true;      
+    }
+    if (blockLoaded) {
+        clearInterval(blockLoadedInterval);
+    }
     }, 500);     
 }
 
@@ -101,8 +41,6 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
     const taxType = (data == null)? null : data.posts_taxonomy_type;
     const taxValue = (data == null)? null : data.posts_taxonomy_value;
 
-    console.log(blockContainer);
-    console.log($(blockContainer + ' .modularity-latest-post-type select').val());
     /**
      * Posttype Meta keys
      */
@@ -213,14 +151,12 @@ function getTaxonomyTypes(data) {
         });
 
         $(blockContainer + ' .modularity-latest-taxonomy .acf-label label .spinner').remove();
-        //if (pagenow === 'mod-posts') {
-            getTaxonomyValues({
-                'action': 'get_taxonomy_values_v2',
-                'tax': $(blockContainer + ' .modularity-latest-taxonomy select').val(),
-                'post': modularity_current_post_id,
-                'container': blockContainer
-            });
-        //}
+        getTaxonomyValues({
+            'action': 'get_taxonomy_values_v2',
+            'tax': $(blockContainer + ' .modularity-latest-taxonomy select').val(),
+            'post': modularity_current_post_id,
+            'container': blockContainer
+        });
     }, 'json');
 }
 
