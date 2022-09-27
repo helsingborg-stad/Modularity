@@ -3,11 +3,11 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_571e045dd555d',
-    'title' => __('Filtrera data', 'modularity'),
+    'title' => __('Data filtering', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_571e046536f0f',
-            'label' => __('Filtrera taxomnomi', 'modularity'),
+            'label' => __('Taxonomy filter', 'modularity'),
             'name' => 'posts_taxonomy_filter',
             'type' => 'true_false',
             'instructions' => '',
@@ -19,14 +19,14 @@
                 'id' => '',
             ),
             'default_value' => 0,
-            'message' => __('Ja, filtrera data baserat på taxonomi', 'modularity'),
+            'message' => __('Yes, filter posts based on taxonomy', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
         1 => array(
             'key' => 'field_571e048136f10',
-            'label' => __('Taxonomi', 'modularity'),
+            'label' => __('Taxonomy type', 'modularity'),
             'name' => 'posts_taxonomy_type',
             'type' => 'select',
             'instructions' => '',
@@ -57,7 +57,7 @@
         ),
         2 => array(
             'key' => 'field_571e049636f11',
-            'label' => __('Taxonomivärde', 'modularity'),
+            'label' => __('Taxonomy value', 'modularity'),
             'name' => 'posts_taxonomy_value',
             'type' => 'select',
             'instructions' => '',
@@ -88,7 +88,7 @@
         ),
         3 => array(
             'key' => 'field_571e04a736f12',
-            'label' => __('Metafilter', 'modularity'),
+            'label' => __('Meta filter', 'modularity'),
             'name' => 'posts_meta_filter',
             'type' => 'true_false',
             'instructions' => '',
@@ -100,14 +100,14 @@
                 'id' => '',
             ),
             'default_value' => 0,
-            'message' => __('Ja, filtrera inlägg baserat på inläggsmeta', 'modularity'),
+            'message' => __('Yes, filter posts based on meta', 'modularity'),
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
         4 => array(
             'key' => 'field_571e04c736f13',
-            'label' => __('Metanyckel', 'modularity'),
+            'label' => __('Meta key', 'modularity'),
             'name' => 'posts_meta_key',
             'type' => 'select',
             'instructions' => '',
@@ -138,7 +138,7 @@
         ),
         5 => array(
             'key' => 'field_571e04da36f14',
-            'label' => __('Metavärde', 'modularity'),
+            'label' => __('Meta value', 'modularity'),
             'name' => 'posts_meta_value',
             'type' => 'text',
             'instructions' => '',

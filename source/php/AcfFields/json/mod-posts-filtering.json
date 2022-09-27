@@ -1,10 +1,10 @@
 [{
     "key": "group_571e045dd555d",
-    "title": "Filtrera data",
+    "title": "Data filtering",
     "fields": [
         {
             "key": "field_571e046536f0f",
-            "label": "Filtrera taxomnomi",
+            "label": "Taxonomy filter",
             "name": "posts_taxonomy_filter",
             "type": "true_false",
             "instructions": "",
@@ -16,14 +16,14 @@
                 "id": ""
             },
             "default_value": 0,
-            "message": "Ja, filtrera data baserat p\u00e5 taxonomi",
+            "message": "Yes, filter posts based on taxonomy",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
             "key": "field_571e048136f10",
-            "label": "Taxonomi",
+            "label": "Taxonomy type",
             "name": "posts_taxonomy_type",
             "type": "select",
             "instructions": "",
@@ -53,7 +53,7 @@
         },
         {
             "key": "field_571e049636f11",
-            "label": "Taxonomiv\u00e4rde",
+            "label": "Taxonomy value",
             "name": "posts_taxonomy_value",
             "type": "select",
             "instructions": "",
@@ -83,7 +83,7 @@
         },
         {
             "key": "field_571e04a736f12",
-            "label": "Metafilter",
+            "label": "Meta filter",
             "name": "posts_meta_filter",
             "type": "true_false",
             "instructions": "",
@@ -95,14 +95,14 @@
                 "id": ""
             },
             "default_value": 0,
-            "message": "Ja, filtrera inl\u00e4gg baserat p\u00e5 inl\u00e4ggsmeta",
+            "message": "Yes, filter posts based on meta",
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
         },
         {
             "key": "field_571e04c736f13",
-            "label": "Metanyckel",
+            "label": "Meta key",
             "name": "posts_meta_key",
             "type": "select",
             "instructions": "",
@@ -132,7 +132,7 @@
         },
         {
             "key": "field_571e04da36f14",
-            "label": "Metav\u00e4rde",
+            "label": "Meta value",
             "name": "posts_meta_value",
             "type": "text",
             "instructions": "",
