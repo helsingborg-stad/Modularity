@@ -13,6 +13,6 @@
 	'height' => $height,
 	'title' => $description ?? $post_title,
     'classList' => ['js-suppressed-iframe'],
-    'options' => json_encode($suppressedIframeOptions),
+    'options' => json_encode($lang),
 ])
 @endiframe
