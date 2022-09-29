@@ -288,22 +288,17 @@ class BlockManager {
         $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
 
         if ($this->validateFields($block['data'])) {
+            $renderedView = $display->renderView($view, $viewData);
+            if (is_admin()) {
+                if ($module->useEmptyBlockNotice && empty(preg_replace('/\s+/', '', strip_tags($renderedView, ['img'])))) {
+                    echo $this->displayNotice($module->nameSingular, __("Your settings rendered an empty result. Try other settings.", 'modularity'));
+                }
+            }
             // Render block view if validated correctly
             echo $display->renderView($view, $viewData);
         } elseif (is_user_logged_in()) {
             // Render a notice warning the user of required fields not filled in.
-            echo '
-                <div class="c-notice c-notice--info">
-                    <span class="c-notice__icon">   
-                        <i class="c-icon c-icon--size-md material-icons">
-                            report
-                        </i>            
-                    </span>
-                    <span class="c-notice__message--sm">
-                        <strong>' . $module->nameSingular . ': </strong> ' . __("Please fill in all required fields.", 'municipio') . '    
-                    </span>
-                </div>
-            ';
+            echo $this->displayNotice($module->nameSingular, __("Please fill in all required fields.", 'municipio'));
         }
     }
 
@@ -359,5 +354,25 @@ class BlockManager {
                 )
             )
         ));
+    }
+
+    /**
+     * Returns html markup for rendering notices to user 
+     *
+     * @return string
+     */
+    public function displayNotice($moduleName, $message) {
+        return '
+            <div class="c-notice c-notice--info">
+                <span class="c-notice__icon">   
+                    <i class="c-icon c-icon--size-md material-icons">
+                        report
+                    </i>            
+                </span>
+                <span class="c-notice__message--sm">
+                    <strong>' . $moduleName . ': </strong> ' . $message . '    
+                </span>
+            </div>
+        ';
     }
 }

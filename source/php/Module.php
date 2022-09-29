@@ -96,6 +96,12 @@ class Module
     public $expectsTitleField = true;
 
     /**
+     * Display a notice when block preview is empty (to avoid "disappearing" blocks in Gutenberg).
+     * @var boolean
+     */
+    public $useEmptyBlockNotice = false;
+
+    /**
      * Is this module a legacy module (not updated to new registration methods)
      * @var boolean
      */
