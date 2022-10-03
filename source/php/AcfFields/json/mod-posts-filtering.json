@@ -38,20 +38,18 @@
                 ]
             ],
             "wrapper": {
-                "width": 50,
-                "class": "",
+                "width": "50",
+                "class": "modularity-latest-taxonomy",
                 "id": "modularity-latest-taxonomy"
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": [],
             "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_571e049636f11",
@@ -70,20 +68,18 @@
                 ]
             ],
             "wrapper": {
-                "width": 50,
-                "class": "",
+                "width": "50",
+                "class": "modularity-latest-taxonomy-value",
                 "id": "modularity-latest-taxonomy-value"
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": [],
             "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_571e04a736f12",
@@ -121,20 +117,18 @@
                 ]
             ],
             "wrapper": {
-                "width": 50,
-                "class": "",
+                "width": "50",
+                "class": "modularity-latest-meta-key",
                 "id": "modularity-latest-meta-key"
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": [],
             "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "return_format": "value",
-            "disabled": 0,
-            "readonly": 0
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_571e04da36f14",
