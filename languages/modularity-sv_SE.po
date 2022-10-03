@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "POT-Creation-Date: 2022-09-23 14:50+0200\n"
-"PO-Revision-Date: 2022-09-23 15:10+0200\n"
+"PO-Revision-Date: 2022-10-03 11:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -2181,8 +2181,8 @@ msgid ""
 "This part of the website shows content from %s. By continuing, <a href=\"%s"
 "\"> you are accepting GDPR and privacy policy</a>."
 msgstr ""
-"Den här delen av hemsidan visar innehåll från en annan %s. Genom att "
-"fortsätta godkänner du <a href=\"%s\">GDPR och Sekretesspolicyn</a>"
+"Den här delen av hemsidan visar innehåll från %s. Genom att fortsätta "
+"godkänner du <a href=\"%s\">GDPR och Sekretesspolicyn</a>."
 
 #: source/php/Module/Iframe/Iframe.php:34
 #: source/php/Module/Iframe/Iframe.php:40
@@ -2195,7 +2195,7 @@ msgid ""
 "you are accepting GDPR and privacy policy."
 msgstr ""
 "Den här delen av hemsidan visar innehåll från en annan webbplats. Genom att "
-"fortsätta godkänner du GDPR och Sekretesspolicyn"
+"fortsätta godkänner du GDPR och Sekretesspolicyn."
 
 #: source/php/Module/Iframe/Iframe.php:50
 msgid ""
