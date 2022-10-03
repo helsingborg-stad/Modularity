@@ -6,10 +6,10 @@ jQuery(document).ready(function() {
 
 jQuery(window).load(function() { 
     if (pagenow === 'page') {
-        var blocks = wp.data.select('core/block-editor').getBlocks();
+        let blocks = wp.data.select('core/block-editor').getBlocks();
         for (const [key, theblock] of Object.entries(blocks)) {
             if (theblock.name === 'acf/posts' && theblock.attributes.mode === 'edit') {
-                var blockId = '#block-' + theblock.clientId;
+                let blockId = '#block-' + theblock.clientId;
                 pollContainerContent(theblock, blockId);   
             }
         }      
@@ -18,7 +18,7 @@ jQuery(window).load(function() {
 
 
 jQuery(document).on('click', '.acf-block-preview, .editor-block-list-item-acf-posts', function(){   
-    var block = wp.data.select('core/block-editor').getSelectedBlock();  
+    let block = wp.data.select('core/block-editor').getSelectedBlock();  
     pollContainerContent(block, '.components-panel');
 });
 
@@ -106,7 +106,7 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
 }
 
 function getPostMeta(data) {
-    var blockContainer = data.container;
+    let blockContainer = data.container;
     if ($(blockContainer + ' .modularity-sorted-by select optgroup[label="Post fields"]').length === 0) {
         $(blockContainer + ' .modularity-sorted-by select').prepend('<optgroup label="Post fields">').append('</optgroup>');
     }
@@ -136,7 +136,7 @@ function getPostMeta(data) {
 }
 
 function getTaxonomyTypes(data) {
-    var blockContainer = data.container;
+    let blockContainer = data.container;
     $(blockContainer + ' .modularity-latest-taxonomy select').empty();
     $(blockContainer + ' .modularity-latest-taxonomy .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
 
@@ -161,7 +161,7 @@ function getTaxonomyTypes(data) {
 }
 
 function getTaxonomyValues(data) {
-    var blockContainer = data.container;
+    let blockContainer = data.container;
     $(blockContainer + ' .modularity-latest-taxonomy-value select').empty();
     $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
 
