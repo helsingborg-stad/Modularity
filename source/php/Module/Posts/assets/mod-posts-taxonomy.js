@@ -24,8 +24,8 @@ jQuery(document).on('click', '.acf-block-preview, .editor-block-list-item-acf-po
 
 
 function pollContainerContent(block, container) {
-    var blockLoaded = false;
-    var blockLoadedInterval = setInterval(function() {
+    let blockLoaded = false;
+    let blockLoadedInterval = setInterval(function() {
     if ($(container + ' .modularity-latest-taxonomy-value').length) {             
         postsTaxonomy(modularity_current_post_id, block.attributes.data, container);               
         blockLoaded = true;      
