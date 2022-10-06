@@ -78,6 +78,27 @@
             "step": 1
         },
         {
+            "key": "field_633d95fb739ac",
+            "label": "Number of slides shown per page",
+            "name": "slides_per_page",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "min": "",
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_58933fb6f5ed4",
             "label": "Wrap around",
             "name": "additional_options",
@@ -776,27 +797,6 @@
                 "acfe_flexible_modal_col": "4",
                 "acfe_flexible_modal_categories": false
             }
-        },
-        {
-            "key": "field_633e806824df6",
-            "label": "Number of slides per page",
-            "name": "slides_per_page",
-            "type": "number",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 1,
-            "min": "",
-            "max": "",
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -868,6 +868,20 @@
                 "param": "block",
                 "operator": "==",
                 "value": "acf\/slider"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "mod-testimonial-card"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/testimonial-card"
             }
         ]
     ],

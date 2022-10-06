@@ -81,6 +81,27 @@
             'step' => 1,
         ),
         3 => array(
+            'key' => 'field_633d95fb739ac',
+            'label' => __('Number of slides shown per page', 'modularity'),
+            'name' => 'slides_per_page',
+            'type' => 'number',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => 1,
+            'min' => '',
+            'max' => '',
+            'placeholder' => '',
+            'step' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        4 => array(
             'key' => 'field_58933fb6f5ed4',
             'label' => __('Wrap around', 'modularity'),
             'name' => 'additional_options',
@@ -105,7 +126,7 @@
             'return_format' => 'value',
             'save_custom' => 0,
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_56a5e994398d6',
             'label' => __('Slides', 'modularity'),
             'name' => 'slides',
@@ -783,27 +804,6 @@
                 'acfe_flexible_modal_categories' => false,
             ),
         ),
-        5 => array(
-            'key' => 'field_633e806824df6',
-            'label' => __('Number of slides per page', 'modularity'),
-            'name' => 'slides_per_page',
-            'type' => 'number',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 1,
-            'min' => '',
-            'max' => '',
-            'placeholder' => '',
-            'step' => '',
-            'prepend' => '',
-            'append' => '',
-        ),
     ),
     'location' => array(
         0 => array(
@@ -874,6 +874,20 @@
                 'param' => 'block',
                 'operator' => '==',
                 'value' => 'acf/slider',
+            ),
+        ),
+        10 => array(
+            0 => array(
+                'param' => 'post_type',
+                'operator' => '==',
+                'value' => 'mod-testimonial-card',
+            ),
+        ),
+        11 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/testimonial-card',
             ),
         ),
     ),
