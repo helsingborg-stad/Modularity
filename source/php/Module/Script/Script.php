@@ -54,7 +54,7 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['scriptPadding'] = (get_field('embeded_card_padding', $this->ID)) ?
+          $data['scriptPadding'] = !empty(get_field('embeded_card_padding', $this->ID)) || get_field('embeded_card_padding', $this->ID) === "0" ?
             "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
                 get_field('embeded_card_padding', $this->ID) : "";
 
