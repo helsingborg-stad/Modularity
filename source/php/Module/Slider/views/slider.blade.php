@@ -18,7 +18,8 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
     ],
-    'context'       => ['module.slider', $sidebarContext . '.module.slider']
+    'context'       => ['module.slider', $sidebarContext . '.module.slider'],
+    'slidesPerPage' => '"perPage":' . $slidesPerPage
 ])
     @foreach ($slides as $slide)
         @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])
