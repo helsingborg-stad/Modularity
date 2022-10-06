@@ -49,17 +49,17 @@ class General extends \Modularity\Options
 	    1000
         );
 
-	if(get_field('acf_module_restrictions', 'option')) {
 	    add_filter(
-		'Modularity/Editor/SidebarIncompability',
-		array($this, 'sidebarIncompatibility'),
-		20,
-		2
+			'Modularity/Editor/SidebarIncompability',
+			array($this, 'sidebarIncompatibility'),
+			20,
+			2
 	    );
 	    add_action('edit_form_top', function () {
-		\Modularity\ModuleManager::$enabled = $this->moduleRestriction();
+			if(get_field('acf_module_restrictions', 'option')) {
+				\Modularity\ModuleManager::$enabled = $this->moduleRestriction();
+			}
 	    });
-	}
     }
 
     /**
@@ -69,23 +69,24 @@ class General extends \Modularity\Options
      * @return array Module Specification
      */
     public function sidebarIncompatibility($moduleSpecification, $modulePostType) {
-        $template = \Modularity\Helper\Post::getPostTemplate(null, true);
-        $template_sidebars = get_field($template . '_active_sidebars', 'option');
+		if (get_field('acf_module_restrictions', 'option')) {
+			$template = \Modularity\Helper\Post::getPostTemplate(null, true);
+			$template_sidebars = get_field($template . '_active_sidebars', 'option');
 
-	if($template_sidebars) {
-	    $sidebarIncompatibilities = array_flip($template_sidebars);
-
-	    foreach($template_sidebars as $sidebar) {
-		$modules = get_field($template . '-' . $sidebar, 'option');
-		foreach($modules as $module) {
-		    if($modulePostType == $module['label']) {
-			unset($sidebarIncompatibilities[$sidebar]);
-		    }
+			if($template_sidebars) {
+				$sidebarIncompatibilities = array_flip($template_sidebars);
+				foreach($template_sidebars as $sidebar) {
+					$modules = get_field($template . '-' . $sidebar, 'option');
+					foreach($modules as $module) {
+						if($modulePostType == $module['label']) {
+						unset($sidebarIncompatibilities[$sidebar]);
+						}
+					}
+				}
+				$moduleSpecification['sidebar_incompability'] = array_keys($sidebarIncompatibilities);
+			}
 		}
-	    }
-	    $moduleSpecification['sidebar_incompability'] = array_keys($sidebarIncompatibilities);
-	}
-	return $moduleSpecification;
+		return $moduleSpecification;
     }
 
     /**
