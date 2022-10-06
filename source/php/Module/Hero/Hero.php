@@ -30,10 +30,12 @@ class Hero extends \Modularity\Module
         if ($data['mod_hero_background_type'] === 'image') {
             //Structure image
             $data['mod_hero_image'] = (object) [];
+
             $data['mod_hero_image']->url = wp_get_attachment_image_src(
                 $data['mod_hero_background_image']['id'],
                 [1366, false]
             )[0];
+
             $data['mod_hero_image']->focus = [
                 'top' =>  $data['mod_hero_background_image']['top'], 
                 'left' => $data['mod_hero_background_image']['left']
@@ -41,9 +43,13 @@ class Hero extends \Modularity\Module
 
             //Remove old image object
             unset($data['mod_hero_background_image']);
-        } else if($data['mod_hero_background_type'] === 'video') {
+        } elseif ($data['mod_hero_background_type'] === 'video') {
             $data['mod_hero_video'] = (object) [];
             $data['mod_hero_video']->url = $data['mod_hero_background_video'];
+        }
+
+        if (!isset($data['stretch'])) {
+            $data['stretch'] = false;
         }
 
         //Send to view
@@ -59,11 +65,11 @@ class Hero extends \Modularity\Module
      * @return array
      */
     public function blockData($viewData, $block, $module) {
-
         if ($block['name'] == "acf/hero" && $block['align'] == 'full' && !is_admin()) {
             $viewData['stretch'] = true;
+        } else {
+            $viewData['stretch'] = false;
         }
-
         return $viewData;
     }
 
