@@ -45,8 +45,13 @@ class BlockManager {
      * Render a custom grid around each column
      * @return string
      */
-    public function renderCustomGrid(string $block_content, array $block): string
+    public function renderCustomGrid($block_content, array $block): string
     {
+
+        if (!is_string($block_content)) {
+            return "";
+        }
+
         $widths = [
             '100%' => 'o-grid-12@md',
             '75%'  => 'o-grid-9@md',
