@@ -18,6 +18,7 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slides-per-page' => $slidesPerPage,
+        'data-slider-focus-center' => '',
     ],
     'context'       => ['module.slider', $sidebarContext . '.module.slider'],
 ])
