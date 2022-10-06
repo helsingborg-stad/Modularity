@@ -876,20 +876,6 @@
                 'value' => 'acf/slider',
             ),
         ),
-        10 => array(
-            0 => array(
-                'param' => 'post_type',
-                'operator' => '==',
-                'value' => 'mod-testimonial-card',
-            ),
-        ),
-        11 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'acf/testimonial-card',
-            ),
-        ),
     ),
     'menu_order' => 0,
     'position' => 'normal',

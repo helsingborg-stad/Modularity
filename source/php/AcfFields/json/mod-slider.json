@@ -869,20 +869,6 @@
                 "operator": "==",
                 "value": "acf\/slider"
             }
-        ],
-        [
-            {
-                "param": "post_type",
-                "operator": "==",
-                "value": "mod-testimonial-card"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/testimonial-card"
-            }
         ]
     ],
     "menu_order": 0,
