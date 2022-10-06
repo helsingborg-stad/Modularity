@@ -40,7 +40,11 @@ class Script extends \Modularity\Module
     {
         $data = array();
         $embed = get_field('embed_code', $this->ID);
-        $data['embed'] = (is_admin()) ? '<pre>'.htmlspecialchars($embed).'</pre>' : str_contains($embed,"<script") && !str_contains($embed,"defer" ) ? str_replace("<script", "<script defer", $embed) : $embed;
+        $data['embed'] = (is_admin()
+            ? '<pre>' . htmlspecialchars($embed) . '</pre>'
+            : (str_contains($embed, "<script") && !str_contains($embed, "defer")
+                ? str_replace("<script", "<script defer", $embed)
+                : $embed));
                 
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
@@ -54,7 +58,7 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['scriptPadding'] = (get_field('embeded_card_padding', $this->ID)) ?
+          $data['scriptPadding'] = !empty(get_field('embeded_card_padding', $this->ID)) || get_field('embeded_card_padding', $this->ID) === "0" ?
             "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
                 get_field('embeded_card_padding', $this->ID) : "";
 

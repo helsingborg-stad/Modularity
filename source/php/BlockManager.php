@@ -1,14 +1,16 @@
 <?php
+
 namespace Modularity;
 
 use enshrined\svgSanitize\Sanitizer as SVGSanitize;
 
-class BlockManager {
-
+class BlockManager
+{
     public $modules = [];
     public $classes = [];
 
-    public function __construct() {
+    public function __construct()
+    {
         add_filter('block_categories', array($this, 'filterCategories'), 10, 2);
         add_filter('acf/load_field_group', array($this, 'addLocationRule'));
         add_action('init', array($this, 'addBlockFieldGroup'));
@@ -16,6 +18,7 @@ class BlockManager {
         add_filter('allowed_block_types', array($this, 'filterBlockTypes'));
         add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
         add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
+        add_filter('acf/register_block_type_args', array($this, 'blockTypeArgs'), 10, 1);
     }
 
     /**
@@ -72,7 +75,8 @@ class BlockManager {
      * Filter out redundant block types except these.
      * @return array
      */
-    public function filterBlockTypes($allowedBlocks) {
+    public function filterBlockTypes($allowedBlocks)
+    {
         $registeredBlocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
         foreach ($registeredBlocks as $type => $block) {
             $allowedCoreBlocks = array(
@@ -115,18 +119,18 @@ class BlockManager {
      * Register all registered and compatible modules as blocks
      * @return void
      */
-    public function registerBlocks() {
+    public function registerBlocks()
+    {
         $enabledModules = \Modularity\ModuleManager::$enabled;
 
         if (function_exists('acf_register_block_type')) {
             foreach ($this->classes as $class) {
                 if ($class->isBlockCompatible && in_array($class->moduleSlug, $enabledModules)) {
-
                     //Look for icon (including cleaning)
                     if ($class->assetDir && file_exists($class->assetDir . 'icon.svg')) {
                         $sanitizer = new SVGSanitize();
                         $sanitizer->minify(true);
-                        $sanitizer->removeXMLTag(true); 
+                        $sanitizer->removeXMLTag(true);
                         $icon = $sanitizer->sanitize(
                             file_get_contents($class->assetDir . 'icon.svg')
                         );
@@ -156,13 +160,13 @@ class BlockManager {
                 }
             }
         }
-
     }
 
-    private function isModule($value) {
+    private function isModule($value)
+    {
         foreach ($this->classes as $moduleName => $object) {
             if ($object->moduleSlug === $value) {
-                 return $object->moduleSlug;
+                return $object->moduleSlug;
             }
         }
 
@@ -173,8 +177,8 @@ class BlockManager {
      * Add location rule to each field group to make them avaible to corresponding block
      * @return array
      */
-    public function addLocationRule($group) {
-
+    public function addLocationRule($group)
+    {
         $newGroup = $group;
 
         foreach ($group['location'] as $location) {
@@ -183,7 +187,7 @@ class BlockManager {
                     continue;
                 }
 
-                $valueIsModule = $this->isModule($locationRule['value']); 
+                $valueIsModule = $this->isModule($locationRule['value']);
                 $locationRuleExists = str_contains($locationRule['value'], 'acf/');
 
                 // If the location rule that we are trying to add already exists, return original group
@@ -195,7 +199,7 @@ class BlockManager {
                     $newGroup['location'][] = [
                         [
                             'param' => 'block',
-                            'operator' => '==', 
+                            'operator' => '==',
                             'value' => \str_replace('mod-', 'acf/', $locationRule['value'])
                         ]
                     ];
@@ -205,16 +209,15 @@ class BlockManager {
         return $newGroup;
     }
 
-    public function addLocationRulesToBlockGroup($group) {
-
+    public function addLocationRulesToBlockGroup($group)
+    {
         if ($group['key'] === 'group_block_specific') {
-
             foreach ($this->classes as $moduleName => $moduleObject) {
                 if ($moduleObject->expectsTitleField) {
                     $group['location'][] = [
                         [
                             'param' => 'block',
-                            'operator' => '==', 
+                            'operator' => '==',
                             'value' => 'acf/' . $moduleName
                         ]
                     ];
@@ -229,7 +232,8 @@ class BlockManager {
      * Set the default value of fields if value is missing
      * @return array
      */
-    private function setDefaultValues($data, $defaultValues) {
+    private function setDefaultValues($data, $defaultValues)
+    {
         foreach ($data as $key => &$dataPoint) {
             if (empty($dataPoint)) {
                 $isSnakeCased = \str_contains($key, '_');
@@ -250,7 +254,7 @@ class BlockManager {
      * Get the default values of fields
      * @return array
      */
-    private function getDefaultValues($blockData) 
+    private function getDefaultValues($blockData)
     {
         $fieldDefaultValues = [];
         foreach ($blockData as $key => $dataPoint) {
@@ -268,14 +272,13 @@ class BlockManager {
      */
     public function renderBlock($block)
     {
-
         //Init display
         $display = new Display();
         $module = $this->classes[$block['moduleName']];
 
         //Get module data
         $module->data = $this->setDefaultValues(
-            $module->data(), 
+            $module->data(),
             $this->getDefaultValues($block['data'])
         );
 
@@ -316,7 +319,8 @@ class BlockManager {
      * Validates the required fields
      * @return boolean
      */
-    private function validateFields($fields) {
+    private function validateFields($fields)
+    {
         $valid = true;
 
         foreach ($fields as $key => $value) {
@@ -349,14 +353,15 @@ class BlockManager {
      *
      * @return void
      */
-    public function addBlockFieldGroup() {
+    public function addBlockFieldGroup()
+    {
         acf_add_local_field_group(array(
             'menu_order' => -1,
             'key' => 'group_block_specific',
             'title' => __("Block settings", 'modularity'),
-            'location' => array (),
-            'fields' => array (
-                array (
+            'location' => array(),
+            'fields' => array(
+                array(
                     'key' => 'field_block_title',
                     'label' => __("Title", 'modularity'),
                     'name' => 'custom_block_title',
@@ -364,5 +369,11 @@ class BlockManager {
                 )
             )
         ));
+    }
+
+    public function blockTypeArgs($args)
+    {
+        $args['supports'] = array_merge($args['supports'], array( 'anchor' => true ));
+        return $args;
     }
 }
