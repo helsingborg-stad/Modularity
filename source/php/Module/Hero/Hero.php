@@ -36,8 +36,8 @@ class Hero extends \Modularity\Module
                     [1366, false]
                 )[0] ?? false,
                 'imageFocus' => [
-                    'top' =>  $fields['mod_hero_background_image']['top'],
-                    'left' => $fields['mod_hero_background_image']['left']
+                    'top' =>  $fields['mod_hero_background_image']['top'] ?? '50',
+                    'left' => $fields['mod_hero_background_image']['left'] ?? '50'
                 ]
             ];
         }
