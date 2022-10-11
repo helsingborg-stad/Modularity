@@ -30,7 +30,7 @@ class Video extends \Modularity\Module
 
         // Image
         $data['image'] = false;
-        if (isset($data['placeholder_image']) && !empty($data['placeholder_image'])) {
+        if (! isset($data['embedCode']) && isset($data['placeholder_image']) && !empty($data['placeholder_image'])) {
             $data['image'] = wp_get_attachment_image_src(
                 $data['placeholder_image']['id'],
                 apply_filters(
