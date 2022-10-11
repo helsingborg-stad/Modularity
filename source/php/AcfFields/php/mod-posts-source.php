@@ -36,7 +36,7 @@
         ),
         1 => array(
             'key' => 'field_571dfc40f8114',
-            'label' => __('Posttyper', 'modularity'),
+            'label' => __('Post Types', 'modularity'),
             'name' => 'posts_data_post_type',
             'type' => 'posttype_select',
             'instructions' => '',
@@ -52,7 +52,7 @@
             ),
             'wrapper' => array(
                 'width' => '',
-                'class' => '',
+                'class' => 'modularity-latest-post-type',
                 'id' => 'modularity-latest-post-type',
             ),
             'default_value' => '',

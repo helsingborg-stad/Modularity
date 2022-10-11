@@ -13,7 +13,7 @@
 
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
-        <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
+        <div class="{{ $loop->first && $highlight_first_column ? $
             @if($loop->first && $highlight_first_column && $highlight_first_column_as === 'card')
                 @card([
                     'link' => $post->link,

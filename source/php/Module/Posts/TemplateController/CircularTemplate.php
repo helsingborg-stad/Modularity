@@ -26,6 +26,8 @@ class CircularTemplate extends AbstractController
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
             $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
+        } else {
+            $this->data['highlight_first_column'] = false;
         }
 
         $this->getThumbnails();

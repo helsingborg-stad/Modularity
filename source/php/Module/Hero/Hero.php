@@ -23,31 +23,45 @@ class Hero extends \Modularity\Module
     public function data() : array
     {
         //Get module data
-        $data = get_fields($this->ID);
+        $fields = get_fields($this->ID);
 
-        $data['mod_hero_background_type'] = $data['mod_hero_background_type'] ?? 'image';
+        //Type
+        $type = $fields['mod_hero_background_type'] ?? 'image';
 
-        if ($data['mod_hero_background_type'] === 'image') {
-            //Structure image
-            $data['mod_hero_image'] = (object) [];
-            $data['mod_hero_image']->url = wp_get_attachment_image_src(
-                $data['mod_hero_background_image']['id'],
-                [1366, false]
-            )[0];
-            $data['mod_hero_image']->focus = [
-                'top' =>  $data['mod_hero_background_image']['top'], 
-                'left' => $data['mod_hero_background_image']['left']
+        //Grab image
+        if ('image' == $type) {
+            $data = [
+                'image' => wp_get_attachment_image_src(
+                    $fields['mod_hero_background_image']['id'],
+                    [1366, false]
+                )[0] ?? false,
+                'imageFocus' => [
+                    'top' =>  $fields['mod_hero_background_image']['top'] ?? '50',
+                    'left' => $fields['mod_hero_background_image']['left'] ?? '50'
+                ]
             ];
-
-            //Remove old image object
-            unset($data['mod_hero_background_image']);
-        } else if($data['mod_hero_background_type'] === 'video') {
-            $data['mod_hero_video'] = (object) [];
-            $data['mod_hero_video']->url = $data['mod_hero_background_video'];
         }
 
-        //Send to view
-        return (array) \Modularity\Helper\FormatObject::camelCase($data); 
+        //Grab video
+        if ('video' == $type) {
+            $data = [
+                'video' => $fields['mod_hero_background_video']
+            ];
+        }
+
+        //Common fields
+        $data['type']           = $type;
+        $data['size']           = $fields['mod_hero_size'];
+        $data['byline']         = $fields['mod_hero_byline'];
+        $data['paragraph']      = $fields['mod_hero_body'];
+        $data['backgroundType'] = $data['mod_hero_background_type'] ?? 'image';
+
+        //Defaults
+        if (!isset($data['stretch'])) {
+            $data['stretch'] = false;
+        }
+
+        return $data;
     }
 
     /**
@@ -59,11 +73,11 @@ class Hero extends \Modularity\Module
      * @return array
      */
     public function blockData($viewData, $block, $module) {
-
         if ($block['name'] == "acf/hero" && $block['align'] == 'full' && !is_admin()) {
             $viewData['stretch'] = true;
+        } else {
+            $viewData['stretch'] = false;
         }
-
         return $viewData;
     }
 

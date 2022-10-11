@@ -23,7 +23,7 @@
                     'meta' => $post->tags,
                     'date' => ($post->showDate ? $post->post_date : false),
                     'filled' => true,
-                    'image' => ($post->showImage ? [
+                    'image' => ($post->showImage && isset($post->thumbnail[0]) ? [
                         'src' => get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2]),
                         'alt' => $contact['full_name'],
                         'backgroundColor' => 'secondary',
@@ -35,7 +35,6 @@
                 ])
                 @endblock
             @else
-     
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
@@ -49,7 +48,7 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' => $post->showImage ? [
+                    'image' => $post->showImage && isset($post->thumbnail[0]) ? [
                         'src' => $post->thumbnail[0],
                         'alt' => $post->post_title,
                         'backgroundColor' => 'secondary',
