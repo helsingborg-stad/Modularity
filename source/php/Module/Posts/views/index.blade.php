@@ -21,7 +21,7 @@
                     'content' => ($post->showExcerpt ? $post->post_content : false),
                     'ratio' => '16:9',
                     'meta' => $post->tags,
-                    'date' => ($post->showDate ? $post->post_date : false),
+                    'date' => ($post->showDate ? date("Y-m-d H:i", strtotime($post->post_date)) : false),
                     'filled' => true,
                     'image' => ($post->showImage && isset($post->thumbnail[0]) ? [
                         'src' => get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2]),
@@ -44,7 +44,7 @@
                     'context' => ['module.posts.index'],
                     'content' => ($post->showExcerpt ? $post->post_content : false),
                     'tags' => $post->tags,
-                    'date' => ($post->showDate ? $post->post_date : false),
+                    'date' => ($post->showDate ? get_post_time( "Y-m-d H:i",  $post ) : false),
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
