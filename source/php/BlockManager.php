@@ -258,7 +258,16 @@ class BlockManager
     {
         $fieldDefaultValues = [];
         foreach ($blockData as $key => $dataPoint) {
-            if ($defaultValue = get_field_object($dataPoint)['default_value']) {
+            if (!is_string($dataPoint)) {
+                continue;
+            }
+
+            if (strpos($dataPoint, 'field_') !== 0) {
+                continue;
+            }
+
+            $defaultValue = get_field_object($dataPoint);
+            if (isset($defaultValue['default_value'])) {
                 $fieldDefaultValues[$key] = $defaultValue;
             }
         }
@@ -287,7 +296,7 @@ class BlockManager
         $view = !empty($view) ? $view : $block['moduleName'];
 
         //Add post title
-        $module->data['postTitle'] = apply_filters('the_title', $post_title);
+        $module->data['postTitle'] = apply_filters('the_title', $module->data['custom_block_title']);
 
         //Add post type
         $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);
@@ -324,15 +333,15 @@ class BlockManager
         $valid = true;
 
         foreach ($fields as $key => $value) {
-            if (is_string($key) && is_string($value)) {
-                if (str_contains($key, 'field_')) {
-                    $field = $key;
-                } elseif (str_contains($value, 'field_')) {
-                    $field = $value;
-                }
+            if (!is_string($value)) {
+                continue;
             }
 
-            $fieldObject = get_field_object($field);
+            if (strpos($value, 'field_') !== 0) {
+                continue;
+            }
+
+            $fieldObject = get_field_object($value);
 
             //Skip validation of decendants
             if (isset($fieldObject['parent']) && str_contains($fieldObject['parent'], 'field_')) {
