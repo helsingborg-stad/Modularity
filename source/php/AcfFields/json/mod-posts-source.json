@@ -33,7 +33,7 @@
         },
         {
             "key": "field_571dfc40f8114",
-            "label": "Posttyper",
+            "label": "Post Types",
             "name": "posts_data_post_type",
             "type": "posttype_select",
             "instructions": "",
@@ -49,7 +49,7 @@
             ],
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "modularity-latest-post-type",
                 "id": "modularity-latest-post-type"
             },
             "default_value": "",

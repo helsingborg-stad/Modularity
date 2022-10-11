@@ -20,7 +20,8 @@
                 ],
                 'classList'     => [
                     'c-card--square-image',
-                    'u-height--100'
+                    'u-height--100',
+                    'c-card--contact'
                 ],
                 'context' => 'module.contacts.card'
             ])

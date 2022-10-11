@@ -2,6 +2,10 @@
 
 namespace Modularity\Helper;
 
+use DateTime;
+use DateTimeZone;
+
+
 /**
  * Returns format for date and time
  * @param  string $format      A string that is either date or time or date-time
@@ -30,4 +34,11 @@ class Date
 
         return $dateFormat . ' ' . $timeFormat;
     }
+
+
+    public function getTimeStamp($dateStr) {
+        $timezone = wp_timezone_string();
+        $dateObj = new DateTime($dateStr, new DateTimeZone($timezone));
+        return $dateObj->format('U');
+    }    
 }

@@ -6544,3 +6544,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "View "
 #~ msgstr "Visa"
+
+msgid "Your settings rendered an empty result. Try other settings."
+msgstr "Inställningarna gav ett tomt resultat. Prova att ändra inställningarna."
