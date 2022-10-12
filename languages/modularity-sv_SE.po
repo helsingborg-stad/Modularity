@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-10-07 13:55+0200\n"
-"PO-Revision-Date: 2022-10-07 13:57+0200\n"
+"POT-Creation-Date: 2022-10-12 15:22+0200\n"
+"PO-Revision-Date: 2022-10-12 15:24+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -1379,17 +1379,17 @@ msgstr "Mall"
 #: source/php/AcfFields/php/mod-slider.php:182
 #: source/php/AcfFields/php/mod-slider.php:557
 msgid "Bottom banner"
-msgstr "Bottom banner"
+msgstr "Nedre banner"
 
 #: source/php/AcfFields/php/mod-slider.php:183
 #: source/php/AcfFields/php/mod-slider.php:558
 msgid "Centered"
-msgstr ""
+msgstr "Centrerad"
 
 #: source/php/AcfFields/php/mod-slider.php:185
 #: source/php/AcfFields/php/mod-slider.php:560
 msgid "bottom"
-msgstr ""
+msgstr "botten"
 
 #: source/php/AcfFields/php/mod-slider.php:236
 #: source/php/AcfFields/php/mod-slider.php:511 source/php/Editor.php:123
