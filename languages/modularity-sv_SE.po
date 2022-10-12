@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-09-23 14:50+0200\n"
-"PO-Revision-Date: 2022-10-03 11:15+0200\n"
+"POT-Creation-Date: 2022-10-12 10:09+0200\n"
+"PO-Revision-Date: 2022-10-12 10:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -35,8 +35,8 @@ msgstr ""
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:155 source/php/BlockManager.php:103 source/php/Editor.php:124
-#: source/php/Options/General.php:178
+#: App.php:155 source/php/BlockManager.php:112 source/php/Editor.php:124
+#: source/php/Options/General.php:179
 msgid "Modules"
 msgstr "Moduler"
 
@@ -385,7 +385,7 @@ msgstr ""
 msgid "Divider"
 msgstr "Slider"
 
-#: source/php/AcfFields/php/mod-divider.php:10 source/php/BlockManager.php:356
+#: source/php/AcfFields/php/mod-divider.php:10 source/php/BlockManager.php:375
 #: source/php/ModuleManager.php:603
 #: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:92
 #: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:103
@@ -1119,23 +1119,23 @@ msgstr "Ja, filtrera data baserat på taxonomi"
 msgid "Taxonomy type"
 msgstr "Taxonomi"
 
-#: source/php/AcfFields/php/mod-posts-filtering.php:62
+#: source/php/AcfFields/php/mod-posts-filtering.php:60
 msgid "Taxonomy value"
 msgstr "Taxonomivärde"
 
-#: source/php/AcfFields/php/mod-posts-filtering.php:95
+#: source/php/AcfFields/php/mod-posts-filtering.php:91
 msgid "Meta filter"
 msgstr "Metafilter"
 
-#: source/php/AcfFields/php/mod-posts-filtering.php:107
+#: source/php/AcfFields/php/mod-posts-filtering.php:103
 msgid "Yes, filter posts based on meta"
 msgstr "Ja, filtrera inlägg baserat på inläggsmeta"
 
-#: source/php/AcfFields/php/mod-posts-filtering.php:114
+#: source/php/AcfFields/php/mod-posts-filtering.php:110
 msgid "Meta key"
 msgstr "Metanyckel"
 
-#: source/php/AcfFields/php/mod-posts-filtering.php:147
+#: source/php/AcfFields/php/mod-posts-filtering.php:141
 msgid "Meta value"
 msgstr "Metavärde"
 
@@ -1198,7 +1198,6 @@ msgid "Data source"
 msgstr "Datakälla"
 
 #: source/php/AcfFields/php/mod-posts-source.php:24
-#: source/php/AcfFields/php/mod-posts-source.php:39
 msgid "Posttyper"
 msgstr "Posttyper"
 
@@ -1215,6 +1214,15 @@ msgstr "Manuellt utvalda inlägg"
 #: source/php/AcfFields/php/mod-table.php:23
 msgid "Manual input"
 msgstr "Manuell inmatning"
+
+#: source/php/AcfFields/php/mod-posts-source.php:39
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:13
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:26
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:25
+#, fuzzy
+#| msgid "Post types"
+msgid "Post Types"
+msgstr "Posttyper"
 
 #: source/php/AcfFields/php/mod-posts-source.php:67
 msgid "Pick posts to display"
@@ -1999,11 +2007,11 @@ msgstr ""
 msgid "Taxonomy"
 msgstr "Kategori"
 
-#: source/php/BlockManager.php:303
+#: source/php/BlockManager.php:320
 msgid "Please fill in all required fields."
 msgstr "Vänligen fyll i alla obligatoriska fält."
 
-#: source/php/BlockManager.php:351
+#: source/php/BlockManager.php:370
 msgid "Block settings"
 msgstr "Inställningar för block"
 
@@ -2190,12 +2198,13 @@ msgid "I understand, continue."
 msgstr "Jag förstår, fortsätt."
 
 #: source/php/Module/Iframe/Iframe.php:39
+#, php-format
 msgid ""
-"This part of the website shows content from another website. By continuing, "
-"you are accepting GDPR and privacy policy."
+"This part of the website shows content from another website (%s). By "
+"continuing, you are accepting GDPR and privacy policy."
 msgstr ""
-"Den här delen av hemsidan visar innehåll från en annan webbplats. Genom att "
-"fortsätta godkänner du GDPR och Sekretesspolicyn."
+"Den här delen av hemsidan visar innehåll från en annan webbplats (%s). Genom "
+"att fortsätta godkänner du GDPR och Sekretesspolicyn."
 
 #: source/php/Module/Iframe/Iframe.php:50
 msgid ""
@@ -2711,23 +2720,23 @@ msgstr "Moduler på söksida"
 msgid "Restrictive Options"
 msgstr "Begränsande alternativ"
 
-#: source/php/Options/General.php:124
+#: source/php/Options/General.php:125
 msgid "Save options"
 msgstr "Spara inställningar"
 
-#: source/php/Options/General.php:136
+#: source/php/Options/General.php:137
 msgid "Core options"
 msgstr "Core inställningar"
 
-#: source/php/Options/General.php:148
+#: source/php/Options/General.php:149
 msgid "Module options"
 msgstr "Modulinställningar"
 
-#: source/php/Options/General.php:160
+#: source/php/Options/General.php:161
 msgid "Post types"
 msgstr "Posttyper"
 
-#: source/php/Options/General.php:169
+#: source/php/Options/General.php:170
 msgid "Template areas"
 msgstr "Mallområden"
 
@@ -4931,14 +4940,6 @@ msgstr "Inläggsobjekt"
 msgid "Post status name"
 msgstr "Inläggsobjekt"
 
-#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:13
-#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:26
-#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:25
-#, fuzzy
-#| msgid "Post types"
-msgid "Post Types"
-msgstr "Posttyper"
-
 #: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:43
 #, fuzzy
 #| msgid "Post type"
@@ -5564,6 +5565,10 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Your settings rendered an empty result. Try other settings."
+#~ msgstr ""
+#~ "Inställningarna gav ett tomt resultat. Prova att ändra inställningarna."
 
 #~ msgid "Flat card"
 #~ msgstr "Platt kort"
@@ -6544,6 +6549,3 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "View "
 #~ msgstr "Visa"
-
-msgid "Your settings rendered an empty result. Try other settings."
-msgstr "Inställningarna gav ett tomt resultat. Prova att ändra inställningarna."
