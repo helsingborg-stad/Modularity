@@ -47,13 +47,25 @@
             ])
 
                 @typography([
-                    'element'       => 'span',
+                    'element'       => 'h5',
                     'attributeList' => [
                        ' js-filter-data' => ''
                     ]
                 ])
                     {{ $row['title'] }} ({{ $row['type'] }}, {{ $row['filesize'] }})
                 @endtypography
+
+                @if(!empty($row['description']))
+                    @typography([
+                        'element'       => 'span',
+                        'variant' => 'meta',
+                        'attributeList' => [
+                        ' js-filter-data' => ''
+                        ]
+                    ])
+                        {{ $row['description'] }}
+                    @endtypography
+                @endif
 
             @endcollection__item
         @endforeach

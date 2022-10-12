@@ -53,13 +53,41 @@ class FilesList extends \Modularity\Module
             $rows[$key] = [
                 'title' => $item['file']['title'],
                 'href' => $item['file']['url'],
+                'description' => $item['file']['description'],
                 'type' => pathInfo($item['file']['url'], PATHINFO_EXTENSION),
                 'filesize' => $this->formatBytes($item['file']['filesize']),
-                'icon' => $item['file']['subtype'] === 'pdf' ? 'picture_as_pdf' : 'insert_drive_file'
-            ];        
+                'icon' => $this->getIconClass($item['file']['subtype'])
+            ];
         }
 
         return $rows;
+    }
+
+    /**
+     * Get icon class from type
+     *
+     * @return string
+     */
+    private function getIconClass($type): string
+    {
+        switch ($type) {
+            case 'mp4':
+            case 'mov':
+            case 'wmv':
+            case 'avi':
+            case 'webm':
+                return 'video_file';
+            case 'mp3':
+            case 'aac':
+            case 'wav':
+            case 'aiff':
+            case 'flac':
+                return 'audio_file';
+            case 'pdf':
+                return 'picture_as_pdf';
+        }
+
+        return 'insert_drive_file';
     }
 
     /**
