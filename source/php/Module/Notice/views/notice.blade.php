@@ -1,9 +1,9 @@
 @notice([
-    'stretch' => $stretch,
+    'stretch' => (!is_admin() && isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch ?? false),
     'type' => $notice_type,
     'message' => [
         'title' => !$hideTitle && !empty($postTitle) ? $postTitle : null,
-        'text' => $moduleHeading . $notice_text,
+        'text' => $notice_text,
     ],
     'icon' => $icon,
     'context' => ['notice', 'module.notice']

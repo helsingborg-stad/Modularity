@@ -12,6 +12,14 @@ class Module
     public $extractedPostProperties = array();
 
     /**
+     * A place to store the id of a module instance. 
+     * Adds block support, which dosen't require a ID (works well with null). 
+     *
+     * @var int|null
+     */
+    public $ID = null;
+
+    /**
      * The slug of the module
      * Example: image
      * @var string
@@ -52,6 +60,13 @@ class Module
      * @var array
      */
     public $supports = array();
+
+    /**
+     * What the block block supports
+     * Example: align (full width etc)
+     * @var array
+     */
+    public $blockSupports = array();
 
     /**
      * Any module plugins (path to file to include)
@@ -126,6 +141,12 @@ class Module
     public $data = array();
 
     /**
+     * Module mode
+     * @var string
+     */
+    public $mode = 'module'; //May be either 'module' or 'block'.
+
+    /**
      * Constructs a module
      * @param int $postId
      */
@@ -157,7 +178,6 @@ class Module
         }
 
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
-        add_filter('the_title', array($this, 'setBlockTitle'), 10, 2);
 
         if (is_a($post, '\WP_Post') && $post->post_title) {
             $this->data['postTitle'] = $post->post_title;
@@ -167,19 +187,6 @@ class Module
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
         }
-    }
-
-    /**
-     * If used as block and has a custom_block_title field return it,
-     * otherwise return the post title
-     * @return string
-     */
-    public function setBlockTitle( $title, $id = null ) {    
-        if(!$title && $titleField = get_field('custom_block_title')) {
-            return $titleField;
-        }
-
-        return $title;
     }
 
     public function init()
@@ -229,7 +236,7 @@ class Module
         }
     }
 
-    public function data() : array
+    public function data(): array
     {
         return array();
     }
