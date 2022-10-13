@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-10-12 15:22+0200\n"
-"PO-Revision-Date: 2022-10-12 15:24+0200\n"
+"POT-Creation-Date: 2022-09-23 14:50+0200\n"
+"PO-Revision-Date: 2022-10-03 11:15+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.12\n"
+"X-Generator: Poedit 3.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -21,6 +21,17 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: App.php:155 App.php:185 App.php:225
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:422
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:98
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:145
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:83
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:129
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:467
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:181
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:485
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/ui-settings.php:63
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/ui-term.php:87
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/ui-user.php:154
 msgid "Edit"
 msgstr "Redigera"
 
@@ -30,10 +41,13 @@ msgid "Modules"
 msgstr "Moduler"
 
 #: App.php:186 App.php:226
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:502
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:510
 msgid "Import"
 msgstr "Importera"
 
 #: App.php:187 App.php:227
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:423
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -50,6 +64,12 @@ msgid "Saving…"
 msgstr "Sparar…"
 
 #: App.php:191 App.php:231
+#: vendor/wpackagist-plugin/acf-extended/includes/assets.php:100
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:145
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/data.php:81
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content.php:616
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content.php:622
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:129
 msgid "Close"
 msgstr "Stäng"
 
@@ -218,6 +238,8 @@ msgid "facebook"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-contacts.php:284
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:288
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:297
 msgid "URL"
 msgstr "URL"
 
@@ -344,6 +366,9 @@ msgstr "Slider"
 #: source/php/AcfFields/php/mod-slider.php:195
 #: source/php/AcfFields/php/mod-slider.php:492 source/php/BlockManager.php:361
 #: source/php/ModuleManager.php:603
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:92
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:103
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:79
 msgid "Title"
 msgstr "Titel"
 
@@ -454,6 +479,7 @@ msgid "Background video"
 msgstr "Bakgrundsbild"
 
 #: source/php/AcfFields/php/mod-hero.php:138
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:66
 msgid "Size"
 msgstr "Storlek"
 
@@ -462,6 +488,7 @@ msgid "Small"
 msgstr "Liten"
 
 #: source/php/AcfFields/php/mod-hero.php:160
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:71
 msgid "Normal"
 msgstr "Normal"
 
@@ -673,6 +700,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-index.php:311
 #: source/php/AcfFields/php/mod-posts-displau.php:39
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-column.php:55
 msgid "Columns"
 msgstr "Kolumner"
 
@@ -745,6 +773,12 @@ msgid "Image/logotype"
 msgstr "Bild/Logotyp"
 
 #: source/php/AcfFields/php/mod-logogrid.php:53
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:24
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:25
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:199
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:331
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:24
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:24
 msgid "Name"
 msgstr "Namn"
 
@@ -923,6 +957,10 @@ msgstr "Ja, slumpa storlekar i rutnätet automatiskt"
 
 #: source/php/AcfFields/php/mod-posts-displau.php:210
 #: source/php/AcfFields/php/mod-rss.php:71
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:94
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:105
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:146
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:156
 msgid "Fields"
 msgstr "Fält"
 
@@ -1093,6 +1131,7 @@ msgid "Do not sort"
 msgstr "Sortera inte"
 
 #: source/php/AcfFields/php/mod-posts-sorting.php:25
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:198
 msgid "ID"
 msgstr "ID"
 
@@ -1205,6 +1244,9 @@ msgid "Column values if expandable list is selected."
 msgstr "Kolumnvärden om expanderbar lista är vald."
 
 #: source/php/AcfFields/php/mod-posts-source.php:309
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:74
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-hidden.php:43
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:200
 msgid "Value"
 msgstr "Värde"
 
@@ -1244,6 +1286,7 @@ msgid "Summary"
 msgstr "Sammanfattning"
 
 #: source/php/AcfFields/php/mod-rss.php:84
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/author.php:65
 msgid "Author"
 msgstr "Författare"
 
@@ -1899,6 +1942,8 @@ msgstr "Inga tillgängliga alternativ"
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:134
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:147
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:203
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:297
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:468
 msgid "No"
 msgstr "Nej"
 
@@ -2005,6 +2050,8 @@ msgstr "Nej"
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:133
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:146
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v5.php:204
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:301
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:469
 msgid "Yes"
 msgstr "Ja"
 
@@ -2272,20 +2319,33 @@ msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida."
 
 #: source/php/Module/Iframe/Iframe.php:32
+#: source/php/Module/Iframe/Iframe.php:38
 msgid "We need your consent to continue"
-msgstr ""
+msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
 #: source/php/Module/Iframe/Iframe.php:33
+#, php-format
+msgid ""
+"This part of the website shows content from %s. By continuing, <a href=\"%s"
+"\"> you are accepting GDPR and privacy policy</a>."
+msgstr ""
+"Den här delen av hemsidan visar innehåll från %s. Genom att fortsätta "
+"godkänner du <a href=\"%s\">GDPR och Sekretesspolicyn</a>."
+
+#: source/php/Module/Iframe/Iframe.php:34
+#: source/php/Module/Iframe/Iframe.php:40
+msgid "I understand, continue."
+msgstr "Jag förstår, fortsätt."
+
+#: source/php/Module/Iframe/Iframe.php:39
 msgid ""
 "This part of the website shows content from another website. By continuing, "
 "you are accepting GDPR and privacy policy."
 msgstr ""
+"Den här delen av hemsidan visar innehåll från en annan webbplats. Genom att "
+"fortsätta godkänner du GDPR och Sekretesspolicyn."
 
-#: source/php/Module/Iframe/Iframe.php:34
-msgid "I understand, continue."
-msgstr ""
-
-#: source/php/Module/Iframe/Iframe.php:44
+#: source/php/Module/Iframe/Iframe.php:50
 msgid ""
 "Your iframe link must start with http<strong>s</strong>://. Links without "
 "this prefix will not display."
@@ -2293,9 +2353,9 @@ msgstr ""
 "Dina iframe url måste börja med http<strong>s</strong>://. Länkar utan detta "
 "prefix kommer inte att visas."
 
-#: source/php/Module/Iframe/Iframe.php:65
+#: source/php/Module/Iframe/Iframe.php:71
 msgid "We need your consent to continue."
-msgstr ""
+msgstr "Vi behöver ditt godkännande för att ta dig vidare."
 
 #: source/php/Module/Image/Image.php:20
 msgid "Outputs an image"
@@ -2367,6 +2427,7 @@ msgid "Outputs a notice"
 msgstr "Visar en notis"
 
 #: source/php/Module/Posts/Posts.php:20 source/php/Module/Posts/Posts.php:21
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:26
 msgid "Posts"
 msgstr "Inlägg"
 
@@ -2472,6 +2533,13 @@ msgstr "Sliders"
 #: source/php/Module/Slider/Slider.php:28
 msgid "Outputs multiple images or videos in a sliding apperance."
 msgstr "Visar flera bilder eller filmer i ett bildspel."
+
+#: source/php/Module/Slider/Slider.php:107
+#: templates/module/modularity-mod-latest-news.php:61
+#: templates/module/modularity-mod-mainnews.php:45
+#: vendor/wpackagist-plugin/acf-extended/includes/assets.php:101
+msgid "Read more"
+msgstr "Läs mer"
 
 #: source/php/Module/Spacer/Spacer.php:12
 msgid "Spacer"
@@ -2596,6 +2664,9 @@ msgid "Calendar"
 msgstr "Kalender"
 
 #: source/php/Module/WpWidget/WpWidget.php:154
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:68
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:94
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:168
 msgid "Categories"
 msgstr "Kategorier"
 
@@ -2703,6 +2774,11 @@ msgid "Sidebar & Module Restrictions"
 msgstr "Begränsningar för ytor"
 
 #: source/php/Options/AcfFields/acf-module-restrictions.php:29
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/settings.php:469
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/settings.php:589
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/settings.php:601
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/settings.php:122
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content.php:55
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -2735,6 +2811,7 @@ msgid "Archive modules"
 msgstr "Arkivmoduler"
 
 #: source/php/Options/ArchivesList.php:10
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-archive.php:169
 msgid "Archive"
 msgstr "Arkiv"
 
@@ -2743,6 +2820,7 @@ msgid "There's no archives to display"
 msgstr "Det finns inga arkiv att visa"
 
 #: source/php/Options/ArchivesList.php:24
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-archive.php:200
 msgid "Post Type Archive"
 msgstr "Posttyp-arkiv"
 
@@ -2751,6 +2829,10 @@ msgid "Has modules"
 msgstr "Har moduler"
 
 #: source/php/Options/ArchivesList.php:60
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:129
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:315
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:175
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:262
 msgid "View"
 msgstr "Visa"
 
@@ -2763,6 +2845,9 @@ msgid "Modularity Options"
 msgstr "Modularity inställningar"
 
 #: source/php/Options/General.php:11
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/views/html-options-list.php:3
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:21
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:46
 msgid "Options"
 msgstr "Inställningar"
 
@@ -2927,21 +3012,47 @@ msgstr "Val"
 
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:61
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:65
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:61
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:81
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:70
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:70
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:39
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:70
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:840
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:69
 msgid "Default Value"
 msgstr "Standardvärde"
 
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:62
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:66
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:82
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:71
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:71
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:71
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:841
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:70
 msgid "Enter each default value on a new line"
 msgstr "Ange varje standardvärde på en ny rad"
 
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:78
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:73
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:102
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:91
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:91
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:91
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:880
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:77
 msgid "Allow Null?"
 msgstr "Tillåt Noll?"
 
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v4.php:97
 #: vendor/clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select-v5.php:86
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:222
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:116
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:116
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:116
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1000
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:102
 msgid "Select multiple values?"
 msgstr "Välj flera värden?"
 
@@ -3056,6 +3167,13 @@ msgstr "Måste vara en giltig URL"
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.7/acf-table-v4.php:25
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/tags/1.3.8/acf-table-v4.php:25
 #: vendor/johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table-v4.php:25
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-actions.php:371
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:326
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:290
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:290
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:290
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1041
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:276
 msgid "Layout"
 msgstr "Layout"
 
@@ -3302,6 +3420,7 @@ msgstr "Höjd"
 
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:157
 #: vendor/ooksanen/acf-focuspoint/fields/class-acffp-acf-field-focuspoint-v5.php:186
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-file.php:31
 msgid "File size"
 msgstr "Filstorlek"
 
@@ -3347,6 +3466,2232 @@ msgstr "Bildens höjd får inte överstiga %dpx."
 msgid "File size must not exceed %d&nbsp;KB."
 msgstr "Filstorleken får inte överstiga %d&nbsp;KB."
 
+#: vendor/wpackagist-plugin/acf-extended/includes/acfe-screen-functions.php:49
+#, fuzzy
+#| msgid "Fields"
+msgid "Custom Fields"
+msgstr "Fält"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/acfe-user-functions.php:22
+msgid "Super Admin"
+msgstr "Superadmin"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/plugins.php:26
+#, fuzzy
+#| msgid "Fields"
+msgid "Advanced Custom Fields"
+msgstr "Fält"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-export.php:18
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-export.php:19
+msgid "Export Block Types"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-export.php:20
+#, fuzzy
+#| msgid "Select Post"
+msgid "Select Block Types"
+msgstr "Välj inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-export.php:27
+msgid "No block type available."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-export.php:28
+#, fuzzy
+#| msgid "Not selected"
+msgid "No block types selected"
+msgstr "Inte vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-import.php:19
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/block-types-import.php:20
+msgid "Import Block Types"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-export.php:36
+#, fuzzy, php-format
+#| msgid "Edit Field Group"
+msgid "Exported 1 field group."
+msgid_plural "Exported %s field groups."
+msgstr[0] "Redigera fältgrupp"
+msgstr[1] "Redigera fältgrupp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-local.php:13
+#, fuzzy
+#| msgid "Edit Field Group"
+msgid "Export Local Field Groups"
+msgstr "Redigera fältgrupp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-local.php:28
+#, php-format
+msgid "Imported 1 field group"
+msgid_plural "Imported %s field groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-local.php:50
+#, fuzzy
+#| msgid "Not selected"
+msgid "No field group selected"
+msgstr "Inte vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-local.php:140
+msgid ""
+"The following code can be used to register a local version of the selected "
+"field group(s). A local field group can provide many benefits such as faster "
+"load times, version control & dynamic fields/settings. Simply copy and paste "
+"the following code to your theme's functions.php file or include it within "
+"an external file."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-local.php:174
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-export.php:105
+msgid "Copy to clipboard"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/field-groups-local.php:202
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-export.php:133
+msgid "Copied"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-export.php:18
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-export.php:19
+#, fuzzy
+#| msgid "Import"
+msgid "Export Forms"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-export.php:20
+#, fuzzy
+#| msgid "Select Post"
+msgid "Select Forms"
+msgstr "Välj inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-export.php:27
+#, fuzzy
+#| msgid "No options avabile"
+msgid "No form available."
+msgstr "Inga tillgängliga alternativ"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-export.php:28
+#, fuzzy
+#| msgid "No image selected"
+msgid "No forms selected"
+msgstr "Ingen bild vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-import.php:19
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/forms-import.php:20
+#, fuzzy
+#| msgid "Import"
+msgid "Import Forms"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-export.php:80
+#, fuzzy
+#| msgid "Import"
+msgid "Export File"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-export.php:84
+msgid "Generate PHP"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-export.php:98
+msgid ""
+"You can copy and paste the following code to your theme's functions.php file "
+"or include it within an external file."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-import.php:24
+#, fuzzy
+#| msgid "Select values"
+msgid "Select File"
+msgstr "Valda värden"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-import.php:35
+#, fuzzy
+#| msgid "Import"
+msgid "Import File"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-import.php:100
+#, fuzzy
+#| msgid "Not selected"
+msgid "No file selected"
+msgstr "Inte vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-import.php:111
+msgid "Error uploading file. Please try again"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-import.php:119
+msgid "Incorrect file type"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/module-import.php:131
+msgid "Import file empty"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-export.php:18
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-export.php:19
+msgid "Export Options Pages"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-export.php:20
+#, fuzzy
+#| msgid "Select a Page"
+msgid "Select Options Pages"
+msgstr "Välj en sida"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-export.php:27
+#, fuzzy
+#| msgid "No options avabile"
+msgid "No options page available."
+msgstr "Inga tillgängliga alternativ"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-export.php:28
+#, fuzzy
+#| msgid "No image selected"
+msgid "No options pages selected"
+msgstr "Ingen bild vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-import.php:19
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/options-pages-import.php:20
+msgid "Import Options Pages"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-export.php:18
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-export.php:19
+#, fuzzy
+#| msgid "Post types"
+msgid "Export Post Types"
+msgstr "Posttyper"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-export.php:20
+#, fuzzy
+#| msgid "Select Post"
+msgid "Select Post Types"
+msgstr "Välj inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-export.php:27
+#, fuzzy
+#| msgid "No options avabile"
+msgid "No post type available."
+msgstr "Inga tillgängliga alternativ"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-export.php:28
+#, fuzzy
+#| msgid "Not selected"
+msgid "No post types selected"
+msgstr "Inte vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-import.php:19
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/post-types-import.php:20
+#, fuzzy
+#| msgid "Post types"
+msgid "Import Post Types"
+msgstr "Posttyper"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-export.php:18
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-export.php:19
+msgid "Export Taxonomies"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-export.php:20
+#, fuzzy
+#| msgid "Select Post"
+msgid "Select Taxonomies"
+msgstr "Välj inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-export.php:27
+#, fuzzy
+#| msgid "Taxonomy value"
+msgid "No taxonomy available."
+msgstr "Taxonomivärde"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-export.php:28
+#, fuzzy
+#| msgid "No image selected"
+msgid "No taxonomies selected"
+msgstr "Ingen bild vald"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-import.php:19
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/tools/taxonomies-import.php:20
+#, fuzzy
+#| msgid "Import"
+msgid "Import Taxonomies"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/views/html-options-edit.php:4
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:486
+#, fuzzy
+#| msgid "Modularity Options"
+msgid "Edit Option"
+msgstr "Modularity inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/views/html-options-edit.php:6
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:481
+#, fuzzy
+#| msgid "Options"
+msgid "Add Option"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/admin/views/html-options-list.php:4
+#, fuzzy
+#| msgctxt "add new button"
+#| msgid "Add New"
+msgid "Add New"
+msgstr "Lägg till ny"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/assets.php:102
+#, fuzzy
+#| msgid "Expandable List"
+msgid "Details"
+msgstr "Expanderbar lista"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/assets.php:103
+msgid "Debug"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/compatibility.php:63
+#, fuzzy
+#| msgid ""
+#| "To get the full expirience of the <strong>Modularity</strong> plugin, "
+#| "please activate the <a href=\"http://www.advancedcustomfields.com/pro/\" "
+#| "target=\"_blank\">Advanced Custom Fields Pro</a> plugin."
+msgid ""
+"ACF Extended requires <a href=\"https://www.advancedcustomfields.com/pro/\" "
+"target=\"_blank\">Advanced Custom Fields PRO</a> (minimum: 5.8)."
+msgstr ""
+"För att kunna utnyttja <strong>Modularity</strong> maximalt rekommenderar vi "
+"dig att installera och aktivera pluginet <a href=\"http://www."
+"advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields "
+"Pro</a>."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-advanced.php:42
+#, fuzzy
+#| msgid "Iframe settings"
+msgid "Advanced settings"
+msgstr "Iframe-inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-advanced.php:47
+msgid "Enable advanced fields settings & validation"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:44
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:45
+#, fuzzy
+#| msgid "Categories"
+msgctxt "Category"
+msgid "Categories"
+msgstr "Kategorier"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:46
+#, fuzzy
+#| msgid "Categories"
+msgid "Search categories"
+msgstr "Kategorier"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:47
+#, fuzzy
+#| msgid "Categories"
+msgid "All categories"
+msgstr "Kategorier"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:48
+#, fuzzy
+#| msgid "category"
+msgid "Parent category"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:49
+#, fuzzy
+#| msgid "category"
+msgid "Parent category:"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:50
+#, fuzzy
+#| msgid "category"
+msgid "Edit category"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:51
+#, fuzzy
+#| msgid "category"
+msgid "Update category"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:52
+#, fuzzy
+#| msgid "category"
+msgid "Add New category"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:53
+#, fuzzy
+#| msgid "category"
+msgid "New category name"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-category.php:54
+msgid "category"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-hide-on-screen.php:42
+#, fuzzy
+#| msgid "Editor"
+msgid "Block Editor"
+msgstr "Redigerare"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:28
+#, fuzzy
+#| msgid "New Field Group"
+msgid "Field group"
+msgstr "Ny fältgrupp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:41
+#, fuzzy
+#| msgid "Custom field updated."
+msgid "Custom meta data"
+msgstr "Anpassat fält uppdaterat."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:44
+msgid "Add custom meta data to the field group."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:47
+#, fuzzy
+#| msgid "Meta"
+msgid "+ Meta"
+msgstr "Meta"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:57
+msgid "Key"
+msgstr "Nyckel"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:94
+#, fuzzy
+#| msgid "Notes"
+msgid "Note"
+msgstr "Anteckningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:98
+msgid "Add personal note. Only visible to administrators"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:108
+#, fuzzy
+#| msgid "Field group updated."
+msgid "Field group data"
+msgstr "Fältgrupp uppdaterad."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:109
+msgid "View raw field group data, for development use"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:137
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group-meta.php:145
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/data.php:82
+#, fuzzy
+#| msgid "Data type"
+msgid "Data"
+msgstr "Datatyp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:54
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/settings.php:85
+#, fuzzy
+#| msgid "Settings"
+msgid "Advanced Settings"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:103
+#, fuzzy
+#| msgid "Display mode"
+msgid "Display title"
+msgstr "Visningsläge"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:104
+msgid "Render this title on edit post screen"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:129
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:519
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:527
+msgid "Sync available"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:130
+msgid "Local json file is different from the version in database."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:141
+msgid "Synchronize"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:150
+#, fuzzy
+#| msgid "View Page"
+msgid "Review changes"
+msgstr "Visa sida"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:252
+msgid "Auto Sync"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:273
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/permissions.php:22
+#, fuzzy
+#| msgid "Revision"
+msgid "Permissions"
+msgstr "Revision"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-group.php:277
+msgid ""
+"Select user roles that are allowed to view and edit this field group in post "
+"edition"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups-local.php:72
+msgid "Local"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups-local.php:146
+#, fuzzy, php-format
+#| msgid "Select Post"
+msgid "Select %s"
+msgstr "Välj inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups-local.php:224
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:712
+#, fuzzy
+#| msgid "Import"
+msgid "Export PHP"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups-local.php:225
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:713
+#, fuzzy
+#| msgid "Import"
+msgid "Export Json"
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups-local.php:226
+msgid "Sync to database"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:93
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:104
+#, fuzzy
+#| msgid "Data source"
+msgid "Source"
+msgstr "Datakälla"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:95
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:106
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:128
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:147
+#, fuzzy
+#| msgid "Core options"
+msgid "Location"
+msgstr "Core inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:96
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:107
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:129
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:149
+#, fuzzy
+#| msgid "Load more"
+msgid "Load"
+msgstr "Ladda in fler"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:113
+msgid "PHP Sync"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:116
+msgid "Json Sync"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:132
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:152
+msgid "PHP"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:135
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:155
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:86
+msgid "Json"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:250
+msgid "Theme/Plugin"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:372
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:379
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:537
+msgid "Synchronized"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:372
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:373
+msgid "Warning: Duplicated PHP code found in theme/plugin."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:399
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:557
+msgid "Awaiting save"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:399
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:400
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:407
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:557
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:558
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:565
+#, fuzzy
+#| msgid "Slider format"
+msgid "Save path"
+msgstr "Sliderformat"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:502
+msgid "Sync"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:510
+#, fuzzy
+#| msgid "Pending Review"
+msgid "Review"
+msgstr "Inväntar granskning"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:643
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:653
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/module.php:322
+#, fuzzy
+#| msgid "Disabled"
+msgctxt "post status"
+msgid "Disabled"
+msgstr "Avaktiverad"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:664
+#, fuzzy
+#| msgid "Extra info title"
+msgid "Alternative title"
+msgstr "Extra info titel"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:780
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:790
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:800
+msgid "Located"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:783
+msgid "in theme:"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:793
+msgid "in plugin:"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/field-groups/field-groups.php:803
+msgid "in:"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/bidirectional.php:38
+#, fuzzy
+#| msgid "Multidimensional"
+msgid "Bidirectional"
+msgstr "Multidimensionell"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/bidirectional.php:41
+msgid "Set the field as bidirectional"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/data.php:53
+#, fuzzy
+#| msgid "No data available in table"
+msgid "Field data unavailable"
+msgstr "Inga rader i tabellen"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/data.php:65
+msgid "Post object unavailable"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/data.php:68
+#, fuzzy
+#| msgid "Fields"
+msgid "Field Data"
+msgstr "Fält"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/permissions.php:25
+msgid "Restrict user roles that are allowed to view and edit this field"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/settings.php:88
+msgid "Change field settings based on location"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/settings.php:90
+#, fuzzy
+#| msgid "Settings"
+msgid "Add settings"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/settings.php:127
+msgid "+"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/validation.php:141
+msgid "Advanced Validation"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/validation.php:144
+msgid "Validate value against rules"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/validation.php:146
+#, fuzzy
+#| msgid "Add slide"
+msgid "Add validation"
+msgstr "Lägg till slide"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/validation.php:178
+#, fuzzy
+#| msgid "Modules"
+msgid "Rules"
+msgstr "Moduler"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields-settings/validation.php:183
+msgid "+ AND"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:15
+#, fuzzy
+#| msgid "Page ID"
+msgid "Advanced Link"
+msgstr "Sidans ID"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:170
+#, fuzzy
+#| msgid "Filter posts by taxonomy"
+msgid "Filter by Post Type"
+msgstr "Filtrera efter taxonomi"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:178
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:51
+#, fuzzy
+#| msgid "Post types"
+msgid "All post types"
+msgstr "Posttyper"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:183
+#, fuzzy
+#| msgid "Filter posts by taxonomy"
+msgid "Filter by Taxonomy"
+msgstr "Filtrera efter taxonomi"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:191
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:51
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:713
+msgid "All taxonomies"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:283
+#, fuzzy
+#| msgid "Widget Type"
+msgid "Type"
+msgstr "Typ av widget"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:289
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:316
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-archive.php:198
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-list.php:213
+#, fuzzy
+#| msgid "Posts"
+msgid "Post"
+msgstr "Inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:290
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:336
+msgid "Term"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:358
+#, fuzzy
+#| msgid "Link type"
+msgid "Link text"
+msgstr "Typ av länk"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:367
+#, fuzzy
+#| msgid "Large"
+msgid "Target"
+msgstr "Stor"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:369
+#, fuzzy
+#| msgid "Yes, open link in new window"
+msgid "Open in a new window"
+msgstr "Ja, öppna länken i nytt fönster"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:416
+#, fuzzy
+#| msgid "Select Week"
+msgid "Select Link"
+msgstr "Välj vecka"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-advanced-link.php:421
+#, fuzzy
+#| msgid "Yes, open link in new window"
+msgid "Opens in a new window/tab"
+msgstr "Ja, öppna länken i nytt fönster"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:13
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:80
+#, fuzzy
+#| msgid "Button url"
+msgid "Button"
+msgstr "Knappens länkmål"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:16
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:480
+msgid "Submit"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:66
+#, fuzzy
+#| msgid "Button label"
+msgid "Button value"
+msgstr "Knappens etikett"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:67
+msgid "Set a default button value"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:74
+#, fuzzy
+#| msgid "Button label"
+msgid "Button type"
+msgstr "Knappens etikett"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:75
+#, fuzzy
+#| msgid "Enter button text."
+msgid "Choose the button type"
+msgstr "Ange knapptext."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:81
+msgid "Input"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:87
+#, fuzzy
+#| msgid "Button label"
+msgid "Button attributes"
+msgstr "Knappens etikett"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:91
+msgid "class"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:100
+#, fuzzy
+#| msgid "Tid"
+msgid "id"
+msgstr "Tid"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:106
+msgid "Before HTML"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:107
+#, fuzzy
+#| msgid "Custom Table Class for the Front End"
+msgid "Custom HTML before the button"
+msgstr "Anpassad tabell-klass för front end"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:115
+msgid "After HTML"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:116
+msgid "Custom HTML after the button"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:124
+msgid "Ajax Request"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:125
+msgid "Trigger ajax event on click"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-button.php:125
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-actions.php:66
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-async.php:47
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:88
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:116
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-edit.php:57
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-hide.php:48
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:55
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:78
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:106
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:52
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-settings.php:48
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-thumbnail.php:49
+msgid "See documentation"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:28
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:27
+msgid "Seamless Style"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:31
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:30
+msgid "Enable better CSS integration: remove borders and padding"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:53
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:47
+#, fuzzy
+#| msgid "Edit module"
+msgid "Edition modal"
+msgstr "Redigera modul"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:56
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:50
+msgid "Edit fields in a modal"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:73
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:58
+msgid "Edition modal: Close button"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:76
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:61
+#, fuzzy
+#| msgid "Display settings"
+msgid "Display close button"
+msgstr "Visningsinställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:93
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:78
+msgid "Edition modal: Text button"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:96
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:81
+msgid "Text displayed in the edition modal button"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:111
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:96
+#, fuzzy
+#| msgid "Edit module"
+msgid "Edition modal: Size"
+msgstr "Redigera modul"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-clone.php:114
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-group.php:99
+#, fuzzy
+#| msgid "Choose image"
+msgid "Choose the modal size"
+msgstr "Välj bild"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:16
+#, fuzzy
+#| msgid "Content"
+msgid "Code Editor"
+msgstr "Innehåll"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:62
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:40
+msgid "Appears when creating a new post"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:70
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:127
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:176
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:176
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:68
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:176
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:905
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:162
+#, fuzzy
+#| msgid "Placeholder Image"
+msgid "Placeholder"
+msgstr "Affischbild"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:71
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:128
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:177
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:177
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:69
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:48
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:177
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:906
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:163
+msgid "Appears within the input"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:79
+#, fuzzy
+#| msgid "Edit module"
+msgid "Editor mode"
+msgstr "Redigera modul"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:80
+#, fuzzy
+#| msgid "Customise the map height"
+msgid "Choose the syntax highlight"
+msgstr "Anpassa karthöjden"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:84
+#, fuzzy
+#| msgid "Text"
+msgid "Text/HTML"
+msgstr "Text"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:85
+#, fuzzy
+#| msgid "Script"
+msgid "JavaScript"
+msgstr "Script"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:87
+#, fuzzy
+#| msgid "RSS"
+msgid "CSS"
+msgstr "RSS"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:88
+msgid "PHP (mixed)"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:89
+msgid "PHP (plain)"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:95
+#, fuzzy
+#| msgid "Show title"
+msgid "Show Lines"
+msgstr "Visa titel"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:104
+msgid "Indent Unit"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:113
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:71
+msgid "Character Limit"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:114
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:72
+msgid "Leave blank for no limit"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:121
+#, fuzzy
+#| msgid "Max Rows"
+msgid "Rows"
+msgstr "Max rader"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:122
+#, fuzzy
+#| msgid "Set a fixed height"
+msgid "Sets the textarea height"
+msgstr "Sätt en fixerad höjd"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:130
+#, fuzzy
+#| msgid "Max Rows"
+msgid "Max rows"
+msgstr "Max rader"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:131
+#, fuzzy
+#| msgid "Customise the map height"
+msgid "Sets the textarea max height"
+msgstr "Anpassa karthöjden"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-code-editor.php:139
+msgid "Return HTML Entities"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-column.php:13
+#, fuzzy
+#| msgid "Columns"
+msgid "Column"
+msgstr "Kolumner"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-column.php:87
+msgid "Endpoint"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-column.php:88
+msgid "Define an endpoint for the previous columns to stop."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-dynamic-render.php:13
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:52
+#, fuzzy
+#| msgid "Dynamic Table"
+msgid "Dynamic Render"
+msgstr "Dynamisk tabell"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-file.php:98
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-image.php:65
+#, fuzzy
+#| msgid "Uploaded to post"
+msgid "Uploader type"
+msgstr "Uppladdad till post"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-file.php:101
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-image.php:68
+msgid "Choose the uploader type"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-actions.php:63
+#, fuzzy
+#| msgid "Additional options"
+msgid "Additional Actions"
+msgstr "Fler inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-actions.php:352
+msgid "Copy layouts"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-actions.php:353
+#, fuzzy
+#| msgid "Slider layout"
+msgid "Paste layouts"
+msgstr "Sliderlayout"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-async.php:44
+msgid "Asynchronous Settings"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:71
+#, fuzzy
+#| msgid "Content"
+msgid "Advanced Flexible Content"
+msgstr "Innehåll"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:74
+msgid "Show advanced Flexible Content settings"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:85
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-repeater.php:14
+msgid "Stylised Button"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:88
+msgid "Better actions buttons integration"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:113
+#, fuzzy
+#| msgid "Hide image"
+msgid "Hide Empty Message"
+msgstr "Dölj bild"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:141
+#, fuzzy
+#| msgid "Usage"
+msgid "Empty Message"
+msgstr "Användning"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:144
+msgid "Text displayed when the flexible field is empty"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:146
+msgid "Click the \"Add Row\" button below to start creating your layout"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:195
+#, fuzzy
+#| msgid "Slider layout"
+msgid "Add layout"
+msgstr "Sliderlayout"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:196
+#, fuzzy
+#| msgid "Deprecated"
+msgid "Duplicate layout"
+msgstr "Utgående"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:197
+#, fuzzy
+#| msgid "Remove"
+msgid "Remove layout"
+msgstr "Ta bort"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-controls.php:198
+msgid "Click to toggle"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-edit.php:54
+#, fuzzy
+#| msgid "Edit Modules"
+msgid "Edit Modal"
+msgstr "Redigera moduler"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-edit.php:57
+msgid "Edit layout content in a modal"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-edit.php:136
+#, fuzzy
+#| msgid "Block settings"
+msgid "Modal settings"
+msgstr "Inställningar för block"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-hide.php:45
+#, fuzzy
+#| msgid "Hide title"
+msgid "Hide Buttons"
+msgstr "Dölj titel"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:55
+msgid "Render the layout using custom template, style & javascript files"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:75
+#, fuzzy
+#| msgid "Dynamic Table"
+msgid "Dynamic Preview"
+msgstr "Dynamisk tabell"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:78
+msgid ""
+"Use layouts render settings to display a dynamic preview in the "
+"administration"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:103
+#, fuzzy
+#| msgid "Filter placeholder"
+msgid "Layouts Placeholder"
+msgstr "Platshållare för filtreringsrutan"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:106
+msgid "Display a placeholder with an icon"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:145
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:27
+msgid "Render"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-preview.php:267
+#, fuzzy
+#| msgid "Slider layout"
+msgid "Edit layout"
+msgstr "Sliderlayout"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:49
+#, fuzzy
+#| msgid "Selected module"
+msgid "Selection Modal"
+msgstr "Vald modul"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:52
+msgid "Select layouts in a modal"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:209
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:25
+#, fuzzy
+#| msgid "category"
+msgid "Category"
+msgstr "kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-select.php:218
+#, fuzzy
+#| msgid "Meta value"
+msgid "Enter value"
+msgstr "Metavärde"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-settings.php:45
+msgid "Layouts Settings Modal"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-settings.php:48
+msgid "Choose a field group to clone and to be used as a configuration modal"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-settings.php:91
+#, fuzzy
+#| msgid "Block settings"
+msgid "Clone settings"
+msgstr "Inställningar för block"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-state.php:37
+#, fuzzy
+#| msgid "Default Value"
+msgid "Default Layouts State"
+msgstr "Standardvärde"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-state.php:40
+msgid "Force layouts to be collapsed or opened"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-state.php:44
+msgid "Default (User preference)"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-thumbnail.php:46
+#, fuzzy
+#| msgid "Hide Thumbnail"
+msgid "Layouts Thumbnails"
+msgstr "Dölj miniatyr"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-thumbnail.php:49
+msgid "Set a thumbnail for each layouts"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content-thumbnail.php:77
+#, fuzzy
+#| msgid "Hide Thumbnail"
+msgid "Thumbnail"
+msgstr "Dölj miniatyr"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content.php:250
+msgid "Add Row"
+msgstr "Lägg till rad"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content.php:273
+#, php-format
+msgid "Click the \"%s\" button below to start creating your layout"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-flexible-content.php:463
+#, fuzzy
+#| msgid "Sort order"
+msgid "Drag to reorder"
+msgstr "Sorteringsordning"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:13
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/taxonomy-list.php:213
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:100
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:101
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:103
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:105
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:180
+msgid "Forms"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:54
+msgid "Allow Forms"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:62
+msgid "All forms"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:67
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:56
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:56
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:56
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:826
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:55
+msgid "Appearance"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:68
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:57
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:57
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:57
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:827
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:56
+#, fuzzy
+#| msgid "Select an apperance for this instance of module"
+msgid "Select the appearance of this field"
+msgstr "Välj ett alternativt utseende för den här modulen"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:73
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:62
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:62
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:62
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:832
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:61
+msgid "Checkbox"
+msgstr "Checkbox"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:74
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:63
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:63
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:63
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:833
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:62
+msgid "Radio Buttons"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:75
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:64
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:64
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:64
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:834
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:63
+#, fuzzy
+#| msgid "Select"
+msgctxt "noun"
+msgid "Select"
+msgstr "Välj"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:89
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:78
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:78
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:78
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:848
+#, fuzzy
+#| msgid "Hex Value"
+msgid "Return Value"
+msgstr "Hex-värde"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:94
+msgid "Form ID"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:95
+#, fuzzy
+#| msgid "First name"
+msgid "Form name"
+msgstr "Förnamn"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:131
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:180
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:180
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:72
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:180
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:909
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:166
+#, fuzzy
+#| msgid "Select"
+msgctxt "verb"
+msgid "Select"
+msgstr "Välj"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:194
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:243
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:243
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:120
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:243
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:972
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:229
+#, fuzzy
+#| msgid "Filter placeholder"
+msgid "Search Input Placeholder"
+msgstr "Platshållare för filtreringsrutan"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:195
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:244
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:244
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:121
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:244
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:973
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:230
+msgid "Appears within the search input"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:240
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:134
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:134
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:134
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:862
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:120
+msgid "Stylised UI"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:259
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:153
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:153
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:153
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1018
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:139
+msgid "Use AJAX to lazy load choices?"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:282
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:271
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:271
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:271
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:257
+msgid "Other"
+msgstr "Annat"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:287
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:276
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:276
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:276
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:262
+msgid "Add 'other' choice to allow for custom values"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:302
+#, fuzzy
+#| msgid "Other"
+msgid "Save Other"
+msgstr "Annat"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:307
+msgid "Save 'other' values to the field's choices"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:332
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:296
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:296
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:296
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1047
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:282
+#, fuzzy
+#| msgid "Repeat Vertically"
+msgid "Vertical"
+msgstr "Repetera vertikalt"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:333
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:297
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:297
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:297
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1048
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:283
+#, fuzzy
+#| msgid "Horizontal cards"
+msgid "Horizontal"
+msgstr "Horisontella kort"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:355
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:319
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:319
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:319
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1070
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:305
+msgid "Toggle"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:356
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:320
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:320
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:320
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1071
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:306
+msgid "Prepend an extra checkbox to toggle all choices"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:373
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:337
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:337
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:49
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:337
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:323
+#, fuzzy
+#| msgid "Allow Null?"
+msgid "Allow Custom"
+msgstr "Tillåt Noll?"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:378
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:342
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:342
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-select.php:54
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:342
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:328
+msgid "Allow 'custom' values to be added"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:393
+#, fuzzy
+#| msgid "Slider format"
+msgid "Save Custom"
+msgstr "Sliderformat"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-forms.php:398
+msgid "Save 'custom' values to the field's choices"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-hidden.php:13
+msgid "Hidden"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-hidden.php:44
+msgid "Default value in the hidden input"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-image.php:81
+#, fuzzy
+#| msgid "Use featured image"
+msgid "Featured thumbnail"
+msgstr "Använd utvald bild"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-image.php:84
+msgid "Make this image the featured thumbnail"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-object.php:25
+msgid "Allow & Save Custom value"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-object.php:30
+msgid "Save 'custom' values as new post"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-object.php:35
+msgid "New Post Arguments"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:13
+#, fuzzy
+#| msgid "Post items"
+msgid "Post Statuses"
+msgstr "Inläggsobjekt"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:43
+#, fuzzy
+#| msgid "Post items"
+msgid "Allow Post Status"
+msgstr "Inläggsobjekt"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:51
+#, fuzzy
+#| msgid "Post items"
+msgid "All post statuses"
+msgstr "Inläggsobjekt"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:83
+#, fuzzy
+#| msgid "Post items"
+msgid "Post status object"
+msgstr "Inläggsobjekt"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-statuses.php:84
+#, fuzzy
+#| msgid "Post items"
+msgid "Post status name"
+msgstr "Inläggsobjekt"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:13
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:26
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:25
+#, fuzzy
+#| msgid "Post types"
+msgid "Post Types"
+msgstr "Posttyper"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:43
+#, fuzzy
+#| msgid "Post type"
+msgid "Allow Post Type"
+msgstr "Posttyp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:83
+#, fuzzy
+#| msgid "Post Type Select"
+msgid "Post type object"
+msgstr "Posttyp-väljare"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-post-types.php:84
+#, fuzzy
+#| msgid "Post type"
+msgid "Post type name"
+msgstr "Posttyp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:11
+msgid "Google reCaptcha"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:33
+#, fuzzy
+#| msgid "Revision"
+msgid "Version"
+msgstr "Revision"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:34
+msgid "Select the reCaptcha version"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:38
+msgid "reCaptcha V2"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:39
+msgid "reCaptcha V3"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:45
+msgid "Theme"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:46
+msgid "Select the reCaptcha theme"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:50
+#, fuzzy
+#| msgid "Right"
+msgid "Light"
+msgstr "Höger"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:51
+msgid "Dark"
+msgstr "Mörk"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:67
+msgid "Select the reCaptcha size"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:72
+#, fuzzy
+#| msgid "Compact mode"
+msgid "Compact"
+msgstr "Kompakt visningsläge"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:87
+#, fuzzy
+#| msgid "Hide image"
+msgid "Hide logo"
+msgstr "Dölj bild"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:88
+msgid "Hide the reCaptcha logo"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:105
+#, fuzzy
+#| msgid "Meta key"
+msgid "Site key"
+msgstr "Metanyckel"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:106
+msgid ""
+"Enter the site key. <a href=\"https://www.google.com/recaptcha/admin\" "
+"target=\"_blank\">reCaptcha API Admin</a>"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:113
+#, fuzzy
+#| msgid "Secret"
+msgid "Secret key"
+msgstr "Hemlig"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:114
+msgid ""
+"Enter the secret key. <a href=\"https://www.google.com/recaptcha/admin\" "
+"target=\"_blank\">reCaptcha API Admin</a>"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:242
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-recaptcha.php:248
+msgid "An error has occured"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-repeater.php:17
+msgid "Better row button integration"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:13
+msgid "Slug"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:47
+#, fuzzy
+#| msgid "Placeholder Image"
+msgid "Placeholder Text"
+msgstr "Affischbild"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:55
+msgid "Prepend"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:56
+msgid "Appears before the input"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:63
+msgid "Append"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:64
+msgid "Appears after the input"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-slug.php:84
+#, fuzzy, php-format
+#| msgid "Image width must not exceed %dpx."
+msgid "Value must not exceed %d characters"
+msgstr "Bildens bredd får inte överstiga %dpx."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:13
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:25
+#, fuzzy
+#| msgid "Taxonomy"
+msgid "Taxonomies"
+msgstr "Kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:43
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:705
+#, fuzzy
+#| msgid "Taxonomy"
+msgid "Allow Taxonomy"
+msgstr "Kategori"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:83
+#, fuzzy
+#| msgid "Taxonomy type"
+msgid "Taxonomy object"
+msgstr "Taxonomi"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomies.php:84
+#, fuzzy
+#| msgid "Taxonomy value"
+msgid "Taxonomy name"
+msgstr "Taxonomivärde"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:16
+#, fuzzy
+#| msgid "Taxonomy filter"
+msgid "Taxonomy Terms"
+msgstr "Filtrera taxomnomi"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:798
+#, fuzzy
+#| msgid "Allow filtering"
+msgid "Allow Terms"
+msgstr "Tillåt filtrering"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:807
+msgid "All terms"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:813
+msgid "Terms_level"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:819
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-all.php:25
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-archive.php:220
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-list.php:237
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/taxonomy-list.php:223
+#, fuzzy
+#| msgid "All "
+msgid "All"
+msgstr "Alla"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:853
+#, fuzzy
+#| msgid "Image caption"
+msgid "Term object"
+msgstr "Bildtext"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:854
+#, fuzzy
+#| msgid "Username"
+msgid "Term name"
+msgstr "Användarnamn"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:855
+msgid "Term ID"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1088
+#, fuzzy
+#| msgid "Slider format"
+msgid "Save Terms"
+msgstr "Sliderformat"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1089
+msgid "Connect selected terms to the post"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1097
+#, fuzzy
+#| msgid "Load more"
+msgid "Load Terms"
+msgstr "Ladda in fler"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-taxonomy-terms.php:1098
+msgid "Load value from posts terms"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-textarea.php:11
+#, fuzzy
+#| msgid "Hide module"
+msgid "Code mode"
+msgstr "Dölj modulen"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-textarea.php:14
+msgid ""
+"Switch font family to monospace and allow tab indent. For a more advanced "
+"code editor, please use the <code>Code Editor</code> field type"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:13
+#, fuzzy
+#| msgid "Fields"
+msgid "User Roles"
+msgstr "Fält"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:42
+msgid "Allow User Role"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/fields/field-user-roles.php:50
+msgid "All user roles"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-archive.php:42
+#, php-format
+msgid "Archive <span class=\"count\">(%s)</span>"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-archive.php:121
+#, fuzzy
+#| msgid "Permalink"
+msgid "Permalink:"
+msgstr "Permalänk"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-list.php:198
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/taxonomy-list.php:198
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:510
+msgid "Update"
+msgstr "Uppdatera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/post-type-list.php:215
+#, fuzzy
+#| msgid "Post types"
+msgid "Post Type List"
+msgstr "Posttyper"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/locations/taxonomy-list.php:215
+#, fuzzy
+#| msgid "Taxonomy filter"
+msgid "Taxonomy List"
+msgstr "Filtrera taxomnomi"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:175
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:178
+#, fuzzy
+#| msgid "New Field Group"
+msgid "Field Groups"
+msgstr "Ny fältgrupp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/block-types.php:1043
+#, fuzzy
+#| msgid "Dynamic Table"
+msgid "Dynamic Block Type"
+msgstr "Dynamisk tabell"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:125
+msgid "No orphan meta found"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:129
+#, fuzzy
+#| msgid "Delete"
+msgid "Deleted meta"
+msgstr "Radera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:472
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:515
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:182
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:234
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:502
+msgid "Delete"
+msgstr "Radera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:506
+#, fuzzy
+#| msgid "Post article"
+msgid "Select bulk action"
+msgstr "Inläggsartikel"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:514
+#, fuzzy
+#| msgid "Options"
+msgid "Bulk Actions"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:518
+msgid "Apply"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/dev.php:541
+msgid "empty"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-custom.php:82
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-email.php:310
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-post.php:836
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-redirect.php:87
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-term.php:486
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:982
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:174
+msgid "Documentation"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-custom.php:112
+msgid "Set a unique action slug."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-email.php:340
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-redirect.php:117
+msgid "(Optional) Target this action using hooks."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:306
+#, fuzzy
+#| msgid ""
+#| "An error has occurred, which probably means the feed is down. Try again "
+#| "later."
+msgid "An error has occured. Please try again"
+msgstr ""
+"Ett fel har uppstått, vilket antagligen betyder att flödet är nere. Försök "
+"igen senare."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:307
+msgid "Invalid e-mail"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:308
+msgid "Invalid e-mail or password"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:309
+#, fuzzy
+#| msgid "Facebook username"
+msgid "Invalid username"
+msgstr "Facebook-användarnamn"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:310
+msgid "Invalid username or password"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:679
+msgid "Cannot create a user with an empty login name."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:683
+msgid "Username may not be longer than 60 characters."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:689
+msgid "Sorry, that username already exists!"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-action-user.php:697
+msgid "Nicename may not be longer than 50 characters."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-front.php:18
+#, fuzzy
+#| msgid "Hide Email"
+msgid "Validate Email"
+msgstr "Dölj e-post"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-front.php:62
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:104
+msgid "Form"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-front.php:108
+msgid "Spam Detected"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-helpers.php:241
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms-helpers.php:270
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/module.php:485
+#, fuzzy
+#| msgid "Button label"
+msgid "no label"
+msgstr "Knappens etikett"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:26
+#, fuzzy
+#| msgid "Field group saved."
+msgid "Field groups"
+msgstr "Fältgrupp sparad."
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:27
+#, fuzzy
+#| msgid "Options"
+msgid "Actions"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:28
+msgid "Shortcode"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:181
+msgid "Cheatsheet"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:182
+msgid "Hooks"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:183
+msgid "Helpers"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:193
+msgid "Shortcodes"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:208
+msgid "PHP code"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:1539
+#, fuzzy
+#| msgid "Post or page"
+msgid "Post updated"
+msgstr "Inlägg eller sida"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/forms.php:1850
+msgid "Input is invalid: Must be a json string or an array."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/module.php:96
+#, php-format
+msgid "Active <span class=\"count\">(%s)</span>"
+msgid_plural "Active <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/module.php:149
+#, fuzzy
+#| msgid "Import"
+msgid "Export "
+msgstr "Importera"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/module.php:213
+msgid "Active"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/module.php:213
+msgid "Inactive"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:24
+msgid "Menu slug"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:25
+#, fuzzy
+#| msgid "Posts"
+msgid "Post ID"
+msgstr "Inlägg"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:26
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:201
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:453
+#, fuzzy
+#| msgid "Autoslide"
+msgid "Autoload"
+msgstr "Automatisk bläddring"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:412
+msgid "This options page slug already exists"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options-pages.php:963
+#, fuzzy
+#| msgid "Options"
+msgid "Options Page"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:20
+#, fuzzy
+#| msgid "Options"
+msgid "Option"
+msgstr "Inställningar"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.class.php:103
+#, fuzzy
+#| msgid "No options avabile"
+msgid "No options avaliable."
+msgstr "Inga tillgängliga alternativ"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:64
+msgid "Option has been deleted"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:68
+msgid "Options have been deleted"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:72
+msgid "Option has been updated"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:76
+msgid "Option has been added"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:366
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:397
+msgid ""
+"Value <code style=\"font-size:11px;float:right; line-height:1.2; margin-"
+"top:1px;\">"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:429
+#, fuzzy
+#| msgid "Value"
+msgid "Value "
+msgstr "Värde"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/options.php:533
+#, fuzzy
+#| msgid "Edit Field Group"
+msgid "Edit field group"
+msgstr "Redigera fältgrupp"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:446
+msgid "This post type name is reserved"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:470
+msgid "This post type name already exists"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/post-types.php:1089
+#, fuzzy
+#| msgid "Dynamic Table"
+msgid "Dynamic Post Type"
+msgstr "Dynamisk tabell"
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/single-meta.php:357
+msgid "Save as individual meta"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/single-meta.php:360
+msgid "Save the field as an individual meta."
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:26
+msgid "Terms"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:520
+msgid "This taxonomy name is reserved"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:544
+msgid "This taxonomy name already exists"
+msgstr ""
+
+#: vendor/wpackagist-plugin/acf-extended/includes/modules/taxonomies.php:1138
+#, fuzzy
+#| msgid "Dynamic Table"
+msgid "Dynamic Taxonomy"
+msgstr "Dynamisk tabell"
+
 #. Plugin Name of the plugin/theme
 msgid "Modularity"
 msgstr "Modularity"
@@ -3364,69 +5709,17 @@ msgstr "Modulärt komponentssytem för WordPress"
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
-#, fuzzy
-#~| msgid ""
-#~| "This is an integration module for https://curator.io. The module "
-#~| "requires an account at the service. To integrate a feed, please head "
-#~| "over to curator.io and follow the steps below. We assume that you "
-#~| "already have an account, with a connected feed. \r\n"
-#~| "\r\n"
-#~| "1. Login to you account. \r\n"
-#~| "2. Click on \"style\" in the sidebar navigation. \r\n"
-#~| "3. Click on \"publish feed\" (style won't matter). \r\n"
-#~| "4. Paste the embed code in the field above. \r\n"
-#~| "5. Save. Your feed should no be displayed."
-#~ msgid ""
-#~ "This is an integration module for https://curator.io. The module requires "
-#~ "an account at the service. To integrate a feed, please head over to "
-#~ "curator.io and follow the steps below. We assume that you already have an "
-#~ "account, with a connected feed. \n"
-#~ "\n"
-#~ "1. Login to you account. \n"
-#~ "2. Click on \"style\" in the sidebar navigation. \n"
-#~ "3. Click on \"publish feed\" (style won't matter). \n"
-#~ "4. Paste the embed code in the field above. \n"
-#~ "5. Save. Your feed should no be displayed."
-#~ msgstr ""
-#~ "Det här är en integrationsmodul för https://curator.io. Modulen kräver "
-#~ "att du har ett konto på tjänsten. För att integrera ett flöde, följ "
-#~ "instruktionerna nedan. Vi utgår från att du redan har ett konto, och ett "
-#~ "kopplat socialmediekonto. \r\n"
-#~ "\r\n"
-#~ "1. Logga in på ditt konto. \r\n"
-#~ "2. Klicka på ”style” i navigationen till vänster. \r\n"
-#~ "3. Klicka på ”publicera feed” (inställningar för utseende påverkar inte "
-#~ "visningen i modulen). \r\n"
-#~ "4. Klistra in koden i fältet ovan. \r\n"
-#~ "5. Spara. Nu visas ditt flöde på sidan."
-
-#, fuzzy
-#~| msgid ""
-#~| "Do you want to add Extra info?\r\n"
-#~| "The information will be placed in a card on the right side of the map."
-#~ msgid ""
-#~ "Do you want to add Extra info?\n"
-#~ "The information will be placed in a card on the right side of the map."
-#~ msgstr "Vill du lägga till extra information?"
-
 #~ msgid "Flat card"
 #~ msgstr "Platt kort"
 
 #~ msgid "No background, border or spacing within the card"
 #~ msgstr "Ingen bakgrund, ram eller mellanrum inuti inlägget"
 
-#~ msgid "Your settings rendered an empty result. Try other settings."
-#~ msgstr ""
-#~ "Inställningarna gav ett tomt resultat. Prova att ändra inställningarna."
-
 #~ msgid "No posts to show…"
 #~ msgstr "Inga inlägg att visa…"
 
 #~ msgid "Add contact"
 #~ msgstr "Lägg till kontakt"
-
-#~ msgid "Compact mode"
-#~ msgstr "Kompakt visningsläge"
 
 #~ msgid "Select Year"
 #~ msgstr "Välj år"
@@ -3437,21 +5730,10 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Select Day"
 #~ msgstr "Välj dag"
 
-#~ msgid "Select Week"
-#~ msgstr "Välj vecka"
-
-#~ msgid "Select Post"
-#~ msgstr "Välj inlägg"
-
 #, fuzzy
 #~| msgid "No posts to show…"
 #~ msgid "No archives to show."
 #~ msgstr "Inga inlägg att visa"
-
-#, fuzzy
-#~| msgid "Post article"
-#~ msgid "Select Category"
-#~ msgstr "Inläggsartikel"
 
 #, fuzzy
 #~| msgid "Work title"
@@ -3500,19 +5782,11 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Font color"
 #~ msgstr "Färg på typsnitt"
 
-#~ msgid "Dark"
-#~ msgstr "Mörk"
-
 #~ msgid "Show date published"
 #~ msgstr "Visa publiceringsdatum"
 
 #~ msgid "Card Padding"
 #~ msgstr "Luft vid kortets sidor"
-
-#, fuzzy
-#~| msgid "Data type"
-#~ msgid "Datatype"
-#~ msgstr "Datatyp"
 
 #~ msgid "CSV-file"
 #~ msgstr "CSV-fil"
@@ -3551,9 +5825,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Yes, use pagination on this table"
 #~ msgid "Yes, use filtering on this table"
 #~ msgstr "Ja, använd sidbläddning för tabellen"
-
-#~ msgid "Filter placeholder"
-#~ msgstr "Platshållare för filtreringsrutan"
 
 #~ msgid "Filter table"
 #~ msgstr "Filtrera tabell"
@@ -3598,16 +5869,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Background Image"
 #~ msgstr "Bakgrundsbild"
 
-#, fuzzy
-#~| msgid "Not selected"
-#~ msgid "No File Selected"
-#~ msgstr "Inte vald"
-
-#, fuzzy
-#~| msgid "Select values"
-#~ msgid "Select File"
-#~ msgstr "Valda värden"
-
 #~ msgid "No Repeat"
 #~ msgstr "Upprepa inte"
 
@@ -3616,9 +5877,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Repeat Horizontally"
 #~ msgstr "Repetera horisontellt"
-
-#~ msgid "Repeat Vertically"
-#~ msgstr "Repetera vertikalt"
 
 #~ msgid "Background Position"
 #~ msgstr "Bakgrundsposition"
@@ -3635,9 +5893,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Left"
 #~ msgstr "Vänster"
 
-#~ msgid "Right"
-#~ msgstr "Höger"
-
 #, fuzzy
 #~| msgid "Centered"
 #~ msgid "Center"
@@ -3649,14 +5904,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "row"
 #~ msgstr "rad"
 
-#~ msgid "Select a Page"
-#~ msgstr "Välj en sida"
-
 #~ msgid "Limit: %s rows"
 #~ msgstr "Begränsning: %s rader"
-
-#~ msgid "Hex Value"
-#~ msgstr "Hex-värde"
 
 #~ msgid "Change Image"
 #~ msgstr "Ändra bild"
@@ -3687,22 +5936,10 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Change image"
 #~ msgstr "Ändra bild"
 
-#~ msgid "Choose image"
-#~ msgstr "Välj bild"
-
-#~ msgid "Checkbox"
-#~ msgstr "Checkbox"
-
 #, fuzzy
 #~| msgid "Add number"
 #~ msgid "Number"
 #~ msgstr "Lägg till nummer"
-
-#~ msgid "Set a fixed height"
-#~ msgstr "Sätt en fixerad höjd"
-
-#~ msgid "Display mode"
-#~ msgstr "Visningsläge"
 
 #~ msgid "First name or place"
 #~ msgstr "Förnamn eller plats"
@@ -3725,17 +5962,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Adress"
 #~ msgstr "Adress"
 
-#~ msgid "Other"
-#~ msgstr "Annat"
-
 #~ msgid "Select user"
 #~ msgstr "Välj användare"
-
-#~ msgid "Secret"
-#~ msgstr "Hemlig"
-
-#~ msgid "First name"
-#~ msgstr "Förnamn"
 
 #~ msgid "Alias"
 #~ msgstr "Alias"
@@ -3746,14 +5974,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Web phone number"
 #~ msgstr "Telefonnummer (webb)"
 
-#~ msgid "category"
-#~ msgstr "kategori"
-
 #~ msgid "News item"
 #~ msgstr "Nyhetsobjekt"
-
-#~ msgid "Add Row"
-#~ msgstr "Lägg till rad"
 
 #~ msgid ""
 #~ "<span style=\"color: #f00;\">Your map link must start with http<strong>s</"
@@ -3770,14 +5992,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Feed type"
 #~ msgstr "Typ av flöde"
 
-#~ msgid "Facebook username"
-#~ msgstr "Facebook-användarnamn"
-
 #~ msgid "User"
 #~ msgstr "Användare"
-
-#~ msgid "Username"
-#~ msgstr "Användarnamn"
 
 #~ msgid "Max items"
 #~ msgstr "Max antal inlägg"
@@ -3799,9 +6015,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Enter URL to the social media feed or page."
 #~ msgstr "Ange URL till sidan eller flödet."
-
-#~ msgid "Enter button text."
-#~ msgstr "Ange knapptext."
 
 #~ msgid "Latest"
 #~ msgstr "Senaste"
@@ -3828,20 +6041,11 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Show larger map"
 #~ msgstr "Visa större karta"
 
-#~ msgid "Display settings"
-#~ msgstr "Visningsinställningar"
-
 #~ msgid "Hide Work Title"
 #~ msgstr "Dölj arbetstitel"
 
 #~ msgid "Hide Administration Unit"
 #~ msgstr "Dölj administrationsenhet"
-
-#~ msgid "Hide Thumbnail"
-#~ msgstr "Dölj miniatyr"
-
-#~ msgid "Hide Email"
-#~ msgstr "Dölj e-post"
 
 #~ msgid "Hide Phone"
 #~ msgstr "Dölj Telefonnummer"
@@ -3855,31 +6059,14 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Hide Visiting Adress"
 #~ msgstr "Dölj besöksadress"
 
-#, fuzzy
-#~| msgid "Use featured image"
-#~ msgid "Featured content"
-#~ msgstr "Använd utvald bild"
-
 #~ msgid "Video playback unavailable, please activate JavaScript to enable."
 #~ msgstr "Videouppspelning är inte tillgänglig."
 
 #~ msgid "Field&nbsp;Groups"
 #~ msgstr "Fältgrupper"
 
-#, fuzzy
-#~| msgctxt "add new button"
-#~| msgid "Add New"
-#~ msgid "Add New"
-#~ msgstr "Lägg till ny"
-
 #~ msgid "Add New Field Group"
 #~ msgstr "Lägg till ny fältgrupp"
-
-#~ msgid "Edit Field Group"
-#~ msgstr "Redigera fältgrupp"
-
-#~ msgid "New Field Group"
-#~ msgstr "Ny fältgrupp"
 
 #~ msgid "View Field Group"
 #~ msgstr "Visa fältgrupp"
@@ -3897,17 +6084,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "No Field Groups found in Trash"
 #~ msgstr "Inga fältgrupper hittades i papperskorgen"
 
-#, fuzzy
-#~| msgid "Fields"
-#~ msgid "Custom Fields"
-#~ msgstr "Fält"
-
-#~ msgid "Field group updated."
-#~ msgstr "Fältgrupp uppdaterad."
-
-#~ msgid "Custom field updated."
-#~ msgstr "Anpassat fält uppdaterat."
-
 #~ msgid "Custom field deleted."
 #~ msgstr "Anpassat fält borttaget."
 
@@ -3916,9 +6092,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Field group published."
 #~ msgstr "Fältgrupp publicerad."
-
-#~ msgid "Field group saved."
-#~ msgstr "Fältgrupp sparad."
 
 #~ msgid "Field group submitted."
 #~ msgstr "Fältgrupp skickad."
@@ -3931,19 +6104,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Error"
 #~ msgstr "Fel"
-
-#, fuzzy
-#~| msgid "Not selected"
-#~ msgid "No ACF groups selected"
-#~ msgstr "Inte vald"
-
-#~ msgid "Update"
-#~ msgstr "Uppdatera"
-
-#, fuzzy
-#~| msgid "Post or page"
-#~ msgid "Post updated"
-#~ msgstr "Inlägg eller sida"
 
 #~ msgid "Add-ons"
 #~ msgstr "Tillägg"
@@ -3962,16 +6122,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Flexible Content Field"
 #~ msgstr "Flexibelt innehållsfält"
 
-#, fuzzy
-#~| msgid "Import"
-#~ msgid "Export"
-#~ msgstr "Importera"
-
 #~ msgid "Instructions"
 #~ msgstr "Instruktioner"
-
-#~ msgid "Notes"
-#~ msgstr "Anteckningar"
 
 #~ msgid "checked"
 #~ msgstr "markerad"
@@ -4007,9 +6159,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Posts Page"
 #~ msgstr "Inlägg eller sida"
 
-#~ msgid "Pending Review"
-#~ msgstr "Inväntar granskning"
-
 #~ msgid "Draft"
 #~ msgstr "Utkast"
 
@@ -4019,27 +6168,11 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Private"
 #~ msgstr "Privat"
 
-#~ msgid "Revision"
-#~ msgstr "Revision"
-
 #~ msgid "Trash"
 #~ msgstr "Papperskorg"
 
-#~ msgid "Super Admin"
-#~ msgstr "Superadmin"
-
-#, fuzzy
-#~| msgid "All "
-#~ msgid "All"
-#~ msgstr "Alla"
-
 #~ msgid "Changelog"
 #~ msgstr "Ändringslogg"
-
-#, fuzzy
-#~| msgid "Data source"
-#~ msgid "Resources"
-#~ msgstr "Datakälla"
 
 #~ msgid "Getting Started"
 #~ msgstr "Komma igång"
@@ -4048,11 +6181,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Fields"
 #~ msgid "Field Types"
 #~ msgstr "Fält"
-
-#, fuzzy
-#~| msgid "Options"
-#~ msgid "Functions"
-#~ msgstr "Inställningar"
 
 #, fuzzy
 #~| msgid "Filter"
@@ -4065,18 +6193,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Tutorials"
 #~ msgstr "Guider"
 
-#, fuzzy
-#~| msgid "Fields"
-#~ msgid "User Field"
-#~ msgstr "Fält"
-
 #~ msgid "Password Field"
 #~ msgstr "Lösenordsfält"
-
-#, fuzzy
-#~| msgid "Import"
-#~ msgid "Important"
-#~ msgstr "Importera"
 
 #~ msgid "Database Changes"
 #~ msgstr "Databasförändringar"
@@ -4089,26 +6207,11 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Learn more"
 #~ msgstr "Läs mer"
 
-#, fuzzy
-#~| msgid "Content"
-#~ msgid "Flexible Content"
-#~ msgstr "Innehåll"
-
-#, fuzzy
-#~| msgid "Expandable List"
-#~ msgid "Expand Details"
-#~ msgstr "Expanderbar lista"
-
 #~ msgid "Choices"
 #~ msgstr "Val"
 
 #~ msgid "Date Picker"
 #~ msgstr "Datumväljare"
-
-#, fuzzy
-#~| msgid "Slider format"
-#~ msgid "Save format"
-#~ msgstr "Sliderformat"
 
 #, fuzzy
 #~| msgid "Display as"
@@ -4120,11 +6223,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Email"
 #~ msgstr "Epost"
-
-#, fuzzy
-#~| msgid "Placeholder Image"
-#~ msgid "Placeholder Text"
-#~ msgstr "Affischbild"
 
 #~ msgid "File"
 #~ msgstr "Fil"
@@ -4148,16 +6246,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Library"
 #~ msgstr "Bibliotek "
 
-#~ msgid "Uploaded to post"
-#~ msgstr "Uppladdad till post"
-
 #~ msgid "Sorry, this browser does not support geolocation"
 #~ msgstr "Tyvärr, den här webbläsaren stöder inte geolocation"
-
-#, fuzzy
-#~| msgid "Core options"
-#~ msgid "Clear location"
-#~ msgstr "Core inställningar"
 
 #~ msgid "Find current location"
 #~ msgstr "Hitta aktuell plats"
@@ -4171,29 +6261,16 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Set the initial zoom level"
 #~ msgstr "Ställ in den ursprungliga zoomnivån"
 
-#~ msgid "Customise the map height"
-#~ msgstr "Anpassa karthöjden"
-
 #, fuzzy
 #~| msgid "Upload image"
 #~ msgid "Update Image"
 #~ msgstr "Ladda upp bild"
-
-#, fuzzy
-#~| msgid "Image caption"
-#~ msgid "Image Object"
-#~ msgstr "Bildtext"
 
 #~ msgid "Shown when entering data"
 #~ msgstr "Visas när du matar in data"
 
 #~ msgid "Limit the media library choice"
 #~ msgstr "Begränsa mediebibliotekets val"
-
-#, fuzzy
-#~| msgid "Usage"
-#~ msgid "Message"
-#~ msgstr "Användning"
 
 #~ msgid "Minimum Value"
 #~ msgstr "Minsta värde"
@@ -4208,18 +6285,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Step Size"
 #~ msgstr "Storlek"
 
-#, fuzzy
-#~| msgid "Page ID"
-#~ msgid "Page Link"
-#~ msgstr "Sidans ID"
-
 #~ msgid "Password"
 #~ msgstr "Lösenord"
-
-#, fuzzy
-#~| msgid "Filter posts by taxonomy"
-#~ msgid "Filter from Taxonomy"
-#~ msgstr "Filtrera efter taxonomi"
 
 #, fuzzy
 #~| msgid "Enter your embed url"
@@ -4236,11 +6303,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Search"
 #~ msgid "Search..."
 #~ msgstr "Sök"
-
-#, fuzzy
-#~| msgid "Filter posts by taxonomy"
-#~ msgid "Filter by post type"
-#~ msgstr "Filtrera efter taxonomi"
 
 #, fuzzy
 #~| msgid "Slider format"
@@ -4280,11 +6342,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #, fuzzy
 #~| msgid "Fields"
-#~ msgid "Field Name"
-#~ msgstr "Fält"
-
-#, fuzzy
-#~| msgid "Fields"
 #~ msgid "Field Key"
 #~ msgstr "Fält"
 
@@ -4294,16 +6351,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Duplicate this Field"
 #~ msgstr "Duplicera detta fält"
 
-#, fuzzy
-#~| msgid "Deprecated"
-#~ msgid "Duplicate"
-#~ msgstr "Utgående"
-
 #~ msgid "Delete this Field"
 #~ msgstr "Ta bort det här fältet"
-
-#~ msgid "Delete"
-#~ msgstr "Radera"
 
 #~ msgid "Required?"
 #~ msgstr "Obligatorisk?"
@@ -4329,26 +6378,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgstr "Lägg till fil"
 
 #, fuzzy
-#~| msgid "Modules"
-#~ msgid "Rules"
-#~ msgstr "Moduler"
-
-#, fuzzy
-#~| msgid "Posts"
-#~ msgid "Post"
-#~ msgstr "Inlägg"
-
-#, fuzzy
-#~| msgid "Post items"
-#~ msgid "Post Status"
-#~ msgstr "Inläggsobjekt"
-
-#, fuzzy
-#~| msgid "Widget Type"
-#~ msgid "Page Type"
-#~ msgstr "Typ av widget"
-
-#, fuzzy
 #~| msgid "Random"
 #~ msgid "and"
 #~ msgstr "Slumpmässig"
@@ -4372,11 +6401,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~| msgid "Hide box frame"
 #~ msgid "Hide on screen"
 #~ msgstr "Göm textbox"
-
-#, fuzzy
-#~| msgid "Content"
-#~ msgid "Content Editor"
-#~ msgstr "Innehåll"
 
 #, fuzzy
 #~| msgid "Show excerpt"
@@ -4442,12 +6466,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "The placeholder image will be shown before the video starts playing."
 #~ msgstr "Affischbilden visas innan videon sätts igång."
 
-#~ msgid "Horizontal cards"
-#~ msgstr "Horisontella kort"
-
-#~ msgid "Key"
-#~ msgstr "Nyckel"
-
 #~ msgid "Add column"
 #~ msgstr "Lägg till kolumn"
 
@@ -4466,14 +6484,8 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 #~ msgid "Add file"
 #~ msgstr "Lägg till fil"
 
-#~ msgid "Allow filtering"
-#~ msgstr "Tillåt filtrering"
-
 #~ msgid "Warning (yellow)"
 #~ msgstr "Varning (gul)"
-
-#~ msgid "Slider layout"
-#~ msgstr "Sliderlayout"
 
 #~ msgid "Circle slides"
 #~ msgstr "Cirkulära slides"
@@ -4516,9 +6528,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Only on hover"
 #~ msgstr "Bara på hover"
-
-#~ msgid "Additional options"
-#~ msgstr "Fler inställningar"
 
 #~ msgid "Continues scroll (no ending slide)"
 #~ msgstr "Börja om efter sista sliden"
@@ -4605,9 +6614,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "Text overlay"
 #~ msgstr "Textlager"
-
-#~ msgid "Yes, open link in new window"
-#~ msgstr "Ja, öppna länken i nytt fönster"
 
 #~ msgid "Desktop Image"
 #~ msgstr "Bild för desktop"

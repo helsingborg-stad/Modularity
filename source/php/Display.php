@@ -170,7 +170,7 @@ class Display
         global $post;
         global $wp_query;
 
-        if (!$wp_query->is_main_query()) {
+        if (!$wp_query->is_main_query() || empty($post)) {
             return;
         }
 

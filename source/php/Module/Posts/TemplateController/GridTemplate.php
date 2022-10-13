@@ -27,6 +27,8 @@ class GridTemplate extends AbstractController
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
             $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
+        } else {
+            $this->data['highlight_first_column'] = false;
         }
 
         $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
