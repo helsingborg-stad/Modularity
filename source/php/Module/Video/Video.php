@@ -24,7 +24,7 @@ class Video extends \Modularity\Module
         $data = get_fields($this->ID);
 
         //Embed code
-        $data['embedCode'] = $this->getEmbedMarkup($data['embed_link'], $data['placeholder_image']['url']);
+        $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
 
         $data['id'] = uniqid('embed');
 
@@ -60,9 +60,9 @@ class Video extends \Modularity\Module
      * @param [type] $embedLink
      * @return bool|string
      */
-    private function getEmbedMarkup($embedLink, $placeholder_image)
+    private function getEmbedMarkup($embedLink)
     {
-        return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720, 'placeholder_image' => $placeholder_image ));
+        return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720));
     }
 
     public function style()
