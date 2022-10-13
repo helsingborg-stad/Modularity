@@ -62,6 +62,7 @@ class Slider extends \Modularity\Module
         $data['ratio']      = preg_replace('/ratio-/', '', $fields['slider_format']);
         $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']);
         $data['title'] = isset($fields['post_title']) ? $fields['post_title'] : '';
+        $data['slidesPerPage'] = isset($fields['slides_per_page']) ? $fields['slides_per_page'] : '1';
 
         //Get slides
         $data['slides'] = $this->prepareSlides($fields);
