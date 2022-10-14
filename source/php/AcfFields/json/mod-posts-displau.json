@@ -372,8 +372,8 @@
         {
             "key": "field_634932220afc6",
             "label": "Wrap around",
-            "name": "additional_options",
-            "type": "checkbox",
+            "name": "repeat_slide",
+            "type": "true_false",
             "instructions": "",
             "required": 0,
             "conditional_logic": [
@@ -390,17 +390,11 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "wrapAround": "Go to first slide when last item is reached"
-            },
-            "default_value": [
-                "wrapAround"
-            ],
-            "return_format": "value",
-            "allow_custom": 0,
-            "layout": "horizontal",
-            "toggle": 0,
-            "save_custom": 0
+            "message": "Go to first slide when last item is reached",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_591176fff96d6",

@@ -12,9 +12,10 @@
 @endif
 
 @slider([
-    'id' => isset($blockData['anchor']) ? $blockData['anchor'] : 'mod-posts-' . $ID,
-    'showStepper' => $showStepper,
-	'autoSlide' => $autoSlide,
+    'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
+    'showStepper'     => $showStepper,
+    'autoSlide'       => $autoSlide,
+    'repeatSlide'     => $repeatSlide,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slides-per-page' => $slidesPerPage
@@ -23,11 +24,10 @@
     @foreach ($posts as $post)
         @slider__item([
             'title' => $post->post_title,
-            'desktop_image' => isset( $post->thumbnail[0] ) ? $post->thumbnail[0] : false,
+            'desktop_image' => isset($post->thumbnail[0]) ? $post->thumbnail[0] : false,
             'containerColor' => 'none',
             'overlay' => 'dark',
-            'textColor' => 'white',
-            
+            'textColor' => 'white'
         ])
         @endslider__item
     @endforeach

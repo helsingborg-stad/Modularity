@@ -375,8 +375,8 @@
         10 => array(
             'key' => 'field_634932220afc6',
             'label' => __('Wrap around', 'modularity'),
-            'name' => 'additional_options',
-            'type' => 'checkbox',
+            'name' => 'repeat_slide',
+            'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => array(
@@ -393,17 +393,11 @@
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(
-                'wrapAround' => __('Go to first slide when last item is reached', 'modularity'),
-            ),
-            'default_value' => array(
-                0 => __('wrapAround', 'modularity'),
-            ),
-            'return_format' => 'value',
-            'allow_custom' => 0,
-            'layout' => 'horizontal',
-            'toggle' => 0,
-            'save_custom' => 0,
+            'message' => __('Go to first slide when last item is reached', 'modularity'),
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
         ),
         11 => array(
             'key' => 'field_591176fff96d6',
