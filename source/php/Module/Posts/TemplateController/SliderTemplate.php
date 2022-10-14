@@ -20,18 +20,13 @@ class SliderTemplate extends AbstractController
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
-        $this->data['slides_per_page'] = $fields->slides_per_page;
+        $this->data['slidesPerPage'] = $fields->slides_per_page ?? 4;
+        $this->data['autoSlide'] = $fields->auto_slide ?? false;
+        $this->data['showStepper'] = $fields->show_stepper ?? false;
         
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['ratio'] = $fields->ratio;
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $this->module->post_type, $this->args));
 
-        // $this->data['gridSize'] = (int)str_replace('-', '', filter_var($fields->posts_columns, FILTER_SANITIZE_NUMBER_INT));
-        // $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'] . '@md';
-
         $this->prepare($fields);
-
-        $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 
     public function prepare($fields)

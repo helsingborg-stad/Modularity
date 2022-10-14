@@ -12,20 +12,25 @@
 @endif
 
 @slider([
-	'id'          => $blockData['anchor'],
-	'autoSlide'   => $autoSlide ?? false,
-	'ratio'       => $ratio ?? '16:9',
-	'repeatSlide' => $repeatSlide ?? true,
-	'shadow'      => $shadow ?? false,
-	'showStepper' => $showStepper ?? true,
-	'attributeList' => [
-		'aria-labelledby' => 'mod-slider-' . $ID . '-label',
-		'data-slides-per-page' => $slides_per_page
-	]
+    'id' => isset($blockData['anchor']) ? $blockData['anchor'] : 'mod-posts-' . $ID,
+    'showStepper' => $showStepper,
+	'autoSlide' => $autoSlide,
+    'attributeList' => [
+        'aria-labelledby' => 'mod-slider-' . $ID . '-label',
+        'data-slides-per-page' => $slidesPerPage
+    ]
 ])
-	@foreach ($posts as $post)
-		@includeFirst(['partials.slider-item', $post])
-	@endforeach
+    @foreach ($posts as $post)
+        @slider__item([
+            'title' => $post->post_title,
+            'desktop_image' => isset( $post->thumbnail[0] ) ? $post->thumbnail[0] : false,
+            'containerColor' => 'none',
+            'overlay' => 'dark',
+            'textColor' => 'white',
+            
+        ])
+        @endslider__item
+    @endforeach
 @endslider
 
 @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)

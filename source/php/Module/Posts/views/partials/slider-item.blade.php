@@ -1,8 +1,6 @@
 @slider__item([
     'title'         => $post->post_title,
-    'sub_title'          => get_the_excerpt($post->ID),
-    'desktop_image' => get_the_post_thumbnail_url($post->ID),
-	
+    'desktop_image' => $post->thumbnail[0],	
 	'containerColor'   => 'none',
 	'overlay'          => 'dark',
 	'textColor'        => 'white',
