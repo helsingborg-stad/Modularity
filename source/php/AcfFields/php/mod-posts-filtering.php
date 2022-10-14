@@ -54,6 +54,8 @@
             'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
         ),
         2 => array(
             'key' => 'field_571e049636f11',
@@ -85,6 +87,8 @@
             'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
         ),
         3 => array(
             'key' => 'field_571e04a736f12',
@@ -135,6 +139,8 @@
             'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
         ),
         5 => array(
             'key' => 'field_571e04da36f14',

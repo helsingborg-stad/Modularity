@@ -22,13 +22,14 @@
                 "news": "News items",
                 "index": "Index",
                 "grid": "Blocks",
-                "features-grid": "Features grid"
+                "features-grid": "Features grid",
+                "slider": "Slider"
             },
+            "default_value": "list",
+            "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
-            "default_value": "list",
             "layout": "horizontal",
-            "return_format": "value",
             "save_other_choice": 0
         },
         {
@@ -87,12 +88,51 @@
                 "grid-md-3": "4"
             },
             "default_value": "grid-md-12",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
+            "key": "field_634920ba917f9",
+            "label": "Columns",
+            "name": "slides_per_page",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "slider"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "1",
+                "2": "2",
+                "3": "3",
+                "4": "4"
+            },
+            "default_value": 4,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_628e0ffba7da4",
@@ -173,7 +213,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_571e046536f0e",
@@ -272,7 +314,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_591176fff96d6",
@@ -359,6 +403,8 @@
             "layout": "table",
             "button_label": "L\u00e4gg till rad",
             "collapsed": "",
+            "rows_per_page": 20,
+            "acfe_repeater_stylised_button": 0,
             "sub_fields": [
                 {
                     "key": "field_571f5790592e7",
@@ -379,7 +425,8 @@
                     "prepend": "",
                     "append": "",
                     "readonly": 0,
-                    "disabled": 0
+                    "disabled": 0,
+                    "parent_repeater": "field_571f5776592e6"
                 }
             ]
         },
@@ -473,7 +520,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_5bd8575106176",
@@ -510,7 +559,9 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "uploader": "",
+            "acfe_thumbnail": 0
         },
         {
             "key": "field_628e0f242aa5f",
@@ -551,7 +602,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         }
     ],
     "location": [

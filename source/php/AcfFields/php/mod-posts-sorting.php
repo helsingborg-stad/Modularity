@@ -3,7 +3,7 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_571dffc63090c',
-    'title' => 'Data sorting',
+    'title' => __('Data sorting', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_571dffca1d90b',
@@ -32,15 +32,15 @@
                 'comment_count' => __('Comment count', 'modularity'),
                 'menu_order' => __('Menu order', 'modularity'),
             ),
-            'default_value' => array(
-                0 => 'date',
-            ),
+            'default_value' => __('date', 'modularity'),
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'return_format' => 'value',
             'disabled' => 0,
             'readonly' => 0,
+            'allow_custom' => 0,
+            'search_placeholder' => '',
         ),
         1 => array(
             'key' => 'field_571e00241d90c',
@@ -75,6 +75,13 @@
                 'value' => 'mod-posts',
             ),
         ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/posts',
+            ),
+        ),
     ),
     'menu_order' => 10,
     'position' => 'normal',
@@ -82,8 +89,9 @@
     'label_placement' => 'top',
     'instruction_placement' => 'label',
     'hide_on_screen' => '',
-    'active' => 1,
+    'active' => true,
     'description' => '',
+    'show_in_rest' => false,
     'modified' => 1461661083,
 ));
 }
