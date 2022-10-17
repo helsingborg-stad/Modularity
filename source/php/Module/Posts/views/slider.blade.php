@@ -11,7 +11,6 @@
     @endtypography
 @endif
 
-
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
     'showStepper'     => $slider->showStepper,
@@ -23,18 +22,20 @@
     ]
 ])
     @foreach ($posts as $post)
+
         @slider__item([
             'title' => $post->post_title,
             'desktop_image' => isset($post->thumbnail[0]) ? $post->thumbnail[0] : false,
             'containerColor' => 'none',
             'overlay' => 'dark',
-            'textColor' => 'white'
+            'textColor' => 'white',
+			'link' => $post->permalink,
         ])
         @endslider__item
     @endforeach
 @endslider
 
-@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
+@if ($posts_data_source !== 'input' && $archive_link)
 	@button([
 		'text' => __('Show all', 'modularity'),
 		'color' => 'default',
