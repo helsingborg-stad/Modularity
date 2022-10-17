@@ -30,12 +30,15 @@ class SliderTemplate extends AbstractController
             (object) $this->data['slider']
         );
                 
-        $this->data['classes'] = implode(' ', apply_filters(
-            'Modularity/Module/Classes',
-            [],
-            $this->module->post_type,
-            $this->args
-        ));
+        $this->data['classes'] = implode(
+            ' ',
+            apply_filters(
+                'Modularity/Module/Classes',
+                [],
+                $this->module->post_type,
+                $this->args
+            )
+        );
 
         $this->prepare($fields);
     }
@@ -48,14 +51,22 @@ class SliderTemplate extends AbstractController
         $imageDimensions = [1200, 900];
 
         if (!$fields->posts_alter_columns) {
-            $imageDimensions = $this->getImageDimensions($fields->posts_columns, [900, 675]);
+            $imageDimensions = $this->getImageDimensions(
+                $fields->posts_columns,
+                [900, 675]
+            );
         }
 
         foreach ($this->data['posts'] as $post) {
             $postNum++;
 
             /* Image */
-            $post->thumbnail = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, $fields->ratio ?? '4:3');
+            $post->thumbnail = $this->getPostImage(
+                $post,
+                $this->data['posts_data_source'],
+                $imageDimensions,
+                $fields->ratio ?? '4:3'
+            );
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
