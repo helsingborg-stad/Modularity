@@ -6,7 +6,7 @@
     "title" => !$hideTitle ? $postTitle : false,
     "byline" => $byline,
     "paragraph" => $paragraph,
-    "stretch" => isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch,
+    "stretch" => $stretch,
     "context" => ['hero', 'module.hero', 'module.hero.image']
 ])
 @endhero

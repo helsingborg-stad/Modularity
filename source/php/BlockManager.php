@@ -2,6 +2,8 @@
 
 namespace Modularity;
 
+use enshrined\svgSanitize\Sanitizer as SVGSanitize;
+
 class BlockManager
 {
     public $modules = [];
@@ -9,11 +11,11 @@ class BlockManager
 
     public function __construct()
     {
-        add_filter('block_categories_all', array($this, 'filterCategories'), 10, 2);
+        add_filter('block_categories', array($this, 'filterCategories'), 10, 2);
         add_filter('acf/load_field_group', array($this, 'addLocationRule'));
         add_action('init', array($this, 'addBlockFieldGroup'));
         add_filter('acf/load_field_group', array($this, 'addLocationRulesToBlockGroup'));
-        add_filter('allowed_block_types_all', array($this, 'filterBlockTypes'));
+        add_filter('allowed_block_types', array($this, 'filterBlockTypes'));
         add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
         add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
         add_filter('acf/register_block_type_args', array($this, 'blockTypeArgs'), 10, 1);
@@ -107,7 +109,8 @@ class BlockManager
             $categories,
             array([
                 'slug' => 'modules',
-                'title' => __('Modules', 'modularity')
+                'title' => __('Modules', 'modularity'),
+                'icon' => 'wordpress'
             ])
         );
     }
@@ -123,56 +126,50 @@ class BlockManager
         if (function_exists('acf_register_block_type')) {
             foreach ($this->classes as $class) {
                 if ($class->isBlockCompatible && in_array($class->moduleSlug, $enabledModules)) {
+                    //Look for icon (including cleaning)
+                    if ($class->assetDir && file_exists($class->assetDir . 'icon.svg')) {
+                        $sanitizer = new SVGSanitize();
+                        $sanitizer->minify(true);
+                        $sanitizer->removeXMLTag(true);
+                        $icon = $sanitizer->sanitize(
+                            file_get_contents($class->assetDir . 'icon.svg')
+                        );
+                    } else {
+                        $icon = '';
+                    }
 
-                    $blockSettings = [
+                    //Allow block filtering
+                    $blockSettings = apply_filters('Modularity/Block/Settings', array(
                         'name'              => str_replace('mod-', '', $class->moduleSlug),
-                        'title'             => $class->nameSingular,
-                        'icon'              => \Modularity\ModuleManager::getIcon($class),
-                        'description'       => $class->description,
+                        'title'             => __($class->nameSingular),
+                        'icon'              => $icon,
+                        'description'       => __($class->description),
                         'render_callback'   => array($this, 'renderBlock'),
                         'category'          => 'modules',
                         'moduleName'        => $class->slug,
-                        'supports'          => array_merge(
-                            [
-                                'jsx' => true,
-                                'align' => false,
-                                'align_text' => false,
-                                'align_content' => false
-                            ],
-                            $class->blockSupports
+                        'supports'          => array(
+                            'jsx' => true,
+                            'align' => false,
+                            'align_text' => false,
+                            'align_content' => false
                         )
-                    ];
+                    ), $class->slug);
 
-                    $blockSettings = apply_filters(
-                        'Modularity/Block/Settings',
-                        $blockSettings,
-                        $class->slug
-                    );
-
-                    if (!acf_register_block_type($blockSettings)) {
-                        throw new \WP_Error(
-                            'block_editor_create_module',
-                            "Could not create block for with the id of " . $class->moduleSlug
-                        );
-                    };
+                    //Create block
+                    acf_register_block_type($blockSettings);
                 }
             }
         }
     }
 
-    /**
-     * Detect if this may be a module
-     *
-     * @param string $value
-     * @return boolean
-     */
-    private function isModule(string $value): bool
+    private function isModule($value)
     {
-        foreach ($this->classes as $object) {
+        foreach ($this->classes as $moduleName => $object) {
             if ($object->moduleSlug === $value) {
                 return $object->moduleSlug;
             }
         }
+
         return false;
     }
 
@@ -190,21 +187,20 @@ class BlockManager
                     continue;
                 }
 
+                $valueIsModule = $this->isModule($locationRule['value']);
+                $locationRuleExists = str_contains($locationRule['value'], 'acf/');
+
                 // If the location rule that we are trying to add already exists, return original group
-                if (str_contains($locationRule['value'], 'acf/') && $locationRule['param'] === 'block') {
+                if ($locationRuleExists && $locationRule['param'] === 'block') {
                     return $group;
                 }
 
-                if ($this->isModule($locationRule['value']) && $locationRule['operator'] === '==') {
+                if ($valueIsModule && $locationRule['operator'] === '==') {
                     $newGroup['location'][] = [
                         [
                             'param' => 'block',
                             'operator' => '==',
-                            'value' => \str_replace(
-                                'mod-',
-                                'acf/',
-                                $locationRule['value']
-                            )
+                            'value' => \str_replace('mod-', 'acf/', $locationRule['value'])
                         ]
                     ];
                 }
@@ -238,7 +234,20 @@ class BlockManager
      */
     private function setDefaultValues($data, $defaultValues)
     {
-        return array_merge($defaultValues, $data);
+        foreach ($data as $key => &$dataPoint) {
+            if (empty($dataPoint)) {
+                $isSnakeCased = \str_contains($key, '_');
+
+                if ($isSnakeCased) {
+                    $dataPoint = $defaultValues['_' . $key];
+                } else {
+                    $key = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $key));
+                    $dataPoint = $defaultValues['_' . $key];
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -248,16 +257,18 @@ class BlockManager
     private function getDefaultValues($blockData)
     {
         $fieldDefaultValues = [];
-
         foreach ($blockData as $key => $dataPoint) {
-            if (stripos($key, '_') === 0) {
+            if (!is_string($dataPoint)) {
                 continue;
             }
 
-            if ($defaultValue = get_field_object($key)) {
-                if (isset($defaultValue['default_value'])) {
-                    $fieldDefaultValues[$key] = $defaultValue['default_value'];
-                }
+            if (strpos($dataPoint, 'field_') !== 0) {
+                continue;
+            }
+
+            $defaultValue = get_field_object($dataPoint);
+            if (isset($defaultValue['default_value'])) {
+                $fieldDefaultValues[$key] = $defaultValue;
             }
         }
 
@@ -270,6 +281,8 @@ class BlockManager
      */
     public function renderBlock($block)
     {
+        //Init display
+        $display = new Display();
         $module = $this->classes[$block['moduleName']];
 
         //Get module data
@@ -278,82 +291,66 @@ class BlockManager
             $this->getDefaultValues($block['data'])
         );
 
-        //Add post title & hide title
-        $module->data['postTitle'] = apply_filters(
-            'the_title',
-            $module->data['custom_block_title'] ?? ''
-        );
-        $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
+        //Get view name
+        $view = str_replace('.blade.php', '', $module->template());
+        $view = !empty($view) ? $view : $block['moduleName'];
+
+        //Add post title
+        $module->data['postTitle'] = apply_filters('the_title', $module->data['custom_block_title']);
 
         //Add post type
-        $viewData = array_merge([
-            'post_type' => $module->moduleSlug
-        ], $module->data);
+        $viewData = array_merge(['post_type' => $module->moduleSlug], $module->data);
 
-        //Adds block data raw to view
-        $viewData['blockData'] = $block;
+        //Filter view data
+        $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
 
-        //Allow filtering of block data
-        $viewData = apply_filters(
-            'Modularity/Block/Data',
-            $viewData,
-            $block,
-            $module
-        );
-
-        if ($this->validateFields($viewData)) {
-            $display = new Display();
-            $renderedView = $display->renderView(
-                str_replace('.blade.php', '', $module->template()),
-                $viewData
-            );
-
-            //If result is empty, display error for admins
-            $viewContainsData = (bool) !empty(preg_replace('/\s+/', '', strip_tags($renderedView, ['img'])));
-            if (is_admin() && $module->useEmptyBlockNotice && !$viewContainsData) {
-                $renderedView =  $this->displayNotice(
-                    $module->nameSingular,
-                    __("Your settings rendered an empty result. Try other settings.", 'modularity')
-                );
-            }
-
+        if ($this->validateFields($block['data'])) {
+            // Render block view if validated correctly
+            echo $display->renderView($view, $viewData);
         } elseif (is_user_logged_in()) {
-            $renderedView = $this->displayNotice(
-                $module->nameSingular,
-                __("Please fill in all required fields.", 'municipio')
-            );
+            // Render a notice warning the user of required fields not filled in.
+            echo '
+                <div class="c-notice c-notice--info">
+                    <span class="c-notice__icon">   
+                        <i class="c-icon c-icon--size-md material-icons">
+                            report
+                        </i>            
+                    </span>
+                    <span class="c-notice__message--sm">
+                        <strong>' . $module->nameSingular . ': </strong> ' . __("Please fill in all required fields.", 'municipio') . '    
+                    </span>
+                </div>
+            ';
         }
-
-        // Render block view if validated correctly
-        echo $renderedView;
     }
 
     /**
      * Validates the required fields
      * @return boolean
      */
-    private function validateFields($fields, $whitelist = ['hideTitle', 'postTitle'])
+    private function validateFields($fields)
     {
         $valid = true;
 
         foreach ($fields as $key => $value) {
-            //Whitelisted (do not check)
-            if (in_array($key, $whitelist)) {
+            if (!is_string($value)) {
                 continue;
             }
 
-            $fieldObject = get_field_object($key);
+            if (strpos($value, 'field_') !== 0) {
+                continue;
+            }
 
-            if (is_array($fieldObject) && !empty($fieldObject)) {
-                //Skip validation of decendants
-                if (isset($fieldObject['parent']) && str_contains($fieldObject['parent'], 'field_')) {
-                    continue;
-                }
+            $fieldObject = get_field_object($value);
 
-                //Check if required field has a value
-                if ($fieldObject['required'] && (!$fieldObject['value'] && $fieldObject['value'] !== "0")) {
-                    $valid = false;
-                }
+            //Skip validation of decendants
+            if (isset($fieldObject['parent']) && str_contains($fieldObject['parent'], 'field_')) {
+                continue;
+            }
+
+            //Check if required field has a value
+            if ($fieldObject['required'] && (!$fieldObject['value'] && $fieldObject['value'] !== "0")) {
+                $valid = false;
             }
         }
 
@@ -361,8 +358,7 @@ class BlockManager
     }
 
     /**
-     * Add block containing custom block title field. 
-     * Replaces post title field. 
+     * Add block containing custom block title field
      *
      * @return void
      */
@@ -384,43 +380,9 @@ class BlockManager
         ));
     }
 
-    /**
-     * Returns (error) notices to user.
-     * Rendered by notice component via notice module. 
-     *
-     * @return string
-     */
-    private function displayNotice($moduleName, $message)
-    {
-        $display = new Display();
-        $view = 'notice';
-        $noticeData = array(
-            'hideTitle' => false,
-            'post_type' => 'mod-notice',
-            'postTitle' => $moduleName,
-            'notice_text' => $message,
-            'notice_type' => 'info',
-            'icon' => array('name' => 'info'),
-            'postTitle' => $moduleName,
-        );
-
-        return $display->renderView($view, $noticeData);
-    }
-
-    /**
-     * Default block type arguments
-     *
-     * @param array $args
-     * @return array
-     */
     public function blockTypeArgs($args)
     {
-        $args['supports'] = array_merge(
-            $args['supports'],
-            [
-                'anchor' => true
-            ]
-        );
+        $args['supports'] = array_merge($args['supports'], array( 'anchor' => true ));
         return $args;
     }
 }

@@ -3,7 +3,6 @@
 namespace Modularity;
 
 use BladeComponentLibrary\Init as CompLibInitator;
-use enshrined\svgSanitize\Sanitizer as SVGSanitize;
 class ModuleManager
 {
     /**
@@ -227,7 +226,7 @@ class ModuleManager
         }
 
         // Get menu icon
-        if (empty($args['menu_icon']) && $icon = self::getIcon($class)) {
+        if (empty($args['menu_icon']) && $icon = $this->getIcon($path, $class)) {
             $args['menu_icon'] = $icon;
             $args['menu_icon_auto_import'] = true;
         }
@@ -318,17 +317,17 @@ class ModuleManager
      * @param  string $path Path to module folder
      * @return string
      */
-    public static function getIcon($class): string
+    public function getIcon(string $path, $class) : string
     {
-        //Look for icon (including cleaning)
-        if ($class->assetDir && file_exists($class->assetDir . 'icon.svg')) {
-            $sanitizer = new SVGSanitize();
-            $sanitizer->minify(true);
-            $sanitizer->removeXMLTag(true);
-            return $sanitizer->sanitize(
-                file_get_contents($class->assetDir . 'icon.svg')
-            );
+        if (file_exists($path . '/assets/icon.svg')) {
+            return file_get_contents($path . '/assets/icon.svg');
         }
+
+        // If fail to load (may happen on some systems) TODO: Make this more fancy
+        if (file_exists($path . preg_replace('/\s+/', '', ucwords($class->nameSingular)). '/assets/icon.svg')) {
+            return file_get_contents($path . preg_replace('/\s+/', '', ucwords($class->nameSingular)). '/assets/icon.svg');
+        }
+
         return '';
     }
 

@@ -6,23 +6,25 @@ class Notice extends \Modularity\Module
 {
     public $slug = 'notice';
     public $supports = array();
-    public $blockSupports = array(
-        'align' => ['full']
-    );
 
     public function init()
     {
         $this->nameSingular = __("Notice", 'modularity');
         $this->namePlural = __("Notice", 'modularity');
         $this->description = __("Outputs a notice", 'modularity');
+
+        //Add full-width capabilty to blocks
+        add_filter('Modularity/Block/Settings', array($this, 'blockSettings'), 10, 2);
+
+        //Add full width data to view
+        add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
     }
 
-    public function data(): array
+    public function data() : array
     {
         $data = get_fields($this->ID);
-        $data['icon'] = $this->iconData(
-            $data['notice_type']
-        );
+        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        $data['icon'] = $this->iconData($data['notice_type']);
 
         return $data;
     }
@@ -37,8 +39,41 @@ class Notice extends \Modularity\Module
         ];
 
         return [
-            'name' => $icons[$icon]
+            'name' => $icons[$icon],
         ];
+    }
+
+    /**
+     * Add full width setting to frontend.
+     *
+     * @param [array] $viewData
+     * @param [array] $block
+     * @param [object] $module
+     * @return array
+     */
+    public function blockData($viewData, $block, $module)
+    {
+
+        if ($block['name'] == "acf/notice" && $block['align'] == 'full' && !is_admin()) {
+            $viewData['stretch'] = true;
+        }
+
+        return $viewData;
+    }
+
+    /**
+     * Allow full-width alignment on hero blocks
+     *
+     * @param array $data
+     * @param string $slug
+     * @return array
+     */
+    public function blockSettings($data, $slug)
+    {
+        if (strpos($slug, 'notice') === 0 && isset($data['supports'])) {
+            $data['supports']['align'] = ['full'];
+        }
+        return $data;
     }
 
     /**
