@@ -11,16 +11,6 @@
     @endtypography
 @endif
 
-@if (!empty($preamble))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-preamble',
-        'element' => 'p',
-        'classList' => ['module-preamble']
-    ])
-        {!! $preamble !!}
-    @endtypography
-@endif
-
 @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
 	@button([
 		'text' => __('Show all', 'modularity'),
