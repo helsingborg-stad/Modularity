@@ -23,8 +23,19 @@
                     @endtypography
                 </div>
             @endif
-        
-            @if($show_button)
+            
+            <div class="c-card__body">
+                @iframe([
+                    'src' => $map_url,
+                    'classList' => [
+                        'u-width--100', 'u-display--block'
+                    ],
+                    'title' => $map_description,
+                    'options' => json_encode($lang),
+                ])
+                @endiframe
+
+                @if($show_button)
                 @button([
                     'type' => 'filled',
                     'color' => 'primary',
@@ -36,9 +47,6 @@
                 ])
                 @endbutton
             @endif
-            
-            <div class="c-card__body">
-                <iframe src="{!! $map_url !!}" frameborder="0" class="u-width--100 u-display--block" title="{{ $map_description }}"></iframe>
             </div>
         
         @endcard
