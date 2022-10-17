@@ -18,6 +18,7 @@ class BlockManager
         add_filter('allowed_block_types', array($this, 'filterBlockTypes'));
         add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
         add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
+        add_filter('acf/register_block_type_args', array($this, 'blockTypeArgs'), 10, 1);
     }
 
     /**
@@ -49,6 +50,7 @@ class BlockManager
      */
     public function renderCustomGrid($block_content, array $block): string
     {
+
         if (!is_string($block_content)) {
             return "";
         }
@@ -149,8 +151,7 @@ class BlockManager
                             'jsx' => true,
                             'align' => false,
                             'align_text' => false,
-                            'align_content' => false,
-                            'anchor' => true,
+                            'align_content' => false
                         )
                     ), $class->slug);
 
@@ -377,5 +378,11 @@ class BlockManager
                 )
             )
         ));
+    }
+
+    public function blockTypeArgs($args)
+    {
+        $args['supports'] = array_merge($args['supports'], array( 'anchor' => true ));
+        return $args;
     }
 }
