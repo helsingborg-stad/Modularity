@@ -17,8 +17,10 @@
     'heroStyle'     => $sidebarContext === 'sidebar.slider-area',
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
+        'data-slides-per-page' => $slidesPerPage,
+        'data-slider-focus-center' => '',
     ],
-    'context'       => ['module.slider', $sidebarContext . '.module.slider']
+    'context'       => ['module.slider', $sidebarContext . '.module.slider'],
 ])
     @foreach ($slides as $slide)
         @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])

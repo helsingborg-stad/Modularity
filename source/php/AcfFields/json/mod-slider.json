@@ -791,6 +791,27 @@
                 "acfe_flexible_modal_col": "4",
                 "acfe_flexible_modal_categories": false
             }
+        },
+        {
+            "key": "field_633e806824df6",
+            "label": "Number of slides per page",
+            "name": "slides_per_page",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 1,
+            "min": 1,
+            "max": 10,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -873,6 +894,11 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_rest": false
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
-
+
