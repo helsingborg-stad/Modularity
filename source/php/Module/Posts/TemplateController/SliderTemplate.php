@@ -25,9 +25,17 @@ class SliderTemplate extends AbstractController
         $this->data['slider']['showStepper']   = isset($fields->show_stepper) ? (bool) $fields->show_stepper: true;
         $this->data['slider']['repeatSlide']   = isset($fields->repeat_slide) ? (bool) $fields->repeat_slide: true;
 
-        $this->data['slider'] = apply_filters('Modularity/Module/Posts/Slider/Arguments', (object) $this->data['slider']);
+        $this->data['slider'] = apply_filters(
+            'Modularity/Module/Posts/Slider/Arguments',
+            (object) $this->data['slider']
+        );
                 
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $this->module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters(
+            'Modularity/Module/Classes',
+            [],
+            $this->module->post_type,
+            $this->args
+        ));
 
         $this->prepare($fields);
     }
