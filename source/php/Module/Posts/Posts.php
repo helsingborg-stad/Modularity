@@ -35,7 +35,6 @@ class Posts extends \Modularity\Module
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 10, 3);
 
         new PostsAjax($this);
-
     }
 
     
@@ -48,7 +47,6 @@ class Posts extends \Modularity\Module
      */
     public function getDateSource($postType): array
     {
-
         if (empty($postType)) {
             return false;
         }
@@ -113,7 +111,6 @@ class Posts extends \Modularity\Module
      */
     public function addIconsList($field): array
     {
-
         $choices = \Modularity\Helper\Icons::getIcons();
 
         $field['choices'] = [];
@@ -212,6 +209,11 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
+        if (! empty($data['posts'])) {
+            foreach ($data['posts'] as &$post) {
+                $post->permalink = get_permalink($post->ID);
+            }
+        }
 
         // Sorting
         $data['sortBy'] = false;
