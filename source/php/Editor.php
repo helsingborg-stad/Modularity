@@ -384,7 +384,14 @@ class Editor extends \Modularity\Options
     public static function getPostModules($postId)
     {
 
-        //Declarations
+        // Cached results
+        static $cachedResults;
+
+        if(isset($cachedResults)) {
+            return $cachedResults;
+        }
+
+        //Declarations        
         $modules = array();
         $retModules = array();
 
@@ -392,7 +399,6 @@ class Editor extends \Modularity\Options
         $postId = self::pageForPostTypeTranscribe($postId);
 
         // Get enabled modules
-        $available = \Modularity\ModuleManager::$available;
         $enabled = \Modularity\ModuleManager::$enabled;
 
         // Get modules structure
@@ -473,6 +479,9 @@ class Editor extends \Modularity\Options
                 }
             }
         }
+
+        // Cache results to reuse in the same instance
+        $cachedResults = $retModules;
 
         return $retModules;
     }
