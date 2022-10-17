@@ -11,15 +11,6 @@
     @endtypography
 @endif
 
-@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
-	@button([
-		'text' => __('Show all', 'modularity'),
-		'color' => 'default',
-		'style' => 'basic',
-		'href' => $archive_link_url . '?' . http_build_query($filters),
-	])
-	@endbutton
-@endif
 
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
@@ -42,3 +33,13 @@
         @endslider__item
     @endforeach
 @endslider
+
+@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
+	@button([
+		'text' => __('Show all', 'modularity'),
+		'color' => 'default',
+		'style' => 'basic',
+		'href' => $archive_link_url . '?' . http_build_query($filters),
+	])
+	@endbutton
+@endif
