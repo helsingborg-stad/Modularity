@@ -11,14 +11,34 @@
     @endtypography
 @endif
 
+@if (!empty($preamble))
+    @typography([
+        'id' => 'mod-posts-' . $ID . '-preamble',
+        'element' => 'p',
+        'classList' => ['module-preamble']
+    ])
+        {!! $preamble !!}
+    @endtypography
+@endif
+
+@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
+	@button([
+		'text' => __('Show all', 'modularity'),
+		'color' => 'default',
+		'style' => 'basic',
+		'href' => $archive_link_url . '?' . http_build_query($filters),
+	])
+	@endbutton
+@endif
+
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
-    'showStepper'     => $showStepper,
-    'autoSlide'       => $autoSlide,
-    'repeatSlide'     => $repeatSlide,
+    'showStepper'     => $slider->showStepper,
+    'autoSlide'       => $slider->autoSlide,
+    'repeatSlide'     => $slider->repeatSlide,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
-        'data-slides-per-page' => $slidesPerPage
+        'data-slides-per-page' => $slider->slidesPerPage
     ]
 ])
     @foreach ($posts as $post)
@@ -32,16 +52,3 @@
         @endslider__item
     @endforeach
 @endslider
-
-@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
-    <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
-        @button([
-            'text' => __('Show more', 'modularity'),
-            'color' => 'secondary',
-            'style' => 'filled',
-            'href' => $archive_link_url . '?' . http_build_query($filters),
-            'classList' => ['u-flex-grow--1@xs'],
-        ])
-        @endbutton
-    </div>
-@endif

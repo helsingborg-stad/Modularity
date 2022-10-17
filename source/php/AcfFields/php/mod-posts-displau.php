@@ -184,35 +184,6 @@
             'search_placeholder' => '',
         ),
         4 => array(
-            'key' => 'field_634920ba917f9',
-            'label' => __('Columns', 'modularity'),
-            'name' => 'slides_per_page',
-            'type' => 'number',
-            'instructions' => '',
-            'required' => 1,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'slider',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 4,
-            'min' => 2,
-            'max' => 6,
-            'placeholder' => '',
-            'step' => '',
-            'prepend' => '',
-            'append' => '',
-        ),
-        5 => array(
             'key' => 'field_571e046536f0e',
             'label' => __('Altering grid size', 'modularity'),
             'name' => 'posts_alter_columns',
@@ -238,6 +209,35 @@
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
+        ),
+        5 => array(
+            'key' => 'field_634920ba917f9',
+            'label' => __('Slides per page', 'modularity'),
+            'name' => 'slides_per_page',
+            'type' => 'number',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'slider',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => 4,
+            'min' => 2,
+            'max' => 6,
+            'placeholder' => '',
+            'step' => '',
+            'prepend' => '',
+            'append' => '',
         ),
         6 => array(
             'key' => 'field_571e01e7f246c',
@@ -346,6 +346,42 @@
             'ui' => 0,
         ),
         9 => array(
+            'key' => 'field_63495269e6375',
+            'label' => __('Navigation arrows placement', 'modularity'),
+            'name' => 'navigation_arrow_placement',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'slider',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'top' => __('Top', 'modularity'),
+                'middle' => __('Middle', 'modularity'),
+                'bottom' => __('Bottom', 'modularity'),
+            ),
+            'default_value' => __('middle', 'modularity'),
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
+        10 => array(
             'key' => 'field_6349457f24d6e',
             'label' => __('Autoslide', 'modularity'),
             'name' => 'auto_slide',
@@ -372,7 +408,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        10 => array(
+        11 => array(
             'key' => 'field_634932220afc6',
             'label' => __('Wrap around', 'modularity'),
             'name' => 'repeat_slide',
@@ -399,7 +435,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        11 => array(
+        12 => array(
             'key' => 'field_591176fff96d6',
             'label' => __('Hide the title column', 'modularity'),
             'name' => 'posts_hide_title_column',
@@ -426,7 +462,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        12 => array(
+        13 => array(
             'key' => 'field_57e3bcae3826e',
             'label' => __('Title column label', 'modularity'),
             'name' => 'title_column_label',
@@ -458,7 +494,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        13 => array(
+        14 => array(
             'key' => 'field_571f5776592e6',
             'label' => __('List column labels', 'modularity'),
             'name' => 'posts_list_column_titles',
@@ -511,7 +547,7 @@
                 ),
             ),
         ),
-        14 => array(
+        15 => array(
             'key' => 'field_59197c6dafb31',
             'label' => __('Allow freetext filtering', 'modularity'),
             'name' => 'allow_freetext_filtering',
@@ -538,7 +574,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        15 => array(
+        16 => array(
             'key' => 'field_5be480e163246',
             'label' => __('Highlight post', 'modularity'),
             'name' => 'posts_highlight',
@@ -565,7 +601,7 @@
             'ui_on_text' => __('Enabled', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
         ),
-        16 => array(
+        17 => array(
             'key' => 'field_5bdb0d4217e91',
             'label' => __('Date format', 'modularity'),
             'name' => 'posts_date_format',
@@ -605,7 +641,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        17 => array(
+        18 => array(
             'key' => 'field_5bd8575106176',
             'label' => __('Placeholder image', 'modularity'),
             'name' => 'posts_placeholder',
@@ -644,7 +680,7 @@
             'uploader' => '',
             'acfe_thumbnail' => 0,
         ),
-        18 => array(
+        19 => array(
             'key' => 'field_628e0f242aa5f',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',

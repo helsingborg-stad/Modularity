@@ -181,35 +181,6 @@
             "search_placeholder": ""
         },
         {
-            "key": "field_634920ba917f9",
-            "label": "Columns",
-            "name": "slides_per_page",
-            "type": "number",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "slider"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 4,
-            "min": 2,
-            "max": 6,
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
-        },
-        {
             "key": "field_571e046536f0e",
             "label": "Altering grid size",
             "name": "posts_alter_columns",
@@ -235,6 +206,35 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_634920ba917f9",
+            "label": "Slides per page",
+            "name": "slides_per_page",
+            "type": "number",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "slider"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4,
+            "min": 2,
+            "max": 6,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_571e01e7f246c",
@@ -341,6 +341,42 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 0
+        },
+        {
+            "key": "field_63495269e6375",
+            "label": "Navigation arrows placement",
+            "name": "navigation_arrow_placement",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "slider"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "top": "Top",
+                "middle": "Middle",
+                "bottom": "Bottom"
+            },
+            "default_value": "middle",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_6349457f24d6e",
