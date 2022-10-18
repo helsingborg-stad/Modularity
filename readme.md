@@ -352,6 +352,23 @@ add_filter('Modularity/Module/Posts/Date', function ($date, $postId, $postType) 
     return $date;
 });
 ```
+#### Modularity/Module/Posts/Slider/Arguments
+
+> Modify the slider arguments in Post Modules
+
+*Params:*
+```
+$args['slider']['slidesPerPage']
+$args['slider']['autoSlide']
+$args['slider']['showStepper']
+$args['slider']['repeatSlide']
+```
+*Example:*
+```php
+add_filter('Modularity/Module/Posts/Slider/Arguments', function ($args) {
+    return $args;
+});
+```
 
 #### Modularity/Editor/ModuleCssScope
 
