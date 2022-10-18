@@ -238,7 +238,22 @@ class BlockManager
      */
     private function setDefaultValues($data, $defaultValues)
     {
-        return array_merge($defaultValues, $data);
+        if (is_array($data) && !empty($data)) {
+            foreach ($data as $key => &$dataPoint) {
+                if (empty($dataPoint)) {
+                    $isSnakeCased = \str_contains($key, '_');
+
+                    if ($isSnakeCased) {
+                        $dataPoint = $defaultValues['_' . $key];
+                    } else {
+                        $key = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $key));
+                        $dataPoint = $defaultValues['_' . $key];
+                    }
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
