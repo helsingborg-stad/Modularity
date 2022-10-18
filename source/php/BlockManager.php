@@ -285,6 +285,10 @@ class BlockManager
         );
         $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
+        //Get view name
+        $view = str_replace('.blade.php', '', $module->template());
+        $view = !empty($view) ? $view : $block['moduleName'];
+
         //Add post type
         $viewData = array_merge([
             'post_type' => $module->moduleSlug
@@ -293,18 +297,13 @@ class BlockManager
         //Adds block data raw to view
         $viewData['blockData'] = $block;
 
-        //Allow filtering of block data
-        $viewData = apply_filters(
-            'Modularity/Block/Data',
-            $viewData,
-            $block,
-            $module
-        );
+        //Filter view data
+        $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
 
         if ($this->validateFields($viewData)) {
             $display = new Display();
             $renderedView = $display->renderView(
-                str_replace('.blade.php', '', $module->template()),
+                $view,
                 $viewData
             );
 
