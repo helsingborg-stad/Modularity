@@ -431,17 +431,17 @@ class Editor extends \Modularity\Options
         }
 
         // Get module posts
-        $modulesPosts = get_posts(array(
-            'posts_per_page' => -1,
-            'post_type' => $enabled,
-            'include' => $moduleIds,
-            'post_status' => $postStatuses
-        ));
-
-        // Add module id's as keys in the array
-        if (!empty($modulesPosts)) {
-            foreach ($modulesPosts as $module) {
-                $modules[$module->ID] = $module;
+        if (!(empty($moduleIds) || empty($enabled) || empty($postStatuses))) {
+            global $wpdb;
+            $format_statement = fn ($a, $raw = false) => implode(',', $raw ? $a : array_map(fn ($v) => "'" . esc_sql($v) . "'", $a));
+            $prepared = $wpdb->prepare("SELECT ID FROM `$wpdb->posts` WHERE `ID` IN (" . $format_statement($moduleIds, true) . ") AND `post_type` IN (" .  $format_statement($enabled) . ") AND `post_status` IN (" . $format_statement($postStatuses) . ")");
+            $modulesPosts = $wpdb->get_results($prepared);
+            
+            // Add module id's as keys in the array
+            if (!empty($modulesPosts)) {
+                foreach ($modulesPosts as $module) {
+                    $modules[$module->ID] = $module;
+                }
             }
         }
 
