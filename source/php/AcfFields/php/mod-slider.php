@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_56a5e99108991',
     'title' => __('Slider', 'modularity'),
     'fields' => array(
@@ -31,11 +32,6 @@
             'ajax' => 0,
             'return_format' => 'value',
             'placeholder' => '',
-<<<<<<< HEAD
-            'allow_custom' => 0,
-            'search_placeholder' => '',
-=======
->>>>>>> 3.0/develop
         ),
         1 => array(
             'key' => 'field_5731c6d886811',
@@ -194,11 +190,6 @@
                             'return_format' => 'value',
                             'ajax' => 0,
                             'placeholder' => '',
-<<<<<<< HEAD
-                            'allow_custom' => 0,
-                            'search_placeholder' => '',
-=======
->>>>>>> 3.0/develop
                         ),
                         3 => array(
                             'key' => 'field_5702597b7d869',
@@ -259,10 +250,6 @@
                             'maxlength' => '',
                             'rows' => '',
                             'new_lines' => 'br',
-<<<<<<< HEAD
-                            'acfe_textarea_code' => 0,
-=======
->>>>>>> 3.0/develop
                         ),
                         5 => array(
                             'key' => 'field_56fa82a2d464d',
@@ -476,10 +463,6 @@
                             'min_size' => '',
                             'max_size' => 20,
                             'mime_types' => 'mp4',
-<<<<<<< HEAD
-                            'uploader' => '',
-=======
->>>>>>> 3.0/develop
                         ),
                         1 => array(
                             'key' => 'field_56b9e2a221291',
@@ -504,11 +487,6 @@
                             'max_height' => '',
                             'max_size' => '',
                             'mime_types' => 'png,jpg',
-<<<<<<< HEAD
-                            'uploader' => '',
-                            'acfe_thumbnail' => 0,
-=======
->>>>>>> 3.0/develop
                         ),
                         2 => array(
                             'key' => 'field_6007fbb665ed9',
@@ -547,10 +525,6 @@
                             'maxlength' => '',
                             'rows' => '',
                             'new_lines' => 'br',
-<<<<<<< HEAD
-                            'acfe_textarea_code' => 0,
-=======
->>>>>>> 3.0/develop
                         ),
                         4 => array(
                             'key' => 'field_56e7fa620ee0a',
@@ -591,11 +565,6 @@
                             'return_format' => 'value',
                             'disabled' => 0,
                             'readonly' => 0,
-<<<<<<< HEAD
-                            'allow_custom' => 0,
-                            'search_placeholder' => '',
-=======
->>>>>>> 3.0/develop
                         ),
                         5 => array(
                             'key' => 'field_6007f74a5f5a5',
@@ -622,11 +591,6 @@
                             'return_format' => 'value',
                             'ajax' => 0,
                             'placeholder' => '',
-<<<<<<< HEAD
-                            'allow_custom' => 0,
-                            'search_placeholder' => '',
-=======
->>>>>>> 3.0/develop
                         ),
                         6 => array(
                             'key' => 'field_6007f6bf5f5a3',
@@ -654,11 +618,6 @@
                             'return_format' => 'value',
                             'ajax' => 0,
                             'placeholder' => '',
-<<<<<<< HEAD
-                            'allow_custom' => 0,
-                            'search_placeholder' => '',
-=======
->>>>>>> 3.0/develop
                         ),
                         7 => array(
                             'key' => 'field_56fa87ec3ace2',
@@ -825,8 +784,6 @@
                 'acfe_flexible_modal_categories' => false,
             ),
         ),
-<<<<<<< HEAD
-=======
         5 => array(
             'key' => 'field_633e806824df6',
             'label' => __('Number of slides per page', 'modularity'),
@@ -848,7 +805,6 @@
             'prepend' => '',
             'append' => '',
         ),
->>>>>>> 3.0/develop
     ),
     'location' => array(
         0 => array(
@@ -930,15 +886,11 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
-<<<<<<< HEAD
-    'show_in_rest' => false,
-=======
     'show_in_rest' => 0,
     'acfe_display_title' => '',
     'acfe_autosync' => '',
     'acfe_form' => 0,
     'acfe_meta' => '',
     'acfe_note' => '',
->>>>>>> 3.0/develop
 ));
-}
+}
