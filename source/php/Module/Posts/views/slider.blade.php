@@ -13,7 +13,7 @@
 
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
-    'classList'       => ['posts-as-slider'],
+    'classList'       => ['c-slider--post'],
     'showStepper'     => $slider->showStepper,
     'autoSlide'       => $slider->autoSlide,
     'repeatSlide'     => $slider->repeatSlide,
@@ -25,6 +25,7 @@
     @foreach ($posts as $post)
         @slider__item([
             'title' => $post->post_title,
+            'classList' => ['u-width--50@md', 'u-width--25@lg'],
             'desktop_image' => isset($post->thumbnail[0]) ? $post->thumbnail[0] : false,
             'containerColor' => 'none',
             'overlay' => 'dark',
