@@ -19,6 +19,7 @@
     'repeatSlide'     => $slider->repeatSlide,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
+        'data-slider-gap' => (8*6),
         'data-slides-per-page' => $slider->slidesPerPage
     ]
 ])
