@@ -25,7 +25,7 @@
     @foreach ($posts as $post)
         @slider__item([
             'title' => $post->post_title,
-            'classList' => ['u-width--50@md', 'u-width--25@lg'],
+            'classList' => ['c-slider__item--post','u-width--50@md', 'u-width--25@lg'],
             'desktop_image' => isset($post->thumbnail[0]) ? $post->thumbnail[0] : false,
             'containerColor' => 'none',
             'overlay' => 'dark',
