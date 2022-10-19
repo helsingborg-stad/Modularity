@@ -236,7 +236,22 @@ class BlockManager
      */
     private function setDefaultValues($data, $defaultValues)
     {
-        return array_merge($defaultValues, $data);
+        if (is_array($data) && !empty($data)) {
+            foreach ($data as $key => &$dataPoint) {
+                if (empty($dataPoint)) {
+                    $isSnakeCased = \str_contains($key, '_');
+
+                    if ($isSnakeCased) {
+                        $dataPoint = $defaultValues['_' . $key];
+                    } else {
+                        $key = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $key));
+                        $dataPoint = $defaultValues['_' . $key];
+                    }
+                }
+            }
+        }
+
+        return $data;
     }
 
     /**
@@ -286,6 +301,10 @@ class BlockManager
         if (! isset($block['anchor']) || '' === $block['anchor']) {
             $block['anchor'] = $block['id'];
         }
+        
+        //Get view name
+        $view = str_replace('.blade.php', '', $module->template());
+        $view = !empty($view) ? $view : $block['moduleName'];
 
         //Add post type
         $viewData = array_merge([
@@ -295,18 +314,13 @@ class BlockManager
         //Adds block data raw to view
         $viewData['blockData'] = $block;
 
-        //Allow filtering of block data
-        $viewData = apply_filters(
-            'Modularity/Block/Data',
-            $viewData,
-            $block,
-            $module
-        );
+        //Filter view data
+        $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
 
         if ($this->validateFields($viewData)) {
             $display = new Display();
             $renderedView = $display->renderView(
-                str_replace('.blade.php', '', $module->template()),
+                $view,
                 $viewData
             );
 

@@ -51,9 +51,9 @@ class FilesList extends \Modularity\Module
 
         foreach ($files as $key => $item) {
             $rows[$key] = [
-                'title' => $this->filenameToTitle($item['file']['title']),
-                'href' => $item['file']['url'],
-                'description' => $item['file']['description'],
+                'title' => $this->filenameToTitle($item['file']['title'] ?? ''),
+                'href' => $item['file']['url'] ?? '',
+                'description' => $item['file']['description'] ?? '',
                 'type' => pathInfo($item['file']['url'], PATHINFO_EXTENSION),
                 'filesize' => $this->formatBytes($item['file']['filesize']),
                 'icon' => $this->getIconClass($item['file']['subtype'])
