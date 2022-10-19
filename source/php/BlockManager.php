@@ -48,7 +48,6 @@ class BlockManager
      */
     public function renderCustomGrid($block_content, array $block): string
     {
-
         if (!is_string($block_content)) {
             return "";
         }
@@ -123,7 +122,6 @@ class BlockManager
         if (function_exists('acf_register_block_type')) {
             foreach ($this->classes as $class) {
                 if ($class->isBlockCompatible && in_array($class->moduleSlug, $enabledModules)) {
-
                     $blockSettings = [
                         'name'              => str_replace('mod-', '', $class->moduleSlug),
                         'title'             => $class->nameSingular,
@@ -300,13 +298,17 @@ class BlockManager
         );
         $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
+        if (! isset($block['anchor']) || '' === $block['anchor']) {
+            $block['anchor'] = $block['id'];
+        }
+        
         //Get view name
         $view = str_replace('.blade.php', '', $module->template());
         $view = !empty($view) ? $view : $block['moduleName'];
 
         //Add post type
         $viewData = array_merge([
-            'post_type' => $module->moduleSlug
+            'post_type' => $module->moduleSlug,
         ], $module->data);
 
         //Adds block data raw to view
@@ -330,7 +332,6 @@ class BlockManager
                     __("Your settings rendered an empty result. Try other settings.", 'modularity')
                 );
             }
-
         } elseif (is_user_logged_in()) {
             $renderedView = $this->displayNotice(
                 $module->nameSingular,
@@ -375,8 +376,8 @@ class BlockManager
     }
 
     /**
-     * Add block containing custom block title field. 
-     * Replaces post title field. 
+     * Add block containing custom block title field.
+     * Replaces post title field.
      *
      * @return void
      */
@@ -400,7 +401,7 @@ class BlockManager
 
     /**
      * Returns (error) notices to user.
-     * Rendered by notice component via notice module. 
+     * Rendered by notice component via notice module.
      *
      * @return string
      */
