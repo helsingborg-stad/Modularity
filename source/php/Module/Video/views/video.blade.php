@@ -46,6 +46,12 @@
                         {!! $embedCode !!}
                     </script>
                 @else
+                        @icon([
+                            'icon' => 'play_circle', 
+                            'size' => 'xxl',
+                            'attributeList' => ['js-suppressed-video-button' => ''],
+                        ])
+                        @endicon
                     {!! $embedCode !!}
                 @endif
             </div>
