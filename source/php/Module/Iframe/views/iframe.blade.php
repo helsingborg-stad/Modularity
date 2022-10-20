@@ -13,6 +13,6 @@
 	'height' => $height,
 	'title' => $description ?? $post_title,
     'options' => json_encode($lang),
-
+    'modifier' => '--iframe'
 ])
 @endiframe
