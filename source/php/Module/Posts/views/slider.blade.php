@@ -25,14 +25,22 @@
 ])
     @foreach ($posts as $post)
         @slider__item([
-            'title' => $post->post_title,
             'classList' => ['c-slider__item--post'],
-            'desktop_image' => isset($post->thumbnail[0]) ? $post->thumbnail[0] : false,
-            'containerColor' => 'none',
-            'overlay' => 'dark',
-            'textColor' => 'white',
-            'link' => $post->permalink,
         ])
+            @card([
+                'heading' => $post->post_title,
+                'subHeading' => 'SubHeading',
+                'classList' => [$classes, 'u-color__text--primary'],
+                // 'content' => ($post->showExcerpt ? $post->post_content : false),
+                // 'content' => $post->post_content,
+                'date' => "Y-m-d H:i",
+                'image' => ['src' => $post->thumbnail[0], 'alt' => 'ALT'],
+                'imageFirst' => true,
+                'link' => $post->link,
+                'containerAware' => true,
+                // 'tags' => $post->tags,
+            ])
+            @endcard
         @endslider__item
     @endforeach
     
