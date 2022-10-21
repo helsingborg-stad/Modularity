@@ -316,33 +316,6 @@
             "search_placeholder": ""
         },
         {
-            "key": "field_634932220afc6",
-            "label": "Wrap around",
-            "name": "repeat_slide",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "slider"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "33",
-                "class": "",
-                "id": ""
-            },
-            "message": "Go to first slide when last item is reached",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_591176fff96d6",
             "label": "Hide the title column",
             "name": "posts_hide_title_column",

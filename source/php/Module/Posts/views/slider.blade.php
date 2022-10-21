@@ -14,9 +14,8 @@
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
     'classList'       => ['c-slider--post'],
-    'showStepper'     => $slider->showStepper,
-    'autoSlide'       => $slider->autoSlide,
-    'repeatSlide'     => $slider->repeatSlide,
+    'showStepper'     => false,
+    'autoSlide'       => false,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slider-gap' => (8*6),
@@ -31,8 +30,6 @@
                 'heading' => $post->post_title,
                 'subHeading' => 'SubHeading',
                 'classList' => [$classes, 'u-color__text--primary'],
-                // 'content' => ($post->showExcerpt ? $post->post_content : false),
-                // 'content' => $post->post_content,
                 'date' => "Y-m-d H:i",
                 'image' => ['src' => $post->thumbnail[0], 'alt' => 'ALT'],
                 'imageFirst' => true,
