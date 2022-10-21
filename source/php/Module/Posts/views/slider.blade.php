@@ -25,19 +25,9 @@
     @foreach ($posts as $post)
         @slider__item([
             'classList' => ['c-slider__item--post'],
+            // 'link' => $post->link,
         ])
-            @card([
-                'heading' => $post->post_title,
-                'subHeading' => 'SubHeading',
-                'classList' => [$classes, 'u-color__text--primary'],
-                'date' => "Y-m-d H:i",
-                'image' => ['src' => $post->thumbnail[0], 'alt' => 'ALT'],
-                'imageFirst' => true,
-                'link' => $post->link,
-                'containerAware' => true,
-                // 'tags' => $post->tags,
-            ])
-            @endcard
+            @include('partials.slider-item')
         @endslider__item
     @endforeach
     
