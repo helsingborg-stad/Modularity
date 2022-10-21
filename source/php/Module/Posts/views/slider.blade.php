@@ -25,7 +25,6 @@
     @foreach ($posts as $post)
         @slider__item([
             'classList' => ['c-slider__item--post'],
-            // 'link' => $post->link,
         ])
             @include('partials.slider-item')
         @endslider__item

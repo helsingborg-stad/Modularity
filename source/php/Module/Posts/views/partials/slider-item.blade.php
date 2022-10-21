@@ -2,7 +2,7 @@
     'heading' => $post->post_title,
     // 'subHeading' => 'subheading'
     'classList' => [$classes, 'u-color__text--info'],
-    'date' => "Y-m-d H:i",
+    'date' => $post->post_date,
     'image' => ['src' => $post->thumbnail[0], 'alt' => $post->post_title],
     'imageFirst' => true,
     // 'link' => $post->link,
