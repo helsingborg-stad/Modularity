@@ -34,7 +34,17 @@ class Posts extends \Modularity\Module
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
 
+        add_filter('Modularity/Module/Posts/template', array( $this, 'sliderTemplate' ), 10, 2);
+
         new PostsAjax($this);
+    }
+
+    public function sliderTemplate($template, $moduleData) {
+        $showAsSlider = get_field('show_as_slider', $moduleData->ID);
+        if (1 === (int) $showAsSlider) {
+            return 'slider.blade.php';
+        }
+        return $template;
     }
 
     /**
@@ -139,6 +149,8 @@ class Posts extends \Modularity\Module
             $this,
             $this->data
         );
+
+        // var_dump($data['posts_display_as']);
     }
 
     /**
