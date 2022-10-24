@@ -28,7 +28,7 @@
                 @iframe([
                     'src' => $map_url,
                     'classList' => [
-                        'u-width--100', 'u-display--block'
+                        'u-width--100', 'u-display--block', 'u-level--1'
                     ],
                     'title' => $map_description,
                     'options' => json_encode($lang),
