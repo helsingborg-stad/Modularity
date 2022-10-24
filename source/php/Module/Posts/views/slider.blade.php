@@ -27,9 +27,9 @@
             'classList' => ['c-slider__item--post'],
         ])
             @if ($postsDisplayAs)
-                @include('partials.slider'. $postsDisplayAs )
+                @include('partials.slider.'. $postsDisplayAs )
             @endif
-            
+
         @endslider__item
     @endforeach
     
@@ -47,3 +47,4 @@
 	])
 	@endbutton
 @endif
+    

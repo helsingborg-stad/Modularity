@@ -40,12 +40,10 @@ class Posts extends \Modularity\Module
     }
 
     public function sliderTemplate($template, $moduleData) {
-        $postsDisplayAs = get_field('posts_display_as', $moduleData->ID);
         $showAsSlider = get_field('show_as_slider', $moduleData->ID);
 
-        var_dump($postsDisplayAs);
-
         if (1 === (int) $showAsSlider) {
+            $this->getTemplateData(self::replaceDeprecatedTemplate('slider'));
             return 'slider.blade.php';
         }
 
