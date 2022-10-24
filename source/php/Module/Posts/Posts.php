@@ -46,7 +46,6 @@ class Posts extends \Modularity\Module
         var_dump($postsDisplayAs);
 
         if (1 === (int) $showAsSlider) {
-            if ($postsDisplayAs)
             return 'slider.blade.php';
         }
 

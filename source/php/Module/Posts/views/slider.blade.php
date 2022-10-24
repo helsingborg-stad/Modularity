@@ -29,6 +29,7 @@
             @if ($postsDisplayAs)
                 @include('partials.slider'. $postsDisplayAs )
             @endif
+            
         @endslider__item
     @endforeach
     
