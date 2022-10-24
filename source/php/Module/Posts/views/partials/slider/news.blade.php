@@ -1,5 +1,6 @@
 @card([
-    'heading' => 'NEWS',
+    // 'heading' => $post->post_title,
+    'heading'   => 'NEWS',
     'subHeading' => 'news.blade.php',
     'classList' => [$classes, 'u-color__text--info'],
     'date' => $post->post_date,

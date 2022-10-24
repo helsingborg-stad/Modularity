@@ -1,14 +1,18 @@
-@card([
-    'heading' => 'features-grid',
-    'subHeading' => 'features-grid.blade.php',
-    'classList' => [$classes, 'u-color__text--info'],
-    'date' => $post->post_date,
-    'image' => ['src' => $post->thumbnail[0], 'alt' => $post->post_title],
-    'imageFirst' => true,
-    // 'link' => $post->link,
-    'containerAware' => true,
-    'hasAction' => true,
-    'tags' => $post->tags,
-    'context' => ['module.posts.slider'],
+<div class="{{$posts_columns}}">
+    @box([
+        'heading' => ($post->showTitle ? $post->post_title : false),
+        'content' => ($post->showExcerpt ? $post->post_content : false),
+        'link' => $post->link,
+        'meta' => $post->tags,
+        'date' => ($post->showDate ? $post->post_date : false),
+        'ratio' => $ratio,
+        'image' => $post->showImage ? [
+            'src' => $post->thumbnail[0] ?? false,
+            'alt' => $post->post_title
+        ] : [],
+        'icon' => [
+            'name' => $post->item_icon ?? false,
+        ]
     ])
-@endcard
+    @endbox
+</div>
