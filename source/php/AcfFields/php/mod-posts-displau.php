@@ -26,7 +26,6 @@
                 'index' => __('Index', 'modularity'),
                 'grid' => __('Blocks', 'modularity'),
                 'features-grid' => __('Features grid', 'modularity'),
-                'slider' => __('Slider', 'modularity'),
             ),
             'default_value' => __('list', 'modularity'),
             'return_format' => 'value',
@@ -36,6 +35,61 @@
             'save_other_choice' => 0,
         ),
         1 => array(
+            'key' => 'field_6356477fbc5e4',
+            'label' => __('Show as slider', 'modularity'),
+            'name' => 'show_as_slider',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'index',
+                    ),
+                ),
+                1 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'items',
+                    ),
+                ),
+                2 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'news',
+                    ),
+                ),
+                3 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'grid',
+                    ),
+                ),
+                4 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'features-grid',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        2 => array(
             'key' => 'field_628e0ffba7da4',
             'label' => __('Highlight first post', 'modularity'),
             'name' => 'posts_highlight_first',
@@ -83,7 +137,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_629f1b34ef9fc',
             'label' => __('Display highlighted post as', 'modularity'),
             'name' => 'posts_display_highlighted_as',
@@ -118,7 +172,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_571dfdf50d9da',
             'label' => __('Columns', 'modularity'),
             'name' => 'posts_columns',
@@ -183,7 +237,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_571e046536f0e',
             'label' => __('Altering grid size', 'modularity'),
             'name' => 'posts_alter_columns',
@@ -209,35 +263,6 @@
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
-        ),
-        5 => array(
-            'key' => 'field_634920ba917f9',
-            'label' => __('Slides per page', 'modularity'),
-            'name' => 'slides_per_page',
-            'type' => 'number',
-            'instructions' => '',
-            'required' => 1,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'slider',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 4,
-            'min' => 2,
-            'max' => 6,
-            'placeholder' => '',
-            'step' => '',
-            'prepend' => '',
-            'append' => '',
         ),
         6 => array(
             'key' => 'field_571e01e7f246c',

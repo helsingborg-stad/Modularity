@@ -22,8 +22,7 @@
                 "news": "News items",
                 "index": "Index",
                 "grid": "Blocks",
-                "features-grid": "Features grid",
-                "slider": "Slider"
+                "features-grid": "Features grid"
             },
             "default_value": "list",
             "return_format": "value",
@@ -31,6 +30,61 @@
             "other_choice": 0,
             "layout": "horizontal",
             "save_other_choice": 0
+        },
+        {
+            "key": "field_6356477fbc5e4",
+            "label": "Show as slider",
+            "name": "show_as_slider",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "index"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "items"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "news"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "features-grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_628e0ffba7da4",
@@ -206,35 +260,6 @@
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
-        },
-        {
-            "key": "field_634920ba917f9",
-            "label": "Slides per page",
-            "name": "slides_per_page",
-            "type": "number",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "slider"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 4,
-            "min": 2,
-            "max": 6,
-            "placeholder": "",
-            "step": "",
-            "prepend": "",
-            "append": ""
         },
         {
             "key": "field_571e01e7f246c",
