@@ -41,6 +41,8 @@ class SliderTemplate extends AbstractController
         );
 
         $this->prepare($fields);
+
+        $postsDisplayAs = get_field('posts_display_as', $moduleData->ID);
     }
 
     public function prepare($fields)

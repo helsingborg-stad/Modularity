@@ -26,11 +26,16 @@
         @slider__item([
             'classList' => ['c-slider__item--post'],
         ])
-            @include('partials.slider-item')
+            @if ($postsDisplayAs)
+                @include('partials.slider'. $postsDisplayAs )
+            @endif
         @endslider__item
     @endforeach
     
 @endslider
+
+<h2>Displaying as {{ $postsDisplayAs }} </h2>
+
 
 @if ($posts_data_source !== 'input' && $archive_link)
 	@button([
