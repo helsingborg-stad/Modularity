@@ -1,5 +1,6 @@
 @card([
     'link' => $post->link,
+    'imageFirst' => true,
     'image' => $post->showImage ? [
         'src' => $post->thumbnail[0], 
         'alt' => $post->post_title
