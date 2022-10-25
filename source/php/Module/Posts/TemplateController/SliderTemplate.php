@@ -47,7 +47,6 @@ class SliderTemplate extends AbstractController
     }
 
 
-
     public function prepare($fields)
     {
         $postNum = 0;

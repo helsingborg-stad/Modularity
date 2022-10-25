@@ -103,12 +103,22 @@
                         'operator' => '==',
                         'value' => 'items',
                     ),
+                    1 => array(
+                        'field' => 'field_6356477fbc5e4',
+                        'operator' => '!=',
+                        'value' => '1',
+                    ),
                 ),
                 1 => array(
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
                         'value' => 'index',
+                    ),
+                    1 => array(
+                        'field' => 'field_6356477fbc5e4',
+                        'operator' => '!=',
+                        'value' => '1',
                     ),
                 ),
                 2 => array(
@@ -117,12 +127,22 @@
                         'operator' => '==',
                         'value' => 'grid',
                     ),
+                    1 => array(
+                        'field' => 'field_6356477fbc5e4',
+                        'operator' => '!=',
+                        'value' => '1',
+                    ),
                 ),
                 3 => array(
                     0 => array(
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
                         'value' => 'news',
+                    ),
+                    1 => array(
+                        'field' => 'field_6356477fbc5e4',
+                        'operator' => '!=',
+                        'value' => '1',
                     ),
                 ),
             ),

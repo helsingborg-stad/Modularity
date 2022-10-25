@@ -99,6 +99,11 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "items"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
                     }
                 ],
                 [
@@ -106,6 +111,11 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "index"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
                     }
                 ],
                 [
@@ -113,6 +123,11 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "grid"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
                     }
                 ],
                 [
@@ -120,6 +135,11 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "news"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
                     }
                 ]
             ],
