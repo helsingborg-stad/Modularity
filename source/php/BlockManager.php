@@ -294,14 +294,15 @@ class BlockManager
         //Add post title & hide title
         $module->data['postTitle'] = apply_filters(
             'the_title',
-            $module->data['custom_block_title'] ?? ''
+            !empty($block['data']['custom_block_title']) ?
+            $block['data']['custom_block_title'] : $block['data']['field_block_title']
         );
         $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
         if (! isset($block['anchor']) || '' === $block['anchor']) {
             $block['anchor'] = $block['id'];
         }
-        
+
         //Get view name
         $view = str_replace('.blade.php', '', $module->template());
         $view = !empty($view) ? $view : $block['moduleName'];
