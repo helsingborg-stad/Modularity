@@ -115,11 +115,6 @@ class Contacts extends \Modularity\Module
                     break;
             }
 
-            //Build style to be used for inline CSS
-            if (!empty($info['image']['url'])) {
-                $info['image']['inlineStyle']  = "background-image:url('" . $info['image']['url'] . "');";
-            }
-
             //Parse thumbnail id's
             $info['thumbnail'] = false;
             if (isset($info['image']) && !empty($info['image']) && isset($info['image']['id']) && is_numeric($info['image']['id'])) {
@@ -127,10 +122,11 @@ class Contacts extends \Modularity\Module
                     $info['image']['id'],
                     apply_filters(
                         'Modularity/image/contact',
-                        municipio_to_aspect_ratio('1:1', array(400, 400)),
+                        municipio_to_aspect_ratio('1:1', array(550, 550)),
                         $this->args
                     )
                 );
+                $info['image']['inlineStyle']  = "background-image:url('" . $info['thumbnail'][0] . "');";
             }
 
             //Parse directly inputted url:s
