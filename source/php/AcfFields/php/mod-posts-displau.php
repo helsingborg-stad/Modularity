@@ -267,9 +267,9 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
+                        'field' => 'field_6356477fbc5e4',
+                        'operator' => '!=',
+                        'value' => '1',
                     ),
                 ),
             ),
@@ -278,8 +278,8 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => 0,
             'message' => __('Yes, alter grid size automatically', 'modularity'),
+            'default_value' => 0,
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
