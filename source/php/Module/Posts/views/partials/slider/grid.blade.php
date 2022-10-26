@@ -3,7 +3,7 @@
     'content' => ($post->showExcerpt ? $post->post_content : false),
     'ratio' => $ratio,
     'meta' => $post->tags,
-    'date' => ($post->showDate ? $post->post_date : false),
+    'date' => ($post->showDate ? get_post_time( "Y-m-d",  $post ) : false),
     'filled' => true,
     'image' => ($post->showImage ? [
         'src' => $loop->first && $highlight_first_column
