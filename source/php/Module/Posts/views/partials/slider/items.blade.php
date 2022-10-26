@@ -5,13 +5,16 @@
         'src' => $post->thumbnail[0], 
         'alt' => $post->post_title
         ] : [],
+    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
     'heading' => ($post->showTitle ? $post->post_title : false),
     'content' => ($post->showExcerpt ? $post->post_content : false),
-    'classList' => ['u-color__text--info', 'c-card--slider', 'c-card--size-xs c-card--size-sm c-card--size-md c-card--size-lg'],
+    'classList' => [$classes, 'u-color__text--info'],
     'date' => ($post->showDate ? get_post_time( "Y-m-d H:i",  $post ) : false),
     'containerAware' => true,
     'hasAction' => true,
+
+    // 'hasFooter' => true,
     // 'tags' => $post->tags,
-    // 'context' => ['module.posts.slider'],
+    'context' => ['module.posts.index'],
 ])
 @endcard
