@@ -3,7 +3,7 @@
     'content' => ($post->showExcerpt ? $post->post_content : false),
     'link' => $post->link,
     'meta' => $post->tags,
-    'date' => ($post->showDate ? $post->post_date : false),
+    'date' => ($post->showDate ? get_post_time( "Y-m-d",  $post ) : false),
     'ratio' => $ratio,
     'image' => $post->showImage ? [
         'src' => $post->thumbnail[0] ?? false,
@@ -14,3 +14,4 @@
     ]
 ])
 @endbox
+
