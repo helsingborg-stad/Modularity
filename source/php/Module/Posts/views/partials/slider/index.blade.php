@@ -13,8 +13,8 @@
     'containerAware' => true,
     'hasAction' => true,
 
-    // 'hasFooter' => true,
-    // 'tags' => $post->tags,
+    'hasFooter' => true,
+    'tags' => $post->tags,
     'context' => ['module.posts.index'],
 ])
 @endcard

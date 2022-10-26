@@ -11,10 +11,6 @@
     @endtypography
 @endif
 
-@if ($postColumns)
-<h1> post columns: {{ $postColumns }} </h1>
-@endif 
-
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
     'classList'       => ['c-slider--post'],
