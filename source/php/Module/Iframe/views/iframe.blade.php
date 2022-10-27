@@ -7,11 +7,11 @@
         {!! apply_filters('the_title', $post_title) !!}
     @endtypography
 @endif
-
 @iframe([
 	'src' => $url,
 	'height' => $height,
 	'title' => $description ?? $post_title,
-    'options' => json_encode($lang),
+    'labels' => $lang,
 ])
 @endiframe
+

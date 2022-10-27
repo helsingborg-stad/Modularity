@@ -75,7 +75,6 @@ class Script extends \Modularity\Module
                     'button' => __('I understand, continue.', 'modularity'),
                 ],
             ];
-            
 
         return $data;
     }

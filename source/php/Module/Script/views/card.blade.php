@@ -13,7 +13,7 @@
         </div>
     @endif
     @acceptance([
-        'labels' => (object)$lang->unknownLabels,
+        'labels' => json_encode($lang),
         'modifier' => 'script',
     ])
     <div class="{{$scriptPadding}}">{!! $embed !!}</div>
