@@ -34,15 +34,25 @@ class Posts extends \Modularity\Module
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
 
-        add_filter('Modularity/Module/Posts/template', array( $this, 'sliderTemplate' ), 10, 2);
+        add_filter('Modularity/Module/Posts/template', array( $this, 'sliderTemplate' ), 10, 3);
 
         new PostsAjax($this);
     }
 
-    public function sliderTemplate($template, $moduleData) {
-        $showAsSlider = get_field('show_as_slider', $moduleData->ID);
+   /**
+    * If the module is set to show as a slider, then return the slider template
+    *
+    * @param string template The template that is currently being used.
+    * @param object module The module object
+    * @param array moduleData The data for the module.
+    *
+    * @return The template name.
+    */
+    public function sliderTemplate(string $template, object $module, array $moduleData)
+    {
+        $showAsSlider = (int) get_field('show_as_slider', (object) $moduleData->ID);
 
-        if (1 === (int) $showAsSlider) {
+        if (1 === $showAsSlider) {
             $this->getTemplateData(self::replaceDeprecatedTemplate('slider'));
             return 'slider.blade.php';
         }
