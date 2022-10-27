@@ -54,7 +54,7 @@ class Posts extends \Modularity\Module
         $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
         
         if (1 === (int) $showAsSlider) {
-            $this->getTemplateData(self::replaceDeprecatedTemplate('slider'));
+            $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
             return 'slider.blade.php';
         }
 
@@ -170,9 +170,14 @@ class Posts extends \Modularity\Module
     /**
      * @param $template
      */
-    public function getTemplateData($template)
+    public function getTemplateData(string $template, array $data = array())
     {
-        $template = explode('-', $template);
+
+		if( ! empty( $data ) ) {
+			$this->data = $data;
+		}
+		
+		$template = explode('-', $template);
         $template = array_map('ucwords', $template);
         $template = implode('', $template);
 
