@@ -63,6 +63,12 @@ class Slider extends \Modularity\Module
         $data['wrapAround'] = in_array('wrapAround', $fields['additional_options']);
         $data['title'] = isset($fields['post_title']) ? $fields['post_title'] : '';
         $data['slidesPerPage'] = isset($fields['slides_per_page']) ? $fields['slides_per_page'] : '1';
+        $data['ariaLabels'] =  (object) [
+            'prev' => __('Previous slide','modularity'),
+            'next' => __('Next slide', 'modularity'),
+            'first' => __('Go to first slide', 'modularity'),
+            'last' => __('Go to last slide','modularity'),
+        ];
 
         //Get slides
         $data['slides'] = $this->prepareSlides($fields);

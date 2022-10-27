@@ -19,6 +19,7 @@
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slides-per-page' => $slidesPerPage,
         'data-slider-focus-center' => '',
+        'data-aria-labels' => json_encode($ariaLabels)
     ],
     'context'       => ['module.slider', $sidebarContext . '.module.slider'],
 ])
