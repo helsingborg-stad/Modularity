@@ -68,6 +68,7 @@ class Slider extends \Modularity\Module
             'next' => __('Next slide', 'modularity'),
             'first' => __('Go to first slide', 'modularity'),
             'last' => __('Go to last slide','modularity'),
+            'slideX' => __('Go to slide %s', 'modularity'),
         ];
 
         //Get slides

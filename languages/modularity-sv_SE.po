@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-10-27 10:18+0200\n"
-"PO-Revision-Date: 2022-10-27 10:40+0200\n"
+"POT-Creation-Date: 2022-10-27 10:51+0200\n"
+"PO-Revision-Date: 2022-10-27 10:53+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -1519,7 +1519,7 @@ msgid "Link text"
 msgstr "Typ av länk"
 
 #: source/php/AcfFields/php/mod-slider.php:736
-#: source/php/Module/Slider/Slider.php:114
+#: source/php/Module/Slider/Slider.php:115
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
 #, fuzzy
@@ -2289,6 +2289,11 @@ msgstr "Gå till första bilden"
 #: source/php/Module/Slider/Slider.php:70
 msgid "Go to last slide"
 msgstr "Gå till sista bilden"
+
+#: source/php/Module/Slider/Slider.php:71
+#, php-format
+msgid "Go to slide %s"
+msgstr "Gå till bild nummer %s"
 
 #: source/php/Module/Spacer/Spacer.php:12
 msgid "Spacer"
