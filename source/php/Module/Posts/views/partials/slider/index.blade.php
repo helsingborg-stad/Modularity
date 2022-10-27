@@ -12,7 +12,6 @@
     'date' => ($post->showDate ? get_post_time( "Y-m-d H:i",  $post ) : false),
     'containerAware' => true,
     'hasAction' => true,
-
     'hasFooter' => true,
     'tags' => $post->tags,
     'context' => ['module.posts.index'],
