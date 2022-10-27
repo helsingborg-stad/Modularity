@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "POT-Creation-Date: 2022-10-27 10:18+0200\n"
-"PO-Revision-Date: 2022-10-27 10:29+0200\n"
+"PO-Revision-Date: 2022-10-27 10:40+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -2276,19 +2276,19 @@ msgstr "Visar flera bilder eller filmer i ett bildspel."
 
 #: source/php/Module/Slider/Slider.php:67
 msgid "Previous slide"
-msgstr "Visa föregående bild"
+msgstr "Gå till föregående bild"
 
 #: source/php/Module/Slider/Slider.php:68
 msgid "Next slide"
-msgstr "Visa nästa bild"
+msgstr "Gå till nästa bild"
 
 #: source/php/Module/Slider/Slider.php:69
 msgid "Go to first slide"
-msgstr "Visa första bilden"
+msgstr "Gå till första bilden"
 
 #: source/php/Module/Slider/Slider.php:70
 msgid "Go to last slide"
-msgstr "Visa sista bilden"
+msgstr "Gå till sista bilden"
 
 #: source/php/Module/Spacer/Spacer.php:12
 msgid "Spacer"
