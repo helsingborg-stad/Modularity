@@ -48,11 +48,12 @@ class Posts extends \Modularity\Module
     *
     * @return The template name.
     */
-    public function sliderTemplate(string $template, object $module, array $moduleData)
+    public function sliderTemplate($template, $module, $moduleData)
     {
-        $showAsSlider = (int) get_field('show_as_slider', (object) $moduleData->ID);
 
-        if (1 === $showAsSlider) {
+        $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
+        
+        if (1 === (int) $showAsSlider) {
             $this->getTemplateData(self::replaceDeprecatedTemplate('slider'));
             return 'slider.blade.php';
         }
@@ -178,6 +179,7 @@ class Posts extends \Modularity\Module
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
+        
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
             $this->data = array_merge($this->data, $controller->data);

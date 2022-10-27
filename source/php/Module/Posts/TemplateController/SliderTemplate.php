@@ -20,11 +20,9 @@ class SliderTemplate extends AbstractController
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
         
-        $postsColumnsInt = (int) str_replace('grid-md-'," ", $fields->posts_columns);
+        $postsColumnsInt = !empty($fields->posts_columns) ? 12 / (int) str_replace('grid-md-', " ", $fields->posts_columns) : 1;
 
-        // var_dump($fields);
-
-        $this->data['slider']['slidesPerPage'] = 12 / $postsColumnsInt;
+        $this->data['slider']['slidesPerPage'] = $postsColumnsInt;
         $this->data['slider']['autoSlide']     = isset($fields->auto_slide) ? (bool) $fields->auto_slide    : false;
         $this->data['slider']['showStepper']   = isset($fields->show_stepper) ? (bool) $fields->show_stepper: false;
         $this->data['slider']['repeatSlide']   = isset($fields->repeat_slide) ? (bool) $fields->repeat_slide: true;
