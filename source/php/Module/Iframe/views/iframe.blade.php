@@ -1,3 +1,6 @@
+@card([
+
+])
 @if (!$hideTitle && !empty($postTitle))
     @typography([
         'element' => 'h4',
@@ -14,4 +17,5 @@
     'labels' => $lang,
 ])
 @endiframe
+@endcard
 
