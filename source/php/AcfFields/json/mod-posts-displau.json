@@ -24,12 +24,170 @@
                 "grid": "Blocks",
                 "features-grid": "Features grid"
             },
+            "default_value": "list",
+            "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
-            "default_value": "list",
             "layout": "horizontal",
-            "return_format": "value",
             "save_other_choice": 0
+        },
+        {
+            "key": "field_6356477fbc5e4",
+            "label": "Show as slider",
+            "name": "show_as_slider",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "index"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "items"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "news"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "features-grid"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_628e0ffba7da4",
+            "label": "Highlight first post",
+            "name": "posts_highlight_first",
+            "type": "true_false",
+            "instructions": "Makes the first post bigger",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "items"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "index"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "grid"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "news"
+                    },
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_629f1b34ef9fc",
+            "label": "Display highlighted post as",
+            "name": "posts_display_highlighted_as",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_628e0ffba7da4",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "block": "Block",
+                "card": "Card"
+            },
+            "default_value": "block",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_571dfdf50d9da",
@@ -87,93 +245,14 @@
                 "grid-md-3": "4"
             },
             "default_value": "grid-md-12",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
-            "ajax": 0,
-            "placeholder": ""
-        },
-        {
-            "key": "field_628e0ffba7da4",
-            "label": "Highlight first post",
-            "name": "posts_highlight_first",
-            "type": "true_false",
-            "instructions": "Makes the first post bigger",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "items"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "index"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "news"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
-            "key": "field_629f1b34ef9fc",
-            "label": "Display highlighted post as",
-            "name": "posts_display_highlighted_as",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_628e0ffba7da4",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "block": "Block",
-                "card": "Card"
-            },
-            "default_value": "block",
-            "allow_null": 0,
             "multiple": 0,
+            "allow_null": 0,
             "ui": 0,
-            "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_571e046536f0e",
@@ -185,9 +264,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "grid"
+                        "field": "field_6356477fbc5e4",
+                        "operator": "!=",
+                        "value": "1"
                     }
                 ]
             ],
@@ -196,8 +275,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 0,
             "message": "Yes, alter grid size automatically",
+            "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -215,6 +294,11 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "!=",
                         "value": "expandable-list"
+                    },
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "!=",
+                        "value": "slider"
                     }
                 ]
             ],
@@ -229,16 +313,16 @@
                 "title": "Show title",
                 "image": "Show featured image"
             },
-            "allow_custom": 0,
             "default_value": [
                 "date",
                 "excerpt",
                 "title",
                 "image"
             ],
+            "return_format": "value",
+            "allow_custom": 0,
             "layout": "horizontal",
             "toggle": 0,
-            "return_format": "value",
             "save_custom": 0
         },
         {
@@ -272,7 +356,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_591176fff96d6",
@@ -359,6 +445,8 @@
             "layout": "table",
             "button_label": "L\u00e4gg till rad",
             "collapsed": "",
+            "rows_per_page": 20,
+            "acfe_repeater_stylised_button": 0,
             "sub_fields": [
                 {
                     "key": "field_571f5790592e7",
@@ -379,7 +467,8 @@
                     "prepend": "",
                     "append": "",
                     "readonly": 0,
-                    "disabled": 0
+                    "disabled": 0,
+                    "parent_repeater": "field_571f5776592e6"
                 }
             ]
         },
@@ -473,7 +562,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_5bd8575106176",
@@ -510,7 +601,9 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "uploader": "",
+            "acfe_thumbnail": 0
         },
         {
             "key": "field_628e0f242aa5f",
@@ -551,7 +644,9 @@
             "ui": 0,
             "return_format": "value",
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         }
     ],
     "location": [

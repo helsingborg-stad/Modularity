@@ -34,7 +34,33 @@ class Posts extends \Modularity\Module
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
 
+        add_filter('Modularity/Module/Posts/template', array( $this, 'sliderTemplate' ), 10, 3);
+
         new PostsAjax($this);
+    }
+
+   /**
+    * If the module is set to show as a slider, then return the slider template
+    *
+    * @param string template The template that is currently being used.
+    * @param object module The module object
+    * @param array moduleData The data for the module.
+    *
+    * @return The template name.
+    */
+    public function sliderTemplate($template, $module, $moduleData)
+    {
+        $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
+        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
+        
+        $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid');
+        
+        if (1 === (int) $showAsSlider && in_array($postsDisplayAs, $layoutsWithSliderAvailable, true)) {
+            $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
+            return 'slider.blade.php';
+        }
+
+        return $template;
     }
 
     /**
@@ -94,7 +120,6 @@ class Posts extends \Modularity\Module
      */
     public function addIconsList($field): array
     {
-
         $choices = \Modularity\Helper\Icons::getIcons();
 
         $field['choices'] = [];
@@ -145,8 +170,12 @@ class Posts extends \Modularity\Module
     /**
      * @param $template
      */
-    public function getTemplateData($template)
+    public function getTemplateData(string $template, array $data = array())
     {
+        if (! empty($data)) {
+            $this->data = $data;
+        }
+        
         $template = explode('-', $template);
         $template = array_map('ucwords', $template);
         $template = implode('', $template);
@@ -154,6 +183,7 @@ class Posts extends \Modularity\Module
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
+        
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
             $this->data = array_merge($this->data, $controller->data);
@@ -193,6 +223,11 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
+        if (! empty($data['posts'])) {
+            foreach ($data['posts'] as &$post) {
+                $post->permalink = get_permalink($post->ID);
+            }
+        }
 
         // Sorting
         $data['sortBy'] = false;

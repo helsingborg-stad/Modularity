@@ -29,15 +29,15 @@
                 "comment_count": "Comment count",
                 "menu_order": "Menu order"
             },
-            "default_value": [
-                "date"
-            ],
+            "default_value": "date",
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "return_format": "value",
             "disabled": 0,
-            "readonly": 0
+            "readonly": 0,
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_571e00241d90c",
@@ -71,6 +71,13 @@
                 "operator": "==",
                 "value": "mod-posts"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/posts"
+            }
         ]
     ],
     "menu_order": 10,
@@ -79,8 +86,9 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
+    "show_in_rest": false,
     "modified": 1461661083
 }]
 

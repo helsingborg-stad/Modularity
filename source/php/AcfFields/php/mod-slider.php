@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_56a5e99108991',
     'title' => __('Slider', 'modularity'),
     'fields' => array(
@@ -892,4 +893,4 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+}
