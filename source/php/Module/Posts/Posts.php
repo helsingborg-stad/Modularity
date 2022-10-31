@@ -164,7 +164,6 @@ class Posts extends \Modularity\Module
             $this->data
         );
 
-        // var_dump($data['posts_display_as']);
     }
 
     /**
