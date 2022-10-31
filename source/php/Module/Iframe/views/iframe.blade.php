@@ -1,4 +1,4 @@
-@card([
+@paper([
 
 ])
 @if (!$hideTitle && !empty($postTitle))
@@ -17,5 +17,5 @@
     'labels' => $lang,
 ])
 @endiframe
-@endcard
+@endpaper
 
