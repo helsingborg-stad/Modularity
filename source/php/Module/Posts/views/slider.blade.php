@@ -18,7 +18,7 @@
     'autoSlide'       => false,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
-        'data-slider-gap' => 0,
+        'data-slider-gap' => 48,
         'data-slides-per-page' => $slider->slidesPerPage
     ]
 ])
