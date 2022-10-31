@@ -26,8 +26,10 @@
         @slider__item([
             'classList' => ['c-slider__item--post'],
         ])
-            @if ($postsDisplayAs)
-                @include('partials.slider.'. $postsDisplayAs )
+            @if ($postsDisplayAs === 'index' || $postsDisplayAs === 'items' || $postsDisplayAs === 'news')
+                @include('partials.slider.index')
+                @else
+                @include('partials.slider.' . $postsDisplayAs)
             @endif
 
         @endslider__item
