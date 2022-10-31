@@ -12,7 +12,12 @@
             @endtypography
         </div>
     @endif
+    @acceptance([
+        'labels' => json_encode($lang),
+        'modifier' => 'script',
+    ])
     <div class="{{$scriptPadding}}">{!! $embed !!}</div>
+    @endacceptance
     
     @image([
             'src'=> $placeholder['url'],

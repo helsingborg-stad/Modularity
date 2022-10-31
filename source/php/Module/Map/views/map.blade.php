@@ -44,7 +44,7 @@
                         'u-width--100', 'u-display--block'
                     ],
                     'title' => $map_description,
-                    'options' => json_encode($lang),
+                    'labels' => $lang,
                 ])
                 @endiframe
 
