@@ -50,10 +50,12 @@ class Posts extends \Modularity\Module
     */
     public function sliderTemplate($template, $module, $moduleData)
     {
-
         $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
+        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
         
-        if (1 === (int) $showAsSlider) {
+        $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid');
+        
+        if (1 === (int) $showAsSlider && in_array($postsDisplayAs, $layoutsWithSliderAvailable, true)) {
             $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
             return 'slider.blade.php';
         }
@@ -163,7 +165,6 @@ class Posts extends \Modularity\Module
             $this,
             $this->data
         );
-
     }
 
     /**
@@ -171,12 +172,11 @@ class Posts extends \Modularity\Module
      */
     public function getTemplateData(string $template, array $data = array())
     {
-
-		if( ! empty( $data ) ) {
-			$this->data = $data;
-		}
-		
-		$template = explode('-', $template);
+        if (! empty($data)) {
+            $this->data = $data;
+        }
+        
+        $template = explode('-', $template);
         $template = array_map('ucwords', $template);
         $template = implode('', $template);
 
