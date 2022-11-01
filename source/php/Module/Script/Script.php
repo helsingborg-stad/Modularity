@@ -23,69 +23,62 @@ class Script extends \Modularity\Module
         $data = array();
 
         /* Parsing the embed code and extracting the scripts, iframes, links and styles. */
-		$embed = get_field('embed_code', $this->ID);
+        $embed = get_field('embed_code', $this->ID);
     
         $data['embed'] = [];
 
         $doc = new \DOMDocument();
         $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed);
-        
-        $scripts = $doc->getElementsByTagName('script');
-        $iframes = $doc->getElementsByTagName('iframe');
-        $links = $doc->getElementsByTagName('link');
-        $styles = $doc->getElementsByTagName('style');
-        
-        if (is_iterable($scripts)) {
-            foreach ($scripts as $index => $script) {
 
-				$attrDefer = $script->getAttribute('defer');
-                if (empty($attrDefer)) {
-                    $script->setAttribute('defer', true);
-                }
+        $xpath = new \DOMXpath($doc);
+        $allowed = $xpath->query('//script | //iframe | //link | //style');
 
-                $src = $script->getAttribute('src');
-                if (is_iterable($src)) {
-                    $data['embed'][$index]['src'] = $doc->saveHTML($src->item(0)->nodeValue);
-                    $data['embed'][$index]['requiresAccept'] = 1;
-                } else {
-                    $data['embed'][$index]['requiresAccept'] = 0;
-                }
-                
-                $data['embed'][$index]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($script)) . '</pre>' : $doc->saveHTML($script);
-            }
-        }
-        if (is_iterable($iframes)) {
-            foreach ($iframes as $index => $iframe) {
-                $src = $iframe->getAttribute('src');
-                if (empty($src)) {
-                    $data['embed'][$index]['requiresAccept'] = 0;
-                } else {
-                    $data['embed'][$index]['requiresAccept'] = 1;
-                    $data['embed'][$index]['src'] = $src;
-                }
-                
-                $data['embed'][$index]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($iframe)) . '</pre>' : $doc->saveHTML($iframe);
-            }
-        }
-        if (is_iterable($links)) {
-            foreach ($links as $index => $link) {
-                $href = $link->getAttribute('href');
-                if (empty($src)) {
-                    $data['embed'][$index]['requiresAccept'] = 0;
-                } else {
-                    $data['embed'][$index]['requiresAccept'] = 1;
-                    $data['embed'][$index]['src'] = $href;
-                }
-                $data['embed'][$index]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($link)) . '</pre>' : $doc->saveHTML($link);
-            }
-        }
-        if (is_iterable($styles)) {
-            foreach ($styles as $index => $style) {
-                $data['embed'][$index]['requiresAccept'] = 0;
-                $data['embed'][$index]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($style)) . '</pre>' : $doc->saveHTML($style);
-            }
-        }
+        for ($i = 0; $i < $allowed->length; $i++) {
+            $element = $allowed->item($i);
+            $data['embed'][$i]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($element)) . '</pre>' : $doc->saveHTML($element);
+                    
+            switch ($element->tagName) {
+                case 'script':
+                    $attrDefer = $element->getAttribute('defer');
+                    if (empty($attrDefer)) {
+                        $element->setAttribute('defer', true);
+                    }
     
+                    $src = $element->getAttribute('src');
+                    if (is_iterable($src)) {
+                        $data['embed'][$index]['src'] = $doc->saveHTML($src->item(0)->nodeValue);
+                        $data['embed'][$index]['requiresAccept'] = 1;
+                    } else {
+                        $data['embed'][$index]['requiresAccept'] = 0;
+                    }
+                    break;
+
+                case 'iframe':
+                    $src = $element->getAttribute('src');
+                    if (empty($src)) {
+                        $data['embed'][$i]['requiresAccept'] = 0;
+                    } else {
+                        $data['embed'][$i]['requiresAccept'] = 1;
+                        $data['embed'][$i]['src'] = $src;
+                    }
+                    break;
+                case 'link':
+                    $href = $element->getAttribute('href');
+                    if (empty($href)) {
+                        $data['embed'][$index]['requiresAccept'] = 0;
+                    } else {
+                        $data['embed'][$index]['requiresAccept'] = 1;
+                        $data['embed'][$index]['src'] = $href;
+                    }
+                    break;
+                case 'style':
+					$data['embed'][$index]['requiresAccept'] = 0;
+                    break;
+                default:
+					$data['embed'][$index]['requiresAccept'] = 1;
+                    break;
+            }
+        }    
         
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
