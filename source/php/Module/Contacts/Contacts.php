@@ -21,13 +21,13 @@ class Contacts extends \Modularity\Module
         $data['ID'] = $this->ID;
 
         //Display settings
-        if (array_key_exists ('display_settings', $data ) && !empty($data['display_settings'])) {
+        if (array_key_exists('display_settings', $data) && !empty($data['display_settings'])) {
             foreach ($data['display_settings'] as $fieldToHide) {
                 $data[$fieldToHide] = true;
             }
         }
 
-        $this->displaySettings = (array_key_exists ('display_settings', $data )) ?
+        $this->displaySettings = (array_key_exists('display_settings', $data)) ?
             $data['display_settings'] : '';
 
         $data['contacts'] = $this->prepareContacts($data['contacts']);
@@ -41,8 +41,8 @@ class Contacts extends \Modularity\Module
         $data['showImages'] = false;
 
         //Check if there is at least one contact with image, then add svg to others, else hide all
-        if(empty($this->data['display_mode']) || $this->data['display_mode'] == 'card') {
-            foreach($data['contacts'] as $contact) {
+        if (empty($this->data['display_mode']) || $this->data['display_mode'] == 'card') {
+            foreach ($data['contacts'] as $contact) {
                 $data['showImages'] = $contact['image'] ? true : $data['showImages'];
             }
         }
@@ -89,7 +89,7 @@ class Contacts extends \Modularity\Module
                         'phone'               => $this->hideField('phone') ? null : $contact['phone_numbers'],
                         'social_media'        => $this->hideField('social_media') ? null : $contact['social_media'],
                         'address'             => $this->hideField('address') ? null : strip_tags($contact['address'], '<br>'),
-                        'visiting_address'    => $this->hideField('visiting_address') ? null : strip_tags($contact['visiting_address'], '<br>'),
+                        'visiting_address'    => $this->hideField('visiting_address') ? null : strip_tags($contact['visiting_address'], ['<br>', '<a>']),
                         'opening_hours'       => strip_tags($contact['opening_hours'], '<br>'),
                         'hasBody'             => $this->hasBody($contact),
                         'other'               => $contact['other']
@@ -97,21 +97,21 @@ class Contacts extends \Modularity\Module
                     break;
 
                 case 'user':
-                   $info = apply_filters('Modularity/mod-contacts/contact-info', array(
-                        'id'                  => $contact['user']['ID'],
-                        'image'               => null,
-                        'first_name'          => $contact['user']['user_firstname'],
-                        'last_name'           => $contact['user']['user_lastname'],
-                        'work_title'          => null,
-                        'administration_unit' => null,
-                        'email'               => $this->hideField('email') ? null : strtolower($contact['user']['user_email']),
-                        'phone'               => null,
-                        'address'             => $this->hideField('address') ? null : strip_tags($contact['address'], '<br>'),
-                        'visiting_address'    => null,
-                        'opening_hours'       => null,
-                        'other'               => $contact['user']['user_description'],
-                        'hasBody'             => $this->hasBody($contact)
-                    ), $contact, $contact['acf_fc_layout']);
+                    $info = apply_filters('Modularity/mod-contacts/contact-info', array(
+                         'id'                  => $contact['user']['ID'],
+                         'image'               => null,
+                         'first_name'          => $contact['user']['user_firstname'],
+                         'last_name'           => $contact['user']['user_lastname'],
+                         'work_title'          => null,
+                         'administration_unit' => null,
+                         'email'               => $this->hideField('email') ? null : strtolower($contact['user']['user_email']),
+                         'phone'               => null,
+                         'address'             => $this->hideField('address') ? null : strip_tags($contact['address'], '<br>'),
+                         'visiting_address'    => null,
+                         'opening_hours'       => null,
+                         'other'               => $contact['user']['user_description'],
+                         'hasBody'             => $this->hasBody($contact)
+                     ), $contact, $contact['acf_fc_layout']);
                     break;
             }
 
@@ -139,7 +139,6 @@ class Contacts extends \Modularity\Module
 
             //Adds chosen user meta data or removes the field completely and make it unvisible.
             if (get_field('advaced_mode', $this->ID) == "1") {
-
                 if (get_field('profile_image', $this->ID) == "1") {
                     $info['thumbnail'][0] = get_user_meta($contact['user']['ID'], "user_profile_picture", true);
                 } else {
@@ -172,7 +171,6 @@ class Contacts extends \Modularity\Module
             }
 
             $retContacts[] = $info;
-
         }
 
         return $retContacts;
@@ -180,14 +178,12 @@ class Contacts extends \Modularity\Module
 
     public function template()
     {
-
         //Reset
         $this->data['hasImages'] = false;
         $hasImages = "";
 
         // Multiple contacts template(s)
         if (isset($this->data['contacts']) && count($this->data['contacts']) > 0) {
-
             //Indicates wheter this list has images or not.
             foreach ($this->data['contacts'] as $item) {
                 if (isset($item['thumbnail']) && is_array($item['thumbnail'])) {
@@ -256,18 +252,17 @@ class Contacts extends \Modularity\Module
 
     public function hideField($needle)
     {
-        if(!$this->displaySettings) {
+        if (!$this->displaySettings) {
             return false;
         }
 
         $needle = 'hide_' . $needle;
 
-        if(in_array($needle, $this->displaySettings)) {
+        if (in_array($needle, $this->displaySettings)) {
             return true;
         }
 
         return false;
-
     }
 
     public function hasBody($contact)
@@ -283,7 +278,9 @@ class Contacts extends \Modularity\Module
         );
 
         foreach ($cases as $case) {
-            if ($case) return true;
+            if ($case) {
+                return true;
+            }
         }
 
         return false;
