@@ -21,12 +21,43 @@ class Script extends \Modularity\Module
     public function data() : array
     {
         $data = array();
+
         $embed = get_field('embed_code', $this->ID);
-        $data['embed'] = (is_admin()
-            ? '<pre>' . htmlspecialchars($embed) . '</pre>'
-            : (str_contains($embed, "<script") && !str_contains($embed, "defer")
-                ? str_replace("<script", "<script defer", $embed)
-                : $embed));
+        
+        $data['embed'] = is_admin() ? '<pre>' . htmlspecialchars($embed) . '</pre>' : $embed;
+        $data['requiresAccept'] = true;
+
+        $doc = new \DOMDocument();
+        $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed);
+        
+        $scripts = $doc->getElementsByTagName('script');
+        if (is_iterable($scripts)) {
+            $data['embed'] = [];
+            
+            foreach ($scripts as $index => $script) {
+                // echo '<pre>' . print_r($script, true) . '</pre>';
+                $attrDefer = $script->getAttribute('defer');
+                if (empty($attrDefer)) {
+                    $script->setAttribute('defer', true);
+                }
+
+                $src = $script->getAttribute('src');
+                if (is_iterable($src)) {
+                    $data['embed'][$index]['src'] = $doc->saveHTML($src->item(0)->nodeValue);
+                    $data['embed'][$index]['requiresAccept'] = 1;
+                } else {
+                    $data['embed'][$index]['requiresAccept'] = 0;
+                }
+                
+                $data['embed'][$index]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($script)) . '</pre>' : $doc->saveHTML($script);
+            }
+        }
+        
+
+        // $data['embed'] = is_admin() ? '<pre>' . htmlspecialchars($embed) . '</pre>' : $embed;
+        // (str_contains($embed, "<script") && !str_contains($embed, "defer")
+        // ? str_replace("<script", "<script defer", $embed)
+        // : $embed));
                 
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
