@@ -18,24 +18,6 @@ class Script extends \Modularity\Module
         add_action('save_post', array($this, 'disableHTMLFiltering'), 5);
     }
 
-    /**
-     * Removes the filter of html & script data before save.
-     * @var int
-     */
-    public function disableHTMLFiltering($postId)
-    {
-        
-        //Bail early if not a script module save
-        if (get_post_type($postId) !== "mod-" . $this->slug) {
-            return;
-        }
-
-        //Disable filter temporarirly
-        add_filter('acf/allow_unfiltered_html', function ($allow_unfiltered_html) {
-            return true;
-        });
-    }
-
     public function data() : array
     {
         $data = array();
@@ -58,26 +40,43 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-          $data['scriptPadding'] = !empty(get_field('embeded_card_padding', $this->ID)) || get_field('embeded_card_padding', $this->ID) === "0" ?
-            "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
-                get_field('embeded_card_padding', $this->ID) : "";
+        $data['scriptPadding'] = !empty(get_field('embeded_card_padding', $this->ID)) || get_field('embeded_card_padding', $this->ID) === "0" ?
+          "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
+              get_field('embeded_card_padding', $this->ID) : "";
 
-            $data['lang'] = (object) [
-                'knownLabels' => [
-                    'title' => __('We need your consent to continue', 'modularity'),
-                    'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
-                    'button' => __('I understand, continue.', 'modularity'),
-                ],
+        $data['lang'] = (object) [
+            'knownLabels' => [
+                'title' => __('We need your consent to continue', 'modularity'),
+                'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
+                'button' => __('I understand, continue.', 'modularity'),
+            ],
 
-                'unknownLabels' => [
-                    'title' => __('We need your consent to continue', 'modularity'),
-                    'info' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
-                    'button' => __('I understand, continue.', 'modularity'),
-                ],
-            ];
+            'unknownLabels' => [
+                'title' => __('We need your consent to continue', 'modularity'),
+                'info' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
+                'button' => __('I understand, continue.', 'modularity'),
+            ],
+        ];
 
         return $data;
     }
+    /**
+     * Removes the filter of html & script data before save.
+     * @var int
+     */
+    public function disableHTMLFiltering($postId)
+    {
+        //Bail early if not a script module save
+        if (get_post_type($postId) !== "mod-" . $this->slug) {
+            return;
+        }
+
+        //Disable filter temporarirly
+        add_filter('acf/allow_unfiltered_html', function ($allow_unfiltered_html) {
+            return true;
+        });
+    }
+
 
     public function template()
     {
