@@ -1,4 +1,5 @@
- @if (is_array($embed))
+
+ @if (!empty($embed))
      @foreach ($embed as $embeddedContent)
         @if ($embeddedContent['requiresAccept'])
              @acceptance([
@@ -12,15 +13,4 @@
              @endacceptance
          @endif
      @endforeach
- @else
-    @if ($requiresAccept)
-	@acceptance([
-		'labels' => json_encode($lang),
-		'modifier' => 'script'
-	])
-	@endif
-         <div class="{{ $scriptPadding }}">{!! $embed !!}</div>
-    @if ($requiresAccept)
-    @endacceptance
-    @endif
- @endif
+ @endif;
