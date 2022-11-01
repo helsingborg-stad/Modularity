@@ -57,12 +57,15 @@ class InlayList extends \Modularity\Module
         foreach ($field as $item) {
             $item = (object) $item;
 
+            if (empty($item->title) && ! empty($item->titel)) {
+                $item->title = $item->titel;
+            }
+
             if ($item->type === 'internal') {
                 $label = $item->title ? $item->title : $item->link_internal->post_title;
 
                 if ($item->date === true) {
                     $label .= " - " . wp_date(\Modularity\Helper\Date::getDateFormat('date'), strtotime($item->link_internal->post_date));
-
                 }
 
                 $list[] = [
@@ -74,7 +77,7 @@ class InlayList extends \Modularity\Module
 
             if ($item->type === 'external') {
                 $list[] = [
-                    'label' => !empty(trim($item->titel)) ? $item->titel : $item->link_external,
+                    'label' => !empty(trim($item->title)) ? $item->title : $item->link_external,
                     'href' => $item->link_external,
                     'external' => true,
                 ];
