@@ -7,8 +7,8 @@
     'fields' => array(
         0 => array(
             'key' => 'field_636249fee87cc',
-            'label' => __('Ingress', 'modularity'),
-            'name' => 'ingress',
+            'label' => __('Preamble', 'modularity'),
+            'name' => 'preamble',
             'type' => 'text',
             'instructions' => '',
             'required' => 0,

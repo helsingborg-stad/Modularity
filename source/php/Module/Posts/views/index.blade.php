@@ -11,11 +11,11 @@
     @endtypography
 @endif
 
-@if ($ingress)
+@if ($preamble)
     @typography([
-        'classList' => ['module-preamble'] 
+        'classList' => ['module-preamble', 'u-margin__bottom--3'] 
     ])
-        {!! $ingress !!}
+        {!! $preamble !!}
     @endtypography
 @endif
 
