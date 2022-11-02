@@ -11,6 +11,14 @@
     @endtypography
 @endif
 
+@if ($preamble)
+    @typography([
+        'classList' => ['module-preamble', 'u-margin__bottom--3'] 
+    ])
+        {!! $preamble !!}
+    @endtypography
+@endif
+
 
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
