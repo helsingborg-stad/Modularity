@@ -6,6 +6,25 @@
     'title' => __('Data display', 'modularity'),
     'fields' => array(
         0 => array(
+            'key' => 'field_636249fee87cc',
+            'label' => __('Ingress', 'modularity'),
+            'name' => 'ingress',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        1 => array(
             'key' => 'field_571dfd4c0d9d9',
             'label' => __('Display as', 'modularity'),
             'name' => 'posts_display_as',
@@ -34,7 +53,7 @@
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        1 => array(
+        2 => array(
             'key' => 'field_6356477fbc5e4',
             'label' => __('Show as slider', 'modularity'),
             'name' => 'show_as_slider',
@@ -89,7 +108,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_628e0ffba7da4',
             'label' => __('Highlight first post', 'modularity'),
             'name' => 'posts_highlight_first',
@@ -157,7 +176,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_629f1b34ef9fc',
             'label' => __('Display highlighted post as', 'modularity'),
             'name' => 'posts_display_highlighted_as',
@@ -192,7 +211,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_571dfdf50d9da',
             'label' => __('Columns', 'modularity'),
             'name' => 'posts_columns',
@@ -257,7 +276,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_571e046536f0e',
             'label' => __('Altering grid size', 'modularity'),
             'name' => 'posts_alter_columns',
@@ -284,7 +303,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        6 => array(
+        7 => array(
             'key' => 'field_571e01e7f246c',
             'label' => __('Fields', 'modularity'),
             'name' => 'posts_fields',
@@ -328,7 +347,7 @@
             'toggle' => 0,
             'save_custom' => 0,
         ),
-        7 => array(
+        8 => array(
             'key' => 'field_62387e4b55b75',
             'label' => __('Date source', 'modularity'),
             'name' => 'posts_date_source',
@@ -363,7 +382,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        8 => array(
+        9 => array(
             'key' => 'field_591176fff96d6',
             'label' => __('Hide the title column', 'modularity'),
             'name' => 'posts_hide_title_column',
@@ -390,7 +409,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        9 => array(
+        10 => array(
             'key' => 'field_57e3bcae3826e',
             'label' => __('Title column label', 'modularity'),
             'name' => 'title_column_label',
@@ -422,7 +441,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        10 => array(
+        11 => array(
             'key' => 'field_571f5776592e6',
             'label' => __('List column labels', 'modularity'),
             'name' => 'posts_list_column_titles',
@@ -475,7 +494,7 @@
                 ),
             ),
         ),
-        11 => array(
+        12 => array(
             'key' => 'field_59197c6dafb31',
             'label' => __('Allow freetext filtering', 'modularity'),
             'name' => 'allow_freetext_filtering',
@@ -502,7 +521,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        12 => array(
+        13 => array(
             'key' => 'field_5be480e163246',
             'label' => __('Highlight post', 'modularity'),
             'name' => 'posts_highlight',
@@ -529,7 +548,7 @@
             'ui_on_text' => __('Enabled', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
         ),
-        13 => array(
+        14 => array(
             'key' => 'field_5bdb0d4217e91',
             'label' => __('Date format', 'modularity'),
             'name' => 'posts_date_format',
@@ -569,7 +588,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        14 => array(
+        15 => array(
             'key' => 'field_5bd8575106176',
             'label' => __('Placeholder image', 'modularity'),
             'name' => 'posts_placeholder',
@@ -608,7 +627,7 @@
             'uploader' => '',
             'acfe_thumbnail' => 0,
         ),
-        15 => array(
+        16 => array(
             'key' => 'field_628e0f242aa5f',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',

@@ -3,6 +3,25 @@
     "title": "Data display",
     "fields": [
         {
+            "key": "field_636249fee87cc",
+            "label": "Ingress",
+            "name": "ingress",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_571dfd4c0d9d9",
             "label": "Display as",
             "name": "posts_display_as",
