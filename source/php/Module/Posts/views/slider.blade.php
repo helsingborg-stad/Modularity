@@ -19,11 +19,27 @@
     @endtypography
 @endif
 
+{{-- Temporarily commented out to display Show more button --}}
+{{-- @if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url) --}}
+@if ($posts_data_source !== 'input' && $archive_link_url)
+    <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
+        @button([
+            'text' => __('Show more', 'modularity'),
+            'color' => 'secondary',
+            'style' => 'filled',
+            'href' => $archive_link_url . "?" . http_build_query($filters),
+            'classList' => ['u-flex-grow--1@xs']
+        ])
+        @endbutton
+    </div>
+@endif
+
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
     'classList'       => ['c-slider--post'],
     'showStepper'     => false,
     'autoSlide'       => false,
+    'isPost'           => true,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slider-gap' => 48,
