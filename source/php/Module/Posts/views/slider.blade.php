@@ -11,6 +11,14 @@
     @endtypography
 @endif
 
+@if ($preamble)
+    @typography([
+        'classList' => ['module-preamble', 'u-margin__bottom--3'] 
+    ])
+        {!! $preamble !!}
+    @endtypography
+@endif
+
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
     'classList'       => ['c-slider--post'],
