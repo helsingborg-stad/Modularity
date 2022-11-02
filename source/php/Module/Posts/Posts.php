@@ -218,6 +218,7 @@ class Posts extends \Modularity\Module
         $data['modId'] = $this->ID;
 
         // Posts
+        $data['ingress'] = $fields->ingress;  
         $data['posts_fields'] = $fields->posts_fields ?? false;
         $data['posts_date_source'] = $fields->posts_date_source ?? false;
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
