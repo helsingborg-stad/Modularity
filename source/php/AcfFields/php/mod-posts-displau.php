@@ -6,25 +6,6 @@
     'title' => __('Data display', 'modularity'),
     'fields' => array(
         0 => array(
-            'key' => 'field_636249fee87cc',
-            'label' => __('Preamble', 'modularity'),
-            'name' => 'preamble',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => '',
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-        ),
-        1 => array(
             'key' => 'field_571dfd4c0d9d9',
             'label' => __('Display as', 'modularity'),
             'name' => 'posts_display_as',
@@ -52,6 +33,61 @@
             'other_choice' => 0,
             'layout' => 'horizontal',
             'save_other_choice' => 0,
+        ),
+        1 => array(
+            'key' => 'field_636249fee87cc',
+            'label' => __('Preamble', 'modularity'),
+            'name' => 'preamble',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==contains',
+                        'value' => 'index',
+                    ),
+                ),
+                1 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==contains',
+                        'value' => 'news',
+                    ),
+                ),
+                2 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==contains',
+                        'value' => 'grid',
+                    ),
+                ),
+                3 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==contains',
+                        'value' => 'features-grid',
+                    ),
+                ),
+                4 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==contains',
+                        'value' => 'items',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
         ),
         2 => array(
             'key' => 'field_6356477fbc5e4',
