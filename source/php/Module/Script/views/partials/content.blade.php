@@ -13,4 +13,4 @@
              @endacceptance
          @endif
      @endforeach
- @endif;
+ @endif
