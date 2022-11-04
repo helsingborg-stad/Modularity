@@ -20,38 +20,7 @@
             @endtypography
         @endif
     </div>
-    <div class="o-grid-12@sm o-grid-4@md o-grid-4@lg u-display--flex u-align-items--end u-justify-content--end">
-        @if (($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url))
-        <div class="t-read-more-section">
-            @button([
-                'text' => __('Show more', 'modularity'),
-                'color' => 'default',
-                'style' => 'basic',
-                'href' => $archive_link_url . "?" . http_build_query($filters),
-                'classList' => ['u-flex-grow--1@xs', 'u-margin__right--2']
-            ])
-            @endbutton
-        </div>
-        @endif
-        <div class="splide__arrows c-slider__arrows" id="js-custom-buttons-{{$ID}}">
-            @button([
-                'classList' => ['splide__arrow', 'splide__arrow--prev'],
-                'icon' => 'arrow_back_ios_new',
-                'style' => 'filled',
-                'color' => 'primary',
-                'ariaLabel' => $ariaLabels->prev,
-            ])
-            @endbutton
-            @button([
-                'classList' => ['splide__arrow', 'splide__arrow--next'],
-                'icon' => 'arrow_forward_ios',
-                'style' => 'filled',
-                'color' => 'primary',
-                'ariaLabel' => $ariaLabels->next,
-            ])
-            @endbutton
-        </div>
-    </div>
+        @include('partials.slider.slider-navigation')
 </div>
 
 @slider([
