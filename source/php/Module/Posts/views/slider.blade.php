@@ -36,12 +36,18 @@
         <div class="splide__arrows c-slider__arrows" id="js-custom-buttons-{{$ID}}">
             @button([
                 'classList' => ['splide__arrow', 'splide__arrow--prev'],
-                'icon' => 'arrow_back_ios_new'
+                'icon' => 'arrow_back_ios_new',
+                'style' => 'filled',
+                'color' => 'primary',
+                'ariaLabel' => $ariaLabels->prev,
             ])
             @endbutton
             @button([
                 'classList' => ['splide__arrow', 'splide__arrow--next'],
-                'icon' => 'arrow_forward_ios'
+                'icon' => 'arrow_forward_ios',
+                'style' => 'filled',
+                'color' => 'primary',
+                'ariaLabel' => $ariaLabels->next,
             ])
             @endbutton
         </div>

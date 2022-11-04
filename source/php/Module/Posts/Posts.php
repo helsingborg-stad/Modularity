@@ -267,6 +267,11 @@ class Posts extends \Modularity\Module
 
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
 
+         $data['ariaLabels'] =  (object) [
+            'prev' => __('Previous slide','modularity'),
+            'next' => __('Next slide', 'modularity'),
+        ];
+
         return $data;
     }
 
