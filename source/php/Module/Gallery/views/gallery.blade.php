@@ -11,7 +11,8 @@
 @if ($images)
     @gallery([
         'list' => $images,
-        'classList' => [$classes, 'image-gallery']
+        'classList' => [$classes, 'image-gallery'],
+        'ariaLabels' => $ariaLabels,
     ])
     @endgallery
 @endif
