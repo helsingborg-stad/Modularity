@@ -82,6 +82,10 @@ class Script extends \Modularity\Module
                     $data['embed'][$i]['requiresAccept'] = 0;
                     $data['embed'][$i]['src'] = null;
                     break;
+
+                default:
+                // no action necessary
+                break;
             }
         }
 
