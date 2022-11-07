@@ -39,24 +39,24 @@ class Script extends \Modularity\Module
                     
             switch ($element->tagName) {
                 case 'script':
-                    $attrDefer = $element->getAttribute('defer');
-                    if (empty($attrDefer)) {
-                        $element->setAttribute('defer', true);
-                    }
+
+					$data['embed'][$i]['src'] = null;
+					$data['embed'][$i]['requiresAccept'] = 0;
+
+                    $doc->saveHTML($element->setAttribute('defer', true));
     
                     $src = $element->getAttribute('src');
-                    if (is_iterable($src)) {
-                        $data['embed'][$index]['src'] = $doc->saveHTML($src->item(0)->nodeValue);
-                        $data['embed'][$index]['requiresAccept'] = 1;
-                    } else {
-                        $data['embed'][$index]['requiresAccept'] = 0;
-                    }
+                    if (!empty($src)) {
+                        $data['embed'][$i]['requiresAccept'] = 1;
+                        $data['embed'][$i]['src'] = $src;
+                    } 
                     break;
 
                 case 'iframe':
                     $src = $element->getAttribute('src');
                     if (empty($src)) {
                         $data['embed'][$i]['requiresAccept'] = 0;
+						$data['embed'][$i]['src'] = null;
                     } else {
                         $data['embed'][$i]['requiresAccept'] = 1;
                         $data['embed'][$i]['src'] = $src;
@@ -65,21 +65,24 @@ class Script extends \Modularity\Module
                 case 'link':
                     $href = $element->getAttribute('href');
                     if (empty($href)) {
-                        $data['embed'][$index]['requiresAccept'] = 0;
+                        $data['embed'][$i]['requiresAccept'] = 0;
+						$data['embed'][$i]['src'] = null;
                     } else {
-                        $data['embed'][$index]['requiresAccept'] = 1;
-                        $data['embed'][$index]['src'] = $href;
+                        $data['embed'][$i]['requiresAccept'] = 1;
+                        $data['embed'][$i]['src'] = $href;
                     }
                     break;
                 case 'style':
-					$data['embed'][$index]['requiresAccept'] = 0;
+					$data['embed'][$i]['requiresAccept'] = 0;
+					$data['embed'][$i]['src'] = null;
                     break;
                 default:
-					$data['embed'][$index]['requiresAccept'] = 1;
+					$data['embed'][$i]['requiresAccept'] = 1;
+					$data['embed'][$i]['src'] = null;
                     break;
             }
-        }    
-        
+        }
+		        
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
