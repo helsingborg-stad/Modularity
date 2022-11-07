@@ -31,10 +31,10 @@ class Script extends \Modularity\Module
         $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed);
 
         $xpath = new \DOMXpath($doc);
-        $allowed = $xpath->query('//script | //iframe | //link | //style | //div | //span');
+        $allowedElements = $xpath->query('//script | //iframe | //link | //style | //div | //span');
 
-        for ($i = 0; $i < $allowed->length; $i++) {
-            $element = $allowed->item($i);
+        for ($i = 0; $i < $allowedElements->length; $i++) {
+            $element = $allowedElements->item($i);
 
             $data['embed'][$i]['content'] =
             is_admin() ?
