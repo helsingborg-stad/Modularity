@@ -86,6 +86,11 @@ class Script extends \Modularity\Module
                     $data['embed'][$i]['src'] = null;
                     break;
 
+                case 'div':
+                case 'span':
+                    $data['embed'][$i]['requiresAccept'] = 0;
+                    $data['embed'][$i]['src'] = null;
+                    break;
                 default:
                     // no action necessary
                     break;
@@ -105,9 +110,9 @@ class Script extends \Modularity\Module
         ];
 
         $embededCardPadding = get_field('embeded_card_padding', $this->ID);
-        $data['scriptPadding'] = 
-        (bool) $embededCardPadding ? 
-        "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" : 
+        $data['scriptPadding'] =
+        (bool) $embededCardPadding ?
+        "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" :
         '';
 
         $data['lang'] = (object) [
