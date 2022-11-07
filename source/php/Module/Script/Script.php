@@ -24,7 +24,7 @@ class Script extends \Modularity\Module
 
         /* Parsing the embed code and extracting the scripts, iframes, links and styles. */
         $embed = get_field('embed_code', $this->ID);
-    
+
         $data['embed'] = [];
 
         $doc = new \DOMDocument();
@@ -37,7 +37,7 @@ class Script extends \Modularity\Module
             $element = $allowed->item($i);
 
             $data['embed'][$i]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($element)) . '</pre>' : $doc->saveHTML($element);
-            
+
             $data['embed'][$i]['src'] = null;
             $data['embed'][$i]['requiresAccept'] = 1;
 
@@ -48,7 +48,7 @@ class Script extends \Modularity\Module
                     $data['embed'][$i]['requiresAccept'] = 0;
 
                     $doc->saveHTML($element->setAttribute('defer', true));
-    
+
                     $src = $element->getAttribute('src');
                     if (!empty($src)) {
                         $data['embed'][$i]['requiresAccept'] = 1;
@@ -60,7 +60,7 @@ class Script extends \Modularity\Module
 
                     $data['embed'][$i]['requiresAccept'] = 1;
                     $data['embed'][$i]['src'] = $src;
-                    
+
                     $src = $element->getAttribute('src');
                     if (empty($src)) {
                         $data['embed'][$i]['requiresAccept'] = 0;
@@ -84,7 +84,7 @@ class Script extends \Modularity\Module
                     break;
             }
         }
-                
+
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
