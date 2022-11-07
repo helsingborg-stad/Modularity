@@ -18,7 +18,7 @@
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slides-per-page' => $slidesPerPage,
-        'data-slider-gap' => (8*6),
+        'data-slider-gap' => (8*4),
         'data-slider-focus-center' => '',
         'data-aria-labels' => json_encode($ariaLabels)
     ],
