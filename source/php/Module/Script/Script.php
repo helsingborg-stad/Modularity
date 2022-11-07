@@ -36,7 +36,10 @@ class Script extends \Modularity\Module
         for ($i = 0; $i < $allowed->length; $i++) {
             $element = $allowed->item($i);
 
-            $data['embed'][$i]['content'] = is_admin() ? '<pre>' . $doc->saveHTML(htmlspecialchars($element)) . '</pre>' : $doc->saveHTML($element);
+            $data['embed'][$i]['content'] =
+            is_admin() ?
+            '<pre>' . $doc->saveHTML(htmlspecialchars($element)) . '</pre>' :
+            $doc->saveHTML($element);
 
             $data['embed'][$i]['src'] = null;
             $data['embed'][$i]['requiresAccept'] = 1;
@@ -84,8 +87,8 @@ class Script extends \Modularity\Module
                     break;
 
                 default:
-                // no action necessary
-                break;
+                    // no action necessary
+                    break;
             }
         }
 
@@ -102,7 +105,10 @@ class Script extends \Modularity\Module
         ];
 
         $embededCardPadding = get_field('embeded_card_padding', $this->ID);
-        $data['scriptPadding'] = (bool) $embededCardPadding ? "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" : '';
+        $data['scriptPadding'] = 
+        (bool) $embededCardPadding ? 
+        "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" : 
+        '';
 
         $data['lang'] = (object) [
             'knownLabels' => [
