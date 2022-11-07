@@ -60,22 +60,22 @@ class Script extends \Modularity\Module
                     break;
 
                 case 'iframe':
+                    $src = $element->getAttribute('src');
 
                     $data['embed'][$i]['requiresAccept'] = 1;
                     $data['embed'][$i]['src'] = $src;
 
-                    $src = $element->getAttribute('src');
                     if (empty($src)) {
                         $data['embed'][$i]['requiresAccept'] = 0;
                         $data['embed'][$i]['src'] = null;
                     }
                     break;
                 case 'link':
-
+                    $href = $element->getAttribute('href');
+                    
                     $data['embed'][$i]['requiresAccept'] = 1;
                     $data['embed'][$i]['src'] = $href;
 
-                    $href = $element->getAttribute('href');
                     if (empty($href)) {
                         $data['embed'][$i]['requiresAccept'] = 0;
                         $data['embed'][$i]['src'] = null;
