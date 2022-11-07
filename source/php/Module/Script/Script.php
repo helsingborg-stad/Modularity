@@ -18,34 +18,85 @@ class Script extends \Modularity\Module
         add_action('save_post', array($this, 'disableHTMLFiltering'), 5);
     }
 
-    /**
-     * Removes the filter of html & script data before save.
-     * @var int
-     */
-    public function disableHTMLFiltering($postId)
-    {
-        
-        //Bail early if not a script module save
-        if (get_post_type($postId) !== "mod-" . $this->slug) {
-            return;
-        }
-
-        //Disable filter temporarirly
-        add_filter('acf/allow_unfiltered_html', function ($allow_unfiltered_html) {
-            return true;
-        });
-    }
-
     public function data() : array
     {
         $data = array();
+
+        /* Parsing the embed code and extracting the scripts, iframes, links and styles. */
         $embed = get_field('embed_code', $this->ID);
-        $data['embed'] = (is_admin()
-            ? '<pre>' . htmlspecialchars($embed) . '</pre>'
-            : (str_contains($embed, "<script") && !str_contains($embed, "defer")
-                ? str_replace("<script", "<script defer", $embed)
-                : $embed));
-                
+
+        $data['embed'] = [];
+
+        $doc = new \DOMDocument();
+        $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed);
+
+        $xpath = new \DOMXpath($doc);
+        $allowedElements = $xpath->query('//script | //iframe | //link | //style | //div | //span');
+
+        for ($i = 0; $i < $allowedElements->length; $i++) {
+            $element = $allowedElements->item($i);
+
+            $data['embed'][$i]['content'] =
+            is_admin() ?
+            '<pre>' . $doc->saveHTML(htmlspecialchars($element)) . '</pre>' :
+            $doc->saveHTML($element);
+
+            $data['embed'][$i]['src'] = null;
+            $data['embed'][$i]['requiresAccept'] = 1;
+
+            switch ($element->tagName) {
+                case 'script':
+
+                    $data['embed'][$i]['src'] = null;
+                    $data['embed'][$i]['requiresAccept'] = 0;
+
+                    $doc->saveHTML($element->setAttribute('defer', true));
+
+                    $src = $element->getAttribute('src');
+                    if (!empty($src)) {
+                        $data['embed'][$i]['requiresAccept'] = 1;
+                        $data['embed'][$i]['src'] = $src;
+                    }
+                    break;
+
+                case 'iframe':
+                    $src = $element->getAttribute('src');
+
+                    $data['embed'][$i]['requiresAccept'] = 1;
+                    $data['embed'][$i]['src'] = $src;
+
+                    if (empty($src)) {
+                        $data['embed'][$i]['requiresAccept'] = 0;
+                        $data['embed'][$i]['src'] = null;
+                    }
+                    break;
+                case 'link':
+                    $href = $element->getAttribute('href');
+                    
+                    $data['embed'][$i]['requiresAccept'] = 1;
+                    $data['embed'][$i]['src'] = $href;
+
+                    if (empty($href)) {
+                        $data['embed'][$i]['requiresAccept'] = 0;
+                        $data['embed'][$i]['src'] = null;
+                    }
+                    break;
+                case 'style':
+                    $data['embed'][$i]['requiresAccept'] = 0;
+                    $data['embed'][$i]['src'] = null;
+                    break;
+
+                case 'div':
+                case 'span':
+                    $data['embed'][$i]['requiresAccept'] = 0;
+                    $data['embed'][$i]['src'] = null;
+                    break;
+                default:
+                    // no action necessary
+                    break;
+            }
+        }
+
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
@@ -58,26 +109,45 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-          $data['scriptPadding'] = !empty(get_field('embeded_card_padding', $this->ID)) || get_field('embeded_card_padding', $this->ID) === "0" ?
-            "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
-                get_field('embeded_card_padding', $this->ID) : "";
+        $embededCardPadding = get_field('embeded_card_padding', $this->ID);
+        $data['scriptPadding'] =
+        (bool) $embededCardPadding ?
+        "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" :
+        '';
 
-            $data['lang'] = (object) [
-                'knownLabels' => [
-                    'title' => __('We need your consent to continue', 'modularity'),
-                    'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
-                    'button' => __('I understand, continue.', 'modularity'),
-                ],
+        $data['lang'] = (object) [
+            'knownLabels' => [
+                'title' => __('We need your consent to continue', 'modularity'),
+                'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
+                'button' => __('I understand, continue.', 'modularity'),
+            ],
 
-                'unknownLabels' => [
-                    'title' => __('We need your consent to continue', 'modularity'),
-                    'info' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
-                    'button' => __('I understand, continue.', 'modularity'),
-                ],
-            ];
+            'unknownLabels' => [
+                'title' => __('We need your consent to continue', 'modularity'),
+                'info' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
+                'button' => __('I understand, continue.', 'modularity'),
+            ],
+        ];
 
         return $data;
     }
+    /**
+     * Removes the filter of html & script data before save.
+     * @var int
+     */
+    public function disableHTMLFiltering($postId)
+    {
+        //Bail early if not a script module save
+        if (get_post_type($postId) !== "mod-" . $this->slug) {
+            return;
+        }
+
+        //Disable filter temporarirly
+        add_filter('acf/allow_unfiltered_html', function ($allow_unfiltered_html) {
+            return true;
+        });
+    }
+
 
     public function template()
     {
