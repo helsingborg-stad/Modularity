@@ -24,7 +24,7 @@
                     'context' => ['module.posts.index'],
                     'content' => $post->post_content,
                     'tags' => $post->tags,
-                    'date' => $post->postDate,
+                    'date' => $post->showDate ? date("Y-m-d H:i", strtotime($post->post_date)) : false,
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),

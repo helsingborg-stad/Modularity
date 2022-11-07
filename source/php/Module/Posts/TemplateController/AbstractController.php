@@ -92,6 +92,7 @@ class AbstractController
      */
     public function getDate($post, $dateSource = 'post_date')
     {
+
         if (!$dateSource) {
             return false;
         }
