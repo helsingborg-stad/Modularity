@@ -97,9 +97,8 @@ class Script extends \Modularity\Module
             'alt' => $placeholder['alt']
         ];
 
-        $data['scriptPadding'] = !empty(get_field('embeded_card_padding', $this->ID)) || get_field('embeded_card_padding', $this->ID) === "0" ?
-          "u-padding__y--".get_field('embeded_card_padding', $this->ID)." u-padding__x--".
-              get_field('embeded_card_padding', $this->ID) : "";
+        $embededCardPadding = get_field('embeded_card_padding', $this->ID);
+        $data['scriptPadding'] = (bool) $embededCardPadding ? "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" : '';
 
         $data['lang'] = (object) [
             'knownLabels' => [
