@@ -1,4 +1,4 @@
-@if($post->postDate)z
+@if($post->postDate)
     @typography(['variant' => 'meta', 'element' => 'span', 'classList' => [$baseClass . '__date']])
         @group
             @icon(['icon' => 'date_range', 'size' => 'sm'])
