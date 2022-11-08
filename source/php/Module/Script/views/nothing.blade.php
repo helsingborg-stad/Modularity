@@ -12,8 +12,9 @@
             @endtypography
         </div>
     @endif
-    <div class="{{$scriptPadding}}">{!! $embed !!}</div>
-    
+	
+	@include('partials.content')
+
     @image([
             'src'=> $placeholder['url'],
             'alt' => $placeholder['alt'],

@@ -31,7 +31,12 @@
                     'text' => $button_label,
                     'size' => 'sm',
                     'href' => $button_url,
-                    'classList' => ['u-display--block@xs', 'u-display--block@sm', 'modularity-mod-map__button'],
+                    'classList' => [
+                        'u-display--block@xs', 
+                        'u-display--block@sm', 
+                        'modularity-mod-map__button',
+                        'u-level-1'
+                    ],
                     'target' => '_blank'
                 ])
                 @endbutton
