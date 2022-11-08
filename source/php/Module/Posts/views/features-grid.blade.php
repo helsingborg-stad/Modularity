@@ -8,7 +8,7 @@
                 'content' => ($post->showExcerpt ? $post->post_content : false),
                 'link' => $post->link,
                 'meta' => $post->tags,
-                'date' => $post->showDate ? date("Y-m-d H:i", strtotime($post->post_date)) : false,
+                'date' => $post->showDate ? date(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date)) : false,
                 'ratio' => $ratio,
                 'image' => $post->showImage ? [
                     'src' => $post->thumbnail[0] ?? false,
