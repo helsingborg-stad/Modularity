@@ -26,6 +26,11 @@ class Gallery extends \Modularity\Module
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box',
             'box-gallery'), $this->post_type, $this->args));
 
+        $data['ariaLabels'] = (object) [
+            'prev' => __('Previous slide','modularity'),
+            'next' => __('Next slide', 'modularity'),
+        ];
+
         if ($data['mod_gallery_images']) {
             $data['mod_gallery_images'] = $this->getThumbnails($data['mod_gallery_images']);
             foreach ($data['mod_gallery_images'] as $i=>$image) {
