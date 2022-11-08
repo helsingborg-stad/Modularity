@@ -14,6 +14,14 @@
 
     @endif
 
+    @if ($preamble)
+        @typography([
+            'classList' => ['module-preamble', 'u-margin__bottom--3'] 
+        ])
+            {!! $preamble !!}
+        @endtypography
+    @endif
+
     @if (count($posts) > 0)
         <div class="o-grid grid--columns js-mod-posts-{{$ID}} {{ $stretch ? 'o-grid--stretch' : '' }}">
             @foreach ($posts as $post)

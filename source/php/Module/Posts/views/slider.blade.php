@@ -1,21 +1,35 @@
 @include('partials.post-filters')
+<div class="o-grid u-margin__bottom--5">
+    <div class="o-grid-12@sm o-grid-8@md o-grid-8@lg">
+        @if (!$hideTitle && !empty($postTitle))
+            @typography([
+                'id' => 'mod-posts-' . $ID . '-label',
+                'element' => 'h4',
+                'variant' => 'h2',
+                'classList' => ['module-title']
+            ])
+                {!! $postTitle !!}
+            @endtypography
+        @endif
 
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h4',
-        'variant' => 'h2',
-        'classList' => ['module-title']
-    ])
-        {!! $postTitle !!}
-    @endtypography
-@endif
+        @if ($preamble)
+            @typography([
+                'classList' => ['module-preamble'] 
+            ])
+                {!! $preamble !!}
+            @endtypography
+        @endif
+    </div>
+        @include('partials.slider.slider-navigation')
+</div>
 
 @slider([
     'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
     'classList'       => ['c-slider--post'],
     'showStepper'     => false,
     'autoSlide'       => false,
+    'isPost'          => true,
+    'customButtons'   => 'js-custom-buttons-' . $ID,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $ID . '-label',
         'data-slider-gap' => 48,
@@ -36,13 +50,3 @@
     @endforeach
     
 @endslider
-
-@if ($posts_data_source !== 'input' && $archive_link)
-	@button([
-		'text' => __('Show all', 'modularity'),
-		'color' => 'default',
-		'style' => 'basic',
-		'href' => $archive_link_url . '?' . http_build_query($filters),
-	])
-	@endbutton
-@endif
