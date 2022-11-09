@@ -20,8 +20,10 @@ class Breadcrumbs extends \Modularity\Module
 
     public function unsetMunicipioBreadcrumbs($pageData, $queriedObj, $context)
     {
-        if ($this->hasModule() && 'municipio' === $context) {
-            return null;
+        if ('municipio' === $context) {
+            if ($this->hasModule() || has_block('acf/breadcrumbs')) {
+                return null;
+            }
         }
         
         return $pageData;
