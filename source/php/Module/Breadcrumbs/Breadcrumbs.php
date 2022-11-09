@@ -14,6 +14,17 @@ class Breadcrumbs extends \Modularity\Module
         $this->nameSingular = __('Breadcrumbs', 'modularity');
         $this->namePlural = __('Breadcrumbs', 'modularity');
         $this->description = __('Outputs the navigational breadcrumb trail to the current page.', 'modularity');
+        
+        add_filter('Municipio/Breadcrumbs/Items', array( $this, 'unsetMunicipioBreadcrumbs' ), 1, 3);
+    }
+
+    public function unsetMunicipioBreadcrumbs($pageData, $queriedObj, $context)
+    {
+        if ($this->hasModule() && 'municipio' === $context) {
+            return null;
+        }
+        
+        return $pageData;
     }
 
     public function data() : array
@@ -23,7 +34,7 @@ class Breadcrumbs extends \Modularity\Module
         $theme = wp_get_theme('municipio');
         if ($theme->exists()) {
             $municipio = new \Municipio\Controller\BaseController;
-            $breadcrumb = new \Municipio\Helper\Navigation('breadcrumb');
+            $breadcrumb = new \Municipio\Helper\Navigation('breadcrumb', 'modularity');
             $data['breadcrumbItems'] = $breadcrumb->getBreadcrumbItems($municipio->getPageID());
         }
         return $data;
