@@ -25,21 +25,19 @@ class Script extends \Modularity\Module
         /* Parsing the embed code and extracting the scripts, iframes, links and styles. */
         $embed = get_field('embed_code', $this->ID);
 
-        $data['embed'] = [];
-
         $doc = new \DOMDocument();
         $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed);
 
         $xpath = new \DOMXpath($doc);
-        $allowedElements = $xpath->query('//script | //iframe | //link | //style | //div | //span');
+        $allowedElements = $xpath->query('//script | //iframe | //link | //style');
 
+        $data['embedContent'] =
+        is_admin() ?
+        '<pre>' . htmlspecialchars($embed) . '</pre>' :
+        $embed;
+        
         for ($i = 0; $i < $allowedElements->length; $i++) {
             $element = $allowedElements->item($i);
-
-            $data['embed'][$i]['content'] =
-            is_admin() ?
-            '<pre>' . $doc->saveHTML(htmlspecialchars($element)) . '</pre>' :
-            $doc->saveHTML($element);
 
             $data['embed'][$i]['src'] = null;
             $data['embed'][$i]['requiresAccept'] = 1;
@@ -86,11 +84,6 @@ class Script extends \Modularity\Module
                     $data['embed'][$i]['src'] = null;
                     break;
 
-                case 'div':
-                case 'span':
-                    $data['embed'][$i]['requiresAccept'] = 0;
-                    $data['embed'][$i]['src'] = null;
-                    break;
                 default:
                     // no action necessary
                     break;
