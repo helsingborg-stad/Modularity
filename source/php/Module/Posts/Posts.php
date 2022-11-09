@@ -218,16 +218,13 @@ class Posts extends \Modularity\Module
         $data['modId'] = $this->ID;
 
         // Posts
+        $data['preamble'] = $fields->preamble;
         $data['posts_fields'] = $fields->posts_fields ?? false;
         $data['posts_date_source'] = $fields->posts_date_source ?? false;
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
-        if (! empty($data['posts'])) {
-            foreach ($data['posts'] as &$post) {
-                $post->permalink = get_permalink($post->ID);
-            }
-        }
+       
 
         // Sorting
         $data['sortBy'] = false;
@@ -265,6 +262,11 @@ class Posts extends \Modularity\Module
         $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;
 
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
+
+        $data['ariaLabels'] =  (object) [
+           'prev' => __('Previous slide', 'modularity'),
+           'next' => __('Next slide', 'modularity'),
+        ];
 
         return $data;
     }
@@ -630,11 +632,21 @@ class Posts extends \Modularity\Module
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
 
+
         if ($fields->posts_data_source == 'input') {
             return (array) self::getManualInputPosts($fields->data);
         }
 
-        return (array) get_posts(self::getPostArgs($module->ID));
+        $posts = (array) get_posts(self::getPostArgs($module->ID));
+        if (!empty($posts)) {
+            foreach ($posts as &$_post) {
+                if (empty($_post->permalink)) {
+                    $_post->permalink = get_permalink($_post->ID);
+                }
+            }
+        }
+        
+        return $posts;
     }
 
     public static function getPostArgs($id)

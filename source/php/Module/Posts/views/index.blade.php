@@ -11,6 +11,14 @@
     @endtypography
 @endif
 
+@if ($preamble)
+    @typography([
+        'classList' => ['module-preamble', 'u-margin__bottom--3'] 
+    ])
+        {!! $preamble !!}
+    @endtypography
+@endif
+
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
@@ -21,7 +29,7 @@
                     'content' => ($post->showExcerpt ? $post->post_content : false),
                     'ratio' => '16:9',
                     'meta' => $post->tags,
-                    'date' => ($post->showDate ? date("Y-m-d H:i", strtotime($post->post_date)) : false),
+                    'date' => $post->showDate ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date)) : false,
                     'filled' => true,
                     'image' => ($post->showImage && isset($post->thumbnail[0]) ? [
                         'src' => get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2]),
@@ -42,9 +50,9 @@
                     'heading' => ($post->showTitle ? $post->post_title : false),
                     'classList' => $classes,
                     'context' => ['module.posts.index'],
-                    'content' => ($post->showExcerpt ? $post->post_content : false),
+                    'content' => $post->showExcerpt ? $post->post_content : false,
                     'tags' => $post->tags,
-                    'date' => ($post->showDate ? get_post_time( "Y-m-d H:i",  $post ) : false),
+                    'date' => $post->showDate ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date)) : false,
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),

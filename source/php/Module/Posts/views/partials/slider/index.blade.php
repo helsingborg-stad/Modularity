@@ -10,7 +10,7 @@
     'content' => ($post->showExcerpt ? $post->post_content : false),
     'classList' => [$classes, 'u-color__text--info'],
     'date' => ($post->showDate ? get_post_time( "Y-m-d H:i",  $post ) : false),
-    'containerAware' => true,
+    'containerAware' => false,
     'hasAction' => true,
     'hasFooter' => true,
     'tags' => $post->tags,

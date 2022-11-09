@@ -11,6 +11,14 @@
     @endtypography
 @endif
 
+@if ($preamble)
+    @typography([
+        'classList' => ['module-preamble', 'u-margin__bottom--3'] 
+    ])
+        {!! $preamble !!}
+    @endtypography
+@endif
+
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
     <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
@@ -24,7 +32,7 @@
                     'context' => ['module.posts.index'],
                     'content' => $post->post_content,
                     'tags' => $post->tags,
-                    'date' => $post->postDate,
+                    'date' => $post->showDate ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date)) : false,
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
@@ -41,7 +49,7 @@
                     'content' => ($post->showExcerpt ? $post->post_content : false),
                     'ratio' => $ratio,
                     'meta' => $post->tags,
-                    'date' => ($post->showDate ? $post->post_date : false),
+                    'date' => ($post->showDate ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date)) : false),
                     'filled' => true,
                     'image' => ($post->showImage ? [
                         'src' => $loop->first && $highlight_first_column

@@ -51,7 +51,7 @@ class Map extends \Modularity\Module
 
             'unknownLabels' => [
                 'title' => __('We need your consent to continue', 'modularity'),
-                'info' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
+                'info' => sprintf(__('This part of the website shows content from another website (%s). By continuing, you are accepting GDPR and privacy policy.', 'municipio'), '{SUPPLIER_WEBSITE}'),
                 'button' => __('I understand, continue.', 'modularity'),
             ],
         ];

@@ -7,7 +7,7 @@
                  'src' => !empty($embeddedContent['src']) ? $embeddedContent['src'] : null,
              ])
         @endif
-             <div class="{{ $scriptPadding }}">{!! $embeddedContent['content'] !!}</div>
+             <div class="{{ $scriptPadding }}">{!! $embedContent !!}</div>
     	@if ($embeddedContent['requiresAccept'])
              @endacceptance
          @endif
