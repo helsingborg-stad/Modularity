@@ -19,6 +19,7 @@ class BlockManager
         add_filter('acf/register_block_type_args', array($this, 'blockTypeArgs'), 10, 1);
 
         add_filter('Modularity/Block/Settings', array( $this, 'customBlockSettings' ), 10, 3);
+        add_filter('Modularity/Block/Data', array( $this, 'customBlockData' ), 10, 3);
     }
 
     /**
@@ -168,6 +169,14 @@ class BlockManager
         }
 
         return $blockSettings;
+    }
+
+    public function customBlockData($viewData, $block, $module)
+    {
+        if ('script' === $module->slug) {
+            $viewData->embedContent = $block->data->embed_code;
+        }
+        return $viewData;
     }
     /**
      * Detect if this may be a module
