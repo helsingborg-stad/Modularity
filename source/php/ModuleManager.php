@@ -73,9 +73,6 @@ class ModuleManager
         add_action('edit_form_before_permalink', array($this, 'hideTitleCheckbox'));
         add_action('save_post', array($this, 'saveHideTitleCheckbox'), 10, 2);
 
-        // Lang attribute option
-        add_filter('Modularity/Display/Markup', array($this, 'addLangAttribute'), 10, 2);
-
         // Shortcode metabox
         add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
 
