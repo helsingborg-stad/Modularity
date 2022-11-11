@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_602400d904b59',
     'title' => __('Map', 'modularity'),
     'fields' => array(
@@ -223,4 +224,4 @@ The information will be placed in a card on the right side of the map.', 'modula
     'active' => true,
     'description' => '',
 ));
-}
+}

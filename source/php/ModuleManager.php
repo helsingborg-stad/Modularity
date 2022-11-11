@@ -4,6 +4,7 @@ namespace Modularity;
 
 use BladeComponentLibrary\Init as CompLibInitator;
 use enshrined\svgSanitize\Sanitizer as SVGSanitize;
+
 class ModuleManager
 {
     /**
@@ -61,8 +62,8 @@ class ModuleManager
         self::$blockManager = new \Modularity\BlockManager();
 
         // Init modules
-        add_action('init', function () {            
-            self::$enabled = self::getEnabled();        
+        add_action('init', function () {
+            self::$enabled = self::getEnabled();
             self::$registered = $this->getRegistered();
 
             $this->init();
@@ -71,6 +72,9 @@ class ModuleManager
         // Hide title option
         add_action('edit_form_before_permalink', array($this, 'hideTitleCheckbox'));
         add_action('save_post', array($this, 'saveHideTitleCheckbox'), 10, 2);
+
+        // Lang attribute option
+        add_filter('Modularity/Display/Markup', array($this, 'addLangAttribute'), 10, 2);
 
         // Shortcode metabox
         add_action('add_meta_boxes', array($this, 'shortcodeMetabox'));
@@ -83,6 +87,11 @@ class ModuleManager
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
     }
 
+    public function addLangAttribute($markup, $module)
+    {
+        echo '<pre>' . print_r($module, true) . '</pre>';
+        return $markup;
+    }
     /**
      * Get available modules (WP filter)
      * @return array
@@ -134,7 +143,7 @@ class ModuleManager
      */
     public function init()
     {
-        foreach (self::$registered as $path => $module) {            
+        foreach (self::$registered as $path => $module) {
             $path = trailingslashit($path);
             $source = $path . $module . '.php';
             $namespace = \Modularity\Helper\File::getNamespace($source);
@@ -172,7 +181,7 @@ class ModuleManager
             return;
         }
 
-        $postTypeSlug = self::prefixSlug($class->slug);    
+        $postTypeSlug = self::prefixSlug($class->slug);
         self::$classes[$postTypeSlug] = $class;
 
         // Set labels
@@ -234,7 +243,6 @@ class ModuleManager
 
         // Register the post type if module is enabled
         if (in_array($postTypeSlug, self::$enabled)) {
-
             register_post_type($postTypeSlug, $args);
             $this->setupListTableField($postTypeSlug);
 
@@ -473,11 +481,10 @@ class ModuleManager
      */
     public static function getModuleUsage($id, $limit = false)
     {
-
         global $wpdb;
 
         //Get length of id
-        $idLength = strlen($id); 
+        $idLength = strlen($id);
 
         // Normal modules
         $moduleQuery = "
@@ -517,15 +524,14 @@ class ModuleManager
 
         //Get a unique array
         $itemList = array();
-        foreach($result as $item) {
-            
+        foreach ($result as $item) {
             //Already in list, continiue
-            if(array_key_exists($item->post_id, $itemList)) {
+            if (array_key_exists($item->post_id, $itemList)) {
                 continue;
             }
 
             //Add to list
-            $itemList[$item->post_id] = $item; 
+            $itemList[$item->post_id] = $item;
         }
 
         //Limit to n number if results
