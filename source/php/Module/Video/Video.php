@@ -7,7 +7,7 @@ class Video extends \Modularity\Module
     public $slug = 'video';
     public $supports = array();
     private $imageLocations = [
-        'youtube'   => 'https://img.youtube.com/vi/%s/hqdefault.jpg',
+        'youtube'   => 'https://img.youtube.com/vi/%s/maxresdefault.jpg',
         'vimeo'     => 'https://vumbnail.com/%s.jpg'
     ];
 
@@ -148,6 +148,7 @@ class Video extends \Modularity\Module
         }
 
         if ($videoService == 'vimeo') {
+            return $this->parseVimeoId($embedLink);
         }
 
         return false;
@@ -163,6 +164,20 @@ class Video extends \Modularity\Module
             return $queryParameters['v'];
         }
 
+        return false;
+    }
+
+    private function parseVimeoId($embedLink)
+    {
+        $parts = explode('/', $embedLink);
+
+        if (is_array($parts) & !empty($parts)) {
+            foreach ($parts as $part) {
+                if (is_numeric($part)) {
+                    return $part;
+                }
+            }
+        }
         return false;
     }
 
