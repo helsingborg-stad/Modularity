@@ -26,7 +26,7 @@
                     'width' => 1080,
                     'height' => 720,
                     'attributeList' => [
-                        'poster' => ($image !== false) ? $image[0] : '',
+                        'poster' => ($image !== false) ? $image : '',
                         'preload' => 'auto',
                         'loop' => true,
                         'muted' => true
@@ -37,10 +37,10 @@
         </div>
     @else
         @if($embedCode)
-            <div class="embed embed__ratio--16-9" style="background-image:url({{$placeholder_image['url']}})">
+            <div class="embed embed__ratio--16-9" style="background-image:url({{$image}})">
                 @if(!empty($image))
                     <div class="embed__poster" data-embed-id="{{ $id }}">
-                        <img src="{{ $image[0] }}" alt="{{ $postTitle }}" class="embed__poster__image" />
+                        <img src="{{ $image }}" alt="{{ $postTitle }}" class="embed__poster__image" />
                     </div>
                     <script id="{{ $id }}" type="x-video-embed" defer>
                         {!! $embedCode !!}
