@@ -326,19 +326,15 @@ class Video extends \Modularity\Module
 
         // Image
         $data['image'] = false;
-        if (! isset($data['embedCode']) && isset($data['placeholder_image']) && !empty($data['placeholder_image'])) {
+        if (isset($data['placeholder_image']) && !empty($data['placeholder_image'])) {
             $data['image'] = wp_get_attachment_image_src(
                 $data['placeholder_image']['id'],
-                apply_filters(
-                    'Modularity/video/image',
-                    municipio_to_aspect_ratio('16:9', array(1140, 641)),
-                    $this->args
-                )
+                [1140, 641]
             )[0];
         }
 
         // Fallback image
-        if (!$image) {
+        if (!$data['image']) {
             $fallbackImage = get_post_meta($this->ID, 'placeholder_fallback_image', true);
             if ($fallbackImage) {
                 $data['image'] =  wp_get_upload_dir()['baseurl'] . "/" . $fallbackImage;
