@@ -173,7 +173,6 @@ function getTaxonomyTypes(data) {
 }
 
 function getTaxonomyValues(data) {
-    console.log(data);
     let blockContainer = data.container;
     $(blockContainer + ' .modularity-latest-taxonomy-value select').empty();
     $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
