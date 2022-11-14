@@ -37,7 +37,7 @@
         </div>
     @else
         @if($embedCode)
-            <div class="embed embed__ratio--16-9" style="background-image:url({{$image}})">
+            <div class="embed embed__ratio--16-9" style="background-image:url({{$image}}); background-position: center;">
                 @if(!empty($image))
                     <div class="embed__poster" data-embed-id="{{ $id }}">
                         <img src="{{ $image }}" alt="{{ $postTitle }}" class="embed__poster__image" />

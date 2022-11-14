@@ -73,6 +73,11 @@ class Video extends \Modularity\Module
             return false;
         }
 
+        if (!$this->isEmbed(get_field('type', $postId))) {
+            delete_post_meta($postId, 'placeholder_fallback_image');
+            return false;
+        }
+
         $coverImage = get_field('placeholder_image', $postId);
         $embedUrl   = get_field('embed_link', $postId);
 
@@ -87,7 +92,7 @@ class Video extends \Modularity\Module
                 update_post_meta(
                     $postId,
                     'placeholder_fallback_image',
-                    $this->getUploadsSubdir() . $filePath
+                    $filePath
                 );
                 return $filePath;
             }
@@ -96,6 +101,16 @@ class Video extends \Modularity\Module
         delete_post_meta($postId, 'placeholder_fallback_image');
 
         return false;
+    }
+
+    /**
+     * Check if embed option is enabled
+     *
+     * @param [type] $type
+     * @return boolean
+     */
+    public function isEmbed($type) {
+        return $type == 'embed' ? true : false;
     }
 
     /**
@@ -143,18 +158,32 @@ class Video extends \Modularity\Module
      */
     private function storeImage($fileContent, $videoId)
     {
-        $uploadsDir = $this->getUploadsDir();
-        $fileSystem = $this->initFileSystem();
-        $filename   = $videoId . ".jpg";
+        $uploadsDir     = $this->getUploadsDir();
+        $uploadsSubDir  = $this->getUploadsSubdir();
+        $fileSystem     = $this->initFileSystem();
+        $fileName       = $videoId . ".jpg";
+
+        //Explicit path
+        $fullPath = implode("/", [
+            $uploadsDir,
+            $uploadsSubDir,
+            $fileName
+        ]);
+
+        //Relative to uploads dir
+        $subPath = implode("/", [
+            $uploadsSubDir,
+            $fileName
+        ]);
 
         $fileSystem->put_contents(
-            $uploadsDir . "/" . $filename,
+            $fullPath,
             $fileContent,
             FS_CHMOD_FILE
         );
 
-        if ($fileSystem->exists($uploadsDir . "/" . $filename)) {
-            return $filename;
+        if ($fileSystem->exists($fullPath)) {
+            return $subPath;
         }
 
         return false;
@@ -165,7 +194,7 @@ class Video extends \Modularity\Module
      *
      * @return Object WP_Filesystem
      */
-    private function initFileSystem(): WP_Filesystem
+    private function initFileSystem()
     {
         require_once(ABSPATH . '/wp-admin/includes/file.php');
         WP_Filesystem();
@@ -180,7 +209,7 @@ class Video extends \Modularity\Module
      */
     private function getUploadsDir()
     {
-        return wp_upload_dir()['path'];
+        return rtrim(wp_upload_dir()['basedir'], "/");
     }
 
     /**
@@ -190,7 +219,9 @@ class Video extends \Modularity\Module
      */
     private function getUploadsSubdir()
     {
-        return wp_upload_dir()['subdir'];
+        return trim(rtrim(wp_upload_dir()['subdir'], "/"),
+            "/"
+        );
     }
 
     /**
@@ -294,7 +325,7 @@ class Video extends \Modularity\Module
         if (!$image) {
             $fallbackImage = get_post_meta($this->ID, 'placeholder_fallback_image', true);
             if ($fallbackImage) {
-                $data['image'] =  wp_get_upload_dir()['baseurl'] . $fallbackImage;
+                $data['image'] =  wp_get_upload_dir()['baseurl'] . "/" . $fallbackImage;
             }
         }
 
