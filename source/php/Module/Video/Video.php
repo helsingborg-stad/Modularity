@@ -21,7 +21,13 @@ class Video extends \Modularity\Module
         add_action('save_post_mod-' . $this->slug, array($this, 'getVideoCover'), 10, 3);
     }
 
-    private function shouldSave() {
+    /**
+     * Protects function to be runned in cron, or autosave.
+     *
+     * @return boolean  Should run get methods.
+     */
+    private function shouldSave()
+    {
         //Bail early if autosave
         if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
             return false;
@@ -36,20 +42,31 @@ class Video extends \Modularity\Module
     }
 
     /**
-     * Detect video type
+     * Detect video service from url.
+     *
+     * @param string        $url The embed url
+     * @return string|bool       Video service name, or false if not detected.
      */
-
-    private function detectVideoService($string)
+    private function detectVideoService($url)
     {
-        if (str_contains($string, 'vimeo')) {
+        if (str_contains($url, 'vimeo')) {
             return 'vimeo';
         }
-        if (str_contains($string, 'youtube')) {
+        if (str_contains($url, 'youtube')) {
             return 'youtube';
         }
         return false;
     }
 
+    /**
+     * Hook to integrate with module.
+     * Get and store file.
+     *
+     * @param string        $postId         The id of current module
+     * @param string        $post           Full post object for current module
+     * @param string        $isUpdate       If module is a new module, or should update an existing module.
+     * @return string|bool                  Name of the file, false if not downloaded.
+     */
     public function getVideoCover($postId, $post, $isUpdate)
     {
         if (!$this->shouldSave()) {
@@ -81,6 +98,13 @@ class Video extends \Modularity\Module
         return false;
     }
 
+    /**
+     * Download and store file
+     *
+     * @param string        $url           Url where asset can be found.
+     * @param string        $videoId       Id of the video connected to the file.
+     * @return string|bool                 Name of the file, false if not downloaded.
+     */
     private function downloadCoverImage($url, $videoId) {
         if ($fileContents = $this->readRemoteFile($url)) {
             return $this->storeImage($fileContents, $videoId);
@@ -88,6 +112,12 @@ class Video extends \Modularity\Module
         return false;
     }
 
+    /**
+     * Get the thumbnail from remote service.
+     *
+     * @param string        $url    Url where asset can be found.
+     * @return string|bool          Contents of the image file, or false if not found.
+     */
     private function readRemoteFile($url)
     {
         $responseHandle = wp_remote_get($url);
@@ -104,6 +134,13 @@ class Video extends \Modularity\Module
         return false;
     }
 
+    /**
+     * Save image to filesystem.
+     *
+     * @param string        $fileContent   Contents of the file
+     * @param string        $videoId       Id of the video connected to the file.
+     * @return string|bool                 Name of the file, false if not written.
+     */
     private function storeImage($fileContent, $videoId)
     {
         $uploadsDir = $this->getUploadsDir();
@@ -123,7 +160,12 @@ class Video extends \Modularity\Module
         return false;
     }
 
-    private function initFileSystem()
+    /**
+     * Get the wp file system instance.
+     *
+     * @return Object WP_Filesystem
+     */
+    private function initFileSystem(): WP_Filesystem
     {
         require_once(ABSPATH . '/wp-admin/includes/file.php');
         WP_Filesystem();
@@ -131,16 +173,32 @@ class Video extends \Modularity\Module
         return $wp_filesystem;
     }
 
+    /**
+     * Get the directory where uploaded files are located
+     *
+     * @return string Uploads
+     */
     private function getUploadsDir()
     {
         return wp_upload_dir()['path'];
     }
 
+    /**
+     * Get the sub dir where the uploaded files are placed
+     *
+     * @return string Uploads subdir
+     */
     private function getUploadsSubdir()
     {
         return wp_upload_dir()['subdir'];
     }
 
+    /**
+     * Get id from embed url, switch beteen video services
+     *
+     * @param  string $embedLink    The embed link
+     * @return string $id           The id in embed link
+     */
     private function getVideoId($embedLink, $videoService)
     {
         if ($videoService == 'youtube') {
@@ -154,6 +212,12 @@ class Video extends \Modularity\Module
         return false;
     }
 
+    /**
+     * Get youtube id from embed url
+     *
+     * @param  string $embedLink    The embed link
+     * @return string $id           The id in embed link
+     */
     private function parseYoutubeId($embedLink) {
         parse_str(
             parse_url($embedLink, PHP_URL_QUERY),
@@ -167,6 +231,12 @@ class Video extends \Modularity\Module
         return false;
     }
 
+    /**
+     * Get vimeo id from embed url
+     *
+     * @param  string $embedLink    The embed link
+     * @return string $id           The id in embed link
+     */
     private function parseVimeoId($embedLink)
     {
         $parts = explode('/', $embedLink);
@@ -181,6 +251,13 @@ class Video extends \Modularity\Module
         return false;
     }
 
+    /**
+     * Create a url where the cover image will be found.
+     *
+     * @param  string $id               The embed id
+     * @param  string $videoService     What video service to use
+     * @return string $url              A https url to the image
+     */
     private function getCoverUrl($id, $videoService) {
         if (isset($this->imageLocations[$videoService])) {
             return sprintf($this->imageLocations[$videoService], $id);
@@ -197,11 +274,8 @@ class Video extends \Modularity\Module
     {
         $data = get_fields($this->ID);
 
-
-        //Embed code
         $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
-
-        $data['id'] = uniqid('embed');
+        $data['id']         = uniqid('embed');
 
         // Image
         $data['image'] = false;
@@ -245,7 +319,13 @@ class Video extends \Modularity\Module
      */
     private function getEmbedMarkup($embedLink)
     {
-        return wp_oembed_get($embedLink, array( 'width' => 1080, 'height' => 720));
+        return wp_oembed_get(
+            $embedLink,
+            array(
+                'width' => 1080,
+                'height' => 720
+            )
+        );
     }
 
     public function style()
