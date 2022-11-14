@@ -224,7 +224,11 @@ class Video extends \Modularity\Module
      */
     private function getUploadsSubdir()
     {
-        return trim(rtrim(wp_upload_dir()['subdir'], "/"),
+        return trim(
+            rtrim(
+                wp_upload_dir()['subdir'],
+                "/"
+            ),
             "/"
         );
     }
