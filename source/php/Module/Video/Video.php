@@ -18,7 +18,7 @@ class Video extends \Modularity\Module
         $this->description = __("Outputs an embedded Video.", 'modularity');
 
         //Cover images
-        add_action('save_post_mod-' . $this->slug, array($this, 'getVideoCover'), 10, 3);
+        add_action('wp_after_insert_post', array($this, 'getVideoCover'), 10, 4);
     }
 
     /**
@@ -52,7 +52,7 @@ class Video extends \Modularity\Module
         if (str_contains($url, 'vimeo')) {
             return 'vimeo';
         }
-        if (str_contains($url, 'youtube')) {
+        if (str_contains($url, 'youtu')) { //Matches youtu.be and full domain
             return 'youtube';
         }
         return false;
@@ -67,9 +67,13 @@ class Video extends \Modularity\Module
      * @param string        $isUpdate       If module is a new module, or should update an existing module.
      * @return string|bool                  Name of the file, false if not downloaded.
      */
-    public function getVideoCover($postId, $post, $isUpdate)
+    public function getVideoCover($postId, $post, $isUpdate, $postBeforeUpdate)
     {
         if (!$this->shouldSave()) {
+            return false;
+        }
+
+        if (get_post_type($postId) != 'mod-video') {
             return false;
         }
 
@@ -250,11 +254,18 @@ class Video extends \Modularity\Module
      * @return string $id           The id in embed link
      */
     private function parseYoutubeId($embedLink) {
+        $hostname = parse_url($embedLink, PHP_URL_HOST);
+
+        //https://youtu.be/ID
+        if ($hostname == 'youtu.be') {
+            return trim(rtrim(parse_url($embedLink, PHP_URL_PATH), "/"), "/");
+        }
+
+        //https://www.youtube.com/watch?v=ID
         parse_str(
             parse_url($embedLink, PHP_URL_QUERY),
             $queryParameters
         );
-
         if (isset($queryParameters['v']) && !empty($queryParameters['v'])) {
             return $queryParameters['v'];
         }
