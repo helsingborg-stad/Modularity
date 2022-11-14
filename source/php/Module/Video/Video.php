@@ -110,10 +110,11 @@ class Video extends \Modularity\Module
     /**
      * Check if embed option is enabled
      *
-     * @param [type] $type
+     * @param string $type
      * @return boolean
      */
-    public function isEmbed($type) {
+    public function isEmbed($type)
+    {
         return $type == 'embed' ? true : false;
     }
 
