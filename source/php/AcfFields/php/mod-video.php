@@ -3,11 +3,11 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_57454ae7b0e9a',
-    'title' => 'Video',
+    'title' => __('Video', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_57454c24d44d8',
-            'label' => __('Typ', 'modularity'),
+            'label' => __('Type', 'modularity'),
             'name' => 'type',
             'type' => 'radio',
             'instructions' => '',
@@ -18,16 +18,16 @@
                 'class' => '',
                 'id' => '',
             ),
-            'layout' => 'horizontal',
             'choices' => array(
-                'embed' => __('Bädda in (YouTube eller Vimeo-länk)', 'modularity'),
-                'upload' => __('Ladda upp video', 'modularity'),
+                'embed' => __('Embed by link (YouTube or Vimeo)', 'modularity'),
+                'upload' => __('Upload video file', 'modularity'),
             ),
             'default_value' => '',
-            'other_choice' => 0,
-            'save_other_choice' => 0,
-            'allow_null' => 0,
             'return_format' => 'value',
+            'allow_null' => 0,
+            'other_choice' => 0,
+            'layout' => 'horizontal',
+            'save_other_choice' => 0,
         ),
         1 => array(
             'key' => 'field_57454c5ad44db',
@@ -58,7 +58,7 @@
         ),
         2 => array(
             'key' => 'field_57454c7ad44dc',
-            'label' => __('Inbäddningslänk', 'modularity'),
+            'label' => __('Embed Link', 'modularity'),
             'name' => 'embed_link',
             'type' => 'url',
             'instructions' => '',
@@ -82,10 +82,10 @@
         ),
         3 => array(
             'key' => 'field_57454c91d44dd',
-            'label' => __('Affischbild', 'modularity'),
+            'label' => __('Placeholder Image', 'modularity'),
             'name' => 'placeholder_image',
             'type' => 'image',
-            'instructions' => __('Affischbilden visas innan videon sätts igång.', 'modularity'),
+            'instructions' => __('The placeholder image is displayed before the video is played. If an embed link has been used to embed this video, a placeholder will automatically be feted from embedded service. You can still use this field, to replace the image shown.', 'modularity'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
@@ -93,9 +93,9 @@
                 'class' => '',
                 'id' => '',
             ),
+            'uploader' => '',
+            'acfe_thumbnail' => 0,
             'return_format' => 'array',
-            'preview_size' => 'thumbnail',
-            'library' => 'all',
             'min_width' => '',
             'min_height' => '',
             'min_size' => '',
@@ -103,6 +103,8 @@
             'max_height' => '',
             'max_size' => '',
             'mime_types' => '',
+            'preview_size' => 'thumbnail',
+            'library' => 'all',
         ),
     ),
     'location' => array(
@@ -111,6 +113,13 @@
                 'param' => 'post_type',
                 'operator' => '==',
                 'value' => 'mod-video',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/video',
             ),
         ),
     ),
@@ -122,5 +131,11 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
+    'acfe_display_title' => '',
+    'acfe_autosync' => '',
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
 ));
 }
