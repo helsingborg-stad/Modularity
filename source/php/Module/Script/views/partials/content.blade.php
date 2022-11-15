@@ -9,8 +9,7 @@
              <div class="{{ $scriptPadding }}">{!! $embedContent !!}</div>
 
              @endacceptance
-    @else {
+    @else 
         <div class="{{ $scriptPadding }}">{!! $embedContent !!}</div>
-    }
     @endif
  @endif
