@@ -117,10 +117,22 @@ class Script extends \Modularity\Module
 
             'unknownLabels' => [
                 'title' => __('We need your consent to continue', 'modularity'),
-                'info' => __('This part of the website shows content from another website. By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
+                'info' => __('This part of the website shows content from another website ({SUPPLIER_WEBSITE}). By continuing, you are accepting GDPR and privacy policy.', 'modularity'),
                 'button' => __('I understand, continue.', 'modularity'),
             ],
         ];
+        $requiresAccept = false;
+        $arrSrc = array();
+        foreach ($data['embed'] as $embedSrc) {
+            if ($embedSrc['requiresAccept'] == 1) {
+                $requiresAccept = true;
+            }
+            if($embedSrc['src']) {
+                array_push($arrSrc, $embedSrc['src']);
+            }
+        }
+        $data['scriptSrcArray'] = $arrSrc;
+        $data['requiresAccept'] = $requiresAccept; 
 
         return $data;
     }

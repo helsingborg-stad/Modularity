@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_57454c24d44d8",
-            "label": "Typ",
+            "label": "Type",
             "name": "type",
             "type": "radio",
             "instructions": "",
@@ -15,16 +15,16 @@
                 "class": "",
                 "id": ""
             },
-            "layout": "horizontal",
             "choices": {
-                "embed": "B\u00e4dda in (YouTube eller Vimeo-l\u00e4nk)",
-                "upload": "Ladda upp video"
+                "embed": "Embed by link (YouTube or Vimeo)",
+                "upload": "Upload video file"
             },
             "default_value": "",
-            "other_choice": 0,
-            "save_other_choice": 0,
+            "return_format": "value",
             "allow_null": 0,
-            "return_format": "value"
+            "other_choice": 0,
+            "layout": "horizontal",
+            "save_other_choice": 0
         },
         {
             "key": "field_57454c5ad44db",
@@ -55,7 +55,7 @@
         },
         {
             "key": "field_57454c7ad44dc",
-            "label": "Inb\u00e4ddningsl\u00e4nk",
+            "label": "Embed Link",
             "name": "embed_link",
             "type": "url",
             "instructions": "",
@@ -79,10 +79,10 @@
         },
         {
             "key": "field_57454c91d44dd",
-            "label": "Affischbild",
+            "label": "Placeholder Image",
             "name": "placeholder_image",
             "type": "image",
-            "instructions": "Affischbilden visas innan videon s\u00e4tts ig\u00e5ng.",
+            "instructions": "The placeholder image is displayed before the video is played. If an embed link has been used to embed this video, a placeholder will automatically be feted from embedded service. You can still use this field, to replace the image shown.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -90,16 +90,18 @@
                 "class": "",
                 "id": ""
             },
+            "uploader": "",
+            "acfe_thumbnail": 0,
             "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
             "min_width": "",
             "min_height": "",
             "min_size": "",
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "preview_size": "thumbnail",
+            "library": "all"
         }
     ],
     "location": [
@@ -108,6 +110,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-video"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/video"
             }
         ]
     ],
@@ -118,6 +127,12 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
 
