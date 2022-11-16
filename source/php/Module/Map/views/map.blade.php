@@ -45,6 +45,7 @@
             <div class="c-card__body">
                 @iframe([
                     'src' => $map_url,
+                    'height' => $height,
                     'classList' => [
                         'u-width--100', 'u-display--block'
                     ],
@@ -52,9 +53,7 @@
                     'labels' => $lang,
                 ])
                 @endiframe
-
             </div>
-        
         @endcard
     </div>
     
@@ -83,7 +82,7 @@
                         @endtypography
                     </div>
                 @endif
-                <div class="c-card__body" style="min-height: {{$height}}px">
+                <div class="c-card__body">
                     {!! $more_info !!}
                 </div>
             @endcard
