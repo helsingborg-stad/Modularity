@@ -145,7 +145,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'ji' => __('Yiddish', 'modularity'),
                 'zu' => __('Zulu', 'modularity'),
             ),
-            'default_value' => __('sv', 'modularity'),
+            'default_value' => __('sv-se', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_custom' => 0,

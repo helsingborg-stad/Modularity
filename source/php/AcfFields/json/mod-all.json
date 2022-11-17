@@ -126,7 +126,7 @@
                 "es": "Spanish (Spain)",
                 "es-uy": "Spanish (Uruguay)",
                 "es-ve": "Spanish (Venezuela)",
-                "sv": "Swedish",
+                "sv-se": "Swedish",
                 "sv-fi": "Swedish (Finland)",
                 "th": "Thai",
                 "ts": "Tsonga",
@@ -141,7 +141,7 @@
                 "ji": "Yiddish",
                 "zu": "Zulu"
             },
-            "default_value": "sv",
+            "default_value": "sv-se",
             "return_format": "value",
             "multiple": 0,
             "allow_custom": 0,
@@ -183,4 +183,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
