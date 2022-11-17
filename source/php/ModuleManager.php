@@ -63,7 +63,7 @@ class ModuleManager
 
         // Init modules
         add_action('init', function () {
-            self::$enabled = self::getEnabled();
+            self::$enabled    = self::getEnabled();
             self::$registered = $this->getRegistered();
 
             $this->init();
@@ -88,7 +88,7 @@ class ModuleManager
     }
 
     /**
-     * Adds the `lang` attribute to the module's HTML element if the module has a `lang` meta field
+     * Adds the `lang` attribute to the module's HTML element if it differs from the site's language
      *
      * @param string beforeModule The HTML of the module before it's been modified.
      * @param array args the arguments passed to the module
@@ -99,10 +99,14 @@ class ModuleManager
      */
     public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
     {
-        $lang = get_field('lang', $moduleId);
-        if ($lang) {
+        $siteLang   = strtolower(get_bloginfo('language'));
+        $moduleLang = strtolower(get_field('lang', $moduleId));
+        if ($moduleLang && ($moduleLang !== $siteLang)) {
             $attrId = $moduleType . '-' . $moduleId;
-            return preg_replace('/id="' . $attrId . '"/', 'id="' . $attrId . '" lang="' . $lang . '"', $beforeModule, 1);
+            $match = '/id="' . $attrId . '"/';
+            $replace = 'id="' . $attrId . '" lang="' . $moduleLang . '"';
+
+            return preg_replace($match, $replace, $beforeModule, 1);
         }
         return $beforeModule;
     }
@@ -113,7 +117,7 @@ class ModuleManager
     public function getRegistered($getBundled = true)
     {
         if ($getBundled) {
-            $bundeled = $this->getBundeled();
+            $bundeled   = $this->getBundeled();
             self::$registered = array_merge(self::$registered, $bundeled);
         }
 
@@ -121,7 +125,7 @@ class ModuleManager
     }
     
     /**
-     * Get enabled modules id:s
+     * Get enabled modules id: s
      * @return array
      */
     public static function getEnabled()
@@ -139,10 +143,10 @@ class ModuleManager
      * Gets bundeled modules
      * @return array
      */
-    public function getBundeled() : array
+    public function getBundeled(): array
     {
         $directory = MODULARITY_PATH . 'source/php/Module/';
-        $bundeled = array();
+        $bundeled  = array();
 
         foreach (@glob($directory . "*", GLOB_ONLYDIR) as $folder) {
             $bundeled[$folder] = basename($folder);
@@ -158,8 +162,8 @@ class ModuleManager
     public function init()
     {
         foreach (self::$registered as $path => $module) {
-            $path = trailingslashit($path);
-            $source = $path . $module . '.php';
+            $path      = trailingslashit($path);
+            $source    = $path . $module . '.php';
             $namespace = \Modularity\Helper\File::getNamespace($source);
 
             if (!$namespace) {
@@ -181,7 +185,7 @@ class ModuleManager
 
     /**
      * Registers a module with all it's components (post types etc)
-     * @param  string $class Module class (\Modularity\Module extension)
+     * @param  object $class Module class (\Modularity\Module extension)
      * @param  string $path  Path to module
      * @return string        Module's post type slug
      */
@@ -195,7 +199,7 @@ class ModuleManager
             return;
         }
 
-        $postTypeSlug = self::prefixSlug($class->slug);
+        $postTypeSlug           = self::prefixSlug($class->slug);
         self::$classes[$postTypeSlug] = $class;
 
         // Set labels
@@ -218,21 +222,21 @@ class ModuleManager
 
         // Set args
         $args = array(
-            'labels'               => $labels,
-            'description'          => __($class->description, 'modularity'),
-            'public'               => false,
-            'publicly_queryable'   => false,
-            'exclude_from_search'  => false,
-            'show_ui'              => true,
-            'show_in_nav_menus'    => false,
-            'show_in_menu'         => ($this->showInAdminMenu()) ? 'modularity' : false,
-            'has_archive'          => false,
-            'rewrite'              => false,
-            'hierarchical'         => false,
-            'menu_position'        => 100,
-            'menu_icon'            => $class->icon,
-            'supports'             => array_merge($class->supports, array('title', 'revisions', 'author')),
-            'capabilities'         => array(
+            'labels'              => $labels,
+            'description'         => __($class->description, 'modularity'),
+            'public'              => false,
+            'publicly_queryable'  => false,
+            'exclude_from_search' => false,
+            'show_ui'             => true,
+            'show_in_nav_menus'   => false,
+            'show_in_menu'        => ($this->showInAdminMenu()) ? 'modularity' : false,
+            'has_archive'         => false,
+            'rewrite'             => false,
+            'hierarchical'        => false,
+            'menu_position'       => 100,
+            'menu_icon'           => $class->icon,
+            'supports'            => array_merge($class->supports, array('title', 'revisions', 'author')),
+            'capabilities'        => array(
                 'edit_post'          => 'edit_module',
                 'edit_posts'         => 'edit_modules',
                 'edit_others_posts'  => 'edit_other_modules',
@@ -241,7 +245,7 @@ class ModuleManager
                 'read_private_posts' => 'read_private_posts',
                 'delete_post'        => 'delete_module'
             ),
-            'map_meta_cap'         => true
+            'map_meta_cap' => true
         );
 
         //Disable from search search pages (someone did a huge mistake designing this feature)
@@ -251,7 +255,7 @@ class ModuleManager
 
         // Get menu icon
         if (empty($args['menu_icon']) && $icon = self::getIcon($class)) {
-            $args['menu_icon'] = $icon;
+            $args['menu_icon']             = $icon;
             $args['menu_icon_auto_import'] = true;
         }
 
@@ -320,7 +324,7 @@ class ModuleManager
      * @param  string $slug
      * @return string
      */
-    public static function prefixSlug(string $slug) : string
+    public static function prefixSlug(string $slug): string
     {
         if (substr($slug, 0, strlen(self::MODULE_PREFIX)) !== self::MODULE_PREFIX) {
             $slug = self::MODULE_PREFIX . $slug;
@@ -390,8 +394,8 @@ class ModuleManager
         $checked = checked(true, $current, false);
 
         echo '<div>
-            <label style="cursor:pointer;">
-                <input type="checkbox" name="modularity-module-hide-title" value="1" ' . $checked . '>
+            <label style = "cursor:pointer;">
+            <input type  = "checkbox" name = "modularity-module-hide-title" value = "1" ' . $checked . '>
                 ' . __('Hide title', 'modularity') . '
             </label>
         </div>';
@@ -620,11 +624,11 @@ class ModuleManager
     public function listTableColumns($columns)
     {
         $columns = array(
-            'cb'               => '<input type="checkbox">',
-            'title'            => __('Title'),
-            'description'      => __('Description'),
-            'usage'            => __('Usage', 'modularity'),
-            'date'             => __('Date')
+            'cb'          => '<input type="checkbox">',
+            'title'       => __('Title'),
+            'description' => __('Description'),
+            'usage'       => __('Usage', 'modularity'),
+            'date'        => __('Date')
         );
 
         return $columns;
@@ -641,10 +645,10 @@ class ModuleManager
         switch ($column) {
             case 'description':
                 $description = get_post_meta($postId, 'module-description', true);
-                echo !empty($description) ? $description : '';
+                echo !empty($description) ? $description: '';
                 break;
 
-            case 'usage':
+            case   'usage':
                 $usage = self::getModuleUsage($postId, 3);
 
                 if (count($usage->data) == 0) {
@@ -680,7 +684,7 @@ class ModuleManager
     public function listTableColumnSorting($columns)
     {
         $columns['description'] = 'description';
-        $columns['usage'] = 'usage';
+        $columns['usage']       = 'usage';
         return $columns;
     }
 }

@@ -1,7 +1,8 @@
-<?php 
+<?php
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_636e424039120',
     'title' => __('Screen reader language', 'modularity'),
     'fields' => array(
@@ -129,7 +130,7 @@
                 'es' => __('Spanish (Spain)', 'modularity'),
                 'es-uy' => __('Spanish (Uruguay)', 'modularity'),
                 'es-ve' => __('Spanish (Venezuela)', 'modularity'),
-                'sv' => __('Swedish', 'modularity'),
+                'sv-se' => __('Swedish', 'modularity'),
                 'sv-fi' => __('Swedish (Finland)', 'modularity'),
                 'th' => __('Thai', 'modularity'),
                 'ts' => __('Tsonga', 'modularity'),
@@ -186,4 +187,4 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+}
