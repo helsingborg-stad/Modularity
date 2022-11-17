@@ -18899,7 +18899,7 @@ msgstr "Bläddra moduler"
 #~ msgstr "Ta bort"
 
 #, fuzzy
-#~| msgid "Edit Modules"
+#~| msgid "Edit "
 #~ msgid "Edit Modal"
 #~ msgstr "Redigera moduler"
 

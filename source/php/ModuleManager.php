@@ -85,9 +85,6 @@ class ModuleManager
 
         // Lang attribute option
         add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
-
-        // Lang attribute option
-        add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
     }
 
     /**
@@ -104,6 +101,20 @@ class ModuleManager
     {
         $siteLang   = strtolower(get_bloginfo('language'));
         $moduleLang = strtolower(get_field('lang', $moduleId));
+
+        $theme = wp_get_theme('municipio');
+        if ($theme->exists()) {
+            /** 
+             * Setting the default language of the module to the language of the post content. 
+             * */
+            $municipio = new \Municipio\Controller\BaseController;
+            $modulePost = \Municipio\Helper\Post::preparePostObject(get_post($municipio->getPageID()));
+            $modulePostLang = !empty(strtolower($modulePost->postLanguage)) ? $modulePost->postLanguage : false;
+            if ( ! $moduleLang && $modulePostLang ) {
+                $moduleLang = $modulePostLang;
+            }
+        }
+        
         if ($moduleLang && ($moduleLang !== $siteLang)) {
             $attrId = $moduleType . '-' . $moduleId;
             $match = '/id="' . $attrId . '"/';
