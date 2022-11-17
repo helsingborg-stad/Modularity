@@ -85,6 +85,9 @@ class ModuleManager
 
         // Lang attribute option
         add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
+
+        // Lang attribute option
+        add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
     }
 
     /**
