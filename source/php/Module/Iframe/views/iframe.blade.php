@@ -1,21 +1,22 @@
-@paper([
-
+@card([
+    'heading' => apply_filters('the_title', $post_title),
+    'context' => 'module.iframe'
 ])
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'element' => 'h4',
-        'variant' => 'h2',
-        'classList' => ['module-title']
+    @if (!$hideTitle && !empty($postTitle))
+        <div class="c-card__header">
+            @typography([
+                'element' => 'h4',
+                'classList' => ['card-title']
+            ])
+                {!! $postTitle !!}
+            @endtypography
+        </div>
+    @endif
+    @iframe([
+        'src' => $url,
+        'height' => $height,
+        'title' => $description ?? $post_title,
+        'labels' => $lang,
     ])
-        {!! apply_filters('the_title', $post_title) !!}
-    @endtypography
-@endif
-@iframe([
-	'src' => $url,
-	'height' => $height,
-	'title' => $description ?? $post_title,
-    'labels' => $lang,
-])
-@endiframe
-@endpaper
-
+    @endiframe
+@endcard

@@ -59,13 +59,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'message' => __('This is an integration module for https://curator.io. The module requires an account at the service. To integrate a feed, please head over to curator.io and follow the steps below. We assume that you already have an account, with a connected feed. 
-
-1. Login to you account. 
-2. Click on "style" in the sidebar navigation. 
-3. Click on "publish feed" (style won\'t matter). 
-4. Paste the embed code in the field above. 
-5. Save. Your feed should no be displayed.', 'modularity'),
+            'message' => __('This is an integration module for https://curator.io. The module requires an account at the service. To integrate a feed, please head over to curator.io and follow the steps below. We assume that you already have an account, with a connected feed. \n\n 1. Login to you account.\n 2. Click on "style" in the sidebar navigation.\n 3. Click on "publish feed" (style won\'t matter).\n 4. Paste the embed code in the field above.\n 5. Save. Your feed should no be displayed.', 'modularity'),
             'new_lines' => 'wpautop',
             'esc_html' => 0,
         ),

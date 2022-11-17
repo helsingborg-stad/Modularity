@@ -17,6 +17,9 @@ class BlockManager
         add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
         add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
         add_filter('acf/register_block_type_args', array($this, 'blockTypeArgs'), 10, 1);
+
+        add_filter('Modularity/Block/Settings', array( $this, 'customBlockSettings' ), 10, 3);
+        add_filter('Modularity/Block/Data', array( $this, 'customBlockData' ), 10, 3);
     }
 
     /**
@@ -158,6 +161,23 @@ class BlockManager
         }
     }
 
+    
+    public function customBlockSettings($blockSettings, $slug)
+    {
+        if ('script' === $slug) {
+            $blockSettings['mode'] = 'edit';
+        }
+
+        return $blockSettings;
+    }
+
+    public function customBlockData($viewData, $block, $module)
+    {
+        if ('script' === $module->slug) {
+            $viewData->embedContent = $block->data->embed_code;
+        }
+        return $viewData;
+    }
     /**
      * Detect if this may be a module
      *
