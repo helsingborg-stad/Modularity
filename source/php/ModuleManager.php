@@ -82,12 +82,29 @@ class ModuleManager
         // Description meta box
         add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
+
+        // Lang attribute option
+        add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
     }
 
-    public function addLangAttribute($markup, $module)
+    /**
+     * Adds the `lang` attribute to the module's HTML element if the module has a `lang` meta field
+     *
+     * @param string beforeModule The HTML of the module before it's been modified.
+     * @param array args the arguments passed to the module
+     * @param string moduleType the type of module (e.g. 'acf_module')
+     * @param int moduleId the id of the module
+     *
+     * @return string the $beforeModule content with the lang attribute added.
+     */
+    public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
     {
-        echo '<pre>' . print_r($module, true) . '</pre>';
-        return $markup;
+        $lang = get_field('lang', $moduleId);
+        if ($lang) {
+            $attrId = $moduleType . '-' . $moduleId;
+            return preg_replace('/id="' . $attrId . '"/', 'id="' . $attrId . '" lang="' . $lang . '"', $beforeModule, 1);
+        }
+        return $beforeModule;
     }
     /**
      * Get available modules (WP filter)
