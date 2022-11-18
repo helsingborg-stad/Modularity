@@ -19,7 +19,13 @@
     @endtypography
 @endif
 
-<div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
+<div class="o-grid 
+    {{ $stretch ? 'o-grid--stretch' : '' }} 
+    {{ $noGutter ? 'o-grid--no-gutter' : '' }}" 
+    @if (!$hideTitle && !empty($postTitle))
+    aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}"
+    @endif
+    >
     @foreach ($posts as $post)
     <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
             @if($loop->first && $highlight_first_column && $highlight_first_column_as === 'card')
