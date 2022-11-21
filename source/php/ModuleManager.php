@@ -408,8 +408,8 @@ class ModuleManager
         $checked = checked(true, $current, false);
 
         echo '<div>
-            <label style = "cursor:pointer;">
-            <input type  = "checkbox" name = "modularity-module-hide-title" value = "1" ' . $checked . '>
+            <label style="cursor:pointer;">
+            <input type="checkbox" name="modularity-module-hide-title" value="1" ' . $checked . '>
                 ' . __('Hide title', 'modularity') . '
             </label>
         </div>';
