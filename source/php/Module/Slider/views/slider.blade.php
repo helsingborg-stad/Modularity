@@ -16,7 +16,7 @@
     'shadow'        => $sidebarContext !== 'sidebar.slider-area',
     'heroStyle'     => $sidebarContext === 'sidebar.slider-area',
     'attributeList' => [
-        'aria-labelledby' => 'mod-slider-' . $ID . '-label',
+        'aria-labelledby' => (!$hideTitle && !empty($postTitle)) ? 'mod-slider-' . $ID . '-label' : '',
         'data-slides-per-page' => $slidesPerPage,
         'data-slider-gap' => (8*4),
         'data-slider-focus-center' => '',
