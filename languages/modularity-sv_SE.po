@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-11-15 09:33+0100\n"
-"PO-Revision-Date: 2022-11-15 09:50+0100\n"
+"POT-Creation-Date: 2022-11-17 14:04+0100\n"
+"PO-Revision-Date: 2022-11-17 14:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -69,6 +69,522 @@ msgstr "Utgående"
 msgid "Edit Modules"
 msgstr "Redigera moduler"
 
+#: source/php/AcfFields/php/mod-all.php:7
+msgid "Screen reader language"
+msgstr "Språk för skärmläsare"
+
+#: source/php/AcfFields/php/mod-all.php:11
+msgid "Language"
+msgstr "Språk"
+
+#: source/php/AcfFields/php/mod-all.php:14
+msgid ""
+"For accessibility reasons; what language should this this content be parsed "
+"as when read aloud by a screen reader?"
+msgstr ""
+"Av tillgänglighetsskäl; vilket språk ska detta innehåll tolkas som när det "
+"läses upp av en skärmläsare?"
+
+#: source/php/AcfFields/php/mod-all.php:23
+msgid "Afrikaans"
+msgstr "Afrikaans"
+
+#: source/php/AcfFields/php/mod-all.php:24
+msgid "Albanian"
+msgstr "Albanska"
+
+#: source/php/AcfFields/php/mod-all.php:25
+msgid "Arabic (Algeria)"
+msgstr "Arabiska (Algeria)"
+
+#: source/php/AcfFields/php/mod-all.php:26
+msgid "Arabic (Bahrain)"
+msgstr "Arabiska (Bahrain)"
+
+#: source/php/AcfFields/php/mod-all.php:27
+msgid "Arabic (Egypt)"
+msgstr "Arabiska (Egypt)"
+
+#: source/php/AcfFields/php/mod-all.php:28
+msgid "Arabic (Iraq)"
+msgstr "Arabiska (Iraq)"
+
+#: source/php/AcfFields/php/mod-all.php:29
+msgid "Arabic (Jordan)"
+msgstr "Arabiska (Jordan)"
+
+#: source/php/AcfFields/php/mod-all.php:30
+msgid "Arabic (Kuwait)"
+msgstr "Arabiska (Kuwait)"
+
+#: source/php/AcfFields/php/mod-all.php:31
+msgid "Arabic (Lebanon)"
+msgstr "Arabiska (Lebanon)"
+
+#: source/php/AcfFields/php/mod-all.php:32
+msgid "Arabic (Libya)"
+msgstr "Arabiska (Libya)"
+
+#: source/php/AcfFields/php/mod-all.php:33
+msgid "Arabic (Morocco)"
+msgstr "Arabiska (Morocco)"
+
+#: source/php/AcfFields/php/mod-all.php:34
+msgid "Arabic (Oman)"
+msgstr "Arabiska (Oman)"
+
+#: source/php/AcfFields/php/mod-all.php:35
+msgid "Arabic (Qatar)"
+msgstr "Arabiska (Qatar)"
+
+#: source/php/AcfFields/php/mod-all.php:36
+msgid "Arabic (Saudi Arabia)"
+msgstr "Arabiska (Saudi Arabia)"
+
+#: source/php/AcfFields/php/mod-all.php:37
+msgid "Arabic (Syria)"
+msgstr "Arabiska (Syria)"
+
+#: source/php/AcfFields/php/mod-all.php:38
+msgid "Arabic (Tunisia)"
+msgstr "Arabiska (Tunisia)"
+
+#: source/php/AcfFields/php/mod-all.php:39
+msgid "Arabic (U.A.E.)"
+msgstr "Arabiska (U.A.E.)"
+
+#: source/php/AcfFields/php/mod-all.php:40
+msgid "Arabic (Yemen)"
+msgstr "Arabiska (Yemen)"
+
+#: source/php/AcfFields/php/mod-all.php:41
+msgid "Basque"
+msgstr "Baskiska"
+
+#: source/php/AcfFields/php/mod-all.php:42
+msgid "Belarusian"
+msgstr "Belarusiska"
+
+#: source/php/AcfFields/php/mod-all.php:43
+msgid "Bulgarian"
+msgstr "Bulgariska"
+
+#: source/php/AcfFields/php/mod-all.php:44
+msgid "Catalan"
+msgstr "Katalanska"
+
+#: source/php/AcfFields/php/mod-all.php:45
+msgid "Chinese (Hong Kong)"
+msgstr "Kinesiska (Hong Kong)"
+
+#: source/php/AcfFields/php/mod-all.php:46
+msgid "Chinese (PRC)"
+msgstr "Kinesiska (PRC)"
+
+#: source/php/AcfFields/php/mod-all.php:47
+msgid "Chinese (Singapore)"
+msgstr "Kinesiska (Singapore)"
+
+#: source/php/AcfFields/php/mod-all.php:48
+msgid "Chinese (Taiwan)"
+msgstr "Kinesiska (Taiwan)"
+
+#: source/php/AcfFields/php/mod-all.php:49
+msgid "Croatian"
+msgstr "Kroatiska"
+
+#: source/php/AcfFields/php/mod-all.php:50
+msgid "Czech"
+msgstr "Tjeckiska"
+
+#: source/php/AcfFields/php/mod-all.php:51
+msgid "Danish"
+msgstr "Danska"
+
+#: source/php/AcfFields/php/mod-all.php:52
+msgid "Dutch (Belgium)"
+msgstr "Holländska (Belgien)"
+
+#: source/php/AcfFields/php/mod-all.php:53
+msgid "Dutch (Standard)"
+msgstr "Holländska (standard)"
+
+#: source/php/AcfFields/php/mod-all.php:54
+msgid "English"
+msgstr "Engelska"
+
+#: source/php/AcfFields/php/mod-all.php:55
+msgid "English (Australia)"
+msgstr "Engelska (Australien)"
+
+#: source/php/AcfFields/php/mod-all.php:56
+msgid "English (Belize)"
+msgstr "Engelska (Belize)"
+
+#: source/php/AcfFields/php/mod-all.php:57
+msgid "English (Canada)"
+msgstr "Engelska (Kanada)"
+
+#: source/php/AcfFields/php/mod-all.php:58
+msgid "English (Ireland)"
+msgstr "Engelska (Irland)"
+
+#: source/php/AcfFields/php/mod-all.php:59
+msgid "English (Jamaica)"
+msgstr "Engelska (Jamaica)"
+
+#: source/php/AcfFields/php/mod-all.php:60
+msgid "English (New Zealand)"
+msgstr "Engelska (Nya Zealand)"
+
+#: source/php/AcfFields/php/mod-all.php:61
+msgid "English (South Africa)"
+msgstr "Engelska (Syd-afrika)"
+
+#: source/php/AcfFields/php/mod-all.php:62
+msgid "English (Trinidad)"
+msgstr "Engelska (Trinidad)"
+
+#: source/php/AcfFields/php/mod-all.php:63
+msgid "English (United Kingdom)"
+msgstr "Engelska (UK)"
+
+#: source/php/AcfFields/php/mod-all.php:64
+msgid "English (United States)"
+msgstr "Engelska (US)"
+
+#: source/php/AcfFields/php/mod-all.php:65
+msgid "Estonian"
+msgstr "Estländska"
+
+#: source/php/AcfFields/php/mod-all.php:66
+msgid "Faeroese"
+msgstr "Färoesiska"
+
+#: source/php/AcfFields/php/mod-all.php:67
+msgid "Farsi"
+msgstr "Farsi"
+
+#: source/php/AcfFields/php/mod-all.php:68
+msgid "Finnish"
+msgstr "Finska"
+
+#: source/php/AcfFields/php/mod-all.php:69
+msgid "French (Belgium)"
+msgstr "Franska (Belgien)"
+
+#: source/php/AcfFields/php/mod-all.php:70
+msgid "French (Canada)"
+msgstr "Franska (Kanada)"
+
+#: source/php/AcfFields/php/mod-all.php:71
+msgid "French (Luxembourg)"
+msgstr "Franska (Luxemburg)"
+
+#: source/php/AcfFields/php/mod-all.php:72
+msgid "French (Standard)"
+msgstr "Franska (Standard)"
+
+#: source/php/AcfFields/php/mod-all.php:73
+msgid "French (Switzerland)"
+msgstr "Franska (Schweiz)"
+
+#: source/php/AcfFields/php/mod-all.php:74
+msgid "Gaelic (Scotland)"
+msgstr "Gaeliska (Skottland)"
+
+#: source/php/AcfFields/php/mod-all.php:75
+msgid "German (Austria)"
+msgstr "Tyska (Österrike)"
+
+#: source/php/AcfFields/php/mod-all.php:76
+msgid "German (Liechtenstein)"
+msgstr "Tyska (Liechtenstein)"
+
+#: source/php/AcfFields/php/mod-all.php:77
+msgid "German (Luxembourg)"
+msgstr "Gentman (Luxemburg)"
+
+#: source/php/AcfFields/php/mod-all.php:78
+msgid "German (Standard)"
+msgstr "Tyska (standard)"
+
+#: source/php/AcfFields/php/mod-all.php:79
+msgid "German (Switzerland)"
+msgstr "Tyska (Schweiz)"
+
+#: source/php/AcfFields/php/mod-all.php:80
+msgid "Greek"
+msgstr "Grekiska"
+
+#: source/php/AcfFields/php/mod-all.php:81
+msgid "Hebrew"
+msgstr "Hebreiska"
+
+#: source/php/AcfFields/php/mod-all.php:82
+msgid "Hindi"
+msgstr "Hindi"
+
+#: source/php/AcfFields/php/mod-all.php:83
+msgid "Hungarian"
+msgstr "Ungerska"
+
+#: source/php/AcfFields/php/mod-all.php:84
+msgid "Icelandic"
+msgstr "Isländska"
+
+#: source/php/AcfFields/php/mod-all.php:85
+msgid "Indonesian"
+msgstr "Indonesiska"
+
+#: source/php/AcfFields/php/mod-all.php:86
+msgid "Irish"
+msgstr "Irländska"
+
+#: source/php/AcfFields/php/mod-all.php:87
+msgid "Italian (Standard)"
+msgstr "Italian (Standard)"
+
+#: source/php/AcfFields/php/mod-all.php:88
+msgid "Italian (Switzerland)"
+msgstr "Italienska (Schweiz)"
+
+#: source/php/AcfFields/php/mod-all.php:89
+msgid "Japanese"
+msgstr "Japanska"
+
+#: source/php/AcfFields/php/mod-all.php:90
+msgid "Korean (Johab)"
+msgstr "Koreanska (Johab)"
+
+#: source/php/AcfFields/php/mod-all.php:91
+msgid "Kurdish"
+msgstr "Kurdiska"
+
+#: source/php/AcfFields/php/mod-all.php:92
+msgid "Latvian"
+msgstr "Lettiska"
+
+#: source/php/AcfFields/php/mod-all.php:93
+msgid "Lithuanian"
+msgstr "Litauiska"
+
+#: source/php/AcfFields/php/mod-all.php:94
+msgid "Macedonian (FYROM)"
+msgstr "Makedonska (fyrom)"
+
+#: source/php/AcfFields/php/mod-all.php:95
+msgid "Malayalam"
+msgstr "Malayalam"
+
+#: source/php/AcfFields/php/mod-all.php:96
+msgid "Malaysian"
+msgstr "Malaysiska"
+
+#: source/php/AcfFields/php/mod-all.php:97
+msgid "Maltese"
+msgstr "Maltesiska"
+
+#: source/php/AcfFields/php/mod-all.php:98
+msgid "Norwegian"
+msgstr "Norska"
+
+#: source/php/AcfFields/php/mod-all.php:99
+msgid "Norwegian (Bokmål)"
+msgstr "Norska (Bokmål)"
+
+#: source/php/AcfFields/php/mod-all.php:100
+msgid "Norwegian (Nynorsk)"
+msgstr "Norsk (nynorska)"
+
+#: source/php/AcfFields/php/mod-all.php:101
+msgid "Polish"
+msgstr "Polska"
+
+#: source/php/AcfFields/php/mod-all.php:102
+msgid "Portuguese (Brazil)"
+msgstr "Portugisiska (Brasilien)"
+
+#: source/php/AcfFields/php/mod-all.php:103
+msgid "Portuguese (Portugal)"
+msgstr "Portugisiska (Portugal)"
+
+#: source/php/AcfFields/php/mod-all.php:104
+msgid "Punjabi"
+msgstr "Punjabi"
+
+#: source/php/AcfFields/php/mod-all.php:105
+msgid "Rhaeto-Romanic"
+msgstr "Rätorumänska"
+
+#: source/php/AcfFields/php/mod-all.php:106
+msgid "Romanian"
+msgstr "Rumänska"
+
+#: source/php/AcfFields/php/mod-all.php:107
+msgid "Romanian (Republic of Moldova)"
+msgstr "Rumänska (Moldavien)"
+
+#: source/php/AcfFields/php/mod-all.php:108
+msgid "Russian"
+msgstr "Ryska"
+
+#: source/php/AcfFields/php/mod-all.php:109
+msgid "Russian (Republic of Moldova)"
+msgstr "Ryska (Moldavien)"
+
+#: source/php/AcfFields/php/mod-all.php:110
+msgid "Serbian"
+msgstr "Serbiska"
+
+#: source/php/AcfFields/php/mod-all.php:111
+msgid "Slovak"
+msgstr "Slovakiska"
+
+#: source/php/AcfFields/php/mod-all.php:112
+msgid "Slovenian"
+msgstr "Slovenska"
+
+#: source/php/AcfFields/php/mod-all.php:113
+msgid "Sorbian"
+msgstr "Sorbiska"
+
+#: source/php/AcfFields/php/mod-all.php:114
+msgid "Spanska (Argentina)"
+msgstr "Spanska (Argentina)"
+
+#: source/php/AcfFields/php/mod-all.php:115
+msgid "Spanska (Bolivia)"
+msgstr "Spanska (Bolivia)"
+
+#: source/php/AcfFields/php/mod-all.php:116
+msgid "Spanska (Chile)"
+msgstr "Spanska (Chile)"
+
+#: source/php/AcfFields/php/mod-all.php:117
+msgid "Spanska (Colombia)"
+msgstr "Spanska (Colombia)"
+
+#: source/php/AcfFields/php/mod-all.php:118
+msgid "Spanska (Costa Rica)"
+msgstr "Spanska (Costa Rica)"
+
+#: source/php/AcfFields/php/mod-all.php:119
+msgid "Spanska (Dominican Republic)"
+msgstr "Spanska (Dominikanska republiken)"
+
+#: source/php/AcfFields/php/mod-all.php:120
+msgid "Spanska (Ecuador)"
+msgstr "Spanska (Ecuador)"
+
+#: source/php/AcfFields/php/mod-all.php:121
+msgid "Spanska (El Salvador)"
+msgstr "Spanska (El Salvador)"
+
+#: source/php/AcfFields/php/mod-all.php:122
+msgid "Spanska (Guatemala)"
+msgstr "Spanska (Guatemala)"
+
+#: source/php/AcfFields/php/mod-all.php:123
+msgid "Spanska (Honduras)"
+msgstr "Spanska (Honduras)"
+
+#: source/php/AcfFields/php/mod-all.php:124
+msgid "Spanska (Mexico)"
+msgstr "Spanska (Mexico)"
+
+#: source/php/AcfFields/php/mod-all.php:125
+msgid "Spanska (Nicaragua)"
+msgstr "Spanska (Nicaragua)"
+
+#: source/php/AcfFields/php/mod-all.php:126
+msgid "Spanska (Panama)"
+msgstr "Spanska (Panama)"
+
+#: source/php/AcfFields/php/mod-all.php:127
+msgid "Spanska (Paraguay)"
+msgstr "Spanska (Paraguay)"
+
+#: source/php/AcfFields/php/mod-all.php:128
+msgid "Spanska (Peru)"
+msgstr "Spanska (Peru)"
+
+#: source/php/AcfFields/php/mod-all.php:129
+msgid "Spanska (Puerto Rico)"
+msgstr "Spanska (Puerto Rico)"
+
+#: source/php/AcfFields/php/mod-all.php:130
+msgid "Spanska (Spain)"
+msgstr "Spanska (Spanien)"
+
+#: source/php/AcfFields/php/mod-all.php:131
+msgid "Spanska (Uruguay)"
+msgstr "Spanska (Uruguay)"
+
+#: source/php/AcfFields/php/mod-all.php:132
+msgid "Spanska (Venezuela)"
+msgstr "Spanska (Venezuela)"
+
+#: source/php/AcfFields/php/mod-all.php:133
+msgid "Swedish"
+msgstr "Svenska"
+
+#: source/php/AcfFields/php/mod-all.php:134
+msgid "Swedish (Finland)"
+msgstr "Svenska (Finland)"
+
+#: source/php/AcfFields/php/mod-all.php:135
+msgid "Thai"
+msgstr "Thai"
+
+#: source/php/AcfFields/php/mod-all.php:136
+msgid "Tsonga"
+msgstr "Tsonga"
+
+#: source/php/AcfFields/php/mod-all.php:137
+msgid "Tswana"
+msgstr "Tswana"
+
+#: source/php/AcfFields/php/mod-all.php:138
+msgid "Turkish"
+msgstr "Turkiska"
+
+#: source/php/AcfFields/php/mod-all.php:139
+msgid "Ukrainian"
+msgstr "Ukrainska"
+
+#: source/php/AcfFields/php/mod-all.php:140
+msgid "Urdu"
+msgstr "Urdu"
+
+#: source/php/AcfFields/php/mod-all.php:141
+msgid "Venda"
+msgstr "Venda"
+
+#: source/php/AcfFields/php/mod-all.php:142
+msgid "Vietnamese"
+msgstr "Vietnamesiska"
+
+#: source/php/AcfFields/php/mod-all.php:143
+msgid "Welsh"
+msgstr "Walesiska"
+
+#: source/php/AcfFields/php/mod-all.php:144
+msgid "Xhosa"
+msgstr "Xhosa"
+
+#: source/php/AcfFields/php/mod-all.php:145
+msgid "Yiddish"
+msgstr "Jiddisch"
+
+#: source/php/AcfFields/php/mod-all.php:146
+msgid "Zulu"
+msgstr "Zulu"
+
+#: source/php/AcfFields/php/mod-all.php:148
+msgid "sv"
+msgstr "sv"
+
 #: source/php/AcfFields/php/mod-booking.php:13
 msgid "Datum"
 msgstr "Datum"
@@ -97,7 +613,7 @@ msgstr "Alternativ pris"
 msgid ""
 "Om det finns ett ungdoms, eller ett rabatterat pris går det att ange här"
 msgstr ""
-"Om det finns ett ungdoms, eller ett rabatterat pris går det att ange här"
+"Om det finns ett ungdoms, eller ett rabatterat pris går det att ange här\\"
 
 #: source/php/AcfFields/php/mod-booking.php:97
 msgid "Rubrik köpknapp"
@@ -248,6 +764,7 @@ msgid "Välj användare"
 msgstr "Välj användare"
 
 #: source/php/AcfFields/php/mod-contacts.php:425
+#| msgid "Lägg till rad"
 msgid "Lägg till kontakt"
 msgstr "Lägg till kontakt"
 
@@ -280,6 +797,7 @@ msgid "4"
 msgstr "4"
 
 #: source/php/AcfFields/php/mod-contacts.php:490
+#| msgid "grid-md-12"
 msgid "o-grid-12@md"
 msgstr "o-grid-12@md"
 
@@ -325,12 +843,13 @@ msgid ""
 "matter).\\n 4. Paste the embed code in the field above.\\n 5. Save. Your "
 "feed should no be displayed."
 msgstr ""
-"Detta är en integrationsmodul för https://curator.io. Modulen kräver ett "
-"konto på tjänsten. För att integrera ett flöde, gå till curator.io och följ "
-"stegen nedan. Vi antar att du redan har ett konto med ett anslutet flöde. 1. "
-"Logga in på ditt konto.\\n 2. Klicka på \"stil\" i sidofältsnavigeringen.\\n "
-"3. Klicka på \"publicera flöde\" (stil spelar ingen roll).\\n 4. Klistra in "
-"inbäddningskoden i fältet ovan.\\n 5. Spara. Ditt flöde ska nu visas."
+"Detta är en integrationsmodul för https://curator.io.Modulen kräver ett "
+"konto vid tjänsten.För att integrera ett flöde, vänligen gå över till "
+"curator.io och följ stegen nedan.Vi antar att du redan har ett konto med ett "
+"anslutet flöde.\\n\\n 1. Logga in på ditt konto. \\n 2. Klicka på \"Stil\" i "
+"sidofältets navigering. \\n 3. Klicka på \"Publicera flöde\" (Stil spelar "
+"ingen roll). \\n 4. Klistra in inbäddningskoden i fältet ovan. \\n 5. Spara. "
+"Ditt flöde bör nu visas."
 
 #: source/php/AcfFields/php/mod-divider.php:6
 #: source/php/Module/Divider/Divider.php:13
@@ -340,7 +859,7 @@ msgstr "Avdelare"
 #: source/php/AcfFields/php/mod-divider.php:10
 #: source/php/AcfFields/php/mod-slider.php:196
 #: source/php/AcfFields/php/mod-slider.php:493 source/php/BlockManager.php:415
-#: source/php/ModuleManager.php:604
+#: source/php/ModuleManager.php:642
 msgid "Title"
 msgstr "Titel"
 
@@ -350,7 +869,7 @@ msgstr "Denna text kommer att visas i avdelaren (valfritt)"
 
 #: source/php/AcfFields/php/mod-divider.php:29
 msgid "Title variant"
-msgstr "Titel-variant"
+msgstr "Variant"
 
 #: source/php/AcfFields/php/mod-divider.php:41
 msgid "H1"
@@ -395,7 +914,7 @@ msgstr "Tillåt filtrering"
 #: source/php/AcfFields/php/mod-gallery.php:21
 #: source/php/Module/Image/Image.php:19
 msgid "Images"
-msgstr "Bild"
+msgstr "Bilder"
 
 #: source/php/AcfFields/php/mod-hero.php:6 source/php/Module/Hero/Hero.php:15
 msgid "Hero"
@@ -423,7 +942,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-hero.php:57
 msgid "Background type"
-msgstr "Typ av bakgrund"
+msgstr "Bakgrundstyp"
 
 #: source/php/AcfFields/php/mod-hero.php:69
 #: source/php/AcfFields/php/mod-image.php:20
@@ -480,8 +999,8 @@ msgid ""
 "<span style=\"color: #f00;\">Your iframe link must start with http<strong>s</"
 "strong>://. Links without this prefix will not display.</span>"
 msgstr ""
-"<span style=\"color: #f00;\">Din iframe-länk måste börja med http<strong>s</"
-"strong>://. Länkar utan detta prefix visas inte.</span>"
+"<span style = \"color: #f00;\"> Din iframe-länk måste börja med http "
+"<strong>s</strong>://.Länkar utan detta prefix visas inte. </span>"
 
 #: source/php/AcfFields/php/mod-iframe.php:22
 msgid "Enter your embed url"
@@ -499,7 +1018,7 @@ msgstr "pixlar"
 
 #: source/php/AcfFields/php/mod-iframe.php:49
 #: source/php/AcfFields/php/mod-map.php:27
-#: source/php/AcfFields/php/mod-slider.php:398 source/php/ModuleManager.php:605
+#: source/php/AcfFields/php/mod-slider.php:398 source/php/ModuleManager.php:643
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr "Beskrivning"
@@ -711,7 +1230,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-inlaylist.php:137
 #: source/php/AcfFields/php/mod-rss.php:85
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:44
-#: source/php/ModuleManager.php:607
+#: source/php/ModuleManager.php:645
 msgid "Date"
 msgstr "Datum"
 
@@ -799,8 +1318,8 @@ msgid ""
 "Do you want to add Extra info? \\n\\n The information will be placed in a "
 "card on the right side of the map."
 msgstr ""
-"Vill du lägga till extra info? \\n\\n \n"
-"Informationen kommer att placeras på ett kort till höger på kartan."
+"Vill du lägga till extra info? Informationen kommer att placeras på ett kort "
+"till höger på kartan."
 
 #: source/php/AcfFields/php/mod-map.php:147
 msgid "The extra info card is disabled by default"
@@ -1096,7 +1615,7 @@ msgstr "Metavärde"
 
 #: source/php/AcfFields/php/mod-posts-sorting.php:6
 msgid "Data sorting"
-msgstr "Sortering"
+msgstr "Sorteringsordning"
 
 #: source/php/AcfFields/php/mod-posts-sorting.php:10
 #: source/php/AcfFields/php/mod-wpwidget.php:254
@@ -22709,7 +23228,7 @@ msgstr "Länkstil"
 
 #: source/php/AcfFields/php/mod-slider.php:308
 msgid "Cover slide"
-msgstr "Omslag"
+msgstr "Omslagsbild"
 
 #: source/php/AcfFields/php/mod-slider.php:309
 msgid "Button"
@@ -22760,7 +23279,7 @@ msgstr "Textfärg"
 
 #: source/php/AcfFields/php/mod-slider.php:574
 msgid "What color to use on this slide"
-msgstr "Färg att använda på denna slide"
+msgstr "Vilken färg att använda på den här bilden/sliden"
 
 #: source/php/AcfFields/php/mod-slider.php:583
 msgid "Black"
@@ -22774,7 +23293,7 @@ msgstr "Vit"
 #: source/php/AcfFields/php/mod-slider.php:585
 #: source/php/AcfFields/php/mod-slider.php:611
 msgid "Inherit theme"
-msgstr "Ärv tema"
+msgstr "Ärv från webbsidan"
 
 #: source/php/AcfFields/php/mod-slider.php:587
 msgid "black"
@@ -22782,7 +23301,7 @@ msgstr "black"
 
 #: source/php/AcfFields/php/mod-slider.php:597
 msgid "Background color text area"
-msgstr "Bakgrundsfärg textarea"
+msgstr "Bakgrundsfärg textyta"
 
 #: source/php/AcfFields/php/mod-slider.php:609
 msgid "No background"
@@ -22790,7 +23309,7 @@ msgstr "Ingen bakgrund"
 
 #: source/php/AcfFields/php/mod-slider.php:612
 msgid "Inherit theme, add transparency"
-msgstr "Ärv tema, lägg till genomskinlighet"
+msgstr "Ärv från webbsidan, lägg till genomskinlighet"
 
 #: source/php/AcfFields/php/mod-slider.php:614
 msgid "white"
@@ -22825,15 +23344,15 @@ msgstr "Antal slides per sida"
 
 #: source/php/AcfFields/php/mod-spacer.php:6
 msgid "Whitespace"
-msgstr "Whitespace"
+msgstr "Vityta"
 
 #: source/php/AcfFields/php/mod-spacer.php:10
 msgid "Amount of whitespace"
-msgstr ""
+msgstr "Mängd vityta"
 
 #: source/php/AcfFields/php/mod-spacer.php:13
 msgid "All space will be multiplied by 8."
-msgstr "All space will be multiplied by 8."
+msgstr "Alla värden kommer multipliceras med 8."
 
 #: source/php/AcfFields/php/mod-table-block.php:6
 msgid "Table - Block settings"
@@ -22856,7 +23375,7 @@ msgstr "manual"
 #: source/php/AcfFields/php/mod-table-block.php:34
 #: source/php/AcfFields/php/mod-table.php:34
 msgid "CSV-fil"
-msgstr "CSV-Fil"
+msgstr "CSV-fil"
 
 #: source/php/AcfFields/php/mod-table-block.php:37
 #: source/php/AcfFields/php/mod-table.php:37
@@ -22924,7 +23443,7 @@ msgstr "Ja, aktivera kolumnsortering"
 
 #: source/php/AcfFields/php/mod-table.php:6
 msgid "Table Editor"
-msgstr "Tabell-redigerare"
+msgstr "Tabellredigerare"
 
 #: source/php/AcfFields/php/mod-table.php:93
 msgid ""
@@ -22983,21 +23502,23 @@ msgid "Ja, göm textbox (visa text som artikel)"
 msgstr "Ja, göm textbox (visa text som artikel)"
 
 #: source/php/AcfFields/php/mod-video.php:10
+#| msgid "Widget Type"
 msgid "Type"
 msgstr "Typ"
 
 #: source/php/AcfFields/php/mod-video.php:22
 msgid "Embed by link (YouTube or Vimeo)"
-msgstr "Bädda in med länk (Youtube, Vimeo)"
+msgstr "Bädda in via länk (YouTube eller Vimeo)"
 
 #: source/php/AcfFields/php/mod-video.php:23
 msgid "Upload video file"
-msgstr "Ladda upp film"
+msgstr "Ladda upp videofil"
 
 #: source/php/AcfFields/php/mod-video.php:37
 msgid "Upload or select file from library. The only valid file format is .mp4"
 msgstr ""
-"Ladda upp eller välj en videofil från mediebiblioteket. Formatet mp4 krävs."
+"Ladda upp eller välj fil från biblioteket. Det enda giltiga filformatet är ."
+"mp4"
 
 #: source/php/AcfFields/php/mod-video.php:61
 msgid "Embed Link"
@@ -23010,10 +23531,10 @@ msgid ""
 "feted from embedded service. You can still use this field, to replace the "
 "image shown."
 msgstr ""
-"Platshållarbilden används för att illustrera filmen innan den startas av "
-"användaren. Om en inbäddningslänk har använts, kommer en platshållarbild att "
-"hämtas automatiskt (går inte att välja bort). Du kan ersätta den automatiskt "
-"hämtade bilden, genom att ladda upp en bild här."
+"Platshållarbilden visas innan videon spelas upp. Om en inbäddningslänk har "
+"använts för att bädda in den här videon kommer en platshållare automatiskt "
+"att hämtas från den inbäddade tjänsten. Du kan fortfarande använda det här "
+"fältet för att ersätta den automatiskt hämtade bilden."
 
 #: source/php/AcfFields/php/mod-wpwidget.php:6
 msgid "Wordpress Widget"
@@ -23194,6 +23715,7 @@ msgstr "Kategori"
 #: source/php/BlockManager.php:353
 msgid "Your settings rendered an empty result. Try other settings."
 msgstr ""
+"Dina inställningar gjorde ett tomt resultat. Prova andra inställningar."
 
 #: source/php/BlockManager.php:359
 msgid "Please fill in all required fields."
@@ -23281,11 +23803,11 @@ msgstr "Objektet saknar innehåll"
 #: source/php/Module/Breadcrumbs/Breadcrumbs.php:14
 #: source/php/Module/Breadcrumbs/Breadcrumbs.php:15
 msgid "Breadcrumbs"
-msgstr "Breadcrumbs"
+msgstr "Brödsmulor"
 
 #: source/php/Module/Breadcrumbs/Breadcrumbs.php:16
 msgid "Outputs the navigational breadcrumb trail to the current page."
-msgstr "Matar ut navigeringsspåret (breadcrumbs) till den aktuella sidan."
+msgstr "Matar ut navigeringsspåret till den aktuella sidan."
 
 #: source/php/Module/Contacts/Contacts.php:13
 #: source/php/Module/Contacts/Contacts.php:14
@@ -23312,7 +23834,7 @@ msgstr "Besöksadress"
 
 #: source/php/Module/Curator/Curator.php:15
 msgid "Output social media flow via curator."
-msgstr ""
+msgstr "Sociala medier-flöde via curator.io."
 
 #: source/php/Module/Curator/Curator.php:55
 msgid "A invalid embed code was provided, please try enter it again."
@@ -23366,7 +23888,7 @@ msgstr "Gå till nästa bild"
 
 #: source/php/Module/Hero/Hero.php:16
 msgid "Heros"
-msgstr ""
+msgstr "Storbild"
 
 #: source/php/Module/Hero/Hero.php:17
 msgid "Outputs a hero"
@@ -23411,8 +23933,8 @@ msgid ""
 "This part of the website shows content from another website (%s). By "
 "continuing, you are accepting GDPR and privacy policy."
 msgstr ""
-"Den här delen av hemsidan visar innehåll från en annan webbplats (%s). Genom "
-"att fortsätta godkänner du GDPR och Sekretesspolicyn."
+"Den här delen av webbplatsen visar innehåll från en annan webbplats (%s). "
+"Genom att fortsätta accepterar du GDPR och integritetspolicy."
 
 #: source/php/Module/Iframe/Iframe.php:50
 msgid ""
@@ -23594,9 +24116,9 @@ msgid ""
 "({SUPPLIER_WEBSITE}). By continuing, you are accepting GDPR and privacy "
 "policy."
 msgstr ""
-"Den här delen av hemsidan visar innehåll från en annan webbplats  "
-"({SUPPLIER_WEBSITE}). Genom att fortsätta godkänner du GDPR och "
-"Sekretesspolicyn."
+"Den här delen av webbplatsen visar innehåll från en annan webbplats "
+"({SUPPLIER_WEBSITE}). Genom att fortsätta acceptera GDPR och "
+"integritetspolicy."
 
 #: source/php/Module/Sites/Sites.php:16
 msgid "Outputs a grid list with att sites in the network."
@@ -23725,6 +24247,8 @@ msgid ""
 "This video could not be embedded. <a href=\"%s\" target=\"_blank\">View the "
 "video by visiting embedded page.</a>"
 msgstr ""
+"Det gick inte att bädda in den här videon. <a href=\"%s\" "
+"target=\"_blank\">Se videon genom att besöka den inbäddade sidan</a>."
 
 #: source/php/Module/WpWidget/WpWidget.php:13
 #: source/php/Module/WpWidget/WpWidget.php:14
@@ -23765,82 +24289,82 @@ msgstr "Senaste inläggen"
 msgid "Tag cloud"
 msgstr "Taggmoln"
 
-#: source/php/ModuleManager.php:184
+#: source/php/ModuleManager.php:225
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/ModuleManager.php:185
+#: source/php/ModuleManager.php:226
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
 
-#: source/php/ModuleManager.php:186
+#: source/php/ModuleManager.php:227
 #, php-format
 msgid "New %s"
 msgstr "Ny %s"
 
-#: source/php/ModuleManager.php:187 source/php/ModuleManager.php:189
+#: source/php/ModuleManager.php:228 source/php/ModuleManager.php:230
 #, php-format
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-#: source/php/ModuleManager.php:188
+#: source/php/ModuleManager.php:229
 #, php-format
 msgid "View %s"
 msgstr "Visa %s"
 
-#: source/php/ModuleManager.php:190
+#: source/php/ModuleManager.php:231
 #, php-format
 msgid "Search %s"
 msgstr "Sök %s"
 
-#: source/php/ModuleManager.php:191
+#: source/php/ModuleManager.php:232
 #, php-format
 msgid "Parent %s"
 msgstr "Förälder %s"
 
-#: source/php/ModuleManager.php:192
+#: source/php/ModuleManager.php:233
 #, php-format
 msgid "No %s"
 msgstr "Inga %s"
 
-#: source/php/ModuleManager.php:193
+#: source/php/ModuleManager.php:234
 #, php-format
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/ModuleManager.php:373
+#: source/php/ModuleManager.php:413
 msgid "Hide title"
 msgstr "Dölj titel"
 
-#: source/php/ModuleManager.php:412
+#: source/php/ModuleManager.php:452
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
 
-#: source/php/ModuleManager.php:455
+#: source/php/ModuleManager.php:495
 msgid "This modules is not used yet."
 msgstr "Denna modulen används inte än."
 
-#: source/php/ModuleManager.php:459
+#: source/php/ModuleManager.php:499
 msgid "This module is used on the following places:"
 msgstr "Denna modulen används på följande ställen:"
 
-#: source/php/ModuleManager.php:560
+#: source/php/ModuleManager.php:598
 msgid "Module description"
 msgstr "Modulbeskrivning"
 
-#: source/php/ModuleManager.php:606
+#: source/php/ModuleManager.php:644
 msgid "Usage"
 msgstr "Användning"
 
-#: source/php/ModuleManager.php:631
+#: source/php/ModuleManager.php:669
 msgid "Not used"
 msgstr "Inte använd"
 
-#: source/php/ModuleManager.php:648
+#: source/php/ModuleManager.php:686
 msgid "more"
 msgstr "fler"
 
@@ -23943,11 +24467,11 @@ msgstr "Visa moduler"
 
 #: templates/editor/modularity-sidebar-drop-area.php:12
 msgid "before"
-msgstr "before"
+msgstr "före"
 
 #: templates/editor/modularity-sidebar-drop-area.php:13
 msgid "after"
-msgstr "after"
+msgstr "efter"
 
 #: templates/editor/modularity-sidebar-drop-area.php:20
 msgid "Hide global widgets"
@@ -24033,3 +24557,1200 @@ msgstr "Modulbredd"
 #: templates/widget/form.php:28
 msgid "Browse modules"
 msgstr "Bläddra moduler"
+
+#~ msgid ""
+#~ "This part of the website shows content from another website. By "
+#~ "continuing, you are accepting GDPR and privacy policy."
+#~ msgstr ""
+#~ "Den här delen av hemsidan visar innehåll från en annan webbplats. Genom "
+#~ "att fortsätta godkänner du GDPR och Sekretesspolicyn."
+
+#~ msgid "card"
+#~ msgstr "kort"
+
+#~ msgid "Modularity"
+#~ msgstr "Modularity"
+
+#~ msgid "-"
+#~ msgstr "-"
+
+#~ msgid "Modular component system for WordPress"
+#~ msgstr "Modulärt komponentssytem för WordPress"
+
+#~ msgid "Kristoffer Svanmark, Sebastian Thulin"
+#~ msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#~ msgid "Sidebar & Module Restrictions"
+#~ msgstr "Begränsningar för ytor"
+
+#~ msgid "Settings"
+#~ msgstr "Inställningar"
+
+#~ msgid "Template Areas"
+#~ msgstr "Sidmallens ytor"
+
+#~ msgid "Checking this will override the default module area settings."
+#~ msgstr ""
+#~ "Om du markerar detta kommer åsidosättande av standardinställningarna för "
+#~ "modulområdet."
+
+#~ msgid "Module Restrictions"
+#~ msgstr "Modulrestriktioner"
+
+#~ msgid ""
+#~ "Checking this will filter the default module settings for each template."
+#~ msgstr ""
+#~ "Om du markerar detta filtreras standardmodulinställningar för varje mall."
+
+#~ msgid "Active Sidebars"
+#~ msgstr "Aktiva sidebars"
+
+#~ msgid "Post Type Select"
+#~ msgstr "Posttyp-väljare"
+
+#~ msgid "Choice"
+#~ msgstr "Val"
+
+#~ msgid "Default Value"
+#~ msgstr "Standardvärde"
+
+#~ msgid "Enter each default value on a new line"
+#~ msgstr "Ange varje standardvärde på en ny rad"
+
+#~ msgid "Allow Null?"
+#~ msgstr "Tillåt Noll?"
+
+#~ msgid "Select multiple values?"
+#~ msgstr "Välj flera värden?"
+
+#~ msgid "Error! Please enter a higher value"
+#~ msgstr "Fel! Välj ett högre värde"
+
+#~ msgid "Dynamic Table"
+#~ msgstr "Dynamisk tabell"
+
+#~ msgid "Table Class"
+#~ msgstr "Tabellklass"
+
+#~ msgid "Custom Table Class for the Front End"
+#~ msgstr "Anpassad tabell-klass för front end"
+
+#~ msgid "Max Rows"
+#~ msgstr "Max rader"
+
+#~ msgid "Sets the maximum rows for the table"
+#~ msgstr "Ställer in maximala rader för tabellen"
+
+#~ msgid "Disable Sort"
+#~ msgstr "Inaktivera sortering"
+
+#~ msgid "Disable Sort - this will disable drag and drop sorting of rows"
+#~ msgstr ""
+#~ "Inaktivera sortering - detta inaktiverar dra och släpp sortering av rader"
+
+#~ msgid "Fixed Columns"
+#~ msgstr "Fasta Kolumner"
+
+#~ msgid "Fixed columns - column count and set names"
+#~ msgstr "Fasta kolumner - kolumner och ange namn"
+
+#~ msgid "Default Headers"
+#~ msgstr "Standard"
+
+#~ msgid "Set default headers, one per line."
+#~ msgstr "Ställ in standardrubriker, en per rad."
+
+#~ msgid "Website"
+#~ msgstr "Webbsida"
+
+#~ msgid "Show Title?"
+#~ msgstr "Visa titel?"
+
+#~ msgid "Option to open in Current Window"
+#~ msgstr "Alternativ att öppna i Aktuellt fönster"
+
+#~ msgid "Return array instead of Link"
+#~ msgstr "Returnera array istället för Länk"
+
+#~ msgid "Value must be a valid URL"
+#~ msgstr "Måste vara en giltig URL"
+
+#~ msgid "Layout"
+#~ msgstr "Layout"
+
+#~ msgid "use table header"
+#~ msgstr "använd tabellrubriker"
+
+#~ msgid "Table Header"
+#~ msgstr "Tabellhuvud"
+
+#~ msgid "Optional"
+#~ msgstr "Valfri"
+
+#~ msgid "FocusPoint"
+#~ msgstr "Fokuspunkt"
+
+#~ msgid "Preview Size"
+#~ msgstr "Förhandsgranskningsstorlek"
+
+#~ msgid ""
+#~ "Image used to create a FocusPoint. Should be around the same image ratio "
+#~ "as Image Size"
+#~ msgstr ""
+#~ "Bild som används för att skapa en fokuspunkt. Borde vara ungefär samma "
+#~ "bildproportioner som bildstorlek"
+
+#~ msgid "Minimum"
+#~ msgstr "Minimum"
+
+#~ msgid ""
+#~ "Restrict which images can be uploaded. Note: this is not working yet!"
+#~ msgstr ""
+#~ "Begränsa vilka bilder som kan laddas upp. Notera att detta inte fungerar "
+#~ "än!"
+
+#~ msgid "Height"
+#~ msgstr "Höjd"
+
+#~ msgid "File size"
+#~ msgstr "Filstorlek"
+
+#~ msgid "Maximum"
+#~ msgstr "Maximum"
+
+#~ msgid "No image selected"
+#~ msgstr "Ingen bild vald"
+
+#~ msgid "Add Image"
+#~ msgstr "Lägg till bild"
+
+#, php-format
+#~ msgid "Image width must be at least %dpx."
+#~ msgstr "Bildens bredd måste vara minst %dpx."
+
+#, php-format
+#~ msgid "Image height must be at least %dpx."
+#~ msgstr "Bildens höjd måste vara minst %dpx."
+
+#, php-format
+#~ msgid "File size must be at least %d&nbsp;KB."
+#~ msgstr "Filstorleken måste vara minst %d&nbsp;KB."
+
+#, php-format
+#~ msgid "Image width must not exceed %dpx."
+#~ msgstr "Bildens bredd får inte överstiga %dpx."
+
+#, php-format
+#~ msgid "Image height must not exceed %dpx."
+#~ msgstr "Bildens höjd får inte överstiga %dpx."
+
+#, php-format
+#~ msgid "File size must not exceed %d&nbsp;KB."
+#~ msgstr "Filstorleken får inte överstiga %d&nbsp;KB."
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Custom Fields"
+#~ msgstr "Fält"
+
+#~ msgid "Super Admin"
+#~ msgstr "Superadmin"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Advanced Custom Fields"
+#~ msgstr "Fält"
+
+#, fuzzy
+#~| msgid "Select Post"
+#~ msgid "Select Block Types"
+#~ msgstr "Välj inlägg"
+
+#, fuzzy
+#~| msgid "Not selected"
+#~ msgid "No block types selected"
+#~ msgstr "Inte vald"
+
+#, fuzzy, php-format
+#~| msgid "Edit Field Group"
+#~ msgid "Exported 1 field group."
+#~ msgid_plural "Exported %s field groups."
+#~ msgstr[0] "Redigera fältgrupp"
+#~ msgstr[1] "Redigera fältgrupp"
+
+#, fuzzy
+#~| msgid "Edit Field Group"
+#~ msgid "Export Local Field Groups"
+#~ msgstr "Redigera fältgrupp"
+
+#, fuzzy
+#~| msgid "Not selected"
+#~ msgid "No field group selected"
+#~ msgstr "Inte vald"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Export Forms"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Select Post"
+#~ msgid "Select Forms"
+#~ msgstr "Välj inlägg"
+
+#, fuzzy
+#~| msgid "No options avabile"
+#~ msgid "No form available."
+#~ msgstr "Inga tillgängliga alternativ"
+
+#, fuzzy
+#~| msgid "No image selected"
+#~ msgid "No forms selected"
+#~ msgstr "Ingen bild vald"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Import Forms"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Export File"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Select values"
+#~ msgid "Select File"
+#~ msgstr "Valda värden"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Import File"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Not selected"
+#~ msgid "No file selected"
+#~ msgstr "Inte vald"
+
+#, fuzzy
+#~| msgid "Select a Page"
+#~ msgid "Select Options Pages"
+#~ msgstr "Välj en sida"
+
+#, fuzzy
+#~| msgid "No options avabile"
+#~ msgid "No options page available."
+#~ msgstr "Inga tillgängliga alternativ"
+
+#, fuzzy
+#~| msgid "No image selected"
+#~ msgid "No options pages selected"
+#~ msgstr "Ingen bild vald"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Export Post Types"
+#~ msgstr "Posttyper"
+
+#, fuzzy
+#~| msgid "Select Post"
+#~ msgid "Select Post Types"
+#~ msgstr "Välj inlägg"
+
+#, fuzzy
+#~| msgid "No options avabile"
+#~ msgid "No post type available."
+#~ msgstr "Inga tillgängliga alternativ"
+
+#, fuzzy
+#~| msgid "Not selected"
+#~ msgid "No post types selected"
+#~ msgstr "Inte vald"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Import Post Types"
+#~ msgstr "Posttyper"
+
+#, fuzzy
+#~| msgid "Select Post"
+#~ msgid "Select Taxonomies"
+#~ msgstr "Välj inlägg"
+
+#, fuzzy
+#~| msgid "Taxonomy value"
+#~ msgid "No taxonomy available."
+#~ msgstr "Taxonomivärde"
+
+#, fuzzy
+#~| msgid "No image selected"
+#~ msgid "No taxonomies selected"
+#~ msgstr "Ingen bild vald"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Import Taxonomies"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Modularity Options"
+#~ msgid "Edit Option"
+#~ msgstr "Modularity inställningar"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Add Option"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgctxt "add new button"
+#~| msgid "Add New"
+#~ msgid "Add New"
+#~ msgstr "Lägg till ny"
+
+#, fuzzy
+#~| msgid "Expandable List"
+#~ msgid "Details"
+#~ msgstr "Expanderbar lista"
+
+#, fuzzy
+#~| msgid ""
+#~| "To get the full expirience of the <strong>Modularity</strong> plugin, "
+#~| "please activate the <a href=\"http://www.advancedcustomfields.com/pro/\" "
+#~| "target=\"_blank\">Advanced Custom Fields Pro</a> plugin."
+#~ msgid ""
+#~ "ACF Extended requires <a href=\"https://www.advancedcustomfields.com/pro/"
+#~ "\" target=\"_blank\">Advanced Custom Fields PRO</a> (minimum: 5.8)."
+#~ msgstr ""
+#~ "För att kunna utnyttja <strong>Modularity</strong> maximalt rekommenderar "
+#~ "vi dig att installera och aktivera pluginet <a href=\"http://www."
+#~ "advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields "
+#~ "Pro</a>."
+
+#, fuzzy
+#~| msgid "Iframe settings"
+#~ msgid "Advanced settings"
+#~ msgstr "Iframe-inställningar"
+
+#, fuzzy
+#~| msgid "Categories"
+#~ msgctxt "Category"
+#~ msgid "Categories"
+#~ msgstr "Kategorier"
+
+#, fuzzy
+#~| msgid "Categories"
+#~ msgid "Search categories"
+#~ msgstr "Kategorier"
+
+#, fuzzy
+#~| msgid "Categories"
+#~ msgid "All categories"
+#~ msgstr "Kategorier"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Parent category"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Parent category:"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Edit category"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Update category"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Add New category"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "New category name"
+#~ msgstr "kategori"
+
+#~ msgid "category"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "Editor"
+#~ msgid "Block Editor"
+#~ msgstr "Redigerare"
+
+#, fuzzy
+#~| msgid "New Field Group"
+#~ msgid "Field group"
+#~ msgstr "Ny fältgrupp"
+
+#, fuzzy
+#~| msgid "Custom field updated."
+#~ msgid "Custom meta data"
+#~ msgstr "Anpassat fält uppdaterat."
+
+#, fuzzy
+#~| msgid "Meta"
+#~ msgid "+ Meta"
+#~ msgstr "Meta"
+
+#~ msgid "Key"
+#~ msgstr "Nyckel"
+
+#, fuzzy
+#~| msgid "Notes"
+#~ msgid "Note"
+#~ msgstr "Anteckningar"
+
+#, fuzzy
+#~| msgid "Field group updated."
+#~ msgid "Field group data"
+#~ msgstr "Fältgrupp uppdaterad."
+
+#, fuzzy
+#~| msgid "Data type"
+#~ msgid "Data"
+#~ msgstr "Datatyp"
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Advanced Settings"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid "Display mode"
+#~ msgid "Display title"
+#~ msgstr "Visningsläge"
+
+#, fuzzy
+#~| msgid "View Page"
+#~ msgid "Review changes"
+#~ msgstr "Visa sida"
+
+#, fuzzy
+#~| msgid "Revision"
+#~ msgid "Permissions"
+#~ msgstr "Revision"
+
+#, fuzzy, php-format
+#~| msgid "Select Post"
+#~ msgid "Select %s"
+#~ msgstr "Välj inlägg"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Export PHP"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Export Json"
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Data source"
+#~ msgid "Source"
+#~ msgstr "Datakälla"
+
+#, fuzzy
+#~| msgid "Core options"
+#~ msgid "Location"
+#~ msgstr "Core inställningar"
+
+#, fuzzy
+#~| msgid "Load more"
+#~ msgid "Load"
+#~ msgstr "Ladda in fler"
+
+#, fuzzy
+#~| msgid "Slider format"
+#~ msgid "Save path"
+#~ msgstr "Sliderformat"
+
+#, fuzzy
+#~| msgid "Pending Review"
+#~ msgid "Review"
+#~ msgstr "Inväntar granskning"
+
+#, fuzzy
+#~| msgid "Disabled"
+#~ msgctxt "post status"
+#~ msgid "Disabled"
+#~ msgstr "Avaktiverad"
+
+#, fuzzy
+#~| msgid "Extra info title"
+#~ msgid "Alternative title"
+#~ msgstr "Extra info titel"
+
+#, fuzzy
+#~| msgid "Multidimensional"
+#~ msgid "Bidirectional"
+#~ msgstr "Multidimensionell"
+
+#, fuzzy
+#~| msgid "No data available in table"
+#~ msgid "Field data unavailable"
+#~ msgstr "Inga rader i tabellen"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "Field Data"
+#~ msgstr "Fält"
+
+#, fuzzy
+#~| msgid "Settings"
+#~ msgid "Add settings"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid "Add slide"
+#~ msgid "Add validation"
+#~ msgstr "Lägg till slide"
+
+#, fuzzy
+#~| msgid "Modules"
+#~ msgid "Rules"
+#~ msgstr "Moduler"
+
+#, fuzzy
+#~| msgid "Page ID"
+#~ msgid "Advanced Link"
+#~ msgstr "Sidans ID"
+
+#, fuzzy
+#~| msgid "Filter posts by taxonomy"
+#~ msgid "Filter by Post Type"
+#~ msgstr "Filtrera efter taxonomi"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "All post types"
+#~ msgstr "Posttyper"
+
+#, fuzzy
+#~| msgid "Filter posts by taxonomy"
+#~ msgid "Filter by Taxonomy"
+#~ msgstr "Filtrera efter taxonomi"
+
+#, fuzzy
+#~| msgid "Posts"
+#~ msgid "Post"
+#~ msgstr "Inlägg"
+
+#, fuzzy
+#~| msgid "Large"
+#~ msgid "Target"
+#~ msgstr "Stor"
+
+#, fuzzy
+#~| msgid "Yes, open link in new window"
+#~ msgid "Open in a new window"
+#~ msgstr "Ja, öppna länken i nytt fönster"
+
+#, fuzzy
+#~| msgid "Select Week"
+#~ msgid "Select Link"
+#~ msgstr "Välj vecka"
+
+#, fuzzy
+#~| msgid "Yes, open link in new window"
+#~ msgid "Opens in a new window/tab"
+#~ msgstr "Ja, öppna länken i nytt fönster"
+
+#, fuzzy
+#~| msgid "Button label"
+#~ msgid "Button value"
+#~ msgstr "Knappens etikett"
+
+#, fuzzy
+#~| msgid "Button label"
+#~ msgid "Button type"
+#~ msgstr "Knappens etikett"
+
+#, fuzzy
+#~| msgid "Enter button text."
+#~ msgid "Choose the button type"
+#~ msgstr "Ange knapptext."
+
+#, fuzzy
+#~| msgid "Button label"
+#~ msgid "Button attributes"
+#~ msgstr "Knappens etikett"
+
+#, fuzzy
+#~| msgid "Tid"
+#~ msgid "id"
+#~ msgstr "Tid"
+
+#, fuzzy
+#~| msgid "Custom Table Class for the Front End"
+#~ msgid "Custom HTML before the button"
+#~ msgstr "Anpassad tabell-klass för front end"
+
+#, fuzzy
+#~| msgid "Edit module"
+#~ msgid "Edition modal"
+#~ msgstr "Redigera modul"
+
+#, fuzzy
+#~| msgid "Display settings"
+#~ msgid "Display close button"
+#~ msgstr "Visningsinställningar"
+
+#, fuzzy
+#~| msgid "Edit module"
+#~ msgid "Edition modal: Size"
+#~ msgstr "Redigera modul"
+
+#, fuzzy
+#~| msgid "Choose image"
+#~ msgid "Choose the modal size"
+#~ msgstr "Välj bild"
+
+#, fuzzy
+#~| msgid "Content"
+#~ msgid "Code Editor"
+#~ msgstr "Innehåll"
+
+#, fuzzy
+#~| msgid "Placeholder Image"
+#~ msgid "Placeholder"
+#~ msgstr "Affischbild"
+
+#, fuzzy
+#~| msgid "Edit module"
+#~ msgid "Editor mode"
+#~ msgstr "Redigera modul"
+
+#, fuzzy
+#~| msgid "Customise the map height"
+#~ msgid "Choose the syntax highlight"
+#~ msgstr "Anpassa karthöjden"
+
+#, fuzzy
+#~| msgid "Text"
+#~ msgid "Text/HTML"
+#~ msgstr "Text"
+
+#, fuzzy
+#~| msgid "Script"
+#~ msgid "JavaScript"
+#~ msgstr "Script"
+
+#, fuzzy
+#~| msgid "RSS"
+#~ msgid "CSS"
+#~ msgstr "RSS"
+
+#, fuzzy
+#~| msgid "Show title"
+#~ msgid "Show Lines"
+#~ msgstr "Visa titel"
+
+#, fuzzy
+#~| msgid "Max Rows"
+#~ msgid "Rows"
+#~ msgstr "Max rader"
+
+#, fuzzy
+#~| msgid "Set a fixed height"
+#~ msgid "Sets the textarea height"
+#~ msgstr "Sätt en fixerad höjd"
+
+#, fuzzy
+#~| msgid "Max Rows"
+#~ msgid "Max rows"
+#~ msgstr "Max rader"
+
+#, fuzzy
+#~| msgid "Customise the map height"
+#~ msgid "Sets the textarea max height"
+#~ msgstr "Anpassa karthöjden"
+
+#, fuzzy
+#~| msgid "Columns"
+#~ msgid "Column"
+#~ msgstr "Kolumner"
+
+#, fuzzy
+#~| msgid "Dynamic Table"
+#~ msgid "Dynamic Render"
+#~ msgstr "Dynamisk tabell"
+
+#, fuzzy
+#~| msgid "Uploaded to post"
+#~ msgid "Uploader type"
+#~ msgstr "Uppladdad till post"
+
+#, fuzzy
+#~| msgid "Additional options"
+#~ msgid "Additional Actions"
+#~ msgstr "Fler inställningar"
+
+#, fuzzy
+#~| msgid "Slider layout"
+#~ msgid "Paste layouts"
+#~ msgstr "Sliderlayout"
+
+#, fuzzy
+#~| msgid "Content"
+#~ msgid "Advanced Flexible Content"
+#~ msgstr "Innehåll"
+
+#, fuzzy
+#~| msgid "Hide image"
+#~ msgid "Hide Empty Message"
+#~ msgstr "Dölj bild"
+
+#, fuzzy
+#~| msgid "Usage"
+#~ msgid "Empty Message"
+#~ msgstr "Användning"
+
+#, fuzzy
+#~| msgid "Slider layout"
+#~ msgid "Add layout"
+#~ msgstr "Sliderlayout"
+
+#, fuzzy
+#~| msgid "Deprecated"
+#~ msgid "Duplicate layout"
+#~ msgstr "Utgående"
+
+#, fuzzy
+#~| msgid "Remove"
+#~ msgid "Remove layout"
+#~ msgstr "Ta bort"
+
+#, fuzzy
+#~| msgid "Edit "
+#~ msgid "Edit Modal"
+#~ msgstr "Redigera moduler"
+
+#, fuzzy
+#~| msgid "Block settings"
+#~ msgid "Modal settings"
+#~ msgstr "Inställningar för block"
+
+#, fuzzy
+#~| msgid "Hide title"
+#~ msgid "Hide Buttons"
+#~ msgstr "Dölj titel"
+
+#, fuzzy
+#~| msgid "Dynamic Table"
+#~ msgid "Dynamic Preview"
+#~ msgstr "Dynamisk tabell"
+
+#, fuzzy
+#~| msgid "Filter placeholder"
+#~ msgid "Layouts Placeholder"
+#~ msgstr "Platshållare för filtreringsrutan"
+
+#, fuzzy
+#~| msgid "Slider layout"
+#~ msgid "Edit layout"
+#~ msgstr "Sliderlayout"
+
+#, fuzzy
+#~| msgid "Selected module"
+#~ msgid "Selection Modal"
+#~ msgstr "Vald modul"
+
+#, fuzzy
+#~| msgid "category"
+#~ msgid "Category"
+#~ msgstr "kategori"
+
+#, fuzzy
+#~| msgid "Meta value"
+#~ msgid "Enter value"
+#~ msgstr "Metavärde"
+
+#, fuzzy
+#~| msgid "Block settings"
+#~ msgid "Clone settings"
+#~ msgstr "Inställningar för block"
+
+#, fuzzy
+#~| msgid "Default Value"
+#~ msgid "Default Layouts State"
+#~ msgstr "Standardvärde"
+
+#, fuzzy
+#~| msgid "Hide Thumbnail"
+#~ msgid "Layouts Thumbnails"
+#~ msgstr "Dölj miniatyr"
+
+#, fuzzy
+#~| msgid "Hide Thumbnail"
+#~ msgid "Thumbnail"
+#~ msgstr "Dölj miniatyr"
+
+#~ msgid "Add Row"
+#~ msgstr "Lägg till rad"
+
+#, fuzzy
+#~| msgid "Sort order"
+#~ msgid "Drag to reorder"
+#~ msgstr "Sorteringsordning"
+
+#, fuzzy
+#~| msgid "Select an apperance for this instance of module"
+#~ msgid "Select the appearance of this field"
+#~ msgstr "Välj ett alternativt utseende för den här modulen"
+
+#~ msgid "Checkbox"
+#~ msgstr "Checkbox"
+
+#, fuzzy
+#~| msgid "Select"
+#~ msgctxt "noun"
+#~ msgid "Select"
+#~ msgstr "Välj"
+
+#, fuzzy
+#~| msgid "Hex Value"
+#~ msgid "Return Value"
+#~ msgstr "Hex-värde"
+
+#, fuzzy
+#~| msgid "First name"
+#~ msgid "Form name"
+#~ msgstr "Förnamn"
+
+#, fuzzy
+#~| msgid "Select"
+#~ msgctxt "verb"
+#~ msgid "Select"
+#~ msgstr "Välj"
+
+#, fuzzy
+#~| msgid "Filter placeholder"
+#~ msgid "Search Input Placeholder"
+#~ msgstr "Platshållare för filtreringsrutan"
+
+#~ msgid "Other"
+#~ msgstr "Annat"
+
+#, fuzzy
+#~| msgid "Other"
+#~ msgid "Save Other"
+#~ msgstr "Annat"
+
+#, fuzzy
+#~| msgid "Repeat Vertically"
+#~ msgid "Vertical"
+#~ msgstr "Repetera vertikalt"
+
+#, fuzzy
+#~| msgid "Horizontal cards"
+#~ msgid "Horizontal"
+#~ msgstr "Horisontella kort"
+
+#, fuzzy
+#~| msgid "Allow Null?"
+#~ msgid "Allow Custom"
+#~ msgstr "Tillåt Noll?"
+
+#, fuzzy
+#~| msgid "Slider format"
+#~ msgid "Save Custom"
+#~ msgstr "Sliderformat"
+
+#, fuzzy
+#~| msgid "Use featured image"
+#~ msgid "Featured thumbnail"
+#~ msgstr "Använd utvald bild"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "Post Statuses"
+#~ msgstr "Inläggsobjekt"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "Allow Post Status"
+#~ msgstr "Inläggsobjekt"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "All post statuses"
+#~ msgstr "Inläggsobjekt"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "Post status object"
+#~ msgstr "Inläggsobjekt"
+
+#, fuzzy
+#~| msgid "Post items"
+#~ msgid "Post status name"
+#~ msgstr "Inläggsobjekt"
+
+#, fuzzy
+#~| msgid "Post type"
+#~ msgid "Allow Post Type"
+#~ msgstr "Posttyp"
+
+#, fuzzy
+#~| msgid "Post Type Select"
+#~ msgid "Post type object"
+#~ msgstr "Posttyp-väljare"
+
+#, fuzzy
+#~| msgid "Post type"
+#~ msgid "Post type name"
+#~ msgstr "Posttyp"
+
+#, fuzzy
+#~| msgid "Revision"
+#~ msgid "Version"
+#~ msgstr "Revision"
+
+#, fuzzy
+#~| msgid "Right"
+#~ msgid "Light"
+#~ msgstr "Höger"
+
+#~ msgid "Dark"
+#~ msgstr "Mörk"
+
+#, fuzzy
+#~| msgid "Compact mode"
+#~ msgid "Compact"
+#~ msgstr "Kompakt visningsläge"
+
+#, fuzzy
+#~| msgid "Hide image"
+#~ msgid "Hide logo"
+#~ msgstr "Dölj bild"
+
+#, fuzzy
+#~| msgid "Meta key"
+#~ msgid "Site key"
+#~ msgstr "Metanyckel"
+
+#, fuzzy
+#~| msgid "Secret"
+#~ msgid "Secret key"
+#~ msgstr "Hemlig"
+
+#, fuzzy
+#~| msgid "Placeholder Image"
+#~ msgid "Placeholder Text"
+#~ msgstr "Affischbild"
+
+#, fuzzy, php-format
+#~| msgid "Image width must not exceed %dpx."
+#~ msgid "Value must not exceed %d characters"
+#~ msgstr "Bildens bredd får inte överstiga %dpx."
+
+#, fuzzy
+#~| msgid "Taxonomy"
+#~ msgid "Taxonomies"
+#~ msgstr "Kategori"
+
+#, fuzzy
+#~| msgid "Taxonomy"
+#~ msgid "Allow Taxonomy"
+#~ msgstr "Kategori"
+
+#, fuzzy
+#~| msgid "Taxonomy type"
+#~ msgid "Taxonomy object"
+#~ msgstr "Taxonomi"
+
+#, fuzzy
+#~| msgid "Taxonomy value"
+#~ msgid "Taxonomy name"
+#~ msgstr "Taxonomivärde"
+
+#, fuzzy
+#~| msgid "Taxonomy filter"
+#~ msgid "Taxonomy Terms"
+#~ msgstr "Filtrera taxomnomi"
+
+#, fuzzy
+#~| msgid "Allow filtering"
+#~ msgid "Allow Terms"
+#~ msgstr "Tillåt filtrering"
+
+#, fuzzy
+#~| msgid "All "
+#~ msgid "All"
+#~ msgstr "Alla"
+
+#, fuzzy
+#~| msgid "Image caption"
+#~ msgid "Term object"
+#~ msgstr "Bildtext"
+
+#, fuzzy
+#~| msgid "Username"
+#~ msgid "Term name"
+#~ msgstr "Användarnamn"
+
+#, fuzzy
+#~| msgid "Slider format"
+#~ msgid "Save Terms"
+#~ msgstr "Sliderformat"
+
+#, fuzzy
+#~| msgid "Load more"
+#~ msgid "Load Terms"
+#~ msgstr "Ladda in fler"
+
+#, fuzzy
+#~| msgid "Hide module"
+#~ msgid "Code mode"
+#~ msgstr "Dölj modulen"
+
+#, fuzzy
+#~| msgid "Fields"
+#~ msgid "User Roles"
+#~ msgstr "Fält"
+
+#, fuzzy
+#~| msgid "Permalink"
+#~ msgid "Permalink:"
+#~ msgstr "Permalänk"
+
+#~ msgid "Update"
+#~ msgstr "Uppdatera"
+
+#, fuzzy
+#~| msgid "Post types"
+#~ msgid "Post Type List"
+#~ msgstr "Posttyper"
+
+#, fuzzy
+#~| msgid "Taxonomy filter"
+#~ msgid "Taxonomy List"
+#~ msgstr "Filtrera taxomnomi"
+
+#, fuzzy
+#~| msgid "New Field Group"
+#~ msgid "Field Groups"
+#~ msgstr "Ny fältgrupp"
+
+#, fuzzy
+#~| msgid "Dynamic Table"
+#~ msgid "Dynamic Block Type"
+#~ msgstr "Dynamisk tabell"
+
+#, fuzzy
+#~| msgid "Delete"
+#~ msgid "Deleted meta"
+#~ msgstr "Radera"
+
+#~ msgid "Delete"
+#~ msgstr "Radera"
+
+#, fuzzy
+#~| msgid "Post article"
+#~ msgid "Select bulk action"
+#~ msgstr "Inläggsartikel"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Bulk Actions"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid ""
+#~| "An error has occurred, which probably means the feed is down. Try again "
+#~| "later."
+#~ msgid "An error has occured. Please try again"
+#~ msgstr ""
+#~ "Ett fel har uppstått, vilket antagligen betyder att flödet är nere. "
+#~ "Försök igen senare."
+
+#, fuzzy
+#~| msgid "Facebook username"
+#~ msgid "Invalid username"
+#~ msgstr "Facebook-användarnamn"
+
+#, fuzzy
+#~| msgid "Hide Email"
+#~ msgid "Validate Email"
+#~ msgstr "Dölj e-post"
+
+#, fuzzy
+#~| msgid "Button label"
+#~ msgid "no label"
+#~ msgstr "Knappens etikett"
+
+#, fuzzy
+#~| msgid "Field group saved."
+#~ msgid "Field groups"
+#~ msgstr "Fältgrupp sparad."
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Actions"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid "Post or page"
+#~ msgid "Post updated"
+#~ msgstr "Inlägg eller sida"
+
+#, fuzzy
+#~| msgid "Import"
+#~ msgid "Export "
+#~ msgstr "Importera"
+
+#, fuzzy
+#~| msgid "Posts"
+#~ msgid "Post ID"
+#~ msgstr "Inlägg"
+
+#, fuzzy
+#~| msgid "Autoslide"
+#~ msgid "Autoload"
+#~ msgstr "Automatisk bläddring"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Options Page"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Option"
+#~ msgstr "Inställningar"
+
+#, fuzzy
+#~| msgid "No options avabile"
+#~ msgid "No options avaliable."
+#~ msgstr "Inga tillgängliga alternativ"
+
+#, fuzzy
+#~| msgid "Value"
+#~ msgid "Value "
+#~ msgstr "Värde"
+
+#, fuzzy
+#~| msgid "Edit Field Group"
+#~ msgid "Edit field group"
+#~ msgstr "Redigera fältgrupp"
+
+#, fuzzy
+#~| msgid "Dynamic Table"
+#~ msgid "Dynamic Post Type"
+#~ msgstr "Dynamisk tabell"
+
+#, fuzzy
+#~| msgid "Dynamic Table"
+#~ msgid "Dynamic Taxonomy"
+#~ msgstr "Dynamisk tabell"
