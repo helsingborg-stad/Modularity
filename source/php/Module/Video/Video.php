@@ -19,6 +19,20 @@ class Video extends \Modularity\Module
 
         //Cover images
         add_action('wp_after_insert_post', array($this, 'getVideoCover'), 10, 4);
+
+        //Add mime types
+        add_filter('upload_mimes', array($this, 'addVttFormatAsAllowedFiletype'), 10, 1);
+    }
+
+    /**
+     * Add allowed file types
+     *
+     * @param array $mimes Mime list without vtt
+     * @return array $mimes Mime list with vtt
+     */
+    public function addVttFormatAsAllowedFiletype($mimes) {
+        $mimes['vtt']  = 'text/vtt';
+        return $mimes;
     }
 
     /**
