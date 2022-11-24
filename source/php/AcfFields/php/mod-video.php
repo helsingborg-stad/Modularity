@@ -153,7 +153,7 @@
                     'return_format' => 'url',
                     'min_size' => '',
                     'max_size' => '',
-                    'mime_types' => '',
+                    'mime_types' => 'vtt',
                     'library' => 'all',
                     'parent_repeater' => 'field_637f27e8eb86c',
                 ),
