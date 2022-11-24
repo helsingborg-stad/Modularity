@@ -102,6 +102,85 @@
             "mime_types": "",
             "preview_size": "thumbnail",
             "library": "all"
+        },
+        {
+            "key": "field_637f27e8eb86c",
+            "label": "Subtitles",
+            "name": "subtitles",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_57454c24d44d8",
+                        "operator": "==",
+                        "value": "upload"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_repeater_stylised_button": 1,
+            "layout": "table",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "Add Row",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_637f2831eb86d",
+                    "label": "Subtitle File",
+                    "name": "file",
+                    "type": "file",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "uploader": "",
+                    "return_format": "url",
+                    "min_size": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "library": "all",
+                    "parent_repeater": "field_637f27e8eb86c"
+                },
+                {
+                    "key": "field_637f2869eb86e",
+                    "label": "Language",
+                    "name": "language",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "sv-se": "Swedish",
+                        "en-us": "English"
+                    },
+                    "default_value": "sv-se",
+                    "return_format": "array",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_637f27e8eb86c"
+                }
+            ]
         }
     ],
     "location": [
