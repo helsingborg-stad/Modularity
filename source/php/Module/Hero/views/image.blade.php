@@ -7,6 +7,6 @@
     "byline" => $byline,
     "paragraph" => $paragraph,
     "stretch" => isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch,
-    "context" => ['hero', 'module.hero', 'module.hero.image']
+    "context" => ['hero', 'module.hero', 'module.hero.image', $sidebarContext . '.module.hero-animation']
 ])
 @endhero
