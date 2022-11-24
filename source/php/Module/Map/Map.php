@@ -14,6 +14,8 @@ class Map extends \Modularity\Module
         $this->description = __("Outputs an embedded map.", 'modularity');
 
         add_filter('acf/load_field/name=map_url', array($this,'sslNotice'));
+        add_filter('acf/load_value/name=map_url', array($this,'filterMapUrl'), 10, 3);
+        add_filter('acf/update_value/name=map_url', array($this,'filterMapUrl'), 10, 3);
     }
 
     public function data() : array
@@ -75,6 +77,11 @@ class Map extends \Modularity\Module
         }
 
         return false;
+    }
+
+    public function filterMapUrl($value, $post_id, $field) {
+        $value = str_replace('&amp;', '&', $value);
+        return $value;
     }
 
     /**
