@@ -79,7 +79,8 @@ class Map extends \Modularity\Module
         return false;
     }
 
-    public function filterMapUrl($value, $post_id, $field) {
+    public function filterMapUrl($value, $post_id, $field) 
+    {
         $value = str_replace('&amp;', '&', $value);
         return $value;
     }
