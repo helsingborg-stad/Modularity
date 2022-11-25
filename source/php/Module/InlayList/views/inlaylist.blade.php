@@ -26,7 +26,7 @@
                 'icon' => 'arrow_forward',
                 'link' => $item['href']
             ])
-                @typography([''])
+                @typography(['element' => 'h4'])
                     {{$item['label']}}
                 @endtypography
             @endcollection__item
