@@ -34,7 +34,7 @@
                                 'link' => $post['href']
                                 ])
 
-                            @typography(['element' => 'h2'])
+                            @typography(['element' => 'h2', 'variant' => 'h4'])
                                 {{$post['columns'][0]}}
                             @endtypography
 
