@@ -31,7 +31,7 @@
             'caption' => (isset($mod_image_caption) && !empty($mod_image_caption)) ?
                 $mod_image_caption : "",
             'classList' => ['block-level', $img_classes],
-            'context' => ['module.image', $sidebarContext . '.module.image', $sidebarContext . '.module.hero-animation'],
+            'context' => ['module.image', $sidebarContext . '.module.image', $sidebarContext . '.animation-item'],
         ])
         
         @endimage
