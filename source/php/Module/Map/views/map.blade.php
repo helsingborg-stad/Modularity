@@ -15,7 +15,7 @@
             @if (!$hideTitle && !empty($postTitle))
                 <div class="c-card__header">        
                     @typography([
-                        'element' => 'h4',
+                        'element' => 'h2',
                         'variant' => 'p',
                         'id'      => 'mod-map-' . $id .'-label'
                     ])
@@ -73,7 +73,7 @@
                         @endicon
                         
                         @typography([
-                            'element' => 'h4',
+                            'element' => 'h2',
                             'variant' => 'p',
                             'id'      => 'mod-map-' . $id .'-label-moreinfo'
                         ])

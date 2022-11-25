@@ -1,8 +1,8 @@
 @collection__item([
     'classList' => ['c-collection__opening-hours'],
-    'attributeList' => ['itemprop' => 'adress'],
+    'attributeList' => ['itemprop' => 'adress']
 ])
-    @typography(['element' => 'h4'])
+    @typography(['element' => 'h2', 'variant' => 'h4'])
         {{ $OpeningHours }}
     @endtypography
 

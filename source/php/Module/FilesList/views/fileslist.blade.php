@@ -11,7 +11,8 @@
         <div class="c-card__header">
             @typography([
                 'id'      => 'mod-fileslist-' . $ID .'-label',
-                'element' => "h4"
+                'element' => 'h2',
+                'variant' => 'h4'
             ])
                 {!! $postTitle !!}
             @endtypography
