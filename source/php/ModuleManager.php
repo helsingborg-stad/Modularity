@@ -99,26 +99,23 @@ class ModuleManager
      */
     public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
     {
-        $siteLang   = strtolower(get_bloginfo('language'));
-        $moduleLang = strtolower(get_field('lang', $moduleId));
+        $pageId         = \Modularity\Helper\Post::getPageID();
+        $siteLanguage   = get_bloginfo('language');
+        $moduleLanguage = get_post_meta($moduleId, 'lang', true);
+        $pageLanguage   = get_post_meta($pageId, 'lang', true);
 
-        $theme = wp_get_theme('municipio');
-        if ($theme->exists()) {
-            /** 
-             * Setting the default language of the module to the language of the post content. 
-             * */
-            $municipio = new \Municipio\Controller\BaseController;
-            $modulePost = \Municipio\Helper\Post::preparePostObject(get_post($municipio->getPageID()));
-            $modulePostLang = !empty(strtolower($modulePost->postLanguage)) ? $modulePost->postLanguage : false;
-            if ( ! $moduleLang && $modulePostLang ) {
-                $moduleLang = $modulePostLang;
-            }
-        }
-        
-        if ($moduleLang && ($moduleLang !== $siteLang)) {
+        $languageDiff   =   array_map('strtolower', [$siteLanguage, $moduleLanguage, $pageLanguage]);
+        $languageDiff   =   array_map(
+            function ($value) use ($siteLanguage) {
+                return $value ?: strtolower($siteLanguage);
+            },
+            $languageDiff
+        );
+
+        if (count(array_unique($languageDiff)) != 1) {
             $attrId = $moduleType . '-' . $moduleId;
             $match = '/id="' . $attrId . '"/';
-            $replace = 'id="' . $attrId . '" lang="' . $moduleLang . '"';
+            $replace = 'id="' . $attrId . '" lang="' . $moduleLanguage . '"';
 
             return preg_replace($match, $replace, $beforeModule, 1);
         }
