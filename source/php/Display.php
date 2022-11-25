@@ -465,10 +465,6 @@ class Display
         // Set id (%1$s) and classes (%2$s)
         $beforeModule = sprintf($beforeModule, $module->post_type . '-' . uniqid(), implode(' ', $classes));
         
-        if (in_array((int) $module->ID, [15976, 16033], true)) {
-            echo '<pre>' . print_r($args['before_widget'], true) . '</pre>';
-            echo '<pre>' . print_r($beforeModule, true) . '</pre>';
-        }
         // Append module edit to before markup
         $moduleEdit = '';
         if (!(isset($args['edit_module']) && $args['edit_module'] === false) &&
