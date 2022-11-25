@@ -23,6 +23,7 @@
                     'formats' => [
                         ['src' => $source, 'type' => "mp4"],
                     ],
+                    'subtitles' => $subtitles,
                     'width' => 1080,
                     'height' => 720,
                     'attributeList' => [
