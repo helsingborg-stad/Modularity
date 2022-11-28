@@ -8,8 +8,9 @@
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                'id'        =>  'mod-inlaylist' . $id . '-label',
-                'element'   => 'h4',
+                'id'        => 'mod-inlaylist' . $id . '-label',
+                'element'   => 'h2',
+                'variant'   => 'h4',
                 'classList' => []
             ])
                 {!! $postTitle !!}
@@ -26,7 +27,10 @@
                 'icon' => 'arrow_forward',
                 'link' => $item['href']
             ])
-                @typography([''])
+                @typography([
+                    'element' => 'h3',
+                    'variant' => 'h4'
+                ])
                     {{$item['label']}}
                 @endtypography
             @endcollection__item
