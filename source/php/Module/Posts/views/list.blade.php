@@ -11,8 +11,8 @@
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                'id'        => 'mod-posts-' . $ID . '-label',
-                'element'   => "h2"
+                'id'      => 'mod-posts-' . $ID . '-label',
+                'element' => 'h2',
                 'variant' => 'h4'
             ])
                 {!! $postTitle !!}
@@ -34,7 +34,10 @@
                                 'link' => $post['href']
                                 ])
 
-                            @typography(['element' => 'h2'])
+                            @typography([
+                                'element' => 'h2',
+                                'variant' => 'h4'
+                            ])
                                 {{$post['columns'][0]}}
                             @endtypography
 
