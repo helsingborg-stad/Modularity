@@ -463,7 +463,7 @@ class Display
         $classes = (array) apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
 
         // Set id (%1$s) and classes (%2$s)
-        $beforeModule = sprintf($beforeModule, $module->post_type . '-' . uniqid(), implode(' ', $classes));
+        $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID . '-' . uniqid(), implode(' ', $classes));
         
         // Append module edit to before markup
         $moduleEdit = '';
