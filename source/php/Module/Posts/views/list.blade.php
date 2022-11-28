@@ -12,7 +12,8 @@
         <div class="c-card__header">
             @typography([
                 'id'        => 'mod-posts-' . $ID . '-label',
-                'element'   => "h4"
+                'element'   => "h2"
+                'variant' => 'h4'
             ])
                 {!! $postTitle !!}
             @endtypography
@@ -33,7 +34,7 @@
                                 'link' => $post['href']
                                 ])
 
-                            @typography(['element' => 'h4'])
+                            @typography(['element' => 'h2', 'variant' => 'h4'])
                                 {{$post['columns'][0]}}
                             @endtypography
 

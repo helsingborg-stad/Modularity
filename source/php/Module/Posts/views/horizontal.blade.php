@@ -5,7 +5,7 @@
     @if (!$hideTitle && !empty($postTitle))
 
         @typography([
-            'element' => 'h4', 
+            'element' => 'h2', 
             'variant' => 'h2', 
             'classList' => ['module-title']
         ])
@@ -48,7 +48,7 @@
                                 @if (in_array('title', $posts_fields))
 
                                     @typography([
-                                        'element' => "h4",
+                                        'element' => "h2",
                                         'variant' => "h2"
                                     ])
                                         {{$post->post_title}}
