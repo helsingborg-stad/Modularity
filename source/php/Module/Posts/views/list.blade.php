@@ -12,7 +12,7 @@
         <div class="c-card__header">
             @typography([
                 'id'        => 'mod-posts-' . $ID . '-label',
-                'element'   => "h2"
+                'element'   => 'h2',
                 'variant' => 'h4'
             ])
                 {!! $postTitle !!}
