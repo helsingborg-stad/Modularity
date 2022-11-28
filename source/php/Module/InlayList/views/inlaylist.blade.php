@@ -28,7 +28,7 @@
                 'link' => $item['href']
             ])
                 @typography([
-                    'element' => 'h3',
+                    'element' => 'h2',
                     'variant' => 'h4'
                 ])
                     {{$item['label']}}
