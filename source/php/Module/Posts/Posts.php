@@ -614,7 +614,7 @@ class Posts extends \Modularity\Module
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
-                'post_excerpt' => $item->post_content
+                'post_excerpt' => apply_filters('the_content', $item->post_content)
             ]);
         }
 
@@ -632,7 +632,6 @@ class Posts extends \Modularity\Module
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
 
-
         if ($fields->posts_data_source == 'input') {
             return (array) self::getManualInputPosts($fields->data);
         }
@@ -642,6 +641,9 @@ class Posts extends \Modularity\Module
             foreach ($posts as &$_post) {
                 if (empty($_post->permalink)) {
                     $_post->permalink = get_permalink($_post->ID);
+                }
+                if (!empty($_post->post_content)) {
+                    $_post->post_content = apply_filters('the_content', $_post->post_content);
                 }
             }
         }
