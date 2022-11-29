@@ -30,7 +30,9 @@
             'alt' => $mod_image_image['alt'],
             'caption' => (isset($mod_image_caption) && !empty($mod_image_caption)) ?
                 $mod_image_caption : "",
-            'classList' => ['block-level', $img_classes]
+            'classList' => ['block-level', $img_classes],
+            'context' => ['module.image', $sidebarContext . '.module.image', $sidebarContext . '.animation-item'],
         ])
+        
         @endimage
 @endif

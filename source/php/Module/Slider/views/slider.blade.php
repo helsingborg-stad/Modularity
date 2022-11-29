@@ -22,7 +22,7 @@
         'data-slider-focus-center' => '',
         'data-aria-labels' => json_encode($ariaLabels)
     ],
-    'context'       => ['module.slider', $sidebarContext . '.module.slider'],
+    'context'       => ['module.slider', $sidebarContext . '.module.slider', $sidebarContext . '.animation-item'],
 ])
     @foreach ($slides as $slide)
         @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])
