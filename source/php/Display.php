@@ -131,9 +131,8 @@ class Display
      */
     public function isActiveSidebar($isActiveSidebar, $sidebar)
     {
-
         //Just figure out the state of a sidebar once
-        if(isset(self::$sidebarState[$sidebar])) {
+        if (isset(self::$sidebarState[$sidebar])) {
             return self::$sidebarState[$sidebar];
         }
 
@@ -439,7 +438,7 @@ class Display
         $classes = array(
             'modularity-' . $module->post_type,
             'modularity-' . $module->post_type . '-' . $module->ID,
-            (property_exists ( $module, 'columnWidth')) ? $module->columnWidth :  'o-grid-12'
+            (property_exists($module, 'columnWidth')) ? $module->columnWidth :  'o-grid-12'
         );
 
         //Hide module if preview
@@ -456,16 +455,16 @@ class Display
         }
 
         // Build before & after module markup
-        $beforeModule = (array_key_exists ('before_widget', $args)) ? $args['before_widget'] :
+        $beforeModule = (array_key_exists('before_widget', $args)) ? $args['before_widget'] :
             '<div id="%1$s" class="%2$s" >';
-        $afterModule = (array_key_exists ('after_widget', $args)) ? $args['after_widget'] : '</div>';
+        $afterModule = (array_key_exists('after_widget', $args)) ? $args['after_widget'] : '</div>';
 
         // Apply filter for classes
         $classes = (array) apply_filters('Modularity/Display/BeforeModule::classes', $classes, $args, $module->post_type, $module->ID);
 
-        // Implode classNames
-        $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID, implode(' ', $classes));
-
+        // Set id (%1$s) and classes (%2$s)
+        $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID . '-' . uniqid(), implode(' ', $classes));
+        
         // Append module edit to before markup
         $moduleEdit = '';
         if (!(isset($args['edit_module']) && $args['edit_module'] === false) &&
