@@ -9,5 +9,6 @@
     "stretch" => isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch,
     "context" => ['hero', 'module.hero', 'module.hero.image', $sidebarContext . '.animation-item'],
     "sidebar" => $sidebarContext ? $sidebarContext : false,
+    "ariaLabel" => $ariaLabel,
 ])
 @endhero

@@ -52,6 +52,8 @@ class Hero extends \Modularity\Module
         $data['byline']         = $fields['mod_hero_byline'];
         $data['paragraph']      = $fields['mod_hero_body'];
         $data['backgroundType'] = $data['mod_hero_background_type'] ?? 'image';
+        
+        $data['ariaLabel'] = __('Page hero section', 'modularity');
 
         return $data;
     }
