@@ -4,14 +4,14 @@
     'heading'       => $postTitle,
     'classList'     => [$classes],
     'attributeList' => [
-        'aria-labelledby' => 'mod-posts-' . $ID . '-label'
+        'aria-labelledby' => 'mod-posts-' . $ID . '-' . $uid .  '-label'
     ],
     'context'       => 'module.posts.list'
 ])
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                'id'      => 'mod-posts-' . $ID . '-label',
+                'id'      => 'mod-posts-' . $ID . '-' . $uid .  '-label',
                 'element' => 'h2',
                 'variant' => 'h4'
             ])

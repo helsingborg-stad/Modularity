@@ -7,7 +7,7 @@
                 'c-card__map'
             ],
             'attributeList' => [
-                'aria-labelledby' => 'mod-map-' . $id .'-label',
+                'aria-labelledby' => 'mod-map-' . $id . '-' . $uid . '-label',
                 'style' => 'min-height: ' . $height . 'px;'
             ],
             'context' => 'module.map'
@@ -17,7 +17,7 @@
                     @typography([
                         'element' => 'h2',
                         'variant' => 'p',
-                        'id'      => 'mod-map-' . $id .'-label'
+                        'id'      => 'mod-map-' . $id . '-' . $uid . '-label'
                     ])
                         {!! $postTitle !!}
                     @endtypography

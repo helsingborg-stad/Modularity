@@ -216,7 +216,8 @@ class Posts extends \Modularity\Module
             $data['searchQuery'] = get_query_var('search');
         }
         $data['modId'] = $this->ID;
-
+        $data['uid'] = uniqid();
+        
         // Posts
         $data['preamble'] = $fields->preamble;
         $data['posts_fields'] = $fields->posts_fields ?? false;

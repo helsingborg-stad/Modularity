@@ -32,27 +32,26 @@ class Slider extends \Modularity\Module
     }
 
     /**
-     * Adds backwards compability to sliders created before focal point support. 
+     * Adds backwards compability to sliders created before focal point support.
      *
      * @param array $field
      * @return array $field
      */
-    public function filterDesktopImage($value, $postId, $field) {
-
-        if(!is_array($value) && is_numeric($value) && $field['type'] == "focuspoint") {
+    public function filterDesktopImage($value, $postId, $field)
+    {
+        if (!is_array($value) && is_numeric($value) && $field['type'] == "focuspoint") {
             return [
                 'id' => $value,
                 'top' => "40",
                 'left' => "50"
-            ]; 
+            ];
         }
 
-        return $value; 
+        return $value;
     }
 
     public function data() : array
     {
-
         //Get settings
         $fields = get_fields($this->ID);
         $data = [];
@@ -64,16 +63,17 @@ class Slider extends \Modularity\Module
         $data['title'] = isset($fields['post_title']) ? $fields['post_title'] : '';
         $data['slidesPerPage'] = isset($fields['slides_per_page']) ? $fields['slides_per_page'] : '1';
         $data['ariaLabels'] =  (object) [
-            'prev' => __('Previous slide','modularity'),
+            'prev' => __('Previous slide', 'modularity'),
             'next' => __('Next slide', 'modularity'),
             'first' => __('Go to first slide', 'modularity'),
-            'last' => __('Go to last slide','modularity'),
+            'last' => __('Go to last slide', 'modularity'),
             'slideX' => __('Go to slide %s', 'modularity'),
         ];
 
         //Get slides
         $data['slides'] = $this->prepareSlides($fields);
         $data['id'] = $this->ID;
+        $data['uid'] = uniqid();
 
 
         return $data;
@@ -157,7 +157,7 @@ class Slider extends \Modularity\Module
 
             $focusPoint = false;
 
-            if(array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
+            if (array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
                 $focusPoint = [
                     'top'   => $slide['image']['top'],
                     'left'  => $slide['image']['left']

@@ -6,7 +6,7 @@
     
     @if (!$hideTitle && !empty($postTitle))
         @typography([
-            'id'        => 'mod-text-' . $ID .'-label',
+            'id'        => 'mod-text-' . $ID . '-' . $uid . '-label',
             'element'   => 'h2', 
             'variant'   => 'h2', 
             'classList' => ['module-title']

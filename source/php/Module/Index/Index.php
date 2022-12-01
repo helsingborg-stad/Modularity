@@ -27,6 +27,8 @@ class Index extends \Modularity\Module
     public function data() : array
     {
         $data = array();
+        
+        $data['uid'] = uniqid();
 
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $this->post_type, $this->args));
 
@@ -51,10 +53,8 @@ class Index extends \Modularity\Module
      */
     public function prepareItems($items)
     {
-
         if (is_array($items) && !empty($items)) {
             foreach ($items as $key => &$item) {
-
                 //Get linked post object.
                 $postData = is_object($item['page']) ? $item['page'] : false;
 
@@ -75,16 +75,14 @@ class Index extends \Modularity\Module
                         $item['lead']           = preg_replace('#</?a(\s[^>]*)?>#i', '', $item['lead']);
                         $item['lead']           = $this->switchContent($item['lead'], $this->parseExcerpt($postData->post_content));
                     }
-
                 } else {
                     unset($item);
                 }
 
                 //Removes empty/unfetchable objects from index
-                if(isset($item) && $item['link_type'] == "internal" && empty($item['title']) && empty($item['lead']) && empty($item['thumbnail']) && empty($item['permalink'])) {
+                if (isset($item) && $item['link_type'] == "internal" && empty($item['title']) && empty($item['lead']) && empty($item['thumbnail']) && empty($item['permalink'])) {
                     unset($items[$key]);
                 }
-
             }
         }
 

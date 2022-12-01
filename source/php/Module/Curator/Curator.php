@@ -6,7 +6,7 @@ class Curator extends \Modularity\Module
 {
     public $slug = 'curator';
     public $supports = array();
-    private $curl; 
+    private $curl;
 
     public function init()
     {
@@ -19,42 +19,44 @@ class Curator extends \Modularity\Module
 
     public function data() : array
     {
+        $data['uid'] = uniqid();
+        
         //Get module data
-        $embedCode      = get_field('embed_code', $this->ID); 
+        $embedCode      = get_field('embed_code', $this->ID);
         $embedCode      = $this->parseEmbedCode($embedCode);
-        $numberOfItems  = get_field('number_of_posts', $this->ID); 
+        $numberOfItems  = get_field('number_of_posts', $this->ID);
 
         //Fetch data (with cache)
         $feed = $this->curl->request(
-            'GET', 
+            'GET',
             'https://api.curator.io/restricted/feeds/' . $embedCode . '/posts?limit=' . ($numberOfItems ?? 12) . '&hasPoweredBy=true&version=4.0'
-        ); 
+        );
 
         //Feed parser
-        if($feed = json_decode($feed)) {
-            if(isset($feed->posts) && count($feed->posts)) {
-                $data['posts']    = $feed->posts; 
-                $data['showFeed'] = true; 
+        if ($feed = json_decode($feed)) {
+            if (isset($feed->posts) && count($feed->posts)) {
+                $data['posts']    = $feed->posts;
+                $data['showFeed'] = true;
             } else {
-                $data['showFeed'] = false; 
+                $data['showFeed'] = false;
             }
         } else {
             $data['showFeed'] = false;
         }
 
         //Parse array
-        if(is_array($data['posts']) && !empty($data['posts'])) {
-            foreach($data['posts'] as &$post) {
-                $post->user_readable_name = $this->getUserName($post->user_screen_name); 
+        if (is_array($data['posts']) && !empty($data['posts'])) {
+            foreach ($data['posts'] as &$post) {
+                $post->user_readable_name = $this->getUserName($post->user_screen_name);
                 $post->text = wp_trim_words($post->text, 20, "...");
             }
         }
 
         //Could not fetch error message / embed code error message
-        if(!$embedCode) {
-            $data['errorMessage'] = __("A invalid embed code was provided, please try enter it again.", 'modularity'); 
+        if (!$embedCode) {
+            $data['errorMessage'] = __("A invalid embed code was provided, please try enter it again.", 'modularity');
         } else {
-            $data['errorMessage'] = __("Could not get the instagram feed at this moment, please try again later.", 'modularity'); 
+            $data['errorMessage'] = __("Could not get the instagram feed at this moment, please try again later.", 'modularity');
         }
 
         //Send to view
@@ -65,11 +67,11 @@ class Curator extends \Modularity\Module
      * Parse embed javascript
      *
      * @param   string $embed   Embed javascript string
-     * 
+     *
      * @return  string $embed   Embed code
      */
-    private function parseEmbedCode($embed) {
-
+    private function parseEmbedCode($embed)
+    {
         if (preg_match('/published\/(.*?)\.js/i', $embed, $match) == 1) {
             return $match[1];
         }
@@ -83,8 +85,9 @@ class Curator extends \Modularity\Module
      * @param   string $userName
      * @return  string $userName
      */
-    private function getUserName($userName) {
-        return ucwords(str_replace(['.', '-'], ' ', $userName)); 
+    private function getUserName($userName)
+    {
+        return ucwords(str_replace(['.', '-'], ' ', $userName));
     }
 
     /**

@@ -1,7 +1,7 @@
 @if (!$hideTitle && !empty($postTitle))
     <div class="c-card__header">
         @typography([
-            'id' => 'mod-logogrid' . $id . '-label',
+            'id' => 'mod-logogrid' . $id . '-' . $uid .  '-label',
             'element' => 'h2',
             'variant' => 'h4',
             'classList' => []

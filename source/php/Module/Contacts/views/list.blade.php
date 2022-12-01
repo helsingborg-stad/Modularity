@@ -1,13 +1,13 @@
 @card([
     'attributeList' => [
-        'aria-labelledby' => 'mod-text-' . $ID .'-label'
+        'aria-labelledby' => 'mod-text-' . $ID . '-' . $uid . '-label'
     ],
     'context' => 'module.contacts.list'
 ])
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                'id'        => 'mod-text-' . $ID .'-label',
+                'id'        => 'mod-text-' . $ID . '-' . $uid . '-label',
                 "variant"   => "h4",
                 "element"   => "h4",
                 "classList" => ['u-padding--0', 'u-padding__x--3']

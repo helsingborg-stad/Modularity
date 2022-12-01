@@ -1,6 +1,6 @@
 @card([
     'attributeList' => [
-        'aria-labelledby' => 'mod-video-' . $ID . '-label'
+        'aria-labelledby' => 'mod-video-' . $ID . '-' . $uid .  '-label'
     ],
     'context' => 'module.video',
     'classList' => ['c-card__video']
@@ -9,7 +9,7 @@
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                "id"        => "mod-video-" . $ID . "-label",
+                "id"        => "mod-video-" . $ID . '-' . $uid .  "-label",
                 "element"   => "h4"
             ])
                 {!! $postTitle !!}

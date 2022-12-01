@@ -3,7 +3,7 @@
     <div class="o-grid-12@sm o-grid-8@md o-grid-8@lg">
         @if (!$hideTitle && !empty($postTitle))
             @typography([
-                'id' => 'mod-posts-' . $ID . '-label',
+                'id' => 'mod-posts-' . $ID . '-' . $uid .  '-label',
                 'element' => 'h2',
                 'variant' => 'h2',
                 'classList' => ['module-title']
@@ -31,7 +31,7 @@
     'isPost'          => true,
     'customButtons'   => 'js-custom-buttons-' . $ID,
     'attributeList' => [
-        'aria-labelledby' => 'mod-slider-' . $ID . '-label',
+        'aria-labelledby' => 'mod-slider-' . $ID . '-' . $uid .  '-label',
         'data-slider-gap' => 48,
         'data-slides-per-page' => $slider->slidesPerPage
     ]

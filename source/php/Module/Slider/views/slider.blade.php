@@ -1,6 +1,6 @@
 @if (!$hideTitle && !empty($postTitle))
     @typography([
-        'id'        => 'mod-slider-' . $ID . '-label',
+        'id'        => 'mod-slider-' . $ID . '-' . $uid . '-label',
         'element'   => 'h2', 
         'variant'   => 'h2', 
         'classList' => ['module-title']
@@ -16,7 +16,7 @@
     'shadow'        => $sidebarContext !== 'sidebar.slider-area',
     'heroStyle'     => $sidebarContext === 'sidebar.slider-area',
     'attributeList' => [
-        'aria-labelledby' => (!$hideTitle && !empty($postTitle)) ? 'mod-slider-' . $ID . '-label' : '',
+        'aria-labelledby' => (!$hideTitle && !empty($postTitle)) ? 'mod-slider-' . $ID . '-' . $uid .'-label' : '',
         'data-slides-per-page' => $slidesPerPage,
         'data-slider-gap' => (8*4),
         'data-slider-focus-center' => '',

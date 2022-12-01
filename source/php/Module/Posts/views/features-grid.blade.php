@@ -2,7 +2,7 @@
 
 @if (!$hideTitle && !empty($postTitle))
     @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
+        'id' => 'mod-posts-' . $ID . '-' . $uid . '-label',
         'element' => 'h2', 
         'variant' => 'h2', 
         'classList' => ['module-title']
@@ -19,7 +19,7 @@
     @endtypography
 @endif
 
-<div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
+<div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-' . $uid . '-label' }}">
     @foreach ($posts as $post)
         <div class="{{$posts_columns}}">
             @box([

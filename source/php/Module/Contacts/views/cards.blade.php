@@ -1,6 +1,6 @@
 @if (!$hideTitle && !empty($postTitle))
     @typography([
-        'id'        => 'mod-text-' . $ID .'-label',
+        'id'        => 'mod-text-' . $ID . '-' . $uid . '-label',
         'element'   => 'h2', 
         'variant'   => 'h2', 
         'classList' => ['module-title']
@@ -9,7 +9,7 @@
     @endtypography
 @endif
 
-<div class="o-grid" aria-labelledby={{'mod-text-' . $ID .'-label'}}>
+<div class="o-grid" aria-labelledby={{'mod-text-' . $ID . '-' . $uid . '-label'}}>
     @foreach ($contacts as $contact)
         <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([

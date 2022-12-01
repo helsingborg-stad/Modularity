@@ -7,14 +7,14 @@
             'classList' => [$classes],
             'attributeList' => [
                 'js-filter-container'   => $ID,
-                'aria-labelledby'       => 'mod-posts-' . $ID . '-label'
+                'aria-labelledby'       => 'mod-posts-' . $ID . '-' . $uid .  '-label'
             ],
             'context' => 'module.posts.expandablelist'
         ])
             @if (!$hideTitle && !empty($postTitle))
                 <div class="c-card__header">
                     @typography([
-                        'id'        => 'mod-posts-' . $ID . '-label',
+                        'id'        => 'mod-posts-' . $ID . '-' . $uid .  '-label',
                         'element'   => "h4"
                     ])
                         {!! $postTitle !!}

@@ -1,10 +1,10 @@
-<article class="{{ isset($font_size) ? $font_size : '' }}" aria-labelledby="{{'mod-text-' . $ID .'-label'}}">
+<article class="{{ isset($font_size) ? $font_size : '' }}" aria-labelledby="{{'mod-text-' . $ID . '-' . $uid . '-label'}}">
     
     @if (!$hideTitle && !empty($postTitle))
         @typography([
                 "variant" => "h2",
                 "element" => "h4",
-                "id" => 'mod-text-' . $ID .'-label'
+                "id" => 'mod-text-' . $ID . '-' . $uid . '-label'
         ])
                 {!! $postTitle !!}
         @endtypography

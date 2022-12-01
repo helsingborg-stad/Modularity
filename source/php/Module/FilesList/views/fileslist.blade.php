@@ -3,14 +3,14 @@
     'classList'     => [$classes],
     'attributeList' => [
         'js-filter-container'   => $uID,
-        "aria-labelledby"       => 'mod-fileslist-' . $ID .'-label',
+        "aria-labelledby"       => 'mod-fileslist-' . $ID . '-' . $uid . '-label',
     ],
     'context' => 'module.files.list'
 ])
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                'id'      => 'mod-fileslist-' . $ID .'-label',
+                'id'      => 'mod-fileslist-' . $ID . '-' . $uid . '-label',
                 'element' => 'h2',
                 'variant' => 'h4'
             ])

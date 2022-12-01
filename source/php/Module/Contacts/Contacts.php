@@ -19,6 +19,8 @@ class Contacts extends \Modularity\Module
     {
         $data = get_fields($this->ID);
         $data['ID'] = $this->ID;
+        
+        $data['uid'] = uniqid();
 
         //Display settings
         if (array_key_exists('display_settings', $data) && !empty($data['display_settings'])) {

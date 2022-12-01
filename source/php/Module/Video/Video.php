@@ -30,7 +30,8 @@ class Video extends \Modularity\Module
      * @param array $mimes Mime list without vtt
      * @return array $mimes Mime list with vtt
      */
-    public function addVttFormatAsAllowedFiletype($mimes) {
+    public function addVttFormatAsAllowedFiletype($mimes)
+    {
         $mimes['vtt']  = 'text/vtt';
         return $mimes;
     }
@@ -139,7 +140,8 @@ class Video extends \Modularity\Module
      * @param string        $videoId       Id of the video connected to the file.
      * @return string|bool                 Name of the file, false if not downloaded.
      */
-    private function downloadCoverImage($url, $videoId) {
+    private function downloadCoverImage($url, $videoId)
+    {
         if ($fileContents = $this->readRemoteFile($url)) {
             return $this->storeImage($fileContents, $videoId);
         }
@@ -272,7 +274,8 @@ class Video extends \Modularity\Module
      * @param  string $embedLink    The embed link
      * @return string $id           The id in embed link
      */
-    private function parseYoutubeId($embedLink) {
+    private function parseYoutubeId($embedLink)
+    {
         $hostname = parse_url($embedLink, PHP_URL_HOST);
 
         //https://youtu.be/ID
@@ -319,7 +322,8 @@ class Video extends \Modularity\Module
      * @param  string $videoService     What video service to use
      * @return string $url              A https url to the image
      */
-    private function getCoverUrl($id, $videoService) {
+    private function getCoverUrl($id, $videoService)
+    {
         if (isset($this->imageLocations[$videoService])) {
             return sprintf($this->imageLocations[$videoService], $id);
         }
@@ -334,6 +338,8 @@ class Video extends \Modularity\Module
     public function data(): array
     {
         $data = get_fields($this->ID);
+        
+        $data['uid'] = uniqid();
 
         $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
         $data['id']         = uniqid('embed');
@@ -401,7 +407,8 @@ class Video extends \Modularity\Module
         wp_enqueue_script('mod-video-script');
     }
 
-    private function accessProtected($obj, $prop) {
+    private function accessProtected($obj, $prop)
+    {
         $reflection = new ReflectionClass($obj);
         $property = $reflection->getProperty($prop);
         $property->setAccessible(true);

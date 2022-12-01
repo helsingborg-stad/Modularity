@@ -19,6 +19,7 @@ class Logogrid extends \Modularity\Module
         $logotypes = get_field('mod_logogrid', $this->ID);
 
         $stack = [];
+        $data['uid'] = uniqid();
         if (is_array($logotypes) && !empty($logotypes)) {
             foreach ($logotypes as $logotype) {
                 $stack[] = [

@@ -1,6 +1,6 @@
 @card([
     'attributeList' => [
-        'aria-labelledby' => 'mod-text-' . $ID .'-label'
+        'aria-labelledby' => 'mod-text-' . $ID . '-' . $uid . '-label'
     ],
     'context' => 'module.text.box'
 ])
@@ -8,7 +8,7 @@
         <div class="c-card__header">
             @typography([
                 "element" => "h4",
-                'id' => 'mod-text-' . $ID .'-label'
+                'id' => 'mod-text-' . $ID . '-' . $uid . '-label'
             ])
                 {!! $postTitle !!}
             @endtypography
