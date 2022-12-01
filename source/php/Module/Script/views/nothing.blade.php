@@ -5,7 +5,8 @@
                 $wrappingClass = 'script-'.$scriptWrapWithClassName.'-title';
             @endphp
             @typography([
-                'element'   => 'h4',
+                'element'   => 'h2',
+                'variant'   => 'h4',
                 'classList' => [$wrappingClass]
             ])
                 {!! $postTitle !!}
