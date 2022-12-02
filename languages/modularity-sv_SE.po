@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-11-17 14:04+0100\n"
-"PO-Revision-Date: 2022-11-17 14:24+0100\n"
+"POT-Creation-Date: 2022-12-01 14:40+0100\n"
+"PO-Revision-Date: 2022-12-01 14:43+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -74,6 +74,7 @@ msgid "Screen reader language"
 msgstr "Språk för skärmläsare"
 
 #: source/php/AcfFields/php/mod-all.php:11
+#: source/php/AcfFields/php/mod-video.php:162
 msgid "Language"
 msgstr "Språk"
 
@@ -210,6 +211,7 @@ msgid "Dutch (Standard)"
 msgstr "Holländska (standard)"
 
 #: source/php/AcfFields/php/mod-all.php:54
+#: source/php/AcfFields/php/mod-video.php:175
 msgid "English"
 msgstr "Engelska"
 
@@ -450,82 +452,83 @@ msgid "Sorbian"
 msgstr "Sorbiska"
 
 #: source/php/AcfFields/php/mod-all.php:114
-msgid "Spanska (Argentina)"
+msgid "Spanish (Argentina)"
 msgstr "Spanska (Argentina)"
 
 #: source/php/AcfFields/php/mod-all.php:115
-msgid "Spanska (Bolivia)"
+msgid "Spanish (Bolivia)"
 msgstr "Spanska (Bolivia)"
 
 #: source/php/AcfFields/php/mod-all.php:116
-msgid "Spanska (Chile)"
+msgid "Spanish (Chile)"
 msgstr "Spanska (Chile)"
 
 #: source/php/AcfFields/php/mod-all.php:117
-msgid "Spanska (Colombia)"
+msgid "Spanish (Colombia)"
 msgstr "Spanska (Colombia)"
 
 #: source/php/AcfFields/php/mod-all.php:118
-msgid "Spanska (Costa Rica)"
+msgid "Spanish (Costa Rica)"
 msgstr "Spanska (Costa Rica)"
 
 #: source/php/AcfFields/php/mod-all.php:119
-msgid "Spanska (Dominican Republic)"
+msgid "Spanish (Dominican Republic)"
 msgstr "Spanska (Dominikanska republiken)"
 
 #: source/php/AcfFields/php/mod-all.php:120
-msgid "Spanska (Ecuador)"
+msgid "Spanish (Ecuador)"
 msgstr "Spanska (Ecuador)"
 
 #: source/php/AcfFields/php/mod-all.php:121
-msgid "Spanska (El Salvador)"
+msgid "Spanish (El Salvador)"
 msgstr "Spanska (El Salvador)"
 
 #: source/php/AcfFields/php/mod-all.php:122
-msgid "Spanska (Guatemala)"
+msgid "Spanish (Guatemala)"
 msgstr "Spanska (Guatemala)"
 
 #: source/php/AcfFields/php/mod-all.php:123
-msgid "Spanska (Honduras)"
+msgid "Spanish (Honduras)"
 msgstr "Spanska (Honduras)"
 
 #: source/php/AcfFields/php/mod-all.php:124
-msgid "Spanska (Mexico)"
+msgid "Spanish (Mexico)"
 msgstr "Spanska (Mexico)"
 
 #: source/php/AcfFields/php/mod-all.php:125
-msgid "Spanska (Nicaragua)"
+msgid "Spanish (Nicaragua)"
 msgstr "Spanska (Nicaragua)"
 
 #: source/php/AcfFields/php/mod-all.php:126
-msgid "Spanska (Panama)"
+msgid "Spanish (Panama)"
 msgstr "Spanska (Panama)"
 
 #: source/php/AcfFields/php/mod-all.php:127
-msgid "Spanska (Paraguay)"
+msgid "Spanish (Paraguay)"
 msgstr "Spanska (Paraguay)"
 
 #: source/php/AcfFields/php/mod-all.php:128
-msgid "Spanska (Peru)"
+msgid "Spanish (Peru)"
 msgstr "Spanska (Peru)"
 
 #: source/php/AcfFields/php/mod-all.php:129
-msgid "Spanska (Puerto Rico)"
+msgid "Spanish (Puerto Rico)"
 msgstr "Spanska (Puerto Rico)"
 
 #: source/php/AcfFields/php/mod-all.php:130
-msgid "Spanska (Spain)"
+msgid "Spanish (Spain)"
 msgstr "Spanska (Spanien)"
 
 #: source/php/AcfFields/php/mod-all.php:131
-msgid "Spanska (Uruguay)"
+msgid "Spanish (Uruguay)"
 msgstr "Spanska (Uruguay)"
 
 #: source/php/AcfFields/php/mod-all.php:132
-msgid "Spanska (Venezuela)"
+msgid "Spanish (Venezuela)"
 msgstr "Spanska (Venezuela)"
 
 #: source/php/AcfFields/php/mod-all.php:133
+#: source/php/AcfFields/php/mod-video.php:174
 msgid "Swedish"
 msgstr "Svenska"
 
@@ -582,8 +585,8 @@ msgid "Zulu"
 msgstr "Zulu"
 
 #: source/php/AcfFields/php/mod-all.php:148
-msgid "sv"
-msgstr "sv"
+msgid "sv-se"
+msgstr "sv-se"
 
 #: source/php/AcfFields/php/mod-booking.php:13
 msgid "Datum"
@@ -764,7 +767,6 @@ msgid "Välj användare"
 msgstr "Välj användare"
 
 #: source/php/AcfFields/php/mod-contacts.php:425
-#| msgid "Lägg till rad"
 msgid "Lägg till kontakt"
 msgstr "Lägg till kontakt"
 
@@ -797,7 +799,6 @@ msgid "4"
 msgstr "4"
 
 #: source/php/AcfFields/php/mod-contacts.php:490
-#| msgid "grid-md-12"
 msgid "o-grid-12@md"
 msgstr "o-grid-12@md"
 
@@ -859,7 +860,7 @@ msgstr "Avdelare"
 #: source/php/AcfFields/php/mod-divider.php:10
 #: source/php/AcfFields/php/mod-slider.php:196
 #: source/php/AcfFields/php/mod-slider.php:493 source/php/BlockManager.php:415
-#: source/php/ModuleManager.php:642
+#: source/php/ModuleManager.php:639
 msgid "Title"
 msgstr "Titel"
 
@@ -1018,7 +1019,7 @@ msgstr "pixlar"
 
 #: source/php/AcfFields/php/mod-iframe.php:49
 #: source/php/AcfFields/php/mod-map.php:27
-#: source/php/AcfFields/php/mod-slider.php:398 source/php/ModuleManager.php:643
+#: source/php/AcfFields/php/mod-slider.php:398 source/php/ModuleManager.php:640
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr "Beskrivning"
@@ -1230,7 +1231,7 @@ msgstr ""
 #: source/php/AcfFields/php/mod-inlaylist.php:137
 #: source/php/AcfFields/php/mod-rss.php:85
 #: source/php/Module/Posts/views/partials/post-filters.blade.php:44
-#: source/php/ModuleManager.php:645
+#: source/php/ModuleManager.php:642
 msgid "Date"
 msgstr "Datum"
 
@@ -23502,7 +23503,6 @@ msgid "Ja, göm textbox (visa text som artikel)"
 msgstr "Ja, göm textbox (visa text som artikel)"
 
 #: source/php/AcfFields/php/mod-video.php:10
-#| msgid "Widget Type"
 msgid "Type"
 msgstr "Typ"
 
@@ -23535,6 +23535,18 @@ msgstr ""
 "använts för att bädda in den här videon kommer en platshållare automatiskt "
 "att hämtas från den inbäddade tjänsten. Du kan fortfarande använda det här "
 "fältet för att ersätta den automatiskt hämtade bilden."
+
+#: source/php/AcfFields/php/mod-video.php:111
+msgid "Subtitles"
+msgstr "Undertexter"
+
+#: source/php/AcfFields/php/mod-video.php:136
+msgid "Add Row"
+msgstr "Lägg till rad"
+
+#: source/php/AcfFields/php/mod-video.php:141
+msgid "Subtitle File"
+msgstr "Undertext-fil"
 
 #: source/php/AcfFields/php/mod-wpwidget.php:6
 msgid "Wordpress Widget"
@@ -23725,7 +23737,7 @@ msgstr "Vänligen fyll i alla obligatoriska fält."
 msgid "Block settings"
 msgstr "Inställningar för block"
 
-#: source/php/Display.php:474 templates/widget/form.php:30
+#: source/php/Display.php:473 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -23894,6 +23906,10 @@ msgstr "Storbild"
 msgid "Outputs a hero"
 msgstr "Visar en Hero"
 
+#: source/php/Module/Hero/Hero.php:56
+msgid "Page hero section"
+msgstr "Sidhuvudsektion"
+
 #: source/php/Module/Iframe/Iframe.php:12
 #: source/php/Module/Iframe/Iframe.php:13
 msgid "Iframe"
@@ -23904,13 +23920,13 @@ msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida."
 
 #: source/php/Module/Iframe/Iframe.php:32
-#: source/php/Module/Iframe/Iframe.php:38 source/php/Module/Map/Map.php:47
-#: source/php/Module/Map/Map.php:53 source/php/Module/Script/Script.php:113
+#: source/php/Module/Iframe/Iframe.php:38 source/php/Module/Map/Map.php:49
+#: source/php/Module/Map/Map.php:55 source/php/Module/Script/Script.php:113
 #: source/php/Module/Script/Script.php:119
 msgid "We need your consent to continue"
 msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
-#: source/php/Module/Iframe/Iframe.php:33 source/php/Module/Map/Map.php:48
+#: source/php/Module/Iframe/Iframe.php:33 source/php/Module/Map/Map.php:50
 #: source/php/Module/Script/Script.php:114
 #, php-format
 msgid ""
@@ -23921,13 +23937,13 @@ msgstr ""
 "godkänner du <a href=\"%s\">GDPR och Sekretesspolicyn</a>."
 
 #: source/php/Module/Iframe/Iframe.php:34
-#: source/php/Module/Iframe/Iframe.php:40 source/php/Module/Map/Map.php:49
-#: source/php/Module/Map/Map.php:55 source/php/Module/Script/Script.php:115
+#: source/php/Module/Iframe/Iframe.php:40 source/php/Module/Map/Map.php:51
+#: source/php/Module/Map/Map.php:57 source/php/Module/Script/Script.php:115
 #: source/php/Module/Script/Script.php:121
 msgid "I understand, continue."
 msgstr "Jag förstår, fortsätt."
 
-#: source/php/Module/Iframe/Iframe.php:39 source/php/Module/Map/Map.php:54
+#: source/php/Module/Iframe/Iframe.php:39 source/php/Module/Map/Map.php:56
 #, php-format
 msgid ""
 "This part of the website shows content from another website (%s). By "
@@ -24000,7 +24016,7 @@ msgstr "Kartor"
 msgid "Outputs an embedded map."
 msgstr "Bäddar in en karta."
 
-#: source/php/Module/Map/Map.php:65
+#: source/php/Module/Map/Map.php:67
 msgid ""
 "Your map link must start with http<strong>s</strong>://. Links without this "
 "prefix will not display."
@@ -24241,7 +24257,7 @@ msgstr "Visar texter"
 msgid "Outputs an embedded Video."
 msgstr "Visar en inbäddad video."
 
-#: source/php/Module/Video/Video.php:351
+#: source/php/Module/Video/Video.php:365
 #, php-format
 msgid ""
 "This video could not be embedded. <a href=\"%s\" target=\"_blank\">View the "
@@ -24289,82 +24305,82 @@ msgstr "Senaste inläggen"
 msgid "Tag cloud"
 msgstr "Taggmoln"
 
-#: source/php/ModuleManager.php:225
+#: source/php/ModuleManager.php:222
 msgctxt "add new button"
 msgid "Add New"
 msgstr "Lägg till ny"
 
-#: source/php/ModuleManager.php:226
+#: source/php/ModuleManager.php:223
 #, php-format
 msgid "Add new %s"
 msgstr "Lägg till %s"
 
-#: source/php/ModuleManager.php:227
+#: source/php/ModuleManager.php:224
 #, php-format
 msgid "New %s"
 msgstr "Ny %s"
 
-#: source/php/ModuleManager.php:228 source/php/ModuleManager.php:230
+#: source/php/ModuleManager.php:225 source/php/ModuleManager.php:227
 #, php-format
 msgid "Edit %s"
 msgstr "Redigera %s"
 
-#: source/php/ModuleManager.php:229
+#: source/php/ModuleManager.php:226
 #, php-format
 msgid "View %s"
 msgstr "Visa %s"
 
-#: source/php/ModuleManager.php:231
+#: source/php/ModuleManager.php:228
 #, php-format
 msgid "Search %s"
 msgstr "Sök %s"
 
-#: source/php/ModuleManager.php:232
+#: source/php/ModuleManager.php:229
 #, php-format
 msgid "Parent %s"
 msgstr "Förälder %s"
 
-#: source/php/ModuleManager.php:233
+#: source/php/ModuleManager.php:230
 #, php-format
 msgid "No %s"
 msgstr "Inga %s"
 
-#: source/php/ModuleManager.php:234
+#: source/php/ModuleManager.php:231
 #, php-format
 msgid "No %s in trash"
 msgstr "Inga %s i papperskorgen"
 
-#: source/php/ModuleManager.php:413
+#: source/php/ModuleManager.php:410
 msgid "Hide title"
 msgstr "Dölj titel"
 
-#: source/php/ModuleManager.php:452
+#: source/php/ModuleManager.php:449
 msgid "Copy and paste this shortcode to display the module inline."
 msgstr ""
 "Kopiera och klistra in denna shortcode i en brödtext där du vill visa "
 "modulen."
 
-#: source/php/ModuleManager.php:495
+#: source/php/ModuleManager.php:492
 msgid "This modules is not used yet."
 msgstr "Denna modulen används inte än."
 
-#: source/php/ModuleManager.php:499
+#: source/php/ModuleManager.php:496
 msgid "This module is used on the following places:"
 msgstr "Denna modulen används på följande ställen:"
 
-#: source/php/ModuleManager.php:598
+#: source/php/ModuleManager.php:595
 msgid "Module description"
 msgstr "Modulbeskrivning"
 
-#: source/php/ModuleManager.php:644
+#: source/php/ModuleManager.php:641
 msgid "Usage"
 msgstr "Användning"
 
-#: source/php/ModuleManager.php:669
+#: source/php/ModuleManager.php:666
 msgid "Not used"
 msgstr "Inte använd"
 
-#: source/php/ModuleManager.php:686
+#: source/php/ModuleManager.php:683
 msgid "more"
 msgstr "fler"
 
@@ -24557,6 +24573,66 @@ msgstr "Modulbredd"
 #: templates/widget/form.php:28
 msgid "Browse modules"
 msgstr "Bläddra moduler"
+
+#~ msgid "Spanska (Argentina)"
+#~ msgstr "Spanska (Argentina)"
+
+#~ msgid "Spanska (Bolivia)"
+#~ msgstr "Spanska (Bolivia)"
+
+#~ msgid "Spanska (Chile)"
+#~ msgstr "Spanska (Chile)"
+
+#~ msgid "Spanska (Colombia)"
+#~ msgstr "Spanska (Colombia)"
+
+#~ msgid "Spanska (Costa Rica)"
+#~ msgstr "Spanska (Costa Rica)"
+
+#~ msgid "Spanska (Dominican Republic)"
+#~ msgstr "Spanska (Dominikanska republiken)"
+
+#~ msgid "Spanska (Ecuador)"
+#~ msgstr "Spanska (Ecuador)"
+
+#~ msgid "Spanska (El Salvador)"
+#~ msgstr "Spanska (El Salvador)"
+
+#~ msgid "Spanska (Guatemala)"
+#~ msgstr "Spanska (Guatemala)"
+
+#~ msgid "Spanska (Honduras)"
+#~ msgstr "Spanska (Honduras)"
+
+#~ msgid "Spanska (Mexico)"
+#~ msgstr "Spanska (Mexico)"
+
+#~ msgid "Spanska (Nicaragua)"
+#~ msgstr "Spanska (Nicaragua)"
+
+#~ msgid "Spanska (Panama)"
+#~ msgstr "Spanska (Panama)"
+
+#~ msgid "Spanska (Paraguay)"
+#~ msgstr "Spanska (Paraguay)"
+
+#~ msgid "Spanska (Peru)"
+#~ msgstr "Spanska (Peru)"
+
+#~ msgid "Spanska (Puerto Rico)"
+#~ msgstr "Spanska (Puerto Rico)"
+
+#~ msgid "Spanska (Spain)"
+#~ msgstr "Spanska (Spanien)"
+
+#~ msgid "Spanska (Uruguay)"
+#~ msgstr "Spanska (Uruguay)"
+
+#~ msgid "Spanska (Venezuela)"
+#~ msgstr "Spanska (Venezuela)"
+
+#~ msgid "sv"
+#~ msgstr "sv"
 
 #~ msgid ""
 #~ "This part of the website shows content from another website. By "
@@ -25395,9 +25471,6 @@ msgstr "Bläddra moduler"
 #~| msgid "Hide Thumbnail"
 #~ msgid "Thumbnail"
 #~ msgstr "Dölj miniatyr"
-
-#~ msgid "Add Row"
-#~ msgstr "Lägg till rad"
 
 #, fuzzy
 #~| msgid "Sort order"
