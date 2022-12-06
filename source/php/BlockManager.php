@@ -174,11 +174,11 @@ class BlockManager
    /**
      * > This function will add a new variable to the viewData array called `embedContent` and set it
      * to the value of the `embed_code` field in the block's data array
-     * 
+     *
      * @param array viewData The data that will be passed to the view.
      * @param array block The block data
      * @param Modularity\Module\Posts\Posts Object module The module object
-     * 
+     *
      * @return The viewData array is being returned.
      */
     public function customBlockData(array $viewData, array $block, object $module)
