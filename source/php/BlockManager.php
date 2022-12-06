@@ -20,8 +20,32 @@ class BlockManager
 
         add_filter('Modularity/Block/Settings', array( $this, 'customBlockSettings' ), 10, 3);
         add_filter('Modularity/Block/Data', array( $this, 'customBlockData' ), 10, 3);
+        
+        add_action( 'save_post', array($this, 'registerSaveBlockAction'), 10, 3 );
+        
     }
 
+    /**
+     * > When a post is saved, parse the post content and run the `Modularity/save_block` action for
+     * each block.
+     * 
+     * @param int post_id The post id of the post being saved
+     * @param object post The post object
+     * @param bool update Whether this is an existing post being updated or not.
+     */
+    public function registerSaveBlockAction( int $post_id, object $post, bool $update) {
+
+        $blocks = parse_blocks($post->post_content);
+      
+        if(is_iterable($blocks)) {
+          foreach($blocks as $block) {
+            do_action('Modularity/save_block', $block, $post); 
+          }
+        }
+      
+      } 
+      
+      
     /**
      * Add missing width to columns
      * @return array
@@ -171,10 +195,20 @@ class BlockManager
         return $blockSettings;
     }
 
-    public function customBlockData($viewData, $block, $module)
+   /**
+     * > This function will add a new variable to the viewData array called `embedContent` and set it
+     * to the value of the `embed_code` field in the block's data array
+     *
+     * @param array viewData The data that will be passed to the view.
+     * @param array block The block data
+     * @param Modularity\Module\Posts\Posts Object module The module object
+     *
+     * @return The viewData array is being returned.
+     */
+    public function customBlockData(array $viewData, array $block, object $module)
     {
         if ('script' === $module->slug) {
-            $viewData->embedContent = $block->data->embed_code;
+            $viewData['embedContent'] = $block['data']['embed_code'];
         }
         return $viewData;
     }
@@ -310,7 +344,7 @@ class BlockManager
             $module->data(),
             $this->getDefaultValues($block['data'])
         );
-
+        
         //Add post title & hide title
         $module->data['postTitle'] = apply_filters(
             'the_title',
@@ -334,6 +368,7 @@ class BlockManager
 
         //Adds block data raw to view
         $viewData['blockData'] = $block;
+        $viewData['posts_columns'] = $block['data']['posts_columns'];
 
         //Filter view data
         $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
