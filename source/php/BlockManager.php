@@ -320,7 +320,7 @@ class BlockManager
             $module->data(),
             $this->getDefaultValues($block['data'])
         );
-
+        
         //Add post title & hide title
         $module->data['postTitle'] = apply_filters(
             'the_title',
@@ -344,6 +344,7 @@ class BlockManager
 
         //Adds block data raw to view
         $viewData['blockData'] = $block;
+        $viewData['posts_columns'] = $block['data']['posts_columns'];
 
         //Filter view data
         $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
