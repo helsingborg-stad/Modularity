@@ -171,10 +171,20 @@ class BlockManager
         return $blockSettings;
     }
 
-    public function customBlockData($viewData, $block, $module)
+   /**
+     * > This function will add a new variable to the viewData array called `embedContent` and set it
+     * to the value of the `embed_code` field in the block's data array
+     * 
+     * @param array viewData The data that will be passed to the view.
+     * @param array block The block data
+     * @param Modularity\Module\Posts\Posts Object module The module object
+     * 
+     * @return The viewData array is being returned.
+     */
+    public function customBlockData(array $viewData, array $block, object $module)
     {
         if ('script' === $module->slug) {
-            $viewData->embedContent = $block->data->embed_code;
+            $viewData['embedContent'] = $block['data']['embed_code'];
         }
         return $viewData;
     }
