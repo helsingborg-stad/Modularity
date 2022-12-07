@@ -19,24 +19,21 @@ class Iframe extends \Modularity\Module
     }
 
     public function data() : array
-    {
-        $url = get_field('iframe_url', $this->ID);
-        $url = str_replace(array('http://', 'https://'), '//', $url);
-
-        $data['url'] = $url;
-        $data['height'] = get_field('iframe_height', $this->ID);
+    {        
+        $data['url']         = get_field('iframe_url', $this->ID);
+        $data['height']      = get_field('iframe_height', $this->ID);
         $data['description'] = get_field('iframe_description', $this->ID);
 
         $data['lang'] = (object) [
             'knownLabels' => [
-                'title' => __('We need your consent to continue', 'modularity'),
-                'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
+                'title'  => __('We need your consent to continue', 'modularity'),
+                'info'   => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
                 'button' => __('I understand, continue.', 'modularity'),
             ],
 
             'unknownLabels' => [
-                'title' => __('We need your consent to continue', 'modularity'),
-                'info' => sprintf(__('This part of the website shows content from another website (%s). By continuing, you are accepting GDPR and privacy policy.', 'municipio'), '{SUPPLIER_WEBSITE}'),
+                'title'  => __('We need your consent to continue', 'modularity'),
+                'info'   => sprintf(__('This part of the website shows content from another website (%s). By continuing, you are accepting GDPR and privacy policy.', 'municipio'), '{SUPPLIER_WEBSITE}'),
                 'button' => __('I understand, continue.', 'modularity'),
             ],
         ];
