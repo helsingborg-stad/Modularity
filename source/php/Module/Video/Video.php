@@ -19,6 +19,9 @@ class Video extends \Modularity\Module
 
         //Cover images
         add_action('wp_after_insert_post', array($this, 'getVideoCover'), 10, 4);
+        
+        add_action('wp_after_insert_post', array($this, 'getVideoCoverForBlock'), 10, 2);
+        add_action('Modularity/save_block', array($this, 'getVideoCoverForBlock'), 10, 2);
 
         //Add mime types
         add_filter('upload_mimes', array($this, 'addVttFormatAsAllowedFiletype'), 10, 1);
@@ -119,6 +122,14 @@ class Video extends \Modularity\Module
         delete_post_meta($postId, 'placeholder_fallback_image');
 
         return false;
+    }
+    
+    function getVideoCoverForBlock( array $block, object $post) { 
+        
+        if (!$this->shouldSave()) {
+            return false;
+        }
+        error_log('<pre>' . print_r( $block, true ) . '</pre>');
     }
 
     /**
