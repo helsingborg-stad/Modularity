@@ -21,7 +21,7 @@ class BlockManager
         add_filter('Modularity/Block/Settings', array( $this, 'customBlockSettings' ), 10, 3);
         add_filter('Modularity/Block/Data', array( $this, 'customBlockData' ), 10, 3);
         
-        add_action( 'save_post', array($this, 'registerSaveBlockAction'), 10, 3 );
+        add_action('save_post', array($this, 'registerSaveBlockAction'), 10, 3 );
         
     }
 
