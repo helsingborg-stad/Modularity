@@ -39,7 +39,7 @@ class BlockManager
       
         if(is_iterable($blocks)) {
           foreach($blocks as $block) {
-            do_action('Modularity/save_block', $block, $post); 
+            do_action('Modularity/save_block', $block, $post_id, $post); 
           }
         }
       

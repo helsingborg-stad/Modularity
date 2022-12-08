@@ -20,8 +20,7 @@ class Video extends \Modularity\Module
         //Cover images
         add_action('wp_after_insert_post', array($this, 'getVideoCover'), 10, 4);
         
-        add_action('wp_after_insert_post', array($this, 'getVideoCoverForBlock'), 10, 2);
-        add_action('Modularity/save_block', array($this, 'getVideoCoverForBlock'), 10, 2);
+        add_action('Modularity/save_block', array($this, 'getVideoCoverForBlock'), 10, 3);
 
         //Add mime types
         add_filter('upload_mimes', array($this, 'addVttFormatAsAllowedFiletype'), 10, 1);
@@ -33,7 +32,8 @@ class Video extends \Modularity\Module
      * @param array $mimes Mime list without vtt
      * @return array $mimes Mime list with vtt
      */
-    public function addVttFormatAsAllowedFiletype($mimes) {
+    public function addVttFormatAsAllowedFiletype($mimes)
+    {
         $mimes['vtt']  = 'text/vtt';
         return $mimes;
     }
@@ -124,14 +124,67 @@ class Video extends \Modularity\Module
         return false;
     }
     
-    function getVideoCoverForBlock( array $block, object $post) { 
-        
-        if (!$this->shouldSave()) {
+    /**
+     * It checks if the block is a video block, if it's an embed, if it has no cover image and if it
+     * has a valid embed URL. If all of these conditions are met, it downloads the cover image from the
+     * video service and saves it as an attachment in the media library and updates the block cover image * with the attachment id of that image.
+     * 
+     * @param block The block object
+     * @param postId The id of the post that is being saved.
+     * @param post The post object
+     * 
+     * @return the ID of the attachment if it was successfully created, otherwise it returns false.
+     */
+    public function getVideoCoverForBlock($block, $postId, $post)
+    {
+        if (!$this->shouldSave() || 'acf/video' !== $block['blockName']) {
             return false;
         }
-        error_log('<pre>' . print_r( $block, true ) . '</pre>');
-    }
+                
+        $blockData = $block['attrs']['data'];
+    
+        if (!$this->isEmbed($blockData['type'])) {
+            return false;
+        }
+        
+        $embedUrl  = $blockData['embed_link'];
+        
+        if (empty($blockData['placeholder_image']) && filter_var($embedUrl, FILTER_VALIDATE_URL) !== false) {
+            $placeholderImageFieldKey = $blockData['_placeholder_image'];
 
+            $videoService   = $this->detectVideoService($embedUrl);
+            $videoId        = $this->getVideoId($embedUrl, $videoService);
+            $coverImage     = $this->getCoverUrl($videoId, $videoService);
+            
+            require_once(ABSPATH . 'wp-admin/includes/media.php');
+            require_once(ABSPATH . 'wp-admin/includes/file.php');
+            require_once(ABSPATH . 'wp-admin/includes/image.php');
+
+            $attachmentId = \media_sideload_image($coverImage, $postId, sprintf(__('Automatically downloaded cover image for a video embedded in a post (post id: %s).', 'modularity'), $postId), 'id');
+            
+            if ($attachmentId) {
+                
+                $existingBlocks = parse_blocks( $post->post_content );
+                foreach ($existingBlocks as &$existingBlock) {
+                    if($existingBlock['attrs']['data'] === $block['attrs']['data']) {
+                        $existingBlock['attrs']['data']['placeholder_image'] = $attachmentId;
+                    }
+                }                
+                   
+                $postData = array(
+                    'ID' => $postId,
+                    'post_content' => serialize_blocks( $existingBlocks ),
+                );
+                
+                update_field($placeholderImageFieldKey, $attachmentId);
+                return wp_update_post($postData, true, false);
+                
+            }
+        }
+        
+        return false;
+    }
+    
     /**
      * Check if embed option is enabled
      *
@@ -150,7 +203,8 @@ class Video extends \Modularity\Module
      * @param string        $videoId       Id of the video connected to the file.
      * @return string|bool                 Name of the file, false if not downloaded.
      */
-    private function downloadCoverImage($url, $videoId) {
+    private function downloadCoverImage($url, $videoId)
+    {
         if ($fileContents = $this->readRemoteFile($url)) {
             return $this->storeImage($fileContents, $videoId);
         }
@@ -283,7 +337,8 @@ class Video extends \Modularity\Module
      * @param  string $embedLink    The embed link
      * @return string $id           The id in embed link
      */
-    private function parseYoutubeId($embedLink) {
+    private function parseYoutubeId($embedLink)
+    {
         $hostname = parse_url($embedLink, PHP_URL_HOST);
 
         //https://youtu.be/ID
@@ -330,7 +385,8 @@ class Video extends \Modularity\Module
      * @param  string $videoService     What video service to use
      * @return string $url              A https url to the image
      */
-    private function getCoverUrl($id, $videoService) {
+    private function getCoverUrl($id, $videoService)
+    {
         if (isset($this->imageLocations[$videoService])) {
             return sprintf($this->imageLocations[$videoService], $id);
         }
@@ -412,7 +468,8 @@ class Video extends \Modularity\Module
         wp_enqueue_script('mod-video-script');
     }
 
-    private function accessProtected($obj, $prop) {
+    private function accessProtected($obj, $prop)
+    {
         $reflection = new ReflectionClass($obj);
         $property = $reflection->getProperty($prop);
         $property->setAccessible(true);
