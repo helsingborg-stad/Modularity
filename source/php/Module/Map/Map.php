@@ -81,7 +81,7 @@ class Map extends \Modularity\Module
 
     public function filterMapUrl($value, $post_id, $field) 
     {
-        $value = str_replace('&amp;', '&', $value);
+        $value = htmlspecialchars_decode($value);
         return $value;
     }
 
