@@ -433,12 +433,21 @@ class Editor extends \Modularity\Options
         // Get module posts
         if (!(empty($moduleIds) || empty($enabled) || empty($postStatuses))) {
             global $wpdb;
-            $format_statement = fn ($a, $raw = false) => implode(',', $raw ? $a : array_map(fn ($v) => "'" . esc_sql($v) . "'", $a));
-            $prepared = $wpdb->prepare("SELECT ID FROM `$wpdb->posts` WHERE `ID` IN (" . $format_statement($moduleIds, true) . ") AND `post_type` IN (" .  $format_statement($enabled) . ") AND `post_status` IN (" . $format_statement($postStatuses) . ")");
+            /**
+             * Helper function to convert an array into valid SQL as part of a query
+             * @param  array          $arr an array
+             * @return bool           Use $arr as is if true, otherwise quote each element
+             */
+            $formatStatement = function ($arr, $raw = false) {
+                $queryPart =   $raw ? $arr : array_map(fn ($v) => "'" . esc_sql($v) . "'", $arr);
+                return implode(',', $queryPart);
+            };
+            $prepared = $wpdb->prepare("SELECT ID FROM `$wpdb->posts` WHERE `ID` IN (" . $formatStatement($moduleIds, true) . ") AND `post_type` IN (" .  $format_statement($enabled) . ") AND `post_status` IN (" . $format_statement($postStatuses) . ")");
             $modulesPosts = $wpdb->get_results($prepared);
             
-            // Add module id's as keys in the array
-            if (!empty($modulesPosts)) {
+            // (check that the $modulesPosts result is not null, and not an empty array)
+            // Then add module id's as keys in the $module array 
+            if ($modulesPosts && is_array($modulesPosts) && !empty($modulesPosts)) {
                 foreach ($modulesPosts as $module) {
                     $modules[$module->ID] = $module;
                 }
