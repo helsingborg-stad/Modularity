@@ -125,14 +125,16 @@ class Video extends \Modularity\Module
     }
     
     /**
-     * It checks if the block is a video block, if it's an embed, if it has no cover image and if it
-     * has a valid embed URL. If all of these conditions are met, it downloads the cover image from the
-     * video service and saves it as an attachment in the media library and updates the block cover image * with the attachment id of that image.
-     * 
+     * It checks if the block is a video block, if it's an embed, if it has no cover
+     * image and if it has a valid embed URL.
+     * If all of these conditions are met, it downloads the cover image from the
+     * video service and saves it as an attachment in the media library and updates
+     * the block cover image * with the attachment id of that image.
+     *
      * @param block The block object
      * @param postId The id of the post that is being saved.
      * @param post The post object
-     * 
+     *
      * @return the ID of the attachment if it was successfully created, otherwise it returns false.
      */
     public function getVideoCoverForBlock($block, $postId, $post)
@@ -142,14 +144,9 @@ class Video extends \Modularity\Module
         }
                 
         $blockData = $block['attrs']['data'];
-    
-        if (!$this->isEmbed($blockData['type'])) {
-            return false;
-        }
-        
         $embedUrl  = $blockData['embed_link'];
         
-        if (empty($blockData['placeholder_image']) && filter_var($embedUrl, FILTER_VALIDATE_URL) !== false) {
+        if (empty($blockData['placeholder_image']) && filter_var($embedUrl, FILTER_VALIDATE_URL) !== false && $this->isEmbed($blockData['type'])) {
             $placeholderImageFieldKey = $blockData['_placeholder_image'];
 
             $videoService   = $this->detectVideoService($embedUrl);
@@ -163,22 +160,20 @@ class Video extends \Modularity\Module
             $attachmentId = \media_sideload_image($coverImage, $postId, sprintf(__('Automatically downloaded cover image for a video embedded in a post (post id: %s).', 'modularity'), $postId), 'id');
             
             if ($attachmentId) {
-                
-                $existingBlocks = parse_blocks( $post->post_content );
+                $existingBlocks = parse_blocks($post->post_content);
                 foreach ($existingBlocks as &$existingBlock) {
-                    if($existingBlock['attrs']['data'] === $block['attrs']['data']) {
+                    if ($existingBlock['attrs']['data'] === $block['attrs']['data']) {
                         $existingBlock['attrs']['data']['placeholder_image'] = $attachmentId;
                     }
-                }                
+                }
                    
                 $postData = array(
                     'ID' => $postId,
-                    'post_content' => serialize_blocks( $existingBlocks ),
+                    'post_content' => serialize_blocks($existingBlocks),
                 );
                 
                 update_field($placeholderImageFieldKey, $attachmentId);
                 return wp_update_post($postData, true, false);
-                
             }
         }
         

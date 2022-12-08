@@ -21,29 +21,27 @@ class BlockManager
         add_filter('Modularity/Block/Settings', array( $this, 'customBlockSettings' ), 10, 3);
         add_filter('Modularity/Block/Data', array( $this, 'customBlockData' ), 10, 3);
         
-        add_action('save_post', array($this, 'registerSaveBlockAction'), 10, 3 );
-        
+        add_action('save_post', array($this, 'registerSaveBlockAction'), 10, 3);
     }
 
     /**
      * > When a post is saved, parse the post content and run the `Modularity/save_block` action for
      * each block.
-     * 
+     *
      * @param int post_id The post id of the post being saved
      * @param object post The post object
      * @param bool update Whether this is an existing post being updated or not.
      */
-    public function registerSaveBlockAction( int $post_id, object $post, bool $update) {
-
+    public function registerSaveBlockAction(int $post_id, object $post)
+    {
         $blocks = parse_blocks($post->post_content);
       
-        if(is_iterable($blocks)) {
-          foreach($blocks as $block) {
-            do_action('Modularity/save_block', $block, $post_id, $post); 
-          }
+        if (is_iterable($blocks)) {
+            foreach ($blocks as $block) {
+                do_action('Modularity/save_block', $block, $post_id, $post);
+            }
         }
-      
-      } 
+    }
       
       
     /**
