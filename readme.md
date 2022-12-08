@@ -110,6 +110,17 @@ add_action('Modularity/Options/Module', function () {
 });
 ```
 
+#### Modularity/save_block
+
+> Action triggered whenever a post or page is created or updated.
+
+*Example:*
+
+```php
+add_action('Modularity/save_block', function ($block, $post) {
+    // Your code here
+});
+```
 Filter reference
 ----------------
 #### Modularity/Module/TemplateVersion3
