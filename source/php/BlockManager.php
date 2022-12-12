@@ -344,8 +344,13 @@ class BlockManager
 
         //Adds block data raw to view
         $viewData['blockData'] = $block;
-        $viewData = array_merge($viewData, $block['data']);
-
+        // Add block data if missing from current viewData
+        foreach ($block['data'] as $key => $data) {
+            if (empty($viewData[$key])) {
+                $viewData[$key] = $data;
+            }
+        }
+        
         //Filter view data
         $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
 
