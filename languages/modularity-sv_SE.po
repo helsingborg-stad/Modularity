@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
-"POT-Creation-Date: 2022-12-01 14:40+0100\n"
-"PO-Revision-Date: 2022-12-01 14:43+0100\n"
+"POT-Creation-Date: 2022-12-14 16:03+0100\n"
+"PO-Revision-Date: 2022-12-14 16:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Edit"
 msgstr "Redigera"
 
-#: App.php:155 source/php/BlockManager.php:112 source/php/Editor.php:124
+#: App.php:155 source/php/BlockManager.php:134 source/php/Editor.php:124
 #: source/php/Options/General.php:179
 msgid "Modules"
 msgstr "Moduler"
@@ -859,7 +859,7 @@ msgstr "Avdelare"
 
 #: source/php/AcfFields/php/mod-divider.php:10
 #: source/php/AcfFields/php/mod-slider.php:196
-#: source/php/AcfFields/php/mod-slider.php:493 source/php/BlockManager.php:415
+#: source/php/AcfFields/php/mod-slider.php:493 source/php/BlockManager.php:453
 #: source/php/ModuleManager.php:639
 msgid "Title"
 msgstr "Titel"
@@ -23724,16 +23724,16 @@ msgstr "Ämne"
 msgid "Taxonomy"
 msgstr "Kategori"
 
-#: source/php/BlockManager.php:353
+#: source/php/BlockManager.php:391
 msgid "Your settings rendered an empty result. Try other settings."
 msgstr ""
 "Dina inställningar gjorde ett tomt resultat. Prova andra inställningar."
 
-#: source/php/BlockManager.php:359
+#: source/php/BlockManager.php:397
 msgid "Please fill in all required fields."
 msgstr "Vänligen fyll i alla obligatoriska fält."
 
-#: source/php/BlockManager.php:410
+#: source/php/BlockManager.php:448
 msgid "Block settings"
 msgstr "Inställningar för block"
 
@@ -23919,14 +23919,14 @@ msgstr "Iframe"
 msgid "Outputs an embedded page."
 msgstr "Visar en inbäddad sida."
 
-#: source/php/Module/Iframe/Iframe.php:32
-#: source/php/Module/Iframe/Iframe.php:38 source/php/Module/Map/Map.php:49
+#: source/php/Module/Iframe/Iframe.php:29
+#: source/php/Module/Iframe/Iframe.php:34 source/php/Module/Map/Map.php:49
 #: source/php/Module/Map/Map.php:55 source/php/Module/Script/Script.php:113
 #: source/php/Module/Script/Script.php:119
 msgid "We need your consent to continue"
 msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
-#: source/php/Module/Iframe/Iframe.php:33 source/php/Module/Map/Map.php:50
+#: source/php/Module/Iframe/Iframe.php:30 source/php/Module/Map/Map.php:50
 #: source/php/Module/Script/Script.php:114
 #, php-format
 msgid ""
@@ -23936,14 +23936,14 @@ msgstr ""
 "Den här delen av hemsidan visar innehåll från %s. Genom att fortsätta "
 "godkänner du <a href=\"%s\">GDPR och Sekretesspolicyn</a>."
 
-#: source/php/Module/Iframe/Iframe.php:34
-#: source/php/Module/Iframe/Iframe.php:40 source/php/Module/Map/Map.php:51
+#: source/php/Module/Iframe/Iframe.php:31
+#: source/php/Module/Iframe/Iframe.php:36 source/php/Module/Map/Map.php:51
 #: source/php/Module/Map/Map.php:57 source/php/Module/Script/Script.php:115
 #: source/php/Module/Script/Script.php:121
 msgid "I understand, continue."
 msgstr "Jag förstår, fortsätt."
 
-#: source/php/Module/Iframe/Iframe.php:39 source/php/Module/Map/Map.php:56
+#: source/php/Module/Iframe/Iframe.php:35 source/php/Module/Map/Map.php:56
 #, php-format
 msgid ""
 "This part of the website shows content from another website (%s). By "
@@ -23952,7 +23952,11 @@ msgstr ""
 "Den här delen av webbplatsen visar innehåll från en annan webbplats (%s). "
 "Genom att fortsätta accepterar du GDPR och integritetspolicy."
 
-#: source/php/Module/Iframe/Iframe.php:50
+#: source/php/Module/Iframe/Iframe.php:38
+msgid "Handling of personal data"
+msgstr "Hantering av personlig data"
+
+#: source/php/Module/Iframe/Iframe.php:47
 msgid ""
 "Your iframe link must start with http<strong>s</strong>://. Links without "
 "this prefix will not display."
@@ -23960,7 +23964,7 @@ msgstr ""
 "Dina iframe url måste börja med http<strong>s</strong>://. Länkar utan detta "
 "prefix kommer inte att visas."
 
-#: source/php/Module/Iframe/Iframe.php:71
+#: source/php/Module/Iframe/Iframe.php:68
 msgid "We need your consent to continue."
 msgstr "Vi behöver ditt godkännande för att ta dig vidare."
 
@@ -24257,7 +24261,14 @@ msgstr "Visar texter"
 msgid "Outputs an embedded Video."
 msgstr "Visar en inbäddad video."
 
-#: source/php/Module/Video/Video.php:365
+#: source/php/Module/Video/Video.php:160
+#, php-format
+msgid ""
+"Automatically downloaded cover image for a video embedded in a post (post "
+"id: %s)."
+msgstr "Automatiskt nedladdad omslagsbild för video (inläggs-id: %s)."
+
+#: source/php/Module/Video/Video.php:427
 #, php-format
 msgid ""
 "This video could not be embedded. <a href=\"%s\" target=\"_blank\">View the "
