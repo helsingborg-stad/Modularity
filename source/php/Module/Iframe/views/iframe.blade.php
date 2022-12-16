@@ -14,10 +14,12 @@
         </div>
     @endif
     @iframe([
-        'src' => $url,
+        'src'    => $url,
         'height' => $height,
-        'title' => $description ?? $post_title,
+        'title'  => $description ?? $post_title,
         'labels' => $lang,
+        'poster' => $poster
     ])
     @endiframe
+
 @endcard

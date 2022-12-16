@@ -24,6 +24,9 @@ class Iframe extends \Modularity\Module
         $data['height']      = get_field('iframe_height', $this->ID);
         $data['description'] = get_field('iframe_description', $this->ID);
 
+        $videoService = new \Municipio\Helper\VideoService($data['url']);
+        $data['poster'] = $videoService->getCoverArt();
+        
         $data['lang'] = (object) [
             'knownLabels' => [
                 'title'  => __('We need your consent to continue', 'modularity'),
@@ -37,6 +40,8 @@ class Iframe extends \Modularity\Module
             ],
             'infoLabel' => __('Handling of personal data', 'modularity'),
         ];
+        
+            
 
         return $data;
     }
