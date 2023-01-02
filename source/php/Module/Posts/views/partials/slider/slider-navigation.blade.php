@@ -11,7 +11,7 @@
             @endbutton
         </div>
         @endif
-        <div class="splide__arrows c-slider__arrows" id="js-custom-buttons-{{$ID}}">
+        <div class="splide__arrows c-slider__arrows" id="js-custom-buttons-{{$sliderId}}">
             @button([
                 'classList' => ['splide__arrow', 'splide__arrow--prev'],
                 'icon' => 'keyboard_arrow_left',

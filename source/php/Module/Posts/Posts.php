@@ -268,6 +268,12 @@ class Posts extends \Modularity\Module
            'next' => __('Next slide', 'modularity'),
         ];
 
+        if($this->ID) {
+            $data['sliderId'] = $this->ID;
+        } else {
+            $data['sliderId'] = uniqid();
+        }
+        
         return $data;
     }
 

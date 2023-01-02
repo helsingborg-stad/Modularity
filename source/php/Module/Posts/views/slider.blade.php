@@ -3,7 +3,7 @@
     <div class="o-grid-12@sm o-grid-8@md o-grid-8@lg">
         @if (!$hideTitle && !empty($postTitle))
             @typography([
-                'id' => 'mod-posts-' . $ID . '-label',
+                'id' => 'mod-posts-' . $sliderId . '-label',
                 'element' => 'h2',
                 'variant' => 'h2',
                 'classList' => ['module-title']
@@ -24,14 +24,14 @@
 </div>
 
 @slider([
-    'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $ID,
+    'id'              => isset($blockData['anchor']) ? $blockData['anchor']: 'mod-posts-' . $sliderId,
     'classList'       => ['c-slider--post'],
     'showStepper'     => false,
     'autoSlide'       => false,
     'isPost'          => true,
-    'customButtons'   => 'js-custom-buttons-' . $ID,
+    'customButtons'   => 'js-custom-buttons-' . $sliderId,
     'attributeList' => [
-        'aria-labelledby' => 'mod-slider-' . $ID . '-label',
+        'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
         'data-slider-gap' => 48,
         'data-slides-per-page' => $slider->slidesPerPage
     ]
