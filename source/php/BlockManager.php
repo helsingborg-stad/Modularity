@@ -110,9 +110,9 @@ class BlockManager
      */
     public function renderLanguageAttribute($blockContent, array $block): string
     {
-        $siteLanguage   = get_bloginfo('language');
-        $pageLanguage   = get_post_meta(get_the_ID(), 'lang', true) ?: $siteLanguage;
-        $blockLanguage  = !empty($block['attrs']['data']['lang']) ? $block['attrs']['data']['lang'] : $pageLanguage;
+        $siteLanguage   = strtolower(get_bloginfo('language'));
+        $pageLanguage   = strtolower(get_post_meta(get_the_ID(), 'lang', true)) ?: $siteLanguage;
+        $blockLanguage  = !empty($block['attrs']['data']['lang']) ? strtolower($block['attrs']['data']['lang']) : $pageLanguage;
 
         if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage])) {
             if (str_contains($blockContent, 'id="block_')) {
