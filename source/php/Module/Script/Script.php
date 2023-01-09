@@ -128,7 +128,10 @@ class Script extends \Modularity\Module
                 $requiresAccept = true;
             }
             if($embedSrc['src']) {
-                array_push($arrSrc, $embedSrc['src']);
+                array_push(
+                    $arrSrc, 
+                    $this->normalizeUrl($embedSrc['src'])
+                );
             }
         }
         $data['scriptSrcArray'] = $arrSrc;
@@ -136,6 +139,17 @@ class Script extends \Modularity\Module
 
         return $data;
     }
+
+    /**
+     * Adds scheme to url if not defined in url.
+     */
+    private function normalizeUrl($url) {
+        if (strpos($url, '//') === 0) {
+            return 'https:' . $url;  
+        }
+        return $url; 
+    }
+
     /**
      * Removes the filter of html & script data before save.
      * @var int
