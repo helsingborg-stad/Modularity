@@ -54,7 +54,7 @@ class BlockManager
      * Add missing width to columns
      * @return array
      */
-    public function blockDataPreRender($block_content, $block)
+    public function blockDataPreRender($blockContent, $block)
     {
         if ($block['blockName'] === 'core/columns') {
             foreach ($block['innerBlocks'] as &$innerBlock) {
@@ -77,9 +77,9 @@ class BlockManager
      * Render a custom grid around each column
      * @return string
      */
-    public function renderCustomGrid($block_content, array $block): string
+    public function renderCustomGrid($blockContent, array $block): string
     {
-        if (!is_string($block_content)) {
+        if (!is_string($blockContent)) {
             return "";
         }
 
@@ -93,22 +93,36 @@ class BlockManager
         ];
 
         if ('core/column' === $block['blockName']) {
-            $block_content = '<div class="' . $widths[$block['attrs']['width']] . '">' . $block_content . '</div>';
+            $blockContent = '<div class="' . $widths[$block['attrs']['width']] . '">' . $blockContent . '</div>';
         }
 
-        return $block_content;
+        return $blockContent;
     }
 
-    public function renderLanguageAttribute($block_content, array $block): string
+    /**
+     * If the block has a language attribute, and that language is not the same as the site or page
+     * language, then add the language attribute to the block. If no matching id attribute is present on the block then wrap the block in a div with the language attribute.
+     *
+     * @param blockContent The content of the block.
+     * @param array block The block object.
+     *
+     * @return string The block content with the language attribute added.
+     */
+    public function renderLanguageAttribute($blockContent, array $block): string
     {
         $siteLanguage   = get_bloginfo('language');
-        $pageLanguage   = get_post_meta(get_the_ID(), 'lang', true);
+        $pageLanguage   = get_post_meta(get_the_ID(), 'lang', true) ?: $siteLanguage;
+        $blockLanguage  = !empty($block['attrs']['data']['lang']) ? $block['attrs']['data']['lang'] : $pageLanguage;
 
-        if (!empty($block['attrs']['data']['lang']) && !in_array($block['attrs']['data']['lang'], [$siteLanguage, $pageLanguage])) {
-            return '<div lang="' . $block['attrs']['data']['lang'] . '">' . $block_content . '</div><!-- lang -->';
+        if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage])) {
+            if (str_contains($blockContent, 'id="block_')) {
+                $blockContent = str_replace('id="block_', 'lang="' . $block['attrs']['data']['lang'] . '" id="block_', $blockContent);
+            } else {
+                $blockContent = '<div lang="' . $block['attrs']['data']['lang'] . '">' . $blockContent . '</div><!-- lang -->';
+            }
         }
 
-        return $block_content;
+        return $blockContent;
     }
 
     /**
