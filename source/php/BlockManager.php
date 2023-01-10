@@ -11,16 +11,22 @@ class BlockManager
     {
         add_filter('block_categories_all', array($this, 'filterCategories'), 10, 2);
         add_filter('acf/load_field_group', array($this, 'addLocationRule'));
+
         add_action('init', array($this, 'addBlockFieldGroup'));
+
         add_filter('acf/load_field_group', array($this, 'addLocationRulesToBlockGroup'));
         add_filter('allowed_block_types_all', array($this, 'filterBlockTypes'));
-        add_filter('render_block', array($this,'renderCustomGrid'), 10, 2);
+
+        add_filter('render_block', array($this, 'renderCustomGrid'), 10, 2);
+        add_filter('render_block', array($this, 'renderLanguageAttribute'), 1, 2);
+
         add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
+
         add_filter('acf/register_block_type_args', array($this, 'blockTypeArgs'), 10, 1);
 
-        add_filter('Modularity/Block/Settings', array( $this, 'customBlockSettings' ), 10, 3);
-        add_filter('Modularity/Block/Data', array( $this, 'customBlockData' ), 10, 3);
-        
+        add_filter('Modularity/Block/Settings', array($this, 'customBlockSettings'), 10, 3);
+        add_filter('Modularity/Block/Data', array($this, 'customBlockData'), 10, 3);
+
         add_action('save_post', array($this, 'registerSaveBlockAction'), 10, 3);
     }
 
@@ -35,20 +41,20 @@ class BlockManager
     public function registerSaveBlockAction(int $post_id, object $post)
     {
         $blocks = parse_blocks($post->post_content);
-      
+
         if (is_iterable($blocks)) {
             foreach ($blocks as $block) {
                 do_action('Modularity/save_block', $block, $post_id, $post);
             }
         }
     }
-      
-      
+
+
     /**
      * Add missing width to columns
      * @return array
      */
-    public function blockDataPreRender($block_content, $block)
+    public function blockDataPreRender($blockContent, $block)
     {
         if ($block['blockName'] === 'core/columns') {
             foreach ($block['innerBlocks'] as &$innerBlock) {
@@ -71,9 +77,9 @@ class BlockManager
      * Render a custom grid around each column
      * @return string
      */
-    public function renderCustomGrid($block_content, array $block): string
+    public function renderCustomGrid($blockContent, array $block): string
     {
-        if (!is_string($block_content)) {
+        if (!is_string($blockContent)) {
             return "";
         }
 
@@ -87,10 +93,36 @@ class BlockManager
         ];
 
         if ('core/column' === $block['blockName']) {
-            $block_content = '<div class="' . $widths[$block['attrs']['width']] . '">' . $block_content . '</div>';
+            $blockContent = '<div class="' . $widths[$block['attrs']['width']] . '">' . $blockContent . '</div>';
         }
 
-        return $block_content;
+        return $blockContent;
+    }
+
+    /**
+     * If the block has a language attribute, and that language is not the same as the site or page
+     * language, then add the language attribute to the block. If no matching id attribute is present on the block then wrap the block in a div with the language attribute.
+     *
+     * @param blockContent The content of the block.
+     * @param array block The block object.
+     *
+     * @return string The block content with the language attribute added.
+     */
+    public function renderLanguageAttribute($blockContent, array $block): string
+    {
+        $siteLanguage   = strtolower(get_bloginfo('language'));
+        $pageLanguage   = strtolower(get_post_meta(get_the_ID(), 'lang', true)) ?: $siteLanguage;
+        $blockLanguage  = !empty($block['attrs']['data']['lang']) ? strtolower($block['attrs']['data']['lang']) : $pageLanguage;
+
+        if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage])) {
+            if (str_contains($blockContent, 'id="block_')) {
+                $blockContent = str_replace('id="block_', 'lang="' . $block['attrs']['data']['lang'] . '" id="block_', $blockContent);
+            } else {
+                $blockContent = '<div lang="' . $block['attrs']['data']['lang'] . '">' . $blockContent . '</div><!-- lang -->';
+            }
+        }
+
+        return $blockContent;
     }
 
     /**
@@ -183,7 +215,7 @@ class BlockManager
         }
     }
 
-    
+
     public function customBlockSettings($blockSettings, $slug)
     {
         if ('script' === $slug) {
@@ -193,7 +225,7 @@ class BlockManager
         return $blockSettings;
     }
 
-   /**
+    /**
      * > This function will add a new variable to the viewData array called `embedContent` and set it
      * to the value of the `embed_code` field in the block's data array
      *
@@ -342,16 +374,16 @@ class BlockManager
             $module->data(),
             $this->getDefaultValues($block['data'])
         );
-        
+
         //Add post title & hide title
         $module->data['postTitle'] = apply_filters(
             'the_title',
             !empty($block['data']['custom_block_title']) ?
-            $block['data']['custom_block_title'] : $block['data']['field_block_title']
+                $block['data']['custom_block_title'] : $block['data']['field_block_title']
         );
         $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
-        if (! isset($block['anchor']) || '' === $block['anchor']) {
+        if (!isset($block['anchor']) || '' === $block['anchor']) {
             $block['anchor'] = $block['id'];
         }
 
@@ -372,7 +404,7 @@ class BlockManager
                 $viewData[$key] = $data;
             }
         }
-        
+
         //Filter view data
         $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
 

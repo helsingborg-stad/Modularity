@@ -8,7 +8,7 @@
     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
     'heading' => ($post->showTitle ? $post->post_title : false),
     'content' => ($post->showExcerpt ? $post->post_content : false),
-    'classList' => [$classes, 'u-color__text--info'],
+    'classList' => [$classes, 'u-color__text--info', 'c-card--focus-inset'],
     'date' => ($post->showDate ? get_post_time( "Y-m-d H:i",  $post ) : false),
     'containerAware' => false,
     'hasAction' => true,
