@@ -88,7 +88,7 @@
                                         'js-filter-item' => '',
                                         'js-filter-data' => ''
                                     ],
-                                    'classList' => ['c-accordion-table']
+                                    'classList' => ['c-accordion-table', 'u-clearfix']
                             ])
                                     {!! $accordionItem['content'] !!}
                             @endaccordion__item
