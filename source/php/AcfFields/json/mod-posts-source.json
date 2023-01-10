@@ -221,7 +221,7 @@
                     "default_value": "",
                     "tabs": "all",
                     "toolbar": "full",
-                    "media_upload": 0,
+                    "media_upload": 1,
                     "delay": 0,
                     "parent_repeater": "field_576258d3110b0"
                 },
@@ -2524,4 +2524,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
