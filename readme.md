@@ -402,6 +402,36 @@ add_filter('Modularity/Editor/ModuleCssScope',function($scopes) {
     });
 ```
 
+#### Modularity/Display/viewData
+
+*Params:*
+```
+$viewData - array
+```
+
+*Example:*
+```php
+add_filter('Modularity/Display/viewData',function($data) {
+        //do something
+        return $data;
+    });
+```
+
+#### Modularity/Display/{modulePostTypeSlug}/viewData
+
+*Params:*
+```
+$viewData - array
+```
+
+*Example:*
+```php
+add_filter("Modularity/Display/mod-posts/viewData", function($data) {
+        //do something
+        return $data;
+    });
+```
+
 ## Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.
 
