@@ -85,8 +85,19 @@ class Display
         $init = new ComponentLibraryInit([$moduleView]);
         $blade = $init->getEngine();
 
+        $filters = [
+            fn ($d) => apply_filters('Modularity/Display/viewData', $d),
+            fn ($d) => apply_filters("Modularity/Display/{$d['post_type']}/viewData", $d),
+        ];
+
+        $viewData = array_reduce(
+            $filters,
+            fn (array $d, callable $applyFilter) => $applyFilter($d),
+            $data
+        );
+
         try {
-            return $blade->make($view, $data)->render();
+            return $blade->make($view, $viewData)->render();
         } catch (Throwable $e) {
             echo '<pre style="border: 3px solid #f00; padding: 10px;">';
             echo '<strong>' . $e->getMessage() . '</strong>';
