@@ -6,7 +6,7 @@
                 'id' => 'mod-posts-' . $sliderId . '-label',
                 'element' => 'h2',
                 'variant' => 'h2',
-                'classList' => ['module-title']
+                'classList' => ['module-title', 'u-margin__bottom--0']
             ])
                 {!! $postTitle !!}
             @endtypography
