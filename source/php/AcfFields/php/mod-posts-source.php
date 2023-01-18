@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
     'title' => __('Data source', 'modularity'),
     'fields' => array(
@@ -9,6 +11,7 @@
             'key' => 'field_571dfaafe6984',
             'label' => __('Data source', 'modularity'),
             'name' => 'posts_data_source',
+            'aria-label' => '',
             'type' => 'select',
             'instructions' => '',
             'required' => 1,
@@ -40,6 +43,7 @@
             'key' => 'field_571dfc40f8114',
             'label' => __('Post Types', 'modularity'),
             'name' => 'posts_data_post_type',
+            'aria-label' => '',
             'type' => 'posttype_select',
             'instructions' => '',
             'required' => 1,
@@ -68,6 +72,7 @@
             'key' => 'field_571dfc6ff8115',
             'label' => __('Pick posts to display', 'modularity'),
             'name' => 'posts_data_posts',
+            'aria-label' => '',
             'type' => 'post_object',
             'instructions' => '',
             'required' => 1,
@@ -101,6 +106,7 @@
             'key' => 'field_571dfcd6b5cf9',
             'label' => __('Childs of', 'modularity'),
             'name' => 'posts_data_child_of',
+            'aria-label' => '',
             'type' => 'post_object',
             'instructions' => '',
             'required' => 1,
@@ -134,6 +140,7 @@
             'key' => 'field_571dff4eb46c3',
             'label' => __('Number of posts', 'modularity'),
             'name' => 'posts_count',
+            'aria-label' => '',
             'type' => 'number',
             'instructions' => __('Set to -1 to show all', 'modularity'),
             'required' => 1,
@@ -165,6 +172,7 @@
             'key' => 'field_576258d3110b0',
             'label' => __('Data input', 'modularity'),
             'name' => 'data',
+            'aria-label' => '',
             'type' => 'repeater',
             'instructions' => '',
             'required' => 1,
@@ -194,6 +202,7 @@
                     'key' => 'field_576258f4110b1',
                     'label' => __('Titel', 'modularity'),
                     'name' => 'post_title',
+                    'aria-label' => '',
                     'type' => 'text',
                     'instructions' => '',
                     'required' => 1,
@@ -216,6 +225,7 @@
                     'key' => 'field_57625914110b2',
                     'label' => __('Innehåll', 'modularity'),
                     'name' => 'post_content',
+                    'aria-label' => '',
                     'type' => 'wysiwyg',
                     'instructions' => '',
                     'required' => 0,
@@ -228,7 +238,7 @@
                     'default_value' => '',
                     'tabs' => 'all',
                     'toolbar' => 'full',
-                    'media_upload' => 0,
+                    'media_upload' => 1,
                     'delay' => 0,
                     'parent_repeater' => 'field_576258d3110b0',
                 ),
@@ -236,6 +246,7 @@
                     'key' => 'field_576261c3ef10e',
                     'label' => __('Permalink', 'modularity'),
                     'name' => 'permalink',
+                    'aria-label' => '',
                     'type' => 'url',
                     'instructions' => '',
                     'required' => 0,
@@ -253,6 +264,7 @@
                     'key' => 'field_57625930110b3',
                     'label' => __('Bild', 'modularity'),
                     'name' => 'image',
+                    'aria-label' => '',
                     'type' => 'image',
                     'instructions' => '',
                     'required' => 0,
@@ -2428,6 +2440,7 @@
                     'key' => 'field_57625a3e188da',
                     'label' => __('Column values', 'modularity'),
                     'name' => 'column_values',
+                    'aria-label' => '',
                     'type' => 'repeater',
                     'instructions' => __('Column values if expandable list is selected.', 'modularity'),
                     'required' => 0,
@@ -2449,6 +2462,7 @@
                             'key' => 'field_57625a67188db',
                             'label' => __('Value', 'modularity'),
                             'name' => 'value',
+                            'aria-label' => '',
                             'type' => 'text',
                             'instructions' => '',
                             'required' => 0,
@@ -2476,6 +2490,7 @@
             'key' => 'field_57ecf1007b749',
             'label' => __('Link to post type archive', 'modularity'),
             'name' => 'archive_link',
+            'aria-label' => '',
             'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
@@ -2531,4 +2546,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
