@@ -10,5 +10,8 @@
     "context" => ['hero', 'module.hero', 'module.hero.image', $sidebarContext . '.animation-item'],
     "sidebar" => $sidebarContext ? $sidebarContext : false,
     "ariaLabel" => $ariaLabel,
+    "heroView" => $heroView,
+    "backgroundColor" => $backgroundColor,
+    
 ])
 @endhero

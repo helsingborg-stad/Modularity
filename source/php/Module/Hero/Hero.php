@@ -47,13 +47,14 @@ class Hero extends \Modularity\Module
         }
 
         //Common fields
-        $data['type']           = $type;
-        $data['size']           = $fields['mod_hero_size'];
-        $data['byline']         = $fields['mod_hero_byline'];
-        $data['paragraph']      = $fields['mod_hero_body'];
-        $data['backgroundType'] = $data['mod_hero_background_type'] ?? 'image';
-        
-        $data['ariaLabel'] = __('Page hero section', 'modularity');
+        $data['type']               = $type;
+        $data['size']               = $fields['mod_hero_size'];
+        $data['byline']             = $fields['mod_hero_byline'];
+        $data['paragraph']          = $fields['mod_hero_body'];
+        $data['backgroundType']     = $data['mod_hero_background_type'] ?? 'image';
+        $data['heroView']           = $fields['mod_hero_display_as'];
+        $data['backgroundColor']    = $fields['mod_hero_background_color'] ? $fields['mod_hero_background_color'] : false;
+        $data['ariaLabel']          = __('Page hero section', 'modularity');
 
         return $data;
     }
