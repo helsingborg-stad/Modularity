@@ -28,6 +28,7 @@ class SliderTemplate extends AbstractController
         $this->data['slider']['repeatSlide']   = isset($fields->repeat_slide) ? (bool) $fields->repeat_slide: true;
         $this->data['postsDisplayAs']           = $fields->posts_display_as;
 
+        //TODO: Change this when purpose templates are done
         if (!empty(\Municipio\Helper\Purpose::getPurpose($this->data['posts_data_post_type']))) {
             
             if(file_exists(MODULARITY_MODULE_PATH . 'Posts' . DIRECTORY_SEPARATOR . 'views' . 
