@@ -168,63 +168,6 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
-        6 => array(
-            'key' => 'field_63c957cf740bc',
-            'label' => __('Display as', 'modularity'),
-            'name' => 'mod_hero_display_as',
-            'type' => 'radio',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_62c3f89f983b1',
-                        'operator' => '!=',
-                        'value' => 'video',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'choices' => array(
-                'default' => __('Standard', 'modularity'),
-                'twoColumn' => __('Two column', 'modularity'),
-            ),
-            'default_value' => __('standard', 'modularity'),
-            'return_format' => 'value',
-            'allow_null' => 0,
-            'other_choice' => 0,
-            'layout' => 'vertical',
-            'save_other_choice' => 0,
-        ),
-        7 => array(
-            'key' => 'field_63c95c1c3ba6a',
-            'label' => __('Background color', 'modularity'),
-            'name' => 'mod_hero_background_color',
-            'type' => 'color_picker',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_63c957cf740bc',
-                        'operator' => '==',
-                        'value' => 'twoColumn',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => __('#FFFFFF', 'modularity'),
-            'enable_opacity' => 0,
-            'return_format' => 'string',
-        ),
     ),
     'location' => array(
         0 => array(
