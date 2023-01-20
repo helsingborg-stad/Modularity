@@ -164,63 +164,6 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_63c957cf740bc",
-            "label": "Display as",
-            "name": "mod_hero_display_as",
-            "type": "radio",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_62c3f89f983b1",
-                        "operator": "!=",
-                        "value": "video"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Standard",
-                "twoColumn": "Two column"
-            },
-            "default_value": "standard",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "layout": "vertical",
-            "save_other_choice": 0
-        },
-        {
-            "key": "field_63c95c1c3ba6a",
-            "label": "Background color",
-            "name": "mod_hero_background_color",
-            "type": "color_picker",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_63c957cf740bc",
-                        "operator": "==",
-                        "value": "twoColumn"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "#FFFFFF",
-            "enable_opacity": 0,
-            "return_format": "string"
         }
     ],
     "location": [
