@@ -11,7 +11,7 @@
     "sidebar" => $sidebarContext ? $sidebarContext : false,
     "ariaLabel" => $ariaLabel,
     "heroView" => $heroView,
-    "backgroundColor" => $backgroundColor,
-    
+    'background' => $backgroundColor
+
 ])
 @endhero
