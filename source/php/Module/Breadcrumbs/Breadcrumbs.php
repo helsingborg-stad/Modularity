@@ -2,6 +2,7 @@
 
 namespace Modularity\Module\Breadcrumbs;
 
+use \Modularity\Helper\Post as PostHelper; 
 class Breadcrumbs extends \Modularity\Module
 {
     public $slug = 'breadcrumbs';
@@ -35,9 +36,12 @@ class Breadcrumbs extends \Modularity\Module
         
         $theme = wp_get_theme('municipio');
         if ($theme->exists()) {
-            $municipio = new \Municipio\Controller\BaseController;
-            $breadcrumb = new \Municipio\Helper\Navigation('breadcrumb', 'modularity');
-            $data['breadcrumbItems'] = $breadcrumb->getBreadcrumbItems($municipio->getPageID());
+            $breadcrumb = new \Municipio\Helper\Navigation(
+                'breadcrumb', 'modularity'
+            );
+            $data['breadcrumbItems'] = $breadcrumb->getBreadcrumbItems(
+                PostHelper::getPageID()
+            );
         }
         return $data;
     }
