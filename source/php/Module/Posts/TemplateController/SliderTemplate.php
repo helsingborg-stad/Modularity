@@ -29,8 +29,6 @@ class SliderTemplate extends AbstractController
         $this->data['postsDisplayAs']           = $fields->posts_display_as;
 
         /* TODO: Change below when purpose templates are working */
-        $this->data['postsDisplayAs']           = $fields->posts_display_as;
-
         if ($this->data['posts_data_post_type'] === 'project') {
             $this->data['postsDisplayAs'] = 'project';
         }
