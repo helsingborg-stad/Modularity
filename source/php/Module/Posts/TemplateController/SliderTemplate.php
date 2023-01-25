@@ -28,7 +28,6 @@ class SliderTemplate extends AbstractController
         $this->data['slider']['repeatSlide']   = isset($fields->repeat_slide) ? (bool) $fields->repeat_slide: true;
         $this->data['postsDisplayAs']           = $fields->posts_display_as;
 
-        /* TODO: Change below when purpose templates are working */
         if ($this->data['posts_data_post_type'] === 'project') {
             $this->data['postsDisplayAs'] = 'project';
         }
