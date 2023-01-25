@@ -28,8 +28,12 @@ class SliderTemplate extends AbstractController
         $this->data['slider']['repeatSlide']   = isset($fields->repeat_slide) ? (bool) $fields->repeat_slide: true;
         $this->data['postsDisplayAs']           = $fields->posts_display_as;
 
+        if ($this->data['posts_data_post_type'] === 'project') {
+            $this->data['postsDisplayAs'] = 'project';
+        }
+
         //TODO: Change this when purpose templates are done
-        if (!empty(\Municipio\Helper\Purpose::getPurpose($this->data['posts_data_post_type']))) {
+        /* if (!empty(\Municipio\Helper\Purpose::getPurpose($this->data['posts_data_post_type']))) {
             
             if(file_exists(MODULARITY_MODULE_PATH . 'Posts' . DIRECTORY_SEPARATOR . 'views' . 
             DIRECTORY_SEPARATOR . 'partials' . DIRECTORY_SEPARATOR .'slider' . DIRECTORY_SEPARATOR 
@@ -37,7 +41,7 @@ class SliderTemplate extends AbstractController
 
                 $this->data['postsDisplayAs'] = \Municipio\Helper\Purpose::getPurpose($this->data['posts_data_post_type']);
             }     
-        }
+        } */
         
         $this->data['slider'] = apply_filters(
             'Modularity/Module/Posts/Slider/Arguments',
