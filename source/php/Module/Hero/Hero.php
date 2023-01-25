@@ -46,7 +46,6 @@ class Hero extends \Modularity\Module
             ];
         }
 
-        var_dump($fields);
         //Common fields
         $data['type']               = $type;
         $data['size']               = $fields['mod_hero_size'];
