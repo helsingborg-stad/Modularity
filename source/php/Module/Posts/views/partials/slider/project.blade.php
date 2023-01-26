@@ -13,12 +13,13 @@
 ])
     @slot('afterContent')
         <div class="u-align-self--end u-width--100">
+            {{-- TODO: fix tooltip overflow --}}
             @tooltip([
                 'label' => $post->project->statusBar['label'],
                 'placement' => 'bottom',
                 'classList' => ['u-justify-content--end']
             ])
-                {{ $post->project->statusBar['explainer'] }}
+                {{-- {{ $post->project->statusBar['explainer'] }} --}}
             @endtooltip
             @progressBar([
                 'value' => $post->project->statusBar['value'],
