@@ -13,6 +13,7 @@
     "ariaLabel" => $ariaLabel,
     "heroView" => $heroView,
     "background" => $backgroundColor,
+    "textColor" => $textColor,
 
 
 ])

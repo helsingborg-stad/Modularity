@@ -53,9 +53,10 @@ class Hero extends \Modularity\Module
         $data['paragraph']          = $fields['mod_hero_body'];
         $data['backgroundType']     = $data['mod_hero_background_type'] ?? 'image';
         $data['heroView']           = $fields['mod_hero_display_as'] ? $fields['mod_hero_display_as'] : 'default';
-        $data['backgroundColor']    = $fields['mod_hero_background_color'] ? $fields['mod_hero_background_color'] : false;
         $data['ariaLabel']          = __('Page hero section', 'modularity');
         $data['meta']               = $fields['mod_hero_meta'];
+        $data['backgroundColor']    = $fields['mod_hero_background_color'] ? $fields['mod_hero_background_color'] : false;
+        $data['textColor']          = $fields['mod_hero_text_color'];
 
         return $data;
     }
