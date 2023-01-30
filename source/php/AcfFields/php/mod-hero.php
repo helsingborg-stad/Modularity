@@ -30,6 +30,25 @@
             'is_id' => 0,
         ),
         1 => array(
+            'key' => 'field_63d78c4897632',
+            'label' => __('Meta', 'modularity'),
+            'name' => 'mod_hero_meta',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        2 => array(
             'key' => 'field_614b3f5a6ed4b',
             'label' => __('Body', 'modularity'),
             'name' => 'mod_hero_body',
@@ -52,7 +71,7 @@
             'new_lines' => '',
             'wp_object' => '',
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_62c3f89f983b1',
             'label' => __('Background type', 'modularity'),
             'name' => 'mod_hero_background_type',
@@ -77,7 +96,7 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_614b3f786ed4c',
             'label' => __('Background image', 'modularity'),
             'name' => 'mod_hero_background_image',
@@ -106,7 +125,7 @@
             'max_height' => '',
             'max_size' => '',
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_62c3f8fa57719',
             'label' => __('Background video', 'modularity'),
             'name' => 'mod_hero_background_video',
@@ -133,7 +152,7 @@
             'max_size' => '',
             'mime_types' => 'mp4',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_614b43a186da4',
             'label' => __('Size', 'modularity'),
             'name' => 'mod_hero_size',

@@ -5,13 +5,15 @@
     "size" => $size,
     "title" => !$hideTitle ? $postTitle : false,
     "byline" => $byline,
+    "meta" => $meta,
     "paragraph" => $paragraph,
     "stretch" => isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch,
     "context" => ['hero', 'module.hero', 'module.hero.image', $sidebarContext . '.animation-item'],
     "sidebar" => $sidebarContext ? $sidebarContext : false,
     "ariaLabel" => $ariaLabel,
     "heroView" => $heroView,
-    'background' => $backgroundColor
+    "background" => $backgroundColor,
+
 
 ])
 @endhero

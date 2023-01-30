@@ -27,6 +27,25 @@
             "is_id": 0
         },
         {
+            "key": "field_63d78c4897632",
+            "label": "Meta",
+            "name": "mod_hero_meta",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_614b3f5a6ed4b",
             "label": "Body",
             "name": "mod_hero_body",
