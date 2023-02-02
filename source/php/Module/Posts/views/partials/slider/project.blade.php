@@ -9,10 +9,10 @@
     'containerAware' => true,
     'hasPlaceholder' => !isset($post->thumbnail),
     'attributeList' => ['style' => 'z-index:' . (999 - $key) . ';'],
-    'classList' => ['u-height--100']
+    'classList' => ['u-height--100', 'project-card']
 ])
     @slot('afterContent')
-        <div class="u-align-self--end u-width--100">
+        <div class="u-margin__top--auto u-width--100">
             {{-- TODO: fix tooltip overflow --}}
             @tooltip([
                 'label' => $post->project->statusBar['label'],
