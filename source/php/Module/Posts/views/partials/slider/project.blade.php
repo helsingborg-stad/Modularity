@@ -8,7 +8,6 @@
     'context' => ['archive', 'archive.list', 'archive.list.card'],
     'containerAware' => true,
     'hasPlaceholder' => !isset($post->thumbnail),
-    'attributeList' => ['style' => 'z-index:' . (999 - $key) . ';'],
     'classList' => ['u-height--100']
 ])
     @slot('afterContent')
