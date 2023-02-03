@@ -22,7 +22,8 @@
                 "news": "News items",
                 "index": "Index",
                 "grid": "Blocks",
-                "features-grid": "Features grid"
+                "features-grid": "Features grid",
+                "collection": "Collection"
             },
             "default_value": "list",
             "return_format": "value",
