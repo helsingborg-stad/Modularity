@@ -12,6 +12,7 @@
     'classList' => ['u-height--100', 'project-card']
 ])
     @slot('afterContent')
+    @if($post->project->statusBar['value'])
         <div class="u-margin__top--auto u-width--100">
             {{-- TODO: fix tooltip overflow --}}
             @tooltip([
@@ -27,5 +28,6 @@
             ])
             @endprogressBar
         </div>
+        @endif
     @endslot
 @endcard
