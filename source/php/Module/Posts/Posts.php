@@ -218,7 +218,7 @@ class Posts extends \Modularity\Module
         $data['modId'] = $this->ID;
 
         // Posts
-        $data['preamble'] = $fields->preamble;
+        $data['preamble'] = $fields->preamble ?? false;
         $data['posts_fields'] = $fields->posts_fields ?? false;
         $data['posts_date_source'] = $fields->posts_date_source ?? false;
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
@@ -258,7 +258,8 @@ class Posts extends \Modularity\Module
 
         $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
 
-        $hasArchive = get_post_type_object($data['posts_data_post_type'])->has_archive;
+        $hasArchive = !empty(get_post_type_object($data['posts_data_post_type']))
+            && get_post_type_object($data['posts_data_post_type'])->has_archive;
         $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;
 
         $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
