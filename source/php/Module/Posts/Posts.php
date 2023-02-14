@@ -183,6 +183,10 @@ class Posts extends \Modularity\Module
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
+
+        if (class_exists('ModularityLikePosts\App')) {
+            $this->data['likeActive'] = true;
+        } 
         
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);

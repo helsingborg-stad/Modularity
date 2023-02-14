@@ -1,4 +1,5 @@
 @include('partials.post-filters')
+
 @if (!$hideTitle && !empty($postTitle))
     @typography([
         'id' => 'mod-posts-' . $ID . '-label',
@@ -27,6 +28,8 @@
     >
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
+
+            @includeWhen(!empty($likeActive) && $likeActive, 'partials.like-icon')
           
             @if($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
@@ -48,13 +51,6 @@
                 ])
                 @endblock
             @else
-            @icon([
-                'icon' => 'heart_broken',
-                'size' => 'lg',
-                'classList' => ['u-position--absolute', 'u-level-3'],
-                'attributeList' => ['data-post-id' => $post->ID, 'data-like-icon' => '']
-            ])
-            @endicon
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
