@@ -31,7 +31,7 @@ class Curator extends \Modularity\Module
 
         if (false === ($feed = get_transient($transientKey))) {
             $response = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
-            $feed = set_transient($transientKey, $response, 12 * HOURS_IN_SECONDS);
+            $feed = set_transient($transientKey, $response, 12 * \HOUR_IN_SECONDS);
         }
 
         //Feed parser
