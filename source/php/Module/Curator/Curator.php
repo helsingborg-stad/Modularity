@@ -6,15 +6,12 @@ class Curator extends \Modularity\Module
 {
     public $slug = 'curator';
     public $supports = array();
-    private $curl;
 
     public function init()
     {
         $this->nameSingular = __('Curator Social Media', 'modularity');
         $this->namePlural = __('Curator Social Media', 'modularity');
         $this->description = __("Output social media flow via curator.", 'modularity');
-
-        $this->curl = new \Modularity\Helper\Curl(true, (60 * 60 * 12)); //Cache 12 hours
     }
 
     public function data(): array
@@ -34,7 +31,7 @@ class Curator extends \Modularity\Module
 
         if (false === ($feed = get_transient($transientKey))) {
             $response = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
-            $feed = set_transient($transientKey, $response, 15 * MINUTE_IN_SECONDS);
+            $feed = set_transient($transientKey, $response, 12 * HOURS_IN_SECONDS);
         }
 
         //Feed parser
