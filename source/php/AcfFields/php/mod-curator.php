@@ -1,15 +1,65 @@
-<?php
+<?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_609b788ad04bb',
     'title' => __('Curator Social Media', 'modularity'),
     'fields' => array(
         0 => array(
+            'key' => 'field_609b7d2ba3004',
+            'label' => __('Number of posts', 'modularity'),
+            'name' => 'number_of_posts',
+            'aria-label' => '',
+            'type' => 'number',
+            'instructions' => __('Set the number items to show.', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '50',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => 12,
+            'min' => 4,
+            'max' => 24,
+            'placeholder' => '',
+            'step' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        1 => array(
+            'key' => 'field_63edf811d3a68',
+            'label' => __('Layout', 'modularity'),
+            'name' => 'layout',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '50',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'card' => __('Card', 'modularity'),
+                'block' => __('Block', 'modularity'),
+            ),
+            'default_value' => __('card', 'modularity'),
+            'return_format' => '',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
+        2 => array(
             'key' => 'field_609b7894869ce',
             'label' => __('Embed Code', 'modularity'),
             'name' => 'embed_code',
+            'aria-label' => '',
             'type' => 'textarea',
             'instructions' => __('Add your curator embed code here. Thios should be the full javascript. Appeance settings in the javascript configurator will not apply.', 'modularity'),
             'required' => 0,
@@ -24,32 +74,13 @@ if (function_exists('acf_add_local_field_group')) {
             'maxlength' => '',
             'rows' => '',
             'new_lines' => '',
+            'acfe_textarea_code' => 0,
         ),
-        1 => array(
-            'key' => 'field_609b7d2ba3004',
-            'label' => __('Number of posts', 'modularity'),
-            'name' => 'number_of_posts',
-            'type' => 'number',
-            'instructions' => __('Set the number items to show.', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 12,
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'min' => 4,
-            'max' => 24,
-            'step' => '',
-        ),
-        2 => array(
+        3 => array(
             'key' => 'field_609baae15568c',
             'label' => __('Usage of the curator social media integration', 'modularity'),
             'name' => '',
+            'aria-label' => '',
             'type' => 'message',
             'instructions' => '',
             'required' => 0,
@@ -59,7 +90,15 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'message' => __('This is an integration module for https://curator.io. The module requires an account at the service. To integrate a feed, please head over to curator.io and follow the steps below. We assume that you already have an account, with a connected feed. \n\n 1. Login to you account.\n 2. Click on "style" in the sidebar navigation.\n 3. Click on "publish feed" (style won\'t matter).\n 4. Paste the embed code in the field above.\n 5. Save. Your feed should no be displayed.', 'modularity'),
+            'message' => __('This is an integration module for curator.io. The module requires an account at the service. 
+
+To integrate a feed, head over to <a href="https://curator.io" target="_blank">curator.io</a> (will open in a new window) and follow the steps below. We assume that you already have an account, with a connected feed. 
+
+1. Login to your account. 
+2. Click on "style" in the sidebar navigation. 
+3. Click on "publish feed" (style won\'t matter). 
+4. Paste the embed code in the field above. 
+5. Save. Your feed should no be displayed.', 'modularity'),
             'new_lines' => 'wpautop',
             'esc_html' => 0,
         ),
@@ -88,5 +127,11 @@ if (function_exists('acf_add_local_field_group')) {
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
+    'acfe_display_title' => '',
+    'acfe_autosync' => '',
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
 ));
-}
+}
