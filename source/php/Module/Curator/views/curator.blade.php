@@ -1,21 +1,21 @@
-<!-- Social media by curator --> 
+<!-- Social media by curator -->
 
 @if (!$hideTitle && !empty($postTitle))
     @typography([
         'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2', 
-        'variant' => 'h2', 
+        'element' => 'h2',
+        'variant' => 'h2',
         'classList' => ['module-title']
     ])
         {!! $postTitle !!}
     @endtypography
 @endif
 
-@if($showFeed) 
+@if ($showFeed)
     <div class="o-grid modularity-socialmedia-container">
         @foreach ($posts as $post)
             <div class="o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg">
-                @card([ 
+                @card([
                     'link' => $post->url,
                     'image' => [
                         'src' => $post->image,
@@ -26,22 +26,19 @@
                     'content' => $post->text,
                     'classList' => ['u-height--100']
                 ])
-                    
                     @image([
-                        'src'=> $post->image,
+                        'src' => $post->image,
                         'alt' => $post->text,
                         'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--complementary-lightest'],
-                        'rounded' => false,
+                        'rounded' => false
                     ])
                     @endimage
 
-                    @avatar(
-                        [
-                            'name' => $post->user_readable_name,
-                            'size' => 'sm',
-                            'classList' => ['u-position--absolute', 'u-level-1', 'u-box-shadow--1', 'u-margin--3']
-                        ]
-                    )
+                    @avatar([
+                        'name' => $post->user_readable_name,
+                        'size' => 'sm',
+                        'classList' => ['u-position--absolute', 'u-level-1', 'u-box-shadow--1', 'u-margin--3']
+                    ])
                     @endavatar
 
 
@@ -51,7 +48,7 @@
                             @endicon
                             @date(['action' => 'formatDate', 'timestamp' => $post->source_created_at])
                             @enddate
-                        @endtypography   
+                        @endtypography
 
                         @typography(['element' => 'div', 'classList' => ['u-margin__top--1']])
                             {{ $post->text }}
@@ -62,13 +59,18 @@
         @endforeach
 
         <div class="o-grid-12">
+            @button([
+                'text' => 'Load more',
+                'color' => 'primary',
+                'attributeList' => ['offset' => $limit],
+            ])
+            @endbutton
             @typography(['element' => 'div', 'variant' => 'meta', 'classList' => ['u-text-align--right']])
                 <a href="https://curator.io" target="_blank" rel="nofollow">Powered by Curator.io</a>
             @endtypography
         </div>
     </div>
 @else
-
     @notice([
         'type' => 'info',
         'message' => [
