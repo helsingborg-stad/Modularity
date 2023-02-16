@@ -28,9 +28,6 @@
     >
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
-
-            @includeWhen(!empty($likeActive) && $likeActive, 'partials.like-icon')
-          
             @if($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
                     'heading' => ($post->showTitle ? $post->post_title : false),
@@ -69,6 +66,9 @@
                         'alt' => $post->post_title,
                         'backgroundColor' => 'secondary',
                     ] : [],
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
+                    'icons' => $icons
                 ])
                 @endcard
             @endif

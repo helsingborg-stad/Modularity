@@ -228,7 +228,7 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
-       
+        $data['icons'] = apply_filters('post_icons', array());
 
         // Sorting
         $data['sortBy'] = false;
