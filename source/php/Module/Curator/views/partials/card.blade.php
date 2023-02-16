@@ -1,6 +1,6 @@
 <h1>CURATOR card</h1>
 @foreach ($posts as $post)
-    <div class="o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg">
+    <div class="o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg u-padding--1">
         @card([
             'link' => $post->url,
             'image' => [
@@ -15,7 +15,7 @@
             @image([
                 'src' => $post->image,
                 'alt' => $post->text,
-                'classList' => ['c-card__image', 'u-padding--2', 'u-color__bg--complementary-lightest'],
+                'classList' => ['c-card__image', 'u-padding--0', 'u-color__bg--complementary-lightest'],
                 'rounded' => false
             ])
             @endimage
