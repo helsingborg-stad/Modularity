@@ -1,1 +1,1 @@
-alert('mod-curator-load-more');
+console.log('mod-curator-load-more');
