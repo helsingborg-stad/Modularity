@@ -12,9 +12,6 @@ class Curator extends \Modularity\Module
         $this->nameSingular = __('Curator Social Media', 'modularity');
         $this->namePlural = __('Curator Social Media', 'modularity');
         $this->description = __("Output social media flow via curator.", 'modularity');
-
-        add_action('wp_ajax_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
-        add_action('wp_ajax_nopriv_mod_posts_load_more', array($this, 'loadMorePostsUsingAjax'));
     }
 
     public function script()
@@ -28,8 +25,10 @@ class Curator extends \Modularity\Module
     public function data(): array
     {
         //Get module data
-        $embedCode      = $this->parseEmbedCode(get_field('embed_code', $this->ID));
-        $numberOfItems  = get_field('number_of_posts', $this->ID) ?? 12;
+        $embedCode     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
+        $numberOfItems = get_field('number_of_posts', $this->ID) ?? 12;
+
+        $data['layout'] = get_field('layout', $this->ID) ?? 'card';
 
         $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
         $requestArgs = [
