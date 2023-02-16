@@ -29,8 +29,16 @@ class Curator extends \Modularity\Module
         $numberOfItems = get_field('number_of_posts', $this->ID) ?? 12;
 
         $data['layout'] = get_field('layout', $this->ID) ?? 'card';
-        $data['ratio'] = get_field('ratio', $this->ID) ?? '1:1';
 
+        if ($data['layout'] === 'block') {
+            $blockLayoutSettings = get_field('blockLayoutSettings', $this->ID) ?? [];
+
+            $columns = $blockLayoutSettings['columns'] ?? 4;
+            $columnClass = ($columns == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
+
+            $data['gridClasses'] = "o-grid-12@xs o-grid-6@sm {$columnClass}";
+            $data['ratio'] = $blockLayoutSettings['ratio'] ?? '1:1';
+        }
         $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
         $requestArgs = [
             'body' => [

@@ -43,7 +43,7 @@
                 "block": "Block"
             },
             "default_value": "card",
-            "return_format": "",
+            "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
             "ui": 0,
@@ -51,6 +51,94 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
+        },
+        {
+            "key": "field_63ee0f1d483f4",
+            "label": "Block layout settings",
+            "name": "blockLayoutSettings",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63edf811d3a68",
+                        "operator": "==",
+                        "value": "block"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "acfe_seamless_style": 1,
+            "sub_fields": [
+                {
+                    "key": "field_63ee10add6ed6",
+                    "label": "Columns",
+                    "name": "columns",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "3": "3",
+                        "4": "4"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "allow_custom": 0,
+                    "search_placeholder": ""
+                },
+                {
+                    "key": "field_63ee110366a17",
+                    "label": "Ratio",
+                    "name": "ratio",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "1:1": "1:1",
+                        "4:3": "4:3",
+                        "12:16": "12:16"
+                    },
+                    "default_value": "1:1",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "allow_custom": 0,
+                    "search_placeholder": ""
+                }
+            ],
+            "acfe_group_modal": 0,
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large"
         },
         {
             "key": "field_609b7894869ce",
@@ -90,6 +178,35 @@
             "message": "This is an integration module for curator.io. The module requires an account at the service. \r\n\r\nTo integrate a feed, head over to <a href=\"https:\/\/curator.io\" target=\"_blank\">curator.io<\/a> (will open in a new window) and follow the steps below. We assume that you already have an account, with a connected feed. \r\n\r\n1. Login to your account. \r\n2. Click on \"style\" in the sidebar navigation. \r\n3. Click on \"publish feed\" (style won't matter). \r\n4. Paste the embed code in the field above. \r\n5. Save. Your feed should no be displayed.",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_63ee0a94197d1",
+            "label": "Ratio",
+            "name": "ratio",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1:1": "1:1",
+                "4:3": "4:3",
+                "12:6": "12:6"
+            },
+            "default_value": "1:1",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         }
     ],
     "location": [
