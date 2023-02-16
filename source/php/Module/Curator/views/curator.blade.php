@@ -12,6 +12,7 @@
 @endif
 
 @if ($showFeed)
+
     <div class="o-grid modularity-socialmedia-container">
 
         @include("partials.$layout", ['posts' => $posts])

@@ -24,6 +24,7 @@ class Curator extends \Modularity\Module
     }
     public function data(): array
     {
+        $data['linkTextOriginalPost'] = __('Go to original post', 'modularity');
         //Get module data
         $embedCode     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
         $numberOfItems = get_field('number_of_posts', $this->ID) ?? 12;
@@ -71,8 +72,26 @@ class Curator extends \Modularity\Module
         //Parse posts array
         if (is_array($data['posts']) && !empty($data['posts'])) {
             foreach ($data['posts'] as &$post) {
+                $post->full_text = $post->text;
+
                 $post->user_readable_name = $this->getUserName($post->user_screen_name);
                 $post->text = wp_trim_words($post->text, 20, "...");
+
+                // Prepare oembed
+                if (in_array($post->network_name, ['YouTube', 'Vimeo'], true)) {
+                    global $wp_embed;
+                    $post->oembed = $wp_embed->shortcode([], $post->url);
+                }
+                // Format date
+                $post->formatted_date = date_i18n('j M. Y', strtotime($post->source_created_at));
+                // Set title
+                if (!empty($post->data) && empty($post->title)) {
+                    foreach ($post->data as $item) {
+                        if ($item->name == 'title') {
+                            $post->title = $item->value;
+                        }
+                    }
+                }
             }
         }
 
