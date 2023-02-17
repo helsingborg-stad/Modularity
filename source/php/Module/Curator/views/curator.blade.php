@@ -2,9 +2,8 @@
 
 @if (!$hideTitle && !empty($postTitle))
     @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
+        'id' => 'mod-curator-' . $ID . '-label',
         'element' => 'h2',
-        'variant' => 'h2',
         'classList' => ['module-title']
     ])
         {!! $postTitle !!}
@@ -18,12 +17,18 @@
         @include("partials.$layout", ['posts' => $posts])
 
         <div class="o-grid-12">
-            @button([
-                'text' => 'Load more',
+            @link([
+                'href' => '#',
+                'text' => $loadMoreText,
                 'color' => 'primary',
-                'attributeList' => ['offset' => $limit],
+                'attributeList' => [
+                    'data-offset' => $limit,
+                    'data-embed-code' => $embedCode
+                ],
+                'classList' => ['mod-curator-load-more', 'c-button']
             ])
-            @endbutton
+                {{ $loadMoreText }}
+            @endlink
             @typography(['element' => 'div', 'variant' => 'meta', 'classList' => ['u-text-align--right']])
                 <a href="https://curator.io" target="_blank" rel="nofollow">Powered by Curator.io</a>
             @endtypography

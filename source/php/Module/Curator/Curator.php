@@ -22,10 +22,17 @@ class Curator extends \Modularity\Module
         if (!defined('DOING_AJAX') || !DOING_AJAX) {
             return false;
         }
+        if (empty($_POST['posts'])) {
+            return false;
+        }
         if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mod-posts-load-more')) {
             wp_die('Nonce check failed');
             return false;
         }
+        // Print the posts via blade template
+        // Return the markup to the javascript
+        $posts = json_decode(stripslashes($_POST['posts']));
+        echo render_blade_view('partials/block', ['posts' => $posts], [plugin_dir_path(__FILE__) . 'views']);
         wp_die();
     }
     public function script()
@@ -42,11 +49,11 @@ class Curator extends \Modularity\Module
     }
     public function data(): array
     {
-        $data['linkTextOriginalPost'] = __('Go to original post', 'modularity');
         //Get module data
         $embedCode     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
         $numberOfItems = get_field('number_of_posts', $this->ID) ?? 12;
 
+        $data['linkTextOriginalPost'] = __('Go to original post', 'modularity');
         $data['layout'] = get_field('layout', $this->ID) ?? 'card';
         $data['loadMoreText'] = __('Load more', 'modularity');
 
@@ -82,6 +89,7 @@ class Curator extends \Modularity\Module
         //Parse feed
         $data['showFeed'] = false;
         $data['limit']    = $numberOfItems;
+        $data['embedCode'] = $embedCode;
 
         if (!empty($feed->posts)) {
             $data['posts']    = $feed->posts;
