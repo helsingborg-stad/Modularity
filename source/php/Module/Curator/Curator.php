@@ -12,14 +12,32 @@ class Curator extends \Modularity\Module
         $this->nameSingular = __('Curator Social Media', 'modularity');
         $this->namePlural = __('Curator Social Media', 'modularity');
         $this->description = __("Output social media flow via curator.", 'modularity');
+
+        add_action('wp_ajax_mod_curator_load_more', [$this, 'loadMorePosts']);
+        add_action('wp_ajax_nopriv_mod_curator_load_more', [$this, 'loadMorePosts']);
     }
 
+    public function loadMorePosts()
+    {
+        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+            return false;
+        }
+        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'mod-posts-load-more')) {
+            wp_die('Nonce check failed');
+            return false;
+        }
+        wp_die();
+    }
     public function script()
     {
         wp_register_script(
             'mod-curator-load-more',
             MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-curator-load-more.js')
         );
+        wp_localize_script('mod-curator-load-more', 'curator', [
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('mod-posts-load-more')
+        ]);
         wp_enqueue_script('mod-curator-load-more');
     }
     public function data(): array
@@ -30,6 +48,7 @@ class Curator extends \Modularity\Module
         $numberOfItems = get_field('number_of_posts', $this->ID) ?? 12;
 
         $data['layout'] = get_field('layout', $this->ID) ?? 'card';
+        $data['loadMoreText'] = __('Load more', 'modularity');
 
         if ($data['layout'] === 'block') {
             $blockLayoutSettings = get_field('blockLayoutSettings', $this->ID) ?? [];
