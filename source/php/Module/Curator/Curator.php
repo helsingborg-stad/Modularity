@@ -92,9 +92,9 @@ class Curator extends \Modularity\Module
                         }
                     }
                 }
-                // Format likes
-                $post->likesText = (int) $post->likes === 1 ? __('like') : __('likes');
-                $post->commentsText = (int) $post->comments === 1 ? __('comment') : __('comments');
+
+                $post->likesText = sprintf(_n('%d like', '%d likes', $post->likes, 'modularity'), $post->likes);
+                $post->commentsText = sprintf(_n('%d comment', '%d comments', $post->comments, 'modularity'), $post->comments);
             }
         }
 
