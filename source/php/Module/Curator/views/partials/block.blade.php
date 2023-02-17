@@ -1,7 +1,4 @@
 @foreach ($posts as $post)
-    @php
-        //        echo '<pre>' . print_r($post, true) . '</pre>';
-    @endphp
     <div class="{{ $gridClasses }}">
         @block([
             'filled' => true,

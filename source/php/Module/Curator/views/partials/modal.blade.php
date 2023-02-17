@@ -31,7 +31,6 @@
                     {{ $post->user_screen_name }}
                 @endtypography
             </header>
-
             @typography([
                 'element' => 'small',
                 'classList' => ['u-color__text--light', 'u-margin__bottom--0', 'u-margin__top--1']
@@ -60,6 +59,37 @@
                 'href' => $post->url,
             ])
             @endbutton
+            @if ($post->likes > 0 || $post->comments > 0)
+                <!-- TODO: How to give the footer a light top border? -->
+                <footer class="o-container--fullwidth u-border__top u-margin__top--1 u-padding__top--1">
+                    @if ($post->likes > 0)
+                        @typography([
+                            'element' => 'span',
+                            'classList' => []
+                        ])
+                            @typography([
+                                'element' => 'span'
+                            ])
+                                {{ $post->likes }}
+                            @endtypography
+                            {{ $post->likesText }}
+                        @endtypography
+                    @endif
+                    @if ($post->comments > 0)
+                        @typography([
+                            'element' => 'span',
+                            'classList' => ['comments']
+                        ])
+                            @typography([
+                                'element' => 'span'
+                            ])
+                                {{ $post->comments }}
+                            @endtypography
+                            {{ $post->commentsText }}
+                        @endtypography
+                    @endif
+                </footer>
+            @endif
         </div>
     </div>
 @endmodal
