@@ -7,18 +7,21 @@ function loadMoreHandler(event) {
 	let itemsLoaded = parseInt(event.target.getAttribute('data-items-loaded'));
 
 	if (itemsLoaded < itemCount) {
-		getFeed(embedCode, itemsPerPage, itemsLoaded, function (response) {
-			if (response.success && response.posts) {
-				updateItems(response.posts, event.target);
-			}
-		});
+		getFeed(embedCode, itemsPerPage, itemsLoaded)
+			.then((response) => {
+				if (response.success && response.posts) {
+					updateItems(response.posts, event.target);
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	} else {
 		console.log('Maximum number of items reached (' + itemCount + ')');
 	}
 }
 
-function getFeed(embedCode, limit, offset, callback) {
-	const xhr = new XMLHttpRequest();
+function getFeed(embedCode, limit, offset) {
 	const url = curator.ajaxurl;
 	const data = new FormData();
 
@@ -28,22 +31,16 @@ function getFeed(embedCode, limit, offset, callback) {
 	data.append('limit', limit);
 	data.append('offset', offset);
 
-	xhr.open('POST', url, true);
-
-	xhr.onload = function () {
-		if (xhr.status === 200) {
-			const response = JSON.parse(xhr.response);
-			callback(response);
+	return fetch(url, {
+		method: 'POST',
+		body: data,
+	}).then((response) => {
+		if (response.ok) {
+			return response.json();
 		} else {
-			console.error(xhr);
+			throw new Error('Network response was not ok');
 		}
-	};
-
-	xhr.onerror = function () {
-		alert('Network error');
-	};
-
-	xhr.send(data);
+	});
 }
 
 function updateItems(posts, button) {
@@ -53,11 +50,11 @@ function updateItems(posts, button) {
 	const newItemsLoaded = itemsLoaded + posts.length;
 	button.setAttribute('data-items-loaded', newItemsLoaded);
 
+	// ! TODO Correct this value
 	console.log('Total items loaded:', newItemsLoaded);
 }
 
 function renderPosts(posts, button) {
-	const xhr = new XMLHttpRequest();
 	const url = curator.ajaxurl;
 	const data = new FormData();
 
@@ -70,17 +67,26 @@ function renderPosts(posts, button) {
 	const columnClasses = socialMediaBlocks.querySelector('.modularity-socialmedia__item').getAttribute('class');
 	data.append('columnClasses', columnClasses);
 
-	xhr.open('POST', url, true);
-
-	xhr.onload = function () {
-		if (xhr.status === 200) {
-			socialMediaBlocks.insertAdjacentHTML('beforeend', xhr.response);
-		} else {
-			console.error(xhr);
-		}
-	};
-
-	xhr.send(data);
+	fetch(url, {
+		method: 'POST',
+		body: data,
+	})
+		.then((response) => {
+			if (response.ok) {
+				return response.text();
+			} else {
+				throw new Error('Network response was not ok');
+			}
+		})
+		.then((html) => {
+			socialMediaBlocks.insertAdjacentHTML('beforeend', html);
+			// ! TODO How to enable modal on inserted posts?
+			// Modal
+			console.log(module);
+		})
+		.catch((error) => {
+			console.error(error);
+		});
 }
 
 const loadMoreButtons = document.getElementsByClassName('mod-curator-load-more');
