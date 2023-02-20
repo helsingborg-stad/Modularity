@@ -1,7 +1,8 @@
 @modal([
     'id' => 'modal-' . $post->id,
     'size' => 'md',
-    'heading' => false
+    'heading' => false,
+    'padding' => 1
 ])
     <div class="o-grid">
         <div class="o-grid-7">
@@ -15,7 +16,7 @@
             @endif
         </div>
         <div class="o-grid-5">
-            <header class="o-container o-container--fullwidth u-margin__bottom--1">
+            <header class="o-container o-container--fullwidth u-margin__left u-margin__top u-margin__bottom--1">
                 @avatar([
                     'image' => $post->user_image,
                     'name' => $post->user_screen_name,
