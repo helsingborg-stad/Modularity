@@ -16,5 +16,8 @@
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => 'module.posts.block',
     'link' => $post->link,
+    'postId' => $post->ID,
+    'postType' => $post->post_type ?? '',
+    'icons' => $icons
 ])
 @endblock

@@ -46,7 +46,10 @@
                         'src' => $post->thumbnail[0],
                         'alt' => $post->post_title,
                         'backgroundColor' => 'secondary',
-                    ] : []
+                    ] : [],
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
+                    'icons' => $icons
                 ])
                 @endcard
             @else
@@ -68,6 +71,9 @@
                     'classList' => ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
                     'link' => $post->link,
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
+                    'icons' => $icons
                 ])
                 @endblock
             @endif

@@ -31,7 +31,10 @@
                 'context' => 'module.posts.index',
                 'containerAware' => true,
                 'hasAction' => true,
-                'date' => '2022-01-14'
+                'date' => '2022-01-14',
+                'postId' => $post->ID,
+                'postType' => $post->post_type ?? '',
+                'icons' => $icons
             ])
 
                 @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
