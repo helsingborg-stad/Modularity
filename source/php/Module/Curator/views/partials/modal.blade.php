@@ -53,7 +53,7 @@
             @endtypography
             @button([
                 // TODO: How to position the button centered at the bottom of the post?
-                'text' => $linkTextOriginalPost,
+                'text' => $i18n['goToOriginalPost'],
                 'color' => 'default',
                 'size' => 'sm',
                 'style' => 'filled',

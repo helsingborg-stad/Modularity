@@ -1,5 +1,5 @@
 @foreach ($posts as $post)
-    <div class="{{ $gridClasses }}">
+    <div class="modularity-socialmedia__item {{ $columnClasses }}">
         @block([
             'filled' => true,
             'image' => [
@@ -12,6 +12,6 @@
             'classList' => ['u-height--100']
         ])
         @endblock
+        @include('partials.modal', ['post' => $post])
     </div>
-    @include('partials.modal', ['post' => $post])
 @endforeach
