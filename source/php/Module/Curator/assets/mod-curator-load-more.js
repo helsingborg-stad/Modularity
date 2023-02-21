@@ -80,9 +80,10 @@ function renderPosts(posts, button) {
 		})
 		.then((html) => {
 			socialMediaBlocks.insertAdjacentHTML('beforeend', html);
+
 			// ! TODO How to enable modal on inserted posts?
-			// Modal
-			console.log(module);
+			// Dispatch custom event to trigger modal initialization
+			window.dispatchEvent(new CustomEvent('initStyleguideModals'));
 		})
 		.catch((error) => {
 			console.error(error);
@@ -92,4 +93,8 @@ function renderPosts(posts, button) {
 const loadMoreButtons = document.getElementsByClassName('mod-curator-load-more');
 for (let i = 0; i < loadMoreButtons.length; i++) {
 	loadMoreButtons[i].addEventListener('click', loadMoreHandler);
+}
+window.addEventListener('initStyleguideModals', eventhandler);
+function eventhandler() {
+	alert('initStyleguideModals');
 }
