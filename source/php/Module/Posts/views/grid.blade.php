@@ -49,7 +49,7 @@
                     ] : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icons' => $icons
+                    'icon' => $icon
                 ])
                 @endcard
             @else
