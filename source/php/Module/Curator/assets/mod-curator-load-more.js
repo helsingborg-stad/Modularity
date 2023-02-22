@@ -83,7 +83,7 @@ function renderPosts(posts, button) {
 
 			// ! TODO How to enable modal on inserted posts?
 			// Dispatch custom event to trigger modal initialization
-			document.dispatchEvent(new Event('initModal'));
+			window.dispatchEvent(new Event('initModal'));
 		})
 		.catch((error) => {
 			console.error(error);
@@ -94,7 +94,6 @@ const loadMoreButtons = document.getElementsByClassName('mod-curator-load-more')
 for (let i = 0; i < loadMoreButtons.length; i++) {
 	loadMoreButtons[i].addEventListener('click', loadMoreHandler);
 }
-document.addEventListener('initModal', eventhandler);
-function eventhandler() {
-	console.log('initModal mod curator loaded');
-}
+window.addEventListener('initModal', function () {
+	console.log('initModal event fired');
+});
