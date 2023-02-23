@@ -695,6 +695,7 @@
                 '1:1' => __('1:1', 'modularity'),
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
+                '16:9' => __('16:9', 'modularity'),
             ),
             'default_value' => __('4:3', 'modularity'),
             'allow_null' => 0,
