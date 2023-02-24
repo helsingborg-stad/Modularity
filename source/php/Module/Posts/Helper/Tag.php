@@ -30,7 +30,6 @@ class Tag
                     $tags[$term->name] = [];
                     $tags[$term->name]['label'] = $term->name;
                     $tags[$term->name]['color'] = 'secondary';
-                    $tags[$term->name]['href'] = get_term_link($term->term_id);
                 }
 
                 
