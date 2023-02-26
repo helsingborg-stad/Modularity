@@ -256,13 +256,11 @@ class Posts extends \Modularity\Module
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
         }
 
-        $data['taxonomyDisplayFlat'] = $this->getTaxonomyDisplayFlat();
-
-        $hasArchive = !empty(get_post_type_object($data['posts_data_post_type']))
-            && get_post_type_object($data['posts_data_post_type'])->has_archive;
-        $data['archive_link'] = isset($fields->archive_link) && $hasArchive ? $fields->archive_link : false;
-
-        $data['archive_link_url'] = get_post_type_archive_link($data['posts_data_post_type']);
+        $data['taxonomyDisplayFlat']    = $this->getTaxonomyDisplayFlat();
+        $data['archive_link_url']       = $this->getArchiveUrl(
+            $data['posts_data_post_type'], 
+            $fields
+        );
 
         $data['ariaLabels'] =  (object) [
            'prev' => __('Previous slide', 'modularity'),
@@ -276,6 +274,32 @@ class Posts extends \Modularity\Module
         }
         
         return $data;
+    }
+
+    private function getArchiveUrl($postType, $fields) {
+
+        if(empty($postType)) {
+            return false;
+        }
+
+        if(!isset($fields->archive_link) || !$fields->archive_link) {
+            return false;
+        }
+
+        if($postType == 'post') {
+            $pageForPosts = get_option('page_for_posts'); 
+            if(is_numeric($pageForPosts)) {
+                return get_permalink($pageForPosts);
+            }
+        }
+
+        if($postObject = get_post_type_object($postType)) {
+            if(isset($postObject->has_archive) && $postObject->has_archive) {
+                return get_post_type_archive_link($postType); 
+            }
+        }
+        
+        return false;
     }
 
 
