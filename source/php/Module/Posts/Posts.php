@@ -287,10 +287,15 @@ class Posts extends \Modularity\Module
         }
 
         if($postType == 'post') {
-            $pageForPosts = get_option('page_for_posts'); 
-            if(is_numeric($pageForPosts)) {
+            if($pageForPosts = get_option('page_for_posts')) {
                 return get_permalink($pageForPosts);
             }
+
+            if(get_option('show_on_front') == 'posts') {
+                return get_home_url();
+            }
+
+            return false;
         }
 
         if($postObject = get_post_type_object($postType)) {
