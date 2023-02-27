@@ -22,7 +22,8 @@
                 "news": "News items",
                 "index": "Index",
                 "grid": "Blocks",
-                "features-grid": "Features grid"
+                "features-grid": "Features grid",
+                "segment": "Segment"
             },
             "default_value": "list",
             "return_format": "value",
@@ -72,6 +73,13 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==contains",
                         "value": "items"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==contains",
+                        "value": "segment"
                     }
                 ]
             ],
@@ -127,6 +135,13 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "features-grid"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "segment"
                     }
                 ]
             ],
@@ -286,6 +301,13 @@
                         "operator": "==",
                         "value": "features-grid"
                     }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "segment"
+                    }
                 ]
             ],
             "wrapper": {
@@ -305,9 +327,7 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
+            "placeholder": ""
         },
         {
             "key": "field_571e046536f0e",
