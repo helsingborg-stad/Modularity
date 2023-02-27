@@ -53,7 +53,7 @@ class Posts extends \Modularity\Module
         $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
         $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
         
-        $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid');
+        $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
         
         if (1 === (int) $showAsSlider && in_array($postsDisplayAs, $layoutsWithSliderAvailable, true)) {
             $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
