@@ -1,15 +1,4 @@
 @include('partials.post-filters')
-@segment([
-    'layout' => 'card',
-    'title' => 'This is the title',
-    'meta' => '5 mins read',
-    'tags' => [['label' => 'Sevardigheter', 'href' => '#sevardighater'], ['label' => 'shopping', 'href' => '#shopping']],
-    'image' => 'https://localhost/wptest/wp-content/uploads/events/2023/02/jazz-i-helsingborg-shalosh-900x675.jpg',
-    'content' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae ex non erat tristique porta nec ut est. Sed vitae tincidunt sem, nec vestibulum risus. Ut ac urna ultrices, dignissim magna et, molestie est.',
-    'buttons' => [['text' => 'Read more', 'href' => '#link']],
-    'containerAware' => true,
-])
-@endsegment
 
 @if (!$hideTitle && !empty($postTitle))
     @typography([
@@ -85,7 +74,7 @@
     @endforeach
 </div>
 
-@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
+@if ($posts_data_source !== 'input' && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
         @button([
             'text' => __('Show more', 'modularity'),
