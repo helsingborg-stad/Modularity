@@ -13,6 +13,11 @@ class Curator extends \Modularity\Module
         $this->namePlural = __('Curator Social Media', 'modularity');
         $this->description = __("Output social media flow via curator.", 'modularity');
 
+        $this->data['i18n'] = [
+            'loadMore' => __('Load More', 'modularity'),
+            'goToOriginalPost' => __('Go to original post', 'modularity')
+        ];
+
         add_action('wp_ajax_mod_curator_get_feed', [$this, 'getFeed'], 10, 4);
         add_action('wp_ajax_nopriv_mod_curator_get_feed', [$this, 'getFeed'], 10, 4);
 
@@ -37,9 +42,23 @@ class Curator extends \Modularity\Module
         if (!is_array($posts)) {
             wp_die();
         }
+
+        $posts = self::parseSocialMediaPosts($posts);
+        $i18n = $this->data['i18n'];
+
         // Print the posts via the blade template
-        echo render_blade_view('partials/block', ['posts' => $posts, 'columnClasses' => $_POST['columnClasses']], [plugin_dir_path(__FILE__) . 'views']);
-        wp_die();
+        echo render_blade_view(
+            'partials/block',
+            [
+                'posts' => $posts,
+                'i18n' => $i18n,
+                'columnClasses' => $_POST['columnClasses']
+            ],
+            [
+                plugin_dir_path(__FILE__) . 'views'
+            ]
+        );
+        wp_die(); // Always die in functions echoing ajax content
     }
     public function script()
     {
@@ -57,12 +76,8 @@ class Curator extends \Modularity\Module
     {
         //Get module data
         $data['embedCode']     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
-        // $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
 
-        $data['i18n'] = [
-            'loadMore' => __('Load More', 'modularity'),
-            'goToOriginalPost' => __('Go to original post', 'modularity')
-        ];
+        $data['i18n'] = $this->data['i18n'];
 
         $data['layout'] = get_field('layout', $this->ID) ?? 'card';
         if ($data['layout'] === 'block') {
@@ -77,7 +92,8 @@ class Curator extends \Modularity\Module
 
         $data['numberOfItems'] = get_field('number_of_posts', $this->ID) ?? 12;
 
-        $feed = $this->getFeed($data['embedCode'], $data['numberOfItems'], 0, false); // ! TODO: Set cache to true when done developing this
+        $cached = isset($_GET['flush']) ? false : true;
+        $feed = $this->getFeed($data['embedCode'], $data['numberOfItems'], 0, $cached);
 
         //Parse feed
         $data['showFeed'] = false;
@@ -89,11 +105,32 @@ class Curator extends \Modularity\Module
             $data['showFeed'] = true;
         }
         //Parse posts array
-        if (is_array($data['posts']) && !empty($data['posts'])) {
-            foreach ($data['posts'] as &$post) {
+        $data['posts'] = self::parseSocialMediaPosts($data['posts']);
+
+        //Could not fetch error message / embed code error message
+        if (!$data['embedCode']) {
+            $data['errorMessage'] = __("An invalid embed code was provided.", 'modularity');
+        } else {
+            $data['errorMessage'] = __("Could not get the feed at this moment, please try again later.", 'modularity');
+        }
+
+        //Send to view
+        return $data;
+    }
+    /**
+     * Parses the social media posts data to add additional properties and modify existing ones.
+     *
+     * @param array $posts The social media posts data to parse.
+     *
+     * @return array The parsed social media posts data.
+     */
+    public static function parseSocialMediaPosts(array $posts = []): array
+    {
+        if (is_array($posts) && !empty($posts)) {
+            foreach ($posts as &$post) {
                 $post->full_text = $post->text;
 
-                $post->user_readable_name = $this->getUserName($post->user_screen_name);
+                $post->user_readable_name = self::getUserName($post->user_screen_name);
                 $post->text = wp_trim_words($post->text, 20, "...");
 
                 // Prepare oembed
@@ -111,25 +148,13 @@ class Curator extends \Modularity\Module
                         }
                     }
                 }
-
-                $post->likesText = sprintf(_n('%d like', '%d likes', $post->likes, 'modularity'), $post->likes);
-                $post->commentsText = sprintf(_n('%d comment', '%d comments', $post->comments, 'modularity'), $post->comments);
             }
         }
-
-        //Could not fetch error message / embed code error message
-        if (!$data['embedCode']) {
-            $data['errorMessage'] = __("An invalid embed code was provided, please try entering it again.", 'modularity');
-        } else {
-            $data['errorMessage'] = __("Could not get the feed at this moment, please try again later.", 'modularity');
-        }
-
-        //Send to view
-        return $data;
+        return $posts;
     }
 
     /**
-     * Parse embed javascript
+     * Parse embed javascript to get the embed code
      *
      * @param   string $embed   Embed javascript string
      *
@@ -151,11 +176,22 @@ class Curator extends \Modularity\Module
      * @param   string $userName
      * @return  string $userName
      */
-    private function getUserName($userName)
+    public static function getUserName(string $userName = ''): string
     {
         return ucwords(str_replace(['.', '-'], ' ', $userName));
     }
-
+    /**
+     * Retrieves social media feed data for the given embed code from Curator.io.
+     *
+     * @see https://curator.io/docs/api
+     *
+     * @param string $embedCode The embed code for the social media feed.
+     * @param int $numberOfItems The number of social media posts to retrieve.
+     * @param int $offset The offset of the first post to retrieve.
+     * @param bool $cache Whether to use the WordPress transient cache for caching the feed response.
+     *
+     * @return object The social media feed data as an object.
+     */
     public function getFeed(string $embedCode = '', int $numberOfItems = 12, int $offset = 0, bool $cache = true)
     {
         if (defined('DOING_AJAX') && DOING_AJAX) {

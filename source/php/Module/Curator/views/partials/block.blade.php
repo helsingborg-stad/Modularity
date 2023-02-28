@@ -1,5 +1,5 @@
 @foreach ($posts as $post)
-    <div class="modularity-socialmedia__item {{ $columnClasses }}">
+    <div class="open-modal modularity-socialmedia__item {{ $columnClasses }}">
         @block([
             'filled' => true,
             'image' => [

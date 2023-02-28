@@ -12,7 +12,7 @@
 
 @if ($showFeed)
 
-    <div class="o-grid modularity-socialmedia-container">
+    <div class="o-grid modularity-socialmedia-container" data-post-id="{{ $ID }}">
 
         <div class="o-grid modularity-socialmedia__content">
             @include("partials.$layout", ['posts' => $posts])
