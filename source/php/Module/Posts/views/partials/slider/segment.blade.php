@@ -1,6 +1,7 @@
 @segment([
     'layout' => 'card',
     'title' => ($post->showTitle ? $post->post_title : false),
+    'classList' => ['c-segment--slider'],
     'meta' => '5 mins read',
     'tags' => $post->tags,
     'image' => $post->thumbnail[0],
