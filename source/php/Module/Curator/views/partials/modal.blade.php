@@ -1,8 +1,6 @@
 @modal([
     'id' => 'modal-' . $post->id,
-    'size' => 'md',
-    'heading' => false,
-    'padding' => 1
+    'size' => 'md'
 ])
     <div class="o-grid">
         <div class="o-grid-7">

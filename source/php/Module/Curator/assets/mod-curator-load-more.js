@@ -19,7 +19,6 @@ function loadMoreHandler(event) {
 				console.error(error);
 			});
 	} else {
-		console.log('Maximum number of items fetched.');
 		parent.innerHTML = curator.noMoreItems;
 	}
 }
@@ -52,9 +51,6 @@ function updateItems(posts, button) {
 	const itemsLoaded = parseInt(button.getAttribute('data-items-loaded'));
 	const newItemsLoaded = itemsLoaded + posts.length;
 	button.setAttribute('data-items-loaded', newItemsLoaded);
-
-	// ! TODO Correct this value
-	console.log('Total items loaded:', newItemsLoaded);
 }
 
 function renderPosts(posts, button) {
