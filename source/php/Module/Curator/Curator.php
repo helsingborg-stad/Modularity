@@ -15,7 +15,8 @@ class Curator extends \Modularity\Module
 
         $this->data['i18n'] = [
             'loadMore' => __('Load More', 'modularity'),
-            'goToOriginalPost' => __('Go to original post', 'modularity')
+            'goToOriginalPost' => __('Go to original post', 'modularity'),
+            'noMoreItems' => __('No more items to load.', 'modularity'),
         ];
 
         add_action('wp_ajax_mod_curator_get_feed', [$this, 'getFeed'], 10, 4);
@@ -66,10 +67,11 @@ class Curator extends \Modularity\Module
             'mod-curator-load-more',
             MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-curator-load-more.js')
         );
-        wp_localize_script('mod-curator-load-more', 'curator', [
+        $strings = array_merge($this->data['i18n'], [
             'ajaxurl' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('mod-posts-load-more')
         ]);
+        wp_localize_script('mod-curator-load-more', 'curator', $strings);
         wp_enqueue_script('mod-curator-load-more');
     }
     public function data(): array

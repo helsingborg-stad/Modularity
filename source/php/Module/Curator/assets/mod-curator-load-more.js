@@ -1,23 +1,26 @@
 function loadMoreHandler(event) {
 	event.preventDefault();
 
-	const embedCode = event.target.getAttribute('data-code');
-	const itemCount = parseInt(event.target.getAttribute('data-item-count'));
-	const itemsPerPage = parseInt(event.target.getAttribute('data-items-per-page'));
-	let itemsLoaded = parseInt(event.target.getAttribute('data-items-loaded'));
+	const parent = event.target.closest('.mod-curator-load-more');
+
+	const embedCode = parent.getAttribute('data-code');
+	const itemCount = parseInt(parent.getAttribute('data-item-count'));
+	const itemsPerPage = parseInt(parent.getAttribute('data-items-per-page'));
+	let itemsLoaded = parseInt(parent.getAttribute('data-items-loaded'));
 
 	if (itemsLoaded < itemCount) {
 		getFeed(embedCode, itemsPerPage, itemsLoaded)
 			.then((response) => {
 				if (response.success && response.posts) {
-					updateItems(response.posts, event.target);
+					updateItems(response.posts, parent);
 				}
 			})
 			.catch((error) => {
 				console.error(error);
 			});
 	} else {
-		console.log('Maximum number of items reached (' + itemCount + ')');
+		console.log('Maximum number of items fetched.');
+		parent.innerHTML = curator.noMoreItems;
 	}
 }
 
@@ -86,7 +89,7 @@ function renderPosts(posts, button) {
 		});
 }
 
-const loadMoreButtons = document.getElementsByClassName('mod-curator-load-more');
-for (let i = 0; i < loadMoreButtons.length; i++) {
-	loadMoreButtons[i].addEventListener('click', loadMoreHandler);
-}
+// Select all elements with class 'mod-curator-load-more' and convert the result to an array
+const loadMoreButtons = Array.from(document.getElementsByClassName('mod-curator-load-more'));
+// Add the event listener to each button in the array
+loadMoreButtons.forEach((button) => button.addEventListener('click', loadMoreHandler));

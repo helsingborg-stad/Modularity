@@ -12,27 +12,25 @@
 
 @if ($showFeed)
 
-    <div class="o-grid modularity-socialmedia-container" data-post-id="{{ $ID }}">
+    <div class="o-grid modularity-socialmedia-container">
 
         <div class="o-grid modularity-socialmedia__content">
             @include("partials.$layout", ['posts' => $posts])
         </div>
         <div class="o-grid-12 modularity-socialmedia__footer">
             @typography(['element' => 'div', 'variant' => 'load-more', 'classList' => ['u-text-align--center']])
-                @link([
-                    'href' => '#',
-                    'text' => $i18n['loadMore'],
+                @button([
                     'color' => 'primary',
+                    'text' => $i18n['loadMore'],
                     'attributeList' => [
                         'data-items-per-page' => $numberOfItems,
                         'data-item-count' => $postCount,
                         'data-items-loaded' => $numberOfItems,
-                        'data-code' => $embedCode
+                        'data-code' => $embedCode,
                     ],
-                    'classList' => ['mod-curator-load-more', 'c-button']
+                    'classList' => ['mod-curator-load-more'],
                 ])
-                    {{ $i18n['loadMore'] }}
-                @endlink
+                @endbutton
             @endtypography
             @typography(['element' => 'div', 'variant' => 'meta', 'classList' => ['u-text-align--right']])
                 <a href="https://curator.io" target="_blank" rel="nofollow">Powered by Curator.io</a>
