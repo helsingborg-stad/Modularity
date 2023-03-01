@@ -56,7 +56,8 @@ class FeaturesGridTemplate extends AbstractController
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             $post->tags = (new TagHelper)->getTags(
                 $post->ID,
-                $this->data['taxonomyDisplayFlat']
+                $this->data['taxonomyDisplayFlat'],
+                $post->link
             );
 
             $this->setPostFlags($post);

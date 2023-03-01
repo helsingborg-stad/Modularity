@@ -53,14 +53,10 @@ class AbstractController
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             $post->tags = (new TagHelper)->getTags(
                 $post->ID,
-                $this->data['taxonomyDisplayFlat']
+                $this->data['taxonomyDisplayFlat'],
+                $post->link
             );
-            if (!empty($post->link) && is_array($post->tags) && !empty($post->tags)) {
-                foreach ($post->tags as $tagKey => $tag) {
-                    $post->tags[$tagKey]['href'] = "";
-                }
-            }
-
+            
             // Get excerpt
             $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : '';
 
