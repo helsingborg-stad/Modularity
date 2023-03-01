@@ -107,7 +107,7 @@ class Curator extends \Modularity\Module
             $data['showFeed'] = true;
         }
         //Parse posts array
-        $data['posts'] = self::parseSocialMediaPosts($data['posts']);
+        $data['posts'] = is_array($data['posts']) ? self::parseSocialMediaPosts($data['posts']) : [];
 
         //Could not fetch error message / embed code error message
         if (!$data['embedCode']) {
