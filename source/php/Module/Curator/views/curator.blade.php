@@ -14,8 +14,11 @@
 
     <div class="o-grid modularity-socialmedia-container">
 
-        <div class="o-grid modularity-socialmedia__content">
+        <div class="o-grid modularity-socialmedia__content {{ $gutter }}">
             @include("partials.$layout", ['posts' => $posts])
+            @foreach ($posts as $post)
+                @include('partials.modal', ['post' => $post])
+            @endforeach
         </div>
         <div class="o-grid-12 modularity-socialmedia__footer">
             @typography(['element' => 'div', 'variant' => 'load-more', 'classList' => ['u-text-align--center']])

@@ -81,18 +81,15 @@ class Curator extends \Modularity\Module
 
         $data['i18n'] = $this->data['i18n'];
 
-        $data['layout'] = get_field('layout', $this->ID) ?? 'card';
-        if ($data['layout'] === 'block') {
-            $blockLayoutSettings = get_field('blockLayoutSettings', $this->ID) ?? [];
-
-            $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm ';
-            $columns = $blockLayoutSettings['columns'] ?? 4;
-            $data['columnClasses'] .= ($columns == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
-
-            $data['ratio'] = $blockLayoutSettings['ratio'] ?? '1:1';
-        }
-
         $data['numberOfItems'] = get_field('number_of_posts', $this->ID) ?? 12;
+        $data['ratio']         = get_field('ratio', $this->ID) ?? '4:3';
+        $data['gutter']        = get_field('gutter', $this->ID) ?  'o-grid--no-gutter' : '';
+        $data['layout']        = get_field('layout', $this->ID) ?? 'card';
+        if ($data['layout'] === 'block') {
+            $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm ';
+            $columns = get_field('columns', $this->ID) ?? 4;
+            $data['columnClasses'] .= ($columns == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
+        }
 
         $cached = isset($_GET['flush']) ? false : true;
         $feed = $this->getFeed($data['embedCode'], $data['numberOfItems'], 0, $cached);

@@ -3,7 +3,7 @@
     'size' => 'md'
 ])
     <div class="o-grid">
-        <div class="o-grid-7">
+        <div class="o-grid-6">
             @if ($post->oembed)
                 {!! $post->oembed !!}
             @else
@@ -13,7 +13,7 @@
                 @endimage
             @endif
         </div>
-        <div class="o-grid-5">
+        <div class="o-grid-5 u-padding__left--4">
             <header class="o-container o-container--fullwidth u-margin__left u-margin__top u-margin__bottom--1">
                 @avatar([
                     'image' => $post->user_image,
@@ -58,37 +58,6 @@
                 'href' => $post->url,
             ])
             @endbutton
-            @if ($post->likes > 0 || $post->comments > 0)
-                <!-- TODO: How to give the footer a light top border? -->
-                <footer class="o-container--fullwidth u-border__top u-margin__top--1 u-padding__top--1">
-                    @if ($post->likes > 0)
-                        @typography([
-                            'element' => 'span',
-                            'classList' => []
-                        ])
-                            @typography([
-                                'element' => 'span'
-                            ])
-                                {{ $post->likes }}
-                            @endtypography
-                            {{ $post->likesText }}
-                        @endtypography
-                    @endif
-                    @if ($post->comments > 0)
-                        @typography([
-                            'element' => 'span',
-                            'classList' => ['comments']
-                        ])
-                            @typography([
-                                'element' => 'span'
-                            ])
-                                {{ $post->comments }}
-                            @endtypography
-                            {{ $post->commentsText }}
-                        @endtypography
-                    @endif
-                </footer>
-            @endif
         </div>
     </div>
 @endmodal

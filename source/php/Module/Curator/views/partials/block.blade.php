@@ -12,6 +12,5 @@
             'classList' => ['u-height--100']
         ])
         @endblock
-        @include('partials.modal', ['post' => $post])
     </div>
 @endforeach
