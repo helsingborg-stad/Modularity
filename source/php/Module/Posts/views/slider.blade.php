@@ -20,7 +20,7 @@
             @endtypography
         @endif
     </div>
-        @include('partials.slider.slider-navigation')
+        @includeWhen($postsDisplayAs != 'segment', 'partials.slider.slider-navigation')
 </div>
 
 @slider([
@@ -29,11 +29,12 @@
     'showStepper'     => false,
     'autoSlide'       => false,
     'isPost'          => true,
-    'customButtons'   => 'js-custom-buttons-' . $sliderId,
-    'attributeList' => [
+    'repeatSlide'     => $postsDisplayAs != 'segment' ? true : false,
+    'customButtons'   => $postsDisplayAs != 'segment' ? 'js-custom-buttons-' . $sliderId : false,
+    'attributeList'   => [
         'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
         'data-slider-gap' => 48,
-        'data-slides-per-page' => $slider->slidesPerPage
+        'data-slides-per-page' => $slider->slidesPerPage,
     ]
 ])
     @foreach ($posts as $post)
