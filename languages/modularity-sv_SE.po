@@ -1563,7 +1563,7 @@ msgstr "Affischbild"
 
 #: source/php/AcfFields/php/mod-posts-displau.php:668
 msgid "Ratio"
-msgstr "Propotioner"
+msgstr "Proportioner"
 
 #: source/php/AcfFields/php/mod-posts-displau.php:695
 msgid "1:1"
@@ -1584,11 +1584,11 @@ msgstr "Filtrera data"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:10
 msgid "Taxonomy filter"
-msgstr "Filtrera taxomnomi"
+msgstr "Filtrera på taxonomi"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:22
 msgid "Yes, filter posts based on taxonomy"
-msgstr "Ja, filtrera data baserat på taxonomi"
+msgstr "Ja, filtrera inlägg baserat på term och taxonomi"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:29
 msgid "Taxonomy type"
@@ -1596,7 +1596,7 @@ msgstr "Taxonomi"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:62
 msgid "Taxonomy value"
-msgstr "Taxonomivärde"
+msgstr "Term"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:95
 msgid "Meta filter"
@@ -1604,15 +1604,15 @@ msgstr "Metafilter"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:107
 msgid "Yes, filter posts based on meta"
-msgstr "Ja, filtrera inlägg baserat på inläggsmeta"
+msgstr "Ja, filtrera inlägg baserat på inläggs-meta"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:114
 msgid "Meta key"
-msgstr "Metanyckel"
+msgstr "Meta-nyckel"
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:147
 msgid "Meta value"
-msgstr "Metavärde"
+msgstr "Meta-värde"
 
 #: source/php/AcfFields/php/mod-posts-sorting.php:6
 msgid "Data sorting"
