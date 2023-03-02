@@ -73,7 +73,6 @@ class ListTemplate
             $postData['posts_data_source'] !== 'input' &&
             isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']
         ) {
-
             $columnsTitle = _e('Show more', 'modularity');
 
             if (isset($postData['filters'])) {

@@ -2,7 +2,7 @@
 
 namespace Modularity\Module\Posts;
 
-use \Modularity\Module\Posts\PostsFilters;
+use Modularity\Module\Posts\PostsFilters;
 
 /**
  * Class Posts
@@ -52,9 +52,9 @@ class Posts extends \Modularity\Module
     {
         $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
         $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
-        
+
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
-        
+
         if (1 === (int) $showAsSlider && in_array($postsDisplayAs, $layoutsWithSliderAvailable, true)) {
             $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
             return 'slider.blade.php';
@@ -175,7 +175,7 @@ class Posts extends \Modularity\Module
         if (! empty($data)) {
             $this->data = $data;
         }
-        
+
         $template = explode('-', $template);
         $template = array_map('ucwords', $template);
         $template = implode('', $template);
@@ -183,7 +183,7 @@ class Posts extends \Modularity\Module
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
-        
+
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data);
             $this->data = array_merge($this->data, $controller->data);
@@ -198,6 +198,7 @@ class Posts extends \Modularity\Module
         $data = [];
         $fields = json_decode(json_encode(get_fields($this->ID)));
         $data['posts_display_as'] = $fields->posts_display_as;
+        $data['display_reading_time'] = $fields->display_reading_time;
 
         $this->enableFilters = $this->enableFilters();
         if ($this->enableFilters) {
@@ -223,8 +224,8 @@ class Posts extends \Modularity\Module
         $data['posts_date_source'] = $fields->posts_date_source ?? false;
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
+
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
-       
 
         // Sorting
         $data['sortBy'] = false;
@@ -258,7 +259,7 @@ class Posts extends \Modularity\Module
 
         $data['taxonomyDisplayFlat']    = $this->getTaxonomyDisplayFlat();
         $data['archive_link_url']       = $this->getArchiveUrl(
-            $data['posts_data_post_type'], 
+            $data['posts_data_post_type'],
             $fields
         );
 
@@ -267,43 +268,44 @@ class Posts extends \Modularity\Module
            'next' => __('Next slide', 'modularity'),
         ];
 
-        if($this->ID) {
+        if ($this->ID) {
             $data['sliderId'] = $this->ID;
         } else {
             $data['sliderId'] = uniqid();
         }
-        
+
         return $data;
     }
 
-    private function getArchiveUrl($postType, $fields) {
+    private function getArchiveUrl($postType, $fields)
+    {
 
-        if(empty($postType)) {
+        if (empty($postType)) {
             return false;
         }
 
-        if(!isset($fields->archive_link) || !$fields->archive_link) {
+        if (!isset($fields->archive_link) || !$fields->archive_link) {
             return false;
         }
 
-        if($postType == 'post') {
-            if($pageForPosts = get_option('page_for_posts')) {
+        if ($postType == 'post') {
+            if ($pageForPosts = get_option('page_for_posts')) {
                 return get_permalink($pageForPosts);
             }
 
-            if(get_option('show_on_front') == 'posts') {
+            if (get_option('show_on_front') == 'posts') {
                 return get_home_url();
             }
 
             return false;
         }
 
-        if($postObject = get_post_type_object($postType)) {
-            if(isset($postObject->has_archive) && $postObject->has_archive) {
-                return get_post_type_archive_link($postType); 
+        if ($postObject = get_post_type_object($postType)) {
+            if (isset($postObject->has_archive) && $postObject->has_archive) {
+                return get_post_type_archive_link($postType);
             }
         }
-        
+
         return false;
     }
 
@@ -679,9 +681,11 @@ class Posts extends \Modularity\Module
                 if (empty($_post->permalink)) {
                     $_post->permalink = get_permalink($_post->ID);
                 }
+
+                $_post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($_post->post_content, 0, true);
             }
         }
-        
+
         return $posts;
     }
 
