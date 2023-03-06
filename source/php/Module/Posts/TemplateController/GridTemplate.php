@@ -20,6 +20,8 @@ class GridTemplate extends AbstractController
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
+        $this->data['display_reading_time'] = $fields->display_reading_time ?? false;
+
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
         $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $this->module->post_type, $this->args));
@@ -57,12 +59,17 @@ class GridTemplate extends AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new TagHelper)->getTags(
-                $post->ID, 
-                $this->data['taxonomyDisplayFlat'], 
+            $post->tags = (new TagHelper())->getTags(
+                $post->ID,
+                $this->data['taxonomyDisplayFlat'],
                 $post->link
             );
 
+            if (class_exists('Municipio\Helper\ReadingTime')) {
+                $post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($post->post_content, 0, true);
+            } else {
+                $post->reading_time = false;
+            }
             $this->setPostFlags($post);
         }
     }
