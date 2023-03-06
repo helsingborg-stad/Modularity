@@ -682,7 +682,11 @@ class Posts extends \Modularity\Module
                     $_post->permalink = get_permalink($_post->ID);
                 }
 
-                $_post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($_post->post_content, 0, true);
+                if (class_exists('\Municipio\Helper\ReadingTime')) {
+                    $_post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($_post->post_content, 0, true);
+                } else {
+                    $_post->reading_time = false;
+                }
             }
         }
 

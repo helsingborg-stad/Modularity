@@ -65,8 +65,11 @@ class GridTemplate extends AbstractController
                 $post->link
             );
 
-            $post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($post->post_content, 0, true);
-
+            if (class_exists('Municipio\Helper\ReadingTime')) {
+                $post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($post->post_content, 0, true);
+            } else {
+                $post->reading_time = false;
+            }
             $this->setPostFlags($post);
         }
     }

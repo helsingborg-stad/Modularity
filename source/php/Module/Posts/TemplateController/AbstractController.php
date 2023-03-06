@@ -51,12 +51,12 @@ class AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new TagHelper)->getTags(
+            $post->tags = (new TagHelper())->getTags(
                 $post->ID,
                 $this->data['taxonomyDisplayFlat'],
                 $post->link
             );
-            
+
             // Get excerpt
             $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : '';
 
