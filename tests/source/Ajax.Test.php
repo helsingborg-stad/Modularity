@@ -1,5 +1,7 @@
 <?php
 
+use Modularity\Ajax;
+
 /**
  * Testing Ajax functionality.
  *
@@ -13,6 +15,12 @@ class AjaxTest extends WP_Ajax_UnitTestCase
     public static function wpSetUpBeforeClass(WP_UnitTest_Factory $factory)
     {
         self::$post = $factory->post->create_and_get();
+    }
+
+    public function testClassInstantiationRegistersHooks() {
+        $ajax = new Ajax();
+        $this->assertSame(10, has_action('wp_ajax_get_post', array($ajax, 'getPost')));
+        $this->assertSame(10, has_action('wp_ajax_get_post_modules', array($ajax, 'getPostModules')));
     }
 
     /**
@@ -32,6 +40,24 @@ class AjaxTest extends WP_Ajax_UnitTestCase
 
         $result = json_decode($this->_last_response);
         $this->assertSame(self::$post->ID, $result->ID);
+    }
+    
+    /**
+     * Returns false if Post does not exist.
+     */
+    public function testGetPostReturnsFalseWhenPostNotExist()
+    {
+        $action = 'get_post';
+        $_POST['action'] = $action;
+        $_POST['id'] = 123456;
+
+        try {
+            $this->_handleAjax($action);
+        } catch (WPAjaxDieContinueException $e) {
+            unset($e);
+        }
+
+        $this->assertSame('false', $this->_last_response);
     }
 
     /**

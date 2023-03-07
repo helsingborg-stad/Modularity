@@ -16,12 +16,15 @@ class Ajax
      */
     public function getPost()
     {
-        if (!isset($_POST['id']) || empty($_POST['id']) || is_null($_POST['id'])) {
-            echo 'false';
-            wp_die();
+        if (!$this->requestHasRequieredParams()) {
+            $this->abortRequest();
         }
 
-        echo json_encode(get_post($_POST['id']));
+        if( ($post = get_post($_POST['id'])) === null ) {
+            $this->abortRequest();
+        }
+
+        echo json_encode($post);
         wp_die();
     }
 
@@ -31,9 +34,8 @@ class Ajax
      */
     public function getPostModules()
     {
-        if (!isset($_POST['id']) || empty($_POST['id']) || is_null($_POST['id'])) {
-            echo 'false';
-            wp_die();
+        if (!$this->requestHasRequieredParams()) {
+            $this->abortRequest();
         }
 
         $post_modules = \Modularity\Editor::getPostModules($_POST['id']);
@@ -47,6 +49,15 @@ class Ajax
         }
 
         echo json_encode($post_modules);
+        wp_die();
+    }
+
+    private function requestHasRequieredParams() {
+        return isset($_POST['id']) && !empty($_POST['id']) && !is_null($_POST['id']);
+    }
+
+    private function abortRequest() {
+        echo 'false';
         wp_die();
     }
 }
