@@ -1,0 +1,35 @@
+name: Test
+
+on:
+  push:
+    branches: [ 3.0/develop ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mariadb:
+        image: mariadb:10.4
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: test
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Setup PHP with composer v2
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+        tools: composer:v2
+
+    - name: Install dependencies
+      run: composer i
+
+    - name: Set up test environment
+      run: composer run setup:test test root root mariadb latest
+
+    - name: Run tests
+      run: composer run test
