@@ -7,3 +7,6 @@ vendor/
 .env
 group_577279265d68a.json
 dist/
+.phpunit.result.cache
+tests/setup/tmp/*
+!tests/setup/tmp/.gitkeep

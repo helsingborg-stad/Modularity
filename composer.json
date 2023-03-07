@@ -22,6 +22,10 @@
             "email": "karl.pettersson@helsingborg.se"
         }
     ],
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "setup:test": "echo y | tests/setup/install-wp-tests.sh test root modul-test 127.0.0.1 latest"
+    },
     "repositories": [
         {
             "type": "vcs",
@@ -75,5 +79,9 @@
         "installer-paths": {
             "vendor/{$vendor}/{$name}/": ["vendor:wpackagist-plugin"]
         }
-    }    
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.6.x-dev",
+        "yoast/phpunit-polyfills": "1.x-dev"
+    }
 }
