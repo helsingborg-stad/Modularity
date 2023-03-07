@@ -10,3 +10,4 @@ dist/
 .phpunit.result.cache
 tests/setup/tmp/*
 !tests/setup/tmp/.gitkeep
+html

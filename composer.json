@@ -24,7 +24,8 @@
     ],
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "setup:test": "tests/setup/install-wp-tests.sh"
+        "test:coverage": "vendor/bin/phpunit --coverage-html html",
+        "test:setup": "tests/setup/install-wp-tests.sh"
     },
     "repositories": [
         {
@@ -82,6 +83,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "9.6.x-dev",
-        "yoast/phpunit-polyfills": "1.x-dev"
+        "yoast/phpunit-polyfills": "1.x-dev",
+        "php-stubs/wordpress-tests-stubs": "dev-master"
     }
 }

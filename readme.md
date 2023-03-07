@@ -442,8 +442,11 @@ The WordPress test suite is used for testing php in this plugin. To get the test
 
 ### Steps
 1. Install dependencies ```composer install```.
-1. Download the test suite and additional required plugins: ```composer run setup:test```. You will be prompted to supply database name, database user, database password, database host as well as an optional parameter for WordPress version. Ex: ```composer run setup:test test root root 127.0.0.1 latest```.
+1. Download the test suite and additional required plugins: ```composer run test:setup```. You will be prompted to supply database name, database user, database password, database host as well as an optional parameter for WordPress version. Ex: ```composer run test:setup test root root 127.0.0.1 latest```.
 1. Run tests ```composer run test```.
+
+### Coverage
+To verify tests coverage during development run ```XDEBUG_MODE=coverage composer run composer run test:coverage```.
 
 ## Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.
