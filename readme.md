@@ -432,6 +432,19 @@ add_filter("Modularity/Display/mod-posts/viewData", function($data) {
     });
 ```
 
+## Tests
+The WordPress test suite is used for testing php in this plugin. To get the test suite up and running follow the steps below.
+
+### Requirements
+* SVN
+* MySQL
+* Composer
+
+### Steps
+1. Install dependencies ```composer install```.
+1. Download the test suite and additional required plugins: ```composer run setup:test```. You will be prompted to supply database name, database user, database password, database host as well as an optional parameter for WordPress version. Ex: ```composer run setup:test test root root 127.0.0.1 latest```.
+1. Run tests ```composer run test```.
+
 ## Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.
 
