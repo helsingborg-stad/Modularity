@@ -5,7 +5,7 @@
  * @package Modularity
  */
 
-$_tests_dir = dirname(__FILE__) . '/tmp/wordpress-tests-lib';
+$_tests_dir = sys_get_temp_dir() . '/wordpress-tests-lib';
 
 // Forward custom PHPUnit Polyfills configuration to PHPUnit bootstrap file.
 $_phpunit_polyfills_path = getenv( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH' );

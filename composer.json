@@ -24,7 +24,7 @@
     ],
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "setup:test": "echo y | tests/setup/install-wp-tests.sh test root modul-test 127.0.0.1 latest"
+        "setup:test": "tests/setup/install-wp-tests.sh"
     },
     "repositories": [
         {
