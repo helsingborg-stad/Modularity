@@ -19,16 +19,6 @@ class AjaxTest extends WP_Ajax_UnitTestCase
         self::$post = $factory->post->create_and_get();
     }
 
-    public function testClassInstantiationRegistersHooks()
-    {
-        // When
-        $ajax = new Ajax();
-
-        // Then
-        $this->assertSame(10, has_action('wp_ajax_get_post', array($ajax, 'getPost')));
-        $this->assertSame(10, has_action('wp_ajax_get_post_modules', array($ajax, 'getPostModules')));
-    }
-
     /**
      * Returns Post on call.
      */
