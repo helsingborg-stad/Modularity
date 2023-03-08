@@ -446,7 +446,7 @@ The WordPress test suite is used for testing php in this plugin. To get the test
 1. Run tests ```composer run test```.
 
 ### Coverage
-To verify tests coverage during development run ```XDEBUG_MODE=coverage composer run composer run test:coverage```.
+To verify tests coverage during development run ```XDEBUG_MODE=coverage composer run test:coverage```.
 
 ## Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.

@@ -12,13 +12,19 @@ class AjaxTest extends WP_Ajax_UnitTestCase
 
     protected static ?WP_Post $post = null;
 
-    public static function wpSetUpBeforeClass(WP_UnitTest_Factory $factory)
+    public static function setUpBeforeClass(): void
     {
+        parent::setUpBeforeClass();
+        $factory = new WP_UnitTest_Factory();
         self::$post = $factory->post->create_and_get();
     }
 
-    public function testClassInstantiationRegistersHooks() {
+    public function testClassInstantiationRegistersHooks()
+    {
+        // When
         $ajax = new Ajax();
+
+        // Then
         $this->assertSame(10, has_action('wp_ajax_get_post', array($ajax, 'getPost')));
         $this->assertSame(10, has_action('wp_ajax_get_post_modules', array($ajax, 'getPostModules')));
     }
@@ -26,30 +32,34 @@ class AjaxTest extends WP_Ajax_UnitTestCase
     /**
      * Returns Post on call.
      */
-    public function testGetPostReturnsPost()
+    public function testGetPostWithExistingPostIDReturnsPost()
     {
-        $action = 'get_post';
-        $_POST['action'] = $action;
+        // Given
+        $_POST['action'] = 'get_post';
         $_POST['id'] = self::$post->ID;
 
-        $this->doAjaxRequest($action);
+        // When
+        $response = $this->doAjaxRequest($_POST['action']);
+        $result = json_decode($response);
 
-        $result = json_decode($this->_last_response);
+        // Then
         $this->assertSame(self::$post->ID, $result->ID);
     }
-    
+
     /**
      * Returns false if Post does not exist.
      */
     public function testGetPostReturnsFalseWhenPostNotExist()
     {
-        $action = 'get_post';
-        $_POST['action'] = $action;
+        // Given
+        $_POST['action'] = 'get_post';
         $_POST['id'] = 123456;
 
-        $this->doAjaxRequest($action);
+        // When
+        $response = $this->doAjaxRequest($_POST['action']);
 
-        $this->assertSame('false', $this->_last_response);
+        // Then
+        $this->assertSame('false', $response);
     }
 
     /**
@@ -57,13 +67,15 @@ class AjaxTest extends WP_Ajax_UnitTestCase
      */
     public function testGetPostWithoutRequiredID()
     {
-        $action = 'get_post';
-        $_POST['action'] = $action;
+        // Given
+        $_POST['action'] = 'get_post';
         $_POST['id'] = null;
 
-        $this->doAjaxRequest($action);
+        // When
+        $response = $this->doAjaxRequest($_POST['action']);
 
-        $this->assertSame('false', $this->_last_response);
+        // Then
+        $this->assertSame('false', $response);
     }
 
     /**
@@ -71,13 +83,15 @@ class AjaxTest extends WP_Ajax_UnitTestCase
      */
     public function testGetPostModulesWithoutRequiredID()
     {
-        $action = 'get_post_modules';
-        $_POST['action'] = $action;
+        // Given
+        $_POST['action'] = 'get_post_modules';
         $_POST['id'] = null;
 
-        $this->doAjaxRequest($action);
+        // When
+        $response = $this->doAjaxRequest('get_post_modules');
 
-        $this->assertSame('false', $this->_last_response);
+        // Then
+        $this->assertSame('false', $response);
     }
 
     /**
@@ -85,20 +99,25 @@ class AjaxTest extends WP_Ajax_UnitTestCase
      */
     public function testGetPostModulesReturnsPostModules()
     {
-        $action = 'get_post_modules';
-        $_POST['action'] = $action;
+        // Given
+        $_POST['action'] = 'get_post_modules';
         $_POST['id'] = self::$post->ID;
 
-        $this->doAjaxRequest($action);
+        // When
+        $response = $this->doAjaxRequest('get_post_modules');
 
-        $this->assertSame('[]', $this->_last_response);
+        // Then
+        $this->assertSame('[]', $response);
     }
 
-    private function doAjaxRequest($action) {
+    private function doAjaxRequest(string $action):string
+    {
         try {
             $this->_handleAjax($action);
         } catch (WPAjaxDieContinueException $e) {
             unset($e);
         }
+
+        return $this->_last_response;
     }
 }
