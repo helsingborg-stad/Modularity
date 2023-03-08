@@ -47,9 +47,11 @@ class Curator extends \Modularity\Module
         $posts = self::parseSocialMediaPosts($posts);
         $i18n = $this->data['i18n'];
 
+        $layout = empty($_POST['layout']) ? 'card' : $_POST['layout'];
+
         // Print the posts via the blade template
         echo render_blade_view(
-            'partials/block',
+            "partials/$layout",
             [
                 'posts' => $posts,
                 'i18n' => $i18n,
@@ -85,10 +87,14 @@ class Curator extends \Modularity\Module
         $data['ratio']         = get_field('ratio', $this->ID) ?? '4:3';
         $data['gutter']        = get_field('gutter', $this->ID) ?  'o-grid--no-gutter' : '';
         $data['layout']        = get_field('layout', $this->ID) ?? 'card';
+
         if ($data['layout'] === 'block') {
             $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm ';
+
             $columns = get_field('columns', $this->ID) ?? 4;
             $data['columnClasses'] .= ($columns == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
+        } else {
+            $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg';
         }
 
         $cached = isset($_GET['flush']) ? false : true;
@@ -195,16 +201,15 @@ class Curator extends \Modularity\Module
     {
         if (defined('DOING_AJAX') && DOING_AJAX) {
             if (!empty($_POST['embed-code'])) {
-                $embedCode = $_POST['embed-code'];
+                $embedCode     = $_POST['embed-code'];
                 $numberOfItems = $_POST['limit'];
-                $offset = $_POST['offset'];
+                $offset        = $_POST['offset'];
             } else {
                 wp_die('embed code not found');
             }
         }
         // $embedCode     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
         $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
-
 
         $requestArgs = [
             'headers' => [

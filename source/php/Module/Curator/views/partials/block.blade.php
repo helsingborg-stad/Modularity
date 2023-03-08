@@ -13,4 +13,5 @@
         ])
         @endblock
     </div>
+    @include('partials.modal', ['post' => $post])
 @endforeach

@@ -1,7 +1,6 @@
     @foreach ($posts as $post)
-        <div class="o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg">
+        <div class="open-modal modularity-socialmedia__item {{ $columnClasses }}">
             @card([
-                'link' => $post->url,
                 'image' => [
                     'src' => $post->image,
                     'alt' => $post->text,
@@ -9,7 +8,8 @@
                 ],
                 'ratio' => '4:3',
                 'content' => $post->text,
-                'classList' => ['u-height--100']
+                'classList' => ['u-height--100'],
+                'attributeList' => ['data-open' => 'modal-' . $post->id]
             ])
                 @image([
                     'src' => $post->image,
@@ -39,4 +39,5 @@
             @endcard
 
         </div>
+        @include('partials.modal', ['post' => $post])
     @endforeach
