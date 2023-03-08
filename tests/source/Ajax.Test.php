@@ -32,11 +32,7 @@ class AjaxTest extends WP_Ajax_UnitTestCase
         $_POST['action'] = $action;
         $_POST['id'] = self::$post->ID;
 
-        try {
-            $this->_handleAjax($action);
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
+        $this->doAjaxRequest($action);
 
         $result = json_decode($this->_last_response);
         $this->assertSame(self::$post->ID, $result->ID);
@@ -51,11 +47,7 @@ class AjaxTest extends WP_Ajax_UnitTestCase
         $_POST['action'] = $action;
         $_POST['id'] = 123456;
 
-        try {
-            $this->_handleAjax($action);
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
+        $this->doAjaxRequest($action);
 
         $this->assertSame('false', $this->_last_response);
     }
@@ -69,11 +61,7 @@ class AjaxTest extends WP_Ajax_UnitTestCase
         $_POST['action'] = $action;
         $_POST['id'] = null;
 
-        try {
-            $this->_handleAjax($action);
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
+        $this->doAjaxRequest($action);
 
         $this->assertSame('false', $this->_last_response);
     }
@@ -87,11 +75,7 @@ class AjaxTest extends WP_Ajax_UnitTestCase
         $_POST['action'] = $action;
         $_POST['id'] = null;
 
-        try {
-            $this->_handleAjax($action);
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
+        $this->doAjaxRequest($action);
 
         $this->assertSame('false', $this->_last_response);
     }
@@ -105,12 +89,16 @@ class AjaxTest extends WP_Ajax_UnitTestCase
         $_POST['action'] = $action;
         $_POST['id'] = self::$post->ID;
 
+        $this->doAjaxRequest($action);
+
+        $this->assertSame('[]', $this->_last_response);
+    }
+
+    private function doAjaxRequest($action) {
         try {
             $this->_handleAjax($action);
         } catch (WPAjaxDieContinueException $e) {
             unset($e);
         }
-
-        $this->assertSame('[]', $this->_last_response);
     }
 }
