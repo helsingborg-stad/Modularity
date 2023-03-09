@@ -132,6 +132,7 @@ class BlockManager
     public function filterBlockTypes($allowedBlocks)
     {
         $registeredBlocks = \WP_Block_Type_Registry::get_instance()->get_all_registered();
+
         foreach ($registeredBlocks as $type => $block) {
             $allowedCoreBlocks = array(
                 'core/columns',
@@ -141,7 +142,7 @@ class BlockManager
                 'core/more',
                 'core/list',
                 'core/shortcode',
-                'core/reusableBlock',
+                'core/block',
                 'core/image'
             );
 
