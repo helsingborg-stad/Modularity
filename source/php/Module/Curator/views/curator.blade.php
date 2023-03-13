@@ -16,9 +16,6 @@
 
         <div class="o-grid modularity-socialmedia__content {{ $gutter }}">
             @include("partials.$layout", ['posts' => $posts])
-            @foreach ($posts as $post)
-                @include('partials.modal', ['post' => $post])
-            @endforeach
         </div>
         <div class="o-grid-12 modularity-socialmedia__footer">
             @typography(['element' => 'div', 'variant' => 'load-more', 'classList' => ['u-text-align--center']])
@@ -30,6 +27,7 @@
                         'data-item-count' => $postCount,
                         'data-items-loaded' => $numberOfItems,
                         'data-code' => $embedCode,
+                        'data-layout' => $layout,
                     ],
                     'classList' => ['mod-curator-load-more'],
                 ])

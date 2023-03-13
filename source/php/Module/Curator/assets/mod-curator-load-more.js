@@ -59,6 +59,7 @@ function renderPosts(posts, button) {
 
 	data.append('action', 'mod_curator_load_more');
 	data.append('nonce', curator.nonce);
+	data.append('layout', button.getAttribute('data-layout'));
 	data.append('posts', JSON.stringify(posts));
 
 	const closestParent = button.closest('.modularity-socialmedia-container');
