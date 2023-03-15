@@ -98,7 +98,7 @@ class Curator extends \Modularity\Module
         }
 
         $cached = isset($_GET['flush']) ? false : true;
-        $feed = $this->getFeed($data['embedCode'], $data['numberOfItems'], 0, $cached);
+        $feed = $this->getFeed($data['embedCode'], $data['numberOfItems'] + 1, 0, $cached);
 
         //Parse feed
         $data['showFeed'] = false;
@@ -132,7 +132,12 @@ class Curator extends \Modularity\Module
     public static function parseSocialMediaPosts(array $posts = []): array
     {
         if (is_array($posts) && !empty($posts)) {
-            foreach ($posts as &$post) {
+            foreach ($posts as $key => $post) {
+                if ('curator_io' === $post->user_screen_name || 'https://curator.io' === $post->url) {
+                    unset($posts[$key]);
+                    continue;
+                }
+
                 $post->full_text = $post->text;
 
                 $post->user_readable_name = self::getUserName($post->user_screen_name);
@@ -153,6 +158,8 @@ class Curator extends \Modularity\Module
                         }
                     }
                 }
+
+                $posts[$key] = $post;
             }
         }
         return $posts;
@@ -197,12 +204,12 @@ class Curator extends \Modularity\Module
      *
      * @return object The social media feed data as an object.
      */
-    public function getFeed(string $embedCode = '', int $numberOfItems = 12, int $offset = 0, bool $cache = true)
+    public function getFeed(string $embedCode = '', int $numberOfItems = 13, int $offset = 0, bool $cache = true)
     {
         if (defined('DOING_AJAX') && DOING_AJAX) {
             if (!empty($_POST['embed-code'])) {
                 $embedCode     = $_POST['embed-code'];
-                $numberOfItems = $_POST['limit'];
+                $numberOfItems = (int) $_POST['limit'] + 1;
                 $offset        = $_POST['offset'];
             } else {
                 wp_die('embed code not found');
@@ -218,7 +225,7 @@ class Curator extends \Modularity\Module
             'body' => [
                 'limit'        => $numberOfItems,
                 'offset'       => $offset,
-                'hasPoweredBy' => true,
+                'hasPoweredBy' => 1,
                 'version'      => '4.0',
                 'status'       => 1
             ]
@@ -227,7 +234,7 @@ class Curator extends \Modularity\Module
         $transientKey = '_modularity_curator_social_media_feed_' . $embedCode;
         if (false === ($feed = get_transient($transientKey)) && true === $cache) {
             $response = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
-            $feed = set_transient($transientKey, $response, 12 * \HOUR_IN_SECONDS);
+            $feed = set_transient($transientKey, $response, 5 * \MINUTE_IN_SECONDS);
         } else {
             $feed = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
         }
