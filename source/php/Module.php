@@ -12,8 +12,8 @@ class Module
     public $extractedPostProperties = array();
 
     /**
-     * A place to store the id of a module instance. 
-     * Adds block support, which dosen't require a ID (works well with null). 
+     * A place to store the id of a module instance.
+     * Adds block support, which dosen't require a ID (works well with null).
      *
      * @var int|null
      */
@@ -183,6 +183,7 @@ class Module
             $this->data['postTitle'] = $post->post_title;
         }
 
+        // FIXME: hasModule() is not working as expected here, doesn't accept any parameters.
         if (!is_admin() && $this->hasModule($post)) {
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
@@ -338,7 +339,6 @@ class Module
         }
 
         if ($currentPost = get_post($postId)) {
-
             $blocks = parse_blocks($currentPost->post_content);
 
             if (is_array($blocks) && !empty($blocks)) {
@@ -357,16 +357,17 @@ class Module
      * @param  string $post_id Current post id
      * @return array           Array with module post types
      */
-    public function getShortcodeModules($post_id) : array
+    public function getShortcodeModules($post_id): array
     {
         $post = get_post($post_id);
         $pattern = get_shortcode_regex();
         $modules = array();
 
-        if (is_object($post) && preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches)
+        if (
+            is_object($post) && preg_match_all('/' . $pattern . '/s', $post->post_content, $matches)
             && array_key_exists(2, $matches)
-            && in_array('modularity', $matches[2])) {
-
+            && in_array('modularity', $matches[2])
+        ) {
             $shortcodes = preg_replace('/[^0-9]/', '', $matches[3]);
             foreach ($shortcodes as $key => $shortcode) {
                 $modules[] = array(

@@ -67,7 +67,7 @@
                     'date' => $post->showDate
                         ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
                         : false,
-                    'classList' => $display_reading_time ? ['c-card--with-reading-time'] : [],
+                    'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
