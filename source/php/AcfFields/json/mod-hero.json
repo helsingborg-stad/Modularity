@@ -183,6 +183,43 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
+        },
+        {
+            "key": "field_6410739aec778",
+            "label": "Url",
+            "name": "mod_hero_button_href",
+            "aria-label": "",
+            "type": "url",
+            "instructions": "Url to which the button or text should link to.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_641073fcec779",
+            "label": "Button text",
+            "name": "mod_hero_button_text",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Text to be displayed on the button. If left empty and Url is given, the entire text in the Hero will be linked to the url.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [
@@ -216,4 +253,3 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
