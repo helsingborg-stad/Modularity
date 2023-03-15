@@ -20,7 +20,7 @@ class Ajax
             $this->abortRequest();
         }
 
-        if( ($post = get_post($_POST['id'])) === null ) {
+        if (($post = get_post($_POST['id'])) === null) {
             $this->abortRequest();
         }
 
@@ -52,11 +52,13 @@ class Ajax
         wp_die();
     }
 
-    private function requestHasRequieredParams() {
+    private function requestHasRequieredParams()
+    {
         return isset($_POST['id']) && !empty($_POST['id']) && !is_null($_POST['id']);
     }
 
-    private function abortRequest() {
+    private function abortRequest()
+    {
         echo 'false';
         wp_die();
     }

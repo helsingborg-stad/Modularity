@@ -2,12 +2,16 @@
 
 use Modularity\Options;
 
-class OptionsTest extends WP_UnitTestCase {
+class OptionsTest extends WP_UnitTestCase
+{
 
     protected ?Options $OptionsClass = null;
 
-    public function setUp():void {
-        $this->OptionsClass = new class extends Options {};
+    public function setUp(): void
+    {
+        $this->OptionsClass = new class extends Options
+        {
+        };
     }
 
     public function tear_down()
@@ -23,12 +27,12 @@ class OptionsTest extends WP_UnitTestCase {
         $method->setAccessible(true);
         return $method->invokeArgs($object, $parameters);
     }
-    
+
     public function testAddMetaBoxesReturnsTrue()
     {
         $this->assertTrue($this->OptionsClass->addMetaBoxes());
     }
-    
+
     public function testIsValidPostSaveReturnsFalseWhenIsNotModularityAction()
     {
         $this->assertFalse($this->OptionsClass->isValidPostSave());
@@ -43,14 +47,14 @@ class OptionsTest extends WP_UnitTestCase {
     public function testIsValidPostSaveReturnsFalseWhenNonceInvalid()
     {
         $_POST['modularity-action'] = 'modularity-options';
-        $_POST['_wpnonce'] = wp_create_nonce( 'invalid-nonce' );
+        $_POST['_wpnonce'] = wp_create_nonce('invalid-nonce');
         $this->assertFalse($this->OptionsClass->isValidPostSave());
     }
 
     public function testIsValidPostSaveReturnsTrueWhenAllParamsValidate()
     {
         $_POST['modularity-action'] = 'modularity-options';
-        $_POST['_wpnonce'] = wp_create_nonce( 'modularity-options' );
+        $_POST['_wpnonce'] = wp_create_nonce('modularity-options');
         $this->assertTrue($this->OptionsClass->isValidPostSave());
     }
 
@@ -62,7 +66,7 @@ class OptionsTest extends WP_UnitTestCase {
     public function testSaveDoesActionSaveOnSuccess()
     {
         $_POST['modularity-action'] = 'modularity-options';
-        $_POST['_wpnonce'] = wp_create_nonce( 'modularity-options' );
+        $_POST['_wpnonce'] = wp_create_nonce('modularity-options');
         $this->OptionsClass->save();
         $this->assertEquals(1, did_action('Modularity/Options/Save'));
     }
@@ -72,7 +76,7 @@ class OptionsTest extends WP_UnitTestCase {
         $result = $this->invokeMethod($this->OptionsClass, 'getFieldName', ['option-name', true]);
         $this->assertEquals('modularity-options[option-name][]', $result);
     }
-    
+
     public function  testGetFieldNameReturnsCorrectValueWhenIsMultiple()
     {
         $result = $this->invokeMethod($this->OptionsClass, 'getFieldName', ['option-name', false]);
