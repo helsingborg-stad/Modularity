@@ -91,8 +91,8 @@ class Curator extends \Modularity\Module
         if ($data['layout'] === 'block') {
             $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm ';
 
-            $columns = get_field('columns', $this->ID) ?? 4;
-            $data['columnClasses'] .= ($columns == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
+            $data['columns'] = get_field('columns', $this->ID) ?? 4;
+            $data['columnClasses'] .= ($data['columns'] == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
         } else {
             $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg';
         }
