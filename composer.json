@@ -25,7 +25,7 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "test:coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-html .coverage/html --coverage-clover .coverage/clover.xml",
-        "test:setup": "tests/setup/install-wp-tests.sh"
+        "test:setup": "tests/install-wp-tests.sh"
     },
     "repositories": [
         {
