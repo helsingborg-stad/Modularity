@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -lt 3 ]; then
-	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version] [skip-database-creation]"
+	echo "usage: $0 <db-name> <db-user> <db-pass> [db-host] [wp-version] [skip-database-creation] [skip-plugin-download]"
 	exit 1
 fi
 
@@ -11,6 +11,7 @@ DB_PASS=$3
 DB_HOST=${4-localhost}
 WP_VERSION=${5-latest}
 SKIP_DB_CREATE=${6-false}
+SKIP_PLUGIN_DOWNLOAD=${7-false}
 
 TMPDIR="/tmp"
 LOCALTMPDIR="$(pwd)/tests/setup/tmp"
@@ -177,7 +178,7 @@ install_db() {
 	fi
 }
 
-install_advanced_required_plugin_acf() {
+install_acf() {
 	REPO_NAME="wp-paid-plugins"
 
 	rm -rf "${LOCALTMPDIR}/advanced-custom-fields-pro"
@@ -186,7 +187,10 @@ install_advanced_required_plugin_acf() {
 	rm -rf $TMPDIR/$REPO_NAME
 }
 
-install_advanced_required_plugin_acf
+if [[ $SKIP_PLUGIN_DOWNLOAD = "false" ]]; then
+	install_acf
+fi
+
 install_wp
 install_test_suite
 install_db

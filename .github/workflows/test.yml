@@ -2,9 +2,9 @@ name: Test
 
 on:
   pull_request:
-    branches: [ 3.0/develop ]
 
 jobs:
+
   test:
 
     runs-on: ubuntu-latest
@@ -12,24 +12,44 @@ jobs:
     services:
       mariadb:
         image: mariadb:10.4
+        ports:
+          - 3306:3306
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: test
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
 
-    steps:
-    - uses: actions/checkout@v3
+    steps: 
 
-    - name: Setup PHP with composer v2
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '7.4'
-        tools: composer:v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Install dependencies
-      run: composer i
+      - name: Setup PHP with composer v2
+        uses: shivammathur/setup-php@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          php-version: '7.4'
+          tools: composer:v2
 
-    - name: Set up test environment
-      run: composer run test:setup test root root mariadb latest
+      - name: Install dependencies
+        run: composer i
 
-    - name: Run tests
-      run: composer run test
+      - name: Download ACF plugin
+        uses: actions/checkout@v3
+        with: 
+          repository: ${{ secrets.PAID_PLUGINS_REPO }}
+          token: ${{ secrets.HBG_GH_TOKEN }}
+          path: wp-paid-plugins
+
+      - name: Unzip ACF plugin to tmp folder
+        run: unzip wp-paid-plugins/acf.zip -d /tmp
+      
+      - name: Remove downloaded paid plugins repo
+        run: rm -rf wp-paid-plugins
+
+      - name: Set up test environment
+        run: composer run test:setup test root root 127.0.0.1 latest true true
+
+      - name: Run tests
+        run: composer run test
