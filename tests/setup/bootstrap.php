@@ -5,32 +5,33 @@
  * @package Modularity
  */
 
-$_tests_dir = sys_get_temp_dir() . '/wordpress-tests-lib';
+$tmpDir = sys_get_temp_dir();
+$testsDir = "{$tmpDir}/wordpress-tests-lib";
 
 // Forward custom PHPUnit Polyfills configuration to PHPUnit bootstrap file.
-$_phpunit_polyfills_path = getenv( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH' );
-if ( false !== $_phpunit_polyfills_path ) {
-	define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', $_phpunit_polyfills_path );
+$phpUnitPolyfillsPath = getenv( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH' );
+if ( false !== $phpUnitPolyfillsPath ) {
+	define( 'WP_TESTS_PHPUNIT_POLYFILLS_PATH', $phpUnitPolyfillsPath );
 }
 
-if ( ! file_exists( "{$_tests_dir}/includes/functions.php" ) ) {
-	echo "Could not find {$_tests_dir}/includes/functions.php, have you run tests/setup/install-wp-tests.sh ?" . PHP_EOL; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+if ( ! file_exists( "{$testsDir}/includes/functions.php" ) ) {
+	echo "Could not find {$testsDir}/includes/functions.php, have you run tests/setup/install-wp-tests.sh ?" . PHP_EOL; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	exit( 1 );
 }
 
 // Give access to tests_add_filter() function.
-require_once "{$_tests_dir}/includes/functions.php";
+require_once "{$testsDir}/includes/functions.php";
 
 /**
  * Manually load the plugin being tested.
  */
-function _manually_load_plugin() {
+$manuallyLoadPlugin = function () use ( $tmpDir ) {
 	// Load required plugin advanced-custom-fields-pro
-	require dirname( dirname( __FILE__ ) ) . '/setup/tmp/advanced-custom-fields-pro/acf.php';
+	require  "{$tmpDir}/advanced-custom-fields-pro/acf.php";
 	require dirname( dirname( __FILE__ ) ) . '/../modularity.php';
-}
+};
 
-tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
+tests_add_filter( 'muplugins_loaded', $manuallyLoadPlugin );
 
 // Start up the WP testing environment.
-require "{$_tests_dir}/includes/bootstrap.php";
+require "{$testsDir}/includes/bootstrap.php";
