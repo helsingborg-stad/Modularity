@@ -14,7 +14,6 @@
     "heroView" => $heroView,
     "background" => $backgroundColor,
     "textColor" => $textColor,
-
-
+    "buttonArgs" => $buttonArgs
 ])
 @endhero
