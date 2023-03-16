@@ -8,6 +8,13 @@ function loadMoreHandler(event) {
 	const itemsPerPage = parseInt(parent.getAttribute('data-items-per-page'));
 	let itemsLoaded = parseInt(parent.getAttribute('data-items-loaded'));
 
+	const grandParent = parent.closest('.modularity-socialmedia-container');
+	const socialMediaBlocks = grandParent.querySelector('.modularity-socialmedia__content');
+	const placeholderBlocks = socialMediaBlocks.querySelectorAll('.modularity-socialmedia__item--placeholder');
+
+	placeholderBlocks.forEach((block) => {
+		block.classList.remove('u-display--none');
+	});
 	if (itemsLoaded < itemCount) {
 		getFeed(embedCode, itemsPerPage, itemsLoaded)
 			.then((response) => {
@@ -19,6 +26,9 @@ function loadMoreHandler(event) {
 				console.error(error);
 			});
 	} else {
+		placeholderBlocks.forEach((block) => {
+			block.remove();
+		});
 		parent.innerHTML = curator.noMoreItems;
 	}
 }
@@ -64,6 +74,8 @@ function renderPosts(posts, button) {
 
 	const closestParent = button.closest('.modularity-socialmedia-container');
 	const socialMediaBlocks = closestParent.querySelector('.modularity-socialmedia__content');
+	const placeholderBlock = socialMediaBlocks.querySelector('.modularity-socialmedia__item--placeholder');
+	const placeholderBlocks = socialMediaBlocks.querySelectorAll('.modularity-socialmedia__item--placeholder');
 	const columnClasses = socialMediaBlocks.querySelector('.modularity-socialmedia__item').getAttribute('class');
 	data.append('columnClasses', columnClasses);
 
@@ -79,10 +91,15 @@ function renderPosts(posts, button) {
 			}
 		})
 		.then((html) => {
-			socialMediaBlocks.insertAdjacentHTML('beforeend', html);
+			placeholderBlock.insertAdjacentHTML('beforebegin', html);
 		})
 		.catch((error) => {
 			console.error(error);
+		})
+		.finally(() => {
+			placeholderBlocks.forEach((block) => {
+				block.classList.add('u-display--none');
+			});
 		});
 }
 
