@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Plugin Name: Modularity
  * Plugin URI: -
@@ -67,6 +68,7 @@ add_action('plugins_loaded', function () {
         'mod-posts-sorting'         => 'group_571dffc63090c',
         'mod-posts-source'          => 'group_571dfaabc3fc5',
         'mod-posts-taxonomydisplay' => 'group_630645d822841',
+        'mod-posts-reading-time'    => 'group_63ff609a05641',
         'mod-rss'                   => 'group_59535d940706c',
         'mod-script'                => 'group_56a8b9eddfced',
         'mod-slider'                => 'group_56a5e99108991',
@@ -80,7 +82,7 @@ add_action('plugins_loaded', function () {
         'mod-text-block'            => 'group_60ab6d6ba3621',
         'mod-hero'                  => 'group_614b3f1a751bf',
         'mod-hero-display-as'       => 'group_63ca5ed0cb7f4',
-        'mod-logogrid'              => 'group_61bc951d73494', 
+        'mod-logogrid'              => 'group_61bc951d73494',
         'mod-divider'               => 'group_62816d604ae46',
         'mod-all'                   => 'group_636e424039120',
 

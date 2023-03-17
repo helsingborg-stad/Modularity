@@ -30,6 +30,12 @@ class Archives
                     $postType = '?post_type=' . $postType;
                 }
 
+                /* Checking if the post type has an archive, otherwise bail early. */
+                $postTypeObject = get_post_type_object($postTypeSlug);
+                if (!is_null($postTypeObject) && !$postTypeObject->_builtin && !$postTypeObject->has_archive) {
+                    continue;
+                }
+
                 $editorLink = 'options.php?page=modularity-editor&id=' . \Modularity\Editor::pageForPostTypeTranscribe('archive-' . $postTypeSlug);
 
                 add_submenu_page(
@@ -43,15 +49,14 @@ class Archives
         }, 10);
 
         /* Fixes broken admin pages */
-        add_action('after_setup_theme',function() {
-            if(!is_admin()) {
+        add_action('after_setup_theme', function () {
+            if (!is_admin()) {
                 return;
             }
-            if(isset($_GET['post_type']) && isset($_GET['page']) && isset($_GET['id']) && substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor") {
-                wp_redirect(admin_url($_GET['page']. "&id=" . $_GET['id']), 302);
+            if (isset($_GET['post_type']) && isset($_GET['page']) && isset($_GET['id']) && substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor") {
+                wp_redirect(admin_url($_GET['page'] . "&id=" . $_GET['id']), 302);
                 exit;
             }
-
         }, 1);
     }
 

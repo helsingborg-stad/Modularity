@@ -57,8 +57,31 @@ class Hero extends \Modularity\Module
         $data['meta']               = $fields['mod_hero_meta'];
         $data['backgroundColor']    = $fields['mod_hero_background_color'] ? $fields['mod_hero_background_color'] : false;
         $data['textColor']          = $fields['mod_hero_text_color'];
+        $data['buttonArgs']         = $this->getButtonArgsFromFields($fields);
 
         return $data;
+    }
+
+    /**
+     * Get button args from fields
+     * @param  array $fields
+     * @return array|null
+     */
+    private function getButtonArgsFromFields(array $fields)
+    {
+        $buttonArgs = null;
+
+        if (!empty($fields['mod_hero_button_href'])) {
+            $buttonArgs['href'] = $fields['mod_hero_button_href'];
+        }
+
+        if (!empty($fields['mod_hero_button_text'])) {
+            $buttonArgs['text'] = $fields['mod_hero_button_text'];
+            $buttonArgs['classList'] = ['u-margin__top--2'];
+            $buttonArgs['color'] = 'primary';
+        }
+
+        return $buttonArgs;
     }
 
     /**

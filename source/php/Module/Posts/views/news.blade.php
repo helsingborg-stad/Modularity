@@ -3,8 +3,8 @@
 @if (!$hideTitle && !empty($postTitle))
     @typography([
         'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2', 
-        'variant' => 'h2', 
+        'element' => 'h2',
+        'variant' => 'h2',
         'classList' => ['module-title']
     ])
         {!! $postTitle !!}
@@ -13,21 +13,25 @@
 
 @if ($preamble)
     @typography([
-        'classList' => ['module-preamble', 'u-margin__bottom--3'] 
+        'classList' => ['module-preamble', 'u-margin__bottom--3']
     ])
         {!! $preamble !!}
     @endtypography
 @endif
+@php
+    echo '<pre>' . print_r('news.blade.php', true) . '</pre>';
+@endphp
 
-
-<div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}" aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
+<div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}"
+    aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @foreach ($posts as $post)
         <div class="o-grid-12">
 
             @card([
-                'link' =>  $post->link,
+                'link' => $post->link,
                 'classList' => $classes,
                 'hasFooter' => $post->tags ? true : false,
+                'meta' => $display_reading_time ? $post->reading_time : false,
                 'context' => 'module.posts.index',
                 'containerAware' => true,
                 'hasAction' => true,
@@ -36,31 +40,32 @@
                 'postType' => $post->post_type ?? '',
                 'icon' => $icon
             ])
-
-                @if($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
+                @if ($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">
-                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $post->post_title }}" style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
+                        <div class="c-card__image-background u-ratio-16-9" alt="{{ $post->post_title }}"
+                            style="background-image:url('{{ $post->thumbnail[0] }}');"></div>
                     </div>
                 @endif
-            
+
                 <div class="c-card__body">
                     @if ($post->showTitle)
                         @typography([
-                            'element' => "h2",
-                            'classList' => ['c-card__heading'],
+                            'element' => 'h2',
+                            'classList' => ['c-card__heading']
                         ])
-                            {{$post->post_title}}
+                            {{ $post->post_title }}
                         @endtypography
                     @endif
 
                     @includeWhen($post->showDate, 'partials.date')
-           
+
                     {!! $post->post_content !!}
-                    
+
                 </div>
-                @if($post->tags)
+                @if ($post->tags)
                     <div class="c-card__footer">
-                        @tags (['tags' => $post->tags])
+                        @tags
+                            (['tags' => $post->tags])
                         @endtags
                     </div>
                 @endif
@@ -71,14 +76,14 @@
 </div>
 
 
-@if ($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url)
+@if ($posts_data_source !== 'input' && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
         @button([
             'text' => __('Show more', 'modularity'),
             'color' => 'secondary',
             'style' => 'filled',
-            'href' => $archive_link_url . "?" . http_build_query($filters),
-            'classList' => ['u-flex-grow--1@xs']
+            'href' => $archive_link_url . '?' . http_build_query($filters),
+            'classList' => ['u-flex-grow--1@xs'],
         ])
         @endbutton
     </div>

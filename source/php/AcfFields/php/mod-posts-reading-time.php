@@ -2,15 +2,15 @@
 
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
-    'key' => 'group_630645d822841',
-    'title' => __('Taxonomies to display', 'modularity'),
+    'key' => 'group_63ff609a05641',
+    'title' => __('Display reading time', 'modularity'),
     'fields' => array(
         0 => array(
-            'key' => 'field_630645dcff161',
-            'label' => __('Taxonomies to display', 'modularity'),
-            'name' => 'taxonomy_display',
+            'key' => 'field_63ff609a0cfe7',
+            'label' => __('Display reading time', 'modularity'),
+            'name' => 'display_reading_time',
             'aria-label' => '',
-            'type' => 'acfe_taxonomies',
+            'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
@@ -19,23 +19,11 @@
                 'class' => '',
                 'id' => '',
             ),
-            'taxonomy' => '',
-            'field_type' => 'checkbox',
-            'default_value' => array(
-            ),
-            'return_format' => 'name',
-            'layout' => 'horizontal',
-            'toggle' => 0,
-            'allow_custom' => 0,
-            'multiple' => 0,
-            'allow_null' => 0,
-            'choices' => array(
-            ),
+            'message' => __('Yes, display estimated reading time', 'modularity'),
+            'default_value' => 0,
             'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'search_placeholder' => '',
-            'other_choice' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
         ),
     ),
     'location' => array(

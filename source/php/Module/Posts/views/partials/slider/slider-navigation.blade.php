@@ -1,5 +1,5 @@
     <div class="o-grid-12@sm o-grid-4@md o-grid-4@lg u-display--flex u-align-items--end u-justify-content--end">
-        @if (($posts_data_source !== 'input' && isset($archive_link) && $archive_link && $archive_link_url))
+        @if (($posts_data_source !== 'input' && $archive_link_url))
         <div class="t-read-more-section">
             @button([
                 'text' => __('Show more', 'modularity'),

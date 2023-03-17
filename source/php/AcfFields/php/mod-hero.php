@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_614b3f1a751bf',
     'title' => __('Hero', 'modularity'),
     'fields' => array(
@@ -187,6 +189,45 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
+        7 => array(
+            'key' => 'field_6410739aec778',
+            'label' => __('Url', 'modularity'),
+            'instructions' => __('Url to which the button or text should link to.', 'modularity'),
+            'name' => 'mod_hero_button_href',
+            'aria-label' => '',
+            'type' => 'url',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'placeholder' => '',
+        ),
+        8 => array(
+            'key' => 'field_641073fcec779',
+            'label' => __('Button text', 'modularity'),
+            'instructions' => __('Text to be displayed on the button. If left empty and Url is given, the entire text in the Hero will be linked to the url.', 'modularity'),
+            'name' => 'mod_hero_button_text',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -219,4 +260,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

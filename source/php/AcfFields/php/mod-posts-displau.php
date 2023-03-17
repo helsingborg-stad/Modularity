@@ -26,6 +26,7 @@
                 'index' => __('Index', 'modularity'),
                 'grid' => __('Blocks', 'modularity'),
                 'features-grid' => __('Features grid', 'modularity'),
+                'segment' => __('Segment', 'modularity'),
             ),
             'default_value' => __('list', 'modularity'),
             'return_format' => 'value',
@@ -75,6 +76,13 @@
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==contains',
                         'value' => 'items',
+                    ),
+                ),
+                5 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==contains',
+                        'value' => 'segment',
                     ),
                 ),
             ),
@@ -130,6 +138,13 @@
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
                         'value' => 'features-grid',
+                    ),
+                ),
+                5 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'segment',
                     ),
                 ),
             ),
@@ -290,6 +305,13 @@
                         'value' => 'features-grid',
                     ),
                 ),
+                5 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'segment',
+                    ),
+                ),
             ),
             'wrapper' => array(
                 'width' => '',
@@ -309,8 +331,6 @@
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
-            'allow_custom' => 0,
-            'search_placeholder' => '',
         ),
         6 => array(
             'key' => 'field_571e046536f0e',
@@ -695,6 +715,7 @@
                 '1:1' => __('1:1', 'modularity'),
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
+                '16:9' => __('16:9', 'modularity'),
             ),
             'default_value' => __('4:3', 'modularity'),
             'allow_null' => 0,
