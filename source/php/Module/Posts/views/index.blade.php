@@ -73,6 +73,9 @@
                     'postType' => $post->post_type ?? '',
                     'icon' => $icon
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($icon), 'partials.icon')
+                @endslot
                 @endcard
             @endif
         </div>
