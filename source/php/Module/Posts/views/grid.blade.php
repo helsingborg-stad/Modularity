@@ -49,8 +49,10 @@
                     ] : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $icon
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($icon), 'partials.icon')
+                @endslot
                 @endcard
             @else
                 @block([
@@ -73,8 +75,10 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $icon
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($post->icon), 'partials.icon')
+                @endslot
                 @endblock
             @endif
         </div>

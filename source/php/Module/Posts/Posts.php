@@ -230,6 +230,16 @@ class Posts extends \Modularity\Module
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
         $data['icon'] = apply_filters('post_icons', array());
 
+        if (!empty($data['icon'])) {
+            foreach ($data['posts'] as &$post) {
+                if (!empty($post->ID || !empty($post->post_type))) {
+                    $post->icon = $data['icon'];
+                    $post->icon['attributeList']['data-post-type'] = $post->post_type ?? '';
+                    $post->icon['attributeList']['data-post-id'] = strval($post->ID);
+                }
+            }
+        }
+
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;

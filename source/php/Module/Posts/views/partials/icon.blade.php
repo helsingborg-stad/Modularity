@@ -1,13 +1,8 @@
-@php    
-$icon['attributeList']['data-post-type'] = $post->post_type;
-$icon['attributeList']['data-post-id'] = $post->ID; 
-@endphp
-
 @icon([
-    'icon' => $icon['icon'],
-    'size' => $icon['size'] ?? 'md',
-    'filled' => $icon['filled'] ?? false,
-    'attributeList' => $icon['attributeList'],
-    'classList' => $icon['classList'],
+    'icon' => $post->icon['icon'],
+    'size' => $post->icon['size'] ?? 'md',
+    'filled' => $post->icon['filled'] ?? false,
+    'attributeList' => $post->icon['attributeList'],
+    'classList' => $post->icon['classList'],
 ])
 @endicon
