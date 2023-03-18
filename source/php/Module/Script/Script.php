@@ -123,7 +123,7 @@ class Script extends \Modularity\Module
         ];
         $requiresAccept = false;
         $arrSrc = array();
-        foreach ($data['embed'] as $embedSrc) {
+        foreach ($data['embed'] ?? [] as $embedSrc) {
             if ($embedSrc['requiresAccept'] == 1) {
                 $requiresAccept = true;
             }

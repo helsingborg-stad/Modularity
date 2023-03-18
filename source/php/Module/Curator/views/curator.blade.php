@@ -13,9 +13,17 @@
 @if ($showFeed)
 
     <div class="o-grid modularity-socialmedia-container">
-
         <div class="o-grid modularity-socialmedia__content {{ $gutter }}">
-            @include("partials.$layout", ['posts' => $posts])
+            @includeIf("partials.$layout", ['posts' => $posts])
+            @for ($i = 0; $i < $columns; $i++)
+                <div class="modularity-socialmedia__item--placeholder u-display--none {{ $columnClasses }}">
+                    @block([
+                        'ratio' => $ratio,
+                        'classList' => ['u-preloader', 'u-height--100']
+                    ])
+                    @endblock
+                </div>
+            @endfor
         </div>
         <div class="o-grid-12 modularity-socialmedia__footer">
             @typography(['element' => 'div', 'variant' => 'load-more', 'classList' => ['u-text-align--center']])
