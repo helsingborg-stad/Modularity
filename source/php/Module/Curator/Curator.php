@@ -99,10 +99,10 @@ class Curator extends \Modularity\Module
             if (!empty($post->ID)) {
                 $this->ID = $post->ID;
                 $block = 'acf/curator';
-                $data['embedCode']     = $this->parseEmbedCode(Block::getPostBlocks($this->ID, $block, 'embed_code'));
-                $data['numberOfItems'] = Block::getPostBlocks($this->ID, $block, 'number_of_posts') ?: 12;
-                $data['layout']        = Block::getPostBlocks($this->ID, $block, 'layout') ?: 'card';
-                $data['columns']       = Block::getPostBlocks($this->ID, $block, 'columns') ?: 4;
+                $data['embedCode']     = $this->parseEmbedCode(Block::getBlockData($this->ID, $block, 'embed_code'));
+                $data['numberOfItems'] = Block::getBlockData($this->ID, $block, 'number_of_posts') ?: 12;
+                $data['layout']        = Block::getBlockData($this->ID, $block, 'layout') ?: 'card';
+                $data['columns']       = Block::getBlockData($this->ID, $block, 'columns') ?: 4;
             }
         }
 

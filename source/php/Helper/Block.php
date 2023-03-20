@@ -4,7 +4,7 @@ namespace Modularity\Helper;
 
 class Block
 {
-    public static function getPostBlocks($post, string $blockName, string $fieldName)
+    public static function getBlockData($post, string $blockName, string $fieldName)
     {
         if (is_int($post)) {
             $post = get_post($post);
