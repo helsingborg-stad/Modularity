@@ -20,6 +20,7 @@ class SegmentTemplate extends AbstractController
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
+        $this->data['imagePosition'] = $fields->image_position;
 
         $this->data['labels'] = [
             'readMore' => __('Read more', 'modularity'),
