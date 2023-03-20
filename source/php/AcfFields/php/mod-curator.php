@@ -45,7 +45,7 @@
                 'card' => __('Card', 'modularity'),
                 'block' => __('Block', 'modularity'),
             ),
-            'default_value' => __('card', 'modularity'),
+            'default_value' => 'card',
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -119,7 +119,15 @@
             'type' => 'select',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_63edf811d3a68',
+                        'operator' => '==',
+                        'value' => 'block',
+                    ),
+                ),
+            ),
             'wrapper' => array(
                 'width' => '50',
                 'class' => '',
@@ -130,7 +138,7 @@
                 '4:3' => __('4:3', 'modularity'),
                 '12:6' => __('12:6', 'modularity'),
             ),
-            'default_value' => __('1:1', 'modularity'),
+            'default_value' => '1:1',
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
