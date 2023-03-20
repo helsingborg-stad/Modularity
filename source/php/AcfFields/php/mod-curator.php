@@ -63,15 +63,7 @@
             'type' => 'select',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_63edf811d3a68',
-                        'operator' => '==',
-                        'value' => 'block',
-                    ),
-                ),
-            ),
+            'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '50',
                 'class' => '',
@@ -99,7 +91,15 @@
             'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_63edf811d3a68',
+                        'operator' => '==',
+                        'value' => 'block',
+                    ),
+                ),
+            ),
             'wrapper' => array(
                 'width' => '50',
                 'class' => '',
