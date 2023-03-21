@@ -75,7 +75,7 @@
                     'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
                     'classList' => ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
-                    'link' => $post->link
+                    'link' => $post->link,
                 ])
                 @endblock
             @endif
