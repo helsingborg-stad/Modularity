@@ -29,7 +29,7 @@
             @if ($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
                     'heading' => $post->showTitle ? $post->post_title : false,
-                    'content' => $post->showExcerpt ? Modularity\Module\Posts\Helper\Truncate::truncate($post->post_content, 30) : false,
+                    'content' => $post->showExcerpt ? $post->post_content : false,
                     'ratio' => '16:9',
                     'meta' => $post->tags,
                     'secondary_meta' => $display_reading_time ? $post->reading_time : false,

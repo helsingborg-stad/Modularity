@@ -32,7 +32,7 @@
                 'date' => $post->showDate
                     ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
                     : false,
-                'content' => $post->showExcerpt ? Modularity\Module\Posts\Helper\Truncate::truncate($post->post_content, 30) : false,
+                'content' => $post->showExcerpt ? $post->post_content : false,
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
                 'containerAware' => true,
                 'reverseColumns' => true

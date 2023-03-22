@@ -3,6 +3,8 @@
 namespace Modularity\Module\Posts\TemplateController;
 
 use Modularity\Module\Posts\Helper\Tag as TagHelper;
+use Modularity\Module\Posts\Helper\Truncate as TruncateHelper;
+
 
 class AbstractController
 {
@@ -45,6 +47,8 @@ class AbstractController
 
         foreach ($this->data['posts'] as $post) {
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
+            
+            TruncateHelper::truncate($post->post_content, 30);
 
             // Image fetch
             $post->thumbnail = $image;
