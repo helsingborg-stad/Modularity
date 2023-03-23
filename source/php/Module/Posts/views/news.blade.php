@@ -18,9 +18,6 @@
         {!! $preamble !!}
     @endtypography
 @endif
-@php
-    echo '<pre>' . print_r('news.blade.php', true) . '</pre>';
-@endphp
 
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }} {{ $noGutter ? 'o-grid--no-gutter' : '' }}"
     aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
