@@ -68,7 +68,6 @@ class AbstractController
         if(empty(get_extended($content)['main'])) {
             return;
         }
-
         return apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($content)['main'])), 25, '...'));
     }
 
