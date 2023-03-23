@@ -35,7 +35,7 @@
                 'content' => $post->post_content,
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
                 'containerAware' => true,
-                'reverseColumns' => true
+                'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
             ])
             @endsegment
         </div>
