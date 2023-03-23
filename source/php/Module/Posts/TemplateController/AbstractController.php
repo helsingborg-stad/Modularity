@@ -58,7 +58,7 @@ class AbstractController
             );
 
             // Get excerpt
-            $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 30, null)) : '';
+            $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 25, '...')) : '';
 
             $this->setPostFlags($post);
         }
