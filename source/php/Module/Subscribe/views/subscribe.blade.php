@@ -20,16 +20,35 @@
         {{ $content }}
       @endtypography
     @endif
-    
+
+    @notice([
+      'type' => 'danger',
+      'message' => [
+        'title' => $lang->error->title,
+        'text' => $lang->error->text,
+      ],
+      'icon' => [
+          'name' => 'sentiment_neutral'
+      ],
+      'classList' => [
+        'u-margin__bottom--2',
+        'u-display--none'
+      ],
+      'attributeList' => [
+        'aria-hidden' => 'true',
+      ]
+    ])
+    @endnotice
+      
     @include('service.' . $type)
-    
+
   @endpaper
 @else
   @notice([
     'type' => 'info',
     'message' => [
-      'title' => 'Select a provider',
-      'text' => 'No provider for this form is selected. Please select a provider available form the list.',
+      'title' => $lang->incomplete->title,
+      'text' => $lang->incomplete->text,
     ],
     'icon' => [
         'name' => 'electrical_services'

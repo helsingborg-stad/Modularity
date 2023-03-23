@@ -1,8 +1,11 @@
 @form([
+    'id' => $uid,
     'method' => 'POST',
-    'action' => ''
+    'action' => '#' . $uid,
+    'attributeList' => [
+      'data-js-ungpd-id' => $formID 
+    ]
 ])
-
   @group([
     'alignItems' => 'end',
     'classList' => ['u-margin__bottom--1']
@@ -15,14 +18,18 @@
       'autocomplete' => 'email',
       'invalidMessage' => $lang->email->error,
       'label' => $lang->email->label,
-      'required' => true
+      'required' => true,
+      'attributeList' => [
+        'data-js-ungpd-email' => ''
+      ],
     ])
     @endfield
 
     @button([
       'text' => $lang->submit->label,
       'color' => 'primary',
-      'type' => 'filled'
+      'type' => 'filled',
+      'icon' => 'arrow_forward'
     ])
     @endbutton
 
@@ -31,7 +38,8 @@
   @option([
       'type' => 'checkbox',
       'attributeList' => [
-        'name' => 'user_consent'
+        'name' => 'user_consent',
+        'data-js-ungpd-consent'
       ],
       'label' => $consentMessage
   ])

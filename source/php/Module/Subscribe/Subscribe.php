@@ -21,12 +21,15 @@ class Subscribe extends \Modularity\Module
     {
         $data = []; 
 
+        //Set id
+        $data['uid'] = uniqid($this->slug);
+
         //Get module data
         $fields = get_fields($this->ID);
 
-        $data['type']               = "ungpd"; 
-        $data['content']            = "Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum."; 
-        $data['consentMessage']     = "I want to receive relevant information from this organization to my inbox. The information provided here will not be shared or sold. I can unsubscribe at any time."; 
+        $data['type']               = $fields['service'] ?? false; 
+        $data['content']            = $fields['content'] ?? '';
+        $data['consentMessage']     = $fields['consent_message'] ?? '';
 
         //Translations
         $data['lang'] = (object) [
@@ -37,6 +40,14 @@ class Subscribe extends \Modularity\Module
             ],
             'submit' => (object) [
                 'label' => __('Subscribe', 'modularity'),
+            ],
+            'incomplete' => (object) [
+                'title' => __('Select a provider', 'modularity'),
+                'text' => __('No provider for this form is selected. Please select a provider available form the list.', 'modularity'),
+            ],
+            'error' => (object) [
+                'title' => __('Could not subscribe', 'modularity'),
+                'text' => __('Sorry, we could not subscribe you to this list at the moment. Please try again later.', 'modularity'),
             ]
         ];
 
@@ -49,7 +60,8 @@ class Subscribe extends \Modularity\Module
         return $data;
     }
 
-    private function handleUngpdData($data, $fields) {
+    private function handleUngdpData($data, $fields) {
+        $data['formID'] = $fields['settings_for_ungapped_service']['form_id'] ?? false; 
         return $data;
     }
 
