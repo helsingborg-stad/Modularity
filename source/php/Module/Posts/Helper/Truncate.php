@@ -19,11 +19,19 @@ class Truncate
             return "";
         }
 
-        $words = explode(' ', rtrim($content));
+        $words = explode(' ', $content);
         $truncate = array_slice($words, 0, $amount);
-        array_pop($truncate);
+        $readMore = '...';
+        $last = strip_tags(end($truncate));
 
-        return implode(' ', $truncate) . '...';
+        if (end(str_split($last)) == '.') {
+            $readMore = '..';
+        }
+
+        array_pop($truncate);
+        $truncate[] = $last;
+
+        return implode(' ', $truncate) . $readMore;
     }
 }
 
