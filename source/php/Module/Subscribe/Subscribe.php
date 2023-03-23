@@ -28,6 +28,18 @@ class Subscribe extends \Modularity\Module
         $data['content']            = "Curabitur blandit tempus porttitor. Cras mattis consectetur purus sit amet fermentum."; 
         $data['consentMessage']     = "I want to receive relevant information from this organization to my inbox. The information provided here will not be shared or sold. I can unsubscribe at any time."; 
 
+        //Translations
+        $data['lang'] = (object) [
+            'email' => (object) [
+                'label' => __('Your email adress', 'modularity'),
+                'placeholder' => __('email@email.com', 'modularity'),
+                'error' => __('Please enter a valid email address', 'modularity'),
+            ],
+            'submit' => (object) [
+                'label' => __('Subscribe', 'modularity'),
+            ]
+        ];
+
         //Run service filter
         $method = 'handle' . ucfirst($data['type']) . "Data";
         if(method_exists($this, $method)) {

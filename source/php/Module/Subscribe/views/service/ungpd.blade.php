@@ -2,19 +2,40 @@
     'method' => 'POST',
     'action' => ''
 ])
+
+  @group([
+    'alignItems' => 'end',
+    'classList' => ['u-margin__bottom--1']
+  ])
+
     @field([
-        'type' => 'text',
-        'name' => 'text',
-        'label' => "Enter text"
+      'type' => 'email',
+      'placeholder' => $lang->email->placeholder,
+      'name' => 'email',
+      'autocomplete' => 'email',
+      'invalidMessage' => $lang->email->error,
+      'label' => $lang->email->label,
+      'required' => true
     ])
     @endfield
 
     @button([
-        'text' => 'Submit',
-        'color' => 'primary',
-        'type' => 'basic'
+      'text' => $lang->submit->label,
+      'color' => 'primary',
+      'type' => 'filled'
     ])
     @endbutton
+
+  @endgroup
+
+  @option([
+      'type' => 'checkbox',
+      'attributeList' => [
+        'name' => 'user_consent'
+      ],
+      'label' => $consentMessage
+  ])
+  @endoption
 @endform
 
 
@@ -23,9 +44,7 @@
 
 
 <!-- use below script as a reference. This needs to be implemented in above. -->
-
-
-<div>
+<div style="margin-top: 300px">
 	<label for="contactEmail">E-post:</label> <input type="email" name="Contact[Email]" id="contactEmail" required /><br/>
 	<label for="contactConsentText"><input type="checkbox" required name="ConsentText" id="contactConsentText" value="Jag vill få relevant information från Helsingborgs stad - Kulturförvaltningen till min inkorg. Helsingborgs stad - Kulturförvaltningen ska inte dela eller sälja min personliga information. Jag kan när som helst avsluta prenumerationen." /> Jag vill få relevant information från Helsingborgs stad - Kulturförvaltningen till min inkorg. Helsingborgs stad - Kulturförvaltningen ska inte dela eller sälja min personliga information. Jag kan när som helst avsluta prenumerationen.</label><br/>
 	<button onclick="submitForm(event)">Anmälan</button>

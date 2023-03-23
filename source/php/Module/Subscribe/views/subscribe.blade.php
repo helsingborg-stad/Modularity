@@ -22,19 +22,7 @@
     @endif
     
     @include('service.' . $type)
-
-
-    @if($consentMessage)
-      @typography([
-        "variant" => "meta",
-        "element" => "p",
-        "classList" => ["u-margin__top--0", "u-margin__bottom--4"]
-      ])
-        {{ $consentMessage }}
-      @endtypography
-    @endif
-
-
+    
   @endpaper
 @else
   @notice([
