@@ -58,10 +58,18 @@ class AbstractController
             );
 
             // Get excerpt
-            $post->post_content = isset(get_extended($post->post_content)['main']) ? apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($post->post_content)['main'])), 25, '...')) : '';
+            $post->post_content = $this->truncateExcerpt($post->post_content);
 
             $this->setPostFlags($post);
         }
+    }
+
+    private function truncateExcerpt($content) {
+        if(empty(get_extended($content)['main'])) {
+            return;
+        }
+
+        return apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($content)['main'])), 25, '...'));
     }
 
     /**
