@@ -46,12 +46,22 @@
                 @group([
                     'direction' => 'vertical'
                 ])
-                @typography([
-                    'element' => 'h2',
-                    'variant' => 'h3',
+                @group([
+                    'justifyContent' => 'space-between'
                 ])
-                    {{$post->showTitle ? $post->post_title : false}}
-                @endtypography
+                    @typography([
+                        'element' => 'h2',
+                        'variant' => 'h3',
+                    ])
+                        {{$post->showTitle ? $post->post_title : false}}
+                    @endtypography
+                    {{-- TODO: Add icon --}}
+                @endgroup
+                @tags([
+                    'tags' => $post->tags,
+                    'classList' => ['u-padding__y--1']
+                ])
+                @endtags
                 @typography([])
                     {!! $post->showExcerpt ? $post->post_content : false !!}
                 @endtypography
