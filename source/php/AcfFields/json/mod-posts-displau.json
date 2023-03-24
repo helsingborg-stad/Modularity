@@ -23,7 +23,8 @@
                 "index": "Index",
                 "grid": "Blocks",
                 "features-grid": "Features grid",
-                "segment": "Segment"
+                "segment": "Segment",
+                "collection": "Collection"
             },
             "default_value": "list",
             "return_format": "value",

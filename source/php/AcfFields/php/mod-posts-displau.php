@@ -27,6 +27,7 @@
                 'grid' => __('Blocks', 'modularity'),
                 'features-grid' => __('Features grid', 'modularity'),
                 'segment' => __('Segment', 'modularity'),
+                'collection' => __('Collection', 'modularity'),
             ),
             'default_value' => __('list', 'modularity'),
             'return_format' => 'value',
