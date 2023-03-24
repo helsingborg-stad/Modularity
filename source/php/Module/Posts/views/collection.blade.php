@@ -59,7 +59,7 @@
                 @endgroup
                 @tags([
                     'tags' => $post->tags,
-                    'classList' => ['u-padding__y--1']
+                    'classList' => ['u-padding__y--2']
                 ])
                 @endtags
                 @typography([])
