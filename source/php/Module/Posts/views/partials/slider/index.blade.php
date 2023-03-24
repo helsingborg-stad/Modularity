@@ -15,5 +15,8 @@
     'hasFooter' => true,
     'tags' => $post->tags,
     'context' => ['module.posts.index'],
+    'postId' => $post->ID,
+    'postType' => $post->post_type ?? '',
+    'icon' => $icon
 ])
 @endcard

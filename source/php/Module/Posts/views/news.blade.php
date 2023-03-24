@@ -32,7 +32,10 @@
                 'context' => 'module.posts.index',
                 'containerAware' => true,
                 'hasAction' => true,
-                'date' => '2022-01-14'
+                'date' => '2022-01-14',
+                'postId' => $post->ID,
+                'postType' => $post->post_type ?? '',
+                'icon' => $icon
             ])
                 @if ($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">

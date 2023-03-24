@@ -50,8 +50,13 @@
                         ? ['t-posts-block', 't-posts-block--with-reading-time', ' u-height--100']
                         : ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
-                    'link' => $post->link
+                    'link' => $post->link,
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($icon), 'partials.icon')
+                @endslot
                 @endblock
             @else
                 @card([
@@ -71,15 +76,17 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' =>
-                        $post->showImage && isset($post->thumbnail[0])
-                            ? [
-                                'src' => $post->thumbnail[0],
-                                'alt' => $post->post_title,
-                                'backgroundColor' => 'secondary'
-                            ]
-                            : []
+                    'image' => $post->showImage && isset($post->thumbnail[0]) ? [
+                        'src' => $post->thumbnail[0],
+                        'alt' => $post->post_title,
+                        'backgroundColor' => 'secondary',
+                    ] : [],
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($post->icon), 'partials.icon')
+                @endslot
                 @endcard
             @endif
         </div>

@@ -42,14 +42,17 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' => $post->showImage
-                        ? [
-                            'src' => $post->thumbnail[0],
-                            'alt' => $post->post_title,
-                            'backgroundColor' => 'secondary'
-                        ]
-                        : []
+                    'image' => $post->showImage ? [
+                        'src' => $post->thumbnail[0],
+                        'alt' => $post->post_title,
+                        'backgroundColor' => 'secondary',
+                    ] : [],
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($icon), 'partials.icon')
+                @endslot
                 @endcard
             @else
                 @block([
@@ -75,8 +78,13 @@
                     'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
                     'classList' => ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
-                    'link' => $post->link
+                    'link' => $post->link,
+                    'postId' => $post->ID,
+                    'postType' => $post->post_type ?? '',
                 ])
+                @slot('floating')
+                    @includeWhen(!empty($post->icon), 'partials.icon')
+                @endslot
                 @endblock
             @endif
         </div>
