@@ -41,13 +41,17 @@ class Subscribe extends \Modularity\Module
             'submit' => (object) [
                 'label' => __('Subscribe', 'modularity'),
             ],
+            'submitted' => (object) [
+                'title' => __('Subscribed', 'modularity'),
+                'text'  => __('You are now subscribed to this email list.', 'modularity'),
+            ],
             'incomplete' => (object) [
                 'title' => __('Select a provider', 'modularity'),
-                'text' => __('No provider for this form is selected. Please select a provider available form the list.', 'modularity'),
+                'text'  => __('No provider for this form is selected. Please select a provider available form the list.', 'modularity'),
             ],
             'error' => (object) [
                 'title' => __('Could not subscribe', 'modularity'),
-                'text' => __('Sorry, we could not subscribe you to this list at the moment. Please try again later.', 'modularity'),
+                'text'  => __('Sorry, we could not subscribe you to this list at the moment. Please try again later.', 'modularity'),
             ]
         ];
 

@@ -15,30 +15,11 @@
       @typography([
         "variant" => "p",
         "element" => "p",
-        "classList" => ["u-margin__top--0", "u-margin__bottom--4"]
+        "classList" => ["u-margin__top--0", "u-margin__bottom--2"]
       ])
         {{ $content }}
       @endtypography
     @endif
-
-    @notice([
-      'type' => 'danger',
-      'message' => [
-        'title' => $lang->error->title,
-        'text' => $lang->error->text,
-      ],
-      'icon' => [
-          'name' => 'sentiment_neutral'
-      ],
-      'classList' => [
-        'u-margin__bottom--2',
-        'u-display--none'
-      ],
-      'attributeList' => [
-        'aria-hidden' => 'true',
-      ]
-    ])
-    @endnotice
       
     @include('service.' . $type)
 
