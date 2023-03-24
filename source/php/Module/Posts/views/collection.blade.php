@@ -19,13 +19,6 @@
     @endtypography
 @endif
 
-<div class="o-grid 
-    {{ $stretch ? 'o-grid--stretch' : '' }} 
-    {{ $noGutter ? 'o-grid--no-gutter' : '' }}" 
-    @if (!$hideTitle && !empty($postTitle))
-    aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}"
-    @endif
-    >
     @collection([
         'classList' => ['c-collection--posts']
     ])
@@ -70,4 +63,3 @@
             @endcollection__item
         @endforeach
     @endcollection
-</div>
