@@ -32,10 +32,17 @@
         @foreach ($posts as $post)
             @collection__item([
                 'link' => $post->link,
-                'image' => $post->showImage && isset($post->thumbnail[0]) ? $post->thumbnail[0] : false,
-                'alt' => $post->showImage && isset($post->thumbnail[0]) ? $post->post_title : false,
                 'classList' => ['c-collection__item--post', 'u-flex-direction--column@xs']
             ])
+            @slot('before')
+            @if($post->showImage && isset($post->thumbnail[0]))
+                @image([
+                    'src' => $post->thumbnail[0] ,
+                    'alt' => $post->post_title,
+                ])
+                @endimage
+            @endif
+            @endslot
                 @group([
                     'direction' => 'vertical'
                 ])
