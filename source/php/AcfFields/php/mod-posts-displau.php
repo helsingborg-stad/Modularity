@@ -345,6 +345,13 @@
                         'value' => 'segment',
                     ),
                 ),
+                6 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'collection',
+                    ),
+                ),
             ),
             'wrapper' => array(
                 'width' => '',

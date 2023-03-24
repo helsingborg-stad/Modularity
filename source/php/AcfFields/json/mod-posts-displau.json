@@ -341,6 +341,13 @@
                         "operator": "==",
                         "value": "segment"
                     }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "collection"
+                    }
                 ]
             ],
             "wrapper": {

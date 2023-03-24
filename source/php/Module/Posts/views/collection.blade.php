@@ -20,12 +20,14 @@
 @endif
 
     @collection([
-        'classList' => ['c-collection--posts']
+        'classList' => ['c-collection--posts', 'o-grid']
     ])
         @foreach ($posts as $post)
+        <div class="{{$posts_columns}}">
             @collection__item([
                 'link' => $post->link,
-                'classList' => ['c-collection__item--post', 'u-flex-direction--column@xs']
+                'classList' => ['c-collection__item--post'],
+                'containerAware' => true,
             ])
             @slot('before')
             @if($post->showImage && isset($post->thumbnail[0]))
@@ -61,5 +63,6 @@
 
                 @endgroup
             @endcollection__item
+        </div>
         @endforeach
     @endcollection
