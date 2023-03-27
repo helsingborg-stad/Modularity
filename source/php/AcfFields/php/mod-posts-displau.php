@@ -27,6 +27,7 @@
                 'grid' => __('Blocks', 'modularity'),
                 'features-grid' => __('Features grid', 'modularity'),
                 'segment' => __('Segment', 'modularity'),
+                'collection' => __('Collection', 'modularity'),
             ),
             'default_value' => __('list', 'modularity'),
             'return_format' => 'value',
@@ -342,6 +343,13 @@
                         'field' => 'field_571dfd4c0d9d9',
                         'operator' => '==',
                         'value' => 'segment',
+                    ),
+                ),
+                6 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'collection',
                     ),
                 ),
             ),

@@ -23,7 +23,8 @@
                 "index": "Index",
                 "grid": "Blocks",
                 "features-grid": "Features grid",
-                "segment": "Segment"
+                "segment": "Segment",
+                "collection": "Collection"
             },
             "default_value": "list",
             "return_format": "value",
@@ -339,6 +340,13 @@
                         "field": "field_571dfd4c0d9d9",
                         "operator": "==",
                         "value": "segment"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "collection"
                     }
                 ]
             ],
