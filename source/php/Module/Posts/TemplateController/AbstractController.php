@@ -42,14 +42,14 @@ class AbstractController
     public function preparePosts()
     {
         $imageDimensions = $this->getImageDimensions($this->data['posts_columns']);
-        
+
         $amount = $this->getTruncateAmount($this->data['posts_display_as']);
 
         foreach ($this->data['posts'] as $post) {
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
 
             // Image fetch
-            $post->thumbnail = $image;
+            $post->thumbnail = apply_filters('Modularity/Module/Posts/thumbnail', $image);
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
@@ -67,19 +67,21 @@ class AbstractController
         }
     }
 
-    private function getTruncateAmount($displayAs = 'default') {
+    private function getTruncateAmount($displayAs = 'default')
+    {
         switch ($displayAs) {
-            case 'collection': 
+            case 'collection':
                 return 10;
                 break;
-            default: 
+            default:
                 return 25;
                 break;
         }
     }
 
-    private function truncateExcerpt($content, $amount = 25) {
-        if(empty(get_extended($content)['main'])) {
+    private function truncateExcerpt($content, $amount = 25)
+    {
+        if (empty(get_extended($content)['main'])) {
             return;
         }
         return apply_filters('the_excerpt', wp_trim_words(wp_strip_all_tags(strip_shortcodes(get_extended($content)['main'])), $amount, '...'));
