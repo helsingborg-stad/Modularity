@@ -2,7 +2,8 @@
 
 namespace Modularity\Module\Breadcrumbs;
 
-use \Modularity\Helper\Post as PostHelper; 
+use Modularity\Helper\Post as PostHelper;
+
 class Breadcrumbs extends \Modularity\Module
 {
     public $slug = 'breadcrumbs';
@@ -15,8 +16,9 @@ class Breadcrumbs extends \Modularity\Module
         $this->nameSingular = __('Breadcrumbs', 'modularity');
         $this->namePlural = __('Breadcrumbs', 'modularity');
         $this->description = __('Outputs the navigational breadcrumb trail to the current page.', 'modularity');
-        
+
         add_filter('Municipio/Breadcrumbs/Items', array( $this, 'unsetMunicipioBreadcrumbs' ), 1, 3);
+        add_filter('Municipio/Accessibility/Items', array( $this, 'unsetMunicipioAccessibilityItems' ));
     }
 
     public function unsetMunicipioBreadcrumbs($pageData, $queriedObj, $context)
@@ -26,20 +28,38 @@ class Breadcrumbs extends \Modularity\Module
                 return null;
             }
         }
-        
+
         return $pageData;
     }
+    public function unsetMunicipioAccessibilityItems($items)
+    {
 
-    public function data() : array
+        if ($this->hasModule() || has_block('acf/breadcrumbs')) {
+            return [];
+        }
+
+        return $items;
+    }
+
+
+    public function data(): array
     {
         $data = array();
-        
+
         $theme = wp_get_theme('municipio');
         if ($theme->exists()) {
             $breadcrumb = new \Municipio\Helper\Navigation(
-                'breadcrumb', 'modularity'
+                'breadcrumb',
+                'modularity'
             );
             $data['breadcrumbItems'] = $breadcrumb->getBreadcrumbItems(
+                PostHelper::getPageID()
+            );
+            $accessibility = new \Municipio\Helper\Navigation(
+                'accessibility',
+                'modularity'
+            );
+            $data['accessibilityItems'] = $accessibility->getAccessibilityItems(
                 PostHelper::getPageID()
             );
         }
