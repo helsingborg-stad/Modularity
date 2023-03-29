@@ -36,7 +36,23 @@ class Posts extends \Modularity\Module
 
         add_filter('Modularity/Module/Posts/template', array( $this, 'sliderTemplate' ), 10, 3);
 
+        //Add emblem fallback for thumbnail
+        add_filter('Modularity/Module/Posts/thumbnail', array($this, 'addEmblemFallback'), 10, 1);
+
         new PostsAjax($this);
+    }
+    public function addEmblemFallback($image)
+    {
+        if (empty($image)) {
+            $emblem = \Modularity\Helper\Wp::getThemeMod('logotype_emblem');
+            if (!empty($emblem)) {
+                $image[0] = $emblem;
+                $image[1] = '';
+                $image[2] = '';
+            }
+        }
+
+        return $image;
     }
 
    /**
