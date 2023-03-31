@@ -29,10 +29,9 @@ class ListTemplate
             'archive_link_url' => $data['archive_link_ur'] ?? '',
             'filters' => $data['filters'] ?? '',
         ]);
-
         $this->data['classes'] = implode(
             ' ',
-            apply_filters('Modularity/Module/Classes', [], $module->post_type, $this->args)
+            apply_filters('Modularity/Module/Classes', [], $data['posts_data_post_type'] ?? 'post', $this->args)
         );
     }
 

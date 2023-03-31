@@ -64,10 +64,15 @@ class Posts extends \Modularity\Module
     *
     * @return The template name.
     */
-    public function sliderTemplate($template, $module, $moduleData)
+    public function sliderTemplate($template, $module, $moduleData = [])
     {
-        $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
-        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
+        if (empty($moduleData['ID'])) {
+            $id = get_the_ID();
+        } else {
+            $id = $moduleData['ID'];
+        }
+        $showAsSlider = get_field('show_as_slider', $id);
+        $postsDisplayAs = get_field('posts_display_as', $id);
 
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
 
