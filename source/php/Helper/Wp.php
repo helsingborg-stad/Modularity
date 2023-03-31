@@ -128,10 +128,10 @@ class Wp
         ));
 
         $slug = apply_filters('Modularity/TemplatePathSlug', $slug ? $slug . '/' : '', $prefix);
-        $prefix = $prefix ? '-'.$prefix : '';
+        $prefix = $prefix ? '-' . $prefix : '';
 
         foreach ($paths as $path) {
-            $file = $path . $slug . 'modularity' . $prefix.'.php';
+            $file = $path . $slug . 'modularity' . $prefix . '.php';
 
             if (file_exists($file)) {
                 return $file;
@@ -160,6 +160,13 @@ class Wp
         return $siteInfo;
     }
 
+    public static function getThemeMod(string $key = '')
+    {
+        if ($key == '') {
+            return get_theme_mods();
+        }
+        return get_theme_mod($key);
+    }
     /**
      * Check if the add question form is opened in thickbox iframe
      * @return boolean
@@ -168,8 +175,10 @@ class Wp
     {
         $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : null;
 
-        if ((isset($_GET['is_thickbox']) && $_GET['is_thickbox'] == 'true')
-            || strpos($referer, 'is_thickbox=true') > -1) {
+        if (
+            (isset($_GET['is_thickbox']) && $_GET['is_thickbox'] == 'true')
+            || strpos($referer, 'is_thickbox=true') > -1
+        ) {
             return true;
         } else {
             return false;
@@ -191,16 +200,16 @@ class Wp
      */
     public static function isGutenbergEditor()
     {
-        global $post; 
+        global $post;
 
         if (!$post && isset($_GET['page_for']) && !empty($_GET['page_for'])) {
             $post = get_post($_GET['page_for']);
         }
 
-        if(use_block_editor_for_post($post)){
-            return $post->ID; 
+        if (use_block_editor_for_post($post)) {
+            return $post->ID;
         }
-        return false; 
+        return false;
     }
 
     /**
