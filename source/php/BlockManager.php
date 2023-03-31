@@ -92,8 +92,14 @@ class BlockManager
             '25%'  => 'o-grid-3@md'
         ];
 
-        if ('core/column' === $block['blockName'] && isset($block['attrs']['width'])) {
-            $blockContent = '<div class="' . $widths[$block['attrs']['width']] . '">' . $blockContent . '</div>';
+        if ('core/column' === $block['blockName']) {
+
+            if(empty($block['attrs']['width']) {
+                $width = '';
+            } else {
+                $width = $block['attrs']['width'];
+            }
+            $blockContent = '<div class="' . $widths[$width] . '">' . $blockContent . '</div>';
         }
 
         return $blockContent;
