@@ -92,7 +92,7 @@ class BlockManager
             '25%'  => 'o-grid-3@md'
         ];
 
-        if ('core/column' === $block['blockName']) {
+        if ('core/column' === $block['blockName'] && isset($block['attrs']['width'])) {
             $blockContent = '<div class="' . $widths[$block['attrs']['width']] . '">' . $blockContent . '</div>';
         }
 
@@ -379,9 +379,10 @@ class BlockManager
         //Add post title & hide title
         $module->data['postTitle'] = apply_filters(
             'the_title',
-            !empty($block['data']['custom_block_title']) ?
-                $block['data']['custom_block_title'] : $block['data']['field_block_title']
+            !empty($block['data']['custom_block_title']) ? $block['data']['custom_block_title']
+            : ( !empty($block['data']['field_block_title']) ? $block['data']['field_block_title'] : '')
         );
+
         $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
         if (!isset($block['anchor']) || '' === $block['anchor']) {
