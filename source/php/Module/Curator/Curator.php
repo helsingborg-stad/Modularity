@@ -6,6 +6,7 @@ class Curator extends \Modularity\Module
 {
     public $slug = 'curator';
     public $supports = array();
+    public $cacheTtl = (60 * 12); //Minutes (12 hours)
 
     public function init()
     {
@@ -28,7 +29,7 @@ class Curator extends \Modularity\Module
 
     public function loadMorePosts()
     {
-        if (!defined('DOING_AJAX') || !DOING_AJAX) {
+        if ($this->isAjaxRequest()) {
             return false;
         }
         if (empty($_POST['posts'])) {
@@ -63,6 +64,7 @@ class Curator extends \Modularity\Module
         );
         wp_die(); // Always die in functions echoing ajax content
     }
+
     public function script()
     {
         wp_register_script(
@@ -76,6 +78,7 @@ class Curator extends \Modularity\Module
         wp_localize_script('mod-curator-load-more', 'curator', $strings);
         wp_enqueue_script('mod-curator-load-more');
     }
+
     public function data(): array
     {
         //Get module data
@@ -122,6 +125,7 @@ class Curator extends \Modularity\Module
         //Send to view
         return $data;
     }
+
     /**
      * Parses the social media posts data to add additional properties and modify existing ones.
      *
@@ -133,23 +137,25 @@ class Curator extends \Modularity\Module
     {
         if (is_array($posts) && !empty($posts)) {
             foreach ($posts as $key => $post) {
-                if ('curator_io' === $post->user_screen_name || 'https://curator.io' === $post->url) {
+
+                if(self::isCuratorUser($post)) {
                     unset($posts[$key]);
                     continue;
                 }
 
-                $post->full_text = $post->text;
-
-                $post->user_readable_name = self::getUserName($post->user_screen_name);
-                $post->text = wp_trim_words($post->text, 20, "...");
+                $post->full_text            = $post->text ?? '';
+                $post->user_readable_name   = self::getUserName($post->user_screen_name);
+                $post->text                 = wp_trim_words($post->text, 20, "...") ?? '';
 
                 // Prepare oembed
                 if (in_array($post->network_name, ['YouTube', 'Vimeo'], true)) {
                     global $wp_embed;
                     $post->oembed = $wp_embed->shortcode([], $post->url);
                 }
+
                 // Format date
                 $post->formatted_date = date_i18n('j M. Y', strtotime($post->source_created_at));
+
                 // Set title
                 if (!empty($post->data) && empty($post->title)) {
                     foreach ($post->data as $item) {
@@ -162,7 +168,21 @@ class Curator extends \Modularity\Module
                 $posts[$key] = $post;
             }
         }
+
         return $posts;
+    }
+
+    /**
+     * Check if the post author is a Curator.io user.
+     *
+     * @param WP_Post $post The post object to check.
+     * @return bool True if the post author is a Curator.io user, false otherwise.
+     */
+    private static function isCuratorUser($post) {
+        if ('curator_io' === $post->user_screen_name || 'https://curator.io' === $post->url) {
+            return true;    
+        }
+        return false;
     }
 
     /**
@@ -206,7 +226,7 @@ class Curator extends \Modularity\Module
      */
     public function getFeed(string $embedCode = '', int $numberOfItems = 13, int $offset = 0, bool $cache = true)
     {
-        if (defined('DOING_AJAX') && DOING_AJAX) {
+        if ($this->isAjaxRequest()) {
             if (!empty($_POST['embed-code'])) {
                 $embedCode     = $_POST['embed-code'];
                 $numberOfItems = (int) $_POST['limit'] + 1;
@@ -215,7 +235,7 @@ class Curator extends \Modularity\Module
                 wp_die('embed code not found');
             }
         }
-        // $embedCode     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
+
         $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
 
         $requestArgs = [
@@ -231,21 +251,73 @@ class Curator extends \Modularity\Module
             ]
         ];
 
-        $transientKey = '_modularity_curator_social_media_feed_' . $embedCode;
-        if (false === ($feed = get_transient($transientKey)) && true === $cache) {
-            $response = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
-            $feed = set_transient($transientKey, $response, 5 * \MINUTE_IN_SECONDS);
-        } else {
-            $feed = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
-        }
+        $feed = $this->maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache);
 
-        if (defined('DOING_AJAX') && DOING_AJAX) {
+        if ($this->isAjaxRequest()) {
             echo $feed;
             wp_die();
-        } else {
-            return json_decode($feed);
         }
+        
+        return json_decode($feed);
     }
+
+    /**
+     * Retrieve cached response if available or get remote response and set cached response.
+     *
+     * @param string $requestUrl The URL to request.
+     * @param array $requestArgs Optional. Arguments for the remote request.
+     * @param bool $cache Whether to use cached response or not.
+     * @return mixed Cached response if available or remote response.
+     */
+    private function maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache) {
+
+        $transientKey = $this->createTransientKey($requestUrl, $requestArgs);
+
+        if($cache && $cachedFeed = get_transient($transientKey)) {
+            return $cachedFeed;
+        }
+
+        return $this->getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey);
+    }
+
+    /**
+     * Get remote response and set cached response.
+     *
+     * @param string $requestUrl The URL to request.
+     * @param array $requestArgs Optional. Arguments for the remote request.
+     * @param string $transientKey The transient key for caching the response.
+     * @return mixed Remote response.
+     */
+    private function getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey) {
+        $feed = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
+
+        if($feed) {
+            set_transient($transientKey, $feed, MINUTE_IN_SECONDS * $this->cacheTtl); 
+        }
+
+        return $feed;
+    }
+
+    /**
+     * Create a transient key for caching the response.
+     *
+     * @param string $requestUrl The URL to request.
+     * @param array $requestArgs Optional. Arguments for the remote request.
+     * @return string The transient key for caching the response.
+     */
+    private function createTransientKey($requestUrl, $requestArgs) {
+        return md5(serialize($requestUrl) . serialize($requestArgs));
+    }
+
+    /**
+     * Check if the request is an AJAX request.
+     *
+     * @return bool True if the request is an AJAX request, false otherwise.
+     */
+    private function isAjaxRequest() {
+        return (bool) (defined('DOING_AJAX') && DOING_AJAX); 
+    }
+
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization
