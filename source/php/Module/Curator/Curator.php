@@ -306,7 +306,7 @@ class Curator extends \Modularity\Module
      * @return string The transient key for caching the response.
      */
     private function createTransientKey($requestUrl, $requestArgs) {
-        return md5(serialize($requestUrl) . serialize($requestArgs));
+        return "curator_" . md5(serialize($requestUrl) . serialize($requestArgs));
     }
 
     /**
