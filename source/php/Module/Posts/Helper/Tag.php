@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\Helper;
 
+use \Municipio\Helper\Term as TermHelper;
+
 /**
  * Class Tag
  * @package Modularity\Module\Posts\Helper
@@ -21,12 +23,23 @@ class Tag
         }
 
         $tags = [];
+        $termIcon = [];
   
         foreach ($tax as $key => $taxonomy) {
             $terms = wp_get_post_terms($postId, $taxonomy);
 
             if (count($terms) > 0)  {
                 foreach ($terms as $index => $term) {
+                    if (empty($termIcon)) {
+                        $icon = TermHelper::getTermIcon($term->term_id, $taxonomy);
+                        
+                        if (!empty($icon)/*  && !empty($icon['src']) && $icon['type'] == 'icon' */) {
+                            $termIcon['icon'] = /* $icon['src'] */ 'all_out';
+                            $termIcon['size'] = 'md';
+                            $termIcon['backgroundColor'] = TermHelper::getTermColor($term->term_id, $taxonomy); 
+                            $termIcon['color'] = 'white';
+                        }
+                    }
                     $tags[$term->name] = [];
                     $tags[$term->name]['label'] = $term->name;
                     $tags[$term->name]['color'] = 'secondary';
@@ -37,8 +50,7 @@ class Tag
             }
              
         }
-        
-        return $tags; 
+        return ['tags' => $tags, 'termIcon' => $termIcon]; 
     }
 }
 

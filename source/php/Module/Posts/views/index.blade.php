@@ -83,7 +83,7 @@
                     ] : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => ['icon' => 'all_out', 'size' => 'sm']
+                    'icon' => $post->termIcon,
                 ])
                 @slot('floating')
                     @includeWhen(!empty($post->floatingIcon), 'partials.icon')

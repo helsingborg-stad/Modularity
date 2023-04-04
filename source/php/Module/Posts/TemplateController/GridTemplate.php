@@ -59,11 +59,15 @@ class GridTemplate extends AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            $post->tags = (new TagHelper())->getTags(
+            
+            $tagData = TagHelper::getTags(
                 $post->ID,
                 $this->data['taxonomyDisplayFlat'],
                 $post->link
             );
+
+            $post->tags = $tagData['tags'];
+            $post->termIcon = $tagData['termIcon'];
 
             if (class_exists('Municipio\Helper\ReadingTime')) {
                 $post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($post->post_content, 0, true);
