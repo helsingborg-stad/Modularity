@@ -51,7 +51,7 @@
                     'postType' => $post->post_type ?? '',
                 ])
                 @slot('floating')
-                    @includeWhen(!empty($icon), 'partials.icon')
+                    @includeWhen(!empty($floatingIcon), 'partials.icon')
                 @endslot
                 @endcard
             @else
@@ -83,7 +83,7 @@
                     'postType' => $post->post_type ?? '',
                 ])
                 @slot('floating')
-                    @includeWhen(!empty($post->icon), 'partials.icon')
+                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
                 @endslot
                 @endblock
             @endif

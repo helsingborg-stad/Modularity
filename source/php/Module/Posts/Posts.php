@@ -242,14 +242,14 @@ class Posts extends \Modularity\Module
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
 
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
-        $data['icon'] = apply_filters('Modularity/Module/Posts/Icon', array());
+        $data['floatingIcon'] = apply_filters('Modularity/Module/Posts/Icon', array());
 
-        if (!empty($data['icon']) && !empty($data['posts'])) {
+        if (!empty($data['floatingIcon']) && !empty($data['posts'])) {
             foreach ($data['posts'] as &$post) {
                 if (!empty($post->ID || !empty($post->post_type))) {
-                    $post->icon = $data['icon'];
-                    $post->icon['attributeList']['data-post-type'] = $post->post_type ?? '';
-                    $post->icon['attributeList']['data-post-id'] = strval($post->ID);
+                    $post->floatingIcon = $data['floatingIcon'];
+                    $post->floatingIcon['attributeList']['data-post-type'] = $post->post_type ?? '';
+                    $post->floatingIcon['attributeList']['data-post-id'] = strval($post->ID);
                 }
             }
         }

@@ -73,6 +73,9 @@ class AbstractController
             case 'collection':
                 return 10;
                 break;
+            case 'segment':
+                return 15;
+                break;
             default:
                 return 25;
                 break;
