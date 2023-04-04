@@ -21,24 +21,27 @@ class Tag
         }
 
         $tags = [];
-  
+
         foreach ($tax as $key => $taxonomy) {
             $terms = wp_get_post_terms($postId, $taxonomy);
 
-            if (count($terms) > 0)  {
+            if (count($terms) > 0) {
                 foreach ($terms as $index => $term) {
                     $tags[$term->name] = [];
                     $tags[$term->name]['label'] = $term->name;
-                    $tags[$term->name]['color'] = 'secondary';
+
+                    if (class_exists('Municipio\Helper\Term')) {
+                        $color = \Municipio\Helper\Term::getTermColor($term->term_id, $taxonomy);
+                    } else {
+                        $color = get_field('colour', $term);
+                    }
+
+                    $tags[$term->name]['color'] = $color ?? 'secondary';
                     $tags[$term->name]['href'] = empty($postLink) ? get_term_link($term->term_id) : "";
                 }
-
-                
             }
-             
         }
-        
-        return $tags; 
+
+        return $tags;
     }
 }
-
