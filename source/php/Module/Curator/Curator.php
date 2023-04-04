@@ -29,7 +29,7 @@ class Curator extends \Modularity\Module
 
     public function loadMorePosts()
     {
-        if ($this->isAjaxRequest()) {
+        if (!$this->isAjaxRequest()) {
             return false;
         }
         if (empty($_POST['posts'])) {
