@@ -1,8 +1,8 @@
 @icon([
-    'icon' => $post->icon['icon'],
-    'size' => $post->icon['size'] ?? 'md',
-    'filled' => $post->icon['filled'] ?? false,
-    'attributeList' => $post->icon['attributeList'],
-    'classList' => $post->icon['classList'],
+    'icon' => $post->floatingIcon['icon'],
+    'size' => $post->floatingIcon['size'] ?? 'md',
+    'filled' => $post->floatingIcon['filled'] ?? false,
+    'attributeList' => $post->floatingIcon['attributeList'],
+    'classList' => $post->floatingIcon['classList'],
 ])
 @endicon
