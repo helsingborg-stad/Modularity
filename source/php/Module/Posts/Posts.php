@@ -44,6 +44,7 @@ class Posts extends \Modularity\Module
     public function addEmblemFallback(array $image = [])
     {
         if (empty($image)) {
+            $image = [];
             $emblem = \Modularity\Helper\Wp::getThemeMod('logotype_emblem');
             if (!empty($emblem)) {
                 $image[0] = $emblem;
