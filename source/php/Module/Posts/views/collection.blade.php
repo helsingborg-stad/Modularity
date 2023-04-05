@@ -34,6 +34,7 @@
                 @image([
                     'src' => $post->thumbnail[0] ,
                     'alt' => $post->post_title,
+                    'classList' => ['u-width--100'],
                 ])
                 @endimage
             @endif
