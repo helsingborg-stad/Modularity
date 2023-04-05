@@ -41,7 +41,7 @@ class Posts extends \Modularity\Module
 
         new PostsAjax($this);
     }
-    public function addEmblemFallback(array $image = [])
+    public function addEmblemFallback($image)
     {
         if (empty($image)) {
             $image = [];
