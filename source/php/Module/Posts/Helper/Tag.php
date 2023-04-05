@@ -33,8 +33,8 @@ class Tag
                     if (empty($termIcon)) {
                         $icon = TermHelper::getTermIcon($term->term_id, $taxonomy);
                         
-                        if (!empty($icon)/*  && !empty($icon['src']) && $icon['type'] == 'icon' */) {
-                            $termIcon['icon'] = /* $icon['src'] */ 'all_out';
+                        if (!empty($icon) && !empty($icon['src']) && $icon['type'] == 'icon') {
+                            $termIcon['icon'] = $icon['src'];
                             $termIcon['size'] = 'md';
                             $termIcon['backgroundColor'] = TermHelper::getTermColor($term->term_id, $taxonomy); 
                             $termIcon['color'] = 'white';
