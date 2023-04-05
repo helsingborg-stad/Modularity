@@ -41,7 +41,7 @@ class Posts extends \Modularity\Module
 
         new PostsAjax($this);
     }
-    public function addEmblemFallback($image)
+    public function addEmblemFallback(array $image = [])
     {
         if (empty($image)) {
             $emblem = \Modularity\Helper\Wp::getThemeMod('logotype_emblem');
