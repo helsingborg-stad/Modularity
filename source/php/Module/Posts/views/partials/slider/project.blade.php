@@ -9,7 +9,8 @@
     'containerAware' => true,
     'hasPlaceholder' => !isset($post->thumbnail),
     'attributeList' => ['style' => 'z-index:' . (999 - $key) . ';'],
-    'classList' => ['u-height--100', 'project-card']
+    'classList' => ['u-height--100', 'project-card'],
+    'icon' => $post->termIcon,
 ])
     @slot('afterContent')
         @if(!empty($post->project->statusBar))

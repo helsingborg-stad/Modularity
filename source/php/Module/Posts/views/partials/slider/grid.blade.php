@@ -18,6 +18,6 @@
     'link' => $post->link,
     'postId' => $post->ID,
     'postType' => $post->post_type ?? '',
-    'icon' => $icon
+    'icon' => $post->termIcon,
 ])
 @endblock

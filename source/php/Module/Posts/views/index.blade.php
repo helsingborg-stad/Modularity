@@ -53,6 +53,8 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
+                    'icon' => $post->termIcon,
+
                 ])
                 @slot('floating')
                     @includeWhen(!empty($floatingIcon), 'partials.icon')
