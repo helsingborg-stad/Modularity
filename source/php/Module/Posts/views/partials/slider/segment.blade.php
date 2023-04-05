@@ -12,5 +12,6 @@
     'containerAware' => true,
     'reverseColumns' => true,
     'icon' => $post->termIcon,
+    'context' => ['module.posts.segment'],
 ])
 @endsegment
