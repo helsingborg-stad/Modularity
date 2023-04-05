@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts\Helper;
 
-use \Municipio\Helper\Term as TermHelper;
-
 /**
  * Class Tag
  * @package Modularity\Module\Posts\Helper
@@ -30,14 +28,16 @@ class Tag
 
             if (count($terms) > 0) {
                 foreach ($terms as $index => $term) {
-                    if (empty($termIcon)) {
-                        $icon = TermHelper::getTermIcon($term->term_id, $taxonomy);
-                        
-                        if (!empty($icon) && !empty($icon['src']) && $icon['type'] == 'icon') {
-                            $termIcon['icon'] = $icon['src'];
-                            $termIcon['size'] = 'md';
-                            $termIcon['backgroundColor'] = TermHelper::getTermColor($term->term_id, $taxonomy); 
-                            $termIcon['color'] = 'white';
+                    if(class_exists('Municipio\Helper\Term')){
+                        if (empty($termIcon)) {
+                            $icon = \Municipio\Helper\Term::getTermIcon($term->term_id, $taxonomy);
+                            
+                            if (!empty($icon) && !empty($icon['src']) && $icon['type'] == 'icon') {
+                                $termIcon['icon'] = $icon['src'];
+                                $termIcon['size'] = 'md';
+                                $termIcon['backgroundColor'] = \Municipio\Helper\Term::getTermColor($term->term_id, $taxonomy); 
+                                $termIcon['color'] = 'white';
+                            }
                         }
                     }
                     $tags[$term->name] = [];
