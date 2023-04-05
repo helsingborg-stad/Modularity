@@ -26,6 +26,7 @@
             @segment([
                 'layout' => 'card',
                 'title' => $post->showTitle ? $post->post_title : false,
+                'context' => ['module.posts.segment'],
                 'meta' => $display_reading_time ? $post->reading_time : false,
                 'tags' => $post->tags,
                 'image' => $post->thumbnail[0],
