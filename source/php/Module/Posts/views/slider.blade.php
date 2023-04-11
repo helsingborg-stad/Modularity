@@ -35,6 +35,7 @@
         'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
         'data-slider-gap' => 48,
         'data-slides-per-page' => $slider->slidesPerPage,
+        'data-show-adjacent-slides' => $slider->showAdjacentSlides
     ]
 ])
     @foreach ($posts as $post)

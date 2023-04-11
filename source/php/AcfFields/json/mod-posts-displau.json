@@ -158,6 +158,33 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_6435590dc9ee7",
+            "label": "Display adjacent slides",
+            "name": "display_adjacent_slides",
+            "type": "true_false",
+            "instructions": "A little preview of the adjacent slides.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6356477fbc5e4",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_6418289cf23a6",
             "label": "Image position",
             "name": "image_position",
@@ -762,6 +789,25 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
+        },
+        {
+            "key": "field_643556d2d863d",
+            "label": "Show adjacent",
+            "name": "posts_slider_show_adjacent",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 0
         }
     ],
     "location": [
