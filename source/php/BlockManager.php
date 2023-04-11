@@ -327,10 +327,10 @@ class BlockManager
                     $isSnakeCased = \str_contains($key, '_');
 
                     if ($isSnakeCased) {
-                        $dataPoint = $defaultValues['_' . $key];
+                        $dataPoint = $defaultValues['_' . $key] ?? null;
                     } else {
                         $key = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $key));
-                        $dataPoint = $defaultValues['_' . $key];
+                        $dataPoint = $defaultValues['_' . $key] ?? null;
                     }
                 }
             }
