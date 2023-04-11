@@ -93,7 +93,8 @@ class BlockManager
         ];
 
         if ('core/column' === $block['blockName']) {
-            $blockContent = '<div class="' . $widths[$block['attrs']['width']] . '">' . $blockContent . '</div>';
+            $blockWidth = $widths[$block['attrs']['width'] ?? ''] ?? '';
+            $blockContent = '<div class="' . $blockWidth . '">' . $blockContent . '</div>';
         }
 
         return $blockContent;
@@ -379,9 +380,9 @@ class BlockManager
         //Add post title & hide title
         $module->data['postTitle'] = apply_filters(
             'the_title',
-            !empty($block['data']['custom_block_title']) ?
-                $block['data']['custom_block_title'] : $block['data']['field_block_title']
+            $block['data']['custom_block_title'] ?? $block['data']['field_block_title'] ?? ''
         );
+
         $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
         if (!isset($block['anchor']) || '' === $block['anchor']) {
