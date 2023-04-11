@@ -38,6 +38,9 @@
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
                 'icon' => $post->termIcon,
             ])
+                @slot('floating')
+                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+                @endslot
             @endsegment
         </div>
     @endforeach

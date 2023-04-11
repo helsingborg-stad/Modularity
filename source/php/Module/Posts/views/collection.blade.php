@@ -28,7 +28,10 @@
                 'link' => $post->link,
                 'classList' => ['c-collection__item--post'],
                 'containerAware' => true,
-            ])
+        ])
+            @slot('floating')
+                @include('partials.icon')
+            @endslot
             @slot('before')
             @if($post->showImage && isset($post->thumbnail[0]))
                 @image([
