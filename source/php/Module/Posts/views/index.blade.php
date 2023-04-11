@@ -53,12 +53,11 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon,
-
+                    'icon' => $post->termIcon
                 ])
-                @slot('floating')
-                    @includeWhen(!empty($floatingIcon), 'partials.icon')
-                @endslot
+                    @slot('floating')
+                        @includeWhen(!empty($floatingIcon), 'partials.icon')
+                    @endslot
                 @endblock
             @else
                 @card([
@@ -78,18 +77,21 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' => $post->showImage && isset($post->thumbnail[0]) ? [
-                        'src' => $post->thumbnail[0],
-                        'alt' => $post->post_title,
-                        'backgroundColor' => 'secondary',
-                    ] : [],
+                    'image' =>
+                        $post->showImage && isset($post->thumbnail[0])
+                            ? [
+                                'src' => $post->thumbnail[0],
+                                'alt' => $post->post_title,
+                                'backgroundColor' => 'secondary'
+                            ]
+                            : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon,
+                    'icon' => $post->termIcon
                 ])
-                @slot('floating')
-                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
-                @endslot
+                    @slot('floating')
+                        @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+                    @endslot
                 @endcard
             @endif
         </div>

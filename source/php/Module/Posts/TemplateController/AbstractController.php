@@ -45,6 +45,8 @@ class AbstractController
 
         $amount = $this->getTruncateAmount($this->data['posts_display_as']);
 
+        $this->data['purpose'] = \Modularity\Module\Posts\Helper\Purpose::getPurpose($this->data['posts_data_post_type']);
+
         foreach ($this->data['posts'] as $post) {
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
 
@@ -65,7 +67,6 @@ class AbstractController
 
             // Get excerpt
             $post->post_content = $this->truncateExcerpt($post->post_content, $amount);
-
 
             $this->setPostFlags($post);
         }
@@ -100,14 +101,26 @@ class AbstractController
     public function setPostFlags(&$post)
     {
         //Booleans for hiding/showing stuff
-        $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+        $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
+
+        if ('event' == $post->purpose) {
+            $post->showDate = true;
+            $eventOccasions = get_post_meta($post->ID, 'occasions_complete', true);
+            if (!empty($eventOccasions)) {
+                $post->post_date = $eventOccasions[0]['start_date'];
+            } else {
+                $post->post_date = false;
+            }
+        } else {
+            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+
+            if ($post->showDate) {
+                $post->postDate = $this->getDate($post, $this->data['posts_date_source']);
+            }
+        }
         $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
         $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
         $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
-
-        if ($post->showDate) {
-            $post->postDate = $this->getDate($post, $this->data['posts_date_source']);
-        }
     }
 
     /**
