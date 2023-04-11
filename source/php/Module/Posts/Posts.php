@@ -248,7 +248,6 @@ class Posts extends \Modularity\Module
         if (!empty($data['floatingIcon']) && !empty($data['posts'])) {
             foreach ($data['posts'] as &$post) {
                 if (!empty($post->ID && !empty($post->post_type))) {
-                    var_dump($data['floatingIcon']['postTypes']);
                     if (in_array($post->post_type, $data['floatingIcon']['postTypes'])) {
                         $post->floatingIcon = $data['floatingIcon'];
                         $post->floatingIcon['attributeList']['data-post-type'] = $post->post_type ?? '';
