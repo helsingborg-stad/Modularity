@@ -60,15 +60,7 @@
             "type": "select",
             "instructions": "",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_63edf811d3a68",
-                        "operator": "==",
-                        "value": "block"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -96,7 +88,15 @@
             "type": "true_false",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63edf811d3a68",
+                        "operator": "==",
+                        "value": "block"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",
@@ -116,7 +116,15 @@
             "type": "select",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63edf811d3a68",
+                        "operator": "==",
+                        "value": "block"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "50",
                 "class": "",

@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Curator;
 
+use Modularity\Helper\Block;
+
 class Curator extends \Modularity\Module
 {
     public $slug = 'curator';
@@ -15,9 +17,9 @@ class Curator extends \Modularity\Module
         $this->description = __("Output social media flow via curator.", 'modularity');
 
         $this->data['i18n'] = [
-            'loadMore' => __('Load More', 'modularity'),
-            'goToOriginalPost' => __('Go to original post', 'modularity'),
-            'noMoreItems' => __('No more items to load.', 'modularity'),
+        'loadMore' => __('Load More', 'modularity'),
+        'goToOriginalPost' => __('Go to original post', 'modularity'),
+        'noMoreItems' => __('No more items to load.', 'modularity'),
         ];
 
         add_action('wp_ajax_mod_curator_get_feed', [$this, 'getFeed'], 10, 4);
@@ -54,12 +56,12 @@ class Curator extends \Modularity\Module
         echo render_blade_view(
             "partials/$layout",
             [
-                'posts' => $posts,
-                'i18n' => $i18n,
-                'columnClasses' => $_POST['columnClasses']
+            'posts' => $posts,
+            'i18n' => $i18n,
+            'columnClasses' => $_POST['columnClasses']
             ],
             [
-                plugin_dir_path(__FILE__) . 'views'
+            plugin_dir_path(__FILE__) . 'views'
             ]
         );
         wp_die(); // Always die in functions echoing ajax content
@@ -72,8 +74,8 @@ class Curator extends \Modularity\Module
             MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-curator-load-more.js')
         );
         $strings = array_merge($this->data['i18n'], [
-            'ajaxurl' => admin_url('admin-ajax.php'),
-            'nonce' => wp_create_nonce('mod-posts-load-more')
+        'ajaxurl' => admin_url('admin-ajax.php'),
+        'nonce' => wp_create_nonce('mod-posts-load-more')
         ]);
         wp_localize_script('mod-curator-load-more', 'curator', $strings);
         wp_enqueue_script('mod-curator-load-more');
@@ -81,36 +83,48 @@ class Curator extends \Modularity\Module
 
     public function data(): array
     {
-        //Get module data
-        $data['embedCode']     = $this->parseEmbedCode(get_field('embed_code', $this->ID));
+        $data = [
+            'i18n' => $this->data['i18n'],
+            'columnClasses' => '',
+            'ratio' => '',
+            'gutter' => '',
+        ];
 
-        $data['i18n'] = $this->data['i18n'];
-
-        $data['numberOfItems'] = get_field('number_of_posts', $this->ID) ?? 12;
-        $data['ratio']         = get_field('ratio', $this->ID) ?? '4:3';
-        $data['gutter']        = get_field('gutter', $this->ID) ?  'o-grid--no-gutter' : '';
-        $data['layout']        = get_field('layout', $this->ID) ?? 'card';
-
-        if ($data['layout'] === 'block') {
-            $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm ';
-
-            $data['columns'] = get_field('columns', $this->ID) ?? 4;
-            $data['columnClasses'] .= ($data['columns'] == 3 ) ? 'o-grid-4@lg' : 'o-grid-3@lg';
+        if (!empty($this->ID)) {
+            // Module data
+            $data['embedCode'] = $this->parseEmbedCode(get_field('embed_code', $this->ID, true));
+            $data['numberOfItems'] = get_field('number_of_posts', $this->ID, true) ?: 12;
+            $data['layout'] = get_field('layout', $this->ID, true) ?: 'card';
+            $data['columns'] = get_field('columns', $this->ID, true) ?: 4;
         } else {
-            $data['columnClasses'] = 'o-grid-12@xs o-grid-6@sm o-grid-4@md o-grid-3@lg';
+            // Gutenberg block data
+            global $post;
+            if (!empty($post->ID)) {
+                $this->ID = $post->ID;
+                $block = 'acf/curator';
+                $data['embedCode']     = $this->parseEmbedCode(Block::getBlockData($this->ID, $block, 'embed_code'));
+                $data['numberOfItems'] = Block::getBlockData($this->ID, $block, 'number_of_posts') ?: 12;
+                $data['layout']        = Block::getBlockData($this->ID, $block, 'layout') ?: 'card';
+                $data['columns']       = Block::getBlockData($this->ID, $block, 'columns') ?: 4;
+            }
         }
 
-        $cached = isset($_GET['flush']) ? false : true;
-        $feed = $this->getFeed($data['embedCode'], $data['numberOfItems'] + 1, 0, $cached);
+        $data['columnClasses'] .= $data['columns'] == 3 ? 'o-grid-4@lg' : 'o-grid-3@lg';
 
-        //Parse feed
+        if ($data['layout'] === 'block') {
+            $data['ratio'] = get_field('ratio', $this->ID, true) ?: '4:3';
+            $data['gutter'] = get_field('gutter', $this->ID, true) ? 'o-grid--no-gutter' : '';
+        }
+
+        $cached = !isset($_GET['flush']);
+        $feed = $this->getFeed($data['embedCode'], (int) $data['numberOfItems'] + 1, 0, $cached);
+
         $data['showFeed'] = false;
 
         if (!empty($feed->posts)) {
-            $data['posts']    = $feed->posts;
+            $data['showFeed']  = true;
+            $data['posts']     = $feed->posts;
             $data['postCount'] = $feed->postCount;
-
-            $data['showFeed'] = true;
         }
         //Parse posts array
         $data['posts'] = is_array($data['posts']) ? self::parseSocialMediaPosts($data['posts']) : [];
@@ -239,16 +253,16 @@ class Curator extends \Modularity\Module
         $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
 
         $requestArgs = [
-            'headers' => [
-                'Content-Type: application/json',
-            ],
-            'body' => [
-                'limit'        => $numberOfItems,
-                'offset'       => $offset,
-                'hasPoweredBy' => 1,
-                'version'      => '4.0',
-                'status'       => 1
-            ]
+        'headers' => [
+            'Content-Type: application/json',
+        ],
+        'body' => [
+            'limit'        => $numberOfItems,
+            'offset'       => $offset,
+            'hasPoweredBy' => 1,
+            'version'      => '4.0',
+            'status'       => 1
+        ]
         ];
 
         $feed = $this->maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache);
