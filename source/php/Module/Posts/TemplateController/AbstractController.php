@@ -53,15 +53,15 @@ class AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            
+
             $tagData = TagHelper::getTags(
                 $post->ID,
                 $this->data['taxonomyDisplayFlat'],
                 $post->link
             );
 
-            $post->tags = $tagData['tags'];
-            $post->termIcon = $tagData['termIcon'];
+            $post->tags = $tagData['tags'] ?? false;
+            $post->termIcon = $tagData['termIcon'] ?? false;
 
             // Get excerpt
             $post->post_content = $this->truncateExcerpt($post->post_content, $amount);
