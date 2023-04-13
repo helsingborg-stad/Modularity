@@ -14,7 +14,7 @@
         ] : false),
     'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
     'classList' => ['t-posts-block', ' u-height--100'],
-    'context' => 'module.posts.block',
+    'context' => ['module.posts.block'],
     'link' => $post->link,
     'postId' => $post->ID,
     'postType' => $post->post_type ?? '',

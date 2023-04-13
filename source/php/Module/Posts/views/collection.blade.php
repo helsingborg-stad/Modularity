@@ -20,13 +20,14 @@
 @endif
 
     @collection([
-        'classList' => ['c-collection--posts', 'o-grid']
+        'classList' => ['c-collection--posts', 'o-grid'],
     ])
         @foreach ($posts as $post)
         <div class="{{$posts_columns}}">
             @collection__item([
                 'link' => $post->link,
                 'classList' => ['c-collection__item--post'],
+                'context' => ['module.posts.collection__item'],
                 'containerAware' => true,
         ])
             @slot('floating')
@@ -55,13 +56,15 @@
                         {{$post->showTitle ? $post->post_title : false}}
                     @endtypography
                     @if($post->termIcon)
-                    @inlineCssWrapper([
-                        'styles' => ['background-color' => $post->termIcon['backgroundColor'], 'display' => 'flex'],
-                        'classList' => [$post->termIcon['backgroundColor'] ? '' : 'u-color__bg--primary', 'u-rounded--full', 'u-detail-shadow-3']
-                    ])
-                        @icon($post->termIcon)
-                        @endicon
-                    @endinlineCssWrapper
+                    <div class="c-collection__item__icon">
+                        @inlineCssWrapper([
+                            'styles' => ['background-color' => $post->termIcon['backgroundColor'], 'display' => 'flex'],
+                            'classList' => [$post->termIcon['backgroundColor'] ? '' : 'u-color__bg--primary', 'u-rounded--full', 'u-detail-shadow-3']
+                        ])
+                            @icon($post->termIcon)
+                            @endicon
+                        @endinlineCssWrapper
+                    </div>
                     @endif
                 @endgroup
                 @tags([
