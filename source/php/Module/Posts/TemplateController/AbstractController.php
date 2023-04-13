@@ -45,7 +45,7 @@ class AbstractController
 
         $amount = $this->getTruncateAmount($this->data['posts_display_as']);
 
-        $this->data['purpose'] = \Modularity\Module\Posts\Helper\Purpose::getPurpose($this->data['posts_data_post_type']);
+        $this->data['purpose'] = \Modularity\Module\Posts\Helper\Purpose::getPurpose($this->data['posts_data_post_type'] ?? '');
 
         foreach ($this->data['posts'] as $post) {
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
