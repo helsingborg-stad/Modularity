@@ -171,7 +171,7 @@ class Posts extends \Modularity\Module
      */
     public function template()
     {
-        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as']));
+        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ?? ''));
         if (!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
             return 'list';
         }
@@ -187,9 +187,12 @@ class Posts extends \Modularity\Module
     /**
      * @param $template
      */
-    public function getTemplateData(string $template, array $data = array())
+    public function getTemplateData(string $template = '', array $data = array())
     {
-        if (! empty($data)) {
+        if (empty($template)) {
+            return false;
+        }
+        if (!empty($data)) {
             $this->data = $data;
         }
 
@@ -214,8 +217,9 @@ class Posts extends \Modularity\Module
     {
         $data = [];
         $fields = json_decode(json_encode(get_fields($this->ID)));
-        $data['posts_display_as'] = $fields->posts_display_as;
-        $data['display_reading_time'] = $fields->display_reading_time;
+
+        $data['posts_display_as'] = $fields->posts_display_as ?? false;
+        $data['display_reading_time'] = $fields->display_reading_time ?? false;
 
         $this->enableFilters = $this->enableFilters();
         if ($this->enableFilters) {
@@ -292,7 +296,7 @@ class Posts extends \Modularity\Module
         $data['taxonomyDisplayFlat']    = $this->getTaxonomyDisplayFlat();
         $data['archive_link_url']       = $this->getArchiveUrl(
             $data['posts_data_post_type'],
-            $fields
+            $fields ?? null
         );
 
         $data['ariaLabels'] =  (object) [
