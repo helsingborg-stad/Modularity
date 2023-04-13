@@ -101,7 +101,10 @@ class AbstractController
     public function setPostFlags(&$post)
     {
         //Booleans for hiding/showing stuff
-        $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
+        $post->purpose = false;
+        if (!empty($post->post_type)) {
+            $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
+        }
 
         if ('event' == $post->purpose) {
             $post->showDate = true;
