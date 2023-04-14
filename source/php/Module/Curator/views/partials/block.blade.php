@@ -9,7 +9,7 @@
             ],
             'attributeList' => ['data-open' => 'modal-' . $post->id],
             'ratio' => $ratio,
-            'classList' => ['u-height--100']
+            'classList' => ['u-height--100', 'c-block--curator']
         ])
         @endblock
     </div>
