@@ -38,6 +38,7 @@
                 'containerAware' => true,
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
                 'icon' => $post->termIcon,
+                'classList' => $post->classList
             ])
                 @slot('floating')
                     @includeWhen(!empty($post->floatingIcon), 'partials.icon')

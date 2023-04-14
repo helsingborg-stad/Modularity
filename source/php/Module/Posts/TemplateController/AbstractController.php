@@ -71,7 +71,7 @@ class AbstractController
         }
     }
 
-    private function getTruncateAmount($displayAs = 'default')
+    public function getTruncateAmount($displayAs = 'default')
     {
         switch ($displayAs) {
             case 'collection':
@@ -86,7 +86,7 @@ class AbstractController
         }
     }
 
-    private function truncateExcerpt($content, $amount = 25)
+    public function truncateExcerpt($content, $amount = 25)
     {
         if (empty(get_extended($content)['main'])) {
             return;
