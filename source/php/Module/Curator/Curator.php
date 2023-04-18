@@ -84,18 +84,18 @@ class Curator extends \Modularity\Module
     public function data(): array
     {
         $data = [
-            'i18n' => $this->data['i18n'],
+            'i18n'          => $this->data['i18n'],
             'columnClasses' => '',
-            'ratio' => '',
-            'gutter' => '',
+            'ratio'         => '',
+            'gutter'        => '',
         ];
 
         if (!empty($this->ID)) {
             // Module data
-            $data['embedCode'] = $this->parseEmbedCode(get_field('embed_code', $this->ID, true));
+            $data['embedCode']     = $this->parseEmbedCode(get_field('embed_code', $this->ID, true));
             $data['numberOfItems'] = get_field('number_of_posts', $this->ID, true) ?: 12;
-            $data['layout'] = get_field('layout', $this->ID, true) ?: 'card';
-            $data['columns'] = get_field('columns', $this->ID, true) ?: 4;
+            $data['layout']        = get_field('layout', $this->ID, true) ?: 'card';
+            $data['columns']       = get_field('columns', $this->ID, true) ?: 4;
         } else {
             // Gutenberg block data
             global $post;
@@ -106,15 +106,14 @@ class Curator extends \Modularity\Module
                 $data['numberOfItems'] = Block::getBlockData($this->ID, $block, 'number_of_posts') ?: 12;
                 $data['layout']        = Block::getBlockData($this->ID, $block, 'layout') ?: 'card';
                 $data['columns']       = Block::getBlockData($this->ID, $block, 'columns') ?: 4;
+                if ($data['layout'] === 'block') {
+                    $data['ratio'] = Block::getBlockData($this->ID, $block, 'ratio') ?: '4:3';
+                    $data['gutter'] = Block::getBlockData($this->ID, $block, 'gutter') ? 'o-grid--no-gutter' : '';
+                }
             }
         }
 
         $data['columnClasses'] .= $data['columns'] == 3 ? 'o-grid-4@lg' : 'o-grid-3@lg';
-
-        if ($data['layout'] === 'block') {
-            $data['ratio'] = get_field('ratio', $this->ID, true) ?: '4:3';
-            $data['gutter'] = get_field('gutter', $this->ID, true) ? 'o-grid--no-gutter' : '';
-        }
 
         $cached = !isset($_GET['flush']);
         $feed = $this->getFeed($data['embedCode'], (int) $data['numberOfItems'] + 1, 0, $cached);
@@ -151,8 +150,7 @@ class Curator extends \Modularity\Module
     {
         if (is_array($posts) && !empty($posts)) {
             foreach ($posts as $key => $post) {
-
-                if(self::isCuratorUser($post)) {
+                if (self::isCuratorUser($post)) {
                     unset($posts[$key]);
                     continue;
                 }
@@ -192,9 +190,10 @@ class Curator extends \Modularity\Module
      * @param WP_Post $post The post object to check.
      * @return bool True if the post author is a Curator.io user, false otherwise.
      */
-    private static function isCuratorUser($post) {
+    private static function isCuratorUser($post)
+    {
         if ('curator_io' === $post->user_screen_name || 'https://curator.io' === $post->url) {
-            return true;    
+            return true;
         }
         return false;
     }
@@ -271,7 +270,7 @@ class Curator extends \Modularity\Module
             echo $feed;
             wp_die();
         }
-        
+
         return json_decode($feed);
     }
 
@@ -283,11 +282,12 @@ class Curator extends \Modularity\Module
      * @param bool $cache Whether to use cached response or not.
      * @return mixed Cached response if available or remote response.
      */
-    private function maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache) {
+    private function maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache)
+    {
 
         $transientKey = $this->createTransientKey($requestUrl, $requestArgs);
 
-        if($cache && $cachedFeed = get_transient($transientKey)) {
+        if ($cache && $cachedFeed = get_transient($transientKey)) {
             return $cachedFeed;
         }
 
@@ -302,11 +302,12 @@ class Curator extends \Modularity\Module
      * @param string $transientKey The transient key for caching the response.
      * @return mixed Remote response.
      */
-    private function getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey) {
+    private function getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey)
+    {
         $feed = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
 
-        if($feed) {
-            set_transient($transientKey, $feed, MINUTE_IN_SECONDS * $this->cacheTtl); 
+        if ($feed) {
+            set_transient($transientKey, $feed, MINUTE_IN_SECONDS * $this->cacheTtl);
         }
 
         return $feed;
@@ -319,7 +320,8 @@ class Curator extends \Modularity\Module
      * @param array $requestArgs Optional. Arguments for the remote request.
      * @return string The transient key for caching the response.
      */
-    private function createTransientKey($requestUrl, $requestArgs) {
+    private function createTransientKey($requestUrl, $requestArgs)
+    {
         return "curator_" . md5(serialize($requestUrl) . serialize($requestArgs));
     }
 
@@ -328,8 +330,9 @@ class Curator extends \Modularity\Module
      *
      * @return bool True if the request is an AJAX request, false otherwise.
      */
-    private function isAjaxRequest() {
-        return (bool) (defined('DOING_AJAX') && DOING_AJAX); 
+    private function isAjaxRequest()
+    {
+        return (bool) (defined('DOING_AJAX') && DOING_AJAX);
     }
 
     /**
