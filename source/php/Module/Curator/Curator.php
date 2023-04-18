@@ -100,15 +100,14 @@ class Curator extends \Modularity\Module
             // Gutenberg block data
             global $post;
             if (!empty($post->ID)) {
-                $this->ID = $post->ID;
-                $block = 'acf/curator';
-                $data['embedCode']     = $this->parseEmbedCode(Block::getBlockData($this->ID, $block, 'embed_code'));
-                $data['numberOfItems'] = Block::getBlockData($this->ID, $block, 'number_of_posts') ?: 12;
-                $data['layout']        = Block::getBlockData($this->ID, $block, 'layout') ?: 'card';
-                $data['columns']       = Block::getBlockData($this->ID, $block, 'columns') ?: 4;
+                $blockName = 'acf/curator';
+                $data['embedCode']     = $this->parseEmbedCode(Block::getBlockData($post->ID, $blockName, 'embed_code'));
+                $data['numberOfItems'] = Block::getBlockData($post->ID, $blockName, 'number_of_posts') ?: 12;
+                $data['layout']        = Block::getBlockData($post->ID, $blockName, 'layout') ?: 'card';
+                $data['columns']       = Block::getBlockData($post->ID, $blockName, 'columns') ?: 4;
                 if ($data['layout'] === 'block') {
-                    $data['ratio'] = Block::getBlockData($this->ID, $block, 'ratio') ?: '4:3';
-                    $data['gutter'] = Block::getBlockData($this->ID, $block, 'gutter') ? 'o-grid--no-gutter' : '';
+                    $data['ratio'] = Block::getBlockData($post->ID, $blockName, 'ratio') ?: '4:3';
+                    $data['gutter'] = Block::getBlockData($post->ID, $blockName, 'gutter') ? 'o-grid--no-gutter' : '';
                 }
             }
         }
