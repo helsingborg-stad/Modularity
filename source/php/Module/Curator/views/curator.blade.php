@@ -41,9 +41,12 @@
                 ])
                 @endbutton
             @endtypography
-            @typography(['element' => 'div', 'variant' => 'meta', 'classList' => ['u-text-align--right']])
-                <a href="https://curator.io" target="_blank" rel="nofollow">Powered by Curator.io</a>
-            @endtypography
+
+            @if($showPoweredBy)
+                @typography(['element' => 'div', 'variant' => 'meta', 'classList' => ['u-text-align--right']])
+                    <a href="https://curator.io" target="_blank" rel="nofollow">Powered by Curator.io</a>
+                @endtypography
+            @endif
         </div>
     </div>
 @else

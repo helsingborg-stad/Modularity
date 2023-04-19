@@ -92,19 +92,21 @@ class Curator extends \Modularity\Module
 
         if (!empty($this->ID)) {
             // Module data
-            $data['embedCode']     = $this->parseEmbedCode(get_field('embed_code', $this->ID, true));
-            $data['numberOfItems'] = get_field('number_of_posts', $this->ID, true) ?: 12;
-            $data['layout']        = get_field('layout', $this->ID, true) ?: 'card';
-            $data['columns']       = get_field('columns', $this->ID, true) ?: 4;
+            $data['embedCode']      = $this->parseEmbedCode(get_field('embed_code', $this->ID, true));
+            $data['numberOfItems']  = get_field('number_of_posts', $this->ID, true) ?: 12;
+            $data['layout']         = get_field('layout', $this->ID, true) ?: 'card';
+            $data['columns']        = get_field('columns', $this->ID, true) ?: 4;
+            $data['showPoweredBy']  = get_field('show_powered_by', $this->ID, true) ? true : false;
         } else {
             // Gutenberg block data
             global $post;
             if (!empty($post->ID)) {
                 $blockName = 'acf/curator';
-                $data['embedCode']     = $this->parseEmbedCode(Block::getBlockData($post->ID, $blockName, 'embed_code'));
-                $data['numberOfItems'] = Block::getBlockData($post->ID, $blockName, 'number_of_posts') ?: 12;
-                $data['layout']        = Block::getBlockData($post->ID, $blockName, 'layout') ?: 'card';
-                $data['columns']       = Block::getBlockData($post->ID, $blockName, 'columns') ?: 4;
+                $data['embedCode']      = $this->parseEmbedCode(Block::getBlockData($post->ID, $blockName, 'embed_code'));
+                $data['numberOfItems']  = Block::getBlockData($post->ID, $blockName, 'number_of_posts') ?: 12;
+                $data['layout']         = Block::getBlockData($post->ID, $blockName, 'layout') ?: 'card';
+                $data['columns']        = Block::getBlockData($post->ID, $blockName, 'columns') ?: 4;
+                $data['showPoweredBy']  = Block::getBlockData($post->ID, $blockName, 'show_powered_by') ? true : false;
                 if ($data['layout'] === 'block') {
                     $data['ratio'] = Block::getBlockData($post->ID, $blockName, 'ratio') ?: '4:3';
                     $data['gutter'] = Block::getBlockData($post->ID, $blockName, 'gutter') ? 'o-grid--no-gutter' : '';
