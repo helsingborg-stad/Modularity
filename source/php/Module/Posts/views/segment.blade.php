@@ -37,8 +37,8 @@
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
                 'containerAware' => true,
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
-                'icon' => $post->termIcon,
                 'classList' => $post->classList
+                'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
             ])
                 @slot('floating')
                     @includeWhen(!empty($post->floatingIcon), 'partials.icon')
