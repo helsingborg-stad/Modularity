@@ -11,7 +11,6 @@
             'ratio' => $ratio,
             'classList' => ['u-height--100']
         ])
-            <!-- no slot data -->
         @endblock
     </div>
     @include('partials.modal', ['post' => $post])
