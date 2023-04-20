@@ -183,7 +183,7 @@ if (function_exists('acf_add_local_field_group')) {
                                 'bottom' => __('Bottom banner', 'modularity'),
                                 'center' => __('Centered', 'modularity'),
                             ),
-                            'default_value' => __('bottom', 'modularity'),
+                            'default_value' => 'bottom',
                             'allow_null' => 0,
                             'multiple' => 0,
                             'ui' => 0,
