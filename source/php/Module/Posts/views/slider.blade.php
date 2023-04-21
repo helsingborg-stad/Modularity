@@ -31,7 +31,9 @@
             @if ($postsDisplayAs === 'index' || $postsDisplayAs === 'items' || $postsDisplayAs === 'news')
                 @include('partials.slider.item.index')
             @else
-                @include('partials.slider.item.' . $postsDisplayAs)
+                @include('partials.slider.item.' . $postsDisplayAs, [
+                    'display_reading_time' => $display_reading_time,
+                ])
             @endif
         @endslider__item
     @endforeach
