@@ -1,7 +1,8 @@
 @segment([
     'layout' => 'card',
     'title' => $post->showTitle ? $post->post_title : false,
-    'classList' => ['c-segment--slider'],
+    'context' => ['module.posts.segment'],
+    'meta' => $display_reading_time ? $post->reading_time : false,
     'tags' => $post->tags,
     'image' => $post->thumbnail[0],
     'date' => $post->showDate
@@ -12,6 +13,9 @@
     'containerAware' => true,
     'reverseColumns' => true,
     'icon' => $post->termIcon,
-    'context' => ['module.posts.segment'],
+    'classList' => ['c-segment--slider']
 ])
+    @slot('floating')
+        @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+    @endslot
 @endsegment
