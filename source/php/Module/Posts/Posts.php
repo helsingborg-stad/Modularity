@@ -244,7 +244,6 @@ class Posts extends \Modularity\Module
                 }
             }
         }
-
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;

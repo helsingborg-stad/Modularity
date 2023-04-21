@@ -29,7 +29,6 @@
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
-                    'image' => $post->thumbnail,
                     'heading' => $post->post_title,
                     'hasFooter' => $post->tags ? true : false,
                     'context' => ['module.posts.index'],
@@ -42,18 +41,20 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' => $post->showImage ? [
-                        'src' => $post->thumbnail[0],
-                        'alt' => $post->post_title,
-                        'backgroundColor' => 'secondary',
-                    ] : [],
+                    'image' => $post->showImage
+                        ? [
+                            'src' => $post->thumbnail[0],
+                            'alt' => $post->post_title,
+                            'backgroundColor' => 'secondary'
+                        ]
+                        : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon,
+                    'icon' => $post->termIcon
                 ])
-                @slot('floating')
-                    @includeWhen(!empty($floatingIcon), 'partials.icon')
-                @endslot
+                    @slot('floating')
+                        @includeWhen(!empty($floatingIcon), 'partials.icon')
+                    @endslot
                 @endcard
             @else
                 @block([
@@ -82,11 +83,11 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon,
+                    'icon' => $post->termIcon
                 ])
-                @slot('floating')
-                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
-                @endslot
+                    @slot('floating')
+                        @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+                    @endslot
                 @endblock
             @endif
         </div>
