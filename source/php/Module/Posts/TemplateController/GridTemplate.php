@@ -20,7 +20,7 @@ class GridTemplate extends AbstractController
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
-        $this->data['display_reading_time'] = $fields->post_fields->display_reading_time ?? false;
+        $data['display_reading_time'] = $fields->posts_fields['reading_time'] ?? false;
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
