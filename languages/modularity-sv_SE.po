@@ -30,7 +30,7 @@ msgid "Edit"
 msgstr "Redigera"
 
 #: App.php:155
-#: source/php/BlockManager.php:166
+#: source/php/BlockManager.php:168
 #: source/php/Editor.php:124
 #: source/php/Options/General.php:179
 msgid "Modules"
@@ -219,7 +219,6 @@ msgid "Dutch (Standard)"
 msgstr "Holländska (standard)"
 
 #: source/php/AcfFields/php/mod-all.php:54
-#: source/php/AcfFields/php/mod-video.php:177
 msgid "English"
 msgstr "Engelska"
 
@@ -536,7 +535,6 @@ msgid "Spanish (Venezuela)"
 msgstr "Spanska (Venezuela)"
 
 #: source/php/AcfFields/php/mod-all.php:133
-#: source/php/AcfFields/php/mod-video.php:176
 msgid "Swedish"
 msgstr "Svenska"
 
@@ -782,27 +780,27 @@ msgstr "Kolumner"
 
 #: source/php/AcfFields/php/mod-contacts.php:487
 #: source/php/AcfFields/php/mod-index.php:327
-#: source/php/AcfFields/php/mod-posts-displau.php:302
+#: source/php/AcfFields/php/mod-posts-displau.php:371
 msgid "1"
 msgstr "1"
 
 #: source/php/AcfFields/php/mod-contacts.php:488
 #: source/php/AcfFields/php/mod-index.php:328
-#: source/php/AcfFields/php/mod-posts-displau.php:303
+#: source/php/AcfFields/php/mod-posts-displau.php:372
 msgid "2"
 msgstr "2"
 
 #: source/php/AcfFields/php/mod-contacts.php:489
-#: source/php/AcfFields/php/mod-curator.php:100
+#: source/php/AcfFields/php/mod-curator.php:75
 #: source/php/AcfFields/php/mod-index.php:329
-#: source/php/AcfFields/php/mod-posts-displau.php:304
+#: source/php/AcfFields/php/mod-posts-displau.php:373
 msgid "3"
 msgstr "3"
 
 #: source/php/AcfFields/php/mod-contacts.php:490
-#: source/php/AcfFields/php/mod-curator.php:101
+#: source/php/AcfFields/php/mod-curator.php:76
 #: source/php/AcfFields/php/mod-index.php:330
-#: source/php/AcfFields/php/mod-posts-displau.php:305
+#: source/php/AcfFields/php/mod-posts-displau.php:374
 msgid "4"
 msgstr "4"
 
@@ -811,8 +809,8 @@ msgid "o-grid-12@md"
 msgstr "o-grid-12@md"
 
 #: source/php/AcfFields/php/mod-curator.php:8
-#: source/php/Module/Curator/Curator.php:12
-#: source/php/Module/Curator/Curator.php:13
+#: source/php/Module/Curator/Curator.php:15
+#: source/php/Module/Curator/Curator.php:16
 msgid "Curator Social Media"
 msgstr "Social Media (Curator.io)"
 
@@ -821,7 +819,7 @@ msgstr "Social Media (Curator.io)"
 msgid "Number of posts"
 msgstr "Antal inlägg"
 
-#: source/php/AcfFields/php/mod-curator.php:16
+#: source/php/AcfFields/php/mod-curator.php:15
 msgid "Set the number items to show."
 msgstr "Ange hur många inlägg du vill visa."
 
@@ -830,13 +828,13 @@ msgid "Layout"
 msgstr "Layout"
 
 #: source/php/AcfFields/php/mod-curator.php:47
-#: source/php/AcfFields/php/mod-posts-displau.php:240
+#: source/php/AcfFields/php/mod-posts-displau.php:294
 #: source/php/AcfFields/php/mod-script.php:42
 msgid "Card"
 msgstr "Kort"
 
 #: source/php/AcfFields/php/mod-curator.php:48
-#: source/php/AcfFields/php/mod-posts-displau.php:239
+#: source/php/AcfFields/php/mod-posts-displau.php:293
 msgid "Block"
 msgstr "Block"
 
@@ -845,54 +843,45 @@ msgid "card"
 msgstr "kort"
 
 #: source/php/AcfFields/php/mod-curator.php:62
-msgid "Block layout settings"
-msgstr "Layout-inställningar (block)"
-
-#: source/php/AcfFields/php/mod-curator.php:87
 #: source/php/AcfFields/php/mod-index.php:313
-#: source/php/AcfFields/php/mod-posts-displau.php:254
+#: source/php/AcfFields/php/mod-posts-displau.php:308
 msgid "Columns"
 msgstr "Kolumner"
 
-#: source/php/AcfFields/php/mod-curator.php:115
-#: source/php/AcfFields/php/mod-curator.php:197
-#: source/php/AcfFields/php/mod-posts-displau.php:670
+#: source/php/AcfFields/php/mod-curator.php:118
+#: source/php/AcfFields/php/mod-posts-displau.php:751
 msgid "Ratio"
 msgstr "Proportioner"
 
-#: source/php/AcfFields/php/mod-curator.php:128
-#: source/php/AcfFields/php/mod-curator.php:132
-#: source/php/AcfFields/php/mod-curator.php:210
-#: source/php/AcfFields/php/mod-curator.php:214
-#: source/php/AcfFields/php/mod-posts-displau.php:697
+#: source/php/AcfFields/php/mod-curator.php:139
+#: source/php/AcfFields/php/mod-curator.php:143
+#: source/php/AcfFields/php/mod-posts-displau.php:779
 msgid "1:1"
 msgstr "1:1"
 
-#: source/php/AcfFields/php/mod-curator.php:129
-#: source/php/AcfFields/php/mod-curator.php:211
-#: source/php/AcfFields/php/mod-posts-displau.php:698
-#: source/php/AcfFields/php/mod-posts-displau.php:701
+#: source/php/AcfFields/php/mod-curator.php:140
+#: source/php/AcfFields/php/mod-posts-displau.php:780
+#: source/php/AcfFields/php/mod-posts-displau.php:783
 msgid "4:3"
 msgstr "4:3"
 
-#: source/php/AcfFields/php/mod-curator.php:130
-#: source/php/AcfFields/php/mod-posts-displau.php:699
+#: source/php/AcfFields/php/mod-posts-displau.php:781
 msgid "12:16"
 msgstr "12:16"
 
-#: source/php/AcfFields/php/mod-curator.php:150
+#: source/php/AcfFields/php/mod-curator.php:155
 msgid "Embed Code"
 msgstr "Inbäddningskod"
 
-#: source/php/AcfFields/php/mod-curator.php:154
+#: source/php/AcfFields/php/mod-curator.php:158
 msgid "Add your curator embed code here. Thios should be the full javascript. Appeance settings in the javascript configurator will not apply."
 msgstr "Lägg till din curatorkod här. Det här ska vara det fullständiga javascriptet (inbäddningskoden) som du får av curator. Inga inställningar som påverkar utseendet kommer att gälla."
 
-#: source/php/AcfFields/php/mod-curator.php:171
+#: source/php/AcfFields/php/mod-curator.php:176
 msgid "Usage of the curator social media integration"
 msgstr "Hur du använder curator integrationen"
 
-#: source/php/AcfFields/php/mod-curator.php:183
+#: source/php/AcfFields/php/mod-curator.php:188
 msgid ""
 "This is an integration module for curator.io. The module requires an account at the service. \r\n"
 "\r\n"
@@ -913,8 +902,9 @@ msgstr ""
 "3. Klicka på \"publish feed\" (stil spelar ingen roll). \r\n"
 "4. Klistra in inbäddningskoden i fältet ovanför. \r\n"
 "5. Spara. Din feed bör nu visas. \r\n"
+""
 
-#: source/php/AcfFields/php/mod-curator.php:212
+#: source/php/AcfFields/php/mod-curator.php:141
 msgid "12:6"
 msgstr "12:6"
 
@@ -926,7 +916,8 @@ msgstr "Avdelare"
 #: source/php/AcfFields/php/mod-divider.php:12
 #: source/php/AcfFields/php/mod-slider.php:196
 #: source/php/AcfFields/php/mod-slider.php:493
-#: source/php/BlockManager.php:485
+#: source/php/BlockManager.php:487
+#: source/php/Module/Posts/views/expandable-list.blade.php:41
 msgid "Title"
 msgstr "Titel"
 
@@ -1224,14 +1215,14 @@ msgstr "Länk till sida"
 
 #: source/php/AcfFields/php/mod-index.php:8
 #: source/php/AcfFields/php/mod-index.php:12
-#: source/php/AcfFields/php/mod-posts-displau.php:28
+#: source/php/AcfFields/php/mod-posts-displau.php:29
 #: source/php/Module/Index/Index.php:16
 msgid "Index"
 msgstr "Index"
 
 #: source/php/AcfFields/php/mod-index.php:26
 #: source/php/AcfFields/php/mod-inlaylist.php:27
-#: source/php/AcfFields/php/mod-posts-displau.php:506
+#: source/php/AcfFields/php/mod-posts-displau.php:582
 msgid "Lägg till rad"
 msgstr "Lägg till rad"
 
@@ -1286,6 +1277,7 @@ msgstr "Om du inte vill använda den underliggande sidans titel kan du skriva in
 
 #: source/php/AcfFields/php/mod-index.php:250
 #: source/php/AcfFields/php/mod-index.php:277
+#: source/php/AcfFields/php/mod-subscribe.php:12
 msgid "Lead"
 msgstr "Ingress"
 
@@ -1294,7 +1286,7 @@ msgid "Om du inte vill använda den underliggande sidans ingress kan du skriva i
 msgstr "Om du inte vill använda den underliggande sidans ingress kan du skriva in en annan ingress här."
 
 #: source/php/AcfFields/php/mod-index.php:333
-#: source/php/AcfFields/php/mod-posts-displau.php:307
+#: source/php/AcfFields/php/mod-posts-displau.php:376
 msgid "grid-md-12"
 msgstr "o-grid-12@md"
 
@@ -1303,7 +1295,7 @@ msgid "Post or page"
 msgstr "Inlägg eller sida"
 
 #: source/php/AcfFields/php/mod-inlaylist.php:8
-#: source/php/AcfFields/php/mod-posts-displau.php:24
+#: source/php/AcfFields/php/mod-posts-displau.php:25
 msgid "List"
 msgstr "Lista"
 
@@ -1411,14 +1403,14 @@ msgid "The extra info card is disabled by default"
 msgstr "Kortet med extra info är inaktiverat som standard"
 
 #: source/php/AcfFields/php/mod-map.php:150
-#: source/php/AcfFields/php/mod-posts-displau.php:586
+#: source/php/AcfFields/php/mod-posts-displau.php:665
 #: templates/options/partials/modularity-modules.php:16
 #: templates/options/partials/modularity-post-types.php:8
 msgid "Enabled"
 msgstr "Aktiverad"
 
 #: source/php/AcfFields/php/mod-map.php:151
-#: source/php/AcfFields/php/mod-posts-displau.php:587
+#: source/php/AcfFields/php/mod-posts-displau.php:666
 msgid "Disabled"
 msgstr "Avaktiverad"
 
@@ -1466,164 +1458,164 @@ msgstr "Notis"
 msgid "Data display"
 msgstr "Data visare"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:25
+#: source/php/AcfFields/php/mod-posts-displau.php:26
 msgid "Expandable List"
 msgstr "Expanderbar lista"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:26
+#: source/php/AcfFields/php/mod-posts-displau.php:27
 msgid "Post items"
 msgstr "Inläggsobjekt"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:27
+#: source/php/AcfFields/php/mod-posts-displau.php:28
 msgid "News items"
 msgstr "Nyhetsobjekt"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:29
+#: source/php/AcfFields/php/mod-posts-displau.php:30
 msgid "Blocks"
 msgstr "Block"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:30
+#: source/php/AcfFields/php/mod-posts-displau.php:31
 msgid "Features grid"
 msgstr "Boxar"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:32
+#: source/php/AcfFields/php/mod-posts-displau.php:35
 msgid "list"
 msgstr "lista"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:41
+#: source/php/AcfFields/php/mod-posts-displau.php:44
 msgid "Preamble"
 msgstr "Ingress"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:96
+#: source/php/AcfFields/php/mod-posts-displau.php:107
 msgid "Show as slider"
 msgstr "Visa som slider/bildspel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:151
+#: source/php/AcfFields/php/mod-posts-displau.php:203
 msgid "Highlight first post"
 msgstr "Betona första inlägget"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:154
+#: source/php/AcfFields/php/mod-posts-displau.php:207
 msgid "Makes the first post bigger"
 msgstr "Gör första inlägget större"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:219
+#: source/php/AcfFields/php/mod-posts-displau.php:272
 msgid "Display highlighted post as"
 msgstr "Visa betonat inlägg som"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:242
+#: source/php/AcfFields/php/mod-posts-displau.php:296
 msgid "block"
 msgstr "block"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:319
+#: source/php/AcfFields/php/mod-posts-displau.php:388
 msgid "Altering grid size"
 msgstr "Slumpa rutnätets storlek"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:338
+#: source/php/AcfFields/php/mod-posts-displau.php:408
 msgid "Yes, alter grid size automatically"
 msgstr "Ja, slumpa storlekar i rutnätet automatiskt"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:346
+#: source/php/AcfFields/php/mod-posts-displau.php:416
 #: source/php/AcfFields/php/mod-rss.php:73
 msgid "Fields"
 msgstr "Fält"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:371
+#: source/php/AcfFields/php/mod-posts-displau.php:442
 #: source/php/AcfFields/php/mod-wpwidget.php:485
 msgid "Show date"
 msgstr "Visa datum"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:372
+#: source/php/AcfFields/php/mod-posts-displau.php:443
 msgid "Show excerpt"
 msgstr "Visa ingress"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:373
+#: source/php/AcfFields/php/mod-posts-displau.php:444
 msgid "Show title"
 msgstr "Visa titel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:374
+#: source/php/AcfFields/php/mod-posts-displau.php:445
 msgid "Show featured image"
 msgstr "Visa utvald bild"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:377
+#: source/php/AcfFields/php/mod-posts-displau.php:449
 #: source/php/AcfFields/php/mod-posts-sorting.php:37
 msgid "date"
 msgstr "datum"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:378
+#: source/php/AcfFields/php/mod-posts-displau.php:450
 msgid "excerpt"
 msgstr "utdrag"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:379
+#: source/php/AcfFields/php/mod-posts-displau.php:451
 msgid "title"
 msgstr "title"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:380
+#: source/php/AcfFields/php/mod-posts-displau.php:452
 msgid "image"
 msgstr "bild"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:390
+#: source/php/AcfFields/php/mod-posts-displau.php:462
 msgid "Date source"
 msgstr "Datakälla"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:410
+#: source/php/AcfFields/php/mod-posts-displau.php:483
 msgid "Date published"
 msgstr "Publiceringsdatum"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:411
+#: source/php/AcfFields/php/mod-posts-displau.php:484
 #: source/php/AcfFields/php/mod-posts-sorting.php:31
 msgid "Date modified"
 msgstr "Senast uppdaterad"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:425
+#: source/php/AcfFields/php/mod-posts-displau.php:498
 msgid "Hide the title column"
 msgstr "Dölj titelkolumnen"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:445
+#: source/php/AcfFields/php/mod-posts-displau.php:519
 msgid "Yes, hide the title column"
 msgstr "Ja, göm titelkolumnen"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:452
+#: source/php/AcfFields/php/mod-posts-displau.php:526
 msgid "Title column label"
 msgstr "Titelkolumnents märkning"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:484
+#: source/php/AcfFields/php/mod-posts-displau.php:559
 msgid "List column labels"
 msgstr "Lista kolumnetiketter"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:487
+#: source/php/AcfFields/php/mod-posts-displau.php:563
 msgid "A title field will always be added as the first column. You will need to go to each post in this list to give the values for each column."
 msgstr "Ett titelfält kommer alltid att läggas till som första kolumn. Du behöver få till varje inlägg och lägga till värden för varje kolumn."
 
-#: source/php/AcfFields/php/mod-posts-displau.php:513
+#: source/php/AcfFields/php/mod-posts-displau.php:589
 msgid "Column header"
 msgstr "Kolumnhuvud"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:537
-#: source/php/AcfFields/php/mod-posts-displau.php:557
+#: source/php/AcfFields/php/mod-posts-displau.php:614
+#: source/php/AcfFields/php/mod-posts-displau.php:635
 msgid "Allow freetext filtering"
 msgstr "Tillåt fritext-sök"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:564
+#: source/php/AcfFields/php/mod-posts-displau.php:642
 msgid "Highlight post"
 msgstr "Markera inlägg"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:591
+#: source/php/AcfFields/php/mod-posts-displau.php:670
 msgid "Date format"
 msgstr "Datumformat"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:616
+#: source/php/AcfFields/php/mod-posts-displau.php:696
 msgid "Default timestamp"
 msgstr "Standardtidstämpel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:617
+#: source/php/AcfFields/php/mod-posts-displau.php:697
 msgid "Readable timestamp"
 msgstr "Läsbar tidsstämpel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:619
+#: source/php/AcfFields/php/mod-posts-displau.php:699
 msgid "default"
 msgstr "standard"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:631
+#: source/php/AcfFields/php/mod-posts-displau.php:711
 msgid "Placeholder image"
 msgstr "Affischbild"
 
@@ -10493,6 +10485,7 @@ msgstr "Länktext"
 msgid "Read More"
 msgstr "Läs mer"
 
+#: source/php/AcfFields/php/mod-hero.php:194
 #: source/php/AcfFields/php/mod-slider.php:347
 #: source/php/AcfFields/php/mod-slider.php:657
 msgid "Url"
@@ -10554,6 +10547,7 @@ msgid "Link text"
 msgstr "Länktext"
 
 #: source/php/AcfFields/php/mod-slider.php:737
+#: source/php/Module/Posts/TemplateController/SegmentTemplate.php:26
 #: source/php/Module/Slider/Slider.php:115
 #: templates/module/modularity-mod-latest-news.php:61
 #: templates/module/modularity-mod-mainnews.php:45
@@ -10915,11 +10909,11 @@ msgstr "Ämne"
 msgid "Taxonomy"
 msgstr "Kategori"
 
-#: source/php/BlockManager.php:423
+#: source/php/BlockManager.php:425
 msgid "Your settings rendered an empty result. Try other settings."
 msgstr "Dina inställningar gjorde ett tomt resultat. Prova andra inställningar."
 
-#: source/php/BlockManager.php:480
+#: source/php/BlockManager.php:482
 msgid "Block settings"
 msgstr "Inställningar för block"
 
@@ -10968,12 +10962,12 @@ msgstr "Välj ett specialutseende för den här modulen som passar ditt syfte me
 msgid "To get the full expirience of the <strong>Modularity</strong> plugin, please activate the <a href=\"http://www.advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields Pro</a> plugin."
 msgstr "För att kunna utnyttja <strong>Modularity</strong> maximalt rekommenderar vi dig att installera och aktivera pluginet <a href=\"http://www.advancedcustomfields.com/pro/\" target=\"_blank\">Advanced Custom Fields Pro</a>."
 
-#: source/php/Module/Breadcrumbs/Breadcrumbs.php:15
 #: source/php/Module/Breadcrumbs/Breadcrumbs.php:16
+#: source/php/Module/Breadcrumbs/Breadcrumbs.php:17
 msgid "Breadcrumbs"
 msgstr "Brödsmulor"
 
-#: source/php/Module/Breadcrumbs/Breadcrumbs.php:17
+#: source/php/Module/Breadcrumbs/Breadcrumbs.php:18
 msgid "Outputs the navigational breadcrumb trail to the current page."
 msgstr "Matar ut navigeringsspåret till den aktuella sidan."
 
@@ -11000,15 +10994,15 @@ msgstr "Adress"
 msgid "Visiting address"
 msgstr "Besöksadress"
 
-#: source/php/Module/Curator/Curator.php:14
+#: source/php/Module/Curator/Curator.php:17
 msgid "Output social media flow via curator."
 msgstr "Sociala medier-flöde via curator.io."
 
-#: source/php/Module/Curator/Curator.php:18
+#: source/php/Module/Curator/Curator.php:21
 msgid "Go to original post"
 msgstr "Gå till det ursprungliga inlägget"
 
-#: source/php/Module/Curator/Curator.php:116
+#: source/php/Module/Curator/Curator.php:136
 msgid "Could not get the feed at this moment, please try again later."
 msgstr "Det gick inte att hämta flödet just nu, försök igen senare."
 
@@ -11042,13 +11036,13 @@ msgid "Outputs a gallery with images"
 msgstr "Visar ett galleri med bilder"
 
 #: source/php/Module/Gallery/Gallery.php:30
-#: source/php/Module/Posts/Posts.php:268
+#: source/php/Module/Posts/Posts.php:285
 #: source/php/Module/Slider/Slider.php:67
 msgid "Previous slide"
 msgstr "Gå till föregående bild"
 
 #: source/php/Module/Gallery/Gallery.php:31
-#: source/php/Module/Posts/Posts.php:269
+#: source/php/Module/Posts/Posts.php:286
 #: source/php/Module/Slider/Slider.php:68
 msgid "Next slide"
 msgstr "Gå till nästa bild"
@@ -11177,7 +11171,7 @@ msgstr "Inlägg"
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
 
-#: source/php/Module/Posts/Posts.php:405
+#: source/php/Module/Posts/Posts.php:454
 msgid "Modularity expandable list column values"
 msgstr "Expanderbar lista - kolumninnehåll"
 
@@ -11189,12 +11183,14 @@ msgstr "Ladda in fler"
 msgid "ago"
 msgstr "sedan"
 
-#: source/php/Module/Posts/TemplateController/ListTemplate.php:77
+#: source/php/Module/Posts/TemplateController/ListTemplate.php:76
 #: templates/module/modularity-mod-latest-list.php:61
 msgid "Show more"
 msgstr "Visa mer"
 
-#: source/php/Module/Posts/views/horizontal.blade.php:120
+#: source/php/Module/Posts/views/horizontal.blade.php:96
+#: source/php/Module/Posts/views/expandable-list.blade.php:106
+#: source/php/Module/Posts/views/horizontal.blade.php:104
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 
@@ -11479,8 +11475,8 @@ msgstr "fler"
 msgid "Options saved successfully"
 msgstr "Inställningarna sparades"
 
-#: source/php/Options/Archives.php:37
-#: source/php/Options/Archives.php:38
+#: source/php/Options/Archives.php:43
+#: source/php/Options/Archives.php:44
 msgid "Archive modules"
 msgstr "Arkivmoduler"
 
@@ -11694,14 +11690,892 @@ msgstr "Bläddra moduler"
 #~ msgid "Active Sidebars"
 #~ msgstr "Aktiva sidebars"
 
-#: source/php/Module/Curator/Curator.php:17
+#: source/php/Module/Curator/Curator.php:20
 msgid "Load More"
 msgstr "Hämta fler inlägg"
 
-#: source/php/Module/Curator/Curator.php:19
+#: source/php/Module/Curator/Curator.php:22
 msgid "No more items to load."
 msgstr "Inga fler inlägg att visa!"
 
-#: source/php/Module/Curator/Curator.php:114
+#: source/php/Module/Curator/Curator.php:134
 msgid "An invalid embed code was provided."
 msgstr "Felaktig embed-kod angiven"
+
+#: source/php/AcfFields/php/mod-curator.php:90
+msgid "Grid gutter"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:110
+msgid "No space between the posts in the grid"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:202
+msgid "Show powered by"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-curator.php:213
+msgid "Uncheck to disable the powered by link. It is required to display this link, if free version is used."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:195
+msgid "Url to which the button or text should link to."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:212
+msgid "Button text"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:213
+msgid "Text to be displayed on the button. If left empty and Url is given, the entire text in the Hero will be linked to the url."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:32
+msgid "Segment"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:33
+msgid "Collection"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-posts-displau.php:170
+msgid "Image position"
+msgstr "Placera bild"
+
+#: source/php/AcfFields/php/mod-posts-displau.php:191
+msgid "Left"
+msgstr "Till vänster om innehållet"
+
+#: source/php/AcfFields/php/mod-posts-displau.php:192
+msgid "Right"
+msgstr "Till höger om innehållet"
+
+#: source/php/AcfFields/php/mod-posts-displau.php:446
+msgid "Show reading time"
+msgstr "Visa lästid"
+
+#: source/php/AcfFields/php/mod-posts-reading-time.php:8
+#: source/php/AcfFields/php/mod-posts-reading-time.php:12
+msgid "Display reading time"
+msgstr "Visa lästid"
+
+#: source/php/AcfFields/php/mod-posts-reading-time.php:24
+msgid "Yes, display estimated reading time"
+msgstr "Ja, visa beräknad lästid"
+
+#: source/php/AcfFields/php/mod-subscribe.php:8
+#: source/php/Module/Subscribe/Subscribe.php:15
+msgid "Email Subscribe"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:32
+msgid "Consent message"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:43
+msgid "I want to receive relevant information from this organization to my inbox. The information provided here will not be shared or sold. I can unsubscribe at any time."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:52
+msgid "Service"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:55
+msgid "Select the email provider that you want to use for this subscription form. If your service of choise isen't selectable. It needs to be added by a developer."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:64
+msgid "Ungapped (ungapped.se)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:76
+msgid "Settings for Ungapped service"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:101
+msgid "Form ID"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:116
+msgid "Subtitles is required to be formatted as VTT files in order to work with all browsers."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:176
+msgid "Abkhaz (аҧсуа)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:177
+msgid "Afar (Afaraf)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:178
+msgid "Afrikaans (Afrikaans)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:179
+msgid "Akan (Akan)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:180
+msgid "Albanian (Shqip)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:181
+msgid "Amharic (አማርኛ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:182
+msgid "Arabic (العربية)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:183
+msgid "Aragonese (Aragonés)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:184
+msgid "Armenian (Հայերեն)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:185
+msgid "Assamese (অসমীয়া)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:186
+msgid "Avaric (авар мацӀ, магӀарул мацӀ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:187
+msgid "Avestan (avesta)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:188
+msgid "Aymara (aymar aru)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:189
+msgid "Azerbaijani (azərbaycan dili)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:190
+msgid "Bambara (bamanankan)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:191
+msgid "Bashkir (башҡорт теле)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:192
+msgid "Basque (euskara, euskera)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:193
+msgid "Belarusian (Беларуская)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:194
+msgid "Bengali (বাংলা)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:195
+msgid "Bihari (भोजपुरी)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:196
+msgid "Bislama (Bislama)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:197
+msgid "Bosnian (bosanski jezik)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:198
+msgid "Breton (brezhoneg)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:199
+msgid "Bulgarian (български език)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:200
+msgid "Burmese (ဗမာစာ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:201
+msgid "Catalan (Català)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:202
+msgid "Chamorro (Chamoru)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:203
+msgid "Chechen (нохчийн мотт)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:204
+msgid "Chichewa (chiCheŵa, chinyanja)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:205
+msgid "Chinese (中文 (Zhōngwén), 汉语, 漢語)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:206
+msgid "Chuvash (чӑваш чӗлхи)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:207
+msgid "Cornish (Kernewek)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:208
+msgid "Corsican (corsu, lingua corsa)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:209
+msgid "Cree (ᓀᐦᐃᔭᐍᐏᐣ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:210
+msgid "Croatian (hrvatski)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:211
+msgid "Czech (česky, čeština)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:212
+msgid "Danish (dansk)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:213
+msgid "Divehi (ދިވެހި)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:214
+msgid "Dutch (Nederlands, Vlaams)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:215
+msgid "English (English)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:216
+msgid "Esperanto (Esperanto)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:217
+msgid "Estonian (eesti, eesti keel)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:218
+msgid "Ewe (Eʋegbe)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:219
+msgid "Faroese (føroyskt)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:220
+msgid "Fijian (vosa Vakaviti)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:221
+msgid "Finnish (suomi, suomen kieli)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:222
+msgid "French (français, langue française)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:223
+msgid "Fula (Fulfulde, Pulaar, Pular)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:224
+msgid "Galician (Galego)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:225
+msgid "Georgian (ქართული)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:226
+msgid "German (Deutsch)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:227
+msgid "Greek (Ελληνικά)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:228
+msgid "Guaraní (Avañeẽ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:229
+msgid "Gujarati (ગુજરાતી)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:230
+msgid "Haitian (Kreyòl ayisyen)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:231
+msgid "Hausa (Hausa, هَوُسَ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:232
+msgid "Hebrew (modern) (עברית)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:233
+msgid "Herero (Otjiherero)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:234
+msgid "Hindi (हिन्दी, हिंदी)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:235
+msgid "Hiri Motu (Hiri Motu)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:236
+msgid "Hungarian (Magyar)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:237
+msgid "Interlingua (Interlingua)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:238
+msgid "Indonesian (Bahasa Indonesia)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:239
+msgid "Interlingue (Originally called Occidental; then Interlingue after WWII)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:240
+msgid "Irish (Gaeilge)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:241
+msgid "Igbo (Asụsụ Igbo)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:242
+msgid "Inupiaq (Iñupiaq, Iñupiatun)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:243
+msgid "Ido (Ido)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:244
+msgid "Icelandic (Íslenska)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:245
+msgid "Italian (Italiano)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:246
+msgid "Inuktitut (ᐃᓄᒃᑎᑐᑦ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:247
+msgid "Japanese (日本語 (にほんご／にっぽんご))"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:248
+msgid "Javanese (basa Jawa)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:249
+msgid "Kalaallisut (kalaallisut, kalaallit oqaasii)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:250
+msgid "Kannada (ಕನ್ನಡ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:251
+msgid "Kanuri (Kanuri)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:252
+msgid "Kashmiri (कश्मीरी, كشميري‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:253
+msgid "Kazakh (Қазақ тілі)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:254
+msgid "Khmer (ភាសាខ្មែរ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:255
+msgid "Kikuyu (Gĩkũyũ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:256
+msgid "Kinyarwanda (Ikinyarwanda)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:257
+msgid "Kirghiz (кыргыз тили)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:258
+msgid "Komi (коми кыв)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:259
+msgid "Kongo (KiKongo)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:260
+msgid "Korean (한국어 (韓國語), 조선말 (朝鮮語))"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:261
+msgid "Kurdish (Kurdî, كوردی‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:262
+msgid "Kwanyama (Kuanyama)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:263
+msgid "Latin (latine, lingua latina)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:264
+msgid "Luxembourgish (Lëtzebuergesch)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:265
+msgid "Luganda (Luganda)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:266
+msgid "Limburgish (Limburgs)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:267
+msgid "Lingala (Lingála)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:268
+msgid "Lao (ພາສາລາວ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:269
+msgid "Lithuanian (lietuvių kalba)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:270
+msgid "Luba-Katanga ()"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:271
+msgid "Latvian (latviešu valoda)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:272
+msgid "Manx (Gaelg, Gailck)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:273
+msgid "Macedonian (македонски јазик)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:274
+msgid "Malagasy (Malagasy fiteny)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:275
+msgid "Malay (bahasa Melayu, بهاس ملايو‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:276
+msgid "Malayalam (മലയാളം)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:277
+msgid "Maltese (Malti)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:278
+msgid "Māori (te reo Māori)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:279
+msgid "Marathi (Marāṭhī) (मराठी)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:280
+msgid "Marshallese (Kajin M̧ajeļ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:281
+msgid "Mongolian (монгол)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:282
+msgid "Nauru (Ekakairũ Naoero)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:283
+msgid "Navajo (Diné bizaad, Dinékʼehǰí)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:284
+msgid "Norwegian Bokmål (Norsk bokmål)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:285
+msgid "North Ndebele (isiNdebele)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:286
+msgid "Nepali (नेपाली)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:287
+msgid "Ndonga (Owambo)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:288
+msgid "Norwegian Nynorsk (Norsk nynorsk)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:289
+msgid "Norwegian (Norsk)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:290
+msgid "Nuosu (ꆈꌠ꒿ Nuosuhxop)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:291
+msgid "South Ndebele (isiNdebele)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:292
+msgid "Occitan (Occitan)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:293
+msgid "Ojibwe (ᐊᓂᔑᓈᐯᒧᐎᓐ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:294
+msgid "Old Church Slavonic (ѩзыкъ словѣньскъ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:295
+msgid "Oromo (Afaan Oromoo)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:296
+msgid "Oriya (ଓଡ଼ିଆ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:297
+msgid "Ossetian (ирон æвзаг)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:298
+msgid "Panjabi (ਪੰਜਾਬੀ, پنجابی‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:299
+msgid "Pāli (पाऴि)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:300
+msgid "Persian (فارسی)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:301
+msgid "Polish (polski)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:302
+msgid "Pashto (پښتو)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:303
+msgid "Portuguese (Português)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:304
+msgid "Quechua (Runa Simi, Kichwa)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:305
+msgid "Romansh (rumantsch grischun)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:306
+msgid "Kirundi (kiRundi)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:307
+msgid "Romanian (română)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:308
+msgid "Russian (русский язык)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:309
+msgid "Sanskrit (Saṁskṛta) (संस्कृतम्)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:310
+msgid "Sardinian (sardu)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:311
+msgid "Sindhi (सिन्धी, سنڌي، سندھی‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:312
+msgid "Northern Sami (Davvisámegiella)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:313
+msgid "Samoan (gagana faa Samoa)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:314
+msgid "Sango (yângâ tî sängö)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:315
+msgid "Serbian (српски језик)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:316
+msgid "Scottish Gaelic (Gàidhlig)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:317
+msgid "Shona (chiShona)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:318
+msgid "Sinhala (සිංහල)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:319
+msgid "Slovak (slovenčina)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:320
+msgid "Slovene (slovenščina)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:321
+msgid "Somali (Soomaaliga, af Soomaali)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:322
+msgid "Southern Sotho (Sesotho)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:323
+msgid "Spanish (español, castellano)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:324
+msgid "Sundanese (Basa Sunda)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:325
+msgid "Swahili (Kiswahili)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:326
+msgid "Swati (SiSwati)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:327
+msgid "Swedish (svenska)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:328
+msgid "Tamil (தமிழ்)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:329
+msgid "Telugu (తెలుగు)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:330
+msgid "Tajik (тоҷикӣ, toğikī, تاجیکی‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:331
+msgid "Thai (ไทย)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:332
+msgid "Tigrinya (ትግርኛ)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:333
+msgid "Tibetan Standard (བོད་ཡིག)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:334
+msgid "Turkmen (Türkmen, Түркмен)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:335
+msgid "Tagalog (Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:336
+msgid "Tswana (Setswana)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:337
+msgid "Tonga (Tonga Islands) (faka Tonga)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:338
+msgid "Turkish (Türkçe)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:339
+msgid "Tsonga (Xitsonga)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:340
+msgid "Tatar (татарча, tatarça, تاتارچا‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:341
+msgid "Twi (Twi)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:342
+msgid "Tahitian (Reo Tahiti)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:343
+msgid "Uighur (Uyƣurqə, ئۇيغۇرچە‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:344
+msgid "Ukrainian (українська)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:345
+msgid "Urdu (اردو)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:346
+msgid "Uzbek (zbek, Ўзбек, أۇزبېك‎)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:347
+msgid "Venda (Tshivenḓa)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:348
+msgid "Vietnamese (Tiếng Việt)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:349
+msgid "Volapük (Volapük)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:350
+msgid "Walloon (Walon)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:351
+msgid "Welsh (Cymraeg)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:352
+msgid "Wolof (Wollof)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:353
+msgid "Western Frisian (Frysk)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:354
+msgid "Xhosa (isiXhosa)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:355
+msgid "Yiddish (ייִדיש)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:356
+msgid "Yoruba (Yorùbá)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:357
+msgid "Zhuang (Saɯ cueŋƅ, Saw cuengh)"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-video.php:359
+msgid "sv"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:16
+msgid "Email Subscribtions"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:17
+msgid "Outputs a simpele form to subscribe to a email list."
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:37
+msgid "Your email adress"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:38
+msgid "email@email.com"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:39
+msgid "Please enter a valid email address"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:42
+msgid "Subscribe"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:45
+msgid "Subscribed"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:46
+msgid "You are now subscribed to this email list."
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:49
+msgid "Select a provider"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:50
+msgid "No provider for this form is selected. Please select a provider available form the list."
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:53
+msgid "Could not subscribe"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:54
+msgid "Sorry, we could not subscribe you to this list at the moment. Please try again later."
+msgstr ""
