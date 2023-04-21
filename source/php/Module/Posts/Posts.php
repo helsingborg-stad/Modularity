@@ -201,7 +201,6 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode(get_fields($this->ID)));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = $fields->display_reading_time ?? false;
 
         $this->enableFilters = $this->enableFilters();
         if ($this->enableFilters) {
@@ -227,6 +226,7 @@ class Posts extends \Modularity\Module
         $data['posts_date_source'] = $fields->posts_date_source ?? false;
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
+        $data['display_reading_time'] = $fields->posts_fields->display_reading_time ?? false;
 
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
         $data['floatingIcon'] = apply_filters('Modularity/Module/Posts/Icon', array());
