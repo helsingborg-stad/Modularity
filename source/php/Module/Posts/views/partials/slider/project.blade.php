@@ -10,7 +10,7 @@
     'hasPlaceholder' => !isset($post->thumbnail),
     'attributeList' => ['style' => 'z-index:' . (999 - $key) . ';'],
     'classList' => ['u-height--100', 'project-card'],
-    'icon' => $post->termIcon,
+    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
 ])
     @slot('afterContent')
         @if(!empty($post->project->statusBar))
