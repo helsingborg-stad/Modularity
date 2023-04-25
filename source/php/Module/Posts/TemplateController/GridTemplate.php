@@ -20,11 +20,16 @@ class GridTemplate extends AbstractController
 
         $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
-        $this->data['display_reading_time'] = $fields->display_reading_time ?? false;
+        $data['display_reading_time'] = $fields->posts_fields['reading_time'] ?? false;
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
-        $this->data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', [], $this->module->post_type, $this->args));
+        $this->data['classes'] = implode(' ', apply_filters(
+            'Modularity/Module/Classes',
+            [],
+            $this->module->post_type ?? '',
+            $this->args
+        ));
 
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
@@ -59,7 +64,7 @@ class GridTemplate extends AbstractController
 
             // Get link for card, or tags
             $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            
+
             $tagData = TagHelper::getTags(
                 $post->ID,
                 $this->data['taxonomyDisplayFlat'],

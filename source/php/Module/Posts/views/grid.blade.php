@@ -1,23 +1,7 @@
 @include('partials.post-filters')
 
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2',
-        'variant' => 'h2',
-        'classList' => ['module-title']
-    ])
-        {!! $postTitle !!}
-    @endtypography
-@endif
-
-@if ($preamble)
-    @typography([
-        'classList' => ['module-preamble', 'u-margin__bottom--3']
-    ])
-        {!! $preamble !!}
-    @endtypography
-@endif
+@includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+@includeWhen($preamble, 'partials.preamble')
 
 <div class="o-grid 
     {{ $stretch ? 'o-grid--stretch' : '' }} 
@@ -42,18 +26,20 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' => $post->showImage ? [
-                        'src' => $post->thumbnail[0],
-                        'alt' => $post->post_title,
-                        'backgroundColor' => 'secondary',
-                    ] : [],
+                    'image' => $post->showImage
+                        ? [
+                            'src' => $post->thumbnail[0],
+                            'alt' => $post->post_title,
+                            'backgroundColor' => 'secondary'
+                        ]
+                        : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
-                @slot('floating')
-                    @includeWhen(!empty($floatingIcon), 'partials.icon')
-                @endslot
+                    @slot('floating')
+                        @includeWhen(!empty($floatingIcon), 'partials.icon')
+                    @endslot
                 @endcard
             @else
                 @block([
@@ -82,11 +68,11 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
-                @slot('floating')
-                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
-                @endslot
+                    @slot('floating')
+                        @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+                    @endslot
                 @endblock
             @endif
         </div>

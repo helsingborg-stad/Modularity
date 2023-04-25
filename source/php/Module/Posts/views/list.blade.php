@@ -1,24 +1,14 @@
 @include('partials.post-filters')
 
 @card([
-    'heading'       => $postTitle,
-    'classList'     => [$classes],
+    'heading' => $postTitle,
+    'classList' => [$classes],
     'attributeList' => [
         'aria-labelledby' => 'mod-posts-' . $ID . '-label'
     ],
-    'context'       => 'module.posts.list'
+    'context' => 'module.posts.list'
 ])
-    @if (!$hideTitle && !empty($postTitle))
-        <div class="c-card__header">
-            @typography([
-                'id'      => 'mod-posts-' . $ID . '-label',
-                'element' => 'h2',
-                'variant' => 'h4'
-            ])
-                {!! $postTitle !!}
-            @endtypography
-        </div>
-    @endif
+    @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title', ['variant' => 'h4'])
 
     @if (!empty($prepareList))
         <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }}">
@@ -27,20 +17,18 @@
                     'sharpTop' => true,
                     'bordered' => true
                 ])
-                    @foreach($prepareList as $post)
+                    @foreach ($prepareList as $post)
                         @if ($post['href'] && $post['columns'] && $post['columns'][0])
                             @collection__item([
                                 'icon' => 'arrow_forward',
                                 'link' => $post['href']
-                                ])
-
-                            @typography([
-                                'element' => 'h2',
-                                'variant' => 'h4'
                             ])
-                                {{$post['columns'][0]}}
-                            @endtypography
-
+                                @typography([
+                                    'element' => 'h2',
+                                    'variant' => 'h4'
+                                ])
+                                    {{ $post['columns'][0] }}
+                                @endtypography
                             @endcollection__item
                         @endif
                     @endforeach
@@ -56,10 +44,9 @@
             'text' => __('Show more', 'modularity'),
             'color' => 'secondary',
             'style' => 'filled',
-            'href' => $archive_link_url . "?" . http_build_query($filters),
-            'classList' => ['u-flex-grow--1@xs', 'u-margin__x--auto']
+            'href' => $archive_link_url . '?' . http_build_query($filters),
+            'classList' => ['u-flex-grow--1@xs', 'u-margin__x--auto'],
         ])
         @endbutton
     </div>
 @endif
-
