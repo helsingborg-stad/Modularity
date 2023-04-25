@@ -41,7 +41,10 @@
                 'classList' => $post->classList
             ])
                 @slot('floating')
-                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+                    @if (!empty($post->floating['floating']))
+                        @icon($post->floating['floating'])
+                        @endicon
+                    @endif
                 @endslot
             @endsegment
         </div>

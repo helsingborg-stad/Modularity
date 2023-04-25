@@ -231,18 +231,8 @@ class Posts extends \Modularity\Module
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
         $data['floatingIcon'] = apply_filters('Modularity/Module/Posts/Icon', array());
 
-        if (!empty($data['floatingIcon']) && !empty($data['posts'])) {
-            foreach ($data['posts'] as &$post) {
-                if (!empty($post->ID && !empty($post->post_type))) {
-                    if (in_array($post->post_type, $data['floatingIcon']['postTypes'])) {
-                        $post->floatingIcon = $data['floatingIcon'];
-                        $post->floatingIcon['attributeList']['data-post-type'] = $post->post_type ?? '';
-                        $post->floatingIcon['attributeList']['data-post-id'] = strval($post->ID);
-                    } else {
-                        $post->floatingIcon = false;
-                    }
-                }
-            }
+        foreach ($data['posts'] as &$post) {
+            $post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $post);
         }
 
         // Sorting
