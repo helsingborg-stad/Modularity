@@ -11,7 +11,7 @@
     'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
     'containerAware' => true,
     'reverseColumns' => true,
-    'icon' => $post->termIcon,
+    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
     'context' => ['module.posts.segment'],
 ])
 @endsegment

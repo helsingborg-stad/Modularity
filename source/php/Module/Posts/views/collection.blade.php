@@ -59,16 +59,14 @@
                     ])
                         {{$post->showTitle ? $post->post_title : false}}
                     @endtypography
-                    @if($post->termIcon)
-                    <div class="c-collection__item__icon">
-                        @inlineCssWrapper([
-                            'styles' => ['background-color' => $post->termIcon['backgroundColor'], 'display' => 'flex'],
-                            'classList' => [$post->termIcon['backgroundColor'] ? '' : 'u-color__bg--primary', 'u-rounded--full', 'u-detail-shadow-3']
-                        ])
-                            @icon($post->termIcon)
-                            @endicon
-                        @endinlineCssWrapper
-                    </div>
+                    @if($post->termIcon['icon'])
+                    @inlineCssWrapper([
+                        'styles' => ['background-color' => $post->termIcon['backgroundColor'], 'display' => 'flex'],
+                        'classList' => [$post->termIcon['backgroundColor'] ? '' : 'u-color__bg--primary', 'u-rounded--full', 'u-detail-shadow-3']
+                    ])
+                        @icon($post->termIcon)
+                        @endicon
+                    @endinlineCssWrapper
                     @endif
                 @endgroup
                 @tags([

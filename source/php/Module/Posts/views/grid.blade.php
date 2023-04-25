@@ -49,7 +49,7 @@
                     ] : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon,
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
                 ])
                  @slot('floating')
                     @if (!empty($post->floating['floating']))
@@ -85,7 +85,7 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon,
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
                 ])
                 @slot('floating')
                     @if (!empty($post->floating['floating']))
