@@ -7,6 +7,7 @@
     'background_video'  => $slide->video_mp4['url'],
     'containerColor'    => $slide->background_color ?? 'none',
     'textColor'         => $slide->text_color,
-    'cta'               => $slide->call_to_action
+    'cta'               => $slide->call_to_action,
+    'showPauseButton'   => !$autoslide
 ])
 @endslider__item
