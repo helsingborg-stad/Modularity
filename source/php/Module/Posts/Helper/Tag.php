@@ -33,7 +33,7 @@ class Tag
                         if (empty($termIcon)) {
                             $icon = \Municipio\Helper\Term::getTermIcon($term, $taxonomy);
                             $color = \Municipio\Helper\Term::getTermColor($term, $taxonomy);
-                            $icon['src'] = 'all_out';
+
                             if (!empty($icon) && !empty($icon['src']) && $icon['type'] == 'icon') {
                                 $termIcon['icon'] = $icon['src'];
                                 $termIcon['size'] = 'md';
