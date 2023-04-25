@@ -35,7 +35,7 @@
                         : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
                     @slot('floating')
                         @includeWhen(!empty($floatingIcon), 'partials.icon')
@@ -68,7 +68,7 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
                     @slot('floating')
                         @includeWhen(!empty($post->floatingIcon), 'partials.icon')

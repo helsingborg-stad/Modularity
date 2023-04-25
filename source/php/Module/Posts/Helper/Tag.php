@@ -22,6 +22,7 @@ class Tag
 
         $tags = [];
         $termIcon = [];
+        $termColor = false;
 
         foreach ($tax as $key => $taxonomy) {
             $terms = wp_get_post_terms($postId, $taxonomy);
@@ -30,13 +31,18 @@ class Tag
                 foreach ($terms as $index => $term) {
                     if (class_exists('Municipio\Helper\Term')) {
                         if (empty($termIcon)) {
-                            $icon = \Municipio\Helper\Term::getTermIcon($term->term_id, $taxonomy);
-
+                            $icon = \Municipio\Helper\Term::getTermIcon($term, $taxonomy);
+                            $color = \Municipio\Helper\Term::getTermColor($term, $taxonomy);
+                            $icon['src'] = 'all_out';
                             if (!empty($icon) && !empty($icon['src']) && $icon['type'] == 'icon') {
                                 $termIcon['icon'] = $icon['src'];
                                 $termIcon['size'] = 'md';
-                                $termIcon['backgroundColor'] = \Municipio\Helper\Term::getTermColor($term->term_id, $taxonomy);
                                 $termIcon['color'] = 'white';
+                                $termIcon['backgroundColor'] = $color;
+                            }
+
+                            if (!empty($color)) {
+                                $termColor = $color;
                             }
                         }
                     }
@@ -53,6 +59,10 @@ class Tag
                     $tags[$term->name]['href'] = empty($postLink) ? get_term_link($term->term_id) : "";
                 }
             }
+        }
+
+        if (empty($termIcon) && !empty($termColor)) {
+            $termIcon['backgroundColor'] = $color;
         }
 
         return ['tags' => $tags, 'termIcon' => $termIcon];

@@ -9,7 +9,6 @@
     @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
-
             @if ($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
                     'heading' => $post->showTitle ? $post->post_title : false,
@@ -37,7 +36,8 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+
                 ])
                     @slot('floating')
                         @includeWhen(!empty($floatingIcon), 'partials.icon')
@@ -71,7 +71,7 @@
                             : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
                 ])
                     @slot('floating')
                         @includeWhen(!empty($post->floatingIcon), 'partials.icon')

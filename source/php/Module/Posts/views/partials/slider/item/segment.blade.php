@@ -12,8 +12,9 @@
     'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
     'containerAware' => true,
     'reverseColumns' => true,
-    'icon' => $post->termIcon,
     'classList' => ['c-segment--slider']
+    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+    'context' => ['module.posts.segment'],
 ])
     @slot('floating')
         @includeWhen(!empty($post->floatingIcon), 'partials.icon')
