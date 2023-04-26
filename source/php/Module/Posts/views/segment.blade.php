@@ -37,7 +37,7 @@
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],
                 'containerAware' => true,
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
-                'classList' => $post->classList
+                'classList' => $post->classList,
                 'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
             ])
                 @slot('floating')
