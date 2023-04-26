@@ -1,23 +1,7 @@
 @include('partials.post-filters')
 
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2',
-        'variant' => 'h2',
-        'classList' => ['module-title']
-    ])
-        {!! $postTitle !!}
-    @endtypography
-@endif
-
-@if ($preamble)
-    @typography([
-        'classList' => ['module-preamble', 'u-margin__bottom--3']
-    ])
-        {!! $preamble !!}
-    @endtypography
-@endif
+@includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+@includeWhen($preamble, 'partials.preamble')
 
 <div class="o-grid 
     {{ $stretch ? 'o-grid--stretch' : '' }} 
@@ -50,7 +34,7 @@
                         : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
                     @slot('floating')
                         @includeWhen(!empty($floatingIcon), 'partials.icon')
@@ -83,7 +67,7 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
                     @slot('floating')
                         @includeWhen(!empty($post->floatingIcon), 'partials.icon')

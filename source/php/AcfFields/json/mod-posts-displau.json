@@ -6,6 +6,7 @@
             "key": "field_571dfd4c0d9d9",
             "label": "Display as",
             "name": "posts_display_as",
+            "aria-label": "",
             "type": "radio",
             "instructions": "",
             "required": 1,
@@ -37,6 +38,7 @@
             "key": "field_636249fee87cc",
             "label": "Preamble",
             "name": "preamble",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -99,6 +101,7 @@
             "key": "field_6356477fbc5e4",
             "label": "Show as slider",
             "name": "show_as_slider",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -153,14 +156,15 @@
             },
             "message": "",
             "default_value": 0,
-            "ui": 0,
             "ui_on_text": "",
-            "ui_off_text": ""
+            "ui_off_text": "",
+            "ui": 1
         },
         {
             "key": "field_6418289cf23a6",
             "label": "Image position",
             "name": "image_position",
+            "aria-label": "",
             "type": "radio",
             "instructions": "",
             "required": 0,
@@ -178,21 +182,22 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [
-                "Right",
-                "Left"
-            ],
+            "choices": {
+                "1": "Left",
+                "0": "Right"
+            },
             "default_value": 1,
             "return_format": "value",
             "allow_null": 0,
             "other_choice": 0,
-            "save_other_choice": 0,
-            "layout": "vertical"
+            "layout": "horizontal",
+            "save_other_choice": 0
         },
         {
             "key": "field_628e0ffba7da4",
             "label": "Highlight first post",
             "name": "posts_highlight_first",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "Makes the first post bigger",
             "required": 0,
@@ -261,6 +266,7 @@
             "key": "field_629f1b34ef9fc",
             "label": "Display highlighted post as",
             "name": "posts_display_highlighted_as",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -296,6 +302,7 @@
             "key": "field_571dfdf50d9da",
             "label": "Columns",
             "name": "posts_columns",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 1,
@@ -367,12 +374,15 @@
             "allow_null": 0,
             "ui": 0,
             "ajax": 0,
-            "placeholder": ""
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_571e046536f0e",
             "label": "Altering grid size",
             "name": "posts_alter_columns",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -400,6 +410,7 @@
             "key": "field_571e01e7f246c",
             "label": "Fields",
             "name": "posts_fields",
+            "aria-label": "",
             "type": "checkbox",
             "instructions": "",
             "required": 0,
@@ -413,7 +424,7 @@
                     {
                         "field": "field_571dfd4c0d9d9",
                         "operator": "!=",
-                        "value": "slider"
+                        "value": "list"
                     }
                 ]
             ],
@@ -426,7 +437,8 @@
                 "date": "Show date",
                 "excerpt": "Show excerpt",
                 "title": "Show title",
-                "image": "Show featured image"
+                "image": "Show featured image",
+                "reading_time": "Show reading time"
             },
             "default_value": [
                 "date",
@@ -444,6 +456,7 @@
             "key": "field_62387e4b55b75",
             "label": "Date source",
             "name": "posts_date_source",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -479,6 +492,7 @@
             "key": "field_591176fff96d6",
             "label": "Hide the title column",
             "name": "posts_hide_title_column",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -506,6 +520,7 @@
             "key": "field_57e3bcae3826e",
             "label": "Title column label",
             "name": "title_column_label",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -538,6 +553,7 @@
             "key": "field_571f5776592e6",
             "label": "List column labels",
             "name": "posts_list_column_titles",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "A title field will always be added as the first column. You will need to go to each post in this list to give the values for each column.",
             "required": 0,
@@ -567,6 +583,7 @@
                     "key": "field_571f5790592e7",
                     "label": "Column header",
                     "name": "column_header",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 1,
@@ -591,6 +608,7 @@
             "key": "field_59197c6dafb31",
             "label": "Allow freetext filtering",
             "name": "allow_freetext_filtering",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -618,6 +636,7 @@
             "key": "field_5be480e163246",
             "label": "Highlight post",
             "name": "posts_highlight",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -645,6 +664,7 @@
             "key": "field_5bdb0d4217e91",
             "label": "Date format",
             "name": "posts_date_format",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -685,6 +705,7 @@
             "key": "field_5bd8575106176",
             "label": "Placeholder image",
             "name": "posts_placeholder",
+            "aria-label": "",
             "type": "image",
             "instructions": "",
             "required": 0,
@@ -724,6 +745,7 @@
             "key": "field_628e0f242aa5f",
             "label": "Ratio",
             "name": "ratio",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 1,

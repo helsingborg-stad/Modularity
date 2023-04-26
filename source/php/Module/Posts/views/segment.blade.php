@@ -1,21 +1,5 @@
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2',
-        'variant' => 'h2',
-        'classList' => ['module-title']
-    ])
-        {!! $postTitle !!}
-    @endtypography
-@endif
-
-@if ($preamble)
-    @typography([
-        'classList' => ['module-preamble', 'u-margin__bottom--3']
-    ])
-        {!! $preamble !!}
-    @endtypography
-@endif
+@includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+@includeWhen($preamble, 'partials.preamble')
 
 <div class="o-grid 
     {{ $stretch ? 'o-grid--stretch' : '' }} 
@@ -34,11 +18,11 @@
                     ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
                     : false,
                 'content' => $post->post_content,
-                'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
+                'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],
                 'containerAware' => true,
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
-                'icon' => $post->termIcon,
-                'classList' => $post->classList
+                'classList' => $post->classList,
+                'icon' => $post->termIcon['icon'] ? $post->termIcon : false
             ])
                 @slot('floating')
                     @includeWhen(!empty($post->floatingIcon), 'partials.icon')

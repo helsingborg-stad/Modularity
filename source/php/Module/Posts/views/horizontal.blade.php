@@ -1,26 +1,8 @@
 @include('partials.post-filters')
 
 <div class="{{ $classes }} posts-{{ $posts_display_as }}">
-
-    @if (!$hideTitle && !empty($postTitle))
-
-        @typography([
-            'element' => 'h2',
-            'variant' => 'h2',
-            'classList' => ['module-title']
-        ])
-            {!! $postTitle !!}
-        @endtypography
-
-    @endif
-
-    @if ($preamble)
-        @typography([
-            'classList' => ['module-preamble', 'u-margin__bottom--3']
-        ])
-            {!! $preamble !!}
-        @endtypography
-    @endif
+    @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+    @includeWhen($preamble, 'partials.preamble')
 
     @if (count($posts) > 0)
         <div class="o-grid grid--columns js-mod-posts-{{ $ID }} {{ $stretch ? 'o-grid--stretch' : '' }}">
@@ -32,7 +14,6 @@
                             'href' => apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)
                         ])
                             <article class="full u-mb-2">
-
                                 @if (in_array('image', $posts_fields) && !empty($post->thumbnail[0]))
                                     @image([
                                         'src' => $post->thumbnail[0],
