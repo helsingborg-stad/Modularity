@@ -9,7 +9,7 @@
         ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
         : false,
     'content' => $post->post_content,
-    'buttons' => [['text' => $labels['readMore'], 'href' => $post->link]],
+    'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => true,
     'classList' => ['c-segment--slider'],
