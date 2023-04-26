@@ -1,7 +1,6 @@
 @include('partials.post-filters')
 
 <div class="{{ $classes }} posts-{{ $posts_display_as }}">
-
     @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
     @includeWhen($preamble, 'partials.preamble')
 
@@ -15,10 +14,9 @@
                             'href' => apply_filters('Modularity/Module/Posts/Permalink', get_permalink($post), $post)
                         ])
                             <article class="full u-mb-2">
-
-                                @if (in_array('image', $posts_fields) && $post->image)
+                                @if (in_array('image', $posts_fields) && !empty($post->thumbnail[0]))
                                     @image([
-                                        'src' => $post->image,
+                                        'src' => $post->thumbnail[0],
                                         'alt' => $post->post_title,
                                         'clasList' => ['u-mb-3', 'u-w-100', 'u-pb-0']
                                     ])
@@ -91,10 +89,5 @@
                 </div>
             </div>
         @endif
-    @else
-        <section>
-            <?php _e('Nothing to display…', 'modularity'); ?>
-        </section>
-
     @endif
 </div>

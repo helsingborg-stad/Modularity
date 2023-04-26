@@ -13,7 +13,6 @@
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
-                    'image' => $post->thumbnail,
                     'heading' => $post->post_title,
                     'hasFooter' => $post->tags ? true : false,
                     'context' => ['module.posts.index'],

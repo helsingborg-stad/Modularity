@@ -23,8 +23,8 @@
                     'image' =>
                         $post->showImage && isset($post->thumbnail[0])
                             ? [
-                                'src' => get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2]),
-                                'alt' => $contact['full_name'],
+                                'src' => $post->thumbnail[0],
+                                'alt' => $post->post_title,
                                 'backgroundColor' => 'secondary'
                             ]
                             : false,
@@ -47,7 +47,6 @@
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
-                    'image' => $post->thumbnail,
                     'heading' => $post->showTitle ? $post->post_title : false,
                     'classList' => $classes,
                     'context' => ['module.posts.index'],
