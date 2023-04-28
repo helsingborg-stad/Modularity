@@ -22,10 +22,13 @@
                 'containerAware' => true,
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
                 'classList' => $post->classList,
-                'icon' => $post->termIcon['icon'] ? $post->termIcon : false
+                'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
             ])
                 @slot('floating')
-                    @includeWhen(!empty($post->floatingIcon), 'partials.icon')
+                    @if (!empty($post->floating['floating']))
+                        @icon($post->floating['floating'])
+                        @endicon
+                    @endif
                 @endslot
             @endsegment
         </div>

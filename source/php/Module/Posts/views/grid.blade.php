@@ -36,9 +36,12 @@
                     'postType' => $post->post_type ?? '',
                     'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
-                    @slot('floating')
-                        @includeWhen(!empty($floatingIcon), 'partials.icon')
-                    @endslot
+                 @slot('floating')
+                    @if (!empty($post->floating['floating']))
+                        @icon($post->floating['floating'])
+                        @endicon
+                    @endif
+                @endslot
                 @endcard
             @else
                 @block([
@@ -66,9 +69,12 @@
                     'postType' => $post->post_type ?? '',
                     'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
-                    @slot('floating')
-                        @includeWhen(!empty($post->floatingIcon), 'partials.icon')
-                    @endslot
+                @slot('floating')
+                    @if (!empty($post->floating['floating']))
+                        @icon($post->floating['floating'])
+                        @endicon
+                    @endif
+                @endslot
                 @endblock
             @endif
         </div>
