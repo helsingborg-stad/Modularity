@@ -6,7 +6,10 @@
     'containerAware' => true
 ])
     @slot('floating')
-        @include('partials.icon')
+        @if (!empty($post->floating['floating']))
+            @icon($post->floating['floating'])
+            @endicon
+        @endif
     @endslot
     @slot('before')
         @if ($post->showImage && isset($post->thumbnail[0]))
