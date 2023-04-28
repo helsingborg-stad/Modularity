@@ -49,7 +49,6 @@ class AbstractController
 
         foreach ($this->data['posts'] as $post) {
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
-
             // Image fetch
             $post->thumbnail = apply_filters('Modularity/Module/Posts/thumbnail', $image);
 

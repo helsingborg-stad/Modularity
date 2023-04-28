@@ -1,23 +1,7 @@
 @include('partials.post-filters')
 
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2',
-        'variant' => 'h2',
-        'classList' => ['module-title']
-    ])
-        {!! $postTitle !!}
-    @endtypography
-@endif
-
-@if ($preamble)
-    @typography([
-        'classList' => ['module-preamble', 'u-margin__bottom--3']
-    ])
-        {!! $preamble !!}
-    @endtypography
-@endif
+@includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+@includeWhen($preamble, 'partials.preamble')
 
 <div class="o-grid 
     {{ $stretch ? 'o-grid--stretch' : '' }} 
@@ -39,8 +23,8 @@
                     'image' =>
                         $post->showImage && isset($post->thumbnail[0])
                             ? [
-                                'src' => get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2]),
-                                'alt' => $contact['full_name'],
+                                'src' => $post->thumbnail[0],
+                                'alt' => $post->post_title,
                                 'backgroundColor' => 'secondary'
                             ]
                             : false,
@@ -66,7 +50,6 @@
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
-                    'image' => $post->thumbnail,
                     'heading' => $post->showTitle ? $post->post_title : false,
                     'classList' => $classes,
                     'context' => ['module.posts.index'],

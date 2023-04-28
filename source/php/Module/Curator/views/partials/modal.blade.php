@@ -4,7 +4,7 @@
 ])
     <div class="o-grid">
         @if ($post->oembed || $post->image)
-            <div class="o-grid-6">
+            <div class="o-grid-6@md">
                 @if ($post->oembed)
                     {!! $post->oembed !!}
                 @else
@@ -14,7 +14,7 @@
                     @endimage
                 @endif
             </div>
-            <div class="o-grid-5 u-padding__left--4">
+            <div class="o-grid-5@md u-padding__left--4@md">
             @else
                 <div class="o-grid-12">
         @endif

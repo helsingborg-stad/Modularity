@@ -201,7 +201,7 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode(get_fields($this->ID)));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = $fields->display_reading_time ?? false;
+        $data['display_reading_time'] = in_array('reading_time', $fields->posts_fields) ?? false;
 
         $this->enableFilters = $this->enableFilters();
         if ($this->enableFilters) {
@@ -234,7 +234,6 @@ class Posts extends \Modularity\Module
         foreach ($data['posts'] as &$post) {
             $post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $post);
         }
-
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;

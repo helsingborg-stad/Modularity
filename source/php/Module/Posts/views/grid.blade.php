@@ -1,23 +1,7 @@
 @include('partials.post-filters')
 
-@if (!$hideTitle && !empty($postTitle))
-    @typography([
-        'id' => 'mod-posts-' . $ID . '-label',
-        'element' => 'h2',
-        'variant' => 'h2',
-        'classList' => ['module-title']
-    ])
-        {!! $postTitle !!}
-    @endtypography
-@endif
-
-@if ($preamble)
-    @typography([
-        'classList' => ['module-preamble', 'u-margin__bottom--3']
-    ])
-        {!! $preamble !!}
-    @endtypography
-@endif
+@includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+@includeWhen($preamble, 'partials.preamble')
 
 <div class="o-grid 
     {{ $stretch ? 'o-grid--stretch' : '' }} 
@@ -29,7 +13,6 @@
                 @card([
                     'link' => $post->link,
                     'imageFirst' => true,
-                    'image' => $post->thumbnail,
                     'heading' => $post->post_title,
                     'hasFooter' => $post->tags ? true : false,
                     'context' => ['module.posts.index'],
@@ -42,14 +25,16 @@
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
-                    'image' => $post->showImage ? [
-                        'src' => $post->thumbnail[0],
-                        'alt' => $post->post_title,
-                        'backgroundColor' => 'secondary',
-                    ] : [],
+                    'image' => $post->showImage
+                        ? [
+                            'src' => $post->thumbnail[0],
+                            'alt' => $post->post_title,
+                            'backgroundColor' => 'secondary'
+                        ]
+                        : [],
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
                  @slot('floating')
                     @if (!empty($post->floating['floating']))
@@ -71,11 +56,8 @@
                     'filled' => true,
                     'image' => $post->showImage
                         ? [
-                            'src' =>
-                                $loop->first && $highlight_first_column
-                                    ? get_the_post_thumbnail_url($post->ID, [$post->thumbnail[1] * 2, $post->thumbnail[2] * 2])
-                                    : $post->thumbnail[0],
-                            'alt' => $contact['full_name'],
+                            'src' => $post->thumbnail[0],
+                            'alt' => $post->post_title,
                             'backgroundColor' => 'secondary'
                         ]
                         : false,
@@ -85,7 +67,7 @@
                     'link' => $post->link,
                     'postId' => $post->ID,
                     'postType' => $post->post_type ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false
                 ])
                 @slot('floating')
                     @if (!empty($post->floating['floating']))
@@ -98,9 +80,6 @@
         </div>
     @endforeach
 </div>
-
-<!-- //$post->showDate     = (bool) in_array('date', $this->data['posts_fields']); -->
-
 
 @if ($posts_data_source !== 'input' && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
