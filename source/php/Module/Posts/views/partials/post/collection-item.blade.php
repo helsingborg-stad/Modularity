@@ -1,9 +1,10 @@
 @collection__item([
     'link' => $post->link,
-    'classList' => ['c-collection__item--post'],
+    'classList' => [$posts_columns, 'c-collection__item'],
     'context' => ['module.posts.collection__item'],
     'before' => $display_reading_time ? $post->reading_time : false,
-    'containerAware' => true
+    'containerAware' => true,
+    'bordered' => true,
 ])
     @slot('floating')
         @if (!empty($post->floating['floating']))
