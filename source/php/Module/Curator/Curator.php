@@ -114,7 +114,7 @@ class Curator extends \Modularity\Module
             }
         }
 
-        $data['columnClasses'] .= $data['columns'] == 3 ? 'o-grid-4@lg' : 'o-grid-3@lg';
+        $data['columnClasses'] .= $data['columns'] == 3 ? 'o-grid-4@md o-grid-6@sm' : 'o-grid-3@lg o-grid-4@md o-grid-6@sm';
 
         $cached = !isset($_GET['flush']);
         $feed = $this->getFeed($data['embedCode'], (int) $data['numberOfItems'] + 1, 0, $cached);
