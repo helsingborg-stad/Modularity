@@ -1,8 +1,10 @@
-@typography([
-    'id' => 'mod-posts-' . $ID . '-label',
-    'element' => $element ?? 'h2',
-    'variant' => $variant ?? 'h2',
-    'classList' => $classList ?? ['module-title']
-])
-    {!! $postTitle !!}
-@endtypography
+<div class="c-card__header">
+    @typography([
+        'id' => 'mod-posts-' . $ID . '-label',
+        'element' => $element ?? 'h2',
+        'variant' => $variant ?? 'h4',
+        'classList' => $classList ?? []
+    ])
+        {!! $postTitle !!}
+    @endtypography
+</div>
