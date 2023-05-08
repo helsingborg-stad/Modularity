@@ -3,11 +3,9 @@
 @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
 @includeWhen($preamble, 'partials.preamble')
 @collection([
-    'classList' => ['c-collection--posts', 'o-grid']
+    'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal'],
 ])
     @foreach ($posts as $post)
-        <div class="{{ $posts_columns }}">
-            @include('partials.post.collection-item')
-        </div>
+        @include('partials.post.collection-item')
     @endforeach
 @endcollection

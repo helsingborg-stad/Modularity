@@ -1,22 +1,22 @@
 @collection__item([
     'link' => $post->link,
-    'classList' => ['c-collection__item--post'],
+    'classList' => [$posts_columns],
     'context' => ['module.posts.collection__item'],
     'before' => $display_reading_time ? $post->reading_time : false,
-    'containerAware' => true
+    'containerAware' => true,
+    'bordered' => true,
 ])
-    @slot('floating')
-        @if (!empty($post->floating['floating']))
+    @if (!empty($post->floating['floating']))
+        @slot('floating')
             @icon($post->floating['floating'])
             @endicon
-        @endif
-    @endslot
+        @endslot
+    @endif
     @slot('before')
         @if ($post->showImage && isset($post->thumbnail[0]))
             @image([
                 'src' => $post->thumbnail[0],
                 'alt' => $post->post_title,
-                'classList' => ['u-width--100']
             ])
             @endimage
         @endif
