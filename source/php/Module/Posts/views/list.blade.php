@@ -20,6 +20,7 @@
                     @foreach ($prepareList as $post)
                         @if ($post['href'] && $post['columns'] && $post['columns'][0])
                             @collection__item([
+                                'displayIcon' => true,
                                 'icon' => 'arrow_forward',
                                 'link' => $post['href']
                             ])
