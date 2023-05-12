@@ -8,7 +8,11 @@
     ],
     'context' => 'module.posts.list'
 ])
-    @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title', ['variant' => 'h4'])
+@if (!$hideTitle && !empty($postTitle))
+<div class="c-card__header">
+    @include('partials.post-title', ['variant' => 'h4'])
+</div>
+@endif
 
     @if (!empty($prepareList))
         <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }}">

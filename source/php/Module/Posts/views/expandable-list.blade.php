@@ -11,7 +11,9 @@
             ],
             'context' => 'module.posts.expandablelist'
         ])
-            @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title', ['element' => 'h4'])
+            <div class="c-card__header">
+                @include('partials.post-title', ['variant' => 'h4'])
+            </div>
             <div>
                 @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
                     <div class="c-card__body" aria-label="{{ __('Search', 'municipio') }}">
