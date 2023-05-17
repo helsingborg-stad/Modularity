@@ -510,10 +510,10 @@ class Display
         }
 
 
-        $template = \Modularity\Helper\Template::getModuleTemplate($view, $module);
-        $templatePath = trailingslashit(dirname($template));
-        $view = basename($template, '.blade.php');
-        $view = basename($view, '.php');
+        $template   = \Modularity\Helper\Template::getModuleTemplate($view, $module);
+        $view       = basename($template, '.blade.php');
+        $view       = basename($view, '.php');
+
         if (\Modularity\Helper\Template::isBlade($template)) {
             return $this->renderView($view, $module->data);
         }
