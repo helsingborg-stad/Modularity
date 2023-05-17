@@ -283,7 +283,7 @@ class Curator extends \Modularity\Module
         $feed = $this->maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache);
 
         if ($this->isAjaxRequest()) {
-            wp_die();
+            wp_die($feed);
         }
 
         return json_decode($feed);
