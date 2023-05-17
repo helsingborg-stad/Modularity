@@ -147,6 +147,15 @@ class Module
     public $mode = 'module'; //May be either 'module' or 'block'.
 
     /**
+     * Data dataFetched.
+     * Keeps track if the current data is fetched by the native data fetch functionality. 
+     * @var string
+     */
+    public $dataFetched = false; //May be either 'module' or 'block'.
+
+    
+
+    /**
      * Constructs a module
      * @param int $postId
      */
@@ -262,6 +271,18 @@ class Module
     public function collectViewData()
     {
         $this->data = array_merge($this->data, $this->data());
+    }
+
+    /**
+     * Get metadata for block or module.
+     * @return array
+     */
+    protected function getFields() {
+        $this->dataFetched = true;
+        if(is_numeric($this->ID)) {
+            return get_fields($this->ID);
+        }
+        return get_fields(); //Blocks
     }
 
     /**
@@ -400,8 +421,6 @@ class Module
      */
     public function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache_ttl = 0, $hideTitle = false)
     {
-        //\Modularity\Helper\Wp::deprecatedFunction('Function $module->' . __FUNCTION__ . ' is deprecated since Modularity version 2.0.0');
-
         if (empty($slug)) {
             return;
         }
