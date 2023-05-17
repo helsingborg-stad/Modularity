@@ -64,8 +64,7 @@ class AbstractController
             $post->tags = $tagData['tags'] ?? false;
             $post->termIcon = $tagData['termIcon'] ?? false;
 
-            // Get excerpt
-            $post->post_content = $this->truncateExcerpt($post->post_content, $amount);
+            $post->post_content = !empty($post->post_excerpt) ? $post->post_excerpt : $this->truncateExcerpt($post->post_content, $amount);
 
             $this->setPostFlags($post);
         }
