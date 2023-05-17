@@ -83,49 +83,51 @@ class Curator extends \Modularity\Module
 
     public function data(): array
     {
+        //Default values
         $data = [
             'i18n'          => $this->data['i18n'],
             'columnClasses' => '',
             'ratio'         => '',
             'gutter'        => '',
+            'showFeed'      => false,
+            'posts'         => [],
+            'postCount'     => 0
         ];
 
-        if (!empty($this->ID)) {
-            // Module data
-            $data['embedCode']      = $this->parseEmbedCode(get_field('embed_code', $this->ID, true));
-            $data['numberOfItems']  = get_field('number_of_posts', $this->ID, true) ?: 12;
-            $data['layout']         = get_field('layout', $this->ID, true) ?: 'card';
-            $data['columns']        = get_field('columns', $this->ID, true) ?: 4;
-            $data['showPoweredBy']  = get_field('show_powered_by', $this->ID, true) ? true : false;
-        } else {
-            // Gutenberg block data
-            global $post;
-            if (!empty($post->ID)) {
-                $blockName = 'acf/curator';
-                $data['embedCode']      = $this->parseEmbedCode(Block::getBlockData($post->ID, $blockName, 'embed_code'));
-                $data['numberOfItems']  = Block::getBlockData($post->ID, $blockName, 'number_of_posts') ?: 12;
-                $data['layout']         = Block::getBlockData($post->ID, $blockName, 'layout') ?: 'card';
-                $data['columns']        = Block::getBlockData($post->ID, $blockName, 'columns') ?: 4;
-                $data['showPoweredBy']  = Block::getBlockData($post->ID, $blockName, 'show_powered_by') ? true : false;
-                if ($data['layout'] === 'block') {
-                    $data['ratio'] = Block::getBlockData($post->ID, $blockName, 'ratio') ?: '4:3';
-                    $data['gutter'] = Block::getBlockData($post->ID, $blockName, 'gutter') ? 'o-grid--no-gutter' : '';
-                }
-            }
+        //Get module fields
+        $fields = $this->getFields();
+
+        //General fields 
+        $data['embedCode']      = $this->parseEmbedCode($fields['embed_code']);
+        $data['numberOfItems']  = $fields['number_of_posts'] ?: 12;
+        $data['layout']         = $fields['layout'] ?: 'card';
+        $data['columns']        = $fields['columns'] ?: 4;
+        $data['showPoweredBy']  = $fields['show_powered_by'] ? true : false;
+
+        //Exclusive fields for blocks
+        if ($data['layout'] === 'block') {
+            $data['ratio']  = $fields['ratio'] ?: '4:3';
+            $data['gutter'] = $fields['gutter'] ? 'o-grid--no-gutter' : '';
         }
 
-        $data['columnClasses'] .= $data['columns'] == 3 ? 'o-grid-4@md o-grid-6@sm' : 'o-grid-3@lg o-grid-4@md o-grid-6@sm';
+        //Calc column size
+        $data['columnClasses'] .= $this->getGridClass($data['columns']);
 
-        $cached = !isset($_GET['flush']);
-        $feed = $this->getFeed($data['embedCode'], (int) $data['numberOfItems'] + 1, 0, $cached);
+        //Fetch feed data
+        $feed = $this->getFeed(
+            $data['embedCode'], 
+            (int) $data['numberOfItems'] + 1,
+            0, 
+            (bool) !isset($_GET['flush'])
+        );
 
-        $data['showFeed'] = false;
-
+        //Assign to params
         if (!empty($feed->posts)) {
             $data['showFeed']  = true;
             $data['posts']     = $feed->posts;
             $data['postCount'] = $feed->postCount;
         }
+
         //Parse posts array
         $data['posts'] = is_array($data['posts']) ? self::parseSocialMediaPosts($data['posts']) : [];
 
@@ -139,6 +141,19 @@ class Curator extends \Modularity\Module
         //Send to view
         return $data;
     }
+
+    /**
+     * Returns the appropriate grid class based on the number of columns.
+     *
+     * @param int $columns The number of columns.
+     * @return string The grid class.
+     */
+    private function getGridClass($columns) {
+        if($columns == 3) {
+            return 'o-grid-4@md o-grid-6@sm';
+        }
+        return 'o-grid-3@lg o-grid-4@md o-grid-6@sm'; 
+    } 
 
     /**
      * Parses the social media posts data to add additional properties and modify existing ones.
@@ -253,22 +268,21 @@ class Curator extends \Modularity\Module
         $requestUrl = "https://api.curator.io/restricted/feeds/{$embedCode}/posts";
 
         $requestArgs = [
-        'headers' => [
-            'Content-Type: application/json',
-        ],
-        'body' => [
-            'limit'        => $numberOfItems,
-            'offset'       => $offset,
-            'hasPoweredBy' => 1,
-            'version'      => '4.0',
-            'status'       => 1
-        ]
+            'headers' => [
+                'Content-Type: application/json',
+            ],
+            'body' => [
+                'limit'        => $numberOfItems,
+                'offset'       => $offset,
+                'hasPoweredBy' => 1,
+                'version'      => '4.0',
+                'status'       => 1
+            ]
         ];
 
         $feed = $this->maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache);
 
         if ($this->isAjaxRequest()) {
-            echo $feed;
             wp_die();
         }
 
