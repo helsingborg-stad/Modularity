@@ -433,7 +433,7 @@ class BlockManager
         }
 
         if(!$module->dataFetched) {
-            throw new \LogicException('Class ' . get_class($module) . ' must use the getFields function to enshure block compability.');
+            error_log('Class ' . get_class($module) . ' must use the getFields function to ensure block compability.');
         }
 
         // Render block view if validated correctly
