@@ -12,7 +12,7 @@
             'context' => 'module.posts.expandablelist'
         ])
             <div class="c-card__header">
-                @include('partials.post-title', ['variant' => 'h4'])
+                @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
             </div>
             <div>
                 @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
