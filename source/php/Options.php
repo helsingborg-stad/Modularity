@@ -53,7 +53,7 @@ abstract class Options
     }
 
     /**
-     * This function should be used to add the desiered meta boxes
+     * This function should be used to add the desired metaboxes
      * Override it in your options class
      */
     public function addMetaBoxes()
