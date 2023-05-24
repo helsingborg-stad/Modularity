@@ -31,7 +31,7 @@
     @button([
       'text' => $lang->submit->label,
       'color' => 'primary',
-      'type' => 'filled',
+      'type' => 'submit',
       'icon' => 'arrow_forward'
     ])
     @endbutton
