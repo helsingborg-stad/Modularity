@@ -5,9 +5,7 @@
     'attributeList' => [
       'data-js-ungpd-id' => $formID,
       'data-js-ungpd-list-ids' => $listIDs
-		],
-		'errorMessage' => $lang->incomplete->text,
-		'validateMessage' => $lang->submitted->text
+		]
 ])
   @group([
     'alignItems' => 'end',
@@ -52,16 +50,33 @@
 
 @endform
 
-<template id="{!!$formID!!}">
+<template id="{!!$formID!!}-success">
 	@notice([
 		'type' => 'success',
 			'message' => [
-			'text' => $lang->submitted->text,
 			'title' => $lang->submitted->title,
+			'text' => $lang->submitted->text,
 			'size' => 'sm'
 		],
 		'icon' => [
 			'name' => 'check',
+			'size' => 'md',
+			'color' => 'white'
+		]
+	])
+	@endnotice
+</template>
+
+<template id="{!!$formID!!}-error">
+	@notice([
+		'type' => 'danger',
+			'message' => [
+			'title' => $lang->error->title,
+			'text' => $lang->error->text . '<br><span class="message"></span>',
+			'size' => 'sm'
+		],
+		'icon' => [
+			'name' => 'warning',
 			'size' => 'md',
 			'color' => 'white'
 		]

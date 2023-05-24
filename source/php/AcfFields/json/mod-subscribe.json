@@ -115,7 +115,7 @@
                     "label": "List IDs",
                     "name": "list_ids",
                     "type": "text",
-                    "instructions": "",
+                    "instructions": "Comma separated list of list IDs. One for each list you want to subscribe to.",
                     "required": 1,
                     "conditional_logic": 0,
                     "wrapper": {

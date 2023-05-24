@@ -120,7 +120,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'label' => __('List IDs', 'modularity'),
                     'name' => 'list_ids',
                     'type' => 'text',
-                    'instructions' => '',
+                    'instructions' => __('Comma separated list of list IDs. One for each list you want to subscribe to.', 'modularity'),
                     'required' => 1,
                     'conditional_logic' => 0,
                     'wrapper' => array(
