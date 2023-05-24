@@ -18,6 +18,7 @@ define('MODULARITY_CACHE_DIR', trailingslashit(wp_upload_dir()['basedir']) . 'ca
 
 define('MODULARITY_TEMPLATE_PATH', MODULARITY_PATH . 'templates/');
 define('MODULARITY_MODULE_PATH', MODULARITY_PATH . 'source/php/Module/');
+define('MODULARITY_MODULE_URL', MODULARITY_URL . '/source/php/Module/');
 
 add_action('plugins_loaded', function () {
     load_plugin_textdomain('modularity', false, plugin_basename(dirname(__FILE__)) . '/languages');

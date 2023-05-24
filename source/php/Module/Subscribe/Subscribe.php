@@ -15,6 +15,7 @@ class Subscribe extends \Modularity\Module
         $this->nameSingular = __('Email Subscribe', 'modularity');
         $this->namePlural = __('Email Subscribtions', 'modularity');
         $this->description = __('Outputs a simpele form to subscribe to a email list.', 'modularity');
+        $this->enqueue_scripts();
     }
 
     public function data() : array
@@ -71,6 +72,13 @@ class Subscribe extends \Modularity\Module
     private function handleUngdpData($data, $fields) {
         $data['formID'] = $fields['settings_for_ungapped_service']['form_id'] ?? false; 
         return $data;
+    }
+
+    private function enqueue_scripts()
+    {
+        $ungapdScriptUrl = MODULARITY_MODULE_URL . 'Subscribe/assets/ungapd.js';
+        $ungapdScriptFileVersion = filemtime(MODULARITY_MODULE_PATH . 'Subscribe/assets/ungapd.js');
+        wp_enqueue_script('mod-subscribe-ungapd', $ungapdScriptUrl, [], $ungapdScriptFileVersion, true);
     }
 
     /**
