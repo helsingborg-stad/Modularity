@@ -16,6 +16,7 @@ function initializeUngappedForms() {
 
             //Gather data
             let formId = form.getAttribute('data-js-ungpd-id');
+            let listIds = form.getAttribute('data-js-ungpd-list-ids');
             let email = form.querySelector('input[name="email"]');
             let consent = form.querySelector('input[name="user_consent"]');
             const successTemplate = document.querySelector('template#' + formId);
@@ -26,7 +27,7 @@ function initializeUngappedForms() {
                 let subscription = {
                     Contact: { Email: email.value },
                     ConsentText: consent.value,
-                    ListIds: '3b4485ab-16f5-4a4a-ba7c-f89a0a149e8e'
+                    ListIds: listIds
                 };
 
                 fetch("https://ui.ungpd.com/Api/Subscriptions/" + formId + "/ajax", {

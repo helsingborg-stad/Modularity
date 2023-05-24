@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_641c51b765f4b',
     'title' => __('Email Subscribe', 'modularity'),
     'fields' => array(
@@ -113,6 +115,25 @@
                     'prepend' => '',
                     'append' => '',
                 ),
+                1 => array(
+                    'key' => 'field_641c52955b8e2',
+                    'label' => __('List IDs', 'modularity'),
+                    'name' => 'list_ids',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 1,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'maxlength' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                ),
             ),
         ),
     ),
@@ -147,4 +168,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

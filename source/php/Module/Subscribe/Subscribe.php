@@ -71,6 +71,7 @@ class Subscribe extends \Modularity\Module
 
     private function handleUngdpData($data, $fields) {
         $data['formID'] = $fields['settings_for_ungapped_service']['form_id'] ?? false; 
+        $data['listIDs'] = $fields['settings_for_ungapped_service']['list_ids'] ?? false; 
         return $data;
     }
 

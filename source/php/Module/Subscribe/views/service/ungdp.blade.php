@@ -3,7 +3,8 @@
     'method' => 'POST',
     'action' => '#' . $uid,
     'attributeList' => [
-      'data-js-ungpd-id' => $formID 
+      'data-js-ungpd-id' => $formID,
+      'data-js-ungpd-list-ids' => $listIDs
 		],
 		'errorMessage' => $lang->incomplete->text,
 		'validateMessage' => $lang->submitted->text
