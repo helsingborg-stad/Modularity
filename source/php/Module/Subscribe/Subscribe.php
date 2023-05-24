@@ -42,8 +42,12 @@ class Subscribe extends \Modularity\Module
                 'label' => __('Subscribe', 'modularity'),
             ],
             'submitted' => (object) [
-                'title' => __('Subscribed', 'modularity'),
-                'text'  => __('You are now subscribed to this email list.', 'modularity'),
+                'title' => __('Confirmation sent', 'modularity'),
+                'text'  => 
+                    __('You have received a confirmation e-mail. To confirm the subsription please click the confirmation link in the email.', 'modularity')
+                    . '<br>' .
+                    __("Can't find the e-mail? Please check your e-mail spam folder.", 'modularity')
+                
             ],
             'incomplete' => (object) [
                 'title' => __('Select a provider', 'modularity'),

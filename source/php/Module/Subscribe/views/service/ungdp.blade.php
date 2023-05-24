@@ -48,9 +48,34 @@
 			'required' => true
   ])
   @endoption
+
 @endform
 
+<template id="{!!$formID!!}">
+	@typography(['variant' => 'h3']){{$lang->submitted->title}}@endtypography
+	@notice([
+		'type' => 'success',
+			'message' => [
+			'text' => $lang->submitted->text,
+			'size' => 'sm'
+		],
+		'icon' => [
+			'name' => 'check',
+			'size' => 'md',
+			'color' => 'white'
+		]
+	])
+	@endnotice
+</template>
+
 <script>
+	function handleSuccess(form, successTemplate) {
+		const successElement = successTemplate.content.cloneNode(true);
+		
+		form.remove();
+		successTemplate.parentNode.appendChild(successElement);
+	}
+
 	const ungpdForms = [...document.querySelectorAll("[data-js-ungpd-id]")]; 
 
 	ungpdForms.forEach(form => {
@@ -63,6 +88,7 @@
 			let formId 	= form.getAttribute('data-js-ungpd-id');
 			let email 	= form.querySelector('input[name="email"]');
 			let consent = form.querySelector('input[name="user_consent"]');
+			const successTemplate = document.querySelector('template#' + formId);
 
 			//Dialogs
 			let dialog  = form.parentNode.querySelectorAll('data-js-error-message'); 
@@ -85,6 +111,8 @@
 				.then(response => {
 					if (!response.ok) {
 						alert('{{$lang->error->text}} (err: ' + response.status + ')');
+					} else {
+						handleSuccess(form, successTemplate);
 					}
 				})
 				.catch(error => {
