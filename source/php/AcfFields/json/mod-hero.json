@@ -150,6 +150,40 @@
             "mime_types": "mp4"
         },
         {
+            "key": "field_646f25456ea80",
+            "label": "Poster image",
+            "name": "mod_hero_poster_image",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_62c3f89f983b1",
+                        "operator": "==",
+                        "value": "video"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "uploader": "",
+            "acfe_thumbnail": 0,
+            "return_format": "array",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
             "key": "field_614b43a186da4",
             "label": "Size",
             "name": "mod_hero_size",
@@ -183,43 +217,6 @@
             "return_format": "value",
             "ajax": 0,
             "placeholder": ""
-        },
-        {
-            "key": "field_6410739aec778",
-            "label": "Url",
-            "name": "mod_hero_button_href",
-            "aria-label": "",
-            "type": "url",
-            "instructions": "Url to which the button or text should link to.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": ""
-        },
-        {
-            "key": "field_641073fcec779",
-            "label": "Button text",
-            "name": "mod_hero_button_text",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Text to be displayed on the button. If left empty and Url is given, the entire text in the Hero will be linked to the url.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [
@@ -253,3 +250,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
+

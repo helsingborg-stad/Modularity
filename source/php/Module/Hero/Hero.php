@@ -58,6 +58,7 @@ class Hero extends \Modularity\Module
         $data['backgroundColor']    = $fields['mod_hero_background_color'] ? $fields['mod_hero_background_color'] : false;
         $data['textColor']          = $fields['mod_hero_text_color'];
         $data['buttonArgs']         = $this->getButtonArgsFromFields($fields);
+        $data['poster']             = $fields['mod_hero_poster_image']['sizes']['large'] ?? false;
 
         return $data;
     }

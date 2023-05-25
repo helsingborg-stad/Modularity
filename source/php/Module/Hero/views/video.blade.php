@@ -8,6 +8,7 @@
     "stretch" => isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch,
     "context" => ['hero', 'module.hero', 'module.hero.video'],
     "ariaLabel" => $ariaLabel,
-    "buttonArgs" => $buttonArgs
+    "buttonArgs" => $buttonArgs,
+    "poster" => $poster,
 ])
 @endhero

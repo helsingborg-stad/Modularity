@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_614b3f1a751bf',
     'title' => __('Hero', 'modularity'),
     'fields' => array(
@@ -155,6 +153,40 @@ if (function_exists('acf_add_local_field_group')) {
             'mime_types' => 'mp4',
         ),
         6 => array(
+            'key' => 'field_646f25456ea80',
+            'label' => __('Poster image', 'modularity'),
+            'name' => 'mod_hero_poster_image',
+            'type' => 'image',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_62c3f89f983b1',
+                        'operator' => '==',
+                        'value' => 'video',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'uploader' => '',
+            'acfe_thumbnail' => 0,
+            'return_format' => 'array',
+            'min_width' => '',
+            'min_height' => '',
+            'min_size' => '',
+            'max_width' => '',
+            'max_height' => '',
+            'max_size' => '',
+            'mime_types' => '',
+            'preview_size' => 'medium',
+            'library' => 'all',
+        ),
+        7 => array(
             'key' => 'field_614b43a186da4',
             'label' => __('Size', 'modularity'),
             'name' => 'mod_hero_size',
@@ -189,45 +221,6 @@ if (function_exists('acf_add_local_field_group')) {
             'ajax' => 0,
             'placeholder' => '',
         ),
-        7 => array(
-            'key' => 'field_6410739aec778',
-            'label' => __('Url', 'modularity'),
-            'instructions' => __('Url to which the button or text should link to.', 'modularity'),
-            'name' => 'mod_hero_button_href',
-            'aria-label' => '',
-            'type' => 'url',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => '',
-            'placeholder' => '',
-        ),
-        8 => array(
-            'key' => 'field_641073fcec779',
-            'label' => __('Button text', 'modularity'),
-            'instructions' => __('Text to be displayed on the button. If left empty and Url is given, the entire text in the Hero will be linked to the url.', 'modularity'),
-            'name' => 'mod_hero_button_text',
-            'aria-label' => '',
-            'type' => 'text',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => '',
-            'maxlength' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-        ),
     ),
     'location' => array(
         0 => array(
@@ -260,5 +253,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
