@@ -18,6 +18,7 @@
     'isPost' => true,
     'repeatSlide' => $postsDisplayAs != 'segment' ? true : false,
     'customButtons' => $postsDisplayAs != 'segment' ? 'js-custom-buttons-' . $sliderId : false,
+    'containerAware' => true,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
         'data-slider-gap' => 48,
