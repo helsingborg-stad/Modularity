@@ -651,7 +651,7 @@ class Posts extends \Modularity\Module
      * @param array $data The data to "fake"
      * @return array        Faked data
      */
-    public static function getManualInputPosts($data)
+    public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
 
@@ -659,7 +659,7 @@ class Posts extends \Modularity\Module
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
-                'post_excerpt' => $item->post_content
+                'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content
             ]);
         }
 
@@ -677,9 +677,12 @@ class Posts extends \Modularity\Module
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
 
-
+        echo '<pre>' . print_r($fields->posts_display_as, true) . '</pre>';
+        echo '<pre>' . print_r($fields, true) . '</pre>';
         if ($fields->posts_data_source == 'input') {
-            return (array) self::getManualInputPosts($fields->data);
+            // Strip links from content if display items are linked (we can't do links in links)
+            $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
+            return (array) self::getManualInputPosts($fields->data, $stripLinksFromContent);
         }
 
         $posts = (array) get_posts(self::getPostArgs($module->ID));
