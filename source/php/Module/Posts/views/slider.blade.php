@@ -20,7 +20,6 @@
     'customButtons' => $postsDisplayAs != 'segment' ? 'js-custom-buttons-' . $sliderId : false,
     'attributeList' => [
         'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
-        'data-slider-gap' => 48,
         'data-slides-per-page' => $slider->slidesPerPage
     ]
 ])
