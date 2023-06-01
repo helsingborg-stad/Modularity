@@ -677,8 +677,6 @@ class Posts extends \Modularity\Module
     {
         $fields = json_decode(json_encode(get_fields($module->ID)));
 
-        echo '<pre>' . print_r($fields->posts_display_as, true) . '</pre>';
-        echo '<pre>' . print_r($fields, true) . '</pre>';
         if ($fields->posts_data_source == 'input') {
             // Strip links from content if display items are linked (we can't do links in links)
             $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
