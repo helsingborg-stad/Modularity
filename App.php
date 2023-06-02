@@ -34,6 +34,10 @@ class App
         new Options\General();
         new Options\Archives();
 
+        // Rest Controllers
+        $modulesRestController = new Api\V1\Modules();
+        $modulesRestController->register_routes();
+
         self::$moduleManager = new ModuleManager();
 
         $this->editor = new Editor();
