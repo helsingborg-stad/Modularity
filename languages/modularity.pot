@@ -3,13 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Modularity 1.6.5\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/Modularity\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/modularity\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-04-21T09:56:25+00:00\n"
+"POT-Creation-Date: 2023-06-02T07:42:07+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.7.1\n"
 "X-Domain: modularity\n"
@@ -669,7 +669,7 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-contacts.php:57
 #: source/php/AcfFields/php/mod-posts-source.php:265
-#: source/php/AcfFields/php/mod-slider.php:126
+#: source/php/AcfFields/php/mod-slider.php:148
 msgid "Bild"
 msgstr ""
 
@@ -924,10 +924,10 @@ msgid "Divider"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-divider.php:12
-#: source/php/AcfFields/php/mod-slider.php:196
-#: source/php/AcfFields/php/mod-slider.php:493
-#: source/php/BlockManager.php:487
-#: source/php/Module/Posts/views/expandable-list.blade.php:41
+#: source/php/AcfFields/php/mod-slider.php:218
+#: source/php/AcfFields/php/mod-slider.php:515
+#: source/php/BlockManager.php:491
+#: source/php/Module/Posts/views/expandable-list.blade.php:43
 msgid "Title"
 msgstr ""
 
@@ -1014,23 +1014,23 @@ msgid "rgba(255,255,255,0.0)"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-hero-display-as.php:62
-#: source/php/AcfFields/php/mod-slider.php:571
+#: source/php/AcfFields/php/mod-slider.php:593
 msgid "Text color"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-hero-display-as.php:82
-#: source/php/AcfFields/php/mod-slider.php:584
-#: source/php/AcfFields/php/mod-slider.php:610
+#: source/php/AcfFields/php/mod-slider.php:606
+#: source/php/AcfFields/php/mod-slider.php:632
 msgid "White"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-hero-display-as.php:83
-#: source/php/AcfFields/php/mod-slider.php:583
+#: source/php/AcfFields/php/mod-slider.php:605
 msgid "Black"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-hero-display-as.php:85
-#: source/php/AcfFields/php/mod-slider.php:614
+#: source/php/AcfFields/php/mod-slider.php:636
 msgid "white"
 msgstr ""
 
@@ -1073,7 +1073,7 @@ msgid "Image"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-hero.php:91
-#: source/php/AcfFields/php/mod-slider.php:445
+#: source/php/AcfFields/php/mod-slider.php:467
 #: source/php/AcfFields/php/mod-video.php:8
 #: source/php/Module/Video/Video.php:16
 #: source/php/Module/Video/Video.php:17
@@ -1089,41 +1089,27 @@ msgid "Background video"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-hero.php:159
+msgid "Poster image"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-hero.php:193
 msgid "Size"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-hero.php:180
+#: source/php/AcfFields/php/mod-hero.php:214
 msgid "Small"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-hero.php:181
+#: source/php/AcfFields/php/mod-hero.php:215
 msgid "Normal"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-hero.php:182
+#: source/php/AcfFields/php/mod-hero.php:216
 msgid "Large"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-hero.php:184
+#: source/php/AcfFields/php/mod-hero.php:218
 msgid "normal"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-hero.php:194
-#: source/php/AcfFields/php/mod-slider.php:347
-#: source/php/AcfFields/php/mod-slider.php:657
-msgid "Url"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-hero.php:195
-msgid "Url to which the button or text should link to."
-msgstr ""
-
-#: source/php/AcfFields/php/mod-hero.php:212
-msgid "Button text"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-hero.php:213
-msgid "Text to be displayed on the button. If left empty and Url is given, the entire text in the Hero will be linked to the url."
 msgstr ""
 
 #: source/php/AcfFields/php/mod-iframe.php:8
@@ -1154,7 +1140,8 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-iframe.php:51
 #: source/php/AcfFields/php/mod-map.php:27
-#: source/php/AcfFields/php/mod-slider.php:398
+#: source/php/AcfFields/php/mod-slider.php:420
+#: source/php/AcfFields/php/mod-slider.php:795
 #: templates/options/partials/modularity-modules.php:19
 msgid "Description"
 msgstr ""
@@ -1213,13 +1200,13 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-image.php:195
 #: source/php/AcfFields/php/mod-index.php:43
-#: source/php/AcfFields/php/mod-slider.php:269
+#: source/php/AcfFields/php/mod-slider.php:291
 msgid "Internal"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-image.php:196
 #: source/php/AcfFields/php/mod-index.php:44
-#: source/php/AcfFields/php/mod-slider.php:270
+#: source/php/AcfFields/php/mod-slider.php:292
 msgid "External"
 msgstr ""
 
@@ -1227,8 +1214,8 @@ msgstr ""
 #: source/php/AcfFields/php/mod-inlaylist.php:109
 #: source/php/AcfFields/php/mod-inlaylist.php:166
 #: source/php/AcfFields/php/mod-logogrid.php:74
-#: source/php/AcfFields/php/mod-slider.php:256
-#: source/php/AcfFields/php/mod-slider.php:624
+#: source/php/AcfFields/php/mod-slider.php:278
+#: source/php/AcfFields/php/mod-slider.php:646
 msgid "Link"
 msgstr ""
 
@@ -1264,8 +1251,8 @@ msgid "No Link"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-index.php:56
-#: source/php/AcfFields/php/mod-slider.php:371
-#: source/php/AcfFields/php/mod-slider.php:686
+#: source/php/AcfFields/php/mod-slider.php:393
+#: source/php/AcfFields/php/mod-slider.php:768
 msgid "Page"
 msgstr ""
 
@@ -1709,15 +1696,6 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-posts-filtering.php:149
 msgid "Meta value"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-posts-reading-time.php:8
-#: source/php/AcfFields/php/mod-posts-reading-time.php:12
-msgid "Display reading time"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-posts-reading-time.php:24
-msgid "Yes, display estimated reading time"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-posts-sorting.php:8
@@ -10417,195 +10395,212 @@ msgstr ""
 msgid "Include main site"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:7
+#: source/php/AcfFields/php/mod-slider.php:8
 #: source/php/Module/Slider/Slider.php:26
 msgid "Slider"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:11
+#: source/php/AcfFields/php/mod-slider.php:12
 msgid "Slider ratio"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:23
+#: source/php/AcfFields/php/mod-slider.php:24
 msgid "Wider (36:7)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:24
+#: source/php/AcfFields/php/mod-slider.php:25
 msgid "Wide (10:3)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:25
+#: source/php/AcfFields/php/mod-slider.php:26
 msgid "Normal (16:9, video)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:26
+#: source/php/AcfFields/php/mod-slider.php:27
 msgid "Square (4:3)"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:28
+#: source/php/AcfFields/php/mod-slider.php:29
 msgid "ratio-16-9"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:38
+#: source/php/AcfFields/php/mod-slider.php:39
 msgid "Autoslide"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:49
+#: source/php/AcfFields/php/mod-slider.php:50
 msgid "Slide automatically between views"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:57
+#: source/php/AcfFields/php/mod-slider.php:58
 msgid "Slide interval"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:79
+#: source/php/AcfFields/php/mod-slider.php:80
 msgid "seconds"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:86
+#: source/php/AcfFields/php/mod-slider.php:87
+msgid "Number of slides shown per page"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:108
 msgid "Wrap around"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:98
+#: source/php/AcfFields/php/mod-slider.php:111
+msgid "If using videos in slides, this will option will not work."
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:120
 msgid "Go to first slide when last item is reached"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:102
+#: source/php/AcfFields/php/mod-slider.php:123
 msgid "wrapAround"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:111
+#: source/php/AcfFields/php/mod-slider.php:133
 msgid "Slides"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:131
+#: source/php/AcfFields/php/mod-slider.php:153
 msgid "Desktop image"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:134
+#: source/php/AcfFields/php/mod-slider.php:156
 msgid "This image will be used in larger screens. Preferably a widescreen image."
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:152
+#: source/php/AcfFields/php/mod-slider.php:174
 msgid "Alt text"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:171
+#: source/php/AcfFields/php/mod-slider.php:193
 #: templates/options/partials/modularity-template-areas.php:9
 msgid "Template"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:183
-#: source/php/AcfFields/php/mod-slider.php:558
+#: source/php/AcfFields/php/mod-slider.php:205
+#: source/php/AcfFields/php/mod-slider.php:580
 msgid "Bottom banner"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:184
-#: source/php/AcfFields/php/mod-slider.php:559
+#: source/php/AcfFields/php/mod-slider.php:206
+#: source/php/AcfFields/php/mod-slider.php:581
 msgid "Centered"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:186
-#: source/php/AcfFields/php/mod-slider.php:561
+#: source/php/AcfFields/php/mod-slider.php:208
+#: source/php/AcfFields/php/mod-slider.php:583
 msgid "bottom"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:237
-#: source/php/AcfFields/php/mod-slider.php:512
+#: source/php/AcfFields/php/mod-slider.php:259
+#: source/php/AcfFields/php/mod-slider.php:534
 #: source/php/Editor.php:123
 msgid "Content"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:268
-#: source/php/AcfFields/php/mod-slider.php:644
+#: source/php/AcfFields/php/mod-slider.php:290
+#: source/php/AcfFields/php/mod-slider.php:658
 msgid "No link"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:274
-#: source/php/AcfFields/php/mod-slider.php:650
+#: source/php/AcfFields/php/mod-slider.php:296
+#: source/php/AcfFields/php/mod-slider.php:662
 msgid "false"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:281
+#: source/php/AcfFields/php/mod-slider.php:303
+#: source/php/AcfFields/php/mod-slider.php:671
 msgid "Link Style"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:308
+#: source/php/AcfFields/php/mod-slider.php:330
+#: source/php/AcfFields/php/mod-slider.php:698
 msgid "Cover slide"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:309
+#: source/php/AcfFields/php/mod-slider.php:331
+#: source/php/AcfFields/php/mod-slider.php:699
 msgid "Button"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:313
+#: source/php/AcfFields/php/mod-slider.php:335
+#: source/php/AcfFields/php/mod-slider.php:701
 msgid "cover"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:320
+#: source/php/AcfFields/php/mod-slider.php:342
 msgid "Link Text"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:339
+#: source/php/AcfFields/php/mod-slider.php:361
 msgid "Read More"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:401
+#: source/php/AcfFields/php/mod-slider.php:369
+#: source/php/AcfFields/php/mod-slider.php:744
+msgid "Url"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-slider.php:423
 msgid "Describe the purpose of the link, or what visitors can expect to find when they click on it (not shown)."
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:450
+#: source/php/AcfFields/php/mod-slider.php:472
 #: source/php/AcfFields/php/mod-video.php:36
 msgid "Video: mp4"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:469
+#: source/php/AcfFields/php/mod-slider.php:491
 #: source/php/AcfFields/php/mod-video.php:87
 msgid "Placeholder Image"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:531
+#: source/php/AcfFields/php/mod-slider.php:553
 msgid "Text position"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:574
+#: source/php/AcfFields/php/mod-slider.php:596
 msgid "What color to use on this slide"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:585
-#: source/php/AcfFields/php/mod-slider.php:611
+#: source/php/AcfFields/php/mod-slider.php:607
+#: source/php/AcfFields/php/mod-slider.php:633
 msgid "Inherit theme"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:587
+#: source/php/AcfFields/php/mod-slider.php:609
 msgid "black"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:597
+#: source/php/AcfFields/php/mod-slider.php:619
 msgid "Background color text area"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:609
+#: source/php/AcfFields/php/mod-slider.php:631
 msgid "No background"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:612
+#: source/php/AcfFields/php/mod-slider.php:634
 msgid "Inherit theme, add transparency"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:645
+#: source/php/AcfFields/php/mod-slider.php:659
 msgid "Intern"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:646
+#: source/php/AcfFields/php/mod-slider.php:660
 msgid "Extern"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:718
+#: source/php/AcfFields/php/mod-slider.php:710
 msgid "Link text"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:737
+#: source/php/AcfFields/php/mod-slider.php:736
 #: source/php/Module/Posts/TemplateController/SegmentTemplate.php:26
 #: source/php/Module/Slider/Slider.php:115
 #: templates/module/modularity-mod-latest-news.php:61
@@ -10613,12 +10608,8 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-slider.php:756
+#: source/php/AcfFields/php/mod-slider.php:840
 msgid "Add slide"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-slider.php:789
-msgid "Number of slides per page"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-spacer.php:8
@@ -10664,6 +10655,14 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-subscribe.php:101
 msgid "Form ID"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:120
+msgid "List IDs"
+msgstr ""
+
+#: source/php/AcfFields/php/mod-subscribe.php:123
+msgid "Comma separated list of list IDs. One for each list you want to subscribe to."
 msgstr ""
 
 #: source/php/AcfFields/php/mod-table-block.php:8
@@ -11741,7 +11740,7 @@ msgstr ""
 msgid "Your settings rendered an empty result. Try other settings."
 msgstr ""
 
-#: source/php/BlockManager.php:482
+#: source/php/BlockManager.php:486
 msgid "Block settings"
 msgstr ""
 
@@ -11838,11 +11837,11 @@ msgstr ""
 msgid "No more items to load."
 msgstr ""
 
-#: source/php/Module/Curator/Curator.php:134
+#: source/php/Module/Curator/Curator.php:136
 msgid "An invalid embed code was provided."
 msgstr ""
 
-#: source/php/Module/Curator/Curator.php:136
+#: source/php/Module/Curator/Curator.php:138
 msgid "Could not get the feed at this moment, please try again later."
 msgstr ""
 
@@ -11876,13 +11875,13 @@ msgid "Outputs a gallery with images"
 msgstr ""
 
 #: source/php/Module/Gallery/Gallery.php:30
-#: source/php/Module/Posts/Posts.php:285
+#: source/php/Module/Posts/Posts.php:274
 #: source/php/Module/Slider/Slider.php:67
 msgid "Previous slide"
 msgstr ""
 
 #: source/php/Module/Gallery/Gallery.php:31
-#: source/php/Module/Posts/Posts.php:286
+#: source/php/Module/Posts/Posts.php:275
 #: source/php/Module/Slider/Slider.php:68
 msgid "Next slide"
 msgstr ""
@@ -12010,7 +12009,7 @@ msgstr ""
 msgid "Outputs selected posts in specified layout"
 msgstr ""
 
-#: source/php/Module/Posts/Posts.php:454
+#: source/php/Module/Posts/Posts.php:443
 msgid "Modularity expandable list column values"
 msgstr ""
 
@@ -12025,12 +12024,6 @@ msgstr ""
 #: source/php/Module/Posts/TemplateController/ListTemplate.php:76
 #: templates/module/modularity-mod-latest-list.php:61
 msgid "Show more"
-msgstr ""
-
-#: source/php/Module/Posts/views/horizontal.blade.php:96
-#: source/php/Module/Posts/views/expandable-list.blade.php:106
-#: source/php/Module/Posts/views/horizontal.blade.php:104
-msgid "Nothing to display…"
 msgstr ""
 
 #: source/php/Module/Rss/Rss.php:15
@@ -12107,46 +12100,50 @@ msgid "Email Subscribtions"
 msgstr ""
 
 #: source/php/Module/Subscribe/Subscribe.php:17
-msgid "Outputs a simpele form to subscribe to a email list."
-msgstr ""
-
-#: source/php/Module/Subscribe/Subscribe.php:37
-msgid "Your email adress"
+msgid "Outputs a simple form to subscribe to a email list."
 msgstr ""
 
 #: source/php/Module/Subscribe/Subscribe.php:38
-msgid "email@email.com"
+msgid "Your email adress"
 msgstr ""
 
 #: source/php/Module/Subscribe/Subscribe.php:39
+msgid "email@email.com"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:40
 msgid "Please enter a valid email address"
 msgstr ""
 
-#: source/php/Module/Subscribe/Subscribe.php:42
+#: source/php/Module/Subscribe/Subscribe.php:43
 msgid "Subscribe"
 msgstr ""
 
-#: source/php/Module/Subscribe/Subscribe.php:45
-msgid "Subscribed"
-msgstr ""
-
 #: source/php/Module/Subscribe/Subscribe.php:46
-msgid "You are now subscribed to this email list."
+msgid "Confirmation sent"
 msgstr ""
 
-#: source/php/Module/Subscribe/Subscribe.php:49
-msgid "Select a provider"
+#: source/php/Module/Subscribe/Subscribe.php:48
+msgid "You have received a confirmation e-mail. To confirm the subsription please click the confirmation link in the email."
 msgstr ""
 
 #: source/php/Module/Subscribe/Subscribe.php:50
-msgid "No provider for this form is selected. Please select a provider available form the list."
-msgstr ""
-
-#: source/php/Module/Subscribe/Subscribe.php:53
-msgid "Could not subscribe"
+msgid "Can't find the e-mail? Please check your e-mail spam folder."
 msgstr ""
 
 #: source/php/Module/Subscribe/Subscribe.php:54
+msgid "Select a provider"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:55
+msgid "No provider for this form is selected. Please select a provider available form the list."
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:58
+msgid "Could not subscribe"
+msgstr ""
+
+#: source/php/Module/Subscribe/Subscribe.php:59
 msgid "Sorry, we could not subscribe you to this list at the moment. Please try again later."
 msgstr ""
 
@@ -12547,4 +12544,8 @@ msgstr ""
 
 #: templates/widget/form.php:28
 msgid "Browse modules"
+msgstr ""
+
+#: source/php/Module/Posts/views/expandable-list.blade.php:108
+msgid "Nothing to display…"
 msgstr ""
