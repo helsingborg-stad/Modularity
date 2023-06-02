@@ -3,10 +3,9 @@
     'method' => 'POST',
     'action' => '#' . $uid,
     'attributeList' => [
-      'data-js-ungpd-id' => $formID 
-		],
-		'errorMessage' => $lang->incomplete->text,
-		'validateMessage' => $lang->submitted->text
+      'data-js-ungpd-id' => $formID,
+      'data-js-ungpd-list-ids' => $listIDs
+		]
 ])
   @group([
     'alignItems' => 'end',
@@ -30,7 +29,7 @@
     @button([
       'text' => $lang->submit->label,
       'color' => 'primary',
-      'type' => 'filled',
+      'type' => 'submit',
       'icon' => 'arrow_forward'
     ])
     @endbutton
@@ -48,53 +47,39 @@
 			'required' => true
   ])
   @endoption
+
 @endform
 
-<script>
-	const ungpdForms = [...document.querySelectorAll("[data-js-ungpd-id]")]; 
+<template id="{!!$formID!!}-success">
+	@notice([
+		'type' => 'success',
+			'message' => [
+			'title' => $lang->submitted->title,
+			'text' => $lang->submitted->text,
+			'size' => 'sm'
+		],
+		'icon' => [
+			'name' => 'check',
+			'size' => 'md',
+			'color' => 'white'
+		]
+	])
+	@endnotice
+</template>
 
-	ungpdForms.forEach(form => {
-		form.addEventListener("submit", (event) => {
-
-			//Prevent default
-			event.preventDefault();
-
-			//Gather data
-			let formId 	= form.getAttribute('data-js-ungpd-id');
-			let email 	= form.querySelector('input[name="email"]');
-			let consent = form.querySelector('input[name="user_consent"]');
-
-			//Dialogs
-			let dialog  = form.parentNode.querySelectorAll('data-js-error-message'); 
-
-			//Form validates, empty data, send request
-			if(formId && email.value && consent.checked) {
-				
-				let subscription = {
-					Contact: {Email: email.value},
-					ConsentText: consent.value
-				};
-
-				fetch("https://ui.ungpd.com/Api/Subscriptions/" + formId + "/ajax", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json"
-					},
-					body: JSON.stringify(subscription)
-				})
-				.then(response => {
-					if (!response.ok) {
-						alert('{{$lang->error->text}} (err: ' + response.status + ')');
-					}
-				})
-				.catch(error => {
-					alert('{{$lang->error->text}} (err: ' + error + ')');
-				});
-
-				consent.checked = false;
-				email.value 		= "";
-			}
-			
-		});
-	});
-</script>
+<template id="{!!$formID!!}-error">
+	@notice([
+		'type' => 'danger',
+			'message' => [
+			'title' => $lang->error->title,
+			'text' => $lang->error->text . '<br><span class="message"></span>',
+			'size' => 'sm'
+		],
+		'icon' => [
+			'name' => 'warning',
+			'size' => 'md',
+			'color' => 'white'
+		]
+	])
+	@endnotice
+</template>

@@ -109,6 +109,25 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": ""
+                },
+                {
+                    "key": "field_641c52955b8e2",
+                    "label": "List IDs",
+                    "name": "list_ids",
+                    "type": "text",
+                    "instructions": "Comma separated list of list IDs. One for each list you want to subscribe to.",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
                 }
             ]
         }
@@ -144,4 +163,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
