@@ -14,7 +14,7 @@ class Subscribe extends \Modularity\Module
     {
         $this->nameSingular = __('Email Subscribe', 'modularity');
         $this->namePlural = __('Email Subscribtions', 'modularity');
-        $this->description = __('Outputs a simpele form to subscribe to a email list.', 'modularity');
+        $this->description = __('Outputs a simple form to subscribe to a email list.', 'modularity');
         $this->enqueue_scripts();
     }
 
