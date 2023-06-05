@@ -9,6 +9,9 @@ import Widget from './helpers/widget';
 
 import Modal from './prompt/modal';
 
+import { ModulesRestAPI, ModulesRestAPIEndpoints } from './helpers/ModulesRestAPI';
+import { ModuleRefresher, ensureWPApiSettings } from './helpers/ModuleRefresher';
+
 if (!parent.Modularity) {
 var Modularity = parent.Modularity || {};
 Modularity.Editor = Modularity.Editor || {};
@@ -92,3 +95,14 @@ jQuery(document).ready(function ($) {
 });
 
 }
+
+(function () {
+    ensureWPApiSettings();
+    
+    const {root} = window.wpApiSettings;
+    const fetch = window.fetch.bind(window);
+    const endpoints = ModulesRestAPIEndpoints(root);
+    const restAPI = new ModulesRestAPI(fetch, endpoints);
+
+    new ModuleRefresher(restAPI).refreshModules();
+})();
