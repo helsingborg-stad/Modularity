@@ -6,14 +6,16 @@ export class ModulesRestAPI {
 
     fetcher = {};
     endpoints = {};
+    nonce = '';
 
-    constructor(fetcher, endpoints) {
+    constructor(fetcher, endpoints, nonce) {
         this.fetcher = fetcher;
         this.endpoints = endpoints;
+        this.nonce = nonce;
     }
 
     async getModule(moduleID) {
-        const url = `${this.endpoints.getModule}/${moduleID}`;
+        const url = `${this.endpoints.getModule}/${moduleID}?_wpnonce=${this.nonce}`;
         const response = await this.fetcher(url);
 
         if (!response.ok) {

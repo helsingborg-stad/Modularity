@@ -22,7 +22,17 @@ class Modules extends WP_REST_Controller
                 array(
                     'methods' => \WP_REST_Server::READABLE,
                     'callback' => array($this, 'get_item'),
-                    'premission_callback' => array($this, 'get_item_permissions_check')
+                    'premission_callback' => array($this, 'get_item_permissions_check'),
+                    'args' => [
+                        'id' => [
+                            'description' => __('Unique identifier for the module.'),
+                            'type' => 'integer',
+                        ],
+                        '_wpnonce' => [
+                            'description' => __('Security nonce.'),
+                            'type' => 'string',
+                        ],
+                    ],
                 )
             ));
         });
@@ -31,7 +41,12 @@ class Modules extends WP_REST_Controller
     public function get_item($request)
     {
         $moduleId = $request->get_param('id');
+        $nonce = $request->get_param('_wpnonce');
         $post = get_post($moduleId);
+
+        if (!wp_verify_nonce($request->get_param('_wpnonce'), 'wp_rest')) {
+            return new WP_Error('rest_forbidden', __('Invalid security nonce.'), ['status' => 403]);
+        }
 
         if ($this->itemExists($post)) {
             return $this->getItemNotFoundError();
@@ -41,10 +56,13 @@ class Modules extends WP_REST_Controller
         $module = new $class($post);
         $display = new \Modularity\Display($module);
 
+
+
         return $display->getModuleMarkup($module, []);
     }
 
-    private function itemExists($post) {
+    private function itemExists($post)
+    {
         return $post === null || !str_starts_with($post->post_type, \Modularity\ModuleManager::MODULE_PREFIX) || !isset(\Modularity\ModuleManager::$classes[$post->post_type]);
     }
 
