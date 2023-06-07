@@ -7,7 +7,7 @@ on:
     branches: [ 3.0/develop, master ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -27,4 +27,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Run tests
-      run: npm test
+      run: npm test -- --coverage
+    - name: Upload coverage report
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage
+        path: coverage/lcov-report
