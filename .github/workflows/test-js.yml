@@ -33,3 +33,9 @@ jobs:
       with:
         name: coverage
         path: coverage/lcov-report
+    - name: Post coverage report as comment
+      uses: unsplash/comment-on-pr@v1
+      with:
+        message: |
+          ## Code coverage report
+          ![Coverage report](./coverage/lcov-report/index.html)
