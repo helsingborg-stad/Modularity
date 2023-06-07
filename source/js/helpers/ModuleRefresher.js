@@ -7,7 +7,7 @@ import { Module } from './Module.js';
  */
 export function ensureWPApiSettings() {
     const { wpApiSettings } = window;
-    if (!wpApiSettings || !wpApiSettings.root) {
+    if (!wpApiSettings?.root) {
         throw new Error('wpApiSettings or wpApiSettings.root is not present on the window object.');
     }
 }

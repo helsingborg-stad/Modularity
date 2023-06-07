@@ -8,7 +8,7 @@ use WP_REST_Controller;
 class Modules extends WP_REST_Controller
 {
     protected $namespace = \Modularity\Api\RestApiNamespace::V1;
-    protected $rest_base = "modules";
+    protected $restBase = "modules";
 
     public function __construct()
     {
@@ -18,7 +18,7 @@ class Modules extends WP_REST_Controller
     public function register_routes()
     {
         add_action('rest_api_init', function () {
-            register_rest_route($this->namespace, '/' . $this->rest_base . '/(?P<id>[\d]+)', array(
+            register_rest_route($this->namespace, '/' . $this->restBase . '/(?P<id>[\d]+)', array(
                 array(
                     'methods' => \WP_REST_Server::READABLE,
                     'callback' => array($this, 'get_item'),
@@ -33,15 +33,7 @@ class Modules extends WP_REST_Controller
         $moduleId = $request->get_param('id');
         $post = get_post($moduleId);
 
-        if ($post === null) {
-            return $this->getItemNotFoundError();
-        }
-
-        if (!str_starts_with($post->post_type, \Modularity\ModuleManager::MODULE_PREFIX)) {
-            return $this->getItemNotFoundError();
-        }
-
-        if (!isset(\Modularity\ModuleManager::$classes[$post->post_type])) {
+        if ($this->itemExists($post)) {
             return $this->getItemNotFoundError();
         }
 
@@ -50,6 +42,10 @@ class Modules extends WP_REST_Controller
         $display = new \Modularity\Display($module);
 
         return $display->getModuleMarkup($module, []);
+    }
+
+    private function itemExists($post) {
+        return $post === null || !str_starts_with($post->post_type, \Modularity\ModuleManager::MODULE_PREFIX) || !isset(\Modularity\ModuleManager::$classes[$post->post_type]);
     }
 
     private function getItemNotFoundError()

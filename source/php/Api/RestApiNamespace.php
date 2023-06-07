@@ -2,6 +2,7 @@
 
 namespace Modularity\Api;
 
-abstract class RestApiNamespace {
+abstract class RestApiNamespace
+{
     const V1 = 'modularity/v1';
 }
