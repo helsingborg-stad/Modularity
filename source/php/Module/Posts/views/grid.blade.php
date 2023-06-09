@@ -19,9 +19,8 @@
                     'content' => $post->post_content,
                     'meta' => $display_reading_time ? $post->reading_time : false,
                     'tags' => $post->tags,
-                    'date' => $post->showDate
-                        ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
-                        : false,
+                    'date' => $post->showDate ? $post->post_date : false,
+                    'dateBadge' => $post->dateBadge,
                     'containerAware' => true,
                     'hasAction' => true,
                     'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
@@ -50,9 +49,8 @@
                     'ratio' => $ratio,
                     'meta' => $post->tags ? $post->tags : false,
                     'secondaryMeta' => $display_reading_time ? $post->reading_time : false,
-                    'date' => $post->showDate
-                        ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
-                        : false,
+                    'date' => $post->showDate ? $post->post_date : false,
+                    'dateBadge' => $post->dateBadge,
                     'filled' => true,
                     'image' => $post->showImage
                         ? [

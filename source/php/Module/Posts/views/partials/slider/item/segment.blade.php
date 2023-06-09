@@ -5,10 +5,8 @@
     'meta' => $display_reading_time ? $post->reading_time : false,
     'tags' => $post->tags,
     'image' => $post->thumbnail[0],
-    'date' => $post->showDate
-        ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
-        : false,
-    'content' => $post->post_content,
+    'date' => $post->showDate ? $post->post_date : false,
+    'dateBadge' => $post->dateBadge,
     'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => true,

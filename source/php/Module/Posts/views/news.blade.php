@@ -16,7 +16,8 @@
                 'context' => 'module.posts.index',
                 'containerAware' => true,
                 'hasAction' => true,
-                'date' => '2022-01-14',
+                'date' => $post->showDate ? $post->post_date : false,
+                'dateBadge' => $post->dateBadge,
                 'postId' => $post->ID,
                 'postType' => $post->post_type ?? '',
                 'icon' => $icon

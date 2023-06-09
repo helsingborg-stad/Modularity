@@ -99,6 +99,11 @@ class AbstractController
     public function setPostFlags(&$post)
     {
         //Booleans for hiding/showing stuff
+        $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
+        $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
+        $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
+        $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+
         $post->purpose = false;
         if (!empty($post->post_type)) {
             $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
@@ -109,19 +114,15 @@ class AbstractController
             $eventOccasions = get_post_meta($post->ID, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
                 $post->post_date = $eventOccasions[0]['start_date'];
+                $post->dateBadge = true;
             } else {
                 $post->post_date = false;
             }
         } else {
-            $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
-
-            if ($post->showDate) {
-                $post->postDate = $this->getDate($post, $this->data['posts_date_source']);
+            if ($post->showDate && empty($post->dateBadge)) {
+                $post->post_date = date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date));
             }
         }
-        $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
-        $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
-        $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
     }
 
     /**
