@@ -9,7 +9,7 @@
     'heading' => ($post->showTitle ? $post->post_title : false),
     'content' => ($post->showExcerpt ? $post->post_content : false),
     'classList' => [$classes, 'u-color__text--info', 'c-card--focus-inset'],
-    'date' => $post->showDate ? $post->post_date : false,
+    'date' => $post->post_date,
     'dateBadge' => $post->dateBadge,
     'containerAware' => false,
     'hasAction' => true,

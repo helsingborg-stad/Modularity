@@ -123,6 +123,10 @@ class AbstractController
                 $post->post_date = date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date));
             }
         }
+
+        if (empty($post->showDate)) {
+            $post->post_date = false;
+        }
     }
 
     /**

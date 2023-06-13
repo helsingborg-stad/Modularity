@@ -14,7 +14,7 @@
                 'meta' => $display_reading_time ? $post->reading_time : false,
                 'tags' => $post->tags,
                 'image' => $post->thumbnail[0],
-                'date' => $post->showDate ? $post->post_date : false,
+                'date' => $post->post_date,
                 'dateBadge' => $post->dateBadge,
                 'content' => $post->post_content,
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],

@@ -4,9 +4,7 @@
     'link' => $post->link,
     'meta' => $post->tags,
     'secondaryMeta' => $display_reading_time ? $post->reading_time : false,
-    'date' => $post->showDate
-        ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
-        : false,
+    'date' => $post->post_date,
     'ratio' => $ratio,
     'image' => $post->showImage
         ? [

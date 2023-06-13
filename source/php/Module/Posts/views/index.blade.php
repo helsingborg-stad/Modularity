@@ -16,7 +16,7 @@
                     'ratio' => '16:9',
                     'meta' => $post->tags,
                     'secondary_meta' => $display_reading_time ? $post->reading_time : false,
-                    'date' => $post->showDate ? $post->post_date : false,
+                    'date' => $post->post_date,
                     'dateBadge' => $post->dateBadge,
                     'filled' => true,
                     'image' =>
@@ -55,7 +55,7 @@
                     'content' => $post->showExcerpt ? $post->post_content : false,
                     'tags' => $post->tags,
                     'meta' => $display_reading_time ? $post->reading_time : false,
-                    'date' => $post->showDate ? $post->post_date : false,
+                    'date' => $post->post_date,
                     'dateBadge' => $post->dateBadge,
                     'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                     'containerAware' => true,

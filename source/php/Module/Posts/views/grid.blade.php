@@ -19,7 +19,7 @@
                     'content' => $post->post_content,
                     'meta' => $display_reading_time ? $post->reading_time : false,
                     'tags' => $post->tags,
-                    'date' => $post->showDate ? $post->post_date : false,
+                    'date' => $post->post_date,
                     'dateBadge' => $post->dateBadge,
                     'containerAware' => true,
                     'hasAction' => true,
@@ -49,7 +49,7 @@
                     'ratio' => $ratio,
                     'meta' => $post->tags ? $post->tags : false,
                     'secondaryMeta' => $display_reading_time ? $post->reading_time : false,
-                    'date' => $post->showDate ? $post->post_date : false,
+                    'date' => $post->post_date,
                     'dateBadge' => $post->dateBadge,
                     'filled' => true,
                     'image' => $post->showImage
