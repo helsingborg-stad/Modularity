@@ -99,10 +99,10 @@ class AbstractController
     public function setPostFlags(&$post)
     {
         //Booleans for hiding/showing stuff
-        $post->showExcerpt  = (bool) in_array('excerpt', $this->data['posts_fields']);
-        $post->showTitle    = (bool) in_array('title', $this->data['posts_fields']);
-        $post->showImage    = (bool) in_array('image', $this->data['posts_fields']);
-        $post->showDate     = (bool) in_array('date', $this->data['posts_fields']);
+        $post->showExcerpt  = in_array('excerpt', $this->data['posts_fields']);
+        $post->showTitle    = in_array('title', $this->data['posts_fields']);
+        $post->showImage    = in_array('image', $this->data['posts_fields']);
+        $post->showDate     = in_array('date', $this->data['posts_fields']);
 
         $post->purpose = false;
         if (!empty($post->post_type)) {
