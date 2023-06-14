@@ -14,9 +14,8 @@
                 'meta' => $display_reading_time ? $post->reading_time : false,
                 'tags' => $post->tags,
                 'image' => $post->thumbnail[0],
-                'date' => $post->showDate
-                    ? date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date))
-                    : false,
+                'date' => $post->post_date,
+                'dateBadge' => $post->dateBadge,
                 'content' => $post->post_content,
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],
                 'containerAware' => true,
