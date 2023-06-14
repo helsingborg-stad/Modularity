@@ -109,6 +109,12 @@ class AbstractController
             $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
         }
 
+        if ('place' == $post->purpose) {
+            $location = get_field('location', $post->ID);
+            $post->location = $location;
+            $post->location['pin'] = \Municipio\Helper\Location::createMapMarker($post);
+        }
+
         if ('event' == $post->purpose) {
             $post->showDate = true;
             $eventOccasions = get_post_meta($post->ID, 'occasions_complete', true);
