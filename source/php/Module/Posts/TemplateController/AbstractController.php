@@ -103,6 +103,7 @@ class AbstractController
         $post->showTitle    = in_array('title', $this->data['posts_fields']);
         $post->showImage    = in_array('image', $this->data['posts_fields']);
         $post->showDate     = in_array('date', $this->data['posts_fields']);
+        $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
         $post->purpose = false;
         if (!empty($post->post_type)) {
@@ -112,7 +113,7 @@ class AbstractController
         if ('place' == $post->purpose) {
             $location = get_field('location', $post->ID);
             $post->location = $location;
-            $post->location['pin'] = \Municipio\Helper\Location::createMapMarker($post);
+            $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));
         }
 
         if ('event' == $post->purpose) {
