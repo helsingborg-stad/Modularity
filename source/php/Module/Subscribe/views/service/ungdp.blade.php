@@ -62,7 +62,10 @@
 			'name' => 'check',
 			'size' => 'md',
 			'color' => 'white'
-		]
+    ],
+    'classList' => [
+      'u-margin__top--2',
+    ],
 	])
 	@endnotice
 </template>
@@ -79,7 +82,11 @@
 			'name' => 'warning',
 			'size' => 'md',
 			'color' => 'white'
-		]
+    ],
+    'classList' => [
+      'u-margin__top--2',
+    ],
+
 	])
 	@endnotice
 </template>
