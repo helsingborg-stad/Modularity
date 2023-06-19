@@ -110,8 +110,8 @@ class AbstractController
             $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
         }
 
-        if ('place' == $post->purpose) {
-            $location = get_field('location', $post->ID);
+        $location = get_field('location', $post->ID) ?? [];
+        if (!empty($location)) {
             $post->location = $location;
             $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));
         }
