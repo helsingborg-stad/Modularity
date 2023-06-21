@@ -197,6 +197,10 @@ class Module
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
         }
+
+        add_action('save_post', function($postID, $post, $update) {
+            wp_cache_delete('modularity_has_modules_' . $postId);
+        }, 10, 3); 
     }
 
     public function init()
@@ -316,7 +320,7 @@ class Module
             $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
 
             //Set cache
-            wp_cache_set('modularity_has_modules_' . $postId, $modules, '', HOUR_IN_SECONDS);
+            wp_cache_set('modularity_has_modules_' . $postId, $modules);
         }
 
         //Look for
