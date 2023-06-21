@@ -306,12 +306,18 @@ class Module
         }
 
         //Collect all modules active
-        $modules = \Modularity\Editor::getPostModules($postId);
-        $modules = array_merge($modules, $this->getShortcodeModules($postId));
-        $modules = array_merge($modules, $this->getBlocks($postId));
 
-        //Sort out active module post types
-        $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
+        if(!$modules = wp_cache_get('modularity_has_modules_' . $postId)) {
+            $modules = \Modularity\Editor::getPostModules($postId);
+            $modules = array_merge($modules, $this->getShortcodeModules($postId));
+            $modules = array_merge($modules, $this->getBlocks($postId));
+
+            //Sort out active module post types
+            $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
+
+            //Set cache
+            wp_cache_set('modularity_has_modules_' . $postId, $modules, '', HOUR_IN_SECONDS);
+        }
 
         //Look for
         $moduleSlug = $this->moduleSlug;
