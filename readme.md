@@ -432,6 +432,32 @@ add_filter("Modularity/Display/mod-posts/viewData", function($data) {
     });
 ```
 
+## Module Attributes API
+Some module features are available by setting certain attributes on the module's outmost element.
+
+### `data-module-refresh-interval`
+Creates an interval on which the module is refreshed via XHR by calling the REST API. This attribute also requires that the `data-module-id` attribute is set on the same element.
+
+The value of the attribute should be the number of seconds on which to run the refresh interval.
+
+Example:
+```html
+<div data-module-id="123" data-module-refresh-interval="60">
+    This content will get refreshed every 60 seconds.
+</div>
+```
+
+## Rest API
+The WordPress REST API is extended with the following endpoints.
+
+### `modularity/v1/modules/{id}`
+This endpoint returns the markup for a specific module.
+
+* Method: `GET`
+* Params:
+    * `id`: The ID of the module to retrieve.
+* Response: The html markup of the module.
+
 ## Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.
 
