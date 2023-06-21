@@ -8,7 +8,7 @@
  */
 export class Module {
 
-    static selector = '[data-module-id]';
+    static selector = '[data-module-refresh-interval]';
 
     constructor(id, element, restAPI) {
         this.id = id;
