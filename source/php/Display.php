@@ -477,21 +477,60 @@ class Display
         $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID . '-' . uniqid(), implode(' ', $classes));
         
         // Append module edit to before markup
-        $moduleEdit = '';
-        if (!(isset($args['edit_module']) && $args['edit_module'] === false) &&
-            current_user_can('edit_module', $module->ID)) {
-            $moduleEdit = '<div class="modularity-edit-module"><a href="' . admin_url('post.php?post=' . $module->ID .
-                    '&action=edit&is_thickbox=true&is_inline=true') . '">' . __('Edit module', 'modularity') . ': ' .
-                    $module->data['post_type_name'] .  '</a></div>';
+        if ($this->displayEditModule($module, $args)) {
+
+            $linkParameters = [
+                'post' => $module->ID ,
+                'action' => 'edit',
+                'is_thickbox' => 'true',
+                'is_inline' => 'true'
+            ]; 
+
+            $beforeModule .= '
+                <div class="modularity-edit-module">
+                    <a href="' . admin_url('post.php?' . http_build_query($linkParameters)) . '">
+                        ' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '
+                    </a>
+                </div>
+            ';
         }
 
-        $beforeModule .= $moduleEdit;
-
         // Apply filter for before/after markup
-        $beforeModule = apply_filters('Modularity/Display/BeforeModule', $beforeModule, $args, $module->post_type, $module->ID);
-        $afterModule = apply_filters('Modularity/Display/AfterModule', $afterModule, $args, $module->post_type, $module->ID);
+        $beforeModule = apply_filters(
+            'Modularity/Display/BeforeModule', 
+            $beforeModule, $args, $module->post_type, $module->ID
+        );
+
+        $afterModule = apply_filters(
+            'Modularity/Display/AfterModule', 
+            $afterModule, $args, $module->post_type, $module->ID
+        );
 
         return $beforeModule . $moduleMarkup . $afterModule;
+    }
+
+    /**
+     * Determine if the edit module button should be displayed.
+     * 
+     * @param  class  $module   Module class
+     * @param  array    $args   Module argument array
+     * @return bool             If the button should be displayed or not         
+     */
+    private function displayEditModule($module, $args) {
+        
+        if(isset($args['edit_module']) && $args['edit_module'] !== false) {
+            return false;
+        }
+        
+        if(wp_doing_ajax()) {
+            return false;
+        }
+
+        if(!current_user_can('edit_module', $module->ID)) {
+            return false;
+        }
+
+        return true; 
     }
 
     /**
