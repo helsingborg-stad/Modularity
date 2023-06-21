@@ -1,15 +1,15 @@
-@if (!$hideTitle && !empty($postTitle))
-  @typography([
-    'element' => 'h2', 
-    'variant' => 'h2', 
-    'classList' => ['module-title']
-  ])
-    {!! $postTitle !!}
-  @endtypography
-@endif
-
 @if($type) 
   @paper(['padding' => '3'])
+
+    @if (!$hideTitle && !empty($postTitle))
+      @typography([
+        'element' => 'h2', 
+        'variant' => 'h2', 
+        'classList' => ['module-title']
+      ])
+        {!! $postTitle !!}
+      @endtypography
+    @endif
 
     @if($content)
       @typography([
