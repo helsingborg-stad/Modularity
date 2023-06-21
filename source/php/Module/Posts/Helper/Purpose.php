@@ -6,16 +6,12 @@ class Purpose
 {
     public static function getPurpose(string $type = '')
     {
-        if (empty($type)) {
-            return false;
-        }
-        $purpose = false;
         if (class_exists('\Municipio\Helper\Purpose')) {
             $purpose = \Municipio\Helper\Purpose::getPurpose($type);
-            if (!empty($purpose)) {
-                return $purpose[0]->key;
+            if ($purpose = \Municipio\Helper\Purpose::getPurpose($type)) {
+                return $purpose->getKey();
             }
         }
-        return $purpose;
+        return false;
     }
 }
