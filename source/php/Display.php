@@ -526,6 +526,10 @@ class Display
             return false;
         }
 
+        if(defined('REST_REQUEST')) {
+            return false;
+        }
+
         if(!current_user_can('edit_module', $module->ID)) {
             return false;
         }
