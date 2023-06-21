@@ -199,8 +199,8 @@ class Module
         }
 
         add_action('save_post', function($postID, $post, $update) {
-            wp_cache_delete('modularity_has_modules_' . $postId);
-        }, 10, 3); 
+            wp_cache_delete('modularity_has_modules_' . $postID);
+        }, 1, 3);
     }
 
     public function init()
