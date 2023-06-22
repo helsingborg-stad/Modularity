@@ -32,8 +32,8 @@ function initializeUngappedForms() {
             let listIds = form.getAttribute('data-js-ungpd-list-ids');
             let email = form.querySelector('input[name="email"]');
             let consent = form.querySelector('input[name="user_consent"]');
-            const successTemplate = document.querySelector(`template#${formId}-success`);
-            const errorTemplate = document.querySelector(`template#${formId}-error`);
+            const successTemplate = document.querySelector(`template[id="${formId}-success"]`);
+            const errorTemplate = document.querySelector(`template[id="${formId}-error"]`);
             const lists = listIds.split(",").map((listId) => listId.trim());
 
             //Form validates, empty data, send request
