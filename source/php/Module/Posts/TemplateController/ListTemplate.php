@@ -45,6 +45,10 @@ class ListTemplate
     {
         $list = [];
 
+        if(!is_array($postData)) {
+            $postData = [$postData];
+        }
+
         foreach ($posts as $post) {
             if (!empty($post->post_type) && $post->post_type == 'attachment') {
                 $href = wp_get_attachment_url($post->ID);
