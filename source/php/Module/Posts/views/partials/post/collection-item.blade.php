@@ -5,6 +5,8 @@
     'before' => $display_reading_time ? $post->reading_time : false,
     'containerAware' => true,
     'bordered' => true,
+    'attributeList' => array_merge($post->attributeList, [
+    ]),
 ])
     @if (!empty($post->floating['floating']))
         @slot('floating')

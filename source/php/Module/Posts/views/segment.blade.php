@@ -22,6 +22,7 @@
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
                 'classList' => $post->classList,
                 'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                'attributeList' => array_merge($post->attributeList, []),
             ])
                 @slot('floating')
                     @if (!empty($post->floating['floating']))

@@ -19,6 +19,7 @@
     'postId' => $post->ID,
     'postType' => $post->post_type ?? '',
     'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+    'attributeList' => array_merge($post->attributeList, []),
 ])
     @slot('floating')
         @if (!empty($post->floating['floating']))

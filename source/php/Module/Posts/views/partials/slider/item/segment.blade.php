@@ -12,8 +12,9 @@
     'reverseColumns' => true,
     'classList' => ['c-segment--slider'],
     'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
-    'context' => ['module.posts.segment']
-])
+    'context' => ['module.posts.segment'],
+    'attributeList' => array_merge($post->attributeList, []),
+    ])
     @slot('floating')
         @if (!empty($post->floating['floating']))
             @icon($post->floating['floating'])

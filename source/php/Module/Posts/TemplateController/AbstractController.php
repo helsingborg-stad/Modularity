@@ -103,10 +103,17 @@ class AbstractController
         $post->showTitle    = in_array('title', $this->data['posts_fields']);
         $post->showImage    = in_array('image', $this->data['posts_fields']);
         $post->showDate     = in_array('date', $this->data['posts_fields']);
+        $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
         $post->purpose = false;
         if (!empty($post->post_type)) {
             $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
+        }
+
+        $location = get_field('location', $post->ID) ?? [];
+        if (!empty($location)) {
+            $post->location = $location;
+            $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));
         }
 
         if ('event' == $post->purpose) {
