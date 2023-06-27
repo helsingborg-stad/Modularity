@@ -100,12 +100,11 @@ class Cache
         if (!empty($return_data)) {
             $cacheArray = (array) wp_cache_get($this->postId, $this->keyGroup);
 
-            $cacheArray[$this->hash] = $return_data.$this->fragmentTag();
+            $cacheArray[$this->hash] = $return_data . $this->fragmentTag();
 
             wp_cache_delete($this->postId, $this->keyGroup);
 
             wp_cache_add($this->postId, array_filter($cacheArray), $this->keyGroup, $this->ttl);
-
         }
 
         echo $return_data;
@@ -121,7 +120,6 @@ class Cache
         if (!$this->isActive()) {
             return false;
         }
-
         return !empty($this->getCache(false));
     }
 
@@ -132,7 +130,6 @@ class Cache
      */
     private function getCache($print = true)
     {
-
         $cacheArray = wp_cache_get($this->postId, $this->keyGroup);
 
         if (!is_array($cacheArray) || !array_key_exists($this->hash, $cacheArray)) {
@@ -161,10 +158,9 @@ class Cache
      */
     private function isActive()
     {
-        if (!defined('WP_USE_MEMCACHED') || defined('WP_USE_MEMCACHED') && !WP_USE_MEMCACHED) {
+        if (defined('MODULARITY_DISABLE_FRAGMENT_CACHE') && MODULARITY_DISABLE_FRAGMENT_CACHE === true) {
             return false;
         }
-
         return true;
     }
 

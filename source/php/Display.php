@@ -394,8 +394,14 @@ class Display
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
         }
-
-        $cache = new \Modularity\Helper\Cache($module->ID, array($module, $args['id']), $moduleSettings['cache_ttl']);
+        
+        $cache = new \Modularity\Helper\Cache(
+            $module->ID, [
+                $module, 
+                $args['id']
+            ], 
+            $moduleSettings['cache_ttl']
+        );
 
         if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
             $moduleMarkup = $this->getModuleMarkup($module, $args);
