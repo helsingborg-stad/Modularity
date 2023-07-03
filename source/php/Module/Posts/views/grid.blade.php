@@ -44,9 +44,6 @@
                 @endslot
                 @endcard
             @else
-            @php
-                echo '<pre>' . print_r( $post->readingTime, true ) . '</pre>';
-            @endphp
                 @block([
                     'heading' => $post->showTitle ? $post->postTitle : false,
                     'content' => $post->showExcerpt ? $post->excerptShort : false,
