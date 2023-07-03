@@ -58,11 +58,6 @@ class AbstractController
         $post->showDate     = in_array('date', $this->data['posts_fields']);
         $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
-        $post->purpose = false;
-        if (!empty($post->postType)) {
-            $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->postType);
-        }
-
         $location = get_field('location', $post->id) ?? [];
         if (!empty($location)) {
             $post->location = $location;
@@ -71,21 +66,17 @@ class AbstractController
 
         if ('event' == $post->purpose) {
             $post->showDate = true;
-            $eventOccasions = get_post_meta($post->ID, 'occasions_complete', true);
+            $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
-                $post->post_date = $eventOccasions[0]['start_date'];
+                $post->postDate = $eventOccasions[0]['start_date'];
                 $post->dateBadge = true;
             } else {
-                $post->post_date = false;
+                $post->postDate = false;
             }
-        } else {
-            if ($post->showDate && empty($post->dateBadge)) {
-                $post->post_date = date_i18n(\Modularity\Helper\Date::getDateFormat('date-time'), strtotime($post->post_date));
-            }
-        }
+        } 
 
         if (empty($post->showDate)) {
-            $post->post_date = false;
+            $post->postDate = false;
         }
     }
 }
