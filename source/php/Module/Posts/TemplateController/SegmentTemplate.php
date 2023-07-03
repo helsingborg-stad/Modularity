@@ -28,13 +28,4 @@ class SegmentTemplate extends AbstractController
 
         $this->preparePosts();
     }
-
-
-    public function preparePosts()
-    {
-        foreach ($this->data['posts'] as $post) {  
-            $this->setPostFlags($post);
-            echo '<pre>' . print_r( $post, true ) . '</pre>';
-        }
-    }
 }
