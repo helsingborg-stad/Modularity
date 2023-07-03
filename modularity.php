@@ -86,6 +86,7 @@ add_action('plugins_loaded', function () {
         'mod-divider'               => 'group_62816d604ae46',
         'mod-all'                   => 'group_636e424039120',
         'mod-subscribe'             => 'group_641c51b765f4b',
+        'mod-modal'                 => 'group_64a29154aa972',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
