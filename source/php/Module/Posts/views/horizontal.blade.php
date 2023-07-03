@@ -1,4 +1,4 @@
-@include('partials.post-filters')
+{{-- @include('partials.post-filters')
 
 <div class="{{ $classes }} posts-{{ $posts_display_as }}">
     @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
@@ -91,3 +91,4 @@
         @endif
     @endif
 </div>
+ --}}
