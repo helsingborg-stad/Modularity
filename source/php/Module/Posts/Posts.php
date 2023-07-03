@@ -691,7 +691,6 @@ class Posts extends \Modularity\Module
                 }
 
                 $_post = \Municipio\Helper\Post::preparePostObject($_post);
-                // echo '<pre>' . print_r( $_post, true ) . '</pre>';
 
                 if (class_exists('\Municipio\Helper\ReadingTime')) {
                     $_post->readingTime = \Municipio\Helper\ReadingTime::getReadingTime($_post->postContent, 0, true);
