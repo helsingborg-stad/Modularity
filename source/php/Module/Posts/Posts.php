@@ -691,7 +691,8 @@ class Posts extends \Modularity\Module
         $posts = (array) get_posts(self::getPostArgs($module->ID));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
-                $_post = \Municipio\Helper\Post::preparePostObject($_post);
+                $data['taxonomiesToDisplay'] = $fields->taxonomy_display ?? [];
+                $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
             }
         }
 
