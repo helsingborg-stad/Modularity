@@ -16,7 +16,6 @@ class Modal extends \Modularity\Module
         $this->description = __("Outputs a button and the content of a selected post into a modal, accessible by clicking on the button.", 'modularity');
 
         add_action('init', [$this, 'registerPostType'], 99);
-        add_action('wp_head', [$this, 'addNoIndexNoFollow']);
     }
 
     public function data(): array
@@ -86,12 +85,6 @@ class Modal extends \Modularity\Module
         register_post_type('mod-modal-content', $args);
     }
 
-    public function addNoIndexNoFollow()
-    {
-        if (is_singular('mod-modal-content')) {
-            echo '<meta name="robots" content="noindex, nofollow">';
-        }
-    }
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization
