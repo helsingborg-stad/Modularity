@@ -82,7 +82,7 @@ class Modal extends \Modularity\Module
                 'search_items' => __('Search For Modal Content', 'modularity'),
             ],
             ];
-        register_post_type('mod-modal-content', $args);
+        register_post_type('modal-content', $args);
     }
 
     /**
