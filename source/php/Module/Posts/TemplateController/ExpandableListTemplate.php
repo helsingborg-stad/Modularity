@@ -49,7 +49,7 @@ class ExpandableListTemplate
 
         foreach ($this->data['posts'] as $colIndex => $post) {
             if ($this->data['posts_data_source'] === 'input') {
-                if ($post->column_values !== false && count($post->column_values) > 0) {
+                if ($post->column_values !== false && is_array($post->column_values) && count($post->column_values) > 0) {
                     foreach ($post->column_values as $key => $columnValue) {
                         $columnValues[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value ?? '';
                     }
@@ -74,7 +74,7 @@ class ExpandableListTemplate
 
         $accordion = [];
 
-        if (count($posts) > 0) {
+        if (is_array($posts) && count($posts) > 0) {
             foreach ($posts as $index => $post) {
                 if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($data)) {
                     foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
