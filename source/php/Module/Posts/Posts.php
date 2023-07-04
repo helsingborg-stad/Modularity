@@ -686,17 +686,7 @@ class Posts extends \Modularity\Module
         $posts = (array) get_posts(self::getPostArgs($module->ID));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
-                if (empty($_post->permalink)) {
-                    $_post->permalink = get_permalink($_post->ID);
-                }
-
                 $_post = \Municipio\Helper\Post::preparePostObject($_post);
-
-                if (class_exists('\Municipio\Helper\ReadingTime')) {
-                    $_post->readingTime = \Municipio\Helper\ReadingTime::getReadingTime($_post->postContent, 0, true);
-                } else {
-                    $_post->readingTime = false;
-                }
             }
         }
 
