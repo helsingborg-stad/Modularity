@@ -54,14 +54,6 @@ class SliderTemplate extends AbstractController
 
     public function prepare($fields)
     {
-        $postNum = 0;
-        foreach ($this->data['posts'] as $post) {
-            $postNum++;
-
-            // Get link for card, or tags
-            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-
-            $this->setPostFlags($post);
-        }
+        $this->setPostFlags($post);
     }
 }
