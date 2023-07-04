@@ -20,23 +20,6 @@ class AbstractController
         return false;
     }
 
-    protected function getImageDimensions($postColumns, $default = [400, 300])
-    {
-        /* Image size */
-        $imageDimensions = $default;
-
-        switch ($postColumns) {
-            case "o-grid-12@md":    //1-col
-                $imageDimensions = [1200, 900];
-                break;
-            case "o-grid-6@md":    //2-col
-                $imageDimensions = [900, 675];
-                break;
-        }
-
-        return $imageDimensions;
-    }
-
     public function preparePosts()
     {
         foreach ($this->data['posts'] as $post) {
