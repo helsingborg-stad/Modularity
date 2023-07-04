@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Modal;
 
+use Municipio\Helper\Post;
+
 class Modal extends \Modularity\Module
 {
     public $slug = 'modal';
@@ -13,22 +15,38 @@ class Modal extends \Modularity\Module
         $this->namePlural = __("Modals", 'modularity');
         $this->description = __("Outputs a button and the content of a selected post into a modal, accessible by clicking on the button.", 'modularity');
 
-        // register custom wordpress post type:
-        add_action('init', array($this, 'registerPostType'));
+        // ! TODO - Set noindex, nofollow on this post type
+        add_action('init', [$this, 'registerPostType'], 99);
     }
 
     public function data(): array
     {
-        //Get settings
+
         $fields = get_fields($this->ID);
         $data   = [];
 
-        $data['icon']  = $fields['button']['material_icon'] ?? false;
-        $data['label'] = $fields['button']['label'] ?? false;
+        // Modal button
+        $data['buttonIcon']      = $fields['button']['material_icon'] ?? false;
+        $data['buttonText']      = $fields['button']['text'] ?? false;
+        $data['buttonSize']      = $fields['button']['size'] ?? 'md';
+        $data['buttonStyle']     = $fields['button']['style'] ?? 'outlined';
+        $data['buttonColor']     = $fields['button']['color'] ?? 'primary';
+        $data['reversePosition'] = (bool) \intval($fields['button']['reverse_position']) ?? false;
 
-        $data['modalId'] = $fields['modal_content']->ID ?? 0;
-        $data['modalContentTitle'] = $fields['modal_content']->post_title ?? false;
-        $data['modalContent'] = $fields['modal_content']->post_content ?? false;
+        // Modal settings
+        $data['useModalContentTitle'] = (bool) \intval($fields['modal']['use_modal_content_title']) ?? false;
+        $data['modalIsPanel']         = (bool)  \intval($fields['modal']['is_panel']) ?? false;
+        $data['modalSize']            = $fields['modal']['size'] ?? 'md';
+        $data['modalPadding']         = $fields['modal']['padding'] ?? 3;
+        $data['modalBorderRadius']    = $fields['modal']['border_radius'] = 'md';
+
+        // Modal content
+        $modalContentPost = \Municipio\Helper\Post::preparePostObject(
+            $fields['modal']['content']
+        );
+        $data['modalId']           = $modalContentPost->ID ?? 0;
+        $data['modalContentTitle'] = $modalContentPost->postTitleFiltered ?? false;
+        $data['modalContent']      = $modalContentPost->postContentFiltered ?? false;
 
         return $data;
     }
@@ -38,10 +56,10 @@ class Modal extends \Modularity\Module
         $args = [
             'supports'              => [ 'title', 'editor', 'revisions' ],
             'hierarchical'          => false,
-            'public'                => false,
+            'public'                => true,
             'show_ui'               => true,
             'show_in_menu'          => true,
-            'menu_position'         => 20,
+            'menu_position'         => 40,
             'show_in_admin_bar'     => true,
             'show_in_nav_menus'     => false,
             'can_export'            => true,
@@ -51,15 +69,17 @@ class Modal extends \Modularity\Module
             'show_in_rest'          => true,
             'capability_type'       => 'page',
             'labels' => [
-                'all_items'             => __('All Modals', 'modularity'),
-                'add_new_item'          => __('Add New Modal', 'modularity'),
-                'add_new'               => __('Add Modal', 'modularity'),
-                'new_item'              => __('New Modal', 'modularity'),
-                'edit_item'             => __('Edit Modal', 'modularity'),
-                'update_item'           => __('Update Modal', 'modularity'),
-                'view_item'             => __('View Modal', 'modularity'),
-                'view_items'            => __('View Modals', 'modularity'),
-                'search_items'          => __('Search For Modal', 'modularity'),
+                'all_items'    => __('All Modal Contents', 'modularity'),
+                'name'         => __('Modal Content', 'modularity'),
+                'menu_name'    => __('Modal Content', 'modularity'),
+                'add_new_item' => __('Add New Modal Content', 'modularity'),
+                'add_new'      => __('Add Modal Content', 'modularity'),
+                'new_item'     => __('New Modal Content', 'modularity'),
+                'edit_item'    => __('Edit Modal Content', 'modularity'),
+                'update_item'  => __('Update Modal Content', 'modularity'),
+                'view_item'    => __('View Modal Content', 'modularity'),
+                'view_items'   => __('View Modal Contents', 'modularity'),
+                'search_items' => __('Search For Modal Content', 'modularity'),
             ],
             ];
         register_post_type('mod-modal-content', $args);

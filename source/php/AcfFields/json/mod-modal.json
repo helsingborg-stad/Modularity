@@ -8,7 +8,7 @@
             "name": "button",
             "aria-label": "",
             "type": "group",
-            "instructions": "The button the user will click to open the modal.",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -17,10 +17,30 @@
                 "id": ""
             },
             "acfe_save_meta": 0,
-            "layout": "row",
-            "acfe_seamless_style": 0,
-            "acfe_group_modal": 0,
+            "layout": "block",
+            "acfe_seamless_style": 1,
             "sub_fields": [
+                {
+                    "key": "field_64a2b8c37c9d0",
+                    "label": "Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
                 {
                     "key": "field_64a2b8dd7c9d1",
                     "label": "Icon",
@@ -31,7 +51,7 @@
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
-                        "width": "33",
+                        "width": "50",
                         "class": "",
                         "id": ""
                     },
@@ -2164,6 +2184,42 @@
                     "return_format": "value",
                     "multiple": 0,
                     "allow_custom": 0,
+                    "placeholder": "",
+                    "search_placeholder": "",
+                    "allow_null": 1,
+                    "ui": 1,
+                    "ajax": 0
+                },
+                {
+                    "key": "field_64a3d199a731c",
+                    "label": "Icon position",
+                    "name": "reverse_position",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64a2b8dd7c9d1",
+                                "operator": "!=empty"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "choices": {
+                        "1": "Left of text",
+                        "0": "Right of text"
+                    },
+                    "default_value": 1,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
                     "search_placeholder": "",
                     "allow_null": 0,
                     "ui": 1,
@@ -2171,11 +2227,11 @@
                     "placeholder": ""
                 },
                 {
-                    "key": "field_64a2b8c37c9d0",
-                    "label": "Label",
-                    "name": "label",
+                    "key": "field_64a3d09ba7318",
+                    "label": "Style",
+                    "name": "style",
                     "aria-label": "",
-                    "type": "text",
+                    "type": "select",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -2185,24 +2241,94 @@
                         "id": ""
                     },
                     "acfe_save_meta": 0,
-                    "default_value": "Click here",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": ""
+                    "choices": {
+                        "basic": "Basic",
+                        "filled": "Filled",
+                        "outlined": "Outlined"
+                    },
+                    "default_value": "filled",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_64a3d14da731b",
+                    "label": "Color scheme",
+                    "name": "color",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "choices": {
+                        "primary": "Primary",
+                        "secondary": "Secondary",
+                        "default": "Default"
+                    },
+                    "default_value": "primary",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_64a3d10aa731a",
+                    "label": "Size",
+                    "name": "size",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "choices": {
+                        "sm": "Small",
+                        "md": "Medium",
+                        "lg": "Large"
+                    },
+                    "default_value": "lg",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": ""
                 }
             ],
+            "acfe_group_modal": 0,
             "acfe_group_modal_close": 0,
             "acfe_group_modal_button": "",
             "acfe_group_modal_size": "large"
         },
         {
-            "key": "field_64a29155e2129",
-            "label": "Content",
-            "name": "modal_content",
+            "key": "field_64a3ab6b5abaf",
+            "label": "Modal",
+            "name": "modal",
             "aria-label": "",
-            "type": "post_object",
-            "instructions": "What post content to display in the module.",
+            "type": "group",
+            "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -2211,21 +2337,221 @@
                 "id": ""
             },
             "acfe_save_meta": 0,
-            "post_type": "",
-            "post_status": [
-                "publish"
+            "layout": "block",
+            "acfe_seamless_style": 0,
+            "acfe_group_modal": 0,
+            "sub_fields": [
+                {
+                    "key": "field_64a29155e2129",
+                    "label": "Modal Content",
+                    "name": "content",
+                    "aria-label": "",
+                    "type": "post_object",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "post_type": [
+                        "mod-modal-content"
+                    ],
+                    "post_status": [
+                        "publish"
+                    ],
+                    "taxonomy": "",
+                    "return_format": "object",
+                    "multiple": 0,
+                    "save_custom": 0,
+                    "save_post_status": "publish",
+                    "acfe_bidirectional": {
+                        "acfe_bidirectional_enabled": "0"
+                    },
+                    "allow_null": 0,
+                    "ui": 1,
+                    "save_post_type": ""
+                },
+                {
+                    "key": "field_64a3b31dc4c63",
+                    "label": "Modal layout settings (Click to expand)",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 0,
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_64a3af018aa15",
+                    "label": "Use Modal Content title",
+                    "name": "use_modal_content_title",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Use the title of the Modal Content post as the heading for this modal.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "message": "",
+                    "default_value": 1,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
+                },
+                {
+                    "key": "field_64a3abf5237f1",
+                    "label": "Show as panel",
+                    "name": "is_panel",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "Enable a panel layout that cover the whole page when opened.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "message": "",
+                    "default_value": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "ui": 1
+                },
+                {
+                    "key": "field_64a3abacfbf14",
+                    "label": "Modal Size",
+                    "name": "size",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Empty as default is set to max width 800px.",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64a3abf5237f1",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "choices": {
+                        "sm": "Small",
+                        "md": "Medium",
+                        "lg": "Large"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "placeholder": "Select size",
+                    "search_placeholder": "",
+                    "allow_null": 1,
+                    "ui": 1,
+                    "ajax": 0
+                },
+                {
+                    "key": "field_64a3b17c98849",
+                    "label": "Padding",
+                    "name": "padding",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64a3abf5237f1",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "choices": {
+                        "2": "Small",
+                        "3": "Medium",
+                        "4": "Large"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": ""
+                },
+                {
+                    "key": "field_64a3b1cea60e8",
+                    "label": "Rounded borders",
+                    "name": "border_radius",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64a3abf5237f1",
+                                "operator": "!=",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_save_meta": 0,
+                    "choices": {
+                        "sm": "Small",
+                        "md": "Medium",
+                        "lg": "Large"
+                    },
+                    "default_value": "md",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": ""
+                }
             ],
-            "taxonomy": "",
-            "return_format": "object",
-            "multiple": 0,
-            "save_custom": 0,
-            "save_post_status": "publish",
-            "acfe_bidirectional": {
-                "acfe_bidirectional_enabled": "0"
-            },
-            "allow_null": 0,
-            "ui": 1,
-            "save_post_type": ""
+            "acfe_group_modal_close": 0,
+            "acfe_group_modal_button": "",
+            "acfe_group_modal_size": "large"
         }
     ],
     "location": [
@@ -2247,8 +2573,8 @@
     "menu_order": 0,
     "position": "normal",
     "style": "default",
-    "label_placement": "left",
-    "instruction_placement": "above_field",
+    "label_placement": "top",
+    "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
     "description": "",
