@@ -56,10 +56,7 @@ class AbstractController
         $post->showDate     = in_array('date', $this->data['posts_fields']);
         $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
-
-        $location = get_field('location', $post->id) ?? [];
-        if (!empty($location)) {
-            $post->location = $location;
+        if (!empty($post->location)) {
             $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));
         }
 
