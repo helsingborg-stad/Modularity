@@ -693,7 +693,7 @@ class Posts extends \Modularity\Module
         $posts = (array) get_posts(self::getPostArgs($module->ID));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
-                $data['taxonomiesToDisplay'] = $fields->taxonomy_display ?? [];
+                $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
                 if (class_exists('\Municipio\Helper\Post')) {
                     $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
                 }
