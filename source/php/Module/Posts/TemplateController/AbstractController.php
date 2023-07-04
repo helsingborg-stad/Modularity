@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-use Modularity\Module\Posts\Helper\Tag as TagHelper;
-
 class AbstractController
 {
     protected $hookName = 'index';
@@ -57,6 +55,7 @@ class AbstractController
         $post->showImage    = in_array('image', $this->data['posts_fields']);
         $post->showDate     = in_array('date', $this->data['posts_fields']);
         $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
+
 
         $location = get_field('location', $post->id) ?? [];
         if (!empty($location)) {
