@@ -665,7 +665,9 @@ class Posts extends \Modularity\Module
         }
         
         foreach ($posts as &$post) {
-            $post = \Municipio\Helper\FormatObject::camelCase($post);
+            if (class_exists('\Municipio\Helper\FormatObject')) {
+                $post = \Municipio\Helper\FormatObject::camelCase($post);
+            }
         }
 
         $posts = json_decode(json_encode($posts));
@@ -692,7 +694,9 @@ class Posts extends \Modularity\Module
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = $fields->taxonomy_display ?? [];
-                $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
+                if (class_exists('\Municipio\Helper\Post')) {
+                    $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
+                }
             }
         }
 
@@ -702,7 +706,6 @@ class Posts extends \Modularity\Module
     public static function getPostArgs($id)
     {
         $fields = json_decode(json_encode(get_fields($id)));
-
         $metaQuery = false;
         $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
         $order = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
