@@ -56,11 +56,12 @@ class AbstractController
         $post->showDate     = in_array('date', $this->data['posts_fields']);
         $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
-        if (!empty($post->location)) {
-            $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));
+        /* Handle purposes */
+        if (!empty($post->location) && !empty($post->location['pin'])) {
+            $post->attributeList['data-js-map-location'] = json_encode($post->location['pin']);
         }
 
-        if ('event' == $post->purpose) {
+        if ($post->purpose == 'event') {
             $post->showDate = true;
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
