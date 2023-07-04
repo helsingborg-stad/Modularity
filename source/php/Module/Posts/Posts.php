@@ -201,7 +201,9 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode(get_fields($this->ID)));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = in_array('reading_time', $fields->posts_fields) ?? false;
+
+        $data['display_reading_time'] = is_array($fields->posts_fields) ? in_array('reading_time', $fields->posts_fields) : false;
+
 
         $this->enableFilters = $this->enableFilters();
         if ($this->enableFilters) {
