@@ -654,13 +654,16 @@ class Posts extends \Modularity\Module
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
-
         foreach ($data as $key => $item) {
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content
             ]);
+        }
+        
+        foreach ($posts as &$post) {
+            $post = \Municipio\Helper\FormatObject::camelCase($post);
         }
 
         $posts = json_decode(json_encode($posts));
