@@ -61,7 +61,7 @@
                     'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                     'containerAware' => true,
                     'hasAction' => true,
-                    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
+                    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail['src']),
                     'image' =>
                         $post->showImage && isset($post->thumbnail['src'])
                             ? [

@@ -60,7 +60,7 @@
                             'backgroundColor' => 'secondary'
                         ]
                         : false,
-                    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
+                    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail['src']),
                     'classList' => ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
                     'link' => $post->permalink,
