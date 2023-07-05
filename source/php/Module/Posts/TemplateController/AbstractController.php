@@ -32,6 +32,7 @@ class AbstractController
      */
     public function setPostFlags(&$post)
     {
+        if (empty($post)) return;
         // Booleans for hiding/showing stuff
         $post->showExcerpt  = in_array('excerpt', $this->data['posts_fields']);
         $post->showTitle    = in_array('title', $this->data['posts_fields']);
