@@ -41,16 +41,18 @@ class ExpandableListTemplate
      */
     public function getColumnValues(): array
     {
+
         if (empty($this->data['posts_list_column_titles'])) {
             return [];
         }
-
+        
         $columnValues = [];
-
+        
         foreach ($this->data['posts'] as $colIndex => $post) {
             if ($this->data['posts_data_source'] === 'input') {
-                if ($post->column_values !== false && is_array($post->column_values) && count($post->column_values) > 0) {
-                    foreach ($post->column_values as $key => $columnValue) {
+                var_dump($post);
+                if ($post->columnValues !== false && is_array($post->columnValues) && count($post->columnValues) > 0) {
+                    foreach ($post->columnValues as $key => $columnValue) {
                         $columnValues[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value ?? '';
                     }
                 }
