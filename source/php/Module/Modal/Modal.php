@@ -14,8 +14,10 @@ class Modal extends \Modularity\Module
         $this->nameSingular = __("Modal", 'modularity');
         $this->namePlural = __("Modals", 'modularity');
         $this->description = __("Outputs a button and the content of a selected post into a modal, accessible by clicking on the button.", 'modularity');
+        $this->postType = 'modal-content';
 
         add_action('init', [$this, 'registerPostType'], 99);
+        add_filter('allowed_block_types_all', array($this, 'disallowBlockType'), 10, 2);
     }
 
     public function data(): array
@@ -82,9 +84,24 @@ class Modal extends \Modularity\Module
                 'search_items' => __('Search For Modal Content', 'modularity'),
             ],
             ];
-        register_post_type('modal-content', $args);
+        register_post_type($this->postType, $args);
     }
 
+    /**
+     * Disallow the Modal block for the current post type;
+     * modals inside of modals can possibly create infinite loops.
+     *
+     * @param array $allowedBlockTypes The allowed block types.
+     * @param object $editorContext The editor context.
+     * @return array The updated allowed block types.
+     */
+    public function disallowBlockType($allowedBlockTypes, $editorContext)
+    {
+        if ($this->postType === $editorContext->post->post_type) {
+            unset($allowedBlockTypes['acf/modal']);
+        }
+        return $allowedBlockTypes;
+    }
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization

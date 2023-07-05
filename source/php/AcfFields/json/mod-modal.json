@@ -2357,7 +2357,7 @@
                     },
                     "acfe_save_meta": 0,
                     "post_type": [
-                        "mod-modal-content"
+                        "modal-content"
                     ],
                     "post_status": [
                         "publish"

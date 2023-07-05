@@ -2360,7 +2360,7 @@
                     ),
                     'acfe_save_meta' => 0,
                     'post_type' => array(
-                        0 => 'mod-modal-content',
+                        0 => 'modal-content',
                     ),
                     'post_status' => array(
                         0 => 'publish',
