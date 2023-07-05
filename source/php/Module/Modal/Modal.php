@@ -13,7 +13,7 @@ class Modal extends \Modularity\Module
     {
         $this->nameSingular = __("Modal", 'modularity');
         $this->namePlural = __("Modals", 'modularity');
-        $this->description = __("Outputs a button and the content of a selected post into a modal, accessible by clicking on the button.", 'modularity');
+        $this->description = __("Outputs a button and the content of a selected Modal Content post into a modal, accessible by clicking on the button.", 'modularity');
         $this->postType = 'modal-content';
 
         add_action('init', [$this, 'registerPostType'], 99);
