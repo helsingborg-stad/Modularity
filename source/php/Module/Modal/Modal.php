@@ -23,7 +23,7 @@ class Modal extends \Modularity\Module
     public function data(): array
     {
 
-        $fields = get_fields($this->ID);
+        $fields = $this->getFields();
         $data   = [];
 
         // Modal button
