@@ -3,13 +3,45 @@
     "title": "Map",
     "fields": [
         {
+            "key": "field_64ad64dacdb16",
+            "label": "Map type",
+            "name": "map_type",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "openStreetMap": "OpenStreetMap"
+            },
+            "default_value": "default",
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "layout": "vertical"
+        },
+        {
             "key": "field_602400dda5195",
             "label": "Map URL",
             "name": "map_url",
             "type": "url",
-            "instructions": "<span style=\"color: #f00;\">Din l\u00e4nk m\u00e5ste starta med http<strong>s<\/strong>:\/\/<\/span>",
+            "instructions": "<span style=\"color: #f00;\">Din l\u00e4nk m\u00e5ste starta med http<strong>s<\/strong>:\/\/ f\u00f6r att kunna visas p\u00e5 webbplatsen.<\/span>",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -25,16 +57,25 @@
             "type": "textarea",
             "instructions": "Describe the contents of this map (not shown)",
             "required": 1,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "70",
                 "class": "",
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "",
+            "acfe_textarea_code": 0,
             "maxlength": "",
             "rows": 3,
+            "placeholder": "",
             "new_lines": ""
         },
         {
@@ -44,7 +85,15 @@
             "type": "range",
             "instructions": "Set a minumum height",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "30",
                 "class": "",
@@ -64,7 +113,15 @@
             "type": "true_false",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -72,9 +129,9 @@
             },
             "message": "",
             "default_value": 0,
-            "ui": 1,
             "ui_on_text": "",
-            "ui_off_text": ""
+            "ui_off_text": "",
+            "ui": 1
         },
         {
             "key": "field_602459d52b136",
@@ -89,6 +146,11 @@
                         "field": "field_602459632b135",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
                     }
                 ]
             ],
@@ -98,10 +160,10 @@
                 "id": ""
             },
             "default_value": "Show large version",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_602459ee2b137",
@@ -116,6 +178,11 @@
                         "field": "field_602459632b135",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
                     }
                 ]
             ],
@@ -134,7 +201,15 @@
             "type": "true_false",
             "instructions": "Do you want to add Extra info?\r\nThe information will be placed in a card on the right side of the map.",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -142,9 +217,9 @@
             },
             "message": "The extra info card is disabled by default",
             "default_value": 0,
-            "ui": 1,
             "ui_on_text": "Enabled",
-            "ui_off_text": "Disabled"
+            "ui_off_text": "Disabled",
+            "ui": 1
         },
         {
             "key": "field_6052101f0ad06",
@@ -159,6 +234,11 @@
                         "field": "field_60520ab40ffd7",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
                     }
                 ]
             ],
@@ -168,10 +248,10 @@
                 "id": ""
             },
             "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_6052087c0ffd6",
@@ -186,6 +266,11 @@
                         "field": "field_60520ab40ffd7",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "default"
                     }
                 ]
             ],
@@ -195,10 +280,165 @@
                 "id": ""
             },
             "default_value": "",
+            "delay": 0,
             "tabs": "all",
             "toolbar": "basic",
-            "media_upload": 1,
-            "delay": 0
+            "media_upload": 1
+        },
+        {
+            "key": "field_64c77830c32aa",
+            "label": "Start position",
+            "name": "osm_start_position",
+            "type": "google_map",
+            "instructions": "Sets the start position of the map",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "openStreetMap"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "center_lat": "",
+            "center_lng": "",
+            "zoom": "",
+            "height": ""
+        },
+        {
+            "key": "field_64ad5fd710885",
+            "label": "Map markers",
+            "name": "osm_markers",
+            "type": "repeater",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ad64dacdb16",
+                        "operator": "==",
+                        "value": "openStreetMap"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_repeater_stylised_button": 0,
+            "layout": "block",
+            "pagination": 0,
+            "min": 0,
+            "max": 0,
+            "collapsed": "",
+            "button_label": "L\u00e4gg till rad",
+            "rows_per_page": 20,
+            "sub_fields": [
+                {
+                    "key": "field_64ad60190d5a5",
+                    "label": "Title",
+                    "name": "title",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_64ad5fd710885"
+                },
+                {
+                    "key": "field_64ad60b00d5a6",
+                    "label": "Description",
+                    "name": "description",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "acfe_textarea_code": 0,
+                    "maxlength": "",
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": "",
+                    "parent_repeater": "field_64ad5fd710885"
+                },
+                {
+                    "key": "field_64ad60ed0d5a8",
+                    "label": "Link text",
+                    "name": "link_text",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_64ad5fd710885"
+                },
+                {
+                    "key": "field_64ad60bd0d5a7",
+                    "label": "url",
+                    "name": "url",
+                    "type": "url",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "parent_repeater": "field_64ad5fd710885"
+                },
+                {
+                    "key": "field_64ad61220d5a9",
+                    "label": "Position",
+                    "name": "position",
+                    "type": "google_map",
+                    "instructions": "",
+                    "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "center_lat": "",
+                    "center_lng": "",
+                    "zoom": "",
+                    "height": "",
+                    "parent_repeater": "field_64ad5fd710885"
+                }
+            ]
         }
     ],
     "location": [
@@ -207,6 +447,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-map"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/map"
             }
         ]
     ],
@@ -217,6 +464,12 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": ""
+    "description": "",
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
 
