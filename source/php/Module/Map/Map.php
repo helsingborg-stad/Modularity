@@ -50,8 +50,6 @@ class Map extends \Modularity\Module
             }
         }
 
-        echo '<pre>' . print_r( $data['pins'], true ) . '</pre>';
-        
         if (!empty($start)) {
             $data['startPosition'] = [
                 'lat' => $start['lat'], 
