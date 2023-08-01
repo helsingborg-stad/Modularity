@@ -1,7 +1,6 @@
 export default class DynamicMapAcf {
 
     constructor() {
-        this.startPosition = undefined;
         this.init();
     }
 
@@ -12,7 +11,7 @@ export default class DynamicMapAcf {
             if (typeof acf == 'undefined') return;
 
             acf.addAction('google_map_init', (map, marker, field) => {
-                if (thisstartPositionFieldCondition(map, marker, field)) {
+                if (this.startPositionFieldCondition(map, marker, field)) {
                     startPosition = marker.position;
                 } else {
                   this.setMapPosition(startPosition, map, marker);
@@ -27,7 +26,7 @@ export default class DynamicMapAcf {
                         json = JSON.parse(input.value);
                         startPosition = {lat: json.lat, lng: json.lng};
                     } catch (e) {
-                        return;
+                        return console.error("Couldn't parse JSON");
                     }
                 };
             });

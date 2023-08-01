@@ -37,11 +37,27 @@ class Map extends \Modularity\Module
     private function openStreetMapTemplateData($data, $fields) {
 
         $data['pins'] = array();
-        foreach ($fields['map_markers'] as $marker) {
+        $start = $fields['osm_start_position'];
+
+        foreach ($fields['osm_markers'] as $marker) {
             if ($this->hasCorrectPlaceData($marker['position'])) {
                 $pin = array();
-                echo '<pre>' . print_r( $marker, true ) . '</pre>';
+                $pin['lat'] = $marker['position']['lat'];
+                $pin['lng'] = $marker['position']['lng'];
+                $pin['tooltip'] = $this->markerHasTooltipData($marker);
+
+                array_push($data['pins'], $pin);
             }
+        }
+
+        echo '<pre>' . print_r( $data['pins'], true ) . '</pre>';
+        
+        if (!empty($start)) {
+            $data['startPosition'] = [
+                'lat' => $start['lat'], 
+                'lng' => $start['lng'], 
+                'zoom' => $start['zoom']
+            ];
         }
 
         return $data;
@@ -91,6 +107,24 @@ class Map extends \Modularity\Module
 
     private function hasCorrectPlaceData($position) {
         return !empty($position) && !empty($position['lat'] && !empty($position['lng']));
+    }
+
+    private function markerHasTooltipData($marker) {
+        if (
+        !empty($marker['title']) ||
+        !empty($marker['description']) ||
+        !empty($marker['link_text']) ||
+        !empty($marker['url'])
+        ) {
+            $tooltip = array();
+            $tooltip['title'] = $marker['title'];
+            $tooltip['excerpt'] = $marker['description'];
+            $tooltip['directions']['label'] = $marker['link_text'];
+            $tooltip['directions']['url'] = $marker['url'];
+
+            return $tooltip;
+        }
+
     }
 
     public function sslNotice($field)
