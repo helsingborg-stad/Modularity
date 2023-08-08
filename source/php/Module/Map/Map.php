@@ -105,20 +105,13 @@ class Map extends \Modularity\Module
     }
 
     private function createMarkerTooltip($marker) {
-        if (
-        !empty($marker['title']) ||
-        !empty($marker['description']) ||
-        !empty($marker['link_text']) ||
-        !empty($marker['url'])
-        ) {
-            $tooltip = array();
-            $tooltip['title'] = $marker['title'];
-            $tooltip['excerpt'] = $marker['description'];
-            $tooltip['directions']['label'] = $marker['link_text'];
-            $tooltip['directions']['url'] = $marker['url'];
+        $tooltip = array();
+        $tooltip['title'] = $marker['title'];
+        $tooltip['excerpt'] = $marker['description'];
+        $tooltip['directions']['label'] = $marker['link_text'];
+        $tooltip['directions']['url'] = $marker['url'];
 
-            return $tooltip;
-        }
+        return $tooltip;
     }
 
     public function sslNotice($field)
