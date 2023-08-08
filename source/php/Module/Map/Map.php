@@ -41,7 +41,7 @@ class Map extends \Modularity\Module
                 $pin = array();
                 $pin['lat'] = $marker['position']['lat'];
                 $pin['lng'] = $marker['position']['lng'];
-                $pin['tooltip'] = $this->markerHasTooltipData($marker);
+                $pin['tooltip'] = $this->createMarkerTooltip($marker);
 
                 array_push($data['pins'], $pin);
             }
@@ -104,7 +104,7 @@ class Map extends \Modularity\Module
         return !empty($position) && !empty($position['lat'] && !empty($position['lng']));
     }
 
-    private function markerHasTooltipData($marker) {
+    private function createMarkerTooltip($marker) {
         if (
         !empty($marker['title']) ||
         !empty($marker['description']) ||
