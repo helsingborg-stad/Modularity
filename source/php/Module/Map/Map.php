@@ -20,18 +20,15 @@ class Map extends \Modularity\Module
 
     public function data() : array
     {
-        $fields = get_fields($this->ID);
+        $fields = $this->getFields();
         $data = array();
 
         $this->template = $fields['map_type'];
         if ($fields['map_type'] == 'openStreetMap') {
-            $data = $this->openStreetMapTemplateData($data, $fields);
-        }
-        else {
-            $data = $this->defaultTemplateData($data, $fields);
+            return $this->openStreetMapTemplateData($data, $fields);
         }
 
-        return $data;
+        return $this->defaultTemplateData($data, $fields);   
     }
 
     private function openStreetMapTemplateData($data, $fields) {
@@ -103,7 +100,7 @@ class Map extends \Modularity\Module
         return $data;
     }
 
-    private function hasCorrectPlaceData($position) {
+    private function hasCorrectPlaceData($position): bool {
         return !empty($position) && !empty($position['lat'] && !empty($position['lng']));
     }
 
@@ -122,7 +119,6 @@ class Map extends \Modularity\Module
 
             return $tooltip;
         }
-
     }
 
     public function sslNotice($field)
@@ -150,10 +146,6 @@ class Map extends \Modularity\Module
     }
 
     public function template() {
-        return $this->getTemplate();
-    }
-
-    private function getTemplate() {
         $path = __DIR__ . "/views/" . $this->template . ".blade.php";
 
         if (file_exists($path)) {
