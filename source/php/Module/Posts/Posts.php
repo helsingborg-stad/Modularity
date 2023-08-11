@@ -198,7 +198,7 @@ class Posts extends \Modularity\Module
     public function data(): array
     {
         $data = [];
-        $fields = json_decode(json_encode(get_fields($this->ID)));
+        $fields = json_decode(json_encode($data = $this->getFields()));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = in_array('reading_time', $fields->posts_fields) ?? false;

@@ -21,7 +21,7 @@ class Gallery extends \Modularity\Module
      */
     public function data() : array
     {
-        $data = get_fields($this->ID);
+        $data = $this->getFields();
 
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box',
             'box-gallery'), $this->post_type, $this->args));

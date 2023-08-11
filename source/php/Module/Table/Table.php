@@ -40,7 +40,7 @@ class Table extends \Modularity\Module
     public function data(): array
     {
         $post = $this->data;
-        $data = get_fields($this->ID);
+        $data = $this->getFields();
 
         if (!empty($data['mod_table_block_csv_file'])) {
             $tableData = $this->formatCsvData($data['mod_table_block_csv_file'], $data['mod_table_csv_delimiter']);
