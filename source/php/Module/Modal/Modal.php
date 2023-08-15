@@ -8,6 +8,7 @@ class Modal extends \Modularity\Module
 {
     public $slug = 'modal';
     public $supports = array();
+    private $postType;
 
     public function init()
     {
@@ -97,8 +98,10 @@ class Modal extends \Modularity\Module
      */
     public function disallowBlockType($allowedBlockTypes, $editorContext)
     {
-        if ($this->postType === $editorContext->post->post_type) {
-            unset($allowedBlockTypes['acf/modal']);
+        if(isset($editorContext->post->post_type)) {
+            if ($this->postType === $editorContext->post->post_type) {
+                unset($allowedBlockTypes['acf/modal']);
+            }
         }
         return $allowedBlockTypes;
     }
