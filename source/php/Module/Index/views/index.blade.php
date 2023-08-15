@@ -12,7 +12,7 @@
     @foreach ($items as $item)
         <div class="{{ apply_filters('Municipio/Controller/Archive/GridColumnClass', $columnClass) }}">
             @card([
-                'link'              => $item['permalink'],
+                'link'              => $item['permalink'] ?? false,
                 'classList'         => ['u-height--100', 'u-height-100'],
                 'context'           => 'module.index',
                 'hasAction'         => !empty($item['permalink']),
