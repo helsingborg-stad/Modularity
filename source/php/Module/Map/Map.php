@@ -20,23 +20,64 @@ class Map extends \Modularity\Module
 
     public function data() : array
     {
+        $fields = $this->getFields();
+        $data = array();
+
+        $this->template = $fields['map_type'];
+        if ($fields['map_type'] == 'openStreetMap') {
+            return $this->openStreetMapTemplateData($data, $fields);
+        }
+
+        return $this->defaultTemplateData($data, $fields);   
+    }
+
+    private function openStreetMapTemplateData($data, $fields) {
+
+        $data['pins'] = array();
+        $start = $fields['osm_start_position'];
+
+if(!empty($fields['osm_markers']) && is_array($fields['osm_markers'])) {
+        foreach ($fields['osm_markers'] as $marker) {
+            if ($this->hasCorrectPlaceData($marker['position'])) {
+                $pin = array();
+                $pin['lat'] = $marker['position']['lat'];
+                $pin['lng'] = $marker['position']['lng'];
+                $pin['tooltip'] = $this->createMarkerTooltip($marker);
+
+                array_push($data['pins'], $pin);
+            }
+                    }
+        }
+
+        if (!empty($start)) {
+            $data['startPosition'] = [
+                'lat' => $start['lat'], 
+                'lng' => $start['lng'], 
+                'zoom' => $start['zoom']
+            ];
+        }
+
+        return $data;
+    }
+
+    private function defaultTemplateData($data, $fields) {
         //Get and sanitize url
-        $map_url = get_field('map_url', $this->ID);
+        $map_url = $fields['map_url'];
         $map_url = str_replace(['http://', 'https://'], '//', $map_url); //Enforce ssl
         $map_url = str_replace('disable_scroll=false', 'disable_scroll=true', $map_url); //Remove scroll arcgis
 
         //Create data array
         $data['map_url']            = $map_url;
 
-        $data['height']             = get_field('height', $this->ID);
-        $data['map_description']    = get_field('map_description', $this->ID);
+        $data['height']             = $fields['height'];
+        $data['map_description']    = $fields['map_description'];
         
-        $data['show_button']        = get_field('show_button', $this->ID);
-        $data['button_label']       = get_field('button_label', $this->ID);
-        $data['button_url']         = get_field('button_url', $this->ID);
-        $data['more_info_button']   = get_field('more_info_button', $this->ID);
-        $data['more_info']          = get_field('more_info', $this->ID);
-        $data['more_info_title']    = get_field('more_info_title', $this->ID);
+        $data['show_button']        = $fields['show_button'];
+        $data['button_label']       = $fields['button_label'];
+        $data['button_url']         = $fields['button_url'];
+        $data['more_info_button']   = $fields['more_info_button'];
+        $data['more_info']          = $fields['more_info'];
+        $data['more_info_title']    = $fields['more_info_title'];
 
         $data['cardMapCss']         = ($data['more_info_button']) ? 'o-grid-12@xs o-grid-8@md' : 'o-grid-12@md';
         $data['cardMoreInfoCss']    = ($data['more_info_button']) ? 'o-grid-12@xs o-grid-4@md' : '';
@@ -61,6 +102,20 @@ class Map extends \Modularity\Module
         return $data;
     }
 
+    private function hasCorrectPlaceData($position): bool {
+        return !empty($position) && !empty($position['lat'] && !empty($position['lng']));
+    }
+
+    private function createMarkerTooltip($marker) {
+        $tooltip = array();
+        $tooltip['title'] = $marker['title'];
+        $tooltip['excerpt'] = $marker['description'];
+        $tooltip['directions']['label'] = $marker['link_text'];
+        $tooltip['directions']['url'] = $marker['url'];
+
+        return $tooltip;
+    }
+
     public function sslNotice($field)
     {
         if (is_ssl() || $this->isUsingSSLProxy()) {
@@ -83,6 +138,16 @@ class Map extends \Modularity\Module
     {
         $value = htmlspecialchars_decode($value);
         return $value;
+    }
+
+    public function template() {
+        $path = __DIR__ . "/views/" . $this->template . ".blade.php";
+
+        if (file_exists($path)) {
+            return $this->template . ".blade.php";
+        }
+        
+        return 'default.blade.php';
     }
 
     /**
