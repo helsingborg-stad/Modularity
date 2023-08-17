@@ -17,6 +17,7 @@ describe('ModuleRefresher', () => {
         const moduleRefresher = new ModuleRefresher(restAPI);
         const module = document.createElement('div');
         module.setAttribute('data-module-id', 'id');
+        module.setAttribute('data-module-refresh-interval', '10');
         document.body.appendChild(module);
 
         moduleRefresher.refreshModules();
