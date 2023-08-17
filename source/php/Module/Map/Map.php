@@ -46,6 +46,7 @@ if(!empty($fields['osm_markers']) && is_array($fields['osm_markers'])) {
 
                 array_push($data['pins'], $pin);
             }
+                    }
         }
 
         if (!empty($start)) {
