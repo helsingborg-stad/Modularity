@@ -19,15 +19,15 @@
                 'id' => '',
             ),
             'choices' => array(
-                'default' => __('Default', 'modularity'),
-                'openStreetMap' => __('OpenStreetMap', 'modularity'),
+                'default' => __('Embedded', 'modularity'),
+                'openStreetMap' => __('Open Street Map', 'modularity'),
             ),
             'default_value' => __('default', 'modularity'),
             'return_format' => 'value',
             'allow_null' => 0,
             'other_choice' => 0,
-            'save_other_choice' => 0,
             'layout' => 'vertical',
+            'save_other_choice' => 0,
         ),
         1 => array(
             'key' => 'field_602400dda5195',

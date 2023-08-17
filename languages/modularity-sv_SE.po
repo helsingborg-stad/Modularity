@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-17 16:15+0200\n"
-"PO-Revision-Date: 2023-08-17 16:17+0200\n"
+"POT-Creation-Date: 2023-08-17 16:26+0200\n"
+"PO-Revision-Date: 2023-08-17 16:26+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -992,7 +992,6 @@ msgid "Display as"
 msgstr "Visa som"
 
 #: source/php/AcfFields/php/mod-hero-display-as.php:22
-#: source/php/AcfFields/php/mod-map.php:22
 #: source/php/AcfFields/php/mod-modal.php:2280
 msgid "Default"
 msgstr "Standard"
@@ -1409,8 +1408,12 @@ msgstr "Karta"
 msgid "Map type"
 msgstr "Typ av karta"
 
+#: source/php/AcfFields/php/mod-map.php:22
+msgid "Embedded"
+msgstr "Inbäddad"
+
 #: source/php/AcfFields/php/mod-map.php:23
-msgid "OpenStreetMap"
+msgid "Open Street Map"
 msgstr "Open Street Map"
 
 #: source/php/AcfFields/php/mod-map.php:25
@@ -1528,9 +1531,9 @@ msgid "Link text"
 msgstr "Länktext"
 
 #: source/php/AcfFields/php/mod-map.php:411
-#, fuzzy
-#| msgid "Url"
-msgid "url"
+#: source/php/AcfFields/php/mod-slider.php:367
+#: source/php/AcfFields/php/mod-slider.php:742
+msgid "Url"
 msgstr "Url"
 
 #: source/php/AcfFields/php/mod-map.php:428
@@ -25700,11 +25703,6 @@ msgstr "Länktext"
 msgid "Read More"
 msgstr "Läs mer"
 
-#: source/php/AcfFields/php/mod-slider.php:367
-#: source/php/AcfFields/php/mod-slider.php:742
-msgid "Url"
-msgstr "Url"
-
 #: source/php/AcfFields/php/mod-slider.php:421
 msgid ""
 "Describe the purpose of the link, or what visitors can expect to find when "
@@ -27968,6 +27966,11 @@ msgstr "Modulärt komponentssytem för WordPress"
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
+
+#, fuzzy
+#~| msgid "Url"
+#~ msgid "url"
+#~ msgstr "Url"
 
 #~ msgid "Nothing to display…"
 #~ msgstr "Inget att visa…"
