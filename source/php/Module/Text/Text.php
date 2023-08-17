@@ -16,7 +16,11 @@ class Text extends \Modularity\Module
 
     public function data() : array
     {
-        return $this->getFields() ?? [];
+        $data = $this->getFields(); 
+        if(is_array($data)) {
+            return $data; 
+        }
+        return [];
     }
 
     public function template()
