@@ -408,7 +408,7 @@ The information will be placed in a card on the right side of the map.', 'modula
                 ),
                 3 => array(
                     'key' => 'field_64ad60bd0d5a7',
-                    'label' => __('url', 'modularity'),
+                    'label' => __('Url', 'modularity'),
                     'name' => 'url',
                     'type' => 'url',
                     'instructions' => '',

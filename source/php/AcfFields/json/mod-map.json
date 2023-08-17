@@ -404,7 +404,7 @@
                 },
                 {
                     "key": "field_64ad60bd0d5a7",
-                    "label": "url",
+                    "label": "Url",
                     "name": "url",
                     "type": "url",
                     "instructions": "",
