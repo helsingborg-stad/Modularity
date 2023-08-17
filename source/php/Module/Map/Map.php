@@ -36,6 +36,7 @@ class Map extends \Modularity\Module
         $data['pins'] = array();
         $start = $fields['osm_start_position'];
 
+if(!empty($fields['osm_markers']) && is_array($fields['osm_markers'])) {
         foreach ($fields['osm_markers'] as $marker) {
             if ($this->hasCorrectPlaceData($marker['position'])) {
                 $pin = array();
