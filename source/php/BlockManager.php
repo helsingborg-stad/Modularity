@@ -142,6 +142,7 @@ class BlockManager
                 'core/paragraph',
                 'core/more',
                 'core/list',
+                'core/list-item',
                 'core/shortcode',
                 'core/block',
                 'core/image'
