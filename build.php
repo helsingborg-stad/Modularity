@@ -10,7 +10,7 @@ $buildCommands = [
     'npm ci --no-progress --no-audit',
     'npx --yes browserslist@latest --update-db',
     'npm run build',
-    'composer install --prefer-dist --no-progress'
+    'composer install --prefer-dist --no-progress --no-dev'
 ];
 
 // Files and directories not suitable for prod to be removed.
