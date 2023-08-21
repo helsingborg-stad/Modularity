@@ -72,7 +72,7 @@
             "name": "settings_for_ungapped_service",
             "type": "group",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": [
                 [
                     {
@@ -93,8 +93,8 @@
             "sub_fields": [
                 {
                     "key": "field_641c52955b8e1",
-                    "label": "Form ID",
-                    "name": "form_id",
+                    "label": "Account ID",
+                    "name": "account_id",
                     "type": "text",
                     "instructions": "",
                     "required": 1,
@@ -117,6 +117,82 @@
                     "type": "text",
                     "instructions": "Comma separated list of list IDs. One for each list you want to subscribe to.",
                     "required": 1,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_641c52125b8e2",
+                    "label": "Confirmation E-mail ID",
+                    "name": "double_opt_in_issue_id",
+                    "type": "text",
+                    "instructions": "This is the e-mail that is sent to the subscriber to confirm their subscription.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_641c52175b8e2",
+                    "label": "Welcome E-mail ID",
+                    "name": "confirmation_issue_id",
+                    "type": "text",
+                    "instructions": "This is the e-mail that is sent to the subscriber when they have confirmed their subscription.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_641c52135b8e2",
+                    "label": "Subscription confirmed url",
+                    "name": "subscription_confirmed_url",
+                    "type": "url",
+                    "instructions": "This is the url that the subscriber is redirected to when they have confirmed their subscription.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
+                    "key": "field_641c52145b8e2",
+                    "label": "Subscription failed url",
+                    "name": "subscription_failed_url",
+                    "type": "url",
+                    "instructions": "This is the url that the subscriber is redirected to when their subscription has failed.",
+                    "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
                         "width": "",

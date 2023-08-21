@@ -69,9 +69,15 @@ class Subscribe extends \Modularity\Module
         return $data;
     }
 
-    private function handleUngdpData($data, $fields) {
-        $data['formID'] = $fields['settings_for_ungapped_service']['form_id'] ?? false; 
-        $data['listIDs'] = $fields['settings_for_ungapped_service']['list_ids'] ?? false; 
+    private function handleUngdpData($data, $fields)
+    {
+        $data['formID'] = $fields['settings_for_ungapped_service']['account_id'] ?? false;
+        $data['listIDs'] = $fields['settings_for_ungapped_service']['list_ids'] ?? false;
+        $data['doubleOptInIssueId'] = $fields['settings_for_ungapped_service']['double_opt_in_issue_id'] ?? false;
+        $data['confirmationIssueId'] = $fields['settings_for_ungapped_service']['confirmation_issue_id'] ?? false;
+        $data['subscriptionConfirmedUrl'] = $fields['settings_for_ungapped_service']['subscription_confirmed_url'] ?? false;
+        $data['subscriptionFailedUrl'] = $fields['settings_for_ungapped_service']['subscription_failed_url'] ?? false;
+
         return $data;
     }
 
