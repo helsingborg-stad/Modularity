@@ -68,5 +68,9 @@
         "phpunit/phpunit": "9.6.x-dev",
         "yoast/phpunit-polyfills": "2.x-dev",
         "advanced-custom-fields/advanced-custom-fields-pro": "^6.2"
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:setup": "bin/install-wp-tests.sh"
     }
 }
