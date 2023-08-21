@@ -20,14 +20,14 @@ class OptionsTest extends WP_UnitTestCase
     public function testIsValidPostSaveReturnsTrueIfActionAndNonceValid()
     {
         $_POST['modularity-action'] = 'modularity-options';
-        $_POST['_wpnonce'] = wp_create_nonce('modularity-options');;
+        $_POST['_wpnonce'] = wp_create_nonce('modularity-options');
         $this->assertTrue($this->sut->isValidPostSave());
     }
 
     public function testIsValidPostSaveReturnsFalseIfNotLoadedIndicatorSet()
     {
         $_POST['modularity-action'] = 'modularity-options';
-        $_POST['_wpnonce'] = wp_create_nonce('modularity-options');;
+        $_POST['_wpnonce'] = wp_create_nonce('modularity-options');
         $_POST['modularity-option-page-loading'] = 'foo';
         $this->assertFalse($this->sut->isValidPostSave());
     }

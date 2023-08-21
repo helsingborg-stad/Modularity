@@ -79,7 +79,7 @@ abstract class Options
 
         if ($valid && !$this->pageWasLoadedBeforeSave()) {
             $valid = false;
-            $this->notice(__('Could not save due to page not being loaded before saving changes.', 'modularity'), ['notice-error']);
+            $this->notice(__('Page not loaded before saving changes.', 'modularity'), ['notice-error']);
         }
 
         return $valid;
