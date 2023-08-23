@@ -26,7 +26,7 @@ $removables = [
     'package-lock.json',
     '.vscode',
     'modularity-custom-module-example',
-    "webpack.config.js"
+    'webpack.config.js'
 ];
 
 $dirName = basename(dirname(__FILE__));
