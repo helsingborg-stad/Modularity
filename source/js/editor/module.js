@@ -29,6 +29,11 @@ export default function Module(Modularity) {
  * @return {void}
  */
 Module.prototype.loadModules = function (postId) {
+    var pageLoadField = $('[name="modularity-option-page-loading"]');
+    var form = pageLoadField.closest('form');
+    var submitButton = form.find('[type="submit"]');
+    submitButton.prop('disabled', true);
+    
     var request = {
         action: 'get_post_modules',
         id: postId
@@ -37,7 +42,7 @@ Module.prototype.loadModules = function (postId) {
     $.post(ajaxurl, request, function (response) {
         $.each(response, function (sidebar, modules) {
             var sidebarElement = $('.modularity-sidebar-area[data-area-id="' + sidebar + '"]');
-
+            
             $.each(modules.modules, function (key, data) {
                 if (data.hidden == 'true') {
                     data.hidden = true;
@@ -51,6 +56,8 @@ Module.prototype.loadModules = function (postId) {
         }.bind(this));
 
         initCompleted = true;
+        pageLoadField.remove();
+        submitButton.removeAttr('disabled');
         $('.modularity-sidebar-area').removeClass('modularity-spinner');
     }.bind(this), 'json');
 };

@@ -26,7 +26,7 @@ class General extends \Modularity\Options
             );
         });
 
-        acf_add_options_sub_page(array(
+        \acf_add_options_sub_page(array(
             'page_title'    => __('Restrictive Options', 'modularity'),
             'menu_title'    => __('Restrictive Options', 'modularity'),
             'parent_slug'   => 'modularity',
