@@ -10,8 +10,12 @@ $buildCommands = [
     'npm ci --no-progress --no-audit',
     'npx --yes browserslist@latest --update-db',
     'npm run build',
-    'composer install --prefer-dist --no-progress --no-dev'
 ];
+
+//Add composer build, if flag --no-composer is undefined.
+if(is_array($argv) && !in_array('--no-composer', $argv) ? '--no-composer' : '') {
+    $buildCommands[] = 'composer install --prefer-dist --no-progress --no-dev'; 
+}
 
 // Files and directories not suitable for prod to be removed.
 $removables = [
