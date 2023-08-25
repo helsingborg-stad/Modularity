@@ -17,6 +17,7 @@ class General extends \Modularity\Options
 
         // Add search page modules link to Moduliarty
         add_action('admin_menu', function () {
+					if(function_exists('add_submenu_page')) {
             add_submenu_page(
                 'modularity',
                 __('Search page modules', 'modularity'),
@@ -24,16 +25,19 @@ class General extends \Modularity\Options
                 'edit_posts',
                 'options.php?page=modularity-editor&id=search'
             );
+					}
         });
 
-        \acf_add_options_sub_page(array(
-            'page_title'    => __('Restrictive Options', 'modularity'),
-            'menu_title'    => __('Restrictive Options', 'modularity'),
-            'parent_slug'   => 'modularity',
-            'capability'    => 'administrator',
-            'redirect'      => false,
-            'icon_url'      => ''
-        ));
+				if(function_exists('acf_add_options_sub_page')) {
+					acf_add_options_sub_page(array(
+							'page_title'    => __('Restrictive Options', 'modularity'),
+							'menu_title'    => __('Restrictive Options', 'modularity'),
+							'parent_slug'   => 'modularity',
+							'capability'    => 'administrator',
+							'redirect'      => false,
+							'icon_url'      => ''
+					));
+				}
 
         /**
          * Initialize ACF fields for restrictive options. This needs to be
