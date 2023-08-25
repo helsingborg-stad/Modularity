@@ -88,15 +88,7 @@
             'type' => 'range',
             'instructions' => __('Set a minumum height', 'modularity'),
             'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_64ad64dacdb16',
-                        'operator' => '==',
-                        'value' => 'default',
-                    ),
-                ),
-            ),
+            'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '30',
                 'class' => '',
@@ -310,10 +302,10 @@ The information will be placed in a card on the right side of the map.', 'modula
                 'class' => '',
                 'id' => '',
             ),
-            'center_lat' => '',
-            'center_lng' => '',
+            'center_lat' => '59.32932',
+            'center_lng' => '18.06858',
             'zoom' => '',
-            'height' => '',
+            'height' => 500,
         ),
         11 => array(
             'key' => 'field_64ad5fd710885',
@@ -439,7 +431,7 @@ The information will be placed in a card on the right side of the map.', 'modula
                     'center_lat' => '',
                     'center_lng' => '',
                     'zoom' => '',
-                    'height' => '',
+                    'height' => 500,
                     'parent_repeater' => 'field_64ad5fd710885',
                 ),
             ),

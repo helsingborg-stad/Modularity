@@ -85,15 +85,7 @@
             "type": "range",
             "instructions": "Set a minumum height",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_64ad64dacdb16",
-                        "operator": "==",
-                        "value": "default"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
                 "width": "30",
                 "class": "",
@@ -306,10 +298,10 @@
                 "class": "",
                 "id": ""
             },
-            "center_lat": "",
-            "center_lng": "",
+            "center_lat": "59.32932",
+            "center_lng": "18.06858",
             "zoom": "",
-            "height": ""
+            "height": 500
         },
         {
             "key": "field_64ad5fd710885",
@@ -435,7 +427,7 @@
                     "center_lat": "",
                     "center_lng": "",
                     "zoom": "",
-                    "height": "",
+                    "height": 500,
                     "parent_repeater": "field_64ad5fd710885"
                 }
             ]
