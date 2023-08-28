@@ -11,5 +11,6 @@
 @openStreetMap([
     'startPosition' => $startPosition,
     'pins' => $pins,
+    'height' => $height
 ])
 @endopenStreetMap
