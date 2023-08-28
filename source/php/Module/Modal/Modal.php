@@ -46,7 +46,7 @@ class Modal extends \Modularity\Module
         $modalContentPost = \Municipio\Helper\Post::preparePostObject(
             $fields['modal']['content']
         );
-        $data['modalId']           = $modalContentPost->ID ?? 0;
+        $data['modalId']           = $modalContentPost->id ?? 0;
         $data['modalContentTitle'] = $modalContentPost->postTitleFiltered ?? false;
         $data['modalContent']      = $modalContentPost->postContentFiltered ?? false;
 
