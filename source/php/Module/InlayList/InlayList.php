@@ -20,8 +20,10 @@ class InlayList extends \Modularity\Module
     public function data(): array
     {
         $data = array();
+        $data['ID'] = $this->ID;
         $data['items'] = $this->buildListItems(get_field('items', $this->ID));
         $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
+        
         return $data;
     }
 
