@@ -4,6 +4,7 @@ namespace Modularity;
 
 class Editor extends \Modularity\Options
 {
+    public const EDITOR_PAGE_LOADING_KEY = 'modularity-option-page-loading';
     public static $isEditing = null;
 
     public function __construct()
@@ -530,6 +531,11 @@ class Editor extends \Modularity\Options
         return $module;
     }
 
+    public function pageWasLoadedBeforeSave(): bool
+    {
+        return !isset($_POST[self::EDITOR_PAGE_LOADING_KEY]);
+    }
+
     /**
      * Saves the selected modules
      * @return void
@@ -537,6 +543,11 @@ class Editor extends \Modularity\Options
     public function save()
     {
         if (!$this->isValidPostSave()) {
+            return;
+        }
+
+        if (!$this->pageWasLoadedBeforeSave()) {
+            $this->notice(__('Page not loaded before saving changes.', 'modularity'), ['notice-error']);
             return;
         }
 
