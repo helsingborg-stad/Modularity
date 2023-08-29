@@ -67,27 +67,15 @@ abstract class Options
      */
     public function isValidPostSave()
     {
-        $valid = true;
-
         if (!isset($_POST['modularity-action']) || $_POST['modularity-action'] !== 'modularity-options') {
-            $valid = false;
+            return false;
         }
 
         if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'modularity-options')) {
-            $valid = false;
+            return false;
         }
 
-        if ($valid && !$this->pageWasLoadedBeforeSave()) {
-            $valid = false;
-            $this->notice(__('Page not loaded before saving changes.', 'modularity'), ['notice-error']);
-        }
-
-        return $valid;
-    }
-
-    public function pageWasLoadedBeforeSave(): bool
-    {
-        return !isset($_POST['modularity-option-page-loading']);
+        return true;
     }
 
     /**
@@ -97,10 +85,6 @@ abstract class Options
     public function save()
     {
         if (!$this->isValidPostSave()) {
-            return;
-        }
-
-        if (isset($_POST['modularity-option-page-loading'])) {
             return;
         }
 
