@@ -4,7 +4,7 @@
 
     <form name="my_form" method="post">
         <input type="hidden" name="modularity-action" value="modularity-options">
-        <input type="hidden" name="modularity-option-page-loading" value="1">
+        <input type="hidden" name="<?php echo \Modularity\Editor::EDITOR_PAGE_LOADING_KEY ?>" value="1">
 
         <?php
         wp_nonce_field('modularity-options');
