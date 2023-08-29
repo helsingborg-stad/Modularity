@@ -1,4 +1,4 @@
-@if (!$hideTitle && !empty($postTitle))
+@if (empty($hideTitle) && !empty($postTitle))
     @typography([
         'id'        => 'mod-text-' . $ID .'-label',
         'element'   => 'h2', 
@@ -26,7 +26,7 @@
                 'context' => 'module.contacts.card'
             ])
 
-                @if($showImages && $contact['image']['inlineStyle'])
+                @if(!empty($showImages) && !empty($contact['image']['inlineStyle']))
                 <div class="c-card__image">
                     <div class="c-card__image-background" alt="{{ $contact['full_name'] }}" style="{{ $contact['image']['inlineStyle'] }}"></div>
                 </div>
