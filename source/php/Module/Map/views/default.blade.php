@@ -8,7 +8,7 @@
             ],
             'attributeList' => [
                 'aria-labelledby' => 'mod-map-' . $id .'-label',
-                'style' => 'min-height: ' . $height . ';'
+                'style' => 'min-height: ' . $height . 'px;'
             ],
             'context' => 'module.map'
         ])

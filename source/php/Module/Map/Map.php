@@ -24,7 +24,7 @@ class Map extends \Modularity\Module
         $data = array();
 
         //Shared template data
-        $data['height'] = !empty($fields['height']) ? $fields['height'] . 'px' : '400px';
+        $data['height'] = !empty($fields['height']) ? $fields['height'] : '400';
 
         $this->template = $fields['map_type'];
         if ($fields['map_type'] == 'openStreetMap') {
