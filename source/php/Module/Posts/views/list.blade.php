@@ -1,7 +1,6 @@
 @include('partials.post-filters')
 
 @card([
-    'heading' => $postTitle,
     'classList' => [$classes],
     'attributeList' => [
         'aria-labelledby' => 'mod-posts-' . $ID . '-label'
@@ -43,7 +42,7 @@
     @endif
 @endcard
 
-@if ($posts_data_source !== 'input' && $archive_link_url)
+@if ($posts_data_source === 'posttype' && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
         @button([
             'text' => __('Show more', 'modularity'),

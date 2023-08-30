@@ -60,18 +60,6 @@ class ListTemplate
             }
         }
 
-        if (
-            $postData['posts_data_source'] !== 'input' &&
-            isset($postData['archive_link']) && !empty($postData['archive_link']) && !empty($postData['archive_link_url'])
-        ) {
-            $title = _e('Show more', 'modularity');
-
-            if (isset($postData['filters'])) {
-                $link = $postData['archive_link_url'] . "?" . http_build_query($postData['filters']);
-            }
-
-            array_push($list, ['href' => $link ?? '', 'title' => [$title]]);
-        }
         return $list;
     }
 }
