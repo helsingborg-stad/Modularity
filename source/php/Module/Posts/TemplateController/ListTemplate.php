@@ -25,7 +25,6 @@ class ListTemplate
         $this->data['prepareList'] = $this->prepare($data['posts'], $postData = [
             'posts_data_source' => $data['posts_data_source'] ?? '',
             'archive_link' => $data['archive_link'] ?? '',
-            'posts_fields' => $data['posts_fields'] ?? '',
             'archive_link_url' => $data['archive_link_ur'] ?? '',
             'filters' => $data['filters'] ?? '',
         ]);
@@ -51,39 +50,27 @@ class ListTemplate
 
         foreach ($posts as $post) {
             if (!empty($post->post_type) && $post->post_type == 'attachment') {
-                $href = wp_get_attachment_url($post->ID);
+                $link = wp_get_attachment_url($post->ID);
             } else {
-                $href = $postData['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
+                $link = $postData['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
             }
 
-            if (in_array('title', $postData['posts_fields'])) {
-                $columnsTitle = $post->post_title;
+            if (!empty($post->post_title)) {
+                array_push($list, ['link' => $link ?? '', 'title' => $post->post_title]);
             }
-
-            $columnsDate = '';
-            if (in_array('date', $postData['posts_fields']) && $postData['posts_data_source'] !== 'input') {
-                $columnsDate = apply_filters(
-                    'Modularity/Module/Posts/Date',
-                    get_the_time(\Modularity\Helper\Date::getDateFormat('date'), $post->ID),
-                    $post->ID,
-                    $post->post_type
-                );
-            }
-
-            array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle, $columnsDate]]);
         }
 
         if (
             $postData['posts_data_source'] !== 'input' &&
-            isset($postData['archive_link']) && $postData['archive_link'] && $postData['archive_link_url']
+            isset($postData['archive_link']) && !empty($postData['archive_link']) && !empty($postData['archive_link_url'])
         ) {
-            $columnsTitle = _e('Show more', 'modularity');
+            $title = _e('Show more', 'modularity');
 
             if (isset($postData['filters'])) {
-                $href = $postData['archive_link_url'] . "?" . http_build_query($postData['filters']);
+                $link = $postData['archive_link_url'] . "?" . http_build_query($postData['filters']);
             }
 
-            array_push($list, ['href' => $href ?? '', 'columns' => [$columnsTitle]]);
+            array_push($list, ['href' => $link ?? '', 'title' => [$title]]);
         }
         return $list;
     }

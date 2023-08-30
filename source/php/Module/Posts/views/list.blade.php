@@ -22,17 +22,17 @@
                     'bordered' => true
                 ])
                     @foreach ($prepareList as $post)
-                        @if ($post['href'] && $post['columns'] && $post['columns'][0])
+                        @if ($post['link'] && $post['title'])
                             @collection__item([
                                 'displayIcon' => true,
                                 'icon' => 'arrow_forward',
-                                'link' => $post['href']
+                                'link' => $post['link']
                             ])
                                 @typography([
                                     'element' => 'h2',
                                     'variant' => 'h4'
                                 ])
-                                    {{ $post['columns'][0] }}
+                                    {{ $post['title'] }}
                                 @endtypography
                             @endcollection__item
                         @endif
