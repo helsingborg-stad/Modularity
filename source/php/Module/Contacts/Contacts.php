@@ -41,7 +41,7 @@ class Contacts extends \Modularity\Module
         $data['showImages'] = false;
 
         //Check if there is at least one contact with image, then add svg to others, else hide all
-        if (empty($this->data['display_mode']) || $this->data['display_mode'] == 'card') {
+        if (empty($this->data['display_mode']) || $this->data['display_mode'] == 'cards') {
             foreach ($data['contacts'] as $contact) {
                 $data['showImages'] = $contact['image'] ? true : $data['showImages'];
             }
