@@ -53,6 +53,11 @@
         "wpackagist-plugin/acf-extended": "0.8.8.7",
         "symfony/polyfill-php80": "^1.27"
     },
+    "autoload": {
+        "psr-4": {
+          "Modularity\\": "source/php/"
+        }
+    },
     "config": {
         "allow-plugins": {
             "composer/installers": true,
