@@ -17,7 +17,7 @@ class Contacts extends \Modularity\Module
 
     public function data() : array
     {
-        $data = get_fields($this->ID);
+        $data = $this->getFields();
         $data['ID'] = $this->ID;
 
         //Display settings

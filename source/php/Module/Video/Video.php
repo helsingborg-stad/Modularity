@@ -395,7 +395,7 @@ class Video extends \Modularity\Module
      */
     public function data(): array
     {
-        $data = get_fields($this->ID);
+        $data = $this->getFields();
 
         $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
         $data['id']         = uniqid('embed');

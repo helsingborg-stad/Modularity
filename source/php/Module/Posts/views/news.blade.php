@@ -20,7 +20,8 @@
                 'dateBadge' => $post->dateBadge,
                 'postId' => $post->ID,
                 'postType' => $post->post_type ?? '',
-                'icon' => $icon
+                'icon' => $icon,
+                'attributeList' => array_merge($post->attributeList, []),
             ])
                 @if ($post->showImage && isset($post->thumbnail[0]) && !empty($post->thumbnail[0]))
                     <div class="c-card__image c-card__image--secondary">

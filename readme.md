@@ -40,7 +40,7 @@ class Article extends \Modularity\Module
         $supports = array('editor'); // All modules automatically supports title
         $icon = '[BASE-64 encoded svg data-uri]';
         $plugin = '/path/to/include-file.php' // CAn also be an array of paths to include 
-        $cacheTTL = 60*60*24 //Time to live for fragment cache (stored in memcached). 
+        $cacheTTL = 60*60*24 //Time to live for fragment cache (stored in persistent object store redis / memcached). 
 
         $this->register(
             $id,
@@ -431,6 +431,42 @@ add_filter("Modularity/Display/mod-posts/viewData", function($data) {
         return $data;
     });
 ```
+
+## Module Attributes API
+Some module features are available by setting certain attributes on the module's outmost element.
+
+### `data-module-refresh-interval`
+Creates an interval on which the module is refreshed via XHR by calling the REST API. This attribute also requires that the `data-module-id` attribute is set on the same element.
+
+The value of the attribute should be the number of seconds on which to run the refresh interval.
+
+Example:
+```html
+<div data-module-id="123" data-module-refresh-interval="60">
+    This content will get refreshed every 60 seconds.
+</div>
+```
+
+## Rest API
+The WordPress REST API is extended with the following endpoints.
+
+### `modularity/v1/modules/{id}`
+This endpoint returns the markup for a specific module.
+
+* Method: `GET`
+* Params:
+    * `id`: The ID of the module to retrieve.
+* Response: The html markup of the module.
+
+## Constants
+
+### `MODULARITY_DISABLE_FRAGMENT_CACHE`
+Disabling the built-in fragment cache means that each module's output will not be stored as an HTML cache. As a result, every time a visitor reloads the page, each module will have to be rendered again. However, it is important to consider this option only if you do not have any object cache enabled, such as Redis or Memcached. We strongly advise enabling the fragment cache feature in your application to enhance performance and caching efficiency, allowing modules to be rendered more quickly and reducing the need for repetitive rendering upon page reloads.
+
+By defining this as true, cache will be turned off. Default: Undefined. 
+
+If enabled, each cached module will be rendered with a timestamp and cache ID in the following format:
+<!-- FGC: [2023-06-27 09:24:01| 3qee8e1n3m90]-->
 
 ## Tested with support from BrowserStack
 This software is tested with the awesome tools from Browserstack.

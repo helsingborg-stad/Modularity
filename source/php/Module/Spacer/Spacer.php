@@ -16,7 +16,11 @@ class Spacer extends \Modularity\Module
 
     public function data() : array
     {
-        $data['amount'] = get_field('space_amount', $this->ID);
+        $fields = $this->getFields();
+
+        $data = array(
+            'amount' => $fields['space_amount'] ?? 4,
+        );
 
         return $data;
     }

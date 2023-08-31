@@ -16,24 +16,18 @@ class Text extends \Modularity\Module
 
     public function data() : array
     {
-        $data = get_fields($this->ID);
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-panel'), $this->post_type, $this->args));
-        $data['ID'] = $this->ID;
-
-        if($data['content']) {
-            $data['post_content'] =  $data['content'];
+        $data = $this->getFields(); 
+        if(is_array($data)) {
+            return $data; 
         }
-
-        return $data;
+        return [];
     }
 
     public function template()
     {
         if (!isset($this->data['hide_box_frame']) || !$this->data['hide_box_frame']) {
-             return 'box.blade.php';
+            return 'box.blade.php';
         }
-
-
         return 'article.blade.php';
     }
 

@@ -20,7 +20,7 @@ class Hero extends \Modularity\Module
     public function data() : array
     {
         //Get module data
-        $fields = get_fields($this->ID);
+        $fields = $this->getFields();
 
         //Type
         $type = $fields['mod_hero_background_type'] ?? 'image';
@@ -46,6 +46,10 @@ class Hero extends \Modularity\Module
             ];
         }
 
+        if(!isset($data['stretch'])) {
+            $data['stretch'] = false;
+        }
+
         //Common fields
         $data['type']               = $type;
         $data['size']               = $fields['mod_hero_size'];
@@ -55,8 +59,6 @@ class Hero extends \Modularity\Module
         $data['heroView']           = $fields['mod_hero_display_as'] ? $fields['mod_hero_display_as'] : 'default';
         $data['ariaLabel']          = __('Page hero section', 'modularity');
         $data['meta']               = $fields['mod_hero_meta'];
-        $data['backgroundColor']    = $fields['mod_hero_background_color'] ? $fields['mod_hero_background_color'] : false;
-        $data['textColor']          = $fields['mod_hero_text_color'];
         $data['buttonArgs']         = $this->getButtonArgsFromFields($fields);
         $data['poster']             = $fields['mod_hero_poster_image']['sizes']['large'] ?? false;
 

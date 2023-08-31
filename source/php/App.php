@@ -34,6 +34,10 @@ class App
         new Options\General();
         new Options\Archives();
 
+        // Rest Controllers
+        $modulesRestController = new Api\V1\Modules();
+        $modulesRestController->register_routes();
+
         self::$moduleManager = new ModuleManager();
 
         $this->editor = new Editor();
@@ -238,6 +242,10 @@ class App
         wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'));
         wp_enqueue_script('dynamic-acf');
+        
+        wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'));
+        wp_enqueue_script('dynamic-map-acf');
 
         add_action('admin_head', function () {
             echo "

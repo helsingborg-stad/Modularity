@@ -69,6 +69,12 @@ class Module
     public $blockSupports = array();
 
     /**
+     * If empty block notice should be used. 
+     * @var bool
+     */
+    public $useEmptyBlockNotice = false; 
+
+    /**
      * Any module plugins (path to file to include)
      * @var array
      */
@@ -197,6 +203,10 @@ class Module
             add_action('wp_enqueue_scripts', array($this, 'style'));
             add_action('wp_enqueue_scripts', array($this, 'script'));
         }
+
+        add_action('save_post', function($postID, $post, $update) {
+            wp_cache_delete('modularity_has_modules_' . $postID);
+        }, 1, 3);
     }
 
     public function init()
@@ -306,12 +316,18 @@ class Module
         }
 
         //Collect all modules active
-        $modules = \Modularity\Editor::getPostModules($postId);
-        $modules = array_merge($modules, $this->getShortcodeModules($postId));
-        $modules = array_merge($modules, $this->getBlocks($postId));
 
-        //Sort out active module post types
-        $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
+        if(!$modules = wp_cache_get('modularity_has_modules_' . $postId)) {
+            $modules = \Modularity\Editor::getPostModules($postId);
+            $modules = array_merge($modules, $this->getShortcodeModules($postId));
+            $modules = array_merge($modules, $this->getBlocks($postId));
+
+            //Sort out active module post types
+            $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
+
+            //Set cache
+            wp_cache_set('modularity_has_modules_' . $postId, $modules);
+        }
 
         //Look for
         $moduleSlug = $this->moduleSlug;
