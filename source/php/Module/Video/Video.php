@@ -396,10 +396,11 @@ class Video extends \Modularity\Module
     public function data(): array
     {
         $data = $this->getFields();
-
-        $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
         $data['id']         = uniqid('embed');
-
+        if ($data['type'] == 'embed') {
+            $data['embedCode'] = $this->getEmbedMarkup($data['embed_link']);
+        }
+        
         // Image
         $data['image'] = false;
         if (isset($data['placeholder_image']) && !empty($data['placeholder_image'])) {
