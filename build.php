@@ -19,14 +19,14 @@ if(file_exists('composer.json')) {
 }
 
 //Run npm if package.json is found
-if(file_exists('package.json') && file_exists('package.lock')) {
+if(file_exists('package.json') && file_exists('package-lock.json')) {
     $buildCommands[] = 'npm ci --no-progress --no-audit';
-} elseif(file_exists('package.json') && !file_exists('package.lock')) {
+} elseif(file_exists('package.json') && !file_exists('package-lock.json')) {
     $buildCommands[] = 'npm install --no-progress --no-audit';
 }
 
-//Run build if package.lock is found
-if(file_exists('package.lock')) {
+//Run build if package-lock.json is found
+if(file_exists('package-lock.json')) {
     $buildCommands[] = 'npx --yes browserslist@latest --update-db';
     $buildCommands[] = 'npm run build';
 }
