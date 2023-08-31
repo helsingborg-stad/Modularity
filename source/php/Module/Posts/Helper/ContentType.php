@@ -12,8 +12,8 @@ class ContentType
         $contentType = false;
         if (class_exists('\Municipio\Helper\ContentType')) {
             $contentType = \Municipio\Helper\ContentType::getContentType($type);
-            if (!empty($contentType)) {
-                return $contentType[0]->key;
+            if (is_object($contentType)) {
+                return $contentType->getKey();
             }
         }
         return $contentType;
