@@ -45,7 +45,7 @@ class AbstractController
 
         $amount = $this->getTruncateAmount($this->data['posts_display_as']);
 
-        $this->data['purpose'] = \Modularity\Module\Posts\Helper\Purpose::getPurpose($this->data['posts_data_post_type'] ?? '');
+        $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType($this->data['posts_data_post_type'] ?? '');
 
         foreach ($this->data['posts'] as $post) {
             $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '16:9');
@@ -105,9 +105,9 @@ class AbstractController
         $post->showDate     = in_array('date', $this->data['posts_fields']);
         $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
-        $post->purpose = false;
+        $post->contentType = false;
         if (!empty($post->post_type)) {
-            $post->purpose = \Modularity\Module\Posts\Helper\Purpose::getPurpose($post->post_type);
+            $post->contentType = \Modularity\Module\Posts\Helper\ContentType::getContentType($post->post_type);
         }
 
         $location = get_field('location', $post->ID) ?? [];
@@ -116,7 +116,7 @@ class AbstractController
             $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));
         }
 
-        if ('event' == $post->purpose) {
+        if ('event' == $post->contentType) {
             $post->showDate = true;
             $eventOccasions = get_post_meta($post->ID, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
