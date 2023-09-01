@@ -31,7 +31,7 @@ require_once "{$_tests_dir}/includes/functions.php";
  */
 function _manually_load_plugin()
 {
-	require dirname(dirname(__FILE__)) . '/vendor/advanced-custom-fields/advanced-custom-fields-pro/acf.php';
+	require sys_get_temp_dir() . '/advanced-custom-fields-pro/acf.php';
 	require dirname(dirname(__FILE__)) . '/modularity.php';
 }
 

@@ -34,9 +34,18 @@ jobs:
           tools: composer:v2
 
       - name: Install dependencies
-        env:
-          ACF_PRO_KEY: ${{ secrets.ACF_PRO_KEY }}
         run: composer i
+
+      - name: Download ACF Pro plugin
+        uses: actions/checkout@v3
+        with: 
+          repository: ${{ secrets.PAID_PLUGINS_REPO }}
+          token: ${{ secrets.HBG_GH_TOKEN }}
+          path: wp-paid-plugins
+
+      - name: Place ACF plugin in /tmp folder
+        run: unzip wp-paid-plugins/acf.zip -d /tmp && rm -rf /tmp/wp-paid-plugins
+        shell: bash
 
       - name: Verify MariaDB connection
         env:
@@ -47,7 +56,7 @@ jobs:
           done
 
       - name: Set up test environment
-        run: composer run test:setup test root root 127.0.0.1 latest true true
+        run: composer run test:setup test root root 127.0.0.1 latest true false
 
       - name: Run tests
         run: composer run test
