@@ -1,9 +1,8 @@
 <div class="o-grid {{ $stretch ? 'o-grid--stretch' : '' }}">
     <div class="o-grid-12">
         @include('partials.post-filters')
-
         @card([
-            'heading' => $postTitle,
+            'heading' => false,
             'classList' => [$classes],
             'attributeList' => [
                 'js-filter-container' => $ID,
@@ -11,9 +10,11 @@
             ],
             'context' => 'module.posts.expandablelist'
         ])
+        @if(!$hideTitle && !empty($postTitle))
             <div class="c-card__header">
                 @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
             </div>
+        @endif
             <div>
                 @if (!isset($allow_freetext_filtering) || $allow_freetext_filtering)
                     <div class="c-card__body" aria-label="{{ __('Search', 'municipio') }}">

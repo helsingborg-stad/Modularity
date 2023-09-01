@@ -1,7 +1,7 @@
 @include('partials.post-filters')
 
 @card([
-    'heading' => $postTitle,
+    'heading' => false,
     'classList' => [$classes],
     'attributeList' => [
         'aria-labelledby' => 'mod-posts-' . $ID . '-label'
