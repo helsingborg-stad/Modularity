@@ -54,7 +54,7 @@ function initializeUngappedForms() {
                 if (subscriptionConfirmedUrl) subscription.SubscriptionConfirmedUrl = subscriptionConfirmedUrl;
                 if (subscriptionFailedUrl) subscription.SubscriptionFailedUrl = subscriptionFailedUrl;
 
-                fetch("https://ui.ungpd.com/Api/Subscriptions/" + formId + "/ajax", {
+                fetch("https://ui.ungpd.com/Api/Subscriptions/" + formId, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
