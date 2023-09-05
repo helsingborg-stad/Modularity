@@ -58,13 +58,13 @@ class Table extends \Modularity\Module
             'data'              => (array) $tableList,
             'showHeader'        => true,    //To-Do: Add this option in ACF
             'showFooter'        => false,   //To-Do: Add this option in ACF
-            'classList'         => $this->getTableClasses($data) ?? '',
-            'filterable'        => $data['mod_table_search'] ?? [],
-            'sortable'          => $data['mod_table_ordering'] ?? [],
-            'pagination'        => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
-            'multidimensional'  => $data['mod_table_multidimensional'],
-            'showSum'           => $data['mod_table_sum'],
-            'fullscreen'        => $data['mod_table_fullscreen'] ?? false
+            'classList'         => !empty($this->getTableClasses($data)) ? $this->getTableClasses($data) : [],
+            'filterable'        => !empty($data['mod_table_search']) ? $data['mod_table_search'] : [],
+            'sortable'          => !empty($data['mod_table_ordering']) ? $data['mod_table_ordering'] : [],
+            'pagination'        => !empty($data['mod_table_pagination']) ? $data['mod_table_pagination_count'] : false,
+            'multidimensional'  => !empty($data['mod_table_multidimensional']) ? $data['mod_table_multidimensional'] : false,
+            'showSum'           => !empty($data['mod_table_sum']) ? $data['mod_table_sum'] : false,
+            'fullscreen'        => !empty($data['mod_table_fullscreen']) ? $data['mod_table_fullscreen'] : false
         ];
 
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
