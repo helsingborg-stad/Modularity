@@ -1,6 +1,6 @@
 @card([
     'attributeList' => [
-        'aria-labelledby' => 'mod-inlaylist' . $id . '-label'
+        'aria-labelledby' => 'mod-inlaylist' . $ID . '-label'
     ],
     'context' => 'module.inlay.list'
 ])
@@ -8,7 +8,7 @@
     @if (!$hideTitle && !empty($postTitle))
         <div class="c-card__header">
             @typography([
-                'id'        => 'mod-inlaylist' . $id . '-label',
+                'id'        => 'mod-inlaylist' . $ID . '-label',
                 'element'   => 'h2',
                 'variant'   => 'h4',
                 'classList' => []
