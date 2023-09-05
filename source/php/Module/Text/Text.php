@@ -17,12 +17,22 @@ class Text extends \Modularity\Module
     public function data() : array
     {
         $data = $this->getFields(); 
+
+        if (empty($data['post_content']) && !empty($data['content'])) {
+            $data['post_content'] = $data['content'];
+        }
+
+        if (empty($this->ID)) {
+            $data['ID'] = uniqid();
+        }
+
         if(is_array($data)) {
             return $data; 
         }
+        
         return [];
     }
-
+    
     public function template()
     {
         if (!isset($this->data['hide_box_frame']) || !$this->data['hide_box_frame']) {
