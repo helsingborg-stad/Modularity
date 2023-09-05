@@ -1,7 +1,6 @@
 @include('partials.post-filters')
 
 @card([
-    'heading' => $postTitle,
     'classList' => [$classes],
     'attributeList' => [
         'aria-labelledby' => 'mod-posts-' . $ID . '-label'
@@ -22,17 +21,17 @@
                     'bordered' => true
                 ])
                     @foreach ($prepareList as $post)
-                        @if ($post['href'] && $post['columns'] && $post['columns'][0])
+                        @if ($post['link'] && $post['title'])
                             @collection__item([
                                 'displayIcon' => true,
                                 'icon' => 'arrow_forward',
-                                'link' => $post['href']
+                                'link' => $post['link']
                             ])
                                 @typography([
                                     'element' => 'h2',
                                     'variant' => 'h4'
                                 ])
-                                    {{ $post['columns'][0] }}
+                                    {{ $post['title'] }}
                                 @endtypography
                             @endcollection__item
                         @endif
@@ -43,7 +42,7 @@
     @endif
 @endcard
 
-@if ($posts_data_source !== 'input' && $archive_link_url)
+@if ($posts_data_source === 'posttype' && $archive_link_url)
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
         @button([
             'text' => __('Show more', 'modularity'),
