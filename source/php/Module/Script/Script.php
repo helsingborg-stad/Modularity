@@ -93,14 +93,16 @@ class Script extends \Modularity\Module
         $data['scriptWrapWithClassName'] = get_field('script_wrap_with', $this->ID) ?? 'card';
 
         $placeholder = get_field('embedded_placeholder_image', $this->ID);
-        $attachment = wp_get_attachment_image_src($placeholder['ID'], [1000, false]);
-
-        $data['placeholder'] = [
-            'url' => $attachment[0],
-            'width' => $attachment[1],
-            'height' => $attachment[2],
-            'alt' => $placeholder['alt']
-        ];
+        $attachment = !empty($placeholder) ? 
+        wp_get_attachment_image_src($placeholder['ID'], [1000, false]) : false;
+        if (!empty($attachment)) {
+            $data['placeholder'] = [
+                'url' => $attachment[0],
+                'width' => $attachment[1],
+                'height' => $attachment[2],
+                'alt' => $placeholder['alt']
+            ];
+        }
 
         $embededCardPadding = get_field('embeded_card_padding', $this->ID);
         $data['scriptPadding'] =
