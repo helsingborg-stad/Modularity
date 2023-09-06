@@ -1,4 +1,4 @@
-<!-- Map --> {{$cardMoreCardCss}}
+<!-- Map -->
 <div class="o-grid o-grid--equal-elements modularity-map-container">
     <div class="modularity-map-container__map-box {{$cardMapCss}}">
         @card([

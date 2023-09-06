@@ -102,7 +102,7 @@ class Curator extends \Modularity\Module
         $data['numberOfItems']  = $fields['number_of_posts'] ?: 12;
         $data['layout']         = $fields['layout'] ?: 'card';
         $data['columns']        = $fields['columns'] ?: 4;
-        $data['showPoweredBy']  = $fields['show_powered_by'] ? true : false;
+        $data['showPoweredBy']  = isset($fields['show_powered_by']) ? (bool) $fields['show_powered_by'] : false;
 
         //Exclusive fields for blocks
         if ($data['layout'] === 'block') {

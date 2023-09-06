@@ -23,6 +23,7 @@ module.exports = {
 
 		//Admin
 		'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
+		'js/dynamic-map-acf': './source/js/admin/dynamic-map-acf.js',
 
 		//Modules
 		'js/mod-posts-taxonomy': './source/php/Module/Posts/assets/mod-posts-taxonomy.js',

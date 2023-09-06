@@ -69,6 +69,12 @@ class Module
     public $blockSupports = array();
 
     /**
+     * If empty block notice should be used. 
+     * @var bool
+     */
+    public $useEmptyBlockNotice = false; 
+
+    /**
      * Any module plugins (path to file to include)
      * @var array
      */

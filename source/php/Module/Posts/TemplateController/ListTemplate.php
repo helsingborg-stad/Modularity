@@ -25,7 +25,6 @@ class ListTemplate
         $this->data['prepareList'] = $this->prepare($data['posts'], $postData = [
             'posts_data_source' => $data['posts_data_source'] ?? '',
             'archive_link' => $data['archive_link'] ?? '',
-            'posts_fields' => $data['posts_fields'] ?? '',
             'archive_link_url' => $data['archive_link_ur'] ?? '',
             'filters' => $data['filters'] ?? '',
         ]);
@@ -47,6 +46,18 @@ class ListTemplate
             $postData = [$postData];
         }
 
-        return $posts;
+        foreach ($posts as $post) {
+            if (!empty($post->post_type) && $post->post_type == 'attachment') {
+                $link = wp_get_attachment_url($post->ID);
+            } else {
+                $link = $postData['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
+            }
+
+            if (!empty($post->post_title)) {
+                array_push($list, ['link' => $link ?? '', 'title' => $post->post_title]);
+            }
+        }
+
+        return $list;
     }
 }

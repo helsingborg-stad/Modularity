@@ -134,7 +134,7 @@ class ModuleManager
 
         return apply_filters('Modularity/Modules', self::$registered);
     }
-    
+
     /**
      * Get enabled modules id: s
      * @return array
@@ -184,7 +184,7 @@ class ModuleManager
             require_once $source;
             $class = $namespace . '\\' . $module;
             $class = new $class();
-            
+
             $this->register($class, $path);
             self::$blockManager->classes[$class->slug] = $class;
         }
@@ -296,8 +296,8 @@ class ModuleManager
 
                     if (file_exists($plugin)) {
                         require_once $plugin;
-                    } elseif (file_exists(MODULARITY_PATH . 'plugins/'. $plugin)) {
-                        require_once MODULARITY_PATH . 'plugins/'. $plugin;
+                    } elseif (file_exists(MODULARITY_PATH . 'plugins/' . $plugin)) {
+                        require_once MODULARITY_PATH . 'plugins/' . $plugin;
                     }
                 }
             }
@@ -656,10 +656,10 @@ class ModuleManager
         switch ($column) {
             case 'description':
                 $description = get_post_meta($postId, 'module-description', true);
-                echo !empty($description) ? $description: '';
+                echo !empty($description) ? $description : '';
                 break;
 
-            case   'usage':
+            case 'usage':
                 $usage = self::getModuleUsage($postId, 3);
 
                 if (count($usage->data) == 0) {

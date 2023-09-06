@@ -54,7 +54,7 @@ class Slider extends \Modularity\Module
     {
 
         //Get settings
-        $fields = get_fields($this->ID);
+        $fields = $this->getFields();
         $data = [];
 
         //Assign settings to objects
@@ -75,6 +75,12 @@ class Slider extends \Modularity\Module
         $data['slides'] = $this->prepareSlides($fields);
         $data['id'] = $this->ID;
 
+        //Translations
+        $data['lang'] = (object) [
+            'noSlidesHeading' => __('Slider is empty','modularity'),
+            'noSlides' => __('Please add something to slide.','modularity')
+        ]; 
+
 
         return $data;
     }
@@ -86,87 +92,89 @@ class Slider extends \Modularity\Module
             $imageSize = $this->imageSizes[$data['slider_format']];
         }
 
-        foreach ($data['slides'] as &$slide) {
-            $currentImageSize = $imageSize;
+        if(!empty($data['slides']) && is_array($data['slides'])) {
+            foreach ($data['slides'] as &$slide) {
+                $currentImageSize = $imageSize;
 
-            if ($slide['acf_fc_layout'] === 'video') {
-                $currentImageSize = array(1140, false);
-            }
-
-            if ($slide['acf_fc_layout'] == "featured") {
-                $currentImageSize = array(floor($currentImageSize[0]/2), $currentImageSize[1]);
-            }
-
-            // Image
-            $slide['image_use'] = false;
-            if (isset($slide['image']) && !empty($slide['image'])) {
-                $slide['image_use'] = wp_get_attachment_image_src(
-                    $slide['image']['id'],
-                    apply_filters(
-                        'Modularity/slider/image',
-                        $currentImageSize,
-                        $this->args
-                    )
-                );
-            }
-
-            // Set link text
-            if (empty($slide['link_text'])) {
-                $slide['link_text'] = __('Read more', 'modularity');
-            }
-
-            // In some cases ACF will return an post-id instead of a link.
-
-            if (isset($slide['link_url'])) {
-                if (is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
-                    $slide['link_url'] = get_permalink($slide['link_url']);
+                if ($slide['acf_fc_layout'] === 'video') {
+                    $currentImageSize = array(1140, false);
                 }
+
+                if ($slide['acf_fc_layout'] == "featured") {
+                    $currentImageSize = array(floor($currentImageSize[0]/2), $currentImageSize[1]);
+                }
+
+                // Image
+                $slide['image_use'] = false;
+                if (isset($slide['image']) && !empty($slide['image'])) {
+                    $slide['image_use'] = wp_get_attachment_image_src(
+                        $slide['image']['id'],
+                        apply_filters(
+                            'Modularity/slider/image',
+                            $currentImageSize,
+                            $this->args
+                        )
+                    );
+                }
+
+                // Set link text
+                if (empty($slide['link_text'])) {
+                    $slide['link_text'] = __('Read more', 'modularity');
+                }
+
+                // In some cases ACF will return an post-id instead of a link.
+
+                if (isset($slide['link_url'])) {
+                    if (is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
+                        $slide['link_url'] = get_permalink($slide['link_url']);
+                    }
+                }
+
+                $slide['heroStyle'] = false;
+
+                if ($slide['textblock_position'] === 'hero') {
+                    $slide['heroStyle'] = true;
+                    $slide['textblock_position'] = 'center';
+                }
+
+                if (isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
+                    $slide['textblock_position'] = 'bottom';
+                }
+
+                //Set call to action default value
+                $slide['call_to_action'] = false;
+
+                if ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video') {
+                    $slide['call_to_action'] = array(
+                        'title' => $slide['link_text'],
+                        'href' => $slide['link_url']
+                    );
+
+                    //remove link url, instead use CTA
+                    $slide['link_url'] = false;
+                }
+
+                // Replace image alt text with link description
+                if (isset($slide['image'])
+                    && !empty($slide['link_type'])
+                    && $slide['link_type'] !== 'false'
+                    && !empty($slide['link_url_description'])) {
+                    $slide['image']['alt'] = $slide['link_url_description'];
+                }
+
+                $focusPoint = false;
+
+                if(array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
+                    $focusPoint = [
+                        'top'   => $slide['image']['top'],
+                        'left'  => $slide['image']['left']
+                    ];
+                }
+
+                $slide['focusPoint'] = $focusPoint;
+
+                $slide = (object) $slide;
             }
-
-            $slide['heroStyle'] = false;
-
-            if ($slide['textblock_position'] === 'hero') {
-                $slide['heroStyle'] = true;
-                $slide['textblock_position'] = 'center';
-            }
-
-            if (isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
-                $slide['textblock_position'] = 'bottom';
-            }
-
-            //Set call to action default value
-            $slide['call_to_action'] = false;
-
-            if ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video') {
-                $slide['call_to_action'] = array(
-                    'title' => $slide['link_text'],
-                    'href' => $slide['link_url']
-                );
-
-                //remove link url, instead use CTA
-                $slide['link_url'] = false;
-            }
-
-            // Replace image alt text with link description
-            if (isset($slide['image'])
-                && !empty($slide['link_type'])
-                && $slide['link_type'] !== 'false'
-                && !empty($slide['link_url_description'])) {
-                $slide['image']['alt'] = $slide['link_url_description'];
-            }
-
-            $focusPoint = false;
-
-            if(array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
-                $focusPoint = [
-                    'top'   => $slide['image']['top'],
-                    'left'  => $slide['image']['left']
-                ];
-            }
-
-            $slide['focusPoint'] = $focusPoint;
-
-            $slide = (object) $slide;
         }
 
         return $data['slides'];

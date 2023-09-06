@@ -21,7 +21,7 @@ class WpWidget extends \Modularity\Module
 
     public function data() : array
     {
-        $data = get_fields($this->ID);
+        $data = $this->getFields();
         $data['settings'] = \Modularity\Module\WpWidget\WpWidget::createSettingsArray($data['mod_standard_widget_type'], $this->ID);
         $data['widgetBefore'] = apply_filters('Modularity/Module/WpWidget/before', '<div class="box">', $this->args, $this);
         $data['widgetAfter'] = apply_filters('Modularity/Module/WpWidget/after', '</div>', $this->args, $this);

@@ -28,20 +28,7 @@ add_action('plugins_loaded', function () {
 if (file_exists(MODULARITY_PATH . 'vendor/autoload.php')) {
     require_once MODULARITY_PATH . 'vendor/autoload.php';
 }
-
-// Autoload from ABSPATH
-if (file_exists(dirname(ABSPATH) . '/vendor/autoload.php')) {
-    require_once dirname(ABSPATH) . '/vendor/autoload.php';
-}
-
-require_once MODULARITY_PATH . 'source/php/Vendor/Psr4ClassLoader.php';
 require_once MODULARITY_PATH . 'Public.php';
-
-// Instantiate and register the autoloader
-$loader = new Modularity\Vendor\Psr4ClassLoader();
-$loader->addPrefix('Modularity', MODULARITY_PATH);
-$loader->addPrefix('Modularity', MODULARITY_PATH . 'source/php/');
-$loader->register();
 
 // Acf auto import and export
 add_action('plugins_loaded', function () {
@@ -86,6 +73,7 @@ add_action('plugins_loaded', function () {
         'mod-divider'               => 'group_62816d604ae46',
         'mod-all'                   => 'group_636e424039120',
         'mod-subscribe'             => 'group_641c51b765f4b',
+        'mod-modal'                 => 'group_64a29154aa972',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',

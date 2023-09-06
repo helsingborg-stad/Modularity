@@ -40,11 +40,13 @@ class Table extends \Modularity\Module
     public function data(): array
     {
         $post = $this->data;
-        $data = get_fields($this->ID);
+        $data = (array) $this->getFields();
+
+        
 
         if (!empty($data['mod_table_block_csv_file'])) {
             $tableData = $this->formatCsvData($data['mod_table_block_csv_file'], $data['mod_table_csv_delimiter']);
-        } elseif (!empty(json_decode($post['meta']['mod_table'][0]))) {
+        } elseif (isset($post['meta']['mod_table'][0]) && !empty(json_decode($post['meta']['mod_table'][0]))) {
             $tableData = json_decode($post['meta']['mod_table'][0]);
         } else {
             $tableData = $data['mod_table'];
@@ -52,23 +54,31 @@ class Table extends \Modularity\Module
 
         $tableList = $this->tableList($tableData);
         $data['mod_table_size'] = $data['mod_table_size'] ?? '';
-        $data['m_table'] = [
-            'data' => $tableList,
-            'showHeader' => true,    //To-Do: Add this option in ACF
-            'showFooter' => false,   //To-Do: Add this option in ACF
-            'classList' => $this->getTableClasses($data) ?? '',
-            'filterable' => $data['mod_table_search'] ?? [],
-            'sortable' => $data['mod_table_ordering'] ?? [],
-            'pagination' => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
-            'multidimensional' => $data['mod_table_multidimensional'],
-            'showSum' => $data['mod_table_sum'],
-            'fullscreen' => $data['mod_table_fullscreen']
+        $data['m_table']        = [
+            'data'              => (array) $tableList,
+            'showHeader'        => true,    //To-Do: Add this option in ACF
+            'showFooter'        => false,   //To-Do: Add this option in ACF
+            'classList'         => $this->getTableClasses($data) ?? '',
+            'filterable'        => $data['mod_table_search'] ?? [],
+            'sortable'          => $data['mod_table_ordering'] ?? [],
+            'pagination'        => $data['mod_table_pagination'] ? $data['mod_table_pagination_count'] : false,
+            'multidimensional'  => $data['mod_table_multidimensional'],
+            'showSum'           => $data['mod_table_sum'],
+            'fullscreen'        => $data['mod_table_fullscreen'] ?? false
         ];
 
         $data['mod_table']      = self::unicodeConvert($data['mod_table']);
         $data['tableClasses']   = $this->getTableClasses($data);
-        $data['classes']        = implode(' ', apply_filters('Modularity/Module/Classes', array('c-card--default'), $this->post_type, $this->args));
-        $data['m_table']        = (object)$data['m_table'];
+        $data['classes']        = implode(
+            ' ', 
+            apply_filters(
+                'Modularity/Module/Classes', 
+                array('c-card--default'), 
+                isset($this->post_type) ? $this->post_type : false, 
+                $this->args
+            )
+        );
+        $data['m_table']        = (object) $data['m_table'];
         $data['id'] = $this->ID;
 
         return $data;
@@ -217,6 +227,8 @@ class Table extends \Modularity\Module
                 foreach ($arr['header'] as $heading) {
                     $data['headings'][] = $heading['c']; 
                 }
+            } else {
+                $data['headings'] = []; 
             }
             foreach ($arr['body'] as $row) {
                 $columns = [];

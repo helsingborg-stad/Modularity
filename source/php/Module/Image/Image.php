@@ -30,7 +30,7 @@ class Image extends \Modularity\Module
     {
 
         //Get data
-        $data = get_fields($this->ID);
+        $data = $this->getFields();
         $data['args'] = $this->args;
 
         //Do not use link

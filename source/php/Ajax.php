@@ -29,24 +29,35 @@ class Ajax
      * Gets modules that's saved to a post/page
      * @return string JSON ecoded object
      */
-    public function getPostModules()
+    public function getPostModules($includeMeta = false)
     {
         if (!isset($_POST['id']) || empty($_POST['id']) || is_null($_POST['id'])) {
             echo 'false';
             wp_die();
         }
 
-        $post_modules = \Modularity\Editor::getPostModules($_POST['id']);
-        foreach ($post_modules as $post_module) {
-            if (!empty($post_module['modules'])) {
-                foreach ($post_module['modules'] as &$module) {
-                    $incompability = apply_filters('Modularity/Editor/SidebarIncompability', array(), $module->post_type);
+        $postModules = \Modularity\Editor::getPostModules($_POST['id']);
+
+        foreach ($postModules as $postModule) {
+            if (!empty($postModule['modules'])) {
+                foreach ($postModule['modules'] as &$module) {
+                    
+                    $incompability = apply_filters(
+                        'Modularity/Editor/SidebarIncompability',
+                        [],
+                        $module->post_type
+                    );
+
                     $module->sidebar_incompability = (!empty($incompability['sidebar_incompability'])) ? $incompability['sidebar_incompability'] : array();
+                
+                    if($includeMeta) {
+                        unset($module->meta);
+                    }
                 }
             }
         }
 
-        echo json_encode($post_modules);
+        echo json_encode($postModules);
         wp_die();
     }
 }

@@ -36,6 +36,7 @@
         $('.wp-list-table').addClass('modularity-wp-list-table');
         $('tbody .check-column').addClass('modularity-import-column').append('<button class="button modularity-import-button" data-modularity-action="import">Import</button>');
         $('#posts-filter').append('<input type="hidden" name="is_thickbox" value="true">');
+        $('.modularity-import-column label').addClass('screen-reader-text');
 
         $(document).on('click', '[data-modularity-action="import"]', (e) => {
             e.preventDefault();

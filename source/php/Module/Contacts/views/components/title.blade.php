@@ -5,10 +5,13 @@
     @if ($contact['full_name'])
         @typography([
             "element"       => "h3",
-            'attributeList' => ['itemprop' => 'name'],
+            'attributeList' => [
+                'itemprop' => 'name'
+            ],
             'classList'     => [
                 'u-margin__bottom--0',
-                'u-color__text--darkest'
+                'u-color__text--darkest',
+                'notranslate'
             ]
         ])
             {{ $contact['full_name'] }}
