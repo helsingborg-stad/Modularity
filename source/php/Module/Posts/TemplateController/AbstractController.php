@@ -22,10 +22,6 @@ class AbstractController
 
     public function preparePosts()
     {
-        $imageDimensions = $this->getImageDimensions($this->data['posts_columns']);
-
-        $amount = $this->getTruncateAmount($this->data['posts_display_as']);
-
         $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType($this->data['posts_data_post_type'] ?? '');
 
         foreach ($this->data['posts'] as $post) {
@@ -51,7 +47,7 @@ class AbstractController
             $post->contentType = \Modularity\Module\Posts\Helper\ContentType::getContentType($post->post_type);
         }
 
-        $location = get_field('location', $post->ID) ?? [];
+        $location = get_field('location', $post->id) ?? [];
         if (!empty($location)) {
             $post->location = $location;
             $post->attributeList['data-js-map-location'] = json_encode(\Municipio\Helper\Location::createMapMarker($post));

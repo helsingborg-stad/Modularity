@@ -14,10 +14,10 @@
                     'heading' => $post->showTitle ? $post->postTitle : false,
                     'content' => $post->showExcerpt ? $post->excerptShort : false,
                     'ratio' => '16:9',
-                    'meta' => $post->termsUnlinked,
+                    'meta' => !empty($termsUnlinked) ? $post->termsUnlinked : false,
                     'secondary_meta' => $display_reading_time ? $post->readingTime : false,
-                    'date' => $post->postDate,
-                    'dateBadge' => $post->dateBadge,
+                    'date' => !empty($post->postDate) ? $post->postDate : false,
+                    'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                     'filled' => true,
                     'image' =>
                         $post->showImage && isset($post->thumbnail['src'])
@@ -51,17 +51,17 @@
                 @card([
                     'link' => $post->permalink,
                     'imageFirst' => true,
-                    'heading' => $post->showTitle ? $post->postTitle : false,
+                    'heading' => !empty($post->showTitle) ? $post->postTitle : false,
                     'context' => ['module.posts.index'],
-                    'content' => $post->showExcerpt ? $post->excerptShort : false,
-                    'tags' => $post->termsUnlinked,
-                    'meta' => $display_reading_time ? $post->readingTime : false,
-                    'date' => $post->postDate,
-                    'dateBadge' => $post->dateBadge,
+                    'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
+                    'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
+                    'meta' => !empty($display_reading_time) ? $post->readingTime : false,
+                    'date' => !empty($post->postDate) ? $post->postDate : false,
+                    'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                     'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                     'containerAware' => true,
                     'hasAction' => true,
-                    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail['src']),
+                    'hasPlaceholder' => !empty($anyPostHasImage) && !empty($post->showImage) && !isset($post->thumbnail['src']),
                     'image' =>
                         $post->showImage && isset($post->thumbnail['src'])
                             ? [
@@ -72,7 +72,7 @@
                             : [],
                     'postId' => $post->id,
                     'postType' => $post->postType ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                     'attributeList' => array_merge($post->attributeList, []),
                 ])
                     @slot('floating')
