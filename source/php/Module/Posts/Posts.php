@@ -655,6 +655,8 @@ class Posts extends \Modularity\Module
      * @param array $data The data to "fake"
      * @return array        Faked data
      */
+
+     /* REMOVE: remove after refactoring */
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
@@ -696,8 +698,17 @@ class Posts extends \Modularity\Module
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
+                
                 if (class_exists('\Municipio\Helper\Post')) {
                     $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
+
+                    if (!empty($_post)) {
+                        $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
+                    }
+
+                    if (in_array('image',$fields->posts_fields) && !empty($_post->thumbnail) && empty($_post->thumbnail['src'])) {
+                        $_post->thumbnail['src'] = \Modularity\Helper\Wp::getThemeMod('logotype_emblem') ?: get_stylesheet_directory_uri() . '/assets/images/broken_image.svg';
+                    }
                 }
             }
         }
