@@ -42,8 +42,6 @@ class ListTemplate
      */
     public function prepare($posts, $postData)
     {
-        $list = [];
-
         if(!is_array($postData)) {
             $postData = [$postData];
         }

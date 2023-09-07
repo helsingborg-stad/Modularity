@@ -201,9 +201,11 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode($data = $this->getFields()));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
+
         if (!empty($fields->posts_fields)) {
             $data['display_reading_time'] = in_array('reading_time', $fields->posts_fields) ?? false;
         }
+
 
         $this->enableFilters = $this->enableFilters();
         if ($this->enableFilters) {
@@ -656,13 +658,18 @@ class Posts extends \Modularity\Module
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
-
         foreach ($data as $key => $item) {
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content
             ]);
+        }
+        
+        foreach ($posts as &$post) {
+            if (class_exists('\Municipio\Helper\FormatObject')) {
+                $post = \Municipio\Helper\FormatObject::camelCase($post);
+            }
         }
 
         $posts = json_decode(json_encode($posts));
@@ -688,14 +695,9 @@ class Posts extends \Modularity\Module
         $posts = (array) get_posts(self::getPostArgs($module->ID));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
-                if (empty($_post->permalink)) {
-                    $_post->permalink = get_permalink($_post->ID);
-                }
-
-                if (class_exists('\Municipio\Helper\ReadingTime')) {
-                    $_post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($_post->post_content, 0, true);
-                } else {
-                    $_post->reading_time = false;
+                $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
+                if (class_exists('\Municipio\Helper\Post')) {
+                    $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
                 }
             }
         }
@@ -706,7 +708,6 @@ class Posts extends \Modularity\Module
     public static function getPostArgs($id)
     {
         $fields = json_decode(json_encode(get_fields($id)));
-
         $metaQuery = false;
         $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
         $order = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';

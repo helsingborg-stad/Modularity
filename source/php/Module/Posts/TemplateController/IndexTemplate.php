@@ -30,7 +30,5 @@ class IndexTemplate extends AbstractController
         }
 
         $this->preparePosts();
-
-        $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 }
