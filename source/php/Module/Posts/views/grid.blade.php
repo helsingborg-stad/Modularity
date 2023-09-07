@@ -11,28 +11,28 @@
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
             @if ($loop->first && $highlight_first_column && $highlight_first_column_as === 'card')
                 @card([
-                    'link' => $post->link,
+                    'link' => $post->permalink,
                     'imageFirst' => true,
-                    'heading' => $post->post_title,
-                    'hasFooter' => $post->tags ? true : false,
+                    'heading' => $post->postTitle,
+                    'hasFooter' => $post->termsUnlinked ? true : false,
                     'context' => ['module.posts.index'],
-                    'content' => $post->post_content,
-                    'meta' => $display_reading_time ? $post->reading_time : false,
-                    'tags' => $post->tags,
-                    'date' => $post->post_date,
+                    'content' => $post->excerptShort,
+                    'meta' => $display_readingtime ? $post->readingTime : false,
+                    'tags' => $post->termsUnlinked,
+                    'date' => $post->postDate,
                     'dateBadge' => $post->dateBadge,
                     'containerAware' => true,
                     'hasAction' => true,
-                    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail[0]),
+                    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail['src']),
                     'image' => $post->showImage
                         ? [
-                            'src' => $post->thumbnail[0],
-                            'alt' => $post->post_title,
+                            'src' => $post->thumbnail['src'],
+                            'alt' => $post->thumbnail['alt'],
                             'backgroundColor' => 'secondary'
                         ]
                         : [],
-                    'postId' => $post->ID,
-                    'postType' => $post->post_type ?? '',
+                    'postId' => $post->id,
+                    'postType' => $post->postType ?? '',
                     'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
                     'attributeList' => array_merge($post->attributeList, []),
                 ])
@@ -45,27 +45,27 @@
                 @endcard
             @else
                 @block([
-                    'heading' => $post->showTitle ? $post->post_title : false,
-                    'content' => $post->showExcerpt ? $post->post_content : false,
+                    'heading' => $post->showTitle ? $post->postTitle : false,
+                    'content' => $post->showExcerpt ? $post->excerptShort : false,
                     'ratio' => $ratio,
-                    'meta' => $post->tags ? $post->tags : false,
-                    'secondaryMeta' => $display_reading_time ? $post->reading_time : false,
-                    'date' => $post->post_date,
+                    'meta' => $post->termsUnlinked ? $post->termsUnlinked : false,
+                    'secondaryMeta' => $display_readingtime ? $post->readingTime : false,
+                    'date' => $post->postDate,
                     'dateBadge' => $post->dateBadge,
                     'filled' => true,
                     'image' => $post->showImage
                         ? [
-                            'src' => $post->thumbnail[0],
-                            'alt' => $post->post_title,
+                            'src' => $post->thumbnail['src'],
+                            'alt' => $post->thumnnail['alt'],
                             'backgroundColor' => 'secondary'
                         ]
                         : false,
-                    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail[0]),
+                    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail['src']),
                     'classList' => ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
-                    'link' => $post->link,
-                    'postId' => $post->ID,
-                    'postType' => $post->post_type ?? '',
+                    'link' => $post->permalink,
+                    'postId' => $post->id,
+                    'postType' => $post->postType ?? '',
                     'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
                     'attributeList' => array_merge($post->attributeList, []),
                 ])

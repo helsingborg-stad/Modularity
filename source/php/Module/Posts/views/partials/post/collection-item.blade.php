@@ -1,8 +1,8 @@
 @collection__item([
-    'link' => $post->link,
+    'link' => $post->permalink,
     'classList' => [$posts_columns],
     'context' => ['module.posts.collection__item'],
-    'before' => $display_reading_time ? $post->reading_time : false,
+    'before' => $display_reading_time ? $post->readingTime : false,
     'containerAware' => true,
     'bordered' => true,
     'attributeList' => array_merge($post->attributeList, [
@@ -15,10 +15,10 @@
         @endslot
     @endif
     @slot('before')
-        @if ($post->showImage && isset($post->thumbnail[0]))
+        @if ($post->showImage && isset($post->thumbnail['src']))
             @image([
-                'src' => $post->thumbnail[0],
-                'alt' => $post->post_title,
+                'src' => $post->thumbnail['src'],
+                'alt' => $post->thumbnail['alt'],
             ])
             @endimage
         @endif
@@ -33,7 +33,7 @@
                 'element' => 'h2',
                 'variant' => 'h3'
             ])
-                {{ $post->showTitle ? $post->post_title : false }}
+                {{ $post->showTitle ? $post->postTitle : false }}
             @endtypography
             @if ($post->termIcon['icon'])
                 @inlineCssWrapper([
@@ -50,13 +50,13 @@
             @endif
         @endgroup
         @tags([
-            'tags' => $post->tags,
+            'tags' => $post->termsUnlinked,
             'classList' => ['u-padding__y--2'],
             'format' => false
         ])
         @endtags
         @typography([])
-            {!! $post->showExcerpt ? $post->post_content : false !!}
+            {!! $post->showExcerpt ? $post->excerptShort : false !!}
         @endtypography
 
     @endgroup

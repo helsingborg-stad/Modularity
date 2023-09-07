@@ -54,33 +54,6 @@ class SliderTemplate extends AbstractController
 
     public function prepare($fields)
     {
-        $postNum = 0;
-
-        /* Image size */
-        $imageDimensions = [1200, 900];
-
-        if (!$fields->posts_alter_columns) {
-            $imageDimensions = $this->getImageDimensions(
-                $fields->posts_columns,
-                [900, 675]
-            );
-        }
-
-        foreach ($this->data['posts'] as $post) {
-            $postNum++;
-
-            /* Image */
-            $post->thumbnail = $this->getPostImage(
-                $post,
-                $this->data['posts_data_source'],
-                $imageDimensions,
-                $fields->ratio ?? '4:3'
-            );
-
-            // Get link for card, or tags
-            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-
-            $this->setPostFlags($post);
-        }
+        $this->setPostFlags($post);
     }
 }

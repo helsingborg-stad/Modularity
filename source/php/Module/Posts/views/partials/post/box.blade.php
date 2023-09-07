@@ -1,15 +1,15 @@
 @box([
-    'heading' => $post->showTitle ? $post->post_title : false,
-    'content' => $post->showExcerpt ? $post->post_content : false,
-    'link' => $post->link,
-    'meta' => $post->tags,
-    'secondaryMeta' => $display_reading_time ? $post->reading_time : false,
-    'date' => $post->post_date,
+    'heading' => $post->showTitle ? $post->postTitle : false,
+    'content' => $post->showExcerpt ? $post->excerptShort : false,
+    'link' => $post->permalink,
+    'meta' => $post->termsUnlinked,
+    'secondaryMeta' => $display_reading_time ? $post->readingTime : false,
+    'date' => $post->postDate,
     'ratio' => $ratio,
     'image' => $post->showImage
         ? [
-            'src' => $post->thumbnail[0] ?? false,
-            'alt' => $post->post_title
+            'src' => $post->thumbnail['src'] ?? false,
+            'alt' => $post->thumbnail['alt'] 
         ]
         : [],
     'icon' => [

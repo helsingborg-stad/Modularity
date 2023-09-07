@@ -42,43 +42,11 @@ class GridTemplate extends AbstractController
         $this->data['column_width'] = 'o-grid-' . $this->data['gridSize'] . '@md';
 
         $this->prepare($fields);
-        $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 
     public function prepare($fields)
     {
-        $postNum = 0;
-
-        /* Image size */
-        $imageDimensions = [1200, 900];
-
-        if (!$fields->posts_alter_columns) {
-            $imageDimensions = $this->getImageDimensions($fields->posts_columns, [900, 675]);
-        }
-
         foreach ($this->data['posts'] as $post) {
-            $postNum++;
-
-            /* Image */
-            $post->thumbnail = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, $fields->ratio ?? '4:3');
-
-            // Get link for card, or tags
-            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-
-            $tagData = TagHelper::getTags(
-                $post->ID,
-                $this->data['taxonomyDisplayFlat'],
-                $post->link
-            );
-
-            $post->tags = $tagData['tags'];
-            $post->termIcon = $tagData['termIcon'];
-
-            if (class_exists('Municipio\Helper\ReadingTime')) {
-                $post->reading_time = \Municipio\Helper\ReadingTime::getReadingTime($post->post_content, 0, true);
-            } else {
-                $post->reading_time = false;
-            }
             $this->setPostFlags($post);
         }
     }
