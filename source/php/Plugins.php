@@ -5,7 +5,6 @@ namespace Modularity;
 class Plugins
 {
     public $plugins = array(
-        "johannheyne/advanced-custom-fields-table-field/advanced-custom-fields-table-field/trunk/acf-table.php",
         "clark-nikdel-powell/post-type-select-for-acf/acf-posttype-select.php",
         "jeradin/acf-website-field/acf-website_field.php",
         "ooksanen/acf-focuspoint/acf-focuspoint.php",
@@ -20,16 +19,19 @@ class Plugins
         if(is_array($this->plugins) && !empty($this->plugins)) {
             foreach ($this->plugins as $plugin) {
 
-                $pluginPath = MODULARITY_PATH . "vendor/" . $plugin; 
+                //Paths to try
+                $pluginPath = [
+                    'common'    => ABSPATH . "../vendor/" . $plugin,
+                    'local'     => MODULARITY_PATH . "vendor/" . $plugin
+                ];
 
-                if (file_exists($pluginPath)) {
-                    require_once $pluginPath;
-                } else {
-                    error_log("A plugin not existing tried to enqueue to acf in modularity. Have you run composer install?"); 
+                //Include either one
+                if (file_exists($pluginPath['common'])) {
+                    require_once $pluginPath['common'];
+                } elseif(file_exists($pluginPath['local'])) {
+                    require_once $pluginPath['local'];
                 }
             }
-        } else {
-            error_log("No plugins acf plugins found in array for modulary, please review your filters."); 
         }
     }
 }
