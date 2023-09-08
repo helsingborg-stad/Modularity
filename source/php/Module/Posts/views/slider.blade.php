@@ -1,4 +1,3 @@
-@include('partials.post-filters')
 <div class="o-grid u-margin__bottom--5">
     <div class="o-grid-12@sm o-grid-8@md o-grid-8@lg">
         @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title', [
