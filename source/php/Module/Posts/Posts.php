@@ -522,25 +522,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Enqueue scripts
-     * @return void
-     */
-    public function adminEnqueue()
-    {
-        add_action('admin_head', function () {
-            global $post;
-            global $archive;
-
-            $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
-            if (empty($id)) {
-                return;
-            }
-
-            echo '<script>modularity_current_post_id = ' . $id . ';</script>';
-        });
-    }
-
-    /**
      * "Fake" WP_POST objects for manually inputted posts
      * @param array $data The data to "fake"
      * @return array        Faked data
