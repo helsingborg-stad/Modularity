@@ -655,7 +655,7 @@ class Posts extends \Modularity\Module
                         $_post->hasPlaceholderImage = true;
                     }
                     
-                    $_post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $post);
+                    $_post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $_post);
                 }
             }
         }
