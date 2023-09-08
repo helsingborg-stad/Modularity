@@ -9,19 +9,19 @@
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
             @segment([
                 'layout' => 'card',
-                'title' => $post->showTitle ? $post->postTitle : false,
+                'title' => !empty($post->showTitle) ? $post->postTitle : false,
                 'context' => ['module.posts.segment'],
-                'meta' => $display_reading_time ? $post->readingTime : false,
-                'tags' => $post->termsUnlinked,
-                'image' => $post->thumbnail['src'],
+                'meta' => !empty($display_reading_time) ? $post->readingTime : false,
+                'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
+                'image' => !empty($post->thumbnail['src']) ? $post->thumbnail['src'] : false,
                 'date' => $post->postDate,
-                'dateBadge' => $post->dateBadge,
-                'content' => $post->excerptShort,
+                'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
+                'content' => !empty($post->excerptShort) ? $post->excerptShort : false,
                 'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
                 'containerAware' => true,
                 'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
-                'classList' => $post->classList,
-                'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                'classList' => !empty($post->classList) ? $post->classList : [],
+                'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                 'attributeList' => array_merge($post->attributeList, []),
             ])
                 @slot('floating')
