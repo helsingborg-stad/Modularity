@@ -33,7 +33,7 @@ class Posts extends \Modularity\Module
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
 
-        add_filter('Modularity/Module/Posts/template', array( $this, 'sliderTemplate' ), 10, 3);
+        add_filter('Modularity/Module/Posts/template', array( $this, 'setTemplate' ), 10, 3);
 
         new PostsAjax($this);
     }
@@ -46,7 +46,7 @@ class Posts extends \Modularity\Module
     *
     * @return The template name.
     */
-    public function sliderTemplate($template, $module, $moduleData)
+    public function setTemplate($template, $module, $moduleData)
     {
         $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
         $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
@@ -206,7 +206,13 @@ class Posts extends \Modularity\Module
         }
 
         if (!empty($this->enableFilters())) {
-            $this->setupFilters($data);
+            $data['frontEndFilters'] = $this->getFrontendFilters();
+            $postFilters = new PostsFilters($this);
+            $enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true);
+            $data['enabledTaxonomyFilters'] = !empty($enabledTaxonomyFilters) ? $enabledTaxonomyFilters : [];
+            $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
+            $data['pageUrl'] = $postFilters->getPostUrl();
+            $data['searchQuery'] = get_query_var('search');
         }
 
         $data['modId'] = $this->ID;
@@ -219,11 +225,7 @@ class Posts extends \Modularity\Module
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
 
         $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
-        $data['floatingIcon'] = apply_filters('Modularity/Module/Posts/Icon', array());
 
-        foreach ($data['posts'] as &$post) {
-            $post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $post);
-        }
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;
@@ -254,8 +256,7 @@ class Posts extends \Modularity\Module
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
         }
 
-        $data['taxonomyDisplayFlat']    = $this->getTaxonomyDisplayFlat();
-        $data['archive_link_url']       = $this->getArchiveUrl(
+        $data['archive_link_url'] = $this->getArchiveUrl(
             $data['posts_data_post_type'],
             $fields ?? null
         );
@@ -272,20 +273,6 @@ class Posts extends \Modularity\Module
         }
 
         return $data;
-    }
-
-    private function setupFilters(&$data) {
-        $data['frontEndFilters'] = $this->getFrontendFilters();
-
-        $postFilters = new PostsFilters($this);
-
-        $enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true);
-        $data['enabledTaxonomyFilters'] = !empty($enabledTaxonomyFilters) ? $enabledTaxonomyFilters : [];
-
-
-        $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
-        $data['pageUrl'] = $postFilters->getPostUrl();
-        $data['searchQuery'] = get_query_var('search');
     }
 
     private function getArchiveUrl($postType, $fields){
@@ -554,17 +541,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Enqueue scripts (frontend)
-     * @return void
-     */
-    public function script()
-    {
-        wp_register_script('mod-posts-load-more-button', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/mod-posts-load-more-button.js'));
-        wp_enqueue_script('mod-posts-load-more-button');
-    }
-
-    /**
      * Enqueue scripts
      * @return void
      */
@@ -678,6 +654,8 @@ class Posts extends \Modularity\Module
                         $_post->thumbnail['src'] = \Modularity\Helper\Wp::getThemeMod('logotype_emblem') ?: get_stylesheet_directory_uri() . '/assets/images/broken_image.svg';
                         $_post->hasPlaceholderImage = true;
                     }
+                    
+                    $_post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $post);
                 }
             }
         }
