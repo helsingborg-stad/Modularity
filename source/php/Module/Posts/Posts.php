@@ -527,10 +527,6 @@ class Posts extends \Modularity\Module
      */
     public function adminEnqueue()
     {
-        wp_register_script('mod-posts-taxonomy', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/mod-posts-taxonomy.js'));
-        wp_enqueue_script('mod-posts-taxonomy');
-
         add_action('admin_head', function () {
             global $post;
             global $archive;
