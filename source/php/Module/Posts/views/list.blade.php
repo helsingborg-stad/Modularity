@@ -1,5 +1,3 @@
-@include('partials.post-filters')
-
 @card([
     'heading' => false,
     'classList' => [$classes],

@@ -1,8 +1,5 @@
-@include('partials.post-filters')
-
 @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
 @includeWhen($preamble, 'partials.preamble')
-
 
 <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}{{ !empty($noGutter) ? ' o-grid--no-gutter' : '' }}"
 @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>

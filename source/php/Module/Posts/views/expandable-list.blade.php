@@ -1,6 +1,5 @@
 <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}">
     <div class="o-grid-12">
-        @include('partials.post-filters')
         @card([
             'heading' => false,
             'classList' => [$classes],
