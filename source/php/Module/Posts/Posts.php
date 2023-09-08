@@ -205,23 +205,10 @@ class Posts extends \Modularity\Module
             $data['display_reading_time'] = in_array('reading_time', $fields->posts_fields) ?? false;
         }
 
-
-        $this->enableFilters = $this->enableFilters();
-        if ($this->enableFilters) {
-            $data['frontEndFilters'] = $this->getFrontendFilters();
-
-            $postFilters = new PostsFilters($this);
-
-            $data['enabledTaxonomyFilters'] = [];
-            $enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true);
-            if ($enabledTaxonomyFilters) {
-                $data['enabledTaxonomyFilters'] = $enabledTaxonomyFilters;
-            }
-
-            $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
-            $data['pageUrl'] = $postFilters->getPostUrl();
-            $data['searchQuery'] = get_query_var('search');
+        if (!empty($this->enableFilters())) {
+            $this->setupFilters($data);
         }
+
         $data['modId'] = $this->ID;
 
         // Posts
@@ -287,51 +274,33 @@ class Posts extends \Modularity\Module
         return $data;
     }
 
-    private function getArchiveUrl($postType, $fields)
-    {
+    private function setupFilters(&$data) {
+        $data['frontEndFilters'] = $this->getFrontendFilters();
 
-        if (empty($postType)) {
-            return false;
-        }
+        $postFilters = new PostsFilters($this);
 
-        if (!isset($fields->archive_link) || !$fields->archive_link) {
+        $enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true);
+        $data['enabledTaxonomyFilters'] = !empty($enabledTaxonomyFilters) ? $enabledTaxonomyFilters : [];
+
+
+        $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
+        $data['pageUrl'] = $postFilters->getPostUrl();
+        $data['searchQuery'] = get_query_var('search');
+    }
+
+    private function getArchiveUrl($postType, $fields){
+        if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
             return false;
         }
 
         if ($postType == 'post') {
-            if ($pageForPosts = get_option('page_for_posts')) {
-                return get_permalink($pageForPosts);
-            }
-
-            if (get_option('show_on_front') == 'posts') {
-                return get_home_url();
-            }
-
-            return false;
+            $pageForPosts = get_option('page_for_posts');
+            return $pageForPosts ? get_permalink($pageForPosts) : (get_option('show_on_front') == 'posts' ? get_home_url() : false);
         }
 
-        if ($postObject = get_post_type_object($postType)) {
-            if (isset($postObject->has_archive) && $postObject->has_archive) {
-                return get_post_type_archive_link($postType);
-            }
-        }
-
-        return false;
+        $postObject = get_post_type_object($postType);
+        return ($postObject && isset($postObject->has_archive) && $postObject->has_archive) ? get_post_type_archive_link($postType) : false;
     }
-
-
-    /**
-     * @return array
-     */
-    public function getTaxonomyDisplayFlat()
-    {
-        if (empty(get_field('taxonomy_display', $this->ID))) {
-            return [];
-        }
-
-        return get_field('taxonomy_display', $this->ID);
-    }
-
 
     /**
      * AJAX CALLBACK
