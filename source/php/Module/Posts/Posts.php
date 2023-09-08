@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts;
 
-use Modularity\Module\Posts\PostsFilters;
-
 /**
  * Class Posts
  * @package Modularity\Module\Posts
@@ -203,16 +201,6 @@ class Posts extends \Modularity\Module
 
         if (!empty($fields->posts_fields)) {
             $data['display_reading_time'] = in_array('reading_time', $fields->posts_fields) ?? false;
-        }
-
-        if (!empty($this->enableFilters())) {
-            $data['frontEndFilters'] = $this->getFrontendFilters();
-            $postFilters = new PostsFilters($this);
-            $enabledTaxonomyFilters = $postFilters->getEnabledTaxonomies($group = true);
-            $data['enabledTaxonomyFilters'] = !empty($enabledTaxonomyFilters) ? $enabledTaxonomyFilters : [];
-            $data['queryString'] = (isset($_SERVER['QUERY_STRING']) && !empty($_SERVER['QUERY_STRING'])) ? true : false;
-            $data['pageUrl'] = $postFilters->getPostUrl();
-            $data['searchQuery'] = get_query_var('search');
         }
 
         $data['modId'] = $this->ID;
