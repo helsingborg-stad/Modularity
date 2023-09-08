@@ -14,8 +14,6 @@ class Posts extends \Modularity\Module
         'align' => ['full']
     );
 
-    private $enableFilters = false;
-
     public function init()
     {
         $this->nameSingular = __('Posts', 'modularity');
@@ -546,37 +544,6 @@ class Posts extends \Modularity\Module
         });
     }
 
-    private function getFrontendFilters()
-    {
-        $frontendFilters = [];
-        $frontendFilters['front_end_tax_filtering_text_search'] = get_field(
-            'front_end_tax_filtering_text_search',
-            $this->ID
-        ) ? true : false;
-        $frontendFilters['front_end_tax_filtering_dates'] = get_field(
-            'front_end_tax_filtering_dates',
-            $this->ID
-        ) ? true : false;
-        $frontendFilters['front_end_tax_filtering_taxonomy'] = get_field(
-            'front_end_tax_filtering_taxonomy',
-            $this->ID
-        ) ? true : false;
-
-        $frontendFilters['front_end_button_text'] = get_field('front_end_button_text', $this->ID);
-        $frontendFilters['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
-        $frontendFilters['front_end_display'] = get_field('front_end_display', $this->ID);
-
-        return $frontendFilters;
-    }
-
-    private function enableFilters()
-    {
-        return get_field('front_end_tax_filtering', $this->ID)
-            && get_field('posts_data_post_type', $this->ID) === 'post'
-            || get_field('front_end_tax_filtering', $this->ID)
-            && get_field('posts_data_post_type', $this->ID) === 'page';
-    }
-
     /**
      * "Fake" WP_POST objects for manually inputted posts
      * @param array $data The data to "fake"
@@ -655,7 +622,6 @@ class Posts extends \Modularity\Module
 
         // Get post args
         $getPostsArgs = [
-            'posts_per_page' => $fields->posts_count,
             'post_type' => 'any',
             'suppress_filters' => false
         ];
