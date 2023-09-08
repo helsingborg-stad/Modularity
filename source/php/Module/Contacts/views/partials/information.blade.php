@@ -15,31 +15,31 @@
     @includeWhen((count($title) > 0), 'components.title')
 
     {{-- E-mail --}}
-    @includeWhen($contact['email'], 'components.email', ['icon' => 'email'])
+    @includeWhen(!empty($contact['email']), 'components.email', ['icon' => 'email'])
 
     {{-- Phone --}}
-    @if ($contact['phone'])
+    @if (!empty($contact['phone']))
         @foreach ($contact['phone'] as $phone)
             @include('components.phone', ['icon' => 'phone'])
         @endforeach
     @endif
 
     {{-- Social Media --}}
-    @if ($contact['social_media'])
+    @if (!empty($contact['social_media']))
         @foreach ($contact['social_media'] as $media)
             @include('components.social_media')
         @endforeach
     @endif
 
     {{-- Opening Hours --}}
-    @includeWhen($contact['opening_hours'], 'components.opening_hours')
+    @includeWhen(!empty($contact['opening_hours']), 'components.opening_hours')
 
     {{-- Address --}}
-    @includeWhen($contact['address'], 'components.adress')
+    @includeWhen(!empty($contact['address']), 'components.adress')
 
     {{-- Visiting Address --}}
-    @includeWhen($contact['visiting_address'], 'components.visiting')
+    @includeWhen(!empty($contact['visiting_address']), 'components.visiting')
 
     {{-- Other content data --}}
-    @includeWhen($contact['other'], 'components.other')
+    @includeWhen(!empty($contact['other']), 'components.other')
 @endcollection
