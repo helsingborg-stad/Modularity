@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-use Modularity\Module\Posts\Helper\Tag as TagHelper;
-
 class SegmentTemplate extends AbstractController
 {
     protected $module;
