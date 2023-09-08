@@ -20,15 +20,10 @@ class Posts extends \Modularity\Module
         $this->namePlural = __('Posts', 'modularity');
         $this->description = __('Outputs selected posts in specified layout', 'modularity');
 
-        add_action('add_meta_boxes', array($this, 'addColumnFields'));
-        add_action('save_post', array($this, 'saveColumnFields'));
-
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
-        add_filter('acf/load_field/key=field_62a309f9c59bb', array($this, 'addIconsList'));
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
-
         add_filter('Modularity/Module/Posts/template', array( $this, 'setTemplate' ), 10, 3);
 
         new PostsAjax($this);
@@ -104,30 +99,6 @@ class Posts extends \Modularity\Module
         }
 
         return $viewData;
-    }
-
-    /**
-     * Add list to dropdown
-     *
-     * @param array $field  Field definition
-     * @return array $field Field definition with choices
-     */
-    public function addIconsList($field): array
-    {
-        $choices = \Modularity\Helper\Icons::getIcons();
-
-        $field['choices'] = [];
-        if (is_array($choices) && !empty($choices)) {
-            foreach ($choices as $choice) {
-                $field['choices'][$choice] = '<i class="material-icons" style="float: left;">'
-                    . $choice
-                    . '</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">'
-                    . $choice
-                    . '</span>';
-            }
-        }
-
-        return $field;
     }
 
     public function loadDateField($field = [])
@@ -292,50 +263,6 @@ class Posts extends \Modularity\Module
 
         echo json_encode($response);
         die();
-    }
-
-    /**
-     * Saves column names if exandable list template is used
-     * @param int $postId The id of the post
-     * @return void
-     */
-    public function saveColumnFields($postId)
-    {
-        //Meta key
-        $metaKey = "modularity-mod-posts-expandable-list";
-
-        //Bail early if autosave
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return false;
-        }
-
-        //Bail early if cron
-        if (defined('DOING_CRON') && DOING_CRON) {
-            return false;
-        }
-
-        //Bail early if not a post request
-        if (!isset($_POST) || (is_array($_POST) && empty($_POST)) || !is_array($_POST)) {
-            return false;
-        }
-
-        //Update if nonce verification succeed
-        if (
-            isset($_POST['modularity_post_columns'])
-            && wp_verify_nonce(
-                $_POST['modularity_post_columns'],
-                'save_columns'
-            )
-        ) {
-            //Delete if not posted data
-            if (!isset($_POST[$metaKey])) {
-                delete_post_meta($postId, $metaKey);
-                return;
-            }
-
-            //Save meta data
-            update_post_meta($postId, $metaKey, $_POST[$metaKey]);
-        }
     }
 
     /**

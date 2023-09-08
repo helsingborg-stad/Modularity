@@ -12,8 +12,5 @@
             'alt' => $post->thumbnail['alt'] 
         ]
         : [],
-    'icon' => [
-        'name' => $post->item_icon ?? false
-    ]
 ])
 @endbox
