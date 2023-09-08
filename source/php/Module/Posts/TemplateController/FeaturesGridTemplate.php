@@ -42,28 +42,7 @@ class FeaturesGridTemplate extends AbstractController
 
     public function preparePosts()
     {
-        $imageDimensions = [400, 225];
-
         foreach ($this->data['posts'] as $post) {
-            $post->thumbnail = $this->getPostImage(
-                $post,
-                $this->data['posts_data_source'],
-                $imageDimensions,
-                '16:9'
-            );
-
-            // Get link for card, or tags
-            $post->link = $this->data['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
-            
-            $tagData = TagHelper::getTags(
-                $post->ID,
-                $this->data['taxonomyDisplayFlat'],
-                $post->link
-            );
-
-            $post->tags = $tagData['tags'];
-            $post->termIcon = $tagData['termIcon'];
-
             $this->setPostFlags($post);
         }
     }

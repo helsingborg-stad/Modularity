@@ -144,12 +144,11 @@ class Slider extends \Modularity\Module
                 //Set call to action default value
                 $slide['call_to_action'] = false;
 
-                if ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video') {
+                if ($slide['link_type'] !== 'false' && ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video')) {
                     $slide['call_to_action'] = array(
                         'title' => $slide['link_text'],
                         'href' => $slide['link_url']
                     );
-
                     //remove link url, instead use CTA
                     $slide['link_url'] = false;
                 }

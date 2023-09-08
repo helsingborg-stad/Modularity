@@ -17,20 +17,20 @@
     @endif
 
     {{-- Social Media --}}
-    @if ($contact['social_media'])
+    @if (!empty($contact['social_media']))
         @foreach ($contact['social_media'] as $media)
             @include('components.social_media')
         @endforeach
     @endif
 
     {{-- Opening Hours --}}
-    @includeWhen($contact['opening_hours'], 'components.opening_hours')
+    @includeWhen(!empty($contact['opening_hours']), 'components.opening_hours')
 
     {{-- Address --}}
-    @includeWhen($contact['address'], 'components.adress')
+    @includeWhen(!empty($contact['address']), 'components.adress')
 
     {{-- Visiting Address --}}
-    @includeWhen($contact['visiting_address'], 'components.visiting')
+    @includeWhen(!empty($contact['visiting_address']), 'components.visiting')
 
     @if (!empty($module->post_content))
         @collection__item([
@@ -42,7 +42,7 @@
         @endcollection
     @endif
 
-    @if ($contact['other'])
+    @if (!empty($contact['other']))
         @collection__item([
             'classList' => ['c-collection__other']
         ])

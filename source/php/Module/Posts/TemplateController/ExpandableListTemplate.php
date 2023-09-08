@@ -41,16 +41,17 @@ class ExpandableListTemplate
      */
     public function getColumnValues(): array
     {
+
         if (empty($this->data['posts_list_column_titles'])) {
             return [];
         }
-
+        
         $columnValues = [];
-
+        
         foreach ($this->data['posts'] as $colIndex => $post) {
             if ($this->data['posts_data_source'] === 'input') {
-                if ($post->column_values !== false && count($post->column_values) > 0) {
-                    foreach ($post->column_values as $key => $columnValue) {
+                if ($post->columnValues !== false && is_array($post->columnValues) && count($post->columnValues) > 0) {
+                    foreach ($post->columnValues as $key => $columnValue) {
                         $columnValues[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]->column_header)] = $columnValue->value ?? '';
                     }
                 }
@@ -74,7 +75,7 @@ class ExpandableListTemplate
 
         $accordion = [];
 
-        if (count($posts) > 0) {
+        if (is_array($posts) && count($posts) > 0) {
             foreach ($posts as $index => $post) {
                 if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($data)) {
                     foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
@@ -87,8 +88,8 @@ class ExpandableListTemplate
                     }
                 }
 
-                $accordion[$index]['heading'] = apply_filters('the_title', $post->post_title) ?? '';
-                $accordion[$index]['content'] = apply_filters('the_content', $post->post_content) ?? '';
+                $accordion[$index]['heading'] = apply_filters('the_title', $post->postTitle) ?? '';
+                $accordion[$index]['content'] = apply_filters('the_content', $post->postContent) ?? '';
             }
         }
 

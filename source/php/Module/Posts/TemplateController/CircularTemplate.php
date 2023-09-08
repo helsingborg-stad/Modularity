@@ -29,25 +29,5 @@ class CircularTemplate extends AbstractController
         } else {
             $this->data['highlight_first_column'] = false;
         }
-
-        $this->getThumbnails();
-    }
-
-    public function getThumbnails()
-    {
-        $hasImages = false;
-
-        foreach ($this->data['posts'] as &$post) {
-            $imageDimensions = [400, 400];
-            $image = $this->getPostImage($post, $this->data['posts_data_source'], $imageDimensions, '1:1');
-
-            if ($image) {
-                $hasImages = true;
-            }
-
-            $post->thumbnail = $image;
-        }
-
-        $this->data['hasImages'] = $hasImages;
     }
 }

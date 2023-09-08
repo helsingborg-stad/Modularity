@@ -7,7 +7,7 @@
     'metaFirst' => true,
     'context' => ['archive', 'archive.list', 'archive.list.card'],
     'containerAware' => true,
-    'hasPlaceholder' => !isset($post->thumbnail),
+    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
     'attributeList' => ['style' => 'z-index:' . (999 - $key) . ';'],
     'classList' => ['u-height--100', 'project-card'],
     'icon' => $post->termIcon['icon'] ? $post->termIcon : false,

@@ -3,9 +3,9 @@
     'size' => 'md'
 ])
     <div class="o-grid">
-        @if ($post->oembed || $post->image)
+        @if (!empty($post->oembed) || !empty($post->image))
             <div class="o-grid-6@md">
-                @if ($post->oembed)
+                @if (!empty($post->oembed))
                     {!! $post->oembed !!}
                 @else
                     @image([
@@ -40,19 +40,23 @@
         ])
             {{ $post->formatted_date }}
         @endtypography
-        @typography([
-            'element' => 'h2',
-            'variant' => 'h4',
-            'classList' => ['u-margin--0']
-        ])
-            {{ $post->title }}
-        @endtypography
-        @typography([
-            'variant' => 'p',
-            'classList' => ['u-margin__top--1', 'u-margin__bottom--2']
-        ])
-            {{ $post->full_text }}
-        @endtypography
+        @if(!empty($post->title))
+            @typography([
+                'element' => 'h2',
+                'variant' => 'h4',
+                'classList' => ['u-margin--0']
+            ])
+                {{ $post->title }}
+            @endtypography
+        @endif
+        @if(!empty($post->full_text))
+            @typography([
+                'variant' => 'p',
+                'classList' => ['u-margin__top--1', 'u-margin__bottom--2']
+            ])
+                {{ $post->full_text }}
+            @endtypography
+        @endif
         @button([
             // TODO: How to position the button centered at the bottom of the post?
             'text' => $i18n['goToOriginalPost'],

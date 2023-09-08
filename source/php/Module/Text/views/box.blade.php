@@ -4,7 +4,7 @@
     ],
     'context' => 'module.text.box'
 ])
-    @if (!$hideTitle && !empty($postTitle))
+    @if (empty($hideTitle) && !empty($postTitle))
         <div class="c-card__header">
             @typography([
                 "element" => "h4",

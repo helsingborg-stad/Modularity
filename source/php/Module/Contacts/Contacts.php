@@ -41,7 +41,7 @@ class Contacts extends \Modularity\Module
         $data['showImages'] = false;
 
         //Check if there is at least one contact with image, then add svg to others, else hide all
-        if (empty($this->data['display_mode']) || $this->data['display_mode'] == 'card') {
+        if (empty($this->data['display_mode']) || $this->data['display_mode'] == 'cards') {
             foreach ($data['contacts'] as $contact) {
                 $data['showImages'] = $contact['image'] ? true : $data['showImages'];
             }
@@ -98,18 +98,18 @@ class Contacts extends \Modularity\Module
 
                 case 'user':
                     $info = apply_filters('Modularity/mod-contacts/contact-info', array(
-                         'id'                  => $contact['user']['ID'],
+                         'id'                  => !empty($contact['user']['ID']) ? $contact['user']['ID'] : '',
                          'image'               => null,
-                         'first_name'          => $contact['user']['user_firstname'],
-                         'last_name'           => $contact['user']['user_lastname'],
+                         'first_name'          => !empty($contact['user']['user_firstname']) ? $contact['user']['user_firstname'] : '',
+                         'last_name'           => !empty($contact['user']['user_lastname']) ? $contact['user']['user_lastname'] : '',
                          'work_title'          => null,
                          'administration_unit' => null,
-                         'email'               => $this->hideField('email') ? null : strtolower($contact['user']['user_email']),
+                         'email'               => $this->hideField('email') ? null : strtolower(!empty($contact['user']['user_email']) ? $contact['user']['user_email'] : ''),
                          'phone'               => null,
-                         'address'             => $this->hideField('address') ? null : strip_tags($contact['address'], '<br>'),
+                         'address'             => $this->hideField('address') ? null : strip_tags(!empty($contact['address']) ? $contact['address'] : '', '<br>'),
                          'visiting_address'    => null,
                          'opening_hours'       => null,
-                         'other'               => $contact['user']['user_description'],
+                         'other'               => !empty($contact['user']['user_description']) ? $contact['user']['user_description'] : '',
                          'hasBody'             => $this->hasBody($contact)
                      ), $contact, $contact['acf_fc_layout']);
                     break;

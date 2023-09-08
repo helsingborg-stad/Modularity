@@ -1,19 +1,20 @@
 @segment([
     'layout' => 'card',
-    'title' => $post->showTitle ? $post->post_title : false,
+    'title' => !empty($post->showTitle) ? $post->postTitle : false,
     'context' => ['module.posts.segment'],
-    'meta' => $display_reading_time ? $post->reading_time : false,
-    'tags' => $post->tags,
-    'image' => $post->thumbnail[0],
-    'date' => $post->post_date,
-    'dateBadge' => $post->dateBadge,
-    'buttons' => [['text' => $labels['readMore'], 'href' => $post->link, 'color' => 'primary']],
+    'meta' => !empty($display_reading_time) ? $post->readingTime : false,
+    'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
+    'image' => !empty($post->thumbnail['src']) ? $post->thumbnail['src'] : false,
+    'date' => !empty($post->postDate) ? $post->postDate : false,
+    'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
+    'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => true,
     'classList' => ['c-segment--slider'],
-    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+    'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
     'context' => ['module.posts.segment'],
     'attributeList' => array_merge($post->attributeList, []),
+    'hasPlaceholderImage' => !empty($post->hasPlaceholderImage),
     ])
     @slot('floating')
         @if (!empty($post->floating['floating']))
