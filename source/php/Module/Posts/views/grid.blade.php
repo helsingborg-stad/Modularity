@@ -3,9 +3,7 @@
 @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
 @includeWhen($preamble, 'partials.preamble')
 
-<div class="o-grid 
-    {{ $stretch ? 'o-grid--stretch' : '' }} 
-    {{ $noGutter ? 'o-grid--no-gutter' : '' }}"
+<div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}{{ !empty($noGutter) ? ' o-grid--no-gutter' : '' }}"
     @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
@@ -23,7 +21,7 @@
                     'dateBadge' => $post->dateBadge,
                     'containerAware' => true,
                     'hasAction' => true,
-                    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail['src']),
+                    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                     'image' => $post->showImage
                         ? [
                             'src' => $post->thumbnail['src'],
@@ -60,7 +58,7 @@
                             'backgroundColor' => 'secondary'
                         ]
                         : false,
-                    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail['src']),
+                    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                     'classList' => ['t-posts-block', ' u-height--100'],
                     'context' => 'module.posts.block',
                     'link' => $post->permalink,

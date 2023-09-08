@@ -3,11 +3,10 @@
 @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
 @includeWhen($preamble, 'partials.preamble')
 
-<div class="o-grid 
-    {{ $stretch ? 'o-grid--stretch' : '' }} 
-    {{ $noGutter ? 'o-grid--no-gutter' : '' }}"
-    @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
-    @foreach ($posts as $post)
+
+<div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}{{ !empty($noGutter) ? ' o-grid--no-gutter' : '' }}"
+@if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
+@foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
             @if ($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
@@ -27,7 +26,7 @@
                                 'backgroundColor' => 'secondary'
                             ]
                             : false,
-                    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail['src']),
+                    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                     'classList' => $display_reading_time
                         ? ['t-posts-block', 't-posts-block--with-reading-time', ' u-height--100']
                         : ['t-posts-block', ' u-height--100'],
@@ -61,7 +60,7 @@
                     'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                     'containerAware' => true,
                     'hasAction' => true,
-                    'hasPlaceholder' => !empty($anyPostHasImage) && !empty($post->showImage) && !isset($post->thumbnail['src']),
+                    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                     'image' =>
                         $post->showImage && isset($post->thumbnail['src'])
                             ? [

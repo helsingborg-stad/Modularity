@@ -11,7 +11,7 @@
             'alt' => $post->thumbnail['alt'],
             'backgroundColor' => 'secondary',
         ] : false),
-    'hasPlaceholder' => $anyPostHasImage && !isset($post->thumbnail['src']),
+    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
     'link' => $post->permalink,

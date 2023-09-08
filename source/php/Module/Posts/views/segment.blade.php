@@ -1,9 +1,7 @@
 @includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
 @includeWhen($preamble, 'partials.preamble')
 
-<div class="o-grid 
-    {{ $stretch ? 'o-grid--stretch' : '' }} 
-    {{ $noGutter ? 'o-grid--no-gutter' : '' }}"
+<div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}{{ !empty($noGutter) ? ' o-grid--no-gutter' : '' }}"
     @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
     @foreach ($posts as $post)
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
@@ -23,6 +21,7 @@
                 'classList' => !empty($post->classList) ? $post->classList : [],
                 'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                 'attributeList' => array_merge($post->attributeList, []),
+                'hasPlaceholderImage' => !empty($post->hasPlaceholderImage),
             ])
                 @slot('floating')
                     @if (!empty($post->floating['floating']))

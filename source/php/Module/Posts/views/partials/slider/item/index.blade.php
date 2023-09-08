@@ -5,9 +5,9 @@
         'src' => $post->thumbnail['src'], 
         'alt' => $post->thumbnail['alt']
         ] : [],
-    'hasPlaceholder' => $anyPostHasImage && $post->showImage && !isset($post->thumbnail['src']),
-    'heading' => ($post->showTitle ? $post->postTitle : false),
-    'content' => ($post->showExcerpt ? $post->excerptShort : false),
+    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
+    'heading' => !empty($post->showTitle) ? $post->postTitle : false,
+    'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
     'classList' => [$classes, 'u-color__text--info', 'c-card--focus-inset'],
     'date' => $post->postDate,
     'dateBadge' => $post->dateBadge,
