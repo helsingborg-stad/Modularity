@@ -346,7 +346,7 @@ class Posts extends \Modularity\Module
             die();
         }
 
-        $meta = \Modularity\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
+        $meta = \Municipio\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
 
         $response = [
             'meta_keys' => $meta,
