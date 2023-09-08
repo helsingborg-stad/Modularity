@@ -1,5 +1,5 @@
 @card([
-    'heading'       => $postTitle,
+    'heading'       => false,
     'classList'     => [$classes],
     'attributeList' => [
         'js-filter-container'   => $uID,
