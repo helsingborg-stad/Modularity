@@ -15,11 +15,12 @@
     @endif
 	
 	@include('partials.content')
-	
-    @image([
-        'src' => $placeholder['url'],
-        'alt' => $placeholder['alt'],
-        'classList' => ['box-image', 'u-print-display--inline-block', 'u-display--none']
-    ])
-    @endimage
+	@if(!empty($placeholder['url']))
+        @image([
+            'src' => $placeholder['url'],
+            'alt' => $placeholder['alt'],
+            'classList' => ['box-image', 'u-print-display--inline-block', 'u-display--none']
+        ])
+        @endimage
+    @endif
 @endcard
