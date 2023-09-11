@@ -26,20 +26,18 @@ class Index extends \Modularity\Module
      */
     public function data() : array
     {
-        $data = array();
-
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-index'), $this->post_type, $this->args));
+        $data = $this->getFields();
 
         // Get column classes
         $data['columnClass'] = 'o-grid-6@md';
-        if (!empty(get_field('index_columns', $this->ID))) {
-            $data['columnClass'] = get_field('index_columns', $this->ID);
+        if (!empty($data['index_columns'])) {
+            $data['columnClass'] = $data['index_columns'];
         }
 
         $data['imageDimension'] = $this->getImageDimension($data['columnClass']);
 
         // Get the index items
-        $data['items'] = $this->prepareItems(get_field('index', $this->ID));
+        $data['items'] = $this->prepareItems($data['index']);
 
         return $data;
     }
