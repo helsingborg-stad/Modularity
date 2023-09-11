@@ -19,6 +19,9 @@ class Posts extends \Modularity\Module
         $this->nameSingular = __('Posts', 'modularity');
         $this->namePlural = __('Posts', 'modularity');
         $this->description = __('Outputs selected posts in specified layout', 'modularity');
+        
+        /* Saves meta data to expandable list posts */
+        new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
 
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
 
@@ -266,111 +269,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Get field columns
-     * @param array $posts Post ids
-     * @return array        Column names
-     */
-    public function getColumns($posts)
-    {
-        $columns = [];
-
-        if (is_array($posts)) {
-            foreach ($posts as $post) {
-                $values = get_field('posts_list_column_titles', $post);
-
-                if (is_array($values)) {
-                    foreach ($values as $value) {
-                        $columns[] = $value['column_header'];
-                    }
-                }
-            }
-        }
-
-        return $columns;
-    }
-
-    public function checkIfChild($id)
-    {
-        global $post;
-        global $wpdb;
-
-        $result = $wpdb->get_results("
-            SELECT *
-            FROM $wpdb->postmeta
-            WHERE meta_key = 'posts_data_child_of'
-                  AND meta_value = '{$post->post_parent}'
-        ", OBJECT);
-
-        if (count($result) === 0) {
-            return false;
-        }
-
-        $posts = [];
-        foreach ($result as $item) {
-            $posts[] = $item->post_id;
-        }
-
-        return $posts;
-    }
-
-    /**
-     * Check if current post is included in the data source post type
-     * @param integer $id Postid
-     * @return array       Modules included in
-     */
-    public function checkIfPostType($id)
-    {
-        global $post;
-        global $wpdb;
-
-        $result = $wpdb->get_results("
-            SELECT *
-            FROM $wpdb->postmeta
-            WHERE meta_key = 'posts_data_post_type'
-                  AND meta_value = '{$post->post_type}'
-        ", OBJECT);
-
-        if (count($result) === 0) {
-            return false;
-        }
-
-        $posts = [];
-        foreach ($result as $item) {
-            $posts[] = $item->post_id;
-        }
-
-        return $posts;
-    }
-
-    /**
-     * Check if current post is included in a manually picked data source in exapndable list
-     * @param integer $id Post id
-     * @return array       Modules included in
-     */
-    public function checkIfManuallyPicked($id)
-    {
-        global $wpdb;
-
-        $result = $wpdb->get_results("
-            SELECT *
-            FROM $wpdb->postmeta
-            WHERE meta_key = 'posts_data_posts'
-                  AND meta_value LIKE '%\"{$id}\"%'
-        ", OBJECT);
-
-        if (count($result) === 0) {
-            return false;
-        }
-
-        $posts = [];
-        foreach ($result as $item) {
-            $posts[] = $item->post_id;
-        }
-
-        return $posts;
-    }
-
-    /**
      * "Fake" WP_POST objects for manually inputted posts
      * @param array $data The data to "fake"
      * @return array        Faked data
@@ -551,7 +449,6 @@ class Posts extends \Modularity\Module
 
         return $templateSlug;
     }
-
 
     /**
      * Available "magic" methods for modules:

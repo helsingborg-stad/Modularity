@@ -54,7 +54,7 @@ class ExpandableListTemplate
                     }
                 }
             } else {
-                $columnValues[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true) ?? '';
+                $columnValues[] = get_post_meta($post->id, 'modularity-mod-posts-expandable-list', true) ?? '';
             }
         }
 
