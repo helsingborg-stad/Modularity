@@ -22,6 +22,9 @@ class ManualInput extends \Modularity\Module
 
         $data['manualInputs'] = [];
         $data['columns'] = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
+        $data['context'] = ['module.manual-input.' . $this->template];
+
+        $data['accordionColumnTitles'] = $this->createAccordionTitles($fields['accordion_column_titles'], $fields['accordion_column_marking']);
 
         if (!empty($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
@@ -29,16 +32,48 @@ class ManualInput extends \Modularity\Module
                     'title'     => !empty($input['title']) ? $input['title'] : false,
                     'content'   => !empty($input['content']) ? $input['content'] : false,
                     'link'      => !empty($input['link']) ? $input['link'] : false,
-                    'context'   => ['module.manual-input.' . $this->template],
+                    'linkText'  => !empty($input['link_text']) ? $input['link_text'] : __("Read more", 'modularity'),
                     'image'     => !empty($input['image']['sizes']['medium_large']) ? [
-                        'src' => $input['image']['sizes']['medium_large'],
-                        'alt' => !empty($input['image']['alt']) ? $input['image']['alt'] : '',
-                    ] : []
+                        'src'   => $input['image']['sizes']['medium_large'],
+                        'alt'   => !empty($input['image']['alt']) ? $input['image']['alt'] : '',
+                        ] : [],
+                    'imageBeforeContent' => isset($input['image_before_content']) ? $input['image_before_content'] : true,
+                    'accordionColumnValues' => !empty($input['accordion_column_values']) ? $input['accordion_column_values'] : false,
                 ];
             }
         }
 
+
         return $data;
+    }
+
+     /**
+     * @param array $columnTitles Array of arrays
+     * @param string $
+     * @return array
+     */
+    private function createAccordionTitles($accordionColumnTitles = false, $accordionColumnMarker = false) {
+        $titles = [];
+        if (!empty($accordionColumnTitles) || !empty($accordionColumnMarker)) {
+            if (!empty($accordionColumnTitles)) {
+                foreach ($accordionColumnTitles as $accordionColumnTitle) {
+                    $titles = array_merge(array_values($accordionColumnTitle), $titles);
+                }
+            }
+        }
+        // $accordionColumnTitles = [];
+        // echo '<pre>' . print_r( $accordionColumTitles, true ) . '</pre>';
+        // if (!empty($fields['accordion_column_marking']) || !empty($fields['accordion_column_titles'])) {
+        //     $accordionColumnTitles[] = !empty($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : __("Title", 'modularity');
+    
+        //     if (!empty($fields['accordion_column_titles'])) {
+        //         foreach ($fields['accordion_column_titles'] as $accordionColumnTitle) {
+        //             $accordionColumnTitles[] = $accordionColumnTitle['accordion_column_title'];
+        //         }
+        //     }
+        // }
+
+        // return $accordionColumnTitles;
     }
 
     public function template() {
