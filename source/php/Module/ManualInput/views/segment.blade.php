@@ -1,7 +1,7 @@
 @includeWhen(empty($hideTitle) && !empty($post_title), 'partials.post-title')
 
 @if (!empty($manualInputs))
-<div class="o-grid">
+<div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}">
     @foreach ($manualInputs as $input)
         @segment([
             'layout' => 'card',

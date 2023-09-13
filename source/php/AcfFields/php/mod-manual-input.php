@@ -41,7 +41,15 @@
             'type' => 'text',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_64ff23d0d91bf',
+                        'operator' => '==',
+                        'value' => 'accordion',
+                    ),
+                ),
+            ),
             'wrapper' => array(
                 'width' => '',
                 'class' => '',
@@ -146,6 +154,47 @@
             'placeholder' => '',
         ),
         4 => array(
+            'key' => 'field_65016a6f0a085',
+            'label' => __('Ratio', 'modularity'),
+            'name' => 'ratio',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_64ff23d0d91bf',
+                        'operator' => '==',
+                        'value' => 'block',
+                    ),
+                ),
+                1 => array(
+                    0 => array(
+                        'field' => 'field_64ff23d0d91bf',
+                        'operator' => '==',
+                        'value' => 'box',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                '1:1' => __('1:1', 'modularity'),
+                '4:3' => __('4:3', 'modularity'),
+                '12:16' => __('12:16', 'modularity'),
+            ),
+            'default_value' => __('4:3', 'modularity'),
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+        ),
+        5 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',

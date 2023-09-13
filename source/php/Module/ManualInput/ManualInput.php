@@ -6,12 +6,17 @@ class ManualInput extends \Modularity\Module
 {
     public $slug = 'manualinput';
     public $supports = array();
+    public $blockSupports = array(
+        'align' => ['full']
+    );
 
     public function init()
     {
         $this->nameSingular = __("Manual Input", 'modularity');
         $this->namePlural = __("Manual Inputs", 'modularity');
         $this->description = __("Creates manual input content.", 'modularity');
+
+        add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
     }
 
     public function data(): array
@@ -24,7 +29,12 @@ class ManualInput extends \Modularity\Module
         $data['columns'] = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context'] = ['module.manual-input.' . $this->template];
 
-        $data['accordionColumnTitles'] = $this->createAccordionTitles($fields['accordion_column_titles'], $fields['accordion_column_marking']);
+        $data['accordionColumnTitles'] = $this->createAccordionTitles(
+            isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 
+            isset($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : ''
+        );
+
+        $data['blockBoxRatio'] = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
 
         if (!empty($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
@@ -38,42 +48,51 @@ class ManualInput extends \Modularity\Module
                         'alt'   => !empty($input['image']['alt']) ? $input['image']['alt'] : '',
                         ] : [],
                     'imageBeforeContent' => isset($input['image_before_content']) ? $input['image_before_content'] : true,
-                    'accordionColumnValues' => !empty($input['accordion_column_values']) ? $input['accordion_column_values'] : false,
+                    'accordionColumnValues' => $this->createAccordionTitles($input['accordion_column_values'], $input['title']),
                 ];
             }
         }
-
 
         return $data;
     }
 
      /**
-     * @param array $columnTitles Array of arrays
-     * @param string $
+     * @param array $accordionColumnTitles Array of arrays
+     * @param string $accordionColumnMarker
      * @return array
      */
     private function createAccordionTitles($accordionColumnTitles = false, $accordionColumnMarker = false) {
         $titles = [];
         if (!empty($accordionColumnTitles) || !empty($accordionColumnMarker)) {
+            if (!empty($accordionColumnMarker)) {
+                $titles[] = is_string($accordionColumnMarker) ? $accordionColumnMarker : __('Title', 'Modularity');
+            }
+
             if (!empty($accordionColumnTitles)) {
                 foreach ($accordionColumnTitles as $accordionColumnTitle) {
-                    $titles = array_merge(array_values($accordionColumnTitle), $titles);
+                    $titles = array_merge($titles, array_values($accordionColumnTitle));
                 }
             }
         }
-        // $accordionColumnTitles = [];
-        // echo '<pre>' . print_r( $accordionColumTitles, true ) . '</pre>';
-        // if (!empty($fields['accordion_column_marking']) || !empty($fields['accordion_column_titles'])) {
-        //     $accordionColumnTitles[] = !empty($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : __("Title", 'modularity');
-    
-        //     if (!empty($fields['accordion_column_titles'])) {
-        //         foreach ($fields['accordion_column_titles'] as $accordionColumnTitle) {
-        //             $accordionColumnTitles[] = $accordionColumnTitle['accordion_column_title'];
-        //         }
-        //     }
-        // }
 
-        // return $accordionColumnTitles;
+        return $titles;
+    }
+
+    /**
+     * Add full width setting to frontend.
+     *
+     * @param [array] $viewData
+     * @param [array] $block
+     * @param [object] $module
+     * @return array
+     */
+    public function blockData($viewData, $block, $module) {
+        if (strpos($block['name'], "acf/manualinput") === 0 && $block['align'] == 'full' && !is_admin()) {
+            $viewData['stretch'] = true;
+        } else {
+            $viewData['stretch'] = false;
+        }
+        return $viewData;
     }
 
     public function template() {

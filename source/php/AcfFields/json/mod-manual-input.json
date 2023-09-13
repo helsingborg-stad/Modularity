@@ -38,7 +38,15 @@
             "type": "text",
             "instructions": "",
             "required": 0,
-            "conditional_logic": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ff23d0d91bf",
+                        "operator": "==",
+                        "value": "accordion"
+                    }
+                ]
+            ],
             "wrapper": {
                 "width": "",
                 "class": "",
@@ -135,6 +143,47 @@
                 "o-grid-3": "4"
             },
             "default_value": "o-grid-4",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_65016a6f0a085",
+            "label": "Ratio",
+            "name": "ratio",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_64ff23d0d91bf",
+                        "operator": "==",
+                        "value": "block"
+                    }
+                ],
+                [
+                    {
+                        "field": "field_64ff23d0d91bf",
+                        "operator": "==",
+                        "value": "box"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1:1": "1:1",
+                "4:3": "4:3",
+                "12:16": "12:16"
+            },
+            "default_value": "4:3",
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,

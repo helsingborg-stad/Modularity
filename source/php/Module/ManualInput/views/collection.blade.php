@@ -1,6 +1,6 @@
 @includeWhen(empty($hideTitle) && !empty($post_title), 'partials.post-title')
 @collection([
-    'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal'],
+    'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal', !empty($stretch) ? ' o-grid--stretch' : ''],
 ])
     @if (!empty($manualInputs))
         @foreach ($manualInputs as $input)
