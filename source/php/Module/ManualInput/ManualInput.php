@@ -28,14 +28,13 @@ class ManualInput extends \Modularity\Module
         $data['manualInputs'] = [];
         $data['columns'] = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context'] = ['module.manual-input.' . $this->template];
-        $data['blockBoxRatio'] = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+        $data['ratio'] = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
             isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 
             isset($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : ''
         );
 
         $manualInputDefaultValues = $this->getManualInputDefaultValues();
-
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
                 $arr = array_merge($this->getManualInputDefaultValues(), $input);
@@ -46,7 +45,7 @@ class ManualInput extends \Modularity\Module
                     $arr = \Municipio\Helper\FormatObject::camelCase($arr);
                 }
 
-                $data['manualInputs'][] = $arr;
+                $data['manualInputs'][] = (array) $arr;
             }
         }
 
@@ -62,7 +61,7 @@ class ManualInput extends \Modularity\Module
             'content'                   => false,
             'link'                      => false,
             'link_text'                 => __("Read more", 'modularity'),
-            'image'                     =>  [],
+            'image'                     => [],
             'image_before_content'      => true,
             'accordion_column_values'   => []
         ];
@@ -75,7 +74,7 @@ class ManualInput extends \Modularity\Module
     private function getImage($imageData) {
         if (!empty($imageData)) {
             $image = [
-                'src' => wp_get_attachment_image_src($imageData['id'], 'full')[0],
+                'src' => wp_get_attachment_image_src($imageData['id'], [768, 432])[0],
                 'alt' => !empty($imageData['alt']) ? $imageData['alt'] : false
             ];
             return $image;
@@ -107,7 +106,6 @@ class ManualInput extends \Modularity\Module
 
     /**
      * Add full width setting to frontend.
-     *
      * @param [array] $viewData
      * @param [array] $block
      * @param [object] $module

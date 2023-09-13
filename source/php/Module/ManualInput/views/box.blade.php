@@ -5,7 +5,7 @@
                 'heading'   => $input['title'],
                 'content'   => $input['content'],
                 'link'      => $input['link'],
-                'ratio'     => $blockBoxRatio,
+                'ratio'     => $ratio,
                 'image'     => $input['image'],
                 'context'   => $context
             ])

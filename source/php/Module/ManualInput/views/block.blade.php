@@ -4,7 +4,7 @@
         @block([
             'heading'   => $input['title'],
             'content'   => $input['content'],
-            'ratio'     => $blockBoxRatio,
+            'ratio'     => $ratio,
             'filled'    => true,
             'image'     => $input['image'],
             'classList' => [$columns, 'u-height--100'],
