@@ -1,8 +1,8 @@
 @collection__item([
-    'link' => $post->permalink,
+    'link' => !empty($post->permalink) ? $post->permalink : false,
     'classList' => [$posts_columns],
     'context' => ['module.posts.collection__item'],
-    'before' => $display_reading_time ? $post->readingTime : false,
+    'before' => !empty($display_reading_time) ? $post->readingTime : false,
     'containerAware' => true,
     'bordered' => true,
     'attributeList' => array_merge($post->attributeList, [
@@ -15,7 +15,7 @@
         @endslot
     @endif
     @slot('before')
-        @if ($post->showImage && isset($post->thumbnail['src']))
+        @if (!empty($post->showImage) && isset($post->thumbnail['src']))
             @image([
                 'src' => $post->thumbnail['src'],
                 'alt' => $post->thumbnail['alt'],
@@ -33,9 +33,9 @@
                 'element' => 'h2',
                 'variant' => 'h3'
             ])
-                {{ $post->showTitle ? $post->postTitle : false }}
+                {{ !empty($post->showTitle) ? $post->postTitle : false }}
             @endtypography
-            @if ($post->termIcon['icon'])
+            @if (!empty($post->termIcon['icon']))
                 @inlineCssWrapper([
                     'styles' => ['background-color' => $post->termIcon['backgroundColor'], 'display' => 'flex'],
                     'classList' => [
@@ -49,12 +49,14 @@
                 @endinlineCssWrapper
             @endif
         @endgroup
-        @tags([
-            'tags' => $post->termsUnlinked,
-            'classList' => ['u-padding__y--2'],
-            'format' => false
-        ])
-        @endtags
+        @if(!empty($post->termsUnlinked))
+            @tags([
+                'tags' => $post->termsUnlinked,
+                'classList' => ['u-padding__y--2'],
+                'format' => false
+            ])
+            @endtags
+        @endif
         @typography([])
             {!! $post->showExcerpt ? $post->excerptShort : false !!}
         @endtypography
