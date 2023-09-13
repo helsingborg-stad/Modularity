@@ -7,7 +7,7 @@
             'ratio'     => $blockBoxRatio,
             'filled'    => true,
             'image'     => $input['image'],
-            'classList' => [$columns, 't-posts-block', ' u-height--100'],
+            'classList' => [$columns, 'u-height--100'],
             'context'   => $context,
             'link'      => $input['link'],
         ])
