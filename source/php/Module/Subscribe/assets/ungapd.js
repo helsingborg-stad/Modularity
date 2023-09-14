@@ -28,16 +28,20 @@ function initializeUngappedForms() {
             clearNotices();
 
             //Gather data
-            let formId = form.getAttribute('data-js-ungpd-id');
+            let accountId = form.getAttribute('data-js-ungpd-id');
             let listIds = form.getAttribute('data-js-ungpd-list-ids');
+            let doubleOptInIssueId = form.getAttribute('data-js-ungpd-double-opt-in-issue-id');
+            let confirmationIssueId = form.getAttribute('data-js-ungpd-confirmation-issue-id');
+            let subscriptionConfirmedUrl = form.getAttribute('data-js-ungpd-subscription-confirmed-url');
+            let subscriptionFailedUrl = form.getAttribute('data-js-ungpd-subscription-failed-url');
             let email = form.querySelector('input[name="email"]');
             let consent = form.querySelector('input[name="user_consent"]');
-            const successTemplate = document.querySelector(`template[id="${formId}-success"]`);
-            const errorTemplate = document.querySelector(`template[id="${formId}-error"]`);
+            const successTemplate = document.querySelector(`template[id="${accountId}-success"]`);
+            const errorTemplate = document.querySelector(`template[id="${accountId}-error"]`);
             const lists = listIds.split(",").map((listId) => listId.trim());
 
             //Form validates, empty data, send request
-            if (formId && email.value && consent.checked) {
+            if (accountId && email.value && consent.checked) {
 
                 let subscription = {
                     Contact: { Email: email.value },
@@ -45,7 +49,12 @@ function initializeUngappedForms() {
                     ListIds: lists
                 };
 
-                fetch("https://ui.ungpd.com/Api/Subscriptions/" + formId + "/ajax", {
+                if (doubleOptInIssueId) subscription.DoubleOptIn = { Issue: { IssueId: doubleOptInIssueId } };
+                if (confirmationIssueId) subscription.ConfirmationIssue = { IssueId: confirmationIssueId };
+                if (subscriptionConfirmedUrl) subscription.SubscriptionConfirmedUrl = subscriptionConfirmedUrl;
+                if (subscriptionFailedUrl) subscription.SubscriptionFailedUrl = subscriptionFailedUrl;
+
+                fetch("https://ui.ungpd.com/Api/Subscriptions/" + accountId, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"

@@ -4,7 +4,11 @@
     'action' => '#' . $uid,
     'attributeList' => [
       'data-js-ungpd-id' => $formID,
-      'data-js-ungpd-list-ids' => $listIDs
+      'data-js-ungpd-list-ids' => $listIDs,
+      'data-js-ungpd-double-opt-in-issue-id' => $doubleOptInIssueId,
+      'data-js-ungpd-confirmation-issue-id' => $confirmationIssueId,
+      'data-js-ungpd-subscription-confirmed-url' => $subscriptionConfirmedUrl,
+      'data-js-ungpd-subscription-failed-url' => $subscriptionFailedUrl
 		]
 ])
   @group([
