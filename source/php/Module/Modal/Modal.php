@@ -38,8 +38,8 @@ class Modal extends \Modularity\Module
         // Modal settings
         $data['useModalContentTitle'] = (bool) \intval($fields['modal']['use_modal_content_title']) ?? false;
         $data['modalIsPanel']         = (bool)  \intval($fields['modal']['is_panel']) ?? false;
-        $data['modalSize']            = $fields['modal']['size'] ?? 'md';
-        $data['modalPadding']         = $fields['modal']['padding'] ?? 3;
+        $data['modalSize']            = !empty($fields['modal']['size']) ? $fields['modal']['size'] : 'md';
+        $data['modalPadding']         = !empty($fields['modal']['padding']) ? $fields['modal']['padding'] : 3;
         $data['modalBorderRadius']    = $fields['modal']['border_radius'] = 'md';
 
         // Modal content
