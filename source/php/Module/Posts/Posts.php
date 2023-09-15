@@ -324,7 +324,7 @@ class Posts extends \Modularity\Module
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
                     }
 
-                    if (in_array('image', $fields->posts_fields) && !empty($_post->thumbnail) && empty($_post->thumbnail['src'])) {
+                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && !empty($_post->thumbnail) && empty($_post->thumbnail['src'])) {
                         $_post->thumbnail['src'] = \Modularity\Helper\Wp::getThemeMod('logotype_emblem') ?: get_stylesheet_directory_uri() . '/assets/images/broken_image.svg';
                         $_post->hasPlaceholderImage = true;
                     }
