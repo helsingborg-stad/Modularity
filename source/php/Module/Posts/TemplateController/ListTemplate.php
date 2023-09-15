@@ -46,15 +46,16 @@ class ListTemplate
             $postData = [$postData];
         }
 
+        $list = [];
         foreach ($posts as $post) {
-            if (!empty($post->post_type) && $post->post_type == 'attachment') {
-                $link = wp_get_attachment_url($post->ID);
+            if (!empty($post->postType) && $post->postType == 'attachment') {
+                $link = wp_get_attachment_url($post->id);
             } else {
-                $link = $postData['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->ID);
+                $link = $postData['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->id);
             }
 
-            if (!empty($post->post_title)) {
-                array_push($list, ['link' => $link ?? '', 'title' => $post->post_title]);
+            if (!empty($post->postTitle)) {
+                array_push($list, ['link' => $link ?? '', 'title' => $post->postTitle]);
             }
         }
 

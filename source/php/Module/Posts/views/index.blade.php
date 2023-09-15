@@ -7,8 +7,8 @@
         <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
             @if ($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
                 @block([
-                    'heading' => $post->showTitle ? $post->postTitle : false,
-                    'content' => $post->showExcerpt ? $post->excerptShort : false,
+                    'heading' => !empty($post->showTitle) ? $post->postTitle : false,
+                    'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
                     'ratio' => '16:9',
                     'meta' => !empty($termsUnlinked) ? $post->termsUnlinked : false,
                     'secondary_meta' => $display_reading_time ? $post->readingTime : false,
@@ -31,7 +31,7 @@
                     'link' => $post->permalink,
                     'postId' => $post->id,
                     'postType' => $post->postType ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                     'attributeList' => array_merge($post->attributeList, []),
                 ])
                 @slot('floating')
@@ -83,7 +83,7 @@
     @endforeach
 </div>
 
-@if ($posts_data_source !== 'input' && $archive_link_url)
+@if ($posts_data_source !== 'input' && !empty($archive_link_url))
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
         @button([
             'text' => __('Show more', 'modularity'),

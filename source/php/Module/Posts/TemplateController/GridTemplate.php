@@ -3,7 +3,6 @@
 namespace Modularity\Module\Posts\TemplateController;
 
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
-use Modularity\Module\Posts\Helper\Tag as TagHelper;
 
 class GridTemplate extends AbstractController
 {

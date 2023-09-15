@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-use Modularity\Module\Posts\Helper\Column as ColumnHelper;
-
 class CollectionTemplate extends AbstractController
 {
     protected $module;

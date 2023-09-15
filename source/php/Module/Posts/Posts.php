@@ -14,23 +14,19 @@ class Posts extends \Modularity\Module
         'align' => ['full']
     );
 
-    private $enableFilters = false;
-
     public function init()
     {
         $this->nameSingular = __('Posts', 'modularity');
         $this->namePlural = __('Posts', 'modularity');
         $this->description = __('Outputs selected posts in specified layout', 'modularity');
-
-        add_action('add_meta_boxes', array($this, 'addColumnFields'));
-        add_action('save_post', array($this, 'saveColumnFields'));
+        
+        /* Saves meta data to expandable list posts */
+        new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
 
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
-        add_filter('acf/load_field/key=field_62a309f9c59bb', array($this, 'addIconsList'));
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
-
         add_filter('Modularity/Module/Posts/template', array( $this, 'setTemplate' ), 10, 3);
 
         new PostsAjax($this);
@@ -106,30 +102,6 @@ class Posts extends \Modularity\Module
         }
 
         return $viewData;
-    }
-
-    /**
-     * Add list to dropdown
-     *
-     * @param array $field  Field definition
-     * @return array $field Field definition with choices
-     */
-    public function addIconsList($field): array
-    {
-        $choices = \Modularity\Helper\Icons::getIcons();
-
-        $field['choices'] = [];
-        if (is_array($choices) && !empty($choices)) {
-            foreach ($choices as $choice) {
-                $field['choices'][$choice] = '<i class="material-icons" style="float: left;">'
-                    . $choice
-                    . '</i> <span style="height: 24px; display: inline-block; line-height: 24px; margin-left: 8px;">'
-                    . $choice
-                    . '</span>';
-            }
-        }
-
-        return $field;
     }
 
     public function loadDateField($field = [])
@@ -297,287 +269,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Saves column names if exandable list template is used
-     * @param int $postId The id of the post
-     * @return void
-     */
-    public function saveColumnFields($postId)
-    {
-        //Meta key
-        $metaKey = "modularity-mod-posts-expandable-list";
-
-        //Bail early if autosave
-        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-            return false;
-        }
-
-        //Bail early if cron
-        if (defined('DOING_CRON') && DOING_CRON) {
-            return false;
-        }
-
-        //Bail early if not a post request
-        if (!isset($_POST) || (is_array($_POST) && empty($_POST)) || !is_array($_POST)) {
-            return false;
-        }
-
-        //Update if nonce verification succeed
-        if (
-            isset($_POST['modularity_post_columns'])
-            && wp_verify_nonce(
-                $_POST['modularity_post_columns'],
-                'save_columns'
-            )
-        ) {
-            //Delete if not posted data
-            if (!isset($_POST[$metaKey])) {
-                delete_post_meta($postId, $metaKey);
-                return;
-            }
-
-            //Save meta data
-            update_post_meta($postId, $metaKey, $_POST[$metaKey]);
-        }
-    }
-
-    /**
-     * Check wheather to add expandable list column fields to edit post screeen
-     */
-    public function addColumnFields()
-    {
-        global $post;
-        $screen = get_current_screen();
-
-        if (empty($post->post_type) || $screen->base != 'post') {
-            return;
-        }
-
-        $modules = [];
-
-        // If manually picked
-        if ($newModules = $this->checkIfManuallyPicked($post->ID)) {
-            $modules = array_merge($modules, $newModules);
-        }
-
-        // If post type
-        if ($newModules = $this->checkIfPostType($post->ID)) {
-            $modules = array_merge($modules, $newModules);
-        }
-
-        // If child
-        if ($newModules = $this->checkIfChild($post->ID)) {
-            $modules = array_merge($modules, $newModules);
-        }
-
-        if (empty($modules)) {
-            return false;
-        }
-
-        $modules = array_filter($modules, function ($item) {
-            return !wp_is_post_revision($item);
-        });
-
-        $fields = $this->getColumns($modules);
-
-        if (!empty($fields)) {
-            add_meta_box(
-                'modularity-mod-posts-expandable-list',
-                __('Modularity expandable list column values', 'modularity'),
-                [$this, 'columnFieldsMetaBoxContent'],
-                null,
-                'normal',
-                'default',
-                [$fields]
-            );
-        }
-    }
-
-    /**
-     * Expandable list column value fields metabox content
-     * @param object $post Post object
-     * @param array $args Arguments
-     * @return void
-     */
-    public function columnFieldsMetaBoxContent($post, $args)
-    {
-        $fields = $args['args'][0];
-        $fieldValues = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true);
-
-        foreach ($fields as $field) {
-            $fieldSlug = sanitize_title($field);
-            $value = isset($fieldValues[$fieldSlug]) && !empty($fieldValues[$fieldSlug])
-                ? $fieldValues[$fieldSlug] : '';
-            echo '
-                <p>
-                    <label for="mod-' . $fieldSlug . '">' . $field . ':</label>
-                    <input value="' . $value . '" class="widefat" type="text" name="modularity-mod-posts-expandable-list[' . sanitize_title($field) . ']" id="mod-' . sanitize_title($field) . '">
-                </p>
-            ';
-        }
-
-        echo wp_nonce_field('save_columns', 'modularity_post_columns');
-    }
-
-    /**
-     * Get field columns
-     * @param array $posts Post ids
-     * @return array        Column names
-     */
-    public function getColumns($posts)
-    {
-        $columns = [];
-
-        if (is_array($posts)) {
-            foreach ($posts as $post) {
-                $values = get_field('posts_list_column_titles', $post);
-
-                if (is_array($values)) {
-                    foreach ($values as $value) {
-                        $columns[] = $value['column_header'];
-                    }
-                }
-            }
-        }
-
-        return $columns;
-    }
-
-    public function checkIfChild($id)
-    {
-        global $post;
-        global $wpdb;
-
-        $result = $wpdb->get_results("
-            SELECT *
-            FROM $wpdb->postmeta
-            WHERE meta_key = 'posts_data_child_of'
-                  AND meta_value = '{$post->post_parent}'
-        ", OBJECT);
-
-        if (count($result) === 0) {
-            return false;
-        }
-
-        $posts = [];
-        foreach ($result as $item) {
-            $posts[] = $item->post_id;
-        }
-
-        return $posts;
-    }
-
-    /**
-     * Check if current post is included in the data source post type
-     * @param integer $id Postid
-     * @return array       Modules included in
-     */
-    public function checkIfPostType($id)
-    {
-        global $post;
-        global $wpdb;
-
-        $result = $wpdb->get_results("
-            SELECT *
-            FROM $wpdb->postmeta
-            WHERE meta_key = 'posts_data_post_type'
-                  AND meta_value = '{$post->post_type}'
-        ", OBJECT);
-
-        if (count($result) === 0) {
-            return false;
-        }
-
-        $posts = [];
-        foreach ($result as $item) {
-            $posts[] = $item->post_id;
-        }
-
-        return $posts;
-    }
-
-    /**
-     * Check if current post is included in a manually picked data source in exapndable list
-     * @param integer $id Post id
-     * @return array       Modules included in
-     */
-    public function checkIfManuallyPicked($id)
-    {
-        global $wpdb;
-
-        $result = $wpdb->get_results("
-            SELECT *
-            FROM $wpdb->postmeta
-            WHERE meta_key = 'posts_data_posts'
-                  AND meta_value LIKE '%\"{$id}\"%'
-        ", OBJECT);
-
-        if (count($result) === 0) {
-            return false;
-        }
-
-        $posts = [];
-        foreach ($result as $item) {
-            $posts[] = $item->post_id;
-        }
-
-        return $posts;
-    }
-
-    /**
-     * Enqueue scripts
-     * @return void
-     */
-    public function adminEnqueue()
-    {
-        wp_register_script('mod-posts-taxonomy', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/mod-posts-taxonomy.js'));
-        wp_enqueue_script('mod-posts-taxonomy');
-
-        add_action('admin_head', function () {
-            global $post;
-            global $archive;
-
-            $id = isset($post->ID) ? $post->ID : "'" . $archive . "'";
-            if (empty($id)) {
-                return;
-            }
-
-            echo '<script>modularity_current_post_id = ' . $id . ';</script>';
-        });
-    }
-
-    private function getFrontendFilters()
-    {
-        $frontendFilters = [];
-        $frontendFilters['front_end_tax_filtering_text_search'] = get_field(
-            'front_end_tax_filtering_text_search',
-            $this->ID
-        ) ? true : false;
-        $frontendFilters['front_end_tax_filtering_dates'] = get_field(
-            'front_end_tax_filtering_dates',
-            $this->ID
-        ) ? true : false;
-        $frontendFilters['front_end_tax_filtering_taxonomy'] = get_field(
-            'front_end_tax_filtering_taxonomy',
-            $this->ID
-        ) ? true : false;
-
-        $frontendFilters['front_end_button_text'] = get_field('front_end_button_text', $this->ID);
-        $frontendFilters['front_end_hide_date'] = get_field('front_end_hide_date', $this->ID);
-        $frontendFilters['front_end_display'] = get_field('front_end_display', $this->ID);
-
-        return $frontendFilters;
-    }
-
-    private function enableFilters()
-    {
-        return get_field('front_end_tax_filtering', $this->ID)
-            && get_field('posts_data_post_type', $this->ID) === 'post'
-            || get_field('front_end_tax_filtering', $this->ID)
-            && get_field('posts_data_post_type', $this->ID) === 'page';
-    }
-
-    /**
      * "Fake" WP_POST objects for manually inputted posts
      * @param array $data The data to "fake"
      * @return array        Faked data
@@ -655,7 +346,6 @@ class Posts extends \Modularity\Module
 
         // Get post args
         $getPostsArgs = [
-            'posts_per_page' => $fields->posts_count,
             'post_type' => 'any',
             'suppress_filters' => false
         ];
@@ -759,7 +449,6 @@ class Posts extends \Modularity\Module
 
         return $templateSlug;
     }
-
 
     /**
      * Available "magic" methods for modules:

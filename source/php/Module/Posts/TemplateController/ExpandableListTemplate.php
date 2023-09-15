@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-use Modularity\Module\Posts\Helper\Tag;
-
 /**
  * Class ExpandableListTemplate
  * @package Modularity\Module\Posts\TemplateController
@@ -56,7 +54,7 @@ class ExpandableListTemplate
                     }
                 }
             } else {
-                $columnValues[] = get_post_meta($post->ID, 'modularity-mod-posts-expandable-list', true) ?? '';
+                $columnValues[] = get_post_meta($post->id, 'modularity-mod-posts-expandable-list', true) ?? '';
             }
         }
 

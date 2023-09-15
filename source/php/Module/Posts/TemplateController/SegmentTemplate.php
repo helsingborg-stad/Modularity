@@ -2,8 +2,6 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-use Modularity\Module\Posts\Helper\Tag as TagHelper;
-
 class SegmentTemplate extends AbstractController
 {
     protected $module;
@@ -20,7 +18,7 @@ class SegmentTemplate extends AbstractController
         $fields = (object) json_decode(json_encode(get_fields($this->module->ID)));
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['imagePosition'] = $fields->image_position;
+        $this->data['imagePosition'] = !empty($fields->image_position) ? $fields->image_position : false;
 
         $this->data['labels'] = [
             'readMore' => __('Read more', 'modularity'),
