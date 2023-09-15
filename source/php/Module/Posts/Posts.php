@@ -167,6 +167,10 @@ class Posts extends \Modularity\Module
     public function data(): array
     {
         $data = [];
+
+var_dump($this->getFields());
+die;
+
         $fields = json_decode(json_encode($data = $this->getFields()));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
@@ -230,18 +234,43 @@ class Posts extends \Modularity\Module
         return $data;
     }
 
-    private function getArchiveUrl($postType, $fields){
+    private function getArchiveUrl($postType, $fields) {
         if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
             return false;
         }
 
-        if ($postType == 'post') {
-            $pageForPosts = get_option('page_for_posts');
-            return $pageForPosts ? get_permalink($pageForPosts) : (get_option('show_on_front') == 'posts' ? get_home_url() : false);
+        if ($postType == 'post' && $archiveUrl = $this->getPostsArchiveUrl()) {
+            return $archiveUrl;
         }
 
-        $postObject = get_post_type_object($postType);
-        return ($postObject && isset($postObject->has_archive) && $postObject->has_archive) ? get_post_type_archive_link($postType) : false;
+        if($archiveUrl = $this->getPostTypeArchiveUrl($postType)) {
+            return $archiveUrl;
+        }
+
+        return false;
+    }
+
+    private function getPostsArchiveUrl() {
+        $pageForPosts = get_option('page_for_posts');
+
+        if(is_numeric($pageForPosts) && post_exists($pageForPosts)) {
+            return get_permalink($pageForPosts); 
+        }
+
+        if(get_option('show_on_front') == 'posts') {
+            return get_home_url(); 
+        }
+
+        return false;
+    }
+
+    private function getPostTypeArchiveUrl($postType) {
+        if($postTypeObject = get_post_type_object($postType)) {
+            if(is_a($postTypeObject, 'WP_Post_Type') && $postTypeObject->has_archive) {
+                return get_post_type_archive_link($postType);
+            }
+        }
+        return false;
     }
 
     /**
