@@ -309,7 +309,10 @@ class Posts extends \Modularity\Module
         if ($fields->posts_data_source == 'input') {
             // Strip links from content if display items are linked (we can't do links in links)
             $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
-            return (array) self::getManualInputPosts($fields->data, $stripLinksFromContent);
+            return (array) self::getManualInputPosts(
+                $fields->data, 
+                $stripLinksFromContent
+            );
         }
 
         $posts = (array) get_posts(self::getPostArgs($module->ID));
