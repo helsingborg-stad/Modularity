@@ -170,7 +170,7 @@ class Posts extends \Modularity\Module
         $fields = json_decode(json_encode($data = $this->getFields()));
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields);
+        $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
 
         // Posts
         $data['preamble'] = $fields->preamble ?? false;
