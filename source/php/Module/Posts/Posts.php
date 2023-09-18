@@ -13,12 +13,14 @@ class Posts extends \Modularity\Module
     public $blockSupports = array(
         'align' => ['full']
     );
+    private $layouts = []; //TODO: Implement
+    private $deprecatedLayouts = []; //TODO: Implement
 
     public function init()
     {
-        $this->nameSingular = __('Posts', 'modularity');
-        $this->namePlural = __('Posts', 'modularity');
-        $this->description = __('Outputs selected posts in specified layout', 'modularity');
+        $this->nameSingular     = __('Posts', 'modularity');
+        $this->namePlural       = __('Posts', 'modularity');
+        $this->description      = __('Outputs selected posts in specified layout', 'modularity');
         
         /* Saves meta data to expandable list posts */
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
@@ -31,6 +33,7 @@ class Posts extends \Modularity\Module
 
         new PostsAjax($this);
     }
+
    /**
     * If the module is set to show as a slider, then return the slider template
     *
@@ -80,8 +83,7 @@ class Posts extends \Modularity\Module
      */
     public function getDateSource($postType): array
     {
-
-        //TODO: Get this from municipio customozer- 
+        //TODO: Remove [Start feature: Date from Archive settings]
         if (empty($postType)) {
             return false;
         }
@@ -100,6 +102,8 @@ class Posts extends \Modularity\Module
         }
 
         return $metaKeys;
+
+        //TODO: Remove [End feature: Date from Archive settings]
     }
 
     /**
@@ -123,6 +127,7 @@ class Posts extends \Modularity\Module
         return $viewData;
     }
 
+    //TODO: Remove [Start feature: Date from Archive settings]
     public function loadDateField($field = [])
     {
         $postType = get_field('posts_data_post_type', $this->ID);
@@ -135,6 +140,7 @@ class Posts extends \Modularity\Module
 
         return $field;
     }
+    //TODO: Remove [End feature: Date from Archive settings]
 
     /**
      * @return false|string
@@ -263,7 +269,7 @@ class Posts extends \Modularity\Module
      *
      * @return object Returns an object representing the associative array.
      */
-    private function arrayToObject(array $array): object
+    public function arrayToObject(array $array): object
     {
         return json_decode(json_encode($array)); 
     }
@@ -421,7 +427,7 @@ class Posts extends \Modularity\Module
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
                 
-                if (class_exists('\Municipio\Helper\Post')) {
+               if (class_exists('\Municipio\Helper\Post')) {
                     $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
 
                     if (!empty($_post)) {
@@ -434,7 +440,7 @@ class Posts extends \Modularity\Module
                     }
                     
                     $_post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $_post);
-                }
+                } 
             }
         }
 
@@ -537,6 +543,11 @@ class Posts extends \Modularity\Module
         // Add metaquery to args
         if ($metaQuery) {
             $getPostsArgs['meta_query'] = $metaQuery;
+        }
+
+        //Number of posts
+        if(isset($fields->posts_count) && is_numeric($fields->posts_count)) {
+            $getPostsArgs['posts_per_page'] = $fields->posts_count; 
         }
 
         return $getPostsArgs;
