@@ -347,30 +347,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * AJAX CALLBACK
-     * Get metakeys which we can use to sort the posts
-     * @return void
-     */
-    public function getSortableMetaKeys()
-    {
-        if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
-            echo '0';
-            die();
-        }
-
-        $meta = \Municipio\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
-
-        $response = [
-            'meta_keys' => $meta,
-            'sort_curr' => get_field('posts_sort_by', $_POST['post']),
-            'filter_curr' => get_field('posts_meta_key', $_POST['post']),
-        ];
-
-        echo json_encode($response);
-        die();
-    }
-
-    /**
      * "Fake" WP_POST objects for manually inputted posts
      * @param array $data The data to "fake"
      * @return array        Faked data
