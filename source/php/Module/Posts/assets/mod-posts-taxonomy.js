@@ -55,26 +55,6 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
     const taxValue = (data == null)? null : data.posts_taxonomy_value;
 
     /**
-     * Posttype Meta keys
-     */
-    
-    getPostMeta({
-        'action': 'get_sortable_meta_keys_v2',
-        'posttype': $(blockContainer + ' .modularity-latest-post-type select').val(),
-        'post': modularity_current_post_id,
-        'container': blockContainer
-    });
-
-    $(blockContainer + ' .modularity-latest-post-type select').on('change', function () {
-        getPostMeta({
-            'action': 'get_sortable_meta_keys_v2',
-            'posttype': $(this).val(),
-            'post': modularity_current_post_id,
-            'container': blockContainer
-        });
-    });
-
-    /**
      * Taxonomy type update
      */
     getTaxonomyTypes({
@@ -139,5 +119,22 @@ function getTaxonomyTypes(data) {
             'post': modPosts.currentPostID,
             'container': blockContainer
         });
+    }, 'json');
+}
+
+function getTaxonomyValues(data) {
+    let blockContainer = data.container;
+    $(blockContainer + ' .modularity-latest-taxonomy-value select').empty();
+    $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
+
+    $.post(ajaxurl, data, function (response) {
+        $.each(response.tax, function (index, item) {
+            if ($(blockContainer + " .modularity-latest-taxonomy-value select option[value='"+item.slug+"']").length == 0) {
+                var is_selected = (item.slug == response.curr || item.slug == data.selected) ? 'selected' : '';
+                $(blockContainer + ' .modularity-latest-taxonomy-value select').append('<option value="' + item.slug + '" ' + is_selected + '>' + item.name + '</option>');
+            }
+        });
+
+        $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label .spinner').remove();
     }, 'json');
 }
