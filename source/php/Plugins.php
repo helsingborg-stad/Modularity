@@ -26,11 +26,12 @@ class Plugins
                 ];
 
                 //Include either one
-                if (file_exists($pluginPath['common'])) {
-                    require_once $pluginPath['common'];
-                } elseif(file_exists($pluginPath['local'])) {
+                if(file_exists($pluginPath['local'])) {
                     require_once $pluginPath['local'];
                 }
+                elseif (file_exists($pluginPath['common'])) {
+                    require_once $pluginPath['common'];
+                } 
             }
         }
     }
