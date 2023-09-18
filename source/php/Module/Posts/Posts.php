@@ -444,8 +444,8 @@ class Posts extends \Modularity\Module
         );
 
         $metaQuery  = false;
-        $orderby    = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
-        $order      = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
+        $orderby    = !empty($fields->posts_sort_by) ? $fields->posts_sort_by : 'date';
+        $order      = !empty($fields->posts_sort_order) ? $fields->posts_sort_order : 'desc';
 
         // Get post args
         $getPostsArgs = [
