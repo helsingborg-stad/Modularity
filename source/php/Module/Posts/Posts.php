@@ -13,12 +13,14 @@ class Posts extends \Modularity\Module
     public $blockSupports = array(
         'align' => ['full']
     );
+    private $layouts = []; //TODO: Implement
+    private $deprecatedLayouts = []; //TODO: Implement
 
     public function init()
     {
-        $this->nameSingular = __('Posts', 'modularity');
-        $this->namePlural = __('Posts', 'modularity');
-        $this->description = __('Outputs selected posts in specified layout', 'modularity');
+        $this->nameSingular     = __('Posts', 'modularity');
+        $this->namePlural       = __('Posts', 'modularity');
+        $this->description      = __('Outputs selected posts in specified layout', 'modularity');
         
         /* Saves meta data to expandable list posts */
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
@@ -31,6 +33,7 @@ class Posts extends \Modularity\Module
 
         new PostsAjax($this);
     }
+
    /**
     * If the module is set to show as a slider, then return the slider template
     *
@@ -42,8 +45,8 @@ class Posts extends \Modularity\Module
     */
     public function setTemplate($template, $module, $moduleData)
     {
-        $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
-        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
+        $showAsSlider   = get_field('show_as_slider', $moduleData['ID'] ?? null);
+        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID'] ?? null);
 
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
 
@@ -56,6 +59,23 @@ class Posts extends \Modularity\Module
     }
 
     /**
+     * Retrieve the current WordPress post ID.
+     *
+     * This function retrieves the unique identifier (ID) of the current WordPress post.
+     * It first checks if the global variable $post is set and contains a valid numeric ID.
+     * If a valid ID is found, it returns the post ID; otherwise, it returns false.
+     *
+     * @return int|false Returns the post ID if available and numeric, or false if not found or invalid.
+     */
+    private static function getCurrentPostID() {
+        global $post; 
+        if(isset($post->ID) && is_numeric($post->ID)) {
+            return $post->ID;
+        }
+        return false;
+    }
+
+    /**
      * Get list of date sources
      *
      * @param string $postType
@@ -63,6 +83,7 @@ class Posts extends \Modularity\Module
      */
     public function getDateSource($postType): array
     {
+        //TODO: Remove [Start feature: Date from Archive settings]
         if (empty($postType)) {
             return false;
         }
@@ -81,6 +102,8 @@ class Posts extends \Modularity\Module
         }
 
         return $metaKeys;
+
+        //TODO: Remove [End feature: Date from Archive settings]
     }
 
     /**
@@ -104,6 +127,7 @@ class Posts extends \Modularity\Module
         return $viewData;
     }
 
+    //TODO: Remove [Start feature: Date from Archive settings]
     public function loadDateField($field = [])
     {
         $postType = get_field('posts_data_post_type', $this->ID);
@@ -116,6 +140,7 @@ class Posts extends \Modularity\Module
 
         return $field;
     }
+    //TODO: Remove [End feature: Date from Archive settings]
 
     /**
      * @return false|string
@@ -167,7 +192,10 @@ class Posts extends \Modularity\Module
     public function data(): array
     {
         $data = [];
-        $fields = json_decode(json_encode($data = $this->getFields()));
+
+        $fields = $this->arrayToObject(
+            $this->getFields()
+        );
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
@@ -179,7 +207,7 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
 
-        $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
+        $data['posts'] = self::getPosts($this);
 
         // Sorting
         $data['sortBy'] = false;
@@ -230,42 +258,106 @@ class Posts extends \Modularity\Module
         return $data;
     }
 
-    private function getArchiveUrl($postType, $fields){
+    /**
+     * Converts an associative array to an object.
+     *
+     * This function takes an associative array and converts it into an object by first
+     * encoding the array as a JSON string and then decoding it back into an object.
+     * The resulting object will have properties corresponding to the keys in the original array.
+     *
+     * @param array $array The associative array to convert to an object.
+     *
+     * @return object Returns an object representing the associative array.
+     */
+    public function arrayToObject($array)
+    {
+        if(!is_array($array)) {
+            return $array;
+        }
+
+        return json_decode(json_encode($array)); 
+    }
+
+    /** Exists due to old code */
+    public static function arrayToObjectStatic($array)
+    {
+        if(!is_array($array)) {
+            return $array;
+        }
+
+        return json_decode(json_encode($array)); 
+    }
+
+    /**
+     * Get the archive URL for a specified post type using provided fields.
+     *
+     * This function retrieves the archive URL for a specified post type based on the given fields.
+     * If the post type is empty or if the archive link field is not set or falsy, it returns false.
+     * If the post type is "post," it attempts to retrieve the posts archive URL.
+     * Otherwise, it attempts to retrieve the archive URL for the custom post type.
+     *
+     * @param string      $postType The name of the post type.
+     * @param object|null $fields   An object containing fields related to the post type.
+     *
+     * @return string|false The archive URL if it exists, or false if it doesn't.
+     */
+    private function getArchiveUrl($postType, $fields) {
         if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
             return false;
         }
 
-        if ($postType == 'post') {
-            $pageForPosts = get_option('page_for_posts');
-            return $pageForPosts ? get_permalink($pageForPosts) : (get_option('show_on_front') == 'posts' ? get_home_url() : false);
+        if ($postType == 'post' && $archiveUrl = $this->getPostsArchiveUrl()) {
+            return $archiveUrl;
         }
 
-        $postObject = get_post_type_object($postType);
-        return ($postObject && isset($postObject->has_archive) && $postObject->has_archive) ? get_post_type_archive_link($postType) : false;
+        if($archiveUrl = $this->getPostTypeArchiveUrl($postType)) {
+            return $archiveUrl;
+        }
+
+        return false;
     }
 
     /**
-     * AJAX CALLBACK
-     * Get metakeys which we can use to sort the posts
-     * @return void
+     * Get the archive URL for the posts page.
+     *
+     * This function retrieves the URL of the page that displays the blog posts archive.
+     * If a static page is set as the posts page, it returns the permalink to that page.
+     * If the option "Front page displays" is set to "Your latest posts," it returns the home URL.
+     * If no valid posts page is found, it returns false.
+     *
+     * @return string|false The archive URL if it exists, or false if it doesn't.
      */
-    public function getSortableMetaKeys()
-    {
-        if (!isset($_POST['posttype']) || empty($_POST['posttype'])) {
-            echo '0';
-            die();
+    private function getPostsArchiveUrl() {
+        $pageForPosts = get_option('page_for_posts');
+
+        if(is_numeric($pageForPosts) && post_exists($pageForPosts)) {
+            return get_permalink($pageForPosts); 
         }
 
-        $meta = \Municipio\Helper\Post::getPosttypeMetaKeys($_POST['posttype']);
+        if(get_option('show_on_front') == 'posts') {
+            return get_home_url(); 
+        }
 
-        $response = [
-            'meta_keys' => $meta,
-            'sort_curr' => get_field('posts_sort_by', $_POST['post']),
-            'filter_curr' => get_field('posts_meta_key', $_POST['post']),
-        ];
+        return false;
+    }
 
-        echo json_encode($response);
-        die();
+    /**
+     * Get the archive URL for a custom post type.
+     *
+     * This function retrieves the archive URL for a given custom post type.
+     * If the post type does not have an archive, it returns false.
+     *
+     * @param string $postType The key of the custom post type.
+     *
+     * @return string|false The archive URL if it exists, or false if it doesn't.
+     */
+    private function getPostTypeArchiveUrl($postType) {
+        if($postTypeObject = get_post_type_object($postType)) {
+            if(is_a($postTypeObject, 'WP_Post_Type') && $postTypeObject->has_archive) {
+                return get_post_type_archive_link($postType);
+            }
+        }
+        return false;
     }
 
     /**
@@ -274,7 +366,7 @@ class Posts extends \Modularity\Module
      * @return array        Faked data
      */
 
-     /* REMOVE: remove after refactoring */
+    //TODO: Remove [Start feature: Manual Input]
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
@@ -292,10 +384,11 @@ class Posts extends \Modularity\Module
             }
         }
 
-        $posts = json_decode(json_encode($posts));
+        $posts = self::arrayToObject($posts);
 
         return $posts;
     }
+    //TODO: Remove [End feature: Manual Input]
 
     /**
      * Get included posts
@@ -304,8 +397,11 @@ class Posts extends \Modularity\Module
      */
     public static function getPosts($module): array
     {
-        $fields = json_decode(json_encode(get_fields($module->ID)));
+        $fields = self::arrayToObjectStatic(
+            get_fields($module->ID)
+        );
 
+        //TODO: Remove [Start feature: Manual Input]
         if ($fields->posts_data_source == 'input') {
             // Strip links from content if display items are linked (we can't do links in links)
             $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
@@ -314,13 +410,14 @@ class Posts extends \Modularity\Module
                 $stripLinksFromContent
             );
         }
+        //TODO: Remove [End feature: Manual Input]
 
         $posts = (array) get_posts(self::getPostArgs($module->ID));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
                 
-                if (class_exists('\Municipio\Helper\Post')) {
+               if (class_exists('\Municipio\Helper\Post')) {
                     $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
 
                     if (!empty($_post)) {
@@ -333,7 +430,7 @@ class Posts extends \Modularity\Module
                     }
                     
                     $_post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $_post);
-                }
+                } 
             }
         }
 
@@ -342,10 +439,13 @@ class Posts extends \Modularity\Module
 
     public static function getPostArgs($id)
     {
-        $fields = json_decode(json_encode(get_fields($id)));
-        $metaQuery = false;
-        $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
-        $order = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
+        $fields = self::arrayToObjectStatic(
+            get_fields($id)
+        );
+
+        $metaQuery  = false;
+        $orderby    = !empty($fields->posts_sort_by) ? $fields->posts_sort_by : 'date';
+        $order      = !empty($fields->posts_sort_order) ? $fields->posts_sort_order : 'desc';
 
         // Get post args
         $getPostsArgs = [
@@ -410,6 +510,11 @@ class Posts extends \Modularity\Module
         switch ($fields->posts_data_source) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields->posts_data_post_type;
+                if($currentPostID = self::getCurrentPostID()) {
+                    $getPostsArgs['post__not_in'] = [
+                        $currentPostID
+                    ]; 
+                }
                 break;
 
             case 'children':
@@ -430,6 +535,11 @@ class Posts extends \Modularity\Module
             $getPostsArgs['meta_query'] = $metaQuery;
         }
 
+        //Number of posts
+        if(isset($fields->posts_count) && is_numeric($fields->posts_count)) {
+            $getPostsArgs['posts_per_page'] = $fields->posts_count; 
+        }
+
         return $getPostsArgs;
     }
 
@@ -443,7 +553,7 @@ class Posts extends \Modularity\Module
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
-            'news' => 'index'
+            'news'  => 'index'
         ];
 
         if (array_key_exists($templateSlug, $deprecatedTemplates)) {

@@ -109,3 +109,5 @@
         @endcard
     </div>
 </div>
+
+@include('partials.more')

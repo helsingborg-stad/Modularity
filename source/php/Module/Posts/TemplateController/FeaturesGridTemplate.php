@@ -29,12 +29,6 @@ class FeaturesGridTemplate extends AbstractController
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio;
-        $this->data['classes'] = apply_filters(
-            'Modularity/Module/Classes',
-            ['u-height--100', 'u-height-100'],
-            $module->post_type,
-            $args
-        );
         $this->preparePosts($fields);
     }
 

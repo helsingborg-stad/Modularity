@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
     'title' => __('Data display', 'modularity'),
     'fields' => array(
@@ -380,34 +382,6 @@
             'placeholder' => '',
             'allow_custom' => 0,
             'search_placeholder' => '',
-        ),
-        7 => array(
-            'key' => 'field_571e046536f0e',
-            'label' => __('Altering grid size', 'modularity'),
-            'name' => 'posts_alter_columns',
-            'aria-label' => '',
-            'type' => 'true_false',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_6356477fbc5e4',
-                        'operator' => '!=',
-                        'value' => '1',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'message' => __('Yes, alter grid size automatically', 'modularity'),
-            'default_value' => 0,
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
         ),
         8 => array(
             'key' => 'field_571e01e7f246c',
@@ -820,4 +794,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

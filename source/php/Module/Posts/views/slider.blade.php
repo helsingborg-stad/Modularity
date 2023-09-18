@@ -37,3 +37,5 @@
         @endslider__item
     @endforeach
 @endslider
+
+@include('partials.more')
