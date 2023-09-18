@@ -563,6 +563,14 @@ class Posts extends \Modularity\Module
         return $templateSlug;
     }
 
+    public function adminEnqueue() {
+        wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
+        wp_localize_script('mod-posts-script', 'modPosts', [
+            'currentPostID' => $this->getCurrentPostID(),
+        ]);
+        wp_enqueue_script('mod-posts-script');
+    }
+
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization

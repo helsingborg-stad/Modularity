@@ -1,6 +1,6 @@
 jQuery(document).ready(function() {
     if (pagenow === 'mod-posts') {
-        postsTaxonomy(modularity_current_post_id);  
+        postsTaxonomy(modPosts.currentPostID);  
     }
 });
 
@@ -40,7 +40,7 @@ function pollBlockContent(block, container) {
     let contentLoaded = false;
     let contentLoadedInterval = setInterval(function() {  
     if ($('.modularity-latest-taxonomy-value', $(container)).length) {             
-        postsTaxonomy(modularity_current_post_id, block.attributes.data, container);               
+        postsTaxonomy(modPosts.currentPostID, block.attributes.data, container);               
         contentLoaded = true;      
     }
     if (contentLoaded) {
@@ -117,36 +117,6 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
 
 }
 
-function getPostMeta(data) {
-    let blockContainer = data.container;
-    if ($(blockContainer + ' .modularity-sorted-by select optgroup[label="Post fields"]').length === 0) {
-        $(blockContainer + ' .modularity-sorted-by select').prepend('<optgroup label="Post fields">').append('</optgroup>');
-    }
-
-    $(blockContainer + ' .modularity-latest-meta-key label, ' + blockContainer + ' .modularity-sorted-by label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>')
-
-    $.post(ajaxurl, data, function (response) {
-        $(blockContainer + ' .modularity-sorted-by select option[value^="_metakey_"], ' + blockContainer + ' .modularity-sorted-by select optgroup[label="Post meta"]').remove();
-        $(blockContainer + ' .modularity-latest-meta-key select').empty();
-
-        if (response.meta_keys.length > 2) {
-            $(blockContainer + ' .modularity-sorted-by select').append('<optgroup label="Post meta">');
-
-            $.each(response.meta_keys, function (index, item) {
-                var sort_selected = (response.sort_curr != null && item.meta_key == response.sort_curr.replace('_metakey_', '')) ? 'selected' : '';
-                var filter_selected = (response.filter_curr != null && item.meta_key == response.filter_curr.replace('_metakey_', '')) ? 'selected' : '';
-
-                $(blockContainer + ' .modularity-sorted-by select').append('<option value="_metakey_' + item.meta_key +'" ' + sort_selected + '>' + item.meta_key +'</option>');
-                $(blockContainer + ' .modularity-latest-meta-key select').append('<option value="' + item.meta_key + '" ' + filter_selected + '>' + item.meta_key + '</option>');
-            });
-
-            $(blockContainer + ' .modularity-sorted-by select').append('</optgroup>');
-        }
-
-        $(blockContainer + ' .modularity-latest-meta-key .spinner, ' + blockContainer + ' .modularity-sorted-by .spinner').remove();
-    }, 'json');
-}
-
 function getTaxonomyTypes(data) {
     let blockContainer = data.container;
     $(blockContainer + ' .modularity-latest-taxonomy select').empty();
@@ -166,25 +136,8 @@ function getTaxonomyTypes(data) {
         getTaxonomyValues({
             'action': 'get_taxonomy_values_v2',
             'tax': $(blockContainer + ' .modularity-latest-taxonomy select').val(),
-            'post': modularity_current_post_id,
+            'post': modPosts.currentPostID,
             'container': blockContainer
         });
-    }, 'json');
-}
-
-function getTaxonomyValues(data) {
-    let blockContainer = data.container;
-    $(blockContainer + ' .modularity-latest-taxonomy-value select').empty();
-    $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
-
-    $.post(ajaxurl, data, function (response) {
-        $.each(response.tax, function (index, item) {
-            if ($(blockContainer + " .modularity-latest-taxonomy-value select option[value='"+item.slug+"']").length == 0) {
-                var is_selected = (item.slug == response.curr || item.slug == data.selected) ? 'selected' : '';
-                $(blockContainer + ' .modularity-latest-taxonomy-value select').append('<option value="' + item.slug + '" ' + is_selected + '>' + item.name + '</option>');
-            }
-        });
-
-        $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label .spinner').remove();
     }, 'json');
 }
