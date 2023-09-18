@@ -9,3 +9,5 @@
         </div>
     @endforeach
 </div>
+
+@include('partials.more')

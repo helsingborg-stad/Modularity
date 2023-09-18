@@ -69,8 +69,12 @@ class AbstractController
      *
      * @return object Returns an object representing the associative array.
      */
-    public static function arrayToObject(array $array): object
+    public static function arrayToObject($array)
     {
+        if(!is_array($array)) {
+            return $array;
+        }
+
         return json_decode(json_encode($array)); 
     }
 }

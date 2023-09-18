@@ -4,7 +4,7 @@
 <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}{{ !empty($noGutter) ? ' o-grid--no-gutter' : '' }}"
     @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
     @foreach ($posts as $post)
-        <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }}">
+        <div class="{{ $posts_columns }}">
             @segment([
                 'layout' => 'card',
                 'title' => !empty($post->showTitle) ? $post->postTitle : false,
@@ -33,3 +33,6 @@
         </div>
     @endforeach
 </div>
+
+@include('partials.more')
+

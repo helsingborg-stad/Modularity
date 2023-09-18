@@ -7,3 +7,5 @@
         @include('partials.post.collection-item')
     @endforeach
 @endcollection
+
+@include('partials.more')

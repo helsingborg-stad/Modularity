@@ -379,34 +379,6 @@
             "search_placeholder": ""
         },
         {
-            "key": "field_571e046536f0e",
-            "label": "Altering grid size",
-            "name": "posts_alter_columns",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6356477fbc5e4",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "Yes, alter grid size automatically",
-            "default_value": 0,
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_571e01e7f246c",
             "label": "Fields",
             "name": "posts_fields",
@@ -817,4 +789,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

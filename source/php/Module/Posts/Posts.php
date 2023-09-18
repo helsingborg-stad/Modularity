@@ -45,8 +45,8 @@ class Posts extends \Modularity\Module
     */
     public function setTemplate($template, $module, $moduleData)
     {
-        $showAsSlider = get_field('show_as_slider', $moduleData['ID']);
-        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID']);
+        $showAsSlider   = get_field('show_as_slider', $moduleData['ID'] ?? null);
+        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID'] ?? null);
 
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
 
@@ -269,8 +269,22 @@ class Posts extends \Modularity\Module
      *
      * @return object Returns an object representing the associative array.
      */
-    public function arrayToObject(array $array): object
+    public function arrayToObject($array)
     {
+        if(!is_array($array)) {
+            return $array;
+        }
+
+        return json_decode(json_encode($array)); 
+    }
+
+    /** Exists due to old code */
+    public static function arrayToObjectStatic($array)
+    {
+        if(!is_array($array)) {
+            return $array;
+        }
+
         return json_decode(json_encode($array)); 
     }
 
@@ -383,7 +397,7 @@ class Posts extends \Modularity\Module
      */
     public static function getPosts($module): array
     {
-        $fields = self::arrayToObject(
+        $fields = self::arrayToObjectStatic(
             get_fields($module->ID)
         );
 
@@ -425,7 +439,7 @@ class Posts extends \Modularity\Module
 
     public static function getPostArgs($id)
     {
-        $fields = self::arrayToObject(
+        $fields = self::arrayToObjectStatic(
             get_fields($id)
         );
 
