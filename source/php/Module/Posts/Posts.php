@@ -370,7 +370,7 @@ class Posts extends \Modularity\Module
      * @return array        Faked data
      */
 
-     /* REMOVE: remove after refactoring */
+    //TODO: Remove [Start feature: Manual Input]
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
@@ -392,6 +392,7 @@ class Posts extends \Modularity\Module
 
         return $posts;
     }
+    //TODO: Remove [End feature: Manual Input]
 
     /**
      * Get included posts
