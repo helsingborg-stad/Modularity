@@ -330,7 +330,7 @@ class Posts extends \Modularity\Module
     private function getPostsArchiveUrl() {
         $pageForPosts = get_option('page_for_posts');
 
-        if(is_numeric($pageForPosts) && post_exists($pageForPosts)) {
+        if(is_numeric($pageForPosts) && get_post_status($pageForPosts) == 'publish') {
             return get_permalink($pageForPosts); 
         }
 
