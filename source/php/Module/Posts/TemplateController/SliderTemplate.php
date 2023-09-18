@@ -35,18 +35,6 @@ class SliderTemplate extends AbstractController
             (object) $this->data['slider']
         );
 
-        if (!empty($this->module->post_type)) {
-            $this->data['classes'] = implode(
-                ' ',
-                apply_filters(
-                    'Modularity/Module/Classes',
-                    [],
-                    $this->module->post_type,
-                    $this->args
-                )
-            );
-        }
-
         $this->prepare($fields);
     }
 

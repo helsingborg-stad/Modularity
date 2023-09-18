@@ -22,11 +22,16 @@ class AbstractController
 
     public function preparePosts()
     {
-        $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType($this->data['posts_data_post_type'] ?? '');
+        $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
+            $this->data['posts_data_post_type'] ?? ''
+        );
 
-        foreach ($this->data['posts'] as $post) {
-            $this->setPostFlags($post);
+        if(!empty($this->data['posts']) && is_array($this->data['posts'])) {
+            foreach ($this->data['posts'] as $post) {
+                $this->setPostFlags($post);
+            }
         }
+        
     }
 
     /**
