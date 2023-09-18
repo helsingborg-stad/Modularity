@@ -56,6 +56,23 @@ class Posts extends \Modularity\Module
     }
 
     /**
+     * Retrieve the current WordPress post ID.
+     *
+     * This function retrieves the unique identifier (ID) of the current WordPress post.
+     * It first checks if the global variable $post is set and contains a valid numeric ID.
+     * If a valid ID is found, it returns the post ID; otherwise, it returns false.
+     *
+     * @return int|false Returns the post ID if available and numeric, or false if not found or invalid.
+     */
+    private static function getCurrentPostID() {
+        global $post; 
+        if(isset($post->ID) && is_numeric($post->ID)) {
+            return $post->ID;
+        }
+        return false;
+    }
+
+    /**
      * Get list of date sources
      *
      * @param string $postType
@@ -170,10 +187,9 @@ class Posts extends \Modularity\Module
     {
         $data = [];
 
-var_dump($this->getFields());
-die;
-
-        $fields = json_decode(json_encode($data = $this->getFields()));
+        $fields = $this->arrayToObject(
+            $this->getFields()
+        );
 
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
@@ -185,7 +201,7 @@ die;
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
 
-        $data['posts'] = \Modularity\Module\Posts\Posts::getPosts($this);
+        $data['posts'] = self::getPosts($this);
 
         // Sorting
         $data['sortBy'] = false;
@@ -234,6 +250,22 @@ die;
         }
 
         return $data;
+    }
+
+    /**
+     * Converts an associative array to an object.
+     *
+     * This function takes an associative array and converts it into an object by first
+     * encoding the array as a JSON string and then decoding it back into an object.
+     * The resulting object will have properties corresponding to the keys in the original array.
+     *
+     * @param array $array The associative array to convert to an object.
+     *
+     * @return object Returns an object representing the associative array.
+     */
+    private function arrayToObject(array $array): object
+    {
+        return json_decode(json_encode($array)); 
     }
 
     /**
@@ -356,7 +388,7 @@ die;
             }
         }
 
-        $posts = json_decode(json_encode($posts));
+        $posts = self::arrayToObject($posts);
 
         return $posts;
     }
@@ -368,8 +400,11 @@ die;
      */
     public static function getPosts($module): array
     {
-        $fields = json_decode(json_encode(get_fields($module->ID)));
+        $fields = self::arrayToObject(
+            get_fields($module->ID)
+        );
 
+        //TODO: Remove [Start feature: Manual Input]
         if ($fields->posts_data_source == 'input') {
             // Strip links from content if display items are linked (we can't do links in links)
             $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
@@ -378,6 +413,7 @@ die;
                 $stripLinksFromContent
             );
         }
+        //TODO: Remove [End feature: Manual Input]
 
         $posts = (array) get_posts(self::getPostArgs($module->ID));
         if (!empty($posts)) {
@@ -406,10 +442,13 @@ die;
 
     public static function getPostArgs($id)
     {
-        $fields = json_decode(json_encode(get_fields($id)));
-        $metaQuery = false;
-        $orderby = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
-        $order = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
+        $fields = self::arrayToObject(
+            get_fields($id)
+        );
+
+        $metaQuery  = false;
+        $orderby    = isset($fields->posts_sort_by) && $fields->posts_sort_by ? $fields->posts_sort_by : 'date';
+        $order      = isset($fields->posts_sort_order) && $fields->posts_sort_order ? $fields->posts_sort_order : 'desc';
 
         // Get post args
         $getPostsArgs = [
@@ -474,6 +513,11 @@ die;
         switch ($fields->posts_data_source) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields->posts_data_post_type;
+                if($currentPostID = self::getCurrentPostID()) {
+                    $getPostsArgs['post__not_in'] = [
+                        $currentPostID
+                    ]; 
+                }
                 break;
 
             case 'children':
@@ -507,7 +551,7 @@ die;
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
-            'news' => 'index'
+            'news'  => 'index'
         ];
 
         if (array_key_exists($templateSlug, $deprecatedTemplates)) {
