@@ -57,4 +57,20 @@ class AbstractController
             $post->postDate = false;
         }
     }
+
+    /**
+     * Converts an associative array to an object.
+     *
+     * This function takes an associative array and converts it into an object by first
+     * encoding the array as a JSON string and then decoding it back into an object.
+     * The resulting object will have properties corresponding to the keys in the original array.
+     *
+     * @param array $array The associative array to convert to an object.
+     *
+     * @return object Returns an object representing the associative array.
+     */
+    public static function arrayToObject(array $array): object
+    {
+        return json_decode(json_encode($array)); 
+    }
 }

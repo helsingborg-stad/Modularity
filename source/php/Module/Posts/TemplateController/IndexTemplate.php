@@ -17,10 +17,11 @@ class IndexTemplate extends AbstractController
         $this->args = $args;
         $this->data = $data;
 
-        $fields = json_decode(json_encode(get_fields($this->module->ID)));
+        $fields = $this->arrayToObject(
+            get_fields($this->module->ID)
+        );
 
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['classes'] = apply_filters('Modularity/Module/Classes', ['u-height--100', 'u-height-100'], $module->post_type, $args);
 
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
