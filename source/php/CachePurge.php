@@ -1,8 +1,8 @@
 <?php
 
-namespace Modularity\Helper;
+namespace Modularity;
 
-class Varnish
+class CachePurge
 {
     public function __construct()
     {

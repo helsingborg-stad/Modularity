@@ -44,7 +44,7 @@ class App
         self::$display = new Display();
 
         new Helper\Acf();
-        new Helper\Varnish();
+        new CachePurge();
 
         new Search();
 
