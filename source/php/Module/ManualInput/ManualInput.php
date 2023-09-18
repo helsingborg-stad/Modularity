@@ -9,6 +9,7 @@ class ManualInput extends \Modularity\Module
     public $blockSupports = array(
         'align' => ['full']
     );
+    private $template;
 
     public function init()
     {
@@ -21,20 +22,20 @@ class ManualInput extends \Modularity\Module
 
     public function data(): array
     {
-        $data   = [];
-        $fields = $this->getFields();
+        $data           = [];
+        $fields         = $this->getFields();
         $this->template = $this->getTemplateToUse($fields);
 
-        $data['manualInputs'] = [];
-        $data['columns'] = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
-        $data['context'] = ['module.manual-input.' . $this->template];
-        $data['ratio'] = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+        $data['manualInputs']   = [];
+        $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
+        $data['context']        = ['module.manual-input.' . $this->template];
+        $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
             isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 
             isset($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : ''
         );
 
-        $manualInputDefaultValues = $this->getManualInputDefaultValues();
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
                 $arr = array_merge($this->getManualInputDefaultValues(), $input);
@@ -73,13 +74,18 @@ class ManualInput extends \Modularity\Module
      */
     private function getImage($imageData) {
         if (!empty($imageData)) {
-            $image = [
-                'src' => wp_get_attachment_image_src($imageData['id'], [768, 432])[0],
+
+            $attachmentImage = wp_get_attachment_image_src(
+                $imageData['id'],
+                [768, 432]
+            );
+
+            return [
+                'src' => isset($attachmentImage[0]) ? $attachmentImage[0] : false,
                 'alt' => !empty($imageData['alt']) ? $imageData['alt'] : false
             ];
-            return $image;
         }
-        return [];  
+        return [];
     }
 
      /**
@@ -121,14 +127,36 @@ class ManualInput extends \Modularity\Module
     }
 
     /**
-     * @param string $template name of the view
-     * @return string
+     * Determine the template to use for rendering based on field configuration.
+     *
+     * This function calculates the template name to use for rendering based on the
+     * provided field configuration. If the 'display_as' key is specified in the
+     * configuration and is not empty, it will be used as the template name. Otherwise,
+     * the default template name 'card' will be used. The calculated template name is
+     * passed through a filter 'Modularity/Module/ManualInput/Template' to allow
+     * customization.
+     *
+     * @param array $fields The field configuration array.
+     * @return string The template name to use for rendering.
      */
     public function getTemplateToUse($fields) {
-        return apply_filters('Modularity/Module/ManualInput/Template', !empty($fields['display_as']) ? $fields['display_as'] : 'card');
+        $templateName = !empty($fields['display_as']) ? $fields['display_as'] : 'card'; 
+        return apply_filters(
+            'Modularity/Module/ManualInput/Template', 
+            $templateName 
+        );
     }
 
-
+    /**
+     * Get the template file name for rendering.
+     *
+     * This function returns the name of the template file to use for rendering
+     * based on the template property of the current object. If the specified
+     * template file exists, it will be returned; otherwise, a default template
+     * ('card.blade.php') will be used.
+     *
+     * @return string The template file name.
+     */
     public function template() {
         $path = __DIR__ . "/views/" . $this->template . ".blade.php";
 
