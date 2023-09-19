@@ -2,7 +2,6 @@
     <div class="o-grid-12">
         @card([
             'heading' => false,
-            'classList' => [$classes],
             'attributeList' => [
                 'js-filter-container' => $ID,
                 'aria-labelledby' => 'mod-posts-' . $ID . '-label'
