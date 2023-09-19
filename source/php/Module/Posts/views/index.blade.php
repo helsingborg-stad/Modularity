@@ -10,7 +10,7 @@
                     'heading' => !empty($post->showTitle) ? $post->postTitle : false,
                     'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
                     'ratio' => '16:9',
-                    'meta' => !empty($termsUnlinked) ? $post->termsUnlinked : false,
+                    'meta' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
                     'secondary_meta' => $display_reading_time ? $post->readingTime : false,
                     'date' => !empty($post->postDate) ? $post->postDate : false,
                     'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
