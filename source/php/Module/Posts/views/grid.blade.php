@@ -12,7 +12,7 @@
                     'heading' => $post->postTitle,
                     'hasFooter' => $post->termsUnlinked ? true : false,
                     'context' => ['module.posts.index'],
-                    'content' => $post->excerptShort,
+                    'content' => isset($post->showExcerpt) ? $post->excerptShort : '',
                     'meta' => $display_readingtime ? $post->readingTime : false,
                     'tags' => $post->termsUnlinked,
                     'date' => $post->postDate,
