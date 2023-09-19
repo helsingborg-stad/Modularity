@@ -384,7 +384,7 @@ class Posts extends \Modularity\Module
             }
         }
 
-        $posts = self::arrayToObject($posts);
+        $posts = self::arrayToObjectStatic($posts);
 
         return $posts;
     }
