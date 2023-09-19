@@ -21,7 +21,10 @@ class IndexTemplate extends AbstractController
             get_fields($this->module->ID)
         );
 
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
+        $this->data['posts_columns'] = apply_filters(
+            'Modularity/Display/replaceGrid', 
+            isset($fields->posts_columns) ? $fields->posts_columns : 1
+        );
 
         if ($fields->posts_highlight_first ?? false) {
             $this->data['highlight_first_column'] = ColumnHelper::getFirstColumnSize($this->data['posts_columns']);
