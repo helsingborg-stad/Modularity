@@ -47,7 +47,7 @@ class AbstractController
         $post->showDate     = in_array('date', $this->data['posts_fields']);
         $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
 
-        if ('event' == $post->contentType) {
+        if (isset($post->contentType) && 'event' == $post->contentType) {
             $post->showDate = true;
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
