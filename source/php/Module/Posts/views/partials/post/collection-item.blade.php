@@ -8,12 +8,12 @@
     'attributeList' => array_merge($post->attributeList, [
     ]),
 ])
-    @if (!empty($post->floating['floating']))
-        @slot('floating')
-            @icon($post->floating['floating'])
+    @slot('floating')
+        @if (!empty($post->callToActionItems['floating']))
+            @icon($post->callToActionItems['floating'])
             @endicon
-        @endslot
-    @endif
+        @endif
+    @endslot
     @slot('before')
         @if (!empty($post->showImage) && isset($post->thumbnail['src']))
             @image([
