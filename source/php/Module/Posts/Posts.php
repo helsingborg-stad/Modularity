@@ -431,8 +431,6 @@ class Posts extends \Modularity\Module
                         $_post->thumbnail['src'] = \Modularity\Helper\Wp::getThemeMod('logotype_emblem') ?: get_stylesheet_directory_uri() . '/assets/images/broken_image.svg';
                         $_post->hasPlaceholderImage = true;
                     }
-                    
-                    $_post->floating = apply_filters('Modularity/Module/Posts/Floating', [], $_post);
                 } 
             }
         }

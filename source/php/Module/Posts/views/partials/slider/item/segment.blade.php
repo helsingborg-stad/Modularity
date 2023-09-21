@@ -17,8 +17,8 @@
     'hasPlaceholderImage' => !empty($post->hasPlaceholderImage),
     ])
     @slot('floating')
-        @if (!empty($post->floating['floating']))
-            @icon($post->floating['floating'])
+        @if (!empty($post->callToActionItems['floating']))
+            @icon($post->callToActionItems['floating'])
             @endicon
         @endif
     @endslot
