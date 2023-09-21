@@ -371,10 +371,15 @@ class Posts extends \Modularity\Module
     {
         $posts = [];
         foreach ($data as $key => $item) {
+            $image = wp_get_attachment_image_src($item->image->ID, [400, 225]); 
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
-                'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content
+                'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
+                'thumbnail' => [
+                    'src' => $image[0],
+                    'alt' => ""
+                ]
             ]);
         }
         
@@ -383,8 +388,6 @@ class Posts extends \Modularity\Module
                 $post = \Municipio\Helper\FormatObject::camelCase($post);
             }
         }
-
-        $posts = self::arrayToObjectStatic($posts);
 
         return $posts;
     }
