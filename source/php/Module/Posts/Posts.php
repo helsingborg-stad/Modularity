@@ -376,6 +376,7 @@ class Posts extends \Modularity\Module
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
+                'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'thumbnail' => [
                     'src' => $image[0],
                     'alt' => ""
