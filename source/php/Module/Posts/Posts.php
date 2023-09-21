@@ -418,7 +418,7 @@ class Posts extends \Modularity\Module
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
                 
                if (class_exists('\Municipio\Helper\Post')) {
-                    $_post = \Municipio\Helper\Post::preparePostObject($_post, $data);
+                    $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
 
                     if (!empty($_post)) {
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
