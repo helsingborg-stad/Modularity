@@ -6,8 +6,8 @@
 
             ])
                 @image([
-                    'src'=> $img_src,
-                    'alt' => $mod_image_image['alt'],
+                    'src'=> $image['src'],
+                    'alt' => $image['alt'],
                     'caption' => (isset($mod_image_caption) && !empty($mod_image_caption)) ?
                         $mod_image_caption : "",
                     'classList' => ['box-image', $img_classes]
@@ -17,8 +17,8 @@
 
     @else
         @image([
-            'src'=> $img_src,
-            'alt' => $mod_image_image['alt'],
+            'src'=> $image['src'],
+            'alt' => $image['alt'],
             'caption' => (isset($mod_image_caption) && !empty($mod_image_caption)) ?
                 $mod_image_caption : "",
             'classList' => ['box-image', $img_classes]

@@ -3,16 +3,6 @@
     "title": "Image",
     "fields": [
         {
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "jpg, png, gif",
             "key": "field_570770b8e2e61",
             "label": "Image",
             "name": "mod_image_image",
@@ -24,14 +14,19 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpg, png, gif"
         },
         {
-            "default_value": "",
-            "new_lines": "br",
-            "maxlength": "",
-            "placeholder": "",
-            "rows": 4,
             "key": "field_587604df2975f",
             "label": "Image caption",
             "name": "mod_image_caption",
@@ -43,33 +38,14 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "new_lines": "br",
+            "maxlength": "",
+            "placeholder": "",
+            "rows": 4
         },
         {
-            "default_value": 1,
-            "message": "Crop image",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "key": "field_570770f5e2e62",
-            "label": "Cropping",
-            "name": "mod_image_crop",
-            "type": "true_false",
-            "instructions": "Check if you wold like to crop your image to a specific size",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": 50,
-                "class": "",
-                "id": ""
-            }
-        },
-        {
-            "default_value": 1,
-            "message": "Yes, make this image responsive",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
             "key": "field_570775955b8de",
             "label": "Responsive",
             "name": "mod_image_responsive",
@@ -81,18 +57,16 @@
                 "width": 50,
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": 1,
+            "message": "Yes, make this image responsive",
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-            "default_value": "",
-            "min": 1,
-            "max": "",
-            "step": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "pixels",
             "key": "field_57077112e2e63",
-            "label": "Crop width",
+            "label": "Width",
             "name": "mod_image_crop_width",
             "type": "number",
             "instructions": "",
@@ -100,30 +74,28 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_570770f5e2e62",
+                        "field": "field_5707716fabf17",
                         "operator": "==",
-                        "value": "1"
+                        "value": "custom"
                     }
                 ]
             ],
             "wrapper": {
-                "width": 50,
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "readonly": 0,
-            "disabled": 0
-        },
-        {
-            "default_value": "",
+            "default_value": 1280,
             "min": 1,
             "max": "",
-            "step": "",
             "placeholder": "",
+            "step": "",
             "prepend": "",
-            "append": "pixels",
+            "append": "pixels"
+        },
+        {
             "key": "field_5707712be2e64",
-            "label": "Crop height",
+            "label": "Height",
             "name": "mod_image_crop_height",
             "type": "number",
             "instructions": "",
@@ -131,34 +103,26 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_570770f5e2e62",
+                        "field": "field_5707716fabf17",
                         "operator": "==",
-                        "value": "1"
+                        "value": "custom"
                     }
                 ]
             ],
             "wrapper": {
-                "width": 50,
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "readonly": 0,
-            "disabled": 0
+            "default_value": 720,
+            "min": 1,
+            "max": "",
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": "pixels"
         },
         {
-            "multiple": 0,
-            "allow_null": 0,
-            "choices": {
-                "thumbnail": "thumbnail",
-                "medium": "medium",
-                "medium_large": "medium_large",
-                "large": "large"
-            },
-            "default_value": [],
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "return_format": "value",
             "key": "field_5707716fabf17",
             "label": "Image size",
             "name": "mod_image_size",
@@ -168,9 +132,8 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_570770f5e2e62",
-                        "operator": "!=",
-                        "value": "1"
+                        "field": "field_570770b8e2e61",
+                        "operator": "!=empty"
                     }
                 ]
             ],
@@ -179,21 +142,24 @@
                 "class": "",
                 "id": ""
             },
-            "disabled": 0,
-            "readonly": 0
+            "choices": {
+                "thumbnail": "thumbnail",
+                "medium": "medium",
+                "medium_large": "medium_large",
+                "large": "large",
+                "1536x1536": "1536x1536",
+                "2048x2048": "2048x2048",
+                "custom": "Custom"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": ""
         },
         {
-            "layout": "horizontal",
-            "choices": {
-                "false": "None",
-                "internal": "Internal",
-                "external": "External"
-            },
-            "default_value": "",
-            "other_choice": 0,
-            "save_other_choice": 0,
-            "allow_null": 0,
-            "return_format": "value",
             "key": "field_577d07c8d72db",
             "label": "Link",
             "name": "mod_image_link",
@@ -205,11 +171,20 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "layout": "horizontal",
+            "choices": {
+                "false": "None",
+                "internal": "Internal",
+                "external": "External"
+            },
+            "default_value": "",
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "allow_null": 0,
+            "return_format": "value"
         },
         {
-            "default_value": "",
-            "placeholder": "",
             "key": "field_577d0810d72dc",
             "label": "Link url",
             "name": "mod_image_link_url",
@@ -229,14 +204,11 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "default_value": "",
+            "placeholder": ""
         },
         {
-            "post_type": [],
-            "taxonomy": [],
-            "allow_null": 0,
-            "multiple": 0,
-            "allow_archives": 1,
             "key": "field_577d0840d72dd",
             "label": "Link page",
             "name": "mod_image_link_url",
@@ -256,7 +228,12 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            }
+            },
+            "post_type": [],
+            "taxonomy": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "allow_archives": 1
         }
     ],
     "location": [
@@ -266,6 +243,41 @@
                 "operator": "==",
                 "value": "mod-image"
             }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "all"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "all"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "all"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "all"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/image"
+            }
         ]
     ],
     "menu_order": 0,
@@ -274,9 +286,13 @@
     "label_placement": "top",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 1,
+    "active": true,
     "description": "",
-    "modified": 1484129869,
-    "local": "json"
+    "show_in_rest": 0,
+    "acfe_display_title": "",
+    "acfe_autosync": "",
+    "acfe_form": 0,
+    "acfe_meta": "",
+    "acfe_note": ""
 }]
 
