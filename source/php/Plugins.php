@@ -14,8 +14,17 @@ class Plugins
 
     public function __construct()
     {
-        $this->plugins = apply_filters('Modularity/Plugins', $this->plugins);
+        //Filter included plugins array
+        $this->plugins = apply_filters(
+            'Modularity/Plugins', 
+            $this->plugins
+        );
 
+        //Include the plugins
+        $this->includePlugins();
+    }
+
+    public function includePlugins() {
         if(is_array($this->plugins) && !empty($this->plugins)) {
             foreach ($this->plugins as $plugin) {
 
@@ -28,10 +37,9 @@ class Plugins
                 //Include either one
                 if(file_exists($pluginPath['local'])) {
                     require_once $pluginPath['local'];
-                }
-                elseif (file_exists($pluginPath['common'])) {
+                } elseif (file_exists($pluginPath['common'])) {
                     require_once $pluginPath['common'];
-                } 
+                }
             }
         }
     }
