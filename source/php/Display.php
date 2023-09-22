@@ -147,7 +147,10 @@ class Display
             return self::$sidebarState[$sidebar];
         }
 
-        $widgets = wp_get_sidebars_widgets() ?? [];
+        $widgets = wp_get_sidebars_widgets();
+        if(is_null($widgets) || empty($widgets)) {
+            $widgets = [];
+        }
         $widgets = array_map('array_filter', $widgets);
         $visibleModules = false;
 
