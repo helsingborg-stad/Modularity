@@ -17,8 +17,13 @@ class Divider extends \Modularity\Module
 
     public function data() : array
     {
-        $data['title'] = get_field('divider_title', $this->ID);
-        $data['titleVariant'] = get_field('divider_title_variant', $this->ID);
+        //Get fields 
+        $fields = $this->getFields();
+
+        //Asign to view names
+        $data['title']          = !empty($fields['divider_title']) ? $fields['divider_title'] : false;
+        $data['titleVariant']   = !empty($fields['divider_title_variant']) ? $fields['divider_title_variant'] : 'h2';
+        
         //Send to view
         return $data;
     }
