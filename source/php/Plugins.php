@@ -29,16 +29,11 @@ class Plugins
             foreach ($this->plugins as $plugin) {
 
                 //Paths to try
-                $pluginPath = [
-                    'common'    => ABSPATH . "../vendor/" . $plugin,
-                    'local'     => MODULARITY_PATH . "vendor/" . $plugin
-                ];
+                $pluginPath = MODULARITY_PATH . "vendor/" . $plugin; 
 
                 //Include either one
-                if(file_exists($pluginPath['local'])) {
-                    require_once $pluginPath['local'];
-                } elseif (file_exists($pluginPath['common'])) {
-                    require_once $pluginPath['common'];
+                if(file_exists($pluginPath)) {
+                    require_once $pluginPath;
                 }
             }
         }
