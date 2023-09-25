@@ -97,12 +97,16 @@ if (!parent.Modularity) {
 }
 
 (function () {
-    ensureWPApiSettings();
+    try {
+        ensureWPApiSettings();
 
-    const { root, nonce } = window.wpApiSettings;
-    const fetch = window.fetch.bind(window);
-    const endpoints = ModulesRestAPIEndpoints(root);
-    const restAPI = new ModulesRestAPI(fetch, endpoints, nonce);
+        const { root, nonce } = window.wpApiSettings;
+        const fetch = window.fetch.bind(window);
+        const endpoints = ModulesRestAPIEndpoints(root);
+        const restAPI = new ModulesRestAPI(fetch, endpoints, nonce);
 
-    new ModuleRefresher(restAPI).refreshModules();
+        new ModuleRefresher(restAPI).refreshModules();
+    } catch (error) {
+        console.warn(error);
+    }
 })();
