@@ -31,49 +31,73 @@ class Image extends \Modularity\Module
     {
 
         //Get data
-        $data = $this->getFields();
-        $data['args'] = $this->args;
+        $data = [];
+        $fields = $this->getFields();
         
-        
-        //Do not use link
-        if ($data['mod_image_link'] == "false") {
-            $data['mod_image_link_url'] = "";
-        }
-        
-        //Set image class
-        $imgClasses = array();
-        if ($data['mod_image_responsive'] === true) {
-            $imgClasses[] = 'image-responsive';
-        }
-        $data['img_classes'] = implode(' ', $imgClasses);
-        
-        //Crop image (if non existing)
-        $data['image'] = $this->getImageData($data);
-        
-        echo '<pre>' . print_r( $data['image'], true ) . '</pre>';
-        echo '<pre>' . print_r( $data['mod_image_image'], true ) . '</pre>';
-        //Add box classes
-        $data['classes'] = implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-filled'), $this->post_type, $this->args));
+        $data['image'] = $this->getImageData($fields);
+        $data['caption'] = $this->getImageCaption($fields, $data['image']);
+        $data['imageLink'] = $this->checkIfImageHasLink($fields) ? $fields['mod_image_link_url'] : false;
 
-        $data['template'] = $this->template();
         return $data;
     }
 
-    /**
-     * Create a cropped image if needed
-     * @return string
+     /**
+     * If the image should be a link or not.
+     * 
+     * @param array $fields All the acf fields
+     * @param array $image All the data attached to the image
+     * @return string|false
      */
-    public function getImageData(array $data)
-    {
-        // if (!$data['mod_image_crop'] && $imageId) {
-        //     return $data['mod_image_image']['sizes'][$data['mod_image_size']];
-        // }
-        $imageId = $data['mod_image_image']['id'];
+    private function getImageCaption(array $fields, array $image) {
+        $caption = false;
 
-        return ImageHelper::getImageAttachmentData($imageId, 'medium_large');
+        if (!empty($image['caption'])) {
+            $caption = $image['caption'];
+        }
 
-        // return $imageSrc[0];
+        if (!empty($fields['mod_image_caption'])) {
+            $caption = $fields['mod_image_caption'];
+        }
+        
+        return $caption;
     }
+
+    /**
+     * If the image should be a link or not.
+     * 
+     * @param array $fields All the acf fields
+     * @return bool
+     */
+    private function checkIfImageHasLink(array $fields) {
+        return !empty($fields['mod_image_link']) && $fields['mod_image_link'] != "false" && !empty($fields['mod_image_link_url']);
+    }
+
+    /**
+     * Get all data attached to the image.
+     * 
+     * @param array $fields All the acf fields
+     * @return array
+     */
+    private function getImageData(array $fields)
+    {
+        $imageId = $fields['mod_image_image']['id'];
+        return ImageHelper::getImageAttachmentData($imageId, 'medium_large');
+    }
+
+    /**
+     * Creates a list of predefined sizes to choose from
+     * @return array
+     */
+
+     public function appendImageSizes(array $field)
+     {
+         $sizes = get_intermediate_image_sizes();
+         foreach ($sizes as $size) {
+             $field['choices'][$size] = $size;
+         }
+ 
+         return $field;
+     }
 
     /**
      * Choose appropriate style
@@ -82,25 +106,6 @@ class Image extends \Modularity\Module
 
     public function template()
     {
-        if ($this->args['id'] === 'right-sidebar') {
-            return 'box.blade.php';
-        }
-
         return 'default.blade.php';
-    }
-
-    /**
-     * Creates a list of predefined sizes to choose from
-     * @return array
-     */
-
-    public function appendImageSizes($field)
-    {
-        $sizes = get_intermediate_image_sizes();
-        foreach ($sizes as $size) {
-            $field['choices'][$size] = $size;
-        }
-
-        return $field;
     }
 }
