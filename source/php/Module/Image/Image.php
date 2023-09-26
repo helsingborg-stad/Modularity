@@ -34,14 +34,56 @@ class Image extends \Modularity\Module
         $data = [];
         $fields = $this->getFields();
         
-        $data['image'] = $this->getImageData($fields);
+        $data['image'] = $this->getImageData($fields, $this->getImageSize($fields));
         $data['caption'] = $this->getImageCaption($fields, $data['image']);
-        $data['imageLink'] = $this->checkIfImageHasLink($fields) ? $fields['mod_image_link_url'] : false;
+        $data['imageLink'] = $this->imageHasLink($fields) ? $fields['mod_image_link_url'] : false;
 
         return $data;
     }
 
-     /**
+    /**
+     * Get all data attached to the image.
+     * 
+     * @param array $fields All the acf fields
+     * @param array|string $size Array containing height and width OR predefined size as a string.
+     * @return array
+     */
+    private function getImageData(array $fields, $size)
+    {
+        $imageId = $fields['mod_image_image']['ID'];
+        return ImageHelper::getImageAttachmentData($imageId, $size);
+    }
+    
+    /**
+     * Get all data attached to the image.
+     * 
+     * @param array $fields All the acf fields
+     * @return array|string
+     */
+    private function getImageSize(array $fields) {
+        $size = !empty($fields['mod_image_size']) ? $fields['mod_image_size'] : 'medium_large';
+
+        if ($this->hasCustomImageSize($fields)) {
+            $size = [
+                $fields['mod_image_crop_width'],
+                $fields['mod_image_crop_height']
+            ];
+        }
+        
+        return $size;
+    }
+
+    /**
+     * If the image has a custom size.
+     * 
+     * @param array $fields All the acf fields
+     * @return bool
+     */
+    private function hasCustomImageSize(array $fields) {
+        return !empty($fields['mod_image_size']) && $fields['mod_image_size'] === "custom" && !empty($fields['mod_image_crop_width']) && !empty($fields['mod_image_crop_height']);
+    }
+
+         /**
      * If the image should be a link or not.
      * 
      * @param array $fields All the acf fields
@@ -68,27 +110,14 @@ class Image extends \Modularity\Module
      * @param array $fields All the acf fields
      * @return bool
      */
-    private function checkIfImageHasLink(array $fields) {
+    private function imageHasLink(array $fields) {
         return !empty($fields['mod_image_link']) && $fields['mod_image_link'] != "false" && !empty($fields['mod_image_link_url']);
-    }
-
-    /**
-     * Get all data attached to the image.
-     * 
-     * @param array $fields All the acf fields
-     * @return array
-     */
-    private function getImageData(array $fields)
-    {
-        $imageId = $fields['mod_image_image']['id'];
-        return ImageHelper::getImageAttachmentData($imageId, 'medium_large');
     }
 
     /**
      * Creates a list of predefined sizes to choose from
      * @return array
      */
-
      public function appendImageSizes(array $field)
      {
          $sizes = get_intermediate_image_sizes();
