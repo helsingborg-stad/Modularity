@@ -49,25 +49,6 @@
             'rows' => 4,
         ),
         2 => array(
-            'key' => 'field_570775955b8de',
-            'label' => __('Responsive', 'modularity'),
-            'name' => 'mod_image_responsive',
-            'type' => 'true_false',
-            'instructions' => __('Make the image responsive if you would like it to automatically resize to fit inside its container.', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => 50,
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 1,
-            'message' => __('Yes, make this image responsive', 'modularity'),
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
-        ),
-        3 => array(
             'key' => 'field_57077112e2e63',
             'label' => __('Width', 'modularity'),
             'name' => 'mod_image_crop_width',
@@ -96,7 +77,7 @@
             'prepend' => '',
             'append' => __('pixels', 'modularity'),
         ),
-        4 => array(
+        3 => array(
             'key' => 'field_5707712be2e64',
             'label' => __('Height', 'modularity'),
             'name' => 'mod_image_crop_height',
@@ -125,7 +106,7 @@
             'prepend' => '',
             'append' => __('pixels', 'modularity'),
         ),
-        5 => array(
+        4 => array(
             'key' => 'field_5707716fabf17',
             'label' => __('Image size', 'modularity'),
             'name' => 'mod_image_size',
@@ -162,7 +143,7 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
-        6 => array(
+        5 => array(
             'key' => 'field_577d07c8d72db',
             'label' => __('Link', 'modularity'),
             'name' => 'mod_image_link',
@@ -187,7 +168,7 @@
             'allow_null' => 0,
             'return_format' => 'value',
         ),
-        7 => array(
+        6 => array(
             'key' => 'field_577d0810d72dc',
             'label' => __('Link url', 'modularity'),
             'name' => 'mod_image_link_url',
@@ -211,7 +192,7 @@
             'default_value' => '',
             'placeholder' => '',
         ),
-        8 => array(
+        7 => array(
             'key' => 'field_577d0840d72dd',
             'label' => __('Link page', 'modularity'),
             'name' => 'mod_image_link_url',
@@ -278,6 +259,13 @@
             ),
         ),
         5 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'all',
+            ),
+        ),
+        6 => array(
             0 => array(
                 'param' => 'block',
                 'operator' => '==',

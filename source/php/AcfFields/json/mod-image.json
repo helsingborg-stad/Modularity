@@ -46,25 +46,6 @@
             "rows": 4
         },
         {
-            "key": "field_570775955b8de",
-            "label": "Responsive",
-            "name": "mod_image_responsive",
-            "type": "true_false",
-            "instructions": "Make the image responsive if you would like it to automatically resize to fit inside its container.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": 50,
-                "class": "",
-                "id": ""
-            },
-            "default_value": 1,
-            "message": "Yes, make this image responsive",
-            "ui": 0,
-            "ui_on_text": "",
-            "ui_off_text": ""
-        },
-        {
             "key": "field_57077112e2e63",
             "label": "Width",
             "name": "mod_image_crop_width",
@@ -242,6 +223,13 @@
                 "param": "post_type",
                 "operator": "==",
                 "value": "mod-image"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "all"
             }
         ],
         [
