@@ -1,5 +1,5 @@
 {
-    "name": "helsingborg-stad\/modularity",
+    "name": "helsingborg-stad/modularity",
     "description": "Modular component system for WordPress",
     "type": "wordpress-plugin",
     "minimum-stability": "dev",
@@ -25,54 +25,54 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https:\/\/github.com\/helsingborg-stad\/acf-export-manager.git"
+            "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
         },
         {
             "type": "composer",
-            "url": "https:\/\/wpackagist.org",
+            "url": "https://wpackagist.org",
             "only": [
-                "wpackagist-plugin\/*"
+                "wpackagist-plugin/*"
             ]
         }
     ],
     "require": {
-        "composer\/installers": "~1.0",
-        "helsingborg-stad\/acf-export-manager": ">=1.0.0",
-        "helsingborg-stad\/blade-component-library": "dev-master",
-        "helsingborg-stad\/global-blade-engine": "1.3.0",
-        "johannheyne\/advanced-custom-fields-table-field": "dev-master",
-        "clark-nikdel-powell\/post-type-select-for-acf": "dev-master",
-        "jeradin\/acf-website-field": "dev-master",
-        "ooksanen\/acf-focuspoint": "dev-master",
-        "jeradin\/acf-dynamic-table-field": "dev-master",
-        "enshrined\/svg-sanitize": "dev-master",
-        "wpackagist-plugin\/acf-extended": "0.8.8.7",
-        "symfony\/polyfill-php80": "^1.27"
+        "composer/installers": "~1.0",
+        "helsingborg-stad/acf-export-manager": ">=1.0.0",
+        "helsingborg-stad/blade-component-library": "dev-master",
+        "helsingborg-stad/global-blade-engine": "1.3.0",
+        "johannheyne/advanced-custom-fields-table-field": "dev-master",
+        "clark-nikdel-powell/post-type-select-for-acf": "dev-master",
+        "jeradin/acf-website-field": "dev-master",
+        "ooksanen/acf-focuspoint": "dev-master",
+        "jeradin/acf-dynamic-table-field": "dev-master",
+        "enshrined/svg-sanitize": "dev-master",
+        "wpackagist-plugin/acf-extended": "0.8.8.7",
+        "symfony/polyfill-php80": "^1.27"
     },
     "autoload": {
         "psr-4": {
-            "Modularity\\": "source\/php\/"
+            "Modularity\\": "source/php/"
         }
     },
     "config": {
         "allow-plugins": {
-            "composer\/installers": true
+            "composer/installers": true
         }
     },
     "extra": {
         "installer-paths": {
-            "vendor\/{$vendor}\/{$name}\/": [
+            "vendor/{$vendor}/{$name}/": [
                 "vendor:wpackagist-plugin"
             ]
         }
     },
     "require-dev": {
-        "phpunit\/phpunit": "9.6.x-dev",
-        "yoast\/phpunit-polyfills": "2.x-dev"
+        "phpunit/phpunit": "9.6.x-dev",
+        "yoast/phpunit-polyfills": "2.x-dev"
     },
     "scripts": {
         "test": "phpunit",
-        "test:setup": "bin\/install-wp-tests.sh"
+        "test:setup": "bin/install-wp-tests.sh"
     },
-    "version": "3.0.1"
+    "version": "3.0.4"
 }
