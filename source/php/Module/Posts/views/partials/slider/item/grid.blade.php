@@ -7,8 +7,8 @@
     'dateBadge' => $post->dateBadge,
     'filled' => true,
     'image' => ($post->showImage ? [
-            'src' => $post->thumbnail['src'],
-            'alt' => $post->thumbnail['alt'],
+            'src' => $post->thumbnailSquare['src'],
+            'alt' => $post->thumbnailSquare['alt'],
             'backgroundColor' => 'secondary',
         ] : false),
     'hasPlaceholder' => !empty($post->hasPlaceholderImage),
