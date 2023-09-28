@@ -77,25 +77,26 @@ class Upgrade
     private function v_1($db): bool
     {
         global $wpdb;
+        
+        $this->migrateBlockFieldsValueToNewFields('divider', ['divider_title' => 'custom_block_title']);
 
-        $this->migrateBlockFieldValueToNewField('divider_title', 'custom_block_title', 'divider');
-
-        $posts = $wpdb->get_results(
-            "SELECT p.*
-            FROM $wpdb->posts p
-            JOIN $wpdb->postmeta pm ON p.ID = pm.post_id
-            WHERE pm.meta_key = 'divider_title'"
+        /* Removing divider acf title field and adding it as post_title */
+        $args = array(
+            'post_type' => 'mod-divider',
         );
+        
+        $dividers = get_posts($args);
 
-        if (!empty($posts)) {
-            foreach ($posts as &$post) {
-                if (!empty($post->post_type) && $post->post_type === $postType) {
-                    $oldField = get_field('divider_title', $post->ID);
-
-                    if (!empty($oldField) && is_string($oldField)) {
+        if (!empty($dividers)) {
+            foreach ($dividers as &$divider) {
+                if (!empty($divider->post_type) && $divider->post_type === $postType) {
+                    $dividerTitleField = get_field('divider_title', $divider->ID);
+                    delete_field('divider_title', $divider->ID);
+                    
+                    if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
                         wp_update_post([
-                            'ID' => $post->ID,
-                            'post_title' => $oldField
+                            'ID' => $divider->ID,
+                            'post_title' => $dividerTitleField
                         ]);
                     }
                 }
@@ -108,28 +109,47 @@ class Upgrade
     /**
      * Post: Extract a field value and adds it to another field
      * 
-     * @param string $oldFieldName The field to extract the data from
-     * @param string $newField The field to add the data to
-     * @param string $postType The name of the post type containing the field
+     * @param string $moduleName The name of the post type containing the field
+     * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
+     * @param string|false $newBlockName renames the block to a different block.
      */
-    private function migrateAcfFieldValueToNewField(string $oldFieldName, string $newFieldName, string $postType) {
+    private function migrateAcfFieldsValueToNewFields(string $moduleName, array $fields, $newModuleName = false)
+    {
         $args = array(
-            'post_type' => $postType,
-            'meta_query' => array(
-                array(
-                    'key' => $oldFieldName,
-                    'compare' => 'EXISTS'
-                ),
-            ),
+            'post_type' => $moduleName,
         );
         
-        $posts = get_posts($args);
+        $modules = get_posts($args);
 
-        if (!empty($posts)) {
-            foreach ($posts as &$post) {
-                $oldFieldValue = get_field($oldFieldName, $post->ID);
-                update_field($newFieldName, $oldField, $post->ID);
-                delete_field($oldFieldName, $post->ID);
+        if (!empty($modules) && is_array($modules)) {
+            foreach ($modules as &$module) {
+                $this->migrateModuleFields($fields, $module->ID);
+
+                if (!empty($newModuleName)) {
+                    wp_update_post([
+                        'ID' => $module->ID,
+                        'post_type' => $newModuleName
+                    ]);   
+                }
+            }
+        }
+    }
+
+    /**
+     * Post: Extract a field value and adds it to another field
+     * 
+     * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
+     * @param int $id Id of the post
+     */
+    private function migrateModuleFields(array $fields, int $id) 
+    {
+        if (!empty($fields) && is_array($fields)) {
+            foreach ($fields as $oldFieldName => $newFieldName) {
+                $oldFieldValue = get_field($oldFieldName, $id);
+                if (!empty($oldFieldValue)) {
+                    update_field($newFieldName, $oldFieldValue, $id);
+                }
+                delete_field($oldFieldName, $id);
             }
         }
     }
@@ -137,44 +157,77 @@ class Upgrade
     /**
      * Block: Extract a field value and adds it to another field.
      * 
-     * @param string $oldFieldName The field to extract the data from
-     * @param string $newField The field to add the data to
      * @param string $blockName Name of the block
+     * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
+     * @param string|false $newBlockName renames the block to a different block.
      */
-    private function migrateBlockFieldValueToNewField($oldFieldName, $newFieldName, $blockName = '') {
-        global $wpdb;
+    private function migrateBlockFieldsValueToNewFields(string $blockName = '', array $fields = [], $newBlockName = false) 
+    {
+        $pages = $this->getPagesFromBlockName($blockName);
 
-        $pages = $wpdb->get_results(
-            "SELECT *
-            FROM $wpdb->posts
-            WHERE post_content LIKE '%$oldFieldName%'"
-        );
-
-        if (!empty($pages)) {
+        if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
                 if ($page->post_type !== 'customize_changeset' && $page->post_type !== 'revision') {
                     $blocks = parse_blocks($page->post_content);
-                    
+    
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
-                            if ($block['blockName'] === "acf/{$blockName}") {
-                                if (isset($block['attrs']['data'][$oldFieldName])) {
-                                    $block['attrs']['data'][$newFieldName] = $block['attrs']['data'][$oldFieldName];
-                                    unset($block['attrs']['data'][$oldFieldName]);
+                            if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data'])) {
+                                $block['attrs']['data'] = $this->migrateBlockFields($fields, $block['attrs']['data']);
+
+                                if (!empty($newModuleName)) {
+                                    $block['blockName'] = $newModuleName;
+                                    $block['attrs']['name'] = $newBlockName;
                                 }
                             }
                         }
-
-                        $serializedBlocks = serialize_blocks($blocks);
+    
+                        $serializedBlocks = serialize_blocks($blocks); 
                         
                         wp_update_post([
                             'ID' => $page->ID,
                             'post_content' => $serializedBlocks
-                        ]);            
+                        ]);   
                     }
                 }
             }
-        } 
+        }
+    }
+
+    /**
+     * Block: Extract a field value and adds it to another field.
+     * 
+     * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
+     * @param array $blockData All the data of the block (the acf fields attached to the block)
+     */
+    private function migrateBlockFields(array $fields = [], array $blockData) 
+    {
+        if (!empty($fields) && is_array($fields)) {
+            foreach ($fields as $oldFieldName => $newFieldName) {
+                if (isset($blockData[$oldFieldName])) {
+                    $blockData[$newFieldName] = $blockData[$oldFieldName];
+                    unset($blockData[$oldFieldName]);
+                }
+            }
+        }
+
+        return $blockData;
+    }
+
+    /**
+     * Gets all pages that has a specific block attached
+     * 
+     * @param string $blockName Name of the block
+     */
+    private function getPagesFromBlockName(string $blockName = '') {
+        global $wpdb;
+        $pages = $wpdb->get_results(
+            "SELECT *
+            FROM $wpdb->posts
+            WHERE post_content LIKE '%{$blockName}%'"
+        );
+        
+        return $pages;
     }
     
     /**
