@@ -107,7 +107,7 @@ class Upgrade
     }
 
     /**
-     * Post: Extract a field value and adds it to another field
+     * Module: Extract a field value and adds it to another field
      * 
      * @param string $moduleName The name of the post type containing the field
      * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
