@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d2ba6c2ec9f33e01f91560d5a077d7fc",
+    "content-hash": "9988302349e77f3f6a0c35f3b63c0c13",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -368,6 +368,37 @@
                 "issues": "https://github.com/helsingborg-stad/acf-export-manager/issues"
             },
             "time": "2023-05-25T07:56:58+00:00"
+        },
+        {
+            "name": "helsingborg-stad/acf-select-image-field",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/acf-image-select-field.git",
+                "reference": "0fd23fdc99f5e5ce182d20b9ed61740cfa3f9dbc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/0fd23fdc99f5e5ce182d20b9ed61740cfa3f9dbc",
+                "reference": "0fd23fdc99f5e5ce182d20b9ed61740cfa3f9dbc",
+                "shasum": ""
+            },
+            "type": "wordpress-muplugin",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Niclas Norin",
+                    "email": "niclas.norin@helsingborg.se"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/helsingborg-stad/acf-image-select-field/issues",
+                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.0.3"
+            },
+            "time": "2023-09-28T09:43:07+00:00"
         },
         {
             "name": "helsingborg-stad/blade",
