@@ -371,16 +371,26 @@ class Posts extends \Modularity\Module
     {
         $posts = [];
         foreach ($data as $key => $item) {
-            $image = wp_get_attachment_image_src($item->image->ID, [400, 225]); 
+            $imageThumbnail = wp_get_attachment_image_src($item->image->ID, [400, 225]); 
+            $imageSquare    = wp_get_attachment_image_src($item->image->ID, [500, 500]); 
+
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'thumbnail' => [
-                    'src' => $image[0],
+                    'src' => $imageThumbnail[0],
                     'alt' => ""
-                ]
+                ],
+                'thumbnailSquare' => [
+                    'src' => $imageSquare[0],
+                    'alt' => ""
+                ],
+                'postDate' => null,
+                'termsUnlinked' => null,
+                'dateBadge' => false,
+                'termIcon' => false
             ]);
         }
         
