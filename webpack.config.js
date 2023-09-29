@@ -21,6 +21,8 @@ module.exports = {
 		'css/modularity': './source/sass/modularity.scss',
 		'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
 
+		'js/edit-modules-block-editor': './source/js/edit-modules-block-editor.js',
+
 		//Admin
 		'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
 		'js/dynamic-map-acf': './source/js/admin/dynamic-map-acf.js',

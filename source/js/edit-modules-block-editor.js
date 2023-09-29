@@ -1,5 +1,21 @@
-/* const { link } = require("fs");
- */
+import { registerPlugin } from '@wordpress/plugins';
+import { __experimentalMainDashboardButton as MainDashboardButton } from '@wordpress/edit-post';
+
+const MainDashboardButtonTest = () => (
+    <MainDashboardButton>
+        Custom main dashboard button content
+    </MainDashboardButton>
+);
+
+registerPlugin( 'main-dashboard-button-test', {
+    render: MainDashboardButtonTest,
+} );
+
+/*
+
+
+
+
 ( function( window, wp ){
     
     // check if gutenberg's editor root element is present.
@@ -68,3 +84,4 @@
 
 } )( window, wp )
 
+*/
