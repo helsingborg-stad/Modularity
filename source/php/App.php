@@ -12,6 +12,7 @@ class App
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
+        add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor')); 
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
@@ -208,6 +209,21 @@ class App
         }
     }
 
+    public function enqueueBlockEditor() {
+        
+        if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
+            wp_register_script('block-editor-edit-modules', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'), [], null, ['in_footer' => true]);
+
+            wp_localize_script('block-editor-edit-modules', 'modularityBlockEditor', array(
+                'editModulesLinkLabel' => __('Edit Modules', 'modularity'),
+                'editModulesLinkHref' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
+            ));
+
+            wp_enqueue_script('block-editor-edit-modules');
+        }
+    }
+
     /**
      * Enqueues scripts and styles
      * @return void
@@ -254,24 +270,7 @@ class App
             ";
         });
 
-        // If gutenberg editor
-        if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
-            wp_register_script(
-                'custom-link-in-toolbar',
-                plugin_dir_url(__FILE__) . 'source/js/edit-modules-block-editor.js',
-                array(),
-                '1.0',
-                true
-            );
-
-            wp_localize_script('custom-link-in-toolbar', 'blockeditior', array(
-                'langeditmodules' => __('Edit Modules', 'modularity'),
-                'hrefeditmodules' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
-            ));
-
-            wp_enqueue_script('custom-link-in-toolbar');
-        }
-
+        
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {
             wp_enqueue_script('jquery-ui-sortable');
