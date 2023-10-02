@@ -1,6 +1,7 @@
 let lModularity = null
 $ = jQuery;
 var initCompleted = false;
+let hasChangedContent = [];
 
 /**
  * Object to create Thickbox querystring from
@@ -184,6 +185,8 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
     //Store
     $(target).append(html);
 
+    this.getAllCurrentModules();
+
     //Update width selector
     $('.modularity-sidebar-area > li').each(function(index, item) {
         $('.modularity-module-columns select', $(item)).val($(item).attr('data-module-stored-width'));
@@ -192,6 +195,19 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
     //Refresh
     $('.modularity-js-sortable').sortable('refresh');
 };
+
+Module.prototype.getAllCurrentModules = function () {
+    const sliderAreas = document.querySelectorAll('.modularity-sidebar-area');
+    let sliderAreasItemsArray = [];
+    sliderAreas.forEach(area => {
+        area.querySelectorAll('li').forEach(item => {
+            if (item.hasAttribute('id')) {
+                sliderAreasItemsArray.push(item.getAttribute('id'));
+            }
+        })
+    });
+    hasChangedContent = sliderAreasItemsArray;
+}
 
 /**
  * Updates a module "row" after editing the module post
@@ -224,10 +240,49 @@ Module.prototype.removeModule = function(module) {
 };
 
 /**
+ * Compare two arrays
+ * @return array
+ */
+Module.prototype.arraysAreEqual = function(a = [], b = []) {
+    if (a.length !== b.length) {
+        return false;
+    }
+
+    for (let i = 0; i < a.length; i++) {
+        if (a[i] !== b[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
  * Handle events
  * @return {void}
  */
 Module.prototype.handleEvents = function() {
+    let saveButtonClicked = false;
+    const saveButton = document.getElementById('publish');
+
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            saveButtonClicked = true;
+        });
+    }
+
+    window.addEventListener('beforeunload', (e) => {
+        const modules = document.querySelectorAll('.modularity-sidebar-area > li');
+        let arr = [];
+        modules.forEach(element => {
+            if (element.hasAttribute('id')) {
+                arr.push(element.getAttribute('id'));
+            }
+        });
+
+        if (!saveButtonClicked && !this.arraysAreEqual(arr, hasChangedContent)) {
+            e.returnValue = "";
+        }
+    });
 
     // Trash icon
     $(document).on('click', '.modularity-module-remove', function (e) {
