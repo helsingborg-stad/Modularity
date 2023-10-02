@@ -1,10 +1,9 @@
 (function(window, wp){
-    var editModulesLinkId       = 'editModulesPageLink';
-    var editModulesLinkLabel    = modularityBlockEditor.editModulesLinkLabel;
-    var editModulesLinkHref     = modularityBlockEditor.editModulesLinkHref;
+    const editModulesLinkId       = 'editModulesPageLink';
+    const {editModulesLinkLabel, editModulesLinkHref} = modularityBlockEditor;
 
     // prepare our custom link's html.
-    var editModulesLinkHTML = `
+    const editModulesLinkHTML = `
         <a 
             id="${editModulesLinkId}" 
             class="components-button has-icon"
