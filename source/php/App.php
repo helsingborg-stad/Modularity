@@ -50,34 +50,6 @@ class App
         add_action('widgets_init', function () {
             register_widget('\Modularity\Widget');
         });
-
-        add_filter('script_loader_tag', array($this, 'addModuleAttributeOnScript'), 10, 2);
-    }
-
-    /**
-     * Adds a module attribute to a script tag if the script handle indicates modularity.
-     *
-     * This function checks if the provided script handle contains 'mod-' and, if so,
-     * adds a 'type' attribute to the given script tag with the script's type attribute value.
-     *
-     * @param string $tag    The HTML script tag to modify.
-     * @param string $handle The script handle to check for modularity.
-     *
-     * @return string The modified HTML script tag.
-     */
-    public function addModuleAttributeOnScript($tag, $handle)
-    {
-        //Only for modularity
-        if(strpos($handle, 'mod-') == false) {
-            return $tag;
-        }
-        $typeAttribute = wp_scripts()->get_data($handle, 'type');
-
-        if ($typeAttribute) {
-            $tag = str_replace('src', 'type="' . esc_attr($typeAttribute) . '" src', $tag);
-        }
-
-        return $tag;
     }
 
     /**
@@ -285,21 +257,19 @@ class App
         // If gutenberg editor
         if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
             wp_register_script(
-                'mod-edit-modules-block-editor',
-                MODULARITY_URL . '/source/js/edit-modules-block-editor.js',
+                'custom-link-in-toolbar',
+                plugin_dir_url(__FILE__) . 'source/js/edit-modules-block-editor.js',
                 array(),
                 '1.0',
                 true
             );
 
-            wp_localize_script('mod-edit-modules-block-editor', 'blockeditior', array(
+            wp_localize_script('custom-link-in-toolbar', 'blockeditior', array(
                 'langeditmodules' => __('Edit Modules', 'modularity'),
                 'hrefeditmodules' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
             ));
 
-            wp_enqueue_script('mod-edit-modules-block-editor');
-
-            wp_scripts()->add_data('mod-edit-modules-block-editor', 'type', 'module');
+            wp_enqueue_script('custom-link-in-toolbar');
         }
 
         // If editor
