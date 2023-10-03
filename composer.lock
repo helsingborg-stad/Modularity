@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9988302349e77f3f6a0c35f3b63c0c13",
+    "content-hash": "eabf735bdd913efa1e57397a84772f03",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -933,12 +933,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/advanced-custom-fields-table-field.git",
-                "reference": "1bfe44fa43bd040f6dc7c46d14de0cbd403cd6af"
+                "reference": "2b8e8f53e221d5d9ec1d3255893ff46175e4b49e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/advanced-custom-fields-table-field/zipball/1bfe44fa43bd040f6dc7c46d14de0cbd403cd6af",
-                "reference": "1bfe44fa43bd040f6dc7c46d14de0cbd403cd6af",
+                "url": "https://api.github.com/repos/helsingborg-stad/advanced-custom-fields-table-field/zipball/2b8e8f53e221d5d9ec1d3255893ff46175e4b49e",
+                "reference": "2b8e8f53e221d5d9ec1d3255893ff46175e4b49e",
                 "shasum": ""
             },
             "default-branch": true,
@@ -957,7 +957,7 @@
             "support": {
                 "source": "https://github.com/helsingborg-stad/advanced-custom-fields-table-field/tree/master"
             },
-            "time": "2023-09-22T12:58:17+00:00"
+            "time": "2023-10-02T08:10:55+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -1841,15 +1841,15 @@
         },
         {
             "name": "wpackagist-plugin/acf-extended",
-            "version": "0.8.8.7",
+            "version": "0.8.9.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/acf-extended/",
-                "reference": "tags/0.8.8.7"
+                "reference": "tags/0.8.9.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/acf-extended.0.8.8.7.zip"
+                "url": "https://downloads.wordpress.org/plugin/acf-extended.0.8.9.4.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -2172,12 +2172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "6a3a87ac2bbe33b25042753df8195ba4aa534c76"
+                "reference": "a296faea1fc5986d39243fde2abd9504f05079ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/6a3a87ac2bbe33b25042753df8195ba4aa534c76",
-                "reference": "6a3a87ac2bbe33b25042753df8195ba4aa534c76",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/a296faea1fc5986d39243fde2abd9504f05079ca",
+                "reference": "a296faea1fc5986d39243fde2abd9504f05079ca",
                 "shasum": ""
             },
             "require": {
@@ -2234,7 +2234,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2.29"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/9.2"
             },
             "funding": [
                 {
@@ -2242,7 +2242,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-19T04:57:46+00:00"
+            "time": "2023-09-29T10:36:14+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2491,12 +2491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f3d767f7f9e191eab4189abe41ab37797e30b1be"
+                "reference": "b1b544b75613c0fed545366d4fbba54b7f2e0142"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f3d767f7f9e191eab4189abe41ab37797e30b1be",
-                "reference": "f3d767f7f9e191eab4189abe41ab37797e30b1be",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b1b544b75613c0fed545366d4fbba54b7f2e0142",
+                "reference": "b1b544b75613c0fed545366d4fbba54b7f2e0142",
                 "shasum": ""
             },
             "require": {
@@ -2570,7 +2570,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.13"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6"
             },
             "funding": [
                 {
@@ -2586,7 +2586,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-09-19T05:39:22+00:00"
+            "time": "2023-09-29T10:35:30+00:00"
         },
         {
             "name": "sebastian/cli-parser",
