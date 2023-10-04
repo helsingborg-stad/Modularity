@@ -22,9 +22,9 @@ class SingleAdminPage implements \Modularity\Options\AdminPageInterface
         }
 
         foreach ($options['enabled-post-types'] as $postType) {
-            $postTypeSlug = $postType;
             $postTypeUrlParam = '?post_type=' . $postType;
-            $editorLink = 'options.php?page=modularity-editor&id=' . \Modularity\Editor::pageForPostTypeTranscribe('single-' . $postTypeSlug);
+            $transcribedPostType = \Modularity\Editor::pageForPostTypeTranscribe('single-' . $postType);
+            $editorLink = "options.php?page=modularity-editor&id={$transcribedPostType}";
 
             add_submenu_page(
                 'edit.php' . $postTypeUrlParam,

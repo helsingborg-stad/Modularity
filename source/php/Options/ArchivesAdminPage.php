@@ -23,7 +23,7 @@ class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
         foreach ($options['enabled-post-types'] as $postType) {
             $postTypeObject = get_post_type_object($postType);
 
-            if( $this->postTypeAllowsArchiveModules($postTypeObject) ) {
+            if ($this->postTypeAllowsArchiveModules($postTypeObject)) {
                 $postTypeUrlParam = $postType === 'post' ? '' : '?post_type=' . $postType;
                 $transcribedPostType = \Modularity\Editor::pageForPostTypeTranscribe('archive-' . $postType);
                 $editorLink = "options.php?page=modularity-editor&id={$transcribedPostType}";
@@ -45,24 +45,19 @@ class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
             return false;
         }
 
-        if (!$postType->has_archive) {
-            return false;
-        }
-
-        if ($postType->hierarchical) {
-            return false;
-        }
-
-        return true;
+        return $postType->has_archive && !$postType->hierarchical;
     }
 
 
     public function fixBrokenArchiveLinks()
     {
-        if (!is_admin()) {
-            return;
-        }
-        if (isset($_GET['post_type']) && isset($_GET['page']) && isset($_GET['id']) && substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor") {
+        if (
+            is_admin() &&
+            isset($_GET['post_type']) &&
+            isset($_GET['page']) &&
+            isset($_GET['id']) &&
+            substr($_GET['page'], 0, 34) == "options.php?page=modularity-editor"
+        ) {
             wp_redirect(admin_url($_GET['page'] . "&id=" . $_GET['id']), 302);
             exit;
         }
