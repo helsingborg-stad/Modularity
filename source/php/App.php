@@ -33,6 +33,7 @@ class App
         new Ajax();
         new Options\General();
         new Options\Archives();
+        new Options\Single();
 
         // Rest Controllers
         $modulesRestController = new Api\V1\Modules();
