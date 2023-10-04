@@ -152,7 +152,7 @@ class Curator extends \Modularity\Module
         if($columns == 3) {
             return 'o-grid-4@md o-grid-6@sm';
         }
-        return 'o-grid-3@lg o-grid-4@md o-grid-6@sm'; 
+        return 'o-grid-3@xl o-grid-3@lg o-grid-4@md o-grid-6@sm'; 
     } 
 
     /**

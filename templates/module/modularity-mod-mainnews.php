@@ -28,7 +28,7 @@
                 )
             );
         ?>
-        <div class="o-grid-12@lg">
+        <div class="o-grid-12@lg o-grid-12@xl">
             <a href="<?php echo get_permalink($item->ID); ?>" class="<?php echo implode(' ', apply_filters('Modularity/Module/Classes', array('box', 'box-news', 'box-news-horizontal'), $module->post_type, $args)); ?>">
                 <?php if ($hasImages) : ?>
                     <div class="box-image-container">

@@ -28,8 +28,8 @@
             "url": "https://github.com/helsingborg-stad/acf-export-manager.git"
         },
         {
-            "type":"composer",
-            "url":"https://wpackagist.org",
+            "type": "composer",
+            "url": "https://wpackagist.org",
             "only": [
                 "wpackagist-plugin/*"
             ]
@@ -39,19 +39,20 @@
         "composer/installers": "~1.0",
         "helsingborg-stad/acf-export-manager": ">=1.0.0",
         "helsingborg-stad/blade-component-library": "dev-master",
-        "helsingborg-stad/global-blade-engine": "1.3.0",
+        "helsingborg-stad/global-blade-engine": "^2.0.0",
         "johannheyne/advanced-custom-fields-table-field": "dev-master",
         "clark-nikdel-powell/post-type-select-for-acf": "dev-master",
         "jeradin/acf-website-field": "dev-master",
         "ooksanen/acf-focuspoint": "dev-master",
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
-        "wpackagist-plugin/acf-extended": "0.8.8.7",
-        "symfony/polyfill-php80": "^1.27"
+        "wpackagist-plugin/acf-extended": "0.8.9.4",
+        "symfony/polyfill-php80": "^1.27",
+        "helsingborg-stad/acf-select-image-field": "^1.0.0"
     },
     "autoload": {
         "psr-4": {
-          "Modularity\\": "source/php/"
+            "Modularity\\": "source/php/"
         }
     },
     "config": {
@@ -61,7 +62,9 @@
     },
     "extra": {
         "installer-paths": {
-            "vendor/{$vendor}/{$name}/": ["vendor:wpackagist-plugin"]
+            "vendor/{$vendor}/{$name}/": [
+                "vendor:wpackagist-plugin"
+            ]
         }
     },
     "require-dev": {
@@ -71,5 +74,6 @@
     "scripts": {
         "test": "phpunit",
         "test:setup": "bin/install-wp-tests.sh"
-    }
+    },
+    "version": "3.3.2"
 }
