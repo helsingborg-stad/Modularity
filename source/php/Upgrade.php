@@ -83,6 +83,7 @@ class Upgrade
         /* Removing divider acf title field and adding it as post_title */
         $args = array(
             'post_type' => 'mod-divider',
+            'numberposts' => -1
         );
         
         $dividers = get_posts($args);
