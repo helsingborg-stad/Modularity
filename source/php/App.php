@@ -32,9 +32,10 @@ class App
 
         new Ajax();
         new Options\General();
-        new Options\Archives();
         
-        $optionsForSingleViews = new Options\Single();
+        $archivesAdminPage = new Options\ArchivesAdminPage();
+        $archivesAdminPage->addHooks();
+        $optionsForSingleViews = new Options\SingleAdminPage();
         $optionsForSingleViews->addHooks();
 
         // Rest Controllers

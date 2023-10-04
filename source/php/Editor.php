@@ -281,8 +281,8 @@ class Editor extends \Modularity\Options
         if (is_array($active) && count($active) === 0
             && !is_numeric($template)
             && strpos($template, 'archive-') !== false
-            && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())
-            && !in_array($template, \Modularity\Options\Single::getSingleTemplateSlugs())) {
+            && !in_array($template, \Modularity\Helper\Options::getArchiveTemplateSlugs())
+            && !in_array($template, \Modularity\Helper\Options::getSingleTemplateSlugs())) {
 
 
             $template = explode('-', $template, 2)[0];
