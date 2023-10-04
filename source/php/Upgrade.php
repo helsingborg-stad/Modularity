@@ -78,7 +78,7 @@ class Upgrade
     {
         global $wpdb;
         
-        $this->migrateBlockFieldsValueToNewFields('divider', ['divider_title' => 'custom_block_title']);
+        $this->migrateBlockFieldsValueToNewFields('acf/divider', ['divider_title' => 'custom_block_title']);
 
         /* Removing divider acf title field and adding it as post_title */
         $args = array(
@@ -175,8 +175,8 @@ class Upgrade
                             if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data'])) {
                                 $block['attrs']['data'] = $this->migrateBlockFields($fields, $block['attrs']['data']);
 
-                                if (!empty($newModuleName)) {
-                                    $block['blockName'] = $newModuleName;
+                                if (!empty($newBlockName)) {
+                                    $block['blockName'] = $newBlockName;
                                     $block['attrs']['name'] = $newBlockName;
                                 }
                             }
@@ -457,8 +457,6 @@ class Upgrade
         }
 
         $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
-
-        $currentDbVersion = 0;
 
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
