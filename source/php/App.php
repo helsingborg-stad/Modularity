@@ -29,7 +29,8 @@ class App
         });
 
         $this->setupAdminBar();
-
+        
+        new Upgrade();
         new Ajax();
         new Options\General();
         new Options\Archives();
@@ -52,6 +53,7 @@ class App
             register_widget('\Modularity\Widget');
         });
     }
+
 
     /**
      * Update modified date on related post when module is saved
