@@ -2,6 +2,8 @@
 
 namespace Modularity\Options;
 
+use WP_Post_Type;
+
 class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
 {
     public function addHooks(): void
@@ -19,36 +21,41 @@ class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
         }
 
         foreach ($options['enabled-post-types'] as $postType) {
-            $postTypeSlug = $postType;
+            $postTypeObject = get_post_type_object($postType);
 
-            // Do not add archive modules for page
-            if ($postType == 'page') {
-                continue;
+            if( $this->postTypeAllowsArchiveModules($postTypeObject) ) {
+                $postTypeUrlParam = $postType === 'post' ? '' : '?post_type=' . $postType;
+                $transcribedPostType = \Modularity\Editor::pageForPostTypeTranscribe('archive-' . $postType);
+                $editorLink = "options.php?page=modularity-editor&id={$transcribedPostType}";
+                add_submenu_page(
+                    'edit.php' . $postTypeUrlParam,
+                    __('Archive modules', 'modularity'),
+                    __('Archive modules', 'modularity'),
+                    'edit_posts',
+                    $editorLink
+                );
             }
-
-            if ($postType == 'post') {
-                $postType = '';
-            } else {
-                $postType = '?post_type=' . $postType;
-            }
-
-            /* Checking if the post type has an archive, otherwise bail early. */
-            $postTypeObject = get_post_type_object($postTypeSlug);
-            if (!is_null($postTypeObject) && !$postTypeObject->_builtin && !$postTypeObject->has_archive) {
-                continue;
-            }
-
-            $editorLink = 'options.php?page=modularity-editor&id=' . \Modularity\Editor::pageForPostTypeTranscribe('archive-' . $postTypeSlug);
-
-            add_submenu_page(
-                'edit.php' . $postType,
-                __('Archive modules', 'modularity'),
-                __('Archive modules', 'modularity'),
-                'edit_posts',
-                $editorLink
-            );
         }
     }
+
+
+    private function postTypeAllowsArchiveModules(?WP_Post_Type $postType): bool
+    {
+        if (is_null($postType)) {
+            return false;
+        }
+
+        if (!$postType->has_archive) {
+            return false;
+        }
+
+        if ($postType->hierarchical) {
+            return false;
+        }
+
+        return true;
+    }
+
 
     public function fixBrokenArchiveLinks()
     {
