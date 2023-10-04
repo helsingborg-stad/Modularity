@@ -91,6 +91,7 @@ class Upgrade
     {
         $args = array(
             'post_type' => $moduleName,
+            'numberposts' => -1
         );
         
         $modules = get_posts($args);
