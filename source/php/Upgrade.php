@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 1; //The db version we want to achive
+    private $dbVersion = 0; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -76,32 +76,6 @@ class Upgrade
      */
     private function v_1($db): bool
     {
-        global $wpdb;
-        
-        $this->migrateBlockFieldsValueToNewFields('acf/divider', ['divider_title' => 'custom_block_title']);
-
-        /* Removing divider acf title field and adding it as post_title */
-        $args = array(
-            'post_type' => 'mod-divider',
-        );
-        
-        $dividers = get_posts($args);
-
-        
-        if (!empty($dividers)) {
-            foreach ($dividers as &$divider) {
-                $dividerTitleField = get_field('divider_title', $divider->ID);
-                delete_field('divider_title', $divider->ID);
-  
-                if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
-                    update_post_meta($divider->ID, 'modularity-module-hide-title', false);
-                    wp_update_post([
-                        'ID' => $divider->ID,
-                        'post_title' => $dividerTitleField
-                    ]);
-                }
-            }
-        }
         
         return true; //Return false to keep running this each time!
     }
