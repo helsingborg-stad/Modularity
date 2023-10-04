@@ -33,7 +33,9 @@ class App
         new Ajax();
         new Options\General();
         new Options\Archives();
-        new Options\Single();
+        
+        $optionsForSingleViews = new Options\Single();
+        $optionsForSingleViews->addHooks();
 
         // Rest Controllers
         $modulesRestController = new Api\V1\Modules();
