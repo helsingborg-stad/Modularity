@@ -87,18 +87,18 @@ class Upgrade
         
         $dividers = get_posts($args);
 
+        
         if (!empty($dividers)) {
             foreach ($dividers as &$divider) {
-                if (!empty($divider->post_type) && $divider->post_type === $postType) {
-                    $dividerTitleField = get_field('divider_title', $divider->ID);
-                    delete_field('divider_title', $divider->ID);
-                    
-                    if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
-                        wp_update_post([
-                            'ID' => $divider->ID,
-                            'post_title' => $dividerTitleField
-                        ]);
-                    }
+                $dividerTitleField = get_field('divider_title', $divider->ID);
+                delete_field('divider_title', $divider->ID);
+  
+                if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
+                    update_post_meta($divider->ID, 'modularity-module-hide-title', false);
+                    wp_update_post([
+                        'ID' => $divider->ID,
+                        'post_title' => $dividerTitleField
+                    ]);
                 }
             }
         }
@@ -457,6 +457,8 @@ class Upgrade
         }
 
         $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
+
+        $currentDbVersion = 0;
 
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
