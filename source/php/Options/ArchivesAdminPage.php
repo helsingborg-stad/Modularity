@@ -65,7 +65,7 @@ class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
      */
     private function postTypeAllowsArchiveModules(?WP_Post_Type $postType): bool
     {
-        return (!is_null($postType) && $postType->has_archive && !$postType->hierarchical);
+        return !is_null($postType) && $postType->has_archive && !$postType->hierarchical;
     }
 
     /**
