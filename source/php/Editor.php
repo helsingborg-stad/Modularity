@@ -281,7 +281,8 @@ class Editor extends \Modularity\Options
         if (is_array($active) && count($active) === 0
             && !is_numeric($template)
             && strpos($template, 'archive-') !== false
-            && !in_array($template, \Modularity\Options\Archives::getArchiveTemplateSlugs())) {
+            && !in_array($template, \Modularity\Helper\Options::getArchiveTemplateSlugs())
+            && !in_array($template, \Modularity\Helper\Options::getSingleTemplateSlugs())) {
 
 
             $template = explode('-', $template, 2)[0];
@@ -388,8 +389,12 @@ class Editor extends \Modularity\Options
         // Cached results
         static $cachedResults;
 
-        if(isset($cachedResults)) {
-            return $cachedResults;
+        if(isset($cachedResults) && isset($cachedResults[$postId])) {
+            return $cachedResults[$postId];
+        }
+
+        if( !is_array($cachedResults) ) {
+            $cachedResults = array();
         }
 
         //Declarations        
@@ -482,7 +487,7 @@ class Editor extends \Modularity\Options
         }
 
         // Cache results to reuse in the same instance
-        $cachedResults = $retModules;
+        $cachedResults[$postId] = $retModules;
 
         return $retModules;
     }

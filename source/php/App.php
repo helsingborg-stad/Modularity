@@ -33,7 +33,11 @@ class App
         new Upgrade();
         new Ajax();
         new Options\General();
-        new Options\Archives();
+        
+        $archivesAdminPage = new Options\ArchivesAdminPage();
+        $archivesAdminPage->addHooks();
+        $optionsForSingleViews = new Options\SingleAdminPage();
+        $optionsForSingleViews->addHooks();
 
         // Rest Controllers
         $modulesRestController = new Api\V1\Modules();
