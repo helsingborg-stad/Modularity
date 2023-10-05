@@ -3,25 +3,39 @@
 namespace Modularity\Options;
 
 /**
- * Enable modules editor for post type.
+ * Class SingleAdminPage
+ *
+ * Implements the AdminPageInterface and adds a submenu page for post types to add modules to single objects.
  */
 class SingleAdminPage implements \Modularity\Options\AdminPageInterface
 {
+    private array $postTypes;
 
+    /**
+     * SingleAdminPage constructor.
+     *
+     * Initializes the post types array with the enabled post types from the modularity-options option.
+     */
+    public function __construct()
+    {
+        $options = get_option('modularity-options');
+        $this->postTypes = $options['enabled-post-types'] ?? [];
+    }
+
+    /**
+     * Adds the addAdminPage method to the admin_menu action hook.
+     */
     public function addHooks(): void
     {
         add_action('admin_menu', [$this, 'addAdminPage'], 10);
     }
 
+    /**
+     * Adds a submenu page to the WordPress admin menu for each enabled post type.
+     */
     public function addAdminPage(): void
     {
-        $options = get_option('modularity-options');
-
-        if (!isset($options['enabled-post-types']) || !is_array($options['enabled-post-types'])) {
-            return;
-        }
-
-        foreach ($options['enabled-post-types'] as $postType) {
+        foreach ($this->postTypes as $postType) {
             $postTypeUrlParam = '?post_type=' . $postType;
             $transcribedPostType = \Modularity\Editor::pageForPostTypeTranscribe('single-' . $postType);
             $editorLink = "options.php?page=modularity-editor&id={$transcribedPostType}";

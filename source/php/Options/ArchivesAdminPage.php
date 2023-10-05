@@ -4,23 +4,42 @@ namespace Modularity\Options;
 
 use WP_Post_Type;
 
+/**
+ * Class ArchivesAdminPage
+ * Implements the AdminPageInterface for managing archive modules.
+ */
 class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
 {
+    /**
+     * @var array The array of enabled post types for archive modules.
+     */
+    private array $postTypes;
+
+    /**
+     * ArchivesAdminPage constructor.
+     * Initializes the class and retrieves enabled post types from options.
+     */
+    public function __construct()
+    {
+        $options = get_option('modularity-options');
+        $this->postTypes = $options['enabled-post-types'] ?? [];
+    }
+
+    /**
+     * Add hooks for this admin page.
+     */
     public function addHooks(): void
     {
         add_action('admin_menu', [$this, 'addAdminPage'], 10);
         add_action('after_setup_theme', [$this, 'fixBrokenArchiveLinks'], 10);
     }
 
+    /**
+     * Add the admin page for managing archive modules to the WordPress admin menu.
+     */
     public function addAdminPage(): void
     {
-        $options = get_option('modularity-options');
-
-        if (!isset($options['enabled-post-types']) || !is_array($options['enabled-post-types'])) {
-            return;
-        }
-
-        foreach ($options['enabled-post-types'] as $postType) {
+        foreach ($this->postTypes as $postType) {
             $postTypeObject = get_post_type_object($postType);
 
             if ($this->postTypeAllowsArchiveModules($postTypeObject)) {
@@ -38,18 +57,21 @@ class ArchivesAdminPage implements \Modularity\Options\AdminPageInterface
         }
     }
 
-
+    /**
+     * Determine if a post type allows archive modules.
+     *
+     * @param WP_Post_Type|null $postType The post type to check.
+     * @return bool Returns true if the post type allows archive modules, false otherwise.
+     */
     private function postTypeAllowsArchiveModules(?WP_Post_Type $postType): bool
     {
-        if (is_null($postType)) {
-            return false;
-        }
-
-        return $postType->has_archive && !$postType->hierarchical;
+        return (!is_null($postType) && $postType->has_archive && !$postType->hierarchical);
     }
 
-
-    public function fixBrokenArchiveLinks()
+    /**
+     * Fix broken archive links by redirecting to the correct URL.
+     */
+    public function fixBrokenArchiveLinks(): void
     {
         if (
             is_admin() &&
