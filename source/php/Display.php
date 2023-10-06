@@ -4,6 +4,7 @@ namespace Modularity;
 
 use Throwable;
 use ComponentLibrary\Init as ComponentLibraryInit;
+use \Modularity\Helper\File as FileHelper;
 
 class Display
 {
@@ -31,16 +32,25 @@ class Display
         add_filter('Modularity/Display/replaceGrid', array($this, 'replaceGridClasses'), 10);
     }
 
+    /**
+     * Replace legacy grid class names with the new format.
+     *
+     * This function takes a CSS class name as input and replaces legacy grid class
+     * names (e.g., 'grid-md-12', 'grid-md-9') with the corresponding new format
+     * (e.g., 'o-grid-12@md', 'o-grid-9@md'). This is useful for updating class names
+     * in HTML markup to align with a new naming convention.
+     *
+     * @param string $className The CSS class name to be processed.
+     *
+     * @return string The modified CSS class name with legacy grid class names replaced.
+     */
     public function replaceGridClasses($className)
     {
-        $className = str_replace('grid-md-12', 'o-grid-12@md', $className);
-        $className = str_replace('grid-md-9', 'o-grid-9@md', $className);
-        $className = str_replace('grid-md-8', 'o-grid-8@md', $className);
-        $className = str_replace('grid-md-6', 'o-grid-6@md', $className);
-        $className = str_replace('grid-md-4', 'o-grid-4@md', $className);
-        $className = str_replace('grid-md-3', 'o-grid-3@md', $className);
-
-        return $className;
+        return preg_replace(
+            '/grid-md-(\d+)/', 
+            'o-grid-$1@md', 
+            $className
+        );
     }
 
     /**
@@ -54,7 +64,7 @@ class Display
             return null;
         }
 
-        foreach (glob(MODULARITY_PATH . 'source/php/Module/*') as $dir) {
+        foreach (FileHelper::glob(MODULARITY_PATH . 'source/php/Module/*') as $dir) {
             $pathinfo = pathinfo($dir);
             if (strtolower(str_replace('mod-', '', $postType)) === strtolower($pathinfo['filename'])) {
                 return $pathinfo['filename'];
@@ -97,7 +107,10 @@ class Display
         );
 
         try {
-            return $blade->make($view, $viewData)->render();
+            return $blade->make(
+                $view, 
+                $viewData
+            )->render();
         } catch (Throwable $e) {
             echo '<pre style="border: 3px solid #f00; padding: 10px;">';
             echo '<strong>' . $e->getMessage() . '</strong>';
@@ -118,8 +131,11 @@ class Display
      */
     public function filterModularityShortcodes($value, $postId, $field)
     {
-        $value = preg_replace('/\[modularity(.*)\]/', '', $value);
-        return $value;
+        return preg_replace(
+            '/\[modularity(.*)\]/', 
+            '', 
+            $value
+        );
     }
 
     /**
@@ -130,8 +146,11 @@ class Display
      */
     public function sanitizeContent($content)
     {
-        $content = preg_replace('/\[modularity(.*)\]/', '', $content);
-        return $content;
+        return preg_replace(
+            '/\[modularity(.*)\]/', 
+            '', 
+            $content)
+        ;
     }
 
     /**
@@ -336,8 +355,9 @@ class Display
         //Check if exists
         $template_exists = false;
         foreach ((array) $paths as $path) {
-            if (file_exists($path.$template)) {
+            if (FileHelper::fileExists($path.$template)) {
                 $template_exists = true;
+                break;
             }
         }
 
@@ -351,26 +371,6 @@ class Display
         }
 
         return true;
-    }
-
-    /**
-     * Fills module object with missing params if needed
-     * @param  object $module
-     * @param  array $moduleSettings
-     * @return object
-     */
-    public function fillMissingParams($module, $moduleSettings)
-    {
-        // Set class properties if needed
-        if (empty($module->slug)) {
-            foreach ($moduleSettings as $key => $value) {
-                $module->$key = $value;
-            }
-
-            $module->isLegacy = true;
-        }
-
-        return $module;
     }
 
     /**
@@ -392,7 +392,6 @@ class Display
 
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
-        $module = $this->fillMissingParams($module, $moduleSettings);
 
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
@@ -436,20 +435,18 @@ class Display
         $templatePath = $module->template();
         // Get template for legacy modules
         if (!$templatePath) {
-            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
+            $templatePath = \Modularity\Helper\Wp::getTemplate(
+                $module->post_type,
+                'module',
+                false
+            );
         }
 
         if (!$templatePath) {
             return false;
         }
 
-        $moduleMarkup = '';
-
-        if (preg_match('/.blade.php$/i', $templatePath)) {
-            $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
-        } else {
-            $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
-        }
+        $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
 
         if (empty($moduleMarkup)) {
             return;
@@ -547,7 +544,7 @@ class Display
     }
 
     /**
-     * Check if template exists (first check for blade, then php) and renders the template
+     * Check if template exists and render the template
      * @param string $view View file
      * @param class $module Module class
      * @return string         Template markup
@@ -555,35 +552,17 @@ class Display
      */
     public function loadBladeTemplate($view, $module, array $args = array())
     {
-        \Modularity\Helper\File::maybeCreateDir(MODULARITY_CACHE_DIR);
+        FileHelper::maybeCreateDir(MODULARITY_CACHE_DIR);
 
         if (!$module->templateDir) {
             throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
         }
 
-
         $template   = \Modularity\Helper\Template::getModuleTemplate($view, $module);
         $view       = basename($template, '.blade.php');
         $view       = basename($view, '.php');
 
-        if (\Modularity\Helper\Template::isBlade($template)) {
-            return $this->renderView($view, $module->data);
-        }
-
-        return $this->loadTemplate($template, $module, $args);
-    }
-
-    /**
-     * Renders php template for module
-     * @param  string $view   View file
-     * @param  class  $module Module class
-     * @return string         Template markup
-     */
-    public function loadTemplate($view, $module, array $args = array())
-    {
-        ob_start();
-        include $view;
-        return ob_get_clean();
+        return $this->renderView($view, $module->data);
     }
 
     /**
