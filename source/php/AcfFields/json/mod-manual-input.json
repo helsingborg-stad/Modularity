@@ -6,7 +6,7 @@
             "key": "field_64ff23d0d91bf",
             "label": "Display as",
             "name": "display_as",
-            "type": "radio",
+            "type": "image_select",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -16,20 +16,35 @@
                 "id": ""
             },
             "choices": {
-                "list": "List",
-                "accordion": "Accordion",
-                "card": "Card",
-                "block": "Block",
-                "box": "Box",
-                "segment": "Segment",
-                "collection": "Collection"
-            },
-            "default_value": "card",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "layout": "horizontal",
-            "save_other_choice": 0
+                "row-row-row-row-651d5ccf5ac81": {
+                    "image-select-repeater-label": "Accordion",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/accordion.svg : accordion"
+                },
+                "row-row-row-row-651d5cdb5ac82": {
+                    "image-select-repeater-label": "Block",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/block.svg : block"
+                },
+                "row-row-row-row-651d5cdf5ac83": {
+                    "image-select-repeater-label": "Box",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/box.svg : box"
+                },
+                "row-row-row-row-651d5ce55ac84": {
+                    "image-select-repeater-label": "Card",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/card.svg : card"
+                },
+                "row-row-row-row-651d5ceb5ac85": {
+                    "image-select-repeater-label": "Collection",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/collection.svg : collection"
+                },
+                "row-row-row-row-651d5cf65ac86": {
+                    "image-select-repeater-label": "List",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/list.svg : list"
+                },
+                "651ffdc788395": {
+                    "image-select-repeater-label": "Segment",
+                    "image-select-repeater-value": "https:\/\/dev.local.municipio.tech\/wp-content\/mu-plugins\/acf-image-select-field\/assets\/segment.svg : segment"
+                }
+            }
         },
         {
             "key": "field_650067ed6cc3c",
@@ -122,12 +137,12 @@
                     {
                         "field": "field_64ff23d0d91bf",
                         "operator": "!=",
-                        "value": "list"
+                        "value": "accordion"
                     },
                     {
                         "field": "field_64ff23d0d91bf",
                         "operator": "!=",
-                        "value": "accordion"
+                        "value": "list"
                     }
                 ]
             ],
@@ -246,10 +261,6 @@
                                 "field": "field_64ff23d0d91bf",
                                 "operator": "==",
                                 "value": "accordion"
-                            },
-                            {
-                                "field": "field_65005968bbc75",
-                                "operator": "!=empty"
                             }
                         ]
                     ],
@@ -293,7 +304,7 @@
                     "key": "field_64ff231ed91b9",
                     "label": "Content",
                     "name": "content",
-                    "type": "textarea",
+                    "type": "wysiwyg",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": [
@@ -311,11 +322,10 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "acfe_textarea_code": 0,
-                    "maxlength": "",
-                    "rows": "",
-                    "placeholder": "",
-                    "new_lines": "",
+                    "delay": 0,
+                    "tabs": "all",
+                    "toolbar": "full",
+                    "media_upload": 1,
                     "parent_repeater": "field_64ff22b2d91b7"
                 },
                 {
@@ -393,9 +403,9 @@
                     },
                     "message": "",
                     "default_value": 1,
+                    "ui": 0,
                     "ui_on_text": "",
                     "ui_off_text": "",
-                    "ui": 0,
                     "parent_repeater": "field_64ff22b2d91b7"
                 },
                 {
@@ -411,6 +421,11 @@
                                 "field": "field_64ff23d0d91bf",
                                 "operator": "!=",
                                 "value": "list"
+                            },
+                            {
+                                "field": "field_64ff23d0d91bf",
+                                "operator": "!=",
+                                "value": "accordion"
                             }
                         ]
                     ],
