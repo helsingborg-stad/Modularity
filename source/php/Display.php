@@ -64,10 +64,17 @@ class Display
             return null;
         }
 
-        foreach (FileHelper::glob(MODULARITY_PATH . 'source/php/Module/*') as $dir) {
-            $pathinfo = pathinfo($dir);
-            if (strtolower(str_replace('mod-', '', $postType)) === strtolower($pathinfo['filename'])) {
-                return $pathinfo['filename'];
+        $directories = FileHelper::glob(
+            MODULARITY_PATH . 'source/php/Module/*',
+            GLOB_ONLYDIR
+        ); 
+
+        if(!empty($directories) && is_array($directories)) {
+            foreach ($directories as $dir) {
+                $pathinfo = pathinfo($dir);
+                if (strtolower(str_replace('mod-', '', $postType)) === strtolower($pathinfo['filename'])) {
+                    return $pathinfo['filename'];
+                }
             }
         }
 

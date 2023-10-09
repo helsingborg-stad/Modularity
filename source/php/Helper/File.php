@@ -10,12 +10,12 @@ class File
      * @return string         Namespace
      */
     public static function getNamespace(string $path) : string
-    {
-        if(!file_exists($path)) {
+    {        
+        if(!self::fileExists($path)) {
             return '';
         }
 
-        $source = file_get_contents($path); 
+        $source = self::fileGetContents($path); 
 
         if($source === false) {
             add_action('admin_notices', function() use($path) {
@@ -101,6 +101,36 @@ class File
         //Opsie, file not found
         wp_cache_set($uid, false, '', $expireNotFound); 
         return false; 
+    }
+
+     /**
+     * Check if a file exists, cache in redis. 
+     *
+     * @param   string  The file path
+     * @param   integer Time to store positive result
+     * @param   integer Time to store negative result
+     *
+     * @return  bool    If the file exists or not.
+     */
+    public static function fileGetContents($filePath, $expire = 86400)
+    {
+        //Unique cache value
+        $uid = "mod_file_get_contents_cache_" . md5($filePath); 
+
+        //If in cahce, found
+        $cachedContents = $contents = wp_cache_get($uid); 
+        if($cachedContents !== false) {
+            return $cachedContents;
+        }
+
+        //If not in cache, look for it, if found cache. 
+        $contents = file_get_contents($filePath); 
+
+        //Store in cache
+        wp_cache_set($uid, $contents, '', $expire); 
+
+        //Return results
+        return $contents;
     }
 
     /**
