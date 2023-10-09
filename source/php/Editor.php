@@ -271,7 +271,7 @@ class Editor extends \Modularity\Options
             $template = str_replace('.blade.php', '', $template);
             $active = get_field($template . '_active_sidebars', 'option');
         } else {
-            $active = $this->getEnablesArea($enabledAreas, $template);
+            $active = $this->getEnabledArea($enabledAreas, $template);
 
         }
 
@@ -286,7 +286,7 @@ class Editor extends \Modularity\Options
             ) {
                 $template = explode('-', $template, 2)[0];
                 self::$isEditing['template'] = $template;
-                $active = $this->getEnablesArea($enabledAreas, $template);
+                $active = $this->getEnabledArea($enabledAreas, $template);
             }
 
             if (
@@ -295,7 +295,7 @@ class Editor extends \Modularity\Options
             ) {
                 $template = explode('-', $template, 2)[0];
                 self::$isEditing['template'] = $template;
-                $active = $this->getEnablesArea($enabledAreas, $template);
+                $active = $this->getEnabledArea($enabledAreas, $template);
             }
         }
 
@@ -305,7 +305,7 @@ class Editor extends \Modularity\Options
             ));
 
             if ($home) {
-                $active = $this->getEnablesArea($enabledAreas, 'home');
+                $active = $this->getEnabledArea($enabledAreas, 'home');
                 self::$isEditing['template'] = 'home';
             }
         }
@@ -313,7 +313,7 @@ class Editor extends \Modularity\Options
         return $active;
     }
 
-    private function getEnablesArea(array $enabledAreas, string $template):array {
+    private function getEnabledArea(array $enabledAreas, string $template):array {
         return isset($enabledAreas[$template]) ? $enabledAreas[$template] : array();
     }
 
