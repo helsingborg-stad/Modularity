@@ -224,7 +224,7 @@ class Display
             $this->options = !is_array($this->options) ? [] : $this->options;
             $this->modules = !is_array($this->modules) ? [] : $this->modules;
             
-            $this->options = array_merge($this->options, get_option('modularity_' . $singleSlug . '_sidebar-options'));
+            $this->options = array_merge($this->options, get_option('modularity_' . $singleSlug . '_sidebar-options') ?: []);
             $this->modules = $this->mergeModules($this->modules, \Modularity\Editor::getPostModules($singleSlug));
         }
     }
