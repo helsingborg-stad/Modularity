@@ -42,7 +42,7 @@ class ManualInput extends \Modularity\Module
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
-                $arr['image']                   = $this->getImageData($arr['image'], $displayAs);
+                $arr['image']                   = $this->getImageData($arr['image'], $this->getImageSize($displayAs));
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
 
@@ -75,10 +75,10 @@ class ManualInput extends \Modularity\Module
      * @param array|string $size Array containing height and width OR predefined size as a string.
      * @return array
      */
-    private function getImageData($imageId = false, $displayAs)
+    private function getImageData($imageId = false, $size)
     {
         if (!empty($imageId)) {
-            return ImageHelper::getImageAttachmentData($imageId, $this->getImageSize($displayAs));
+            return ImageHelper::getImageAttachmentData($imageId, $size);
         }
 
         return false;
