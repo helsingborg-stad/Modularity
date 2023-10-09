@@ -263,32 +263,40 @@ class Editor extends \Modularity\Options
      */
     public function getActiveAreas($template)
     {
-        $originalTemplate = $template;
-
         $options = get_option('modularity-options');
+        $enabledAreas = $options['enabled-areas'];
+
         // Use the ACF-options for module areas if activated
         if (get_field('acf_module_areas', 'option')) {
             $template = str_replace('.blade.php', '', $template);
             $active = get_field($template . '_active_sidebars', 'option');
         } else {
-            $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
+            $active = $this->getEnabledArea($enabledAreas, $template);
 
         }
 
         self::$isEditing['template'] = $template;
 
         // Fallback
-        if (is_array($active) && count($active) === 0
-            && !is_numeric($template)
-            && strpos($template, 'archive-') !== false
-            && !in_array($template, \Modularity\Helper\Options::getArchiveTemplateSlugs())
-            && !in_array($template, \Modularity\Helper\Options::getSingleTemplateSlugs())) {
+        if (is_array($active) && count($active) === 0 && !is_numeric($template)) {
 
+            if (
+                strpos($template, 'archive-') !== false
+                && !in_array($template, \Modularity\Helper\Options::getArchiveTemplateSlugs())
+            ) {
+                $template = explode('-', $template, 2)[0];
+                self::$isEditing['template'] = $template;
+                $active = $this->getEnabledArea($enabledAreas, $template);
+            }
 
-            $template = explode('-', $template, 2)[0];
-            self::$isEditing['template'] = $template;
-            $active = isset($options['enabled-areas'][$template]) ? $options['enabled-areas'][$template] : array();
-
+            if (
+                strpos($template, 'single-') !== false
+                && !in_array($template, \Modularity\Helper\Options::getSingleTemplateSlugs())
+            ) {
+                $template = explode('-', $template, 2)[0];
+                self::$isEditing['template'] = $template;
+                $active = $this->getEnabledArea($enabledAreas, $template);
+            }
         }
 
         if (self::$isEditing['title'] == 'archive-post') {
@@ -297,12 +305,16 @@ class Editor extends \Modularity\Options
             ));
 
             if ($home) {
-                $active = isset($options['enabled-areas']['home']) ? $options['enabled-areas']['home'] : array();
+                $active = $this->getEnabledArea($enabledAreas, 'home');
                 self::$isEditing['template'] = 'home';
             }
         }
 
         return $active;
+    }
+
+    private function getEnabledArea(array $enabledAreas, string $template):array {
+        return isset($enabledAreas[$template]) ? $enabledAreas[$template] : array();
     }
 
     /**
