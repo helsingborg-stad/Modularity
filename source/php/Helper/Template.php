@@ -10,7 +10,7 @@ class Template
      * @param  \Modularity\Module $module
      * @return string                     Found template/view
      */
-    public static function getModuleTemplate($view, $module)
+    public static function getModuleTemplate($view, $module, $sanitizeTemplateName = false)
     {
         $view = basename($view, '.blade.php');
         $view = basename($view, '.php');
@@ -40,14 +40,35 @@ class Template
             $fileWithoutSubfolder   = trailingslashit($path) . $filename;
 
             if (\Modularity\Helper\File::fileExists($fileWithSubfolder)) {
+                if($sanitizeTemplateName) {
+                    self::santitizeTemplateName($fileWithSubfolder);
+                }
                 return $fileWithSubfolder;
             }
 
             if (\Modularity\Helper\File::fileExists($fileWithoutSubfolder)) {
+                if($sanitizeTemplateName) {
+                    self::santitizeTemplateName($fileWithoutSubfolder);
+                }
                 return $fileWithoutSubfolder;
             }
         }
 
         return false;
+    }
+
+    /**
+     * Sanitize a template name by removing file extensions.
+     *
+     * This function takes a template name as input and removes common file extensions (".blade.php" and ".php").
+     * It returns the sanitized template name without any file extensions.
+     *
+     * @param string $template The template name to sanitize.
+     * @return string The sanitized template name without file extensions.
+     */
+    private static function santitizeTemplateName($template) {
+        $template       = basename($template, '.blade.php');
+        $template       = basename($template, '.php');
+        return $template;
     }
 }

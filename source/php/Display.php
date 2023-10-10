@@ -461,20 +461,16 @@ class Display
     public function getModuleMarkup($module, $args)
     {
         $templatePath = $module->template();
-        // Get template for legacy modules
-        if (!$templatePath) {
-            $templatePath = \Modularity\Helper\Wp::getTemplate(
-                $module->post_type,
-                'module',
-                false
-            );
-        }
 
         if (!$templatePath) {
             return false;
         }
 
-        $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
+        $moduleMarkup = $this->loadBladeTemplate(
+            $templatePath,
+            $module,
+            $args
+        );
 
         if (empty($moduleMarkup)) {
             return;
@@ -512,21 +508,7 @@ class Display
         
         // Append module edit to before markup
         if ($this->displayEditModule($module, $args)) {
-
-            $linkParameters = [
-                'post' => $module->ID ,
-                'action' => 'edit',
-                'is_thickbox' => 'true',
-                'is_inline' => 'true'
-            ]; 
-
-            $beforeModule .= '
-                <div class="modularity-edit-module">
-                    <a href="' . admin_url('post.php?' . http_build_query($linkParameters)) . '">
-                        ' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '
-                    </a>
-                </div>
-            ';
+            $beforeModule .= $this->createEditModuleMarkup($module);
         }
 
         // Apply filter for before/after markup
@@ -572,6 +554,32 @@ class Display
     }
 
     /**
+     * Create and return markup for editing a module.
+     *
+     * This function generates HTML markup for editing a module. It creates a link to the WordPress
+     * admin panel for editing the module with the specified parameters.
+     *
+     * @param WP_Post $module The module post object to edit.
+     * @return string HTML markup for editing the module.
+     */
+    private function createEditModuleMarkup($module) {
+        $linkParameters = [
+            'post' => $module->ID ,
+            'action' => 'edit',
+            'is_thickbox' => 'true',
+            'is_inline' => 'true'
+        ]; 
+
+        return '
+            <div class="modularity-edit-module">
+                <a href="' . admin_url('post.php?' . http_build_query($linkParameters)) . '">
+                    ' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '
+                </a>
+            </div>
+        ';
+    }
+
+    /**
      * Check if template exists and render the template
      * @param string $view View file
      * @param class $module Module class
@@ -580,17 +588,20 @@ class Display
      */
     public function loadBladeTemplate($view, $module, array $args = array())
     {
-        FileHelper::maybeCreateDir(MODULARITY_CACHE_DIR);
-
         if (!$module->templateDir) {
             throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
         }
 
-        $template   = \Modularity\Helper\Template::getModuleTemplate($view, $module);
-        $view       = basename($template, '.blade.php');
-        $view       = basename($view, '.php');
+        FileHelper::maybeCreateDir(MODULARITY_CACHE_DIR);
 
-        return $this->renderView($view, $module->data);
+        return $this->renderView(
+            \Modularity\Helper\Template::getModuleTemplate(
+                $view,
+                $module,
+                true
+            ),
+            $module->data
+        );
     }
 
     /**
