@@ -87,7 +87,7 @@ class Display
      * @throws \Exception
      * 
      * TODO: This needs to be checked if it is optimizable. 
-     *       An component library init for each render can not be greate.  
+     *       An component library init for each render can not be grate.  
      */
     public function renderView($view, $data = array()): string
     {
@@ -100,7 +100,7 @@ class Display
         if (isset($externalViewPaths[$data['post_type']])) {
             $moduleView = $externalViewPaths[$data['post_type']];
         }
-        
+
         $init = new ComponentLibraryInit([$moduleView]);
         $blade = $init->getEngine();
 
@@ -464,7 +464,7 @@ class Display
             return $this->getModuleMarkup($module, $args);
         }
 
-        //if ($echo && $cache->start()) { //Start cache
+        if ($echo && $cache->start()) { //Start cache
 
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
@@ -475,8 +475,8 @@ class Display
                 $args
             );
 
-            //$cache->stop(); //Stop cache
-        //}
+            $cache->stop(); //Stop cache
+        }
 
         return true;
     }
