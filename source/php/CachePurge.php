@@ -7,6 +7,7 @@ namespace Modularity;
  * The CachePurge class provides functionality for purging cache related to modularity posts.
  * 
  * TODO: Narrow the purge scope, to pages containing the relevant module.
+ *       May be done with \Modularity\ModuleManager::getModuleUsage($post->ID);
  *
  * @package Modularity
  */
