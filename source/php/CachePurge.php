@@ -1,6 +1,13 @@
 <?php
 
 namespace Modularity;
+/**
+ * Class CachePurge
+ *
+ * The CachePurge class provides functionality for purging cache related to modularity posts.
+ *
+ * @package Modularity
+ */
 
 class CachePurge
 {
