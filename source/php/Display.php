@@ -85,6 +85,9 @@ class Display
      * @param array $data
      * @return bool
      * @throws \Exception
+     * 
+     * TODO: This needs to be checked if it is optimizable. 
+     *       An component library init for each render can not be greate.  
      */
     public function renderView($view, $data = array()): string
     {
@@ -97,7 +100,7 @@ class Display
         if (isset($externalViewPaths[$data['post_type']])) {
             $moduleView = $externalViewPaths[$data['post_type']];
         }
-
+        
         $init = new ComponentLibraryInit([$moduleView]);
         $blade = $init->getEngine();
 
@@ -118,7 +121,8 @@ class Display
                 $viewData
             )->render();
         } catch (Throwable $e) {
-            echo '<pre style="border: 3px solid #f00; padding: 10px;">';
+            echo '<pre class="c-paper" style="max-height: 400px; overflow: auto;">';
+            echo '<h2>Could not find view</h2>'; 
             echo '<strong>' . $e->getMessage() . '</strong>';
             echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
             echo $e->getTraceAsString();
@@ -358,7 +362,13 @@ class Display
                     continue;
                 }
 
-                $this->outputModule($module, $sidebarArgs, \Modularity\ModuleManager::$moduleSettings[get_post_type($module)]);
+                $this->outputModule(
+                    $module, 
+                    $sidebarArgs, 
+                    \Modularity\ModuleManager::$moduleSettings[
+                        get_post_type($module)
+                    ]
+                );
             }
         }
 
@@ -368,6 +378,20 @@ class Display
         }
     }
 
+    /**
+     * Check if a Modularity sidebar is active for the current template and area.
+     *
+     * This function determines whether a specified Modularity sidebar is active based on the current
+     * template and configured enabled areas in Modularity options.
+     *
+     * @param string $sidebar The name of the Modularity sidebar to check.
+     * @return bool True if the sidebar is active, false otherwise.
+     * 
+     * TODO:  Investigate if we really need to check for templates? 
+     *        If we are going to use templates, we should define compatible
+     *        sidebars in templates as a meta tag. 
+     * 
+     */
     public function isModularitySidebarActive($sidebar)
     {
         $template = \Modularity\Helper\Post::getPostTemplate();
@@ -377,24 +401,31 @@ class Display
             "",
             get_stylesheet_directory() . '/',
             get_template_directory() . '/',
-            get_stylesheet_directory() . '/views/v3/',
-            get_template_directory() . '/views/v3/',
         ));
 
         //Check if exists
-        $template_exists = false;
-        foreach ((array) $paths as $path) {
-            if (FileHelper::fileExists($path.$template)) {
-                $template_exists = true;
-                break;
+        $templateExists = false;
+        if(is_array($paths) && !empty($paths)) {
+            foreach ((array) $paths as $path) {
+                if (FileHelper::fileExists($path.$template)) {
+                    $templateExists = true;
+                    break;
+                }
             }
         }
-
-        if (!$template_exists) {
-            $template = \Modularity\Helper\Wp::findCoreTemplates([$template, 'archive']);
+        
+        //Fallback to archive template
+        if ($templateExists === false) {
+            $template = \Modularity\Helper\Wp::findCoreTemplates([
+                    $template, 
+                    'archive'
+            ]);
         }
+
+        //Get template options
         $options = get_option('modularity-options');
 
+        //Check if area is enabled
         if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, (array) $options['enabled-areas'][$template])) {
             return false;
         }
@@ -408,6 +439,8 @@ class Display
      * @param  array $args              The sidebar data
      * @param  array $moduleSettings    The module configuration
      * @return boolean                  True if success otherwise false
+     * 
+     * TODO: Return method needs the ability to be cached.
      */
     public function outputModule($module, $args = array(), $moduleSettings = array(), $echo = true)
     {
@@ -419,10 +452,6 @@ class Display
             return false;
         }
 
-        if (!$echo) {
-            $moduleSettings['cache_ttl'] = 0;
-        }
-
         $cache = new \Modularity\Helper\Cache(
             $module->ID, [
                 $module, 
@@ -431,23 +460,23 @@ class Display
             $moduleSettings['cache_ttl'] ?? 0
         );
 
-        if ($cache->start()) { //Start cache
+        if ($echo == false) {
+            return $this->getModuleMarkup($module, $args);
+        }
+
+        //if ($echo && $cache->start()) { //Start cache
 
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
 
-            $moduleMarkup = $this->getModuleMarkup($module, $args);
-            $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
-            $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+            //Print module
+            echo $this->getModuleMarkup(
+                $module,
+                $args
+            );
 
-            if (!$echo) {
-                return $moduleMarkup;
-            }
-
-            echo $moduleMarkup;
-
-            $cache->stop(); //Stop cache
-        }
+            //$cache->stop(); //Stop cache
+        //}
 
         return true;
     }
@@ -457,6 +486,8 @@ class Display
      * @param  object $module The module object
      * @param  array  $args   Module args
      * @return string
+     * 
+     * TODO: Needs refactor, in order to clarify its purpose.
      */
     public function getModuleMarkup($module, $args)
     {
@@ -516,13 +547,27 @@ class Display
             'Modularity/Display/BeforeModule', 
             $beforeModule, $args, $module->post_type, $module->ID
         );
-
         $afterModule = apply_filters(
             'Modularity/Display/AfterModule', 
             $afterModule, $args, $module->post_type, $module->ID
         );
 
-        return $beforeModule . $moduleMarkup . $afterModule;
+        // Concat full module
+        $moduleMarkup = $beforeModule . $moduleMarkup . $afterModule;
+
+        //Add filters to output
+        $moduleMarkup = apply_filters(
+            'Modularity/Display/Markup', 
+            $moduleMarkup, 
+            $module
+        );
+        $moduleMarkup = apply_filters(
+            'Modularity/Display/' . $module->post_type . '/Markup', 
+            $moduleMarkup, 
+            $module
+        );
+
+        return $moduleMarkup;
     }
 
     /**
@@ -530,7 +575,8 @@ class Display
      * 
      * @param  class  $module   Module class
      * @param  array    $args   Module argument array
-     * @return bool             If the button should be displayed or not         
+     * @return bool             If the button should be displayed or not        
+     *  
      */
     private function displayEditModule($module, $args) {
         
@@ -561,6 +607,8 @@ class Display
      *
      * @param WP_Post $module The module post object to edit.
      * @return string HTML markup for editing the module.
+     * 
+     * TODO: Needs filters
      */
     private function createEditModuleMarkup($module) {
         $linkParameters = [
@@ -610,13 +658,13 @@ class Display
      * Display module with shortcode
      * @param  array $args Args
      * @return string      Html markup
+     * 
+     * TODO: Needs to use more common code. There 
+     *       are several usable functions to achive this. 
      */
     public function shortcodeDisplay($args)
     {
-        $args = shortcode_atts(array(
-            'id' => false,
-            'inline' => true
-        ), $args);
+        $args = shortcode_atts(array('id' => false, 'inline' => true), $args);
 
         if (!is_numeric($args['id'])) {
             return;
@@ -668,6 +716,9 @@ class Display
      * Add container grid to specified modules, in specified sidebars
      * @param  $markup The module markup
      * @return $module Module object
+     * 
+     * TODO: Investigate if this is necessary.
+     * 
      */
 
     public function addGridToSidebar($markup, $module)

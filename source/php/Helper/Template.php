@@ -36,19 +36,18 @@ class Template
         foreach ($paths as $path) {
             $filename = $view . '.blade.php';
 
-            $fileWithSubfolder      = trailingslashit($path) . trailingslashit($module->post_type) . $filename;
-            $fileWithoutSubfolder   = trailingslashit($path) . $filename;
-
+            $fileWithSubfolder = trailingslashit($path) . trailingslashit($module->post_type) . $filename;
             if (\Modularity\Helper\File::fileExists($fileWithSubfolder)) {
                 if($sanitizeTemplateName) {
-                    self::santitizeTemplateName($fileWithSubfolder);
+                    return self::santitizeTemplateName($fileWithSubfolder);
                 }
                 return $fileWithSubfolder;
             }
 
+            $fileWithoutSubfolder = trailingslashit($path) . $filename;
             if (\Modularity\Helper\File::fileExists($fileWithoutSubfolder)) {
                 if($sanitizeTemplateName) {
-                    self::santitizeTemplateName($fileWithoutSubfolder);
+                    return self::santitizeTemplateName($fileWithoutSubfolder);
                 }
                 return $fileWithoutSubfolder;
             }
@@ -67,8 +66,8 @@ class Template
      * @return string The sanitized template name without file extensions.
      */
     private static function santitizeTemplateName($template) {
-        $template       = basename($template, '.blade.php');
-        $template       = basename($template, '.php');
-        return $template;
+        $view       = basename($template, '.blade.php');
+        $view       = basename($view, '.php');
+        return $view;
     }
 }
