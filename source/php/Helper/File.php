@@ -9,14 +9,16 @@ class File
      * @param  string $source Path to file
      * @return string         Namespace
      */
-    public static function getNamespace(string $path) : string
+    public static function getModuleNamespace(string $path) : string
     {        
         if(!self::fileExists($path)) {
             return '';
         }
 
-        $source = self::fileGetContents($path); 
-
+        $source = self::fileGetContents($path, [
+            'length' => 500 //read 500 bytes max
+        ]);
+        
         if($source === false) {
             add_action('admin_notices', function() use($path) {
                 $malfunctionalPlugin = array_pop(get_plugins( "/" . explode( '/', plugin_basename( $path ))[0]));
@@ -24,38 +26,12 @@ class File
             });
         }
 
-        $tokens = token_get_all($source);
-        $count = count($tokens);
-        $i = 0;
-        $namespace = '';
-        $namespaceFound = false;
-
-        while ($i < $count) {
-            $token = $tokens[$i];
-
-            if (is_array($token) && $token[0] === T_NAMESPACE) {
-                // Found namespace declaration
-                while (++$i < $count) {
-                    if ($tokens[$i] === ';') {
-                        $namespaceFound = true;
-                        $namespace = trim($namespace);
-                        break;
-                    }
-
-                    $namespace .= is_array($tokens[$i]) ? $tokens[$i][1] : $tokens[$i];
-                }
-
-                break;
-            }
-
-            $i++;
+        //Get namespace from file
+        preg_match('/^namespace [^\r\n]*/m', $source, $matches);
+        if($namespace = array_pop($matches)) {
+            return trim(rtrim(ltrim(trim($namespace), "namespace "), ";")); 
         }
-
-        if (!$namespaceFound) {
-            return '';
-        }
-
-        return $namespace;
+        return false;
     }
 
     /**
@@ -65,7 +41,7 @@ class File
      */
     public static function maybeCreateDir($path)
     {
-        if (file_exists($path)) {
+        if (self::fileExists($path, 86400, 0)) {
             return $path;
         }
 
@@ -88,18 +64,18 @@ class File
         $uid = "mod_file_exists_cache_" . md5($filePath); 
 
         //If in cahce, found
-        if(wp_cache_get($uid)) {
+        if(wp_cache_get($uid, __FUNCTION__)) {
             return true;
         }
 
         //If not in cache, look for it, if found cache. 
         if(file_exists($filePath)) {
-            wp_cache_set($uid, true, '', $expireFound);
+            wp_cache_set($uid, true, __FUNCTION__, $expireFound);
             return true;
         }
 
         //Opsie, file not found
-        wp_cache_set($uid, false, '', $expireNotFound); 
+        wp_cache_set($uid, false, __FUNCTION__, $expireNotFound); 
         return false; 
     }
 
@@ -112,22 +88,34 @@ class File
      *
      * @return  bool    If the file exists or not.
      */
-    public static function fileGetContents($filePath, $expire = 86400)
+    public static function fileGetContents($filePath, $args = [], $expire = 86400)
     {
+        //Allow args to be inputted
+        $use_include_path   = isset($args['use_include_path']) ? $args['use_include_path'] : false;
+        $context            = isset($args['context']) ? $args['context'] : null;
+        $offset             = isset($args['offset']) ? $args['offset'] : 0;
+        $length             = isset($args['length']) ? $args['length'] : null;
+
         //Unique cache value
-        $uid = "mod_file_get_contents_cache_" . md5($filePath); 
+        $uid = "mod_file_get_contents_cache_" . md5($filePath . md5(json_encode($args))); 
 
         //If in cahce, found
-        $cachedContents = $contents = wp_cache_get($uid); 
+        $cachedContents = $contents = wp_cache_get($uid, __FUNCTION__); 
         if($cachedContents !== false) {
             return $cachedContents;
         }
 
         //If not in cache, look for it, if found cache. 
-        $contents = file_get_contents($filePath); 
+        $contents = file_get_contents(
+            $filePath,
+            $use_include_path,
+            $context,
+            $offset,
+            $length
+        ); 
 
         //Store in cache
-        wp_cache_set($uid, $contents, '', $expire); 
+        wp_cache_set($uid, $contents, __FUNCTION__, $expire); 
 
         //Return results
         return $contents;
@@ -153,7 +141,7 @@ class File
         $uid = "mod_glob_cache_" . md5($pattern);
 
         // If in cache, return cached result
-        $cachedResult = wp_cache_get($uid);
+        $cachedResult = wp_cache_get($uid, __FUNCTION__);
         if ($cachedResult !== false) {
             return $cachedResult;
         }
@@ -163,9 +151,9 @@ class File
 
         // Cache the result
         if ($result !== false) {
-            wp_cache_set($uid, $result, '', $expireFound);
+            wp_cache_set($uid, $result, __FUNCTION__, $expireFound);
         } else {
-            wp_cache_set($uid, [], '', $expireNotFound);
+            wp_cache_set($uid, [], __FUNCTION__, $expireNotFound);
         }
 
         return $result;

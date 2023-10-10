@@ -175,7 +175,7 @@ class ModuleManager
         foreach (self::$registered as $path => $module) {
             $path      = trailingslashit($path);
             $source    = $path . $module . '.php';
-            $namespace = \Modularity\Helper\File::getNamespace($source);
+            $namespace = \Modularity\Helper\File::getModuleNamespace($source);
 
             if (!$namespace) {
                 continue;
