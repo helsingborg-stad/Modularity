@@ -419,7 +419,7 @@ class Display
             return false;
         }
 
-        if (!$echo || !isset($moduleSettings['cache_ttl'])) {
+        if (!$echo) {
             $moduleSettings['cache_ttl'] = 0;
         }
 
@@ -428,10 +428,10 @@ class Display
                 $module, 
                 $args['id']
             ], 
-            $moduleSettings['cache_ttl']
+            $moduleSettings['cache_ttl'] ?? 0
         );
 
-        if ($cache->start()) {
+        if ($cache->start()) { //Start cache
 
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
@@ -446,7 +446,7 @@ class Display
 
             echo $moduleMarkup;
 
-            $cache->stop();
+            $cache->stop(); //Stop cache
         }
 
         return true;
