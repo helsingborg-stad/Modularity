@@ -66,7 +66,6 @@ class Display
 
         $directories = FileHelper::glob(
             MODULARITY_PATH . 'source/php/Module/*',
-            GLOB_ONLYDIR
         ); 
 
         if(!empty($directories) && is_array($directories)) {
@@ -161,37 +160,59 @@ class Display
     }
 
     /**
-     * New is_active_sidebar logic which includes module check
-     * @param  boolean  $isActiveSidebar Original response
-     * @param  string   $sidebar         Sidebar id
+     * Check if modules are active for a sidebar.
+     *
+     * @param string $sidebar Sidebar id
      * @return boolean
      */
-    public function isActiveSidebar($isActiveSidebar, $sidebar)
+    private function areModulesActive($sidebar)
     {
-        //Just figure out the state of a sidebar once
-        if (isset(self::$sidebarState[$sidebar])) {
-            return self::$sidebarState[$sidebar];
-        }
-
-        $widgets = wp_get_sidebars_widgets();
-        if(is_null($widgets) || empty($widgets)) {
-            $widgets = [];
-        }
-        $widgets = array_map('array_filter', $widgets);
-        $visibleModules = false;
-
         if (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0) {
             foreach ($this->modules[$sidebar]['modules'] as $module) {
                 if (!is_preview() && $module->hidden == 'true') {
                     continue;
                 }
-
-                $visibleModules = true;
+                return true;
             }
         }
 
-        $hasWidgets = !empty($widgets[$sidebar]);
-        $hasModules = ($visibleModules && isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
+        return false;
+    }
+
+    /**
+     * Check if widgets are active for a sidebar.
+     *
+     * @param string $sidebar Sidebar id
+     * @return boolean
+     */
+    private function areWidgetsActive($sidebar)
+    {
+        $widgets = wp_get_sidebars_widgets();
+        if (is_null($widgets) || empty($widgets) || !isset($widgets[$sidebar])) {
+            return false;
+        }
+        
+        $widgets = array_map('array_filter', $widgets);
+
+        return !empty($widgets[$sidebar]);
+    }
+
+    /**
+     * New is_active_sidebar logic which includes module and widget checks.
+     *
+     * @param boolean $isActiveSidebar Original response
+     * @param string $sidebar Sidebar id
+     * @return boolean
+     */
+    public function isActiveSidebar($isActiveSidebar, $sidebar)
+    {
+        // Just figure out the state of a sidebar once
+        if (isset(self::$sidebarState[$sidebar])) {
+            return self::$sidebarState[$sidebar];
+        }
+
+        $hasWidgets = $this->areWidgetsActive($sidebar);
+        $hasModules = $this->areModulesActive($sidebar);
 
         if ($hasWidgets || $hasModules) {
             return self::$sidebarState[$sidebar] = true;
@@ -199,6 +220,7 @@ class Display
 
         return self::$sidebarState[$sidebar] = false;
     }
+
 
     /**
      * Initialize, get post's/page's modules and start output
@@ -397,13 +419,10 @@ class Display
             return false;
         }
 
-        $class = \Modularity\ModuleManager::$classes[$module->post_type];
-        $module = new $class($module, $args);
-
         if (!$echo || !isset($moduleSettings['cache_ttl'])) {
             $moduleSettings['cache_ttl'] = 0;
         }
-        
+
         $cache = new \Modularity\Helper\Cache(
             $module->ID, [
                 $module, 
@@ -412,7 +431,11 @@ class Display
             $moduleSettings['cache_ttl']
         );
 
-        if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
+        if ($cache->start()) {
+
+            $class = \Modularity\ModuleManager::$classes[$module->post_type];
+            $module = new $class($module, $args);
+
             $moduleMarkup = $this->getModuleMarkup($module, $args);
             $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
             $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
@@ -423,9 +446,7 @@ class Display
 
             echo $moduleMarkup;
 
-            if (!empty($moduleSettings['cache_ttl'])) {
-                $cache->stop();
-            }
+            $cache->stop();
         }
 
         return true;

@@ -5,7 +5,7 @@ namespace Modularity\Helper;
 class Cache
 {
     /**
-     * Fragment cache in memcached
+     * Fragment cache in object cache
      * @param  string $postId      The post id that you want to cache (or any other key that relates to specific data)
      * @param  string $module      Any input data altering output result as a concatinated string/array/object.
      * @param  string $ttl         The time that a cache should live (in seconds)
