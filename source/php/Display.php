@@ -592,7 +592,9 @@ class Display
             throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
         }
 
-        FileHelper::maybeCreateDir(MODULARITY_CACHE_DIR);
+        if(defined('MODULARITY_CACHE_DIR')) {
+            FileHelper::maybeCreateDir(MODULARITY_CACHE_DIR);
+        }
 
         return $this->renderView(
             \Modularity\Helper\Template::getModuleTemplate(
