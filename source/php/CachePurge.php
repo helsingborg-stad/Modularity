@@ -5,6 +5,8 @@ namespace Modularity;
  * Class CachePurge
  *
  * The CachePurge class provides functionality for purging cache related to modularity posts.
+ * 
+ * TODO: Narrow the purge scope, to pages containing the relevant module.
  *
  * @package Modularity
  */
