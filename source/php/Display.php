@@ -5,6 +5,7 @@ namespace Modularity;
 use Throwable;
 use ComponentLibrary\Init as ComponentLibraryInit;
 use \Modularity\Helper\File as FileHelper;
+use WP_Post;
 
 class Display
 {
@@ -258,13 +259,37 @@ class Display
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
         } else {
-            $this->modules = \Modularity\Editor::getPostModules($post->ID);
-            $this->options = get_post_meta($realPostID, 'modularity-sidebar-options', true);
+            $this->setupModulesForSingle($post, $realPostID);
         }
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
         add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
 
         add_filter('sidebars_widgets', array($this, 'hideWidgets'));
+    }
+
+    private function setupModulesForSingle(WP_Post $post, int $realPostID) {
+        $singleSlug = \Modularity\Helper\Wp::getSingleSlug();
+        $this->modules = \Modularity\Editor::getPostModules($post->ID);
+        $this->options = get_post_meta($realPostID, 'modularity-sidebar-options', true);
+
+        if ($singleSlug) {
+            $this->options = !is_array($this->options) ? [] : $this->options;
+            $this->modules = !is_array($this->modules) ? [] : $this->modules;
+            
+            $this->options = array_merge($this->options, get_option('modularity_' . $singleSlug . '_sidebar-options') ?: []);
+            $this->modules = $this->mergeModules($this->modules, \Modularity\Editor::getPostModules($singleSlug));
+        }
+    }
+
+    private function mergeModules($first, $second): array
+    {
+        foreach ($first as $sidebar => $modulesInSidebar) {
+            if (isset($second[$sidebar]['modules'])) {
+                $second[$sidebar]['modules'] = array_merge($second[$sidebar]['modules'], $modulesInSidebar['modules']);
+            }
+        }
+
+        return $second;
     }
 
     /**
