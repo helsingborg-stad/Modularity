@@ -33,6 +33,7 @@ class ManualInput extends \Modularity\Module
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
         $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+        $imageSize              = $this->getImageSize($displayAs);
 
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
             isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 
@@ -42,7 +43,7 @@ class ManualInput extends \Modularity\Module
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
-                $arr['image']                   = $this->getImageData($arr['image'], $this->getImageSize($displayAs));
+                $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
 
@@ -62,7 +63,7 @@ class ManualInput extends \Modularity\Module
             'content'                   => false,
             'link'                      => false,
             'link_text'                 => __("Read more", 'modularity'),
-            'image_id'                  => false,
+            'image'                     => false,
             'image_before_content'      => true,
             'accordion_column_values'   => []
         ];
@@ -75,7 +76,7 @@ class ManualInput extends \Modularity\Module
      * @param array|string $size Array containing height and width OR predefined size as a string.
      * @return array
      */
-    private function getImageData($imageId = false, $size)
+    private function getImageData($imageId = false, $size = [400, 225])
     {
         if (!empty($imageId)) {
             return ImageHelper::getImageAttachmentData($imageId, $size);
