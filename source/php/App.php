@@ -236,11 +236,6 @@ class App
                 'editModulesLinkHref' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
             ));
 
-            wp_localize_script('block-editor-validation', 'modularityBlockEditor', array(
-                'editModulesLinkLabel' => __('Edit Modules', 'modularity'),
-                'editModulesLinkHref' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
-            ));
-
             wp_enqueue_script('block-editor-validation');
             wp_enqueue_script('block-editor-edit-modules');
         }
