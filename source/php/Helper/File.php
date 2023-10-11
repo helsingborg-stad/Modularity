@@ -80,13 +80,20 @@ class File
     }
 
      /**
-     * Check if a file exists, cache in redis. 
+     * Retrieve the contents of a file and optionally cache the results.
      *
-     * @param   string  The file path
-     * @param   integer Time to store positive result
-     * @param   integer Time to store negative result
+     * @param string $filePath The path to the file to read.
+     * @param array $args {
+     *     Optional arguments for customizing file retrieval and caching.
      *
-     * @return  bool    If the file exists or not.
+     *     @var bool $use_include_path Whether to search for the file in the include_path (default is false).
+     *     @var resource $context A stream context resource to be used for opening the file (default is null).
+     *     @var int $offset The initial position to seek to in the file (default is 0).
+     *     @var int|null $length The maximum length of data to retrieve (default is null, which means read the entire file).
+     * }
+     * @param int $expire The expiration time for caching in seconds (default is 86400 seconds, or 1 day).
+     *
+     * @return string|false The contents of the file or false on failure.
      */
     public static function fileGetContents($filePath, $args = [], $expire = 86400): string
     {
