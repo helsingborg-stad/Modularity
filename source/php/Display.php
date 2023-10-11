@@ -486,6 +486,9 @@ class Display
         );
 
         if ($echo == false) {
+            $class = \Modularity\ModuleManager::$classes[$module->post_type];
+            $module = new $class($module, $args);
+
             return $this->getModuleMarkup($module, $args);
         }
 
