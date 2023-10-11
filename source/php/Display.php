@@ -363,7 +363,7 @@ class Display
      */
     public function output($sidebar)
     {
-        if (!isset($this->modules[$sidebar]) || !$this->isModularitySidebarActive($sidebar)) {
+        if (!isset($this->modules[$sidebar])) {
             return;
         }
 
@@ -383,7 +383,8 @@ class Display
         // Loop and output modules
         if (isset($modules['modules']) && is_array($modules['modules']) && !empty($modules['modules'])) {
             foreach ($modules['modules'] as $module) {
-                if (!is_preview() && $module->hidden == 'true') {
+                
+                if(!$this->shouldDisplayModule($module)) {
                     continue;
                 }
 
@@ -404,57 +405,18 @@ class Display
     }
 
     /**
-     * Check if a Modularity sidebar is active for the current template and area.
+     * Determine whether a module should be displayed.
      *
-     * This function determines whether a specified Modularity sidebar is active based on the current
-     * template and configured enabled areas in Modularity options.
+     * This function checks if a module should be displayed based on certain conditions.
      *
-     * @param string $sidebar The name of the Modularity sidebar to check.
-     * @return bool True if the sidebar is active, false otherwise.
-     * 
-     * TODO:  Investigate if we really need to check for templates? 
-     *        If we are going to use templates, we should define compatible
-     *        sidebars in templates as a meta tag. 
-     * 
+     * @param mixed $module The module to be evaluated.
+     *
+     * @return bool Returns `true` if the module should be displayed, and `false` otherwise.
      */
-    public function isModularitySidebarActive($sidebar)
-    {
-        $template = \Modularity\Helper\Post::getPostTemplate();
-
-        //Where to look
-        $paths = apply_filters('Modularity/Theme/TemplatePath', array(
-            "",
-            get_stylesheet_directory() . '/',
-            get_template_directory() . '/',
-        ));
-
-        //Check if exists
-        $templateExists = false;
-        if(is_array($paths) && !empty($paths)) {
-            foreach ((array) $paths as $path) {
-                if (FileHelper::fileExists($path.$template)) {
-                    $templateExists = true;
-                    break;
-                }
-            }
-        }
-        
-        //Fallback to archive template
-        if ($templateExists === false) {
-            $template = \Modularity\Helper\Wp::findCoreTemplates([
-                    $template, 
-                    'archive'
-            ]);
-        }
-
-        //Get template options
-        $options = get_option('modularity-options');
-
-        //Check if area is enabled
-        if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, (array) $options['enabled-areas'][$template])) {
+    private function shouldDisplayModule($module) {
+        if (!is_preview() && $module->hidden == 'true') {
             return false;
         }
-
         return true;
     }
 
