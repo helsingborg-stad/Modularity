@@ -19,33 +19,33 @@
                 'id' => '',
             ),
             'choices' => array(
-                'row-row-row-row-651d5ccf5ac81' => array(
+                'row-row-row-row-row-651d5ccf5ac81' => array(
                     'image-select-repeater-label' => 'Accordion',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/accordion.svg : accordion',
+                    'image-select-repeater-value' => 'accordion',
                 ),
-                'row-row-row-row-651d5cdb5ac82' => array(
+                'row-row-row-row-row-651d5cdb5ac82' => array(
                     'image-select-repeater-label' => 'Block',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/block.svg : block',
+                    'image-select-repeater-value' => 'block',
                 ),
-                'row-row-row-row-651d5cdf5ac83' => array(
+                'row-row-row-row-row-651d5cdf5ac83' => array(
                     'image-select-repeater-label' => 'Box',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/box.svg : box',
+                    'image-select-repeater-value' => 'box',
                 ),
-                'row-row-row-row-651d5ce55ac84' => array(
+                'row-row-row-row-row-651d5ce55ac84' => array(
                     'image-select-repeater-label' => 'Card',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/card.svg : card',
+                    'image-select-repeater-value' => 'card',
                 ),
-                'row-row-row-row-651d5ceb5ac85' => array(
+                'row-row-row-row-row-651d5ceb5ac85' => array(
                     'image-select-repeater-label' => 'Collection',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/collection.svg : collection',
+                    'image-select-repeater-value' => 'collection',
                 ),
-                'row-row-row-row-651d5cf65ac86' => array(
+                'row-row-row-row-row-651d5cf65ac86' => array(
                     'image-select-repeater-label' => 'List',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/list.svg : list',
+                    'image-select-repeater-value' => 'list',
                 ),
-                '651ffdc788395' => array(
+                'row-651ffdc788395' => array(
                     'image-select-repeater-label' => 'Segment',
-                    'image-select-repeater-value' => 'https://dev.local.municipio.tech/wp-content/mu-plugins/acf-image-select-field/assets/segment.svg : segment',
+                    'image-select-repeater-value' => 'segment',
                 ),
             ),
         ),
@@ -439,7 +439,7 @@
                     ),
                     'uploader' => '',
                     'acfe_thumbnail' => 0,
-                    'return_format' => 'array',
+                    'return_format' => 'id',
                     'min_width' => '',
                     'min_height' => '',
                     'min_size' => '',
