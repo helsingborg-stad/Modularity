@@ -4,6 +4,7 @@ namespace Modularity;
 
 use Throwable;
 use ComponentLibrary\Init as ComponentLibraryInit;
+use \Modularity\Helper\File as FileHelper;
 use WP_Post;
 
 class Display
@@ -32,16 +33,25 @@ class Display
         add_filter('Modularity/Display/replaceGrid', array($this, 'replaceGridClasses'), 10);
     }
 
+    /**
+     * Replace legacy grid class names with the new format.
+     *
+     * This function takes a CSS class name as input and replaces legacy grid class
+     * names (e.g., 'grid-md-12', 'grid-md-9') with the corresponding new format
+     * (e.g., 'o-grid-12@md', 'o-grid-9@md'). This is useful for updating class names
+     * in HTML markup to align with a new naming convention.
+     *
+     * @param string $className The CSS class name to be processed.
+     *
+     * @return string The modified CSS class name with legacy grid class names replaced.
+     */
     public function replaceGridClasses($className)
     {
-        $className = str_replace('grid-md-12', 'o-grid-12@md', $className);
-        $className = str_replace('grid-md-9', 'o-grid-9@md', $className);
-        $className = str_replace('grid-md-8', 'o-grid-8@md', $className);
-        $className = str_replace('grid-md-6', 'o-grid-6@md', $className);
-        $className = str_replace('grid-md-4', 'o-grid-4@md', $className);
-        $className = str_replace('grid-md-3', 'o-grid-3@md', $className);
-
-        return $className;
+        return preg_replace(
+            '/grid-md-(\d+)/', 
+            'o-grid-$1@md', 
+            $className
+        );
     }
 
     /**
@@ -55,10 +65,16 @@ class Display
             return null;
         }
 
-        foreach (glob(MODULARITY_PATH . 'source/php/Module/*') as $dir) {
-            $pathinfo = pathinfo($dir);
-            if (strtolower(str_replace('mod-', '', $postType)) === strtolower($pathinfo['filename'])) {
-                return $pathinfo['filename'];
+        $directories = FileHelper::glob(
+            MODULARITY_PATH . 'source/php/Module/*',
+        ); 
+
+        if(!empty($directories) && is_array($directories)) {
+            foreach ($directories as $dir) {
+                $pathinfo = pathinfo($dir);
+                if (strtolower(str_replace('mod-', '', $postType)) === strtolower($pathinfo['filename'])) {
+                    return $pathinfo['filename'];
+                }
             }
         }
 
@@ -70,6 +86,9 @@ class Display
      * @param array $data
      * @return bool
      * @throws \Exception
+     * 
+     * TODO: This needs to be checked if it is optimizable. 
+     *       An component library init for each render can not be grate.  
      */
     public function renderView($view, $data = array()): string
     {
@@ -98,9 +117,13 @@ class Display
         );
 
         try {
-            return $blade->make($view, $viewData)->render();
+            return $blade->make(
+                $view, 
+                $viewData
+            )->render();
         } catch (Throwable $e) {
-            echo '<pre style="border: 3px solid #f00; padding: 10px;">';
+            echo '<pre class="c-paper" style="max-height: 400px; overflow: auto;">';
+            echo '<h2>Could not find view</h2>'; 
             echo '<strong>' . $e->getMessage() . '</strong>';
             echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
             echo $e->getTraceAsString();
@@ -119,8 +142,11 @@ class Display
      */
     public function filterModularityShortcodes($value, $postId, $field)
     {
-        $value = preg_replace('/\[modularity(.*)\]/', '', $value);
-        return $value;
+        return preg_replace(
+            '/\[modularity(.*)\]/', 
+            '', 
+            $value
+        );
     }
 
     /**
@@ -131,42 +157,67 @@ class Display
      */
     public function sanitizeContent($content)
     {
-        $content = preg_replace('/\[modularity(.*)\]/', '', $content);
-        return $content;
+        return preg_replace(
+            '/\[modularity(.*)\]/', 
+            '', 
+            $content)
+        ;
     }
 
     /**
-     * New is_active_sidebar logic which includes module check
-     * @param  boolean  $isActiveSidebar Original response
-     * @param  string   $sidebar         Sidebar id
+     * Check if modules are active for a sidebar.
+     *
+     * @param string $sidebar Sidebar id
      * @return boolean
      */
-    public function isActiveSidebar($isActiveSidebar, $sidebar)
+    private function areModulesActive($sidebar)
     {
-        //Just figure out the state of a sidebar once
-        if (isset(self::$sidebarState[$sidebar])) {
-            return self::$sidebarState[$sidebar];
-        }
-
-        $widgets = wp_get_sidebars_widgets();
-        if(is_null($widgets) || empty($widgets)) {
-            $widgets = [];
-        }
-        $widgets = array_map('array_filter', $widgets);
-        $visibleModules = false;
-
         if (isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0) {
             foreach ($this->modules[$sidebar]['modules'] as $module) {
                 if (!is_preview() && $module->hidden == 'true') {
                     continue;
                 }
-
-                $visibleModules = true;
+                return true;
             }
         }
 
-        $hasWidgets = !empty($widgets[$sidebar]);
-        $hasModules = ($visibleModules && isset($this->modules[$sidebar]) && count($this->modules[$sidebar]) > 0);
+        return false;
+    }
+
+    /**
+     * Check if widgets are active for a sidebar.
+     *
+     * @param string $sidebar Sidebar id
+     * @return boolean
+     */
+    private function areWidgetsActive($sidebar)
+    {
+        $widgets = wp_get_sidebars_widgets();
+        if (is_null($widgets) || empty($widgets) || !isset($widgets[$sidebar])) {
+            return false;
+        }
+        
+        $widgets = array_map('array_filter', $widgets);
+
+        return !empty($widgets[$sidebar]);
+    }
+
+    /**
+     * New is_active_sidebar logic which includes module and widget checks.
+     *
+     * @param boolean $isActiveSidebar Original response
+     * @param string $sidebar Sidebar id
+     * @return boolean
+     */
+    public function isActiveSidebar($isActiveSidebar, $sidebar)
+    {
+        // Just figure out the state of a sidebar once
+        if (isset(self::$sidebarState[$sidebar])) {
+            return self::$sidebarState[$sidebar];
+        }
+
+        $hasWidgets = $this->areWidgetsActive($sidebar);
+        $hasModules = $this->areModulesActive($sidebar);
 
         if ($hasWidgets || $hasModules) {
             return self::$sidebarState[$sidebar] = true;
@@ -174,6 +225,7 @@ class Display
 
         return self::$sidebarState[$sidebar] = false;
     }
+
 
     /**
      * Initialize, get post's/page's modules and start output
@@ -335,7 +387,13 @@ class Display
                     continue;
                 }
 
-                $this->outputModule($module, $sidebarArgs, \Modularity\ModuleManager::$moduleSettings[get_post_type($module)]);
+                $this->outputModule(
+                    $module, 
+                    $sidebarArgs, 
+                    \Modularity\ModuleManager::$moduleSettings[
+                        get_post_type($module)
+                    ]
+                );
             }
         }
 
@@ -345,6 +403,20 @@ class Display
         }
     }
 
+    /**
+     * Check if a Modularity sidebar is active for the current template and area.
+     *
+     * This function determines whether a specified Modularity sidebar is active based on the current
+     * template and configured enabled areas in Modularity options.
+     *
+     * @param string $sidebar The name of the Modularity sidebar to check.
+     * @return bool True if the sidebar is active, false otherwise.
+     * 
+     * TODO:  Investigate if we really need to check for templates? 
+     *        If we are going to use templates, we should define compatible
+     *        sidebars in templates as a meta tag. 
+     * 
+     */
     public function isModularitySidebarActive($sidebar)
     {
         $template = \Modularity\Helper\Post::getPostTemplate();
@@ -354,23 +426,31 @@ class Display
             "",
             get_stylesheet_directory() . '/',
             get_template_directory() . '/',
-            get_stylesheet_directory() . '/views/v3/',
-            get_template_directory() . '/views/v3/',
         ));
 
         //Check if exists
-        $template_exists = false;
-        foreach ((array) $paths as $path) {
-            if (file_exists($path.$template)) {
-                $template_exists = true;
+        $templateExists = false;
+        if(is_array($paths) && !empty($paths)) {
+            foreach ((array) $paths as $path) {
+                if (FileHelper::fileExists($path.$template)) {
+                    $templateExists = true;
+                    break;
+                }
             }
         }
-
-        if (!$template_exists) {
-            $template = \Modularity\Helper\Wp::findCoreTemplates([$template, 'archive']);
+        
+        //Fallback to archive template
+        if ($templateExists === false) {
+            $template = \Modularity\Helper\Wp::findCoreTemplates([
+                    $template, 
+                    'archive'
+            ]);
         }
+
+        //Get template options
         $options = get_option('modularity-options');
 
+        //Check if area is enabled
         if (!isset($options['enabled-areas'][$template]) || !in_array($sidebar, (array) $options['enabled-areas'][$template])) {
             return false;
         }
@@ -379,31 +459,13 @@ class Display
     }
 
     /**
-     * Fills module object with missing params if needed
-     * @param  object $module
-     * @param  array $moduleSettings
-     * @return object
-     */
-    public function fillMissingParams($module, $moduleSettings)
-    {
-        // Set class properties if needed
-        if (empty($module->slug)) {
-            foreach ($moduleSettings as $key => $value) {
-                $module->$key = $value;
-            }
-
-            $module->isLegacy = true;
-        }
-
-        return $module;
-    }
-
-    /**
      * Outputs a specific module
      * @param  object $module           The module data
      * @param  array $args              The sidebar data
      * @param  array $moduleSettings    The module configuration
      * @return boolean                  True if success otherwise false
+     * 
+     * TODO: Return method needs the ability to be cached.
      */
     public function outputModule($module, $args = array(), $moduleSettings = array(), $echo = true)
     {
@@ -415,36 +477,33 @@ class Display
             return false;
         }
 
-        $class = \Modularity\ModuleManager::$classes[$module->post_type];
-        $module = new $class($module, $args);
-        $module = $this->fillMissingParams($module, $moduleSettings);
-
-        if (!$echo || !isset($moduleSettings['cache_ttl'])) {
-            $moduleSettings['cache_ttl'] = 0;
-        }
-        
         $cache = new \Modularity\Helper\Cache(
             $module->ID, [
                 $module, 
                 $args['id']
             ], 
-            $moduleSettings['cache_ttl']
+            $moduleSettings['cache_ttl'] ?? 0
         );
 
-        if (empty($moduleSettings['cache_ttl']) || $cache->start()) {
-            $moduleMarkup = $this->getModuleMarkup($module, $args);
-            $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
-            $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+        if ($echo == false) {
+            $class = \Modularity\ModuleManager::$classes[$module->post_type];
+            $module = new $class($module, $args);
 
-            if (!$echo) {
-                return $moduleMarkup;
-            }
+            return $this->getModuleMarkup($module, $args);
+        }
 
-            echo $moduleMarkup;
+        if ($echo && $cache->start()) { //Start cache
 
-            if (!empty($moduleSettings['cache_ttl'])) {
-                $cache->stop();
-            }
+            $class = \Modularity\ModuleManager::$classes[$module->post_type];
+            $module = new $class($module, $args);
+
+            //Print module
+            echo $this->getModuleMarkup(
+                $module,
+                $args
+            );
+
+            $cache->stop(); //Stop cache
         }
 
         return true;
@@ -455,26 +514,22 @@ class Display
      * @param  object $module The module object
      * @param  array  $args   Module args
      * @return string
+     * 
+     * TODO: Needs refactor, in order to clarify its purpose.
      */
     public function getModuleMarkup($module, $args)
     {
         $templatePath = $module->template();
-        // Get template for legacy modules
-        if (!$templatePath) {
-            $templatePath = \Modularity\Helper\Wp::getTemplate($module->post_type, 'module', false);
-        }
 
         if (!$templatePath) {
             return false;
         }
 
-        $moduleMarkup = '';
-
-        if (preg_match('/.blade.php$/i', $templatePath)) {
-            $moduleMarkup = $this->loadBladeTemplate($templatePath, $module, $args);
-        } else {
-            $moduleMarkup = $this->loadTemplate($templatePath, $module, $args);
-        }
+        $moduleMarkup = $this->loadBladeTemplate(
+            $templatePath,
+            $module,
+            $args
+        );
 
         if (empty($moduleMarkup)) {
             return;
@@ -512,21 +567,7 @@ class Display
         
         // Append module edit to before markup
         if ($this->displayEditModule($module, $args)) {
-
-            $linkParameters = [
-                'post' => $module->ID ,
-                'action' => 'edit',
-                'is_thickbox' => 'true',
-                'is_inline' => 'true'
-            ]; 
-
-            $beforeModule .= '
-                <div class="modularity-edit-module">
-                    <a href="' . admin_url('post.php?' . http_build_query($linkParameters)) . '">
-                        ' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '
-                    </a>
-                </div>
-            ';
+            $beforeModule .= $this->createEditModuleMarkup($module);
         }
 
         // Apply filter for before/after markup
@@ -534,13 +575,27 @@ class Display
             'Modularity/Display/BeforeModule', 
             $beforeModule, $args, $module->post_type, $module->ID
         );
-
         $afterModule = apply_filters(
             'Modularity/Display/AfterModule', 
             $afterModule, $args, $module->post_type, $module->ID
         );
 
-        return $beforeModule . $moduleMarkup . $afterModule;
+        // Concat full module
+        $moduleMarkup = $beforeModule . $moduleMarkup . $afterModule;
+
+        //Add filters to output
+        $moduleMarkup = apply_filters(
+            'Modularity/Display/Markup', 
+            $moduleMarkup, 
+            $module
+        );
+        $moduleMarkup = apply_filters(
+            'Modularity/Display/' . $module->post_type . '/Markup', 
+            $moduleMarkup, 
+            $module
+        );
+
+        return $moduleMarkup;
     }
 
     /**
@@ -548,7 +603,8 @@ class Display
      * 
      * @param  class  $module   Module class
      * @param  array    $args   Module argument array
-     * @return bool             If the button should be displayed or not         
+     * @return bool             If the button should be displayed or not        
+     *  
      */
     private function displayEditModule($module, $args) {
         
@@ -572,7 +628,35 @@ class Display
     }
 
     /**
-     * Check if template exists (first check for blade, then php) and renders the template
+     * Create and return markup for editing a module.
+     *
+     * This function generates HTML markup for editing a module. It creates a link to the WordPress
+     * admin panel for editing the module with the specified parameters.
+     *
+     * @param WP_Post $module The module post object to edit.
+     * @return string HTML markup for editing the module.
+     * 
+     * TODO: Needs filters
+     */
+    private function createEditModuleMarkup($module) {
+        $linkParameters = [
+            'post' => $module->ID ,
+            'action' => 'edit',
+            'is_thickbox' => 'true',
+            'is_inline' => 'true'
+        ]; 
+
+        return '
+            <div class="modularity-edit-module">
+                <a href="' . admin_url('post.php?' . http_build_query($linkParameters)) . '">
+                    ' . __('Edit module', 'modularity') . ': ' . $module->data['post_type_name'] .  '
+                </a>
+            </div>
+        ';
+    }
+
+    /**
+     * Check if template exists and render the template
      * @param string $view View file
      * @param class $module Module class
      * @return string         Template markup
@@ -580,48 +664,35 @@ class Display
      */
     public function loadBladeTemplate($view, $module, array $args = array())
     {
-        \Modularity\Helper\File::maybeCreateDir(MODULARITY_CACHE_DIR);
-
         if (!$module->templateDir) {
             throw new \LogicException('Class ' . get_class($module) . ' must have property $templateDir');
         }
 
-
-        $template   = \Modularity\Helper\Template::getModuleTemplate($view, $module);
-        $view       = basename($template, '.blade.php');
-        $view       = basename($view, '.php');
-
-        if (\Modularity\Helper\Template::isBlade($template)) {
-            return $this->renderView($view, $module->data);
+        if(defined('MODULARITY_CACHE_DIR')) {
+            FileHelper::maybeCreateDir(MODULARITY_CACHE_DIR);
         }
 
-        return $this->loadTemplate($template, $module, $args);
-    }
-
-    /**
-     * Renders php template for module
-     * @param  string $view   View file
-     * @param  class  $module Module class
-     * @return string         Template markup
-     */
-    public function loadTemplate($view, $module, array $args = array())
-    {
-        ob_start();
-        include $view;
-        return ob_get_clean();
+        return $this->renderView(
+            \Modularity\Helper\Template::getModuleTemplate(
+                $view,
+                $module,
+                true
+            ),
+            $module->data
+        );
     }
 
     /**
      * Display module with shortcode
      * @param  array $args Args
      * @return string      Html markup
+     * 
+     * TODO: Needs to use more common code. There 
+     *       are several usable functions to achive this. 
      */
     public function shortcodeDisplay($args)
     {
-        $args = shortcode_atts(array(
-            'id' => false,
-            'inline' => true
-        ), $args);
+        $args = shortcode_atts(array('id' => false, 'inline' => true), $args);
 
         if (!is_numeric($args['id'])) {
             return;
@@ -673,6 +744,9 @@ class Display
      * Add container grid to specified modules, in specified sidebars
      * @param  $markup The module markup
      * @return $module Module object
+     * 
+     * TODO: Investigate if this is necessary.
+     * 
      */
 
     public function addGridToSidebar($markup, $module)

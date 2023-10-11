@@ -134,11 +134,12 @@ class App
     {
         // Link to editor from page
         add_action('admin_bar_menu', function () {
-            $options = get_option('modularity-options');
-
+            
             if (is_admin() || !current_user_can('edit_posts')) {
                 return;
             }
+
+            $options = get_option('modularity-options');
 
             global $wp_admin_bar;
             global $post;
@@ -154,7 +155,13 @@ class App
                 $editorLink = null;
             }
 
-            $editorLink = apply_filters('Modularity/adminbar/editor_link', $editorLink, $post, $archiveSlug, $this->currentUrl());
+            $editorLink = apply_filters(
+                'Modularity/adminbar/editor_link', 
+                $editorLink, 
+                $post, 
+                $archiveSlug, 
+                $this->currentUrl()
+            );
 
             if (empty($editorLink)) {
                 return;
@@ -308,22 +315,21 @@ class App
      */
     public function isModularityPage()
     {
-        global $current_screen;
+        $currentScreen = get_current_screen();
 
-        $result = true;
-
-        if (strpos($current_screen->id, 'modularity') === false
-            && strpos($current_screen->id, 'mod-') === false
-            && ($current_screen->action != 'add'
-                && (
-                    isset($_GET['action'])
-                    && $_GET['action'] != 'edit')
-                )
-            && $current_screen->base != 'post'
-            && $current_screen->base != 'widgets') {
-            $result = false;
+        if (!($currentScreen instanceof \WP_Screen)) {
+            return false;
         }
-        return $result;
+
+        $id = $currentScreen->id;
+        $action = $currentScreen->action;
+        $base = $currentScreen->base;
+
+        $isModularityPage = strpos($id, 'modularity') !== false || strpos($id, 'mod-') !== false;
+        $isModularityPage |= isset($_GET['action']) && $_GET['action'] === 'edit' && $action === 'add';
+        $isModularityPage |= in_array($base, ['post', 'widgets']);
+
+        return $isModularityPage;
     }
 
     public function addAdminMenuPage()
