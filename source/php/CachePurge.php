@@ -61,7 +61,7 @@ class CachePurge
      * @param int $postId The ID of the post to check.
      * @return bool True if the post is of a modularity type, false otherwise.
      */
-    private function isModularityPost($postId)
+    private function isModularityPost($postId): bool
     {
         if (strpos(get_post_type($postId), "mod-") === 0) {
             return true;
