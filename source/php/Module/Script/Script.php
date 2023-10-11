@@ -24,7 +24,7 @@ class Script extends \Modularity\Module
         $pattern = '/<iframe|<video/';
 
         if (preg_match($pattern, $value)) {
-            return false;
+            return __("Please use a more appropriate module for your content. (video or iframe module)", 'modularity');
         }
         
         return $valid;
