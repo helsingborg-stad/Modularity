@@ -492,7 +492,7 @@ class Display
             return $this->getModuleMarkup($module, $args);
         }
 
-        if ($echo && $cache->start()) { //Start cache
+        if ($cache->start()) { //Start cache
 
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
