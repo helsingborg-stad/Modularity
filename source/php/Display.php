@@ -240,11 +240,7 @@ class Display
             return;
         }
 
-        if (defined('PAGE_FOR_POSTTYPE_ID') && is_numeric(PAGE_FOR_POSTTYPE_ID)) {
-            $realPostID = PAGE_FOR_POSTTYPE_ID;
-        } else {
-            $realPostID = $post->ID;
-        }
+        $realPostID = $this->getCurrentPostID($post);
 
         if (is_admin() || is_feed() || is_tax() || post_password_required($realPostID)) {
             return;
@@ -258,13 +254,25 @@ class Display
         } elseif ($archiveSlug) {
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
+        } elseif($realPostID) {
+            $this->modules = \Modularity\Editor::getPostModules($realPostID);
+            $this->options = get_option('modularity-sidebar-options');
         } else {
             $this->setupModulesForSingle($post, $realPostID);
         }
+
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
         add_action('dynamic_sidebar_after', array($this, 'outputAfter'));
 
         add_filter('sidebars_widgets', array($this, 'hideWidgets'));
+    }
+
+    private function getCurrentPostID($post) {
+        if (defined('PAGE_FOR_POSTTYPE_ID') && is_numeric(PAGE_FOR_POSTTYPE_ID)) {
+            return PAGE_FOR_POSTTYPE_ID;
+        } else {
+            return $post->ID;
+        }
     }
 
     private function setupModulesForSingle(WP_Post $post, int $realPostID) {
