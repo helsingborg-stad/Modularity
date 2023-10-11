@@ -16,6 +16,18 @@ class Script extends \Modularity\Module
 
         //Remove html filter
         add_action('save_post', array($this, 'disableHTMLFiltering'), 5);
+
+        add_filter('acf/validate_value/name=embed_code', array($this, 'validateEmbedCode'), 10, 4);
+    }
+
+    public function validateEmbedCode($valid, $value, $field, $input_name) {
+        $pattern = '/<iframe|<video/';
+
+        if (preg_match($pattern, $value)) {
+            return false;
+        }
+        
+        return $valid;
     }
 
     public function data() : array
