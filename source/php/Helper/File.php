@@ -29,7 +29,10 @@ class File
         //Get namespace from file
         preg_match('/^namespace [^\r\n]*/m', $source, $matches);
         if($namespace = array_pop($matches)) {
-            return trim(rtrim(ltrim(trim($namespace), "namespace "), ";")); 
+            $namespace = trim($namespace);
+            $namespace = ltrim($namespace, "namespace ");
+            $namespace = rtrim($namespace, ";");
+            return $namespace;
         }
         return '';
     }
