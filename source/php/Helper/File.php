@@ -39,7 +39,7 @@ class File
      * @param  string $path
      * @return string
      */
-    public static function maybeCreateDir($path)
+    public static function maybeCreateDir(string $path)
     {
         if (self::fileExists($path, 86400, 0)) {
             return $path;
