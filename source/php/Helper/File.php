@@ -88,7 +88,7 @@ class File
      *
      * @return  bool    If the file exists or not.
      */
-    public static function fileGetContents($filePath, $args = [], $expire = 86400)
+    public static function fileGetContents($filePath, $args = [], $expire = 86400): string
     {
         //Allow args to be inputted
         $use_include_path   = isset($args['use_include_path']) ? $args['use_include_path'] : false;
