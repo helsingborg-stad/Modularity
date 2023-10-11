@@ -28,7 +28,7 @@ class CachePurge
      * @param int $post_id The ID of the post to check and potentially send a purge request for.
      * @return bool True if a purge request was sent, false otherwise (including revisions).
      */
-    public function sendPurgeRequest($postId)
+    public function sendPurgeRequest($postId): bool
     {
 
         //Not for revisions
