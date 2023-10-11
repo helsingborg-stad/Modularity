@@ -31,7 +31,7 @@ class File
         if($namespace = array_pop($matches)) {
             return trim(rtrim(ltrim(trim($namespace), "namespace "), ";")); 
         }
-        return false;
+        return '';
     }
 
     /**
