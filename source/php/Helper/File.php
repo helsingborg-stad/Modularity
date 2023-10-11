@@ -58,7 +58,7 @@ class File
      *
      * @return  bool    If the file exists or not.
      */
-    public static function fileExists($filePath, $expireFound = 0, $expireNotFound = 86400)
+    public static function fileExists($filePath, $expireFound = 0, $expireNotFound = 86400): bool
     {
         //Unique cache value
         $uid = "mod_file_exists_cache_" . md5($filePath); 
