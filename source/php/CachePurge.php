@@ -5,9 +5,6 @@ namespace Modularity;
  * Class CachePurge
  *
  * The CachePurge class provides functionality for purging cache related to modularity posts.
- * 
- * TODO: Narrow the purge scope, to pages containing the relevant module.
- *       May be done with \Modularity\ModuleManager::getModuleUsage($post->ID);
  *
  * @package Modularity
  */
@@ -33,20 +30,32 @@ class CachePurge
 
         //Not for revisions
         if (wp_is_post_revision($postId)) {
-            return;
+            return false;
         }
 
         //Check if modularity, then send purge!
         if ($this->isModularityPost($postId)) {
-            wp_remote_request($this->getMasterUrl(),
-                array(
-                    'method' => 'PURGE',
-                    'timeout' => 2,
-                    'redirection' => 0,
-                    'blocking' => false
-                )
-            );
-            return true;
+
+            $moduleUsage = \Modularity\ModuleManager::getModuleUsage($postId);
+
+            if(is_array($moduleUsage) && !empty($moduleUsage)) {
+                foreach($moduleUsage as $modulePage) {
+                    if(!isset($modulePage->post_id)) {
+                        continue;
+                    }
+
+                    wp_remote_request(get_the_permalink($modulePage->post_id),
+                        array(
+                            'method' => 'PURGE',
+                            'timeout' => 2,
+                            'redirection' => 0,
+                            'blocking' => false
+                        )
+                    );
+                }
+
+                return true;
+            }
         }
 
         return false;
@@ -67,21 +76,5 @@ class CachePurge
             return true;
         }
         return false;
-    }
-
-    /**
-     * Get the master URL for the website.
-     *
-     * If the website is not a multisite installation, it returns the home URL.
-     * If the website is part of a multisite network, it returns the site URL of the current blog.
-     *
-     * @return string The master URL of the website.
-     */
-    private function getMasterUrl()
-    {
-        if (!is_multisite()) {
-            return home_url();
-        }
-        return get_site_url(get_current_blog_id());
     }
 }
