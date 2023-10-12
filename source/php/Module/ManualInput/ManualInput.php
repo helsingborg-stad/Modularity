@@ -92,25 +92,23 @@ class ManualInput extends \Modularity\Module
      * @return array
      */
     private function getImageSize($displayAs) {
-        $size = [400, 225];
-
         switch ($displayAs) {
             case "card":
-                $size = [400, 225];
+                return [400, 225];
                 break;
             case "segment": 
-                $size = [800, 550];
+                return [800, 550];
                 break;
             case "block":
-                $size = [500, 500];
+                return [500, 500];
                 break;
             case "collection": 
             case "box":
-                $size = [300, 300];
+                return [300, 300];
                 break;
         }
 
-        return $size;
+        return [400, 225];
     }
 
      /**
