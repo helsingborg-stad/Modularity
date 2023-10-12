@@ -95,17 +95,13 @@ class ManualInput extends \Modularity\Module
         switch ($displayAs) {
             case "card":
                 return [400, 225];
-                break;
             case "segment": 
                 return [800, 550];
-                break;
             case "block":
                 return [500, 500];
-                break;
             case "collection": 
             case "box":
                 return [300, 300];
-                break;
         }
 
         return [400, 225];
