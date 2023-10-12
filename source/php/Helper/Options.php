@@ -33,7 +33,7 @@ class Options {
         return self::getTemplatesFromPostTypeNames($postTypeNames, 'archive');
     }
 
-    private function getTemplatesFromPostTypeNames(array $postTypeNames, string $templateType): array
+    private static function getTemplatesFromPostTypeNames(array $postTypeNames, string $templateType): array
     {
         $templates = array_map(function ($postTypeName) use ($templateType) {
             $template = \Modularity\Helper\Wp::findCoreTemplates([$templateType . '-' . $postTypeName]);
