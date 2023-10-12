@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\ManualInput;
 
+use Municipio\Helper\Image as ImageHelper;
+
 class ManualInput extends \Modularity\Module
 {
     public $slug = 'manualinput';
@@ -24,12 +26,14 @@ class ManualInput extends \Modularity\Module
     {
         $data           = [];
         $fields         = $this->getFields();
-        $this->template = $this->getTemplateToUse($fields);
+        $displayAs      = $this->getTemplateToUse($fields);
+        $this->template = $displayAs;
 
         $data['manualInputs']   = [];
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
         $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+        $imageSize              = $this->getImageSize($displayAs);
 
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
             isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 
@@ -38,15 +42,12 @@ class ManualInput extends \Modularity\Module
 
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $input) {
-                $arr = array_merge($this->getManualInputDefaultValues(), $input);
-                $arr['image'] = $this->getImage($arr['image']);
+                $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
+                $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
+                $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
 
-                if (class_exists('\Municipio\Helper\FormatObject')) {
-                    $arr = \Municipio\Helper\FormatObject::camelCase($arr);
-                }
-
-                $data['manualInputs'][] = (array) $arr;
+                $data['manualInputs'][]         = (array) $arr;
             }
         }
 
@@ -62,30 +63,52 @@ class ManualInput extends \Modularity\Module
             'content'                   => false,
             'link'                      => false,
             'link_text'                 => __("Read more", 'modularity'),
-            'image'                     => [],
+            'image'                     => false,
             'image_before_content'      => true,
             'accordion_column_values'   => []
         ];
     }
 
     /**
-     * @param array $imageData Data surrounding the image.
+     * Get all data attached to the image.
+     * 
+     * @param array $fields All the acf fields
+     * @param array|string $size Array containing height and width OR predefined size as a string.
      * @return array
      */
-    private function getImage($imageData) {
-        if (!empty($imageData)) {
-
-            $attachmentImage = wp_get_attachment_image_src(
-                $imageData['id'],
-                [768, 432]
-            );
-
-            return [
-                'src' => isset($attachmentImage[0]) ? $attachmentImage[0] : false,
-                'alt' => !empty($imageData['alt']) ? $imageData['alt'] : false
-            ];
+    private function getImageData($imageId = false, $size = [400, 225])
+    {
+        if (!empty($imageId)) {
+            return ImageHelper::getImageAttachmentData($imageId, $size);
         }
-        return [];
+
+        return false;
+    }
+
+    /**
+     * Decides the size of the image based on view
+     * 
+     * @param string $displayAs The name of the template/view.
+     * @return array
+     */
+    private function getImageSize($displayAs) {
+        switch ($displayAs) {
+            case "card":
+                return [400, 225];
+                break;
+            case "segment": 
+                return [800, 550];
+                break;
+            case "block":
+                return [500, 500];
+                break;
+            case "collection": 
+            case "box":
+                return [300, 300];
+                break;
+        }
+
+        return [400, 225];
     }
 
      /**
