@@ -93,8 +93,6 @@ class ManualInput extends \Modularity\Module
      */
     private function getImageSize($displayAs) {
         switch ($displayAs) {
-            case "card":
-                return [400, 225];
             case "segment": 
                 return [800, 550];
             case "block":
@@ -102,9 +100,9 @@ class ManualInput extends \Modularity\Module
             case "collection": 
             case "box":
                 return [300, 300];
+            default: 
+                return [400, 225];
         }
-
-        return [400, 225];
     }
 
      /**
