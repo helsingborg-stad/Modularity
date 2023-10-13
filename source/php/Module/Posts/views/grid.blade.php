@@ -41,18 +41,18 @@
                 @endcard
             @else
                 @block([
-                    'heading' => $post->showTitle ? $post->postTitle : false,
-                    'content' => $post->showExcerpt ? $post->excerptShort : false,
+                    'heading' => !empty($post->showTitle) ? $post->postTitle : false,
+                    'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
                     'ratio' => $ratio,
-                    'meta' => $post->termsUnlinked ? $post->termsUnlinked : false,
-                    'secondaryMeta' => $display_reading_time ? $post->readingTime : false,
-                    'date' => $post->postDate,
-                    'dateBadge' => $post->dateBadge,
+                    'meta' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
+                    'secondaryMeta' => !empty($display_reading_time) ? $post->readingTime : false,
+                    'date' => !empty($post->postDate) ? $post->postDate : false,
+                    'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                     'filled' => true,
-                    'image' => $post->showImage
+                    'image' => !empty($post->showImage)
                         ? [
-                            'src' => $post->thumbnailSquare['src'],
-                            'alt' => $post->thumbnailSquare['alt'],
+                            'src' => !empty($post->thumbnailSquare['src']) ? $post->thumbnailSquare['src'] : false,
+                            'alt' => !empty($post->thumbnailSquare['alt']) ? $post->thumbnailSquare['alt'] : false,
                             'backgroundColor' => 'secondary'
                         ]
                         : false,
@@ -62,7 +62,7 @@
                     'link' => $post->permalink,
                     'postId' => $post->id,
                     'postType' => $post->postType ?? '',
-                    'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                    'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                     'attributeList' => array_merge($post->attributeList, []),
                 ])
                 @slot('floating')
