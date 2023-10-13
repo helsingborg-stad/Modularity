@@ -21,7 +21,7 @@
                 'classList' => !empty($post->classList) ? $post->classList : [],
                 'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                 'attributeList' => array_merge($post->attributeList, []),
-                'hasPlaceholderImage' => !empty($post->hasPlaceholderImage),
+                'hasPlaceholder' => !empty($post->hasPlaceholderImage),
             ])
                 @slot('floating')
                     @if (!empty($post->callToActionItems['floating']))
