@@ -42,8 +42,6 @@
                 @endslot
                 @endblock
             @else
-            @php
-            @endphp
                 @card([
                     'link' => $post->permalink,
                     'imageFirst' => true,
