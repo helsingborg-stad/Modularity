@@ -459,6 +459,38 @@
                     'library' => 'all',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
+                7 => array(
+                    'key' => 'field_65293de2a26c7',
+                    'label' => __('Icon', 'modularity'),
+                    'name' => 'box_icon',
+                    'type' => 'select',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_64ff23d0d91bf',
+                                'operator' => '==',
+                                'value' => 'box',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => array(
+                    ),
+                    'default_value' => false,
+                    'return_format' => 'value',
+                    'multiple' => 0,
+                    'allow_null' => 0,
+                    'ui' => 1,
+                    'ajax' => 0,
+                    'placeholder' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
             ),
         ),
     ),
