@@ -338,7 +338,15 @@
                     'type' => 'url',
                     'instructions' => '',
                     'required' => 0,
-                    'conditional_logic' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_64ff23d0d91bf',
+                                'operator' => '!=',
+                                'value' => 'accordion',
+                            ),
+                        ),
+                    ),
                     'wrapper' => array(
                         'width' => '50',
                         'class' => '',

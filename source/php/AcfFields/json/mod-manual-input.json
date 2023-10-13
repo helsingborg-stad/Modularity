@@ -335,7 +335,15 @@
                     "type": "url",
                     "instructions": "",
                     "required": 0,
-                    "conditional_logic": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_64ff23d0d91bf",
+                                "operator": "!=",
+                                "value": "accordion"
+                            }
+                        ]
+                    ],
                     "wrapper": {
                         "width": "50",
                         "class": "",
