@@ -110,7 +110,7 @@ class Script extends \Modularity\Module
         "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" :
         '';
 
-        $data['lang'] = (object) [
+        $data['lang'] = [
             'knownLabels' => [
                 'title' => __('We need your consent to continue', 'modularity'),
                 'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
