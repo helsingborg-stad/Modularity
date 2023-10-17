@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
+use Municipio\Helper\Image as ImageHelper;
+
 /**
  * Class Posts
  * @package Modularity\Module\Posts
@@ -370,9 +372,10 @@ class Posts extends \Modularity\Module
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
+
         foreach ($data as $key => $item) {
-            $imageThumbnail = wp_get_attachment_image_src($item->image->ID, [400, 225]); 
-            $imageSquare    = wp_get_attachment_image_src($item->image->ID, [500, 500]); 
+            $imageThumbnail = ImageHelper::getImageAttachmentData($item->image, [400, 225]);
+            $imageSquare    = ImageHelper::getImageAttachmentData($item->image, [500, 500]);
 
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
@@ -380,12 +383,12 @@ class Posts extends \Modularity\Module
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'thumbnail' => [
-                    'src' => $imageThumbnail[0],
-                    'alt' => ""
+                    'src' => $imageThumbnail['src'],
+                    'alt' => $imageThumbnail['alt']
                 ],
                 'thumbnailSquare' => [
-                    'src' => $imageSquare[0],
-                    'alt' => ""
+                    'src' => $imageSquare['src'],
+                    'alt' => $imageSquare['alt']
                 ],
                 'postDate' => null,
                 'termsUnlinked' => null,
