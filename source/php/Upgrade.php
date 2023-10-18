@@ -9,8 +9,8 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 0; //The db version we want to achive
-    private $dbVersionKey = 'modularity_db_version';
+    private $dbVersion = 1; //The db version we want to achive
+    private $dbVersionKey = 0;
     private $db;
 
     /**
@@ -76,9 +76,92 @@ class Upgrade
      */
     private function v_1($db): bool
     {
-        
+        $postsModules = $this->getPostType('mod-posts');
+
+            // $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
+            //     [
+            //         'manual_inputs' => 'data',
+            //     ],
+            //     'mod-posts'
+            // );
+            // delete_field('manual_inputs', $postsModules[0]->ID);
+
+
+            $this->migrateAcfFieldsValueToNewFields($postsModules, 
+                [
+                    'post_title' => 'title',
+                    'post_content' => 'content',
+                    'data' => ['name' => 'manual_inputs', 'type' => 'repeater', 'fields' => ['post_title' => 'title', 'post_content' => 'content']],
+                     'posts_display_as' => ['name' => 'display_as', 'type' => 'replaceValue', 'values' => ['grid' => 'block']]
+            
+                ]/* ,
+                'mod-manualinput' */
+            );
+
         return true; //Return false to keep running this each time!
     }
+
+    private function getPostType(string $postType) {
+        $args = array(
+            'post_type' => $postType,
+            'numberposts' => -1
+        );
+        
+        $posts = get_posts($args);
+
+        return $posts;
+    }
+
+    private function updateAndReplaceFieldValue($newField, $oldFieldValue, $id) {
+        if (!empty($newField['name']) && !empty($newField['values']) && is_array($newField['values']) && !empty($newField['values'][$oldFieldValue])) { 
+            update_field($newField['name'], $newField['values'][$oldFieldValue], $id);
+        }
+    }
+
+    private function migrateAcfRepeater($newField, $oldFieldValue, $id) {
+        update_field($newField['name'], $oldFieldValue, $id);
+
+        $subFields = $newField['fields'];
+        if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
+            $i = 0;
+            while (have_rows($newField['name'], $id)) {
+                the_row();
+                $i++;
+                foreach ($subFields as $oldFieldName => $newFieldName) {
+                    if (!empty($oldFieldValue[$i - 1]) && !empty($oldFieldValue[$i - 1][$oldFieldName])) {
+                        $oldSubFieldValue = $oldFieldValue[$i - 1][$oldFieldName];
+                        if (!empty($oldSubFieldValue)) {
+                            update_sub_field([$newField['name'], $i, $newFieldName], $oldSubFieldValue, $id);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    /* Block start */
+    // private function migrateAcfRepeaterFieldKeys(array $modules, array $fields, string $repeaterFieldKey) {
+    //     if (!empty($modules) && is_array($modules) && !empty($fields)) {
+    //         foreach ($modules as &$module) {
+    //             $repeater = get_field($repeaterFieldKey, $module->ID);
+    //             if (!empty($repeater)) {
+    //                 foreach ($repeater as &$row) {
+    //                     foreach ($fields as $oldFieldName => $newFieldName) {
+    //                         if (isset($row[$oldFieldName])) {
+    //                             $row[$newFieldName] = $row[$oldFieldName];
+    //                             unset($row[$oldFieldName]);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+                
+    //             if (!empty($module->ID)) {
+    //                 update_field($repeaterFieldKey, $repeater, $module->ID);
+    //             }
+    //         }
+    //     }
+    // }
 
     /**
      * Module: Extract a field value and adds it to another field
@@ -87,15 +170,8 @@ class Upgrade
      * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
      * @param string|false $newBlockName renames the block to a different block.
      */
-    private function migrateAcfFieldsValueToNewFields(string $moduleName, array $fields, $newModuleName = false)
+    private function migrateAcfFieldsValueToNewFields(array $modules, array $fields, $newModuleName = false)
     {
-        $args = array(
-            'post_type' => $moduleName,
-            'numberposts' => -1
-        );
-        
-        $modules = get_posts($args);
-
         if (!empty($modules) && is_array($modules)) {
             foreach ($modules as &$module) {
                 $this->migrateModuleFields($fields, $module->ID);
@@ -119,12 +195,19 @@ class Upgrade
     private function migrateModuleFields(array $fields, int $id) 
     {
         if (!empty($fields) && is_array($fields)) {
-            foreach ($fields as $oldFieldName => $newFieldName) {
+            foreach ($fields as $oldFieldName => $newField) {
                 $oldFieldValue = get_field($oldFieldName, $id);
-                if (!empty($oldFieldValue)) {
-                    update_field($newFieldName, $oldFieldValue, $id);
+
+                if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
+                    if ($newField['type'] == 'repeater') {
+                        $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
+                    } else if ($newField['type'] == 'replaceValue') {
+                        $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
+                    }
+                } else if (!empty($oldFieldValue) && is_string($newField)) {
+                    update_field($newField, $oldFieldValue, $id);
                 }
-                delete_field($oldFieldName, $id);
+                // delete_field($oldFieldName, $id);
             }
         }
     }
