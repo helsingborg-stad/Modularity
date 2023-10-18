@@ -5,7 +5,7 @@ namespace Modularity\Helper;
 class Cache
 {
     /**
-     * Fragment cache in memcached
+     * Fragment cache in object cache
      * @param  string $postId      The post id that you want to cache (or any other key that relates to specific data)
      * @param  string $module      Any input data altering output result as a concatinated string/array/object.
      * @param  string $ttl         The time that a cache should live (in seconds)
@@ -16,7 +16,7 @@ class Cache
     private $ttl = null;
     private $hash = null;
 
-    public $keyGroup = 'mod-cache';
+    public $keyGroup = 'modules';
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
@@ -58,9 +58,7 @@ class Cache
         if (wp_is_post_revision($postId) || get_post_status($postId) != 'publish') {
             return false;
         }
-
-        wp_cache_delete($postId, $this->keyGroup);
-        return true;
+        return wp_cache_delete($postId, $this->keyGroup);
     }
 
     /**

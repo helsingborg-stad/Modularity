@@ -12,6 +12,7 @@ class App
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
+        add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor')); 
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
@@ -32,7 +33,11 @@ class App
         new Upgrade();
         new Ajax();
         new Options\General();
-        new Options\Archives();
+        
+        $archivesAdminPage = new Options\ArchivesAdminPage();
+        $archivesAdminPage->addHooks();
+        $optionsForSingleViews = new Options\SingleAdminPage();
+        $optionsForSingleViews->addHooks();
 
         // Rest Controllers
         $modulesRestController = new Api\V1\Modules();
@@ -129,11 +134,12 @@ class App
     {
         // Link to editor from page
         add_action('admin_bar_menu', function () {
-            $options = get_option('modularity-options');
-
+            
             if (is_admin() || !current_user_can('edit_posts')) {
                 return;
             }
+
+            $options = get_option('modularity-options');
 
             global $wp_admin_bar;
             global $post;
@@ -149,7 +155,13 @@ class App
                 $editorLink = null;
             }
 
-            $editorLink = apply_filters('Modularity/adminbar/editor_link', $editorLink, $post, $archiveSlug, $this->currentUrl());
+            $editorLink = apply_filters(
+                'Modularity/adminbar/editor_link', 
+                $editorLink, 
+                $post, 
+                $archiveSlug, 
+                $this->currentUrl()
+            );
 
             if (empty($editorLink)) {
                 return;
@@ -210,6 +222,21 @@ class App
         }
     }
 
+    public function enqueueBlockEditor() {
+        
+        if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
+            wp_register_script('block-editor-edit-modules', MODULARITY_URL . '/dist/'
+            . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'), [], null, ['in_footer' => true]);
+
+            wp_localize_script('block-editor-edit-modules', 'modularityBlockEditor', array(
+                'editModulesLinkLabel' => __('Edit Modules', 'modularity'),
+                'editModulesLinkHref' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
+            ));
+
+            wp_enqueue_script('block-editor-edit-modules');
+        }
+    }
+
     /**
      * Enqueues scripts and styles
      * @return void
@@ -256,24 +283,7 @@ class App
             ";
         });
 
-        // If gutenberg editor
-        if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
-            wp_register_script(
-                'custom-link-in-toolbar',
-                plugin_dir_url(__FILE__) . 'source/js/edit-modules-block-editor.js',
-                array(),
-                '1.0',
-                true
-            );
-
-            wp_localize_script('custom-link-in-toolbar', 'blockeditior', array(
-                'langeditmodules' => __('Edit Modules', 'modularity'),
-                'hrefeditmodules' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
-            ));
-
-            wp_enqueue_script('custom-link-in-toolbar');
-        }
-
+        
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {
             wp_enqueue_script('jquery-ui-sortable');
@@ -305,22 +315,21 @@ class App
      */
     public function isModularityPage()
     {
-        global $current_screen;
+        $currentScreen = get_current_screen();
 
-        $result = true;
-
-        if (strpos($current_screen->id, 'modularity') === false
-            && strpos($current_screen->id, 'mod-') === false
-            && ($current_screen->action != 'add'
-                && (
-                    isset($_GET['action'])
-                    && $_GET['action'] != 'edit')
-                )
-            && $current_screen->base != 'post'
-            && $current_screen->base != 'widgets') {
-            $result = false;
+        if (!($currentScreen instanceof \WP_Screen)) {
+            return false;
         }
-        return $result;
+
+        $id = $currentScreen->id;
+        $action = $currentScreen->action;
+        $base = $currentScreen->base;
+
+        $isModularityPage = strpos($id, 'modularity') !== false || strpos($id, 'mod-') !== false;
+        $isModularityPage |= isset($_GET['action']) && $_GET['action'] === 'edit' && $action === 'add';
+        $isModularityPage |= in_array($base, ['post', 'widgets']);
+
+        return $isModularityPage;
     }
 
     public function addAdminMenuPage()

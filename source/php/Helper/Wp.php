@@ -246,6 +246,23 @@ class Wp
 
         return false;
     }
+    
+    public static function getSingleSlug()
+    {
+        global $wp_query;
+
+        if ($wp_query && is_single()) {
+            $postType = get_post_type();
+
+            if (isset($wp_query->query_vars['post_type']) && !empty($wp_query->query_vars['post_type'])) {
+                $postType = $wp_query->query_vars['post_type'];
+            }
+
+            return 'single-' . get_post_type_object($postType)->name;
+        }
+
+        return false;
+    }
 
     public static function deprecatedFunction($message)
     {

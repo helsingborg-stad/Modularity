@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
+use Municipio\Helper\Image as ImageHelper;
+
 /**
  * Class Posts
  * @package Modularity\Module\Posts
@@ -370,17 +372,28 @@ class Posts extends \Modularity\Module
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
+
         foreach ($data as $key => $item) {
-            $image = wp_get_attachment_image_src($item->image->ID, [400, 225]); 
+            $imageThumbnail = ImageHelper::getImageAttachmentData($item->image, [400, 225]);
+            $imageSquare    = ImageHelper::getImageAttachmentData($item->image, [500, 500]);
+
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'thumbnail' => [
-                    'src' => $image[0],
-                    'alt' => ""
-                ]
+                    'src' => $imageThumbnail['src'],
+                    'alt' => $imageThumbnail['alt']
+                ],
+                'thumbnailSquare' => [
+                    'src' => $imageSquare['src'],
+                    'alt' => $imageSquare['alt']
+                ],
+                'postDate' => null,
+                'termsUnlinked' => null,
+                'dateBadge' => false,
+                'termIcon' => false
             ]);
         }
         
@@ -428,8 +441,7 @@ class Posts extends \Modularity\Module
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
                     }
 
-                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && !empty($_post->thumbnail) && empty($_post->thumbnail['src'])) {
-                        $_post->thumbnail['src'] = \Modularity\Helper\Wp::getThemeMod('logotype_emblem') ?: get_stylesheet_directory_uri() . '/assets/images/broken_image.svg';
+                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && empty($_post->thumbnail['src'])) {
                         $_post->hasPlaceholderImage = true;
                     }
                 } 

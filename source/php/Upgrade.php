@@ -118,6 +118,7 @@ class Upgrade
     {
         $args = array(
             'post_type' => $moduleName,
+            'numberposts' => -1
         );
         
         $modules = get_posts($args);
@@ -169,6 +170,7 @@ class Upgrade
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
                 if ($page->post_type !== 'customize_changeset' && $page->post_type !== 'revision') {
+                  
                     $blocks = parse_blocks($page->post_content);
     
                     if (!empty($blocks) && !empty($page->ID)) {

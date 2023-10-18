@@ -173,14 +173,16 @@ class Module
         // Defaults to the path of the class .php-file and subdir /views
         // Example: my-module/my-module.php (module class)
         //          my-module/views/        (views folder)
-        if (!$this->templateDir) {
+        if(!$this->templateDir || !$this->assetDir) {
             $reflector = new \ReflectionClass(get_class($this));
-            $this->templateDir = trailingslashit(dirname($reflector->getFileName())) . 'views/';
-        }
 
-        if (!$this->assetDir) {
-            $reflector = new \ReflectionClass(get_class($this));
-            $this->assetDir = trailingslashit(dirname($reflector->getFileName())) . 'assets/';
+            if (!$this->templateDir) {
+                $this->templateDir = trailingslashit(dirname($reflector->getFileName())) . 'views/';
+            }
+    
+            if (!$this->assetDir) {
+                $this->assetDir = trailingslashit(dirname($reflector->getFileName())) . 'assets/';
+            }
         }
 
         if (is_numeric($post)) {
@@ -415,49 +417,5 @@ class Module
         }
 
         return $modules;
-    }
-
-    /**
-     * Registers a Modularity module
-     *
-     * @deprecated 2.0.0
-     * @deprecated No longer used by internal code and not recommended, exists as fallback for old third party modules
-     * @deprecated Now creates a "ghost" module class to initialize old module type
-     *
-     * @param  string $slug         Module id suffix (will be prefixed with constant MODULE_PREFIX)
-     * @param  string $nameSingular Singular name of the module
-     * @param  string $namePlural   Plural name of the module
-     * @param  string $description  Description of the module
-     * @param  array  $supports     Which core post type fileds this module supports
-     * @param  string $icon
-     * @param  string $plugin
-     * @param  int    $cache_ttl
-     * @param  bool   $hideTitle
-     * @return string               The prefixed module id/slug
-     */
-    public function register($slug, $nameSingular, $namePlural, $description, $supports = array(), $icon = null, $plugin = null, $cache_ttl = 0, $hideTitle = false)
-    {
-        if (empty($slug)) {
-            return;
-        }
-
-        add_action('Modularity/Init', function ($moduleManager) use ($slug, $nameSingular, $namePlural, $description, $supports, $icon, $plugin, $cache_ttl, $hideTitle) {
-            $module = new \Modularity\Module();
-            $module->slug = $slug;
-            $module->nameSingular = $nameSingular;
-            $module->namePlural = $namePlural;
-            $module->description = $description;
-            $module->supports = $supports;
-            $module->icon = $icon;
-            $module->plugin = $plugin;
-            $module->cacheTtl = $cache_ttl;
-            $module->hideTitle = $hideTitle;
-            $module->isDeprecated = $this->isDeprecated;
-            $module->ghost = true;
-
-            $class = get_class($this);
-            $class = explode('\\', $class);
-            $moduleManager->register($module, MODULARITY_PATH . 'source/php/Module/' . end($class));
-        });
     }
 }

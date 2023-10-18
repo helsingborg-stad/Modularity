@@ -4,7 +4,7 @@
  * Plugin Name: Modularity
  * Plugin URI: -
  * Description: Modular component system for WordPress
- * Version: 1.6.5
+ * Version: 5.5.0
  * Author: Kristoffer Svanmark, Sebastian Thulin
  * Author URI: -
  * Text domain: modularity
@@ -74,6 +74,7 @@ add_action('plugins_loaded', function () {
         'mod-all'                   => 'group_636e424039120',
         'mod-subscribe'             => 'group_641c51b765f4b',
         'mod-modal'                 => 'group_64a29154aa972',
+        'mod-manual-input'          => 'group_64ff22b117e2c',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',

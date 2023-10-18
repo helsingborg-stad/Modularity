@@ -125,7 +125,7 @@ class Index extends \Modularity\Module
      */
     public function getThumbnail($item)
     {
-        if ($item['image_display'] == 'custom' || $item['link_type'] == 'external' || $item['link_type'] == 'unlinked') {
+        if ($item['image_display'] == 'custom' || $item['link_type'] == 'external' || $item['link_type'] == 'unlinked' && !empty($item['custom_image']['ID'])) {
             return wp_get_attachment_image_src(
                 $item['custom_image']['ID'],
                 apply_filters(
