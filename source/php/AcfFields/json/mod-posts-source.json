@@ -264,10 +264,9 @@
                         "class": "",
                         "id": ""
                     },
-                    "aria-label": "",
-                    "return_format": "array",
-                    "preview_size": "thumbnail",
-                    "library": "all",
+                    "uploader": "",
+                    "acfe_thumbnail": 0,
+                    "return_format": "id",
                     "min_width": "",
                     "min_height": "",
                     "min_size": "",
@@ -275,8 +274,8 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": "",
-                    "uploader": "",
-                    "acfe_thumbnail": 0,
+                    "preview_size": "thumbnail",
+                    "library": "all",
                     "parent_repeater": "field_576258d3110b0"
                 },
                 {
