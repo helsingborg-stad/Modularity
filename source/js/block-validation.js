@@ -8,7 +8,7 @@ function createValidation(blockDataKey = false, blockDataType = false, regex = f
     if (!blockDataKey || !blockDataType || !regex || !errorMessage) return; 
     const fieldGroups = document.querySelectorAll(blockDataKey);
     [...fieldGroups].forEach(fieldGroup => {
-        new BlockErrorNotice(fieldGroup);
+        new BlockErrorNotice(fieldGroup, regex, errorMessage);
     });
 
     const observer = new MutationObserver(mutationsList => {
