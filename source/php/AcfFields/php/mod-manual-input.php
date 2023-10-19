@@ -283,7 +283,7 @@
                         0 => array(
                             'key' => 'field_64ff23afd91bd',
                             'label' => __('Column value', 'modularity'),
-                            'name' => 'accordion_column_value',
+                            'name' => 'value',
                             'type' => 'text',
                             'instructions' => '',
                             'required' => 0,
