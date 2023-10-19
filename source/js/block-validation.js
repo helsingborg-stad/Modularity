@@ -18,11 +18,14 @@ function createValidation(blockDataKey = false, blockDataType = false, regex = f
                     if (addedNode instanceof HTMLElement && 
                         addedNode.hasAttribute('data-type') &&
                         addedNode.getAttribute('data-type') == blockDataType) {
-                        const fieldGroup = addedNode.querySelector(blockDataKey);
-                        if (fieldGroup) {
-                            new BlockErrorNotice(fieldGroup, regex, errorMessage);
-                        }
-                     }
+                        setTimeout(() => {
+                            let fieldGroup = addedNode.querySelector(blockDataKey);
+                            console.log(fieldGroup);
+                            if (fieldGroup) {
+                                new BlockErrorNotice(fieldGroup, regex, errorMessage);
+                            }
+                        }, 1000)  
+                    }
                 });
             }
         });
@@ -31,4 +34,5 @@ function createValidation(blockDataKey = false, blockDataType = false, regex = f
     const config = { childList: true, subtree: true };
     observer.observe(document, config);
 }
+
 
