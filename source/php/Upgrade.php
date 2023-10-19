@@ -169,7 +169,7 @@ class Upgrade
 
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
-                if ($page->post_type !== 'customize_changeset' && $page->post_type !== 'revision') {
+                if ($page->post_type !== 'customize_changeset') {
                   
                     $blocks = parse_blocks($page->post_content);
     
