@@ -20,7 +20,6 @@ class Cache
 
     public function __construct($postId, $module = '', $ttl = 3600*24)
     {
-
         // Set variables
         $this->postId       = $postId;
         $this->ttl          = $ttl;
@@ -159,6 +158,11 @@ class Cache
         if (defined('MODULARITY_DISABLE_FRAGMENT_CACHE') && MODULARITY_DISABLE_FRAGMENT_CACHE === true) {
             return false;
         }
+
+        if(empty($this->ttl)) {
+            return false;
+        }
+
         return true;
     }
 
