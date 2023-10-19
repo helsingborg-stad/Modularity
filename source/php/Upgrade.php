@@ -91,9 +91,32 @@ class Upgrade
                 [
                     'post_title' => 'title',
                     'post_content' => 'content',
-                    'data' => ['name' => 'manual_inputs', 'type' => 'repeater', 'fields' => ['post_title' => 'title', 'post_content' => 'content']],
-                     'posts_display_as' => ['name' => 'display_as', 'type' => 'replaceValue', 'values' => ['grid' => 'block']]
-            
+                    'data' => [
+                        'name' => 'manual_inputs', 
+                        'type' => 'repeater', 
+                        'fields' => [
+                            'post_title' => 'title', 
+                            'post_content' => 'content',
+                            'column_values' => 'accordion_column_values',
+                            'permalink' => 'link'
+                        ]
+                    ],
+                     'posts_display_as' => [
+                        'name' => 'display_as', 
+                        'type' => 'replaceValue', 
+                        'values' => [
+                            'list' => 'list', 
+                            'expandable-list' => 'accordion', 
+                            'items' => 'card', 
+                            'news' => 'card', 
+                            'index' => 'card', 
+                            'segment' => 'segment', 
+                            'collection' => 'collection', 
+                            'features-grid' => 'box', 
+                            'grid' => 'block', 
+                            'default' => 'card'
+                        ]
+                    ]
                 ]/* ,
                 'mod-manualinput' */
             );
@@ -101,6 +124,12 @@ class Upgrade
         return true; //Return false to keep running this each time!
     }
 
+    /**
+     * Get all posts of a post type
+     * 
+     * @param string $postType Name of the post type to retrieve
+     * @return array Array of posts
+     */
     private function getPostType(string $postType) {
         $args = array(
             'post_type' => $postType,
@@ -112,15 +141,40 @@ class Upgrade
         return $posts;
     }
 
-    private function updateAndReplaceFieldValue($newField, $oldFieldValue, $id) {
+    /**
+     * Migrate an old field value to a new field with a different name and updated value.
+     *
+     * This function is responsible for migrating the value of an old field to a new field with a specified name, replacing the old value with the updated value.
+     *
+     * @param array $newField An array of field data containing the keys "name" (string) and "values" (array).
+     * The "values" array should be in the format [oldValue => updatedValue].
+     * @param string $oldFieldValue The value of the old field to be replaced.
+     * @param int $id The post ID to which the new field value will be associated.
+     *
+     * @return void
+     */
+    private function updateAndReplaceFieldValue(array $newField, string $oldFieldValue, int $id) {
         if (!empty($newField['name']) && !empty($newField['values']) && is_array($newField['values']) && !empty($newField['values'][$oldFieldValue])) { 
             update_field($newField['name'], $newField['values'][$oldFieldValue], $id);
+        } else {
+            update_field($newField['name'], $newField['values']['default'], $id);
         }
     }
 
+    /**
+     * Migrate ACF repeater field values to new fields.
+     *
+     * This function is responsible for migrating ACF repeater field values to new fields based on the provided mapping
+     * and associating these values with a specific post ID.
+     *
+     * @param array $newField An array describing the new ACF field, including name, type, and subfields.
+     * @param mixed $oldFieldValue The value of the old ACF repeater field.
+     * @param int $id The post ID to which the new field values will be associated.
+     *
+     * @return void
+     */
     private function migrateAcfRepeater($newField, $oldFieldValue, $id) {
         update_field($newField['name'], $oldFieldValue, $id);
-
         $subFields = $newField['fields'];
         if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
             $i = 0;
@@ -197,7 +251,6 @@ class Upgrade
         if (!empty($fields) && is_array($fields)) {
             foreach ($fields as $oldFieldName => $newField) {
                 $oldFieldValue = get_field($oldFieldName, $id);
-
                 if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
                     if ($newField['type'] == 'repeater') {
                         $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
