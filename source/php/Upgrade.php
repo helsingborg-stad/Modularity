@@ -9,8 +9,8 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 1; //The db version we want to achive
-    private $dbVersionKey = 1;
+    private $dbVersion = 0; //The db version we want to achive
+    private $dbVersionKey = 0;
     private $db;
 
     /**
@@ -98,7 +98,11 @@ class Upgrade
             false,
             'postsBlockCondition'
         );
-        
+
+        $this->migrateBlockFieldsValueToNewFields('acf/manualinput', [
+                'abc' => 'cbd',
+            ],
+        );
 
         // $postsModules = $this->getPostType('mod-posts');
 
@@ -312,11 +316,11 @@ class Upgrade
 
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
-                if ($page->post_type !== 'customize_changeset' && $page->ID == 9) {
+                if ($page->post_type !== 'customize_changeset' && $page->ID == 930) {
                     $blocks = parse_blocks($page->post_content);
-
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
+                            echo '<pre>' . print_r( $block, true ) . '</pre>';
                             if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data']) && $this->blockCondition($blockConditionFunctionName, $block)) {
                                 $block['attrs']['data'] = $this->migrateBlockFields($fields, $block['attrs']['data']);
 
@@ -324,7 +328,7 @@ class Upgrade
                                     $block['blockName'] = $newBlockName;
                                     $block['attrs']['name'] = $newBlockName;
                                 }
-                                echo '<pre>' . print_r( $block, true ) . '</pre>';
+                                // echo '<pre>' . print_r( $block, true ) . '</pre>';
                             }
                         }
     
