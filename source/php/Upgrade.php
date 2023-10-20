@@ -10,7 +10,7 @@ namespace Modularity;
 class Upgrade
 {
     private $dbVersion = 1; //The db version we want to achive
-    private $dbVersionKey = 0;
+    private $dbVersionKey = 1;
     private $db;
 
     /**
@@ -655,12 +655,12 @@ class Upgrade
             while ($currentDbVersion <= $this->dbVersion) {
                 $currentDbVersion++;
                 $funcName = 'v_' . (string) $currentDbVersion;
-                if (method_exists($this, $funcName)) {
-                    if ($this->{$funcName}($this->db)) {
-                        update_option($this->dbVersionKey, (int) $currentDbVersion);
-                        wp_cache_flush();
-                    }
-                }
+                // if (method_exists($this, $funcName)) {
+                //     if ($this->{$funcName}($this->db)) {
+                //         update_option($this->dbVersionKey, (int) $currentDbVersion);
+                //         wp_cache_flush();
+                //     }
+                // }
             }
         }
     }
