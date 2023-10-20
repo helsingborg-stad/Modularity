@@ -76,50 +76,84 @@ class Upgrade
      */
     private function v_1($db): bool
     {
-        $postsModules = $this->getPostType('mod-posts');
 
-            // $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
-            //     [
-            //         'manual_inputs' => 'data',
-            //     ],
-            //     'mod-posts'
-            // );
-            // delete_field('manual_inputs', $postsModules[0]->ID);
-
-
-            $this->migrateAcfFieldsValueToNewFields($postsModules, 
-                [
-                    'post_title' => 'title',
-                    'post_content' => 'content',
-                    'data' => [
-                        'name' => 'manual_inputs', 
-                        'type' => 'repeater', 
-                        'fields' => [
-                            'post_title' => 'title', 
-                            'post_content' => 'content',
-                            'column_values' => 'accordion_column_values',
-                            'permalink' => 'link'
-                        ]
-                    ],
-                     'posts_display_as' => [
-                        'name' => 'display_as', 
-                        'type' => 'replaceValue', 
-                        'values' => [
-                            'list' => 'list', 
-                            'expandable-list' => 'accordion', 
-                            'items' => 'card', 
-                            'news' => 'card', 
-                            'index' => 'card', 
-                            'segment' => 'segment', 
-                            'collection' => 'collection', 
-                            'features-grid' => 'box', 
-                            'grid' => 'block', 
-                            'default' => 'card'
-                        ]
+        $this->migrateBlockFieldsValueToNewFields('acf/posts', [
+                'posts_display_as' => [
+                    'name' => 'display_as', 
+                    'type' => 'replaceValue', 
+                    'values' => [
+                        'list' => 'list', 
+                        'expandable-list' => 'accordion', 
+                        'items' => 'card', 
+                        'news' => 'card', 
+                        'index' => 'card', 
+                        'segment' => 'segment', 
+                        'collection' => 'collection', 
+                        'features-grid' => 'box', 
+                        'grid' => 'block', 
+                        'default' => 'card'
                     ]
-                ]/* ,
-                'mod-manualinput' */
-            );
+                ]
+            ],
+            false,
+            'postsBlockCondition'
+        );
+        
+
+        // $postsModules = $this->getPostType('mod-posts');
+
+        // $filteredPostsModules = array_filter($postsModules, function ($module) {
+        //     if (!empty($module->ID)) {
+        //         $source = get_field('posts_data_source', $module->ID);
+        //         return !empty($source) && $source == 'input';
+        //     }
+        //     return false;
+        // });
+
+        // $this->migrateAcfFieldsValueToNewFields($postsModules, 
+        //     [
+        //         'post_title' => 'title',
+        //         'post_content' => 'content',
+        //         'data' => [
+        //             'name' => 'manual_inputs', 
+        //             'type' => 'repeater', 
+        //             'fields' => [
+        //                 'post_title' => 'title', 
+        //                 'post_content' => 'content',
+        //                 'column_values' => 'accordion_column_values',
+        //                 'permalink' => 'link'
+        //             ]
+        //         ],
+        //         'posts_columns' => [
+        //             'name' => 'columns',
+        //             'type' => 'replaceValue',
+        //             'values' => [
+        //                 'grid-md-12' => 'o-grid-12',
+        //                 'grid-md-6' => 'o-grid-6',
+        //                 'grid-md-4' => 'o-grid-4',
+        //                 'grid-md-3' => 'o-grid-3',
+        //                 'default' => 'o-grid-4'
+        //             ]
+        //         ],
+        //         'posts_display_as' => [
+        //             'name' => 'display_as', 
+        //             'type' => 'replaceValue', 
+        //             'values' => [
+        //                 'list' => 'list', 
+        //                 'expandable-list' => 'accordion', 
+        //                 'items' => 'card', 
+        //                 'news' => 'card', 
+        //                 'index' => 'card', 
+        //                 'segment' => 'segment', 
+        //                 'collection' => 'collection', 
+        //                 'features-grid' => 'box', 
+        //                 'grid' => 'block', 
+        //                 'default' => 'card'
+        //             ]
+        //         ]
+        //     ]/* ,
+        //     'mod-manualinput' */
+        // );
 
         return true; //Return false to keep running this each time!
     }
@@ -268,28 +302,29 @@ class Upgrade
     /**
      * Block: Extract a field value and adds it to another field.
      * 
-     * @param string $blockName Name of the block
+     * @param string $pages Pages with the block
      * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
      * @param string|false $newBlockName renames the block to a different block.
      */
-    private function migrateBlockFieldsValueToNewFields(string $blockName = '', array $fields = [], $newBlockName = false) 
+    private function migrateBlockFieldsValueToNewFields($blockName, array $fields = [], $newBlockName = false, $blockConditionFunctionName = false) 
     {
         $pages = $this->getPagesFromBlockName($blockName);
 
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
-                if ($page->post_type !== 'customize_changeset') {
+                if ($page->post_type !== 'customize_changeset' && $page->ID == 9) {
                     $blocks = parse_blocks($page->post_content);
-    
+
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
-                            if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data'])) {
+                            if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data']) && $this->blockCondition($blockConditionFunctionName, $block)) {
                                 $block['attrs']['data'] = $this->migrateBlockFields($fields, $block['attrs']['data']);
 
                                 if (!empty($newBlockName)) {
                                     $block['blockName'] = $newBlockName;
                                     $block['attrs']['name'] = $newBlockName;
                                 }
+                                echo '<pre>' . print_r( $block, true ) . '</pre>';
                             }
                         }
     
@@ -314,15 +349,41 @@ class Upgrade
     private function migrateBlockFields(array $fields = [], array $blockData) 
     {
         if (!empty($fields) && is_array($fields)) {
-            foreach ($fields as $oldFieldName => $newFieldName) {
+            foreach ($fields as $oldFieldName => $newField) {
                 if (isset($blockData[$oldFieldName])) {
-                    $blockData[$newFieldName] = $blockData[$oldFieldName];
-                    unset($blockData[$oldFieldName]);
+                    if (is_array($newField)) {
+                        if ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
+                            $blockData[$newField['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
+                        }
+                    } else {
+                        $blockData[$newField] = $blockData[$oldFieldName];
+                    }
+                    // unset($blockData[$oldFieldName]);
                 }
             }
         }
 
         return $blockData;
+    }
+
+    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) {
+        if (isset($newField['values'][$oldFieldValue])) {
+            return $newField['values'][$oldFieldValue];
+        }
+
+        return $newField['values']['default'];
+    }
+
+    private function blockCondition($function, $block) {
+        if ($function && method_exists($this, $function)) {
+            return $this->$function($block);
+        }
+
+        return true;
+    }
+
+    private function postsBlockCondition($block) {
+        return !empty($block['attrs']['data']['posts_data_source']) && $block['attrs']['data']['posts_data_source'] == 'input';
     }
 
     /**
