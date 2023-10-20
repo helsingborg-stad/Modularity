@@ -10,7 +10,7 @@ namespace Modularity;
 class Upgrade
 {
     private $dbVersion = 0; //The db version we want to achive
-    private $dbVersionKey = 'modularity_db_version';
+    private $dbVersionKey = 0;
     private $db;
 
     /**
@@ -25,7 +25,7 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        add_action('wp', array($this, 'initUpgrade'), 10);
+        // add_action('wp', array($this, 'initUpgrade'), 10);
     }
 
     /**
@@ -76,9 +76,184 @@ class Upgrade
      */
     private function v_1($db): bool
     {
-        
+
+        $this->migrateBlockFieldsValueToNewFields('acf/posts', [
+                'posts_display_as' => [
+                    'name' => 'display_as', 
+                    'type' => 'replaceValue', 
+                    'values' => [
+                        'list' => 'list', 
+                        'expandable-list' => 'accordion', 
+                        'items' => 'card', 
+                        'news' => 'card', 
+                        'index' => 'card', 
+                        'segment' => 'segment', 
+                        'collection' => 'collection', 
+                        'features-grid' => 'box', 
+                        'grid' => 'block', 
+                        'default' => 'card'
+                    ]
+                ]
+            ],
+            false,
+            'postsBlockCondition'
+        );
+
+        $this->migrateBlockFieldsValueToNewFields('acf/manualinput', [
+                'abc' => 'cbd',
+            ],
+        );
+
+        // $postsModules = $this->getPostType('mod-posts');
+
+        // $filteredPostsModules = array_filter($postsModules, function ($module) {
+        //     if (!empty($module->ID)) {
+        //         $source = get_field('posts_data_source', $module->ID);
+        //         return !empty($source) && $source == 'input';
+        //     }
+        //     return false;
+        // });
+
+        // $this->migrateAcfFieldsValueToNewFields($postsModules, 
+        //     [
+        //         'post_title' => 'title',
+        //         'post_content' => 'content',
+        //         'data' => [
+        //             'name' => 'manual_inputs', 
+        //             'type' => 'repeater', 
+        //             'fields' => [
+        //                 'post_title' => 'title', 
+        //                 'post_content' => 'content',
+        //                 'column_values' => 'accordion_column_values',
+        //                 'permalink' => 'link'
+        //             ]
+        //         ],
+        //         'posts_columns' => [
+        //             'name' => 'columns',
+        //             'type' => 'replaceValue',
+        //             'values' => [
+        //                 'grid-md-12' => 'o-grid-12',
+        //                 'grid-md-6' => 'o-grid-6',
+        //                 'grid-md-4' => 'o-grid-4',
+        //                 'grid-md-3' => 'o-grid-3',
+        //                 'default' => 'o-grid-4'
+        //             ]
+        //         ],
+        //         'posts_display_as' => [
+        //             'name' => 'display_as', 
+        //             'type' => 'replaceValue', 
+        //             'values' => [
+        //                 'list' => 'list', 
+        //                 'expandable-list' => 'accordion', 
+        //                 'items' => 'card', 
+        //                 'news' => 'card', 
+        //                 'index' => 'card', 
+        //                 'segment' => 'segment', 
+        //                 'collection' => 'collection', 
+        //                 'features-grid' => 'box', 
+        //                 'grid' => 'block', 
+        //                 'default' => 'card'
+        //             ]
+        //         ]
+        //     ]/* ,
+        //     'mod-manualinput' */
+        // );
+
         return true; //Return false to keep running this each time!
     }
+
+    /**
+     * Get all posts of a post type
+     * 
+     * @param string $postType Name of the post type to retrieve
+     * @return array Array of posts
+     */
+    private function getPostType(string $postType) {
+        $args = array(
+            'post_type' => $postType,
+            'numberposts' => -1
+        );
+        
+        $posts = get_posts($args);
+
+        return $posts;
+    }
+
+    /**
+     * Migrate an old field value to a new field with a different name and updated value.
+     *
+     * This function is responsible for migrating the value of an old field to a new field with a specified name, replacing the old value with the updated value.
+     *
+     * @param array $newField An array of field data containing the keys "name" (string) and "values" (array).
+     * The "values" array should be in the format [oldValue => updatedValue].
+     * @param string $oldFieldValue The value of the old field to be replaced.
+     * @param int $id The post ID to which the new field value will be associated.
+     *
+     * @return void
+     */
+    private function updateAndReplaceFieldValue(array $newField, string $oldFieldValue, int $id) {
+        if (!empty($newField['name']) && !empty($newField['values']) && is_array($newField['values']) && !empty($newField['values'][$oldFieldValue])) { 
+            update_field($newField['name'], $newField['values'][$oldFieldValue], $id);
+        } else {
+            update_field($newField['name'], $newField['values']['default'], $id);
+        }
+    }
+
+    /**
+     * Migrate ACF repeater field values to new fields.
+     *
+     * This function is responsible for migrating ACF repeater field values to new fields based on the provided mapping
+     * and associating these values with a specific post ID.
+     *
+     * @param array $newField An array describing the new ACF field, including name, type, and subfields.
+     * @param mixed $oldFieldValue The value of the old ACF repeater field.
+     * @param int $id The post ID to which the new field values will be associated.
+     *
+     * @return void
+     */
+    private function migrateAcfRepeater($newField, $oldFieldValue, $id) {
+        update_field($newField['name'], $oldFieldValue, $id);
+        $subFields = $newField['fields'];
+        if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
+            $i = 0;
+            while (have_rows($newField['name'], $id)) {
+                the_row();
+                $i++;
+                foreach ($subFields as $oldFieldName => $newFieldName) {
+                    if (!empty($oldFieldValue[$i - 1]) && !empty($oldFieldValue[$i - 1][$oldFieldName])) {
+                        $oldSubFieldValue = $oldFieldValue[$i - 1][$oldFieldName];
+                        if (!empty($oldSubFieldValue)) {
+                            update_sub_field([$newField['name'], $i, $newFieldName], $oldSubFieldValue, $id);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    /* Block start */
+    // private function migrateAcfRepeaterFieldKeys(array $modules, array $fields, string $repeaterFieldKey) {
+    //     if (!empty($modules) && is_array($modules) && !empty($fields)) {
+    //         foreach ($modules as &$module) {
+    //             $repeater = get_field($repeaterFieldKey, $module->ID);
+    //             if (!empty($repeater)) {
+    //                 foreach ($repeater as &$row) {
+    //                     foreach ($fields as $oldFieldName => $newFieldName) {
+    //                         if (isset($row[$oldFieldName])) {
+    //                             $row[$newFieldName] = $row[$oldFieldName];
+    //                             unset($row[$oldFieldName]);
+    //                         }
+    //                     }
+    //                 }
+    //             }
+                
+    //             if (!empty($module->ID)) {
+    //                 update_field($repeaterFieldKey, $repeater, $module->ID);
+    //             }
+    //         }
+    //     }
+    // }
 
     /**
      * Module: Extract a field value and adds it to another field
@@ -87,15 +262,8 @@ class Upgrade
      * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
      * @param string|false $newBlockName renames the block to a different block.
      */
-    private function migrateAcfFieldsValueToNewFields(string $moduleName, array $fields, $newModuleName = false)
+    private function migrateAcfFieldsValueToNewFields(array $modules, array $fields, $newModuleName = false)
     {
-        $args = array(
-            'post_type' => $moduleName,
-            'numberposts' => -1
-        );
-        
-        $modules = get_posts($args);
-
         if (!empty($modules) && is_array($modules)) {
             foreach ($modules as &$module) {
                 $this->migrateModuleFields($fields, $module->ID);
@@ -119,12 +287,18 @@ class Upgrade
     private function migrateModuleFields(array $fields, int $id) 
     {
         if (!empty($fields) && is_array($fields)) {
-            foreach ($fields as $oldFieldName => $newFieldName) {
+            foreach ($fields as $oldFieldName => $newField) {
                 $oldFieldValue = get_field($oldFieldName, $id);
-                if (!empty($oldFieldValue)) {
-                    update_field($newFieldName, $oldFieldValue, $id);
+                if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
+                    if ($newField['type'] == 'repeater') {
+                        $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
+                    } else if ($newField['type'] == 'replaceValue') {
+                        $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
+                    }
+                } else if (!empty($oldFieldValue) && is_string($newField)) {
+                    update_field($newField, $oldFieldValue, $id);
                 }
-                delete_field($oldFieldName, $id);
+                // delete_field($oldFieldName, $id);
             }
         }
     }
@@ -132,28 +306,29 @@ class Upgrade
     /**
      * Block: Extract a field value and adds it to another field.
      * 
-     * @param string $blockName Name of the block
+     * @param string $pages Pages with the block
      * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
      * @param string|false $newBlockName renames the block to a different block.
      */
-    private function migrateBlockFieldsValueToNewFields(string $blockName = '', array $fields = [], $newBlockName = false) 
+    private function migrateBlockFieldsValueToNewFields($blockName, array $fields = [], $newBlockName = false, $blockConditionFunctionName = false) 
     {
         $pages = $this->getPagesFromBlockName($blockName);
 
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
-                if ($page->post_type !== 'customize_changeset') {
+                if ($page->post_type !== 'customize_changeset' && $page->ID == 930) {
                     $blocks = parse_blocks($page->post_content);
-    
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
-                            if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data'])) {
+                            echo '<pre>' . print_r( $block, true ) . '</pre>';
+                            if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data']) && $this->blockCondition($blockConditionFunctionName, $block)) {
                                 $block['attrs']['data'] = $this->migrateBlockFields($fields, $block['attrs']['data']);
 
                                 if (!empty($newBlockName)) {
                                     $block['blockName'] = $newBlockName;
                                     $block['attrs']['name'] = $newBlockName;
                                 }
+                                // echo '<pre>' . print_r( $block, true ) . '</pre>';
                             }
                         }
     
@@ -178,15 +353,41 @@ class Upgrade
     private function migrateBlockFields(array $fields = [], array $blockData) 
     {
         if (!empty($fields) && is_array($fields)) {
-            foreach ($fields as $oldFieldName => $newFieldName) {
+            foreach ($fields as $oldFieldName => $newField) {
                 if (isset($blockData[$oldFieldName])) {
-                    $blockData[$newFieldName] = $blockData[$oldFieldName];
-                    unset($blockData[$oldFieldName]);
+                    if (is_array($newField)) {
+                        if ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
+                            $blockData[$newField['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
+                        }
+                    } else {
+                        $blockData[$newField] = $blockData[$oldFieldName];
+                    }
+                    // unset($blockData[$oldFieldName]);
                 }
             }
         }
 
         return $blockData;
+    }
+
+    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) {
+        if (isset($newField['values'][$oldFieldValue])) {
+            return $newField['values'][$oldFieldValue];
+        }
+
+        return $newField['values']['default'];
+    }
+
+    private function blockCondition($function, $block) {
+        if ($function && method_exists($this, $function)) {
+            return $this->$function($block);
+        }
+
+        return true;
+    }
+
+    private function postsBlockCondition($block) {
+        return !empty($block['attrs']['data']['posts_data_source']) && $block['attrs']['data']['posts_data_source'] == 'input';
     }
 
     /**
