@@ -25,7 +25,7 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        add_action('wp', array($this, 'initUpgrade'), 10);
+        // add_action('wp', array($this, 'initUpgrade'), 10);
     }
 
     /**
@@ -655,12 +655,12 @@ class Upgrade
             while ($currentDbVersion <= $this->dbVersion) {
                 $currentDbVersion++;
                 $funcName = 'v_' . (string) $currentDbVersion;
-                // if (method_exists($this, $funcName)) {
-                //     if ($this->{$funcName}($this->db)) {
-                //         update_option($this->dbVersionKey, (int) $currentDbVersion);
-                //         wp_cache_flush();
-                //     }
-                // }
+                if (method_exists($this, $funcName)) {
+                    if ($this->{$funcName}($this->db)) {
+                        update_option($this->dbVersionKey, (int) $currentDbVersion);
+                        wp_cache_flush();
+                    }
+                }
             }
         }
     }
