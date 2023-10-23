@@ -1,9 +1,9 @@
 @card([
     'link' => $post->permalink,
     'imageFirst' => true,
-    'image' => $post->showImage ? [
-        'src' => $post->thumbnail['src'], 
-        'alt' => $post->thumbnail['alt']
+    'image' => $post->showImage && !empty($post->images['thumbnail16:9']) ? [
+        'src' => $post->images['thumbnail16:9']['src'], 
+        'alt' => $post->images['thumbnail16:9']['alt']
         ] : [],
     'hasPlaceholder' => !empty($post->hasPlaceholderImage),
     'heading' => !empty($post->showTitle) ? $post->postTitle : false,

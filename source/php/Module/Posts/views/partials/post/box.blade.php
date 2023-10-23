@@ -8,8 +8,8 @@
     'ratio' => $ratio,
     'image' => $post->showImage
         ? [
-            'src' => $post->thumbnail['src'] ?? false,
-            'alt' => $post->thumbnail['alt'] 
+            'src' => $post->images['thumbnail16:9']['src'] ?? false,
+            'alt' => $post->images['thumbnail16:9']['alt'] 
         ]
         : [],
 ])

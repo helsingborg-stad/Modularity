@@ -23,8 +23,8 @@
                         'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                         'image' => $post->showImage
                             ? [
-                                'src' => $post->thumbnail['src'],
-                                'alt' => $post->thumbnail['alt'],
+                                'src' => $post->images['thumbnail16:9']['src'],
+                                'alt' => $post->images['thumbnail16:9']['alt'],
                                 'backgroundColor' => 'secondary'
                             ]
                             : [],
@@ -50,10 +50,10 @@
                         'date' => $post->postDate,
                         'dateBadge' => $post->dateBadge,
                         'filled' => true,
-                        'image' => $post->showImage
+                        'image' => $post->showImage && isset($post->images['thumbnail' . $ratio])
                             ? [
-                                'src' => $post->thumbnailSquare['src'],
-                                'alt' => $post->thumbnailSquare['alt'],
+                                'src' => $post->images['thumbnail' . $ratio]['src'],
+                                'alt' => $post->images['thumbnail' . $ratio]['alt'],
                                 'backgroundColor' => 'secondary'
                             ]
                             : false,

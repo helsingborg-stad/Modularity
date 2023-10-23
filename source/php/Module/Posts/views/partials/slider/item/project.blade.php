@@ -1,5 +1,5 @@
 @card([
-    'image' => $post->thumbnail['src'],
+    'image' => $post->images['thumbnail16:9']['src'],
     'link' => $post->permalink,
     'heading' => $post->postTitle,
     'content' => $post->project->taxonomies,
