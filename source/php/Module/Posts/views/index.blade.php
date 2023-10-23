@@ -58,7 +58,7 @@
                         'hasAction' => true,
                         'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                         'image' =>
-                            $post->showImage && isset($post->images['thumbnail16:9'])
+                            $post->showImage && !empty($post->images['thumbnail16:9']['src'])
                                 ? [
                                     'src' => $post->images['thumbnail16:9']['src'],
                                     'alt' => $post->images['thumbnail16:9']['alt'],
