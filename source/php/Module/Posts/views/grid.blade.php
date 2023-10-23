@@ -21,7 +21,7 @@
                         'containerAware' => true,
                         'hasAction' => true,
                         'hasPlaceholder' => !empty($post->hasPlaceholderImage),
-                        'image' => $post->showImage
+                        'image' => $post->showImage && !empty($post->images['thumbnail16:9']['src'])
                             ? [
                                 'src' => $post->images['thumbnail16:9']['src'],
                                 'alt' => $post->images['thumbnail16:9']['alt'],
@@ -50,7 +50,7 @@
                         'date' => $post->postDate,
                         'dateBadge' => $post->dateBadge,
                         'filled' => true,
-                        'image' => $post->showImage && isset($post->images['thumbnail' . $ratio])
+                        'image' => $post->showImage && isset($post->images['thumbnail' . $ratio]['src'])
                             ? [
                                 'src' => $post->images['thumbnail' . $ratio]['src'],
                                 'alt' => $post->images['thumbnail' . $ratio]['alt'],
