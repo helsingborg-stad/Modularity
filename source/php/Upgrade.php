@@ -76,6 +76,44 @@ class Upgrade
      */
     private function v_1($db): bool
     {
+        global $wpdb;
+        
+        $this->migrateBlockFieldsValueToNewFields('acf/divider', [
+                'divider_title' => [
+                    'name' => 'custom_block_title', 
+                    'key' => 'field_block_title'
+                ]
+            ]
+        );
+
+        /* Removing divider acf title field and adding it as post_title */
+        $args = array(
+            'post_type' => 'mod-divider',
+            'numberposts' => -1
+        );
+        
+        $dividers = get_posts($args);
+
+        
+        if (!empty($dividers)) {
+            foreach ($dividers as &$divider) {
+                $dividerTitleField = get_field('divider_title', $divider->ID);
+                delete_field('divider_title', $divider->ID);
+  
+                if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
+                    update_post_meta($divider->ID, 'modularity-module-hide-title', false);
+                    wp_update_post([
+                        'ID' => $divider->ID,
+                        'post_title' => $dividerTitleField
+                    ]);
+                }
+            }
+        }
+        return true; //Return false to keep running this each time!
+    }
+
+    private function v_2($db): bool
+    {
 
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
@@ -305,7 +343,6 @@ class Upgrade
             foreach ($pages as &$page) {
                 if ($page->post_type !== 'customize_changeset' && $page->ID == 9) {
                     $blocks = parse_blocks($page->post_content);
-                    // echo '<pre>' . print_r( $page, true ) . '</pre>';
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
                             if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data']) && $this->blockCondition($blockConditionFunctionName, $block)) {
@@ -343,7 +380,6 @@ class Upgrade
         if (!empty($fields) && is_array($fields)) {
             foreach ($fields as $oldFieldName => $newField) {
                 if (isset($blockData[$oldFieldName])) {
-                    echo '<pre>' . print_r( $newField, true ) . '</pre>';
                     if (is_array($newField) && !empty($newField['type'])) {
                         if ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
                             $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
@@ -352,14 +388,15 @@ class Upgrade
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
                         }
                     } else {
-                        $blockData[$newField] = $blockData[$oldFieldName];
-                        $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
+                        // echo '<pre>' . print_r( $newField, true ) . '</pre>';
+                        $blockData[$newField['name']] = $blockData[$oldFieldName];
+                        $blockData['_' . $newField['name']] = $newField['key'];
+                        // echo '<pre>' . print_r( $blockData, true ) . '</pre>';
                     }
                     // unset($blockData[$oldFieldName]);
                 }
             }
         }
-        echo '<pre>' . print_r( $blockData, true ) . '</pre>';
         return $blockData;
     }
 
