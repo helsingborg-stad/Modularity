@@ -198,7 +198,7 @@ class Posts extends \Modularity\Module
         $fields = $this->arrayToObject(
             $this->getFields()
         );
-
+        
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
 
@@ -233,7 +233,7 @@ class Posts extends \Modularity\Module
 
         $data['filters'] = [];
 
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array)$fields->posts_taxonomy_value;
             $taxValues = implode('|', $taxValues);
@@ -498,7 +498,7 @@ class Posts extends \Modularity\Module
         }
 
         // Taxonomy filter
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array)$fields->posts_taxonomy_value;
 

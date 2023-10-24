@@ -24,7 +24,7 @@ class Iframe extends \Modularity\Module
         $data['height']      = get_field('iframe_height', $this->ID);
         $data['description'] = get_field('iframe_description', $this->ID);
 
-        $data['lang'] = (object) [
+        $data['lang'] = [
             'knownLabels' => [
                 'title'  => __('We need your consent to continue', 'modularity'),
                 'info'   => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),

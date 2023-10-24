@@ -46,7 +46,7 @@
                         'content' => $post->showExcerpt ? $post->excerptShort : false,
                         'ratio' => $ratio,
                         'meta' => $post->termsUnlinked ? $post->termsUnlinked : false,
-                        'secondaryMeta' => $display_reading_time ? $post->readingTime : false,
+                        'secondaryMeta' => !empty($display_reading_time) && !empty($post->readingTime) ? $post->readingTime : false,
                         'date' => $post->postDate,
                         'dateBadge' => $post->dateBadge,
                         'filled' => true,
@@ -63,7 +63,7 @@
                         'link' => $post->permalink,
                         'postId' => $post->id,
                         'postType' => $post->postType ?? '',
-                        'icon' => $post->termIcon['icon'] ? $post->termIcon : false,
+                        'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
                         'attributeList' => array_merge($post->attributeList, []),
                     ])
                     @slot('floating')
