@@ -81,9 +81,8 @@ class ExpandableListTemplate
                         }
                     }
                 }
-
                 $accordion[$index]['heading'] = $item->postTitle ?? '';
-                $accordion[$index]['content'] = $item->postContent ?? '';
+                $accordion[$index]['content'] = $item->postContentFiltered ?? '';
             }
         }
 
