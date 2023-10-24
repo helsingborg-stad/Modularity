@@ -94,11 +94,10 @@ class Upgrade
         
         $dividers = get_posts($args);
 
-        
         if (!empty($dividers)) {
             foreach ($dividers as &$divider) {
                 $dividerTitleField = get_field('divider_title', $divider->ID);
-                delete_field('divider_title', $divider->ID);
+                // delete_field('divider_title', $divider->ID);
   
                 if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
                     update_post_meta($divider->ID, 'modularity-module-hide-title', false);
