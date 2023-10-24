@@ -9,8 +9,8 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 0; //The db version we want to achive
-    private $dbVersionKey = 0;
+    private $dbVersion = 1; //The db version we want to achive
+    private $dbVersionKey = 'modularity_db_version';
     private $db;
 
     /**
@@ -25,7 +25,7 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        // add_action('wp', array($this, 'initUpgrade'), 10);
+        add_action('wp', array($this, 'initUpgrade'), 10);
     }
 
     /**
@@ -61,7 +61,7 @@ class Upgrade
      */
     public function reset()
     {
-        update_option($this->dbVersionKey, 1);
+        update_option($this->dbVersionKey, 0);
     }
 
     /**
