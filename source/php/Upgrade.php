@@ -351,9 +351,7 @@ class Upgrade
                                 if (!empty($newBlockName)) {
                                     $block['blockName'] = $newBlockName;
                                     $block['attrs']['name'] = $newBlockName;
-                                    // echo '<pre>' . print_r( $block, true ) . '</pre>';
                                 }
-                                // echo '<pre>' . print_r( $block, true ) . '</pre>';
                             }
                         }
     
@@ -388,10 +386,8 @@ class Upgrade
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
                         }
                     } else {
-                        // echo '<pre>' . print_r( $newField, true ) . '</pre>';
                         $blockData[$newField['name']] = $blockData[$oldFieldName];
                         $blockData['_' . $newField['name']] = $newField['key'];
-                        // echo '<pre>' . print_r( $blockData, true ) . '</pre>';
                     }
                     // unset($blockData[$oldFieldName]);
                 }
