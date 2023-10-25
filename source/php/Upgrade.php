@@ -696,12 +696,12 @@ class Upgrade
                 );
             }
             
+            
             //Fetch global wpdb object, save to $db
             $this->globalToLocal('wpdb', 'db');
             
             //Run upgrade(s)
-            while ($currentDbVersion < $this->dbVersion) {
-                $currentDbVersion++;
+            while ($currentDbVersion <= $this->dbVersion) {
                 $funcName = 'v_' . (string) $currentDbVersion;
                 if (method_exists($this, $funcName)) {
                     if ($this->{$funcName}($this->db)) {
@@ -709,6 +709,8 @@ class Upgrade
                         wp_cache_flush();
                     }
                 }
+                
+                $currentDbVersion++;
             }
         }
     }
