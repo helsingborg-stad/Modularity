@@ -9,8 +9,8 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 0; //The db version we want to achive
-    private $dbVersionKey = 0;
+    private $dbVersion = 1; //The db version we want to achive
+    private $dbVersionKey = 'modularity_db_version';
     private $db;
 
     /**
@@ -25,7 +25,7 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        // add_action('wp', array($this, 'initUpgrade'), 10);
+        add_action('wp', array($this, 'initUpgrade'), 10);
     }
 
     /**
@@ -61,7 +61,7 @@ class Upgrade
      */
     public function reset()
     {
-        update_option($this->dbVersionKey, 1);
+        update_option($this->dbVersionKey, 0);
     }
 
     /**
@@ -94,11 +94,10 @@ class Upgrade
         
         $dividers = get_posts($args);
 
-        
         if (!empty($dividers)) {
             foreach ($dividers as &$divider) {
                 $dividerTitleField = get_field('divider_title', $divider->ID);
-                delete_field('divider_title', $divider->ID);
+                // delete_field('divider_title', $divider->ID);
   
                 if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
                     update_post_meta($divider->ID, 'modularity-module-hide-title', false);
@@ -341,7 +340,7 @@ class Upgrade
 
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
-                if ($page->post_type !== 'customize_changeset' && $page->ID == 9) {
+                if ($page->post_type !== 'customize_changeset') {
                     $blocks = parse_blocks($page->post_content);
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
@@ -351,9 +350,7 @@ class Upgrade
                                 if (!empty($newBlockName)) {
                                     $block['blockName'] = $newBlockName;
                                     $block['attrs']['name'] = $newBlockName;
-                                    // echo '<pre>' . print_r( $block, true ) . '</pre>';
                                 }
-                                // echo '<pre>' . print_r( $block, true ) . '</pre>';
                             }
                         }
     
@@ -388,10 +385,8 @@ class Upgrade
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
                         }
                     } else {
-                        // echo '<pre>' . print_r( $newField, true ) . '</pre>';
                         $blockData[$newField['name']] = $blockData[$oldFieldName];
                         $blockData['_' . $newField['name']] = $newField['key'];
-                        // echo '<pre>' . print_r( $blockData, true ) . '</pre>';
                     }
                     // unset($blockData[$oldFieldName]);
                 }
@@ -705,7 +700,7 @@ class Upgrade
             $this->globalToLocal('wpdb', 'db');
             
             //Run upgrade(s)
-            while ($currentDbVersion <= $this->dbVersion) {
+            while ($currentDbVersion < $this->dbVersion) {
                 $currentDbVersion++;
                 $funcName = 'v_' . (string) $currentDbVersion;
                 if (method_exists($this, $funcName)) {

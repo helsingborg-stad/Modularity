@@ -21,7 +21,7 @@ class Divider extends \Modularity\Module
         $fields = $this->getFields();
 
         //Asign to view names
-        $data['title']          = !empty($this->ID) ? $this->data['post_title'] : (!empty($this->data['postTitle']) ? $this->data['postTitle'] : false);
+        $data['title']          = !empty($this->ID) && !empty($this->data['post_title']) ? $this->data['post_title'] : (!empty($fields['custom_block_title']) ? $fields['custom_block_title'] : false);
         $data['titleVariant']   = !empty($fields['divider_title_variant']) ? $fields['divider_title_variant'] : 'h2';
         
         //Send to view
