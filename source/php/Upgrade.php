@@ -702,14 +702,15 @@ class Upgrade
             
             //Run upgrade(s)
             while ($currentDbVersion <= $this->dbVersion) {
-                $currentDbVersion++;
                 $funcName = 'v_' . (string) $currentDbVersion;
-                if (method_exists($this, $funcName) && $currentDbVersion > $this->dbVersion) {
+                if (method_exists($this, $funcName)) {
                     if ($this->{$funcName}($this->db)) {
                         update_option($this->dbVersionKey, (int) $currentDbVersion);
                         wp_cache_flush();
                     }
                 }
+                
+                $currentDbVersion++;
             }
         }
     }
