@@ -6,25 +6,6 @@
     'title' => __('Divider', 'modularity'),
     'fields' => array(
         0 => array(
-            'key' => 'field_62816e7467206',
-            'label' => __('Title', 'modularity'),
-            'name' => 'divider_title',
-            'type' => 'text',
-            'instructions' => __('This text will be displayed in the divider (optional)', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => '',
-            'placeholder' => '',
-            'prepend' => '',
-            'append' => '',
-            'maxlength' => '',
-        ),
-        1 => array(
             'key' => 'field_628b5b97810fc',
             'label' => __('Title variant', 'modularity'),
             'name' => 'divider_title_variant',
