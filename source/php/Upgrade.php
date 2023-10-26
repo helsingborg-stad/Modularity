@@ -124,6 +124,23 @@ class Upgrade
         // }
         // echo '<pre>' . print_r( get_field('manual_inputs', 3168), true ) . '</pre>';
         // return "";
+        
+
+        $reset = $this->getPostType('mod-manualinput');
+
+    //     if (!empty($reset) && is_array($reset)) {
+    //         foreach ($reset as $module) {
+    //             echo '<pre>' . print_r( $module->ID, true ) . '</pre>';
+    //             delete_field('manual_inputs', $module->ID);
+    //         }
+    //     }
+    //     $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
+    //     [
+    //     ],
+    //     'mod-index'
+    // );
+    //     return "";
+
         $this->migrateAcfFieldsValueToNewFields($indexModules, 
             [
                 'index' => [
@@ -153,6 +170,8 @@ class Upgrade
     private function v_3($db): bool
     {
         echo '<pre>' . print_r( "should not run", true ) . '</pre>';
+
+        
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
                     'name' => ['name' => 'display_as','key' => 'field_64ff23d0d91bf'], 
@@ -344,23 +363,27 @@ class Upgrade
     private function migrateIndexModuleRepeater(array $newField, $oldFieldValue, $id) {
 
         update_field('display_as', 'card', $id);
+        
         // update_field($newField['name'], $oldFieldValue, $id);
         $updateValue = [];
-        
+            
         if (!empty($oldFieldValue) && is_array($oldFieldValue)) {            
             foreach ($oldFieldValue as $oldInput) {
-                if (!empty($oldInput['link_type']) && $oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID) && !empty(get_page_link($oldInput['page']->ID))) {
-                    $val = [];
-
-                    $val['content'] = !empty($oldInput['lead']) ? $oldInput['lead'] : (!empty($oldInput['page']->post_content) ? $oldInput['page']->post_content : false);
-                    
-                    
-                    $val['title'] = !empty($oldInput['title']) ? $oldInput['title'] : (!empty($oldInput['page']->post_title) ? $oldInput['page']->post_title : false);
+                $val = [];
+                $val['image_before_content'] = false;
+                $val['content'] = !empty($oldInput['lead']) ? $oldInput['lead'] : (!empty($oldInput['page']->post_content) ? $oldInput['page']->post_content : false);
+                $val['title'] = !empty($oldInput['title']) ? $oldInput['title'] : (!empty($oldInput['page']->post_title) ? $oldInput['page']->post_title : false);
+                if (!empty($oldInput['link_type']) && $oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID)) {
+                    $val['link'] = !empty(get_page_link($oldInput['page']->ID)) ? get_page_link($oldInput['page']->ID) : false;
                     
                     $val['image'] = !empty($oldInput['image_display']) && $oldInput['image_display'] == 'featured' ? get_post_thumbnail_id($oldInput['page']->ID) : (!empty($oldInput['image_display']) && $oldInput['image_display'] == 'custom' ? $oldInput['custom_image']['ID'] : false);
 
-                    array_push($updateValue, $val);
-            }
+                } elseif(!empty($oldInput['link_type']) && $oldInput['link_type'] == 'external') {
+                    $val['link'] = isset($oldInput['link_url']) ? $oldInput['link_url'] : false;
+
+                    $val['image'] = !empty($oldInput['custom_image']['ID']) ? $oldInput['custom_image']['ID'] : false;
+                }
+                array_push($updateValue, $val);
         } 
 
         update_field($newField['name'], $updateValue, $id);
