@@ -111,9 +111,48 @@ class Upgrade
         return true; //Return false to keep running this each time!
     }
 
+
+
     private function v_2($db): bool
     {
+        $indexModules = $this->getPostType('mod-index');
 
+        // if (!empty($indexModules) && is_array($indexModules)) {
+        //     $filteredIndexModules = array_filter($indexModules, function ($module) {
+        //         return !empty($module->ID) && $module->ID == 1391;
+        //     });
+        // }
+        // echo '<pre>' . print_r( get_field('manual_inputs', 3168), true ) . '</pre>';
+        // return "";
+        $this->migrateAcfFieldsValueToNewFields($indexModules, 
+            [
+                'index' => [
+                    'name' => 'manual_inputs', 
+                    'type' => 'custom', 
+                    'function' => 'migrateIndexModuleRepeater',
+                ],
+                'index_columns' => [
+                    'name' => 'columns',
+                    'type' => 'replaceValue',
+                    'values' => [
+                        'grid-md-12' => 'o-grid-12',
+                        'grid-md-6' => 'o-grid-6',
+                        'grid-md-4' => 'o-grid-4',
+                        'grid-md-3' => 'o-grid-3',
+                        'default' => 'o-grid-4'
+                    ]
+                ],
+            ],
+            'mod-manualinput'
+        );
+        
+        return true; //Return false to keep running this each time!
+    }
+
+
+    private function v_3($db): bool
+    {
+        echo '<pre>' . print_r( "should not run", true ) . '</pre>';
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
                     'name' => ['name' => 'display_as','key' => 'field_64ff23d0d91bf'], 
@@ -302,6 +341,69 @@ class Upgrade
         }
     }
 
+    private function migrateIndexModuleRepeater(array $newField, $oldFieldValue, $id) {
+
+        update_field('display_as', 'card', $id);
+        // update_field($newField['name'], $oldFieldValue, $id);
+        $updateValue = [];
+        
+        if (!empty($oldFieldValue) && is_array($oldFieldValue)) {            
+            foreach ($oldFieldValue as $oldInput) {
+                if (!empty($oldInput['link_type']) && $oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID) && !empty(get_page_link($oldInput['page']->ID))) {
+                    $val = [];
+
+                    $val['content'] = !empty($oldInput['lead']) ? $oldInput['lead'] : (!empty($oldInput['page']->post_content) ? $oldInput['page']->post_content : false);
+                    
+                    
+                    $val['title'] = !empty($oldInput['title']) ? $oldInput['title'] : (!empty($oldInput['page']->post_title) ? $oldInput['page']->post_title : false);
+                    
+                    $val['image'] = !empty($oldInput['image_display']) && $oldInput['image_display'] == 'featured' ? get_post_thumbnail_id($oldInput['page']->ID) : (!empty($oldInput['image_display']) && $oldInput['image_display'] == 'custom' ? $oldInput['custom_image']['ID'] : false);
+
+                    array_push($updateValue, $val);
+            }
+        } 
+
+        update_field($newField['name'], $updateValue, $id);
+        // if (have_rows($newField['name'], $id)) {
+        //     $i = 0;
+        //     while (have_rows($newField['name'], $id)) {
+        //         the_row(); 
+        //         $i++;
+                
+        //         if (!empty($oldFieldValue[$i - 1])) {
+        //             $oldInput = $oldFieldValue[$i - 1];
+
+        //             if (!empty($oldInput['link_type']) && $oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID) && !empty(get_page_link($oldInput['page']->ID))) {
+        //                 update_sub_field([$newField['name'], $i, 'link'], get_page_link($oldInput['page']->ID), $id);
+        //                 if (!empty($oldInput['lead'])) {
+        //                     update_sub_field([$newField['name'], $i, 'content'], $oldInput['lead'], $id);
+        //                 } elseif (!empty($oldInput['page']->post_content)) {
+        //                     update_sub_field([$newField['name'], $i, 'content'], $oldInput['page']->post_content, $id);
+        //                 }
+                        
+        //                 if (!empty($oldInput['title'])) {
+        //                     update_sub_field([$newField['name'], $i, 'title'], $oldInput['title'], $id);
+        //                 } elseif (!empty($oldInput['page']->post_title)) {
+        //                     update_sub_field([$newField['name'], $i, 'title'], $oldInput['page']->post_title, $id);
+        //                 }
+                        
+        //                 if (!empty($oldInput['image_display'])) {
+        //                     if ($oldInput['image_display'] == 'featured' && !empty($oldInput['page']->ID)) {
+        //                         update_sub_field([$newField['name'], $i, 'image'], get_post_thumbnail_id($oldInput['page']->ID), $id);
+        //                     } elseif ($oldInput['image_display'] == 'custom' && !empty($oldInput['custom_image']['ID'])) {
+        //                         update_sub_field([$newField['name'], $i, 'image'], $oldInput['custom_image']['ID'], $id);
+        //                     }
+        //                 }
+                        
+        //                 echo '<pre>' . print_r( get_field('manual_inputs', 3168), true ) . '</pre>';
+                        
+        //             }
+        //         }
+        //     }
+        // }
+    }
+}
+
     /**
      * Post: Extract a field value and adds it to another field
      * 
@@ -312,19 +414,25 @@ class Upgrade
     {
         if (!empty($fields) && is_array($fields)) {
             foreach ($fields as $oldFieldName => $newField) {
-                $oldFieldValue = get_field($oldFieldName, $id);
-                if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
-                    if ($newField['type'] == 'repeater') {
-                        $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
-                    } else if ($newField['type'] == 'replaceValue') {
-                        $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
-                    }
-                } else if (!empty($oldFieldValue) && is_string($newField)) {
-                    update_field($newField, $oldFieldValue, $id);
-                }
-                // delete_field($oldFieldName, $id);
+                $this->migrateModuleField($oldFieldName, $newField, $id);
             }
         }
+    }
+
+    private function migrateModuleField($oldFieldName, $newField, $id)  {
+        $oldFieldValue = get_field($oldFieldName, $id);
+        if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
+            if ($newField['type'] == 'repeater') {
+                $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
+            } else if ($newField['type'] == 'replaceValue') {
+                $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
+            } else if ($newField['type'] == 'custom' && !empty($newField['function'])) {
+                $this->{$newField['function']}($newField, $oldFieldValue, $id);
+            }
+        } else if (!empty($oldFieldValue) && is_string($newField)) {
+            update_field($newField, $oldFieldValue, $id);
+        }
+        // delete_field($oldFieldName, $id);
     }
 
     /**
@@ -677,6 +785,9 @@ class Upgrade
         }
 
         $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
+
+        $this->dbVersion = 2;
+        $currentDbVersion = 1;
 
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
