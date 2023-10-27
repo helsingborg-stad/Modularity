@@ -116,7 +116,6 @@ class Upgrade
     private function v_2($db): bool
     {
         // return false;
-        $indexModules = $this->getPostType('mod-index');
         $this->migrateBlockFieldsValueToNewFields('acf/index', [
             'index_columns' => [
                 'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
@@ -138,25 +137,10 @@ class Upgrade
                 ], 
             ]
         ],
-        'acf/manualinput'
-    );
+        'acf/manualinput');
+
+        $indexModules = $this->getPostType('mod-index');
         
-    /* TODO: Remove  */
-    //     $reset = $this->getPostType('mod-manualinput');
-
-    //     if (!empty($reset) && is_array($reset)) {
-    //         foreach ($reset as $module) {
-    //             echo '<pre>' . print_r( $module->ID, true ) . '</pre>';
-    //             delete_field('manual_inputs', $module->ID);
-    //         }
-    //     }
-    //     $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
-    //     [
-    //     ],
-    //     'mod-index'
-    // );
-    //     return "";
-
         $this->migrateAcfFieldsValueToNewFields($indexModules, 
             [
                 'index' => [
@@ -176,14 +160,41 @@ class Upgrade
                     ]
                 ],
             ],
-            'mod-manualinput'
-        );
+            'mod-manualinput');
         
         return true; //Return false to keep running this each time!
     }
 
+    
+    private function v_3($db): bool 
+    {
+        $this->migrateBlockFieldsValueToNewFields('acf/index', [
+            'index_columns' => [
+                'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
+                'type' => 'replaceValue',
+                'values' => [
+                    'grid-md-12' => 'o-grid-12',
+                    'grid-md-6' => 'o-grid-6',
+                    'grid-md-4' => 'o-grid-4',
+                    'grid-md-3' => 'o-grid-3',
+                    'default' => 'o-grid-4'
+                ]
+            ], 
+            'index' => [
+                'type' => 'custom',
+                'function' => 'migrateIndexBlockRepeater',
+                'name' => [
+                    'name' => 'manual_inputs', 
+                    'key' => 'field_64ff22b2d91b7'
+                ], 
+            ]
+        ],
+        'acf/manualinput');
 
-    private function v_3($db): bool
+    }
+
+
+    private function v_4($db): bool
     {
         echo '<pre>' . print_r( "should not run", true ) . '</pre>';
 
