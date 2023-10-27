@@ -456,43 +456,6 @@ class Upgrade
         } 
 
         update_field($newField['name'], $updateValue, $id);
-        // if (have_rows($newField['name'], $id)) {
-        //     $i = 0;
-        //     while (have_rows($newField['name'], $id)) {
-        //         the_row(); 
-        //         $i++;
-                
-        //         if (!empty($oldFieldValue[$i - 1])) {
-        //             $oldInput = $oldFieldValue[$i - 1];
-
-        //             if (!empty($oldInput['link_type']) && $oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID) && !empty(get_page_link($oldInput['page']->ID))) {
-        //                 update_sub_field([$newField['name'], $i, 'link'], get_page_link($oldInput['page']->ID), $id);
-        //                 if (!empty($oldInput['lead'])) {
-        //                     update_sub_field([$newField['name'], $i, 'content'], $oldInput['lead'], $id);
-        //                 } elseif (!empty($oldInput['page']->post_content)) {
-        //                     update_sub_field([$newField['name'], $i, 'content'], $oldInput['page']->post_content, $id);
-        //                 }
-                        
-        //                 if (!empty($oldInput['title'])) {
-        //                     update_sub_field([$newField['name'], $i, 'title'], $oldInput['title'], $id);
-        //                 } elseif (!empty($oldInput['page']->post_title)) {
-        //                     update_sub_field([$newField['name'], $i, 'title'], $oldInput['page']->post_title, $id);
-        //                 }
-                        
-        //                 if (!empty($oldInput['image_display'])) {
-        //                     if ($oldInput['image_display'] == 'featured' && !empty($oldInput['page']->ID)) {
-        //                         update_sub_field([$newField['name'], $i, 'image'], get_post_thumbnail_id($oldInput['page']->ID), $id);
-        //                     } elseif ($oldInput['image_display'] == 'custom' && !empty($oldInput['custom_image']['ID'])) {
-        //                         update_sub_field([$newField['name'], $i, 'image'], $oldInput['custom_image']['ID'], $id);
-        //                     }
-        //                 }
-                        
-        //                 echo '<pre>' . print_r( get_field('manual_inputs', 3168), true ) . '</pre>';
-                        
-        //             }
-        //         }
-        //     }
-        // }
     }
 }
 
@@ -537,7 +500,6 @@ class Upgrade
     private function migrateBlockFieldsValueToNewFields($blockName, array $fields = [], $newBlockName = false, $blockConditionFunctionName = false) 
     {
         $pages = $this->getPagesFromBlockName($blockName);
-
         if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
             foreach ($pages as &$page) {
                 if ($page->post_type !== 'customize_changeset') {
@@ -908,7 +870,7 @@ class Upgrade
             //Run upgrade(s)
             while ($currentDbVersion <= $this->dbVersion) {
                 $funcName = 'v_' . (string) $currentDbVersion;
-                if (method_exists($this, $funcName)) {
+                if (method_exists($this, $funcName) && $currentDbVersion == $this->dbVersion) {
                     if ($this->{$funcName}($this->db)) {
                         update_option($this->dbVersionKey, (int) $currentDbVersion);
                         wp_cache_flush();
