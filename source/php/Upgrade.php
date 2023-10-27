@@ -376,6 +376,8 @@ class Upgrade
         }
     }
 
+
+    /* TODO: Upgrade then remove */
     private function migrateIndexBlockRepeater($newField, $blockData, $oldFieldName) {
         $newFieldName = $newField['name']['name'];
         $newFieldKey = $newField['name']['key'];
@@ -425,15 +427,15 @@ class Upgrade
             $blockData['display_as'] = 'card';
             $blockData['_display_as'] = 'field_64ff23d0d91bf';
         }
-        
+
         return $blockData;
     }
 
+    /* TODO: Upgrade then remove */
     private function migrateIndexModuleRepeater(array $newField, $oldFieldValue, $id) {
 
         update_field('display_as', 'card', $id);
         
-        // update_field($newField['name'], $oldFieldValue, $id);
         $updateValue = [];
             
         if (!empty($oldFieldValue) && is_array($oldFieldValue)) {            
