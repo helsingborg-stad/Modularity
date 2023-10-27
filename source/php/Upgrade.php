@@ -139,23 +139,22 @@ class Upgrade
         ],
         'acf/manualinput'
     );
-        return true;
         
+    /* TODO: Remove  */
+    //     $reset = $this->getPostType('mod-manualinput');
 
-        $reset = $this->getPostType('mod-manualinput');
-
-        if (!empty($reset) && is_array($reset)) {
-            foreach ($reset as $module) {
-                echo '<pre>' . print_r( $module->ID, true ) . '</pre>';
-                delete_field('manual_inputs', $module->ID);
-            }
-        }
-        $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
-        [
-        ],
-        'mod-index'
-    );
-        return "";
+    //     if (!empty($reset) && is_array($reset)) {
+    //         foreach ($reset as $module) {
+    //             echo '<pre>' . print_r( $module->ID, true ) . '</pre>';
+    //             delete_field('manual_inputs', $module->ID);
+    //         }
+    //     }
+    //     $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
+    //     [
+    //     ],
+    //     'mod-index'
+    // );
+    //     return "";
 
         $this->migrateAcfFieldsValueToNewFields($indexModules, 
             [
@@ -476,6 +475,16 @@ class Upgrade
         }
     }
 
+    /**
+     * Migrate a Single Module Field
+     *
+     * This function migrates a single module field from its old name to its new name for a specific post.
+     * Depending on the field type, it performs the necessary migration actions.
+     *
+     * @param string $oldFieldName The old name of the field being migrated.
+     * @param array|string $newField An array or string representing the new field name or migration details.
+     * @param int $id The ID of the post where the field is being migrated.
+     */
     private function migrateModuleField($oldFieldName, $newField, $id)  {
         $oldFieldValue = get_field($oldFieldName, $id);
         if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
@@ -561,6 +570,14 @@ class Upgrade
         return $blockData;
     }
 
+    /**
+     * Migrate a repeater field within a block.
+     * 
+     * @param array $newField The configuration for the new repeater field.
+     * @param array $blockData The data of the block containing the repeater field.
+     * @param string $oldFieldName The name of the old repeater field.
+     * @return array The updated block data with the migrated repeater field.
+     */
     private function migrateBlockRepeater($newField, $blockData, $oldFieldName) {
         $blockData[$newField['name']['name']] = $blockData[$oldFieldName];
         $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
@@ -580,6 +597,13 @@ class Upgrade
         return $blockData;
     }
 
+    /**
+     * Update and replace a block field value based on a configuration.
+     * 
+     * @param array $newField The configuration for the field update and replacement.
+     * @param mixed $oldFieldValue The old field value to be replaced.
+     * @return mixed The updated field value.
+     */
     private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) {
         if (isset($newField['values'][$oldFieldValue])) {
             return $newField['values'][$oldFieldValue];
@@ -588,6 +612,13 @@ class Upgrade
         return $newField['values']['default'];
     }
 
+    /**
+     * Check a condition for a block based on a function.
+     * 
+     * @param string $function The name of the condition-checking function.
+     * @param mixed $block The block data to be checked.
+     * @return bool The result of the condition check.
+     */
     private function blockCondition($function, $block) {
         if ($function && method_exists($this, $function)) {
             return $this->$function($block);
@@ -596,6 +627,7 @@ class Upgrade
         return true;
     }
 
+    /* TODO: Remove after migration. */
     private function postsBlockCondition($block) {
         return !empty($block['attrs']['data']['posts_data_source']) && $block['attrs']['data']['posts_data_source'] == 'input';
     }
