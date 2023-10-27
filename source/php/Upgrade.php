@@ -77,7 +77,7 @@ class Upgrade
     private function v_1($db): bool
     {
         global $wpdb;
-        
+     
         $this->migrateBlockFieldsValueToNewFields('acf/divider', [
                 'divider_title' => [
                     'name' => 'custom_block_title', 
@@ -116,30 +116,46 @@ class Upgrade
     private function v_2($db): bool
     {
         $indexModules = $this->getPostType('mod-index');
-
-        // if (!empty($indexModules) && is_array($indexModules)) {
-        //     $filteredIndexModules = array_filter($indexModules, function ($module) {
-        //         return !empty($module->ID) && $module->ID == 1391;
-        //     });
-        // }
-        // echo '<pre>' . print_r( get_field('manual_inputs', 3168), true ) . '</pre>';
-        // return "";
+        $this->migrateBlockFieldsValueToNewFields('acf/index', [
+            'index_columns' => [
+                'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
+                'type' => 'replaceValue',
+                'values' => [
+                    'grid-md-12' => 'o-grid-12',
+                    'grid-md-6' => 'o-grid-6',
+                    'grid-md-4' => 'o-grid-4',
+                    'grid-md-3' => 'o-grid-3',
+                    'default' => 'o-grid-4'
+                ]
+            ], 
+            'index' => [
+                'type' => 'custom',
+                'function' => 'migrateIndexBlockRepeater',
+                'name' => [
+                    'name' => 'manual_inputs', 
+                    'key' => 'field_64ff22b2d91b7'
+                ], 
+            ]
+        ],
+        'acf/manualinput'
+    );
+        return true;
         
 
         $reset = $this->getPostType('mod-manualinput');
 
-    //     if (!empty($reset) && is_array($reset)) {
-    //         foreach ($reset as $module) {
-    //             echo '<pre>' . print_r( $module->ID, true ) . '</pre>';
-    //             delete_field('manual_inputs', $module->ID);
-    //         }
-    //     }
-    //     $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
-    //     [
-    //     ],
-    //     'mod-index'
-    // );
-    //     return "";
+        if (!empty($reset) && is_array($reset)) {
+            foreach ($reset as $module) {
+                echo '<pre>' . print_r( $module->ID, true ) . '</pre>';
+                delete_field('manual_inputs', $module->ID);
+            }
+        }
+        $this->migrateAcfFieldsValueToNewFields($this->getPostType('mod-manualinput'), 
+        [
+        ],
+        'mod-index'
+    );
+        return "";
 
         $this->migrateAcfFieldsValueToNewFields($indexModules, 
             [
@@ -360,6 +376,59 @@ class Upgrade
         }
     }
 
+    private function migrateIndexBlockRepeater($newField, $blockData, $oldFieldName) {
+        $newFieldName = $newField['name']['name'];
+        $newFieldKey = $newField['name']['key'];
+        $blockData[$newFieldName] = $blockData[$oldFieldName];
+        $blockData['_' . $newFieldName] = $newFieldKey;
+        if (is_array($blockData)) {
+            $indexedArrays = [];
+        
+            foreach ($blockData as $key => $value) {
+                if (preg_match('/^index_(\d+)_(.*)/', $key, $matches)) {
+                    if (isset($matches[1]) && isset($matches[2])) {
+                        $index = $matches[1];
+                        $indexedArrays[$index][$matches[2]] = $value;
+                    }
+                }
+            }
+
+            if (!empty($indexedArrays) && is_array($indexedArrays)) {
+                foreach ($indexedArrays as $index => $values) {
+                    if (!empty($values['link_type'])) {
+                        $title = !empty($values['title']) ? $values['title'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? get_the_title($values['page']) : false);
+    
+                        $content = !empty($values['lead']) ? $values['lead'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? get_the_content(null, false, $values['page']) : false);
+                        
+                        $image = $values['link_type'] == 'internal' && !empty($values['page']) && !empty($values['image_display']) && $values['image_display'] == 'featured' ? get_post_thumbnail_id($values['page']) : (!empty($values['custom_image']) ? $values['custom_image'] : false);
+
+                        $link = $values['link_type'] == 'internal' ? get_page_link($values['page']) : (!empty($values['custom_image']) ? $values['custom_image'] : false);
+                        
+                        $blockData[$newFieldName . '_' . $index . '_title'] = $title;
+                        $blockData['_' . $newFieldName . '_' . $index . '_title'] = 'field_64ff22fdd91b8';
+
+                        $blockData[$newFieldName . '_' . $index . '_content'] = $content;
+                        $blockData['_' . $newFieldName . '_' . $index . '_content'] = 'field_64ff231ed91b9';
+
+                        $blockData[$newFieldName . '_' . $index . '_image'] = $image;
+                        $blockData['_' . $newFieldName . '_' . $index . '_image'] = 'field_64ff2355d91bb';
+
+                        $blockData[$newFieldName . '_' . $index . '_link'] = $link;
+                        $blockData['_' . $newFieldName . '_' . $index . '_link'] = 'field_64ff232ad91ba';  
+                        
+                        $blockData[$newFieldName . '_' . $index . '_image_before_content'] = false;
+                        $blockData['_' . $newFieldName . '_' . $index . '_image_before_content'] = 'field_64ff23d0d91bf';  
+                    }
+                }
+            }
+            
+            $blockData['display_as'] = 'card';
+            $blockData['_display_as'] = 'field_64ff23d0d91bf';
+        }
+        
+        return $blockData;
+    }
+
     private function migrateIndexModuleRepeater(array $newField, $oldFieldValue, $id) {
 
         update_field('display_as', 'card', $id);
@@ -447,12 +516,12 @@ class Upgrade
         if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
             if ($newField['type'] == 'repeater') {
                 $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
-            } else if ($newField['type'] == 'replaceValue') {
+            } elseif ($newField['type'] == 'replaceValue') {
                 $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
-            } else if ($newField['type'] == 'custom' && !empty($newField['function'])) {
+            } elseif ($newField['type'] == 'custom' && !empty($newField['function'])) {
                 $this->{$newField['function']}($newField, $oldFieldValue, $id);
             }
-        } else if (!empty($oldFieldValue) && is_string($newField)) {
+        } elseif (!empty($oldFieldValue) && is_string($newField)) {
             update_field($newField, $oldFieldValue, $id);
         }
         // delete_field($oldFieldName, $id);
@@ -512,8 +581,10 @@ class Upgrade
                         if ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
                             $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
                             $blockData[$newField['name']['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
-                        } else if ($newField['type'] == 'repeater') {
+                        } elseif ($newField['type'] == 'repeater') {
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
+                        } else if ($newField['type'] == 'custom' && !empty($newField['function'])) {
+                            $blockData = $this->{$newField['function']}($newField, $blockData, $oldFieldName);
                         }
                     } else {
                         $blockData[$newField['name']] = $blockData[$oldFieldName];
