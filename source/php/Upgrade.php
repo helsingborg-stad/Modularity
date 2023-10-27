@@ -140,7 +140,7 @@ class Upgrade
         'acf/manualinput');
 
         $indexModules = $this->getPostType('mod-index');
-        
+
         $this->migrateAcfFieldsValueToNewFields($indexModules, 
             [
                 'index' => [
@@ -168,29 +168,28 @@ class Upgrade
     
     private function v_3($db): bool 
     {
-        $this->migrateBlockFieldsValueToNewFields('acf/index', [
-            'index_columns' => [
-                'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
-                'type' => 'replaceValue',
-                'values' => [
-                    'grid-md-12' => 'o-grid-12',
-                    'grid-md-6' => 'o-grid-6',
-                    'grid-md-4' => 'o-grid-4',
-                    'grid-md-3' => 'o-grid-3',
-                    'default' => 'o-grid-4'
-                ]
-            ], 
+        $this->migrateBlockFieldsValueToNewFields('acf/manualinput', [
             'index' => [
-                'type' => 'custom',
-                'function' => 'migrateIndexBlockRepeater',
-                'name' => [
-                    'name' => 'manual_inputs', 
-                    'key' => 'field_64ff22b2d91b7'
-                ], 
+                'type' => 'removeField',
+            ],
+            'index_columns' => [
+                'type' => 'removeField',
             ]
-        ],
-        'acf/manualinput');
+        ]);
 
+        $manualInputModules = $this->getPostType('mod-manualinput');
+
+        $this->migrateAcfFieldsValueToNewFields($manualInputModules, 
+            [
+                'index' => [
+                    'type' => 'removeField',
+                ],
+                'index_columns' => [
+                    'type' => 'removeField',
+                ]
+            ]);
+
+        return true;
     }
 
 
@@ -470,8 +469,7 @@ class Upgrade
                 
                 $updateValue[] = $val;
             }
-            // echo '<pre>' . print_r( $updateValue, true ) . '</pre>';
-            // die;
+
         update_field($newField['name'], $updateValue, $id);
     }
 }
@@ -504,7 +502,9 @@ class Upgrade
     private function migrateModuleField($oldFieldName, $newField, $id)  {
         $oldFieldValue = get_field($oldFieldName, $id);
         if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
-            if ($newField['type'] == 'repeater') {
+            if ($newField['type'] == 'removeField') {
+                $this->removeModuleField($oldFieldName, $id);
+            } elseif ($newField['type'] == 'repeater') {
                 $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
             } elseif ($newField['type'] == 'replaceValue') {
                 $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
@@ -513,8 +513,12 @@ class Upgrade
             }
         } elseif (!empty($oldFieldValue) && is_string($newField)) {
             update_field($newField, $oldFieldValue, $id);
+            // $this->removeModuleField($oldFieldName, $id);
         }
-        // delete_field($oldFieldName, $id);
+    }
+
+    private function removeModuleField($oldFieldName, $id) {
+        delete_field($oldFieldName, $id);
     }
 
     /**
@@ -567,22 +571,30 @@ class Upgrade
             foreach ($fields as $oldFieldName => $newField) {
                 if (isset($blockData[$oldFieldName])) {
                     if (is_array($newField) && !empty($newField['type'])) {
-                        if ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
+                        if ($newField['type'] == 'removeField') {
+                            $blockData = $this->removeBlockField($newField, $blockData, $oldFieldName);
+                        } elseif ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
                             $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
                             $blockData[$newField['name']['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
                         } elseif ($newField['type'] == 'repeater') {
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
-                        } else if ($newField['type'] == 'custom' && !empty($newField['function'])) {
+                        } elseif ($newField['type'] == 'custom' && !empty($newField['function'])) {
                             $blockData = $this->{$newField['function']}($newField, $blockData, $oldFieldName);
                         }
                     } else {
                         $blockData[$newField['name']] = $blockData[$oldFieldName];
                         $blockData['_' . $newField['name']] = $newField['key'];
                     }
-                    // unset($blockData[$oldFieldName]);
                 }
             }
         }
+        return $blockData;
+    }
+
+    private function removeBlockField($newField, $blockData, $oldFieldName) {
+        unset($blockData[$oldFieldName]);
+        unset($blockData['_' . $oldFieldName]);
+
         return $blockData;
     }
 
@@ -892,8 +904,8 @@ class Upgrade
 
         $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
 
-        $this->dbVersion = 2;
-        $currentDbVersion = 1;
+        $this->dbVersion = 3;
+        $currentDbVersion = 2;
 
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
