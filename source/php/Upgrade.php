@@ -289,7 +289,41 @@ class Upgrade
 
     private function v_5($db): bool
     {
-        
+        $fieldsToRemove = [
+            'posts_columns' => [
+                'type' => 'removeField',
+            ],
+            'posts_fields' => [
+                'type' => 'removeField',
+            ],
+            'posts_data_source' => [
+                'type' => 'removeField',
+            ],
+            'data' => [
+                'type' => 'removeField',
+            ],
+            'posts_sort_by' => [
+                'type' => 'removeField',
+            ],
+            'posts_sort_order' => [
+                'type' => 'removeField',
+            ],
+            'posts_taxonomy_filter' => [
+                'type' => 'removeField',
+            ],
+            'show_as_slider' => [
+                'type' => 'removeField',
+            ],
+            'posts_highlight_first' => [
+                'type' => 'removeField',
+            ]
+        ];
+        $this->migrateBlockFieldsValueToNewFields('acf/manualinput', $fieldsToRemove);
+
+        $manualInputModules = $this->getPostType('mod-manualinput');
+
+        $this->migrateAcfFieldsValueToNewFields($manualInputModules, $fieldsToRemove);
+
         return true; //Return false to keep running this each time!
     }
 
