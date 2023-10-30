@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 1; //The db version we want to achive
+    private $dbVersion = 2; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -97,7 +97,6 @@ class Upgrade
         if (!empty($dividers)) {
             foreach ($dividers as &$divider) {
                 $dividerTitleField = get_field('divider_title', $divider->ID);
-                // delete_field('divider_title', $divider->ID);
   
                 if (!empty($dividerTitleField) && is_string($dividerTitleField)) {
                     update_post_meta($divider->ID, 'modularity-module-hide-title', false);
@@ -189,7 +188,7 @@ class Upgrade
                 ]
             ]);
 
-        return true;
+        return true; //Return false to keep running this each time!
     }
 
 
@@ -414,7 +413,7 @@ class Upgrade
                         
                         $image = $values['link_type'] == 'internal' && !empty($values['page']) && !empty($values['image_display']) && $values['image_display'] == 'featured' ? get_post_thumbnail_id($values['page']) : (!empty($values['custom_image']) ? $values['custom_image'] : false);
 
-                        $link = $values['link_type'] == 'internal' && !empty($values['page']) ? get_page_link($values['page']) : (!empty($values['link_url']) ? $values['link_url'] : false);
+                        $link = $values['link_type'] == 'internal' && !empty($values['page']) ? get_page_link($values['page']) : (!empty($values['link_url']) && $values['link_type'] == 'external' ? $values['link_url'] : false);
                         
                         $blockData[$newFieldName . '_' . $index . '_title'] = $title;
                         $blockData['_' . $newFieldName . '_' . $index . '_title'] = 'field_64ff22fdd91b8';
@@ -452,18 +451,21 @@ class Upgrade
                 $val = [
                     'image_before_content' => false,
                     'content' => !empty($oldInput['lead']) ? $oldInput['lead'] : (!empty($oldInput['page']->post_content) ? $oldInput['page']->post_content : false),
-                    'title' => !empty($oldInput['title']) ? $oldInput['title'] : (!empty($oldInput['page']->post_title) ? $oldInput['page']->post_title : false)
+                    'title' => !empty($oldInput['title']) ? $oldInput['title'] : (!empty($oldInput['page']->post_title) ? $oldInput['page']->post_title : false),
+                    'image' => !empty($oldInput['custom_image']['ID']) ? $oldInput['custom_image']['ID'] : false,
+                    'link' => !empty($oldInput['link_url']) ? $oldInput['link_url'] : false,
                 ];
                 
                 if (!empty($oldInput['link_type'])) {
-                    if (!empty($oldInput['link_type']) && $oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID)) {
-                        $val['link'] = !empty(get_page_link($oldInput['page']->ID)) ? get_page_link($oldInput['page']->ID) : false;
-                        $val['image'] = !empty($oldInput['image_display']) && $oldInput['image_display'] == 'featured' ? get_post_thumbnail_id($oldInput['page']->ID) : (!empty($oldInput['image_display']) && $oldInput['image_display'] == 'custom' ? $oldInput['custom_image']['ID'] : false);
-                    } 
+                    if ($oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID)) {
+                        $val['link'] = get_page_link($oldInput['page']->ID);
+                        if (!empty($oldInput['image_display']) && $oldInput['image_display'] == 'featured') {
+                            $val['image'] = get_post_thumbnail_id($oldInput['page']->ID);
+                        }   
+                    }
                     
-                    if ($oldInput['link_type'] == 'external') {
-                        $val['link'] = isset($oldInput['link_url']) ? $oldInput['link_url'] : false;
-                        $val['image'] = !empty($oldInput['custom_image']['ID']) ? $oldInput['custom_image']['ID'] : false;
+                    if ($oldInput['link_type'] == 'unlinked') {
+                        $val['link'] = false;
                     }
                 }
                 
@@ -904,9 +906,6 @@ class Upgrade
 
         $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
 
-        $this->dbVersion = 3;
-        $currentDbVersion = 2;
-
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
                 wp_die(__('To be installed database version must be a number.', 'municipio'));
@@ -932,7 +931,7 @@ class Upgrade
             //Run upgrade(s)
             while ($currentDbVersion <= $this->dbVersion) {
                 $funcName = 'v_' . (string) $currentDbVersion;
-                if (method_exists($this, $funcName) && $currentDbVersion == $this->dbVersion) {
+                if (method_exists($this, $funcName) && $currentDbVersion < $this->dbVersion) {
                     if ($this->{$funcName}($this->db)) {
                         update_option($this->dbVersionKey, (int) $currentDbVersion);
                         wp_cache_flush();
