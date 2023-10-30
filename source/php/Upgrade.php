@@ -193,10 +193,7 @@ class Upgrade
 
 
     private function v_4($db): bool
-    {
-        echo '<pre>' . print_r( "should not run", true ) . '</pre>';
-
-        
+    {        
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
                     'name' => ['name' => 'display_as','key' => 'field_64ff23d0d91bf'], 
@@ -212,84 +209,87 @@ class Upgrade
                         'features-grid' => 'box', 
                         'grid' => 'block', 
                         'default' => 'card'
-                    ],
-                    
+                    ],     
                 ],
                 'data' => [
                     'name' => ['name' => 'manual_inputs', 'key' => 'field_64ff22b2d91b7'], 
                     'type' => 'repeater', 
                     'fields' => [
                         'post_title' => ['name' => 'title', 'key' => 'field_64ff22fdd91b8'], 
-                        /* 'post_content' => 'content',
-                        'column_values' => 'accordion_column_values',
-                        'permalink' => 'link' */
+                        'post_content' => ['name' => 'content', 'key' => 'field_64ff231ed91b9'],
+                        'permalink' => ['name' => 'link', 'key' => 'field_64ff232ad91ba'],
+                        'item_icon' => ['name' => 'box_icon', 'key' => 'field_65293de2a26c7'],
+                        'image' => ['name' => 'image', 'key' => 'field_64ff2355d91bb'],
+                        'column_values' => ['name' => 'accordion_column_values', 'key' => 'field_64ff2372d91bc']
                     ]
                 ],
             ],
-            'acf/manualinput' /* false */,
+            'acf/manualinput',
             'postsBlockCondition'
         );
 
-        // $this->migrateBlockFieldsValueToNewFields('acf/manualinput', [
-        //         'abc' => 'cbd',
-        //     ],
-        // );
+        $postsModules = $this->getPostType('mod-posts');
 
-        // $postsModules = $this->getPostType('mod-posts');
+        $filteredPostsModules = array_filter($postsModules, function ($module) {
+            if (!empty($module->ID)) {
+                $source = get_field('posts_data_source', $module->ID);
+                return !empty($source) && $source == 'input';
+            }
+            return false;
+        });
 
-        // $filteredPostsModules = array_filter($postsModules, function ($module) {
-        //     if (!empty($module->ID)) {
-        //         $source = get_field('posts_data_source', $module->ID);
-        //         return !empty($source) && $source == 'input';
-        //     }
-        //     return false;
-        // });
+        $this->migrateAcfFieldsValueToNewFields($postsModules, 
+            [
+                'post_title' => 'title',
+                'post_content' => 'content',
+                'data' => [
+                    'name' => 'manual_inputs', 
+                    'type' => 'repeater', 
+                    'fields' => [
+                        'post_title' => 'title', 
+                        'post_content' => 'content',
+                        'column_values' => 'accordion_column_values',
+                        'permalink' => 'link',
+                        'item_icon' => 'box_icon'
+                    ]
+                ],
+                'posts_columns' => [
+                    'name' => 'columns',
+                    'type' => 'replaceValue',
+                    'values' => [
+                        'grid-md-12' => 'o-grid-12',
+                        'grid-md-6' => 'o-grid-6',
+                        'grid-md-4' => 'o-grid-4',
+                        'grid-md-3' => 'o-grid-3',
+                        'default' => 'o-grid-4'
+                    ]
+                ],
+                'posts_display_as' => [
+                    'name' => 'display_as', 
+                    'type' => 'replaceValue', 
+                    'values' => [
+                        'list' => 'list', 
+                        'expandable-list' => 'accordion', 
+                        'items' => 'card', 
+                        'news' => 'card', 
+                        'index' => 'card', 
+                        'segment' => 'segment', 
+                        'collection' => 'collection', 
+                        'features-grid' => 'box', 
+                        'grid' => 'block', 
+                        'default' => 'card'
+                    ]
+                ]
+            ],
+            'mod-manualinput'
+        );
 
-        // $this->migrateAcfFieldsValueToNewFields($postsModules, 
-        //     [
-        //         'post_title' => 'title',
-        //         'post_content' => 'content',
-        //         'data' => [
-        //             'name' => 'manual_inputs', 
-        //             'type' => 'repeater', 
-        //             'fields' => [
-        //                 'post_title' => 'title', 
-        //                 'post_content' => 'content',
-        //                 'column_values' => 'accordion_column_values',
-        //                 'permalink' => 'link'
-        //             ]
-        //         ],
-        //         'posts_columns' => [
-        //             'name' => 'columns',
-        //             'type' => 'replaceValue',
-        //             'values' => [
-        //                 'grid-md-12' => 'o-grid-12',
-        //                 'grid-md-6' => 'o-grid-6',
-        //                 'grid-md-4' => 'o-grid-4',
-        //                 'grid-md-3' => 'o-grid-3',
-        //                 'default' => 'o-grid-4'
-        //             ]
-        //         ],
-        //         'posts_display_as' => [
-        //             'name' => 'display_as', 
-        //             'type' => 'replaceValue', 
-        //             'values' => [
-        //                 'list' => 'list', 
-        //                 'expandable-list' => 'accordion', 
-        //                 'items' => 'card', 
-        //                 'news' => 'card', 
-        //                 'index' => 'card', 
-        //                 'segment' => 'segment', 
-        //                 'collection' => 'collection', 
-        //                 'features-grid' => 'box', 
-        //                 'grid' => 'block', 
-        //                 'default' => 'card'
-        //             ]
-        //         ]
-        //     ]/* ,
-        //     'mod-manualinput' */
-        // );
+        return true; //Return false to keep running this each time!
+    }
 
+    private function v_5($db): bool
+    {
+        
         return true; //Return false to keep running this each time!
     }
 
