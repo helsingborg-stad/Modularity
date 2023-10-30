@@ -257,6 +257,10 @@ class Posts extends \Modularity\Module
             $data['sliderId'] = uniqid();
         }
 
+        $data['lang'] = [
+            'showMore' => __('Show more', 'modularity')
+        ];
+
         return $data;
     }
 
