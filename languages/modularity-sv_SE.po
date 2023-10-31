@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-30 13:37+0100\n"
-"PO-Revision-Date: 2023-10-30 13:38+0100\n"
+"POT-Creation-Date: 2023-10-31 10:14+0100\n"
+"PO-Revision-Date: 2023-10-31 10:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -1204,7 +1204,7 @@ msgstr "Länk till sida"
 #: source/php/AcfFields/php/mod-index.php:6
 #: source/php/AcfFields/php/mod-index.php:10
 #: source/php/AcfFields/php/mod-posts-displau.php:29
-#: source/php/Module/Index/Index.php:17
+#: source/php/Module/Index/Index.php:16
 msgid "Index"
 msgstr "Index"
 
@@ -25061,12 +25061,12 @@ msgid "Outputs a gallery with images"
 msgstr "Visar ett galleri med bilder"
 
 #: source/php/Module/Gallery/Gallery.php:30
-#: source/php/Module/Posts/Posts.php:250 source/php/Module/Slider/Slider.php:67
+#: source/php/Module/Posts/Posts.php:252 source/php/Module/Slider/Slider.php:67
 msgid "Previous slide"
 msgstr "Gå till föregående bild"
 
 #: source/php/Module/Gallery/Gallery.php:31
-#: source/php/Module/Posts/Posts.php:251 source/php/Module/Slider/Slider.php:68
+#: source/php/Module/Posts/Posts.php:253 source/php/Module/Slider/Slider.php:68
 msgid "Next slide"
 msgstr "Gå till nästa bild"
 
@@ -25116,18 +25116,13 @@ msgid "I understand, continue."
 msgstr "Jag förstår, fortsätt."
 
 #: source/php/Module/Iframe/Iframe.php:36 source/php/Module/Map/Map.php:98
-#, fuzzy, php-format
-#| msgid ""
-#| "This part of the website shows content from another website "
-#| "({SUPPLIER_WEBSITE}). By continuing, you are accepting GDPR and privacy "
-#| "policy."
+#, php-format
 msgid ""
 "This part of the website shows content from another website (%s). By "
 "continuing, you are accepting GDPR and privacy policy."
 msgstr ""
-"Den här delen av webbplatsen visar innehåll från en annan webbplats "
-"({SUPPLIER_WEBSITE}). Genom att fortsätta acceptera GDPR och "
-"integritetspolicy."
+"Den här delen av webbplatsen visar innehåll från en annan webbplats (%s). "
+"Genom att fortsätta acceptera GDPR och integritetspolicy."
 
 #: source/php/Module/Iframe/Iframe.php:47
 msgid ""
@@ -25138,8 +25133,6 @@ msgstr ""
 "prefix kommer inte att visas."
 
 #: source/php/Module/Iframe/Iframe.php:68
-#, fuzzy
-#| msgid "We need your consent to continue"
 msgid "We need your consent to continue."
 msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
@@ -25147,11 +25140,11 @@ msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 msgid "Outputs an image"
 msgstr "Visar en bild"
 
-#: source/php/Module/Index/Index.php:18
+#: source/php/Module/Index/Index.php:17
 msgid "Indexes"
 msgstr "Index"
 
-#: source/php/Module/Index/Index.php:19
+#: source/php/Module/Index/Index.php:18
 msgid "Index card to use as an entry point for a \"content section\"."
 msgstr "Index-rutor att använda som ingångar till undersidor."
 
@@ -25188,14 +25181,10 @@ msgid "Outputs a grid of logotypes"
 msgstr "Visar ett galleri med logotyper"
 
 #: source/php/Module/ManualInput/ManualInput.php:18
-#, fuzzy
-#| msgid "Manual input"
 msgid "Manual Input"
 msgstr "Manuell inmatning"
 
 #: source/php/Module/ManualInput/ManualInput.php:19
-#, fuzzy
-#| msgid "Manual input"
 msgid "Manual Inputs"
 msgstr "Manuell inmatning"
 
@@ -25238,8 +25227,6 @@ msgid "Add New Modal Content"
 msgstr ""
 
 #: source/php/Module/Modal/Modal.php:79
-#, fuzzy
-#| msgid "Add a content divider."
 msgid "Add Modal Content"
 msgstr "Lägg till en avdelare för innehåll."
 
@@ -25248,8 +25235,6 @@ msgid "New Modal Content"
 msgstr ""
 
 #: source/php/Module/Modal/Modal.php:81
-#, fuzzy
-#| msgid "Edit Modules"
 msgid "Edit Modal Content"
 msgstr "Redigera moduler"
 
@@ -25290,7 +25275,7 @@ msgstr "Inlägg"
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
 
-#: source/php/Module/Posts/Posts.php:261
+#: source/php/Module/Posts/Posts.php:263
 msgid "Show more"
 msgstr "Visa mer"
 
