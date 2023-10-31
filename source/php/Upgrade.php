@@ -223,6 +223,17 @@ class Upgrade
                         'column_values' => ['name' => 'accordion_column_values', 'key' => 'field_64ff2372d91bc']
                     ]
                 ],
+                'posts_list_column_titles' => [
+                    'name' => ['name' => 'accordion_column_titles', 'key' => 'field_65005968bbc75'],
+                    'type' => 'repeater',
+                    'fields' => [
+                        'column_header' => ['name' => 'accordion_column_title', 'key' => 'field_65005a33bbc77'], 
+                    ]
+                ],
+                'title_column_label' => [
+                    'name' => 'accordion_column_marking', 
+                    'key' => 'field_650067ed6cc3c'
+                ]
             ],
             'acf/manualinput',
             'postsBlockCondition'
@@ -279,7 +290,16 @@ class Upgrade
                         'grid' => 'block', 
                         'default' => 'card'
                     ]
-                ]
+                ],
+                'posts_list_column_titles' => [
+                    'name' => 'accordion_column_titles',
+                    'type' => 'repeater',
+                    'fields' => [
+                        'column_header' => 'accordion_column_title', 
+                    ]
+                ],
+                'title_column_label' => 'accordion_column_marking',
+
             ],
             'mod-manualinput'
         );
@@ -291,31 +311,49 @@ class Upgrade
     {
         $fieldsToRemove = [
             'posts_columns' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'posts_fields' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'posts_data_source' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'data' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'posts_sort_by' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'posts_sort_order' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'posts_taxonomy_filter' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'show_as_slider' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
             ],
             'posts_highlight_first' => [
-                'type' => 'removeField',
+                'type' => 'removeField'
+            ],
+            'posts_display_as' => [
+                'type' => 'removeField'
+            ],
+            'posts_list_column_titles' => [
+                'type' => 'removeField'
+            ],
+            'taxonomy_display' => [
+                'type' => 'removeField'
+            ],
+            'post_single_show_featured_image' => [
+                'type' => 'removeField'
+            ],
+            'title_column_label' => [
+                'type' => 'removeField'
+            ],
+            'allow_freetext_filtering' => [
+                'type' => 'removeField'
             ]
         ];
         $this->migrateBlockFieldsValueToNewFields('acf/manualinput', $fieldsToRemove);
@@ -356,7 +394,7 @@ class Upgrade
      *
      * @return void
      */
-    private function updateAndReplaceFieldValue(array $newField, string $oldFieldValue, int $id) {
+    private function updateAndReplaceFieldValue(array $newField = [], $oldFieldValue, int $id) {
         if (!empty($newField['name']) && !empty($newField['values']) && is_array($newField['values']) && !empty($newField['values'][$oldFieldValue])) { 
             update_field($newField['name'], $newField['values'][$oldFieldValue], $id);
         } else {
@@ -371,12 +409,12 @@ class Upgrade
      * and associating these values with a specific post ID.
      *
      * @param array $newField An array describing the new ACF field, including name, type, and subfields.
-     * @param mixed $oldFieldValue The value of the old ACF repeater field.
+     * @param array $oldFieldValue The value of the old ACF repeater field.
      * @param int $id The post ID to which the new field values will be associated.
      *
      * @return void
      */
-    private function migrateAcfRepeater($newField, $oldFieldValue, $id) {
+    private function migrateAcfRepeater(array $newField = [], array $oldFieldValue = [], int $id) {
         update_field($newField['name'], $oldFieldValue, $id);
         $subFields = $newField['fields'];
         if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
@@ -472,7 +510,7 @@ class Upgrade
     }
 
     /* TODO: Upgrade then remove */
-    private function migrateIndexModuleRepeater(array $newField, $oldFieldValue, $id) {
+    private function migrateIndexModuleRepeater(array $newField, array $oldFieldValue = [], $id) {
 
         update_field('display_as', 'card', $id);
         
@@ -535,9 +573,9 @@ class Upgrade
      * @param array|string $newField An array or string representing the new field name or migration details.
      * @param int $id The ID of the post where the field is being migrated.
      */
-    private function migrateModuleField($oldFieldName, $newField, $id)  {
+    private function migrateModuleField(string $oldFieldName, $newField, int $id)  {
         $oldFieldValue = get_field($oldFieldName, $id);
-        if (!empty($oldFieldValue) && is_array($newField) && !empty($newField['type'])) {
+        if (!empty($newField['type'])) {
             if ($newField['type'] == 'removeField') {
                 $this->removeModuleField($oldFieldName, $id);
             } elseif ($newField['type'] == 'repeater') {
@@ -553,7 +591,13 @@ class Upgrade
         }
     }
 
-    private function removeModuleField($oldFieldName, $id) {
+    /**
+     * Module: Removes a field
+     * 
+     * @param string $oldFieldName Name of the field
+     * @param int $id Id of the post
+     */
+    private function removeModuleField(string $oldFieldName, int $id) {
         delete_field($oldFieldName, $id);
     }
 
@@ -679,9 +723,9 @@ class Upgrade
     /**
      * Check a condition for a block based on a function.
      * 
-     * @param string $function The name of the condition-checking function.
-     * @param mixed $block The block data to be checked.
-     * @return bool The result of the condition check.
+     * @param string|false $function The name of the condition-checking function.
+     * @param array $block The block data to be checked.
+     * @return bool Returns true or the condition function.
      */
     private function blockCondition($function, $block) {
         if ($function && method_exists($this, $function)) {
