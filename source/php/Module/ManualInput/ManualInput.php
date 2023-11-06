@@ -68,8 +68,9 @@ class ManualInput extends \Modularity\Module
             'link'                      => false,
             'link_text'                 => __("Read more", 'modularity'),
             'image'                     => false,
-            'image_before_content'      => true,
-            'accordion_column_values'   => []
+            'image_before_content'      => false,
+            'accordion_column_values'   => [],
+            'box_icon'                  => false
         ];
     }
 
