@@ -1,7 +1,8 @@
 @image([
-    'src'=> $image['src'],
-    'alt' => $image['alt'],
-    'caption' => $caption,
-    'context' => ['module.image', $sidebarContext . '.module.image', $sidebarContext . '.animation-item'],
+    'src'           => $image['src'],
+    'alt'           => $image['alt'],
+    'caption'       => $image['caption'],
+    'byline'        => $image['byline'],
+    'context'       => ['module.image', $sidebarContext . '.module.image', $sidebarContext . '.animation-item'],
 ])
 @endimage

@@ -370,75 +370,91 @@ class BlockManager
      */
     public function renderBlock($block)
     {
+
+        global $post;
+
         $module = $this->classes[$block['moduleName']];
 
-        //Get module data
-        $module->data = $this->setDefaultValues(
-            $module->data(),
-            $this->getDefaultValues($block['data'])
+        $cache = new \Modularity\Helper\Cache(
+            $post->ID, [
+                $block, 
+                $module->ID
+            ], 
+            $module->cacheTtl ?? 0
         );
 
-        //Add post title & hide title
-        $module->data['postTitle'] = apply_filters(
-            'the_title',
-            $block['data']['custom_block_title'] ?? $block['data']['field_block_title'] ?? ''
-        );
-
-        $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
-
-        if (!isset($block['anchor']) || '' === $block['anchor']) {
-            $block['anchor'] = $block['id'];
-        }
-
-        //Get view name
-        $view = str_replace('.blade.php', '', $module->template());
-        $view = !empty($view) ? $view : $block['moduleName'];
-
-        //Add post type
-        $viewData = array_merge([
-            'post_type' => $module->moduleSlug,
-        ], $module->data);
-
-        //Adds block data raw to view
-        $viewData['blockData'] = $block;
-        // Add block data if missing from current viewData
-        foreach ($block['data'] as $key => $data) {
-            if (empty($viewData[$key])) {
-                $viewData[$key] = $data;
-            }
-        }
-
-        //Filter view data
-        $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
-
-        if ($this->validateFields($viewData)) {
-            $display = new Display();
-            $renderedView = $display->renderView(
-                $view,
-                $viewData
+        if ($cache->start()) { //Start cache
+            
+            //Append module data, set default values
+            $module->data = $this->setDefaultValues(
+                $module->data(),
+                $this->getDefaultValues($block['data'])
             );
 
-            //If result is empty, display error for admins
-            $viewContainsData = (bool) !empty(preg_replace('/\s+/', '', strip_tags($renderedView, ['img'])));
-            if (is_admin() && $module->useEmptyBlockNotice && !$viewContainsData) {
-                $renderedView =  $this->displayNotice(
+            //Add post title & hide title
+            $module->data['postTitle'] = apply_filters(
+                'the_title',
+                $block['data']['custom_block_title'] ?? $block['data']['field_block_title'] ?? ''
+            );
+            $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
+
+            //Set anchor
+            if (!isset($block['anchor']) || '' === $block['anchor']) {
+                $block['anchor'] = $block['id'];
+            }
+
+            //Get view name
+            $view = str_replace('.blade.php', '', $module->template());
+            $view = !empty($view) ? $view : $block['moduleName'];
+
+            //Add post type
+            $viewData = array_merge([
+                'post_type' => $module->moduleSlug,
+            ], $module->data);
+
+            //Adds block data raw to view
+            $viewData['blockData'] = $block;
+            // Add block data if missing from current viewData
+            foreach ($block['data'] as $key => $data) {
+                if (empty($viewData[$key])) {
+                    $viewData[$key] = $data;
+                }
+            }
+
+            //Filter view data
+            $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
+
+            if ($this->validateFields($viewData)) {
+                $display = new Display(false);
+                $renderedView = $display->renderView(
+                    $view,
+                    $viewData
+                );
+
+                //If result is empty, display error for admins
+                $viewContainsData = (bool) !empty(preg_replace('/\s+/', '', strip_tags($renderedView, ['img'])));
+                if (is_admin() && $module->useEmptyBlockNotice && !$viewContainsData) {
+                    $renderedView =  $this->displayNotice(
+                        $module->nameSingular,
+                        __("Your settings rendered an empty result. Try other settings.", 'modularity')
+                    );
+                }
+            } elseif (is_user_logged_in()) {
+                $renderedView = $this->displayNotice(
                     $module->nameSingular,
-                    __("Your settings rendered an empty result. Try other settings.", 'modularity')
+                    __("Please fill in all required fields.", 'municipio')
                 );
             }
-        } elseif (is_user_logged_in()) {
-            $renderedView = $this->displayNotice(
-                $module->nameSingular,
-                __("Please fill in all required fields.", 'municipio')
-            );
-        }
 
-        if(!$module->dataFetched) {
-            error_log('Class ' . get_class($module) . ' must use the getFields function to ensure block compability.');
-        }
+            if(!$module->dataFetched) {
+                error_log('Class ' . get_class($module) . ' must use the getFields function to ensure block compability.');
+            }
 
-        // Render block view if validated correctly
-        echo $renderedView;
+            // Render block view if validated correctly
+            echo $renderedView;
+
+            $cache->stop(); //Stop cache
+        }
     }
 
     /**

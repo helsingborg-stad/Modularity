@@ -283,7 +283,7 @@
                         0 => array(
                             'key' => 'field_64ff23afd91bd',
                             'label' => __('Column value', 'modularity'),
-                            'name' => 'accordion_column_value',
+                            'name' => 'value',
                             'type' => 'text',
                             'instructions' => '',
                             'required' => 0,
@@ -338,7 +338,15 @@
                     'type' => 'url',
                     'instructions' => '',
                     'required' => 0,
-                    'conditional_logic' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_64ff23d0d91bf',
+                                'operator' => '!=',
+                                'value' => 'accordion',
+                            ),
+                        ),
+                    ),
                     'wrapper' => array(
                         'width' => '50',
                         'class' => '',
@@ -405,7 +413,7 @@
                         'id' => '',
                     ),
                     'message' => '',
-                    'default_value' => 1,
+                    'default_value' => 0,
                     'ui' => 0,
                     'ui_on_text' => '',
                     'ui_off_text' => '',
@@ -449,6 +457,38 @@
                     'mime_types' => '',
                     'preview_size' => 'medium',
                     'library' => 'all',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                7 => array(
+                    'key' => 'field_65293de2a26c7',
+                    'label' => __('Icon', 'modularity'),
+                    'name' => 'box_icon',
+                    'type' => 'select',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_64ff23d0d91bf',
+                                'operator' => '==',
+                                'value' => 'box',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => array(
+                    ),
+                    'default_value' => false,
+                    'return_format' => 'value',
+                    'multiple' => 0,
+                    'allow_null' => 0,
+                    'ui' => 1,
+                    'ajax' => 0,
+                    'placeholder' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
             ),

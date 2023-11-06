@@ -16,7 +16,7 @@ class File
         }
 
         $source = self::fileGetContents($path, [
-            'length' => 150 //read 500 bytes max
+            'length' => 500 //read 500 bytes max
         ]);
         
         if($source === false) {

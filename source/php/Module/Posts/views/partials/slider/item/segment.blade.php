@@ -14,7 +14,7 @@
     'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
     'context' => ['module.posts.segment'],
     'attributeList' => array_merge($post->attributeList, []),
-    'hasPlaceholderImage' => !empty($post->hasPlaceholderImage),
+    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
     ])
     @slot('floating')
         @if (!empty($post->callToActionItems['floating']))

@@ -63,14 +63,14 @@ class ExpandableListTemplate
      * @param $data
      * @return array|null
      */
-    public function prepare($posts, $data): ?array
+    public function prepare($items, $data): ?array
     {
         $columnValues = $this->getColumnValues();
 
         $accordion = [];
 
-        if (is_array($posts) && count($posts) > 0) {
-            foreach ($posts as $index => $post) {
+        if (is_array($items) && count($items) > 0) {
+            foreach ($items as $index => $item) {
                 if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($data)) {
                     foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
                         $sanitizedTitle = sanitize_title($column->column_header);
@@ -81,9 +81,8 @@ class ExpandableListTemplate
                         }
                     }
                 }
-
-                $accordion[$index]['heading'] = apply_filters('the_title', $post->postTitle) ?? '';
-                $accordion[$index]['content'] = apply_filters('the_content', $post->postContent) ?? '';
+                $accordion[$index]['heading'] = $item->postTitle ?? '';
+                $accordion[$index]['content'] = $item->postContentFiltered ?? '';
             }
         }
 

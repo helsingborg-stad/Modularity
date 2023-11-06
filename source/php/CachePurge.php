@@ -11,8 +11,14 @@ namespace Modularity;
 
 class CachePurge
 {
+    public $keyGroup = 'modules';
+
     public function __construct()
     {
+        if (function_exists('is_multisite') && is_multisite()) {
+            $this->keyGroup = $this->keyGroup . '-' . get_current_blog_id();
+        }
+
         add_action('save_post', array($this, 'sendPurgeRequest'));
     }
 
@@ -55,6 +61,31 @@ class CachePurge
                 }
 
                 return true;
+            }
+        }
+
+        if (!$this->isModularityPost($postId) && !empty(get_post_type($postId))) {
+            $args = [
+                'post_type' => 'mod-posts',
+                'posts_per_page' => -1,
+                'meta_query' => [
+                    [
+                        'key' => 'posts_data_post_type',
+                        'value' => get_post_type($postId),
+                        'compare' => '=',
+                    ]
+                ]
+            ];
+    
+            $query = new \WP_Query($args);
+            
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+                    $moduleId = get_the_ID();
+
+                    wp_cache_delete($moduleId, $this->keyGroup);
+                }
             }
         }
 

@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
+use Municipio\Helper\Image as ImageHelper;
+
 /**
  * Class Posts
  * @package Modularity\Module\Posts
@@ -196,7 +198,7 @@ class Posts extends \Modularity\Module
         $fields = $this->arrayToObject(
             $this->getFields()
         );
-
+        
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
 
@@ -231,7 +233,7 @@ class Posts extends \Modularity\Module
 
         $data['filters'] = [];
 
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array)$fields->posts_taxonomy_value;
             $taxValues = implode('|', $taxValues);
@@ -254,6 +256,10 @@ class Posts extends \Modularity\Module
         } else {
             $data['sliderId'] = uniqid();
         }
+
+        $data['lang'] = [
+            'showMore' => __('Show more', 'modularity')
+        ];
 
         return $data;
     }
@@ -370,9 +376,10 @@ class Posts extends \Modularity\Module
     public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
+
         foreach ($data as $key => $item) {
-            $imageThumbnail = wp_get_attachment_image_src($item->image->ID, [400, 225]); 
-            $imageSquare    = wp_get_attachment_image_src($item->image->ID, [500, 500]); 
+            $imageThumbnail = ImageHelper::getImageAttachmentData($item->image, [400, 225]);
+            $imageSquare    = ImageHelper::getImageAttachmentData($item->image, [500, 500]);
 
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
@@ -380,12 +387,12 @@ class Posts extends \Modularity\Module
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'thumbnail' => [
-                    'src' => $imageThumbnail[0],
-                    'alt' => ""
+                    'src' => $imageThumbnail['src'],
+                    'alt' => $imageThumbnail['alt']
                 ],
                 'thumbnailSquare' => [
-                    'src' => $imageSquare[0],
-                    'alt' => ""
+                    'src' => $imageSquare['src'],
+                    'alt' => $imageSquare['alt']
                 ],
                 'postDate' => null,
                 'termsUnlinked' => null,
@@ -438,8 +445,7 @@ class Posts extends \Modularity\Module
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
                     }
 
-                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && !empty($_post->thumbnail) && empty($_post->thumbnail['src'])) {
-                        $_post->thumbnail['src'] = \Modularity\Helper\Wp::getThemeMod('logotype_emblem') ?: get_stylesheet_directory_uri() . '/assets/images/broken_image.svg';
+                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && empty($_post->thumbnail['src'])) {
                         $_post->hasPlaceholderImage = true;
                     }
                 } 
@@ -496,7 +502,7 @@ class Posts extends \Modularity\Module
         }
 
         // Taxonomy filter
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true) {
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array)$fields->posts_taxonomy_value;
 

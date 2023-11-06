@@ -16,6 +16,18 @@ class Script extends \Modularity\Module
 
         //Remove html filter
         add_action('save_post', array($this, 'disableHTMLFiltering'), 5);
+
+        add_filter('acf/validate_value/name=embed_code', array($this, 'validateEmbedCode'), 10, 4);
+    }
+
+    public function validateEmbedCode($valid, $value, $field, $input_name) {
+        $pattern = '/<iframe|<video/';
+
+        if (preg_match($pattern, $value)) {
+            return __("Please use a more appropriate module for your content. (video or iframe module)", 'modularity');
+        }
+        
+        return $valid;
     }
 
     public function data() : array
@@ -110,7 +122,7 @@ class Script extends \Modularity\Module
         "u-padding__y--{$embededCardPadding} u-padding__x--$embededCardPadding" :
         '';
 
-        $data['lang'] = (object) [
+        $data['lang'] = [
             'knownLabels' => [
                 'title' => __('We need your consent to continue', 'modularity'),
                 'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),

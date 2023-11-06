@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 14:09+0200\n"
-"PO-Revision-Date: 2023-10-11 14:15+0200\n"
+"POT-Creation-Date: 2023-10-31 10:14+0100\n"
+"PO-Revision-Date: 2023-10-31 10:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: modularity.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -887,40 +887,26 @@ msgid "Divider"
 msgstr "Avdelare"
 
 #: source/php/AcfFields/php/mod-divider.php:10
-#: source/php/AcfFields/php/mod-manual-input.php:236
-#: source/php/AcfFields/php/mod-map.php:342
-#: source/php/AcfFields/php/mod-slider.php:216
-#: source/php/AcfFields/php/mod-slider.php:513 source/php/BlockManager.php:492
-#: source/php/Module/ManualInput/ManualInput.php:100
-#: source/php/ModuleManager.php:639
-msgid "Title"
-msgstr "Titel"
-
-#: source/php/AcfFields/php/mod-divider.php:13
-msgid "This text will be displayed in the divider (optional)"
-msgstr "Denna text kommer att visas i avdelaren (valfritt)"
-
-#: source/php/AcfFields/php/mod-divider.php:29
 msgid "Title variant"
 msgstr "Variant"
 
-#: source/php/AcfFields/php/mod-divider.php:41
+#: source/php/AcfFields/php/mod-divider.php:22
 msgid "H1"
 msgstr "H1"
 
-#: source/php/AcfFields/php/mod-divider.php:42
+#: source/php/AcfFields/php/mod-divider.php:23
 msgid "H2"
 msgstr "H2"
 
-#: source/php/AcfFields/php/mod-divider.php:43
+#: source/php/AcfFields/php/mod-divider.php:24
 msgid "H3"
 msgstr "H3"
 
-#: source/php/AcfFields/php/mod-divider.php:44
+#: source/php/AcfFields/php/mod-divider.php:25
 msgid "H4"
 msgstr "H4"
 
-#: source/php/AcfFields/php/mod-divider.php:46
+#: source/php/AcfFields/php/mod-divider.php:27
 msgid "h2"
 msgstr "h2"
 
@@ -1039,7 +1025,7 @@ msgstr "Bakgrundstyp"
 #: source/php/AcfFields/php/mod-image.php:6
 #: source/php/AcfFields/php/mod-image.php:10
 #: source/php/AcfFields/php/mod-index.php:108
-#: source/php/AcfFields/php/mod-manual-input.php:416
+#: source/php/AcfFields/php/mod-manual-input.php:424
 #: source/php/Module/Image/Image.php:19
 msgid "Image"
 msgstr "Bild"
@@ -1144,7 +1130,7 @@ msgid "Image caption"
 msgstr "Bildtext"
 
 #: source/php/AcfFields/php/mod-image.php:53 source/php/App.php:209
-#: source/php/App.php:264
+#: source/php/App.php:268
 msgid "Width"
 msgstr "Bredd"
 
@@ -1398,8 +1384,17 @@ msgstr "12:16"
 msgid "Manual inputs"
 msgstr "Manuell inmatning"
 
+#: source/php/AcfFields/php/mod-manual-input.php:236
+#: source/php/AcfFields/php/mod-map.php:342
+#: source/php/AcfFields/php/mod-slider.php:216
+#: source/php/AcfFields/php/mod-slider.php:513 source/php/BlockManager.php:508
+#: source/php/Module/ManualInput/ManualInput.php:118
+#: source/php/ModuleManager.php:639
+msgid "Title"
+msgstr "Titel"
+
 #: source/php/AcfFields/php/mod-manual-input.php:256
-#: source/php/AcfFields/php/mod-posts-source.php:317
+#: source/php/AcfFields/php/mod-posts-source.php:316
 msgid "Column values"
 msgstr "Kolumnvärden"
 
@@ -1413,15 +1408,21 @@ msgstr "Kolumnvärden"
 msgid "Content"
 msgstr "Innehåll"
 
-#: source/php/AcfFields/php/mod-manual-input.php:353
+#: source/php/AcfFields/php/mod-manual-input.php:361
 #: source/php/AcfFields/php/mod-map.php:383
 #: source/php/AcfFields/php/mod-slider.php:708
 msgid "Link text"
 msgstr "Länktext"
 
-#: source/php/AcfFields/php/mod-manual-input.php:381
+#: source/php/AcfFields/php/mod-manual-input.php:389
 msgid "Image before content"
 msgstr "Bild före innehåll"
+
+#: source/php/AcfFields/php/mod-manual-input.php:464
+#: source/php/AcfFields/php/mod-modal.php:49
+#: source/php/AcfFields/php/mod-posts-source.php:290
+msgid "Icon"
+msgstr "Ikon"
 
 #: source/php/AcfFields/php/mod-map.php:6 source/php/Module/Map/Map.php:12
 msgid "Map"
@@ -1569,11 +1570,6 @@ msgstr "Knapp"
 #: source/php/AcfFields/php/mod-modal.php:28 source/php/Module/Text/Text.php:12
 msgid "Text"
 msgstr "Text"
-
-#: source/php/AcfFields/php/mod-modal.php:49
-#: source/php/AcfFields/php/mod-posts-source.php:291
-msgid "Icon"
-msgstr "Ikon"
 
 #: source/php/AcfFields/php/mod-modal.php:63
 msgid ""
@@ -23317,7 +23313,7 @@ msgid "Data input"
 msgstr "Datainmatning"
 
 #: source/php/AcfFields/php/mod-posts-source.php:194
-#: source/php/AcfFields/php/mod-posts-source.php:332
+#: source/php/AcfFields/php/mod-posts-source.php:331
 msgid "Add"
 msgstr "Lägg till"
 
@@ -23329,19 +23325,19 @@ msgstr "Innehåll"
 msgid "Permalink"
 msgstr "Permalänk"
 
-#: source/php/AcfFields/php/mod-posts-source.php:320
+#: source/php/AcfFields/php/mod-posts-source.php:319
 msgid "Column values if expandable list is selected."
 msgstr "Kolumnvärden om expanderbar lista är vald."
 
-#: source/php/AcfFields/php/mod-posts-source.php:340
+#: source/php/AcfFields/php/mod-posts-source.php:339
 msgid "Value"
 msgstr "Värde"
 
-#: source/php/AcfFields/php/mod-posts-source.php:367
+#: source/php/AcfFields/php/mod-posts-source.php:366
 msgid "Link to post type archive"
 msgstr "Länka till posttypens arkiv"
 
-#: source/php/AcfFields/php/mod-posts-source.php:388
+#: source/php/AcfFields/php/mod-posts-source.php:387
 msgid "Yes, link to post type archive"
 msgstr "Ja, länka till posttypens arkiv"
 
@@ -23370,7 +23366,7 @@ msgstr "Välj hur RSS-flödet ska sorteras"
 msgid "Summary"
 msgstr "Sammanfattning"
 
-#: source/php/AcfFields/php/mod-rss.php:84 source/php/Upgrade.php:228
+#: source/php/AcfFields/php/mod-rss.php:84 source/php/Upgrade.php:473
 msgid "Author"
 msgstr "Författare"
 
@@ -23611,7 +23607,7 @@ msgid "Extern"
 msgstr "Extern"
 
 #: source/php/AcfFields/php/mod-slider.php:734
-#: source/php/Module/ManualInput/ManualInput.php:64
+#: source/php/Module/ManualInput/ManualInput.php:66
 #: source/php/Module/Posts/TemplateController/SegmentTemplate.php:24
 #: source/php/Module/Slider/Slider.php:122
 msgid "Read more"
@@ -24845,62 +24841,62 @@ msgstr ""
 msgid "Invalid security nonce."
 msgstr ""
 
-#: source/php/App.php:172 source/php/App.php:202 source/php/App.php:257
+#: source/php/App.php:172 source/php/App.php:202 source/php/App.php:261
 msgid "Edit"
 msgstr "Redigera"
 
 #: source/php/App.php:172 source/php/BlockManager.php:169
-#: source/php/Editor.php:125 source/php/Options/General.php:183
+#: source/php/Editor.php:125 source/php/Options/General.php:102
 msgid "Modules"
 msgstr "Moduler"
 
-#: source/php/App.php:203 source/php/App.php:258
+#: source/php/App.php:203 source/php/App.php:262
 msgid "Import"
 msgstr "Importera"
 
-#: source/php/App.php:204 source/php/App.php:259
+#: source/php/App.php:204 source/php/App.php:263
 msgid "Remove"
 msgstr "Ta bort"
 
-#: source/php/App.php:205 source/php/App.php:260
+#: source/php/App.php:205 source/php/App.php:264
 msgid "Hide module"
 msgstr "Dölj modulen"
 
-#: source/php/App.php:206 source/php/App.php:261
+#: source/php/App.php:206 source/php/App.php:265
 msgid "Are you sure you want to remove this module?"
 msgstr "Är du säker på att du vill ta bort modulen?"
 
-#: source/php/App.php:207 source/php/App.php:262
+#: source/php/App.php:207 source/php/App.php:266
 msgid "Saving…"
 msgstr "Sparar…"
 
-#: source/php/App.php:208 source/php/App.php:263
+#: source/php/App.php:208 source/php/App.php:267
 msgid "Close"
 msgstr "Stäng"
 
-#: source/php/App.php:211 source/php/App.php:266
+#: source/php/App.php:211 source/php/App.php:270
 #: templates/options/partials/modularity-modules.php:27
 msgid "Deprecated"
 msgstr "Utgående"
 
-#: source/php/App.php:232
+#: source/php/App.php:235
 msgid "Edit Modules"
 msgstr "Redigera moduler"
 
-#: source/php/BlockManager.php:426
+#: source/php/BlockManager.php:439
 msgid "Your settings rendered an empty result. Try other settings."
 msgstr ""
 "Dina inställningar gjorde ett tomt resultat. Prova andra inställningar."
 
-#: source/php/BlockManager.php:432
+#: source/php/BlockManager.php:445
 msgid "Please fill in all required fields."
 msgstr ""
 
-#: source/php/BlockManager.php:487
+#: source/php/BlockManager.php:503
 msgid "Block settings"
 msgstr "Inställningar för block"
 
-#: source/php/Display.php:614 templates/widget/form.php:30
+#: source/php/Display.php:622 templates/widget/form.php:30
 msgid "Edit module"
 msgstr "Redigera modul"
 
@@ -25065,12 +25061,12 @@ msgid "Outputs a gallery with images"
 msgstr "Visar ett galleri med bilder"
 
 #: source/php/Module/Gallery/Gallery.php:30
-#: source/php/Module/Posts/Posts.php:248 source/php/Module/Slider/Slider.php:67
+#: source/php/Module/Posts/Posts.php:252 source/php/Module/Slider/Slider.php:67
 msgid "Previous slide"
 msgstr "Gå till föregående bild"
 
 #: source/php/Module/Gallery/Gallery.php:31
-#: source/php/Module/Posts/Posts.php:249 source/php/Module/Slider/Slider.php:68
+#: source/php/Module/Posts/Posts.php:253 source/php/Module/Slider/Slider.php:68
 msgid "Next slide"
 msgstr "Gå till nästa bild"
 
@@ -25097,13 +25093,13 @@ msgstr "Visar en inbäddad sida."
 
 #: source/php/Module/Iframe/Iframe.php:29
 #: source/php/Module/Iframe/Iframe.php:35 source/php/Module/Map/Map.php:91
-#: source/php/Module/Map/Map.php:97 source/php/Module/Script/Script.php:115
-#: source/php/Module/Script/Script.php:121
+#: source/php/Module/Map/Map.php:97 source/php/Module/Script/Script.php:127
+#: source/php/Module/Script/Script.php:133
 msgid "We need your consent to continue"
 msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
 #: source/php/Module/Iframe/Iframe.php:30 source/php/Module/Map/Map.php:92
-#: source/php/Module/Script/Script.php:116
+#: source/php/Module/Script/Script.php:128
 #, php-format
 msgid ""
 "This part of the website shows content from %s. By continuing, <a "
@@ -25114,24 +25110,19 @@ msgstr ""
 
 #: source/php/Module/Iframe/Iframe.php:31
 #: source/php/Module/Iframe/Iframe.php:37 source/php/Module/Map/Map.php:93
-#: source/php/Module/Map/Map.php:99 source/php/Module/Script/Script.php:117
-#: source/php/Module/Script/Script.php:123
+#: source/php/Module/Map/Map.php:99 source/php/Module/Script/Script.php:129
+#: source/php/Module/Script/Script.php:135
 msgid "I understand, continue."
 msgstr "Jag förstår, fortsätt."
 
 #: source/php/Module/Iframe/Iframe.php:36 source/php/Module/Map/Map.php:98
-#, fuzzy, php-format
-#| msgid ""
-#| "This part of the website shows content from another website "
-#| "({SUPPLIER_WEBSITE}). By continuing, you are accepting GDPR and privacy "
-#| "policy."
+#, php-format
 msgid ""
 "This part of the website shows content from another website (%s). By "
 "continuing, you are accepting GDPR and privacy policy."
 msgstr ""
-"Den här delen av webbplatsen visar innehåll från en annan webbplats "
-"({SUPPLIER_WEBSITE}). Genom att fortsätta acceptera GDPR och "
-"integritetspolicy."
+"Den här delen av webbplatsen visar innehåll från en annan webbplats (%s). "
+"Genom att fortsätta acceptera GDPR och integritetspolicy."
 
 #: source/php/Module/Iframe/Iframe.php:47
 msgid ""
@@ -25142,8 +25133,6 @@ msgstr ""
 "prefix kommer inte att visas."
 
 #: source/php/Module/Iframe/Iframe.php:68
-#, fuzzy
-#| msgid "We need your consent to continue"
 msgid "We need your consent to continue."
 msgstr "Vi behöver ditt godkännande för att ta dig vidare"
 
@@ -25191,19 +25180,15 @@ msgstr "Galleri med logotyper"
 msgid "Outputs a grid of logotypes"
 msgstr "Visar ett galleri med logotyper"
 
-#: source/php/Module/ManualInput/ManualInput.php:16
-#, fuzzy
-#| msgid "Manual input"
+#: source/php/Module/ManualInput/ManualInput.php:18
 msgid "Manual Input"
 msgstr "Manuell inmatning"
 
-#: source/php/Module/ManualInput/ManualInput.php:17
-#, fuzzy
-#| msgid "Manual input"
+#: source/php/Module/ManualInput/ManualInput.php:19
 msgid "Manual Inputs"
 msgstr "Manuell inmatning"
 
-#: source/php/Module/ManualInput/ManualInput.php:18
+#: source/php/Module/ManualInput/ManualInput.php:20
 msgid "Creates manual input content."
 msgstr ""
 
@@ -25242,8 +25227,6 @@ msgid "Add New Modal Content"
 msgstr ""
 
 #: source/php/Module/Modal/Modal.php:79
-#, fuzzy
-#| msgid "Add a content divider."
 msgid "Add Modal Content"
 msgstr "Lägg till en avdelare för innehåll."
 
@@ -25252,8 +25235,6 @@ msgid "New Modal Content"
 msgstr ""
 
 #: source/php/Module/Modal/Modal.php:81
-#, fuzzy
-#| msgid "Edit Modules"
 msgid "Edit Modal Content"
 msgstr "Redigera moduler"
 
@@ -25286,13 +25267,17 @@ msgstr "Visar en notis"
 msgid "Modularity expandable list column values"
 msgstr "Expanderbar lista - kolumninnehåll"
 
-#: source/php/Module/Posts/Posts.php:21 source/php/Module/Posts/Posts.php:22
+#: source/php/Module/Posts/Posts.php:23 source/php/Module/Posts/Posts.php:24
 msgid "Posts"
 msgstr "Inlägg"
 
-#: source/php/Module/Posts/Posts.php:23
+#: source/php/Module/Posts/Posts.php:25
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
+
+#: source/php/Module/Posts/Posts.php:263
+msgid "Show more"
+msgstr "Visa mer"
 
 #: source/php/Module/Rss/Rss.php:15
 msgid "Outputs a RSS feed"
@@ -25327,7 +25312,13 @@ msgstr "Script"
 msgid "Outputs unsanitized code to widget area."
 msgstr "Matar ut kod."
 
-#: source/php/Module/Script/Script.php:122
+#: source/php/Module/Script/Script.php:27
+msgid ""
+"Please use a more appropriate module for your content. (video or iframe "
+"module)"
+msgstr ""
+
+#: source/php/Module/Script/Script.php:134
 msgid ""
 "This part of the website shows content from another website "
 "({SUPPLIER_WEBSITE}). By continuing, you are accepting GDPR and privacy "
@@ -25714,31 +25705,27 @@ msgstr "Modularity inställningar"
 msgid "Options"
 msgstr "Inställningar"
 
-#: source/php/Options/General.php:23 source/php/Options/General.php:24
+#: source/php/Options/General.php:24 source/php/Options/General.php:25
 msgid "Search page modules"
 msgstr "Moduler på söksida"
 
-#: source/php/Options/General.php:33 source/php/Options/General.php:34
-msgid "Restrictive Options"
-msgstr "Begränsande alternativ"
-
-#: source/php/Options/General.php:129
+#: source/php/Options/General.php:42
 msgid "Save options"
 msgstr "Spara inställningar"
 
-#: source/php/Options/General.php:141
+#: source/php/Options/General.php:57
 msgid "Core options"
 msgstr "Core inställningar"
 
-#: source/php/Options/General.php:153
+#: source/php/Options/General.php:72
 msgid "Module options"
 msgstr "Modulinställningar"
 
-#: source/php/Options/General.php:165
+#: source/php/Options/General.php:84
 msgid "Post types"
 msgstr "Posttyper"
 
-#: source/php/Options/General.php:174
+#: source/php/Options/General.php:93
 msgid "Template areas"
 msgstr "Mallområden"
 
@@ -25749,15 +25736,15 @@ msgstr "Mallområden"
 msgid "Post type modules"
 msgstr "Posttyper"
 
-#: source/php/Upgrade.php:438
+#: source/php/Upgrade.php:683
 msgid "To be installed database version must be a number."
 msgstr ""
 
-#: source/php/Upgrade.php:442
+#: source/php/Upgrade.php:687
 msgid "Current database version must be a number."
 msgstr ""
 
-#: source/php/Upgrade.php:448
+#: source/php/Upgrade.php:693
 msgid "Database cannot be lower than currently installed (cannot downgrade)."
 msgstr ""
 
@@ -25900,6 +25887,12 @@ msgstr "Modulärt komponentssytem för WordPress"
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
+#~ msgid "This text will be displayed in the divider (optional)"
+#~ msgstr "Denna text kommer att visas i avdelaren (valfritt)"
+
+#~ msgid "Restrictive Options"
+#~ msgstr "Begränsande alternativ"
+
 #~ msgid "Crop image"
 #~ msgstr "Beskär bild"
 
@@ -25954,9 +25947,6 @@ msgstr "Kristoffer Svanmark, Sebastian Thulin"
 
 #~ msgid "ago"
 #~ msgstr "sedan"
-
-#~ msgid "Show more"
-#~ msgstr "Visa mer"
 
 #, fuzzy
 #~| msgid "Show date"

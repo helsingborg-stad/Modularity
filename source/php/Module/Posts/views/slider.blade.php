@@ -9,33 +9,37 @@
     @includeWhen($postsDisplayAs != 'segment', 'partials.slider.slider-navigation')
 </div>
 
-@slider([
-    'id' => isset($blockData['anchor']) ? $blockData['anchor'] : 'mod-posts-' . $sliderId,
-    'classList' => ['c-slider--post'],
-    'showStepper' => false,
-    'autoSlide' => false,
-    'isPost' => true,
-    'repeatSlide' => $postsDisplayAs != 'segment' ? true : false,
-    'customButtons' => $postsDisplayAs != 'segment' ? 'js-custom-buttons-' . $sliderId : false,
-    'containerAware' => true,
-    'attributeList' => [
-        'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
-        'data-slides-per-page' => $slider->slidesPerPage
-    ]
-])
-    @foreach ($posts as $post)
-        @slider__item([
-            'classList' => ['c-slider__item--post']
-        ])
-            @if ($postsDisplayAs === 'index' || $postsDisplayAs === 'items' || $postsDisplayAs === 'news')
-                @include('partials.slider.item.index')
-            @else
-                @include('partials.slider.item.' . $postsDisplayAs, [
-                    'display_reading_time' => $display_reading_time,
-                ])
-            @endif
-        @endslider__item
-    @endforeach
-@endslider
+@if($posts)
 
-@include('partials.more')
+    @slider([
+        'id' => isset($blockData['anchor']) ? $blockData['anchor'] : 'mod-posts-' . $sliderId,
+        'classList' => ['c-slider--post'],
+        'showStepper' => false,
+        'autoSlide' => false,
+        'isPost' => true,
+        'repeatSlide' => $postsDisplayAs != 'segment' ? true : false,
+        'customButtons' => $postsDisplayAs != 'segment' ? 'js-custom-buttons-' . $sliderId : false,
+        'containerAware' => true,
+        'attributeList' => [
+            'aria-labelledby' => 'mod-slider-' . $sliderId . '-label',
+            'data-slides-per-page' => $slider->slidesPerPage
+        ]
+    ])
+        @foreach ($posts as $post)
+            @slider__item([
+                'classList' => ['c-slider__item--post']
+            ])
+                @if ($postsDisplayAs === 'index' || $postsDisplayAs === 'items' || $postsDisplayAs === 'news')
+                    @include('partials.slider.item.index')
+                @else
+                    @include('partials.slider.item.' . $postsDisplayAs, [
+                        'display_reading_time' => $display_reading_time,
+                    ])
+                @endif
+            @endslider__item
+        @endforeach
+    @endslider
+
+    @include('partials.more')
+
+@endif
