@@ -28,7 +28,7 @@ class ManualInput extends \Modularity\Module
         $fields         = $this->getFields();
         $displayAs      = $this->getTemplateToUse($fields);
         $this->template = $displayAs;
-        
+      
         $data['manualInputs']   = [];
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
@@ -41,12 +41,16 @@ class ManualInput extends \Modularity\Module
         );
 
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
-            foreach ($fields['manual_inputs'] as $input) {
+            foreach ($fields['manual_inputs'] as &$input) {
+                $input = array_filter($input, function($value) {
+                    return !empty($value) || $value === false;
+                });
+
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
-
+                
                 $data['manualInputs'][]         = (array) $arr;
             }
         }
