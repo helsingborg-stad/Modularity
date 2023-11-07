@@ -387,18 +387,19 @@ class Posts extends \Modularity\Module
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
-                'thumbnail' => [
+                'thumbnail' => $imageThumbnail ? [
                     'src' => $imageThumbnail['src'],
                     'alt' => $imageThumbnail['alt']
-                ],
-                'thumbnailSquare' => [
+                ] : false,
+                'thumbnailSquare' => $imageSquare ? [
                     'src' => $imageSquare['src'],
                     'alt' => $imageSquare['alt']
-                ],
+                ] : false,
                 'postDate' => null,
                 'termsUnlinked' => null,
                 'dateBadge' => false,
-                'termIcon' => false
+                'termIcon' => false,
+                'postContentFiltered' => apply_filters('the_content', $item->post_content)
             ]);
         }
         
