@@ -2,7 +2,7 @@
  @if (!empty($embed))
     @if($requiresAccept)
              @acceptance([
-                 'labels' => json_encode($lang),
+                 'labels' => $lang,
                  'src' => $scriptSrcArray,
              ])
 
