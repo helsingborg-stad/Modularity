@@ -13,13 +13,11 @@ class ExpandableListTemplate
 
     public $data = [];
 
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
+    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
     {
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
-
-        $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
         $this->data['posts_list_column_titles'] = !empty($fields->posts_list_column_titles) && is_array($fields->posts_list_column_titles) ?
             $fields->posts_list_column_titles : null;
