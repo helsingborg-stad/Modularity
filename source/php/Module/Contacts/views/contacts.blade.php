@@ -30,7 +30,7 @@
             @endif
 
             @if (isset($email) && !empty($email))
-            <li><a itemprop="email" class="link-item truncate" href="mailto:{{ $email }}">{{ $email }}</a></li>
+            <li><a itemprop="email" translate="no" class="link-item truncate" href="mailto:{{ $email }}">{{ $email }}</a></li>
             @endif
 
             @if (!empty($module->post_content))
