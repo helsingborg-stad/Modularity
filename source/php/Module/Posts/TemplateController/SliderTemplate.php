@@ -9,13 +9,11 @@ class SliderTemplate extends AbstractController
 
     public $data = [];
 
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
+    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
     {
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
-
-        $fields = json_decode(json_encode(get_fields($this->module->ID)));
 
         $postsColumnsInt = !empty($fields->posts_columns) ? 12 / (int) str_replace('grid-md-', " ", $fields->posts_columns) : 1;
 

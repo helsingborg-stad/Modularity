@@ -5,6 +5,7 @@
     'meta' => !empty($display_reading_time) ? $post->readingTime : false,
     'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
     'image' => !empty($post->thumbnail['src']) ? $post->thumbnail['src'] : false,
+    'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
     'date' => !empty($post->postDate) ? $post->postDate : false,
     'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
     'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
@@ -12,7 +13,6 @@
     'reverseColumns' => true,
     'classList' => ['c-segment--slider'],
     'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
-    'context' => ['module.posts.segment'],
     'attributeList' => array_merge($post->attributeList, []),
     'hasPlaceholder' => !empty($post->hasPlaceholderImage),
     ])

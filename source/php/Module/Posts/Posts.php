@@ -47,8 +47,8 @@ class Posts extends \Modularity\Module
     */
     public function setTemplate($template, $module, $moduleData)
     {
-        $showAsSlider   = get_field('show_as_slider', $moduleData['ID'] ?? null);
-        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID'] ?? null);
+        $showAsSlider   = $this->fields->show_as_slider ?? null;
+        $postsDisplayAs = $this->fields->posts_display_as ?? null;
 
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
 
@@ -158,7 +158,8 @@ class Posts extends \Modularity\Module
             'Modularity/Module/Posts/template',
             self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php',
             $this,
-            $this->data
+            $this->data,
+            $this->fields
         );
     }
 
@@ -183,7 +184,7 @@ class Posts extends \Modularity\Module
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
 
         if (class_exists($class)) {
-            $controller = new $class($this, $this->args, $this->data);
+            $controller = new $class($this, $this->args, $this->data, $this->fields);
             $this->data = array_merge($this->data, $controller->data);
         }
     }
@@ -198,6 +199,8 @@ class Posts extends \Modularity\Module
         $fields = $this->arrayToObject(
             $this->getFields()
         );
+
+        $this->fields = $fields;
         
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;

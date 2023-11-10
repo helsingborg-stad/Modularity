@@ -18,7 +18,7 @@ class ListTemplate
      * @param array $args
      * @param $data
      */
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data)
+    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
     {
         $this->args = $args;
         $this->data = $data;
