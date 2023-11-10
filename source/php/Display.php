@@ -254,10 +254,9 @@ class Display
         } elseif ($archiveSlug) {
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
-        } elseif($realPostID) {
+        } elseif ($realPostID) {
             $this->modules = \Modularity\Editor::getPostModules($realPostID);
             $this->options = get_option('modularity-sidebar-options');
-        } else {
             $this->setupModulesForSingle($post, $realPostID);
         }
 
@@ -275,15 +274,22 @@ class Display
         }
     }
 
-    private function setupModulesForSingle(WP_Post $post, int $realPostID) {
-        $singleSlug = \Modularity\Helper\Wp::getSingleSlug();
+    private function setupModulesForSingle(WP_Post $post, int $realPostID)
+    {
+        $postType = get_post_type();
+
+        if ($postType === false) {
+            return;
+        }
+
+        $singleSlug = 'single-' . $postType;
         $this->modules = \Modularity\Editor::getPostModules($post->ID);
         $this->options = get_post_meta($realPostID, 'modularity-sidebar-options', true);
 
         if ($singleSlug) {
             $this->options = !is_array($this->options) ? [] : $this->options;
             $this->modules = !is_array($this->modules) ? [] : $this->modules;
-            
+
             $this->options = array_merge($this->options, get_option('modularity_' . $singleSlug . '_sidebar-options') ?: []);
             $this->modules = $this->mergeModules($this->modules, \Modularity\Editor::getPostModules($singleSlug));
         }
