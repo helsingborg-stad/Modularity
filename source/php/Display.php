@@ -5,6 +5,7 @@ namespace Modularity;
 use Throwable;
 use ComponentLibrary\Init as ComponentLibraryInit;
 use \Modularity\Helper\File as FileHelper;
+use Modularity\Helper\Wp;
 use WP_Post;
 
 class Display
@@ -276,13 +277,7 @@ class Display
 
     private function setupModulesForSingle(WP_Post $post, int $realPostID)
     {
-        $postType = get_post_type();
-
-        if ($postType === false) {
-            return;
-        }
-
-        $singleSlug = 'single-' . $postType;
+        $singleSlug = Wp::getSingleSlug();
         $this->modules = \Modularity\Editor::getPostModules($post->ID);
         $this->options = get_post_meta($realPostID, 'modularity-sidebar-options', true);
 
