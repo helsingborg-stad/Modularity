@@ -16,7 +16,7 @@
     @endif
 
     <div class="box-content">
-        <h5 itemprop="name">{{ $first_name }} {{ isset($last_name) && !empty($last_name) ? $last_name : '' }}</h5>
+        <h5 itemprop="name" translate="no">{{ $first_name }} {{ isset($last_name) && !empty($last_name) ? $last_name : '' }}</h5>
         <ul>
             @if ((isset($title) && !empty($title)) || (isset($organization) && !empty($organization)))
             <li class="card-title">
@@ -30,7 +30,7 @@
             @endif
 
             @if (isset($email) && !empty($email))
-            <li><a itemprop="email" class="link-item truncate" href="mailto:{{ $email }}">{{ $email }}</a></li>
+            <li><a itemprop="email" translate="no" class="link-item truncate" href="mailto:{{ $email }}">{{ $email }}</a></li>
             @endif
 
             @if (!empty($module->post_content))

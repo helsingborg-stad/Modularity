@@ -17,6 +17,9 @@
         'classList'     => [
             'u-margin__top--0',
             'u-color__text--darker'
+        ],
+        'attributeList' => [
+            'translate' => 'no'
         ]
     ])
         {!! $contact['address'] !!}
