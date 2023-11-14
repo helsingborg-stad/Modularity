@@ -295,13 +295,20 @@ class Display
 
     private function mergeModules($first, $second): array
     {
-        foreach ($first as $sidebar => $modulesInSidebar) {
-            if (isset($second[$sidebar]['modules'])) {
-                $second[$sidebar]['modules'] = array_merge($second[$sidebar]['modules'], $modulesInSidebar['modules']);
+        $merged = [];
+        $sidebars = array_merge(array_keys($first), array_keys($second));
+
+        foreach ($sidebars as $sidebar) {
+            if (isset($first[$sidebar]) && isset($second[$sidebar])) {
+                $merged[$sidebar] = ['modules' => array_merge($second[$sidebar]['modules'], $first[$sidebar]['modules'])];
+            } else if (isset($first[$sidebar])) {
+                $merged[$sidebar] = $first[$sidebar];
+            } else if (isset($second[$sidebar])) {
+                $merged[$sidebar] = $second[$sidebar];
             }
         }
 
-        return $second;
+        return $merged;
     }
 
     /**
