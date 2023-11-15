@@ -12,6 +12,9 @@
             'u-margin__top--0',
             'u-color__text--darker',
             'c-typography__variant--email'
+        ],
+        'attributeList' => [
+            'translate' => 'no'
         ]
     ])
         {{$contact['email']}}

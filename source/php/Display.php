@@ -5,6 +5,7 @@ namespace Modularity;
 use Throwable;
 use ComponentLibrary\Init as ComponentLibraryInit;
 use \Modularity\Helper\File as FileHelper;
+use Modularity\Helper\Wp;
 use WP_Post;
 
 class Display
@@ -254,11 +255,15 @@ class Display
         } elseif ($archiveSlug) {
             $this->modules = \Modularity\Editor::getPostModules($archiveSlug);
             $this->options = get_option('modularity_' . $archiveSlug . '_sidebar-options');
-        } elseif($realPostID) {
+        } elseif ($realPostID) {
             $this->modules = \Modularity\Editor::getPostModules($realPostID);
             $this->options = get_option('modularity-sidebar-options');
-        } else {
-            $this->setupModulesForSingle($post, $realPostID);
+            
+            $postTypeModules = $this->setupModulesForSingle();
+            
+            if( !empty($postTypeModules) ) {
+                $this->modules = $this->mergeModules($this->modules, $postTypeModules);
+            }
         }
 
         add_action('dynamic_sidebar_before', array($this, 'outputBefore'));
@@ -275,29 +280,35 @@ class Display
         }
     }
 
-    private function setupModulesForSingle(WP_Post $post, int $realPostID) {
-        $singleSlug = \Modularity\Helper\Wp::getSingleSlug();
-        $this->modules = \Modularity\Editor::getPostModules($post->ID);
-        $this->options = get_post_meta($realPostID, 'modularity-sidebar-options', true);
-
+    private function setupModulesForSingle():array
+    {
+        $modules = [];
+        $singleSlug = Wp::getSingleSlug();
+        
         if ($singleSlug) {
-            $this->options = !is_array($this->options) ? [] : $this->options;
-            $this->modules = !is_array($this->modules) ? [] : $this->modules;
-            
-            $this->options = array_merge($this->options, get_option('modularity_' . $singleSlug . '_sidebar-options') ?: []);
-            $this->modules = $this->mergeModules($this->modules, \Modularity\Editor::getPostModules($singleSlug));
+            $modules = \Modularity\Editor::getPostModules($singleSlug);
+            $modules = !is_array($modules) ? [] : $modules;
         }
+
+        return $modules;
     }
 
     private function mergeModules($first, $second): array
     {
-        foreach ($first as $sidebar => $modulesInSidebar) {
-            if (isset($second[$sidebar]['modules'])) {
-                $second[$sidebar]['modules'] = array_merge($second[$sidebar]['modules'], $modulesInSidebar['modules']);
+        $merged = [];
+        $sidebars = array_merge(array_keys($first), array_keys($second));
+
+        foreach ($sidebars as $sidebar) {
+            if (isset($first[$sidebar]) && isset($second[$sidebar])) {
+                $merged[$sidebar] = ['modules' => array_merge($second[$sidebar]['modules'], $first[$sidebar]['modules'])];
+            } else if (isset($first[$sidebar])) {
+                $merged[$sidebar] = $first[$sidebar];
+            } else if (isset($second[$sidebar])) {
+                $merged[$sidebar] = $second[$sidebar];
             }
         }
 
-        return $second;
+        return $merged;
     }
 
     /**
