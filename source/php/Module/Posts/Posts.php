@@ -48,7 +48,7 @@ class Posts extends \Modularity\Module
     public function setTemplate($template, $module, $moduleData)
     {
         $showAsSlider   = $this->fields->show_as_slider ?? null;
-        $postsDisplayAs = $this->fields->posts_display_as ?? null;
+        $postsDisplayAs = $this->fields->posts_display_as ?? 'index';
 
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
 
