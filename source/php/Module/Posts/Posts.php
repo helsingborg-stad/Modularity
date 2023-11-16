@@ -445,6 +445,7 @@ class Posts extends \Modularity\Module
                 
                if (class_exists('\Municipio\Helper\Post')) {
                     $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
+                    $_post->postContentFiltered = $module->getPostContentFiltered($_post->postContent);
 
                     if (!empty($_post)) {
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
@@ -564,6 +565,25 @@ class Posts extends \Modularity\Module
         }
 
         return $getPostsArgs;
+    }
+
+    private function getPostContentFiltered($content) {
+        if (!empty($content) && strpos($content, '<!--more-->') !== false) {
+            $morePosition = strpos($content, '<!--more-->');
+            preg_match_all('/<p.*?>/', $content, $matches, PREG_OFFSET_CAPTURE);
+            
+            if (!empty($matches[0])) {
+                foreach ($matches[0] as $match) {
+                    if ($match[1] < $morePosition) {
+                        $content = substr_replace($content, '<p class="lead">', $match[1], strlen('<p>'));
+                    }
+                }
+            }
+        }
+
+        $cleanedContent = preg_replace('/<!--(.*?)-->/', '', $content);
+
+        return $cleanedContent;
     }
 
     /**
