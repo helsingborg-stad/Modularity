@@ -567,7 +567,6 @@ class Posts extends \Modularity\Module
         return $getPostsArgs;
     }
 
-
     /**
      * For version 3.0 - Replace old post templates with existing replacement.
      * @param $templateSlug
