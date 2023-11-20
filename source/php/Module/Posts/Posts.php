@@ -47,8 +47,8 @@ class Posts extends \Modularity\Module
     */
     public function setTemplate($template, $module, $moduleData)
     {
-        $showAsSlider   = get_field('show_as_slider', $moduleData['ID'] ?? null);
-        $postsDisplayAs = get_field('posts_display_as', $moduleData['ID'] ?? null);
+        $showAsSlider   = $this->fields->show_as_slider ?? null;
+        $postsDisplayAs = $this->fields->posts_display_as ?? null;
 
         $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
 
@@ -158,7 +158,8 @@ class Posts extends \Modularity\Module
             'Modularity/Module/Posts/template',
             self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php',
             $this,
-            $this->data
+            $this->data,
+            $this->fields
         );
     }
 
@@ -183,7 +184,7 @@ class Posts extends \Modularity\Module
         $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
 
         if (class_exists($class)) {
-            $controller = new $class($this, $this->args, $this->data);
+            $controller = new $class($this, $this->args, $this->data, $this->fields);
             $this->data = array_merge($this->data, $controller->data);
         }
     }
@@ -199,6 +200,8 @@ class Posts extends \Modularity\Module
             $this->getFields()
         );
 
+        $this->fields = $fields;
+        
         $data['posts_display_as'] = $fields->posts_display_as ?? false;
         $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
 
@@ -255,7 +258,12 @@ class Posts extends \Modularity\Module
             $data['sliderId'] = $this->ID;
         } else {
             $data['sliderId'] = uniqid();
+            $data['ID'] = uniqid();
         }
+
+        $data['lang'] = [
+            'showMore' => __('Show more', 'modularity')
+        ];
 
         return $data;
     }
@@ -382,18 +390,19 @@ class Posts extends \Modularity\Module
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
-                'thumbnail' => [
+                'thumbnail' => $imageThumbnail ? [
                     'src' => $imageThumbnail['src'],
                     'alt' => $imageThumbnail['alt']
-                ],
-                'thumbnailSquare' => [
+                ] : false,
+                'thumbnailSquare' => $imageSquare ? [
                     'src' => $imageSquare['src'],
                     'alt' => $imageSquare['alt']
-                ],
+                ] : false,
                 'postDate' => null,
                 'termsUnlinked' => null,
                 'dateBadge' => false,
-                'termIcon' => false
+                'termIcon' => false,
+                'postContentFiltered' => apply_filters('the_content', $item->post_content)
             ]);
         }
         

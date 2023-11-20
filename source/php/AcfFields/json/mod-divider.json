@@ -3,25 +3,6 @@
     "title": "Divider",
     "fields": [
         {
-            "key": "field_62816e7467206",
-            "label": "Title",
-            "name": "divider_title",
-            "type": "text",
-            "instructions": "This text will be displayed in the divider (optional)",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_628b5b97810fc",
             "label": "Title variant",
             "name": "divider_title_variant",

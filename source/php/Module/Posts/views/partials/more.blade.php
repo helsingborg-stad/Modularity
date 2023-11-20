@@ -2,7 +2,7 @@
     <div class="t-read-more-section u-display--flex u-align-content--center u-margin__y--4">
         @if(!empty($filters) && is_array($filters))
           @button([
-            'text' => __('Show more', 'modularity'),
+            'text' => $lang['showMore'],
             'color' => 'secondary',
             'style' => 'filled',
             'href' => $archive_link_url . '?' . http_build_query($filters),
@@ -11,7 +11,7 @@
           @endbutton
         @else 
           @button([
-            'text' => __('Show more', 'modularity'),
+            'text' => $lang['showMore'],
             'color' => 'secondary',
             'style' => 'filled',
             'href' => $archive_link_url,

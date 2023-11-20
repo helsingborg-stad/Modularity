@@ -32,7 +32,7 @@
                     @endgroup
                     @if(!empty($input['content']))
                         @typography([])
-                            {{ $input['content'] }}
+                            {!! $input['content'] !!}
                         @endtypography
                     @endif
                 @endgroup

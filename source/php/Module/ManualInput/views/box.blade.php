@@ -7,6 +7,7 @@
                 'link'      => $input['link'],
                 'ratio'     => $ratio,
                 'image'     => $input['image'],
+                'icon'      => $input['boxIcon'],
                 'context'   => $context
             ])
             @endbox
