@@ -6,7 +6,7 @@
     'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
     'image' => !empty($post->thumbnail['src']) ? $post->thumbnail['src'] : false,
     'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
-    'date' => !empty($post->postDate) ? $post->postDate : false,
+    'date' => !empty($post->postDateFormatted) ? $post->postDateFormatted : false,
     'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
     'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,

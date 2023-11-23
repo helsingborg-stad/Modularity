@@ -12,7 +12,7 @@
                     'meta' => !empty($display_reading_time) ? $post->readingTime : false,
                     'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
                     'image' => !empty($post->thumbnail['src']) ? $post->thumbnail['src'] : false,
-                    'date' => $post->postDate,
+                    'date' => $post->postDateFormatted,
                     'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                     'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
                     'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],

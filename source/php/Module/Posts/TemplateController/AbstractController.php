@@ -51,15 +51,15 @@ class AbstractController
             $post->showDate = true;
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
-                $post->postDate = $eventOccasions[0]['start_date'];
+                $post->postDateFormatted = $eventOccasions[0]['start_date'];
                 $post->dateBadge = true;
             } else {
-                $post->postDate = false;
+                $post->postDateFormatted = false;
             }
         } 
 
         if (empty($post->showDate)) {
-            $post->postDate = false;
+            $post->postDateFormatted = false;
         }
     }
 
