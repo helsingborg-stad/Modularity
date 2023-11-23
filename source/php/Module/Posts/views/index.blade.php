@@ -13,7 +13,7 @@
                         'ratio' => '16:9',
                         'meta' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
                         'secondary_meta' => $display_reading_time ? $post->readingTime : false,
-                        'date' => !empty($post->postDate) ? $post->postDate : false,
+                        'date' => !empty($post->postDateFormatted) ? $post->postDateFormatted : false,
                         'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                         'filled' => true,
                         'image' =>
@@ -51,7 +51,7 @@
                         'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
                         'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
                         'meta' => !empty($display_reading_time) ? $post->readingTime : false,
-                        'date' => !empty($post->postDate) ? $post->postDate : false,
+                        'date' => !empty($post->postDateFormatted) ? $post->postDateFormatted : false,
                         'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                         'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                         'containerAware' => true,

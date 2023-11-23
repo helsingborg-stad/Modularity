@@ -4,7 +4,7 @@
     'link' => $post->permalink,
     'meta' => $post->termsUnlinked,
     'secondaryMeta' => $display_reading_time ? $post->readingTime : false,
-    'date' => $post->postDate,
+    'date' => $post->postDateFormatted,
     'ratio' => $ratio,
     'image' => $post->showImage && !empty($post->images['thumbnail16:9']['src'])
         ? [

@@ -16,7 +16,7 @@
                         'content' => isset($post->showExcerpt) ? $post->excerptShort : '',
                         'meta' => $display_reading_time ? $post->readingTime : false,
                         'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
-                        'date' => $post->postDate,
+                        'date' => $post->postDateFormatted,
                         'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                         'containerAware' => true,
                         'hasAction' => true,
@@ -47,7 +47,7 @@
                         'ratio' => $ratio,
                         'meta' => $post->termsUnlinked ? $post->termsUnlinked : false,
                         'secondaryMeta' => !empty($display_reading_time) && !empty($post->readingTime) ? $post->readingTime : false,
-                        'date' => $post->postDate,
+                        'date' => $post->postDateFormatted,
                         'dateBadge' => $post->dateBadge,
                         'filled' => true,
                         'image' => $post->showImage && isset($post->images['thumbnail' . $ratio]['src'])

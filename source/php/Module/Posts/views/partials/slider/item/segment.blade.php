@@ -5,7 +5,7 @@
     'meta' => !empty($display_reading_time) ? $post->readingTime : false,
     'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
     'image' => !empty($post->images['thumbnail16:9']['src']) ? $post->images['thumbnail16:9']['src'] : false,
-    'date' => !empty($post->postDate) ? $post->postDate : false,
+    'date' => !empty($post->postDateFormatted) ? $post->postDateFormatted : false,
     'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
     'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
