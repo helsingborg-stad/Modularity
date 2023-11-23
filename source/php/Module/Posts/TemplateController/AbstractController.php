@@ -13,7 +13,7 @@ class AbstractController
         }
 
         foreach ($posts as $post) {
-            if (!empty($post->thumbnail) && !isset($post->thumbnail['src'])) {
+            if (!empty($post->images) && !isset($post->images['thumbnail16:9']['src'])) {
                 return true;
             }
         }

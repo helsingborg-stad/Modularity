@@ -11,7 +11,7 @@
                     'context' => ['module.posts.segment'],
                     'meta' => !empty($display_reading_time) ? $post->readingTime : false,
                     'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
-                    'image' => !empty($post->thumbnail['src']) ? $post->thumbnail['src'] : false,
+                    'image' => !empty($post->images['thumbnail16:9']['src']) ? $post->images['thumbnail16:9']['src'] : false,
                     'date' => $post->postDateFormatted,
                     'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                     'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,

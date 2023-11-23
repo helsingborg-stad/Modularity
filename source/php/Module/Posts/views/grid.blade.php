@@ -21,10 +21,10 @@
                         'containerAware' => true,
                         'hasAction' => true,
                         'hasPlaceholder' => !empty($post->hasPlaceholderImage),
-                        'image' => $post->showImage
+                        'image' => $post->showImage && !empty($post->images['thumbnail16:9']['src'])
                             ? [
-                                'src' => $post->thumbnail['src'],
-                                'alt' => $post->thumbnail['alt'],
+                                'src' => $post->images['thumbnail16:9']['src'],
+                                'alt' => $post->images['thumbnail16:9']['alt'],
                                 'backgroundColor' => 'secondary'
                             ]
                             : [],
@@ -50,10 +50,10 @@
                         'date' => !empty($post->postDateFormatted) ? $post->postDateFormatted : false,
                         'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                         'filled' => true,
-                        'image' => !empty($post->showImage)
+                        'image' => $post->showImage && isset($post->images['thumbnail' . $ratio]['src'])
                             ? [
-                                'src' => !empty($post->thumbnailSquare['src']) ? $post->thumbnailSquare['src'] : false,
-                                'alt' => !empty($post->thumbnailSquare['alt']) ? $post->thumbnailSquare['alt'] : false,
+                                'src' => $post->images['thumbnail' . $ratio]['src'],
+                                'alt' => $post->images['thumbnail' . $ratio]['alt'],
                                 'backgroundColor' => 'secondary'
                             ]
                             : false,

@@ -6,10 +6,10 @@
     'secondaryMeta' => $display_reading_time ? $post->readingTime : false,
     'date' => $post->postDateFormatted,
     'ratio' => $ratio,
-    'image' => $post->showImage
+    'image' => $post->showImage && !empty($post->images['thumbnail16:9']['src'])
         ? [
-            'src' => $post->thumbnail['src'] ?? false,
-            'alt' => $post->thumbnail['alt'] 
+            'src' => $post->images['thumbnail16:9']['src'] ?? false,
+            'alt' => $post->images['thumbnail16:9']['alt'] 
         ]
         : [],
 ])

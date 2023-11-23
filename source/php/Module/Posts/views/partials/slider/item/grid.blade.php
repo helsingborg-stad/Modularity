@@ -6,9 +6,9 @@
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
     'filled' => true,
-    'image' => ($post->showImage ? [
-            'src' => $post->thumbnailSquare['src'],
-            'alt' => $post->thumbnailSquare['alt'],
+    'image' => ($post->showImage && isset($post->images['thumbnail' . $ratio]) ? [
+            'src' => $post->images['thumbnail' . $ratio]['src'],
+            'alt' => $post->images['thumbnail' . $ratio]['alt'],
             'backgroundColor' => 'secondary',
         ] : false),
     'hasPlaceholder' => !empty($post->hasPlaceholderImage),

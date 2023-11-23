@@ -17,10 +17,10 @@
                         'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                         'filled' => true,
                         'image' =>
-                            $post->showImage && isset($post->thumbnailSquare['src'])
+                            $post->showImage && isset($post->images['thumbnail16:9']['src'])
                                 ? [
-                                    'src' => $post->thumbnailSquare['src'],
-                                    'alt' => $post->thumbnailSquare['alt'],
+                                    'src' => $post->images['thumbnail16:9']['src'],
+                                    'alt' => $post->images['thumbnail16:9']['alt'],
                                     'backgroundColor' => 'secondary'
                                 ]
                                 : false,
@@ -58,10 +58,10 @@
                         'hasAction' => true,
                         'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                         'image' =>
-                            $post->showImage && isset($post->thumbnail['src'])
+                            $post->showImage && !empty($post->images['thumbnail16:9']['src'])
                                 ? [
-                                    'src' => $post->thumbnail['src'],
-                                    'alt' => $post->thumbnail['alt'],
+                                    'src' => $post->images['thumbnail16:9']['src'],
+                                    'alt' => $post->images['thumbnail16:9']['alt'],
                                     'backgroundColor' => 'secondary'
                                 ]
                                 : [],

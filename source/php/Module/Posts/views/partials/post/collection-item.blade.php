@@ -15,10 +15,10 @@
         @endif
     @endslot
     @slot('before')
-        @if (!empty($post->showImage) && isset($post->thumbnail['src']))
+        @if (!empty($post->showImage) && isset($post->images['thumbnail16:9']['src']))
             @image([
-                'src' => $post->thumbnail['src'],
-                'alt' => $post->thumbnail['alt'],
+                'src' => $post->images['thumbnail16:9']['src'],
+                'alt' => $post->images['thumbnail16:9']['alt'],
             ])
             @endimage
         @endif

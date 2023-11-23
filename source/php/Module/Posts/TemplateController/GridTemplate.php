@@ -39,7 +39,7 @@ class GridTemplate extends AbstractController
 
     public function prepare($fields)
     {
-        foreach ($this->data['posts'] as $post) {
+        foreach ($this->data['posts'] as &$post) {            
             $this->setPostFlags($post);
         }
     }
