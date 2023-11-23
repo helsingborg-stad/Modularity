@@ -398,7 +398,7 @@ class Posts extends \Modularity\Module
                     'src' => $imageSquare['src'],
                     'alt' => $imageSquare['alt']
                 ] : false,
-                'postDate' => null,
+                'postDateFormatted' => null,
                 'termsUnlinked' => null,
                 'dateBadge' => false,
                 'termIcon' => false,
@@ -445,6 +445,7 @@ class Posts extends \Modularity\Module
                 
                if (class_exists('\Municipio\Helper\Post')) {
                     $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
+                    $_post->postContentFiltered = \Modularity\Module\Posts\Helper\PostContentFiltered::getPostContentFiltered($_post->postContent);
 
                     if (!empty($_post)) {
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
