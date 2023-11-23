@@ -3,7 +3,7 @@
     'content' => ($post->showExcerpt ? $post->excerptShort : false),
     'ratio' => $ratio,
     'meta' => $post->termsUnlinked,
-    'date' => $post->postDate,
+    'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
     'filled' => true,
     'image' => ($post->showImage ? [

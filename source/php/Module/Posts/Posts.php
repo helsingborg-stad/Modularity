@@ -398,7 +398,7 @@ class Posts extends \Modularity\Module
                     'src' => $imageSquare['src'],
                     'alt' => $imageSquare['alt']
                 ] : false,
-                'postDate' => null,
+                'postDateFormatted' => null,
                 'termsUnlinked' => null,
                 'dateBadge' => false,
                 'termIcon' => false,
