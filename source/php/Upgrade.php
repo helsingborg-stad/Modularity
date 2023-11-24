@@ -25,7 +25,7 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        add_action('wp', array($this, 'initUpgrade'), 10);
+        // add_action('wp', array($this, 'initUpgrade'), 10);
     }
 
     /**
