@@ -382,22 +382,19 @@ class Posts extends \Modularity\Module
         $posts = [];
 
         foreach ($data as $key => $item) {
-            $imageThumbnail = ImageHelper::getImageAttachmentData($item->image, [400, 225]);
-            $imageSquare    = ImageHelper::getImageAttachmentData($item->image, [500, 500]);
-
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
                 'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
                 'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
-                'thumbnail' => $imageThumbnail ? [
-                    'src' => $imageThumbnail['src'],
-                    'alt' => $imageThumbnail['alt']
-                ] : false,
-                'thumbnailSquare' => $imageSquare ? [
-                    'src' => $imageSquare['src'],
-                    'alt' => $imageSquare['alt']
-                ] : false,
+                'images' => [
+                    'thumbnail_16:9' => ImageHelper::getImageAttachmentData($item->image ?? false, [400, 225]),
+                    'thumbnail_4:3' => ImageHelper::getImageAttachmentData($item->image ?? false, [390, 520]),
+                    'thumbnail_1:1' => ImageHelper::getImageAttachmentData($item->image ?? false, [500, 500]),
+                    'thumbnail_3:4' => ImageHelper::getImageAttachmentData($item->image ?? false, [400, 225]),
+                    'featuredImage' => ImageHelper::getImageAttachmentData($item->image ?? false, [240, 320]),
+                    'thumbnail_12:16' => ImageHelper::getImageAttachmentData($item->image ?? false, [240, 320])
+                ],
                 'postDateFormatted' => null,
                 'termsUnlinked' => null,
                 'dateBadge' => false,
