@@ -25,8 +25,8 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        // add_action('wp', array($this, 'initUpgrade'), 10);
         add_action('wp', array($this, 'initUpgrade'), 10);
+
     }
 
     /**
@@ -554,7 +554,10 @@ class Upgrade
         if (strpos($postContent, "<!--more-->")) {
             return strip_tags(substr($postContent, 0, strpos($postContent, "<!--more-->")));
         }
-        return wp_trim_words(strip_tags($postContent), 55, null);
+
+        $postContent = wp_trim_words(strip_tags($postContent), 55, '...');
+
+        return $postContent;
     }
 
     /**
