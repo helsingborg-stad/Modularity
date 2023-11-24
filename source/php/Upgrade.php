@@ -487,7 +487,7 @@ class Upgrade
                         
                         $image = $values['link_type'] == 'internal' && !empty($values['page']) && !empty($values['image_display']) && $values['image_display'] == 'featured' ? get_post_thumbnail_id($values['page']) : (!empty($values['custom_image']) ? $values['custom_image'] : false);
 
-                        $link = $values['link_type'] == 'internal' && !empty($values['page']) ? get_page_link($values['page']) : (!empty($values['link_url']) && $values['link_type'] == 'external' ? $values['link_url'] : false);
+                        $link = $values['link_type'] == 'internal' && !empty($values['page']) ? get_permalink($values['page']) : (!empty($values['link_url']) && $values['link_type'] == 'external' ? $values['link_url'] : false);
                         
                         $blockData[$newFieldName . '_' . $index . '_title'] = $title;
                         $blockData['_' . $newFieldName . '_' . $index . '_title'] = 'field_64ff22fdd91b8';
@@ -532,7 +532,7 @@ class Upgrade
                 
                 if (!empty($oldInput['link_type'])) {
                     if ($oldInput['link_type'] == 'internal' && !empty($oldInput['page']->ID)) {
-                        $val['link'] = get_page_link($oldInput['page']->ID);
+                        $val['link'] = get_permalink($oldInput['page']->ID);
                         if (!empty($oldInput['image_display']) && $oldInput['image_display'] == 'featured') {
                             $val['image'] = get_post_thumbnail_id($oldInput['page']->ID);
                         }   
