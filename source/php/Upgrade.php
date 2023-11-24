@@ -25,6 +25,7 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
+        update_option($this->dbVersionKey, 1);
         add_action('wp', array($this, 'initUpgrade'), 10);
 
     }
