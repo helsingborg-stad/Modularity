@@ -25,7 +25,8 @@ class Upgrade
         add_action('init', array($this, 'debugAfter'), 20);*/
 
         //Production hook
-        // add_action('wp', array($this, 'initUpgrade'), 10);
+        add_action('wp', array($this, 'initUpgrade'), 10);
+
     }
 
     /**
@@ -481,7 +482,7 @@ class Upgrade
                     if (!empty($values['link_type'])) {
                         $title = !empty($values['title']) ? $values['title'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? get_the_title($values['page']) : false);
     
-                        $content = !empty($values['lead']) ? $values['lead'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? get_the_content(null, false, $values['page']) : false);
+                        $content = !empty($values['lead']) ? $values['lead'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? $this->getIndexExcerpt(get_the_content(null, true, $values['page'])) : false);
                         
                         $image = $values['link_type'] == 'internal' && !empty($values['page']) && !empty($values['image_display']) && $values['image_display'] == 'featured' ? get_post_thumbnail_id($values['page']) : (!empty($values['custom_image']) ? $values['custom_image'] : false);
 
@@ -522,7 +523,7 @@ class Upgrade
             foreach ($oldFieldValue as $oldInput) {
                 $val = [
                     'image_before_content' => false,
-                    'content' => !empty($oldInput['lead']) ? $oldInput['lead'] : (!empty($oldInput['page']->post_content) ? $oldInput['page']->post_content : false),
+                    'content' => !empty($oldInput['lead']) ? $oldInput['lead'] : (!empty($oldInput['page']->post_content) ? $this->getIndexExcerpt($oldInput['page']->post_content) : false),
                     'title' => !empty($oldInput['title']) ? $oldInput['title'] : (!empty($oldInput['page']->post_title) ? $oldInput['page']->post_title : false),
                     'image' => !empty($oldInput['custom_image']['ID']) ? $oldInput['custom_image']['ID'] : false,
                     'link' => !empty($oldInput['link_url']) ? $oldInput['link_url'] : false,
@@ -545,8 +546,19 @@ class Upgrade
             }
 
         update_field($newField['name'], $updateValue, $id);
+        }
     }
-}
+    /* TODO: Remove after upgrade */
+    private function getIndexExcerpt($postContent) {
+        $postContent = preg_replace('#</?a(\s[^>]*)?>#i', '', $postContent);
+        if (strpos($postContent, "<!--more-->")) {
+            return strip_tags(substr($postContent, 0, strpos($postContent, "<!--more-->")));
+        }
+
+        $postContent = wp_trim_words(strip_tags($postContent), 55, '...');
+
+        return $postContent;
+    }
 
     /**
      * Post: Extract a field value and adds it to another field

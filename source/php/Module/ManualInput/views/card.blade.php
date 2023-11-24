@@ -1,6 +1,6 @@
 @includeWhen(empty($hideTitle) && !empty($post_title), 'partials.post-title')
 @if (!empty($manualInputs))
-    <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }} u-height--100">
+    <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}">
         @foreach ($manualInputs as $input)
         <div class="{{$columns}}">
             @card([
