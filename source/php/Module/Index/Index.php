@@ -27,7 +27,7 @@ class Index extends \Modularity\Module
     public function data() : array
     {
         $data = $this->getFields();
-        echo '<pre>' . print_r( $data, true ) . '</pre>';
+
         // Get column classes
         $data['columnClass'] = 'o-grid-6@md';
         if (!empty($data['index_columns'])) {
