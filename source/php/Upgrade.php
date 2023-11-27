@@ -463,13 +463,12 @@ class Upgrade
 
                 //Update post type
                 if (!empty($newModuleName)) {
-                    
-                    $q = $this->db->prepare(
+                    $this->db->prepare(
                         "UPDATE " . $this->db->posts . " SET post_type %s WHERE ID = %d", 
                         $newModuleName, 
                         $module->ID
                     ); 
-                    var_dump($q); 
+                    //$this->db->query($QueryUpdatePostType); 
                 }
             }
         }
