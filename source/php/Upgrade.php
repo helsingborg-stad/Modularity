@@ -116,7 +116,38 @@ class Upgrade
 
     private function v_2($db): bool
     {
-        // return false;
+        
+        $indexModules = $this->getPostType('mod-index');
+
+        $this->migrateAcfFieldsValueToNewFields(
+            $indexModules, 
+            [
+                'index' => [
+                    'name' => 'manual_inputs', 
+                    'type' => 'custom', 
+                    'function' => 'migrateIndexModuleRepeater',
+                ],
+                'index_columns' => [
+                    'name' => 'columns',
+                    'type' => 'replaceValue',
+                    'values' => [
+                        'grid-md-12' => 'o-grid-12',
+                        'grid-md-6' => 'o-grid-6',
+                        'grid-md-4' => 'o-grid-4',
+                        'grid-md-3' => 'o-grid-3',
+                        'default' => 'o-grid-4'
+                    ]
+                ],
+            ],
+            'mod-manualinput'
+        );
+
+
+
+        return false;
+
+
+
         $this->migrateBlockFieldsValueToNewFields('acf/index', [
             'index_columns' => [
                 'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
@@ -142,26 +173,7 @@ class Upgrade
 
         $indexModules = $this->getPostType('mod-index');
 
-        $this->migrateAcfFieldsValueToNewFields($indexModules, 
-            [
-                'index' => [
-                    'name' => 'manual_inputs', 
-                    'type' => 'custom', 
-                    'function' => 'migrateIndexModuleRepeater',
-                ],
-                'index_columns' => [
-                    'name' => 'columns',
-                    'type' => 'replaceValue',
-                    'values' => [
-                        'grid-md-12' => 'o-grid-12',
-                        'grid-md-6' => 'o-grid-6',
-                        'grid-md-4' => 'o-grid-4',
-                        'grid-md-3' => 'o-grid-3',
-                        'default' => 'o-grid-4'
-                    ]
-                ],
-            ],
-            'mod-manualinput');
+        
         
         return true; //Return false to keep running this each time!
     }
@@ -447,13 +459,17 @@ class Upgrade
     {
         if (!empty($modules) && is_array($modules)) {
             foreach ($modules as &$module) {
-                $this->migrateModuleFields($fields, $module->ID);
+                //$this->migrateModuleFields($fields, $module->ID);
 
+                //Update post type
                 if (!empty($newModuleName)) {
-                    wp_update_post([
-                        'ID' => $module->ID,
-                        'post_type' => $newModuleName
-                    ]);   
+                    
+                    $q = $this->db->prepare(
+                        "UPDATE " . $this->db->posts . " SET post_type %s WHERE ID = %d", 
+                        $newModuleName, 
+                        $module->ID
+                    ); 
+                    var_dump($q); 
                 }
             }
         }
