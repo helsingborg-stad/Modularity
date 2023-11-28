@@ -1,4 +1,4 @@
-@includeWhen(empty($hideTitle) && !empty($post_title), 'partials.post-title')
+@includeWhen(empty($hideTitle) && !empty($custom_block_title), 'partials.post-title')
 @if (!empty($manualInputs))
     <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}">
         @foreach ($manualInputs as $input)

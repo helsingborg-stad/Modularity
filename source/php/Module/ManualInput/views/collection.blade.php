@@ -1,4 +1,4 @@
-@includeWhen(empty($hideTitle) && !empty($post_title), 'partials.post-title')
+@includeWhen(empty($hideTitle) && !empty($custom_block_title), 'partials.post-title')
 @collection([
     'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal', !empty($stretch) ? ' o-grid--stretch' : ''],
 ])
