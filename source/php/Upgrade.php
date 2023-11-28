@@ -1004,6 +1004,10 @@ class Upgrade
      */
     public function initUpgrade()
     {
+        if(!is_admin()) {
+            return;
+        }
+
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
         }
