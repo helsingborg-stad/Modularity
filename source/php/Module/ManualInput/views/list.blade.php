@@ -2,7 +2,7 @@
     'classList' => ['o-grid', !empty($stretch) ? 'o-grid--stretch' : ''],
     'context' => $context,
 ])
-    @if (empty($hideTitle) && !empty($post_title))
+    @if (empty($hideTitle) && !empty($custom_block_title))
     <div class="c-card__header">
         @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
     </div>
