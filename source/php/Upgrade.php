@@ -646,10 +646,14 @@ class Upgrade
     
                         $serializedBlocks = serialize_blocks($blocks); 
                         
-                        wp_update_post([
-                            'ID' => $page->ID,
-                            'post_content' => $serializedBlocks
-                        ]);   
+                        if (!empty($serializedBlocks)) {
+                            $queryUpdateContent = $this->db->prepare(
+                                "UPDATE " . $this->db->posts . " SET post_content = %s WHERE ID = %d", 
+                                $serializedBlocks, 
+                                $page->ID
+                            ); 
+                            $this->db->query($queryUpdateContent); 
+                        }
                     }
                 }
             }
