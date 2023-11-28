@@ -448,7 +448,7 @@ class Upgrade
     {
         if (!empty($modules) && is_array($modules)) {
             foreach ($modules as &$module) {
-                //$this->migrateModuleFields($fields, $module->ID);
+                $this->migrateModuleFields($fields, $module->ID);
 
                 //Update post type
                 if (!empty($newModuleName)) {
