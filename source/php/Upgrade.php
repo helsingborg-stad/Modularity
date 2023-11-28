@@ -116,7 +116,6 @@ class Upgrade
 
     private function v_2($db): bool
     {
-        // return false;
         $this->migrateBlockFieldsValueToNewFields('acf/index', [
             'index_columns' => [
                 'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
@@ -142,7 +141,8 @@ class Upgrade
 
         $indexModules = $this->getPostType('mod-index');
 
-        $this->migrateAcfFieldsValueToNewFields($indexModules, 
+        $this->migrateAcfFieldsValueToNewFields(
+            $indexModules, 
             [
                 'index' => [
                     'name' => 'manual_inputs', 
@@ -161,8 +161,9 @@ class Upgrade
                     ]
                 ],
             ],
-            'mod-manualinput');
-        
+            'mod-manualinput'
+        );
+
         return true; //Return false to keep running this each time!
     }
 
@@ -449,11 +450,14 @@ class Upgrade
             foreach ($modules as &$module) {
                 $this->migrateModuleFields($fields, $module->ID);
 
+                //Update post type
                 if (!empty($newModuleName)) {
-                    wp_update_post([
-                        'ID' => $module->ID,
-                        'post_type' => $newModuleName
-                    ]);   
+                    $QueryUpdatePostType = $this->db->prepare(
+                        "UPDATE " . $this->db->posts . " SET post_type = %s WHERE ID = %d", 
+                        $newModuleName, 
+                        $module->ID
+                    ); 
+                    $this->db->query($QueryUpdatePostType); 
                 }
             }
         }
