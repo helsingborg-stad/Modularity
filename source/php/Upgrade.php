@@ -525,7 +525,7 @@ class Upgrade
     }
 
     /* TODO: Upgrade then remove */
-    private function migrateIndexModuleRepeater(array $newField, array $oldFieldValue = [], $id) {
+    private function migrateIndexModuleRepeater(array $newField, $oldFieldValue = [], $id) {
 
         update_field('display_as', 'card', $id);
         
@@ -559,7 +559,7 @@ class Upgrade
                 $updateValue[] = $val;
             }
 
-        update_field($newField['name'], $updateValue, $id);
+            update_field($newField['name'], $updateValue, $id);
         }
     }
     /* TODO: Remove after upgrade */
