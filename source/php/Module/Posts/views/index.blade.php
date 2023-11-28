@@ -17,10 +17,10 @@
                         'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
                         'filled' => true,
                         'image' =>
-                            $post->showImage && isset($post->images['thumbnail16:9']['src'])
+                            $post->showImage && isset($post->images['featuredImage']['src'])
                                 ? [
-                                    'src' => $post->images['thumbnail16:9']['src'],
-                                    'alt' => $post->images['thumbnail16:9']['alt'],
+                                    'src' => $post->images['featuredImage']['src'],
+                                    'alt' => $post->images['featuredImage']['alt'],
                                     'backgroundColor' => 'secondary'
                                 ]
                                 : false,

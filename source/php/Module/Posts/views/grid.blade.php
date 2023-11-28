@@ -52,7 +52,7 @@
                         'filled' => true,
                         'image' => $post->showImage && isset($post->images['thumbnail' . $ratio]['src'])
                             ? [
-                                'src' => $post->images['thumbnail' . $ratio]['src'],
+                                'src' => $loop->first && $highlight_first_column ? $post->images['featuredImage']['src'] : $post->images['thumbnail' . $ratio]['src'],
                                 'alt' => $post->images['thumbnail' . $ratio]['alt'],
                                 'backgroundColor' => 'secondary'
                             ]
