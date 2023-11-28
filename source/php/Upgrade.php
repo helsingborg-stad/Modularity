@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 2; //The db version we want to achive
+    private $dbVersion = 3; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -167,8 +167,17 @@ class Upgrade
         return true; //Return false to keep running this each time!
     }
 
+    private function v_3(): bool {
+        $options = get_option('modularity-options');
+        if (is_array($options['enabled-modules'])) {
+            $options['enabled-modules'][] = "mod-manualinput"; 
+        }
+        update_option('modularity-options', $options);
+        return true;
+    }
+
     
-    private function v_3($db): bool 
+    private function v_4($db): bool 
     {
         $this->migrateBlockFieldsValueToNewFields('acf/manualinput', [
             'index' => [
@@ -195,7 +204,7 @@ class Upgrade
     }
 
 
-    private function v_4($db): bool
+    private function v_5($db): bool
     {        
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
@@ -310,7 +319,7 @@ class Upgrade
         return true; //Return false to keep running this each time!
     }
 
-    private function v_5($db): bool
+    private function v_6($db): bool
     {
         $fieldsToRemove = [
             'posts_columns' => [
