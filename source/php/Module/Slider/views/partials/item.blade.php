@@ -9,6 +9,7 @@
     'cta'               => $slide->call_to_action,
     'heroStyle'         => $sidebarContext === 'sidebar.slider-area',
     'focusPoint'        => $slide->focusPoint,
-    'context'           => ['module.slider-item', $sidebarContext . '.module.slider-item']
+    'context'           => ['module.slider-item', $sidebarContext . '.module.slider-item'],
+    'isImage'           => true
 ])
 @endslider__item
