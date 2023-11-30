@@ -3,5 +3,5 @@
     'variant' => $variant ?? 'h2',
     'classList' => $classList ?? ['module-title']
 ])
-    {!! $custom_block_title !!}
+    {!! $postTitle !!}
 @endtypography

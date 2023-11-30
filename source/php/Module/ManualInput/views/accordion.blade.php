@@ -2,7 +2,7 @@
     @card([
         'context' => $context
     ])
-        @if (empty($hideTitle) && !empty($custom_block_title))
+        @if (empty($hideTitle) && !empty($postTitle))
             <div class="c-card__header">
                 @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
             </div>
