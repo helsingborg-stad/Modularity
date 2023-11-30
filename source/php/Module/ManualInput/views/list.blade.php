@@ -1,5 +1,4 @@
 @card([
-    'classList' => ['o-grid', !empty($stretch) ? 'o-grid--stretch' : ''],
     'context' => $context,
 ])
     @if (empty($hideTitle) && !empty($postTitle))
