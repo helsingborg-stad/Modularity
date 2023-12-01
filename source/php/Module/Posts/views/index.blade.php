@@ -46,19 +46,19 @@
                     @card([
                         'link' => $post->permalink,
                         'imageFirst' => true,
-                        'heading' => !empty($post->showTitle) ? $post->postTitle : false,
+                        'heading' => $post->postTitle,
                         'context' => ['module.posts.index'],
-                        'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
-                        'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
-                        'meta' => !empty($display_reading_time) ? $post->readingTime : false,
-                        'date' => !empty($post->postDateFormatted) ? $post->postDateFormatted : false,
-                        'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
+                        'content' => $post->excerptShort,
+                        'tags' => $post->termsUnlinked,
+                        'meta' => $post->readingTime,
+                        'date' => $post->postDateFormatted,
+                        'dateBadge' => $post->dateBadge,
                         'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
                         'containerAware' => true,
                         'hasAction' => true,
                         'hasPlaceholder' => !empty($post->hasPlaceholderImage),
                         'image' =>
-                            $post->showImage && !empty($post->images['thumbnail16:9']['src'])
+                            !empty($post->images['thumbnail16:9']['src'])
                                 ? [
                                     'src' => $post->images['thumbnail16:9']['src'],
                                     'alt' => $post->images['thumbnail16:9']['alt'],
@@ -67,7 +67,7 @@
                                 : [],
                         'postId' => $post->id,
                         'postType' => $post->postType ?? '',
-                        'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
+                        'icon' => $post->termIcon,
                         'attributeList' => array_merge($post->attributeList, []),
                     ])
                         @slot('floating')

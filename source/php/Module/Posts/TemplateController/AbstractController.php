@@ -27,11 +27,33 @@ class AbstractController
         );
 
         if(!empty($this->data['posts']) && is_array($this->data['posts'])) {
-            foreach ($this->data['posts'] as $post) {
+            foreach ($this->data['posts'] as &$post) {
+                $post = array_filter((array) $post, function($value) {
+                    return !empty($value) || $value === false;
+                });
+                $post = array_merge($this->getDefaultValuesForPosts(), $post);
                 $this->setPostFlags($post);
             }
         }
         
+    }
+
+    public function getDefaultValuesForPosts() {
+        return [
+            'postTitle' => false,
+            'excerptShort' => false,
+            'termsUnlinked' => false,
+            'postDateFormatted' => false,
+            'dateBadge' => false,
+            'images' => false,
+            'hasPlaceholderImage' => false,
+            'readingTime' => false,
+            'permalink' => false,
+            'id' => false,
+            'postType' => false,
+            'termIcon' => false,
+            'callToActionItems' => false,
+        ];
     }
 
     /**
@@ -40,15 +62,15 @@ class AbstractController
     public function setPostFlags(&$post)
     {
         if (empty($post)) return;
+        $post = (object) $post;
         // Booleans for hiding/showing stuff
-        $post->showExcerpt  = in_array('excerpt', $this->data['posts_fields']);
-        $post->showTitle    = in_array('title', $this->data['posts_fields']);
-        $post->showImage    = in_array('image', $this->data['posts_fields']);
-        $post->showDate     = in_array('date', $this->data['posts_fields']);
-        $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
+        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields']) ? $post->excerptShort : false;
+        $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
+        $post->images               = in_array('image', $this->data['posts_fields']) ? $post->images : false;
+        $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
+        $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
 
         if (isset($post->contentType) && 'event' == $post->contentType) {
-            $post->showDate = true;
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
                 $post->postDateFormatted = $eventOccasions[0]['start_date'];
@@ -57,10 +79,6 @@ class AbstractController
                 $post->postDateFormatted = false;
             }
         } 
-
-        if (empty($post->showDate)) {
-            $post->postDateFormatted = false;
-        }
     }
 
     /**
