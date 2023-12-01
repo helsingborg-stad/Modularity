@@ -439,11 +439,14 @@ class Posts extends \Modularity\Module
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
-                
-               if (class_exists('\Municipio\Helper\Post')) {
-                    $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
-                    $_post->postContentFiltered = \Modularity\Module\Posts\Helper\PostContentFiltered::getPostContentFiltered($_post->postContent);
 
+               if (class_exists('\Municipio\Helper\Post')) {
+                    if (in_array($fields->posts_display_as, [ 'expandable-list'])) {
+                        $_post = \Municipio\Helper\Post::preparePostObject($_post);
+                    } else {
+                        $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
+                    }
+                
                     if (!empty($_post)) {
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
                     }
