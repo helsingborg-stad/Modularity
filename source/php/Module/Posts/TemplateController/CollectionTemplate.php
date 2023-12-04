@@ -15,9 +15,7 @@ class CollectionTemplate extends AbstractController
         $this->args = $args;
         $this->data = $data;
 
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-
+        $this->prepareFields($fields);
         $this->preparePosts();
-        $this->data['anyPostHasImage'] = $this->anyPostHasImage($this->data['posts']);
     }
 }

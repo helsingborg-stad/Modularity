@@ -33,12 +33,6 @@ class SliderTemplate extends AbstractController
             (object) $this->data['slider']
         );
 
-        $this->prepare($fields);
-    }
-
-
-    public function prepare($fields)
-    {
-        $this->setPostFlags($post);
+        $this->preparePosts();
     }
 }

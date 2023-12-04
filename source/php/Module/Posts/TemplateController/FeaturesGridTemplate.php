@@ -25,17 +25,7 @@ class FeaturesGridTemplate extends AbstractController
         $this->args = $args;
         $this->data = $data;
 
-        $fields = json_decode(json_encode(get_fields($this->module->ID)));
-
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['ratio'] = $fields->ratio;
-        $this->preparePosts($fields);
-    }
-
-    public function preparePosts()
-    {
-        foreach ($this->data['posts'] as $post) {
-            $this->setPostFlags($post);
-        }
+        $this->prepareFields($fields);
+        $this->preparePosts();
     }
 }

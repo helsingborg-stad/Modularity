@@ -5,21 +5,16 @@
     'meta' => $post->readingTime,
     'tags' => $post->termsUnlinked,
     'image' => !empty($post->image['src']) ? $post->image['src'] : false,
-    'content' => $post->excerptShort,
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
+    'content' => $post->excerptShort,
     'buttons' => [['text' => $lang['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
-    'reverseColumns' => true,
-    'classList' => ['c-segment--slider'],
+    'reverseColumns' => $imagePosition,
     'icon' => $post->termIcon,
+    'hasPlaceholder' => $post->hasPlaceholderImage,
     'attributeList' => array_merge($post->attributeList, []),
-    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
-    ])
-    @slot('floating')
-        @if (!empty($post->callToActionItems['floating']))
-            @icon($post->callToActionItems['floating'])
-            @endicon
-        @endif
-    @endslot
+    'classList' => array_merge($post->classList, []),
+])
+@includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
 @endsegment

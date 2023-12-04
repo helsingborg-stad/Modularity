@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+
 class AbstractController
 {
     protected $hookName = 'index';
@@ -25,19 +27,21 @@ class AbstractController
         $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
             $this->data['posts_data_post_type'] ?? ''
         );
-
         if(!empty($this->data['posts']) && is_array($this->data['posts'])) {
-            foreach ($this->data['posts'] as &$post) {
+            foreach ($this->data['posts'] as $index => &$post) {
+                $this->setPostFlags($post, $index);
                 $post = array_filter((array) $post, function($value) {
                     return !empty($value) || $value === false;
                 });
-                $post = array_merge($this->getDefaultValuesForPosts(), $post);
-                $this->setPostFlags($post);
+
+                $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
             }
         }
-        
     }
 
+    /**
+     * Default values for keys in the post object.
+     */
     public function getDefaultValuesForPosts() {
         return [
             'postTitle' => false,
@@ -53,22 +57,29 @@ class AbstractController
             'postType' => false,
             'termIcon' => false,
             'callToActionItems' => false,
+            'imagePosition' => true,
+            'classList' => []
         ];
     }
 
     /**
      * Booleans for hiding/showing stuff
      */
-    public function setPostFlags(&$post)
+    public function setPostFlags(&$post, $index = false)
     {
         if (empty($post)) return;
-        $post = (object) $post;
         // Booleans for hiding/showing stuff
         $post->excerptShort         = in_array('excerpt', $this->data['posts_fields']) ? $post->excerptShort : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
-        $post->images               = in_array('image', $this->data['posts_fields']) ? $post->images : false;
+        $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageBasedOnRatio($post->images, $index) : [];
         $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
         $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
+        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && empty($post->images['thumbnail16:9']['src']) ? true : false;
+        $post->readingTime          = in_array('reading_time', $this->data['posts_fields']) ? $post->readingTime : false;
+        
+        if (!empty($post->image) && is_array($post->image)) {
+            $post->image['backgroundColor'] = 'secondary';
+        }
 
         if (isset($post->contentType) && 'event' == $post->contentType) {
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
@@ -79,6 +90,33 @@ class AbstractController
                 $post->postDateFormatted = false;
             }
         } 
+    }
+
+    public function getImageBasedOnRatio($images, $index) {
+        if (empty($this->data['posts_display_as']) || empty($images['thumbnail16:9']['src'])) return false;
+
+        if (!empty($this->data['highlight_first_column']) && in_array($this->data['posts_display_as'], ['block', 'index'])) {
+            return $images['featuredImage'];
+        }
+
+        switch ($this->data['posts_display_as']) {
+            case 'grid': 
+                return $images['thumbnail' . $this->data['ratio']] ?? false;
+            default: 
+                return $images['thumbnail16:9'];
+        }
+
+        return false;
+    }
+
+    public function prepareFields($fields) {
+        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
+        $this->data['ratio'] = $fields->ratio ?? '16:9';
+        $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
+        $this->data['highlight_first_column'] = !empty($fields->posts_highlight_first) ? 
+        ColumnHelper::getFirstColumnSize($this->data['posts_columns']) : false;
+        $this->data['imagePosition'] = $fields->image_position ?? false;
+
     }
 
     /**
