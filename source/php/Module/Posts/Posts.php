@@ -15,8 +15,10 @@ class Posts extends \Modularity\Module
     public $blockSupports = array(
         'align' => ['full']
     );
+
     private $layouts = []; //TODO: Implement
     private $deprecatedLayouts = []; //TODO: Implement
+    private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
     public function init()
     {
@@ -31,33 +33,8 @@ class Posts extends \Modularity\Module
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
-        add_filter('Modularity/Module/Posts/template', array( $this, 'setTemplate' ), 10, 3);
 
         new PostsAjax($this);
-    }
-
-   /**
-    * If the module is set to show as a slider, then return the slider template
-    *
-    * @param string template The template that is currently being used.
-    * @param object module The module object
-    * @param array moduleData The data for the module.
-    *
-    * @return The template name.
-    */
-    public function setTemplate($template, $module, $moduleData)
-    {
-        $showAsSlider   = $this->fields->show_as_slider ?? null;
-        $postsDisplayAs = $this->fields->posts_display_as ?? null;
-
-        $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
-
-        if (1 === (int) $showAsSlider && in_array($postsDisplayAs, $layoutsWithSliderAvailable, true)) {
-            $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
-            return 'slider.blade.php';
-        }
-
-        return $template;
     }
 
     /**
@@ -69,7 +46,7 @@ class Posts extends \Modularity\Module
      *
      * @return int|false Returns the post ID if available and numeric, or false if not found or invalid.
      */
-    private static function getCurrentPostID() {
+    private function getCurrentPostID() {
         global $post; 
         if(isset($post->ID) && is_numeric($post->ID)) {
             return $post->ID;
@@ -148,15 +125,18 @@ class Posts extends \Modularity\Module
      * @return false|string
      */
     public function template()
-    {
-        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ?? ''));
-        if (!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
-            return 'list';
+    {   
+        $template = $this->data['posts_display_as'] ?? 'list';
+
+        if (!empty($this->fields->show_as_slider) && in_array($this->fields->posts_display_as, $this->sliderCompatibleLayouts, true)) {
+            $template = 'slider';
         }
+        
+        $this->getTemplateData($this->replaceDeprecatedTemplate($template));
 
         return apply_filters(
             'Modularity/Module/Posts/template',
-            self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php',
+            $this->replaceDeprecatedTemplate($template) . '.blade.php',
             $this,
             $this->data,
             $this->fields
@@ -181,7 +161,7 @@ class Posts extends \Modularity\Module
 
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
-        $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
+        $this->data['meta']['posts_display_as'] = $this->replaceDeprecatedTemplate($this->data['posts_display_as']);
 
         if (class_exists($class)) {
             $controller = new $class($this, $this->args, $this->data, $this->fields);
@@ -195,7 +175,6 @@ class Posts extends \Modularity\Module
     public function data(): array
     {
         $data = [];
-
         $fields = $this->arrayToObject(
             $this->getFields()
         );
@@ -212,7 +191,7 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
 
-        $data['posts'] = self::getPosts($this);
+        $data['posts'] = $this->getPosts($this);
 
         // Sorting
         $data['sortBy'] = false;
@@ -262,7 +241,8 @@ class Posts extends \Modularity\Module
         }
 
         $data['lang'] = [
-            'showMore' => __('Show more', 'modularity')
+            'showMore' => __('Show more', 'modularity'),
+            'readMore' => __('Read more', 'modularity')
         ];
 
         return $data;
@@ -289,7 +269,7 @@ class Posts extends \Modularity\Module
     }
 
     /** Exists due to old code */
-    public static function arrayToObjectStatic($array)
+    public function arrayToObjectStatic($array)
     {
         if(!is_array($array)) {
             return $array;
@@ -377,7 +357,7 @@ class Posts extends \Modularity\Module
      */
 
     //TODO: Remove [Start feature: Manual Input]
-    public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
+    public function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
 
@@ -418,24 +398,23 @@ class Posts extends \Modularity\Module
      * @param object $module Module object
      * @return array          Array with post objects
      */
-    public static function getPosts($module): array
+    public function getPosts($module): array
     {
-        $fields = self::arrayToObjectStatic(
+        $fields = $this->arrayToObjectStatic(
             get_fields($module->ID)
         );
-
         //TODO: Remove [Start feature: Manual Input]
         if ($fields->posts_data_source == 'input') {
             // Strip links from content if display items are linked (we can't do links in links)
             $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
-            return (array) self::getManualInputPosts(
+            return (array) $this->getManualInputPosts(
                 $fields->data, 
                 $stripLinksFromContent
             );
         }
         //TODO: Remove [End feature: Manual Input]
 
-        $posts = (array) get_posts(self::getPostArgs($module->ID));
+        $posts = (array) get_posts($this->getPostArgs($module->ID));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
@@ -450,10 +429,6 @@ class Posts extends \Modularity\Module
                     if (!empty($_post)) {
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
                     }
-
-                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && empty($_post->thumbnail['src'])) {
-                        $_post->hasPlaceholderImage = true;
-                    }
                 } 
             }
         }
@@ -461,9 +436,9 @@ class Posts extends \Modularity\Module
         return $posts;
     }
 
-    public static function getPostArgs($id)
+    public function getPostArgs($id)
     {
-        $fields = self::arrayToObjectStatic(
+        $fields = $this->arrayToObjectStatic(
             get_fields($id)
         );
 
@@ -534,7 +509,7 @@ class Posts extends \Modularity\Module
         switch ($fields->posts_data_source) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields->posts_data_post_type;
-                if($currentPostID = self::getCurrentPostID()) {
+                if($currentPostID = $this->getCurrentPostID()) {
                     $getPostsArgs['post__not_in'] = [
                         $currentPostID
                     ]; 
@@ -572,7 +547,7 @@ class Posts extends \Modularity\Module
      * @param $templateSlug
      * @return mixed
      */
-    public static function replaceDeprecatedTemplate($templateSlug)
+    public function replaceDeprecatedTemplate($templateSlug)
     {
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
