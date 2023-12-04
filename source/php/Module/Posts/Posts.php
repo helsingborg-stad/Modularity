@@ -191,7 +191,7 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
         $data['posts_data_source'] = $fields->posts_data_source ?? false;
 
-        $data['posts'] = $this->getPosts($this);
+        $data['posts'] = $this->getPosts($fields);
 
         // Sorting
         $data['sortBy'] = false;
@@ -395,14 +395,11 @@ class Posts extends \Modularity\Module
 
     /**
      * Get included posts
-     * @param object $module Module object
-     * @return array          Array with post objects
+     * @param object Acf fields
+     * @return array Array with post objects
      */
-    public function getPosts($module): array
+    public function getPosts($fields): array
     {
-        $fields = $this->arrayToObjectStatic(
-            get_fields($module->ID)
-        );
         //TODO: Remove [Start feature: Manual Input]
         if ($fields->posts_data_source == 'input') {
             // Strip links from content if display items are linked (we can't do links in links)
@@ -414,7 +411,7 @@ class Posts extends \Modularity\Module
         }
         //TODO: Remove [End feature: Manual Input]
 
-        $posts = (array) get_posts($this->getPostArgs($module->ID));
+        $posts = (array) get_posts($this->getPostArgs($fields));
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
@@ -436,12 +433,8 @@ class Posts extends \Modularity\Module
         return $posts;
     }
 
-    public function getPostArgs($id)
+    public function getPostArgs($fields)
     {
-        $fields = $this->arrayToObjectStatic(
-            get_fields($id)
-        );
-
         $metaQuery  = false;
         $orderby    = !empty($fields->posts_sort_by) ? $fields->posts_sort_by : 'date';
         $order      = !empty($fields->posts_sort_order) ? $fields->posts_sort_order : 'desc';
