@@ -2,10 +2,6 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-/**
- * Class FeaturesGridTemplate
- * @package Modularity\Module\Posts\TemplateController
- */
 class FeaturesGridTemplate extends AbstractController
 {
     protected $module;
