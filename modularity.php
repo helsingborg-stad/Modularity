@@ -14,7 +14,6 @@
 
 define('MODULARITY_PATH', plugin_dir_path(__FILE__));
 define('MODULARITY_URL', plugins_url('', __FILE__));
-define('MODULARITY_CACHE_DIR', trailingslashit(wp_upload_dir()['basedir']) . 'cache/modules/');
 
 define('MODULARITY_TEMPLATE_PATH', MODULARITY_PATH . 'templates/');
 define('MODULARITY_MODULE_PATH', MODULARITY_PATH . 'source/php/Module/');
