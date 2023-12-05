@@ -19,33 +19,33 @@
                 'id' => '',
             ),
             'choices' => array(
-                'row-row-row-row-row-651d5ccf5ac81' => array(
-                    'image-select-repeater-label' => 'Accordion',
-                    'image-select-repeater-value' => 'accordion',
+                'row-row-row-row-row-row-651d5ccf5ac81' => array(
+                    'image-select-repeater-label' => 'Segment',
+                    'image-select-repeater-value' => 'segment',
                 ),
-                'row-row-row-row-row-651d5cdb5ac82' => array(
+                'row-row-row-row-row-row-651d5cdb5ac82' => array(
                     'image-select-repeater-label' => 'Block',
                     'image-select-repeater-value' => 'block',
                 ),
-                'row-row-row-row-row-651d5cdf5ac83' => array(
+                'row-row-row-row-row-row-651d5cdf5ac83' => array(
                     'image-select-repeater-label' => 'Box',
                     'image-select-repeater-value' => 'box',
                 ),
-                'row-row-row-row-row-651d5ce55ac84' => array(
+                'row-row-row-row-row-row-651d5ce55ac84' => array(
                     'image-select-repeater-label' => 'Card',
                     'image-select-repeater-value' => 'card',
                 ),
-                'row-row-row-row-row-651d5ceb5ac85' => array(
+                'row-row-row-row-row-row-651d5ceb5ac85' => array(
                     'image-select-repeater-label' => 'Collection',
                     'image-select-repeater-value' => 'collection',
                 ),
-                'row-row-row-row-row-651d5cf65ac86' => array(
+                'row-row-row-row-row-row-651d5cf65ac86' => array(
                     'image-select-repeater-label' => 'List',
                     'image-select-repeater-value' => 'list',
                 ),
-                'row-651ffdc788395' => array(
-                    'image-select-repeater-label' => 'Segment',
-                    'image-select-repeater-value' => 'segment',
+                'row-row-651ffdc788395' => array(
+                    'image-select-repeater-label' => 'Accordion',
+                    'image-select-repeater-value' => 'accordion',
                 ),
             ),
         ),
@@ -279,6 +279,7 @@
                     'collapsed' => '',
                     'button_label' => __('Lägg till rad', 'modularity'),
                     'rows_per_page' => 20,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_64ff23afd91bd',
@@ -301,7 +302,6 @@
                             'parent_repeater' => 'field_64ff2372d91bc',
                         ),
                     ),
-                    'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 2 => array(
                     'key' => 'field_64ff231ed91b9',
