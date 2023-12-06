@@ -50,6 +50,21 @@
             ),
         ),
         1 => array(
+            'key' => 'field_656f4b44999e9',
+            'label' => __('Display as conditional target', 'modularity'),
+            'name' => 'display_as_conditional',
+            'type' => 'acfe_hidden',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+        ),
+        2 => array(
             'key' => 'field_650067ed6cc3c',
             'label' => __('Column marking', 'modularity'),
             'name' => 'accordion_column_marking',
@@ -59,7 +74,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_64ff23d0d91bf',
+                        'field' => 'field_656f4b44999e9',
                         'operator' => '==',
                         'value' => 'accordion',
                     ),
@@ -76,7 +91,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_65005968bbc75',
             'label' => __('Column titles', 'modularity'),
             'name' => 'accordion_column_titles',
@@ -86,7 +101,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_64ff23d0d91bf',
+                        'field' => 'field_656f4b44999e9',
                         'operator' => '==',
                         'value' => 'accordion',
                     ),
@@ -128,7 +143,7 @@
                 ),
             ),
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_65001d039d4c4',
             'label' => __('Columns', 'modularity'),
             'name' => 'columns',
@@ -138,12 +153,12 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_64ff23d0d91bf',
+                        'field' => 'field_656f4b44999e9',
                         'operator' => '!=',
                         'value' => 'accordion',
                     ),
                     1 => array(
-                        'field' => 'field_64ff23d0d91bf',
+                        'field' => 'field_656f4b44999e9',
                         'operator' => '!=',
                         'value' => 'list',
                     ),
@@ -168,7 +183,7 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -178,14 +193,14 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_64ff23d0d91bf',
+                        'field' => 'field_656f4b44999e9',
                         'operator' => '==',
                         'value' => 'block',
                     ),
                 ),
                 1 => array(
                     0 => array(
-                        'field' => 'field_64ff23d0d91bf',
+                        'field' => 'field_656f4b44999e9',
                         'operator' => '==',
                         'value' => 'box',
                     ),
@@ -209,7 +224,7 @@
             'ajax' => 0,
             'placeholder' => '',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -261,7 +276,7 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '==',
                                 'value' => 'accordion',
                             ),
@@ -279,7 +294,6 @@
                     'collapsed' => '',
                     'button_label' => __('Lägg till rad', 'modularity'),
                     'rows_per_page' => 20,
-                    'parent_repeater' => 'field_64ff22b2d91b7',
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_64ff23afd91bd',
@@ -302,6 +316,7 @@
                             'parent_repeater' => 'field_64ff2372d91bc',
                         ),
                     ),
+                    'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 2 => array(
                     'key' => 'field_64ff231ed91b9',
@@ -313,7 +328,7 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '!=',
                                 'value' => 'list',
                             ),
@@ -341,7 +356,7 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '!=',
                                 'value' => 'accordion',
                             ),
@@ -366,7 +381,7 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '==',
                                 'value' => 'segment',
                             ),
@@ -394,14 +409,14 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '==',
                                 'value' => 'card',
                             ),
                         ),
                         1 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '==',
                                 'value' => 'segment',
                             ),
@@ -429,12 +444,12 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '!=',
                                 'value' => 'list',
                             ),
                             1 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '!=',
                                 'value' => 'accordion',
                             ),
@@ -469,7 +484,7 @@
                     'conditional_logic' => array(
                         0 => array(
                             0 => array(
-                                'field' => 'field_64ff23d0d91bf',
+                                'field' => 'field_656f4b44999e9',
                                 'operator' => '==',
                                 'value' => 'box',
                             ),
