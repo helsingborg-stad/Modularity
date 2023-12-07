@@ -37,6 +37,86 @@ class Posts extends \Modularity\Module
         new PostsAjax($this);
     }
 
+        /**
+     * @return array
+     */
+    public function data(): array
+    {
+        $data = [];
+
+        $fields = $this->arrayToObject(
+            $this->getFields()
+        );
+
+        $this->fields = $fields;
+        
+        $data['posts_display_as'] = $fields->posts_display_as ?? false;
+        $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
+
+        // Posts
+        $data['preamble'] = $fields->preamble ?? false;
+        $data['posts_fields'] = $fields->posts_fields ?? false;
+        $data['posts_date_source'] = $fields->posts_date_source ?? false;
+        $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
+        $data['posts_data_source'] = $fields->posts_data_source ?? false;
+
+        $data['posts'] = $this->getPosts($fields);
+
+        // Sorting
+        $data['sortBy'] = false;
+        $data['orderBy'] = false;
+        if (isset($fields->posts_sort_by) && substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
+            $data['sortBy'] = 'meta_key';
+            $data['sortByKey'] = str_replace('_metakey_', '', $fields->posts_sort_by);
+        }
+
+        $data['order'] = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
+
+        // Setup filters
+        $filters = [
+            'orderby' => sanitize_text_field($data['sortBy']),
+            'order' => sanitize_text_field($data['order'])
+        ];
+
+        if ($data['sortBy'] == 'meta_key') {
+            $filters['meta_key'] = $data['sortByKey'];
+        }
+
+        $data['filters'] = [];
+
+        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
+            $taxType = $fields->posts_taxonomy_type;
+            $taxValues = (array)$fields->posts_taxonomy_value;
+            $taxValues = implode('|', $taxValues);
+
+            $data['filters']['filter[' . $taxType . ']'] = $taxValues;
+        }
+
+        $data['archive_link_url'] = \Modularity\Module\Posts\Helper\GetArchiveUrl::getArchiveUrl(
+            $data['posts_data_post_type'],
+            $fields ?? null
+        );
+
+        $data['ariaLabels'] =  (object) [
+           'prev' => __('Previous slide', 'modularity'),
+           'next' => __('Next slide', 'modularity'),
+        ];
+
+        if ($this->ID) {
+            $data['sliderId'] = $this->ID;
+        } else {
+            $data['sliderId'] = uniqid();
+            $data['ID'] = uniqid();
+        }
+
+        $data['lang'] = [
+            'showMore' => __('Show more', 'modularity'),
+            'readMore' => __('Read more', 'modularity')
+        ];
+
+        return $data;
+    }
+
     /**
      * Retrieve the current WordPress post ID.
      *
@@ -170,85 +250,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * @return array
-     */
-    public function data(): array
-    {
-        $data = [];
-        $fields = $this->arrayToObject(
-            $this->getFields()
-        );
-
-        $this->fields = $fields;
-        
-        $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
-
-        // Posts
-        $data['preamble'] = $fields->preamble ?? false;
-        $data['posts_fields'] = $fields->posts_fields ?? false;
-        $data['posts_date_source'] = $fields->posts_date_source ?? false;
-        $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
-        $data['posts_data_source'] = $fields->posts_data_source ?? false;
-
-        $data['posts'] = $this->getPosts($fields);
-
-        // Sorting
-        $data['sortBy'] = false;
-        $data['orderBy'] = false;
-        if (isset($fields->posts_sort_by) && substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
-            $data['sortBy'] = 'meta_key';
-            $data['sortByKey'] = str_replace('_metakey_', '', $fields->posts_sort_by);
-        }
-
-        $data['order'] = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
-
-        // Setup filters
-        $filters = [
-            'orderby' => sanitize_text_field($data['sortBy']),
-            'order' => sanitize_text_field($data['order'])
-        ];
-
-        if ($data['sortBy'] == 'meta_key') {
-            $filters['meta_key'] = $data['sortByKey'];
-        }
-
-        $data['filters'] = [];
-
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
-            $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array)$fields->posts_taxonomy_value;
-            $taxValues = implode('|', $taxValues);
-
-            $data['filters']['filter[' . $taxType . ']'] = $taxValues;
-        }
-
-        $data['archive_link_url'] = $this->getArchiveUrl(
-            $data['posts_data_post_type'],
-            $fields ?? null
-        );
-
-        $data['ariaLabels'] =  (object) [
-           'prev' => __('Previous slide', 'modularity'),
-           'next' => __('Next slide', 'modularity'),
-        ];
-
-        if ($this->ID) {
-            $data['sliderId'] = $this->ID;
-        } else {
-            $data['sliderId'] = uniqid();
-            $data['ID'] = uniqid();
-        }
-
-        $data['lang'] = [
-            'showMore' => __('Show more', 'modularity'),
-            'readMore' => __('Read more', 'modularity')
-        ];
-
-        return $data;
-    }
-
-    /**
      * Converts an associative array to an object.
      *
      * This function takes an associative array and converts it into an object by first
@@ -266,78 +267,6 @@ class Posts extends \Modularity\Module
         }
 
         return json_decode(json_encode($array)); 
-    }
-
-    /**
-     * Get the archive URL for a specified post type using provided fields.
-     *
-     * This function retrieves the archive URL for a specified post type based on the given fields.
-     * If the post type is empty or if the archive link field is not set or falsy, it returns false.
-     * If the post type is "post," it attempts to retrieve the posts archive URL.
-     * Otherwise, it attempts to retrieve the archive URL for the custom post type.
-     *
-     * @param string      $postType The name of the post type.
-     * @param object|null $fields   An object containing fields related to the post type.
-     *
-     * @return string|false The archive URL if it exists, or false if it doesn't.
-     */
-    private function getArchiveUrl($postType, $fields) {
-        if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
-            return false;
-        }
-
-        if ($postType == 'post' && $archiveUrl = $this->getPostsArchiveUrl()) {
-            return $archiveUrl;
-        }
-
-        if($archiveUrl = $this->getPostTypeArchiveUrl($postType)) {
-            return $archiveUrl;
-        }
-
-        return false;
-    }
-
-    /**
-     * Get the archive URL for the posts page.
-     *
-     * This function retrieves the URL of the page that displays the blog posts archive.
-     * If a static page is set as the posts page, it returns the permalink to that page.
-     * If the option "Front page displays" is set to "Your latest posts," it returns the home URL.
-     * If no valid posts page is found, it returns false.
-     *
-     * @return string|false The archive URL if it exists, or false if it doesn't.
-     */
-    private function getPostsArchiveUrl() {
-        $pageForPosts = get_option('page_for_posts');
-
-        if(is_numeric($pageForPosts) && get_post_status($pageForPosts) == 'publish') {
-            return get_permalink($pageForPosts); 
-        }
-
-        if(get_option('show_on_front') == 'posts') {
-            return get_home_url(); 
-        }
-
-        return false;
-    }
-
-    /**
-     * Get the archive URL for a custom post type.
-     *
-     * This function retrieves the archive URL for a given custom post type.
-     * If the post type does not have an archive, it returns false.
-     *
-     * @param string $postType The key of the custom post type.
-     *
-     * @return string|false The archive URL if it exists, or false if it doesn't.
-     */
-    private function getPostTypeArchiveUrl($postType) {
-        if($postTypeObject = get_post_type_object($postType)) {
-            if(is_a($postTypeObject, 'WP_Post_Type') && $postTypeObject->has_archive) {
-                return get_post_type_archive_link($postType);
-            }
-        }
-        return false;
     }
 
     /**
