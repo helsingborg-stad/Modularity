@@ -8,6 +8,13 @@ class AbstractController
 {
     protected $hookName = 'index';
 
+    /**
+     * Check if any post in the given array has no image.
+     *
+     * @param array $posts An array of post objects.
+     *
+     * @return bool Returns true if any post has no image, false otherwise.
+     */
     protected function anyPostHasImage($posts)
     {
         if (!is_array($posts)) {
@@ -22,6 +29,9 @@ class AbstractController
         return false;
     }
 
+    /**
+     * Prepare posts data by setting default values and post flags.
+     */
     public function preparePosts()
     {
         $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
@@ -40,7 +50,9 @@ class AbstractController
     }
 
     /**
-     * Default values for keys in the post object.
+     * Get default values for keys in the post object.
+     *
+     * @return array An array of default values for post object keys.
      */
     public function getDefaultValuesForPosts() {
         return [
@@ -63,7 +75,10 @@ class AbstractController
     }
 
     /**
-     * Booleans for hiding/showing stuff
+     * Set boolean flags for hiding/showing specific post details.
+     *
+     * @param object $post  The post object.
+     * @param int|false  $index The index of the post.
      */
     public function setPostFlags(&$post, $index = false)
     {
@@ -92,6 +107,14 @@ class AbstractController
         } 
     }
 
+    /**
+     * Get the image based on ratio and index.
+     *
+     * @param array $images An array of post images.
+     * @param mixed $index  The index of the post.
+     *
+     * @return mixed|null Returns the image based on conditions, or null if not found.
+     */
     public function getImageBasedOnRatio($images, $index) {
         if (empty($this->data['posts_display_as']) || empty($images['thumbnail16:9']['src'])) return false;
 
@@ -109,6 +132,11 @@ class AbstractController
         return false;
     }
 
+    /**
+     * Prepare and set data fields for posts display.
+     *
+     * @param object $fields An object containing post fields data.
+     */
     public function prepareFields($fields) {
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio ?? '16:9';
