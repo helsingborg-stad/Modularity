@@ -3,6 +3,8 @@
 namespace Modularity\Module\Posts;
 
 use Municipio\Helper\Image as ImageHelper;
+use Modularity\Module\Posts\Helper\GetArchiveUrl as ArchiveUrlHelper;
+use Modularity\Module\Posts\Helper\GetPosts as GetPostsHelper;
 
 /**
  * Class Posts
@@ -92,7 +94,7 @@ class Posts extends \Modularity\Module
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
         }
 
-        $data['archive_link_url'] = \Modularity\Module\Posts\Helper\GetArchiveUrl::getArchiveUrl(
+        $data['archive_link_url'] = ArchiveUrlHelper::getArchiveUrl(
             $data['posts_data_post_type'],
             $fields ?? null
         );
@@ -329,7 +331,7 @@ class Posts extends \Modularity\Module
             );
         }
         //TODO: Remove [End feature: Manual Input]
-        return \Modularity\Module\Posts\Helper\GetPosts::getPosts($fields);
+        return GetPostsHelper::getPosts($fields);
     }
 
     /**
