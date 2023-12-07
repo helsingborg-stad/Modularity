@@ -18,8 +18,6 @@ class Posts extends \Modularity\Module
         'align' => ['full']
     );
 
-    private $layouts = []; //TODO: Implement
-    private $deprecatedLayouts = []; //TODO: Implement
     private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
     public function init()
