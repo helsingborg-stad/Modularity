@@ -129,7 +129,7 @@ class GetPosts
         return $getPostsArgs;
     }
 
-    private static function getCurrentPostID() {
+    public static function getCurrentPostID() {
         global $post; 
         if(isset($post->ID) && is_numeric($post->ID)) {
             return $post->ID;

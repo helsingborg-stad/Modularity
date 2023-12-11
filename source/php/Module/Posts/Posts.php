@@ -26,9 +26,10 @@ class Posts extends \Modularity\Module
         $this->namePlural       = __('Posts', 'modularity');
         $this->description      = __('Outputs selected posts in specified layout', 'modularity');
         
-        /* Saves meta data to expandable list posts */
+        // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
 
+        // Handle date field
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
 
         //Add full width data to view
@@ -115,23 +116,6 @@ class Posts extends \Modularity\Module
         ];
 
         return $data;
-    }
-
-    /**
-     * Retrieve the current WordPress post ID.
-     *
-     * This function retrieves the unique identifier (ID) of the current WordPress post.
-     * It first checks if the global variable $post is set and contains a valid numeric ID.
-     * If a valid ID is found, it returns the post ID; otherwise, it returns false.
-     *
-     * @return int|false Returns the post ID if available and numeric, or false if not found or invalid.
-     */
-    private function getCurrentPostID() {
-        global $post; 
-        if(isset($post->ID) && is_numeric($post->ID)) {
-            return $post->ID;
-        }
-        return false;
     }
 
     /**
@@ -355,7 +339,7 @@ class Posts extends \Modularity\Module
     public function adminEnqueue() {
         wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
         wp_localize_script('mod-posts-script', 'modPosts', [
-            'currentPostID' => $this->getCurrentPostID(),
+            'currentPostID' => GetPostsHelper::getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-script');
     }

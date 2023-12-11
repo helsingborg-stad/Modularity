@@ -2,9 +2,6 @@
 
 namespace Modularity\Module\Posts;
 
-use Throwable;
-use BladeComponentLibrary\Init as CompLibInitator;
-
 class PostsAjax {
     /**
      * @var Posts
@@ -16,8 +13,9 @@ class PostsAjax {
 
         add_action('wp_ajax_get_taxonomy_types_v2', array($this, 'getTaxonomyTypes'));
         add_action('wp_ajax_get_taxonomy_values_v2', array($this, 'getTaxonomyValues'));
-        add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
         add_action('wp_ajax_mod_posts_get_date_source', array($this, 'loadDateFieldAjax'));
+        //TODO: Is wp_ajax_get_sortable_meta_keys_v2 ever used?
+        add_action('wp_ajax_get_sortable_meta_keys_v2', array($this, 'getSortableMetaKeys'));
     }
 
     public function loadDateFieldAjax()
