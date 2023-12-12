@@ -279,6 +279,10 @@ class App
         . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'));
         wp_enqueue_script('dynamic-map-acf');
 
+        wp_register_script('modularity-editor-wysiwyg', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/modularity-editor-wysiwyg.js'));
+        wp_enqueue_script('modularity-editor-wysiwyg');
+
         add_action('admin_head', function () {
             echo "
                 <script>
