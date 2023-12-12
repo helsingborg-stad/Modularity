@@ -201,9 +201,13 @@ class Module
         }
 
         // FIXME: hasModule() is not working as expected here, doesn't accept any parameters.
-        if (!is_admin() && $this->hasModule($post)) {
-            add_action('wp_enqueue_scripts', array($this, 'style'));
-            add_action('wp_enqueue_scripts', array($this, 'script'));
+        $test = !is_admin() && $this->hasModule('mod-' . $this->slug);
+        if ($this->slug == 'text') {
+            if ($this->hasModule('mod-text')) {
+                // echo '<pre>' . print_r( $this, true ) . '</pre>';
+                add_action('wp_enqueue_scripts', array($this, 'style'));
+                add_action('wp_enqueue_scripts', array($this, 'script'));
+            }
         }
 
         add_action('save_post', function($postID, $post, $update) {
@@ -301,21 +305,19 @@ class Module
      * Checks if a current page/post has module(s) of this type
      * @return boolean
      */
-    protected function hasModule()
+    protected function hasModule($slug = false)
     {
         global $post;
-
         $postId = null;
         $modules = array();
         $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
-
         if ($archiveSlug) {
             $postId = $archiveSlug;
         } elseif (isset($post->ID)) {
             $postId = $post->ID;
-        } else {
+        } /* else {
             return apply_filters('Modularity/hasModule', true, null);
-        }
+        } */
 
         //Collect all modules active
 
