@@ -17,7 +17,7 @@ class Text extends \Modularity\Module
     public function data() : array
     {
         $data = $this->getFields(); 
-        // echo '<pre>' . print_r( $this, true ) . '</pre>';
+
         if (empty($data['post_content']) && !empty($data['content'])) {
             $data['post_content'] = $data['content'];
         }
@@ -29,11 +29,11 @@ class Text extends \Modularity\Module
         if(is_array($data)) {
             return $data; 
         }
-        
         return [];
     }
 
     public function script() {
+        echo '<pre>' . print_r( $this->ID, true ) . '</pre>';
         echo '<pre>' . print_r( "hello", true ) . '</pre>';die;
     }
     

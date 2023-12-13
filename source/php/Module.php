@@ -204,9 +204,9 @@ class Module
         $test = !is_admin() && $this->hasModule('mod-' . $this->slug);
         if ($this->slug == 'text') {
             if ($this->hasModule('mod-text')) {
-                // echo '<pre>' . print_r( $this, true ) . '</pre>';
                 add_action('wp_enqueue_scripts', array($this, 'style'));
                 add_action('wp_enqueue_scripts', array($this, 'script'));
+                echo '<pre>' . print_r( $this->ID, true ) . '</pre>';die;
             }
         }
 
@@ -338,7 +338,12 @@ class Module
         if (empty($moduleSlug)) {
             $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
         }
-
+        if ($this->slug == 'text' && !empty($modules)) {
+            if (in_array('mod-' . $this->slug, $modules)) {
+                echo '<pre>' . print_r( $this->ID, true ) . '</pre>';
+                return true;
+            }
+        }
         return apply_filters(
             'Modularity/hasModule',
             in_array($moduleSlug, $modules),
