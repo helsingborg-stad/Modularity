@@ -8,7 +8,7 @@
     'meta' => $post->readingTime,
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
-    'classList' => $display_reading_time ? ['c-card--with-reading-time', 'u-height--100'] : ['u-height--100'],
+    'classList' => ['u-height--100'],
     'containerAware' => true,
     'hasAction' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,

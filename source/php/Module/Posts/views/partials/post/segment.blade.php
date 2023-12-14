@@ -14,7 +14,7 @@
     'icon' => $post->termIcon,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'attributeList' => array_merge($post->attributeList, []),
-    'classList' => array_merge($post->classList, []),
+    'classList' => array_merge($classList ?? [], []),
 ])
 @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
 @endsegment
