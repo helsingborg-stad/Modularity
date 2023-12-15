@@ -110,6 +110,8 @@ class Posts extends \Modularity\Module
             $data['ID'] = uniqid();
         }
 
+        $data['classList'] = [];
+
         $data['lang'] = [
             'showMore' => __('Show more', 'modularity'),
             'readMore' => __('Read more', 'modularity')
