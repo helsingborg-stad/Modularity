@@ -69,8 +69,7 @@ class AbstractController
             'postType' => false,
             'termIcon' => false,
             'callToActionItems' => false,
-            'imagePosition' => true,
-            'classList' => []
+            'imagePosition' => true
         ];
     }
 
