@@ -4,16 +4,43 @@ namespace Modularity\Module\Posts\TemplateController;
 
 /**
  * Class ExpandableListTemplate
+ *
+ * Template controller for rendering posts as an expandable list.
+ *
  * @package Modularity\Module\Posts\TemplateController
  */
 class ExpandableListTemplate
 {
+    /**
+     * The instance of the Posts module associated with this template.
+     *
+     * @var \Modularity\Module\Posts\Posts
+     */
     protected $module;
+
+    /**
+     * The arguments passed to the template controller.
+     *
+     * @var array
+     */
     protected $args;
 
+    /**
+     * Data to be used in rendering the template.
+     *
+     * @var array
+     */
     public $data = [];
 
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
+    /**
+     * ExpandableListTemplate constructor.
+     *
+     * @param \Modularity\Module\Posts\Posts $module Instance of the Posts module.
+     * @param array $args Arguments passed to the template controller.
+     * @param array $data Data to be used in rendering the template.
+     * @param object $fields Object containing prepared fields for rendering.
+     */
+    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, array $data, object $fields)
     {
         $this->module = $module;
         $this->args = $args;
@@ -29,7 +56,7 @@ class ExpandableListTemplate
 
     /**
      * Get correct column values
-     * @return array
+     * @return array An array of column values for a column
      */
     public function getColumnValues(): array
     {
@@ -57,11 +84,12 @@ class ExpandableListTemplate
 
     /**
      * Prepare Data for accordion
-     * @param $posts
-     * @param $data
+     * @param array $items Array of posts
+     * @param array $data Array of settings
+     * 
      * @return array|null
      */
-    public function prepare($items, $data): ?array
+    public function prepare(array $items, array $data): ?array
     {
         $columnValues = $this->getColumnValues();
 
@@ -93,7 +121,9 @@ class ExpandableListTemplate
 
     /**
      * Get array dimension depth
+     * 
      * @param array $colArray
+     * 
      * @return int
      */
     public function arrayDepth(array $colArray): int
@@ -109,13 +139,27 @@ class ExpandableListTemplate
         return $maxDepth;
     }
 
-    private function hasColumnValues($columnValues): bool
+    /**
+     * Check if column values are present.
+     *
+     * @param array $columnValues
+     *
+     * @return bool
+     */
+    private function hasColumnValues(array $columnValues): bool
     {
         return isset($columnValues)
             && !empty($columnValues);
     }
 
-    private function hasColumnTitles($data): bool
+    /**
+     * Check if column titles are present.
+     *
+     * @param array $data
+     *
+     * @return bool
+     */
+    private function hasColumnTitles(array $data): bool
     {
         return !empty($data['posts_list_column_titles'])
             && is_array($data['posts_list_column_titles']);

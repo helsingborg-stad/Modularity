@@ -52,6 +52,7 @@ class SliderTemplate extends AbstractController
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
+        $this->fields = $fields;
 
         $postsColumnsInt = !empty($fields->posts_columns) ? 12 / (int) str_replace('grid-md-', " ", $fields->posts_columns) : 1;
 

@@ -9,13 +9,13 @@ class AbstractController
     protected $hookName = 'index';
 
     /**
-     * Check if any post in the given array has no image.
+     * Check if any post in the given array has an image.
      *
      * @param array $posts An array of post objects.
      *
-     * @return bool Returns true if any post has no image, false otherwise.
+     * @return bool Returns true if any post has an image, false otherwise.
      */
-    protected function anyPostHasImage($posts)
+    protected function anyPostHasImage(array $posts)
     {
         if (!is_array($posts)) {
             return false;
@@ -31,6 +31,8 @@ class AbstractController
 
     /**
      * Prepare posts data by setting default values and post flags.
+     * 
+     * Setting default values for posts variables.
      */
     public function preparePosts()
     {
@@ -79,7 +81,7 @@ class AbstractController
      * @param object $post  The post object.
      * @param int|false  $index The index of the post.
      */
-    public function setPostFlags(&$post, $index = false)
+    public function setPostFlags(object &$post, $index = false)
     {
         if (empty($post)) return;
         // Booleans for hiding/showing stuff
@@ -114,7 +116,7 @@ class AbstractController
      *
      * @return mixed|null Returns the image based on conditions, or null if not found.
      */
-    public function getImageBasedOnRatio($images, $index) {
+    public function getImageBasedOnRatio(array $images, $index) {
         if (empty($this->data['posts_display_as']) || empty($images['thumbnail16:9']['src'])) return false;
 
         if (!empty($this->data['highlight_first_column']) && in_array($this->data['posts_display_as'], ['block', 'index'])) {
@@ -136,7 +138,7 @@ class AbstractController
      *
      * @param object $fields An object containing post fields data.
      */
-    public function prepareFields($fields) {
+    public function prepareFields(object $fields) {
         $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
         $this->data['ratio'] = $fields->ratio ?? '16:9';
         $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
@@ -157,7 +159,7 @@ class AbstractController
      *
      * @return object Returns an object representing the associative array.
      */
-    public static function arrayToObject($array)
+    public static function arrayToObject(array $array)
     {
         if(!is_array($array)) {
             return $array;

@@ -14,11 +14,12 @@ class ListTemplate
 
     /**
      * ListTemplate constructor.
-     * @param \Modularity\Module\Posts\Posts $module
-     * @param array $args
-     * @param $data
+     * @param \Modularity\Module\Posts\Posts $module Instance of the Posts module.
+     * @param array $args Arguments passed to the template controller
+     * @param array $data Data to be used in the template
+     * @param object $fields Object containing ACF fields
      */
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
+    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, array $data, object $fields)
     {
         $this->args = $args;
         $this->data = $data;
@@ -31,11 +32,11 @@ class ListTemplate
     }
 
     /**
-     * @param $posts
-     * @param $postData
+     * @param array $posts array of posts
+     * @param array $postData array of data settings
      * @return array
      */
-    public function prepare($posts, $postData)
+    public function prepare(array $posts, array $postData)
     {
         if(!is_array($postData)) {
             $postData = [$postData];

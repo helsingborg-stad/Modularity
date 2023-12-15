@@ -52,6 +52,7 @@ class FeaturesGridTemplate extends AbstractController
         $this->module = $module;
         $this->args = $args;
         $this->data = $data;
+        $this->fields = $fields;
 
         $this->prepareFields($fields);
         $this->preparePosts();
