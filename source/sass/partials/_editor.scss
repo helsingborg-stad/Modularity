@@ -210,26 +210,27 @@
 
                 //Icon placehlder
                 &:before {
-	                content: "";
 	                position: relative;
 	                display: inline-block;
-	                width: 14px;
-	                height: 14px;
 	                margin: -2px 0 -2px 0;
-	                background-size: contain;
+                    font-family: 'Material Icons';
+                    font-size: 18px;
                 }
 
 				//Icons
                 &.modularity-js-thickbox-open:before {
-                    background-image: url('../images/action_icons/edit.svg');
+                    content: "\e3c9";
+                    top: 2px;
                 }
 
                 &.modularity-js-thickbox-import:before {
-                    background-image: url('../images/action_icons/import.svg');
+                    content: "\f090";
+                    top: 4px;
                 }
 
                 &.modularity-module-remove:before {
-                    background-image: url('../images/action_icons/delete.svg');
+                    content: "\e872";
+                    top: 3px;
                 }
 
             }
