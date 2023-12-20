@@ -371,49 +371,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * "Fake" WP_POST objects for manually inputted posts
-     * @param array $data The data to "fake"
-     * @return array        Faked data
-     */
-
-    //TODO: Remove [Start feature: Manual Input]
-    public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
-    {
-        $posts = [];
-
-        foreach ($data as $key => $item) {
-            $posts[] = array_merge((array)$item, [
-                'ID' => $key,
-                'post_name' => $key,
-                'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
-                'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
-                'images' => [
-                    'thumbnail_16:9' => ImageHelper::getImageAttachmentData($item->image ?? false, [400, 225]),
-                    'thumbnail_4:3' => ImageHelper::getImageAttachmentData($item->image ?? false, [390, 520]),
-                    'thumbnail_1:1' => ImageHelper::getImageAttachmentData($item->image ?? false, [500, 500]),
-                    'thumbnail_3:4' => ImageHelper::getImageAttachmentData($item->image ?? false, [400, 225]),
-                    'featuredImage' => ImageHelper::getImageAttachmentData($item->image ?? false, [240, 320]),
-                    'thumbnail_12:16' => ImageHelper::getImageAttachmentData($item->image ?? false, [240, 320])
-                ],
-                'postDateFormatted' => null,
-                'termsUnlinked' => null,
-                'dateBadge' => false,
-                'termIcon' => false,
-                'postContentFiltered' => apply_filters('the_content', $item->post_content)
-            ]);
-        }
-        
-        foreach ($posts as &$post) {
-            if (class_exists('\Municipio\Helper\FormatObject')) {
-                $post = \Municipio\Helper\FormatObject::camelCase($post);
-            }
-        }
-
-        return $posts;
-    }
-    //TODO: Remove [End feature: Manual Input]
-
-    /**
      * Get included posts
      * @param object $module Module object
      * @return array          Array with post objects
@@ -424,18 +381,8 @@ class Posts extends \Modularity\Module
             get_fields($module->ID)
         );
 
-        //TODO: Remove [Start feature: Manual Input]
-        if ($fields->posts_data_source == 'input') {
-            // Strip links from content if display items are linked (we can't do links in links)
-            $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
-            return (array) self::getManualInputPosts(
-                $fields->data, 
-                $stripLinksFromContent
-            );
-        }
-        //TODO: Remove [End feature: Manual Input]
-
         $posts = (array) get_posts(self::getPostArgs($module->ID));
+
         if (!empty($posts)) {
             foreach ($posts as &$_post) {
                 $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
