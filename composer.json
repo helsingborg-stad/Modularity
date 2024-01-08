@@ -75,5 +75,5 @@
         "test": "phpunit",
         "test:setup": "bin/install-wp-tests.sh"
     },
-    "version": "5.18.6"
+    "version": "5.19.0"
 }
