@@ -447,7 +447,7 @@ class Posts extends \Modularity\Module
                         $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
                     }
                 
-                    if (!empty($_post)) {
+                    if (!empty($_post->location)) {
                         $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
                     }
 
