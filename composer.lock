@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7ea8d027c88f22916e63d335392e58e6",
+    "content-hash": "19ab40cc475802f3974cb59a2a0479ea",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -371,16 +371,16 @@
         },
         {
             "name": "helsingborg-stad/acf-select-image-field",
-            "version": "1.2.0",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acf-image-select-field.git",
-                "reference": "1860c73bd82443656c004a41f53dc009ae16c7b6"
+                "reference": "1330dd3e0c439f49a4e808b05cf589ee6d39eed5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/1860c73bd82443656c004a41f53dc009ae16c7b6",
-                "reference": "1860c73bd82443656c004a41f53dc009ae16c7b6",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/1330dd3e0c439f49a4e808b05cf589ee6d39eed5",
+                "reference": "1330dd3e0c439f49a4e808b05cf589ee6d39eed5",
                 "shasum": ""
             },
             "type": "wordpress-muplugin",
@@ -396,9 +396,9 @@
             ],
             "support": {
                 "issues": "https://github.com/helsingborg-stad/acf-image-select-field/issues",
-                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.2.0"
+                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.4.3"
             },
-            "time": "2023-10-11T07:59:07+00:00"
+            "time": "2023-12-15T14:51:38+00:00"
         },
         {
             "name": "helsingborg-stad/blade",
@@ -3679,5 +3679,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
