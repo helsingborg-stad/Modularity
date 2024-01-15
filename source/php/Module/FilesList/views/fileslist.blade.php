@@ -48,7 +48,8 @@
             ])
 
                 @typography([
-                    'element'       => 'h5',
+                    'element'       => !$hideTitle && !empty($postTitle) ? 'h3' : 'h2',
+                    'variant'       => 'body',
                     'attributeList' => [
                        ' js-filter-data' => ''
                     ]
@@ -59,7 +60,7 @@
                 @if(!empty($row['description']))
                     @typography([
                         'element'       => 'span',
-                        'variant' => 'meta',
+                        'variant'       => 'meta',
                         'attributeList' => [
                         ' js-filter-data' => ''
                         ]
