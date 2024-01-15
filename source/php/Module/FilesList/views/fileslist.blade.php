@@ -49,7 +49,7 @@
 
                 @typography([
                     'element'       => !$hideTitle && !empty($postTitle) ? 'h3' : 'h2',
-                    'variant'       => 'body',
+                    'variant'       => 'p',
                     'attributeList' => [
                        ' js-filter-data' => ''
                     ]

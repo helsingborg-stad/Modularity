@@ -74,7 +74,7 @@
                         
                         @typography([
                             'element' => 'h2',
-                            'variant' => 'body',
+                            'variant' => 'p',
                             'id'      => 'mod-map-' . $id .'-label-moreinfo'
                         ])
                         
