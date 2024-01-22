@@ -4,34 +4,35 @@ namespace Modularity\Module\Posts\Helper;
 
 class GetPosts
 {
-    public static function getPosts($fields) {
-        $posts = (array) get_posts(self::getPostArgs($fields));
+    public function getPosts(array $fields)
+    {
+        $posts = (array) get_posts($this->getPostArgs($fields));
         if (!empty($posts)) {
-            foreach ($posts as &$_post) {
-                $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
+            foreach ($posts as &$post) {
+                $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
 
-               if (class_exists('\Municipio\Helper\Post')) {
-                    if (in_array($fields->posts_display_as, [ 'expandable-list'])) {
-                        $_post = \Municipio\Helper\Post::preparePostObject($_post);
+                if (class_exists('\Municipio\Helper\Post')) {
+                    if (in_array($fields['posts_display_as'], ['expandable-list'])) {
+                        $post = \Municipio\Helper\Post::preparePostObject($post);
                     } else {
-                        $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
+                        $post = \Municipio\Helper\Post::preparePostObjectArchive($post, $data);
                     }
-                
-                    if (!empty($_post)) {
-                        $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
+
+                    if (!empty($post)) {
+                        $post->attributeList['data-js-map-location'] = json_encode($post->location);
                     }
-                } 
+                }
             }
             return $posts;
         }
         return [];
     }
 
-    private static function getPostArgs($fields)
+    private function getPostArgs(array $fields)
     {
         $metaQuery  = false;
-        $orderby    = !empty($fields->posts_sort_by) ? $fields->posts_sort_by : 'date';
-        $order      = !empty($fields->posts_sort_order) ? $fields->posts_sort_order : 'desc';
+        $orderby    = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
+        $order      = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
 
         // Get post args
         $getPostsArgs = [
@@ -71,12 +72,12 @@ class GetPosts
 
         // Taxonomy filter
         if (
-            isset($fields->posts_taxonomy_filter) && 
-            $fields->posts_taxonomy_filter === true && 
-            !empty($fields->posts_taxonomy_type)
+            isset($fields['posts_taxonomy_filter']) &&
+            $fields['posts_taxonomy_filter'] === true &&
+            !empty($fields['posts_taxonomy_type'])
         ) {
-            $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array)$fields->posts_taxonomy_value;
+            $taxType = $fields['posts_taxonomy_type'];
+            $taxValues = (array)$fields['posts_taxonomy_value'];
 
             foreach ($taxValues as $term) {
                 $getPostsArgs['tax_query'][] = [
@@ -88,32 +89,32 @@ class GetPosts
         }
 
         // Meta filter
-        if (isset($fields->posts_meta_filter) && $fields->posts_meta_filter === true) {
+        if (isset($fields['posts_meta_filter']) && $fields['posts_meta_filter'] === true) {
             $metaQuery[] = [
-                'key' => $fields->posts_meta_key ?? '',
-                'value' => [$fields->posts_meta_value ?? ''],
+                'key' => $fields['posts_meta_key'] ?? '',
+                'value' => [$fields['posts_meta_value'] ?? ''],
                 'compare' => 'IN',
             ];
         }
 
         // Data source
-        switch ($fields->posts_data_source) {
+        switch ($fields['posts_data_source']) {
             case 'posttype':
-                $getPostsArgs['post_type'] = $fields->posts_data_post_type;
-                if($currentPostID = self::getCurrentPostID()) {
+                $getPostsArgs['post_type'] = $fields['posts_data_post_type'];
+                if ($currentPostID = $this->getCurrentPostID()) {
                     $getPostsArgs['post__not_in'] = [
                         $currentPostID
-                    ]; 
+                    ];
                 }
                 break;
 
             case 'children':
                 $getPostsArgs['post_type'] = get_post_type();
-                $getPostsArgs['post_parent'] = $fields->posts_data_child_of;
+                $getPostsArgs['post_parent'] = $fields['posts_data_child_of'];
                 break;
 
             case 'manual':
-                $getPostsArgs['post__in'] = $fields->posts_data_posts;
+                $getPostsArgs['post__in'] = $fields['posts_data_posts'];
                 if ($orderby == 'false') {
                     $getPostsArgs['orderby'] = 'post__in';
                 }
@@ -125,17 +126,18 @@ class GetPosts
             $getPostsArgs['meta_query'] = $metaQuery;
         }
 
-        //Number of posts
-        if(isset($fields->posts_count) && is_numeric($fields->posts_count)) {
-            $getPostsArgs['posts_per_page'] = $fields->posts_count; 
+        // Number of posts
+        if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
+            $getPostsArgs['posts_per_page'] = $fields['posts_count'];
         }
 
         return $getPostsArgs;
     }
 
-    public static function getCurrentPostID() {
-        global $post; 
-        if(isset($post->ID) && is_numeric($post->ID)) {
+    public function getCurrentPostID()
+    {
+        global $post;
+        if (isset($post->ID) && is_numeric($post->ID)) {
             return $post->ID;
         }
         return false;

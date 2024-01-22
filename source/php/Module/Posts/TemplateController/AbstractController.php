@@ -6,27 +6,20 @@ use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 
 class AbstractController
 {
-    protected $hookName = 'index';
+    public $fields;
+    public $data;
+    protected $args;
+    protected $module;
 
-    /**
-     * Check if any post in the given array has an image.
-     *
-     * @param array $posts An array of post objects.
-     *
-     * @return bool Returns true if any post has an image, false otherwise.
-     */
-    protected function anyPostHasImage(array $posts)
+    public function __construct(\Modularity\Module\Posts\Posts $module)
     {
-        if (!is_array($posts)) {
-            return false;
-        }
+        $this->module   = $module;
+        $this->data     = $module->data;
+        $this->args     = $module->args;
+        $this->fields   = $module->fields;
 
-        foreach ($posts as $post) {
-            if (!empty($post->images) && !isset($post->images['thumbnail16:9']['src'])) {
-                return true;
-            }
-        }
-        return false;
+        $this->prepareFields();
+        $this->preparePosts();
     }
 
     /**
@@ -56,7 +49,7 @@ class AbstractController
      *
      * @return array An array of default values for post object keys.
      */
-    public function getDefaultValuesForPosts() {
+    private function getDefaultValuesForPosts() {
         return [
             'postTitle' => false,
             'excerptShort' => false,
@@ -81,7 +74,7 @@ class AbstractController
      * @param object $post  The post object.
      * @param int|false  $index The index of the post.
      */
-    public function setPostFlags(object &$post, $index = false)
+    private function setPostFlags(object &$post, $index = false)
     {
         if (empty($post)) return;
         // Booleans for hiding/showing stuff
@@ -135,36 +128,13 @@ class AbstractController
 
     /**
      * Prepare and set data fields for posts display.
-     *
-     * @param object $fields An object containing post fields data.
      */
-    public function prepareFields(object $fields) {
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['ratio'] = $fields->ratio ?? '16:9';
-        $this->data['highlight_first_column_as'] = $fields->posts_display_highlighted_as ?? 'block';
-        $this->data['highlight_first_column'] = !empty($fields->posts_highlight_first) ? 
+    private function prepareFields() {
+        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $this->fields['posts_columns']);
+        $this->data['ratio'] = $this->fields['ratio'] ?? '16:9';
+        $this->data['highlight_first_column_as'] = $this->fields['posts_display_highlighted_as'] ?? 'block';
+        $this->data['highlight_first_column'] = !empty($this->fields['posts_highlight_first']) ? 
         ColumnHelper::getFirstColumnSize($this->data['posts_columns']) : false;
-        $this->data['imagePosition'] = $fields->image_position ?? false;
-
-    }
-
-    /**
-     * Converts an associative array to an object.
-     *
-     * This function takes an associative array and converts it into an object by first
-     * encoding the array as a JSON string and then decoding it back into an object.
-     * The resulting object will have properties corresponding to the keys in the original array.
-     *
-     * @param array $array The associative array to convert to an object.
-     *
-     * @return object Returns an object representing the associative array.
-     */
-    public static function arrayToObject(array $array)
-    {
-        if(!is_array($array)) {
-            return $array;
-        }
-
-        return json_decode(json_encode($array)); 
+        $this->data['imagePosition'] = $this->fields['image_position'] ?? false;
     }
 }

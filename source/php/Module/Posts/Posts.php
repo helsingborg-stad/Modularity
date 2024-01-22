@@ -14,10 +14,12 @@ class Posts extends \Modularity\Module
 {
     public $slug = 'posts';
     public $supports = [];
-    public $fields = null;
+    public $fields;
     public $blockSupports = array(
         'align' => ['full']
     );
+    public $getPostsHelper;
+    public $archiveUrlHelper;
 
     private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
@@ -35,44 +37,43 @@ class Posts extends \Modularity\Module
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
-
+        
+        // Helpers
+        $this->getPostsHelper = new GetPostsHelper();
+        $this->archiveUrlHelper = new ArchiveUrlHelper();
+        
         new PostsAjax($this);
     }
 
-        /**
+    /**
      * @return array
      */
     public function data(): array
     {
         $data = [];
+        $this->fields = $this->getFields();
 
-        $fields = $this->arrayToObject(
-            $this->getFields()
-        );
-
-        $this->fields = $fields;
-        
-        $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
+        $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
+        $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 
         // Posts
-        $data['preamble'] = $fields->preamble ?? false;
-        $data['posts_fields'] = $fields->posts_fields ?? false;
-        $data['posts_date_source'] = $fields->posts_date_source ?? false;
-        $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
-        $data['posts_data_source'] = $fields->posts_data_source ?? false;
+        $data['preamble']               = $this->fields['preamble'] ?? false;
+        $data['posts_fields']           = $this->fields['posts_fields'] ?? false;
+        $data['posts_date_source']      = $this->fields['posts_date_source'] ?? false;
+        $data['posts_data_post_type']   = $this->fields['posts_data_post_type'] ?? false;
+        $data['posts_data_source']      = $this->fields['posts_data_source'] ?? false;
 
-        $data['posts'] = $this->getPosts($fields);
+        $data['posts'] = $this->getPosts();
 
         // Sorting
         $data['sortBy'] = false;
         $data['orderBy'] = false;
-        if (isset($fields->posts_sort_by) && substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
+        if (isset($this->fields['posts_sort_by']) && substr($this->fields['posts_sort_by'], 0, 9) === '_metakey_') {
             $data['sortBy'] = 'meta_key';
-            $data['sortByKey'] = str_replace('_metakey_', '', $fields->posts_sort_by);
+            $data['sortByKey'] = str_replace('_metakey_', '', $this->fields['posts_sort_by']);
         }
 
-        $data['order'] = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
+        $data['order'] = isset($this->fields['posts_sort_order']) ? $this->fields['posts_sort_order'] : 'asc';
 
         // Setup filters
         $filters = [
@@ -86,22 +87,22 @@ class Posts extends \Modularity\Module
 
         $data['filters'] = [];
 
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
-            $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array)$fields->posts_taxonomy_value;
+        if (isset($this->fields['posts_taxonomy_filter']) && $this->fields['posts_taxonomy_filter'] === true && !empty($this->fields['posts_taxonomy_type'])) {
+            $taxType = $this->fields['posts_taxonomy_type'];
+            $taxValues = (array)$this->fields['posts_taxonomy_value'];
             $taxValues = implode('|', $taxValues);
 
             $data['filters']['filter[' . $taxType . ']'] = $taxValues;
         }
 
-        $data['archive_link_url'] = ArchiveUrlHelper::getArchiveUrl(
+        $data['archive_link_url'] = $this->archiveUrlHelper->getArchiveUrl(
             $data['posts_data_post_type'],
-            $fields ?? null
+            $this->fields ?? null
         );
 
         $data['ariaLabels'] =  (object) [
-           'prev' => __('Previous slide', 'modularity'),
-           'next' => __('Next slide', 'modularity'),
+            'prev' => __('Previous slide', 'modularity'),
+            'next' => __('Next slide', 'modularity'),
         ];
 
         if ($this->ID) {
@@ -195,7 +196,7 @@ class Posts extends \Modularity\Module
     {   
         $template = $this->data['posts_display_as'] ?? 'list';
 
-        if (!empty($this->fields->show_as_slider) && in_array($this->fields->posts_display_as, $this->sliderCompatibleLayouts, true)) {
+        if (!empty($this->fields['show_as_slider']) && in_array($this->fields['posts_display_as'], $this->sliderCompatibleLayouts, true)) {
             $template = 'slider';
         }
         
@@ -231,7 +232,7 @@ class Posts extends \Modularity\Module
         $this->data['meta']['posts_display_as'] = $this->replaceDeprecatedTemplate($this->data['posts_display_as']);
 
         if (class_exists($class)) {
-            $controller = new $class($this, $this->args, $this->data, $this->fields);
+            $controller = new $class($this);
             $this->data = array_merge($this->data, $controller->data);
         }
     }
@@ -304,19 +305,22 @@ class Posts extends \Modularity\Module
      * @param object Acf fields
      * @return array Array with post objects
      */
-    public function getPosts($fields): array
+    public function getPosts(): array
     {
         //TODO: Remove [Start feature: Manual Input]. Remove whole method and move to GetPost Helper
-        if ($fields->posts_data_source == 'input') {
-            // Strip links from content if display items are linked (we can't do links in links)
-            $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
+        if ($this->fields['posts_data_source'] == 'input') {
+            $stripLinksFromContent = in_array(
+                $this->fields['posts_display_as'], 
+                ['items', 'index', 'news', 'collection']) ?? 
+                false;
+
             return (array) $this->getManualInputPosts(
-                $fields->data, 
+                $this->fields->data, 
                 $stripLinksFromContent
             );
         }
         //TODO: Remove [End feature: Manual Input]
-        return GetPostsHelper::getPosts($fields);
+        return $this->getPostsHelper->getPosts($this->fields);
     }
 
     /**
@@ -342,7 +346,7 @@ class Posts extends \Modularity\Module
     public function adminEnqueue() {
         wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
         wp_localize_script('mod-posts-script', 'modPosts', [
-            'currentPostID' => GetPostsHelper::getCurrentPostID(),
+            'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-script');
     }

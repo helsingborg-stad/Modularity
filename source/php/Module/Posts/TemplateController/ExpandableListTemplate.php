@@ -32,26 +32,36 @@ class ExpandableListTemplate
      */
     public $data = [];
 
+     /**
+     * Fields ACF fields
+     *
+     * @var array
+     */
+    public $fields = [];
+
     /**
      * ExpandableListTemplate constructor.
      *
      * @param \Modularity\Module\Posts\Posts $module Instance of the Posts module.
      * @param array $args Arguments passed to the template controller.
-     * @param array $data Data to be used in rendering the template.
-     * @param object $fields Object containing prepared fields for rendering.
+     * @param array $this->data Data to be used in rendering the template.
+     * @param object $this->fields Object containing prepared fields for rendering.
      */
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, array $data, object $fields)
+    public function __construct(\Modularity\Module\Posts\Posts $module)
     {
         $this->module = $module;
-        $this->args = $args;
-        $this->data = $data;
+        $this->args = $module->args;
+        $this->data = $module->data;
+        $this->fields = $module->fields;
 
-        $this->data['posts_list_column_titles'] = !empty($fields->posts_list_column_titles) && is_array($fields->posts_list_column_titles) ?
-            $fields->posts_list_column_titles : null;
-        $this->data['posts_hide_title_column'] = ($fields->posts_hide_title_column) ? true : false;
-        $this->data['title_column_label'] = $fields->title_column_label ?? null;
-        $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
-        $this->data['prepareAccordion'] = $this->prepare($data['posts'], $this->data);
+        $this->data['posts_list_column_titles'] = !empty($this->fields['posts_list_column_titles']) && is_array($this->fields['posts_list_column_titles']) ?
+            $this->fields['posts_list_column_titles'] : null;
+
+        print_r($this->data['posts_list_column_titles']);
+        $this->data['posts_hide_title_column'] = ($this->fields['posts_hide_title_column']) ? true : false;
+        $this->data['title_column_label'] = $this->fields['title_column_label'] ?? null;
+        $this->data['allow_freetext_filtering'] = $this->fields['allow_freetext_filtering'] ?? null;
+        $this->data['prepareAccordion'] = $this->prepare();
     }
 
     /**
@@ -85,21 +95,22 @@ class ExpandableListTemplate
     /**
      * Prepare Data for accordion
      * @param array $items Array of posts
-     * @param array $data Array of settings
+     * @param array $this->data Array of settings
      * 
      * @return array|null
      */
-    public function prepare(array $items, array $data): ?array
+    public function prepare(): ?array
     {
         $columnValues = $this->getColumnValues();
 
         $accordion = [];
 
-        if (is_array($items) && count($items) > 0) {
-            foreach ($items as $index => $item) {
-                if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($data)) {
-                    foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
+        if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
+            foreach ($this->data['posts'] as $index => $item) {
+                if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($this->data)) {
+                    foreach ($this->data['posts_list_column_titles'] as $colIndex => $column) {
                         $sanitizedTitle = sanitize_title($column->column_header);
+
                         if ($this->arrayDepth($columnValues) > 1) {
                             $accordion[$index]['column_values'][$colIndex] = $columnValues[$index][$sanitizedTitle] ?? '';
                         } else {
@@ -115,7 +126,6 @@ class ExpandableListTemplate
         if ($accordion < 0) {
             return null;
         }
-
         return $accordion;
     }
 
@@ -155,13 +165,13 @@ class ExpandableListTemplate
     /**
      * Check if column titles are present.
      *
-     * @param array $data
+     * @param array $this->data
      *
      * @return bool
      */
-    private function hasColumnTitles(array $data): bool
+    private function hasColumnTitles(): bool
     {
-        return !empty($data['posts_list_column_titles'])
-            && is_array($data['posts_list_column_titles']);
+        return !empty($this->data['posts_list_column_titles'])
+            && is_array($this->data['posts_list_column_titles']);
     }
 }

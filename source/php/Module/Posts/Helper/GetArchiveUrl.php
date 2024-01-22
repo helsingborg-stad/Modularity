@@ -17,16 +17,16 @@ class GetArchiveUrl
      *
      * @return string|false The archive URL if it exists, or false if it doesn't.
      */
-    public static function getArchiveUrl($postType, $fields) {
+    public function getArchiveUrl($postType, $fields) {
         if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
             return false;
         }
 
-        if ($postType == 'post' && $archiveUrl = self::getPostsArchiveUrl()) {
+        if ($postType == 'post' && $archiveUrl = $this->getPostsArchiveUrl()) {
             return $archiveUrl;
         }
 
-        if($archiveUrl = self::getPostTypeArchiveUrl($postType)) {
+        if($archiveUrl = $this->getPostTypeArchiveUrl($postType)) {
             return $archiveUrl;
         }
 
@@ -43,7 +43,7 @@ class GetArchiveUrl
      *
      * @return string|false The archive URL if it exists, or false if it doesn't.
      */
-    private static function getPostsArchiveUrl() {
+    private function getPostsArchiveUrl() {
         $pageForPosts = get_option('page_for_posts');
 
         if(is_numeric($pageForPosts) && get_post_status($pageForPosts) == 'publish') {
@@ -67,7 +67,7 @@ class GetArchiveUrl
      *
      * @return string|false The archive URL if it exists, or false if it doesn't.
      */
-    private static function getPostTypeArchiveUrl($postType) {
+    private function getPostTypeArchiveUrl($postType) {
         if($postTypeObject = get_post_type_object($postType)) {
             if(is_a($postTypeObject, 'WP_Post_Type') && $postTypeObject->has_archive) {
                 return get_post_type_archive_link($postType);
