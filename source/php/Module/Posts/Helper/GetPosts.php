@@ -70,7 +70,11 @@ class GetPosts
         }
 
         // Taxonomy filter
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
+        if (
+            isset($fields->posts_taxonomy_filter) && 
+            $fields->posts_taxonomy_filter === true && 
+            !empty($fields->posts_taxonomy_type)
+        ) {
             $taxType = $fields->posts_taxonomy_type;
             $taxValues = (array)$fields->posts_taxonomy_value;
 
