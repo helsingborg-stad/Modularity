@@ -16,35 +16,50 @@
                 "id": ""
             },
             "choices": {
-                "row-row-row-row-row-651d5ccf5ac81": {
+                "row-row-row-row-row-row-row-651d5ccf5ac81": {
                     "image-select-repeater-label": "Accordion",
                     "image-select-repeater-value": "accordion"
                 },
-                "row-row-row-row-row-651d5cdb5ac82": {
+                "row-row-row-row-row-row-row-651d5cdb5ac82": {
                     "image-select-repeater-label": "Block",
                     "image-select-repeater-value": "block"
                 },
-                "row-row-row-row-row-651d5cdf5ac83": {
+                "row-row-row-row-row-row-row-651d5cdf5ac83": {
                     "image-select-repeater-label": "Box",
                     "image-select-repeater-value": "box"
                 },
-                "row-row-row-row-row-651d5ce55ac84": {
+                "row-row-row-row-row-row-row-651d5ce55ac84": {
                     "image-select-repeater-label": "Card",
                     "image-select-repeater-value": "card"
                 },
-                "row-row-row-row-row-651d5ceb5ac85": {
+                "row-row-row-row-row-row-row-651d5ceb5ac85": {
                     "image-select-repeater-label": "Collection",
                     "image-select-repeater-value": "collection"
                 },
-                "row-row-row-row-row-651d5cf65ac86": {
+                "row-row-row-row-row-row-row-651d5cf65ac86": {
                     "image-select-repeater-label": "List",
                     "image-select-repeater-value": "list"
                 },
-                "row-651ffdc788395": {
+                "row-row-row-651ffdc788395": {
                     "image-select-repeater-label": "Segment",
                     "image-select-repeater-value": "segment"
                 }
             }
+        },
+        {
+            "key": "field_656f4b44999e9",
+            "label": "Display as conditional target",
+            "name": "display_as_conditional",
+            "type": "acfe_hidden",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
         },
         {
             "key": "field_650067ed6cc3c",
@@ -56,7 +71,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_64ff23d0d91bf",
+                        "field": "field_656f4b44999e9",
                         "operator": "==",
                         "value": "accordion"
                     }
@@ -83,7 +98,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_64ff23d0d91bf",
+                        "field": "field_656f4b44999e9",
                         "operator": "==",
                         "value": "accordion"
                     }
@@ -135,12 +150,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_64ff23d0d91bf",
+                        "field": "field_656f4b44999e9",
                         "operator": "!=",
                         "value": "accordion"
                     },
                     {
-                        "field": "field_64ff23d0d91bf",
+                        "field": "field_656f4b44999e9",
                         "operator": "!=",
                         "value": "list"
                     }
@@ -175,14 +190,14 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_64ff23d0d91bf",
+                        "field": "field_656f4b44999e9",
                         "operator": "==",
                         "value": "block"
                     }
                 ],
                 [
                     {
-                        "field": "field_64ff23d0d91bf",
+                        "field": "field_656f4b44999e9",
                         "operator": "==",
                         "value": "box"
                     }
@@ -258,7 +273,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "==",
                                 "value": "accordion"
                             }
@@ -310,7 +325,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "!=",
                                 "value": "list"
                             }
@@ -338,7 +353,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "!=",
                                 "value": "accordion"
                             }
@@ -363,7 +378,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "==",
                                 "value": "segment"
                             }
@@ -391,14 +406,14 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "==",
                                 "value": "card"
                             }
                         ],
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "==",
                                 "value": "segment"
                             }
@@ -426,12 +441,12 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "!=",
                                 "value": "list"
                             },
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "!=",
                                 "value": "accordion"
                             }
@@ -466,7 +481,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_64ff23d0d91bf",
+                                "field": "field_656f4b44999e9",
                                 "operator": "==",
                                 "value": "box"
                             }

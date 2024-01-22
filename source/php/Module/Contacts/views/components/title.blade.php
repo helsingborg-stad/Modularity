@@ -4,7 +4,7 @@
 
     @if ($contact['full_name'])
         @typography([
-            "element"       => "h3",
+            "element"       => empty($hideTitle) && !empty($postTitle) ? 'h3' : 'h2',
             'attributeList' => [
                 'itemprop' => 'name'
             ],

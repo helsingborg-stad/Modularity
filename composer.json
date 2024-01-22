@@ -48,7 +48,7 @@
         "enshrined/svg-sanitize": "dev-master",
         "wpackagist-plugin/acf-extended": "0.8.9.4",
         "symfony/polyfill-php80": "^1.27",
-        "helsingborg-stad/acf-select-image-field": "^1.0.0"
+        "helsingborg-stad/acf-select-image-field": "~1.4.3"
     },
     "autoload": {
         "psr-4": {
@@ -75,5 +75,5 @@
         "test": "phpunit",
         "test:setup": "bin/install-wp-tests.sh"
     },
-    "version": "5.17.10"
+    "version": "5.20.5"
 }
