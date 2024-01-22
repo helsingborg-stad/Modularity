@@ -20,20 +20,27 @@ class SliderTemplate extends AbstractController
     {
         parent::__construct($module);
 
-        $this->data['slider']['slidesPerPage'] = $this->getSlidesPerPage();
-        $this->data['slider']['autoSlide']     = isset($this->fields['auto_slide']) ? (bool) $this->fields['auto_slide']    : false;
-        $this->data['slider']['showStepper']   = isset($this->fields['show_stepper']) ? (bool) $this->fields['show_stepper'] : false;
-        $this->data['slider']['repeatSlide']   = isset($this->fields['repeat_slide']) ? (bool) $this->fields['repeat_slide'] : true;
-        $this->data['postsDisplayAs']          = !empty($this->fields['posts_display_as']) ? $this->fields['posts_display_as'] : 'segment';
+        $this->data['slider'] = $this->addSliderViewData();
+
+        $this->data['postsDisplayAs'] = !empty($this->fields['posts_display_as']) ? 
+            $this->fields['posts_display_as'] : 'segment';
 
         //TODO: Change this when ContentType templates are done
         if ($this->data['posts_data_post_type'] === 'project') {
             $this->data['postsDisplayAs'] = 'project';
         }
+    }
 
-        $this->data['slider'] = apply_filters(
+    private function addSliderViewData() {
+        $slider = [];
+        $slider['slidesPerPage'] = $this->getSlidesPerPage();
+        $slider['autoSlide']     = isset($this->fields['auto_slide']) ? (bool) $this->fields['auto_slide']    : false;
+        $slider['showStepper']   = isset($this->fields['show_stepper']) ? (bool) $this->fields['show_stepper'] : false;
+        $slider['repeatSlide']   = isset($this->fields['repeat_slide']) ? (bool) $this->fields['repeat_slide'] : true;
+
+        return apply_filters(
             'Modularity/Module/Posts/Slider/Arguments',
-            (object) $this->data['slider']
+            (object) $slider
         );
     }
 

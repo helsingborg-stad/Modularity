@@ -4,37 +4,70 @@ namespace Modularity\Module\Posts\TemplateController;
 
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 
+/**
+ * Class AbstractController
+ *
+ * @package Modularity\Module\Posts\TemplateController
+ */
 class AbstractController
 {
-    public $fields;
-    public $data;
-    protected $args;
+    /** @var array */
+    public $data = [];
+    
+    /** @var array */
+    public $fields = [];
+
+    /** @var \Modularity\Module\Posts\Posts */
     protected $module;
 
+    /**
+     * AbstractController constructor.
+     *
+     * @param \Modularity\Module\Posts\Posts $module
+    */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
-        $this->module   = $module;
-        $this->data     = $module->data;
-        $this->args     = $module->args;
-        $this->fields   = $module->fields;
+        $this->module           = $module;
+        $this->fields           = $module->fields;
+        $this->data             = $this->addDataViewData($module->data, $module->fields);
+        $this->data['posts']    = $this->preparePosts($this->data['posts']);
+    }
 
-        $this->prepareFields();
-        $this->preparePosts();
+    /**
+     * Prepare and set data fields for posts display.
+     *
+     * @param array $data
+     * @param array $fields
+     *
+     * @return array
+    */
+    public function addDataViewData(array $data, array $fields) {
+
+        $data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
+            $data['posts_data_post_type'] ?? ''
+        );
+        $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
+        $data['ratio'] = $fields['ratio'] ?? '16:9';
+        $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
+        $data['highlight_first_column'] = !empty($fields['posts_highlight_first']) ? 
+        ColumnHelper::getFirstColumnSize($data['posts_columns']) : false;
+        $data['imagePosition'] = $fields['image_position'] ?? false;
+
+        return $data;
     }
 
     /**
      * Prepare posts data by setting default values and post flags.
-     * 
-     * Setting default values for posts variables.
-     */
-    public function preparePosts()
+     *
+     * @param array $posts
+     *
+     * @return array
+    */
+    public function preparePosts(array $posts = [])
     {
-        $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
-            $this->data['posts_data_post_type'] ?? ''
-        );
-        if(!empty($this->data['posts']) && is_array($this->data['posts'])) {
-            foreach ($this->data['posts'] as $index => &$post) {
-                $this->setPostFlags($post, $index);
+        if(!empty($posts)) {
+            foreach ($posts as $index => $post) {
+                $post = $this->setPostViewData($post, $index);
                 $post = array_filter((array) $post, function($value) {
                     return !empty($value) || $value === false;
                 });
@@ -42,13 +75,15 @@ class AbstractController
                 $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
             }
         }
+
+        return $posts;
     }
 
     /**
      * Get default values for keys in the post object.
      *
-     * @return array An array of default values for post object keys.
-     */
+     * @return array
+    */
     private function getDefaultValuesForPosts() {
         return [
             'postTitle' => false,
@@ -71,13 +106,13 @@ class AbstractController
     /**
      * Set boolean flags for hiding/showing specific post details.
      *
-     * @param object $post  The post object.
-     * @param int|false  $index The index of the post.
-     */
-    private function setPostFlags(object &$post, $index = false)
+     * @param object $post
+     * @param false|int $index
+     *
+     * @return object
+    */
+    private function setPostViewData(object $post, $index = false)
     {
-        if (empty($post)) return;
-        // Booleans for hiding/showing stuff
         $post->excerptShort         = in_array('excerpt', $this->data['posts_fields']) ? $post->excerptShort : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
         $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageBasedOnRatio($post->images, $index) : [];
@@ -98,18 +133,19 @@ class AbstractController
             } else {
                 $post->postDateFormatted = false;
             }
-        } 
+        }
+        
+        return $post;
     }
 
     /**
      * Get the image based on ratio and index.
      *
-     * @param array $images An array of post images.
-     * @param mixed $index  The index of the post.
+     * @param array $images
      *
-     * @return mixed|null Returns the image based on conditions, or null if not found.
-     */
-    public function getImageBasedOnRatio(array $images, $index) {
+     * @return mixed|null
+    */
+    private function getImageBasedOnRatio(array $images) {
         if (empty($this->data['posts_display_as']) || empty($images['thumbnail16:9']['src'])) return false;
 
         if (!empty($this->data['highlight_first_column']) && in_array($this->data['posts_display_as'], ['block', 'index'])) {
@@ -124,17 +160,5 @@ class AbstractController
         }
 
         return false;
-    }
-
-    /**
-     * Prepare and set data fields for posts display.
-     */
-    private function prepareFields() {
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $this->fields['posts_columns']);
-        $this->data['ratio'] = $this->fields['ratio'] ?? '16:9';
-        $this->data['highlight_first_column_as'] = $this->fields['posts_display_highlighted_as'] ?? 'block';
-        $this->data['highlight_first_column'] = !empty($this->fields['posts_highlight_first']) ? 
-        ColumnHelper::getFirstColumnSize($this->data['posts_columns']) : false;
-        $this->data['imagePosition'] = $this->fields['image_position'] ?? false;
     }
 }
