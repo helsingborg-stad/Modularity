@@ -54,7 +54,6 @@ class ExpandableListTemplate
         $this->data['posts_list_column_titles'] = !empty($this->fields['posts_list_column_titles']) && is_array($this->fields['posts_list_column_titles']) ?
             $this->fields['posts_list_column_titles'] : null;
 
-        print_r($this->data['posts_list_column_titles']);
         $this->data['posts_hide_title_column'] = ($this->fields['posts_hide_title_column']) ? true : false;
         $this->data['title_column_label'] = $this->fields['title_column_label'] ?? null;
         $this->data['allow_freetext_filtering'] = $this->fields['allow_freetext_filtering'] ?? null;

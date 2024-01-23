@@ -117,9 +117,10 @@ class AbstractController
         $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
         $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageBasedOnRatio($post->images, $index) : [];
         $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
-        $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
-        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && empty($post->images['thumbnail16:9']['src']) ? true : false;
+        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && 
+        empty($post->images['thumbnail16:9']['src']) ? true : false;
         $post->readingTime          = in_array('reading_time', $this->data['posts_fields']) ? $post->readingTime : false;
+        $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
         
         if (!empty($post->image) && is_array($post->image)) {
             $post->image['backgroundColor'] = 'secondary';

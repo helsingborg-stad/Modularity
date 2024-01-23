@@ -267,7 +267,6 @@ class Posts extends \Modularity\Module
     public function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
-
         foreach ($data as $key => $item) {
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
@@ -315,7 +314,7 @@ class Posts extends \Modularity\Module
                 false;
 
             return (array) $this->getManualInputPosts(
-                $this->fields->data, 
+                $this->fields['data'], 
                 $stripLinksFromContent
             );
         }
