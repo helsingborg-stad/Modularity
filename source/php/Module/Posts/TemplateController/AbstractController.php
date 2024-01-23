@@ -30,7 +30,7 @@ class AbstractController
         $this->module           = $module;
         $this->fields           = $module->fields;
         $this->data             = $this->addDataViewData($module->data, $module->fields);
-        $this->data['posts']    = $this->preparePosts($this->data['posts']);
+        $this->data['posts']    = $this->preparePosts($module->data['posts']);
     }
 
     /**
