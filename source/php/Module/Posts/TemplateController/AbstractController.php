@@ -27,10 +27,11 @@ class AbstractController
     */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
-        $this->module           = $module;
-        $this->fields           = $module->fields;
-        $this->data             = $this->addDataViewData($module->data, $module->fields);
-        $this->data['posts']    = $this->preparePosts($module->data['posts']);
+        $this->module               = $module;
+        $this->fields               = $module->fields;
+        $this->data                 = $this->addDataViewData($module->data, $module->fields);
+        $this->data['posts']        = $this->preparePosts($module->data['posts']);
+        $this->data['classList']    = [];
     }
 
     /**
