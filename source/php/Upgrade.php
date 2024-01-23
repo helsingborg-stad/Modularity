@@ -421,12 +421,12 @@ class Upgrade
      * and associating these values with a specific post ID.
      *
      * @param array $newField An array describing the new ACF field, including name, type, and subfields.
-     * @param array $oldFieldValue The value of the old ACF repeater field.
+     * @param array|null $oldFieldValue The value of the old ACF repeater field.
      * @param int $id The post ID to which the new field values will be associated.
      *
      * @return void
      */
-    private function migrateAcfRepeater(array $newField = [], array $oldFieldValue = [], int $id) {
+    private function migrateAcfRepeater(array $newField = [], $oldFieldValue = [], int $id) {
         update_field($newField['name'], $oldFieldValue, $id);
         $subFields = $newField['fields'];
         if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
