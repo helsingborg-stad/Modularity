@@ -2,26 +2,33 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+/**
+ * Class SegmentTemplate
+ *
+ * Template controller for rendering posts as Segment.
+ *
+ * @package Modularity\Module\Posts\TemplateController
+ * 
+ */
 class SegmentTemplate extends AbstractController
 {
+    /**
+     * The instance of the Posts module associated with this template.
+     *
+     * @var \Modularity\Module\Posts\Posts
+     */
     protected $module;
     protected $args;
+    public $data;
+    public $fields;
 
-    public $data = [];
-
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
+    /**
+     * SegmentTemplate constructor.
+     *
+     * @param \Modularity\Module\Posts\Posts $module Instance of the Posts module.
+     */
+    public function __construct(\Modularity\Module\Posts\Posts $module)
     {
-        $this->module = $module;
-        $this->args = $args;
-        $this->data = $data;
-
-        $this->data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields->posts_columns);
-        $this->data['imagePosition'] = !empty($fields->image_position) ? $fields->image_position : false;
-
-        $this->data['labels'] = [
-            'readMore' => __('Read more', 'modularity'),
-        ];
-
-        $this->preparePosts();
+        parent::__construct($module);
     }
 }

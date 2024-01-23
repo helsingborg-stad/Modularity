@@ -5,31 +5,7 @@
         @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
         @foreach ($posts as $post)
             <div class="{{ $posts_columns }}">
-                @segment([
-                    'layout' => 'card',
-                    'title' => !empty($post->showTitle) ? $post->postTitle : false,
-                    'context' => ['module.posts.segment'],
-                    'meta' => !empty($display_reading_time) ? $post->readingTime : false,
-                    'tags' => !empty($post->termsUnlinked) ? $post->termsUnlinked : false,
-                    'image' => !empty($post->images['thumbnail16:9']['src']) ? $post->images['thumbnail16:9']['src'] : false,
-                    'date' => $post->postDateFormatted,
-                    'dateBadge' => !empty($post->dateBadge) ? $post->dateBadge : false,
-                    'content' => !empty($post->showExcerpt) ? $post->excerptShort : false,
-                    'buttons' => [['text' => $labels['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
-                    'containerAware' => true,
-                    'reverseColumns' => isset($imagePosition) ? $imagePosition : true,
-                    'classList' => !empty($post->classList) ? $post->classList : [],
-                    'icon' => !empty($post->termIcon['icon']) ? $post->termIcon : false,
-                    'attributeList' => array_merge($post->attributeList, []),
-                    'hasPlaceholder' => !empty($post->hasPlaceholderImage),
-                ])
-                    @slot('floating')
-                        @if (!empty($post->callToActionItems['floating']))
-                            @icon($post->callToActionItems['floating'])
-                            @endicon
-                        @endif
-                    @endslot
-                @endsegment
+                @include('partials.post.segment')
             </div>
         @endforeach
     </div>

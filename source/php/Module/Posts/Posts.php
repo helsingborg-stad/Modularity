@@ -3,6 +3,8 @@
 namespace Modularity\Module\Posts;
 
 use Municipio\Helper\Image as ImageHelper;
+use Modularity\Module\Posts\Helper\GetArchiveUrl as ArchiveUrlHelper;
+use Modularity\Module\Posts\Helper\GetPosts as GetPostsHelper;
 
 /**
  * Class Posts
@@ -12,11 +14,14 @@ class Posts extends \Modularity\Module
 {
     public $slug = 'posts';
     public $supports = [];
+    public $fields;
     public $blockSupports = array(
         'align' => ['full']
     );
-    private $layouts = []; //TODO: Implement
-    private $deprecatedLayouts = []; //TODO: Implement
+    public $getPostsHelper;
+    public $archiveUrlHelper;
+
+    private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
     public function init()
     {
@@ -24,57 +29,97 @@ class Posts extends \Modularity\Module
         $this->namePlural       = __('Posts', 'modularity');
         $this->description      = __('Outputs selected posts in specified layout', 'modularity');
         
-        /* Saves meta data to expandable list posts */
+        // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
 
+        // Handle date field
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
-        add_filter('Modularity/Module/Posts/template', array( $this, 'setTemplate' ), 10, 3);
-
+        
+        // Helpers
+        $this->getPostsHelper = new GetPostsHelper();
+        $this->archiveUrlHelper = new ArchiveUrlHelper();
+        
         new PostsAjax($this);
     }
 
-   /**
-    * If the module is set to show as a slider, then return the slider template
-    *
-    * @param string template The template that is currently being used.
-    * @param object module The module object
-    * @param array moduleData The data for the module.
-    *
-    * @return The template name.
-    */
-    public function setTemplate($template, $module, $moduleData)
-    {
-        $showAsSlider   = $this->fields->show_as_slider ?? null;
-        $postsDisplayAs = $this->fields->posts_display_as ?? null;
-
-        $layoutsWithSliderAvailable = array('items', 'news', 'index', 'grid', 'features-grid', 'segment');
-
-        if (1 === (int) $showAsSlider && in_array($postsDisplayAs, $layoutsWithSliderAvailable, true)) {
-            $this->getTemplateData(self::replaceDeprecatedTemplate('slider'), $moduleData);
-            return 'slider.blade.php';
-        }
-
-        return $template;
-    }
-
     /**
-     * Retrieve the current WordPress post ID.
-     *
-     * This function retrieves the unique identifier (ID) of the current WordPress post.
-     * It first checks if the global variable $post is set and contains a valid numeric ID.
-     * If a valid ID is found, it returns the post ID; otherwise, it returns false.
-     *
-     * @return int|false Returns the post ID if available and numeric, or false if not found or invalid.
+     * @return array
      */
-    private static function getCurrentPostID() {
-        global $post; 
-        if(isset($post->ID) && is_numeric($post->ID)) {
-            return $post->ID;
+    public function data(): array
+    {
+        $data = [];
+        $this->fields = $this->getFields();
+
+        $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
+        $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
+
+        // Posts
+        $data['preamble']               = $this->fields['preamble'] ?? false;
+        $data['posts_fields']           = $this->fields['posts_fields'] ?? false;
+        $data['posts_date_source']      = $this->fields['posts_date_source'] ?? false;
+        $data['posts_data_post_type']   = $this->fields['posts_data_post_type'] ?? false;
+        $data['posts_data_source']      = $this->fields['posts_data_source'] ?? false;
+
+        $data['posts'] = $this->getPosts();
+
+        // Sorting
+        $data['sortBy'] = false;
+        $data['orderBy'] = false;
+        if (isset($this->fields['posts_sort_by']) && substr($this->fields['posts_sort_by'], 0, 9) === '_metakey_') {
+            $data['sortBy'] = 'meta_key';
+            $data['sortByKey'] = str_replace('_metakey_', '', $this->fields['posts_sort_by']);
         }
-        return false;
+
+        $data['order'] = isset($this->fields['posts_sort_order']) ? $this->fields['posts_sort_order'] : 'asc';
+
+        // Setup filters
+        $filters = [
+            'orderby' => sanitize_text_field($data['sortBy']),
+            'order' => sanitize_text_field($data['order'])
+        ];
+
+        if ($data['sortBy'] == 'meta_key') {
+            $filters['meta_key'] = $data['sortByKey'];
+        }
+
+        $data['filters'] = [];
+
+        if (isset($this->fields['posts_taxonomy_filter']) && $this->fields['posts_taxonomy_filter'] === true && !empty($this->fields['posts_taxonomy_type'])) {
+            $taxType = $this->fields['posts_taxonomy_type'];
+            $taxValues = (array)$this->fields['posts_taxonomy_value'];
+            $taxValues = implode('|', $taxValues);
+
+            $data['filters']['filter[' . $taxType . ']'] = $taxValues;
+        }
+
+        $data['archive_link_url'] = $this->archiveUrlHelper->getArchiveUrl(
+            $data['posts_data_post_type'],
+            $this->fields ?? null
+        );
+
+        $data['ariaLabels'] =  (object) [
+            'prev' => __('Previous slide', 'modularity'),
+            'next' => __('Next slide', 'modularity'),
+        ];
+
+        if ($this->ID) {
+            $data['sliderId'] = $this->ID;
+        } else {
+            $data['sliderId'] = uniqid();
+            $data['ID'] = uniqid();
+        }
+
+        $data['classList'] = [];
+
+        $data['lang'] = [
+            'showMore' => __('Show more', 'modularity'),
+            'readMore' => __('Read more', 'modularity')
+        ];
+
+        return $data;
     }
 
     /**
@@ -148,15 +193,18 @@ class Posts extends \Modularity\Module
      * @return false|string
      */
     public function template()
-    {
-        $this->getTemplateData(self::replaceDeprecatedTemplate($this->data['posts_display_as'] ?? ''));
-        if (!self::replaceDeprecatedTemplate($this->data['posts_display_as'])) {
-            return 'list';
+    {   
+        $template = $this->data['posts_display_as'] ?? 'list';
+
+        if (!empty($this->fields['show_as_slider']) && in_array($this->fields['posts_display_as'], $this->sliderCompatibleLayouts, true)) {
+            $template = 'slider';
         }
+        
+        $this->getTemplateData($this->replaceDeprecatedTemplate($template));
 
         return apply_filters(
             'Modularity/Module/Posts/template',
-            self::replaceDeprecatedTemplate($this->data['posts_display_as']) . '.blade.php',
+            $this->replaceDeprecatedTemplate($template) . '.blade.php',
             $this,
             $this->data,
             $this->fields
@@ -181,91 +229,12 @@ class Posts extends \Modularity\Module
 
         $class = '\Modularity\Module\Posts\TemplateController\\' . $template . 'Template';
 
-        $this->data['meta']['posts_display_as'] = self::replaceDeprecatedTemplate($this->data['posts_display_as']);
+        $this->data['meta']['posts_display_as'] = $this->replaceDeprecatedTemplate($this->data['posts_display_as']);
 
         if (class_exists($class)) {
-            $controller = new $class($this, $this->args, $this->data, $this->fields);
+            $controller = new $class($this);
             $this->data = array_merge($this->data, $controller->data);
         }
-    }
-
-    /**
-     * @return array
-     */
-    public function data(): array
-    {
-        $data = [];
-
-        $fields = $this->arrayToObject(
-            $this->getFields()
-        );
-
-        $this->fields = $fields;
-        
-        $data['posts_display_as'] = $fields->posts_display_as ?? false;
-        $data['display_reading_time'] = !empty($fields->posts_fields) && in_array('reading_time', $fields->posts_fields) ?? false;
-
-        // Posts
-        $data['preamble'] = $fields->preamble ?? false;
-        $data['posts_fields'] = $fields->posts_fields ?? false;
-        $data['posts_date_source'] = $fields->posts_date_source ?? false;
-        $data['posts_data_post_type'] = $fields->posts_data_post_type ?? false;
-        $data['posts_data_source'] = $fields->posts_data_source ?? false;
-
-        $data['posts'] = self::getPosts($this);
-
-        // Sorting
-        $data['sortBy'] = false;
-        $data['orderBy'] = false;
-        if (isset($fields->posts_sort_by) && substr($fields->posts_sort_by, 0, 9) === '_metakey_') {
-            $data['sortBy'] = 'meta_key';
-            $data['sortByKey'] = str_replace('_metakey_', '', $fields->posts_sort_by);
-        }
-
-        $data['order'] = isset($fields->posts_sort_order) ? $fields->posts_sort_order : 'asc';
-
-        // Setup filters
-        $filters = [
-            'orderby' => sanitize_text_field($data['sortBy']),
-            'order' => sanitize_text_field($data['order'])
-        ];
-
-        if ($data['sortBy'] == 'meta_key') {
-            $filters['meta_key'] = $data['sortByKey'];
-        }
-
-        $data['filters'] = [];
-
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
-            $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array)$fields->posts_taxonomy_value;
-            $taxValues = implode('|', $taxValues);
-
-            $data['filters']['filter[' . $taxType . ']'] = $taxValues;
-        }
-
-        $data['archive_link_url'] = $this->getArchiveUrl(
-            $data['posts_data_post_type'],
-            $fields ?? null
-        );
-
-        $data['ariaLabels'] =  (object) [
-           'prev' => __('Previous slide', 'modularity'),
-           'next' => __('Next slide', 'modularity'),
-        ];
-
-        if ($this->ID) {
-            $data['sliderId'] = $this->ID;
-        } else {
-            $data['sliderId'] = uniqid();
-            $data['ID'] = uniqid();
-        }
-
-        $data['lang'] = [
-            'showMore' => __('Show more', 'modularity')
-        ];
-
-        return $data;
     }
 
     /**
@@ -288,88 +257,6 @@ class Posts extends \Modularity\Module
         return json_decode(json_encode($array)); 
     }
 
-    /** Exists due to old code */
-    public static function arrayToObjectStatic($array)
-    {
-        if(!is_array($array)) {
-            return $array;
-        }
-
-        return json_decode(json_encode($array)); 
-    }
-
-    /**
-     * Get the archive URL for a specified post type using provided fields.
-     *
-     * This function retrieves the archive URL for a specified post type based on the given fields.
-     * If the post type is empty or if the archive link field is not set or falsy, it returns false.
-     * If the post type is "post," it attempts to retrieve the posts archive URL.
-     * Otherwise, it attempts to retrieve the archive URL for the custom post type.
-     *
-     * @param string      $postType The name of the post type.
-     * @param object|null $fields   An object containing fields related to the post type.
-     *
-     * @return string|false The archive URL if it exists, or false if it doesn't.
-     */
-    private function getArchiveUrl($postType, $fields) {
-        if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
-            return false;
-        }
-
-        if ($postType == 'post' && $archiveUrl = $this->getPostsArchiveUrl()) {
-            return $archiveUrl;
-        }
-
-        if($archiveUrl = $this->getPostTypeArchiveUrl($postType)) {
-            return $archiveUrl;
-        }
-
-        return false;
-    }
-
-    /**
-     * Get the archive URL for the posts page.
-     *
-     * This function retrieves the URL of the page that displays the blog posts archive.
-     * If a static page is set as the posts page, it returns the permalink to that page.
-     * If the option "Front page displays" is set to "Your latest posts," it returns the home URL.
-     * If no valid posts page is found, it returns false.
-     *
-     * @return string|false The archive URL if it exists, or false if it doesn't.
-     */
-    private function getPostsArchiveUrl() {
-        $pageForPosts = get_option('page_for_posts');
-
-        if(is_numeric($pageForPosts) && get_post_status($pageForPosts) == 'publish') {
-            return get_permalink($pageForPosts); 
-        }
-
-        if(get_option('show_on_front') == 'posts') {
-            return get_home_url(); 
-        }
-
-        return false;
-    }
-
-    /**
-     * Get the archive URL for a custom post type.
-     *
-     * This function retrieves the archive URL for a given custom post type.
-     * If the post type does not have an archive, it returns false.
-     *
-     * @param string $postType The key of the custom post type.
-     *
-     * @return string|false The archive URL if it exists, or false if it doesn't.
-     */
-    private function getPostTypeArchiveUrl($postType) {
-        if($postTypeObject = get_post_type_object($postType)) {
-            if(is_a($postTypeObject, 'WP_Post_Type') && $postTypeObject->has_archive) {
-                return get_post_type_archive_link($postType);
-            }
-        }
-        return false;
-    }
-
     /**
      * "Fake" WP_POST objects for manually inputted posts
      * @param array $data The data to "fake"
@@ -377,10 +264,9 @@ class Posts extends \Modularity\Module
      */
 
     //TODO: Remove [Start feature: Manual Input]
-    public static function getManualInputPosts($data, bool $stripLinksFromContent = false)
+    public function getManualInputPosts($data, bool $stripLinksFromContent = false)
     {
         $posts = [];
-
         foreach ($data as $key => $item) {
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
@@ -415,157 +301,25 @@ class Posts extends \Modularity\Module
 
     /**
      * Get included posts
-     * @param object $module Module object
-     * @return array          Array with post objects
+     * @param object Acf fields
+     * @return array Array with post objects
      */
-    public static function getPosts($module): array
+    public function getPosts(): array
     {
-        $fields = self::arrayToObjectStatic(
-            get_fields($module->ID)
-        );
+        //TODO: Remove [Start feature: Manual Input]. Remove whole method and move to GetPost Helper
+        if ($this->fields['posts_data_source'] == 'input') {
+            $stripLinksFromContent = in_array(
+                $this->fields['posts_display_as'], 
+                ['items', 'index', 'news', 'collection']) ?? 
+                false;
 
-        //TODO: Remove [Start feature: Manual Input]
-        if ($fields->posts_data_source == 'input') {
-            // Strip links from content if display items are linked (we can't do links in links)
-            $stripLinksFromContent = in_array($fields->posts_display_as, ['items', 'index', 'news', 'collection']) ?? false;
-            return (array) self::getManualInputPosts(
-                $fields->data, 
+            return (array) $this->getManualInputPosts(
+                $this->fields['data'], 
                 $stripLinksFromContent
             );
         }
         //TODO: Remove [End feature: Manual Input]
-
-        $posts = (array) get_posts(self::getPostArgs($module->ID));
-        if (!empty($posts)) {
-            foreach ($posts as &$_post) {
-                $data['taxonomiesToDisplay'] = !empty($fields->taxonomy_display) ? $fields->taxonomy_display : [];
-
-               if (class_exists('\Municipio\Helper\Post')) {
-                    if (in_array($fields->posts_display_as, [ 'expandable-list'])) {
-                        $_post = \Municipio\Helper\Post::preparePostObject($_post);
-                    } else {
-                        $_post = \Municipio\Helper\Post::preparePostObjectArchive($_post, $data);
-                    }
-                
-                    if (!empty($_post->location)) {
-                        $_post->attributeList['data-js-map-location'] = json_encode($_post->location);
-                    }
-
-                    if (!empty($fields->posts_fields) && in_array('image', $fields->posts_fields) && empty($_post->thumbnail['src'])) {
-                        $_post->hasPlaceholderImage = true;
-                    }
-                } 
-            }
-        }
-
-        return $posts;
-    }
-
-    public static function getPostArgs($id)
-    {
-        $fields = self::arrayToObjectStatic(
-            get_fields($id)
-        );
-
-        $metaQuery  = false;
-        $orderby    = !empty($fields->posts_sort_by) ? $fields->posts_sort_by : 'date';
-        $order      = !empty($fields->posts_sort_order) ? $fields->posts_sort_order : 'desc';
-
-        // Get post args
-        $getPostsArgs = [
-            'post_type' => 'any',
-            'post_password' => false,
-            'suppress_filters' => false
-        ];
-
-        // Sort by meta key
-        if (strpos($orderby, '_metakey_') === 0) {
-            $orderby_key = substr($orderby, strlen('_metakey_'));
-            $orderby = 'order_clause';
-            $metaQuery = [
-                [
-                    'relation' => 'OR',
-                    'order_clause' => [
-                        'key' => $orderby_key,
-                        'compare' => 'EXISTS'
-                    ],
-                    [
-                        'key' => $orderby_key,
-                        'compare' => 'NOT EXISTS'
-                    ]
-                ]
-            ];
-        }
-
-        if ($orderby != 'false') {
-            $getPostsArgs['order'] = $order;
-            $getPostsArgs['orderby'] = $orderby;
-        }
-
-        // Post statuses
-        $getPostsArgs['post_status'] = ['publish', 'inherit'];
-        if (is_user_logged_in()) {
-            $getPostsArgs['post_status'][] = 'private';
-        }
-
-        // Taxonomy filter
-        if (isset($fields->posts_taxonomy_filter) && $fields->posts_taxonomy_filter === true && !empty($fields->posts_taxonomy_type)) {
-            $taxType = $fields->posts_taxonomy_type;
-            $taxValues = (array)$fields->posts_taxonomy_value;
-
-            foreach ($taxValues as $term) {
-                $getPostsArgs['tax_query'][] = [
-                    'taxonomy' => $taxType,
-                    'field' => 'slug',
-                    'terms' => $term
-                ];
-            }
-        }
-
-        // Meta filter
-        if (isset($fields->posts_meta_filter) && $fields->posts_meta_filter === true) {
-            $metaQuery[] = [
-                'key' => $fields->posts_meta_key ?? '',
-                'value' => [$fields->posts_meta_value ?? ''],
-                'compare' => 'IN',
-            ];
-        }
-
-        // Data source
-        switch ($fields->posts_data_source) {
-            case 'posttype':
-                $getPostsArgs['post_type'] = $fields->posts_data_post_type;
-                if($currentPostID = self::getCurrentPostID()) {
-                    $getPostsArgs['post__not_in'] = [
-                        $currentPostID
-                    ]; 
-                }
-                break;
-
-            case 'children':
-                $getPostsArgs['post_type'] = get_post_type();
-                $getPostsArgs['post_parent'] = $fields->posts_data_child_of;
-                break;
-
-            case 'manual':
-                $getPostsArgs['post__in'] = $fields->posts_data_posts;
-                if ($orderby == 'false') {
-                    $getPostsArgs['orderby'] = 'post__in';
-                }
-                break;
-        }
-
-        // Add metaquery to args
-        if ($metaQuery) {
-            $getPostsArgs['meta_query'] = $metaQuery;
-        }
-
-        //Number of posts
-        if(isset($fields->posts_count) && is_numeric($fields->posts_count)) {
-            $getPostsArgs['posts_per_page'] = $fields->posts_count; 
-        }
-
-        return $getPostsArgs;
+        return $this->getPostsHelper->getPosts($this->fields);
     }
 
     /**
@@ -573,7 +327,7 @@ class Posts extends \Modularity\Module
      * @param $templateSlug
      * @return mixed
      */
-    public static function replaceDeprecatedTemplate($templateSlug)
+    public function replaceDeprecatedTemplate($templateSlug)
     {
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
@@ -591,7 +345,7 @@ class Posts extends \Modularity\Module
     public function adminEnqueue() {
         wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
         wp_localize_script('mod-posts-script', 'modPosts', [
-            'currentPostID' => $this->getCurrentPostID(),
+            'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-script');
     }

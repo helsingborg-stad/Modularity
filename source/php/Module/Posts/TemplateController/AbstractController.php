@@ -2,53 +2,131 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+
+/**
+ * Class AbstractController
+ *
+ * @package Modularity\Module\Posts\TemplateController
+ */
 class AbstractController
 {
-    protected $hookName = 'index';
+    /** @var array */
+    public $data = [];
+    
+    /** @var array */
+    public $fields = [];
 
-    protected function anyPostHasImage($posts)
+    /** @var \Modularity\Module\Posts\Posts */
+    protected $module;
+
+    /**
+     * AbstractController constructor.
+     *
+     * @param \Modularity\Module\Posts\Posts $module
+    */
+    public function __construct(\Modularity\Module\Posts\Posts $module)
     {
-        if (!is_array($posts)) {
-            return false;
-        }
-
-        foreach ($posts as $post) {
-            if (!empty($post->images) && !isset($post->images['thumbnail16:9']['src'])) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function preparePosts()
-    {
-        $this->data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
-            $this->data['posts_data_post_type'] ?? ''
-        );
-
-        if(!empty($this->data['posts']) && is_array($this->data['posts'])) {
-            foreach ($this->data['posts'] as $post) {
-                $this->setPostFlags($post);
-            }
-        }
-        
+        $this->module           = $module;
+        $this->fields           = $module->fields;
+        $this->data             = $this->addDataViewData($module->data, $module->fields);
+        $this->data['posts']    = $this->preparePosts($module->data['posts']);
     }
 
     /**
-     * Booleans for hiding/showing stuff
-     */
-    public function setPostFlags(&$post)
+     * Prepare and set data fields for posts display.
+     *
+     * @param array $data
+     * @param array $fields
+     *
+     * @return array
+    */
+    public function addDataViewData(array $data, array $fields) {
+
+        $data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
+            $data['posts_data_post_type'] ?? ''
+        );
+        $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
+        $data['ratio'] = $fields['ratio'] ?? '16:9';
+        $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
+        $data['highlight_first_column'] = !empty($fields['posts_highlight_first']) ? 
+        ColumnHelper::getFirstColumnSize($data['posts_columns']) : false;
+        $data['imagePosition'] = $fields['image_position'] ?? false;
+
+        return $data;
+    }
+
+    /**
+     * Prepare posts data by setting default values and post flags.
+     *
+     * @param array $posts
+     *
+     * @return array
+    */
+    public function preparePosts(array $posts = [])
     {
-        if (empty($post)) return;
-        // Booleans for hiding/showing stuff
-        $post->showExcerpt  = in_array('excerpt', $this->data['posts_fields']);
-        $post->showTitle    = in_array('title', $this->data['posts_fields']);
-        $post->showImage    = in_array('image', $this->data['posts_fields']);
-        $post->showDate     = in_array('date', $this->data['posts_fields']);
-        $post->attributeList = !empty($post->attributeList) ? $post->attributeList : [];
+        if(!empty($posts)) {
+            foreach ($posts as $index => $post) {
+                $post = $this->setPostViewData($post, $index);
+                $post = array_filter((array) $post, function($value) {
+                    return !empty($value) || $value === false;
+                });
+
+                $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
+            }
+        }
+
+        return $posts;
+    }
+
+    /**
+     * Get default values for keys in the post object.
+     *
+     * @return array
+    */
+    private function getDefaultValuesForPosts() {
+        return [
+            'postTitle' => false,
+            'excerptShort' => false,
+            'termsUnlinked' => false,
+            'postDateFormatted' => false,
+            'dateBadge' => false,
+            'images' => false,
+            'hasPlaceholderImage' => false,
+            'readingTime' => false,
+            'permalink' => false,
+            'id' => false,
+            'postType' => false,
+            'termIcon' => false,
+            'callToActionItems' => false,
+            'imagePosition' => true
+        ];
+    }
+
+    /**
+     * Set boolean flags for hiding/showing specific post details.
+     *
+     * @param object $post
+     * @param false|int $index
+     *
+     * @return object
+    */
+    private function setPostViewData(object $post, $index = false)
+    {
+        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields']) ? $post->excerptShort : false;
+        $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
+        $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageBasedOnRatio($post->images, $index) : [];
+        $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
+        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && 
+        empty($post->images['thumbnail16:9']['src']) ? true : false;
+        $post->readingTime          = in_array('reading_time', $this->data['posts_fields']) ? $post->readingTime : false;
+        $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
+        
+        if (!empty($post->image) && is_array($post->image)) {
+            $post->image['backgroundColor'] = 'secondary';
+        }
 
         if (isset($post->contentType) && 'event' == $post->contentType) {
-            $post->showDate = true;
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
                 $post->postDateFormatted = $eventOccasions[0]['start_date'];
@@ -56,30 +134,32 @@ class AbstractController
             } else {
                 $post->postDateFormatted = false;
             }
-        } 
-
-        if (empty($post->showDate)) {
-            $post->postDateFormatted = false;
         }
+        
+        return $post;
     }
 
     /**
-     * Converts an associative array to an object.
+     * Get the image based on ratio and index.
      *
-     * This function takes an associative array and converts it into an object by first
-     * encoding the array as a JSON string and then decoding it back into an object.
-     * The resulting object will have properties corresponding to the keys in the original array.
+     * @param array $images
      *
-     * @param array $array The associative array to convert to an object.
-     *
-     * @return object Returns an object representing the associative array.
-     */
-    public static function arrayToObject($array)
-    {
-        if(!is_array($array)) {
-            return $array;
+     * @return mixed|null
+    */
+    private function getImageBasedOnRatio(array $images) {
+        if (empty($this->data['posts_display_as']) || empty($images['thumbnail16:9']['src'])) return false;
+
+        if (!empty($this->data['highlight_first_column']) && in_array($this->data['posts_display_as'], ['block', 'index'])) {
+            return $images['featuredImage'];
         }
 
-        return json_decode(json_encode($array)); 
+        switch ($this->data['posts_display_as']) {
+            case 'grid': 
+                return $images['thumbnail' . $this->data['ratio']] ?? false;
+            default: 
+                return $images['thumbnail16:9'];
+        }
+
+        return false;
     }
 }

@@ -1,25 +1,16 @@
 @collection__item([
-    'link' => !empty($post->permalink) ? $post->permalink : false,
+    'link' => $post->permalink,
     'classList' => [$posts_columns],
     'context' => ['module.posts.collection__item'],
-    'before' => !empty($display_reading_time) ? $post->readingTime : false,
+    'before' => $post->readingTime,
     'containerAware' => true,
     'bordered' => true,
-    'attributeList' => array_merge($post->attributeList, [
-    ]),
+    'attributeList' => array_merge($post->attributeList, []),
 ])
-    @slot('floating')
-        @if (!empty($post->callToActionItems['floating']))
-            @icon($post->callToActionItems['floating'])
-            @endicon
-        @endif
-    @endslot
+    @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
     @slot('before')
-        @if (!empty($post->showImage) && isset($post->images['thumbnail16:9']['src']))
-            @image([
-                'src' => $post->images['thumbnail16:9']['src'],
-                'alt' => $post->images['thumbnail16:9']['alt'],
-            ])
+        @if ($post->image)
+            @image($post->image)
             @endimage
         @endif
     @endslot
@@ -33,9 +24,9 @@
                 'element' => 'h2',
                 'variant' => 'h3'
             ])
-                {{ !empty($post->showTitle) ? $post->postTitle : false }}
+                {{ $post->postTitle }}
             @endtypography
-            @if (!empty($post->termIcon['icon']))
+            @if ($post->termIcon)
                 @inlineCssWrapper([
                     'styles' => ['background-color' => $post->termIcon['backgroundColor'], 'display' => 'flex'],
                     'classList' => [
@@ -49,7 +40,7 @@
                 @endinlineCssWrapper
             @endif
         @endgroup
-        @if(!empty($post->termsUnlinked))
+        @if($post->termsUnlinked)
             @tags([
                 'tags' => $post->termsUnlinked,
                 'classList' => ['u-padding__y--2'],
@@ -58,7 +49,7 @@
             @endtags
         @endif
         @typography([])
-            {!! $post->showExcerpt ? $post->excerptShort : false !!}
+            {!! $post->excerptShort !!}
         @endtypography
 
     @endgroup

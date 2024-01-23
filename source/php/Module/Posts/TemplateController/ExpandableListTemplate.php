@@ -4,32 +4,65 @@ namespace Modularity\Module\Posts\TemplateController;
 
 /**
  * Class ExpandableListTemplate
+ *
+ * Template controller for rendering posts as an expandable list.
+ *
  * @package Modularity\Module\Posts\TemplateController
  */
 class ExpandableListTemplate
 {
+    /**
+     * The instance of the Posts module associated with this template.
+     *
+     * @var \Modularity\Module\Posts\Posts
+     */
     protected $module;
+
+    /**
+     * The arguments passed to the template controller.
+     *
+     * @var array
+     */
     protected $args;
 
+    /**
+     * Data to be used in rendering the template.
+     *
+     * @var array
+     */
     public $data = [];
 
-    public function __construct(\Modularity\Module\Posts\Posts $module, array $args, $data, $fields)
+     /**
+     * Fields ACF fields
+     *
+     * @var array
+     */
+    public $fields = [];
+
+    /**
+     * ExpandableListTemplate constructor.
+     *
+     * @param \Modularity\Module\Posts\Posts $module Instance of the Posts module.
+     */
+    public function __construct(\Modularity\Module\Posts\Posts $module)
     {
         $this->module = $module;
-        $this->args = $args;
-        $this->data = $data;
+        $this->args = $module->args;
+        $this->data = $module->data;
+        $this->fields = $module->fields;
 
-        $this->data['posts_list_column_titles'] = !empty($fields->posts_list_column_titles) && is_array($fields->posts_list_column_titles) ?
-            $fields->posts_list_column_titles : null;
-        $this->data['posts_hide_title_column'] = ($fields->posts_hide_title_column) ? true : false;
-        $this->data['title_column_label'] = $fields->title_column_label ?? null;
-        $this->data['allow_freetext_filtering'] = $fields->allow_freetext_filtering ?? null;
-        $this->data['prepareAccordion'] = $this->prepare($data['posts'], $this->data);
+        $this->data['posts_list_column_titles'] = !empty($this->fields['posts_list_column_titles']) && is_array($this->fields['posts_list_column_titles']) ?
+            $this->fields['posts_list_column_titles'] : null;
+
+        $this->data['posts_hide_title_column'] = ($this->fields['posts_hide_title_column']) ? true : false;
+        $this->data['title_column_label'] = $this->fields['title_column_label'] ?? null;
+        $this->data['allow_freetext_filtering'] = $this->fields['allow_freetext_filtering'] ?? null;
+        $this->data['prepareAccordion'] = $this->prepare();
     }
 
     /**
      * Get correct column values
-     * @return array
+     * @return array An array of column values for a column
      */
     public function getColumnValues(): array
     {
@@ -57,21 +90,23 @@ class ExpandableListTemplate
 
     /**
      * Prepare Data for accordion
-     * @param $posts
-     * @param $data
+     * @param array $items Array of posts
+     * @param array $this->data Array of settings
+     * 
      * @return array|null
      */
-    public function prepare($items, $data): ?array
+    public function prepare(): ?array
     {
         $columnValues = $this->getColumnValues();
 
         $accordion = [];
 
-        if (is_array($items) && count($items) > 0) {
-            foreach ($items as $index => $item) {
-                if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($data)) {
-                    foreach ($data['posts_list_column_titles'] as $colIndex => $column) {
+        if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
+            foreach ($this->data['posts'] as $index => $item) {
+                if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($this->data)) {
+                    foreach ($this->data['posts_list_column_titles'] as $colIndex => $column) {
                         $sanitizedTitle = sanitize_title($column->column_header);
+
                         if ($this->arrayDepth($columnValues) > 1) {
                             $accordion[$index]['column_values'][$colIndex] = $columnValues[$index][$sanitizedTitle] ?? '';
                         } else {
@@ -87,13 +122,14 @@ class ExpandableListTemplate
         if ($accordion < 0) {
             return null;
         }
-
         return $accordion;
     }
 
     /**
      * Get array dimension depth
+     * 
      * @param array $colArray
+     * 
      * @return int
      */
     public function arrayDepth(array $colArray): int
@@ -109,15 +145,29 @@ class ExpandableListTemplate
         return $maxDepth;
     }
 
-    private function hasColumnValues($columnValues): bool
+    /**
+     * Check if column values are present.
+     *
+     * @param array $columnValues
+     *
+     * @return bool
+     */
+    private function hasColumnValues(array $columnValues): bool
     {
         return isset($columnValues)
             && !empty($columnValues);
     }
 
-    private function hasColumnTitles($data): bool
+    /**
+     * Check if column titles are present.
+     *
+     * @param array $this->data
+     *
+     * @return bool
+     */
+    private function hasColumnTitles(): bool
     {
-        return !empty($data['posts_list_column_titles'])
-            && is_array($data['posts_list_column_titles']);
+        return !empty($this->data['posts_list_column_titles'])
+            && is_array($this->data['posts_list_column_titles']);
     }
 }

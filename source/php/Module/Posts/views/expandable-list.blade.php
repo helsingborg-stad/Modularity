@@ -49,7 +49,7 @@
                                     'element' => 'span',
                                     'classList' => ['accordion-table__head-column']
                                 ])
-                                    {{ $column->column_header }}
+                                    {{ $column['column_header'] }}
                                 @endtypography
                             @endforeach
                             <span class="accordion-table__head-column-icon"></span>
