@@ -34,7 +34,7 @@ class SliderTemplate extends AbstractController
     private function addSliderViewData() {
         $slider = [];
         $slider['slidesPerPage'] = $this->getSlidesPerPage();
-        $slider['autoSlide']     = isset($this->fields['auto_slide']) ? (bool) $this->fields['auto_slide']    : false;
+        $slider['autoSlide']     = isset($this->fields['auto_slide']) ? (bool) $this->fields['auto_slide'] : false;
         $slider['showStepper']   = isset($this->fields['show_stepper']) ? (bool) $this->fields['show_stepper'] : false;
         $slider['repeatSlide']   = isset($this->fields['repeat_slide']) ? (bool) $this->fields['repeat_slide'] : true;
 
