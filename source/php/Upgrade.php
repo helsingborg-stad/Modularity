@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 3; //The db version we want to achive
+    private $dbVersion = 5; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
