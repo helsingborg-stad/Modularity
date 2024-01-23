@@ -271,21 +271,21 @@ class Posts extends \Modularity\Module
             $posts[] = array_merge((array)$item, [
                 'ID' => $key,
                 'post_name' => $key,
-                'post_excerpt' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
-                'excerpt_short' => $stripLinksFromContent ? strip_tags($item->post_content, '') : $item->post_content,
+                'post_excerpt' => $stripLinksFromContent ? strip_tags($item['post_content'], '') : $item['post_content'],
+                'excerpt_short' => $stripLinksFromContent ? strip_tags($item['post_content'], '') : $item['post_content'],
                 'images' => [
-                    'thumbnail_16:9' => ImageHelper::getImageAttachmentData($item->image ?? false, [400, 225]),
-                    'thumbnail_4:3' => ImageHelper::getImageAttachmentData($item->image ?? false, [390, 520]),
-                    'thumbnail_1:1' => ImageHelper::getImageAttachmentData($item->image ?? false, [500, 500]),
-                    'thumbnail_3:4' => ImageHelper::getImageAttachmentData($item->image ?? false, [400, 225]),
-                    'featuredImage' => ImageHelper::getImageAttachmentData($item->image ?? false, [240, 320]),
-                    'thumbnail_12:16' => ImageHelper::getImageAttachmentData($item->image ?? false, [240, 320])
+                    'thumbnail_16:9' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [400, 225]),
+                    'thumbnail_4:3' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [390, 520]),
+                    'thumbnail_1:1' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [500, 500]),
+                    'thumbnail_3:4' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [400, 225]),
+                    'featuredImage' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [240, 320]),
+                    'thumbnail_12:16' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [240, 320])
                 ],
                 'postDateFormatted' => null,
                 'termsUnlinked' => null,
                 'dateBadge' => false,
                 'termIcon' => false,
-                'postContentFiltered' => apply_filters('the_content', $item->post_content)
+                'postContentFiltered' => apply_filters('the_content', $item['post_content'])
             ]);
         }
         
