@@ -67,16 +67,17 @@ class AbstractController
     public function preparePosts(array $posts = [])
     {
         if(!empty($posts)) {
-            foreach ($posts as $index => $post) {
+            foreach ($posts as $index => &$post) {
                 $post = $this->setPostViewData($post, $index);
                 $post = array_filter((array) $post, function($value) {
                     return !empty($value) || $value === false;
                 });
 
+                
                 $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
             }
         }
-
+        
         return $posts;
     }
 
@@ -100,7 +101,8 @@ class AbstractController
             'postType' => false,
             'termIcon' => false,
             'callToActionItems' => false,
-            'imagePosition' => true
+            'imagePosition' => true,
+            'image' => false
         ];
     }
 
