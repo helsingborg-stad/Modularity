@@ -26,11 +26,10 @@ class ManualInput extends \Modularity\Module
     {
         $data           = [];
         $fields         = $this->getFields();
-        $displayAs      = $this->getTemplateToUse($fields);
-        $this->template = $displayAs;
+        $displayAs      = !empty($fields['display_as']) ? $fields['display_as'] : 'card';
+        $this->template = $this->getTemplateToUse($displayAs);
       
         $data['manualInputs']   = [];
-        $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
         $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
         $imageSize              = $this->getImageSize($displayAs);
@@ -45,12 +44,12 @@ class ManualInput extends \Modularity\Module
                 $input = array_filter($input, function($value) {
                     return !empty($value) || $value === false;
                 });
-
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
+                $arr['view']                    = $displayAs;
                 $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
+                $arr['column_size']             = $this->getItemColumnSize($arr['column_size'], $fields);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
-                
                 $data['manualInputs'][]         = (array) $arr;
             }
         }
@@ -59,8 +58,23 @@ class ManualInput extends \Modularity\Module
     }
 
     /**
-     * @return array
+     * Gets the correct column size for a manual input item.
+     * 
+     * @param string $itemColumn A custom column size for the specific item.
+     * @param array $fields The ACF field of the module.
+     * 
+     * @return string
      */
+    private function getItemColumnSize(string $itemColumn, array $fields) {
+        $defaultColumn = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
+        $column = !empty($itemColumn) && $itemColumn !== 'inherit' ? $itemColumn : $defaultColumn;
+
+        return $column . '@md';
+    }
+
+    /**
+     * @return array
+    */
     private function getManualInputDefaultValues() {
         return [
             'title'                     => false,
@@ -70,7 +84,8 @@ class ManualInput extends \Modularity\Module
             'image'                     => false,
             'image_before_content'      => false,
             'accordion_column_values'   => [],
-            'box_icon'                  => false
+            'box_icon'                  => false,
+            'column_size'               => 'inherit'
         ];
     }
 
@@ -158,11 +173,12 @@ class ManualInput extends \Modularity\Module
      * passed through a filter 'Modularity/Module/ManualInput/Template' to allow
      * customization.
      *
-     * @param array $fields The field configuration array.
+     * @param string $fields The field configuration array.
      * @return string The template name to use for rendering.
      */
-    public function getTemplateToUse($fields) {
-        $templateName = !empty($fields['display_as']) ? $fields['display_as'] : 'card'; 
+    public function getTemplateToUse(string $displayAs) {
+        $shouldUseBaseView = ['block', 'box', 'card', 'segment'];
+        $templateName = !in_array($displayAs, $shouldUseBaseView) ? $displayAs : 'base'; 
         return apply_filters(
             'Modularity/Module/ManualInput/Template', 
             $templateName 
@@ -186,7 +202,7 @@ class ManualInput extends \Modularity\Module
             return $this->template . ".blade.php";
         }
         
-        return 'card.blade.php';
+        return 'base.blade.php';
     }
 
     /**
