@@ -66,7 +66,18 @@ if(!empty($fields['osm_markers']) && is_array($fields['osm_markers'])) {
     private function defaultTemplateData($data, $fields) {
         //Get and sanitize url
         $map_url = $fields['map_url'];
-        $map_url = str_replace(['http://', 'https://'], '//', $map_url); //Enforce ssl
+        $map_url = str_replace('http://', 'https://', $map_url, $replaced); // Enforce ssl
+
+        /**
+         * If the scheme is not altered with str_replace, the url may only contain // without https:
+         */
+        if(0 === $replaced) {
+            $parsedUrl = parse_url( $map_url );
+            if(!isset($parsedUrl['scheme']) ) {
+                $map_url = str_replace('//', 'https://', $map_url); // Ensure url scheme is literal
+            }
+        }
+
         $map_url = str_replace('disable_scroll=false', 'disable_scroll=true', $map_url); //Remove scroll arcgis
 
         //Create data array
