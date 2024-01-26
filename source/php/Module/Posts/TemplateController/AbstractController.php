@@ -63,8 +63,9 @@ class AbstractController
      * @param array $posts
      *
      * @return array
+     * TODO: This should require an array, but cant because sometimes it gets null. 
     */
-    public function preparePosts(array $posts = [])
+    public function preparePosts($posts = [])
     {
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
