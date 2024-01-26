@@ -1,4 +1,4 @@
-<div class="{{$columns}}">
+<div class="{{$input['columnSize']}}">
     @box([
         'heading'   => $input['title'],
         'content'   => $input['content'],

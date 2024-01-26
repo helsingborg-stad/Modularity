@@ -3,9 +3,27 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_64ff22b117e2c',
-    'title' => __('Manual Input Data', 'modularity'),
+    'title' => __('Manual Input', 'modularity'),
     'fields' => array(
         0 => array(
+            'key' => 'field_65b399ed87a47',
+            'label' => __('Module Settings', 'modularity'),
+            'name' => '',
+            'aria-label' => '',
+            'type' => 'accordion',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'open' => 1,
+            'multi_expand' => 1,
+            'endpoint' => 0,
+        ),
+        1 => array(
             'key' => 'field_64ff23d0d91bf',
             'label' => __('Display as', 'modularity'),
             'name' => 'display_as',
@@ -50,7 +68,7 @@
                 ),
             ),
         ),
-        1 => array(
+        2 => array(
             'key' => 'field_656f4b44999e9',
             'label' => __('Display as conditional target', 'modularity'),
             'name' => 'display_as_conditional',
@@ -64,9 +82,9 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => '',
+            'default_value' => __('card', 'modularity'),
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_650067ed6cc3c',
             'label' => __('Column marking', 'modularity'),
             'name' => 'accordion_column_marking',
@@ -94,7 +112,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_65005968bbc75',
             'label' => __('Column titles', 'modularity'),
             'name' => 'accordion_column_titles',
@@ -148,7 +166,7 @@
                 ),
             ),
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_65001d039d4c4',
             'label' => __('Columns', 'modularity'),
             'name' => 'columns',
@@ -191,7 +209,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -235,7 +253,25 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        6 => array(
+        7 => array(
+            'key' => 'field_65b39ab6cc7c6',
+            'label' => __('Module content', 'modularity'),
+            'name' => '',
+            'aria-label' => '',
+            'type' => 'accordion',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'open' => 1,
+            'multi_expand' => 1,
+            'endpoint' => 0,
+        ),
+        8 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -259,6 +295,164 @@
             'rows_per_page' => 20,
             'sub_fields' => array(
                 0 => array(
+                    'key' => 'field_65b381b3048c9',
+                    'label' => __('Content Settings', 'modularity'),
+                    'name' => '',
+                    'aria-label' => '',
+                    'type' => 'accordion',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '!=',
+                                'value' => 'list',
+                            ),
+                            1 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '!=',
+                                'value' => 'accordion',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'open' => 0,
+                    'multi_expand' => 1,
+                    'endpoint' => 0,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                1 => array(
+                    'key' => 'field_65b2617d4114d',
+                    'label' => __('Column size', 'modularity'),
+                    'name' => 'column_size',
+                    'aria-label' => '',
+                    'type' => 'select',
+                    'instructions' => __('Sets a custom size for this specific item', 'modularity'),
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'block',
+                            ),
+                        ),
+                        1 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'box',
+                            ),
+                        ),
+                        2 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'card',
+                            ),
+                        ),
+                        3 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'collection',
+                            ),
+                        ),
+                        4 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'segment',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => array(
+                        'inherit' => __('Inherit', 'modularity'),
+                        'highlight' => __('Highlight', 'modularity'),
+                        'o-grid-12' => __('100%', 'modularity'),
+                        'o-grid-9' => __('75%', 'modularity'),
+                        'o-grid-8' => __('66%', 'modularity'),
+                        'o-grid-6' => __('50%', 'modularity'),
+                        'o-grid-4' => __('33%', 'modularity'),
+                        'o-grid-3' => __('25%', 'modularity'),
+                    ),
+                    'default_value' => __('inherit', 'modularity'),
+                    'return_format' => 'value',
+                    'multiple' => 0,
+                    'allow_null' => 0,
+                    'ui' => 0,
+                    'ajax' => 0,
+                    'placeholder' => '',
+                    'allow_custom' => 0,
+                    'search_placeholder' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                2 => array(
+                    'key' => 'field_65002c7b9c6cc',
+                    'label' => __('Image before content', 'modularity'),
+                    'name' => 'image_before_content',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'card',
+                            ),
+                        ),
+                        1 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'segment',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'message' => '',
+                    'default_value' => 0,
+                    'ui' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                3 => array(
+                    'key' => 'field_65b3840e5dcb9',
+                    'label' => __('Content', 'modularity'),
+                    'name' => '',
+                    'aria-label' => '',
+                    'type' => 'accordion',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => 0,
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'open' => 1,
+                    'multi_expand' => 1,
+                    'endpoint' => 0,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                4 => array(
                     'key' => 'field_64ff22fdd91b8',
                     'label' => __('Title', 'modularity'),
                     'name' => 'title',
@@ -279,7 +473,132 @@
                     'append' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                1 => array(
+                5 => array(
+                    'key' => 'field_64ff231ed91b9',
+                    'label' => __('Content', 'modularity'),
+                    'name' => 'content',
+                    'aria-label' => '',
+                    'type' => 'wysiwyg',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '!=',
+                                'value' => 'list',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'delay' => 0,
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                6 => array(
+                    'key' => 'field_64ff232ad91ba',
+                    'label' => __('Link', 'modularity'),
+                    'name' => 'link',
+                    'aria-label' => '',
+                    'type' => 'url',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '!=',
+                                'value' => 'accordion',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '50',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'placeholder' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                7 => array(
+                    'key' => 'field_65002bce6d459',
+                    'label' => __('Link text', 'modularity'),
+                    'name' => 'link_text',
+                    'aria-label' => '',
+                    'type' => 'text',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '==',
+                                'value' => 'segment',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '50',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'default_value' => '',
+                    'maxlength' => '',
+                    'placeholder' => '',
+                    'prepend' => '',
+                    'append' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                8 => array(
+                    'key' => 'field_64ff2355d91bb',
+                    'label' => __('Image', 'modularity'),
+                    'name' => 'image',
+                    'aria-label' => '',
+                    'type' => 'image',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '!=',
+                                'value' => 'list',
+                            ),
+                            1 => array(
+                                'field' => 'field_656f4b44999e9',
+                                'operator' => '!=',
+                                'value' => 'accordion',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'uploader' => '',
+                    'acfe_thumbnail' => 0,
+                    'return_format' => 'id',
+                    'min_width' => '',
+                    'min_height' => '',
+                    'min_size' => '',
+                    'max_width' => '',
+                    'max_height' => '',
+                    'max_size' => '',
+                    'mime_types' => '',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                9 => array(
                     'key' => 'field_64ff2372d91bc',
                     'label' => __('Column values', 'modularity'),
                     'name' => 'accordion_column_values',
@@ -333,236 +652,7 @@
                         ),
                     ),
                 ),
-                2 => array(
-                    'key' => 'field_64ff231ed91b9',
-                    'label' => __('Content', 'modularity'),
-                    'name' => 'content',
-                    'aria-label' => '',
-                    'type' => 'wysiwyg',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '!=',
-                                'value' => 'list',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'default_value' => '',
-                    'delay' => 0,
-                    'tabs' => 'all',
-                    'toolbar' => 'full',
-                    'media_upload' => 1,
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                3 => array(
-                    'key' => 'field_64ff232ad91ba',
-                    'label' => __('Link', 'modularity'),
-                    'name' => 'link',
-                    'aria-label' => '',
-                    'type' => 'url',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '!=',
-                                'value' => 'accordion',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '50',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'default_value' => '',
-                    'placeholder' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                4 => array(
-                    'key' => 'field_65002bce6d459',
-                    'label' => __('Link text', 'modularity'),
-                    'name' => 'link_text',
-                    'aria-label' => '',
-                    'type' => 'text',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'segment',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '50',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'default_value' => '',
-                    'maxlength' => '',
-                    'placeholder' => '',
-                    'prepend' => '',
-                    'append' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                5 => array(
-                    'key' => 'field_65b2617d4114d',
-                    'label' => __('Column size', 'modularity'),
-                    'name' => 'column_size',
-                    'aria-label' => '',
-                    'type' => 'select',
-                    'instructions' => __('Sets a custom size for this specific item', 'modularity'),
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'block',
-                            ),
-                        ),
-                        1 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'box',
-                            ),
-                        ),
-                        2 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'card',
-                            ),
-                        ),
-                        3 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'collection',
-                            ),
-                        ),
-                        4 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'segment',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'choices' => array(
-                        'inherit' => __('inherit', 'modularity'),
-                        'o-grid-12' => __('100%', 'modularity'),
-                        'o-grid-6' => __('50%', 'modularity'),
-                        'o-grid-4' => __('33%', 'modularity'),
-                        'o-grid-3' => __('25%', 'modularity'),
-                    ),
-                    'default_value' => __('inherit', 'modularity'),
-                    'return_format' => 'value',
-                    'multiple' => 0,
-                    'allow_null' => 0,
-                    'ui' => 0,
-                    'ajax' => 0,
-                    'placeholder' => '',
-                    'allow_custom' => 0,
-                    'search_placeholder' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                6 => array(
-                    'key' => 'field_65002c7b9c6cc',
-                    'label' => __('Image before content', 'modularity'),
-                    'name' => 'image_before_content',
-                    'aria-label' => '',
-                    'type' => 'true_false',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'card',
-                            ),
-                        ),
-                        1 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'segment',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'message' => '',
-                    'default_value' => 0,
-                    'ui' => 0,
-                    'ui_on_text' => '',
-                    'ui_off_text' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                7 => array(
-                    'key' => 'field_64ff2355d91bb',
-                    'label' => __('Image', 'modularity'),
-                    'name' => 'image',
-                    'aria-label' => '',
-                    'type' => 'image',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '!=',
-                                'value' => 'list',
-                            ),
-                            1 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '!=',
-                                'value' => 'accordion',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'uploader' => '',
-                    'acfe_thumbnail' => 0,
-                    'return_format' => 'id',
-                    'min_width' => '',
-                    'min_height' => '',
-                    'min_size' => '',
-                    'max_width' => '',
-                    'max_height' => '',
-                    'max_size' => '',
-                    'mime_types' => '',
-                    'preview_size' => 'medium',
-                    'library' => 'all',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                8 => array(
+                10 => array(
                     'key' => 'field_65293de2a26c7',
                     'label' => __('Icon', 'modularity'),
                     'name' => 'box_icon',

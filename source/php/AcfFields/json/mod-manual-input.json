@@ -1,7 +1,25 @@
 [{
     "key": "group_64ff22b117e2c",
-    "title": "Manual Input Data",
+    "title": "Manual Input",
     "fields": [
+        {
+            "key": "field_65b399ed87a47",
+            "label": "Module Settings",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
         {
             "key": "field_64ff23d0d91bf",
             "label": "Display as",
@@ -61,7 +79,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": ""
+            "default_value": "card"
         },
         {
             "key": "field_650067ed6cc3c",
@@ -233,6 +251,24 @@
             "search_placeholder": ""
         },
         {
+            "key": "field_65b39ab6cc7c6",
+            "label": "Module content",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 1,
+            "multi_expand": 1,
+            "endpoint": 0
+        },
+        {
             "key": "field_64ff22b2d91b7",
             "label": "Manual inputs",
             "name": "manual_inputs",
@@ -256,6 +292,164 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
+                    "key": "field_65b381b3048c9",
+                    "label": "Content Settings",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "!=",
+                                "value": "list"
+                            },
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "!=",
+                                "value": "accordion"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 0,
+                    "multi_expand": 1,
+                    "endpoint": 0,
+                    "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_65b2617d4114d",
+                    "label": "Column size",
+                    "name": "column_size",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Sets a custom size for this specific item",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "block"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "box"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "card"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "collection"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "segment"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "inherit": "Inherit",
+                        "highlight": "Highlight",
+                        "o-grid-12": "100%",
+                        "o-grid-9": "75%",
+                        "o-grid-8": "66%",
+                        "o-grid-6": "50%",
+                        "o-grid-4": "33%",
+                        "o-grid-3": "25%"
+                    },
+                    "default_value": "inherit",
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_65002c7b9c6cc",
+                    "label": "Image before content",
+                    "name": "image_before_content",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "card"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "segment"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_65b3840e5dcb9",
+                    "label": "Content",
+                    "name": "",
+                    "aria-label": "",
+                    "type": "accordion",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "open": 1,
+                    "multi_expand": 1,
+                    "endpoint": 0,
+                    "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
                     "key": "field_64ff22fdd91b8",
                     "label": "Title",
                     "name": "title",
@@ -275,60 +469,6 @@
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_64ff22b2d91b7"
-                },
-                {
-                    "key": "field_64ff2372d91bc",
-                    "label": "Column values",
-                    "name": "accordion_column_values",
-                    "aria-label": "",
-                    "type": "repeater",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "accordion"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "acfe_repeater_stylised_button": 0,
-                    "layout": "table",
-                    "min": 0,
-                    "max": 4,
-                    "collapsed": "",
-                    "button_label": "L\u00e4gg till rad",
-                    "rows_per_page": 20,
-                    "parent_repeater": "field_64ff22b2d91b7",
-                    "sub_fields": [
-                        {
-                            "key": "field_64ff23afd91bd",
-                            "label": "Column value",
-                            "name": "value",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_64ff2372d91bc"
-                        }
-                    ]
                 },
                 {
                     "key": "field_64ff231ed91b9",
@@ -415,110 +555,6 @@
                     "parent_repeater": "field_64ff22b2d91b7"
                 },
                 {
-                    "key": "field_65b2617d4114d",
-                    "label": "Column size",
-                    "name": "column_size",
-                    "aria-label": "",
-                    "type": "select",
-                    "instructions": "Sets a custom size for this specific item",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "block"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "box"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "card"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "collection"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "segment"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "choices": {
-                        "inherit": "inherit",
-                        "o-grid-12": "100%",
-                        "o-grid-6": "50%",
-                        "o-grid-4": "33%",
-                        "o-grid-3": "25%"
-                    },
-                    "default_value": "inherit",
-                    "return_format": "value",
-                    "multiple": 0,
-                    "allow_null": 0,
-                    "ui": 0,
-                    "ajax": 0,
-                    "placeholder": "",
-                    "allow_custom": 0,
-                    "search_placeholder": "",
-                    "parent_repeater": "field_64ff22b2d91b7"
-                },
-                {
-                    "key": "field_65002c7b9c6cc",
-                    "label": "Image before content",
-                    "name": "image_before_content",
-                    "aria-label": "",
-                    "type": "true_false",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "card"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "segment"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": "",
-                    "parent_repeater": "field_64ff22b2d91b7"
-                },
-                {
                     "key": "field_64ff2355d91bb",
                     "label": "Image",
                     "name": "image",
@@ -558,6 +594,60 @@
                     "preview_size": "medium",
                     "library": "all",
                     "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_64ff2372d91bc",
+                    "label": "Column values",
+                    "name": "accordion_column_values",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "accordion"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "acfe_repeater_stylised_button": 0,
+                    "layout": "table",
+                    "min": 0,
+                    "max": 4,
+                    "collapsed": "",
+                    "button_label": "L\u00e4gg till rad",
+                    "rows_per_page": 20,
+                    "parent_repeater": "field_64ff22b2d91b7",
+                    "sub_fields": [
+                        {
+                            "key": "field_64ff23afd91bd",
+                            "label": "Column value",
+                            "name": "value",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_64ff2372d91bc"
+                        }
+                    ]
                 },
                 {
                     "key": "field_65293de2a26c7",

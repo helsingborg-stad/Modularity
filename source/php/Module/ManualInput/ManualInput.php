@@ -12,6 +12,8 @@ class ManualInput extends \Modularity\Module
         'align' => ['full']
     );
     private $template;
+    private $displayAs;
+    private $responsiveSize = '@md';
 
     public function init()
     {
@@ -24,37 +26,69 @@ class ManualInput extends \Modularity\Module
 
     public function data(): array
     {
-        $data           = [];
-        $fields         = $this->getFields();
-        $displayAs      = !empty($fields['display_as']) ? $fields['display_as'] : 'card';
-        $this->template = $this->getTemplateToUse($displayAs);
+        $data               = [];
+        $fields             = $this->getFields();
+        $this->displayAs    = !empty($fields['display_as']) ? $fields['display_as'] : 'card';
+        $this->template     = $this->getTemplateToUse($this->displayAs);
       
-        $data['manualInputs']   = [];
         $data['context']        = ['module.manual-input.' . $this->template];
         $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
-        $imageSize              = $this->getImageSize($displayAs);
+        $imageSize              = $this->getImageSize($this->displayAs);
+        $data['manualInputs']   = $this->setupManualInputs($fields, $imageSize);
 
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
             isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 
             isset($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : ''
         );
+        
+        return $data;
+    }
+
+    /**
+     * Structure and adds data to each manual input.
+     * 
+     * @param array $fields The ACF field of the module.
+     * @param array $imageSize an array containing height and width.
+     * 
+     * @return array
+     */
+    private function setupManualInputs(array $fields, array $imageSize) {
+        $manualInputs = [];
 
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
-            foreach ($fields['manual_inputs'] as &$input) {
+            $fields['manual_inputs'] = array_reverse($fields['manual_inputs']);
+            foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
                     return !empty($value) || $value === false;
                 });
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
-                $arr['view']                    = $displayAs;
+                $arr['view']                    = $arr['column_size'] === 'highlight' ? $this->getHighlightedView() : $this->displayAs;
+                $arr['column_size']             = $this->getItemColumnSize(
+                    $arr['column_size'], 
+                    $fields, 
+                    $index, 
+                    $manualInputs
+                );
                 $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
-                $arr['column_size']             = $this->getItemColumnSize($arr['column_size'], $fields);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
-                $data['manualInputs'][]         = (array) $arr;
+                $manualInputs[] = (array) $arr;
             }
         }
 
-        return $data;
+        return array_reverse($manualInputs);
+    }
+
+    private function getHighlightedView() {
+        switch ($this->displayAs) {
+            case 'card':
+            case 'block':
+                return 'block';
+            case 'segment':
+                return 'segment';
+        }
+
+        return "block";
     }
 
     /**
@@ -62,14 +96,52 @@ class ManualInput extends \Modularity\Module
      * 
      * @param string $itemColumn A custom column size for the specific item.
      * @param array $fields The ACF field of the module.
+     * @param int $index The current manual input index.
+     * @param array $manualInputs The current handled manualInputs
      * 
      * @return string
      */
-    private function getItemColumnSize(string $itemColumn, array $fields) {
+    private function getItemColumnSize(string $itemColumn, array $fields, int $index, array $manualInputs) {
         $defaultColumn = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
         $column = !empty($itemColumn) && $itemColumn !== 'inherit' ? $itemColumn : $defaultColumn;
 
-        return $column . '@md';
+        if ($column === 'highlight') {
+            $column = $this->calculateHighlightedColumnSize($manualInputs, $index);
+        }
+
+        return $column . $this->responsiveSize;
+    }
+
+    /**
+     * Calculate a highlighted posts column size
+     * 
+     * @param array $fields The ACF field of the module.
+     * @param int $index Index of the current manual input
+     * 
+     * @return string
+     */
+    private function calculateHighlightedColumnSize(array $manualInputs, int $index) {
+        $siblingColumnSize = false;
+        if (!empty($manualInputs[$index - 1])) {
+            $siblingColumnSize = $manualInputs[$index - 1]['columnSize'];
+        }
+
+        if ($siblingColumnSize === 'o-grid-3' . $this->responsiveSize) {
+            if (
+                !empty($manualInputs[$index - 2]) && 
+                $manualInputs[$index - 2]['columnSize'] === 'o-grid-3' . $this->responsiveSize
+            ) {
+                return 'o-grid-6';
+            } else {
+                return 'o-grid-9';
+            }
+        }
+
+        if ($siblingColumnSize === 'o-grid-4' . $this->responsiveSize) {
+            return 'o-grid-8';
+        }
+
+        return 'o-grid-12';
     }
 
     /**

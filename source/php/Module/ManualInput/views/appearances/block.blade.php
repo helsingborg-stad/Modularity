@@ -4,7 +4,7 @@
     'ratio'     => $ratio,
     'filled'    => true,
     'image'     => $input['image'],
-    'classList' => [$columns, 'u-height--100'],
+    'classList' => [$input['columnSize'], 'u-height--100'],
     'context'   => $context,
     'link'      => $input['link'],
 ])

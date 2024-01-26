@@ -1,4 +1,4 @@
- <div class="{{$columns}}">
+ <div class="{{$input['columnSize']}}">
     @card([
         'link'              => $input['link'],
         'heading'           => $input['title'],
