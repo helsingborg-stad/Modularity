@@ -105,8 +105,7 @@ class ExpandableListTemplate
             foreach ($this->data['posts'] as $index => $item) {
                 if ($this->hasColumnValues($columnValues) && $this->hasColumnTitles($this->data)) {
                     foreach ($this->data['posts_list_column_titles'] as $colIndex => $column) {
-                        $sanitizedTitle = sanitize_title($column->column_header);
-
+                        $sanitizedTitle = sanitize_title($column['column_header']);
                         if ($this->arrayDepth($columnValues) > 1) {
                             $accordion[$index]['column_values'][$colIndex] = $columnValues[$index][$sanitizedTitle] ?? '';
                         } else {
@@ -122,6 +121,7 @@ class ExpandableListTemplate
         if ($accordion < 0) {
             return null;
         }
+
         return $accordion;
     }
 
