@@ -37,6 +37,7 @@ class GetPosts
         // Get post args
         $getPostsArgs = [
             'post_type' => 'any',
+            'post_password' => false,
             'suppress_filters' => false
         ];
 
