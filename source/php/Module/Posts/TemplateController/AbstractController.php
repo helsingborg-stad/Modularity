@@ -103,7 +103,8 @@ class AbstractController
             'termIcon' => false,
             'callToActionItems' => false,
             'imagePosition' => true,
-            'image' => false
+            'image' => false,
+            'attributeList' => []
         ];
     }
 
