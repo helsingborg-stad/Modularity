@@ -402,11 +402,11 @@ class Upgrade
      * @param array $newField An array of field data containing the keys "name" (string) and "values" (array).
      * The "values" array should be in the format [oldValue => updatedValue].
      * @param string $oldFieldValue The value of the old field to be replaced.
-     * @param int $id The post ID to which the new field value will be associated.
+     * @param int|bool $id The post ID to which the new field value will be associated.
      *
      * @return void
      */
-    private function updateAndReplaceFieldValue(array $newField = [], $oldFieldValue, int $id) {
+    private function updateAndReplaceFieldValue(array $newField, $oldFieldValue, int|bool $id = false) {
         if (!empty($newField['name']) && !empty($newField['values']) && is_array($newField['values']) && !empty($newField['values'][$oldFieldValue])) { 
             update_field($newField['name'], $newField['values'][$oldFieldValue], $id);
         } else {
@@ -422,11 +422,11 @@ class Upgrade
      *
      * @param array $newField An array describing the new ACF field, including name, type, and subfields.
      * @param array $oldFieldValue The value of the old ACF repeater field.
-     * @param int $id The post ID to which the new field values will be associated.
+     * @param int|bool $id The post ID to which the new field values will be associated.
      *
      * @return void
      */
-    private function migrateAcfRepeater(array $newField = [], array $oldFieldValue = [], int $id) {
+    private function migrateAcfRepeater(array $newField = [], array $oldFieldValue = [], int|bool $id = false) {
         update_field($newField['name'], $oldFieldValue, $id);
         $subFields = $newField['fields'];
         if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
@@ -525,7 +525,7 @@ class Upgrade
     }
 
     /* TODO: Upgrade then remove */
-    private function migrateIndexModuleRepeater(array $newField, $oldFieldValue = [], $id) {
+    private function migrateIndexModuleRepeater(array $newField, $oldFieldValue = [], $id = false) {
 
         update_field('display_as', 'card', $id);
         
@@ -675,7 +675,7 @@ class Upgrade
      * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
      * @param array $blockData All the data of the block (the acf fields attached to the block)
      */
-    private function migrateBlockFields(array $fields = [], array $blockData) 
+    private function migrateBlockFields(array $fields = [], array $blockData = []) 
     {
         if (!empty($fields) && is_array($fields)) {
             foreach ($fields as $oldFieldName => $newField) {
