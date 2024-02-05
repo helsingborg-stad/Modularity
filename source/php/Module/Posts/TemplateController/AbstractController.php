@@ -127,7 +127,7 @@ class AbstractController
         $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
         
         if (!empty($post->image) && is_array($post->image)) {
-            $post->image['onlyShowAlt'] = true;
+            $post->image['removeCaption'] = true;
             $post->image['backgroundColor'] = 'secondary';
         }
 
