@@ -319,8 +319,11 @@ class Posts extends \Modularity\Module
             );
         }
         //TODO: Remove [End feature: Manual Input]
+        if ($this->fields) {
+            return $this->getPostsHelper->getPosts($this->fields);
+        }
 
-        return $this->getPostsHelper->getPosts($this->fields ?? []);
+        return [];
     }
 
     /**
