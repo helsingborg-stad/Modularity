@@ -52,7 +52,6 @@ class Posts extends \Modularity\Module
     {
         $data = [];
         $this->fields = $this->getFields();
-
         $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 
@@ -285,16 +284,16 @@ class Posts extends \Modularity\Module
                 'termsUnlinked' => null,
                 'dateBadge' => false,
                 'termIcon' => false,
-                'postContentFiltered' => apply_filters('the_content', $item['post_content'])
+                'postContentFiltered' => apply_filters('the_content', $item['post_content']),
+                'columnValues' => $item['column_values']
             ]);
         }
-        
+
         foreach ($posts as &$post) {
             if (class_exists('\Municipio\Helper\FormatObject')) {
                 $post = \Municipio\Helper\FormatObject::camelCase($post);
             }
         }
-
         return $posts;
     }
     //TODO: Remove [End feature: Manual Input]
