@@ -53,6 +53,7 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
     var $ = (jQuery);
     const taxType = (data == null)? null : data.posts_taxonomy_type;
     const taxValue = (data == null)? null : data.posts_taxonomy_value;
+    console.log('56: ', data);
 
     /**
      * Taxonomy type update
@@ -123,6 +124,7 @@ function getTaxonomyTypes(data) {
 }
 
 function getTaxonomyValues(data) {
+    console.log('127: ', data);
     let blockContainer = data.container;
     $(blockContainer + ' .modularity-latest-taxonomy-value select').empty();
     $(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
