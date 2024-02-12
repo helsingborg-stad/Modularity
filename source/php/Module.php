@@ -200,10 +200,18 @@ class Module
             $this->data['postTitle'] = $post->post_title;
         }
 
-        // FIXME: hasModule() is not working as expected here, doesn't accept any parameters.
-        if (!is_admin() && $this->hasModule($post)) {
-            add_action('wp_enqueue_scripts', array($this, 'style'));
-            add_action('wp_enqueue_scripts', array($this, 'script'));
+        if (!is_admin()) {
+            add_action('wp_enqueue_scripts', function () {
+                if ($this->hasModule()) {
+                    if (method_exists($this, 'style')) {
+                        $this->style();
+                    }
+
+                    if (method_exists($this, 'script')) {
+                        $this->script();
+                    }
+                }
+            });
         }
 
         add_action('save_post', function($postID, $post, $update) {
