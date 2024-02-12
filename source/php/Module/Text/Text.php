@@ -29,8 +29,12 @@ class Text extends \Modularity\Module
         if(is_array($data)) {
             return $data; 
         }
-        
         return [];
+    }
+
+    public function script() {
+        echo '<pre>' . print_r( $this->ID, true ) . '</pre>';
+        echo '<pre>' . print_r( "hello", true ) . '</pre>';die;
     }
     
     public function template()

@@ -201,9 +201,13 @@ class Module
         }
 
         // FIXME: hasModule() is not working as expected here, doesn't accept any parameters.
-        if (!is_admin() && $this->hasModule($post)) {
-            add_action('wp_enqueue_scripts', array($this, 'style'));
-            add_action('wp_enqueue_scripts', array($this, 'script'));
+        $test = !is_admin() && $this->hasModule('mod-' . $this->slug);
+        if ($this->slug == 'text') {
+            if ($this->hasModule('mod-text')) {
+                add_action('wp_enqueue_scripts', array($this, 'style'));
+                add_action('wp_enqueue_scripts', array($this, 'script'));
+                echo '<pre>' . print_r( $this->ID, true ) . '</pre>';die;
+            }
         }
 
         add_action('save_post', function($postID, $post, $update) {
@@ -301,21 +305,17 @@ class Module
      * Checks if a current page/post has module(s) of this type
      * @return boolean
      */
-    protected function hasModule()
+    protected function hasModule($moduleSlug = false)
     {
         global $post;
-
         $postId = null;
         $modules = array();
         $archiveSlug = \Modularity\Helper\Wp::getArchiveSlug();
-
         if ($archiveSlug) {
             $postId = $archiveSlug;
         } elseif (isset($post->ID)) {
             $postId = $post->ID;
-        } else {
-            return apply_filters('Modularity/hasModule', true, null);
-        }
+        } 
 
         //Collect all modules active
 
@@ -331,12 +331,27 @@ class Module
             wp_cache_set('modularity_has_modules_' . $postId, $modules);
         }
 
-        //Look for
-        $moduleSlug = $this->moduleSlug;
-        if (empty($moduleSlug)) {
-            $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
+        if(empty($modules)) {
+            return false;
         }
 
+        //Look for
+        $currentModuleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
+        
+        /**
+         * Checks if the current module slug matches the provided module slug 
+         *
+         * @param string $moduleSlug The module slug to compare with the current module slug.
+         * @param array $modules The array of module slugs.
+         * @return bool Returns true if the current module slug matches the provided module slug and is present in the modules array, otherwise returns false.
+         */
+        if ($moduleSlug === $currentModuleSlug ) {
+            if (in_array('mod-' . $this->slug, $modules)) {
+                echo '<pre>' . print_r( 'current module matched the given module:', true ) . '</pre>';
+                echo '<pre>' . print_r( $currentModuleSlug, true ) . '</pre>';
+                return true;
+            }
+        }
         return apply_filters(
             'Modularity/hasModule',
             in_array($moduleSlug, $modules),
