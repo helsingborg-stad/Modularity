@@ -51,7 +51,6 @@
         @endif
         @if(!empty($post->full_text))
             @typography([
-                'variant' => 'p',
                 'classList' => ['u-margin__top--1', 'u-margin__bottom--2']
             ])
                 {{ $post->full_text }}

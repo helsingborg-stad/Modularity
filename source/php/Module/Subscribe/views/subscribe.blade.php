@@ -13,7 +13,6 @@
 
     @if($content)
       @typography([
-        "variant" => "p",
         "element" => "p",
         "classList" => ["u-margin__top--0", "u-margin__bottom--2"]
       ])
