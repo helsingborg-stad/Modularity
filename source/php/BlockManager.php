@@ -399,9 +399,9 @@ class BlockManager
             $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
             //Set anchor
-            if (!isset($block['anchor']) || '' === $block['anchor']) {
-                $block['anchor'] = $block['id'];
-            }
+            if(!empty($block['anchor'])) {
+                $block['data']['anchor'] = $block['anchor'];
+            } 
 
             //Get view name
             $view = str_replace('.blade.php', '', $module->template());
