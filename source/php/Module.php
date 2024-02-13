@@ -334,17 +334,18 @@ class Module
 
             //Sort out active module post types
             $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
-
+            $modules = array_merge($modules, $this->getWidgets());
+            
             //Set cache
             wp_cache_set('modularity_has_modules_' . $postId, $modules);
         }
-
+        
         //Look for
         $moduleSlug = $this->moduleSlug;
         if (empty($moduleSlug)) {
             $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
         }
-
+        
         return apply_filters(
             'Modularity/hasModule',
             in_array($moduleSlug, $modules),
@@ -372,7 +373,57 @@ class Module
                 $stack[] = $value;
             }
         }
+
         return array_unique(array_filter($stack));
+    }
+
+    /**
+     * Retrieve and process widgets to extract module names.
+     *
+     * @return array An array containing module names extracted from widgets.
+     */
+    private function getWidgets() {
+        $widgets = get_option('widget_block');
+        $modules = [];
+        if (!empty($widgets) && is_array($widgets)) {
+            foreach ($widgets as $widget) {
+               $name = $this->getWidgetName($widget); 
+
+               if ($name) {
+                $modules[] = $name;
+               }
+            }
+        }
+
+        return $modules;
+    }
+
+    /**
+     * Extract and return the module name from a given widget.
+     *
+     * @param array $widget The widget data array.
+     * @return string|false The extracted module name or false if not found.
+     */
+    private function getWidgetName($widget) {
+        if (!is_array($widget) || empty($widget['content'])) {
+            return false;
+        }
+        
+        preg_match('/<!--\s*wp:acf\/(\S+).*?\s*-->/s', $widget['content'], $matches);
+        if (!empty($matches[1])) {
+            return 'mod-' . $matches[1];
+        } else {
+            preg_match('/id="(\d+)"/', $widget['content'], $shortCodeId);
+
+            if (!empty($shortCodeId[1])) {
+                $module = get_post_type($shortCodeId[1]);
+                if (!empty($module)) {
+                    return $module;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
