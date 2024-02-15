@@ -118,7 +118,7 @@ class Display
         );
 
         try {
-            return $blade->make(
+            return $blade->makeView(
                 $view, 
                 $viewData
             )->render();
