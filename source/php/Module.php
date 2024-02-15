@@ -384,14 +384,17 @@ class Module
      */
     private function getWidgets() {
         $widgets = get_option('widget_block');
+
         $modules = [];
         if (!empty($widgets) && is_array($widgets)) {
             foreach ($widgets as $widget) {
-               $name = $this->getWidgetName($widget); 
-
-               if ($name) {
-                $modules[] = $name;
-               }
+                $moduleNames = $this->getWidgetNames($widget); 
+                
+                if (!empty($moduleNames) && is_array($moduleNames)) {
+                    foreach ($moduleNames as $moduleName) {
+                        $modules[] = $moduleName;
+                    }
+                }
             }
         }
 
@@ -402,28 +405,38 @@ class Module
      * Extract and return the module name from a given widget.
      *
      * @param array $widget The widget data array.
-     * @return string|false The extracted module name or false if not found.
+     * @return array The extracted module name or false if not found.
      */
-    private function getWidgetName($widget) {
+    private function getWidgetNames($widget) {
         if (!is_array($widget) || empty($widget['content'])) {
             return false;
         }
         
-        preg_match('/<!--\s*wp:acf\/(\S+).*?\s*-->/s', $widget['content'], $matches);
-        if (!empty($matches[1])) {
-            return 'mod-' . $matches[1];
-        } else {
-            preg_match('/id="(\d+)"/', $widget['content'], $shortCodeId);
+        $modules = [];
+        
+        preg_match_all('/<!--\s*wp:acf\/(\S+).*?\s*-->/s', $widget['content'], $matches);
 
-            if (!empty($shortCodeId[1])) {
-                $module = get_post_type($shortCodeId[1]);
-                if (!empty($module)) {
-                    return $module;
+        if (!empty($matches[1]) && is_array($matches[1])) {
+            foreach ($matches[1] as $match) {
+                if (!empty($match)) {
+                    $modules[$match] = 'mod-' . $match;
                 }
             }
         }
 
-        return false;
+        preg_match_all('/id="(\d+)"/', $widget['content'], $shortCodeIds);
+
+        if (!empty($shortCodeIds[1]) && is_array($shortCodeIds[1])) {
+            foreach ($shortCodeIds[1] as $shortCodeId) {
+                $module = get_post_type(intval($shortCodeId));
+                
+                if (!empty($module)) {
+                    $modules[$module] = $module;
+                }
+            }
+        }
+        
+        return $modules;
     }
 
     /**
