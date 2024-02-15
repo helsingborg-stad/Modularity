@@ -78,14 +78,15 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
     /**
      * Taxonomy values update
      */
-
-     getTaxonomyValues({
-        'action': 'get_taxonomy_values_v2',
-        'tax': taxType,
-        'post': modularity_current_post_id,
-        'selected': taxValue,
-        'container': blockContainer
-    });   
+    setTimeout(function() {
+        getTaxonomyValues({
+            'action': 'get_taxonomy_values_v2',
+            'tax': taxType,
+            'post': modularity_current_post_id,
+            'selected': taxValue,
+            'container': blockContainer
+        });
+    }, 300);
 
     $(blockContainer + ' .modularity-latest-taxonomy select').on('change', function () {
         getTaxonomyValues({
