@@ -202,7 +202,9 @@ class Module
 
         if (!is_admin()) {
             add_action('wp_enqueue_scripts', function () {
-                if (empty($post) || $this->hasModule()) {
+
+
+                if ($this->hasModule()) {
                     if (method_exists($this, 'style')) {
                         $this->style();
                     }
@@ -325,17 +327,31 @@ class Module
             return apply_filters('Modularity/hasModule', true, null);
         }
 
-        //Collect all modules active
-
+        //Collect all modules active on this page
         if(!$modules = wp_cache_get('modularity_has_modules_' . $postId)) {
-            $modules = \Modularity\Editor::getPostModules($postId);
-            $modules = array_merge($modules, $this->getShortcodeModules($postId));
-            $modules = array_merge($modules, $this->getBlocks($postId));
+           
+            //Get each module link type
+            $modulesByLinkType = [
+                'meta'          => $this->getValueFromKeyRecursive(
+                                        \Modularity\Editor::getPostModules($postId), 
+                                        'post_type'
+                ),
+                'shortcodes'    => $this->getShortcodeModules($postId),
+                'blocks'        => $this->getBlocks($postId),
+                'widgets'       => $this->getWidgets(),
+            ];  
 
-            //Sort out active module post types
-            $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
-            $modules = array_merge($modules, $this->getWidgets());
-            
+            //Filter and merge all modules
+            foreach($modulesByLinkType as $modulesLinkType) {
+                $modules = array_merge(
+                    $modules, 
+                    $modulesLinkType
+                );
+            }
+
+            //Remove duplicates
+            $modules = array_unique($modules);
+
             //Set cache
             wp_cache_set('modularity_has_modules_' . $postId, $modules);
         }
@@ -345,7 +361,7 @@ class Module
         if (empty($moduleSlug)) {
             $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
         }
-        
+
         return apply_filters(
             'Modularity/hasModule',
             in_array($moduleSlug, $modules),
@@ -408,6 +424,7 @@ class Module
      * @return array The extracted module name or false if not found.
      */
     private function getWidgetNames($widget) {
+
         if (!is_array($widget) || empty($widget['content'])) {
             return false;
         }
@@ -454,8 +471,17 @@ class Module
 
             if (is_array($blocks) && !empty($blocks)) {
                 foreach ($blocks as $block) {
-                    $modules[] = str_replace('acf/', 'mod-', $block['blockName']);
+                    $modules[] = str_replace(
+                        'acf/', 'mod-',
+                        $block['blockName']
+                    );
                 }
+
+                //Only keep modules
+                $modules = array_filter($modules, function($key) {
+                    return strpos($key, 'mod-') === 0;
+                });
+
                 return $modules;
             }
         }
@@ -481,10 +507,7 @@ class Module
         ) {
             $shortcodes = preg_replace('/[^0-9]/', '', $matches[3]);
             foreach ($shortcodes as $key => $shortcode) {
-                $modules[] = array(
-                    'ID' => $shortcode,
-                    'post_type' => get_post_type($shortcode)
-                );
+                $modules[] = get_post_type($shortcode);
             }
         }
 
