@@ -327,34 +327,8 @@ class Module
             return apply_filters('Modularity/hasModule', true, null);
         }
 
-        //Collect all modules active on this page
-        if(!$modules = wp_cache_get('modularity_has_modules_' . $postId)) {
-           
-            //Get each module link type
-            $modulesByLinkType = [
-                'meta'          => $this->getValueFromKeyRecursive(
-                                        \Modularity\Editor::getPostModules($postId), 
-                                        'post_type'
-                ),
-                'shortcodes'    => $this->getShortcodeModules($postId),
-                'blocks'        => $this->getBlocks($postId),
-                'widgets'       => $this->getWidgets(),
-            ];  
-
-            //Filter and merge all modules
-            foreach($modulesByLinkType as $modulesLinkType) {
-                $modules = array_merge(
-                    $modules, 
-                    $modulesLinkType
-                );
-            }
-
-            //Remove duplicates
-            $modules = array_unique($modules);
-
-            //Set cache
-            wp_cache_set('modularity_has_modules_' . $postId, $modules);
-        }
+        //Get modules
+        $modules = $this->getPresentModuleList($postId);
         
         //Look for
         $moduleSlug = $this->moduleSlug;
@@ -367,6 +341,49 @@ class Module
             in_array($moduleSlug, $modules),
             $archiveSlug
         );
+    }
+
+    /**
+     * Get a list of present modules in this context   
+     * @param  integer $postId
+     * @return array
+     */
+    private function getPresentModuleList($postId): array
+    {
+
+        //Return cached modules
+        if($cachedModules = wp_cache_get('modularity_has_modules_' . $postId)) {
+            return $cachedModules;
+        }
+
+        $modules = []; 
+
+        //Get each module link type
+        $modulesByLinkType = [
+            'meta'          => $this->getValueFromKeyRecursive(
+                                    \Modularity\Editor::getPostModules($postId), 
+                                    'post_type'
+            ),
+            'shortcodes'    => $this->getShortcodeModules($postId),
+            'blocks'        => $this->getBlocks($postId),
+            'widgets'       => $this->getWidgets(),
+        ];  
+
+        //Filter and merge all modules
+        foreach($modulesByLinkType as $modulesLinkType) {
+            $modules = array_merge(
+                $modules, 
+                $modulesLinkType
+            );
+        }
+
+        //Remove duplicates
+        $modules = array_unique($modules);
+
+        //Set cache
+        wp_cache_set('modularity_has_modules_' . $postId, $modules);
+    
+        return $modules;
     }
 
     /**
