@@ -202,7 +202,7 @@ class Module
 
         if (!is_admin()) {
             add_action('wp_enqueue_scripts', function () {
-                if ($this->hasModule()) {
+                if (empty($post) || $this->hasModule()) {
                     if (method_exists($this, 'style')) {
                         $this->style();
                     }
