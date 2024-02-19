@@ -200,10 +200,20 @@ class Module
             $this->data['postTitle'] = $post->post_title;
         }
 
-        // FIXME: hasModule() is not working as expected here, doesn't accept any parameters.
-        if (!is_admin() && $this->hasModule($post)) {
-            add_action('wp_enqueue_scripts', array($this, 'style'));
-            add_action('wp_enqueue_scripts', array($this, 'script'));
+        if (!is_admin()) {
+            add_action('wp_enqueue_scripts', function () {
+
+
+                if ($this->hasModule()) {
+                    if (method_exists($this, 'style')) {
+                        $this->style();
+                    }
+
+                    if (method_exists($this, 'script')) {
+                        $this->script();
+                    }
+                }
+            });
         }
 
         add_action('save_post', function($postID, $post, $update) {
@@ -317,20 +327,9 @@ class Module
             return apply_filters('Modularity/hasModule', true, null);
         }
 
-        //Collect all modules active
-
-        if(!$modules = wp_cache_get('modularity_has_modules_' . $postId)) {
-            $modules = \Modularity\Editor::getPostModules($postId);
-            $modules = array_merge($modules, $this->getShortcodeModules($postId));
-            $modules = array_merge($modules, $this->getBlocks($postId));
-
-            //Sort out active module post types
-            $modules = $this->getValueFromKeyRecursive($modules, 'post_type');
-
-            //Set cache
-            wp_cache_set('modularity_has_modules_' . $postId, $modules);
-        }
-
+        //Get modules
+        $modules = $this->getPresentModuleList($postId);
+        
         //Look for
         $moduleSlug = $this->moduleSlug;
         if (empty($moduleSlug)) {
@@ -342,6 +341,49 @@ class Module
             in_array($moduleSlug, $modules),
             $archiveSlug
         );
+    }
+
+    /**
+     * Get a list of present modules in this context   
+     * @param  integer $postId
+     * @return array
+     */
+    private function getPresentModuleList($postId): array
+    {
+
+        //Return cached modules
+        if($cachedModules = wp_cache_get('modularity_has_modules_' . $postId)) {
+            return $cachedModules;
+        }
+
+        $modules = []; 
+
+        //Get each module link type
+        $modulesByLinkType = [
+            'meta'          => $this->getValueFromKeyRecursive(
+                                    \Modularity\Editor::getPostModules($postId), 
+                                    'post_type'
+            ),
+            'shortcodes'    => $this->getShortcodeModules($postId),
+            'blocks'        => $this->getBlocks($postId),
+            'widgets'       => $this->getWidgets(),
+        ];  
+
+        //Filter and merge all modules
+        foreach($modulesByLinkType as $modulesLinkType) {
+            $modules = array_merge(
+                $modules, 
+                $modulesLinkType
+            );
+        }
+
+        //Remove duplicates
+        $modules = array_unique($modules);
+
+        //Set cache
+        wp_cache_set('modularity_has_modules_' . $postId, $modules);
+    
+        return $modules;
     }
 
     /**
@@ -364,7 +406,71 @@ class Module
                 $stack[] = $value;
             }
         }
+
         return array_unique(array_filter($stack));
+    }
+
+    /**
+     * Retrieve and process widgets to extract module names.
+     *
+     * @return array An array containing module names extracted from widgets.
+     */
+    private function getWidgets() {
+        $widgets = get_option('widget_block');
+
+        $modules = [];
+        if (!empty($widgets) && is_array($widgets)) {
+            foreach ($widgets as $widget) {
+                $moduleNames = $this->getWidgetNames($widget); 
+                
+                if (!empty($moduleNames) && is_array($moduleNames)) {
+                    foreach ($moduleNames as $moduleName) {
+                        $modules[] = $moduleName;
+                    }
+                }
+            }
+        }
+
+        return $modules;
+    }
+
+    /**
+     * Extract and return the module name from a given widget.
+     *
+     * @param array $widget The widget data array.
+     * @return array The extracted module name or false if not found.
+     */
+    private function getWidgetNames($widget) {
+
+        if (!is_array($widget) || empty($widget['content'])) {
+            return false;
+        }
+        
+        $modules = [];
+        
+        preg_match_all('/<!--\s*wp:acf\/(\S+).*?\s*-->/s', $widget['content'], $matches);
+
+        if (!empty($matches[1]) && is_array($matches[1])) {
+            foreach ($matches[1] as $match) {
+                if (!empty($match)) {
+                    $modules[$match] = 'mod-' . $match;
+                }
+            }
+        }
+
+        preg_match_all('/id="(\d+)"/', $widget['content'], $shortCodeIds);
+
+        if (!empty($shortCodeIds[1]) && is_array($shortCodeIds[1])) {
+            foreach ($shortCodeIds[1] as $shortCodeId) {
+                $module = get_post_type(intval($shortCodeId));
+                
+                if (!empty($module)) {
+                    $modules[$module] = $module;
+                }
+            }
+        }
+        
+        return $modules;
     }
 
     /**
@@ -382,8 +488,17 @@ class Module
 
             if (is_array($blocks) && !empty($blocks)) {
                 foreach ($blocks as $block) {
-                    $modules[] = str_replace('acf/', 'mod-', $block['blockName']);
+                    $modules[] = str_replace(
+                        'acf/', 'mod-',
+                        $block['blockName']
+                    );
                 }
+
+                //Only keep modules
+                $modules = array_filter($modules, function($key) {
+                    return strpos($key, 'mod-') === 0;
+                });
+
                 return $modules;
             }
         }
@@ -409,10 +524,7 @@ class Module
         ) {
             $shortcodes = preg_replace('/[^0-9]/', '', $matches[3]);
             foreach ($shortcodes as $key => $shortcode) {
-                $modules[] = array(
-                    'ID' => $shortcode,
-                    'post_type' => get_post_type($shortcode)
-                );
+                $modules[] = get_post_type($shortcode);
             }
         }
 

@@ -103,7 +103,8 @@ class AbstractController
             'termIcon' => false,
             'callToActionItems' => false,
             'imagePosition' => true,
-            'image' => false
+            'image' => false,
+            'attributeList' => []
         ];
     }
 
@@ -127,6 +128,7 @@ class AbstractController
         $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
         
         if (!empty($post->image) && is_array($post->image)) {
+            $post->image['removeCaption'] = true;
             $post->image['backgroundColor'] = 'secondary';
         }
 

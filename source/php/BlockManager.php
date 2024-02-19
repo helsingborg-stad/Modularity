@@ -18,6 +18,7 @@ class BlockManager
         add_filter('allowed_block_types_all', array($this, 'filterBlockTypes'));
 
         add_filter('render_block', array($this, 'renderCustomGrid'), 10, 2);
+        add_filter('render_block', array($this, 'renderAnchor'), 10, 2);
         add_filter('render_block', array($this, 'renderLanguageAttribute'), 1, 2);
 
         add_filter('render_block_data', array($this, 'blockDataPreRender'), 10, 2);
@@ -111,16 +112,43 @@ class BlockManager
      */
     public function renderLanguageAttribute($blockContent, array $block): string
     {
-        $siteLanguage   = strtolower(get_bloginfo('language'));
-        $pageLanguage   = strtolower(get_post_meta(get_the_ID(), 'lang', true)) ?: $siteLanguage;
-        $blockLanguage  = !empty($block['attrs']['data']['lang']) ? strtolower($block['attrs']['data']['lang']) : $pageLanguage;
-
+        $siteLanguage = strtolower(get_bloginfo('language'));
+        $pageLanguage = strtolower(get_post_meta(get_the_ID(), 'lang', true)) ?: $siteLanguage;
+        $blockLanguage = !empty($block['attrs']['data']['lang']) ? strtolower($block['attrs']['data']['lang']) : $pageLanguage;
+    
         if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage])) {
-            if (str_contains($blockContent, 'id="block_')) {
-                $blockContent = str_replace('id="block_', 'lang="' . $block['attrs']['data']['lang'] . '" id="block_', $blockContent);
-            } else {
-                $blockContent = '<div lang="' . $block['attrs']['data']['lang'] . '">' . $blockContent . '</div><!-- lang -->';
-            }
+            $blockContent = '<div lang="' . htmlspecialchars($blockLanguage, ENT_QUOTES, 'UTF-8') . '">' . $blockContent . '</div>';
+        }
+    
+        return $blockContent;
+    }
+    /**
+     * Updates the first HTML tag in block content to include a specified anchor ID.
+     *
+     * This method searches for the first HTML tag in the provided block content and either
+     * adds or replaces the 'id' attribute with the value provided in the block's 'anchor' attribute.
+     * If the first HTML tag already has an 'id' attribute, its value is replaced with the anchor ID.
+     * If the 'id' attribute is not present, it is added with the anchor ID as its value.
+     *
+     * @param string $blockContent The HTML content of the block.
+     * @param array $block The block array containing attributes, including the 'anchor' attribute.
+     * @return string The modified block content with the updated 'id' attribute in the first HTML tag.
+     */
+    public function renderAnchor($blockContent, array $block): string
+    {
+        if (!empty($block['attrs']['anchor'])) {
+            $pattern = '/(<[a-zA-Z0-9]+\s*)(id="[^"]*"|)(.*?>)/';
+            $replacement = function ($matches) use ($block) {
+                $replacement = $matches[1]; 
+                $replacement .= 'id="' . htmlspecialchars($block['attrs']['anchor'], ENT_QUOTES, 'UTF-8') . '"';
+                if (!empty($matches[3])) {
+                    $replacement .= $matches[3]; 
+                }
+                return $replacement;
+            };
+
+            // Perform the replacement
+            $blockContent = preg_replace_callback($pattern, $replacement, $blockContent, 1);
         }
 
         return $blockContent;
@@ -399,9 +427,9 @@ class BlockManager
             $module->data['hideTitle'] = $module->data['postTitle'] ? false : true;
 
             //Set anchor
-            if (!isset($block['anchor']) || '' === $block['anchor']) {
-                $block['anchor'] = $block['id'];
-            }
+            if(!empty($block['anchor'])) {
+                $block['data']['anchor'] = $block['anchor'];
+            } 
 
             //Get view name
             $view = str_replace('.blade.php', '', $module->template());
