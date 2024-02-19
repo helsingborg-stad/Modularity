@@ -13,8 +13,8 @@
     'reverseColumns' => $imagePosition,
     'icon' => $post->termIcon,
     'hasPlaceholder' => $post->hasPlaceholderImage,
-    'attributeList' => array_merge($post->attributeList, []),
-    'classList' => array_merge($classList, []),
+    'attributeList' => $post->attributeList ?? [],
+    'classList' => $classList ?? [],
 ])
 @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
 @endsegment
