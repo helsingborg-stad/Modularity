@@ -18,7 +18,7 @@ jobs:
     - name: Create Release and bump version files
       uses: helsingborg-stad/release-wp-plugin-action@1.0.2
       with:
-        php-version: 8.2
+        php-version: 8.3
         node-version: 20.6.0
   build-assets:
     needs: ['release']

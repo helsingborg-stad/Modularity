@@ -173,7 +173,7 @@ class Wp
      */
     public static function isThickBox()
     {
-        $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : null;
+        $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
 
         if (
             (isset($_GET['is_thickbox']) && $_GET['is_thickbox'] == 'true')
