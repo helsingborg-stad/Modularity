@@ -508,76 +508,15 @@ class ModuleManager
      * @param  integer $id Module id
      * @return array       List of pages where the module is used
      */
-    public static function getModuleUsage($id, $limit = false)
+    public static function getModuleUsage($id = false, $limit = false, $postType = false)
     {
-        global $wpdb;
-
-        //Get length of id
-        $idLength = strlen($id);
-
-        // Normal modules
-        $moduleQuery = "
-            SELECT
-                {$wpdb->postmeta}.post_id,
-                {$wpdb->posts}.post_title,
-                {$wpdb->posts}.post_type
-            FROM {$wpdb->postmeta}
-            LEFT JOIN
-                {$wpdb->posts} ON ({$wpdb->postmeta}.post_id = {$wpdb->posts}.ID)
-            WHERE
-                {$wpdb->postmeta}.meta_key = 'modularity-modules'
-                AND ({$wpdb->postmeta}.meta_value LIKE '%s:6:\"postid\";s:{$idLength}:\"{$id}\";%')
-                AND {$wpdb->posts}.post_type != 'revision'
-            ORDER BY {$wpdb->posts}.post_title ASC
-        ";
-
-        $modules = $wpdb->get_results($moduleQuery, OBJECT);
-
-        // Shortcode modules
-        $shortcodeQuery = "
-            SELECT
-                {$wpdb->posts}.ID AS post_id,
-                {$wpdb->posts}.post_title,
-                {$wpdb->posts}.post_type
-            FROM {$wpdb->posts}
-            WHERE
-                {$wpdb->posts}.post_content LIKE '%[modularity id=\"{$id}\"]%'
-                AND {$wpdb->posts}.post_type != 'revision'
-            ORDER BY {$wpdb->posts}.post_title ASC
-        ";
-
-        $shortcodes = $wpdb->get_results($shortcodeQuery, OBJECT);
-
-        //Merge results
-        $result = array_merge($modules, $shortcodes);
-
-        //Get a unique array
-        $itemList = array();
-        foreach ($result as $item) {
-            //Already in list, continiue
-            if (array_key_exists($item->post_id, $itemList)) {
-                continue;
-            }
-
-            //Add to list
-            $itemList[$item->post_id] = $item;
+        if (!empty($id)) {
+            return \Modularity\Helper\ModuleUsageById::getModuleUsageById($id, $limit);
         }
 
-        //Limit to n number if results
-        if (is_numeric($limit)) {
-            if (count($itemList) > $limit) {
-                $sliced = array_slice($itemList, $limit);
-            } else {
-                $sliced = $itemList;
-            }
-
-            return (object) array(
-                'data' => $sliced,
-                'more' => (count($itemList) > 0 && count($sliced) > 0) ? count($itemList) - count($sliced) : 0
-            );
+        if (!empty($postType)) {
+            return \Modularity\Helper\ModuleUsageByName::getModuleUsageByName($id, $limit, $postType);
         }
-
-        return $result;
     }
 
     /**
