@@ -1,0 +1,23 @@
+{
+    "name": "clark-nikdel-powell/post-type-select-for-acf",
+    "description": "Post type select field for ACF",
+    "type": "wordpress-muplugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Glenn Welser",
+            "email": "info@cnpagency.com"
+        }
+    ],
+    "minimum-stability" : "stable",
+    "repositories": [
+        {
+            "type":"composer",
+            "url":"https://packagist.org"
+        },
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ]
+}

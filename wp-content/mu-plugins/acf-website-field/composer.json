@@ -1,0 +1,23 @@
+{
+    "name": "jeradin/acf-website-field",
+    "description": "Website field for ACF",
+    "type": "wordpress-muplugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Geet Jacobs",
+            "email": "geet@meowwolf.com"
+        }
+    ],
+    "minimum-stability" : "stable",
+    "repositories": [
+        {
+            "type":"composer",
+            "url":"https://packagist.org"
+        },
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ]
+}
