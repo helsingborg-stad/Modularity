@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "52b4371daf7e6543acdccaaa95e57d4e",
+    "content-hash": "e012cf12b399dea6cab2adb0275464a5",
     "packages": [
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -265,12 +265,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "d718c589c01ce614e03ed0ab3be831e4201bfb79"
+                "reference": "f587d8c05c6e00f99cbfb32d565e4f6743c07ee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/d718c589c01ce614e03ed0ab3be831e4201bfb79",
-                "reference": "d718c589c01ce614e03ed0ab3be831e4201bfb79",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/f587d8c05c6e00f99cbfb32d565e4f6743c07ee4",
+                "reference": "f587d8c05c6e00f99cbfb32d565e4f6743c07ee4",
                 "shasum": ""
             },
             "require": {
@@ -348,7 +348,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-15T18:12:41+00:00"
+            "time": "2024-02-18T21:47:00+00:00"
         },
         {
             "name": "enshrined/svg-sanitize",
