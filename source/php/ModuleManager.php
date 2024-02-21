@@ -508,15 +508,19 @@ class ModuleManager
      * @param  integer $id Module id
      * @return array       List of pages where the module is used
      */
-    public static function getModuleUsage($id = false, $limit = false, $postType = false)
+    public static function getModuleUsage($id, $limit = false)
     {
-        if (!empty($id)) {
-            return \Modularity\Helper\ModuleUsageById::getModuleUsageById($id, $limit);
-        }
-
-        if (!empty($postType)) {
-            return \Modularity\Helper\ModuleUsageByName::getModuleUsageByName($id, $limit, $postType);
-        }
+        return \Modularity\Helper\ModuleUsageById::getModuleUsageById($id, $limit);
+    }   
+    
+    /**
+     * Search database for what pages have specific modules.
+     * @param  integer $postType Post type of the module
+     * @return array       List of pages where the module is used
+     */
+    public static function getModulesUsageByName($postType)
+    {
+        return \Modularity\Helper\ModuleUsageByName::getModuleUsageByName($postType);
     }
 
     /**

@@ -20,7 +20,7 @@ class ModuleUsageById
         return $result;
     }
 
-    private static function getPagesFromShortcodeUsageById(string $id, \wpdb $wpdb) 
+    public static function getPagesFromShortcodeUsageById(string $id, \wpdb $wpdb) 
     {
         $shortcodeQuery = "
         SELECT
