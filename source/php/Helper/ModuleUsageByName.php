@@ -10,7 +10,7 @@ class ModuleUsageByName
     {
         $modules    = self::getPagesByModuleName($postType);
         $blocks     = self::getBlocksByModuleName($postType);
-        echo '<pre>' . print_r( $blocks, true ) . '</pre>';die;
+        
         return array_unique(array_merge($modules, $blocks));
     }
 
