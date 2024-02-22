@@ -30,8 +30,10 @@ class Contacts extends \Modularity\Module
         $this->displaySettings = (array_key_exists('display_settings', $data)) ?
             $data['display_settings'] : '';
 
-        $data['contacts'] = $this->prepareContacts($data['contacts']);
-
+        if(!empty($data['contacts'])) {
+            $data['contacts'] = $this->prepareContacts($data['contacts']);
+        } 
+        
         if (!isset($data['columns'])) {
             $data['columns'] = 'o-grid-12@md';
         }
@@ -42,8 +44,10 @@ class Contacts extends \Modularity\Module
 
         //Check if there is at least one contact with image, then add svg to others, else hide all
         if (empty($this->data['display_mode']) || $this->data['display_mode'] == 'cards') {
-            foreach ($data['contacts'] as $contact) {
-                $data['showImages'] = $contact['image'] ? true : $data['showImages'];
+            if(isset($data['contacts']) && is_countable($data['contacts'])) {
+                foreach ($data['contacts'] as $contact) {
+                    $data['showImages'] = $contact['image'] ? true : $data['showImages'];
+                }
             }
         }
 
