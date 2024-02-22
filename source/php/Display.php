@@ -450,12 +450,12 @@ class Display
      */
     public function outputModule($module, $args = array(), $moduleSettings = array(), $echo = true)
     {
-        if (!isset($args['id'])) {
-            $args['id'] = 'no-id';
+        if (!$module instanceof \WP_Post) {
+            return false;
         }
 
-        if (!is_object($module)) {
-            return false;
+        if (!isset($args['id'])) {
+            $args['id'] = 'no-id';
         }
 
         $cache = new \Modularity\Helper\Cache(
@@ -470,6 +470,10 @@ class Display
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
 
+            if (!$module instanceof \WP_Post) {
+                return false;
+            }
+
             return $this->getModuleMarkup($module, $args);
         }
 
@@ -478,6 +482,9 @@ class Display
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
 
+            if (!$module instanceof \WP_Post) {
+                return false;
+            }
             //Print module
             echo $this->getModuleMarkup(
                 $module,
