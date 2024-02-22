@@ -173,16 +173,18 @@ class Wp
      */
     public static function isThickBox()
     {
-        $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
-
-        if (
-            (isset($_GET['is_thickbox']) && $_GET['is_thickbox'] == 'true')
-            || strpos($referer, 'is_thickbox=true') > -1
-        ) {
+        // Check if thickbox is set in query string
+        if (isset($_GET['is_thickbox']) && $_GET['is_thickbox'] == 'true') {
             return true;
-        } else {
-            return false;
         }
+
+        // Check if referer is thickbox
+        $referer = (isset($_SERVER['HTTP_REFERER'])) ? $_SERVER['HTTP_REFERER'] : '';
+        if (is_string($referer) && strpos($referer, 'is_thickbox=true') > -1) {
+            return true;
+        }
+        
+        return false;
     }
 
     /**
