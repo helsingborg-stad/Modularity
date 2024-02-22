@@ -263,8 +263,14 @@ class Module
     {
         foreach ($post as $key => $value) {
             $this->extractedPostProperties[] = $key;
-            $this->$key = $value;
             $this->data[$key] = $value;
+
+            // Fix for PHP8, avoid creation of dynamic property.
+            // https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.variable-handling.indirect
+            // Variables that needs to be avabile, must be defined in class.
+            if(isset($this->$key)) {
+                $this->$key = $value;
+            }
         }
     }
 
