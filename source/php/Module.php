@@ -492,23 +492,24 @@ class Module
         }
 
         if ($currentPost = get_post($postId)) {
-            $blocks = parse_blocks($currentPost->post_content);
+            $modules    = [];
+            $blocks     = parse_blocks($currentPost->post_content);
 
             if (is_array($blocks) && !empty($blocks)) {
                 foreach ($blocks as $block) {
-                    $modules[] = str_replace(
-                        'acf/', 'mod-',
-                        $block['blockName']
-                    );
+                    if (!is_string($block['blockName']) && !is_array($block['blockName'])) {
+                        continue;
+                    }
+                    $modules[] = str_replace('acf/', 'mod-', $block['blockName']);
                 }
-
-                //Only keep modules
-                $modules = array_filter($modules, function($key) {
-                    return strpos($key, 'mod-') === 0;
-                });
-
-                return $modules;
             }
+
+            //Only keep modules
+            $modules = array_filter($modules, function($key) {
+                return strpos($key, 'mod-') === 0;
+            });
+
+            return $modules;
         }
 
         return [];
