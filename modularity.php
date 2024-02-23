@@ -44,7 +44,6 @@ add_action('plugins_loaded', function () {
         'mod-gallery'               => 'group_5666af6d26b7c',
         'mod-iframe'                => 'group_56c47016ea9d5',
         'mod-image'                 => 'group_570770ab8f064',
-        'mod-index'                 => 'group_569ceab2c16ee',
         'mod-inheritpost'           => 'group_56a8b4fd3567b',
         'mod-inlaylist'             => 'group_569e054a7f9c2',
         'mod-latest'                => 'group_56a8c4581d906',
@@ -74,11 +73,14 @@ add_action('plugins_loaded', function () {
         'mod-subscribe'             => 'group_641c51b765f4b',
         'mod-modal'                 => 'group_64a29154aa972',
         'mod-manual-input'          => 'group_64ff22b117e2c',
+        'mod-quote'                 => 'group_65d8bf00bd021',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
         'mod-wpwidget'         => 'group_5729f4d3e7c7a',
-        'mod-sites'            => 'group_58ecb6b6330f4'
+        'mod-sites'            => 'group_58ecb6b6330f4',
+        'mod-index'            => 'group_569ceab2c16ee',
+
 
     ));
     $acfExportManager->import();
