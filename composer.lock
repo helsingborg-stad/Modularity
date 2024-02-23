@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d92b75bc3745f17c74291e8d57702db",
+    "content-hash": "7076e042890f2c2b82ac670bacc1ab6f",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -232,7 +232,7 @@
             "description": "An SVG sanitizer for PHP",
             "support": {
                 "issues": "https://github.com/darylldoyle/svg-sanitizer/issues",
-                "source": "https://github.com/darylldoyle/svg-sanitizer/tree/0.17.0"
+                "source": "https://github.com/darylldoyle/svg-sanitizer/tree/0.18.0"
             },
             "time": "2024-02-14T17:34:36+00:00"
         },
