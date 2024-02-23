@@ -46,8 +46,7 @@
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
         "wpackagist-plugin/acf-extended": "0.8.9.4",
-        "helsingborg-stad/acf-select-image-field": "~1.4.3",
-        "helsingborg-stad/blade": "^3.1.0"
+        "helsingborg-stad/acf-select-image-field": "~1.4.3"
     },
     "autoload": {
         "psr-4": {
@@ -73,6 +72,9 @@
     "scripts": {
         "test": "phpunit",
         "test:setup": "bin/install-wp-tests.sh"
+    },
+    "suggest": {
+        "helsingborg-stad/component-library": "Required for modules in modularity"
     },
     "version": "6.0.5"
 }
