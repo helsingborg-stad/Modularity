@@ -3,7 +3,7 @@
     "image" => $image,
     "imageFocus" => $imageFocus,
     "size" => $size,
-    "title" => !$hideTitle ? $postTitle : false,
+    "title" => !$hideTitle && !empty($postTitle) ? $postTitle : false,
     "byline" => $byline,
     "meta" => $meta,
     "paragraph" => $paragraph,

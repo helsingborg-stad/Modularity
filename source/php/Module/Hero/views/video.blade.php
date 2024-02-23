@@ -2,7 +2,7 @@
     "classList" => $stretch ? [$class] : [],
     "video" => $video,
     "size" => $size,
-    "title" => !$hideTitle ? $postTitle : false,
+    "title" => !$hideTitle && !empty($postTitle) ? $postTitle : false,
     "byline" => $byline,
     "paragraph" => $paragraph,
     "stretch" => isset($blockData) ? ((bool) $blockData['align'] == 'full') : $stretch,
