@@ -19,6 +19,8 @@ class Module
      */
     public $ID = null;
 
+    public ?string $post_type = null;
+
     /**
      * The slug of the module
      * Example: image
@@ -268,7 +270,7 @@ class Module
             // Fix for PHP8, avoid creation of dynamic property.
             // https://www.php.net/manual/en/migration80.incompatible.php#migration80.incompatible.variable-handling.indirect
             // Variables that needs to be avabile, must be defined in class.
-            if(isset($this->$key)) {
+            if(property_exists($this, $key)) {
                 $this->$key = $value;
             }
         }

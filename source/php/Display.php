@@ -103,7 +103,7 @@ class Display
             $moduleView = $externalViewPaths[$data['post_type']];
         }
 
-        $init = new ComponentLibraryInit([$moduleView]);
+        $init = new ComponentLibraryInit([]);
         $blade = $init->getEngine();
 
         $filters = [
@@ -118,10 +118,7 @@ class Display
         );
 
         try {
-            return $blade->makeView(
-                $view, 
-                $viewData
-            )->render();
+            return $blade->makeView( $view, $viewData, [], $moduleView )->render();
         } catch (Throwable $e) {
             echo '<pre class="c-paper" style="max-height: 400px; overflow: auto;">';
             echo '<h2>Could not find view</h2>'; 
@@ -470,21 +467,14 @@ class Display
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
 
-            if (!$module instanceof \WP_Post) {
-                return false;
-            }
-
             return $this->getModuleMarkup($module, $args);
         }
 
-        if ($cache->start()) { //Start cache
+        if ($cache->start()) {
 
             $class = \Modularity\ModuleManager::$classes[$module->post_type];
             $module = new $class($module, $args);
 
-            if (!$module instanceof \WP_Post) {
-                return false;
-            }
             //Print module
             echo $this->getModuleMarkup(
                 $module,
