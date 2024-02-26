@@ -5,9 +5,9 @@
         {
             "key": "field_65d8bf01c50c7",
             "label": "Content",
-            "name": "mod_quote_content",
+            "name": "content",
             "aria-label": "",
-            "type": "text",
+            "type": "textarea",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -17,15 +17,16 @@
                 "id": ""
             },
             "default_value": "",
+            "acfe_textarea_code": 0,
             "maxlength": "",
+            "rows": "",
             "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "new_lines": ""
         },
         {
             "key": "field_65d8bf37c50c9",
             "label": "Footer",
-            "name": "mod_quote_footer",
+            "name": "footer",
             "aria-label": "",
             "type": "text",
             "instructions": "",
@@ -45,7 +46,7 @@
         {
             "key": "field_65d8bf18c50c8",
             "label": "Image",
-            "name": "mod_quote_image",
+            "name": "image",
             "aria-label": "",
             "type": "image",
             "instructions": "",
@@ -75,7 +76,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "post"
+                "value": "mod-quote"
+            }
+        ],
+        [
+            {
+                "param": "block",
+                "operator": "==",
+                "value": "acf\/quote"
             }
         ]
     ],

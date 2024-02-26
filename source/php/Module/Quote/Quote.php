@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Quote;
 
+use Municipio\Helper\Image as ImageHelper;
+
 class Quote extends \Modularity\Module
 {
     public $slug = 'quote';
@@ -19,9 +21,29 @@ class Quote extends \Modularity\Module
 
     public function data(): array
     {
-        $data = $this->getFields();
+        $data = [];
+        $fields = $this->getFields();
 
-        return [];
+        if (is_array($fields)) {
+            $data = array_merge($this->getDefaultValues(), $fields);
+        }
+
+        if (!empty($data['image'])) {
+            $data['image'] = (object) ImageHelper::getImageAttachmentData($data['image'], [500, 500]);
+        }
+        
+        return $data;
+    }
+
+    /**
+     * @return array
+     */
+    private function getDefaultValues() {
+        return [
+            'title'                     => false,
+            'content'                   => false,
+            'image'                     => false
+        ];
     }
 
     /**
