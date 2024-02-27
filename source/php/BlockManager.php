@@ -398,13 +398,12 @@ class BlockManager
      */
     public function renderBlock($block)
     {
-
         global $post;
 
         $module = $this->classes[$block['moduleName']];
-
+        
         $cache = new \Modularity\Helper\Cache(
-            $post->ID, [
+            $post->ID ?? null, [
                 $block, 
                 $module->ID
             ], 
