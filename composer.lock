@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "35575f9f1f0dc09e5c3c3a7ea76bdf2b",
+    "content-hash": "1c2af6af34f91ae1912962cef1e52bbb",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -1171,7 +1171,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6.17"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/9.6"
             },
             "funding": [
                 {
