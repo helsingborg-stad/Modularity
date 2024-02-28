@@ -146,7 +146,7 @@ class Cache
      */
     private function fragmentTag()
     {
-        return '<!-- FGC: [' . current_time("Y-m-d H:i:s", 1) .'| ' .$this->hash. ']-->';
+        return '<!-- Modularity Fragment Cache: (' . current_time("Y-m-d H:i:s", 1) .'|' .$this->hash. ') -->';
     }
 
     /**
