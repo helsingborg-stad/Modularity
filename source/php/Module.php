@@ -161,7 +161,12 @@ class Module
      */
     public $dataFetched = false; //May be either 'module' or 'block'.
 
-    
+    /**
+     * Column width.
+     * Keeps track if the current size if the module.
+     * @var string
+     */
+    public $columnWidth;
 
     /**
      * Constructs a module
