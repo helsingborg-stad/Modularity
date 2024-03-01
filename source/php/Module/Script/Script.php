@@ -38,7 +38,7 @@ class Script extends \Modularity\Module
         $embed = get_field('embed_code', $this->ID);
 
         $doc = new \DOMDocument();
-        $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed);
+        $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed, LIBXML_NOERROR);
 
         $xpath = new \DOMXpath($doc);
         $allowedElements = $xpath->query('//script | //iframe | //link | //style');
