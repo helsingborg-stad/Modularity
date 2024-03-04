@@ -163,7 +163,11 @@ class Slider extends \Modularity\Module
 
                 $focusPoint = false;
 
-                if(array_key_exists('top', $slide['image']) && array_key_exists('left', $slide['image'])) {
+                if(
+                    is_array($slide['image']) &&
+                    array_key_exists('top', $slide['image']) && 
+                    array_key_exists('left', $slide['image'])
+                ) {
                     $focusPoint = [
                         'top'   => $slide['image']['top'],
                         'left'  => $slide['image']['left']
