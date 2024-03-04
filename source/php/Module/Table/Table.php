@@ -164,7 +164,7 @@ class Table extends \Modularity\Module
             }
 
             foreach ($row as &$value) {
-                $value = mb_convert_encoding($value, 'UTF-8', null);
+                $value = mb_convert_encoding($value, 'UTF-8', mb_detect_encoding($value));
             }
 
             array_push($data, $row);
