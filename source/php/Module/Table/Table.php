@@ -164,7 +164,7 @@ class Table extends \Modularity\Module
             }
 
             foreach ($row as &$value) {
-                $value = mb_convert_encoding($value, 'UTF-8', 'WWINDOWS-1255');
+                $value = mb_convert_encoding($value, 'UTF-8', mb_detect_encoding($value));
             }
 
             array_push($data, $row);
@@ -221,6 +221,9 @@ class Table extends \Modularity\Module
     public function tableList($arr)
     {
         $data = [];
+        if (!is_array($arr)) {
+            return $data;
+        }
 
         if (array_key_exists('header', $arr)) { 
            if (!empty($arr['header'])) {
