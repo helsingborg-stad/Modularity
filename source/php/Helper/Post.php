@@ -93,7 +93,7 @@ class Post
             $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
         }
 
-        if (substr($archive, 0, 8) == 'archive-' || is_search()) {
+        if (is_string($archive) && substr($archive, 0, 8) == 'archive-' || is_search()) {
             return $archive;
         }
 
