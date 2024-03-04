@@ -1,6 +1,6 @@
 {
     "name": "modularity",
-    "version": "6.0.17",
+    "version": "6.0.19",
     "description": "Modular component system for WordPress",
     "browserslist": [
         "> 1%",
