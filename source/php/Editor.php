@@ -196,7 +196,10 @@ class Editor extends \Modularity\Options
                 }
 
                 uasort($modules, function ($a, $b) {
-                    return $a['labels']['name'] > $b['labels']['name'];
+                    if ($a['labels']['name'] === $b['labels']['name']) {
+                        return 0;
+                    }
+                    return ($a['labels']['name'] < $b['labels']['name']) ? -1 : 1;
                 });
 
                 include MODULARITY_TEMPLATE_PATH . 'editor/modularity-enabled-modules.php';
