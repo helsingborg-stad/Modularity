@@ -1,5 +1,5 @@
 @card([
-    'heading' => apply_filters('the_title', $post_title),
+    'heading' => apply_filters('the_title', $post_title ?? false),
     'context' => 'module.script'
 ])
     @if (!$hideTitle && !empty($postTitle))
