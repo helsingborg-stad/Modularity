@@ -37,11 +37,14 @@ class Posts extends \Modularity\Module
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
+        add_filter(
+            'acf/fields/post_object/query/name=posts_data_posts', 
+            array($this, 'removeUnwantedPostTypesFromManuallyPicked'), 10, 3
+        );
         
         // Helpers
         $this->getPostsHelper = new GetPostsHelper();
         $this->archiveUrlHelper = new ArchiveUrlHelper();
-        
         new PostsAjax($this);
     }
 
@@ -171,6 +174,29 @@ class Posts extends \Modularity\Module
         }
 
         return $viewData;
+    }
+
+    /**
+     * Removes unwanted post types from the manually picked post types.
+     *
+     * @param array $args The arguments for the query.
+     * @param string $field The field name.
+     * @param int $id The ID of the module.
+     * @return array The modified arguments.
+     */
+    public function removeUnwantedPostTypesFromManuallyPicked($args, $field, $id) 
+    {
+        if (!empty($args['post_type']) && is_array($args['post_type'])) {
+            $args['post_type'] = array_filter($args['post_type'], function($postType) {
+                if ($postType === 'attachment') { 
+                    return false;
+                }
+
+                return strpos($postType, 'mod-') === false;
+            });
+        }
+
+        return $args;
     }
 
     //TODO: Remove [Start feature: Date from Archive settings]
