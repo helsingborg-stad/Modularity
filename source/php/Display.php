@@ -725,9 +725,13 @@ class Display
 
     public function addGridToSidebar($markup, $module)
     {
-        $sidebars = apply_filters('Modularity/Module/Container/Sidebars', array());
-        $modules = apply_filters('Modularity/Module/Container/Modules', array());
-        $template = apply_filters('Modularity/Module/Container/Template', '<div class="container"><div class="grid"><div class="grid-xs-12">{{module-markup}}</div></div></div>');
+        $sidebars   = apply_filters('Modularity/Module/Container/Sidebars', array());
+        $modules    = apply_filters('Modularity/Module/Container/Modules', array());
+        $template   = apply_filters('Modularity/Module/Container/Template', '<div class="container"><div class="grid"><div class="grid-xs-12">{{module-markup}}</div></div></div>');
+
+        if (!isset($module->args['id']) || !isset($module->post_type)) {
+            return $markup;
+        }
 
         if (in_array($module->args['id'], $sidebars) && in_array($module->post_type, $modules)) {
             return str_replace('{{module-markup}}', $markup, $template);
