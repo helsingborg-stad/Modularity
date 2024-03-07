@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2af82b8d056ac4f09cbda23fe70c71f0",
+    "content-hash": "88abc0dce4bec77b88a8c42e90df735d",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -644,7 +644,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/master"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.0.2"
             },
             "time": "2024-01-14T09:02:54+00:00"
         },
