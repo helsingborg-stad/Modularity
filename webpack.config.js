@@ -70,7 +70,6 @@ module.exports = {
 					},
 				},
 			},
-
 			/**
 			 * Styles
 			 */
@@ -105,8 +104,19 @@ module.exports = {
 					filename: 'images/action_icons/[name][ext]',
 				},
 			},
+			 /**
+             * TypeScript
+             */
+			 {
+                test: /\.ts?$/,
+                loader: 'ts-loader',
+                options: { allowTsInNodeModules: true }
+            },
 		],
 	},
+	resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
 	plugins: removeEmpty([
 		/**
 		 * BrowserSync
