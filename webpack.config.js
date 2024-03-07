@@ -70,7 +70,6 @@ module.exports = {
 					},
 				},
 			},
-
 			/**
 			 * Styles
 			 */
@@ -105,7 +104,18 @@ module.exports = {
 					filename: 'images/action_icons/[name][ext]',
 				},
 			},
+			/**
+			* TypeScript
+			*/
+			{
+				test: /\.ts?$/,
+				loader: 'ts-loader',
+				options: { allowTsInNodeModules: true }
+			},
 		],
+	},
+	resolve: {
+		extensions: ['.tsx', '.ts', '.js'],
 	},
 	plugins: removeEmpty([
 		/**
@@ -113,23 +123,23 @@ module.exports = {
 		 */
 		typeof process.env.BROWSER_SYNC_PROXY_URL !== 'undefined'
 			? new BrowserSyncPlugin(
-					// BrowserSync options
-					{
-						// browse to http://localhost:3000/ during development
-						host: 'localhost',
-						port: process.env.BROWSER_SYNC_PORT ? process.env.BROWSER_SYNC_PORT : 3000,
-						// proxy the Webpack Dev Server endpoint
-						// (which should be serving on http://localhost:3100/)
-						// through BrowserSync
-						proxy: process.env.BROWSER_SYNC_PROXY_URL,
-					},
-					// plugin options
-					{
-						// prevent BrowserSync from reloading the page
-						// and let Webpack Dev Server take care of this
-						reload: false,
-					}
-			  )
+				// BrowserSync options
+				{
+					// browse to http://localhost:3000/ during development
+					host: 'localhost',
+					port: process.env.BROWSER_SYNC_PORT ? process.env.BROWSER_SYNC_PORT : 3000,
+					// proxy the Webpack Dev Server endpoint
+					// (which should be serving on http://localhost:3100/)
+					// through BrowserSync
+					proxy: process.env.BROWSER_SYNC_PROXY_URL,
+				},
+				// plugin options
+				{
+					// prevent BrowserSync from reloading the page
+					// and let Webpack Dev Server take care of this
+					reload: false,
+				}
+			)
 			: null,
 
 		/**
