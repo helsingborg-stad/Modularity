@@ -118,7 +118,8 @@ class Upgrade
     {
         $this->migrateBlockFieldsValueToNewFields('acf/index', [
             'index_columns' => [
-                'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
+                'name' => 'columns',
+                'key' =>'field_65001d039d4c4',
                 'type' => 'replaceValue',
                 'values' => [
                     'grid-md-12' => 'o-grid-12',
@@ -131,10 +132,8 @@ class Upgrade
             'index' => [
                 'type' => 'custom',
                 'function' => 'migrateIndexBlockRepeater',
-                'name' => [
-                    'name' => 'manual_inputs', 
-                    'key' => 'field_64ff22b2d91b7'
-                ], 
+                'name' => 'manual_inputs', 
+                'key' => 'field_64ff22b2d91b7' 
             ]
         ],
         'acf/manualinput');
@@ -208,7 +207,8 @@ class Upgrade
     {        
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
-                    'name' => ['name' => 'display_as','key' => 'field_64ff23d0d91bf'], 
+                    'name' => 'display_as', 
+                    'key' => 'field_64ff23d0d91bf',
                     'type' => 'replaceValue', 
                     'values' => [
                         'list' => 'list', 
@@ -224,7 +224,8 @@ class Upgrade
                     ],     
                 ],
                 'data' => [
-                    'name' => ['name' => 'manual_inputs', 'key' => 'field_64ff22b2d91b7'], 
+                    'name' => 'manual_inputs', 
+                    'key' => 'field_64ff22b2d91b7',
                     'type' => 'repeater', 
                     'fields' => [
                         'post_title' => ['name' => 'title', 'key' => 'field_64ff22fdd91b8'], 
@@ -236,7 +237,8 @@ class Upgrade
                     ]
                 ],
                 'posts_list_column_titles' => [
-                    'name' => ['name' => 'accordion_column_titles', 'key' => 'field_65005968bbc75'],
+                    'name' => 'accordion_column_titles',
+                    'key' => 'field_65005968bbc75',
                     'type' => 'repeater',
                     'fields' => [
                         'column_header' => ['name' => 'accordion_column_title', 'key' => 'field_65005a33bbc77'], 
@@ -475,8 +477,8 @@ class Upgrade
 
     /* TODO: Upgrade then remove */
     private function migrateIndexBlockRepeater($newField, $blockData, $oldFieldName) {
-        $newFieldName = $newField['name']['name'];
-        $newFieldKey = $newField['name']['key'];
+        $newFieldName = $newField['name'];
+        $newFieldKey = $newField['key'];
         $blockData[$newFieldName] = $blockData[$oldFieldName];
         $blockData['_' . $newFieldName] = $newFieldKey;
         if (is_array($blockData)) {
@@ -684,8 +686,8 @@ class Upgrade
                         if ($newField['type'] == 'removeField') {
                             $blockData = $this->removeBlockField($newField, $blockData, $oldFieldName);
                         } elseif ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
-                            $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
-                            $blockData[$newField['name']['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
+                            $blockData['_' . $newField['name']] = $newField['key'];
+                            $blockData[$newField['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
                         } elseif ($newField['type'] == 'repeater') {
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
                         } elseif ($newField['type'] == 'custom' && !empty($newField['function'])) {
@@ -717,41 +719,39 @@ class Upgrade
      * @return array The updated block data with the migrated repeater field.
      */
     private function migrateBlockRepeater($newField, $blockData, $oldFieldName) {
-        $blockData[$newField['name']['name']] = $blockData[$oldFieldName];
-        $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
-        $blockData = $this->migrateBlockRepeaterFields($newField, $oldFieldName, $blockData);
+        $blockData[$newField['name']] = $blockData[$oldFieldName];
+        $blockData['_' . $newField['name']] = $newField['key'];
+
+        $blockData = $this->migrateBlockRepeaterFields(
+            $newField['name'], 
+            $newField['fields'], 
+            $oldFieldName, 
+            $blockData
+        );
 
         return $blockData;
     }
 
-    private function migrateBlockRepeaterFields($newField, $oldFieldName, $blockData) 
+    private function migrateBlockRepeaterFields($newFieldName, $newFieldFields, $oldFieldName, $blockData) 
     {
-        echo '<pre>' . print_r( $newField, true ) . '</pre>';
-        if (!empty($newField['fields'])) {
-            foreach ($newField['fields'] as $oldRepeaterFieldName => $newRepeaterFieldName) {
-                if (!empty($newField['name']['name']) && !empty($blockData[$oldFieldName])) {
+        if (!empty($newFieldFields) && !empty($newFieldName)) {
+            foreach ($newFieldFields as $oldRepeaterFieldName => $newRepeaterFieldName) {
+                if (!empty($blockData[$oldFieldName])) {
                     $i = 0;
                     while (isset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName])) {
-                        $blockData[$newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name']] = $blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName];
-                        $blockData['_' . $newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name']] = $newRepeaterFieldName['key'];
+                        $newName = $newFieldName . '_' . $i . '_' . $newRepeaterFieldName['name'];
+                        $oldName = $oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName;
 
+                        $blockData[$newName] = $blockData[$oldName];
+                        $blockData['_' . $newName] = $newRepeaterFieldName['key'];
+                        
                         if (
                             !empty($newRepeaterFieldName['type']) && 
                             $newRepeaterFieldName['type'] === 'repeater' && 
                             !empty($newRepeaterFieldName['fields']) && 
                             is_array($newRepeaterFieldName['fields'])
                         ) {
-                            echo '<pre>' . print_r( $newRepeaterFieldName, true ) . '</pre>';
-                            // $blockData = $this->migrateBlockRepeaterFields();
-                            foreach ($newRepeaterFieldName['fields'] as $oldSubFieldName => $newSubFieldName) {
-                                $subFieldIndex = 0;
-                                while (isset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName . '_' . $subFieldIndex . '_' . $oldSubFieldName])) {
-                                    $blockData[$newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name'] . '_' . $subFieldIndex . '_' . $newSubFieldName['name']] = $blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName . '_' . $subFieldIndex . '_' . $oldSubFieldName];
-                                    $blockData['_' . $newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name'] . '_' . $subFieldIndex . '_' . $newSubFieldName['name']] = $newSubFieldName['key'];
-
-                                    $subFieldIndex++;
-                                }
-                            }
+                            $blockData = $this->migrateBlockRepeaterFields($newName, $newRepeaterFieldName['fields'], $oldName, $blockData);
                         }
                         // unset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName]);
                         $i++;
@@ -759,7 +759,7 @@ class Upgrade
                 }
             }
         }
-        die;
+
         return $blockData;
     }
 
