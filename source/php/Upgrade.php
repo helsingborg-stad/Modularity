@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 3; //The db version we want to achive
+    private $dbVersion = 5; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -232,7 +232,7 @@ class Upgrade
                         'permalink' => ['name' => 'link', 'key' => 'field_64ff232ad91ba'],
                         'item_icon' => ['name' => 'box_icon', 'key' => 'field_65293de2a26c7'],
                         'image' => ['name' => 'image', 'key' => 'field_64ff2355d91bb'],
-                        'column_values' => ['name' => 'accordion_column_values', 'key' => 'field_64ff2372d91bc']
+                        'column_values' => ['name' => 'accordion_column_values', 'key' => 'field_64ff2372d91bc', 'type' => 'repeater', 'fields' => ['value' => ['name' => 'value', 'key' => 'field_64ff23afd91bd']]]
                     ]
                 ],
                 'posts_list_column_titles' => [
@@ -426,7 +426,7 @@ class Upgrade
      *
      * @return void
      */
-    private function migrateAcfRepeater(array $newField = [], array $oldFieldValue = [], int|bool $id = false) {
+    private function migrateAcfRepeater(array $newField = [], $oldFieldValue = [], int|bool $id = false) {
         update_field($newField['name'], $oldFieldValue, $id);
         $subFields = $newField['fields'];
         if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
@@ -719,6 +719,14 @@ class Upgrade
     private function migrateBlockRepeater($newField, $blockData, $oldFieldName) {
         $blockData[$newField['name']['name']] = $blockData[$oldFieldName];
         $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
+        $blockData = $this->migrateBlockRepeaterFields($newField, $oldFieldName, $blockData);
+
+        return $blockData;
+    }
+
+    private function migrateBlockRepeaterFields($newField, $oldFieldName, $blockData) 
+    {
+        echo '<pre>' . print_r( $newField, true ) . '</pre>';
         if (!empty($newField['fields'])) {
             foreach ($newField['fields'] as $oldRepeaterFieldName => $newRepeaterFieldName) {
                 if (!empty($newField['name']['name']) && !empty($blockData[$oldFieldName])) {
@@ -726,12 +734,32 @@ class Upgrade
                     while (isset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName])) {
                         $blockData[$newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name']] = $blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName];
                         $blockData['_' . $newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name']] = $newRepeaterFieldName['key'];
+
+                        if (
+                            !empty($newRepeaterFieldName['type']) && 
+                            $newRepeaterFieldName['type'] === 'repeater' && 
+                            !empty($newRepeaterFieldName['fields']) && 
+                            is_array($newRepeaterFieldName['fields'])
+                        ) {
+                            echo '<pre>' . print_r( $newRepeaterFieldName, true ) . '</pre>';
+                            // $blockData = $this->migrateBlockRepeaterFields();
+                            foreach ($newRepeaterFieldName['fields'] as $oldSubFieldName => $newSubFieldName) {
+                                $subFieldIndex = 0;
+                                while (isset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName . '_' . $subFieldIndex . '_' . $oldSubFieldName])) {
+                                    $blockData[$newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name'] . '_' . $subFieldIndex . '_' . $newSubFieldName['name']] = $blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName . '_' . $subFieldIndex . '_' . $oldSubFieldName];
+                                    $blockData['_' . $newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name'] . '_' . $subFieldIndex . '_' . $newSubFieldName['name']] = $newSubFieldName['key'];
+
+                                    $subFieldIndex++;
+                                }
+                            }
+                        }
                         // unset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName]);
                         $i++;
                     }
                 }
             }
         }
+        die;
         return $blockData;
     }
 
@@ -742,7 +770,8 @@ class Upgrade
      * @param mixed $oldFieldValue The old field value to be replaced.
      * @return mixed The updated field value.
      */
-    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) {
+    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) 
+    {
         if (isset($newField['values'][$oldFieldValue])) {
             return $newField['values'][$oldFieldValue];
         }
@@ -1008,16 +1037,15 @@ class Upgrade
      */
     public function initUpgrade()
     {
-        if(!is_admin()) {
-            return;
-        }
+        // if(!is_admin()) {
+        //     return;
+        // }
 
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
         }
 
-        $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
-
+        $currentDbVersion = 4;
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
                 wp_die(__('To be installed database version must be a number.', 'municipio'));
