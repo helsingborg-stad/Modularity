@@ -186,15 +186,11 @@ class Posts extends \Modularity\Module
      */
     public function removeUnwantedPostTypesFromManuallyPicked($args, $field, $id) 
     {
-        if (!empty($args['post_type']) && is_array($args['post_type'])) {
-            $args['post_type'] = array_filter($args['post_type'], function($postType) {
-                if ($postType === 'attachment') { 
-                    return false;
-                }
+        $skipablePostTypes = ['attachment'];
 
-                return strpos($postType, 'mod-') === false;
-            });
-        }
+        $args['post_type'] = array_filter($args['post_type'] ?? [], function($postType) use ($skipablePostTypes) {
+            return !in_array($postType, $skipablePostTypes);
+        });
 
         return $args;
     }
