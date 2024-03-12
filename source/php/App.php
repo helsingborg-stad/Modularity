@@ -357,6 +357,14 @@ class App
     }
 
 
+    /**
+     * Removes specific post types from the ACF post query.
+     *
+     * @param array $args The query arguments.
+     * @param string $field The ACF field name.
+     * @param int $id The post ID.
+     * @return array The modified query arguments.
+     */
     public function removeFromAcfPostQuery($args, $field, $id) 
     {
         $args['post_type'] = array_filter($args['post_type'] ?? [], function($postType) {
