@@ -118,7 +118,8 @@ class Upgrade
     {
         $this->migrateBlockFieldsValueToNewFields('acf/index', [
             'index_columns' => [
-                'name' => ['name' => 'columns', 'key' => 'field_65001d039d4c4'],
+                'name' => 'columns',
+                'key' =>'field_65001d039d4c4',
                 'type' => 'replaceValue',
                 'values' => [
                     'grid-md-12' => 'o-grid-12',
@@ -131,10 +132,8 @@ class Upgrade
             'index' => [
                 'type' => 'custom',
                 'function' => 'migrateIndexBlockRepeater',
-                'name' => [
-                    'name' => 'manual_inputs', 
-                    'key' => 'field_64ff22b2d91b7'
-                ], 
+                'name' => 'manual_inputs', 
+                'key' => 'field_64ff22b2d91b7' 
             ]
         ],
         'acf/manualinput');
@@ -208,38 +207,69 @@ class Upgrade
     {        
         $this->migrateBlockFieldsValueToNewFields('acf/posts', [
                 'posts_display_as' => [
-                    'name' => ['name' => 'display_as','key' => 'field_64ff23d0d91bf'], 
-                    'type' => 'replaceValue', 
-                    'values' => [
-                        'list' => 'list', 
-                        'expandable-list' => 'accordion', 
-                        'items' => 'card', 
-                        'news' => 'card', 
-                        'index' => 'card', 
-                        'segment' => 'segment', 
-                        'collection' => 'collection', 
-                        'features-grid' => 'box', 
-                        'grid' => 'block', 
-                        'default' => 'card'
+                    'name'      => 'display_as', 
+                    'key'       => 'field_64ff23d0d91bf',
+                    'type'      => 'replaceValue', 
+                    'values'    => [
+                        'list'              => 'list', 
+                        'expandable-list'   => 'accordion', 
+                        'items'             => 'card', 
+                        'news'              => 'card', 
+                        'index'             => 'card', 
+                        'segment'           => 'segment', 
+                        'collection'        => 'collection', 
+                        'features-grid'     => 'box', 
+                        'grid'              => 'block', 
+                        'default'           => 'card'
                     ],     
                 ],
                 'data' => [
-                    'name' => ['name' => 'manual_inputs', 'key' => 'field_64ff22b2d91b7'], 
-                    'type' => 'repeater', 
-                    'fields' => [
-                        'post_title' => ['name' => 'title', 'key' => 'field_64ff22fdd91b8'], 
-                        'post_content' => ['name' => 'content', 'key' => 'field_64ff231ed91b9'],
-                        'permalink' => ['name' => 'link', 'key' => 'field_64ff232ad91ba'],
-                        'item_icon' => ['name' => 'box_icon', 'key' => 'field_65293de2a26c7'],
-                        'image' => ['name' => 'image', 'key' => 'field_64ff2355d91bb'],
-                        'column_values' => ['name' => 'accordion_column_values', 'key' => 'field_64ff2372d91bc']
+                    'name'      => 'manual_inputs', 
+                    'key'       => 'field_64ff22b2d91b7',
+                    'type'      => 'repeater', 
+                    'fields'    => [
+                        'post_title'    => [
+                            'name'  => 'title', 
+                            'key'   => 'field_64ff22fdd91b8'
+                        ], 
+                        'post_content' => [
+                            'name'  => 'content', 
+                            'key'   => 'field_64ff231ed91b9'
+                        ],
+                        'permalink' => [
+                            'name'  => 'link', 
+                            'key'   => 'field_64ff232ad91ba'
+                        ],
+                        'item_icon' => [
+                            'name'  => 'box_icon', 
+                            'key'   => 'field_65293de2a26c7'
+                        ],
+                        'image' => [
+                            'name'  => 'image', 
+                            'key'   => 'field_64ff2355d91bb'
+                        ],
+                        'column_values' => [
+                            'name'      => 'accordion_column_values', 
+                            'key'       => 'field_64ff2372d91bc', 
+                            'type'      => 'repeater', 
+                            'fields'    => [
+                                'value' => [
+                                    'name'  => 'value', 
+                                    'key'   => 'field_64ff23afd91bd'
+                                ]
+                            ]
+                        ]
                     ]
                 ],
                 'posts_list_column_titles' => [
-                    'name' => ['name' => 'accordion_column_titles', 'key' => 'field_65005968bbc75'],
-                    'type' => 'repeater',
-                    'fields' => [
-                        'column_header' => ['name' => 'accordion_column_title', 'key' => 'field_65005a33bbc77'], 
+                    'name'      => 'accordion_column_titles',
+                    'key'       => 'field_65005968bbc75',
+                    'type'      => 'repeater',
+                    'fields'    => [
+                        'column_header' => [
+                            'name'  => 'accordion_column_title', 
+                            'key'   => 'field_65005a33bbc77'
+                        ], 
                     ]
                 ],
                 'title_column_label' => [
@@ -261,52 +291,52 @@ class Upgrade
             return false;
         });
 
-        $this->migrateAcfFieldsValueToNewFields($postsModules, 
+        $this->migrateAcfFieldsValueToNewFields($filteredPostsModules, 
             [
-                'post_title' => 'title',
-                'post_content' => 'content',
-                'data' => [
-                    'name' => 'manual_inputs', 
-                    'type' => 'repeater', 
-                    'fields' => [
-                        'post_title' => 'title', 
-                        'post_content' => 'content',
+                'post_title'    => 'title',
+                'post_content'  => 'content',
+                'data'          => [
+                    'name'      => 'manual_inputs', 
+                    'type'      => 'repeater', 
+                    'fields'    => [
+                        'post_title'    => 'title', 
+                        'post_content'  => 'content',
                         'column_values' => 'accordion_column_values',
-                        'permalink' => 'link',
-                        'item_icon' => 'box_icon'
+                        'permalink'     => 'link',
+                        'item_icon'     => 'box_icon'
                     ]
                 ],
                 'posts_columns' => [
-                    'name' => 'columns',
-                    'type' => 'replaceValue',
-                    'values' => [
-                        'grid-md-12' => 'o-grid-12',
-                        'grid-md-6' => 'o-grid-6',
-                        'grid-md-4' => 'o-grid-4',
-                        'grid-md-3' => 'o-grid-3',
-                        'default' => 'o-grid-4'
+                    'name'      => 'columns',
+                    'type'      => 'replaceValue',
+                    'values'    => [
+                        'grid-md-12'    => 'o-grid-12',
+                        'grid-md-6'     => 'o-grid-6',
+                        'grid-md-4'     => 'o-grid-4',
+                        'grid-md-3'     => 'o-grid-3',
+                        'default'       => 'o-grid-4'
                     ]
                 ],
                 'posts_display_as' => [
-                    'name' => 'display_as', 
-                    'type' => 'replaceValue', 
-                    'values' => [
-                        'list' => 'list', 
-                        'expandable-list' => 'accordion', 
-                        'items' => 'card', 
-                        'news' => 'card', 
-                        'index' => 'card', 
-                        'segment' => 'segment', 
-                        'collection' => 'collection', 
-                        'features-grid' => 'box', 
-                        'grid' => 'block', 
-                        'default' => 'card'
+                    'name'      => 'display_as', 
+                    'type'      => 'replaceValue', 
+                    'values'    => [
+                        'list'              => 'list', 
+                        'expandable-list'   => 'accordion', 
+                        'items'             => 'card', 
+                        'news'              => 'card', 
+                        'index'             => 'card', 
+                        'segment'           => 'segment', 
+                        'collection'        => 'collection', 
+                        'features-grid'     => 'box', 
+                        'grid'              => 'block', 
+                        'default'           => 'card'
                     ]
                 ],
                 'posts_list_column_titles' => [
-                    'name' => 'accordion_column_titles',
-                    'type' => 'repeater',
-                    'fields' => [
+                    'name'      => 'accordion_column_titles',
+                    'type'      => 'repeater',
+                    'fields'    => [
                         'column_header' => 'accordion_column_title', 
                     ]
                 ],
@@ -426,7 +456,7 @@ class Upgrade
      *
      * @return void
      */
-    private function migrateAcfRepeater(array $newField = [], array $oldFieldValue = [], int|bool $id = false) {
+    private function migrateAcfRepeater(array $newField = [], $oldFieldValue = [], int|bool $id = false) {
         update_field($newField['name'], $oldFieldValue, $id);
         $subFields = $newField['fields'];
         if (!empty($subFields) && is_array($subFields) && have_rows($newField['name'], $id)) {
@@ -475,8 +505,8 @@ class Upgrade
 
     /* TODO: Upgrade then remove */
     private function migrateIndexBlockRepeater($newField, $blockData, $oldFieldName) {
-        $newFieldName = $newField['name']['name'];
-        $newFieldKey = $newField['name']['key'];
+        $newFieldName = $newField['name'];
+        $newFieldKey = $newField['key'];
         $blockData[$newFieldName] = $blockData[$oldFieldName];
         $blockData['_' . $newFieldName] = $newFieldKey;
         if (is_array($blockData)) {
@@ -684,8 +714,8 @@ class Upgrade
                         if ($newField['type'] == 'removeField') {
                             $blockData = $this->removeBlockField($newField, $blockData, $oldFieldName);
                         } elseif ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
-                            $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
-                            $blockData[$newField['name']['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
+                            $blockData['_' . $newField['name']] = $newField['key'];
+                            $blockData[$newField['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
                         } elseif ($newField['type'] == 'repeater') {
                             $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
                         } elseif ($newField['type'] == 'custom' && !empty($newField['function'])) {
@@ -717,21 +747,47 @@ class Upgrade
      * @return array The updated block data with the migrated repeater field.
      */
     private function migrateBlockRepeater($newField, $blockData, $oldFieldName) {
-        $blockData[$newField['name']['name']] = $blockData[$oldFieldName];
-        $blockData['_' . $newField['name']['name']] = $newField['name']['key'];
-        if (!empty($newField['fields'])) {
-            foreach ($newField['fields'] as $oldRepeaterFieldName => $newRepeaterFieldName) {
-                if (!empty($newField['name']['name']) && !empty($blockData[$oldFieldName])) {
+        $blockData[$newField['name']] = $blockData[$oldFieldName];
+        $blockData['_' . $newField['name']] = $newField['key'];
+
+        $blockData = $this->migrateBlockRepeaterFields(
+            $newField['name'], 
+            $newField['fields'], 
+            $oldFieldName, 
+            $blockData
+        );
+
+        return $blockData;
+    }
+
+    private function migrateBlockRepeaterFields($newFieldName, $newFieldFields, $oldFieldName, $blockData) 
+    {
+        if (!empty($newFieldFields) && !empty($newFieldName)) {
+            foreach ($newFieldFields as $oldRepeaterFieldName => $newRepeaterFieldName) {
+                if (!empty($blockData[$oldFieldName])) {
                     $i = 0;
                     while (isset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName])) {
-                        $blockData[$newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name']] = $blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName];
-                        $blockData['_' . $newField['name']['name'] . '_' . $i . '_' . $newRepeaterFieldName['name']] = $newRepeaterFieldName['key'];
+                        $newName = $newFieldName . '_' . $i . '_' . $newRepeaterFieldName['name'];
+                        $oldName = $oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName;
+
+                        $blockData[$newName] = $blockData[$oldName];
+                        $blockData['_' . $newName] = $newRepeaterFieldName['key'];
+                        
+                        if (
+                            !empty($newRepeaterFieldName['type']) && 
+                            $newRepeaterFieldName['type'] === 'repeater' && 
+                            !empty($newRepeaterFieldName['fields']) && 
+                            is_array($newRepeaterFieldName['fields'])
+                        ) {
+                            $blockData = $this->migrateBlockRepeaterFields($newName, $newRepeaterFieldName['fields'], $oldName, $blockData);
+                        }
                         // unset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName]);
                         $i++;
                     }
                 }
             }
         }
+
         return $blockData;
     }
 
@@ -742,7 +798,8 @@ class Upgrade
      * @param mixed $oldFieldValue The old field value to be replaced.
      * @return mixed The updated field value.
      */
-    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) {
+    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) 
+    {
         if (isset($newField['values'][$oldFieldValue])) {
             return $newField['values'][$oldFieldValue];
         }
@@ -1015,9 +1072,8 @@ class Upgrade
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
         }
-
+        
         $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
-
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
                 wp_die(__('To be installed database version must be a number.', 'municipio'));
