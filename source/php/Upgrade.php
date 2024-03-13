@@ -706,13 +706,15 @@ class Upgrade
      * @param array $blockData All the data of the block (the acf fields attached to the block)
      */
     private function migrateBlockFields(array $fields = [], array $blockData = []) 
-    {
+    {        
         if (!empty($fields) && is_array($fields)) {
             foreach ($fields as $oldFieldName => $newField) {
                 if (isset($blockData[$oldFieldName])) {
                     if (is_array($newField) && !empty($newField['type'])) {
                         if ($newField['type'] == 'removeField') {
-                            $blockData = $this->removeBlockField($newField, $blockData, $oldFieldName);
+                            
+                            $removeFieldMigrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockRemoveFieldMigrator($blockData, $oldFieldName);
+                            $blockData = $removeFieldMigrator->migrate();
                         } elseif ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
                             $blockData['_' . $newField['name']] = $newField['key'];
                             $blockData[$newField['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
@@ -728,12 +730,6 @@ class Upgrade
                 }
             }
         }
-        return $blockData;
-    }
-
-    private function removeBlockField($newField, $blockData, $oldFieldName) {
-        unset($blockData[$oldFieldName]);
-        unset($blockData['_' . $oldFieldName]);
 
         return $blockData;
     }
@@ -750,7 +746,7 @@ class Upgrade
         $blockData[$newField['name']] = $blockData[$oldFieldName];
         $blockData['_' . $newField['name']] = $newField['key'];
 
-        $migrator = new \Modularity\Upgrade\Migrators\AcfBlockRepeaterFieldsMigrator(
+        $migrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockRepeaterFieldsMigrator(
             $newField['name'], 
             $newField['fields'], 
             $oldFieldName, 
