@@ -26,7 +26,7 @@ module.exports = {
 		'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
 		'js/dynamic-map-acf': './source/js/admin/dynamic-map-acf.js',
 
-		'js/block-validation': './source/js/block-validation.js',
+		'js/block-validation': './source/js/block-validation.ts',
 		'js/edit-modules-block-editor': './source/js/edit-modules-block-editor.js',
 
 		//Modules
