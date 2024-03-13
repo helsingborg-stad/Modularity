@@ -19,12 +19,12 @@ function createValidation(blockDataKey = false, blockDataType = false, regex = f
                         addedNode.hasAttribute('data-type') &&
                         addedNode.getAttribute('data-type') == blockDataType) {
                         setTimeout(() => {
-                            let fieldGroup = addedNode.querySelector(blockDataKey);
+                            let fieldGroup = addedNode.querySelector('[data-key="field_56a8b9f1902a6"]');
                             console.log(fieldGroup);
                             if (fieldGroup) {
                                 new BlockErrorNotice(fieldGroup, regex, errorMessage);
                             }
-                        }, 1000)  
+                        }, 2000)  
                     }
                 });
             }
