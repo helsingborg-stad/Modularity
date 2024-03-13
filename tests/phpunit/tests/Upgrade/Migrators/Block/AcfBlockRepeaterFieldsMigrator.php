@@ -1,9 +1,9 @@
 <?php
 
-namespace Modularity\Tests\Upgrade\Migrators;
+namespace Modularity\Tests\Upgrade\Block\Migrators;
 
 use PHPUnit\Framework\TestCase;
-use Modularity\Upgrade\Migrators\AcfBlockRepeaterFieldsMigrator;
+use Modularity\Upgrade\Migrators\Block\AcfBlockRepeaterFieldsMigrator;
 
 class AcfBlockRepeaterFieldsMigratorTest extends TestCase {
 

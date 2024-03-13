@@ -1,6 +1,6 @@
 <?php
 
-namespace Modularity\Upgrade\Migrators;
+namespace Modularity\Upgrade\Migrators\Block;
 
 interface Migrator
 {
