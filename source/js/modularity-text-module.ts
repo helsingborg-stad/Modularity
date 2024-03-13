@@ -19,5 +19,3 @@ function moduleModalWysiwygSelect() {
         }
     }, 1000); 
 }
-
-
