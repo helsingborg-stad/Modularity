@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 4; //The db version we want to achive
+    private $dbVersion = 3; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -1065,15 +1065,15 @@ class Upgrade
      */
     public function initUpgrade()
     {
-        // if(!is_admin()) {
-        //     return;
-        // }
+        if(!is_admin()) {
+            return;
+        }
 
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
         }
-
-        $currentDbVersion = 4;
+        
+        $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
                 wp_die(__('To be installed database version must be a number.', 'municipio'));
