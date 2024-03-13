@@ -750,43 +750,13 @@ class Upgrade
         $blockData[$newField['name']] = $blockData[$oldFieldName];
         $blockData['_' . $newField['name']] = $newField['key'];
 
-        $blockData = $this->migrateBlockRepeaterFields(
+        $migrator = new \Modularity\Upgrade\Migrators\AcfBlockRepeaterFieldsMigrator(
             $newField['name'], 
             $newField['fields'], 
             $oldFieldName, 
             $blockData
         );
-
-        return $blockData;
-    }
-
-    private function migrateBlockRepeaterFields($newFieldName, $newFieldFields, $oldFieldName, $blockData) 
-    {
-        if (!empty($newFieldFields) && !empty($newFieldName)) {
-            foreach ($newFieldFields as $oldRepeaterFieldName => $newRepeaterFieldName) {
-                if (!empty($blockData[$oldFieldName])) {
-                    $i = 0;
-                    while (isset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName])) {
-                        $newName = $newFieldName . '_' . $i . '_' . $newRepeaterFieldName['name'];
-                        $oldName = $oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName;
-
-                        $blockData[$newName] = $blockData[$oldName];
-                        $blockData['_' . $newName] = $newRepeaterFieldName['key'];
-                        
-                        if (
-                            !empty($newRepeaterFieldName['type']) && 
-                            $newRepeaterFieldName['type'] === 'repeater' && 
-                            !empty($newRepeaterFieldName['fields']) && 
-                            is_array($newRepeaterFieldName['fields'])
-                        ) {
-                            $blockData = $this->migrateBlockRepeaterFields($newName, $newRepeaterFieldName['fields'], $oldName, $blockData);
-                        }
-                        // unset($blockData[$oldFieldName . '_' . $i . '_' . $oldRepeaterFieldName]);
-                        $i++;
-                    }
-                }
-            }
-        }
+        $blockData = $migrator->migrate();
 
         return $blockData;
     }
