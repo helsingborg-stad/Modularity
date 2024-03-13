@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 5; //The db version we want to achive
+    private $dbVersion = 4; //The db version we want to achive
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -291,7 +291,7 @@ class Upgrade
             return false;
         });
 
-        $this->migrateAcfFieldsValueToNewFields($postsModules, 
+        $this->migrateAcfFieldsValueToNewFields($filteredPostsModules, 
             [
                 'post_title'    => 'title',
                 'post_content'  => 'content',
