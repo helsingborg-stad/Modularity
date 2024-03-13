@@ -1,6 +1,21 @@
-(function(window, wp){
-    const editModulesLinkId       = 'editModulesPageLink';
-    const {editModulesLinkLabel, editModulesLinkHref} = modularityBlockEditor;
+interface ModularityBlockEditor {
+    editModulesLinkLabel: string;
+    editModulesLinkHref: string;
+}
+
+declare const modularityBlockEditor: ModularityBlockEditor;
+
+interface WP {
+    data: {
+        subscribe(callback: () => void): void;
+    };
+}
+
+declare const wp: WP;
+
+(function (wp: WP) {
+    const editModulesLinkId = 'editModulesPageLink';
+    const { editModulesLinkLabel, editModulesLinkHref } = modularityBlockEditor;
 
     // prepare our custom link's html.
     const editModulesLinkHTML = `
@@ -18,20 +33,20 @@
     `;
 
     // check if gutenberg's editor root element is present.
-    var editorEl = document.getElementById('editor');
-    if(!editorEl){
+    const editorEl: HTMLElement | null = document.getElementById('editor');
+    if (!editorEl) {
         return;
     }
 
-    //Append button if not existing
-    wp.data.subscribe( function () {
-        setTimeout( function () {
-            if (!document.getElementById( editModulesLinkId )) {
-                var toolbalEl = editorEl.querySelector( '.edit-post-header__toolbar' );
-                if(toolbalEl instanceof HTMLElement){
+    // Append button if not existing
+    wp.data.subscribe(() => {
+        setTimeout(() => {
+            if (!document.getElementById(editModulesLinkId)) {
+                const toolbalEl: HTMLElement | null = editorEl.querySelector('.edit-post-header__toolbar');
+                if (toolbalEl instanceof HTMLElement) {
                     toolbalEl.insertAdjacentHTML('beforeend', editModulesLinkHTML);
                 }
             }
-        }, 1)
-    } );
-})( window, wp )
+        }, 1);
+    });
+})(wp);
