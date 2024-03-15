@@ -2,7 +2,7 @@
 
 namespace Modularity\Upgrade\Migrators\Block;
 
-class AcfBlockRemoveFieldMigrator implements Migrator {
+class AcfBlockRemoveFieldMigrator implements MigratorInterface {
 
     private $fieldName;
     private $blockData;
@@ -26,9 +26,9 @@ class AcfBlockRemoveFieldMigrator implements Migrator {
 
     private function isValidInputParams() {
         return 
-            is_string($this->fieldName) ||
-            is_array($this->blockData) ||
-            !empty($this->fieldName) ||
+            is_string($this->fieldName) &&
+            is_array($this->blockData) &&
+            !empty($this->fieldName) &&
             !empty($this->blockData);
     }
 }
