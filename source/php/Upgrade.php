@@ -502,58 +502,6 @@ class Upgrade
         }
     }
 
-
-    /* TODO: Upgrade then remove */
-    private function migrateIndexBlockRepeater($newField, $blockData, $oldFieldName) {
-        $newFieldName = $newField['name'];
-        $newFieldKey = $newField['key'];
-        $blockData[$newFieldName] = $blockData[$oldFieldName];
-        $blockData['_' . $newFieldName] = $newFieldKey;
-        if (is_array($blockData)) {
-            $indexedArrays = [];
-        
-            foreach ($blockData as $key => $value) {
-                if (preg_match('/^index_(\d+)_(.*)/', $key, $matches)) {
-                    if (isset($matches[1]) && isset($matches[2])) {
-                        $index = $matches[1];
-                        $indexedArrays[$index][$matches[2]] = $value;
-                    }
-                }
-            }
-
-            if (!empty($indexedArrays) && is_array($indexedArrays)) {
-                foreach ($indexedArrays as $index => $values) {
-                    if (!empty($values['link_type'])) {
-                        $title = !empty($values['title']) ? $values['title'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? get_the_title($values['page']) : false);
-    
-                        $content = !empty($values['lead']) ? $values['lead'] : ($values['link_type'] == 'internal' && !empty($values['page']) ? $this->getIndexExcerpt(get_the_content(null, true, $values['page'])) : false);
-                        
-                        $image = $values['link_type'] == 'internal' && !empty($values['page']) && !empty($values['image_display']) && $values['image_display'] == 'featured' ? get_post_thumbnail_id($values['page']) : (!empty($values['custom_image']) ? $values['custom_image'] : false);
-
-                        $link = $values['link_type'] == 'internal' && !empty($values['page']) ? get_permalink($values['page']) : (!empty($values['link_url']) && $values['link_type'] == 'external' ? $values['link_url'] : false);
-                        
-                        $blockData[$newFieldName . '_' . $index . '_title'] = $title;
-                        $blockData['_' . $newFieldName . '_' . $index . '_title'] = 'field_64ff22fdd91b8';
-
-                        $blockData[$newFieldName . '_' . $index . '_content'] = $content;
-                        $blockData['_' . $newFieldName . '_' . $index . '_content'] = 'field_64ff231ed91b9';
-
-                        $blockData[$newFieldName . '_' . $index . '_image'] = $image;
-                        $blockData['_' . $newFieldName . '_' . $index . '_image'] = 'field_64ff2355d91bb';
-
-                        $blockData[$newFieldName . '_' . $index . '_link'] = $link;
-                        $blockData['_' . $newFieldName . '_' . $index . '_link'] = 'field_64ff232ad91ba';  
-                    }
-                }
-            }
-            
-            $blockData['display_as'] = 'card';
-            $blockData['_display_as'] = 'field_64ff23d0d91bf';
-        }
-
-        return $blockData;
-    }
-
     /* TODO: Upgrade then remove */
     private function migrateIndexModuleRepeater(array $newField, $oldFieldValue = [], $id = false) {
 
@@ -666,39 +614,8 @@ class Upgrade
      */
     private function migrateBlockFieldsValueToNewFields($blockName, array $fields = [], $newBlockName = false, $blockConditionFunctionName = false) 
     {
-        $pages = $this->getPagesFromBlockName($blockName);
-        if (!empty($pages) && is_array($pages) && !empty($fields) && is_array($fields)) {
-            foreach ($pages as &$page) {
-                if ($page->post_type !== 'customize_changeset') {
-                    $blocks = parse_blocks($page->post_content);
-                    if (!empty($blocks) && !empty($page->ID)) {
-                        foreach ($blocks as &$block) {
-                            if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data']) && $this->blockCondition($blockConditionFunctionName, $block)) {
-
-                                $migrationFieldManager = new \Modularity\Upgrade\Migrators\Block\AcfBlockMigrationHandler($fields, $block['attrs']['data']);
-                                $block['attrs']['data'] = $migrationFieldManager->migrateBlockFields();
-
-                                if (!empty($newBlockName)) {
-                                    $block['blockName'] = $newBlockName;
-                                    $block['attrs']['name'] = $newBlockName;
-                                }
-                            }
-                        }
-    
-                        $serializedBlocks = serialize_blocks($blocks); 
-                        
-                        if (!empty($serializedBlocks)) {
-                            $queryUpdateContent = $this->db->prepare(
-                                "UPDATE " . $this->db->posts . " SET post_content = %s WHERE ID = %d", 
-                                $serializedBlocks, 
-                                $page->ID
-                            ); 
-                            $this->db->query($queryUpdateContent); 
-                        }
-                    }
-                }
-            }
-        }
+        $migrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockMigration($this->db, $blockName, $fields, $newBlockName, $blockConditionFunctionName);
+        $migrator->migrateBlocks($this->db, $blockName, $fields, $newBlockName, $blockConditionFunctionName);
     }
 
     /**
