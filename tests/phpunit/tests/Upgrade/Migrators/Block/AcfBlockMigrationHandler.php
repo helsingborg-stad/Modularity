@@ -21,13 +21,13 @@ class AcfBlockMigrationHandlerTest extends TestCase {
                 'name'  => 'newFieldName', 
                 'key'   => 'newFieldKey',
                 'type' => 'custom',
-                'function' => 'AcfMigrateIndexBlockRepeater'
+                'class' => 'AcfMigrateIndexBlockRepeater'
             ]
         ];
 
         $migrationHandler = new AcfBlockMigrationHandler($fields, $blockData);
         $result = $migrationHandler->migrateBlockFields();
 
-        $this->assertEquals(true, $result);
+        $this->assertIsArray($result);
     }
 }
