@@ -2,6 +2,8 @@
 
 namespace Modularity\Upgrade\Migrators\Block;
 
+use Modularity\Upgrade\Migrators\MigratorInterface;
+
 class AcfBlockRepeaterFieldsMigrator implements MigratorInterface {
 
     private $newFieldName;

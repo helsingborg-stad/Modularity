@@ -131,7 +131,7 @@ class Upgrade
             ], 
             'index' => [
                 'type' => 'custom',
-                'function' => 'migrateIndexBlockRepeater',
+                'class' => 'migrateIndexBlockRepeater',
                 'name' => 'manual_inputs', 
                 'key' => 'field_64ff22b2d91b7' 
             ]

@@ -60,7 +60,10 @@ class AcfBlockMigrationHandler {
         elseif ($this->isRepeaterFieldMigration($newField)) {
             $migrator = new AcfBlockRepeaterFieldsMigrator($newField['name'], $newField['key'], $newField['fields'], $oldFieldName, $blockData);
         } 
-
+        elseif ($this->isCustomFieldMigration($newField)) {
+            $class = '\\Modularity\Upgrade\Migrators\Block\Custom\\' . $newField['class'];
+            $migrator = new $class($newField, $oldFieldName, $blockData);
+        }
         return 
             isset($migrator) ?
             $migrator->migrate() :
@@ -90,6 +93,13 @@ class AcfBlockMigrationHandler {
             $newField['type'] == 'repeater' && 
             isset($newField['fields']) && 
             is_array($newField['fields']);
+    }
+
+    private function isCustomFieldMigration($newField) {
+        return 
+            $newField['type'] == 'custom' && 
+            !empty($newField['function']) && 
+            class_exists('\\Modularity\Upgrade\Migrators\Block\Custom\\' . $newField['class']);
     }
 
     private function isValidInputParams() {

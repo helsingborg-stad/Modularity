@@ -2,6 +2,8 @@
 
 namespace Modularity\Upgrade\Migrators\Block;
 
+use Modularity\Upgrade\Migrators\MigratorInterface;
+
 class AcfBlockRemoveFieldMigrator implements MigratorInterface {
 
     private $fieldName;
