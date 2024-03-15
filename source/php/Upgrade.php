@@ -674,7 +674,9 @@ class Upgrade
                     if (!empty($blocks) && !empty($page->ID)) {
                         foreach ($blocks as &$block) {
                             if (!empty($block['blockName']) && $block['blockName'] === $blockName && !empty($block['attrs']['data']) && $this->blockCondition($blockConditionFunctionName, $block)) {
-                                $block['attrs']['data'] = $this->migrateBlockFields($fields, $block['attrs']['data']);
+
+                                $migrationFieldManager = new \Modularity\Upgrade\Migrators\Block\AcfBlockMigrationHandler($fields, $block['attrs']['data']);
+                                $block['attrs']['data'] = $migrationFieldManager->migrateBlockFields();
 
                                 if (!empty($newBlockName)) {
                                     $block['blockName'] = $newBlockName;
@@ -697,80 +699,6 @@ class Upgrade
                 }
             }
         }
-    }
-
-    /**
-     * Block: Extract a field value and adds it to another field.
-     * 
-     * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
-     * @param array $blockData All the data of the block (the acf fields attached to the block)
-     */
-    private function migrateBlockFields(array $fields = [], array $blockData = []) 
-    {        
-        if (!empty($fields) && is_array($fields)) {
-            foreach ($fields as $oldFieldName => $newField) {
-                if (isset($blockData[$oldFieldName])) {
-                    if (is_array($newField) && !empty($newField['type'])) {
-                        if ($newField['type'] == 'removeField') {
-                            
-                            $removeFieldMigrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockRemoveFieldMigrator($blockData, $oldFieldName);
-                            $blockData = $removeFieldMigrator->migrate();
-                        } elseif ($newField['type'] == 'replaceValue' && isset($newField['values']) && is_array($newField['values'])) {
-                            $blockData['_' . $newField['name']] = $newField['key'];
-                            $blockData[$newField['name']] = $this->updateAndReplaceBlockFieldValue($newField, $blockData[$oldFieldName]);
-                        } elseif ($newField['type'] == 'repeater') {
-                            $blockData = $this->migrateBlockRepeater($newField, $blockData, $oldFieldName);
-                        } elseif ($newField['type'] == 'custom' && !empty($newField['function'])) {
-                            $blockData = $this->{$newField['function']}($newField, $blockData, $oldFieldName);
-                        }
-                    } else {
-                        $blockData[$newField['name']] = $blockData[$oldFieldName];
-                        $blockData['_' . $newField['name']] = $newField['key'];
-                    }
-                }
-            }
-        }
-
-        return $blockData;
-    }
-
-    /**
-     * Migrate a repeater field within a block.
-     * 
-     * @param array $newField The configuration for the new repeater field.
-     * @param array $blockData The data of the block containing the repeater field.
-     * @param string $oldFieldName The name of the old repeater field.
-     * @return array The updated block data with the migrated repeater field.
-     */
-    private function migrateBlockRepeater($newField, $blockData, $oldFieldName) {
-        $blockData[$newField['name']] = $blockData[$oldFieldName];
-        $blockData['_' . $newField['name']] = $newField['key'];
-
-        $migrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockRepeaterFieldsMigrator(
-            $newField['name'], 
-            $newField['fields'], 
-            $oldFieldName, 
-            $blockData
-        );
-        $blockData = $migrator->migrate();
-
-        return $blockData;
-    }
-
-    /**
-     * Update and replace a block field value based on a configuration.
-     * 
-     * @param array $newField The configuration for the field update and replacement.
-     * @param mixed $oldFieldValue The old field value to be replaced.
-     * @return mixed The updated field value.
-     */
-    private function updateAndReplaceBlockFieldValue($newField, $oldFieldValue) 
-    {
-        if (isset($newField['values'][$oldFieldValue])) {
-            return $newField['values'][$oldFieldValue];
-        }
-
-        return $newField['values']['default'];
     }
 
     /**
