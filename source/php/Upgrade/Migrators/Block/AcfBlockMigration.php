@@ -72,6 +72,7 @@ class AcfBlockMigration {
         }
     }
 
+    /* FIX: This parts needs to be moved */
     private function postsBlockCondition($block) {
         return !empty($block['attrs']['data']['posts_data_source']) && $block['attrs']['data']['posts_data_source'] == 'input';
     }

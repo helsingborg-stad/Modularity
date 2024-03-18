@@ -93,7 +93,7 @@ class AcfBlockMigrationHandler {
     private function isCustomFieldMigration($newField) {
         return 
             $newField['type'] == 'custom' && 
-            !empty($newField['function']) && 
+            !empty($newField['class']) && 
             class_exists('\\Modularity\Upgrade\Migrators\Block\Custom\\' . $newField['class']);
     }
 

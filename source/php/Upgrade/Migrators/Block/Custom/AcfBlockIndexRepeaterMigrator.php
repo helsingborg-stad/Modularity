@@ -4,7 +4,7 @@ namespace Modularity\Upgrade\Migrators\Block\Custom;
 
 use Modularity\Upgrade\Migrators\MigratorInterface;
 
-class AcfMigrateIndexBlockRepeater implements MigratorInterface {
+class AcfBlockIndexRepeaterMigrator implements MigratorInterface {
 
     private $newField;
     private $oldFieldName;
