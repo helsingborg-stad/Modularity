@@ -12,18 +12,12 @@ class AcfModuleMigration {
     private $newModuleName;
 
     public function __construct($db, array $modules, array $fields, $newModuleName = false) {
+        $this->db = $db;
         $this->modules = $modules;
         $this->fields = $fields;
         $this->newModuleName = $newModuleName;
     }
 
-    /**
-     * Block: Extract a field value and adds it to another field.
-     * 
-     * @param string $pages Pages with the block
-     * @param array $fields Fields is an array with the old name of the field being a key and the value being the new name of the field
-     * @param string|false $newBlockName renames the block to a different block.
-     */
     public function migrateModules() 
     {
         if (!$this->isValidParams()) {
@@ -35,10 +29,11 @@ class AcfModuleMigration {
                 continue;
             }
             
-            // $this->migrateModuleFields($fields, $module->ID);
+            $migrationFieldManager = new AcfModuleMigrationHandler($this->fields, $module->ID);
+            $migrationFieldManager->migrateModuleFields();
 
             //Update post type
-            if (!empty($newModuleName)) {
+            if (!empty($this->newModuleName)) {
                 $this->updateModuleName($module);
             }
         }
@@ -55,7 +50,8 @@ class AcfModuleMigration {
 
     private function isValidParams() {
         return 
-            !empty($modules) &&
-            !empty($fields);
+            !empty($this->modules) &&
+            !empty($this->fields) &&
+            is_array($this->modules);
     }
 }
