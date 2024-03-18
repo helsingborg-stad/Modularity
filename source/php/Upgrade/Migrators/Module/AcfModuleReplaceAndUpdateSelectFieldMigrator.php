@@ -16,11 +16,15 @@ class AcfModuleReplaceAndUpdateSelectFieldMigrator implements MigratorInterface 
         $this->moduleId         = $moduleId;
     }
 
-    public function migrate():mixed {
+    public function migrate() {
         if (!empty($this->newField['values'][$this->oldFieldValue])) { 
-            update_field($this->newField['name'], $this->newField['values'][$this->oldFieldValue], $this->moduleId);
-        } else {
-            update_field($this->newField['name'], $this->newField['values']['default'] ?? "", $this->moduleId);
+            return update_field($this->newField['name'], $this->newField['values'][$this->oldFieldValue], $this->moduleId);
+        } 
+        
+        if(!empty($this->newField['values']['default'])) {
+            return update_field($this->newField['name'], $this->newField['values']['default'], $this->moduleId);
         }
+
+        return false;
     }
 }

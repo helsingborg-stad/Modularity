@@ -14,7 +14,7 @@ class AcfModuleRemoveFieldMigrator implements MigratorInterface {
         $this->moduleId = $moduleId;
     }
 
-    public function migrate():mixed {
-        delete_field($this->fieldName, $this->moduleId);
+    public function migrate() {
+        return delete_field($this->fieldName, $this->moduleId);
     }
 }

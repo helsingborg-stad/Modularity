@@ -17,11 +17,9 @@ class AcfModuleMigrationHandler {
     public function migrateModuleFields() 
     {
         foreach ($this->fields as $oldFieldName => $newField) {
-            if (!is_array($newField)) {
-                continue;
-            }
-
-            $this->migrateField($oldFieldName, $newField);
+            if (is_array($newField) || is_string($newField)) {
+                $this->migrateField($oldFieldName, $newField);
+            } 
         }
     }
 
@@ -30,7 +28,12 @@ class AcfModuleMigrationHandler {
         $oldFieldValue = get_field($oldFieldName, $this->moduleId);
 
         if (!empty($newField['type'])) {
-            $this->migrateFieldByType($oldFieldName, $oldFieldValue, $newField);
+            return $this->migrateFieldByType($oldFieldName, $oldFieldValue, $newField);
+        }
+
+        if (is_string($newField)) {
+            $migrator = new AcfModuleFieldMigrator($newField, $oldFieldValue, $this->moduleId);
+            return $migrator->migrate();
         }
     }
 
@@ -49,11 +52,12 @@ class AcfModuleMigrationHandler {
             $class = '\\Modularity\Upgrade\Migrators\Module\Custom\\' . $newField['class'];
         }
 
-        isset($migrator) ? $migrator->migrate() : null;
+        return isset($migrator) ? $migrator->migrate() : false;
     }
 
     private function isRemoveFieldMigration($newField) {
-        return $newField['type'] == 'removeField';
+        return 
+            $newField['type'] == 'removeField';
     }
 
     private function isReplaceAndUpdateFieldMigration($newField) {
