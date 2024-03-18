@@ -16,7 +16,7 @@ class AcfModuleRepeaterFieldsMigrator implements MigratorInterface {
         $this->moduleId         = $moduleId;
     }
 
-    public function migrate() {
+    public function migrate():mixed {
         update_field($this->newField['name'], $this->oldFieldValue, $this->moduleId);
         $subFields = $this->newField['fields'];
 

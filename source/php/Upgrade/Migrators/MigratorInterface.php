@@ -12,9 +12,9 @@ interface MigratorInterface
     /**
      * Perform migration.
      * Blocks: returns the data attached to the block.
-     * Modules: Updates the fields using ACF functions.
+     * Modules: returns a boolean based on field update success.
      * 
      * @return mixed|void 
      */
-    public function migrate();
+    public function migrate():mixed;
 }

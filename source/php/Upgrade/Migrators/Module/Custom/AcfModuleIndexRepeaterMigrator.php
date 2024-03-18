@@ -16,7 +16,7 @@ class AcfModuleIndexRepeaterMigrator implements MigratorInterface {
         $this->moduleId = $moduleId;
     }
 
-    public function migrate() {
+    public function migrate():mixed {
         update_field('display_as', 'card', $this->moduleId);
         
         $updateValue = [];
@@ -49,8 +49,10 @@ class AcfModuleIndexRepeaterMigrator implements MigratorInterface {
                 $updateValue[] = $val;
             }
 
-            update_field($this->newField['name'], $updateValue, $this->moduleId);
+            return update_field($this->newField['name'], $updateValue, $this->moduleId);
         }
+
+        return false;
     }
 
     /* TODO: Remove after upgrade */

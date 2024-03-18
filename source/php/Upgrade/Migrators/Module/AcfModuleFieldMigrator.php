@@ -16,7 +16,7 @@ class AcfModuleFieldMigrator implements MigratorInterface {
         $this->moduleId = $moduleId;
     }
 
-    public function migrate() {
+    public function migrate():mixed {
         return update_field($this->newField, $this->oldFieldValue, $this->moduleId);
     }
 }
