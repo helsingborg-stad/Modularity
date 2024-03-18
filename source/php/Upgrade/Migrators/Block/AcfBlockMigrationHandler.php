@@ -2,9 +2,10 @@
 
 namespace Modularity\Upgrade\Migrators\Block;
 
-use Modularity\Upgrade\Migrators\Block\AcfBlockRemoveFieldMigrator;
+use Modularity\Upgrade\Migrators\Block\AcfBlockFieldMigrator;
 use Modularity\Upgrade\Migrators\Block\AcfBlockRepeaterFieldsMigrator;
 use Modularity\Upgrade\Migrators\Block\AcfBlockReplaceAndUpdateSelectFieldMigrator;
+use Modularity\Upgrade\Migrators\Block\AcfBlockRemoveFieldMigrator;
 
 class AcfBlockMigrationHandler {
 
@@ -39,7 +40,7 @@ class AcfBlockMigrationHandler {
     }
 
     private function migrateField($newField, $oldFieldName, $blockData) {
-        if (empty($newField['name'] || $newField['key'])) {
+        if (empty($newField['name'] || empty($newField['key']))) {
             return $blockData;
         }
 
@@ -47,7 +48,8 @@ class AcfBlockMigrationHandler {
             return $this->migrateFieldByType($newField, $oldFieldName, $blockData);
         }
 
-        return $this->migrateFieldDefault($newField, $oldFieldName, $blockData);
+        $migrator = new AcfBlockFieldMigrator($newField, $oldFieldName, $blockData);
+        return $migrator->migrate();
     }
 
     private function migrateFieldByType($newField, $oldFieldName, $blockData) {
@@ -68,13 +70,6 @@ class AcfBlockMigrationHandler {
             isset($migrator) ?
             $migrator->migrate() :
             $blockData;
-    }
-
-    private function migrateFieldDefault($newField, $oldFieldName, $blockData) {
-        $blockData[$newField['name']] = $blockData[$oldFieldName];
-        $blockData['_' . $newField['name']] = $newField['key'];
-
-        return $blockData;
     }
 
     private function isRemoveFieldMigration($newField) {
