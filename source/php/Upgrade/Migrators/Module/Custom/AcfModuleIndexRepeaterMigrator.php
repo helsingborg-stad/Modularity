@@ -16,7 +16,7 @@ class AcfModuleIndexRepeaterMigrator implements MigratorInterface {
         $this->moduleId = $moduleId;
     }
 
-    public function migrate():mixed {
+    public function migrate() {
         update_field('display_as', 'card', $this->moduleId);
         
         $updateValue = [];
