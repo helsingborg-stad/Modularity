@@ -12,49 +12,6 @@ import Modal from "./prompt/modal"
 import { ModulesRestAPI, ModulesRestAPIEndpoints } from './helpers/ModulesRestAPI';
 import { ModuleRefresher, ensureWPApiSettings } from './helpers/ModuleRefresher';
 
-declare global {
-    interface Window {
-        wpApiSettings: {
-            root: string;
-            nonce: string;
-        };
-    }
-}
-
-interface WpObject {
-    autosave?: {
-        server: {
-            handleUnload: () => void;
-            triggerSave: () => void;
-        };
-    };
-}
-
-declare const wp: WpObject;
-
-interface CustomWindow extends Window {
-    Modularity: {
-        Editor?: {
-            Autosave?: {},
-            DragAndDrop?: {},
-            Module?: {},
-            Thickbox?: {
-                postAction?: string;
-            },
-            Validate?: {}
-        },
-        Helpers?: {
-            Helpers?: {},
-            Widget?: {}
-        },
-        Prompt?: {
-            Modal?: {
-                open: (url: string) => void;
-            }
-        }
-    }
-}
-
 const parentWindow: CustomWindow = parent as CustomWindow;
 
 if (!parentWindow.Modularity) {
@@ -76,6 +33,7 @@ if (!parentWindow.Modularity) {
     Modularity.Prompt.Modal = new Modal();
 
     parentWindow.Modularity = Modularity;
+
 
     document.addEventListener('DOMContentLoaded', () => {
 
