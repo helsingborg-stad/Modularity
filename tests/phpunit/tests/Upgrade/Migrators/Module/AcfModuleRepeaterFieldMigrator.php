@@ -17,7 +17,7 @@ class AcfModuleRepeaterFieldMigratorTest extends TestCase {
         ]);
 
         $newField = [
-            'name'      => 'manual_inputs', 
+            'name'      => 'name', 
             'type'      => 'repeater', 
             'fields'    => [
                 'oldFieldName'    => 'newFieldName', 

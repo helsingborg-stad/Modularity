@@ -4,8 +4,6 @@ namespace Modularity\Tests\Upgrade\Module\Migrators;
 
 use PHPUnit\Framework\TestCase;
 use Modularity\Upgrade\Migrators\Module\AcfModuleRemoveFieldMigrator;
-use phpmock\mockery\PHPMockery;
-use Mockery;
 use WP_Mock;
 
 class AcfModuleRemoveFieldMigratorTest extends TestCase {
