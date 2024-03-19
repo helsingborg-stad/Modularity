@@ -14,7 +14,7 @@ interface MigratorInterface
      * Blocks: returns the data attached to the block.
      * Modules: returns a boolean based on field update success.
      * 
-     * @return mixed|void 
+     * @return mixed|bool 
      */
     public function migrate():mixed;
 }
