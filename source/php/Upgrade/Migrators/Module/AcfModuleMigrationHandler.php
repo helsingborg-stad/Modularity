@@ -14,19 +14,21 @@ class AcfModuleMigrationHandler {
         $this->moduleId = $moduleId;
     }
 
-    public function migrateModuleFields() 
+    public function migrateModuleFields():array 
     {
+        $fieldsWasUpdated = [];
         foreach ($this->fields as $oldFieldName => $newField) {
             if (is_array($newField) || is_string($newField)) {
-                $this->migrateField($oldFieldName, $newField);
+                $fieldsWasUpdated[] = $this->migrateField($oldFieldName, $newField);
             } 
         }
+
+        return $fieldsWasUpdated;
     }
 
-    private function migrateField(string $oldFieldName, $newField) 
+    private function migrateField(string $oldFieldName, $newField):bool 
     {
         $oldFieldValue = get_field($oldFieldName, $this->moduleId);
-
         if (!empty($newField['type'])) {
             return $this->migrateFieldByType($oldFieldName, $oldFieldValue, $newField);
         }
@@ -37,7 +39,7 @@ class AcfModuleMigrationHandler {
         }
     }
 
-    private function migrateFieldByType(string $oldFieldName, $oldFieldValue, $newField) 
+    private function migrateFieldByType(string $oldFieldName, $oldFieldValue, array $newField):bool 
     {
         if ($this->isRemoveFieldMigration($newField)) {
             $migrator = new AcfModuleRemoveFieldMigrator($oldFieldName, $this->moduleId);
@@ -50,6 +52,7 @@ class AcfModuleMigrationHandler {
         } 
         elseif ($this->isCustomFieldMigration($newField)) {
             $class = '\\Modularity\Upgrade\Migrators\Module\Custom\\' . $newField['class'];
+            $migrator = new $class($newField, $oldFieldValue, $this->moduleId);
         }
 
         return isset($migrator) ? $migrator->migrate() : false;
@@ -60,7 +63,7 @@ class AcfModuleMigrationHandler {
             $newField['type'] == 'removeField';
     }
 
-    private function isReplaceAndUpdateFieldMigration($newField) {
+    private function isReplaceAndUpdateFieldMigration(array $newField):bool {
         return 
             $newField['type'] == 'replaceValue' && 
             isset($newField['values']) && 
@@ -69,7 +72,7 @@ class AcfModuleMigrationHandler {
             is_string($newField['name']);
     }
     
-    private function isRepeaterFieldMigration($newField) {
+    private function isRepeaterFieldMigration(array $newField):bool {
         return 
             $newField['type'] == 'repeater' && 
             isset($newField['fields']) && 
@@ -78,7 +81,7 @@ class AcfModuleMigrationHandler {
             is_string($newField['name']);
         }
 
-    private function isCustomFieldMigration($newField) {
+    private function isCustomFieldMigration(array $newField):bool {
         return 
             $newField['type'] == 'custom' && 
             !empty($newField['class']) && 

@@ -10,7 +10,7 @@ class AcfModuleFieldMigrator implements MigratorInterface {
     private $oldFieldValue;
     private $moduleId;
 
-    public function __construct($newField, $oldFieldValue, $moduleId) {
+    public function __construct(string $newField, $oldFieldValue, int $moduleId) {
         $this->newField = $newField;
         $this->oldFieldValue = $oldFieldValue;
         $this->moduleId = $moduleId;

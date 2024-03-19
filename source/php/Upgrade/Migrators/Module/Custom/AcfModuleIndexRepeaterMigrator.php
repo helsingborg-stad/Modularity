@@ -51,7 +51,7 @@ class AcfModuleIndexRepeaterMigrator implements MigratorInterface {
 
             return update_field($this->newField['name'], $updateValue, $this->moduleId);
         }
-
+        
         return false;
     }
 

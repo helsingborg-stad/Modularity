@@ -11,7 +11,7 @@ class AcfModuleMigration {
     private $fields;
     private $newModuleName;
 
-    public function __construct($db, array $modules, array $fields, $newModuleName = false) {
+    public function __construct(\wpdb $db, array $modules, array $fields, $newModuleName = false) {
         $this->db = $db;
         $this->modules = $modules;
         $this->fields = $fields;
@@ -21,7 +21,7 @@ class AcfModuleMigration {
     public function migrateModules() 
     {
         if (!$this->isValidParams()) {
-            return;
+            return false;
         }
 
         foreach ($this->modules as &$module) {
@@ -51,7 +51,6 @@ class AcfModuleMigration {
     private function isValidParams() {
         return 
             !empty($this->modules) &&
-            !empty($this->fields) &&
-            is_array($this->modules);
+            !empty($this->fields);
     }
 }
