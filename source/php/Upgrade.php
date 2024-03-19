@@ -485,21 +485,8 @@ class Upgrade
      */
     private function migrateAcfFieldsValueToNewFields(array $modules, array $fields, $newModuleName = false)
     {
-        if (!empty($modules) && is_array($modules)) {
-            foreach ($modules as &$module) {
-                $this->migrateModuleFields($fields, $module->ID);
-
-                //Update post type
-                if (!empty($newModuleName)) {
-                    $QueryUpdatePostType = $this->db->prepare(
-                        "UPDATE " . $this->db->posts . " SET post_type = %s WHERE ID = %d", 
-                        $newModuleName, 
-                        $module->ID
-                    ); 
-                    $this->db->query($QueryUpdatePostType); 
-                }
-            }
-        }
+       $moduleMigrator = new \Modularity\Upgrade\Migrators\Module\AcfModuleMigration($this->db, $modules, $fields, $newModuleName);
+       $moduleMigrator->migrateModules();
     }
 
     /* TODO: Upgrade then remove */
@@ -561,9 +548,8 @@ class Upgrade
     private function migrateModuleFields(array $fields, int $id) 
     {
         if (!empty($fields) && is_array($fields)) {
-            foreach ($fields as $oldFieldName => $newField) {
-                $this->migrateModuleField($oldFieldName, $newField, $id);
-            }
+            $migrator = new \Modularity\Upgrade\Migrators\Module\AcfModuleMigrationHandler($fields, $id);
+            $migrator->migrateModuleFields();
         }
     }
 
@@ -581,11 +567,17 @@ class Upgrade
         $oldFieldValue = get_field($oldFieldName, $id);
         if (!empty($newField['type'])) {
             if ($newField['type'] == 'removeField') {
-                $this->removeModuleField($oldFieldName, $id);
+                $migrator = new \Modularity\Upgrade\Migrators\Module\AcfModuleRemoveFieldMigrator($oldFieldName, $id);
+                $migrator->migrate();
+                // $this->removeModuleField($oldFieldName, $id);
             } elseif ($newField['type'] == 'repeater') {
-                $this->migrateAcfRepeater($newField, $oldFieldValue, $id);
+                echo '<pre>' . print_r( $oldFieldValue, true ) . '</pre>';die;
+                $migrator = new \Modularity\Upgrade\Migrators\Module\AcfModuleRepeaterFieldsMigrator($newField, $oldFieldValue, $id);
+                $migrator->migrate();
             } elseif ($newField['type'] == 'replaceValue') {
-                $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
+                $migrator = new \Modularity\Upgrade\Migrators\Module\AcfModuleReplaceAndUpdateSelectFieldMigrator($newField, $oldFieldValue, $id);
+                $migrator->migrate();
+                // $this->updateAndReplaceFieldValue($newField, $oldFieldValue, $id);
             } elseif ($newField['type'] == 'custom' && !empty($newField['function'])) {
                 $this->{$newField['function']}($newField, $oldFieldValue, $id);
             }
@@ -614,8 +606,15 @@ class Upgrade
      */
     private function migrateBlockFieldsValueToNewFields($blockName, array $fields = [], $newBlockName = false, $blockConditionFunctionName = false) 
     {
-        $migrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockMigration($this->db, $blockName, $fields, $newBlockName, $blockConditionFunctionName);
-        $migrator->migrateBlocks($this->db, $blockName, $fields, $newBlockName, $blockConditionFunctionName);
+        $migrator = new \Modularity\Upgrade\Migrators\Block\AcfBlockMigration(
+            $this->db, 
+            $blockName, 
+            $fields, 
+            $newBlockName, 
+            $blockConditionFunctionName
+        );
+
+        $migrator->migrateBlocks();
     }
 
     /**
