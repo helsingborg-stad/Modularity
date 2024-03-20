@@ -64,20 +64,20 @@ class Search
             if (substr($object->post_type, 0, 4) != 'mod-') {
                 return true;
             }
-            return false; 
+            return false;
         });
 
         //Number of posts
-        $foundPosts = count($searchResult); 
-        
+        $foundPosts = count($searchResult);
+
         //"Return"
         $wp_query->posts = array_values($searchResult);
         $wp_query->found_posts = $foundPosts;
-        $wp_query->post_count = $foundPosts; 
+        $wp_query->post_count = $foundPosts;
 
-        //Calc number of posts
-        if($foundPosts != 0) {
-            $wp_query->max_num_pages = $foundPosts / get_option('posts_per_page'); 
+        $postsPerPage = (int) get_option('posts_per_page');
+        if ($foundPosts != 0 && $postsPerPage != 0) {
+            $wp_query->max_num_pages = $foundPosts / $postsPerPage;
         } else {
             $wp_query->max_num_pages = 0;
         }
@@ -125,9 +125,9 @@ class Search
             if(!empty($markup)) {
                 $rendered .= " " . $markup;
 
-                
+
             }
-            
+
         }
 
         return $rendered;
@@ -182,12 +182,12 @@ class Search
         //Only add if not empty
         if (!empty($rendered)) {
             $attributes['modules'] = substr(
-                $rendered, 
-                0, 
+                $rendered,
+                0,
                 (9000 - $contentBytes)
             );
         }
-        
+
         return $attributes;
     }
 
