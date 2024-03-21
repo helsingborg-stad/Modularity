@@ -9,7 +9,7 @@ namespace Modularity;
  */
 class Upgrade
 {
-    private $dbVersion = 6; //The db version we want to achive
+    private $dbVersion = 1;
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -58,7 +58,7 @@ class Upgrade
         }
         
         // $currentDbVersion = is_numeric(get_option($this->dbVersionKey)) ? (int) get_option($this->dbVersionKey) : 0;
-        $currentDbVersion = 5;
+        $currentDbVersion = 0;
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
                 wp_die(__('To be installed database version must be a number.', 'municipio'));
@@ -79,15 +79,16 @@ class Upgrade
             
             
             //Fetch global wpdb object, save to $db
+            
             $this->globalToLocal('wpdb', 'db');
-            while ($currentDbVersion <= $this->dbVersion) {
+            $currentDbVersion = $currentDbVersion + 1;
+            for ($currentDbVersion; $currentDbVersion <= $this->dbVersion; $currentDbVersion++) {
                 $class = 'Modularity\Upgrade\Version\V' . $currentDbVersion;
+
                 if (class_exists($class) && $this->db) {
                     $version = new $class($this->db);
                     $version->upgrade();
                 }
-                
-                $currentDbVersion++;
             }
         }
     }
