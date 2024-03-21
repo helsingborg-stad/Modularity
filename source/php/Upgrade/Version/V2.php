@@ -6,7 +6,7 @@ use \Modularity\Upgrade\Migrators\Block\AcfBlockMigration;
 use \Modularity\Upgrade\Migrators\Module\AcfModuleMigration;
 use \Modularity\Upgrade\Version\Helper\GetPostsByPostType;
 
-class V3 implements versionInterface {
+class V2 implements versionInterface {
     private $db;
     private $oldName;
     private $newName;
