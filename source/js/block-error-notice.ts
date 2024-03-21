@@ -1,11 +1,19 @@
 export default class BlockErrorNotice {
-    constructor(fieldGroup, regex, errorMessage) {
+    fieldGroup: HTMLElement;
+    field: HTMLTextAreaElement | null;
+    noticeElement: HTMLElement | false;
+    regex: RegExp;
+    errorMessage: string;
+    notice: HTMLElement | null;
+
+    constructor(fieldGroup: HTMLElement, regex: RegExp, errorMessage: string) {
         this.fieldGroup         = fieldGroup;
         this.field              = fieldGroup.querySelector('textarea');
         this.noticeElement      = false;
         this.regex              = regex;
         this.errorMessage       = errorMessage;
-
+        this.notice             = null;
+        
         this.field && this.init();
     }
 
@@ -14,9 +22,8 @@ export default class BlockErrorNotice {
         this.checkFieldValue();
         this.setupTextareaListener();
     }
-
-
-    createNotice() {
+    
+    private createNotice() {
         const noticeString = `
             <div class="c-notice" style="margin-bottom: 16px; display: none; background-color: #d73740; color: white; padding: 16px 24px; border-radius: 4px;" data-js-block-error-notice>
             <span class="c-notice__icon" margin-right: 16px;>
@@ -30,13 +37,13 @@ export default class BlockErrorNotice {
 
         this.fieldGroup.insertBefore(div, this.fieldGroup.firstChild);
 
-        const notice = this.fieldGroup.querySelector('[data-js-block-error-notice]');
+        const notice = this.fieldGroup.querySelector('[data-js-block-error-notice]') as HTMLElement | null;
         if (notice) {
             this.notice = notice;
         }
     }
 
-    checkFieldValue() {
+   private checkFieldValue() {
         const faultyScriptElement = this.checkRegex();
         if (faultyScriptElement) {
             this.fieldGroup.setAttribute('data-js-block-field-validation-error', '');
@@ -45,29 +52,25 @@ export default class BlockErrorNotice {
             }
         } else {
             this.fieldGroup.removeAttribute('data-js-block-field-validation-error');
-            this.notice.style.display = 'none';
+            this.notice && (this.notice.style.display = 'none');
         }
     }
 
-    getFaultyScriptModules() {
+    public getFaultyScriptModules() {
         return document.querySelectorAll('[data-js-block-field-validation-error]').length > 0;
     }
 
-    setupTextareaListener() {
-        this.field.addEventListener('input', (e) => {
+    private setupTextareaListener() {
+        this.field && this.field.addEventListener('input', () => {
             this.checkFieldValue();
         });
         
-        this.field.addEventListener('change', (e) => {
+        this.field && this.field.addEventListener('change', () => {
             this.checkFieldValue();
         });
     }
 
-    checkRegex() {
-        if (this.regex.test(this.field.value)) {
-            return true;
-        } else {
-            return false;
-        }
+    private checkRegex() {
+        return this.regex.test(this.field?.value || '');
     }
 }

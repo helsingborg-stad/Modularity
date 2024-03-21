@@ -4,10 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     createValidation('[data-key="field_56a8b9f1902a6"]', 'acf/script', /<iframe|<video/, 'Please use a more appropriate module for your content. (video or iframe module)');
 });
 
-function createValidation(blockDataKey = false, blockDataType = false, regex = false, errorMessage = false) {
+function createValidation(blockDataKey: string, blockDataType: string, regex: RegExp, errorMessage: string) {
     if (!blockDataKey || !blockDataType || !regex || !errorMessage) return; 
-    const fieldGroups = document.querySelectorAll(blockDataKey);
-    [...fieldGroups].forEach(fieldGroup => {
+
+    const fieldGroups = [...document.querySelectorAll<HTMLElement>(blockDataKey)];
+    fieldGroups.forEach(fieldGroup => {
         new BlockErrorNotice(fieldGroup, regex, errorMessage);
     });
 
@@ -19,8 +20,7 @@ function createValidation(blockDataKey = false, blockDataType = false, regex = f
                         addedNode.hasAttribute('data-type') &&
                         addedNode.getAttribute('data-type') == blockDataType) {
                         setTimeout(() => {
-                            let fieldGroup = addedNode.querySelector(blockDataKey);
-                            console.log(fieldGroup);
+                            let fieldGroup = addedNode.querySelector(blockDataKey) as HTMLElement;
                             if (fieldGroup) {
                                 new BlockErrorNotice(fieldGroup, regex, errorMessage);
                             }
@@ -34,5 +34,3 @@ function createValidation(blockDataKey = false, blockDataType = false, regex = f
     const config = { childList: true, subtree: true };
     observer.observe(document, config);
 }
-
-

@@ -223,6 +223,18 @@ class Upgrade
                         'default'           => 'card'
                     ],     
                 ],
+                'posts_columns' => [
+                    'name'      => 'columns',
+                    'key'       => 'field_65001d039d4c4',
+                    'type'      => 'replaceValue',
+                    'values'    => [
+                        'grid-md-12'    => 'o-grid-12',
+                        'grid-md-6'     => 'o-grid-6',
+                        'grid-md-4'     => 'o-grid-4',
+                        'grid-md-3'     => 'o-grid-3',
+                        'default'       => 'o-grid-4'
+                    ]
+                ],
                 'data' => [
                     'name'      => 'manual_inputs', 
                     'key'       => 'field_64ff22b2d91b7',

@@ -17,7 +17,7 @@ module.exports = {
 	 */
 	entry: {
 		'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
-		'js/modularity-text-module': './source/js/modularity-text-module.js',
+		'js/modularity-text-module': './source/js/modularity-text-module.ts',
 		'js/modularity': './source/js/modularity.js',
 		'css/modularity': './source/sass/modularity.scss',
 		'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
@@ -26,9 +26,8 @@ module.exports = {
 		'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
 		'js/dynamic-map-acf': './source/js/admin/dynamic-map-acf.js',
 
-		'js/block-validation': './source/js/block-validation.js',
+		'js/block-validation': './source/js/block-validation.ts',
 		'js/edit-modules-block-editor': './source/js/edit-modules-block-editor.ts',
-
 		//Modules
 		'js/mod-curator-load-more': './source/php/Module/Curator/assets/mod-curator-load-more.js',
 		'js/table-init': './source/php/Module/Table/assets/table-init.js',
