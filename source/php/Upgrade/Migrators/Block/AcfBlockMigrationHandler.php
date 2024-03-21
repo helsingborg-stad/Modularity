@@ -29,7 +29,6 @@ class AcfBlockMigrationHandler {
         if ($this->isValidInputParams()) {
             return $this->blockData;
         }
-
         foreach ($this->fields as $oldFieldName => $newField) {
             if (isset($this->blockData[$oldFieldName]) && is_array($newField)) {
                 $this->blockData = $this->migrateField($newField, $oldFieldName, $this->blockData);
@@ -40,12 +39,12 @@ class AcfBlockMigrationHandler {
     }
 
     private function migrateField($newField, $oldFieldName, $blockData) {
-        if (empty($newField['name'] || empty($newField['key']))) {
-            return $blockData;
-        }
-
         if (!empty($newField['type'])) {
             return $this->migrateFieldByType($newField, $oldFieldName, $blockData);
+        }
+
+        if (empty($newField['name']) || empty($newField['key'])) {
+            return $blockData;
         }
 
         $migrator = new AcfBlockFieldMigrator($newField, $oldFieldName, $blockData);
@@ -80,14 +79,18 @@ class AcfBlockMigrationHandler {
         return 
             $newField['type'] == 'replaceValue' && 
             isset($newField['values']) && 
-            is_array($newField['values']);
+            is_array($newField['values']) && 
+            !empty($newField['name']) &&
+            !empty($newField['key']);
     }
     
     private function isRepeaterFieldMigration($newField) {
         return 
             $newField['type'] == 'repeater' && 
             isset($newField['fields']) && 
-            is_array($newField['fields']);
+            is_array($newField['fields']) &&
+            !empty($newField['name']) &&
+            !empty($newField['key']);
     }
 
     private function isCustomFieldMigration($newField) {
