@@ -51,6 +51,7 @@ class AcfModuleMigration {
     private function isValidParams() {
         return 
             !empty($this->modules) &&
-            !empty($this->fields);
+            !empty($this->fields) && 
+            !empty($this->db);
     }
 }
