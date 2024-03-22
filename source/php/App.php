@@ -16,7 +16,6 @@ class App
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
-        add_action('post_updated', array($this, 'updateDate'), 10, 2);
 
         add_filter('acf/fields/post_object/query', array($this, 'removeFromAcfPostQuery'), 99, 3);
 
@@ -47,6 +46,7 @@ class App
 
         self::$moduleManager = new ModuleManager();
 
+
         $this->editor = new Editor();
         self::$display = new Display();
 
@@ -55,37 +55,15 @@ class App
 
         new Search();
 
+        add_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
+        add_action('updated_post_meta', [$this, 'updatePostModifiedDateOnMetaUpdate'], 10, 4);
+        add_action('deleted_post_meta', [$this, 'updatePostModifiedDateOnMetaUpdate'], 10, 4);
+
         add_action('widgets_init', function () {
             register_widget('\Modularity\Widget');
         });
     }
 
-    /**
-     * Update modified date on related post when module is saved
-     * @param int $postId
-     * @param object $postAfter Post object after update
-     * @return boolean True if update(s) where made, otherwise false.
-     */
-    public function updateDate(int $postId, $postAfter)
-    {
-        $usedInPosts = self::$moduleManager->getModuleUsage($postId);
-
-        if (empty($usedInPosts)) {
-            return false;
-        }
-
-        $modified = $postAfter->post_modified;
-
-        foreach ($usedInPosts as $post) {
-            wp_update_post([
-                'ID' => $post->post_id,
-                'post_modified' => $modified,
-                'post_modified_gmt' => get_gmt_from_date($modified)
-            ]);
-        }
-
-        return true;
-    }
 
     public function addCaps()
     {
@@ -374,5 +352,49 @@ class App
         });
 
         return $args;
+    }
+
+    /**
+     * Updates the post_modified date on posts related to a specific module.
+     *
+     * @param int $postId The ID of the module post.
+     * @param \WP_Post $postAfter The WP_Post object after the update.
+     *
+     * @return void
+     */
+    public function updatePostModifiedDateOnPostsRelatedToModule(int $postId, \WP_Post $post) {
+
+        // Bail early if not a module
+        if (!str_starts_with($post->post_type, 'mod-')) {
+            return;
+        }
+
+        $updateDateOnPostsRelatedToModule = new Helper\UpdateDateOnPostsRelatedToModule();
+        $updateDateOnPostsRelatedToModule->update($post);
+    }
+
+    /**
+     * Updates the post_modified date when modularity-modules post meta is updated
+     *
+     * @param int $metaId The meta ID.
+     * @param int $postId The post ID.
+     * @param string $metaKey The meta key.
+     * @param mixed $metaValue The meta value.
+     *
+     * @return void
+     */
+    public function updatePostModifiedDateOnMetaUpdate(int $metaId, int $postId, string $metaKey, $metaValue) {
+
+        // Bail early if not an update of the modularity-modules
+        if (!in_array($metaKey, ['modularity-modules']) || !is_array($metaValue)) {
+            return;
+        }
+
+        wp_update_post([
+            'ID' => $postId,
+            'post_modified' => current_time('mysql'),
+            'post_modified_gmt' => current_time('mysql', 1)
+        ]);
+
     }
 }

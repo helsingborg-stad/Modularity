@@ -115,11 +115,11 @@ class BlockManager
         $siteLanguage = strtolower(get_bloginfo('language'));
         $pageLanguage = strtolower(get_post_meta(get_the_ID(), 'lang', true)) ?: $siteLanguage;
         $blockLanguage = !empty($block['attrs']['data']['lang']) ? strtolower($block['attrs']['data']['lang']) : $pageLanguage;
-    
+
         if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage])) {
             $blockContent = '<div lang="' . htmlspecialchars($blockLanguage, ENT_QUOTES, 'UTF-8') . '">' . $blockContent . '</div>';
         }
-    
+
         return $blockContent;
     }
     /**
@@ -139,10 +139,10 @@ class BlockManager
         if (!empty($block['attrs']['anchor'])) {
             $pattern = '/(<[a-zA-Z0-9]+\s*)(id="[^"]*"|)(.*?>)/';
             $replacement = function ($matches) use ($block) {
-                $replacement = $matches[1]; 
+                $replacement = $matches[1];
                 $replacement .= 'id="' . htmlspecialchars($block['attrs']['anchor'], ENT_QUOTES, 'UTF-8') . '"';
                 if (!empty($matches[3])) {
-                    $replacement .= $matches[3]; 
+                    $replacement .= $matches[3];
                 }
                 return $replacement;
             };
@@ -236,11 +236,12 @@ class BlockManager
                     );
 
                     if (!acf_register_block_type($blockSettings)) {
-                        throw new \WP_Error(
+                        $error = new \WP_Error(
                             'block_editor_create_module',
                             "Could not create block for with the id of " . $class->moduleSlug
                         );
-                    };
+                        error_log($error->get_error_message());
+                    }
                 }
             }
         }
@@ -401,17 +402,17 @@ class BlockManager
         global $post;
 
         $module = $this->classes[$block['moduleName']];
-        
+
         $cache = new \Modularity\Helper\Cache(
             $post->ID ?? null, [
-                $block, 
+                $block,
                 $module->ID
-            ], 
+            ],
             $module->cacheTtl ?? 0
         );
 
         if ($cache->start()) { //Start cache
-            
+
             //Append module data, set default values
             $module->data = $this->setDefaultValues(
                 $module->data(),
@@ -428,7 +429,7 @@ class BlockManager
             //Set anchor
             if(!empty($block['anchor'])) {
                 $block['data']['anchor'] = $block['anchor'];
-            } 
+            }
 
             //Get view name
             $view = str_replace('.blade.php', '', $module->template());
