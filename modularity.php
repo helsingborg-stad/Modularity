@@ -73,7 +73,6 @@ add_action('plugins_loaded', function () {
         'mod-subscribe'             => 'group_641c51b765f4b',
         'mod-modal'                 => 'group_64a29154aa972',
         'mod-manual-input'          => 'group_64ff22b117e2c',
-        'mod-quote'                 => 'group_65d8bf00bd021',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
