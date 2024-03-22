@@ -412,7 +412,7 @@ class Editor extends \Modularity\Options
             $cachedResults = array();
         }
 
-        //Declarations        
+        //Declarations
         $modules = array();
         $retModules = array();
 
@@ -562,6 +562,7 @@ class Editor extends \Modularity\Options
      */
     public function save()
     {
+
         if (!$this->isValidPostSave()) {
             return;
         }
@@ -623,6 +624,14 @@ class Editor extends \Modularity\Options
         } else {
             delete_post_meta($key, 'modularity-sidebar-options');
         }
+
+
+        // Update the post_modified date to ensure save_post is triggered
+        // wp_update_post([
+        //     'ID' => $key,
+        //     'post_modified' => current_time('mysql'), // Use the current time in MySQL format
+        //     'post_modified_gmt' => current_time('mysql', 1) // Use the current time in GMT/UTC
+        // ]);
 
         return true;
     }

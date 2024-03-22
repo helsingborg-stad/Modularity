@@ -12,11 +12,12 @@ class App
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
-        add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor')); 
+        add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor'));
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
         add_action('post_updated', array($this, 'updateDate'), 10, 2);
+
         add_filter('acf/fields/post_object/query', array($this, 'removeFromAcfPostQuery'), 99, 3);
 
         // Main hook
@@ -30,11 +31,11 @@ class App
         });
 
         $this->setupAdminBar();
-        
+
         new Upgrade();
         new Ajax();
         new Options\General();
-        
+
         $archivesAdminPage = new Options\ArchivesAdminPage();
         $archivesAdminPage->addHooks();
         $optionsForSingleViews = new Options\SingleAdminPage();
@@ -59,9 +60,10 @@ class App
         });
     }
 
-
     /**
      * Update modified date on related post when module is saved
+     * @param int $postId
+     * @param object $postAfter Post object after update
      * @return boolean True if update(s) where made, otherwise false.
      */
     public function updateDate(int $postId, $postAfter)
@@ -135,7 +137,7 @@ class App
     {
         // Link to editor from page
         add_action('admin_bar_menu', function () {
-            
+
             if (is_admin() || !current_user_can('edit_posts')) {
                 return;
             }
@@ -157,10 +159,10 @@ class App
             }
 
             $editorLink = apply_filters(
-                'Modularity/adminbar/editor_link', 
-                $editorLink, 
-                $post, 
-                $archiveSlug, 
+                'Modularity/adminbar/editor_link',
+                $editorLink,
+                $post,
+                $archiveSlug,
                 $this->currentUrl()
             );
 
@@ -224,7 +226,7 @@ class App
     }
 
     public function enqueueBlockEditor() {
-        
+
         if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
             wp_register_script('block-editor-edit-modules', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'), [], null, ['in_footer' => true]);
@@ -275,7 +277,7 @@ class App
         wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'));
         wp_enqueue_script('dynamic-acf');
-        
+
         wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'));
         wp_enqueue_script('dynamic-map-acf');
@@ -292,7 +294,7 @@ class App
             ";
         });
 
-        
+
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {
             wp_enqueue_script('jquery-ui-sortable');
@@ -365,7 +367,7 @@ class App
      * @param int $id The post ID.
      * @return array The modified query arguments.
      */
-    public function removeFromAcfPostQuery($args, $field, $id) 
+    public function removeFromAcfPostQuery($args, $field, $id)
     {
         $args['post_type'] = array_filter($args['post_type'] ?? [], function($postType) {
             return strpos($postType, 'mod-') === false;
