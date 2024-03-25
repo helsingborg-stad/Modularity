@@ -609,7 +609,7 @@ class Editor extends \Modularity\Options
         return $this->saveAsOption($postId);
     }
 
-    public function saveAsPostMeta(int $postId): void
+    public function saveAsPostMeta(int $postId)
     {
         // Save/remove modules
         if (isset($_POST['modularity_modules'])) {
