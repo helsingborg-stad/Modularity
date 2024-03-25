@@ -627,29 +627,6 @@ class Editor extends \Modularity\Options
         }
 
     }
-
-    public function getLatestModified(array $data = array()): ?\WP_Post {
-
-        $latestModuleUpdated = null;
-        $latestModifiedDate = '0000-00-00 00:00:00';
-
-        foreach ($data as $modules) {
-            foreach ($modules as $module) {
-
-                if(empty($module['postid'])) {
-                    continue;
-                }
-
-                $modulePost = get_post($module['postid']);
-
-                if (is_a($modulePost, 'WP_Post') && $modulePost->post_modified > $latestModifiedDate) {
-                    $latestModuleUpdated = $modulePost;
-                }
-            }
-        }
-
-        return $latestModuleUpdated;
-    }
     /**
      * Saves archive modules
      * @return boolean
