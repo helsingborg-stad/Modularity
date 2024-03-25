@@ -390,11 +390,16 @@ class App
             return;
         }
 
+        // Unhook post_updated to prevent infinite loops
+        remove_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
+        // Update the current post
         wp_update_post([
             'ID' => $postId,
             'post_modified' => current_time('mysql'),
             'post_modified_gmt' => current_time('mysql', 1)
         ]);
+        // Add the hook back once the post has been updated
+        add_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
 
     }
 }
