@@ -22,7 +22,7 @@ class Modules extends WP_REST_Controller
                 array(
                     'methods' => \WP_REST_Server::READABLE,
                     'callback' => array($this, 'get_item'),
-                    'premission_callback' => array($this, 'get_item_permissions_check'),
+                    'permission_callback' => array($this, 'get_item_permissions_check'),
                     'args' => [
                         'id' => [
                             'description' => __('Unique identifier for the module.'),
