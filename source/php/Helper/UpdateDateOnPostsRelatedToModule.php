@@ -10,15 +10,12 @@ namespace Modularity\Helper;
  */
 class UpdateDateOnPostsRelatedToModule {
 
-    public static $moduleManager = null;
-
     /**
      * UpdateDateOnPostsRelatedToModule constructor.
      *
      * @param \Modularity\ModuleManager $moduleManager The module manager instance.
      */
-    public function __construct() {
-        self::$moduleManager = new \Modularity\ModuleManager();
+    public function __construct(private \Modularity\ModuleManager $moduleManager) {
     }
 
     /**
@@ -33,7 +30,7 @@ class UpdateDateOnPostsRelatedToModule {
             return;
         }
 
-        $postsUsingModule = self::$moduleManager->getModuleUsage($modulePost->ID);
+        $postsUsingModule = $this->moduleManager->getModuleUsage($modulePost->ID);
 
         // Bail early if no posts are using this module
         if (empty($postsUsingModule)) {

@@ -369,7 +369,7 @@ class App
             return;
         }
 
-        $updateDateOnPostsRelatedToModule = new Helper\UpdateDateOnPostsRelatedToModule();
+        $updateDateOnPostsRelatedToModule = new Helper\UpdateDateOnPostsRelatedToModule(self::$moduleManager);
         $updateDateOnPostsRelatedToModule->update($post);
     }
 
