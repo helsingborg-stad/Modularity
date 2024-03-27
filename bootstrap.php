@@ -7,6 +7,6 @@
  */
 
 // Load Composer autoloader.
-require dirname(dirname(__FILE__)) . '/../vendor/autoload.php';
+require './vendor/autoload.php';
 
 WP_Mock::bootstrap();
