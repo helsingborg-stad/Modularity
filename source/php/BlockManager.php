@@ -236,11 +236,7 @@ class BlockManager
                     );
 
                     if (!acf_register_block_type($blockSettings)) {
-                        $error = new \WP_Error(
-                            'block_editor_create_module',
-                            "Could not create block for with the id of " . $class->moduleSlug
-                        );
-                        error_log($error->get_error_message());
+                        error_log("Could not create block for with the id of " . $class->moduleSlug);
                     }
                 }
             }
