@@ -1,4 +1,6 @@
-jQuery(document).ready(function() {
+console.log("Hello")
+
+document.addEventListener('DOMContentLoaded', function() {
     if (pagenow === 'mod-posts') {
         postsTaxonomy(modPosts.currentPostID);  
     }
@@ -51,8 +53,8 @@ function pollBlockContent(block, container) {
 
 function postsTaxonomy(modularity_current_post_id, data = null, blockContainer = '') {
     var $ = (jQuery);
-    const taxType = (data == null)? null : data.posts_taxonomy_type;
-    const taxValue = (data == null)? null : data.posts_taxonomy_value;
+    const taxType = data?.posts_taxoomy_type ? data.posts_taxonomy_type : null;
+    const taxValue = data?.posts_taxonomy_value ? data.posts_taxonomy_value : null;
 
     /**
      * Taxonomy type update
@@ -100,8 +102,14 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
 
 function getTaxonomyTypes(data) {
     let blockContainer = data.container;
-    $(blockContainer + ' .modularity-latest-taxonomy select').empty();
-    $(blockContainer + ' .modularity-latest-taxonomy .acf-label label').prepend('<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
+
+    const selectElement = document.querySelector(blockContainer + ' .modularity-latest-taxonomy select');
+    if (selectElement.firstChild) {
+        selectElement.removeChild(selectElement.firstChild);
+    }
+
+    const labelElement = document.querySelector(blockContainer + ' .modularity-latest-taxonomy .acf-label label');
+    labelElement.insertAdjacentHTML('afterbegin', '<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>');
 
     $.post(ajaxurl, data, function (response) {
         if (response.types.length === 0) {
