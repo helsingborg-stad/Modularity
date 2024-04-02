@@ -1,11 +1,11 @@
 <?php
 
 namespace Modularity;
-
 class Editor extends \Modularity\Options
 {
     public const EDITOR_PAGE_LOADING_KEY = 'modularity-option-page-loading';
     public static $isEditing = null;
+    public static $moduleManager = null;
 
     public function __construct()
     {
@@ -17,9 +17,10 @@ class Editor extends \Modularity\Options
         $this->adminBar();
 
         add_action('admin_head', array($this, 'registerTabs'));
+        add_action('init', array($this, 'registerScopeOption'));
+
         add_action('wp_ajax_save_modules', array($this, 'save'));
         add_action('wp_insert_post_data', array($this, 'avoidDuplicatePostName'), 10, 2);
-        add_action('init', array($this, 'registerScopeOption'));
 
         $this->registerEditorPage();
     }
@@ -412,7 +413,7 @@ class Editor extends \Modularity\Options
             $cachedResults = array();
         }
 
-        //Declarations        
+        //Declarations
         $modules = array();
         $retModules = array();
 
@@ -562,6 +563,7 @@ class Editor extends \Modularity\Options
      */
     public function save()
     {
+
         if (!$this->isValidPostSave()) {
             return;
         }
@@ -571,12 +573,14 @@ class Editor extends \Modularity\Options
             return;
         }
 
+        // Post id
+        $postId = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : null;
         // Check if post id is valid
-        if (!isset($_REQUEST['id']) || empty($_REQUEST['id'])) {
+        if (empty($postId)) {
             return trigger_error('Invalid post id. Please contact system administrator.');
         }
 
-        $this->savePost();
+        $this->savePost($postId);
 
         // If this is an ajax post, return "success" as plain text
         if (defined('DOING_AJAX') && DOING_AJAX) {
@@ -591,42 +595,38 @@ class Editor extends \Modularity\Options
      * Saves post modules
      * @return boolean
      */
-    public function savePost()
+    public function savePost(int $postId)
     {
-        $key = $_REQUEST['id'];
-
-        if (is_numeric($key)) {
-            return $this->saveAsPostMeta($key);
+        if (is_numeric($postId)) {
+            return $this->saveAsPostMeta($postId);
         }
 
         if (\Modularity\Helper\Post::isArchive()) {
             global $archive;
-            $key = $archive;
+            $postId = $archive;
         }
 
-        return $this->saveAsOption($key);
+        return $this->saveAsOption($postId);
     }
 
-    public function saveAsPostMeta($key)
+    public function saveAsPostMeta(int $postId)
     {
         // Save/remove modules
         if (isset($_POST['modularity_modules'])) {
             $data = $this->sanitizeModuleData($_POST['modularity_modules']);
-            update_post_meta($key, 'modularity-modules', $data);
+            update_post_meta($postId, 'modularity-modules', $data);
         } else {
-            delete_post_meta($key, 'modularity-modules');
+            delete_post_meta($postId, 'modularity-modules');
         }
 
         // Save/remove sidebar options
         if (isset($_POST['modularity_sidebar_options'])) {
-            update_post_meta($key, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
+            update_post_meta($postId, 'modularity-sidebar-options', $_POST['modularity_sidebar_options']);
         } else {
-            delete_post_meta($key, 'modularity-sidebar-options');
+            delete_post_meta($postId, 'modularity-sidebar-options');
         }
 
-        return true;
     }
-
     /**
      * Saves archive modules
      * @return boolean
@@ -662,7 +662,6 @@ class Editor extends \Modularity\Options
 
         return true;
     }
-
     /**
      * Get column width options
      * @return string Options markup
@@ -788,6 +787,7 @@ class Editor extends \Modularity\Options
         foreach ($sidebars as &$sidebar) {
             if (!empty($sidebar) && is_array($sidebar)) {
                 foreach ($sidebar as &$module) {
+
                     $module['hidden'] = isset($module['hidden']) && $module['hidden'] == 'hidden';
                 }
             }
