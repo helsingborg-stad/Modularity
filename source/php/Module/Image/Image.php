@@ -35,7 +35,9 @@ class Image extends \Modularity\Module
         $fields = $this->getFields();
         
         $data['image'] = $this->getImageData($fields, $this->getImageSize($fields));
-        $data['image']['caption'] = $this->getImageCaption($fields, $data['image']);
+        if(!empty($data['image'])) {
+            $data['image']['caption'] = $this->getImageCaption($fields, $data['image']);
+        }
         $data['imageLink'] = $this->imageHasLink($fields) ? $fields['mod_image_link_url'] : false;
 
         return $data;
@@ -51,6 +53,9 @@ class Image extends \Modularity\Module
     private function getImageData(array $fields, $size)
     {
         $imageId = $fields['mod_image_image']['ID'];
+        if(empty($imageId)) {
+            return;
+        }
         return ImageHelper::getImageAttachmentData($imageId, $size);
     }
     
