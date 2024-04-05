@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log(pagenow)
     if (pagenow === 'mod-posts') {
         postsTaxonomy(modPosts.currentPostID);  
     }
@@ -50,21 +51,25 @@ function pollBlockContent(block, container) {
 
 function postsTaxonomy(modularity_current_post_id, data = null, blockContainer = '') {
     var $ = (jQuery);
-    const taxType = data?.posts_taxoomy_type ? data.posts_taxonomy_type : null;
-    const taxValue = data?.posts_taxonomy_value ? data.posts_taxonomy_value : null;
+    const taxType   = data?.posts_taxonomy_type ? data.posts_taxonomy_type : null;
+    const taxValue  = data?.posts_taxonomy_value ? data.posts_taxonomy_value : null;
+    
+    const postTypeSelect = document.querySelector(blockContainer + ' .modularity-latest-post-type select');
+    const taxonomySelect = document.querySelector(blockContainer + ' .modularity-latest-taxonomy select');
 
     /**
      * Taxonomy type update
      */
     getTaxonomyTypes({
         'action': 'get_taxonomy_types_v2',
-        'posttype': $(blockContainer + ' .modularity-latest-post-type select').val(),
+        'posttype': postTypeSelect.value,
         'post': modularity_current_post_id,
         'selected': taxType,
         'container': blockContainer
     });
 
     $(blockContainer + ' .modularity-latest-post-type select').on('change', function () {
+        console.log("runs");
         getTaxonomyTypes({
             'action': 'get_taxonomy_types_v2',
             'posttype': $(this).val(),
@@ -86,15 +91,24 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
     //     });
     // }, 300);
 
-    $(blockContainer + ' .modularity-latest-taxonomy select').on('change', function () {
+    taxonomySelect.addEventListener('change', (e) => {
         getTaxonomyValues({
             'action': 'get_taxonomy_values_v2',
-            'tax': $(this).val(),
+            'tax': taxonomySelect.value,
             'post': modularity_current_post_id,
             'container': blockContainer
         });
     });
 
+    // $(blockContainer + ' .modularity-latest-taxonomy select').on('change', function () {
+    //     console.log($(this).val());
+    //     getTaxonomyValues({
+    //         'action': 'get_taxonomy_values_v2',
+    //         'tax': $(this).val(),
+    //         'post': modularity_current_post_id,
+    //         'container': blockContainer
+    //     });
+    // });
 }
 
 function getTaxonomyTypes(data) {
@@ -166,7 +180,6 @@ function getTaxonomyValues(data) {
             const spinner = document.querySelector(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label .spinner');
 
             const keys = Object.keys(response.tax);
-            console.log(response);
             keys.forEach(key => {
                 const term = response.tax[key];
                 const isSelected = (term.slug === response.curr || term.slug === data.selected) ? 'selected' : '';

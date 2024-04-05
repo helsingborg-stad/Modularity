@@ -368,6 +368,7 @@ class Posts extends \Modularity\Module
     }
 
     public function adminEnqueue() {
+        // wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/taxonomyFiltering.js');
         wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
         wp_localize_script('mod-posts-script', 'modPosts', [
             'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
