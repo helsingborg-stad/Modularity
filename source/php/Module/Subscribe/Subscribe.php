@@ -15,7 +15,6 @@ class Subscribe extends \Modularity\Module
         $this->nameSingular = __('Email Subscribe', 'modularity');
         $this->namePlural = __('Email Subscribtions', 'modularity');
         $this->description = __('Outputs a simple form to subscribe to a email list.', 'modularity');
-        $this->enqueue_scripts();
     }
 
     public function data() : array
@@ -81,13 +80,13 @@ class Subscribe extends \Modularity\Module
         return $data;
     }
 
-    private function enqueue_scripts()
+    public function script()
     {
-        $ungapdScriptUrl = MODULARITY_MODULE_URL . 'Subscribe/assets/ungapd.js';
-        $ungapdScriptFileVersion = filemtime(MODULARITY_MODULE_PATH . 'Subscribe/assets/ungapd.js');
-        wp_enqueue_script('mod-subscribe-ungapd', $ungapdScriptUrl, [], $ungapdScriptFileVersion, true);
+        wp_register_script('mod-subscribe-ungapd', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/ungapd.js'));
+ 
+        wp_enqueue_script('mod-subscribe-ungapd');
     }
-
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization

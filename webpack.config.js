@@ -35,6 +35,7 @@ module.exports = {
 		'css/table': './source/php/Module/Table/assets/table.scss',
 		'js/video': './source/php/Module/Video/assets/video.js',
 		'css/video': './source/php/Module/Video/assets/video.scss',
+		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts'
 	},
 
 	/**
