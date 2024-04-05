@@ -376,15 +376,15 @@ class App
     /**
      * Updates the post_modified date when modularity-modules post meta is updated
      *
-     * @param int $metaId The meta ID.
+     * @param int|array $metaId The meta ID.
      * @param int $postId The post ID.
      * @param string $metaKey The meta key.
      * @param mixed $metaValue The meta value.
      *
      * @return void
      */
-    public function updatePostModifiedDateOnMetaUpdate(int $metaId, int $postId, string $metaKey, $metaValue) {
-
+    public function updatePostModifiedDateOnMetaUpdate(int|array $metaId, int $postId, string $metaKey, $metaValue) 
+    {
         // Bail early if not an update of the modularity-modules
         if (!in_array($metaKey, ['modularity-modules']) || !is_array($metaValue)) {
             return;
