@@ -383,7 +383,8 @@ class App
      *
      * @return void
      */
-    public function updatePostModifiedDateOnMetaUpdate(int|array $metaId, int $postId, string $metaKey, $metaValue) {
+    public function updatePostModifiedDateOnMetaUpdate(int|array $metaId, int $postId, string $metaKey, $metaValue) 
+    {
         // Bail early if not an update of the modularity-modules
         if (!in_array($metaKey, ['modularity-modules']) || !is_array($metaValue)) {
             return;
