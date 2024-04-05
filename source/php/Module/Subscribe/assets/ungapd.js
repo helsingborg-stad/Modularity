@@ -16,11 +16,13 @@ function initializeUngappedForms() {
 
     const clearNotices = () => {
         notices.forEach(notice => {
-            notice.remove();
+            if (notice.parentNode) {
+                notice.parentNode.removeChild(notice);
+            }
         });
     }
 
-    ungpdForms.forEach(form => {
+    ungpdForms.forEach((form, index) => {
         form.addEventListener("submit", (event) => {
 
             //Prevent default
@@ -36,8 +38,8 @@ function initializeUngappedForms() {
             let subscriptionFailedUrl = form.getAttribute('data-js-ungpd-subscription-failed-url');
             let email = form.querySelector('input[name="email"]');
             let consent = form.querySelector('input[name="user_consent"]');
-            const successTemplate = document.querySelector(`template[id="${accountId}-success"]`);
-            const errorTemplate = document.querySelector(`template[id="${accountId}-error"]`);
+            const successTemplate = document.querySelectorAll(`template[id="${accountId}-success"]`)[index];
+            const errorTemplate = document.querySelector(`template[id="${accountId}-error"]`)[index];
             const lists = listIds.split(",").map((listId) => listId.trim());
 
             //Form validates, empty data, send request
@@ -74,7 +76,6 @@ function initializeUngappedForms() {
                         handleError(errorTemplate, error);
                     });
             }
-
         });
     });
 }
