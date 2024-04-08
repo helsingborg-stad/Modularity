@@ -8,6 +8,13 @@ interface SubscriptionInterface {
     SubscriptionFailedUrl?: string
 }
 
+class Ungpd {
+    constructor(private form: HTMLElement, private id: string) {
+
+    }
+}
+
+
 function initializeUngappedForms() {
 
     const ungpdForms = [...document.querySelectorAll("[data-js-ungpd-id]")];
@@ -38,6 +45,7 @@ function initializeUngappedForms() {
     }
 
     ungpdForms.forEach((form, index) => {
+        console.log(form);
         form.addEventListener("submit", (event) => {
 
             //Prevent default
@@ -61,7 +69,7 @@ function initializeUngappedForms() {
             //Form validates, empty data, send request
             if (accountId && email && email.value && consent && consent.checked) {
                 
-                const subscription: SubscriptionInterface = {
+                let subscription: SubscriptionInterface = {
                     Contact: { Email: email.value },
                     ConsentText: consent.value,
                     ListIds: lists
@@ -97,6 +105,13 @@ function initializeUngappedForms() {
     });
 }
 
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
+    const ungpdForms = [...document.querySelectorAll("[data-js-ungpd-id]")];
+    ungpdForms.forEach(form => {
+        const id = form.getAttribute('id');
+        if (id) {
+            new Ungpd(form as HTMLElement, id);
+        }
+    });
     initializeUngappedForms()
-})()
+});

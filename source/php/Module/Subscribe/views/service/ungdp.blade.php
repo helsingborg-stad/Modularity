@@ -56,6 +56,7 @@
 
 <template id="{!!$formID!!}-success">
 	@notice([
+    'id' => $uid . '-success',
 		'type' => 'success',
 			'message' => [
 			'title' => $lang->submitted->title,
@@ -76,6 +77,7 @@
 
 <template id="{!!$formID!!}-error">
 	@notice([
+    'id' => $uid . '-error',
 		'type' => 'danger',
 			'message' => [
 			'title' => $lang->error->title,
