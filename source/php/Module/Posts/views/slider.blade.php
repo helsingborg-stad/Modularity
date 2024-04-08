@@ -25,7 +25,7 @@
             'data-slides-per-page' => $slider->slidesPerPage
         ]
     ])
-        @foreach ($posts as $post)
+        @foreach ($posts as $key => $post)
             @slider__item([
                 'classList' => ['c-slider__item--post']
             ])

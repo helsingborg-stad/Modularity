@@ -4,7 +4,7 @@
  * Plugin Name: Modularity
  * Plugin URI: -
  * Description: Modular component system for WordPress
- * Version: 6.8.1
+ * Version: 6.11.3
  * Author: Kristoffer Svanmark, Sebastian Thulin
  * Author URI: -
  * Text domain: modularity
@@ -44,7 +44,6 @@ add_action('plugins_loaded', function () {
         'mod-gallery'               => 'group_5666af6d26b7c',
         'mod-iframe'                => 'group_56c47016ea9d5',
         'mod-image'                 => 'group_570770ab8f064',
-        'mod-index'                 => 'group_569ceab2c16ee',
         'mod-inheritpost'           => 'group_56a8b4fd3567b',
         'mod-inlaylist'             => 'group_569e054a7f9c2',
         'mod-latest'                => 'group_56a8c4581d906',
@@ -78,7 +77,9 @@ add_action('plugins_loaded', function () {
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
         'mod-wpwidget'         => 'group_5729f4d3e7c7a',
-        'mod-sites'            => 'group_58ecb6b6330f4'
+        'mod-sites'            => 'group_58ecb6b6330f4',
+        'mod-index'            => 'group_569ceab2c16ee',
+
 
     ));
     $acfExportManager->import();

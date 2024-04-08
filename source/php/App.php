@@ -12,11 +12,11 @@ class App
     public function __construct()
     {
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
-        add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor')); 
+        add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor'));
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
-        add_action('post_updated', array($this, 'updateDate'), 10, 2);
+
         add_filter('acf/fields/post_object/query', array($this, 'removeFromAcfPostQuery'), 99, 3);
 
         // Main hook
@@ -30,11 +30,11 @@ class App
         });
 
         $this->setupAdminBar();
-        
+
         new Upgrade();
         new Ajax();
         new Options\General();
-        
+
         $archivesAdminPage = new Options\ArchivesAdminPage();
         $archivesAdminPage->addHooks();
         $optionsForSingleViews = new Options\SingleAdminPage();
@@ -46,6 +46,7 @@ class App
 
         self::$moduleManager = new ModuleManager();
 
+
         $this->editor = new Editor();
         self::$display = new Display();
 
@@ -54,36 +55,15 @@ class App
 
         new Search();
 
+        add_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
+        add_action('updated_post_meta', [$this, 'updatePostModifiedDateOnMetaUpdate'], 10, 4);
+        add_action('deleted_post_meta', [$this, 'updatePostModifiedDateOnMetaUpdate'], 10, 4);
+
         add_action('widgets_init', function () {
             register_widget('\Modularity\Widget');
         });
     }
 
-
-    /**
-     * Update modified date on related post when module is saved
-     * @return boolean True if update(s) where made, otherwise false.
-     */
-    public function updateDate(int $postId, $postAfter)
-    {
-        $usedInPosts = self::$moduleManager->getModuleUsage($postId);
-
-        if (empty($usedInPosts)) {
-            return false;
-        }
-
-        $modified = $postAfter->post_modified;
-
-        foreach ($usedInPosts as $post) {
-            wp_update_post([
-                'ID' => $post->post_id,
-                'post_modified' => $modified,
-                'post_modified_gmt' => get_gmt_from_date($modified)
-            ]);
-        }
-
-        return true;
-    }
 
     public function addCaps()
     {
@@ -135,7 +115,7 @@ class App
     {
         // Link to editor from page
         add_action('admin_bar_menu', function () {
-            
+
             if (is_admin() || !current_user_can('edit_posts')) {
                 return;
             }
@@ -157,10 +137,10 @@ class App
             }
 
             $editorLink = apply_filters(
-                'Modularity/adminbar/editor_link', 
-                $editorLink, 
-                $post, 
-                $archiveSlug, 
+                'Modularity/adminbar/editor_link',
+                $editorLink,
+                $post,
+                $archiveSlug,
                 $this->currentUrl()
             );
 
@@ -224,7 +204,7 @@ class App
     }
 
     public function enqueueBlockEditor() {
-        
+
         if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
             wp_register_script('block-editor-edit-modules', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'), [], null, ['in_footer' => true]);
@@ -275,7 +255,7 @@ class App
         wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'));
         wp_enqueue_script('dynamic-acf');
-        
+
         wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'));
         wp_enqueue_script('dynamic-map-acf');
@@ -292,7 +272,7 @@ class App
             ";
         });
 
-        
+
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {
             wp_enqueue_script('jquery-ui-sortable');
@@ -365,12 +345,61 @@ class App
      * @param int $id The post ID.
      * @return array The modified query arguments.
      */
-    public function removeFromAcfPostQuery($args, $field, $id) 
+    public function removeFromAcfPostQuery($args, $field, $id)
     {
         $args['post_type'] = array_filter($args['post_type'] ?? [], function($postType) {
             return strpos($postType, 'mod-') === false;
         });
 
         return $args;
+    }
+
+    /**
+     * Updates the post_modified date on posts related to a specific module.
+     *
+     * @param int $postId The ID of the module post.
+     * @param \WP_Post $postAfter The WP_Post object after the update.
+     *
+     * @return void
+     */
+    public function updatePostModifiedDateOnPostsRelatedToModule(int $postId, \WP_Post $post) {
+
+        // Bail early if not a module
+        if (!str_starts_with($post->post_type, 'mod-')) {
+            return;
+        }
+
+        $updateDateOnPostsRelatedToModule = new Helper\UpdateDateOnPostsRelatedToModule(self::$moduleManager);
+        $updateDateOnPostsRelatedToModule->update($post);
+    }
+
+    /**
+     * Updates the post_modified date when modularity-modules post meta is updated
+     *
+     * @param int|array $metaId The meta ID.
+     * @param int $postId The post ID.
+     * @param string $metaKey The meta key.
+     * @param mixed $metaValue The meta value.
+     *
+     * @return void
+     */
+    public function updatePostModifiedDateOnMetaUpdate(int|array $metaId, int $postId, string $metaKey, $metaValue) 
+    {
+        // Bail early if not an update of the modularity-modules
+        if (!in_array($metaKey, ['modularity-modules']) || !is_array($metaValue)) {
+            return;
+        }
+
+        // Unhook post_updated to prevent infinite loops
+        remove_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
+        // Update the current post
+        wp_update_post([
+            'ID' => $postId,
+            'post_modified' => current_time('mysql'),
+            'post_modified_gmt' => current_time('mysql', 1)
+        ]);
+        // Add the hook back once the post has been updated
+        add_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
+
     }
 }
