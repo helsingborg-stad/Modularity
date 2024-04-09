@@ -1,7 +1,7 @@
 import Filter from "./filter";
 
 class ModuleFilteringSetup {
-    private filterContainerSelector: string;
+    private filterContainerSelector: string = '';
 
     constructor(
         private postId: string, 
@@ -16,14 +16,31 @@ class ModuleFilteringSetup {
 
     handleFilteringElements() {
         const filterContainerElement    = document.querySelector(this.filterContainerSelector);
-        const postTypeSelect            = filterContainerElement?.querySelector('.modularity-latest-post-type select');
+        const group                     = filterContainerElement?.closest('.postbox-container');
         const taxonomySelect            = filterContainerElement?.querySelector('.modularity-latest-taxonomy select');
-
-        if (!postTypeSelect || !taxonomySelect) {
+        const termsSelect               = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value select');
+        const taxonomySelectLabel       = filterContainerElement?.querySelector('.modularity-latest-taxonomy .acf-label label');
+        const termsSelectLabel          = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value .acf-label label');
+        const postTypeSelect            = group?.querySelector('.modularity-latest-post-type select');
+        
+        if (!postTypeSelect || !taxonomySelect || !taxonomySelectLabel || !termsSelect || !termsSelectLabel) {
             return;
         }
 
-        const filter = new Filter(this.postId, null, {'container': (filterContainerElement as HTMLElement), 'postTypeSelect': (postTypeSelect as HTMLSelectElement), 'taxonomySelect': (taxonomySelect as HTMLSelectElement)});
+        const filter = new Filter(
+            this.postId, 
+            null, 
+            {
+                container: (filterContainerElement as HTMLElement), 
+                postTypeSelect: (postTypeSelect as HTMLSelectElement), 
+                taxonomySelect: (taxonomySelect as HTMLSelectElement),
+                taxonomySelectLabel: (taxonomySelectLabel as HTMLElement),
+                termsSelect: (termsSelect as HTMLSelectElement),
+                termsSelectLabel: (termsSelectLabel as HTMLElement),
+            }
+        );
+
+        filter.initializeTaxonomyFilter();
     }
 }
 
