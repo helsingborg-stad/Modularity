@@ -9,109 +9,111 @@ interface SubscriptionInterface {
 }
 
 class Ungpd {
-    constructor(private form: HTMLElement, private id: string) {
+    form: HTMLElement;
+    id: string;
+    notices: Node[] = [];
+    successTemplate: HTMLTemplateElement | null = null;
+    errorTemplate: HTMLTemplateElement | null = null;
+    consent: HTMLInputElement;
+    email: HTMLInputElement;
 
+    constructor(form: HTMLElement) {
+        this.form = form;
+        this.id = form.getAttribute('id') || '';
+        this.email = this.form.querySelector('input[name="email"]') as HTMLInputElement;
+        this.consent = this.form.querySelector('input[name="user_consent"]') as HTMLInputElement;
+        this.successTemplate = document.querySelector<HTMLTemplateElement>(`template[id="${this.id}-success"]`);
+        this.errorTemplate = document.querySelector<HTMLTemplateElement>(`template[id="${this.id}-error"]`);
+
+        this.setupEventListener();
     }
-}
 
-
-function initializeUngappedForms() {
-
-    const ungpdForms = [...document.querySelectorAll("[data-js-ungpd-id]")];
-    const notices: Node[] = [];
-
-    const handleSuccess = (successTemplate: HTMLTemplateElement) => {
-        const successElement = successTemplate.content.cloneNode(true);
-        if (successTemplate.parentNode) {
-            notices.push(successTemplate.parentNode.appendChild(successElement));
+    private handleSuccess() {
+        const successElement = this.successTemplate?.content.cloneNode(true);
+        if (this.successTemplate?.parentNode) {
+            this.notices.push(this.successTemplate.parentNode.appendChild(successElement!));
         }
     }
 
-    const handleError = (errorTemplate: HTMLTemplateElement, message: string | number) => {
-        const errorElement = errorTemplate.content.cloneNode(true);
-        const messageElement = (errorElement as HTMLElement).querySelector('.message');
+    private handleError(message: string | number) {
+        const errorElement = this.errorTemplate?.content.cloneNode(true);
+        const messageElement = (errorElement as HTMLElement)?.querySelector('.message');
         if (messageElement) {
             messageElement.innerHTML = message.toString();
         }
-        notices.push(errorTemplate.parentNode!.appendChild(errorElement));
-    };
-
-    const clearNotices = () => {
-        notices.forEach(notice => {
-            if (notice.parentNode) {
-                notice.parentNode.removeChild(notice);
-            }
-        });
+        if (this.errorTemplate?.parentNode) {
+            this.notices.push(this.errorTemplate.parentNode.appendChild(errorElement!));
+        }
     }
 
-    ungpdForms.forEach((form, index) => {
-        console.log(form);
-        form.addEventListener("submit", (event) => {
-
-            //Prevent default
-            event.preventDefault();
-            clearNotices();
-
-            //Gather data
-            const accountId = form.getAttribute('data-js-ungpd-id');
-            const listIds = form.getAttribute('data-js-ungpd-list-ids');
-            const doubleOptInIssueId = form.getAttribute('data-js-ungpd-double-opt-in-issue-id');
-            const confirmationIssueId = form.getAttribute('data-js-ungpd-confirmation-issue-id');
-            const subscriptionConfirmedUrl = form.getAttribute('data-js-ungpd-subscription-confirmed-url');
-            const subscriptionFailedUrl = form.getAttribute('data-js-ungpd-subscription-failed-url');
-            const email = form.querySelector('input[name="email"]') as HTMLInputElement;
-            const consent = form.querySelector('input[name="user_consent"]') as HTMLInputElement;
-            const successTemplate = document.querySelectorAll<HTMLTemplateElement>(`template[id="${accountId}-success"]`)[index];
-            const errorTemplate = document.querySelectorAll<HTMLTemplateElement>(`template[id="${accountId}-error"]`)[index];
-
-            const lists = listIds ? listIds.split(",").map((listId) => listId.trim()) : [];
-
-            //Form validates, empty data, send request
-            if (accountId && email && email.value && consent && consent.checked) {
-                
-                let subscription: SubscriptionInterface = {
-                    Contact: { Email: email.value },
-                    ConsentText: consent.value,
-                    ListIds: lists
-                };
-
-                if (doubleOptInIssueId) subscription.DoubleOptIn = { Issue: { IssueId: doubleOptInIssueId } };
-                if (confirmationIssueId) subscription.ConfirmationIssue = { IssueId: confirmationIssueId };
-                if (subscriptionConfirmedUrl) subscription.SubscriptionConfirmedUrl = subscriptionConfirmedUrl;
-                if (subscriptionFailedUrl) subscription.SubscriptionFailedUrl = subscriptionFailedUrl;
-
-                fetch("https://ui.ungpd.com/Api/Subscriptions/" + accountId, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(subscription)
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            handleError(errorTemplate, response.status);
-                        } else {
-                            handleSuccess(successTemplate);
-                            consent.checked = false;
-                            email.value = "";
-                        }
-                    })
-                    .catch(error => {
-                        handleError(errorTemplate, error);
-                    });
-            }
-            
+    private clearNotices() {
+        this.notices.forEach(notice => notice.parentNode?.removeChild(notice));
+    }
+    
+    private setupEventListener() {
+        this.form.addEventListener("submit", this.handleFormSubmit.bind(this));
+    }
+    
+    private async handleFormSubmit(event: Event) {
+        event.preventDefault();
+        this.clearNotices();
+    
+        const subscription = this.subscriptionData();
+    
+        try {
+            await this.submitSubscription(subscription);
+            this.handleSuccess();
+        } catch (error: any) {
+            this.handleError(error.message);
+        }
+    }
+    
+    private subscriptionData() {
+        const listIds = this.form.getAttribute('data-js-ungpd-list-ids');
+        const doubleOptInIssueId = this.form.getAttribute('data-js-ungpd-double-opt-in-issue-id');
+        const confirmationIssueId = this.form.getAttribute('data-js-ungpd-confirmation-issue-id');
+        const subscriptionConfirmedUrl = this.form.getAttribute('data-js-ungpd-subscription-confirmed-url');
+        const subscriptionFailedUrl = this.form.getAttribute('data-js-ungpd-subscription-failed-url');
+    
+        const lists = listIds ? listIds.split(",").map((listId) => listId.trim()) : [];
+    
+        const subscription: SubscriptionInterface = {
+            Contact: { Email: this.email.value },
+            ConsentText: this.consent.value,
+            ListIds: lists
+        };
+    
+        if (doubleOptInIssueId) subscription.DoubleOptIn = { Issue: { IssueId: doubleOptInIssueId } };
+        if (confirmationIssueId) subscription.ConfirmationIssue = { IssueId: confirmationIssueId };
+        if (subscriptionConfirmedUrl) subscription.SubscriptionConfirmedUrl = subscriptionConfirmedUrl;
+        if (subscriptionFailedUrl) subscription.SubscriptionFailedUrl = subscriptionFailedUrl;
+    
+        return subscription;
+    }
+    
+    private async submitSubscription(subscription: SubscriptionInterface) {
+        const accountId = this.form.getAttribute('data-js-ungpd-id');
+        
+        const response = await fetch("https://ui.ungpd.com/Api/Subscriptions/" + accountId, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(subscription)
         });
-    });
+    
+        if (!response.ok) {
+            throw new Error(`Failed to subscribe: ${response.status}`);
+        }
+    
+        this.consent.checked = false;
+        this.email.value = "";
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const ungpdForms = [...document.querySelectorAll("[data-js-ungpd-id]")];
     ungpdForms.forEach(form => {
-        const id = form.getAttribute('id');
-        if (id) {
-            new Ungpd(form as HTMLElement, id);
-        }
+        new Ungpd(form as HTMLElement);
     });
-    initializeUngappedForms()
 });
