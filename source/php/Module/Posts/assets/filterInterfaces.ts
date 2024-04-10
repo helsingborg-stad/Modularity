@@ -20,3 +20,15 @@ export interface TermsRequestData {
     post: string;
     selected: string|null;
 }
+
+export interface Block {
+    name: string;
+    attributes: {
+        mode: string;
+        data: {
+            posts_taxonomy_type: string;
+            posts_taxonomy_value: string;
+        };
+    };
+    clientId: string;
+}

@@ -18,21 +18,24 @@ class BlockFilteringSetup {
             const postsBlockIds = editor.getBlocksByName('acf/posts');
             if (postsBlockIds.length > 0) {
                 postsBlockIds.forEach(postBlockId => {
-                    if (!this.initializedPostsBlocks.includes(postBlockId)) {
-                        this.initializedPostsBlocks.push(postBlockId);
-                        const block = editor.getBlock(postBlockId);
-                        const intervalId = setInterval(() => {
-                            const filterElements = this.getFilterElements(block);
-                            if (filterElements) {
-                                this.taxonomyFilteringBlockInitialization(block, filterElements);
-                                console.log("runs");
-                                clearInterval(intervalId);
-                            }
-                        }, 1000);
-                    };
+                    this.setupBlockTaxonomyFiltering(postBlockId, editor);
                 });
             }
         });
+    }
+
+    private setupBlockTaxonomyFiltering(postBlockId: string, editor: any) {
+        if (!this.initializedPostsBlocks.includes(postBlockId)) {
+            this.initializedPostsBlocks.push(postBlockId);
+            const block = editor.getBlock(postBlockId);
+            const intervalId = setInterval(() => {
+                const filterElements = this.getFilterElements(block);
+                if (filterElements) {
+                    this.taxonomyFilteringBlockInitialization(block, filterElements);
+                    clearInterval(intervalId);
+                }
+            }, 1000);
+        };
     }
 
     private taxonomyFilteringBlockInitialization(block: Block, filterElements: FilterElements) {        
@@ -58,15 +61,13 @@ class BlockFilteringSetup {
         const taxonomySelectLabel       = filterContainerElement?.querySelector('.modularity-latest-taxonomy .acf-label label');
         const termsSelectLabel          = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value .acf-label label');
         const postTypeSelect            = filterContainerElement?.querySelector('.modularity-latest-post-type select');
-        const sortOnTermsAndTaxonomies  = filterContainerElement?.querySelector('[data-name="posts_taxonomy_filter"] input[type="checkbox"]');
 
         if (
             !postTypeSelect || 
             !taxonomySelect || 
             !taxonomySelectLabel || 
             !termsSelect || 
-            !termsSelectLabel || 
-            !sortOnTermsAndTaxonomies
+            !termsSelectLabel
         ) {
             return null;
         }
@@ -78,7 +79,6 @@ class BlockFilteringSetup {
             taxonomySelectLabel: (taxonomySelectLabel as HTMLElement),
             termsSelect: (termsSelect as HTMLSelectElement),
             termsSelectLabel: (termsSelectLabel as HTMLElement),
-            sortOnTermsAndTaxonomies: (sortOnTermsAndTaxonomies as HTMLInputElement)
         };
     }
 }

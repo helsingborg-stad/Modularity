@@ -19,13 +19,18 @@ class ModuleFilteringSetup {
         const termsSelectLabel          = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value .acf-label label');
         const postTypeSelect            = group?.querySelector('.modularity-latest-post-type select');
         
-        if (!postTypeSelect || !taxonomySelect || !taxonomySelectLabel || !termsSelect || !termsSelectLabel) {
+        if (
+            !postTypeSelect || 
+            !taxonomySelect || 
+            !taxonomySelectLabel || 
+            !termsSelect || 
+            !termsSelectLabel
+        ) {
             return;
         }
 
         const filter = new Filter(
             this.postId, 
-            null, 
             {
                 container: (filterContainerElement as HTMLElement), 
                 postTypeSelect: (postTypeSelect as HTMLSelectElement), 

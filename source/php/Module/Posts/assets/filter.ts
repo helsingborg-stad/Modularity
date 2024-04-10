@@ -1,14 +1,19 @@
 import { FilterElements } from './filterInterfaces';
 import { taxonomiesRequest, termsRequest } from './xhr';
 
+interface SelectedValues {
+    selectedTaxonomy: string|null;
+    selectedTerm: string|null;
+}
+
 class Filter {
     taxonomySpinner: null|HTMLElement;
     termsSpinner: null|HTMLElement;
 
     constructor(
         private postId: string,
-        private data: null | object = null,
-        private filterElements: FilterElements
+        private filterElements: FilterElements,
+        private blockSelectedValues: SelectedValues|null = null
     ) {
         this.taxonomySpinner    = null;
         this.termsSpinner       = null;
@@ -38,7 +43,7 @@ class Filter {
                 action: 'get_taxonomy_types_v2',
                 posttype: this.filterElements.postTypeSelect.value,
                 post: this.postId,
-                selected: null
+                selected: this.blockSelectedValues ? this.blockSelectedValues.selectedTaxonomy : null
             }, 
             this.filterElements.taxonomySelect, 
             this.taxonomySpinner     
@@ -55,7 +60,7 @@ class Filter {
             {
                 action: 'get_taxonomy_values_v2',
                 tax: this.filterElements.taxonomySelect.value,
-                selected: null,
+                selected: this.blockSelectedValues ? this.blockSelectedValues.selectedTerm : null,
                 post: this.postId
             },
             this.filterElements.termsSelect,
