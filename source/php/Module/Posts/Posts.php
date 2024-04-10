@@ -374,12 +374,6 @@ class Posts extends \Modularity\Module
             'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-taxonomy-filtering');
-
-        // wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
-        // wp_localize_script('mod-posts-script', 'modPosts', [
-        //     'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
-        // ]);
-        // wp_enqueue_script('mod-posts-script');
     }
 
     /**
