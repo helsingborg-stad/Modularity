@@ -1,65 +1,85 @@
+import Filter from "./filter";
+import { FilterElements, Block } from "./filterInterfaces";
+
 declare const wp: any;
 
-interface Block {
-    name: string;
-    attributes: {
-        mode: string;
-        data: Object;
-        // other attributes
-    };
-    clientId: string;
-    // other properties
-}
-
-
 class BlockFilteringSetup {
-    postsBlockBlocks: Array<Block> = [];
+    private initializedPostsBlocks: Array<string>;
 
-    declare wp: any;
-
-    constructor(private postId: String) {
-        this.initialize();
+    constructor(private postId: string) {
+        this.initializedPostsBlocks = [];
+        this.listenForBlocks();
     }
 
-    private async initialize() {
-        this.postsBlockBlocks = await this.getBlocks();
+    private listenForBlocks() {
+        const editor = wp.data.select('core/block-editor');
 
-        
-    }
-
-    private getBlocks(): Promise<Block[]> {
-        return new Promise((resolve) => {
-            if (!wp || !wp.data) {
-                resolve([]);
+        wp.data.subscribe(() => {
+            const postsBlockIds = editor.getBlocksByName('acf/posts');
+            if (postsBlockIds.length > 0) {
+                postsBlockIds.forEach(postBlockId => {
+                    if (!this.initializedPostsBlocks.includes(postBlockId)) {
+                        this.initializedPostsBlocks.push(postBlockId);
+                        const block = editor.getBlock(postBlockId);
+                        const intervalId = setInterval(() => {
+                            const filterElements = this.getFilterElements(block);
+                            if (filterElements) {
+                                this.taxonomyFilteringBlockInitialization(block, filterElements);
+                                console.log("runs");
+                                clearInterval(intervalId);
+                            }
+                        }, 1000);
+                    };
+                });
             }
-
-            let i = 0;
-            const maxIterations = 30; // sets a maximum amount of iterations
-
-            const intervalId = setInterval(() => {
-                // i++;
-                const blocks = wp.data.select('core/block-editor').getBlocks();
-                if (blocks) {
-                    clearInterval(intervalId);
-                    resolve(this.getPostsBlocks(blocks));
-                }
-            }, 300);
         });
     }
 
-    private getPostsBlocks(blocks: Block[] = []): Block[] {
-        let postsBlocks = [];
-        for (const [key, block] of Object.entries(blocks)) {
-            if (block.name !== 'acf/posts') {
-                continue;
+    private taxonomyFilteringBlockInitialization(block: Block, filterElements: FilterElements) {        
+        const selectedTaxonomy   = block.attributes?.data?.posts_taxonomy_type ? block.attributes.data.posts_taxonomy_type : null;
+        const selectedTerm       = block.attributes?.data?.posts_taxonomy_value ? block.attributes.data.posts_taxonomy_value : null;
+
+        const filter = new Filter(
+            this.postId, 
+            filterElements,
+            {
+                selectedTaxonomy: selectedTaxonomy, 
+                selectedTerm: selectedTerm
             }
+        );
 
-            const blockId = block.clientId;
-            const blockData = block.attributes?.data;
+        filter.initializeTaxonomyFilter();
+    }
 
+    private getFilterElements(block: Block): FilterElements|null {
+        const filterContainerElement    = document.querySelector('#block-' + block.clientId);
+        const taxonomySelect            = filterContainerElement?.querySelector('.modularity-latest-taxonomy select');
+        const termsSelect               = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value select');
+        const taxonomySelectLabel       = filterContainerElement?.querySelector('.modularity-latest-taxonomy .acf-label label');
+        const termsSelectLabel          = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value .acf-label label');
+        const postTypeSelect            = filterContainerElement?.querySelector('.modularity-latest-post-type select');
+        const sortOnTermsAndTaxonomies  = filterContainerElement?.querySelector('[data-name="posts_taxonomy_filter"] input[type="checkbox"]');
 
-        }   
-        return postsBlocks;
+        if (
+            !postTypeSelect || 
+            !taxonomySelect || 
+            !taxonomySelectLabel || 
+            !termsSelect || 
+            !termsSelectLabel || 
+            !sortOnTermsAndTaxonomies
+        ) {
+            return null;
+        }
+
+        return {
+            container: (filterContainerElement as HTMLElement), 
+            postTypeSelect: (postTypeSelect as HTMLSelectElement), 
+            taxonomySelect: (taxonomySelect as HTMLSelectElement),
+            taxonomySelectLabel: (taxonomySelectLabel as HTMLElement),
+            termsSelect: (termsSelect as HTMLSelectElement),
+            termsSelectLabel: (termsSelectLabel as HTMLElement),
+            sortOnTermsAndTaxonomies: (sortOnTermsAndTaxonomies as HTMLInputElement)
+        };
     }
 }
 
