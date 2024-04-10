@@ -51,10 +51,10 @@
 			'required' => true
   ])
   @endoption
-
+  
 @endform
 
-<template id="{!!$formID!!}-success">
+<template id="{!!$uid!!}-success">
 	@notice([
 		'type' => 'success',
 			'message' => [
@@ -74,7 +74,7 @@
 	@endnotice
 </template>
 
-<template id="{!!$formID!!}-error">
+<template id="{!!$uid!!}-error">
 	@notice([
 		'type' => 'danger',
 			'message' => [
