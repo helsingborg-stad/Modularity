@@ -23,7 +23,7 @@ export function taxonomiesRequest(data: TaxonomyRequestData, taxonomySelect: HTM
     
                 keys.forEach(key => {
                     const taxonomy = response.types[key];
-                    const isSelected = (taxonomy.name === response.curr || taxonomy.name === data.selected) ? 'selected' : '';
+                    const isSelected = getSelected([response.curr, data.selected], taxonomy.name) ? 'selected' : '';
                     taxonomySelect.insertAdjacentHTML('beforeend', `<option value="${taxonomy.name}" ${isSelected}>${taxonomy.label}</option>`);
                 });
     
@@ -38,7 +38,7 @@ export function taxonomiesRequest(data: TaxonomyRequestData, taxonomySelect: HTM
     });
 }
 
-export function termsRequest(data: TermsRequestData, termsSelect: HTMLElement, termsSpinner: HTMLElement|null) {    
+export function termsRequest(data: TermsRequestData, termsSelect: HTMLElement, termsSpinner: HTMLElement|null) { 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', ajaxurl, true);
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -54,8 +54,8 @@ export function termsRequest(data: TermsRequestData, termsSelect: HTMLElement, t
             const keys = Object.keys(response.tax);
             keys.forEach(key => {
                 const term = response.tax[key];
-                const isSelected = (term.slug === response.curr || term.slug === data.selected) ? 'selected' : '';
-                termsSelect.insertAdjacentHTML('beforeend', `<option value="${term.slug} ${isSelected}">${term.name}</option>`);
+                const isSelected = getSelected([response.curr, data.selected], term.slug) ? 'selected' : '';
+                termsSelect.insertAdjacentHTML('beforeend', `<option value="${term.slug}" ${isSelected}>${term.name}</option>`);
             });
 
             termsSpinner?.remove();
@@ -65,4 +65,15 @@ export function termsRequest(data: TermsRequestData, termsSelect: HTMLElement, t
     const urlEncodedData = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
     
     xhr.send(urlEncodedData);
+}
+
+function getSelected(checks: string[], value: string) {
+    for (const check of checks) {
+        const sanitizedCheck = check?.replace(/[\n\s]/g, '');
+        if (sanitizedCheck === value) {
+            return true;
+        }
+    }
+
+    return false;
 }
