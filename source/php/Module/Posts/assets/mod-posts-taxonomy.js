@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    console.log(pagenow)
     if (pagenow === 'mod-posts') {
         postsTaxonomy(modPosts.currentPostID);  
     }
@@ -68,15 +67,15 @@ function postsTaxonomy(modularity_current_post_id, data = null, blockContainer =
         'container': blockContainer
     });
 
-    $(blockContainer + ' .modularity-latest-post-type select').on('change', function () {
-        console.log("runs");
-        getTaxonomyTypes({
-            'action': 'get_taxonomy_types_v2',
-            'posttype': $(this).val(),
-            'post': modularity_current_post_id,
-            'container': blockContainer
-        });
-    })
+    // $(blockContainer + ' .modularity-latest-post-type select').on('change', function () {
+    //     console.log("runs");
+    //     getTaxonomyTypes({
+    //         'action': 'get_taxonomy_types_v2',
+    //         'posttype': $(this).val(),
+    //         'post': modularity_current_post_id,
+    //         'container': blockContainer
+    //     });
+    // })
 
     /**
      * Taxonomy values update
@@ -161,6 +160,7 @@ function getTaxonomyTypes(data) {
 }
 
 function getTaxonomyValues(data) {
+    console.log(data);
     const blockContainer = data.container;
 
     const selectElement = document.querySelector(blockContainer + ' .modularity-latest-taxonomy-value select');
@@ -176,7 +176,7 @@ function getTaxonomyValues(data) {
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            const response = JSON.parse(xhr.responseText);            
+            const response = JSON.parse(xhr.responseText);      
             const spinner = document.querySelector(blockContainer + ' .modularity-latest-taxonomy-value .acf-label label .spinner');
 
             const keys = Object.keys(response.tax);
@@ -190,6 +190,7 @@ function getTaxonomyValues(data) {
     }
 
     const urlEncodedData = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
+    console.log(urlEncodedData);
     
     xhr.send(urlEncodedData);
 }

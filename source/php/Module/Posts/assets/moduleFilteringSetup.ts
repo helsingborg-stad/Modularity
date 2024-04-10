@@ -6,15 +6,11 @@ class ModuleFilteringSetup {
     constructor(
         private postId: string, 
     ) {
-        if (!this.postId) {
-            return;
-        }
-
         this.filterContainerSelector = '#acf-group_571e045dd555d';
         this.handleFilteringElements();
     }
 
-    handleFilteringElements() {
+    private handleFilteringElements() {
         const filterContainerElement    = document.querySelector(this.filterContainerSelector);
         const group                     = filterContainerElement?.closest('.postbox-container');
         const taxonomySelect            = filterContainerElement?.querySelector('.modularity-latest-taxonomy select');
