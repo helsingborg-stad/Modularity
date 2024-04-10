@@ -368,11 +368,12 @@ class Posts extends \Modularity\Module
     }
 
     public function adminEnqueue() {
-        wp_register_script('mod-posts-script', MODULARITY_URL . '/source/php/Module/Posts/assets/mod-posts-taxonomy.js');
-        wp_localize_script('mod-posts-script', 'modPosts', [
+        wp_register_script('mod-posts-taxonomy-filtering', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/mod-posts-taxonomy-filtering.js'));
+        wp_localize_script('mod-posts-taxonomy-filtering', 'modPostsTaxonomyFiltering', [
             'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
-        wp_enqueue_script('mod-posts-script');
+        wp_enqueue_script('mod-posts-taxonomy-filtering');
     }
 
     /**

@@ -44,7 +44,7 @@ class PostsAjax {
         $post = $_POST['post'];
 
         $result = [
-            'types' => get_object_taxonomies($_POST['posttype'], 'object'),
+            'types' => get_object_taxonomies($_POST['posttype'], 'objects'),
             'curr' => get_field('posts_taxonomy_type', $post)
         ];
 
