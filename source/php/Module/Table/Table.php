@@ -42,17 +42,8 @@ class Table extends \Modularity\Module
         $post = $this->data;
         $data = (array) $this->getFields();
 
-        if (!empty($data['mod_table_block_csv_file'])) {
-            $tableData = $this->formatCsvData($data['mod_table_block_csv_file'], $data['mod_table_csv_delimiter']);
-        } elseif ($data['mod_table_csv_file']) {
-            $tableData = $this->formatCsvData($data['mod_table_csv_file'], $data['mod_table_csv_delimiter']);
-        } elseif (isset($post['meta']['mod_table'][0]) && !empty(json_decode($post['meta']['mod_table'][0]))) {
-            $tableData = json_decode($post['meta']['mod_table'][0]);
-        } else {
-            $tableData = $data['mod_table'];
-        }
+        $tableList = $this->tableList($this->getTableData($post, $data));
 
-        $tableList = $this->tableList($tableData);
         $data['mod_table_size'] = $data['mod_table_size'] ?? '';
         $data['m_table']        = [
             'data'              => (array) $tableList,
@@ -108,6 +99,21 @@ class Table extends \Modularity\Module
         }
 
         return $classes;
+    }
+
+    private function getTableData($post, $data)
+    {
+        if (!empty($data['mod_table_block_csv_file'])) {
+            $tableData = $this->formatCsvData($data['mod_table_block_csv_file'], $data['mod_table_csv_delimiter']);
+        } elseif ($data['mod_table_csv_file'] && !empty($data['mod_table_data_type']) && $data['mod_table_data_type'] === 'csv') {
+            $tableData = $this->formatCsvData($data['mod_table_csv_file'], $data['mod_table_csv_delimiter']);
+        } elseif (isset($post['meta']['mod_table'][0]) && !empty(json_decode($post['meta']['mod_table'][0]))) {
+            $tableData = json_decode($post['meta']['mod_table'][0]);
+        } else {
+            $tableData = $data['mod_table'];
+        }
+
+        return $tableData;
     }
 
     private function formatCsvData($file, $delimiter) {
