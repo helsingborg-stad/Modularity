@@ -32,7 +32,7 @@ export function taxonomiesRequest(data: TaxonomyRequestData, taxonomySelect: HTM
             }
         }
         
-        const urlEncodedData = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
+        const urlEncodedData = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent((data as {[key: string]: any})[key])).join('&');
         
         xhr.send(urlEncodedData);
     });
@@ -62,7 +62,7 @@ export function termsRequest(data: TermsRequestData, termsSelect: HTMLElement, t
         }    
     }
 
-    const urlEncodedData = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&');
+    const urlEncodedData = Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent((data as {[key: string]: any})[key])).join('&');
     
     xhr.send(urlEncodedData);
 }
