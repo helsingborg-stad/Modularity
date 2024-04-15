@@ -59,9 +59,7 @@ class Breadcrumbs extends \Modularity\Module
                 'accessibility',
                 'modularity'
             );
-            $data['accessibilityItems'] = $accessibility->getAccessibilityItems(
-                PostHelper::getPageID()
-            );
+            $data['accessibilityItems'] = $accessibility->getAccessibilityItems();
         }
         return $data;
     }
