@@ -17,7 +17,7 @@ class BlockFilteringSetup {
         wp.data.subscribe(() => {
             const postsBlockIds = editor.getBlocksByName('acf/posts');
             if (postsBlockIds.length > 0) {
-                postsBlockIds.forEach(postBlockId => {
+                postsBlockIds.forEach((postBlockId: string) => {
                     this.setupBlockTaxonomyFiltering(postBlockId, editor);
                 });
             }

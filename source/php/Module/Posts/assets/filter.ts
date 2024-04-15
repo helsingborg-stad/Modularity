@@ -74,7 +74,7 @@ class Filter {
             '<span class="spinner" style="visibility: visible; float: none; margin: 0 5px 0 0;"></span>'
         );
 
-        this[type] = element.querySelector('.spinner');
+        this[(type as 'taxonomySpinner'|'termsSpinner')] = element.querySelector('.spinner');
     }
 
     private removeExistingData(element: HTMLElement) {
