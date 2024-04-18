@@ -103,7 +103,13 @@ function renderPosts(posts, button) {
 		});
 }
 
-// Select all elements with class 'mod-curator-load-more' and convert the result to an array
-const loadMoreButtons = Array.from(document.getElementsByClassName('mod-curator-load-more'));
-// Add the event listener to each button in the array
-loadMoreButtons.forEach((button) => button.addEventListener('click', loadMoreHandler));
+
+document.addEventListener('DOMContentLoaded', () => {
+
+	// Select all elements with class 'mod-curator-load-more' and convert the result to an array
+	const loadMoreButtons = Array.from(document.getElementsByClassName('mod-curator-load-more'));
+
+	// Add the event listener to each button in the array
+	loadMoreButtons.forEach((button) => button.addEventListener('click', loadMoreHandler));
+
+}); 
