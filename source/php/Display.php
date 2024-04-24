@@ -120,12 +120,7 @@ class Display
         try {
             return $blade->makeView( $view, $viewData, [], $moduleView )->render();
         } catch (Throwable $e) {
-            echo '<pre class="c-paper" style="max-height: 400px; overflow: auto;">';
-            echo '<h2>Could not find view</h2>'; 
-            echo '<strong>' . $e->getMessage() . '</strong>';
-            echo '<hr style="background: #000; outline: none; border:none; display: block; height: 1px;"/>';
-            echo $e->getTraceAsString();
-            echo '</pre>';
+            $blade->errorHandler($e)->print();
         }
 
         return false;
