@@ -18,8 +18,8 @@ class GetPosts
                         $post = \Municipio\Helper\Post::preparePostObjectArchive($post, $data);
                     }
 
-                    if (!empty($post->location)) {
-                        $post->attributeList['data-js-map-location'] = json_encode($post->location);
+                    if (!empty($post->schemaData['place']['pin'])) {
+                        $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
                     }
                 }
             }
