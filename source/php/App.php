@@ -257,7 +257,7 @@ class App
         wp_enqueue_script('dynamic-acf');
 
         wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'));
+        . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'), array('jquery'));
         wp_enqueue_script('dynamic-map-acf');
 
         wp_register_script('modularity-text-module', MODULARITY_URL . '/dist/'
