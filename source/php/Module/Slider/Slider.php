@@ -52,7 +52,6 @@ class Slider extends \Modularity\Module
 
     public function data() : array
     {
-
         //Get settings
         $fields = $this->getFields();
         $data = [];
@@ -72,7 +71,10 @@ class Slider extends \Modularity\Module
         ];
 
         //Get slides
-        $data['slides'] = $this->prepareSlides($fields);
+        if (isset($fields['slides']) && is_array($fields['slides'])) {
+            $data['slides'] = array_map([$this, 'prepareSlide'], $fields['slides']);
+        }
+
         $data['id'] = $this->ID;
 
         //Translations
@@ -85,102 +87,77 @@ class Slider extends \Modularity\Module
         return $data;
     }
 
-    public function prepareSlides($data)
-    {
-        $imageSize = array(1800, 350);
-        if (isset($this->imageSizes[$data['slider_format']])) {
-            $imageSize = $this->imageSizes[$data['slider_format']];
+    private function prepareSlide($slide) {
+        $slide = $slide['acf_fc_layout'] === 'video' ? 
+            $this->prepareVideoSlide($slide) : 
+            $this->prepareImageSlide($slide); 
+
+        $slide = $this->getLinkData($slide);
+
+        return $slide;
+    }
+
+    private function prepareImageSlide(array $slide) {
+        if (!isset($slide['image']['id'])) {
+            return null;
         }
 
-        if(!empty($data['slides']) && is_array($data['slides'])) {
-            foreach ($data['slides'] as &$slide) {
-                $currentImageSize = $imageSize;
+        $slide['focusPoint'] = [
+            'top' => $slide['image']['top'] ?? "50",
+            'left' => $slide['image']['left'] ?? "50"
+        ];
 
-                if ($slide['acf_fc_layout'] === 'video') {
-                    $currentImageSize = array(1140, false);
-                }
+        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image']['id'] ?? null, 'full');
 
-                if ($slide['acf_fc_layout'] == "featured") {
-                    $currentImageSize = array(floor($currentImageSize[0]/2), $currentImageSize[1]);
-                }
+        return $slide;
+    }    
+    
+    private function prepareVideoSlide(array $slide) {
+        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image'] ?? null, 'full');
+        
+        return $slide;
+    }
 
-                // Image
-                $slide['image_use'] = false;
-                if (isset($slide['image']) && !empty($slide['image'])) {
-                    $slide['image_use'] = wp_get_attachment_image_src(
-                        $slide['image']['id'],
-                        apply_filters(
-                            'Modularity/slider/image',
-                            $currentImageSize,
-                            $this->args
-                        )
-                    );
-                }
-
-                // Set link text
-                if (empty($slide['link_text'])) {
-                    $slide['link_text'] = __('Read more', 'modularity');
-                }
-
-                // In some cases ACF will return an post-id instead of a link.
-
-                if (isset($slide['link_url'])) {
-                    if (is_numeric($slide['link_url']) && get_post_status($slide['link_url']) == "publish") {
-                        $slide['link_url'] = get_permalink($slide['link_url']);
-                    }
-                }
-
-                $slide['heroStyle'] = false;
-
-                if ($slide['textblock_position'] === 'hero') {
-                    $slide['heroStyle'] = true;
-                    $slide['textblock_position'] = 'center';
-                }
-
-                if (isset($slide['textblock_position']) && !empty($slide['textblock_position'])  && !is_string($slide['textblock_position'])) {
-                    $slide['textblock_position'] = 'bottom';
-                }
-
-                //Set call to action default value
-                $slide['call_to_action'] = false;
-
-                if ($slide['link_type'] !== 'false' && ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video')) {
-                    $slide['call_to_action'] = array(
-                        'title' => $slide['link_text'],
-                        'href' => $slide['link_url']
-                    );
-                    //remove link url, instead use CTA
-                    $slide['link_url'] = false;
-                }
-
-                // Replace image alt text with link description
-                if (isset($slide['image'])
-                    && !empty($slide['link_type'])
-                    && $slide['link_type'] !== 'false'
-                    && !empty($slide['link_url_description'])) {
-                    $slide['image']['alt'] = $slide['link_url_description'];
-                }
-
-                $focusPoint = false;
-
-                if(
-                    is_array($slide['image']) &&
-                    array_key_exists('top', $slide['image']) && 
-                    array_key_exists('left', $slide['image'])
-                ) {
-                    $focusPoint = [
-                        'top'   => $slide['image']['top'],
-                        'left'  => $slide['image']['left']
-                    ];
-                }
-
-                $slide['focusPoint'] = $focusPoint;
-
-                $slide = (object) $slide;
-            }
+    private function getLinkData(array $slide) {
+        if (!empty($slide['link_url'])) {
+            return $slide;
         }
 
-        return $data['slides'];
+        if ($this->isValidLinkUrl($slide)) {
+            $slide['link_url'] = get_permalink($slide['link_url']);
+        }
+
+        // Set link text
+        if (empty($slide['link_text'])) {
+            $slide['link_text'] = __('Read more', 'modularity');
+        }
+
+        $slide['call_to_action'] = false;
+
+        if ($this->isImageLinkType($slide)) {
+            $slide['call_to_action'] = array(
+                'title' => $slide['link_text'],
+                'href' => $slide['link_url']
+            );
+            //remove link url, instead use CTA
+            $slide['link_url'] = false;
+        }
+
+        return $slide;
+    }
+
+    private function isValidLinkUrl($slide) {
+        return 
+            isset($slide['link_url']) && 
+            is_numeric($slide['link_url']) && 
+            get_post_status($slide['link_url']) == "publish";
+    }
+
+    private function isImageLinkType($slide) {
+        return 
+            !empty($slide['link_type']) && 
+            $slide['link_type'] !== 'false' && 
+            ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video');
     }
 
     /**
