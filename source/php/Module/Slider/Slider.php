@@ -70,9 +70,15 @@ class Slider extends \Modularity\Module
             'slideX' => __('Go to slide %s', 'modularity'),
         ];
 
+        $imageSize = isset($this->imageSizes[$fields['slider_format']]) ? 
+            $this->imageSizes[$fields['slider_format']] : 
+            [1800, 350];
+
         //Get slides
         if (isset($fields['slides']) && is_array($fields['slides'])) {
-            $data['slides'] = array_map([$this, 'prepareSlide'], $fields['slides']);
+            $data['slides'] = array_map(function($slide) use ($imageSize) {
+                return $this->prepareSlide($slide, $imageSize);
+            }, $fields['slides']);
         }
 
         $data['id'] = $this->ID;
@@ -87,17 +93,17 @@ class Slider extends \Modularity\Module
         return $data;
     }
 
-    private function prepareSlide($slide) {
+    private function prepareSlide($slide, array $imageSize) {
         $slide = $slide['acf_fc_layout'] === 'video' ? 
-            $this->prepareVideoSlide($slide) : 
-            $this->prepareImageSlide($slide); 
+            $this->prepareVideoSlide($slide, $imageSize) : 
+            $this->prepareImageSlide($slide, $imageSize); 
 
         $slide = $this->getLinkData($slide);
 
         return $slide;
     }
 
-    private function prepareImageSlide(array $slide) {
+    private function prepareImageSlide(array $slide, array $imageSize) {
         if (!isset($slide['image']['id'])) {
             return null;
         }
@@ -107,13 +113,13 @@ class Slider extends \Modularity\Module
             'left' => $slide['image']['left'] ?? "50"
         ];
 
-        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image']['id'] ?? null, 'full');
+        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image']['id'] ?? null, $imageSize);
 
         return $slide;
     }    
     
-    private function prepareVideoSlide(array $slide) {
-        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image'] ?? null, 'full');
+    private function prepareVideoSlide(array $slide, array $imageSize) {
+        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image'] ?? null, $imageSize);
         
         return $slide;
     }
@@ -141,7 +147,7 @@ class Slider extends \Modularity\Module
             //remove link url, instead use CTA
             $slide['link_url'] = false;
         }
-        
+
         return $slide;
     }
 
