@@ -119,7 +119,7 @@ class Slider extends \Modularity\Module
     }
 
     private function getLinkData(array $slide) {
-        if (!empty($slide['link_url'])) {
+        if (empty($slide['link_url'])) {
             return $slide;
         }
 
@@ -133,8 +133,7 @@ class Slider extends \Modularity\Module
         }
 
         $slide['call_to_action'] = false;
-
-        if ($this->isImageLinkType($slide)) {
+        if ($this->isButtonCta($slide)) {
             $slide['call_to_action'] = array(
                 'title' => $slide['link_text'],
                 'href' => $slide['link_url']
@@ -142,7 +141,7 @@ class Slider extends \Modularity\Module
             //remove link url, instead use CTA
             $slide['link_url'] = false;
         }
-
+        
         return $slide;
     }
 
@@ -153,7 +152,7 @@ class Slider extends \Modularity\Module
             get_post_status($slide['link_url']) == "publish";
     }
 
-    private function isImageLinkType($slide) {
+    private function isButtonCta($slide) {
         return 
             !empty($slide['link_type']) && 
             $slide['link_type'] !== 'false' && 
