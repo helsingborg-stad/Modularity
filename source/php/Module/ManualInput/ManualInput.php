@@ -41,7 +41,7 @@ class ManualInput extends \Modularity\Module
         );
 
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
-            foreach ($fields['manual_inputs'] as &$input) {
+            foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
                     return !empty($value) || $value === false;
                 });
@@ -49,13 +49,45 @@ class ManualInput extends \Modularity\Module
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
+                $arr['view']                    = $this->getInputView($fields, $index);
+                $arr['columnSize']              = $this->getInputColumnSize($fields, $index);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
-                
                 $data['manualInputs'][]         = (array) $arr;
             }
         }
 
         return $data;
+    }
+
+    private function getInputView(array $fields, int $index) 
+    {
+        return $index === 0 && !empty($fields['highlight_first_input']) ? $this->getHighlightedView() : $this->template;
+    }
+
+    private function getInputColumnSize(array $fields, int $index)
+    {
+        $columnSize = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
+
+        if ($index !== 0 || empty($fields['highlight_first_input'])) {
+            return $columnSize . '@md';
+        }
+
+        return $this->getHighlightedColumnSize($columnSize) . '@md';
+
+    }
+
+    private function getHighlightedColumnSize($columnSize)
+    {
+        switch ($columnSize) {
+            case 'o-grid-6':
+                return 'o-grid-12';
+            case 'o-grid-4':
+                return 'o-grid-8';
+            case 'o-grid-3':
+                return 'o-grid-6';
+            default:
+                return 'o-grid-12';
+        }
     }
 
     /**
@@ -72,6 +104,20 @@ class ManualInput extends \Modularity\Module
             'accordion_column_values'   => [],
             'box_icon'                  => false
         ];
+    }
+
+    private function getHighLightedView() 
+    {
+        switch ($this->template) {
+            case "segment":
+                return "segment";
+            case "block":
+                return "card";
+            case "card":
+                return "block";
+            default:
+                return "block";
+        }
     }
 
     /**
@@ -186,7 +232,7 @@ class ManualInput extends \Modularity\Module
             return $this->template . ".blade.php";
         }
         
-        return 'card.blade.php';
+        return 'base.blade.php';
     }
 
     /**

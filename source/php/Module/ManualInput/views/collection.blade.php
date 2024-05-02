@@ -6,7 +6,7 @@
         @foreach ($manualInputs as $input)
             @collection__item([
                 'link' => $input['link'],
-                'classList' => [$columns],
+                'classList' => [$input['columnSize']],
                 'context' => $context,
                 'containerAware' => true,
                 'bordered' => true,
