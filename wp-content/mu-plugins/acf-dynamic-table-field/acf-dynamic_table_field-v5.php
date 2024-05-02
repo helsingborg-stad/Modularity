@@ -280,39 +280,40 @@ class acf_field_dynamic_table_field extends acf_field {
 
 		// bail early if no value or not for template
 		if( $value=='[[""]]' || !is_string($value) ) {
-
 			return '';
-
 		}
 
-
+		$pattern = '/(?<!\[)"(?!\])/';
+		$value = preg_replace($pattern, '', $value);
 		$tabledata =  json_decode($value);
 
-			if ( !$field['fixed_columns'] ) {
-				$theheaders = array_shift($tabledata);
-			}else{
-				$theheaders = preg_split( '/\r\n|\r|\n/',  $field['default_headers'] );
-			};
+		if (empty($tabledata) || !is_array($tabledata)) {
+			return '';
+		}
 
-			$html = '<table class="acf-dynamic-table ' . $field['tableclass'] . '">';
-			  $html .= '<thead>';
-			    $html .= '<tr>';
-			      $html .= '<th>'.implode('</th><th>', $theheaders ).'</th>';
-			    $html .= '</tr>';
-			  $html .= '</thead>';
-			 $html .=  '<tbody class="list">';
-			 foreach ($tabledata as $row): array_map('htmlentities', $row);
-			    $html .= '<tr>';
-			    $html .= implode('', array_map(function ($v, $k)  use ($theheaders) { return '<td data-title="'.$theheaders[$k].'"  class="'.$theheaders[$k].'">'. $v.'</td>'; }, $row, array_keys($row)));
-			     // $html .= '<td  data-title="'.$theheaders[$key].'">'.implode('</td><td>', $row).'</td>';
-			   $html .=  '</tr>';
-			 endforeach;
-			  $html .= '</tbody>';
-			$html .= '</table>';
-		// return
+		if ( !$field['fixed_columns'] ) {
+			$theheaders = array_shift($tabledata);
+		} else {
+			$theheaders = preg_split( '/\r\n|\r|\n/',  $field['default_headers'] );
+		};
+
+		$html = '<table class="acf-dynamic-table ' . $field['tableclass'] . '">';
+			$html .= '<thead>';
+			$html .= '<tr>';
+				$html .= '<th>'.implode('</th><th>', $theheaders ).'</th>';
+			$html .= '</tr>';
+			$html .= '</thead>';
+			$html .=  '<tbody class="list">';
+			foreach ($tabledata as $row): array_map('htmlentities', $row);
+			$html .= '<tr>';
+			$html .= implode('', array_map(function ($v, $k)  use ($theheaders) { return '<td data-title="'.$theheaders[$k].'"  class="'.$theheaders[$k].'">'. $v.'</td>'; }, $row, array_keys($row)));
+				// $html .= '<td  data-title="'.$theheaders[$key].'">'.implode('</td><td>', $row).'</td>';
+			$html .=  '</tr>';
+			endforeach;
+			$html .= '</tbody>';
+		$html .= '</table>';
+
 		return $html;
-
-
 	}
 
 
