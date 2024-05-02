@@ -206,7 +206,6 @@ class Module
             if ($this->hasModule('mod-text')) {
                 add_action('wp_enqueue_scripts', array($this, 'style'));
                 add_action('wp_enqueue_scripts', array($this, 'script'));
-                echo '<pre>' . print_r( $this->ID, true ) . '</pre>';die;
             }
         }
 
