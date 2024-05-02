@@ -59,41 +59,11 @@ class ManualInput extends \Modularity\Module
         return $data;
     }
 
-    private function getInputView(array $fields, int $index) 
-    {
-        return $index === 0 && !empty($fields['highlight_first_input']) ? $this->getHighlightedView() : $this->template;
-    }
-
-    private function getInputColumnSize(array $fields, int $index)
-    {
-        $columnSize = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
-
-        if ($index !== 0 || empty($fields['highlight_first_input'])) {
-            return $columnSize . '@md';
-        }
-
-        return $this->getHighlightedColumnSize($columnSize) . '@md';
-
-    }
-
-    private function getHighlightedColumnSize($columnSize)
-    {
-        switch ($columnSize) {
-            case 'o-grid-6':
-                return 'o-grid-12';
-            case 'o-grid-4':
-                return 'o-grid-8';
-            case 'o-grid-3':
-                return 'o-grid-6';
-            default:
-                return 'o-grid-12';
-        }
-    }
-
     /**
-     * @return array
+     * @return array Array with default values
      */
-    private function getManualInputDefaultValues() {
+    private function getManualInputDefaultValues(): array
+    {
         return [
             'title'                     => false,
             'content'                   => false,
@@ -106,7 +76,74 @@ class ManualInput extends \Modularity\Module
         ];
     }
 
-    private function getHighLightedView() 
+    /**
+     * Returns the input view based on the given fields and index.
+     *
+     * @param array $fields The array of fields.
+     * @param int $index The index of the field.
+     * @return string The input view.
+     */
+    private function getInputView(array $fields, int $index): string
+    {
+        return $this->canBeHighlighted($fields, $index) ? $this->getHighlightedView() : $this->template;
+    }
+
+    /**
+     * Returns the input column size based on the given fields and index.
+     *
+     * @param array $fields The array of fields.
+     * @param int $index The index of the field.
+     * @return string The input column size.
+     */
+    private function getInputColumnSize(array $fields, int $index): string
+    {
+        $columnSize = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
+
+        if ($this->canBeHighlighted($fields, $index)) {
+            return $this->getHighlightedColumnSize($columnSize) . '@md';
+        }
+        
+        return $columnSize . '@md';
+    }
+
+    /**
+     * Determines if the input field can be highlighted.
+     *
+     * @param array $fields The array of input fields.
+     * @param int $index The index of the current input field.
+     * @return bool Returns true if the input field can be highlighted, false otherwise.
+     */
+    private function canBeHighlighted(array $fields, int $index) 
+    {
+        return $index === 0 && !empty($fields['highlight_first_input']) && in_array($this->template, ['card', 'block', 'segment']);
+    }
+
+    /**
+     * Gets the highlighted column size based on the given column size.
+     *
+     * @param string $columnSize The column size.
+     * @return string The highlighted column size.
+     */
+    private function getHighlightedColumnSize(string $columnSize): string
+    {
+        switch ($columnSize) {
+            case 'o-grid-6':
+                return 'o-grid-12';
+            case 'o-grid-4':
+                return 'o-grid-8';
+            case 'o-grid-3':
+                return 'o-grid-6';
+            default:
+                return $columnSize;
+        }
+    }
+
+    /**
+     * Returns the highlighted view based on the template property.
+     *
+     * @return string The highlighted view.
+     */
+    private function getHighLightedView(): string 
     {
         switch ($this->template) {
             case "segment":
@@ -116,7 +153,7 @@ class ManualInput extends \Modularity\Module
             case "card":
                 return "block";
             default:
-                return "block";
+                return $this->template;
         }
     }
 
