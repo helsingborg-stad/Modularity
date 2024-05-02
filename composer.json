@@ -42,7 +42,7 @@
         "johannheyne/advanced-custom-fields-table-field": "dev-master",
         "clark-nikdel-powell/post-type-select-for-acf": "dev-master",
         "jeradin/acf-website-field": "dev-master",
-        "ooksanen/acf-focuspoint": "dev-master",
+        "ooksanen/acf-focuspoint": "^1.2.1",
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
         "wpackagist-plugin/acf-extended": "0.8.9.4",
