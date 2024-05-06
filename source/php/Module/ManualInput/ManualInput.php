@@ -45,12 +45,12 @@ class ManualInput extends \Modularity\Module
                 $input = array_filter($input, function($value) {
                     return !empty($value) || $value === false;
                 });
-
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
+                $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
                 $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
-                $arr['view']                    = $this->getInputView($fields, $index);
-                $arr['columnSize']              = $this->getInputColumnSize($fields, $index);
+                $arr['view']                    = $this->getInputView($arr['isHighlighted']);
+                $arr['columnSize']              = $this->getInputColumnSize($fields, $arr['isHighlighted']);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
                 $data['manualInputs'][]         = (array) $arr;
             }
@@ -83,9 +83,9 @@ class ManualInput extends \Modularity\Module
      * @param int $index The index of the field.
      * @return string The input view.
      */
-    private function getInputView(array $fields, int $index): string
+    private function getInputView(bool $shouldBeHighlighted): string
     {
-        return $this->canBeHighlighted($fields, $index) ? $this->getHighlightedView() : $this->template;
+        return $shouldBeHighlighted ? $this->getHighlightedView() : $this->template;
     }
 
     /**
@@ -95,11 +95,11 @@ class ManualInput extends \Modularity\Module
      * @param int $index The index of the field.
      * @return string The input column size.
      */
-    private function getInputColumnSize(array $fields, int $index): string
+    private function getInputColumnSize(array $fields, bool $shouldBeHighlighted): string
     {
         $columnSize = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
 
-        if ($this->canBeHighlighted($fields, $index)) {
+        if ($shouldBeHighlighted) {
             return $this->getHighlightedColumnSize($columnSize) . '@md';
         }
         
@@ -143,7 +143,7 @@ class ManualInput extends \Modularity\Module
      *
      * @return string The highlighted view.
      */
-    private function getHighLightedView(): string 
+    private function getHighlightedView(): string 
     {
         switch ($this->template) {
             case "segment":
