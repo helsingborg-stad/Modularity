@@ -177,7 +177,7 @@ class App
         wp_enqueue_style('modularity');
 
         wp_register_script('modularity', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
+            . \Modularity\Helper\CacheBust::name('js/modularity.js'), [], null, true);
 
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
@@ -192,6 +192,15 @@ class App
             'deprecated' => __('Deprecated', 'modularity')
         ));
         wp_enqueue_script('modularity');
+
+        if (!current_user_can('edit_posts')) {
+            return;
+        }
+        //Register admin specific scripts/styling here
+
+        if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
+            wp_enqueue_script('jquery');
+        }
     }
 
     public function enqueueBlockEditor() {
@@ -219,10 +228,6 @@ class App
      */
     public function enqueueAdmin()
     {
-        if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
-            wp_enqueue_script('jquery');
-        }
-
         if (!$this->isModularityPage()) {
             return;
         }
@@ -248,11 +253,11 @@ class App
         wp_enqueue_script('modularity');
 
         wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'));
+        . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'), ['jquery']);
         wp_enqueue_script('dynamic-acf');
 
         wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'), array('jquery'));
+        . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'), ['jquery']);
         wp_enqueue_script('dynamic-map-acf');
 
         wp_register_script('modularity-text-module', MODULARITY_URL . '/dist/'
@@ -267,6 +272,15 @@ class App
             ";
         });
 
+        add_action('admin_head', function () {
+            echo "
+                <script>
+                    if(typeof $ === 'undefined' && typeof jQuery !== 'undefined') {
+                        var $ = jQuery;
+                    }
+                </script>
+            ";
+        });
 
         // If editor
         if (\Modularity\Helper\Wp::isEditor()) {
