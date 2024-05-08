@@ -177,7 +177,7 @@ class App
         wp_enqueue_style('modularity');
 
         wp_register_script('modularity', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api-request'], null, true);
+            . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
 
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langedit' => __('Edit', 'modularity'),
