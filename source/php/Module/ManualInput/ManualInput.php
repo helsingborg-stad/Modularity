@@ -41,16 +41,17 @@ class ManualInput extends \Modularity\Module
         );
 
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
-            foreach ($fields['manual_inputs'] as &$input) {
+            foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
                     return !empty($value) || $value === false;
                 });
-
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
+                $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
                 $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
+                $arr['view']                    = $this->getInputView($arr['isHighlighted']);
+                $arr['columnSize']              = $this->getInputColumnSize($fields, $arr['isHighlighted']);
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
-                
                 $data['manualInputs'][]         = (array) $arr;
             }
         }
@@ -59,9 +60,10 @@ class ManualInput extends \Modularity\Module
     }
 
     /**
-     * @return array
+     * @return array Array with default values
      */
-    private function getManualInputDefaultValues() {
+    private function getManualInputDefaultValues(): array
+    {
         return [
             'title'                     => false,
             'content'                   => false,
@@ -72,6 +74,87 @@ class ManualInput extends \Modularity\Module
             'accordion_column_values'   => [],
             'box_icon'                  => false
         ];
+    }
+
+    /**
+     * Returns the input view based on the given fields and index.
+     *
+     * @param array $fields The array of fields.
+     * @param int $index The index of the field.
+     * @return string The input view.
+     */
+    private function getInputView(bool $shouldBeHighlighted): string
+    {
+        return $shouldBeHighlighted ? $this->getHighlightedView() : $this->template;
+    }
+
+    /**
+     * Returns the input column size based on the given fields and index.
+     *
+     * @param array $fields The array of fields.
+     * @param int $index The index of the field.
+     * @return string The input column size.
+     */
+    private function getInputColumnSize(array $fields, bool $shouldBeHighlighted): string
+    {
+        $columnSize = !empty($fields['columns']) ? $fields['columns'] : 'o-grid-4';
+
+        if ($shouldBeHighlighted) {
+            return $this->getHighlightedColumnSize($columnSize) . '@md';
+        }
+        
+        return $columnSize . '@md';
+    }
+
+    /**
+     * Determines if the input field can be highlighted.
+     *
+     * @param array $fields The array of input fields.
+     * @param int $index The index of the current input field.
+     * @return bool Returns true if the input field can be highlighted, false otherwise.
+     */
+    private function canBeHighlighted(array $fields, int $index) 
+    {
+        return $index === 0 && !empty($fields['highlight_first_input']) && in_array($this->template, ['card', 'block', 'segment']);
+    }
+
+    /**
+     * Gets the highlighted column size based on the given column size.
+     *
+     * @param string $columnSize The column size.
+     * @return string The highlighted column size.
+     */
+    private function getHighlightedColumnSize(string $columnSize): string
+    {
+        switch ($columnSize) {
+            case 'o-grid-6':
+                return 'o-grid-12';
+            case 'o-grid-4':
+                return 'o-grid-8';
+            case 'o-grid-3':
+                return 'o-grid-6';
+            default:
+                return $columnSize;
+        }
+    }
+
+    /**
+     * Returns the highlighted view based on the template property.
+     *
+     * @return string The highlighted view.
+     */
+    private function getHighlightedView(): string 
+    {
+        switch ($this->template) {
+            case "segment":
+                return "segment";
+            case "block":
+                return "card";
+            case "card":
+                return "block";
+            default:
+                return $this->template;
+        }
     }
 
     /**
@@ -186,7 +269,7 @@ class ManualInput extends \Modularity\Module
             return $this->template . ".blade.php";
         }
         
-        return 'card.blade.php';
+        return 'base.blade.php';
     }
 
     /**
