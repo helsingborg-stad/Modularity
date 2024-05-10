@@ -65,14 +65,14 @@ class ManualInput extends \Modularity\Module
     private function getManualInputDefaultValues(): array
     {
         return [
-            'title'                     => false,
-            'content'                   => false,
-            'link'                      => false,
+            'title'                     => null,
+            'content'                   => null,
+            'link'                      => null,
             'link_text'                 => __("Read more", 'modularity'),
-            'image'                     => false,
-            'image_before_content'      => false,
+            'image'                     => null,
+            'image_before_content'      => null,
             'accordion_column_values'   => [],
-            'box_icon'                  => false
+            'box_icon'                  => null
         ];
     }
 
