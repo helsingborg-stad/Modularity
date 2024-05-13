@@ -24,7 +24,7 @@
         'context'       => ['module.slider', $sidebarContext . '.module.slider', $sidebarContext . '.animation-item'],
     ])
         @foreach ($slides as $slide)
-            @includeFirst(['partials.' . $slide->acf_fc_layout, 'partials.item'])
+            @includeFirst(['partials.' . $slide['acf_fc_layout'], 'partials.item'])
         @endforeach
     @endslider
 @else 
