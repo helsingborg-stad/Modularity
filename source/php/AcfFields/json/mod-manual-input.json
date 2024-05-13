@@ -469,13 +469,6 @@
                             {
                                 "field": "field_656f4b44999e9",
                                 "operator": "==",
-                                "value": "card"
-                            }
-                        ],
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
                                 "value": "segment"
                             }
                         ]

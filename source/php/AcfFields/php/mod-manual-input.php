@@ -474,13 +474,6 @@ if (function_exists('acf_add_local_field_group')) {
                             0 => array(
                                 'field' => 'field_656f4b44999e9',
                                 'operator' => '==',
-                                'value' => 'card',
-                            ),
-                        ),
-                        1 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
                                 'value' => 'segment',
                             ),
                         ),
