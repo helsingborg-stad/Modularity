@@ -33,6 +33,7 @@ class ManualInput extends \Modularity\Module
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
         $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+        $data['imagePosition']  = !empty($fields['image_position']) ? true : false;
         $imageSize              = $this->getImageSize($displayAs);
 
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
@@ -70,7 +71,6 @@ class ManualInput extends \Modularity\Module
             'link'                      => null,
             'link_text'                 => __("Read more", 'modularity'),
             'image'                     => null,
-            'image_before_content'      => null,
             'accordion_column_values'   => [],
             'box_icon'                  => null
         ];
