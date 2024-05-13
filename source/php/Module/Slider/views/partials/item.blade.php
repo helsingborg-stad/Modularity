@@ -5,7 +5,6 @@
     'desktop_image'     => $slide['image']['src'],
     'background_video'  => $slide['video_mp4']['url'] ?? false,
     'link'              => $slide['link_url'],
-    'linkDescription'   => $slide['link_url_description'],
     'alt'               => $slide['image']['alt'],
     'heroStyle'         => $sidebarContext === 'sidebar.slider-area',
     'cta'               => $slide['call_to_action'] ?? null,
