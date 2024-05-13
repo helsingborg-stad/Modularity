@@ -231,6 +231,39 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_6641de045ab9d",
+            "label": "Image position",
+            "name": "image_position",
+            "aria-label": "",
+            "type": "radio",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_656f4b44999e9",
+                        "operator": "==",
+                        "value": "segment"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "left",
+                "0": "right"
+            },
+            "default_value": 1,
+            "return_format": "value",
+            "allow_null": 0,
+            "other_choice": 0,
+            "layout": "horizontal",
+            "save_other_choice": 0
+        },
+        {
             "key": "field_65016a6f0a085",
             "label": "Ratio",
             "name": "ratio",
@@ -457,35 +490,6 @@
                     "parent_repeater": "field_64ff22b2d91b7"
                 },
                 {
-                    "key": "field_65002c7b9c6cc",
-                    "label": "Image before content",
-                    "name": "image_before_content",
-                    "aria-label": "",
-                    "type": "true_false",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_656f4b44999e9",
-                                "operator": "==",
-                                "value": "segment"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "message": "",
-                    "default_value": 0,
-                    "ui": 0,
-                    "ui_on_text": "",
-                    "ui_off_text": "",
-                    "parent_repeater": "field_64ff22b2d91b7"
-                },
-                {
                     "key": "field_64ff2355d91bb",
                     "label": "Image",
                     "name": "image",
@@ -596,4 +600,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

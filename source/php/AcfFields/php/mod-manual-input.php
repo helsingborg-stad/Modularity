@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_64ff22b117e2c',
     'title' => __('Manual Input Data', 'modularity'),
     'fields' => array(
@@ -236,6 +234,39 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
         ),
         6 => array(
+            'key' => 'field_6641de045ab9d',
+            'label' => __('Image position', 'modularity'),
+            'name' => 'image_position',
+            'aria-label' => '',
+            'type' => 'radio',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_656f4b44999e9',
+                        'operator' => '==',
+                        'value' => 'segment',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                1 => __('left', 'modularity'),
+                0 => __('right', 'modularity'),
+            ),
+            'default_value' => 1,
+            'return_format' => 'value',
+            'allow_null' => 0,
+            'other_choice' => 0,
+            'layout' => 'horizontal',
+            'save_other_choice' => 0,
+        ),
+        7 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -279,7 +310,7 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        7 => array(
+        8 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -462,35 +493,6 @@ if (function_exists('acf_add_local_field_group')) {
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 5 => array(
-                    'key' => 'field_65002c7b9c6cc',
-                    'label' => __('Image before content', 'modularity'),
-                    'name' => 'image_before_content',
-                    'aria-label' => '',
-                    'type' => 'true_false',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_656f4b44999e9',
-                                'operator' => '==',
-                                'value' => 'segment',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'message' => '',
-                    'default_value' => 0,
-                    'ui' => 0,
-                    'ui_on_text' => '',
-                    'ui_off_text' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                6 => array(
                     'key' => 'field_64ff2355d91bb',
                     'label' => __('Image', 'modularity'),
                     'name' => 'image',
@@ -531,7 +533,7 @@ if (function_exists('acf_add_local_field_group')) {
                     'library' => 'all',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                7 => array(
+                6 => array(
                     'key' => 'field_65293de2a26c7',
                     'label' => __('Icon', 'modularity'),
                     'name' => 'box_icon',
@@ -552,6 +554,8 @@ if (function_exists('acf_add_local_field_group')) {
                         'width' => '',
                         'class' => '',
                         'id' => '',
+                        'class' => '',
+                        'id' => '',
                     ),
                     'choices' => array(),
                     'default_value' => false,
@@ -560,8 +564,6 @@ if (function_exists('acf_add_local_field_group')) {
                     'allow_null' => 0,
                     'ui' => 1,
                     'ajax' => 0,
-                    'placeholder' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
                     'allow_custom' => 0,
                     'search_placeholder' => '',
                 ),
@@ -601,5 +603,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
