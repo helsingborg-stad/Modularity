@@ -53,8 +53,8 @@ class AcfBlockRepeaterFieldsMigrator implements MigratorInterface {
                 $i++;
             }
 
-            return $this->blockData;
         }
+        return $this->blockData;
     }
 
     private function isValidInputParams(): bool {
