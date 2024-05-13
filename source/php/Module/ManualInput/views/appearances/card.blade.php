@@ -5,7 +5,7 @@
         'context'           => $context,
         'content'           => $input['content'],
         'image'             => $input['image'],
-        'imageFirst'        => $input['imageBeforeContent'],
+        'imageFirst'        => true,
         'containerAware'    => true,
         'classList'         => ['u-height--100']
     ])
