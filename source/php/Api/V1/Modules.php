@@ -15,6 +15,9 @@ class Modules extends WP_REST_Controller
         return $this;
     }
 
+    /**
+     * Registers the routes for the Modules API.
+     */
     public function register_routes()
     {
         add_action('rest_api_init', function () {
@@ -38,34 +41,60 @@ class Modules extends WP_REST_Controller
         });
     }
 
-    public function get_item($request)
+    /**
+     * Checks the permissions for retrieving a single item.
+     *
+     * @param WP_REST_Request $request The REST request object.
+     * @return bool|WP_Error Returns true if the security nonce is valid, otherwise returns a WP_Error object.
+     */
+    public function get_item_permissions_check($request)
     {
-        $moduleId = $request->get_param('id');
         $nonce = $request->get_param('_wpnonce');
-        $post = get_post($moduleId);
-
-        if (!wp_verify_nonce($request->get_param('_wpnonce'), 'wp_rest')) {
+        if (!wp_verify_nonce($nonce, 'wp_rest')) {
             return new WP_Error('rest_forbidden', __('Invalid security nonce.'), ['status' => 403]);
         }
+        return true;
+    }
+
+    /**
+     * Retrieves a single module item.
+     *
+     * @param WP_REST_Request $request The REST request object.
+     * @return string The module markup.
+     */
+    public function get_item($request)
+    {
+        $moduleId   = $request->get_param('id');
+        $post       = get_post($moduleId);
 
         if ($this->itemExists($post)) {
             return $this->getItemNotFoundError();
         }
 
-        $class = get_class(\Modularity\ModuleManager::$classes[$post->post_type]);
-        $module = new $class($post);
-        $display = new \Modularity\Display($module);
-
-
+        $class      = get_class(\Modularity\ModuleManager::$classes[$post->post_type]);
+        $module     = new $class($post);
+        $display    = new \Modularity\Display($module);
 
         return $display->getModuleMarkup($module, []);
     }
 
+    /**
+     * Checks if an item exists.
+     *
+     * @param object|null $post The post object to check.
+     * @return bool Returns true if the item exists, false otherwise.
+     */
     private function itemExists($post)
     {
         return $post === null || !str_starts_with($post->post_type, \Modularity\ModuleManager::MODULE_PREFIX) || !isset(\Modularity\ModuleManager::$classes[$post->post_type]);
     }
 
+    /**
+     * Returns an instance of WP_Error indicating that the module was not found.
+     *
+     * @return WP_Error An instance of WP_Error with the error code 'not_found', error message 'Module not found',
+     *                  and additional data indicating the status code 404.
+     */
     private function getItemNotFoundError()
     {
         return new WP_Error('not_found', 'Module not found', ['status' => 404]);
