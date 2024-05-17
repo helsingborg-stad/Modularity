@@ -120,7 +120,8 @@ class V5 implements versionInterface {
                 ]
             ],
             'title_column_label' => 'accordion_column_marking',
-
+            'posts_highlight_first' => 'highlight_first_input',
+            
         ];
     }
 
@@ -212,7 +213,11 @@ class V5 implements versionInterface {
             'image_position' => [
                 'name' => 'image_position', 
                 'key' => 'field_6641de045ab9d'
-            ]
+            ],
+            'posts_highlight_first' => [
+                'name' => 'highlight_first_input', 
+                'key' => 'field_663372f4922a5'
+            ],
         ];
     }
 
