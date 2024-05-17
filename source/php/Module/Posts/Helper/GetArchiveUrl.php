@@ -18,6 +18,11 @@ class GetArchiveUrl
      * @return string|false The archive URL if it exists, or false if it doesn't.
      */
     public function getArchiveUrl($postType, $fields) {
+
+        if(is_array($fields)) {
+            $fields = (object) $fields;
+        }
+
         if (empty($postType) || !isset($fields->archive_link) || !$fields->archive_link) {
             return false;
         }
