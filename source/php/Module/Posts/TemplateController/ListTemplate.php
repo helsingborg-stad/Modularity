@@ -25,7 +25,7 @@ class ListTemplate
         $this->data['prepareList'] = $this->prepare([
             'posts_data_source' => $this->data['posts_data_source'] ?? '',
             'archive_link' => $this->data['archive_link'] ?? '',
-            'archive_link_url' => $this->data['archive_link_ur'] ?? '',
+            'archive_link_url' => $this->data['archive_link_url'] ?? '',
             'filters' => $this->data['filters'] ?? '',
         ]);
     }

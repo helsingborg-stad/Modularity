@@ -5,7 +5,7 @@
                 'text' => __('Show more', 'modularity'),
                 'color' => 'default',
                 'style' => 'basic',
-                'href' => $archive_link_url . "?" . http_build_query($filters),
+                'href' => $archive_link_url,
                 'classList' => ['u-flex-grow--1@xs', 'u-margin__right--2']
             ])
             @endbutton
