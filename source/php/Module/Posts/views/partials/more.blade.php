@@ -7,5 +7,6 @@
           'href' => $archive_link_url,
           'classList' => ['u-flex-grow--1@xs', 'u-margin__x--auto'],
         ])
+        @endbutton
     </div>
 @endif
