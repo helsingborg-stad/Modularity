@@ -167,7 +167,13 @@ class ManualInput extends \Modularity\Module
     private function getImageData($imageId = false, $size = [400, 225])
     {
         if (!empty($imageId)) {
-            return ImageHelper::getImageAttachmentData($imageId, $size);
+            $image = ImageHelper::getImageAttachmentData($imageId, $size);
+
+            if ($image) {
+                $image['removeCaption'] = true;
+            }
+
+            return $image;
         }
 
         return false;
