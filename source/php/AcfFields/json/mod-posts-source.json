@@ -21,8 +21,7 @@
             "choices": {
                 "posttype": "Posttyper",
                 "children": "Child posts",
-                "manual": "Manually picked posts",
-                "input": "Manual input"
+                "manual": "Manually picked posts"
             },
             "default_value": false,
             "ui": 0,
@@ -413,4 +412,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
