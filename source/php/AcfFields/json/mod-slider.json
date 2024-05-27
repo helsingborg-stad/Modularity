@@ -411,41 +411,6 @@
                             "allow_null": 0,
                             "allow_archives": 1,
                             "multiple": 0
-                        },
-                        {
-                            "key": "field_60db1cc88b16d",
-                            "label": "Description",
-                            "name": "link_url_description",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "Describe the purpose of the link, or what visitors can expect to find when they click on it (not shown).",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_56fa82a2d464d",
-                                        "operator": "==",
-                                        "value": "external"
-                                    }
-                                ],
-                                [
-                                    {
-                                        "field": "field_56fa82a2d464d",
-                                        "operator": "==",
-                                        "value": "internal"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "maxlength": ""
                         }
                     ],
                     "min": "",
@@ -809,41 +774,6 @@
                             "allow_archives": 1,
                             "multiple": 0,
                             "allow_null": 0
-                        },
-                        {
-                            "key": "field_646f745261c78",
-                            "label": "Description",
-                            "name": "link_url_description",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 1,
-                            "conditional_logic": [
-                                [
-                                    {
-                                        "field": "field_56fa87ec3ace2",
-                                        "operator": "==",
-                                        "value": "internal"
-                                    }
-                                ],
-                                [
-                                    {
-                                        "field": "field_56fa87ec3ace2",
-                                        "operator": "==",
-                                        "value": "external"
-                                    }
-                                ]
-                            ],
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": ""
                         }
                     ],
                     "min": "",
