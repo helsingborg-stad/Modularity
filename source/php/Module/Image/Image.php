@@ -34,8 +34,18 @@ class Image extends \Modularity\Module
         $data = [];
         $fields = $this->getFields();
         
-        $data['image'] = $this->getImageData($fields, $this->getImageSize($fields));
-        $data['image']['caption'] = $this->getImageCaption($fields, $data['image']);
+        $image = $this->getImageData($fields, $this->getImageSize($fields)); 
+
+        if($image) {
+            $data['image'] = $image;
+            $data['image']['caption'] = $this->getImageCaption(
+                $fields, 
+                $data['image']
+            );
+        } else {
+            $data['image'] = false;
+        }
+        
         $data['imageLink'] = $this->imageHasLink($fields) ? $fields['mod_image_link_url'] : false;
 
         return $data;
