@@ -458,6 +458,19 @@ This endpoint returns the markup for a specific module.
     * `id`: The ID of the module to retrieve.
 * Response: The html markup of the module.
 
+## Upgrade
+In some updates, database migrations might need to be run (will be in the release docs). To run the upgrade action on all sites in a multisite network, run the following command in the document root of your site. 
+
+```
+wp site list --field=url --public=1 --archived=0 --deleted=0 --allow-root | xargs -n1 -I % wp modularity upgrade --url=% --allow-root
+```
+
+Or for a single site installation: 
+
+```
+wp modularity upgrade
+```
+
 ## Constants
 
 ### `MODULARITY_DISABLE_FRAGMENT_CACHE`
