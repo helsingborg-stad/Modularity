@@ -74,7 +74,6 @@ class Upgrade
             //Fetch global wpdb object, save to $db
             $this->globalToLocal('wpdb', 'db');
 
-            $previousDbVersion  = $currentDbVersion;
             $currentDbVersion   = $currentDbVersion + 1;
 
             for ($currentDbVersion; $currentDbVersion <= $this->dbVersion; $currentDbVersion++) {
@@ -84,8 +83,7 @@ class Upgrade
 
                     WP_CLI::line(
                         sprintf(
-                            __('Initializing database from version %s to %s.', 'municipio'),
-                            $previousDbVersion,
+                            __('Initializing database migration to %s.', 'municipio'),
                             $currentDbVersion
                         )
                     );
@@ -117,6 +115,15 @@ class Upgrade
                     wp_cache_flush();
                 }
             }
+
+            WP_CLI::success(
+                sprintf(
+                    __('Database migration complete; upgraded to version %s.', 'municipio'),
+                    $this->dbVersion
+                )
+            );
+        } else {
+            WP_CLI::line(__('Database is already up to date.', 'municipio'));
         }
     }
 
