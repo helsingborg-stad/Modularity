@@ -3,6 +3,7 @@
 namespace Modularity\Upgrade\Migrators\Module;
 
 use Modularity\Upgrade\Migrators\Module\AcfModuleMigrationHandler;
+use WP_CLI;
 
 class AcfModuleMigration {
 
@@ -46,6 +47,8 @@ class AcfModuleMigration {
             $module->ID
         ); 
         $this->db->query($QueryUpdatePostType); 
+
+        WP_CLI::line(sprintf('Module post type updated from %s to %s', $module->post_type, $this->newModuleName));
     }
 
     private function isValidParams() {

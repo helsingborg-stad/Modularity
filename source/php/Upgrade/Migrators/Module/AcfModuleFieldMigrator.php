@@ -3,6 +3,7 @@
 namespace Modularity\Upgrade\Migrators\Module;
 
 use Modularity\Upgrade\Migrators\MigratorInterface;
+use WP_CLI;
 
 class AcfModuleFieldMigrator implements MigratorInterface {
 
@@ -17,6 +18,15 @@ class AcfModuleFieldMigrator implements MigratorInterface {
     }
 
     public function migrate():mixed {
-        return update_field($this->newField, $this->oldFieldValue, $this->moduleId);
+        
+        $updated = update_field($this->newField, $this->oldFieldValue, $this->moduleId);
+
+        if($updated) {
+            WP_CLI::line(sprintf('Updating field %s with value %s in %', $this->newField, $this->oldFieldValue, (string) $this->moduleId));
+        } else {
+            WP_CLI::warning(sprintf('Failed to update field %s with value %s in %', $this->newField, $this->oldFieldValue, (string) $this->moduleId));
+        }
+
+        return $updated;
     }
 }
