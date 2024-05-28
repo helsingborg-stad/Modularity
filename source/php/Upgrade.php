@@ -2,7 +2,6 @@
 
 namespace Modularity;
 
-use WP;
 use WP_CLI;
 
 /**
