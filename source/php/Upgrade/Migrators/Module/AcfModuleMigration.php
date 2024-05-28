@@ -22,17 +22,23 @@ class AcfModuleMigration {
     public function migrateModules() 
     {
         if (!$this->isValidParams()) {
+            WP_CLI::warning('Invalid parameters');
+            return false;
+        }
+
+        if (empty($this->modules)) {
+            WP_CLI::warning('No modules to migrate');
             return false;
         }
 
         foreach ($this->modules as &$module) {
             if (!$module->ID) {
+                WP_CLI::warning('No module ID');
                 continue;
             }
             
             $migrationFieldManager = new AcfModuleMigrationHandler($this->fields, $module->ID);
             $migrationFieldManager->migrateModuleFields();
-
             //Update post type
             if (!empty($this->newModuleName)) {
                 $this->updateModuleName($module);
@@ -45,8 +51,14 @@ class AcfModuleMigration {
             "UPDATE " . $this->db->posts . " SET post_type = %s WHERE ID = %d", 
             $this->newModuleName, 
             $module->ID
-        ); 
-        $this->db->query($QueryUpdatePostType); 
+        );
+
+        $successfullyUpdatedName = $this->db->query($QueryUpdatePostType); 
+
+        if (!$successfullyUpdatedName) {
+            WP_CLI::warning(sprintf('Failed to update post type for module with ID %s', $module->ID));
+            return;
+        }
 
         WP_CLI::line(sprintf('Module post type updated from %s to %s', $module->post_type, $this->newModuleName));
     }

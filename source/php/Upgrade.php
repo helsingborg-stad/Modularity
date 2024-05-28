@@ -97,7 +97,8 @@ class Upgrade
                                 $halt
                             )
                         );
-                        WP_CLI::halt(1000);
+
+                        sleep(1);
                     }
                     
                     $version = new $class($this->db);

@@ -22,9 +22,9 @@ class AcfModuleReplaceAndUpdateSelectFieldMigrator implements MigratorInterface 
             $valueReplaced = update_field($this->newField['name'], $this->newField['values'][$this->oldFieldValue], $this->moduleId);
 
             if($valueReplaced) {
-                WP_CLI::line(sprintf('Updating field %s with value %s in %', $this->newField['name'], $this->newField['values'][$this->oldFieldValue], (string) $this->moduleId));
+                WP_CLI::line(sprintf('Updating field %s with value %s in %s', $this->newField['name'], $this->newField['values'][$this->oldFieldValue], (string) $this->moduleId));
             } else {
-                WP_CLI::warning(sprintf('Failed to update field %s with value %s in %', $this->newField['name'], $this->newField['values'][$this->oldFieldValue], (string) $this->moduleId));
+                WP_CLI::warning(sprintf('Failed to update field %s with value %s in %s', $this->newField['name'], $this->newField['values'][$this->oldFieldValue], (string) $this->moduleId));
             }
             return $valueReplaced;
         } 
@@ -33,9 +33,9 @@ class AcfModuleReplaceAndUpdateSelectFieldMigrator implements MigratorInterface 
             $valueDefaulted = update_field($this->newField['name'], $this->newField['values']['default'], $this->moduleId);
 
             if($valueDefaulted) {
-                WP_CLI::line(sprintf('Updating field %s with value %s in %', $this->newField['name'], $this->newField['values']['default'], (string) $this->moduleId));
+                WP_CLI::line(sprintf('Updating field %s with value %s in %s', $this->newField['name'], $this->newField['values']['default'], (string) $this->moduleId));
             } else {
-                WP_CLI::warning(sprintf('Failed to update field %s with value %s in %', $this->newField['name'], $this->newField['values']['default'], (string) $this->moduleId));
+                WP_CLI::warning(sprintf('Failed to update field %s with value %s in %s', $this->newField['name'], $this->newField['values']['default'], (string) $this->moduleId));
             }
 
             return $valueDefaulted;
