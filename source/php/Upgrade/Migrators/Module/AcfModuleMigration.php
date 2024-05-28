@@ -3,6 +3,7 @@
 namespace Modularity\Upgrade\Migrators\Module;
 
 use Modularity\Upgrade\Migrators\Module\AcfModuleMigrationHandler;
+use WP_CLI;
 
 class AcfModuleMigration {
 
@@ -21,17 +22,18 @@ class AcfModuleMigration {
     public function migrateModules() 
     {
         if (!$this->isValidParams()) {
+            WP_CLI::warning('Empty Modules, Fields or no Database');
             return false;
         }
 
         foreach ($this->modules as &$module) {
             if (!$module->ID) {
+                WP_CLI::warning('No module ID');
                 continue;
             }
             
             $migrationFieldManager = new AcfModuleMigrationHandler($this->fields, $module->ID);
             $migrationFieldManager->migrateModuleFields();
-
             //Update post type
             if (!empty($this->newModuleName)) {
                 $this->updateModuleName($module);
@@ -44,8 +46,16 @@ class AcfModuleMigration {
             "UPDATE " . $this->db->posts . " SET post_type = %s WHERE ID = %d", 
             $this->newModuleName, 
             $module->ID
-        ); 
-        $this->db->query($QueryUpdatePostType); 
+        );
+
+        $successfullyUpdatedName = $this->db->query($QueryUpdatePostType); 
+
+        if (!$successfullyUpdatedName) {
+            WP_CLI::warning(sprintf('Failed to update post type for module with ID %s', (string) $module->ID));
+            return;
+        }
+
+        WP_CLI::line(sprintf('Module post type updated from %s to %s', (string) $module->post_type, (string) $this->newModuleName));
     }
 
     private function isValidParams() {

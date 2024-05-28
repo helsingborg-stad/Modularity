@@ -4,6 +4,7 @@ namespace Modularity\Upgrade\Migrators\Block;
 
 use Modularity\Upgrade\Migrators\Block\AcfBlockMigrationHandler;
 use \Modularity\Upgrade\Version\Helper\GetPagesByBlockName;
+use WP_CLI;
 
 class AcfBlockMigration {
 
@@ -24,7 +25,10 @@ class AcfBlockMigration {
             foreach ($this->pages as $page) {
                 $blocks = $this->updateBlocks(parse_blocks($page->post_content), $page);
                 $this->updatePageContent($blocks, $page);
+                WP_CLI::line('Blocks migrated for page: ' . $page->post_title);
             }
+        } else {
+            WP_CLI::warning('No pages or fields found for block migration.');
         }
     }
 

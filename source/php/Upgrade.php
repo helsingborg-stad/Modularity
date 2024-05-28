@@ -2,6 +2,8 @@
 
 namespace Modularity;
 
+use WP_CLI;
+
 /**
  * Class App
  *
@@ -12,14 +14,6 @@ class Upgrade
     private $dbVersion = 5;
     private $dbVersionKey = 'modularity_db_version';
     private $db;
-
-    /**
-     * App constructor.
-     */
-    public function __construct()
-    {
-        add_action('wp', array($this, 'initUpgrade'), 10);
-    }
 
     /**
      * Reset db version, in order to run all scripts from the beginning.
@@ -40,6 +34,7 @@ class Upgrade
     private function logError(string $message)
     {
         error_log($message);
+        WP_CLI::warning($message);
     }
 
     /**
@@ -47,7 +42,7 @@ class Upgrade
      *
      * @return void
      */
-    public function initUpgrade()
+    public function upgrade()
     {
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
@@ -57,10 +52,12 @@ class Upgrade
         if ($this->dbVersion != $currentDbVersion) {
             if (!is_numeric($this->dbVersion)) {
                 wp_die(__('To be installed database version must be a number.', 'municipio'));
+                return;
             }
 
             if (!is_numeric($currentDbVersion)) {
                 $this->logError(__('Current database version must be a number.', 'municipio'));
+                return; 
             }
 
             if ($currentDbVersion > $this->dbVersion) {
@@ -70,23 +67,62 @@ class Upgrade
                         'municipio'
                     )
                 );
+                return; 
             }
             
             //Fetch global wpdb object, save to $db
             $this->globalToLocal('wpdb', 'db');
 
-            $currentDbVersion = $currentDbVersion + 1;
+            $currentDbVersion   = $currentDbVersion + 1;
+
             for ($currentDbVersion; $currentDbVersion <= $this->dbVersion; $currentDbVersion++) {
                 $class = 'Modularity\Upgrade\Version\V' . $currentDbVersion;
 
                 if (class_exists($class) && $this->db) {
+
+                    WP_CLI::line(
+                        sprintf(
+                            __('Initializing database migration to %s.', 'municipio'),
+                            $currentDbVersion
+                        )
+                    );
+
+                    for($halt = 3; $halt > 0; $halt--) {
+                        WP_CLI::line(
+                            sprintf(
+                                __('Upgrade will start in %s seconds.', 'municipio'),
+                                $halt
+                            )
+                        );
+
+                        sleep(1);
+                    }
+                    
                     $version = new $class($this->db);
                     $version->upgrade();
 
+                    WP_CLI::line(
+                        sprintf(
+                            __('Locking database to version %s.', 'municipio'),
+                            $currentDbVersion
+                        )
+                    );
+
                     update_option($this->dbVersionKey, $currentDbVersion);
+
+                    WP_CLI::line("Flushing cache.");
                     wp_cache_flush();
                 }
             }
+
+            WP_CLI::success(
+                sprintf(
+                    __('Database migration complete; upgraded to version %s.', 'municipio'),
+                    $this->dbVersion
+                )
+            );
+        } else {
+            WP_CLI::line(__('Database is already up to date.', 'municipio'));
         }
     }
 
