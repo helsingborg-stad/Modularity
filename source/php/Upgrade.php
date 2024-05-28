@@ -17,14 +17,6 @@ class Upgrade
     private $db;
 
     /**
-     * App constructor.
-     */
-    public function __construct()
-    {
-        add_action('wp', array($this, 'initUpgrade'), 10);
-    }
-
-    /**
      * Reset db version, in order to run all scripts from the beginning.
      *
      * @return void
@@ -51,7 +43,7 @@ class Upgrade
      *
      * @return void
      */
-    public function initUpgrade()
+    public function upgrade()
     {
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);

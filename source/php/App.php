@@ -31,7 +31,7 @@ class App
 
         $this->setupAdminBar();
 
-        new Upgrade();
+        new WpCli();
         new Ajax();
         new Options\General();
 
