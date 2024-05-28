@@ -22,9 +22,9 @@ class AcfModuleFieldMigrator implements MigratorInterface {
         $updated = update_field($this->newField, $this->oldFieldValue, $this->moduleId);
 
         if($updated) {
-            WP_CLI::line(sprintf('Updating field %s with value %s in %s', $this->newField, $this->oldFieldValue, (string) $this->moduleId));
+            WP_CLI::line(sprintf('Updating field %s with value %s in %s', (string) $this->newField, (string) $this->oldFieldValue, (string) $this->moduleId));
         } else {
-            WP_CLI::warning(sprintf('Failed to update field %s with value %s in %s', $this->newField, $this->oldFieldValue, (string) $this->moduleId));
+            WP_CLI::warning(sprintf('Failed to update field %s with value %s in %s', (string) $this->newField, (string) $this->oldFieldValue, (string) $this->moduleId));
         }
 
         return $updated;

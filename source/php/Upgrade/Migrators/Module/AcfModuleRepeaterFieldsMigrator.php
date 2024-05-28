@@ -48,9 +48,9 @@ class AcfModuleRepeaterFieldsMigrator implements MigratorInterface {
         }
 
         if ($fieldWasUpdated) {
-            WP_CLI::line(sprintf('Updating repeater field %s with sub fields in %s', $this->newField['name'], (string) $this->moduleId));
+            WP_CLI::line(sprintf('Updating repeater field %s with sub fields in %s', (string) $this->newField['name'], (string) $this->moduleId));
         } else {
-            WP_CLI::warning(sprintf('Failed to update repeater field %s with sub fields in %s', $this->newField['name'], (string) $this->moduleId));
+            WP_CLI::warning(sprintf('Failed to update repeater field %s with sub fields in %s', (string) $this->newField['name'], (string) $this->moduleId));
         }
 
         return $fieldWasUpdated;

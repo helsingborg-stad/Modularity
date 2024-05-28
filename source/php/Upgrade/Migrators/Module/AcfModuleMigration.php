@@ -56,11 +56,11 @@ class AcfModuleMigration {
         $successfullyUpdatedName = $this->db->query($QueryUpdatePostType); 
 
         if (!$successfullyUpdatedName) {
-            WP_CLI::warning(sprintf('Failed to update post type for module with ID %s', $module->ID));
+            WP_CLI::warning(sprintf('Failed to update post type for module with ID %s', (string) $module->ID));
             return;
         }
 
-        WP_CLI::line(sprintf('Module post type updated from %s to %s', $module->post_type, $this->newModuleName));
+        WP_CLI::line(sprintf('Module post type updated from %s to %s', (string) $module->post_type, (string) $this->newModuleName));
     }
 
     private function isValidParams() {
