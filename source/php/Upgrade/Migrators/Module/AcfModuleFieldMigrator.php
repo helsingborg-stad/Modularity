@@ -18,7 +18,12 @@ class AcfModuleFieldMigrator implements MigratorInterface {
     }
 
     public function migrate():mixed {
-        
+
+        if (is_null($this->oldFieldValue)) {
+            WP_CLI::line(sprintf('No actions needed on field %s, old value is null on module id %s.', (string) $this->newField, (string) $this->moduleId));
+            return false;
+        }
+
         $updated = update_field($this->newField, $this->oldFieldValue, $this->moduleId);
 
         if($updated) {
