@@ -22,12 +22,7 @@ class AcfModuleMigration {
     public function migrateModules() 
     {
         if (!$this->isValidParams()) {
-            WP_CLI::warning('Invalid parameters');
-            return false;
-        }
-
-        if (empty($this->modules)) {
-            WP_CLI::warning('No modules to migrate');
+            WP_CLI::warning('Empty Modules, Fields or no Database');
             return false;
         }
 
