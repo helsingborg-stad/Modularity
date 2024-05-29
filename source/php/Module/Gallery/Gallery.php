@@ -23,13 +23,6 @@ class Gallery extends \Modularity\Module
     {
         $data = $this->getFields();
 
-        $data['classes'] = apply_filters(
-            'Modularity/Module/Classes', 
-            array('box', 'box-gallery'), 
-            $this->post_type, 
-            $this->args
-        );
-
         $data['ariaLabels'] = (object) [
             'prev' => __('Previous slide','modularity'),
             'next' => __('Next slide', 'modularity'),
