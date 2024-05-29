@@ -285,67 +285,12 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * "Fake" WP_POST objects for manually inputted posts
-     * @param array $data The data to "fake"
-     * @return array        Faked data
-     */
-
-    //TODO: Remove [Start feature: Manual Input]
-    public function getManualInputPosts($data, bool $stripLinksFromContent = false)
-    {
-        $posts = [];
-        foreach ($data as $key => $item) {
-            $posts[] = array_merge((array)$item, [
-                'ID' => $key,
-                'post_name' => $key,
-                'post_excerpt' => $stripLinksFromContent ? strip_tags($item['post_content'], '') : $item['post_content'],
-                'excerpt_short' => $stripLinksFromContent ? strip_tags($item['post_content'], '') : $item['post_content'],
-                'images' => [
-                    'thumbnail_16:9' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [400, 225]),
-                    'thumbnail_4:3' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [390, 520]),
-                    'thumbnail_1:1' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [500, 500]),
-                    'thumbnail_3:4' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [400, 225]),
-                    'featuredImage' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [240, 320]),
-                    'thumbnail_12:16' => ImageHelper::getImageAttachmentData($item['image'] ?? false, [240, 320])
-                ],
-                'postDateFormatted' => null,
-                'termsUnlinked' => null,
-                'dateBadge' => false,
-                'termIcon' => false,
-                'postContentFiltered' => apply_filters('the_content', $item['post_content']),
-                'columnValues' => $item['column_values']
-            ]);
-        }
-
-        foreach ($posts as &$post) {
-            if (class_exists('\Municipio\Helper\FormatObject')) {
-                $post = \Municipio\Helper\FormatObject::camelCase($post);
-            }
-        }
-        return $posts;
-    }
-    //TODO: Remove [End feature: Manual Input]
-
-    /**
      * Get included posts
      * @param object Acf fields
      * @return array Array with post objects
      */
     public function getPosts(): array
     {
-        //TODO: Remove [Start feature: Manual Input]. Remove whole method and move to GetPost Helper
-        if ($this->fields['posts_data_source'] == 'input') {
-            $stripLinksFromContent = in_array(
-                $this->fields['posts_display_as'], 
-                ['items', 'index', 'news', 'collection']) ?? 
-                false;
-
-            return (array) $this->getManualInputPosts(
-                $this->fields['data'], 
-                $stripLinksFromContent
-            );
-        }
-        //TODO: Remove [End feature: Manual Input]
         if ($this->fields) {
             return $this->getPostsHelper->getPosts($this->fields);
         }
