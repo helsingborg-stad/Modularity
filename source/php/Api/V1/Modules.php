@@ -49,11 +49,36 @@ class Modules extends WP_REST_Controller
      */
     public function get_item_permissions_check($request)
     {
-        $nonce = $request->get_param('_wpnonce');
-        if (!wp_verify_nonce($nonce, 'wp_rest')) {
-            return new WP_Error('rest_forbidden', __('Invalid security nonce.'), ['status' => 403]);
+        $parsedHomeUrl = $this->getDomain(home_url() ?? null);
+        $parsedReferer = $this->getDomain($_SERVER['HTTP_REFERER'] ?? null);
+
+        if (!$this->isSameDomain($parsedHomeUrl, $parsedReferer)) {
+            return new WP_Error('invalid_origin', __('Invalid request origin.'), ['status' => 400]);
         }
+
         return true;
+    }
+
+    /**
+     * Checks if two domains are the same.
+     *
+     * @param string $domain1 The first domain to compare.
+     * @param string $domain2 The second domain to compare.
+     * @return bool Returns true if the domains are the same, false otherwise.
+     */
+    private function isSameDomain(string $domain1, string $domain2): bool {
+        return $domain1 === $domain2;
+    }
+
+    /**
+     * Retrieves the domain from a URL.
+     *
+     * @param string $url The URL to parse.
+     * @return string|null The domain of the URL, or null if the URL is invalid.
+     */
+    private function getDomain(string $url): string|null
+    {
+        return parse_url($url)['host'] ?? null;
     }
 
     /**
