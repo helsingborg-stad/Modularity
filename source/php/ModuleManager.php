@@ -127,8 +127,7 @@ class ModuleManager
         $module = trim($module);
 
         //Get the language of the module
-        $detector = new LanguageDetector();
-        $langCode = $detector->evaluate($module);
+        $langCode = LanguageDetector::detect($module);
 
         //Update the detected language of the module
         if ($langCode) {
