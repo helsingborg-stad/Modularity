@@ -23,7 +23,8 @@ class AcfBlockMigration {
     {   
         if ($this->isValidPagesAndFields()) {
             foreach ($this->pages as $page) {
-                $blocks = $this->updateBlocks(parse_blocks($page->post_content), $page);
+                $blocks = $this->updateBlocks(parse_blocks($page->post_content));
+
                 $this->updatePageContent($blocks, $page);
                 WP_CLI::line('Blocks migrated for page: ' . $page->post_title);
             }
@@ -44,6 +45,10 @@ class AcfBlockMigration {
                     $block['blockName'] = $this->newBlockName;
                     $block['attrs']['name'] = $this->newBlockName;
                 }
+            }
+
+            if (!empty($block['innerBlocks'])) {
+                $block['innerBlocks'] = $this->updateBlocks($block['innerBlocks']);
             }
         }
 
