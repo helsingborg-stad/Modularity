@@ -2,8 +2,8 @@
 
 namespace Modularity;
 
-use BladeComponentLibrary\Init as CompLibInitator;
 use enshrined\svgSanitize\Sanitizer as SVGSanitize;
+use LanguageDetector\LanguageDetector;
 
 class ModuleManager
 {
@@ -85,6 +85,40 @@ class ModuleManager
 
         // Lang attribute option
         add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
+
+        // Detect language of module
+        add_filter('wp_after_insert_post', array($this, 'updateLanguageIndicator'), 50, 4);
+    }
+
+    /**
+     * Detects the language of the module and adds it to the HTML element
+     *
+     * @param int $post_id The ID of the post
+     * @param WP_Post $post The post object
+     * @param array $update The update array
+     * @param WP_Post $post_before The post object before the update
+     *
+     * @return void 
+     */
+    public function updateLanguageIndicator($post_id, $post, $update, $post_before) {
+
+        if (substr($post->post_type, 0, 4) != 'mod-') {
+            return;
+        }
+
+        //Render by using the module's render method
+        $module = do_shortcode('[modularity id="' . $post_id . '"]');
+        $module = strip_tags($module);
+        $module = trim($module);
+
+        //Get the language of the module
+        $detector = new LanguageDetector();
+        $detector->evaluate($module);
+
+        //Update the detected language of the module
+        if ($detector->getLanguage()) {
+            update_post_meta($post_id, 'detected_lang', $detector->getLanguage());
+        }
     }
 
     /**
@@ -99,10 +133,10 @@ class ModuleManager
      */
     public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
     {
-        $pageId         = \Modularity\Helper\Post::getPageID();
-        $siteLanguage   = get_bloginfo('language');
-        $moduleLanguage = get_post_meta($moduleId, 'lang', true);
-        $pageLanguage   = get_post_meta($pageId, 'lang', true);
+        $pageId                 = \Modularity\Helper\Post::getPageID();
+        $siteLanguage           = get_bloginfo('language');
+        $moduleLanguage         = get_post_meta($moduleId, 'lang', true) ?? get_post_meta($moduleId, 'detected_lang', true);
+        $pageLanguage           = get_post_meta($pageId, 'lang', true);
 
         $languageDiff   =   array_map('strtolower', [$siteLanguage, $moduleLanguage, $pageLanguage]);
         $languageDiff   =   array_map(
@@ -121,6 +155,7 @@ class ModuleManager
         }
         return $beforeModule;
     }
+
     /**
      * Get available modules (WP filter)
      * @return array
