@@ -15,6 +15,23 @@ class Upgrade
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
+    public function __construct()
+    {
+        add_action('admin_notices', array($this, 'addAdminNotice'));
+    }
+
+    public function addAdminNotice() 
+    {
+        $currentDbVersion = get_option($this->dbVersionKey);
+        if (empty($currentDbVersion) || $currentDbVersion < $this->dbVersion) {
+            echo sprintf(
+                '<div class="notice notice-warning update-nag inline">%s</div>',
+                __('A newer version of Modularity is available. Run wp-cli "modularity upgrade" to upgrade.', 'modularity')
+            );
+            
+        }
+    }
+
     /**
      * Reset db version, in order to run all scripts from the beginning.
      *
