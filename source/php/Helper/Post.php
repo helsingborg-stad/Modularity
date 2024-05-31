@@ -89,11 +89,13 @@ class Post
         global $archive;
         global $post;
 
-        if (defined('DOING_AJAX') && DOING_AJAX) {
-            $archive = !is_numeric($_POST['id']) ? $_POST['id'] : '';
-        }
+        $archive = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
         if (is_string($archive) && substr($archive, 0, 8) == 'archive-' || is_search()) {
+            return $archive;
+        }
+
+        if (is_string($archive) && substr($archive, 0, 7) == 'single-' || is_search()) {
             return $archive;
         }
 
@@ -105,6 +107,18 @@ class Post
             return 'author';
         }
 
+        return false;
+    }
+
+    /**
+     * Get the archive id
+     * @return string|bool
+     */
+    public static function getArchiveId(): string|bool
+    {
+        if($archive = self::isArchive()) {
+            return $archive; 
+        }
         return false;
     }
 

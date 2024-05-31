@@ -563,7 +563,6 @@ class Editor extends \Modularity\Options
      */
     public function save()
     {
-
         if (!$this->isValidPostSave()) {
             return;
         }
@@ -573,14 +572,13 @@ class Editor extends \Modularity\Options
             return;
         }
 
-        // Post id
-        $postId = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : null;
-        // Check if post id is valid
-        if (empty($postId)) {
-            return trigger_error('Invalid post id. Please contact system administrator.');
+        $postIdOrArchiveString = $this->getPostId();
+        if (is_null($postIdOrArchiveString)) {
+            $this->notice(__('No post id found', 'modularity'), ['notice-error']);
+            return;
         }
 
-        $this->savePost($postId);
+        $this->savePost($postIdOrArchiveString);
 
         // If this is an ajax post, return "success" as plain text
         if (defined('DOING_AJAX') && DOING_AJAX) {
@@ -595,18 +593,28 @@ class Editor extends \Modularity\Options
      * Saves post modules
      * @return boolean
      */
-    public function savePost(int $postId)
+    public function savePost(int|string $postId)
     {
         if (is_numeric($postId)) {
             return $this->saveAsPostMeta($postId);
         }
 
-        if (\Modularity\Helper\Post::isArchive()) {
-            global $archive;
-            $postId = $archive;
+        return $this->saveAsOption($postId);
+    }
+
+    private function getPostId(): string|int|null
+    {
+
+        $postId = !empty($_REQUEST['id']) ? (int) $_REQUEST['id'] : null;
+        if (is_numeric($postId) && !empty($postId)) {
+            return $postId;
         }
 
-        return $this->saveAsOption($postId);
+        if (\Modularity\Helper\Post::isArchive()) {
+            return \Modularity\Helper\Post::getArchiveId();
+        }
+
+        return null;
     }
 
     public function saveAsPostMeta(int $postId)
