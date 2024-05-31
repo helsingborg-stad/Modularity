@@ -24,9 +24,11 @@ class Upgrade
     {
         $currentDbVersion = get_option($this->dbVersionKey);
         if (empty($currentDbVersion) || $currentDbVersion < $this->dbVersion) {
-                echo '<div class="notice notice-warning update-nag inline">' . 
-                __( 'A newer version of Modularity is available. Run wp-cli "modularity upgrade" to upgrade.', 'modularity') .
-                '</div>';
+            echo sprintf(
+                '<div class="notice notice-warning update-nag inline">%s</div>',
+                __('A newer version of Modularity is available. Run wp-cli "modularity upgrade" to upgrade.', 'modularity')
+            );
+            
         }
     }
 
