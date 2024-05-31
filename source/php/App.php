@@ -31,9 +31,11 @@ class App
 
         $this->setupAdminBar();
 
-        new WpCli();
         new Ajax();
         new Options\General();
+
+        $upgradeInstance = new Upgrade();
+        new WpCli($upgradeInstance);
 
         $archivesAdminPage = new Options\ArchivesAdminPage();
         $archivesAdminPage->addHooks();
