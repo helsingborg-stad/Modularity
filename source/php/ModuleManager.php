@@ -88,6 +88,21 @@ class ModuleManager
 
         // Detect language of module
         add_filter('wp_after_insert_post', array($this, 'updateLanguageIndicator'), 50, 4);
+
+        add_filter('acf/load_field/key=field_636e42408367e', array($this, 'appendDetectedLang'));
+    }
+
+    /**
+     * Appends the auto detected language to the language field
+     * @param array $field The field array
+     * @return array The modified field array
+     */
+    public function appendDetectedLang($field)
+    {
+        $field['choices'] = array_merge([
+            'auto' => __('Auto detected language', 'modularity')
+        ], $field['choices']);
+        return $field;
     }
 
     /**
@@ -113,11 +128,11 @@ class ModuleManager
 
         //Get the language of the module
         $detector = new LanguageDetector();
-        $detector->evaluate($module);
+        $langCode = $detector->evaluate($module);
 
         //Update the detected language of the module
-        if ($detector->getLanguage()) {
-            update_post_meta($post_id, 'detected_lang', $detector->getLanguage());
+        if ($langCode) {
+            update_post_meta($post_id, 'detected_lang', $langCode);
         }
     }
 
@@ -135,8 +150,13 @@ class ModuleManager
     {
         $pageId                 = \Modularity\Helper\Post::getPageID();
         $siteLanguage           = get_bloginfo('language');
-        $moduleLanguage         = get_post_meta($moduleId, 'lang', true) ?? get_post_meta($moduleId, 'detected_lang', true);
+        $moduleLanguage         = get_post_meta($moduleId, 'lang', true);
         $pageLanguage           = get_post_meta($pageId, 'lang', true);
+
+        //Get auto language
+        if ($moduleLanguage == 'auto') {
+            $moduleLanguage = get_post_meta($moduleId, 'detected_lang', true);
+        }
 
         $languageDiff   =   array_map('strtolower', [$siteLanguage, $moduleLanguage, $pageLanguage]);
         $languageDiff   =   array_map(
