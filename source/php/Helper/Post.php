@@ -103,7 +103,7 @@ class Post
             return 'archive';
         } elseif (is_search() || (is_object($post) && is_post_type_archive($post->post_type))) {
             return 'archive-' . $post->post_type;
-        } elseif (isset($_GET['id']) && $_GET['id'] == 'author') {
+        } elseif ($archive == 'author') {
             return 'author';
         }
 
