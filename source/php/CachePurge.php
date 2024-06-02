@@ -86,6 +86,8 @@ class CachePurge
 
                     wp_cache_delete($moduleId, $this->keyGroup);
                 }
+
+                unset($GLOBALS['post']);
             }
         }
 
