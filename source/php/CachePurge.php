@@ -110,7 +110,6 @@ class CachePurge
                     $purgedPostCache = true;
                     wp_cache_delete($moduleId, $this->keyGroup);
                 }
-                wp_reset_postdata();
             }
 
             return $purgedPostCache;
