@@ -19,8 +19,8 @@ class CachePurge
             $this->keyGroup = $this->keyGroup . '-' . get_current_blog_id();
         }
 
-        add_action('save_post', array($this, 'purgePageCache'));
-        add_action('save_post', array($this, 'purgeObjectCache'));
+        add_action('save_post', array($this, 'purgeObjectCache'), 90, 1);
+        add_action('save_post', array($this, 'purgePageCache'), 100, 1);
     }
 
     /**
