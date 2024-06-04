@@ -17,7 +17,7 @@ export class ModulesRestAPI {
     }
 
     async getModule(moduleID) {
-        const url = `${this.endpoints.getModule}/${moduleID}?_wpnonce=${this.nonce}&cacheBust=${this.cacheBustKey}`;
+        const url = `${this.endpoints.getModule}/${moduleID}?cacheBust=${this.cacheBustKey}`;
         const response = await this.fetcher(url);
 
         if (!response.ok) {
