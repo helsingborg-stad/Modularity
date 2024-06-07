@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10847f924d4d07670638e3e54cc389ee",
+    "content-hash": "61427d084a656b59650c51f38544c054",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -2767,6 +2767,7 @@
         "jeradin/acf-website-field": 20,
         "jeradin/acf-dynamic-table-field": 20,
         "enshrined/svg-sanitize": 20,
+        "landrok/language-detector": 20,
         "10up/wp_mock": 20
     },
     "prefer-stable": false,
