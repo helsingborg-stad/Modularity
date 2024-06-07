@@ -6,6 +6,7 @@
             "key": "field_636e42408367e",
             "label": "Language",
             "name": "lang",
+            "aria-label": "",
             "type": "select",
             "instructions": "For accessibility reasons; what language should this this content be parsed as when read aloud by a screen reader?",
             "required": 0,
@@ -15,7 +16,10 @@
                 "class": "",
                 "id": ""
             },
+            "is_publicly_hidden": 0,
+            "is_privately_hidden": 0,
             "choices": {
+                "auto": "Auto detected language",
                 "af": "Afrikaans",
                 "sq": "Albanian",
                 "ar-dz": "Arabic (Algeria)",
@@ -141,7 +145,7 @@
                 "ji": "Yiddish",
                 "zu": "Zulu"
             },
-            "default_value": "sv-se",
+            "default_value": "auto",
             "return_format": "value",
             "multiple": 0,
             "allow_custom": 0,
@@ -183,4 +187,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

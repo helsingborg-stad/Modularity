@@ -3,7 +3,7 @@
 namespace Modularity;
 
 use enshrined\svgSanitize\Sanitizer as SVGSanitize;
-use LanguageDetector\LanguageDetector;
+
 
 class ModuleManager
 {
@@ -82,97 +82,6 @@ class ModuleManager
         // Description meta box
         add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
-
-        // Lang attribute option
-        add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
-
-        // Detect language of module
-        add_filter('wp_after_insert_post', array($this, 'updateLanguageIndicator'), 50, 4);
-
-        add_filter('acf/load_field/key=field_636e42408367e', array($this, 'appendDetectedLang'));
-    }
-
-    /**
-     * Appends the auto detected language to the language field
-     * @param array $field The field array
-     * @return array The modified field array
-     */
-    public function appendDetectedLang($field)
-    {
-        $field['choices'] = array_merge([
-            'auto' => __('Auto detected language', 'modularity')
-        ], $field['choices']);
-        return $field;
-    }
-
-    /**
-     * Detects the language of the module and adds it to the HTML element
-     *
-     * @param int $post_id The ID of the post
-     * @param WP_Post $post The post object
-     * @param array $update The update array
-     * @param WP_Post $post_before The post object before the update
-     *
-     * @return void 
-     */
-    public function updateLanguageIndicator($post_id, $post, $update, $post_before) {
-
-        if (substr($post->post_type, 0, 4) != 'mod-') {
-            return;
-        }
-
-        //Render by using the module's render method
-        $module = do_shortcode('[modularity id="' . $post_id . '"]');
-        $module = strip_tags($module);
-        $module = trim($module);
-
-        //Get the language of the module
-        $langCode = LanguageDetector::detect($module);
-
-        //Update the detected language of the module
-        if ($langCode) {
-            update_post_meta($post_id, 'detected_lang', $langCode);
-        }
-    }
-
-    /**
-     * Adds the `lang` attribute to the module's HTML element if it differs from the site's language
-     *
-     * @param string beforeModule The HTML of the module before it's been modified.
-     * @param array args the arguments passed to the module
-     * @param string moduleType the type of module (e.g. 'acf_module')
-     * @param int moduleId the id of the module
-     *
-     * @return string the $beforeModule content with the lang attribute added.
-     */
-    public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
-    {
-        $pageId                 = \Modularity\Helper\Post::getPageID();
-        $siteLanguage           = get_bloginfo('language');
-        $moduleLanguage         = get_post_meta($moduleId, 'lang', true);
-        $pageLanguage           = get_post_meta($pageId, 'lang', true);
-
-        //Get auto language
-        if ($moduleLanguage == 'auto') {
-            $moduleLanguage = get_post_meta($moduleId, 'detected_lang', true);
-        }
-
-        $languageDiff   =   array_map('strtolower', [$siteLanguage, $moduleLanguage, $pageLanguage]);
-        $languageDiff   =   array_map(
-            function ($value) use ($siteLanguage) {
-                return $value ?: strtolower($siteLanguage);
-            },
-            $languageDiff
-        );
-
-        if (count(array_unique($languageDiff)) != 1) {
-            $attrId = $moduleType . '-' . $moduleId;
-            $match = '/id="' . $attrId . '"/';
-            $replace = 'id="' . $attrId . '" lang="' . $moduleLanguage . '"';
-
-            return preg_replace($match, $replace, $beforeModule, 1);
-        }
-        return $beforeModule;
     }
 
     /**
