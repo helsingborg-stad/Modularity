@@ -539,7 +539,7 @@ class Display
         $beforeModule = sprintf($beforeModule, $module->post_type . '-' . $module->ID . '-' . uniqid(), implode(' ', $classes));
         
         // Append module edit to before markup
-        if ($this->displayEditModule($module, $args)) {
+        if ($this->displayEditModule($module, $args) && !is_admin()) {
             $beforeModule .= $this->createEditModuleMarkup($module);
         }
 

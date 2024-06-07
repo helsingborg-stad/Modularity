@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ed84514e26fb5b552426a8dfb0ee448a",
+    "content-hash": "10847f924d4d07670638e3e54cc389ee",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -401,6 +401,62 @@
             "time": "2023-10-18T14:34:10+00:00"
         },
         {
+            "name": "landrok/language-detector",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/landrok/language-detector.git",
+                "reference": "6335aa9318ff970ceed7716b37d3371804a16d6e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/landrok/language-detector/zipball/6335aa9318ff970ceed7716b37d3371804a16d6e",
+                "reference": "6335aa9318ff970ceed7716b37d3371804a16d6e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.4",
+                "webmozart/assert": "^1.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=6"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "LanguageDetector\\": "src/LanguageDetector/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A fast and reliable PHP library for detecting languages",
+            "homepage": "https://github.com/landrok/language-detector",
+            "keywords": [
+                "detector",
+                "language",
+                "n-grams"
+            ],
+            "support": {
+                "issues": "https://github.com/landrok/language-detector/issues",
+                "source": "https://github.com/landrok/language-detector/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/landrok",
+                    "type": "github"
+                },
+                {
+                    "url": "https://ko-fi.com/landrok",
+                    "type": "ko_fi"
+                }
+            ],
+            "time": "2023-12-21T13:00:16+00:00"
+        },
+        {
             "name": "ooksanen/acf-focuspoint",
             "version": "1.2.1",
             "source": {
@@ -436,6 +492,64 @@
                 }
             ],
             "time": "2023-10-12T05:52:37+00:00"
+        },
+        {
+            "name": "webmozart/assert",
+            "version": "1.11.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webmozarts/assert.git",
+                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "reference": "11cb2199493b2f8a3b53e7f19068fc6aac760991",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan": "<0.12.20",
+                "vimeo/psalm": "<4.6.1 || 4.6.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5.13"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.10-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Webmozart\\Assert\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernhard Schussek",
+                    "email": "bschussek@gmail.com"
+                }
+            ],
+            "description": "Assertions to validate method input/output with nice error messages.",
+            "keywords": [
+                "assert",
+                "check",
+                "validate"
+            ],
+            "support": {
+                "issues": "https://github.com/webmozarts/assert/issues",
+                "source": "https://github.com/webmozarts/assert/tree/1.11.0"
+            },
+            "time": "2022-06-03T18:03:27+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-extended",

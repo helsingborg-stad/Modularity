@@ -46,7 +46,8 @@
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
         "wpackagist-plugin/acf-extended": "0.8.9.4",
-        "helsingborg-stad/acf-select-image-field": "~1.4.3"
+        "helsingborg-stad/acf-select-image-field": "~1.4.3",
+        "landrok/language-detector": "dev-master"
     },
     "autoload": {
         "psr-4": {

@@ -2,8 +2,8 @@
 
 namespace Modularity;
 
-use BladeComponentLibrary\Init as CompLibInitator;
 use enshrined\svgSanitize\Sanitizer as SVGSanitize;
+
 
 class ModuleManager
 {
@@ -82,45 +82,8 @@ class ModuleManager
         // Description meta box
         add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
-
-        // Lang attribute option
-        add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
     }
 
-    /**
-     * Adds the `lang` attribute to the module's HTML element if it differs from the site's language
-     *
-     * @param string beforeModule The HTML of the module before it's been modified.
-     * @param array args the arguments passed to the module
-     * @param string moduleType the type of module (e.g. 'acf_module')
-     * @param int moduleId the id of the module
-     *
-     * @return string the $beforeModule content with the lang attribute added.
-     */
-    public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
-    {
-        $pageId         = \Modularity\Helper\Post::getPageID();
-        $siteLanguage   = get_bloginfo('language');
-        $moduleLanguage = get_post_meta($moduleId, 'lang', true);
-        $pageLanguage   = get_post_meta($pageId, 'lang', true);
-
-        $languageDiff   =   array_map('strtolower', [$siteLanguage, $moduleLanguage, $pageLanguage]);
-        $languageDiff   =   array_map(
-            function ($value) use ($siteLanguage) {
-                return $value ?: strtolower($siteLanguage);
-            },
-            $languageDiff
-        );
-
-        if (count(array_unique($languageDiff)) != 1) {
-            $attrId = $moduleType . '-' . $moduleId;
-            $match = '/id="' . $attrId . '"/';
-            $replace = 'id="' . $attrId . '" lang="' . $moduleLanguage . '"';
-
-            return preg_replace($match, $replace, $beforeModule, 1);
-        }
-        return $beforeModule;
-    }
     /**
      * Get available modules (WP filter)
      * @return array

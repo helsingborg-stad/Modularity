@@ -1,8 +1,7 @@
-<?php
+<?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_636e424039120',
     'title' => __('Screen reader language', 'modularity'),
     'fields' => array(
@@ -10,6 +9,7 @@ if (function_exists('acf_add_local_field_group')) {
             'key' => 'field_636e42408367e',
             'label' => __('Language', 'modularity'),
             'name' => 'lang',
+            'aria-label' => '',
             'type' => 'select',
             'instructions' => __('For accessibility reasons; what language should this this content be parsed as when read aloud by a screen reader?', 'modularity'),
             'required' => 0,
@@ -19,7 +19,10 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
+            'is_publicly_hidden' => 0,
+            'is_privately_hidden' => 0,
             'choices' => array(
+                'auto' => __('Auto detected language', 'modularity'),
                 'af' => __('Afrikaans', 'modularity'),
                 'sq' => __('Albanian', 'modularity'),
                 'ar-dz' => __('Arabic (Algeria)', 'modularity'),
@@ -145,7 +148,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'ji' => __('Yiddish', 'modularity'),
                 'zu' => __('Zulu', 'modularity'),
             ),
-            'default_value' => __('sv-se', 'modularity'),
+            'default_value' => __('auto', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_custom' => 0,
@@ -187,4 +190,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+}
