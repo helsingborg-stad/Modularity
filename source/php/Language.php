@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Language
+ * This class handles the language of the modules, and adds 
+ * the lang attribute to the HTML element if it differs from 
+ * the site's language. 
+ * 
+ * It also detects the language of the module automatically 
+ * and updates the language indicator in the module's settings.
+ * 
+ * @package Modularity
+ */
+
 namespace Modularity;
 
 use LanguageDetector\LanguageDetector;
@@ -12,10 +24,10 @@ class Language
         add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
 
         // Detect language of module
-        add_filter('wp_after_insert_post', array($this, 'updateLanguageIndicator'), 50, 4);
+        add_filter('wp_after_insert_post', array($this, 'autoDetectLanguage'), 50, 4);
 
         //Make auto a selectable option in the language field
-        add_filter('acf/load_field/key=field_636e42408367e', array($this, 'appendDetectedLang'));
+        add_filter('acf/load_field/key=field_636e42408367e', array($this, 'appendAutoLangOption'));
     }
 
     /**
@@ -23,7 +35,7 @@ class Language
      * @param array $field The field array
      * @return array The modified field array
      */
-    public function appendDetectedLang($field)
+    public function appendAutoLangOption($field)
     {
         $field['choices'] = array_merge([
             'auto' => __('Auto detected language', 'modularity')
@@ -41,7 +53,7 @@ class Language
      *
      * @return void 
      */
-    public function updateLanguageIndicator($post_id, $post, $update, $post_before) {
+    public function autoDetectLanguage($post_id, $post, $update, $post_before) {
 
         if ($this->isModularityModule($post_id) === false) {
           return;
