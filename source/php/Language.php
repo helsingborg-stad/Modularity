@@ -35,7 +35,7 @@ class Language
      * @param array $field The field array
      * @return array The modified field array
      */
-    public function appendAutoLangOption($field)
+    public function appendAutoLangOption(array $field): array
     {
         $field['choices'] = array_merge([
             'auto' => __('Auto detected language', 'modularity')
@@ -53,10 +53,10 @@ class Language
      *
      * @return void 
      */
-    public function autoDetectLanguage($post_id, $post, $update, $post_before) {
+    public function autoDetectLanguage($post_id, $post, $update, $post_before): bool {
 
         if ($this->isModularityModule($post_id) === false) {
-          return;
+          return false;
         }
 
         //Render by using the module's render method
@@ -87,7 +87,7 @@ class Language
      *
      * @return string the $beforeModule content with the lang attribute added.
      */
-    public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId)
+    public function addLangAttribute(string $beforeModule, array $args, string $moduleType, int $moduleId): string
     {
         $pageId                 = \Modularity\Helper\Post::getPageID();
         $siteLanguage           = get_bloginfo('language');
@@ -127,7 +127,8 @@ class Language
      *
      * @return string The modified HTML string
      */
-    function addLangAttributeToString($html, $lang) {
+    function addLangAttributeToString($html, $lang): string
+    {
         $pattern        = '/(<div\s+id="mod-[^"]+")/';
         $replacement    = '$1 lang="' . $lang . '"';
         return preg_replace($pattern, $replacement, $html);
