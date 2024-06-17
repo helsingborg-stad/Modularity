@@ -24,10 +24,10 @@ class Language
         add_filter('Modularity/Display/BeforeModule', array($this, 'addLangAttribute'), 10, 4);
 
         // Detect language of module
-        add_filter('wp_after_insert_post', array($this, 'autoDetectLanguage'), 50, 4);
+        //add_filter('wp_after_insert_post', array($this, 'autoDetectLanguage'), 50, 4);
 
         //Make auto a selectable option in the language field
-        add_filter('acf/load_field/key=field_636e42408367e', array($this, 'appendAutoLangOption'));
+        //add_filter('acf/load_field/key=field_636e42408367e', array($this, 'appendAutoLangOption'));
     }
 
     /**
