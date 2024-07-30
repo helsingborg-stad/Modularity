@@ -453,12 +453,17 @@ class Editor extends \Modularity\Options
         }
 
         // Get module posts
-        $modulesPosts = get_posts(array(
-            'posts_per_page' => -1,
-            'post_type' => $enabled,
-            'include' => $moduleIds,
-            'post_status' => $postStatuses
-        ));
+        $totalNumberOfModules = count($moduleIds); 
+        if(!empty($totalNumberOfModules) && is_numeric($totalNumberOfModules)) {
+            $modulesPosts = get_posts(array(
+                'posts_per_page' => count($moduleIds),
+                'post_type' => $enabled,
+                'include' => $moduleIds,
+                'post_status' => $postStatuses
+            ));
+        } else {
+            $modulesPosts = []; 
+        }   
 
         // Add module id's as keys in the array
         if (!empty($modulesPosts)) {
