@@ -235,7 +235,7 @@ class Display
 
         $realPostID = $this->getCurrentPostID($post);
 
-        if (is_admin() || is_feed() || is_tax() || post_password_required($realPostID)) {
+        if (is_admin() || is_feed() || is_tax() || post_password_required($realPostID) || is_404()) {
             return;
         }
 
