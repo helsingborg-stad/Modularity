@@ -454,7 +454,7 @@ class Editor extends \Modularity\Options
 
         // Get module posts
         $modulesPosts = get_posts(array(
-            'posts_per_page' => -1,
+            'posts_per_page' => count($moduleIds) * 2 ?? -1,
             'post_type' => $enabled,
             'include' => $moduleIds,
             'post_status' => $postStatuses
