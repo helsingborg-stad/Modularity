@@ -179,6 +179,7 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
                     <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
                 </span>\
                 <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
+                <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][module]" value="' + moduleId +'" />\
             </span>\
         </li>';
 
