@@ -16,6 +16,6 @@ class ContentType
                 return $contentType->getKey();
             }
         }
-        return $contentType;
+        return false;
     }
 }

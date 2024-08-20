@@ -2,25 +2,44 @@
 
 namespace Modularity\Module\Menu;
 
+use Modularity\Module\Menu\Acf\Select;
+use \Municipio\Helper\Navigation\MenuConstructor as MenuConstructor;
+use WP_Post;
+
 class Menu extends \Modularity\Module
 {
     public $slug = 'menu';
     public $supports = array();
     public $displaySettings = null;
-
+    private MenuConstructor $menuConstructorInstance;
 
     public function init()
     {
         $this->nameSingular = __('Menu', 'modularity');
         $this->namePlural = __('Menus', 'modularity');
         $this->description = __('Outputs a menu.', 'modularity');
+        $this->menuConstructorInstance = new MenuConstructor();
+
+        new Select();
     }
 
     public function data(): array
     {
-        $data = array();
+        $fields = $this->getFields();
+        $data = [];
 
+        $data['menu'] = $this->getStructuredMenu($fields);
+        
         return $data;
+    }
+
+    private function getStructuredMenu($fields): array
+    {
+       return $this->menuConstructorInstance->buildStructuredMenu(
+                $this->menuConstructorInstance->structureMenuItems(
+                    wp_get_nav_menu_items($fields['menu_menu']) ?? []
+                )
+            );
     }
 
     /**

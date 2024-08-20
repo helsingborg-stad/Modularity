@@ -4,10 +4,10 @@
     "fields": [
         {
             "key": "field_66c34c655680e",
-            "label": "Abc",
-            "name": "abc",
+            "label": "Select a Menu",
+            "name": "menu_menu",
             "aria-label": "",
-            "type": "text",
+            "type": "select",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -16,11 +16,21 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
-            "maxlength": "",
+            "choices": {
+                "575": "drawer down",
+                "564": "Language",
+                "573": "ny",
+                "576": "Primary"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
             "placeholder": "",
-            "prepend": "",
-            "append": ""
+            "allow_custom": 0,
+            "search_placeholder": ""
         }
     ],
     "location": [
