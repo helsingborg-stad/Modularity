@@ -6,7 +6,7 @@ namespace Modularity\Module\Menu\Acf;
 class Select {
     public function __construct()
     {
-        add_filter('acf/load_field/name=menu_menu', array($this, 'setSelectChoices'), 10, 1);
+        add_filter('acf/load_field/name=mod_menu_menu', array($this, 'setSelectChoices'), 10, 1);
     }
 
     public function setSelectChoices($field)
