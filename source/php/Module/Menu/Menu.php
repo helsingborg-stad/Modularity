@@ -11,35 +11,46 @@ class Menu extends \Modularity\Module
     public $slug = 'menu';
     public $supports = array();
     public $displaySettings = null;
-    private MenuConstructor $menuConstructorInstance;
 
     public function init()
     {
         $this->nameSingular = __('Menu', 'modularity');
         $this->namePlural = __('Menus', 'modularity');
         $this->description = __('Outputs a menu.', 'modularity');
-        $this->menuConstructorInstance = new MenuConstructor();
+
+        add_filter('Municipio/Navigation/Item', array($this, 'setMenuItemData'), 999, 3);       
 
         new Select();
+    }
+
+    public function setMenuItemData($item, $identifier, $bool)
+    {
+        if ($identifier === 'mod-menu-list' && !$item['top_level']) {
+            $item['icon'] = ['icon' => 'chevron_right', 'size' => 'md'];
+        }
+
+        return $item;
     }
 
     public function data(): array
     {
         $fields = $this->getFields();
+        $display = $fields['mod_menu_display'] ?? 'list';
+        $menuConstructorInstance = new MenuConstructor('mod-menu-' . $display);
+        
         $data = [];
-
-        $data['menu'] = $this->getStructuredMenu($fields);
+        $data['menu'] = $this->getStructuredMenu($menuConstructorInstance, $fields);
         
         return $data;
     }
 
-    private function getStructuredMenu($fields): array
+    private function getStructuredMenu($menuConstructorInstance, $fields): array
     {
-       return $this->menuConstructorInstance->buildStructuredMenu(
-                $this->menuConstructorInstance->structureMenuItems(
-                    wp_get_nav_menu_items($fields['menu_menu']) ?? []
-                )
-            );
+        return $menuConstructorInstance->buildStructuredMenu(
+                    $menuConstructorInstance->structureMenuItems(
+                        wp_get_nav_menu_items($fields['mod_menu_menu']) ?? []
+                    )
+                );
     }
 
     /**
