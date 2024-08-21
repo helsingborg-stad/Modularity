@@ -6,13 +6,13 @@
     'title' => __('Menu Module', 'modularity'),
     'fields' => array(
         0 => array(
-            'key' => 'field_66c34c655680e',
-            'label' => __('Select a Menu', 'modularity'),
-            'name' => 'menu_menu',
+            'key' => 'field_66c59ae797a04',
+            'label' => __('Display Menu As', 'modularity'),
+            'name' => 'mod_menu_display',
             'aria-label' => '',
-            'type' => 'select',
+            'type' => 'image_select',
             'instructions' => '',
-            'required' => 0,
+            'required' => 1,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '',
@@ -20,10 +20,27 @@
                 'id' => '',
             ),
             'choices' => array(
-                575 => __('drawer down', 'modularity'),
-                564 => __('Language', 'modularity'),
-                573 => __('ny', 'modularity'),
-                576 => __('Primary', 'modularity'),
+                'row-66c59af297a05' => array(
+                    'image-select-repeater-label' => 'List',
+                    'image-select-repeater-value' => 'list',
+                ),
+            ),
+        ),
+        1 => array(
+            'key' => 'field_66c34c655680e',
+            'label' => __('Select a Menu', 'modularity'),
+            'name' => 'mod_menu_menu',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
             ),
             'default_value' => false,
             'return_format' => 'value',
