@@ -3,7 +3,8 @@
 namespace Modularity\Module\Menu;
 
 use Modularity\Module\Menu\Acf\Select;
-use \Municipio\Helper\Navigation\MenuConstructor as MenuConstructor;
+use \Municipio\Helper\Navigation\MenuConstructor;
+use Modularity\Module\Menu\Decorator\DataDecorator;
 use WP_Post;
 
 class Menu extends \Modularity\Module
@@ -18,30 +19,33 @@ class Menu extends \Modularity\Module
         $this->namePlural = __('Menus', 'modularity');
         $this->description = __('Outputs a menu.', 'modularity');
 
-        add_filter('Municipio/Navigation/Item', array($this, 'setMenuItemData'), 999, 3);       
-
+        add_filter('Municipio/Navigation/Item', array($this, 'setMenuItemData'), 999, 3);
         new Select();
-    }
-
-    public function setMenuItemData($item, $identifier, $bool)
-    {
-        if ($identifier === 'mod-menu-list' && !$item['top_level']) {
-            $item['icon'] = ['icon' => 'chevron_right', 'size' => 'md'];
-        }
-
-        return $item;
     }
 
     public function data(): array
     {
-        $fields = $this->getFields();
-        $display = $fields['mod_menu_display'] ?? 'list';
-        $menuConstructorInstance = new MenuConstructor('mod-menu-' . $display);
-        
         $data = [];
-        $data['menu'] = $this->getStructuredMenu($menuConstructorInstance, $fields);
+        $fields = $this->getFields();
+
+        $displayAs = $fields['mod_menu_display_as'] ?? 'listing';
+        $menuConstructorInstance = new MenuConstructor('mod-menu-' . $displayAs);
+        $dataDecorator = new DataDecorator($fields);
         
-        return $data;
+        $data['displayAs'] = $displayAs;
+        $data['columns'] = $fields['mod_menu_columns'] ?? 3;
+        $data['menu'] = $this->getStructuredMenu($menuConstructorInstance, $fields);
+
+        return $dataDecorator->decorate($data);
+    }
+
+    public function setMenuItemData($item, $identifier, $bool)
+    {
+        if ($identifier === 'mod-menu-listing' && !$item['top_level']) {
+            $item['icon'] = ['icon' => 'chevron_right', 'size' => 'md'];
+        }
+
+        return $item;
     }
 
     private function getStructuredMenu($menuConstructorInstance, $fields): array

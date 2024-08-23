@@ -5,7 +5,7 @@
         {
             "key": "field_66c59ae797a04",
             "label": "Display Menu As",
-            "name": "mod_menu_display",
+            "name": "mod_menu_display_as",
             "aria-label": "",
             "type": "image_select",
             "instructions": "",
@@ -17,11 +17,27 @@
                 "id": ""
             },
             "choices": {
-                "row-66c59af297a05": {
+                "row-row-row-row-row-row-row-66c59af297a05": {
                     "image-select-repeater-label": "List",
-                    "image-select-repeater-value": "list"
+                    "image-select-repeater-value": "listing"
                 }
             }
+        },
+        {
+            "key": "field_66c5c58856a24",
+            "label": "Display as conditional target",
+            "name": "mod_menu_display_as_conditional",
+            "aria-label": "",
+            "type": "acfe_hidden",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
         },
         {
             "key": "field_66c34c655680e",
@@ -37,8 +53,51 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [],
+            "choices": {
+                "575": "drawer down",
+                "564": "Language",
+                "573": "ny",
+                "576": "Primary"
+            },
             "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
+            "key": "field_66c5c3e6b7b5d",
+            "label": "Items Per Column",
+            "name": "mod_menu_columns",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_66c5c58856a24",
+                        "operator": "==",
+                        "value": "list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "1",
+                "2": "2",
+                "3": "3",
+                "4": "4"
+            },
+            "default_value": 3,
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
