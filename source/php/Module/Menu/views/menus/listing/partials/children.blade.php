@@ -2,7 +2,7 @@
     'items' => $menuItem['children'],
     'compressed' => true,
     'classList' => [
-        'u-margin__left--4'
+        'mod-menu__list'
     ]
 ])
 @endnav

@@ -36,7 +36,8 @@ module.exports = {
 		'js/video': './source/php/Module/Video/assets/video.js',
 		'css/video': './source/php/Module/Video/assets/video.scss',
 		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts',
-		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js'
+		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
+		'css/menu': './source/php/Module/Menu/assets/menu.scss',
 	},
 
 	/**
