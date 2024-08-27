@@ -1,8 +1,8 @@
 
 @group([
     'columns' => $columns,
-    'flexWrap' => 'wrap',
-    'gap' => 6,
+    'wrap' => 'wrap',
+    'classList' => ['u-flex--gridgap']
 ])
 @foreach ($menu as $menuItem)
     <div class="mod-menu__item">
