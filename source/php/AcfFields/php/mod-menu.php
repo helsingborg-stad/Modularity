@@ -85,7 +85,7 @@
                     0 => array(
                         'field' => 'field_66c5c58856a24',
                         'operator' => '==',
-                        'value' => 'list',
+                        'value' => 'listing',
                     ),
                 ),
             ),

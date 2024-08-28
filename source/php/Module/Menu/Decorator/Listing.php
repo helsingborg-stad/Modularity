@@ -16,7 +16,7 @@ class Listing implements DataDecoratorInterface
 
     private function getListingColumns()
     {
-        $columns = $this->fields['columns'] ?? 3;
+        $columns = $this->fields['mod_menu_columns'] ?? 3;
         
         return $columns;
     }

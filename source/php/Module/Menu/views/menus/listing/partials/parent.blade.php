@@ -1,15 +1,17 @@
 @link([
     'href' => $menuItem['href'] ?? '#',
     'classList' => [
-        'u-display--flex',
-        'u-align-items--center',
-        'u-no-decoration'
+        'mod-menu__heading',
+        $menuItem['post_type'] ? 's-post-type-' . $menuItem['post_type'] : '',
     ]
 ])
     @if (!empty($menuItem['icon']['icon']))
         @icon([
             'icon' => $menuItem['icon']['icon'] ?? '',
             'size' => 'lg',
+            'classList' => [
+                'mod-menu__heading-icon',
+            ]
         ])
         @endicon
     @endif
@@ -17,8 +19,8 @@
         'element' => 'h2',
         'variant' => 'h2',
         'classList' => [
-            'u-margin__top--0',
-            'u-padding__left--1'
+            empty($menuItem['icon']['icon']) ? 'u-margin__left--5' : '',
+            'mod-menu__heading-label'
         ]
     ])
         {{$menuItem['label'] ?? ""}}

@@ -1,0 +1,38 @@
+$base: var(--base, 8px) !default;
+$color-black: var(--color-black, #000000) !default;
+
+.mod-menu.mod-menu--listing {
+    .mod-menu__heading {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .mod-menu__heading-label {
+        width: 100%;
+        margin-top: 0;
+        border-bottom: 2px solid var(--color-secondary, #ec6701);
+    }
+
+    .mod-menu__heading-icon {
+        margin-right: $base;
+    }
+
+    .mod-menu__heading-icon,
+    .mod-menu__heading-label {
+        padding-bottom: calc($base * .5);
+    }
+
+    .mod-menu__list {
+        margin-top: $base;
+        margin-left: calc($base * 4);
+    }
+
+    .mod-menu__list-item a {
+        color: rgba($color-black, 0.96);
+
+        &:hover {
+            color: var(--color-secondary, #ec6701);
+        }
+    }
+}

@@ -43,6 +43,7 @@ class Menu extends \Modularity\Module
     {
         if ($identifier === 'mod-menu-listing' && !$item['top_level']) {
             $item['icon'] = ['icon' => 'chevron_right', 'size' => 'md'];
+            $item['classList'][] = 'mod-menu__list-item';
         }
 
         return $item;
@@ -55,6 +56,14 @@ class Menu extends \Modularity\Module
                         wp_get_nav_menu_items($fields['mod_menu_menu']) ?? []
                     )
                 );
+    }
+
+    public function style()
+    {
+        wp_register_style('mod-menu-style', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('css/menu.css'));
+
+        wp_enqueue_style('mod-menu-style');
     }
 
     /**
