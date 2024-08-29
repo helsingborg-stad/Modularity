@@ -20,7 +20,8 @@
         'variant' => 'h2',
         'classList' => [
             empty($menuItem['icon']['icon']) ? 'u-margin__left--5' : '',
-            'mod-menu__heading-label'
+            'mod-menu__heading-label',
+            'u-color--primary'
         ]
     ])
         {{$menuItem['label'] ?? ""}}

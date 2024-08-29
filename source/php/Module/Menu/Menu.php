@@ -33,7 +33,7 @@ class Menu extends \Modularity\Module
         $dataDecorator = new DataDecorator($fields);
         
         $data['displayAs'] = $displayAs;
-        $data['columns'] = $fields['mod_menu_columns'] ?? 3;
+
         $data['menu'] = $this->getStructuredMenu($menuConstructorInstance, $fields);
 
         return $dataDecorator->decorate($data);

@@ -11,7 +11,7 @@ $color-black: var(--color-black, #000000) !default;
     .mod-menu__heading-label {
         width: 100%;
         margin-top: 0;
-        border-bottom: 2px solid var(--color-secondary, #ec6701);
+        border-bottom: 2px solid var(--color-primary, #ec6701);
     }
 
     .mod-menu__heading-icon {
@@ -32,7 +32,7 @@ $color-black: var(--color-black, #000000) !default;
         color: rgba($color-black, 0.96);
 
         &:hover {
-            color: var(--color-secondary, #ec6701);
+            color: var(--color-primary, #ec6701);
         }
     }
 }
