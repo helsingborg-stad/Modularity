@@ -41,7 +41,7 @@ class Script extends \Modularity\Module
         $doc->loadHTML('<?xml encoding="utf-8" ?>' . $embed, LIBXML_NOERROR);
 
         $xpath = new \DOMXpath($doc);
-        $allowedElements = $xpath->query('//script | //iframe | //link | //style');
+        $allowedElements = $xpath->query('//script | //iframe | //link | //style | //audio');
 
         $data['embedContent'] =
         is_admin() ?
