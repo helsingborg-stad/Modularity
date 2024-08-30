@@ -12,7 +12,8 @@ class Menu extends \Modularity\Module
     public $slug = 'menu';
     public $supports = array();
     public $displaySettings = null;
-
+    public $cacheTtl = 0;
+    
     public function init()
     {
         $this->nameSingular = __('Menu', 'modularity');
