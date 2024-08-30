@@ -167,6 +167,14 @@
 		    	width: 35%;
 		    }
 
+            .modularity-module-actions-symbol {
+                position: relative;
+                display: inline-block;
+                margin: -2px 3px -2px 0;
+                font-family: 'Material Symbols Outlined';
+                font-size: 18px;
+            }
+
             a {
                 font-size: 10pt;
                 color: #000;
@@ -195,6 +203,8 @@
 					display: inline-block;
                 }
 
+
+
                 //Fx
                 &:after {
 	                content: "";
@@ -207,32 +217,6 @@
 	                background-color: rgba(#cb0050,.4);
 	                transition: height 100ms ease;
                 }
-
-                //Icon placehlder
-                &:before {
-	                position: relative;
-	                display: inline-block;
-	                margin: -2px 0 -2px 0;
-                    font-family: 'Material Symbols Outlined';
-                    font-size: 18px;
-                }
-
-				//Icons
-                &.modularity-js-thickbox-open:before {
-                    content: "\e3c9";
-                    top: 2px;
-                }
-
-                &.modularity-js-thickbox-import:before {
-                    content: "\f090";
-                    top: 4px;
-                }
-
-                &.modularity-module-remove:before {
-                    content: "\e872";
-                    top: 3px;
-                }
-
             }
 
             @media (max-width: 600px) {

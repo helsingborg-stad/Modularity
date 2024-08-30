@@ -174,9 +174,18 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
                     </select>\
                 </span>\
                 <span class="modularity-module-actions">\
-                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + modularityAdminLanguage.langedit + '</span></a>\
-                    <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + modularityAdminLanguage.langimport + '</span></a>\
-                    <a href="#remove" class="modularity-module-remove"><span>' + modularityAdminLanguage.langremove + '</span></a>\
+                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + 
+                        '<i style="top:3px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">edit</i>' + 
+                        modularityAdminLanguage.langedit + 
+                    '</span></a>\
+                    <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + 
+                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">download</i>' + 
+                        modularityAdminLanguage.langimport + 
+                    '</span></a>\
+                    <a href="#remove" class="modularity-module-remove"><span>' + 
+                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">delete</i>' + 
+                        modularityAdminLanguage.langremove + 
+                    '</span></a>\
                 </span>\
                 <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
                 <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][name]" value="' + moduleId +'" />\
