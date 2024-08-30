@@ -74,6 +74,7 @@ add_action('plugins_loaded', function () {
         'mod-modal'                 => 'group_64a29154aa972',
         'mod-manual-input'          => 'group_64ff22b117e2c',
         'mod-menu'                  => 'group_66c34c64b8d10',
+        'mod-audio'                 => 'group_66d0837591221',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
