@@ -1,6 +1,6 @@
 @acceptance([
     'labels' => $acceptanceLabels,
-    'src' => $url,
+    'src' => [$url],
 ])
     @include('partials.content')
 @endacceptance
