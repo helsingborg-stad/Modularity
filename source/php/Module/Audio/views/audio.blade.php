@@ -1,10 +1,13 @@
 @if (!empty($url))
     @if (empty($hideTitle) && !empty($postTitle))
         @typography([
-            'id'        => 'mod-text-' . $ID .'-label',
+            'id'        => 'mod-audio-' . $ID .'-label',
             'element'   => 'h2', 
             'variant'   => 'h2', 
-            'classList' => ['module-title']
+            'classList' => [
+                'module-title',
+                'u-text-align--' . $alignment,
+            ]
         ])
             {!! $postTitle !!}
         @endtypography

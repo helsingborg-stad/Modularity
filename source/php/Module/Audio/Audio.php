@@ -24,6 +24,8 @@ class Audio extends \Modularity\Module {
         $data['requiresAcceptance'] = $this->checkIfRequiresAcceptance($fields);
         $data['fileType'] = $fields['mod_audio_filetype'] ?? null;
         $data['url'] = $fields['mod_audio_filetype'] === 'local' ? $fields['mod_audio_local_file'] : $fields['mod_audio_external_audio_url'];
+        $data['width'] = $fields['mod_audio_width'] ?? 30;
+        $data['alignment'] = $fields['mod_audio_alignment'] ?? 'start';
         $data['acceptanceLabels'] = $data['requiresAcceptance'] ? \Modularity\Helper\AcceptanceLabels::getLabels() : null;
 
         return $data;
