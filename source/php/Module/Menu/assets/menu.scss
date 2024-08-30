@@ -25,7 +25,7 @@ $color-black: var(--color-black, #000000) !default;
 
     .mod-menu__list {
         margin-top: $base;
-        margin-left: calc($base * 4);
+        padding-left: calc($base * 4);
     }
 
     .mod-menu__list-item a {
