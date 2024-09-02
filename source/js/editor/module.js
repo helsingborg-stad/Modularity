@@ -157,15 +157,13 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
 
     var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '" data-sidebar-incompability=\'' + incompability + '\'>\
             <span class="modularity-line-wrapper">\
-                <span class="modularity-sortable-handle"></span>\
+                <span class="modularity-sortable-handle">\
+                    <i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">drag_handle</i>\
+                </span>\
                 <span class="modularity-module-name">\
-                    ' + moduleName + '\
+                    <strong>' + moduleName + '</strong>\
                     ' + deprecated + '\
                     <span class="modularity-module-title">' + moduleTitle + '</span>\
-                    <label class="modularity-module-hide">\
-                        <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="hidden" ' + isHidden + ' />\
-                        ' + modularityAdminLanguage.langhide + '\
-                    </label>\
                 </span>\
                 <span class="modularity-module-columns">\
                     <label>' + modularityAdminLanguage.width + ':</label>\
@@ -174,18 +172,24 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
                     </select>\
                 </span>\
                 <span class="modularity-module-actions">\
-                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open"><span>' + 
-                        '<i style="top:3px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">edit</i>' + 
-                        modularityAdminLanguage.langedit + 
-                    '</span></a>\
-                    <a href="' + importUrl + '" class="modularity-js-thickbox-import"><span>' + 
-                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">download</i>' + 
-                        modularityAdminLanguage.langimport + 
-                    '</span></a>\
-                    <a href="#remove" class="modularity-module-remove"><span>' + 
-                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">delete</i>' + 
-                        modularityAdminLanguage.langremove + 
-                    '</span></a>\
+                    <label class="modularity-module-hide">\
+                        <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="hidden" ' + isHidden + ' aria-label="' + modularityAdminLanguage.langhide + '"/>\
+                        <i style="top:4px;" class="modularity-cmd-visibility-on modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">visibility</i>\
+                        <i style="top:4px;" class="modularity-cmd-visibility-off modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">visibility_off</i>\
+                        <span class="label">' +  modularityAdminLanguage.langvisibility + '</span>\
+                    </label>\
+                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open">' + 
+                        '<i style="top:3px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">edit</i>' 
+                        + '<span class="label">' +  modularityAdminLanguage.langedit + '</span>' +
+                    '</a>\
+                    <a href="' + importUrl + '" class="modularity-js-thickbox-import">' + 
+                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">download</i>' 
+                        + '<span class="label">' +  modularityAdminLanguage.langimport + '</span>' +
+                    '</a>\
+                    <a href="#remove" class="modularity-module-remove">' + 
+                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">delete</i>' 
+                        + '<span class="label">' + modularityAdminLanguage.langremove + '</span>' +
+                    '</a>\
                 </span>\
                 <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][postid]" class="modularity-js-module-id" value="' + postId + '" required>\
                 <input type="hidden" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][name]" value="' + moduleId +'" />\

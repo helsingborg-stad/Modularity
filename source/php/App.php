@@ -184,7 +184,8 @@ class App
             . \Modularity\Helper\CacheBust::name('js/modularity.js'), [], null, true);
 
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
-            'langedit' => __('Edit', 'modularity'),
+            'langvisibility' => __('Toggle visibility', 'modularity'),
+            'langedit' => __('Edit', 'modularity'), 
             'langimport' => __('Import', 'modularity'),
             'langremove' => __('Remove', 'modularity'),
             'langhide' => __('Hide module', 'modularity'),
@@ -243,6 +244,7 @@ class App
         wp_register_script('modularity', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
+            'langvisibility' => __('Toggle visibility', 'modularity'),
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
             'langremove' => __('Remove', 'modularity'),
