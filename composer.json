@@ -73,7 +73,7 @@
     "suggest": {
         "helsingborg-stad/component-library": "Required for modules in modularity"
     },
-    "version": "6.23.3",
+    "version": "6.23.5",
     "require-dev": {
         "10up/wp_mock": "dev-trunk#1.0.1",
         "php-mock/php-mock-mockery": "^1.4"
