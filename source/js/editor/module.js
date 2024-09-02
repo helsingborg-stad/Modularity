@@ -179,15 +179,15 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
                         <i style="top:4px;" class="modularity-cmd-visibility-off modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">visibility_off</i>\
                         <span class="label">' +  modularityAdminLanguage.langvisibility + '</span>\
                     </label>\
-                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open">' + 
+                    <a href="' + thickboxUrl + '" data-modularity-modal class="modularity-js-thickbox-open modularity-err-resolver">' + 
                         '<i style="top:3px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">edit</i>' 
                         + '<span class="label">' +  modularityAdminLanguage.langedit + '</span>' +
                     '</a>\
-                    <a href="' + importUrl + '" class="modularity-js-thickbox-import">' + 
+                    <a href="' + importUrl + '" class="modularity-js-thickbox-import modularity-err-resolver">' + 
                         '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">dataset_linked</i>' 
                         + '<span class="label">' +  modularityAdminLanguage.langimport + '</span>' +
                     '</a>\
-                    <a href="#remove" class="modularity-module-remove">' + 
+                    <a href="#remove" class="modularity-module-remove modularity-err-resolver">' + 
                         '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">delete</i>' 
                         + '<span class="label">' + modularityAdminLanguage.langremove + '</span>' +
                     '</a>\

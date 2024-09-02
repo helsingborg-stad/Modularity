@@ -38,6 +38,16 @@
     counter-reset: int;
     display: block;
 
+    .validation-error .modularity-module-actions > :not(.modularity-err-resolver),
+    .validation-error .modularity-sortable-handle,
+    .validation-error .modularity-module-name {
+        filter: blur(2px);
+    }
+
+    .validation-error .modularity-module-name:after {
+        display: none;
+    }
+
     li + li {
         margin-top: 12px;
     }
