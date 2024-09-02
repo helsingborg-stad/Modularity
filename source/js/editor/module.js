@@ -165,13 +165,14 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
                     ' + deprecated + '\
                     <span class="modularity-module-title">' + moduleTitle + '</span>\
                 </span>\
-                <span class="modularity-module-columns">\
-                    <label>' + modularityAdminLanguage.width + ':</label>\
-                    <select name="modularity_modules[' + sidebarId + '][' + itemRowId + '][columnWidth]">\
-                        ' + modularityAdminLanguage.widthOptions + '\
-                    </select>\
-                </span>\
                 <span class="modularity-module-actions">\
+                    <label class="modularity-module-columns">\
+                        <i style="top:4px;" class="modularity-cmd-visibility-on modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">width</i>\
+                        <select name="modularity_modules[' + sidebarId + '][' + itemRowId + '][columnWidth]">\
+                            ' + modularityAdminLanguage.widthOptions + '\
+                        </select>\
+                        <span class="label">' +  modularityAdminLanguage.width + '</span>\
+                    </label>\
                     <label class="modularity-module-hide">\
                         <input type="checkbox" name="modularity_modules[' + sidebarId + '][' + itemRowId + '][hidden]" value="hidden" ' + isHidden + ' aria-label="' + modularityAdminLanguage.langhide + '"/>\
                         <i style="top:4px;" class="modularity-cmd-visibility-on modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">visibility</i>\
