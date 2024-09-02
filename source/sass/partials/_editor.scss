@@ -106,7 +106,11 @@
                 align-items: center;
                 gap: 4px;
                 text-decoration: none;
-                color: #000;
+                color: #4D4D4D;
+
+                &:hover {
+                    color: #000;
+                }
 
                 &:hover .label {
                     opacity: 1;

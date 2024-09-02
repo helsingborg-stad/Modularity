@@ -2,7 +2,7 @@
 
 $base: var(--base, 8px);
 
-$module-line-height: 50px;
+$module-line-height: 48px;
 
 .modularity-modules {
     overflow: auto;
@@ -12,23 +12,27 @@ $module-line-height: 50px;
     padding: 12px;
 }
 
+.modularity-module + .modularity-module {
+    margin-top: 12px;
+}
+
 .modularity-module {
+    margin-bottom: 0;
+    width: 100%;
+    background-color: #FAFAFA;
+    border: 1px solid #E5E5E5;
+    padding: 0;
+    height: 48px;
+    position: relative;
     box-sizing: border-box;
-    display: block;
+    counter-increment: int;
+    border-radius: 3px;
+    filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.05));
+    display: flex;
+    gap: 8px;
     text-align: left;
-    overflow: hidden;
-    background-color: #fff;
-    border: 1px solid #eee;
 
     transition: 100ms background ease;
-
-    &:not(:last-child) {
-        margin-bottom: 8px;
-    }
-
-    &:first-child {
-        margin-top: 3px;
-    }
 
     &:hover {
         background-color: #eee;
@@ -61,6 +65,7 @@ li.modularity-module {
 }
 
 .modularity-module-icon {
+    background: #00000005;
     display: block;
     position: relative;
     width: 100%;
@@ -70,16 +75,17 @@ li.modularity-module {
     float: left;
     width: $module-line-height;
     height: $module-line-height;
-    transition: transform 200ms ease;
+    border-right: 1px solid #E5E5E5;
 
     svg,
     img {
+        transition: transform 200ms ease;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        max-width: 60%;
-        max-height: 60%;
+        max-width: 24px;
+        max-height: 24px;
         height: 100%;
         width: auto;
     }
@@ -90,8 +96,14 @@ li.modularity-module {
     }
 }
 
-.modularity-module:hover .modularity-module-icon {
-    transform: rotate(-10deg);
+.modularity-module:hover .modularity-module-icon svg,
+.modularity-module:hover .modularity-module-icon img {
+    transform: translate(-50%, -50%) rotate(-10deg);
+    fill: #000 !important;
+}
+
+.modularity-module-icon:empty {
+    background: #000;
 }
 
 .modularity-sortable-handle {
