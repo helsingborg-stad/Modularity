@@ -18,6 +18,7 @@
         display: table-cell;
         visibility: middle;
         padding: 10px 14px;
+        width: 50%;
 
         & + .col {
             border-left: 1px solid #E5E5E5;
@@ -37,7 +38,12 @@
     counter-reset: int;
     display: block;
 
+    li + li {
+        margin-top: 12px;
+    }
+
     li {
+        margin-bottom: 0;
 	    display: table;
 	    table-layout: fixed;
 	    width: 100%;
@@ -48,6 +54,9 @@
         border-radius: 1px;
         position: relative;
         box-sizing: border-box;
+        counter-increment: int;
+        border-radius: 3px;
+        filter: drop-shadow(0 3px 2px rgba(0, 0, 0, .05));
 
 		&:not(.ui-sortable-placeholder) {
             counter-increment: int;
