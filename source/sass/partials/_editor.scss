@@ -73,9 +73,9 @@
 
         .modularity-line-wrapper {
             display: flex;
-            gap: 32px;
+            gap: 16px;
             align-items: center;
-            padding: 0 16px;
+            padding: 0 16px 0 0;
             height: 100%;
         }
 
@@ -146,7 +146,18 @@
 
         .modularity-module-name {
             flex-grow: 1;
-            min-width: 40%;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            &:after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: 32px;
+                background: linear-gradient(90deg, rgba(#FAFAFA, 0), #FAFAFA);
+                content: '';
+            }
         }
 
         .modularity-module-hide {
@@ -236,6 +247,12 @@
 .modularity-sortable-handle.ui-sortable-handle {
     cursor: move;
     display: flex;
+    background: #00000005;
+    border-right: 1px solid #E5E5E5;
+    aspect-ratio: 1;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
 }
 
 #modularity-mb-modules {
