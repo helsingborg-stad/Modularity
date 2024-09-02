@@ -266,9 +266,34 @@
 }
 
 #modularity-mb-modules {
+    position: relative;
+
+    &::before {
+        content: ""; 
+        background: linear-gradient(0, rgba(255, 255, 255, 0),#FFFFFF);
+        top: 38px; 
+        right: 0;
+        left: 0;
+        height: 16px;
+        position: absolute;
+        z-index: 99;
+    }
+
+    &::after {
+        content: ""; 
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0),#FFFFFF);
+        bottom: 0; 
+        right: 0;
+        left: 0;
+        height: 16px;
+        position: absolute;
+        z-index: 99;
+    }
+
     .inside {
         overflow: auto;
         max-height: 50vh;
+        min-height: 50vh;
     }
 
     &.is-fixed {

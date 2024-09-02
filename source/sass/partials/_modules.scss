@@ -5,6 +5,7 @@ $base: var(--base, 8px);
 $module-line-height: 48px;
 
 .modularity-modules {
+    position: relative;
     overflow: auto;
     text-align: center;
     margin: -12px;
