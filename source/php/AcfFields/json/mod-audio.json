@@ -109,27 +109,6 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
-        },
-        {
-            "key": "field_66d1c71c7a65c",
-            "label": "Width",
-            "name": "mod_audio_width",
-            "aria-label": "",
-            "type": "range",
-            "instructions": "Size in percent.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": 30,
-            "min": 30,
-            "max": 100,
-            "step": "",
-            "prepend": "",
-            "append": ""
         }
     ],
     "location": [

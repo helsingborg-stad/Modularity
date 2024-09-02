@@ -113,27 +113,6 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        4 => array(
-            'key' => 'field_66d1c71c7a65c',
-            'label' => __('Width', 'modularity'),
-            'name' => 'mod_audio_width',
-            'aria-label' => '',
-            'type' => 'range',
-            'instructions' => __('Size in percent.', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => 0,
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'default_value' => 30,
-            'min' => 30,
-            'max' => 100,
-            'step' => '',
-            'prepend' => '',
-            'append' => '',
-        ),
     ),
     'location' => array(
         0 => array(
