@@ -184,7 +184,7 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
                         + '<span class="label">' +  modularityAdminLanguage.langedit + '</span>' +
                     '</a>\
                     <a href="' + importUrl + '" class="modularity-js-thickbox-import">' + 
-                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">download</i>' 
+                        '<i style="top:4px;" class="modularity-module-actions-symbol material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined">dataset_linked</i>' 
                         + '<span class="label">' +  modularityAdminLanguage.langimport + '</span>' +
                     '</a>\
                     <a href="#remove" class="modularity-module-remove">' + 
