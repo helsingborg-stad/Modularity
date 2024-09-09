@@ -1,8 +1,7 @@
 @link([
     'href' => $menuItem['href'] ?? '#',
     'classList' => [
-        'mod-menu__heading',
-        $menuItem['post_type'] ? 's-post-type-' . $menuItem['post_type'] : '',
+        'mod-menu__heading'
     ]
 ])
     @if (!empty($menuItem['icon']['icon']))
