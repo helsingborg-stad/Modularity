@@ -1,16 +1,18 @@
 $base: var(--base, 8px) !default;
 $color-black: var(--color-black, #000000) !default;
+$color-primary: var(--color-primary, #ec6701) !default;
 
 .mod-menu.mod-menu--listing {
-    .mod-menu__heading {
+    a.mod-menu__heading {
         display: flex;
         text-decoration: none;
+        color: $color-primary;
     }
 
     .mod-menu__heading-label {
         width: 100%;
         margin-top: 0;
-        border-bottom: 2px solid var(--color-primary, #ec6701);
+        border-bottom: 2px solid $color-primary;
     }
 
     .mod-menu__heading-icon {
@@ -27,11 +29,20 @@ $color-black: var(--color-black, #000000) !default;
         padding-left: calc($base * 4);
     }
 
+    a.mod-menu__heading,
+    .mod-menu__list-item a {
+        &:hover {
+            color: $color-primary;
+            filter: brightness(1.1);
+        }
+    }
+
     .mod-menu__list-item a {
         color: rgba($color-black, 0.96);
 
         &:hover {
-            color: var(--color-primary, #ec6701);
+            color: $color-primary;
+            opacity: 0.9;
         }
     }
 }
