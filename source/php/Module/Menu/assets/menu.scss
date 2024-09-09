@@ -33,7 +33,7 @@ $color-primary: var(--color-primary, #ec6701) !default;
     .mod-menu__list-item a {
         &:hover {
             color: $color-primary;
-            filter: brightness(1.1);
+            filter: brightness(1.2);
         }
     }
 
