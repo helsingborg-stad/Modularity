@@ -1,12 +1,14 @@
 {
     "name": "@helsingborg-stad/modularity",
-    "version": "6.23.20",
+    "version": "6.23.21",
     "description": "Modular component system for WordPress",
     "browserslist": [
         "> 1%",
         "not dead"
     ],
-    "files": ["dist/"],
+    "files": [
+        "dist/"
+    ],
     "devDependencies": {
         "@babel/core": "^7.17.2",
         "@babel/plugin-proposal-class-properties": "^7.18.6",
