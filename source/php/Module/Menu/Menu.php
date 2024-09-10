@@ -5,7 +5,6 @@ namespace Modularity\Module\Menu;
 use Modularity\Module\Menu\Acf\Select;
 use \Municipio\Helper\Navigation\MenuConstructor;
 use Modularity\Module\Menu\Decorator\DataDecorator;
-use WP_Post;
 
 class Menu extends \Modularity\Module
 {

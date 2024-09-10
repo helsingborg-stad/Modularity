@@ -4,23 +4,26 @@ $color-primary: var(--color-primary, #ec6701) !default;
 
 .mod-menu.mod-menu--listing {
     a.mod-menu__heading {
-        display: flex;
         text-decoration: none;
         color: $color-primary;
+    }
+
+    .mod-menu__heading-label-wrapper {
+        border-bottom: 2px solid $color-primary;
     }
 
     .mod-menu__heading-label {
         width: 100%;
         margin-top: 0;
-        border-bottom: 2px solid $color-primary;
     }
 
-    .mod-menu__heading-icon {
+    .mod-menu__icon {
+        color: $color-primary;
         margin-right: $base;
     }
 
-    .mod-menu__heading-icon,
-    .mod-menu__heading-label {
+    .mod-menu__icon,
+    .mod-menu__heading-label-wrapper {
         padding-bottom: calc($base * .5);
     }
 
