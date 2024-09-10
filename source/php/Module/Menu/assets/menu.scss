@@ -33,16 +33,18 @@ $color-primary: var(--color-primary, #ec6701) !default;
     .mod-menu__list-item a {
         &:hover {
             color: $color-primary;
-            filter: brightness(1.2);
         }
     }
 
-    .mod-menu__list-item a {
+    // needs a more complex selector to override the default menu customizer styles.
+    .mod-menu__list.c-nav .mod-menu__list-item a {
         color: rgba($color-black, 0.96);
 
         &:hover {
-            color: $color-primary;
-            opacity: 0.9;
+            span.c-nav__text,
+            span.c-icon {
+                color: $color-primary;
+            }
         }
     }
 }
