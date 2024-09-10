@@ -1,5 +1,5 @@
 {
-    "name": "modularity",
+    "name": "@helsingborg-stad/modularity",
     "version": "6.23.19",
     "description": "Modular component system for WordPress",
     "browserslist": [
@@ -49,7 +49,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "https://github.com/helsingborg-stad/modularity.git"
     },
     "jest": {
         "testEnvironment": "jsdom",
