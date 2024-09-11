@@ -1,0 +1,50 @@
+@if (empty($hideTitle) && !empty($postTitle))
+    @typography([
+        'id'        => 'mod-search-' . $ID .'-label',
+        'element'   => 'h2', 
+        'variant'   => 'h2', 
+        'classList' => [
+            'module-title'
+        ]
+    ])
+        {!! $postTitle !!}
+    @endtypography
+@endif
+
+@form([
+    'method'    => 'get',
+    'action'    => $homeUrl,
+    'classList' => ['search-form', 'c-form--hidden', 'u-box-shadow--5', 'u-print-display--none'],
+    'context' => ['module.search']
+    ])
+    @group([
+    ])
+        @field([
+            'type' => 'search',
+            'name' => 's',
+            'required' => false,
+            'placeholder' => $placeholder,
+            'size' => 'lg',
+            'radius' => 'xs',
+            'icon' => [
+                'icon' => 'search', 
+                'classList' => ['u-display--none@xs', 'c-field__icon']
+            ]
+        ])
+        @endfield
+        @button([
+            'text' => $buttonLabel,
+            'type' => 'submit',
+            'size' => 'lg',
+            'color' => 'primary',
+            'attributeList' => [
+            ],
+            'disableColor' => false,
+            'context' => ['module.search.button'],
+            'classList' => [
+                'u-height--unset'
+            ]
+        ])
+        @endbutton
+    @endgroup
+@endform
