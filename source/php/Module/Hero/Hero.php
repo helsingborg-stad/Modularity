@@ -30,7 +30,7 @@ class Hero extends \Modularity\Module
             $data = [
                 'image' => wp_get_attachment_image_src(
                     $fields['mod_hero_background_image']['id'],
-                    [1366, false]
+                    [1728, false] //90% of 1920 (max screen width)
                 )[0] ?? false,
                 'imageFocus' => [
                     'top' =>  $fields['mod_hero_background_image']['top'] ?? '50',
