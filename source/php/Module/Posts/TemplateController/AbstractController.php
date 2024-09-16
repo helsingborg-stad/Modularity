@@ -42,9 +42,8 @@ class AbstractController
      *
      * @return array
     */
-    public function addDataViewData(array $data, array $fields) {
-
-        $data['contentType'] = false;
+    public function addDataViewData(array $data, array $fields) 
+    {
         $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
         $data['ratio'] = $fields['ratio'] ?? '16:9';
         $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
@@ -143,9 +142,14 @@ class AbstractController
         return $post;
     }
 
-    private function postUsesSchemaTypeEvent(object $post):bool {
-        return  isset($post->schemaObject) && 
-                class_implements('ArrayAccess', $post->schemaObject) &&
+    public function postUsesSchemaTypeEvent(object $post):bool {
+        if(!isset($post->schemaObject)) {
+            return false;
+        } 
+
+        $implements = class_implements($post->schemaObject);
+        
+        return  in_array('Spatie\SchemaOrg\BaseType', $implements) &&
                 isset($post->schemaObject['@type']) &&
                 $post->schemaObject['@type'] == 'Event';
     }
