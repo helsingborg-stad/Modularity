@@ -42,11 +42,8 @@ class AbstractController
      *
      * @return array
     */
-    public function addDataViewData(array $data, array $fields) {
-
-        $data['contentType'] = \Modularity\Module\Posts\Helper\ContentType::getContentType(
-            $data['posts_data_post_type'] ?? ''
-        );
+    public function addDataViewData(array $data, array $fields) 
+    {
         $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
         $data['ratio'] = $fields['ratio'] ?? '16:9';
         $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
@@ -132,7 +129,7 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
-        if (isset($post->contentType) && 'event' == $post->contentType) {
+        if( $this->postUsesSchemaTypeEvent($post) ) {
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
                 $post->postDateFormatted = $eventOccasions[0]['start_date'];
@@ -143,6 +140,18 @@ class AbstractController
         }
         
         return $post;
+    }
+
+    public function postUsesSchemaTypeEvent(object $post):bool {
+        if(!isset($post->schemaObject)) {
+            return false;
+        } 
+
+        $implements = class_implements($post->schemaObject);
+        
+        return  in_array('Spatie\SchemaOrg\BaseType', $implements) &&
+                isset($post->schemaObject['@type']) &&
+                $post->schemaObject['@type'] == 'Event';
     }
 
     /**
