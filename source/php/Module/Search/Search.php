@@ -22,6 +22,8 @@ class Search extends \Modularity\Module
 
         $data['placeholder'] = $fields['mod_search_placeholder'] ?? '';
         $data['buttonLabel'] = $fields['mod_search_button_label'] ?? '';
+        $data['width'] = $fields['mod_search_width'] ?? '100';
+        $data['align'] = $fields['mod_search_alignment'] ?? 'start';
 
         $data['homeUrl'] = esc_url(get_home_url());
 
