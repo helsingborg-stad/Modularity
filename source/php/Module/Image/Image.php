@@ -218,9 +218,6 @@ class Image extends \Modularity\Module
      {
         $sizes = get_intermediate_image_sizes();
 
-        var_dump($sizes);
-
-
         foreach ($sizes as $size) {
             $field['choices'][$size] = $size;
         }
