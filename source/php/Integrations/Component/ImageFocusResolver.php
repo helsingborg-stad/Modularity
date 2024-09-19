@@ -8,7 +8,7 @@ class ImageFocusResolver implements ImageFocusResolverInterface {
 
   public function __construct(private string $key){}
 
-  public function getImageFocus(int $id): ?array {
+  public function getFocusPoint(int $id): array {
     $imageField = get_field($this->key, $id);
     if($imageField && isset($imageField['left'], $imageField['top'])) {
       return [
