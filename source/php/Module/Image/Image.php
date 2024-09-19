@@ -3,7 +3,8 @@
 namespace Modularity\Module\Image;
 
 use Municipio\Helper\Image as ImageHelper;
-use Modularity\Integrations\Component\Image as ImageResolverInterface;
+use Modularity\Integrations\Component\ImageResolver;
+use Modularity\Integrations\Component\ImageFocusResolver;
 use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
 
 class Image extends \Modularity\Module
@@ -59,7 +60,8 @@ class Image extends \Modularity\Module
                 $resolvedImage = ImageComponentContract::factory(
                     $imageId,
                     $imageSize,
-                    new ImageResolverInterface()
+                    new ImageResolver(),
+                    new ImageFocusResolver()
                 );
 
                 $data['image']['src'] = $resolvedImage;
