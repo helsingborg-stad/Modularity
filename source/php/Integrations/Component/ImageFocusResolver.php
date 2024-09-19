@@ -6,16 +6,16 @@ use \ComponentLibrary\Integrations\Image\ImageFocusResolverInterface;
 
 class ImageFocusResolver implements ImageFocusResolverInterface {
 
-  public function __construct(private string $key){}
+  public function __construct(private $data){}
 
-  public function getFocusPoint(int $id): array {
-    $imageField = get_field($this->key, $id);
-    if($imageField && isset($imageField['left'], $imageField['top'])) {
+  public function getFocusPoint(): array {
+    $data = $this->data;
+    if($data && isset($data['left'], $data['top'])) {
       return [
-        'left' => $imageField['left'] ?? '50',
-        'top' => $imageField['top'] ?? '50'
+        'left' => $data['left'] ?? 50,
+        'top' => $data['top'] ?? 50
       ];
     }
-    return ['left' => '50', 'top' => '50'];
+    return ['left' => 50, 'top' => 50];
   } 
 }

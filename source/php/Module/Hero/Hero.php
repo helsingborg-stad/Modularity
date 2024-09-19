@@ -2,6 +2,10 @@
 
 namespace Modularity\Module\Hero;
 
+use Modularity\Integrations\Component\ImageResolver;
+use Modularity\Integrations\Component\ImageFocusResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
+
 class Hero extends \Modularity\Module
 {
     public $slug = 'hero';
@@ -37,6 +41,19 @@ class Hero extends \Modularity\Module
                     'left' => $fields['mod_hero_background_image']['left'] ?? '50'
                 ]
             ];
+
+            $imageId = $fields['mod_hero_background_image']['id'];
+            $imageSize = [1728, false];
+
+            $resolvedImage = ImageComponentContract::factory(
+                $imageId,
+                $imageSize,
+                new ImageResolver(),
+                new ImageFocusResolver($fields['mod_hero_background_image'])
+            );
+
+        
+            var_dump($resolvedImage->getFocusPoint());
         }
 
         //Grab video
