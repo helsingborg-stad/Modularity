@@ -61,7 +61,7 @@ class Image extends \Modularity\Module
                     $imageId,
                     $imageSize,
                     new ImageResolver(),
-                    new ImageFocusResolver()
+                    new ImageFocusResolver('test')
                 );
 
                 $data['image']['src'] = $resolvedImage;

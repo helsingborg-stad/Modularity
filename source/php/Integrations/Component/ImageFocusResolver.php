@@ -16,5 +16,6 @@ class ImageFocusResolver implements ImageFocusResolverInterface {
         'top' => $imageField['top'] ?? '50'
       ];
     }
-  }
-};
+    return ['left' => '50', 'top' => '50'];
+  } 
+}
