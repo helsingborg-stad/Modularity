@@ -34,4 +34,4 @@ class ImageResolver implements ImageResolverInterface {
     }
     return null;
   }
-};
+}
