@@ -27,7 +27,7 @@ class ImageResolver implements ImageResolverInterface {
    * @param int $id
    * @return string|null
    */
-  public function getImageAlt(int $id): ?string {
+  public function getImageAltText(int $id): ?string {
     $alt = get_post_meta($id, '_wp_attachment_image_alt', true); 
     if($alt) {
       return $alt; 
