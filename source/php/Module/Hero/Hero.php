@@ -2,6 +2,10 @@
 
 namespace Modularity\Module\Hero;
 
+use Modularity\Integrations\Component\ImageResolver;
+use Modularity\Integrations\Component\ImageFocusResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
+
 class Hero extends \Modularity\Module
 {
     public $slug = 'hero';
@@ -28,14 +32,12 @@ class Hero extends \Modularity\Module
         //Grab image
         if ('image' == $type) {
             $data = [
-                'image' => wp_get_attachment_image_src(
-                    $fields['mod_hero_background_image']['id'],
-                    [1728, false] //90% of 1920 (max screen width)
-                )[0] ?? false,
-                'imageFocus' => [
-                    'top' =>  $fields['mod_hero_background_image']['top'] ?? '50',
-                    'left' => $fields['mod_hero_background_image']['left'] ?? '50'
-                ]
+                'image' => ImageComponentContract::factory(
+                    (int) $fields['mod_hero_background_image']['id'],
+                    [1920, false],
+                    new ImageResolver(),
+                    new ImageFocusResolver($fields['mod_hero_background_image'])
+                )
             ];
         }
 

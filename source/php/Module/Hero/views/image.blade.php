@@ -1,7 +1,6 @@
 @hero([
     "classList" => $stretch ? [$class] : [],
     "image" => $image,
-    "imageFocus" => $imageFocus,
     "size" => $size,
     "title" => !$hideTitle && !empty($postTitle) ? $postTitle : false,
     "byline" => $byline,
