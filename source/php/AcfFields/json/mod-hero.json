@@ -155,7 +155,7 @@
             "name": "mod_hero_poster_image",
             "type": "image",
             "instructions": "",
-            "required": 0,
+            "required": 1,
             "conditional_logic": [
                 [
                     {
@@ -250,4 +250,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
