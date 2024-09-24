@@ -14,6 +14,12 @@ class ImageResolver implements ImageResolverInterface {
    * @return string|null
    */
   public function getImageUrl(int $id, array $size): ?string {
+
+    //Make 0 values in array false 
+    $size = array_map(function($value) {
+      return $value === 0 ? false : $value; 
+    }, $size);
+
     $image = wp_get_attachment_image_src($id, $size); 
     if($image !== false && isset($image[0]) && filter_var($image[0], FILTER_VALIDATE_URL)) {
       return $image[0]; 
