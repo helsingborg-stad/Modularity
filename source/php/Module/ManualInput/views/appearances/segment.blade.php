@@ -2,7 +2,7 @@
     'layout' => 'card',
     'title' => $input['title'],
     'context' => $context,
-    'image' => $input['image']['src'],
+    'image' => $input['image'],
     'content' => $input['content'],
     'buttons' => [['text' => $input['linkText'], 'href' => $input['link'], 'color' => 'primary']],
     'containerAware' => true,

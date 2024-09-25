@@ -4,6 +4,10 @@ namespace Modularity\Module\ManualInput;
 
 use Municipio\Helper\Image as ImageHelper;
 
+use Modularity\Integrations\Component\ImageResolver;
+use Modularity\Integrations\Component\ImageFocusResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
+
 class ManualInput extends \Modularity\Module
 {
     public $slug = 'manualinput';
@@ -48,7 +52,7 @@ class ManualInput extends \Modularity\Module
                 });
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
-                $arr['image']                   = $this->getImageData($arr['image'], $imageSize);
+                $arr['image']                   = $this->maybeGetImageImageContract($displayAs, $arr['image']) ?? $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
                 $arr['view']                    = $this->getInputView($arr['isHighlighted']);
                 $arr['columnSize']              = $this->getInputColumnSize($fields, $arr['isHighlighted']);
@@ -58,6 +62,18 @@ class ManualInput extends \Modularity\Module
         }
 
         return $data;
+    }
+
+    private function maybeGetImageImageContract(string $displayAs, int $imageId) {
+        if (in_array($displayAs, ['segment'])) {
+            return ImageComponentContract::factory(
+                $imageId,
+                [1920, false],
+                new ImageResolver()
+            );
+        }
+
+        return null;
     }
 
     /**
