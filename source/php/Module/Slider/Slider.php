@@ -92,10 +92,17 @@ class Slider extends \Modularity\Module
             'noSlides' => __('Please add something to slide.','modularity')
         ]; 
 
-
         return $data;
     }
 
+    /**
+     * Prepare slide
+     * 
+     * @param array $slide
+     * @param array $imageSize
+     * 
+     * @return array
+     */
     private function prepareSlide($slide, array $imageSize) {
         $slide = $slide['acf_fc_layout'] === 'video' ? 
             $this->prepareVideoSlide($slide, $imageSize) : 
@@ -106,8 +113,15 @@ class Slider extends \Modularity\Module
         return $slide;
     }
 
+    /**
+     * Prepare image slide
+     * 
+     * @param array $slide
+     * @param array $imageSize
+     * 
+     * @return array
+     */
     private function prepareImageSlide(array $slide, array $imageSize) {
-        
         //If no image, return slide
         if (!isset($slide['image']['id'])) {
             return $slide;
@@ -134,6 +148,14 @@ class Slider extends \Modularity\Module
         return $slide;
     }    
     
+    /**
+     * Prepare video slide
+     * 
+     * @param array $slide
+     * @param array $imageSize
+     * 
+     * @return array
+     */
     private function prepareVideoSlide(array $slide, array $imageSize) {
 
         //Try to get image contract
@@ -174,6 +196,12 @@ class Slider extends \Modularity\Module
         ); 
     }
 
+    /**
+     * Get link data
+     * 
+     * @param array $slide
+     * @return array
+     */
     private function getLinkData(array $slide) {
         if (empty($slide['link_url'])) {
             return $slide;
@@ -201,6 +229,12 @@ class Slider extends \Modularity\Module
         return $slide;
     }
 
+    /**
+     * Check if link url is valid
+     * 
+     * @param array $slide
+     * @return bool
+     */
     private function isValidLinkUrl($slide) {
         return 
             isset($slide['link_url']) && 
@@ -208,6 +242,12 @@ class Slider extends \Modularity\Module
             get_post_status($slide['link_url']) == "publish";
     }
 
+    /**
+     * Check if slide is a button CTA
+     * 
+     * @param array $slide
+     * @return bool
+     */
     private function isButtonCta($slide) {
         return 
             !empty($slide['link_type']) && 
