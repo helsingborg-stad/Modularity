@@ -2,6 +2,9 @@
 
 namespace Modularity\Module\Slider;
 
+use Modularity\Integrations\Component\ImageResolver;
+use Modularity\Integrations\Component\ImageFocusResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
 class Slider extends \Modularity\Module
 {
     public $slug = 'slider';
@@ -104,24 +107,71 @@ class Slider extends \Modularity\Module
     }
 
     private function prepareImageSlide(array $slide, array $imageSize) {
+        
+        //If no image, return slide
         if (!isset($slide['image']['id'])) {
-            return null;
+            return $slide;
         }
 
-        $slide['focusPoint'] = [
-            'top' => $slide['image']['top'] ?? "50",
-            'left' => $slide['image']['left'] ?? "50"
-        ];
+        //Try to get image contract
+        $imageContract = $this->getImageContract(
+            $slide['image']['id'], 
+            $slide['image'] ?? null
+        );
 
-        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image']['id'] ?? null, $imageSize);
+        //If we have a contract, use it, else fallback to normal image
+        if($imageContract) {
+            $slide['image'] = $imageContract;
+            $slide['hasImageContract'] = true;
+        } else {
+            $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData(
+                $slide['image']['id'] ?? null,
+                $imageSize
+            );
+            $slide['hasImageContract'] = false;
+        }
 
         return $slide;
     }    
     
     private function prepareVideoSlide(array $slide, array $imageSize) {
-        $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData($slide['image'] ?? null, $imageSize);
+
+        //Try to get image contract
+        $imageContract = $this->getImageContract(
+            $slide['image']['id'], 
+            $slide['image'] ?? null
+        );
+
+        //If we have a contract, use it, else fallback to normal image
+        if($imageContract) {
+            $slide['image'] = $imageContract;
+            $slide['hasImageContract'] = true;
+        } else {
+            $slide['image'] = \Municipio\Helper\Image::getImageAttachmentData(
+                $slide['image']['id'] ?? null,
+                $imageSize
+            );
+            $slide['hasImageContract'] = false;
+        }
         
         return $slide;
+    }
+
+    /**
+     * Get image contract
+     * 
+     * @param int $imageId
+     * @param array $focus
+     * @return ImageComponentContract|null
+     */
+    private function getImageContract(int $imageId, ?array $focus = null): ?ImageComponentContract {
+
+        return ImageComponentContract::factory(
+            (int) $imageId,
+            [1920, false],
+            new ImageResolver(),
+            !is_null($focus) ? new ImageFocusResolver($focus) : null
+        ); 
     }
 
     private function getLinkData(array $slide) {

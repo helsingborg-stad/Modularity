@@ -2,13 +2,12 @@
     'title'             => $slide['textblock_title'],
     'text'              => $slide['textblock_content'],
     'layout'            => $slide['textblock_position'],
-    'desktop_image'     => $slide['image']['src'],
-    'background_video'  => $slide['video_mp4']['url'] ?? false,
+    'image'             => $slide['hasImageContract'] ? $slide['image'] : $slide['image']['src'],
+    'video'             => $slide['video_mp4']['url'] ?? false,
     'link'              => $slide['link_url'],
-    'alt'               => $slide['image']['alt'],
+    'alt'               => $slide['hasImageContract'] ? null : $slide['image']['alt'],
     'heroStyle'         => $sidebarContext === 'sidebar.slider-area',
     'cta'               => $slide['call_to_action'] ?? null,
-    'focusPoint'        => $slide['focusPoint'],
     'context'           => ['module.slider-item', $sidebarContext . '.module.slider-item']
 ])
 @endslider__item
