@@ -157,11 +157,10 @@ class Slider extends \Modularity\Module
      * @return array
      */
     private function prepareVideoSlide(array $slide, array $imageSize) {
-
         //Try to get image contract
         $imageContract = $this->getImageContract(
-            $slide['image']['id'], 
-            $slide['image'] ?? null
+            $slide['image'], 
+            null
         );
 
         //If we have a contract, use it, else fallback to normal image
