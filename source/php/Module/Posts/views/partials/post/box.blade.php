@@ -6,6 +6,6 @@
     'secondaryMeta' => $post->readingTime,
     'date' => $post->postDateFormatted,
     'ratio' => $ratio,
-    'image' => $post->image,
+    'image' => $post->imageContract ?? $post->image
 ])
 @endbox
