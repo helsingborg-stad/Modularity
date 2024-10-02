@@ -10,7 +10,7 @@
     'classList' => ['u-height--100'],
     'containerAware' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
-    'image' => $post->image,
+    'image' => $post->imageContract ?? $post->image,
     'icon' => $post->termIcon,
     'attributeList' => array_merge($post->attributeList, []),
 ])

@@ -6,7 +6,7 @@
     'secondaryMeta' => $post->readingTime,
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
-    'image' => $post->image,
+    'image' => $post->imageContract ?? $post->image,
     //'hasPlaceholder' => $post->hasPlaceholderImage,
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
