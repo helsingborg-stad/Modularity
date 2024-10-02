@@ -5,6 +5,9 @@ namespace Modularity\Module\Posts;
 use Municipio\Helper\Image as ImageHelper;
 use Modularity\Module\Posts\Helper\GetArchiveUrl as ArchiveUrlHelper;
 use Modularity\Module\Posts\Helper\GetPosts as GetPostsHelper;
+use Modularity\Integrations\Component\ImageResolver;
+use Modularity\Integrations\Component\ImageFocusResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
 
 /**
  * Class Posts
