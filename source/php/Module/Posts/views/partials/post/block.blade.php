@@ -12,8 +12,6 @@
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
     'link' => $post->permalink,
-    'postId' => $post->id,
-    'postType' => $post->postType ?? '',
     'icon' => $post->termIcon,
     'attributeList' => array_merge($post->attributeList, []),
 ])

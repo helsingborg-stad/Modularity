@@ -13,8 +13,6 @@
     'hasAction' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'image' => $post->image,
-    'postId' => $post->id,
-    'postType' => $post->postType,
     'icon' => $post->termIcon,
     'attributeList' => array_merge($post->attributeList, []),
 ])
