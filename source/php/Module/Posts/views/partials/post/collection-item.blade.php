@@ -9,7 +9,9 @@
 ])
     @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
     @slot('before')
-        <?php $image = $post->imageContract ?? $post->image; ?> 
+        @php
+            $image = $post->imageContract ?? $post->image; 
+        @endphp
 
         @if ($image)
             @image($image)
