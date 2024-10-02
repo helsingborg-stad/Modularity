@@ -65,10 +65,13 @@ class ManualInput extends \Modularity\Module
     }
 
     private function maybeGetImageImageContract(string $displayAs, int $imageId) {
-        if (in_array($displayAs, ['segment'])) {
+
+        $width = $this->getImageSize($displayAs, 'width');
+
+        if (in_array($displayAs, ['segment', 'block', 'card'])) {
             return ImageComponentContract::factory(
                 $imageId,
-                [1920, false],
+                [$width, false],
                 new ImageResolver()
             );
         }
@@ -189,6 +192,9 @@ class ManualInput extends \Modularity\Module
                 $image['removeCaption'] = true;
             }
 
+            unset($image['title']);
+            unset($image['description']);
+
             return $image;
         }
 
@@ -201,18 +207,28 @@ class ManualInput extends \Modularity\Module
      * @param string $displayAs The name of the template/view.
      * @return array
      */
-    private function getImageSize($displayAs) {
+    private function getImageSize($displayAs, $return = "both"): null|array|int {
         switch ($displayAs) {
             case "segment": 
-                return [800, 550];
+                $dimensions =  [1920, 1080];
             case "block":
-                return [500, 500];
+                $dimensions =  [1024, 1024];
             case "collection": 
             case "box":
-                return [300, 300];
+                $dimensions =  [768, 768];
             default: 
-                return [400, 225];
+                $dimensions = [1440, 810];
         }
+
+        if($return == "width") {
+            return $dimensions[0] ?? null;
+        }
+
+        if($return == "height") {
+            return $dimensions[1] ?? null;
+        }
+
+        return $dimensions;
     }
 
      /**
