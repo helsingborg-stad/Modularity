@@ -315,9 +315,9 @@ class Module
     protected function getFields() {
         $this->dataFetched = true;
         if(is_numeric($this->ID)) {
-            return get_fields($this->ID);
+            return get_fields($this->ID) ?: [];
         }
-        return get_fields(); //Blocks
+        return get_fields() ?: []; //Blocks
     }
 
     /**
