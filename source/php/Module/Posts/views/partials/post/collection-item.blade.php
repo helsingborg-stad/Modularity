@@ -9,12 +9,11 @@
 ])
     @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
     @slot('before')
-        @php
-            $image = $post->imageContract ?? $post->image; 
-        @endphp
-
-        @if ($image)
-            @image(is_array($image) ? $image : ['src' => $image])
+        @if ($post->image)
+            @image([
+                'src' => $post->image['src'],
+                'alt' => $post->image['alt'],
+            ])
             @endimage
         @endif
     @endslot
