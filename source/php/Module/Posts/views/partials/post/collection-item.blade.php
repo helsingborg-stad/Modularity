@@ -14,7 +14,7 @@
         @endphp
 
         @if ($image)
-            @image($image)
+            @image(is_array($image) ? $image : ['src' => $image])
             @endimage
         @endif
     @endslot
