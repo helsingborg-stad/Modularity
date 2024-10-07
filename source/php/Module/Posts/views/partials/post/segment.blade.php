@@ -4,7 +4,7 @@
     'context' => ['module.posts.segment'],
     'meta' => $post->readingTime,
     'tags' => $post->termsUnlinked,
-    'image' => $post->imageContract ?? $post->image,
+    'image' => $post->image,
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
     'content' => $post->excerptShort,
