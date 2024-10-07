@@ -117,10 +117,12 @@ class AbstractController
     {
         $post->excerptShort         = in_array('excerpt', $this->data['posts_fields']) ? $post->excerptShort : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
-        $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageBasedOnRatio($post->images, $index) : [];
+        $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageContractOrByRatio(
+            $post->images ?? null, 
+            $post->imageContract ?? null
+        ) : [];
         $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
-        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && 
-        empty($post->images['thumbnail16:9']['src']) ? true : false;
+        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && empty($post->image) ? true : false;
         $post->readingTime          = in_array('reading_time', $this->data['posts_fields']) ? $post->readingTime : false;
         $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
         
@@ -173,6 +175,30 @@ class AbstractController
                 return $images['thumbnail' . $this->data['ratio']] ?? false;
             default: 
                 return $images['thumbnail16:9'];
+        }
+
+        return false;
+    }
+
+    /**
+     * Get image by contract or by ratio.
+     *
+     * @param array $images
+     * @param mixed $imageContract
+     *
+     * @return mixed
+    */
+    private function getImageContractOrByRatio(array $images, $imageContract) {
+
+        //Image by contract
+        if(is_a($imageContract, 'ComponentLibrary\Integrations\Image\Image') && !empty($imageContract->getUrl())) {
+            return $imageContract;
+        }
+
+        //Image by ratio
+        $imageByRatio = $this->getImageBasedOnRatio($images);
+        if(isset($imageByRatio['src']) && !empty($imageByRatio['src'])) {
+            return $imageByRatio['src'];
         }
 
         return false;
