@@ -416,42 +416,7 @@ if (function_exists('acf_add_local_field_group')) {
                             'allow_null' => 0,
                             'allow_archives' => 1,
                             'multiple' => 0,
-                        ),
-                        10 => array(
-                            'key' => 'field_60db1cc88b16d',
-                            'label' => __('Description', 'modularity'),
-                            'name' => 'link_url_description',
-                            'aria-label' => '',
-                            'type' => 'text',
-                            'instructions' => __('Describe the purpose of the link, or what visitors can expect to find when they click on it (not shown).', 'modularity'),
-                            'required' => 1,
-                            'conditional_logic' => array(
-                                0 => array(
-                                    0 => array(
-                                        'field' => 'field_56fa82a2d464d',
-                                        'operator' => '==',
-                                        'value' => 'external',
-                                    ),
-                                ),
-                                1 => array(
-                                    0 => array(
-                                        'field' => 'field_56fa82a2d464d',
-                                        'operator' => '==',
-                                        'value' => 'internal',
-                                    ),
-                                ),
-                            ),
-                            'wrapper' => array(
-                                'width' => '',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'default_value' => '',
-                            'placeholder' => '',
-                            'prepend' => '',
-                            'append' => '',
-                            'maxlength' => '',
-                        ),
+                        )
                     ),
                     'min' => '',
                     'max' => '',
@@ -814,42 +779,7 @@ if (function_exists('acf_add_local_field_group')) {
                             'allow_archives' => 1,
                             'multiple' => 0,
                             'allow_null' => 0,
-                        ),
-                        12 => array(
-                            'key' => 'field_646f745261c78',
-                            'label' => __('Description', 'modularity'),
-                            'name' => 'link_url_description',
-                            'aria-label' => '',
-                            'type' => 'text',
-                            'instructions' => '',
-                            'required' => 1,
-                            'conditional_logic' => array(
-                                0 => array(
-                                    0 => array(
-                                        'field' => 'field_56fa87ec3ace2',
-                                        'operator' => '==',
-                                        'value' => 'internal',
-                                    ),
-                                ),
-                                1 => array(
-                                    0 => array(
-                                        'field' => 'field_56fa87ec3ace2',
-                                        'operator' => '==',
-                                        'value' => 'external',
-                                    ),
-                                ),
-                            ),
-                            'wrapper' => array(
-                                'width' => '',
-                                'class' => '',
-                                'id' => '',
-                            ),
-                            'default_value' => '',
-                            'maxlength' => '',
-                            'placeholder' => '',
-                            'prepend' => '',
-                            'append' => '',
-                        ),
+                        )
                     ),
                     'min' => '',
                     'max' => '',
