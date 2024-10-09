@@ -1,6 +1,5 @@
 @accordion__item([
-    'heading' => [$lang->opening_hours],
-    'attributeList' => ['itemprop' => 'adress'],
+    'heading' => [$lang->opening_hours]
 ])
     @typography([
         "element"       => "p",

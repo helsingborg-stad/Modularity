@@ -1,5 +1,6 @@
 @accordion__item([
     'heading' => [$lang->visiting_address],
+    'attributeList' => ['itemprop' => 'adress'],
 ])
     @typography([
         "element"       => "p",

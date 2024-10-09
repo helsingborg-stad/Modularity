@@ -24,7 +24,28 @@
                 'context' => 'module.contacts.card'
             ])
                 <div class="c-card__body u-padding--0">
-                    @include('partials.information')
+                    @signature([
+                        'author' => $contact['full_name'] ?? '', 
+                        'authorRole' => $contact['full_title'],
+                        'avatar' => $contact['thumbnail'][0] ?? null,
+                        'classList' => ['u-margin--2'],
+                    ])
+                    @endsignature
+
+                    {{-- Other content data --}}
+                    @includeWhen(!empty($contact['other']), 'components.other')
+
+                    @accordion([])
+                        {{-- Opening Hours --}}
+                        @includeWhen(!empty($contact['opening_hours']), 'components.openinghours')
+
+                        {{-- Address --}}
+                        @includeWhen(!empty($contact['address']), 'components.adress')
+
+                        {{-- Visiting Address --}}
+                        @includeWhen(!empty($contact['visiting_address']), 'components.visiting')
+                        
+                    @endaccordion
                 </div>
 
                 @if(array_filter([!empty($contact['email']), !empty($contact['phone'])]))
