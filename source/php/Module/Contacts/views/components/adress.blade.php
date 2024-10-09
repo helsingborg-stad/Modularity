@@ -1,19 +1,10 @@
-@collection__item([
-    'classList' => ['c-collection__adress'],
+@accordion__item([
+    'heading' => [$lang->address],
+    'attributeList' => ['itemprop' => 'adress'],
 ])
     @typography([
-        "element"       => "strong",
-        'attributeList' => ['itemprop' => 'adress'],
-        'classList'     => [
-            'u-margin__bottom--0',
-            'u-color__text--darkest'
-        ]
-    ])
-        <?php _e('Postal address', 'modularity'); ?>
-    @endtypography
-
-    @typography([
         "element"       => "p",
+        'variant'       => 'meta',
         'classList'     => [
             'u-margin__top--0',
             'u-color__text--darker'
@@ -22,6 +13,6 @@
             'translate' => 'no'
         ]
     ])
-        {!! $contact['address'] !!}
+    {!! $contact['address'] !!}
     @endtypography
-@endcollection__item
+@endaccordion__item

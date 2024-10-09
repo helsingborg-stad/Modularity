@@ -1,25 +1,14 @@
-@collection__item([
-    'classList' => ['c-collection__email'],
-    'icon' => $icon ?? false,
-    'link' => 'mailto:' . $contact['email'],
+@button([
+    'text' => $lang->email,
+    'color' => 'default',
+    'style' => 'basic',
+    'href' => 'mailto:'.$contact['email'],
+    'icon' => 'outgoing_mail',
+    'reversePositions' => 'true',
     'attributeList' => [
-        'itemprop'  => 'email',
-    ]
+        'itemprop' => 'email',
+        'title' => $contact['email']
+    ],
+    'classList' => ['c-button--email', 'u-margin--0']
 ])
-    @typography([
-        "element"       => "span",
-        'classList'     => [
-            'u-margin__top--0',
-            'u-color__text--darker',
-            'c-typography__variant--email'
-        ],
-        'attributeList' => [
-            'translate' => 'no'
-        ]
-    ])
-        {{$contact['email']}}
-    
-    @endtypography
-@endcollection__item
-
-
+@endbutton
