@@ -1,45 +1,22 @@
-@collection([
-    'compact'   => (isset($compact_mode) ? $compact_mode : false)
+@signature([
+    'author' => $contact['full_name'] ?? '', 
+    'authorRole' => $contact['full_title'],
+    'avatar' => $contact['image']['sizes']['thumbnail'] ?? null,
+    'classList' => ['u-margin--2'],
 ])
+@endsignature
 
-    @php
-        // Title partials
-        $titlePropeties = ['full_name', 'administration_unit', 'work_title'];
-        // Build array
-        $title = array_filter(array_map(function($key) use ($contact) {
-            return $contact[$key] ?: false;
-        }, $titlePropeties), function($item) {return $item;});
-    @endphp
+{{-- Other content data --}}
+@includeWhen(!empty($contact['other']), 'components.other')
 
-    {{-- Title --}}
-    @includeWhen((count($title) > 0), 'components.title')
-
-    {{-- E-mail --}}
-    @includeWhen(!empty($contact['email']), 'components.email', ['icon' => 'email'])
-
-    {{-- Phone --}}
-    @if (!empty($contact['phone']))
-        @foreach ($contact['phone'] as $phone)
-            @include('components.phone', ['icon' => 'phone'])
-        @endforeach
-    @endif
-
-    {{-- Social Media --}}
-    @if (!empty($contact['social_media']))
-        @foreach ($contact['social_media'] as $media)
-            @include('components.social_media')
-        @endforeach
-    @endif
-
+@accordion([])
     {{-- Opening Hours --}}
-    @includeWhen(!empty($contact['opening_hours']), 'components.opening_hours')
+    @includeWhen(!empty($contact['opening_hours']), 'components.openinghours')
 
     {{-- Address --}}
     @includeWhen(!empty($contact['address']), 'components.adress')
 
     {{-- Visiting Address --}}
     @includeWhen(!empty($contact['visiting_address']), 'components.visiting')
-
-    {{-- Other content data --}}
-    @includeWhen(!empty($contact['other']), 'components.other')
-@endcollection
+    
+@endaccordion

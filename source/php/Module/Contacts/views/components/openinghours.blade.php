@@ -1,5 +1,6 @@
 @accordion__item([
-    'heading' => [$lang->visiting_address],
+    'heading' => [$lang->opening_hours],
+    'attributeList' => ['itemprop' => 'adress'],
 ])
     @typography([
         "element"       => "p",
@@ -7,8 +8,11 @@
         'classList'     => [
             'u-margin__top--0',
             'u-color__text--darker'
+        ],
+        'attributeList' => [
+            'translate' => 'no'
         ]
     ])
-        {!! $contact['visiting_address'] !!}
+    {!! $contact['opening_hours'] !!}
     @endtypography
 @endaccordion__item

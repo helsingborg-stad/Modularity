@@ -9,32 +9,43 @@
     @endtypography
 @endif
 
-<div class="o-grid" aria-labelledby={{'mod-text-' . $ID .'-label'}}>
+<div class="o-grid o-grid--half-gutter" aria-labelledby={{'mod-text-' . $ID .'-label'}}>
     @foreach ($contacts as $contact)
         <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([
-                'collapsible'   => $contact['hasBody'],
                 'attributeList' => [
                     'itemscope'     => '',
                     'itemtype'      => 'http://schema.org/Person'
                 ],
                 'classList'     => [
-                    'c-card--square-image',
                     'u-height--100',
                     'c-card--contact'
                 ],
                 'context' => 'module.contacts.card'
             ])
-
-                @if(!empty($showImages) && !empty($contact['image']['inlineStyle']))
-                <div class="c-card__image">
-                    <div class="c-card__image-background" alt="{{ $contact['full_name'] }}" style="{{ $contact['image']['inlineStyle'] }}"></div>
-                </div>
-                @endif
-
                 <div class="c-card__body u-padding--0">
                     @include('partials.information')
                 </div>
+
+                @if(array_filter([!empty($contact['email']), !empty($contact['phone'])]))
+
+                    <div class="u-border__top--1 u-margin__top--auto u-padding__x--2" style="gap: var(--base, 8px); border-top-color: var(--color-border-divider) !important;">
+
+                        {{-- E-mail --}}
+                        @includeWhen(!empty($contact['email']), 'components.email', ['icon' => 'email'])
+
+                        {{-- Phone --}}
+                        @if (!empty($contact['phone']))
+                            @foreach ($contact['phone'] as $phone)
+                                @include('components.phone', ['icon' => 'phone'])
+                            @endforeach
+                        @endif
+
+                    </div>
+
+                @endif
+
+
             @endcard
         </div>
     @endforeach
