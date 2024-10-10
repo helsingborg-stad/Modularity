@@ -6,7 +6,8 @@
         'content'           => $input['content'],
         'image'             => $input['image'],
         'containerAware'    => true,
-        'classList'         => ['u-height--100']
+        'classList'         => ['u-height--100'],
+        'hasPlaceholder'    => $anyItemHasImage
     ])
     @endcard
 </div>
