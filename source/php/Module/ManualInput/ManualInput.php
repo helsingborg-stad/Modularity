@@ -61,6 +61,17 @@ class ManualInput extends \Modularity\Module
             }
         }
 
+        //Check if any item has an image
+        $data['anyItemHasImage'] = array_reduce($data['manualInputs'], function($carry, $item) {
+            if (isset($item['image'])) {
+                if (is_a($item['image'], ImageComponentContract::class)) {
+                    return $carry || $item['image']->getUrl();
+                }
+                return $carry || !empty($item['image']);
+            }
+            return $carry;
+        }, false);
+
         return $data;
     }
 

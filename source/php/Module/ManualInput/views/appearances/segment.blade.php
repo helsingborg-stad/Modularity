@@ -7,6 +7,7 @@
     'buttons' => [['text' => $input['linkText'], 'href' => $input['link'], 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => $imagePosition,
-    'classList' => [$input['columnSize']]
+    'classList' => [$input['columnSize']],
+    'hasPlaceholder' => $anyItemHasImage,
 ])
 @endsegment
