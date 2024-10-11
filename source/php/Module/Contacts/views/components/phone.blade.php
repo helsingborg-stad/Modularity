@@ -1,10 +1,14 @@
-@collection__item([
-    'classList' => ['c-collection__phone'],
-    'icon' => $icon ?? false,
-    'link' => 'tel:' . $phone['number'],
+@button([
+    'text' => $lang->call,
+    'color' => 'default',
+    'style' => 'basic',
+    'href' => 'tel:' . $number,
+    'icon' => $type == 'smartphone' ? 'smartphone' : 'call',
+    'reversePositions' => 'true',
     'attributeList' => [
-        'itemprop'  => 'telephone',
-    ]
+        'itemprop' => 'telephone',
+        'title' => $number
+    ],
+    'classList' => ['c-button--phone', 'c-button--' . $type, 'u-margin--0']
 ])
-    {{ $phone['number'] }}
-@endcollection__item
+@endbutton
