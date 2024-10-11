@@ -9,7 +9,7 @@
     @endtypography
 @endif
 
-<div class="o-grid o-grid--half-gutter" aria-labelledby={{'mod-text-' . $ID .'-label'}}>
+<div class="o-grid o-grid--half-gutter" aria-labelledby="{{'mod-text-' . $ID .'-label'}}"">
     @foreach ($contacts as $contact)
         <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([
@@ -39,7 +39,7 @@
                         {{-- Opening Hours --}}
                         @includeWhen(!empty($contact['opening_hours']), 'components.openinghours')
 
-                        {{-- Address --}}
+                        {{-- Adress --}}
                         @includeWhen(!empty($contact['address']), 'components.adress')
 
                         {{-- Visiting Address --}}
@@ -58,7 +58,7 @@
                         {{-- Phone --}}
                         @if (!empty($contact['phone']))
                             @foreach ($contact['phone'] as $phone)
-                                @include('components.phone', ['icon' => 'phone'])
+                                @include('components.phone', $phone)
                             @endforeach
                         @endif
 

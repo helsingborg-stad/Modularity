@@ -2,13 +2,13 @@
     'text' => $lang->call,
     'color' => 'default',
     'style' => 'basic',
-    'href' => 'tel:'.$phone['number'],
-    'icon' => $phone['type'] == 'smartphone' ? 'smartphone' : 'call',
+    'href' => 'tel:' . $number,
+    'icon' => $type == 'smartphone' ? 'smartphone' : 'call',
     'reversePositions' => 'true',
     'attributeList' => [
         'itemprop' => 'telephone',
-        'title' => $phone['number']
+        'title' => $number
     ],
-    'classList' => ['c-button--phone', 'c-button--' . $phone['type'], 'u-margin--0']
+    'classList' => ['c-button--phone', 'c-button--' . $type, 'u-margin--0']
 ])
 @endbutton

@@ -112,10 +112,10 @@ class Contacts extends \Modularity\Module
             $info['full_name'] = trim($info['first_name'] . ' ' . $info['last_name']);
 
             //Create full title string
-            $titlePropeties = ['administration_unit', 'work_title'];
+            $titleProperties = ['administration_unit', 'work_title'];
             $fullTitle = array_filter(array_map(function($key) use ($info) {
                 return $info[$key] ?: false;
-            }, $titlePropeties), function($item) {return $item;});
+            }, $titleProperties), function($item) {return $item;});
             $info['full_title'] = is_array($fullTitle) ? implode(', ', $fullTitle) : '';
 
             //Contact returns
