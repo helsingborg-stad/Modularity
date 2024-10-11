@@ -9,10 +9,10 @@
 ])
     @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
     @slot('before')
-        @if ($post->image)
+        @if ($post->images['thumbnail1:1']['src'] ?? false)
             @image([
-                'src' => $post->image['src'],
-                'alt' => $post->image['alt'],
+                'src' => $post->images['thumbnail1:1']['src'],
+                'alt' => $post->images['thumbnail1:1']['alt'],
             ])
             @endimage
         @endif
