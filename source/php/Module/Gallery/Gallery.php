@@ -38,7 +38,7 @@ class Gallery extends \Modularity\Module
             }
 
         } else {
-            return $data['images'] = null;
+            $data['images'] = null;
         }
 
         return $data;
