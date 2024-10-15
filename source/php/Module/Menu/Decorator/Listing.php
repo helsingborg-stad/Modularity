@@ -9,15 +9,8 @@ class Listing implements DataDecoratorInterface
 
     public function decorate(array $data): array
     {
-        $data['columns'] = $this->getListingColumns();
+        $data['columns'] = $this->fields['mod_menu_columns'] ?? 3;
 
         return $data;
-    }
-
-    private function getListingColumns()
-    {
-        $columns = $this->fields['mod_menu_columns'] ?? 3;
-        
-        return $columns;
     }
 }
