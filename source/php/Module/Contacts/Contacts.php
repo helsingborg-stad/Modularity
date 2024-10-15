@@ -74,6 +74,7 @@ class Contacts extends \Modularity\Module
                         'administration_unit' => $contact['administration_unit'],
                         'email'               => strtolower($contact['email']),
                         'phone'               => $contact['phone_numbers'] ?? null,
+                        'social_media'        => $contact['social_media'] ?? null,
                         'address'             => strip_tags($contact['address'] ?? '', '<br>'),
                         'visiting_address'    => strip_tags($contact['visiting_address'] ?? '', ['<br>', '<a>']),
                         'opening_hours'       => strip_tags($contact['opening_hours'], '<br>'),
@@ -91,6 +92,7 @@ class Contacts extends \Modularity\Module
                          'administration_unit' => null,
                          'email'               => $contact['user']['user_email'] ?? '',
                          'phone'               => null,
+                         'social_media'        => null,
                          'address'             => strip_tags($contact['address'] ?? '', '<br>'),
                          'visiting_address'    => null,
                          'opening_hours'       => null,
@@ -117,6 +119,36 @@ class Contacts extends \Modularity\Module
                 return $info[$key] ?: false;
             }, $titleProperties), function($item) {return $item;});
             $info['full_title'] = is_array($fullTitle) ? implode(', ', $fullTitle) : '';
+
+            //Sanitize social media
+            if (!empty($info['social_media'])) {
+                $info['social_media'] = array_filter($info['social_media'], function($item) {
+                    return !empty($item['url']);
+                });
+            }
+
+            //Add social media labels by ['media'] key
+            if (!empty($info['social_media'])) {
+                $info['social_media'] = array_map(function($item) {
+
+                    switch ($item['media']) {
+                        case 'linkedin':
+                            $item['label'] = 'Linkedin';
+                            break;
+                        case 'twitter':
+                            $item['label'] = 'X';
+                            break;
+                        case 'instagram':
+                            $item['label'] = 'Instagram';
+                            break;
+                        case 'facebook':
+                            $item['label'] = 'Facebook';
+                            break;
+                    }
+
+                    return $item;
+                }, $info['social_media']);
+            }
 
             //Contact returns
             $retContacts[] = $info;

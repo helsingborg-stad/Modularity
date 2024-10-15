@@ -62,6 +62,13 @@
                             @endforeach
                         @endif
 
+                        {{-- Some --}}
+                        @if (!empty($contact['social_media']))
+                            @foreach ($contact['social_media'] as $some)
+                                @include('components.some', $some)
+                            @endforeach
+                        @endif
+
                     </div>
 
                 @endif
