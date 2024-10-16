@@ -5,6 +5,11 @@ namespace Modularity\Module\Menu;
 use Modularity\Module\Menu\Acf\Select;
 use \Municipio\Helper\Navigation\MenuConstructor;
 use Modularity\Module\Menu\Decorator\DataDecorator;
+use \Municipio\Controller\Navigation\MenuDirector;
+use \Municipio\Controller\Navigation\MenuBuilder;
+use \Municipio\Controller\Navigation\Config\MenuConfig;
+use \Municipio\Helper\WpService;
+use \Municipio\Helper\AcfService;
 
 class Menu extends \Modularity\Module
 {
@@ -28,17 +33,35 @@ class Menu extends \Modularity\Module
         $data = [];
         $fields = $this->getFields();
 
-        $displayAs = $fields['mod_menu_display_as'] ?? 'listing';
-        $menuConstructorInstance = new MenuConstructor('mod-menu-' . $displayAs);
+        $acfService = AcfService::get();
+        $wpService  = WpService::get();
+
+        $data['displayAs'] = $fields['mod_menu_display_as'] ?? 'listing';
+
+        $menuConfig = new MenuConfig(
+            'mod-menu-' . $data['displayAs'],
+            (int) $fields['mod_menu_menu'],
+        );
+
+        $menuBuilder = new MenuBuilder(
+            $menuConfig, 
+            $acfService, 
+            $wpService
+        );
+
+        $menuDirector = new MenuDirector();
+        $menuDirector->setBuilder($menuBuilder);
+        $menuDirector->buildStandardMenu();
+        $data['menu'] = $menuBuilder->getMenu()->getMenu();
+
+
+        // Used to decorate the data based on view.
         $dataDecorator = new DataDecorator($fields);
         
-        $data['displayAs'] = $displayAs;
-
-        $data['menu'] = $this->getStructuredMenu($menuConstructorInstance, $fields);
-
         return $dataDecorator->decorate($data);
     }
 
+    
     public function setMenuItemData($item, $identifier, $bool)
     {
         if ($identifier === 'mod-menu-listing' && !$item['top_level']) {
@@ -47,15 +70,6 @@ class Menu extends \Modularity\Module
         }
 
         return $item;
-    }
-
-    private function getStructuredMenu($menuConstructorInstance, $fields): array
-    {
-        return $menuConstructorInstance->buildStructuredMenu(
-                    $menuConstructorInstance->structureMenuItems(
-                        wp_get_nav_menu_items($fields['mod_menu_menu']) ?? []
-                    )
-                );
     }
 
     public function style()
