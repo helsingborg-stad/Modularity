@@ -268,7 +268,7 @@ class Editor extends \Modularity\Options
     public function getActiveAreas($template)
     {
         $options = get_option('modularity-options');
-        $enabledAreas = $options['enabled-areas'];
+        $enabledAreas = $options['enabled-areas'] ?? [];
 
         // Use the ACF-options for module areas if activated
         if (get_field('acf_module_areas', 'option')) {
