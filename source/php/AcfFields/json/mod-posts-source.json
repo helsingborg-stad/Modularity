@@ -16,20 +16,19 @@
                 "class": "",
                 "id": ""
             },
-            "multiple": 0,
-            "allow_null": 0,
             "choices": {
                 "posttype": "Posttyper",
                 "children": "Child posts",
-                "manual": "Manually picked posts"
+                "manual": "Manually picked posts",
+                "schematype": "Schema type"
             },
             "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
-            "return_format": "value",
-            "disabled": 0,
-            "readonly": 0,
             "allow_custom": 0,
             "search_placeholder": ""
         },
