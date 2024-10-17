@@ -15,7 +15,7 @@
                 @collection__item([
                     'displayIcon' => true,
                     'icon' => $input['icon'] ?? 'arrow_forward',
-                    'link' => $input['link'] ?? '#'
+                    'link' => $input['link']
                 ])
                     @typography([
                         'element' => 'h2',
