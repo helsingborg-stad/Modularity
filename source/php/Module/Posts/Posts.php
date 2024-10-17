@@ -76,7 +76,7 @@ class Posts extends \Modularity\Module
      * @return array
      */
     public function loadSchemaTypesField(array $field = []):array {
-        $field['choices'] = $this->enabledSchemaTypes;
+        $field['choices'] = array_combine($this->enabledSchemaTypes, $this->enabledSchemaTypes);
         return $field;
     }
 
