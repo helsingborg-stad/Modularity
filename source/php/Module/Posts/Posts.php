@@ -71,7 +71,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Load schema types field
-     * 
+     *
      * @param array $field
      * @return array
      */
