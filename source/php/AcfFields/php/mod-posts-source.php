@@ -19,24 +19,57 @@
                 'class' => '',
                 'id' => '',
             ),
-            'multiple' => 0,
-            'allow_null' => 0,
             'choices' => array(
                 'posttype' => __('Posttyper', 'modularity'),
                 'children' => __('Child posts', 'modularity'),
                 'manual' => __('Manually picked posts', 'modularity'),
+                'schematype' => __('Schema type', 'modularity'),
             ),
             'default_value' => false,
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
             'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
-            'return_format' => 'value',
-            'disabled' => 0,
-            'readonly' => 0,
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
         1 => array(
+            'key' => 'field_670fb7fc4b05c',
+            'label' => __('Schema Type', 'modularity'),
+            'name' => 'posts_data_schema_type',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfaafe6984',
+                        'operator' => '==',
+                        'value' => 'schematype',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => 'modularity-latest-post-type',
+                'id' => 'modularity-latest-post-type',
+            ),
+            'choices' => array(
+            ),
+            'default_value' => false,
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
+        2 => array(
             'key' => 'field_571dfc40f8114',
             'label' => __('Post Types', 'modularity'),
             'name' => 'posts_data_post_type',
@@ -65,7 +98,7 @@
             'disabled' => 0,
             'readonly' => 0,
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_571dfc6ff8115',
             'label' => __('Pick posts to display', 'modularity'),
             'name' => 'posts_data_posts',
@@ -101,7 +134,7 @@
             'bidirectional_target' => array(
             ),
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_571dfcd6b5cf9',
             'label' => __('Childs of', 'modularity'),
             'name' => 'posts_data_child_of',
@@ -137,7 +170,7 @@
             'bidirectional_target' => array(
             ),
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_571dff4eb46c3',
             'label' => __('Number of posts', 'modularity'),
             'name' => 'posts_count',
@@ -161,7 +194,7 @@
             'readonly' => 0,
             'disabled' => 0,
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_57ecf1007b749',
             'label' => __('Link to post type archive', 'modularity'),
             'name' => 'archive_link',

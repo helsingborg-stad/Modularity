@@ -120,6 +120,13 @@ class GetPosts
                     $getPostsArgs['orderby'] = 'post__in';
                 }
                 break;
+
+            case 'schematype':
+                if(empty($fields['posts_data_schema_type'])) {
+                    break;
+                }
+                $getPostsArgs['post_type'] = $this->getPostTypesFromSchemaType($fields['posts_data_schema_type']);
+                break;
         }
 
         // Add metaquery to args
@@ -133,6 +140,26 @@ class GetPosts
         }
 
         return $getPostsArgs;
+    }
+
+    private function getPostTypesFromSchemaType(string $schemaType):array {
+        
+        $class = '\Municipio\SchemaData\Helper\GetSchemaType';
+        $method = 'getPostTypesFromSchemaType';
+        
+        if(!class_exists($class) || !method_exists($class, $method)) {
+            $backtrace = debug_backtrace();
+            error_log("Class or method does not exist: {$class}::{$method} in {$backtrace[0]['file']} on line {$backtrace[0]['line']}");
+            return [];
+        }
+
+        $postTypes = call_user_func([new $class(), $method], $schemaType);
+
+        if( !is_array($postTypes) ) {
+            return [];
+        }
+
+        return $postTypes;
     }
 
     public function getCurrentPostID()
