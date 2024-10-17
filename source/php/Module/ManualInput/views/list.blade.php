@@ -14,7 +14,7 @@
             @foreach ($manualInputs as $input)
                 @collection__item([
                     'displayIcon' => true,
-                    'icon' => 'arrow_forward',
+                    'icon' => $input['icon'] ?? 'arrow_forward',
                     'link' => $input['link'] ?? '#'
                 ])
                     @typography([
