@@ -194,7 +194,7 @@
             "name": "highlight_first_input",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "Makes the first input bigger",
             "required": 0,
             "conditional_logic": [
                 [
@@ -380,6 +380,7 @@
                     "collapsed": "",
                     "button_label": "L\u00e4gg till rad",
                     "rows_per_page": 20,
+                    "parent_repeater": "field_64ff22b2d91b7",
                     "sub_fields": [
                         {
                             "key": "field_64ff23afd91bd",
@@ -402,8 +403,7 @@
                             "append": "",
                             "parent_repeater": "field_64ff2372d91bc"
                         }
-                    ],
-                    "parent_repeater": "field_64ff22b2d91b7"
+                    ]
                 },
                 {
                     "key": "field_64ff231ed91b9",
@@ -545,6 +545,13 @@
                                 "operator": "==",
                                 "value": "box"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_656f4b44999e9",
+                                "operator": "==",
+                                "value": "list"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -553,16 +560,16 @@
                         "id": ""
                     },
                     "choices": [],
-                    "default_value": false,
+                    "default_value": "arrow_forward",
                     "return_format": "value",
                     "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
                     "allow_null": 0,
                     "ui": 1,
                     "ajax": 0,
                     "placeholder": "",
-                    "parent_repeater": "field_64ff22b2d91b7",
-                    "allow_custom": 0,
-                    "search_placeholder": ""
+                    "parent_repeater": "field_64ff22b2d91b7"
                 }
             ]
         }

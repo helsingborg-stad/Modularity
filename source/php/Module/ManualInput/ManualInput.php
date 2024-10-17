@@ -52,6 +52,8 @@ class ManualInput extends \Modularity\Module
                 });
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
+                // TODO: change name and migrate
+                $arr['icon']                    = $arr['box_icon'];
                 $arr['image']                   = $this->maybeGetImageImageContract($displayAs, $arr['image']) ?? $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
                 $arr['view']                    = $this->getInputView($arr['isHighlighted']);
