@@ -4,8 +4,6 @@ namespace Modularity\Module\Posts\Helper;
 
 class GetPosts
 {
-    private static array $postTypesUsingSchemaType = [];
-
     public function getPosts(array $fields)
     {
         $posts = (array) get_posts($this->getPostArgs($fields));
