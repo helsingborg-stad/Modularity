@@ -60,7 +60,7 @@ class Posts extends \Modularity\Module
 
     /**
      * Set enabled schema types
-     * 
+     *
      * @param array $types
      * @return array
      */
