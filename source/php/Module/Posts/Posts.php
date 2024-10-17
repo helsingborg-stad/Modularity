@@ -23,6 +23,7 @@ class Posts extends \Modularity\Module
     );
     public $getPostsHelper;
     public $archiveUrlHelper;
+    private array $enabledSchemaTypes = [];
 
     private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
@@ -37,6 +38,12 @@ class Posts extends \Modularity\Module
 
         // Handle date field
         add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
+        
+        // Populate enabled schema types
+        add_filter('Municipio/SchemaData/EnabledSchemaTypes', [$this, 'setEnabledSchemaTypes']);
+
+        // Populate schema types field
+        add_filter('acf/load_field/name=posts_data_schema_type', [$this, 'loadSchemaTypesField']);
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
@@ -49,6 +56,28 @@ class Posts extends \Modularity\Module
         $this->getPostsHelper = new GetPostsHelper();
         $this->archiveUrlHelper = new ArchiveUrlHelper();
         new PostsAjax($this);
+    }
+
+    /**
+     * Set enabled schema types
+     * 
+     * @param array $types
+     * @return array
+     */
+    public function setEnabledSchemaTypes(array $types):array {
+        $this->enabledSchemaTypes = array_keys($types);
+        return $types;
+    }
+
+    /**
+     * Load schema types field
+     * 
+     * @param array $field
+     * @return array
+     */
+    public function loadSchemaTypesField(array $field = []):array {
+        $field['choices'] = $this->enabledSchemaTypes;
+        return $field;
     }
 
     /**

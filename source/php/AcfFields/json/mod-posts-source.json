@@ -33,6 +33,39 @@
             "search_placeholder": ""
         },
         {
+            "key": "field_670fb7fc4b05c",
+            "label": "Schema Type",
+            "name": "posts_data_schema_type",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfaafe6984",
+                        "operator": "==",
+                        "value": "schematype"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "modularity-latest-post-type",
+                "id": "modularity-latest-post-type"
+            },
+            "choices": [],
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
             "key": "field_571dfc40f8114",
             "label": "Post Types",
             "name": "posts_data_post_type",
