@@ -4,12 +4,12 @@
  * Indicates if we are adding a new post or editing old one
  * @type {String}
  */
-var postAction = 'add';
 let lModularity = null
 $ = jQuery;
 
 export default function Thickbox(Modularity) {
     lModularity = Modularity;
+    this.postAction = 'add';
 }
 
 Thickbox.prototype.modulePostCreated = function (postId) {
