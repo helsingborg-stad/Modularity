@@ -29,6 +29,9 @@ module.exports = {
 		'js/block-validation': './source/js/block-validation.ts',
 		'js/edit-modules-block-editor': './source/js/edit-modules-block-editor.ts',
 
+		// Acf
+		'js/hidden-post-status-conditional': './source/js/acf/hidden-post-status-conditional.ts',
+
 		//Modules
 		'js/mod-curator-load-more': './source/php/Module/Curator/assets/mod-curator-load-more.js',
 		'js/table-init': './source/php/Module/Table/assets/table-init.js',
