@@ -64,6 +64,26 @@
             "default_value": ""
         },
         {
+            "key": "field_67126c170c176",
+            "label": "Allow logged in users to modify their list",
+            "name": "allow_user_modification",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_650067ed6cc3c",
             "label": "Column marking",
             "name": "accordion_column_marking",

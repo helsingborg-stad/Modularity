@@ -52,6 +52,10 @@ class App
         $this->editor = new Editor();
         self::$display = new Display();
 
+        if (is_admin()) {
+            new PrivateAcfFields();
+        }
+
         new Helper\Acf();
         new CachePurge();
 
@@ -269,6 +273,10 @@ class App
         wp_register_script('modularity-text-module', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity-text-module.js'));
         wp_enqueue_script('modularity-text-module');
+
+        wp_register_script('acf-hidden-post-status-conditional', MODULARITY_URL . '/dist/' 
+        . \Modularity\Helper\CacheBust::name('js/hidden-post-status-conditional.js'), array('acf-input', 'jquery'));
+        wp_enqueue_script('acf-hidden-post-status-conditional');
 
         add_action('admin_head', function () {
             echo "
