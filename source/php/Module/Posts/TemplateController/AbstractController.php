@@ -131,7 +131,8 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
-        if( $this->postUsesSchemaTypeEvent($post) ) {
+        // TODO: Once there Schema type event is implemented, this should changed
+        if( $this->postUsesSchemaTypeEvent($post) || $post->postType == 'event') {
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
                 $post->postDateFormatted = $eventOccasions[0]['start_date'];
