@@ -31,6 +31,7 @@ module.exports = {
 
 		// Acf
 		'js/hidden-post-status-conditional': './source/js/acf/hidden-post-status-conditional.ts',
+		'css/acf': './source/sass/acf/acf.scss',
 
 		//Modules
 		'js/mod-curator-load-more': './source/php/Module/Curator/assets/mod-curator-load-more.js',

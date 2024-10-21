@@ -82,9 +82,15 @@
             ),
             'message' => '',
             'default_value' => 0,
+<<<<<<< HEAD
             'ui_on_text' => '',
             'ui_off_text' => '',
             'ui' => 1,
+=======
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+>>>>>>> origin/feat/hidden-fields-based-on-post-status
         ),
         3 => array(
             'key' => 'field_650067ed6cc3c',
