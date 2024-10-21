@@ -42,9 +42,10 @@ declare const wp: WP;
     wp.data.subscribe(() => {
         setTimeout(() => {
             if (!document.getElementById(editModulesLinkId)) {
-                const toolbalEl: HTMLElement | null = editorEl.querySelector('.edit-post-header__toolbar');
-                if (toolbalEl instanceof HTMLElement) {
-                    toolbalEl.insertAdjacentHTML('beforeend', editModulesLinkHTML);
+                const toolbarContainer: HTMLElement | null = editorEl.querySelector('.editor-header__settings');
+
+                if (toolbarContainer instanceof HTMLElement) {
+                    toolbarContainer.insertAdjacentHTML('afterbegin', editModulesLinkHTML);
                 }
             }
         }, 1);
