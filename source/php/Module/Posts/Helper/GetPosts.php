@@ -6,7 +6,8 @@ class GetPosts
 {
     public function getPosts(array $fields)
     {
-        $posts = (array) $this->getPostsFromSelectedSites($this->getPostArgs($fields), $fields);
+        $posts = (array) $this->getPostsFromSelectedSites($fields);
+
         if (!empty($posts)) {
             foreach ($posts as &$post) {
                 $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
@@ -28,21 +29,22 @@ class GetPosts
         return [];
     }
 
-    private function getPostsFromSelectedSites(array $postArgs, array $fields):array {
-        if(empty($fields['posts_data_network_sources'])) {
-            return get_posts($postArgs);
-        }
-
-        $posts = [];
-
-        foreach($fields['posts_data_network_sources'] as $site) {
-            switch_to_blog($site);
-            $posts = array_merge($posts, get_posts($postArgs));
-            restore_current_blog();
-        }
-
-        return $posts;
+    private function getPostsFromSelectedSites(array $fields):array {
         
+        if(!empty($fields['posts_data_network_sources'])) {
+            $posts = [];
+            foreach($fields['posts_data_network_sources'] as $site) {
+                switch_to_blog($site);
+                $postArgs = $this->getPostArgs($fields);
+                $posts = array_merge($posts, get_posts($postArgs));
+                restore_current_blog();
+            }
+
+            return $posts;
+        }
+
+        $postArgs = $this->getPostArgs($fields);
+        return get_posts($postArgs);
     }
 
     private function getPostArgs(array $fields)
