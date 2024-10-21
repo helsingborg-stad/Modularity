@@ -20,31 +20,31 @@
                 'id' => '',
             ),
             'choices' => array(
-                'row-row-row-row-row-row-row-651d5ccf5ac81' => array(
+                'row-row-row-row-row-row-row-row-row-651d5ccf5ac81' => array(
                     'image-select-repeater-label' => 'Accordion',
                     'image-select-repeater-value' => 'accordion',
                 ),
-                'row-row-row-row-row-row-row-651d5cdb5ac82' => array(
+                'row-row-row-row-row-row-row-row-row-651d5cdb5ac82' => array(
                     'image-select-repeater-label' => 'Block',
                     'image-select-repeater-value' => 'block',
                 ),
-                'row-row-row-row-row-row-row-651d5cdf5ac83' => array(
+                'row-row-row-row-row-row-row-row-row-651d5cdf5ac83' => array(
                     'image-select-repeater-label' => 'Box',
                     'image-select-repeater-value' => 'box',
                 ),
-                'row-row-row-row-row-row-row-651d5ce55ac84' => array(
+                'row-row-row-row-row-row-row-row-row-651d5ce55ac84' => array(
                     'image-select-repeater-label' => 'Card',
                     'image-select-repeater-value' => 'card',
                 ),
-                'row-row-row-row-row-row-row-651d5ceb5ac85' => array(
+                'row-row-row-row-row-row-row-row-row-651d5ceb5ac85' => array(
                     'image-select-repeater-label' => 'Collection',
                     'image-select-repeater-value' => 'collection',
                 ),
-                'row-row-row-row-row-row-row-651d5cf65ac86' => array(
+                'row-row-row-row-row-row-row-row-row-651d5cf65ac86' => array(
                     'image-select-repeater-label' => 'List',
                     'image-select-repeater-value' => 'list',
                 ),
-                'row-row-row-651ffdc788395' => array(
+                'row-row-row-row-row-651ffdc788395' => array(
                     'image-select-repeater-label' => 'Segment',
                     'image-select-repeater-value' => 'segment',
                 ),
@@ -67,6 +67,26 @@
             'default_value' => '',
         ),
         2 => array(
+            'key' => 'field_67126c170c176',
+            'label' => __('Allow logged in users to modify their list', 'modularity'),
+            'name' => 'allow_user_modification',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        3 => array(
             'key' => 'field_650067ed6cc3c',
             'label' => __('Column marking', 'modularity'),
             'name' => 'accordion_column_marking',
@@ -94,7 +114,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_65005968bbc75',
             'label' => __('Column titles', 'modularity'),
             'name' => 'accordion_column_titles',
@@ -148,7 +168,7 @@
                 ),
             ),
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_65001d039d4c4',
             'label' => __('Columns', 'modularity'),
             'name' => 'columns',
@@ -167,6 +187,11 @@
                         'field' => 'field_656f4b44999e9',
                         'operator' => '!=',
                         'value' => 'list',
+                    ),
+                    2 => array(
+                        'field' => 'field_656f4b44999e9',
+                        'operator' => '!=',
+                        'value' => 'listing',
                     ),
                 ),
             ),
@@ -191,7 +216,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_663372f4922a5',
             'label' => __('Highlight first input', 'modularity'),
             'name' => 'highlight_first_input',
@@ -233,7 +258,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        6 => array(
+        7 => array(
             'key' => 'field_6641de045ab9d',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -266,7 +291,7 @@
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        7 => array(
+        8 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -310,7 +335,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        8 => array(
+        9 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -431,10 +456,10 @@
                         'id' => '',
                     ),
                     'default_value' => '',
-                    'delay' => 0,
                     'tabs' => 'all',
                     'toolbar' => 'full',
                     'media_upload' => 1,
+                    'delay' => 0,
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 3 => array(
@@ -464,6 +489,64 @@
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 4 => array(
+                    'key' => 'field_6715fa26bb1ef',
+                    'label' => __('Obligatory', 'modularity'),
+                    'name' => 'obligatory',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_67126c170c176',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '25',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'message' => '',
+                    'default_value' => 0,
+                    'ui' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                5 => array(
+                    'key' => 'field_6715fa430ed6f',
+                    'label' => __('Optional', 'modularity'),
+                    'name' => 'optional',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_67126c170c176',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '25',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'message' => '',
+                    'default_value' => 0,
+                    'ui' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                6 => array(
                     'key' => 'field_65002bce6d459',
                     'label' => __('Link text', 'modularity'),
                     'name' => 'link_text',
@@ -492,7 +575,7 @@
                     'append' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                5 => array(
+                7 => array(
                     'key' => 'field_64ff2355d91bb',
                     'label' => __('Image', 'modularity'),
                     'name' => 'image',
@@ -520,8 +603,8 @@
                         'id' => '',
                     ),
                     'uploader' => '',
-                    'acfe_thumbnail' => 0,
                     'return_format' => 'id',
+                    'acfe_thumbnail' => 0,
                     'min_width' => '',
                     'min_height' => '',
                     'min_size' => '',
@@ -533,7 +616,7 @@
                     'library' => 'all',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                6 => array(
+                8 => array(
                     'key' => 'field_65293de2a26c7',
                     'label' => __('Icon', 'modularity'),
                     'name' => 'box_icon',

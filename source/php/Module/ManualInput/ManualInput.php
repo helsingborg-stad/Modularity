@@ -7,6 +7,7 @@ use Municipio\Helper\Image as ImageHelper;
 use Modularity\Integrations\Component\ImageResolver;
 use Modularity\Integrations\Component\ImageFocusResolver;
 use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
+use Modularity\Module\ManualInput\Private\PrivateController;
 
 class ManualInput extends \Modularity\Module
 {
@@ -73,6 +74,10 @@ class ManualInput extends \Modularity\Module
             }
             return $carry;
         }, false);
+
+        if ($this->postStatus == 'private') {
+            $privateController = new PrivateController($data, $fields);
+        }
 
         return $data;
     }

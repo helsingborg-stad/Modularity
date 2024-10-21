@@ -21,6 +21,8 @@ class Module
 
     public ?string $post_type = null;
 
+    protected string $postStatus = '';
+
     /**
      * The slug of the module
      * Example: image
@@ -194,6 +196,10 @@ class Module
 
         if (is_numeric($post)) {
             $post = get_post($post);
+        }
+
+        if (isset($post->post_status)) {
+            $this->postStatus = $post->post_status;
         }
 
         if (is_a($post, '\WP_Post')) {

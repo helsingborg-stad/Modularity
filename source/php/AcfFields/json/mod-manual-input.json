@@ -17,31 +17,31 @@
                 "id": ""
             },
             "choices": {
-                "row-row-row-row-row-row-row-651d5ccf5ac81": {
+                "row-row-row-row-row-row-row-row-row-651d5ccf5ac81": {
                     "image-select-repeater-label": "Accordion",
                     "image-select-repeater-value": "accordion"
                 },
-                "row-row-row-row-row-row-row-651d5cdb5ac82": {
+                "row-row-row-row-row-row-row-row-row-651d5cdb5ac82": {
                     "image-select-repeater-label": "Block",
                     "image-select-repeater-value": "block"
                 },
-                "row-row-row-row-row-row-row-651d5cdf5ac83": {
+                "row-row-row-row-row-row-row-row-row-651d5cdf5ac83": {
                     "image-select-repeater-label": "Box",
                     "image-select-repeater-value": "box"
                 },
-                "row-row-row-row-row-row-row-651d5ce55ac84": {
+                "row-row-row-row-row-row-row-row-row-651d5ce55ac84": {
                     "image-select-repeater-label": "Card",
                     "image-select-repeater-value": "card"
                 },
-                "row-row-row-row-row-row-row-651d5ceb5ac85": {
+                "row-row-row-row-row-row-row-row-row-651d5ceb5ac85": {
                     "image-select-repeater-label": "Collection",
                     "image-select-repeater-value": "collection"
                 },
-                "row-row-row-row-row-row-row-651d5cf65ac86": {
+                "row-row-row-row-row-row-row-row-row-651d5cf65ac86": {
                     "image-select-repeater-label": "List",
                     "image-select-repeater-value": "list"
                 },
-                "row-row-row-651ffdc788395": {
+                "row-row-row-row-row-651ffdc788395": {
                     "image-select-repeater-label": "Segment",
                     "image-select-repeater-value": "segment"
                 }
@@ -62,6 +62,26 @@
                 "id": ""
             },
             "default_value": ""
+        },
+        {
+            "key": "field_67126c170c176",
+            "label": "Allow logged in users to modify their list",
+            "name": "allow_user_modification",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         },
         {
             "key": "field_650067ed6cc3c",
@@ -164,6 +184,11 @@
                         "field": "field_656f4b44999e9",
                         "operator": "!=",
                         "value": "list"
+                    },
+                    {
+                        "field": "field_656f4b44999e9",
+                        "operator": "!=",
+                        "value": "listing"
                     }
                 ]
             ],
@@ -428,10 +453,10 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "delay": 0,
                     "tabs": "all",
                     "toolbar": "full",
                     "media_upload": 1,
+                    "delay": 0,
                     "parent_repeater": "field_64ff22b2d91b7"
                 },
                 {
@@ -458,6 +483,64 @@
                     },
                     "default_value": "",
                     "placeholder": "",
+                    "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_6715fa26bb1ef",
+                    "label": "Obligatory",
+                    "name": "obligatory",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_67126c170c176",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
+                    "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_6715fa430ed6f",
+                    "label": "Optional",
+                    "name": "optional",
+                    "aria-label": "",
+                    "type": "true_false",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_67126c170c176",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 0,
+                    "ui": 0,
+                    "ui_on_text": "",
+                    "ui_off_text": "",
                     "parent_repeater": "field_64ff22b2d91b7"
                 },
                 {
@@ -517,8 +600,8 @@
                         "id": ""
                     },
                     "uploader": "",
-                    "acfe_thumbnail": 0,
                     "return_format": "id",
+                    "acfe_thumbnail": 0,
                     "min_width": "",
                     "min_height": "",
                     "min_size": "",
