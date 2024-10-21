@@ -7,7 +7,7 @@
     'reversePositions' => 'true',
     'attributeList' => [
         'itemprop' => 'email',
-        'title' => $contact['email']
+        'data-tooltip' => $contact['email'],
     ],
     'classList' => ['c-button--email', 'u-margin--0']
 ])
