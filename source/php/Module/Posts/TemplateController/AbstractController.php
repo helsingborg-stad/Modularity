@@ -131,6 +131,7 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
+        // TODO: Once there Schema type event is implemented, this should changed
         if( $this->postUsesSchemaTypeEvent($post) || $post->postType == 'event') {
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
