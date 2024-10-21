@@ -366,3 +366,4 @@ document.addEventListener('DOMContentLoaded',() => {
     const config = { childList: true, subtree: true };
     observer.observe(document, config);
 });
+
