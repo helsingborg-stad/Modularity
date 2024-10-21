@@ -82,15 +82,9 @@
             ),
             'message' => '',
             'default_value' => 0,
-<<<<<<< HEAD
             'ui_on_text' => '',
             'ui_off_text' => '',
             'ui' => 1,
-=======
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
->>>>>>> origin/feat/hidden-fields-based-on-post-status
         ),
         3 => array(
             'key' => 'field_650067ed6cc3c',
@@ -495,6 +489,64 @@
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 4 => array(
+                    'key' => 'field_6715fa26bb1ef',
+                    'label' => __('Obligatory', 'modularity'),
+                    'name' => 'obligatory',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_67126c170c176',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '25',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'message' => '',
+                    'default_value' => 0,
+                    'ui' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                5 => array(
+                    'key' => 'field_6715fa430ed6f',
+                    'label' => __('Optional', 'modularity'),
+                    'name' => 'optional',
+                    'aria-label' => '',
+                    'type' => 'true_false',
+                    'instructions' => '',
+                    'required' => 0,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_67126c170c176',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '25',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'message' => '',
+                    'default_value' => 0,
+                    'ui' => 0,
+                    'ui_on_text' => '',
+                    'ui_off_text' => '',
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                6 => array(
                     'key' => 'field_65002bce6d459',
                     'label' => __('Link text', 'modularity'),
                     'name' => 'link_text',
@@ -523,7 +575,7 @@
                     'append' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                5 => array(
+                7 => array(
                     'key' => 'field_64ff2355d91bb',
                     'label' => __('Image', 'modularity'),
                     'name' => 'image',
@@ -564,7 +616,7 @@
                     'library' => 'all',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                6 => array(
+                8 => array(
                     'key' => 'field_65293de2a26c7',
                     'label' => __('Icon', 'modularity'),
                     'name' => 'box_icon',

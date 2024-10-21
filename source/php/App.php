@@ -278,9 +278,10 @@ class App
         . \Modularity\Helper\CacheBust::name('js/hidden-post-status-conditional.js'), array('acf-input', 'jquery'));
         wp_enqueue_script('acf-hidden-post-status-conditional');
 
-        wp_enqueue_style('acf');
-        . \Modularity\Helper\CacheBust::name('css/acf.css'));
         wp_register_style('acf', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('css/acf.css'));
+        wp_enqueue_style('acf');
+
         add_action('admin_head', function () {
             echo "
                 <script>
