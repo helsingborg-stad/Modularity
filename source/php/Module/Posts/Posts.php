@@ -44,6 +44,9 @@ class Posts extends \Modularity\Module
 
         // Populate schema types field
         add_filter('acf/load_field/name=posts_data_schema_type', [$this, 'loadSchemaTypesField']);
+        
+        // Populate schema types field
+        add_filter('acf/load_field/name=posts_data_network_sources', [$this, 'loadNetworkSourcesField']);
 
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
@@ -76,7 +79,28 @@ class Posts extends \Modularity\Module
      * @return array
      */
     public function loadSchemaTypesField(array $field = []):array {
+        if(get_post_type() === 'acf-field-group') {
+            return $field;
+        }
+
         $field['choices'] = array_combine($this->enabledSchemaTypes, $this->enabledSchemaTypes);
+        return $field;
+    }
+
+    public function loadNetworkSourcesField(array $field = []):array {
+        
+        if(!is_multisite() || get_post_type() === 'acf-field-group') {
+            return $field;
+        }
+
+        $field['choices'] = [];
+
+        foreach (get_sites() as $site) {
+            switch_to_blog($site->blog_id);
+            $field['choices'][$site->blog_id] = get_bloginfo('name');
+            restore_current_blog();
+        }
+
         return $field;
     }
 

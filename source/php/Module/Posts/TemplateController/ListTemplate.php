@@ -43,7 +43,7 @@ class ListTemplate
                 if (!empty($post->postType) && $post->postType == 'attachment') {
                     $link = wp_get_attachment_url($post->id);
                 } else {
-                    $link = $postData['posts_data_source'] === 'input' ? $post->permalink : get_permalink($post->id);
+                    $link = $post->permalink;
                 }
     
                 if (!empty($post->postTitle)) {
