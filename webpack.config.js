@@ -39,6 +39,7 @@ module.exports = {
 		'css/table': './source/php/Module/Table/assets/table.scss',
 		'js/video': './source/php/Module/Video/assets/video.js',
 		'css/video': './source/php/Module/Video/assets/video.scss',
+		'js/manual-input-private': './source/php/Module/ManualInput/assets/private.ts',
 		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts',
 		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
 		'css/menu': './source/php/Module/Menu/assets/menu.scss',

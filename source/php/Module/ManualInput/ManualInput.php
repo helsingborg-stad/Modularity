@@ -16,13 +16,19 @@ class ManualInput extends \Modularity\Module
     public $blockSupports = array(
         'align' => ['full']
     );
-    private $template;
+
+    public string $postStatus;
+    public $template;
+
+    private ?PrivateController $privateController = null;
 
     public function init()
     {
         $this->nameSingular = __("Manual Input", 'modularity');
         $this->namePlural = __("Manual Inputs", 'modularity');
         $this->description = __("Creates manual input content.", 'modularity');
+
+        $this->privateController = new PrivateController($this);
 
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
     }
@@ -33,7 +39,7 @@ class ManualInput extends \Modularity\Module
         $fields         = $this->getFields();
         $displayAs      = $this->getTemplateToUse($fields);
         $this->template = $displayAs;
-      
+
         $data['manualInputs']   = [];
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
@@ -75,10 +81,8 @@ class ManualInput extends \Modularity\Module
             return $carry;
         }, false);
 
-        if ($this->postStatus == 'private') {
-            $privateController = new PrivateController($data, $fields);
-        }
 
+        $data = $this->privateController->decorateData($data, $fields);
         return $data;
     }
 
@@ -306,6 +310,14 @@ class ManualInput extends \Modularity\Module
             'Modularity/Module/ManualInput/Template', 
             $templateName 
         );
+    }
+
+    public function script()
+    {
+        wp_register_script('mod-manual-input-private-script', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/manual-input-private.js'));
+
+        wp_enqueue_script('mod-manual-input-private-script');
     }
 
     /**
