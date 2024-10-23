@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_5805e5dc1dc55",
-            "label": "Kontakter",
+            "label": "Contacts",
             "name": "contacts",
             "aria-label": "",
             "type": "flexible_content",
@@ -16,6 +16,7 @@
                 "class": "",
                 "id": ""
             },
+            "acfe_flexible_advanced": 0,
             "layouts": {
                 "5757b95767730": {
                     "key": "5757b95767730",
@@ -25,7 +26,7 @@
                     "sub_fields": [
                         {
                             "key": "field_5805e5dc26dde",
-                            "label": "Bild",
+                            "label": "Image",
                             "name": "image",
                             "aria-label": "",
                             "type": "image",
@@ -37,9 +38,9 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "uploader": "",
                             "return_format": "array",
-                            "preview_size": "thumbnail",
-                            "library": "all",
+                            "acfe_thumbnail": 0,
                             "min_width": "",
                             "min_height": "",
                             "min_size": "",
@@ -47,8 +48,8 @@
                             "max_height": "",
                             "max_size": "",
                             "mime_types": "",
-                            "uploader": "",
-                            "acfe_thumbnail": 0
+                            "preview_size": "thumbnail",
+                            "library": "all"
                         },
                         {
                             "key": "field_5805e5dc27255",
@@ -72,7 +73,7 @@
                         },
                         {
                             "key": "field_5805e5dc276e1",
-                            "label": "Efternamn",
+                            "label": "Surname",
                             "name": "last_name",
                             "aria-label": "",
                             "type": "text",
@@ -85,14 +86,14 @@
                                 "id": ""
                             },
                             "default_value": "",
+                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "append": ""
                         },
                         {
                             "key": "field_5805e5dc2771c",
-                            "label": "Jobbtitel",
+                            "label": "Job title",
                             "name": "work_title",
                             "aria-label": "",
                             "type": "text",
@@ -105,14 +106,14 @@
                                 "id": ""
                             },
                             "default_value": "",
+                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "append": ""
                         },
                         {
                             "key": "field_5805e5dc277e3",
-                            "label": "F\u00f6rvaltning",
+                            "label": "Administration unit",
                             "name": "administration_unit",
                             "aria-label": "",
                             "type": "text",
@@ -125,10 +126,10 @@
                                 "id": ""
                             },
                             "default_value": "",
+                            "maxlength": "",
                             "placeholder": "",
                             "prepend": "",
-                            "append": "",
-                            "maxlength": ""
+                            "append": ""
                         },
                         {
                             "key": "field_5805e5dc27b58",
@@ -151,7 +152,7 @@
                         },
                         {
                             "key": "field_5805e62f94d0f",
-                            "label": "Telefon",
+                            "label": "Phone numbers",
                             "name": "phone_numbers",
                             "aria-label": "",
                             "type": "repeater",
@@ -168,12 +169,12 @@
                             "min": 0,
                             "max": 2,
                             "collapsed": "",
-                            "button_label": "L\u00e4gg till nummer",
+                            "button_label": "Add phone number",
                             "rows_per_page": 20,
                             "sub_fields": [
                                 {
                                     "key": "field_5bf6aa828136b",
-                                    "label": "Typ",
+                                    "label": "Type",
                                     "name": "type",
                                     "aria-label": "",
                                     "type": "select",
@@ -186,14 +187,14 @@
                                         "id": ""
                                     },
                                     "choices": {
-                                        "phone": "Fasttelefon",
-                                        "smartphone": "Mobil"
+                                        "phone": "Landline",
+                                        "smartphone": "Cell phone"
                                     },
                                     "default_value": "phone",
-                                    "allow_null": 0,
-                                    "multiple": 0,
-                                    "ui": 0,
                                     "return_format": "value",
+                                    "multiple": 0,
+                                    "allow_null": 0,
+                                    "ui": 0,
                                     "ajax": 0,
                                     "placeholder": "",
                                     "allow_custom": 0,
@@ -202,7 +203,7 @@
                                 },
                                 {
                                     "key": "field_5805e64a94d10",
-                                    "label": "Telefonnummer",
+                                    "label": "Phone number",
                                     "name": "number",
                                     "aria-label": "",
                                     "type": "text",
@@ -215,10 +216,10 @@
                                         "id": ""
                                     },
                                     "default_value": "",
+                                    "maxlength": "",
                                     "placeholder": "",
                                     "prepend": "",
                                     "append": "",
-                                    "maxlength": "",
                                     "parent_repeater": "field_5805e62f94d0f"
                                 }
                             ]
@@ -319,7 +320,7 @@
                         },
                         {
                             "key": "field_5805e5dc28e30",
-                            "label": "Bes\u00f6ksadress",
+                            "label": "Visiting address",
                             "name": "visiting_address",
                             "aria-label": "",
                             "type": "textarea",
@@ -332,15 +333,15 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": "",
+                            "acfe_textarea_code": 0,
                             "maxlength": "",
                             "rows": "",
-                            "new_lines": "wpautop",
-                            "acfe_textarea_code": 0
+                            "placeholder": "",
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_5805e5dc29114",
-                            "label": "\u00d6ppettider",
+                            "label": "Opening hours",
                             "name": "opening_hours",
                             "aria-label": "",
                             "type": "textarea",
@@ -353,15 +354,15 @@
                                 "id": ""
                             },
                             "default_value": "",
-                            "placeholder": "",
+                            "acfe_textarea_code": 0,
                             "maxlength": "",
                             "rows": "",
-                            "new_lines": "wpautop",
-                            "acfe_textarea_code": 0
+                            "placeholder": "",
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_5805e5dc29182",
-                            "label": "Annat",
+                            "label": "Other",
                             "name": "other",
                             "aria-label": "",
                             "type": "wysiwyg",
@@ -394,12 +395,12 @@
                 "5757b97ffecc6": {
                     "key": "5757b97ffecc6",
                     "name": "user",
-                    "label": "Anv\u00e4ndare",
+                    "label": "User",
                     "display": "block",
                     "sub_fields": [
                         {
                             "key": "field_5805e5dc291c4",
-                            "label": "V\u00e4lj anv\u00e4ndare",
+                            "label": "Select user",
                             "name": "user",
                             "aria-label": "",
                             "type": "user",
@@ -412,9 +413,13 @@
                                 "id": ""
                             },
                             "role": "",
-                            "allow_null": 0,
-                            "multiple": 0,
                             "return_format": "array",
+                            "multiple": 0,
+                            "acfe_bidirectional": {
+                                "acfe_bidirectional_enabled": "0"
+                            },
+                            "allow_null": 0,
+                            "bidirectional": 0,
                             "bidirectional_target": []
                         }
                     ],
@@ -430,10 +435,9 @@
                     "acfe_flexible_category": false
                 }
             },
-            "button_label": "L\u00e4gg till kontakt",
             "min": 1,
             "max": "",
-            "acfe_flexible_advanced": false,
+            "button_label": "L\u00e4gg till kontakt",
             "acfe_flexible_stylised_button": false,
             "acfe_flexible_hide_empty_message": false,
             "acfe_flexible_empty_message": "",
@@ -460,7 +464,7 @@
         },
         {
             "key": "field_5805e5dc1ddcd",
-            "label": "Kolumner",
+            "label": "Columns",
             "name": "columns",
             "aria-label": "",
             "type": "select",
