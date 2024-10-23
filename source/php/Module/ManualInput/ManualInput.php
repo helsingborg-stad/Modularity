@@ -39,8 +39,9 @@ class ManualInput extends \Modularity\Module
         $fields         = $this->getFields();
         $displayAs      = $this->getTemplateToUse($fields);
         $this->template = $displayAs;
-
+        
         $data['manualInputs']   = [];
+        $data['ID']             = $this->ID;
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']        = ['module.manual-input.' . $this->template];
         $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
@@ -80,7 +81,6 @@ class ManualInput extends \Modularity\Module
             }
             return $carry;
         }, false);
-
 
         $data = $this->privateController->decorateData($data, $fields);
         return $data;
