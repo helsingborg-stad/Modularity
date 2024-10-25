@@ -390,7 +390,7 @@ class Posts extends \Modularity\Module
     public function getPostsAndPaginationData(): array
     {
         if ($this->fields) {
-            return $this->getPostsHelper->getPosts($this->fields, $this->getPageNumber());
+            return $this->getPostsHelper->getPostsAndPaginationData($this->fields, $this->getPageNumber());
         }
 
         return [

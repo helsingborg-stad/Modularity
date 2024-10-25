@@ -4,7 +4,14 @@ namespace Modularity\Module\Posts\Helper;
 
 class GetPosts
 {
-    public function getPosts(array $fields, int $page = 1)
+    /**
+     * Get posts and pagination data
+     * 
+     * @param array $fields
+     * @param int $page
+     * @return array $result e.g. ['posts' => [], 'maxNumPages' => 0]
+     */
+    public function getPostsAndPaginationData(array $fields, int $page = 1) :array
     {
         $result = (array) $this->getPostsFromSelectedSites($fields, $page);
 
