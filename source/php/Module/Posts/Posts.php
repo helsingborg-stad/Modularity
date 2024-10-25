@@ -2,12 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
-use Municipio\Helper\Image as ImageHelper;
-use Modularity\Module\Posts\Helper\GetArchiveUrl as ArchiveUrlHelper;
-use Modularity\Module\Posts\Helper\GetPosts as GetPostsHelper;
-use Modularity\Integrations\Component\ImageResolver;
-use Modularity\Integrations\Component\ImageFocusResolver;
-use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
+use Modularity\Module\Posts\Helper\GetArchiveUrl;
+use Modularity\Module\Posts\Helper\GetPosts;
 
 /**
  * Class Posts
@@ -56,8 +52,8 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $this->getPostsHelper = new GetPostsHelper();
-        $this->archiveUrlHelper = new ArchiveUrlHelper();
+        $this->getPostsHelper = new GetPosts();
+        $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
 
@@ -121,7 +117,15 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type']   = $this->fields['posts_data_post_type'] ?? false;
         $data['posts_data_source']      = $this->fields['posts_data_source'] ?? false;
 
-        $data['posts'] = $this->getPosts();
+        $postsAndPaginationData = $this->getPostsAndPaginationData();
+        $data['posts'] = $postsAndPaginationData['posts'];
+
+        if( !empty($this->fields['posts_pagination']) && $this->fields['posts_pagination'] === 'page_numbers' ) {
+            $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
+            $data['paginationArguments'] = $this->getPaginationArguments($data['maxNumPages'], $this->getPageNumber());
+        } else {
+            $data['paginationArguments'] = null;
+        }
 
         // Sorting
         $data['sortBy'] = false;
@@ -184,6 +188,51 @@ class Posts extends \Modularity\Module
         ];
 
         return $data;
+    }
+
+    /**
+     * Get pagination identifier
+     * 
+     * @return string
+     */
+    private function getPagintationIdentifier():string {
+        return "{$this->post_type}-{$this->ID}-page";
+    }
+
+    /**
+     * Get current page number
+     * 
+     * @return int Default is 1
+     */
+    private function getPageNumber():int {
+        return filter_input( INPUT_GET, $this->getPagintationIdentifier(), FILTER_SANITIZE_NUMBER_INT ) ?: 1;
+    }
+
+    /**
+     * Get pagination arguments for page numbers.
+     * 
+     * @param int $maxNumPages
+     * @param int $currentPage
+     * @return array
+     */
+    private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
+        
+        $listItemOne = [
+            'href' => remove_query_arg($this->getPagintationIdentifier()),
+            'label' => __("First page", 'modularity')
+        ];
+
+        $listItems = array_map(function($pageNumber) {
+            return [
+                'href' => add_query_arg($this->getPagintationIdentifier(), $pageNumber),
+                'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
+            ];
+        }, range(2, $maxNumPages));
+
+        return [
+            'list' => array_merge([$listItemOne], $listItems),
+            'current' => $currentPage
+        ];
     }
 
     /**
@@ -341,17 +390,20 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Get included posts
-     * @param object Acf fields
-     * @return array Array with post objects
+     * Get posts and pagination data.
+     *
+     * @return array $postsAndPaginationData Array with posts and pagination data. e.g. ['posts' => [], 'maxNumPages' => 0]
      */
-    public function getPosts(): array
+    public function getPostsAndPaginationData(): array
     {
         if ($this->fields) {
-            return $this->getPostsHelper->getPosts($this->fields);
+            return $this->getPostsHelper->getPostsAndPaginationData($this->fields, $this->getPageNumber());
         }
 
-        return [];
+        return [
+            'posts' => [],
+            'maxNumPages' => 0
+        ];
     }
 
     /**

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-23T08:56:22+00:00\n"
+"POT-Creation-Date: 2024-10-25T07:41:10+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: modularity\n"
@@ -1524,6 +1524,7 @@ msgstr ""
 
 #: php/AcfFields/php/mod-map.php:219
 #: php/AcfFields/php/mod-posts-displau.php:638
+#: php/AcfFields/php/mod-posts-source.php:214
 msgid "Disabled"
 msgstr ""
 
@@ -10516,20 +10517,30 @@ msgid "Set to -1 to show all"
 msgstr ""
 
 #: php/AcfFields/php/mod-posts-source.php:201
-msgid "Link to post type archive"
+msgid "Pagination"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:222
-msgid "Yes, link to post type archive"
+#: php/AcfFields/php/mod-posts-source.php:215
+msgid "Page numbers"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-source.php:217
+msgid "disabled"
 msgstr ""
 
 #: php/AcfFields/php/mod-posts-source.php:229
-#: php/AcfFields/php/mod-posts-source.php:271
+msgid "Link to post type archive"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-source.php:250
+msgid "Yes, link to post type archive"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-source.php:257
 msgid "From network sites"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:233
-#: php/AcfFields/php/mod-posts-source.php:275
+#: php/AcfFields/php/mod-posts-source.php:261
 msgid "Get posts from other sites in the network. Leave empty to only show posts from this site. If you chose one or more from this list you must also choose this site to get posts from this site."
 msgstr ""
 
@@ -10815,7 +10826,7 @@ msgstr ""
 
 #: php/AcfFields/php/mod-slider.php:759
 #: php/Module/ManualInput/ManualInput.php:109
-#: php/Module/Posts/Posts.php:183
+#: php/Module/Posts/Posts.php:187
 #: php/Module/Slider/Slider.php:215
 msgid "Read more"
 msgstr ""
@@ -12215,13 +12226,13 @@ msgid "Outputs a gallery with images"
 msgstr ""
 
 #: php/Module/Gallery/Gallery.php:27
-#: php/Module/Posts/Posts.php:168
+#: php/Module/Posts/Posts.php:172
 #: php/Module/Slider/Slider.php:69
 msgid "Previous slide"
 msgstr ""
 
 #: php/Module/Gallery/Gallery.php:28
-#: php/Module/Posts/Posts.php:169
+#: php/Module/Posts/Posts.php:173
 #: php/Module/Slider/Slider.php:70
 msgid "Next slide"
 msgstr ""
@@ -12376,17 +12387,25 @@ msgstr ""
 msgid "Modularity expandable list column values"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:32
-#: php/Module/Posts/Posts.php:33
+#: php/Module/Posts/Posts.php:28
+#: php/Module/Posts/Posts.php:29
 msgid "Posts"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:34
+#: php/Module/Posts/Posts.php:30
 msgid "Outputs selected posts in specified layout"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:182
+#: php/Module/Posts/Posts.php:186
 msgid "Show more"
+msgstr ""
+
+#: php/Module/Posts/Posts.php:222
+msgid "First page"
+msgstr ""
+
+#: php/Module/Posts/Posts.php:228
+msgid "Page %d"
 msgstr ""
 
 #: php/Module/Rss/Rss.php:15

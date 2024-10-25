@@ -10,3 +10,8 @@
         @endbutton
     </div>
 @endif
+@if($paginationArguments)
+  <div class="u-margin__y--4">
+    @pagination($paginationArguments)@endpagination
+  </div>
+@endif

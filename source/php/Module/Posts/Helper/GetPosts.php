@@ -4,50 +4,77 @@ namespace Modularity\Module\Posts\Helper;
 
 class GetPosts
 {
-    public function getPosts(array $fields)
+    /**
+     * Get posts and pagination data
+     * 
+     * @param array $fields
+     * @param int $page
+     * @return array $result e.g. ['posts' => [], 'maxNumPages' => 0]
+     */
+    public function getPostsAndPaginationData(array $fields, int $page = 1) :array
     {
-        $posts = (array) $this->getPostsFromSelectedSites($fields);
+        $result = (array) $this->getPostsFromSelectedSites($fields, $page);
 
-        if (!empty($posts)) {
-            foreach ($posts as &$post) {
-                $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
-
-                if (class_exists('\Municipio\Helper\Post')) {
-                    if (in_array($fields['posts_display_as'], ['expandable-list'])) {
-                        $post = \Municipio\Helper\Post::preparePostObject($post);
-                    } else {
-                        $post = \Municipio\Helper\Post::preparePostObjectArchive($post, $data);
-                    }
-
-                    if (!empty($post->schemaData['place']['pin'])) {
-                        $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
-                    }
-                }
-            }
-            return $posts;
+        if( empty($result['posts'])) {
+            return $result;
         }
-        return [];
+
+        $result['posts'] = array_map(function($post) use ($fields) {
+            $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
+            $helperClass = '\Municipio\Helper\Post';
+            $helperMethod = 'preparePostObject';
+            $helperArchiveMethod = 'preparePostObjectArchive';
+            
+            if(!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
+                error_log("Class or method does not exist: {$helperClass}::{$helperMethod} or {$helperClass}::{$helperArchiveMethod}");
+                return $post;
+            }
+
+            if (in_array($fields['posts_display_as'], ['expandable-list'])) {
+                $post = call_user_func([$helperClass, $helperMethod], $post);
+            } else {
+                $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
+            }
+
+            if (!empty($post->schemaData['place']['pin'])) {
+                $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
+            }
+
+            return $post;
+
+        }, $result['posts']);
+        
+        return $result;
     }
 
-    private function getPostsFromSelectedSites(array $fields):array {
+    private function getPostsFromSelectedSites(array $fields, int $page):array {
         
         if(!empty($fields['posts_data_network_sources'])) {
-            $posts = [];
+            $posts      = [];
+            $maxNumPages = 0;
             foreach($fields['posts_data_network_sources'] as $site) {
                 switch_to_blog($site);
-                $postArgs = $this->getPostArgs($fields);
-                $posts = array_merge($posts, get_posts($postArgs));
+                $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
+                $posts = array_merge($posts, $wpQuery->get_posts());
+                $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
                 restore_current_blog();
             }
 
-            return $posts;
+            return [
+                'posts' => $posts,
+                'maxNumPages' => $maxNumPages
+            ];
         }
 
-        $postArgs = $this->getPostArgs($fields);
-        return get_posts($postArgs);
+        $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
+
+        return [
+            'posts' => $wpQuery->get_posts(),
+            'maxNumPages' => $wpQuery->max_num_pages
+        ];
     }
 
-    private function getPostArgs(array $fields)
+    private function getPostArgs(array $fields, int $page)
     {
         $metaQuery  = false;
         $orderby    = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
@@ -157,6 +184,9 @@ class GetPosts
         if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
             $getPostsArgs['posts_per_page'] = $fields['posts_count'];
         }
+
+        // Apply pagination
+        $getPostsArgs['paged'] = $page;
 
         return $getPostsArgs;
     }
