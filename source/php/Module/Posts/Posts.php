@@ -2,12 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
-use Municipio\Helper\Image as ImageHelper;
-use Modularity\Module\Posts\Helper\GetArchiveUrl as ArchiveUrlHelper;
-use Modularity\Module\Posts\Helper\GetPosts as GetPostsHelper;
-use Modularity\Integrations\Component\ImageResolver;
-use Modularity\Integrations\Component\ImageFocusResolver;
-use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
+use Modularity\Module\Posts\Helper\GetArchiveUrl;
+use Modularity\Module\Posts\Helper\GetPosts;
 
 /**
  * Class Posts
@@ -56,8 +52,8 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $this->getPostsHelper = new GetPostsHelper();
-        $this->archiveUrlHelper = new ArchiveUrlHelper();
+        $this->getPostsHelper = new GetPosts();
+        $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
 
@@ -102,6 +98,24 @@ class Posts extends \Modularity\Module
         }
 
         return $field;
+    }
+
+    private function getPagintationIdentifier():string {
+        return "{$this->post_type}-{$this->ID}-page";
+    }
+
+    private function getPageNumber():int {
+        $valueFromGetParam = filter_input(
+            INPUT_GET,
+            $this->getPagintationIdentifier(),
+            FILTER_SANITIZE_NUMBER_INT
+        );
+        
+        if (empty($valueFromGetParam)) {
+            return 1;
+        }
+        
+        return $valueFromGetParam;
     }
 
     /**
@@ -181,6 +195,24 @@ class Posts extends \Modularity\Module
         $data['lang'] = [
             'showMore' => __('Show more', 'modularity'),
             'readMore' => __('Read more', 'modularity')
+        ];
+
+        $data['paginationList'] = [
+            ['href' => '/components/organisms/pagination?pagination=1', 'label' => 'Page 1'],
+            ['href' => '/components/organisms/pagination?pagination=2', 'label' => 'Page 2'],
+            ['href' => '/components/organisms/pagination?pagination=3', 'label' => 'Page 3'],
+            ['href' => '/components/organisms/pagination?pagination=4', 'label' => 'Page 4'],
+            ['href' => '/components/organisms/pagination?pagination=5', 'label' => 'Page 5'],
+            ['href' => '/components/organisms/pagination?pagination=6', 'label' => 'Page 6'],
+            ['href' => '/components/organisms/pagination?pagination=7', 'label' => 'Page 7'],
+            ['href' => '/components/organisms/pagination?pagination=8', 'label' => 'Page 8'],
+            ['href' => '/components/organisms/pagination?pagination=9', 'label' => 'Page 9'],
+            ['href' => '/components/organisms/pagination?pagination=10', 'label' => 'Page 10'],
+            ['href' => '/components/organisms/pagination?pagination=11', 'label' => 'Page 11'],
+            ['href' => '/components/organisms/pagination?pagination=12', 'label' => 'Page 12'],
+            ['href' => '/components/organisms/pagination?pagination=13', 'label' => 'Page 13'],
+            ['href' => '/components/organisms/pagination?pagination=14', 'label' => 'Page 14'],
+            ['href' => '/components/organisms/pagination?pagination=15', 'label' => 'Page 15'],
         ];
 
         return $data;
@@ -348,7 +380,7 @@ class Posts extends \Modularity\Module
     public function getPosts(): array
     {
         if ($this->fields) {
-            return $this->getPostsHelper->getPosts($this->fields);
+            return $this->getPostsHelper->getPosts($this->fields, $this->getPageNumber());
         }
 
         return [];

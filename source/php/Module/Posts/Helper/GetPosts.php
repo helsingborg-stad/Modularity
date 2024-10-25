@@ -4,9 +4,9 @@ namespace Modularity\Module\Posts\Helper;
 
 class GetPosts
 {
-    public function getPosts(array $fields)
+    public function getPosts(array $fields, int $page = 1)
     {
-        $posts = (array) $this->getPostsFromSelectedSites($fields);
+        $posts = (array) $this->getPostsFromSelectedSites($fields, $page);
 
         if (!empty($posts)) {
             foreach ($posts as &$post) {
@@ -29,13 +29,13 @@ class GetPosts
         return [];
     }
 
-    private function getPostsFromSelectedSites(array $fields):array {
+    private function getPostsFromSelectedSites(array $fields, int $page):array {
         
         if(!empty($fields['posts_data_network_sources'])) {
             $posts = [];
             foreach($fields['posts_data_network_sources'] as $site) {
                 switch_to_blog($site);
-                $postArgs = $this->getPostArgs($fields);
+                $postArgs = $this->getPostArgs($fields, $page);
                 $posts = array_merge($posts, get_posts($postArgs));
                 restore_current_blog();
             }
@@ -43,11 +43,11 @@ class GetPosts
             return $posts;
         }
 
-        $postArgs = $this->getPostArgs($fields);
+        $postArgs = $this->getPostArgs($fields, $page);
         return get_posts($postArgs);
     }
 
-    private function getPostArgs(array $fields)
+    private function getPostArgs(array $fields, int $page)
     {
         $metaQuery  = false;
         $orderby    = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
@@ -157,6 +157,9 @@ class GetPosts
         if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
             $getPostsArgs['posts_per_page'] = $fields['posts_count'];
         }
+
+        // Apply pagination
+        $getPostsArgs['paged'] = $page;
 
         return $getPostsArgs;
     }
