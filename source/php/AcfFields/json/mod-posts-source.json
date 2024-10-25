@@ -200,7 +200,8 @@
             },
             "choices": {
                 "disabled": "Disabled",
-                "page_numbers": "Page numbers"
+                "page_numbers": "Page numbers",
+                "page_numbers_async": "Page numbers loaded asynchronous"
             },
             "default_value": "disabled",
             "return_format": "value",

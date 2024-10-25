@@ -211,6 +211,7 @@
             'choices' => array(
                 'disabled' => __('Disabled', 'modularity'),
                 'page_numbers' => __('Page numbers', 'modularity'),
+                'page_numbers_async' => __('Page numbers loaded asynchronous', 'modularity'),
             ),
             'default_value' => __('disabled', 'modularity'),
             'return_format' => 'value',
