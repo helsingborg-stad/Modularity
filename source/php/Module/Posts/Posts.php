@@ -120,15 +120,20 @@ class Posts extends \Modularity\Module
 
     private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
         
-        $list = array_map(function($pageNumber) {
+        $listItemOne = [
+            'href' => remove_query_arg($this->getPagintationIdentifier()),
+            'label' => __("First page", 'modularity')
+        ];
+
+        $listItems = array_map(function($pageNumber) {
             return [
                 'href' => add_query_arg($this->getPagintationIdentifier(), $pageNumber),
                 'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
             ];
-        }, range(1, $maxNumPages));
+        }, range(2, $maxNumPages));
 
         return [
-            'list' => $list,
+            'list' => array_merge([$listItemOne], $listItems),
             'current' => $currentPage
         ];
     }
@@ -152,8 +157,13 @@ class Posts extends \Modularity\Module
 
         $postsAndPaginationData = $this->getPostsAndPaginationData();
         $data['posts'] = $postsAndPaginationData['posts'];
-        $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
-        $data['paginationArguments'] = $this->getPaginationArguments($data['maxNumPages'], $this->getPageNumber());
+
+        if( !empty($this->fields['posts_pagination']) && $this->fields['posts_pagination'] === 'page_numbers' ) {
+            $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
+            $data['paginationArguments'] = $this->getPaginationArguments($data['maxNumPages'], $this->getPageNumber());
+        } else {
+            $data['paginationArguments'] = null;
+        }
 
         // Sorting
         $data['sortBy'] = false;

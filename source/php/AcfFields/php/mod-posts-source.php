@@ -58,6 +58,11 @@
                 'id' => 'modularity-latest-post-type',
             ),
             'choices' => array(
+                'Place' => __('Place', 'modularity'),
+                'School' => __('School', 'modularity'),
+                'Project' => __('Project', 'modularity'),
+                'JobPosting' => __('JobPosting', 'modularity'),
+                'SpecialAnnouncement' => __('SpecialAnnouncement', 'modularity'),
             ),
             'default_value' => false,
             'return_format' => 'value',
@@ -195,6 +200,34 @@
             'disabled' => 0,
         ),
         6 => array(
+            'key' => 'field_671b3d7e4e7ed',
+            'label' => __('Pagination', 'modularity'),
+            'name' => 'posts_pagination',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'disabled' => __('Disabled', 'modularity'),
+                'page_numbers' => __('Page numbers', 'modularity'),
+            ),
+            'default_value' => __('disabled', 'modularity'),
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
+        7 => array(
             'key' => 'field_57ecf1007b749',
             'label' => __('Link to post type archive', 'modularity'),
             'name' => 'archive_link',
@@ -221,48 +254,6 @@
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
-        ),
-        7 => array(
-            'key' => 'field_6710ff6562e8c',
-            'label' => __('From network sites', 'modularity'),
-            'name' => 'posts_data_network_sources',
-            'aria-label' => '',
-            'type' => 'select',
-            'instructions' => __('Get posts from other sites in the network. Leave empty to only show posts from this site. If you chose one or more from this list you must also choose this site to get posts from this site.', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571dfaafe6984',
-                        'operator' => '==',
-                        'value' => 'posttype',
-                    ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfaafe6984',
-                        'operator' => '==',
-                        'value' => 'schematype',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'choices' => array(
-            ),
-            'default_value' => array(
-            ),
-            'return_format' => 'value',
-            'multiple' => 1,
-            'allow_null' => 0,
-            'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'allow_custom' => 0,
-            'search_placeholder' => '',
         ),
         8 => array(
             'key' => 'field_6710ff6562e8c',
@@ -294,6 +285,8 @@
                 'id' => '',
             ),
             'choices' => array(
+                1 => __('Municipio Local', 'modularity'),
+                2 => __('Second Site', 'modularity'),
             ),
             'default_value' => array(
             ),
