@@ -54,13 +54,7 @@
                 "class": "modularity-latest-post-type",
                 "id": "modularity-latest-post-type"
             },
-            "choices": {
-                "Place": "Place",
-                "School": "School",
-                "Project": "Project",
-                "JobPosting": "JobPosting",
-                "SpecialAnnouncement": "SpecialAnnouncement"
-            },
+            "choices": [],
             "default_value": false,
             "return_format": "value",
             "multiple": 0,

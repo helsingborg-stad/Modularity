@@ -58,11 +58,6 @@
                 'id' => 'modularity-latest-post-type',
             ),
             'choices' => array(
-                'Place' => __('Place', 'modularity'),
-                'School' => __('School', 'modularity'),
-                'Project' => __('Project', 'modularity'),
-                'JobPosting' => __('JobPosting', 'modularity'),
-                'SpecialAnnouncement' => __('SpecialAnnouncement', 'modularity'),
             ),
             'default_value' => false,
             'return_format' => 'value',
