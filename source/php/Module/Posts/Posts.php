@@ -118,6 +118,21 @@ class Posts extends \Modularity\Module
         return $valueFromGetParam;
     }
 
+    private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
+        
+        $list = array_map(function($pageNumber) {
+            return [
+                'href' => add_query_arg($this->getPagintationIdentifier(), $pageNumber),
+                'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
+            ];
+        }, range(1, $maxNumPages));
+
+        return [
+            'list' => $list,
+            'current' => $currentPage
+        ];
+    }
+
     /**
      * @return array
      */
@@ -135,7 +150,10 @@ class Posts extends \Modularity\Module
         $data['posts_data_post_type']   = $this->fields['posts_data_post_type'] ?? false;
         $data['posts_data_source']      = $this->fields['posts_data_source'] ?? false;
 
-        $data['posts'] = $this->getPosts();
+        $postsAndPaginationData = $this->getPostsAndPaginationData();
+        $data['posts'] = $postsAndPaginationData['posts'];
+        $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
+        $data['paginationArguments'] = $this->getPaginationArguments($data['maxNumPages'], $this->getPageNumber());
 
         // Sorting
         $data['sortBy'] = false;
@@ -195,24 +213,6 @@ class Posts extends \Modularity\Module
         $data['lang'] = [
             'showMore' => __('Show more', 'modularity'),
             'readMore' => __('Read more', 'modularity')
-        ];
-
-        $data['paginationList'] = [
-            ['href' => '/components/organisms/pagination?pagination=1', 'label' => 'Page 1'],
-            ['href' => '/components/organisms/pagination?pagination=2', 'label' => 'Page 2'],
-            ['href' => '/components/organisms/pagination?pagination=3', 'label' => 'Page 3'],
-            ['href' => '/components/organisms/pagination?pagination=4', 'label' => 'Page 4'],
-            ['href' => '/components/organisms/pagination?pagination=5', 'label' => 'Page 5'],
-            ['href' => '/components/organisms/pagination?pagination=6', 'label' => 'Page 6'],
-            ['href' => '/components/organisms/pagination?pagination=7', 'label' => 'Page 7'],
-            ['href' => '/components/organisms/pagination?pagination=8', 'label' => 'Page 8'],
-            ['href' => '/components/organisms/pagination?pagination=9', 'label' => 'Page 9'],
-            ['href' => '/components/organisms/pagination?pagination=10', 'label' => 'Page 10'],
-            ['href' => '/components/organisms/pagination?pagination=11', 'label' => 'Page 11'],
-            ['href' => '/components/organisms/pagination?pagination=12', 'label' => 'Page 12'],
-            ['href' => '/components/organisms/pagination?pagination=13', 'label' => 'Page 13'],
-            ['href' => '/components/organisms/pagination?pagination=14', 'label' => 'Page 14'],
-            ['href' => '/components/organisms/pagination?pagination=15', 'label' => 'Page 15'],
         ];
 
         return $data;
@@ -373,17 +373,20 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Get included posts
-     * @param object Acf fields
-     * @return array Array with post objects
+     * Get posts and pagination data.
+     *
+     * @return array $postsAndPaginationData Array with posts and pagination data. e.g. ['posts' => [], 'maxNumPages' => 0]
      */
-    public function getPosts(): array
+    public function getPostsAndPaginationData(): array
     {
         if ($this->fields) {
             return $this->getPostsHelper->getPosts($this->fields, $this->getPageNumber());
         }
 
-        return [];
+        return [
+            'posts' => [],
+            'maxNumPages' => 0
+        ];
     }
 
     /**

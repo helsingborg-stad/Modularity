@@ -10,8 +10,8 @@
         @endbutton
     </div>
 @endif
-@if($paginationList)
+@if($paginationArguments)
   <div class="u-margin__y--4">
-    @pagination(['list' => $paginationList])@endpagination
+    @pagination($paginationArguments)@endpagination
   </div>
 @endif
