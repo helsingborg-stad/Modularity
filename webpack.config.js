@@ -40,7 +40,6 @@ module.exports = {
 		'js/video': './source/php/Module/Video/assets/video.js',
 		'css/video': './source/php/Module/Video/assets/video.scss',
 		'js/manual-input-private': './source/php/Module/ManualInput/assets/private.ts',
-		'css/manual-input-private': './source/php/Module/ManualInput/assets/private.scss',
 		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts',
 		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
 		'css/menu': './source/php/Module/Menu/assets/menu.scss',

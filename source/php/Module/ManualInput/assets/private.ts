@@ -45,7 +45,6 @@ class UserOrdering {
         this.handleBeforeSave();
     
         const endpoint = `${wpApiSettings.root}wp/v2/users/${this.userId}`;
-        // Fetch the existing user data first
         fetch(endpoint, {
             method: 'GET',
             headers: {

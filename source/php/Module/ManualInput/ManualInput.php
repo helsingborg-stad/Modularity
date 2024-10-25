@@ -320,14 +320,6 @@ class ManualInput extends \Modularity\Module
         wp_enqueue_script('mod-manual-input-private-script');
     }
 
-    public function style()
-    {
-        wp_register_style('mod-manual-input-private-style', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('css/manual-input-private.css'));
-
-        wp_enqueue_style('mod-manual-input-private-style');
-    }
-
     /**
      * Get the template file name for rendering.
      *

@@ -41,6 +41,7 @@ class PrivateController
             'saving'      => __('Saving', 'modularity'),
             'obligatory'  => __('This item is obligatory', 'modularity'),
             'error'       => __('An error occurred and the data could not be saved. Please try again later', 'modularity'),
+            'changeContent' => __('Change the content', 'modularity'),
         ];
 
         $data['filteredManualInputs'] = $this->getUserStructuredManualInputs($data, $user->ID);
