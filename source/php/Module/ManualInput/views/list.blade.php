@@ -20,7 +20,9 @@
                 @collection__item([
                     'displayIcon' => true,
                     'icon' => $input['icon'] ?? 'arrow_forward',
-                    'link' => $input['link']
+                    'link' => $input['link'],
+                    'attributeList' => $input['attributeList'] ?? [],
+                    'classList' => $input['classList'] ?? []
                 ])
                     @typography([
                         'element' => 'h2',

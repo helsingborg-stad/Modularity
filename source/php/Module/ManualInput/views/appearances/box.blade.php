@@ -1,4 +1,7 @@
-<div class="{{$input['columnSize']}}">
+@element([
+    'attributeList' => $input['attributeList'] ?? [],
+    'classList'     => array_merge($input['classList'] ?? [], [$input['columnSize']])
+])
     @box([
         'heading'   => $input['title'],
         'content'   => $input['content'],
@@ -9,4 +12,4 @@
         'context'   => $context
     ])
     @endbox
-</div>
+@endelement

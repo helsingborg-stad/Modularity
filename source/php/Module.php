@@ -177,6 +177,10 @@ class Module
     public function __construct(\WP_Post $post = null, $args = array())
     {
         $this->args = $args;
+
+        $this->ID = $post->ID ?? null;
+        $this->postStatus = $post->post_status ?? 'publish';
+
         $this->init();
 
         // Defaults to the path of the class .php-file and subdir /views
@@ -194,14 +198,6 @@ class Module
             }
         }
 
-        if (is_numeric($post)) {
-            $post = get_post($post);
-        }
-
-        if (isset($post->post_status)) {
-            $this->postStatus = $post->post_status;
-        }
-
         if (is_a($post, '\WP_Post')) {
             $this->extractPostProperties($post);
             $this->collectViewData();
@@ -209,9 +205,8 @@ class Module
 
         add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
 
-        if (is_a($post, '\WP_Post') && $post->post_title) {
-            $this->data['postTitle'] = $post->post_title;
-        }
+
+        $this->data['postTitle'] = $post->post_title ?? false;
 
         if (!is_admin()) {
             add_action('wp_enqueue_scripts', function () {

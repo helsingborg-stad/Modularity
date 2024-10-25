@@ -39,7 +39,7 @@ class ManualInput extends \Modularity\Module
         $fields         = $this->getFields();
         $displayAs      = $this->getTemplateToUse($fields);
         $this->template = $displayAs;
-        
+
         $data['manualInputs']   = [];
         $data['ID']             = $this->ID;
         $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';

@@ -3,8 +3,9 @@
     'content'   => $input['content'],
     'ratio'     => $input['isHighlighted'] ? '16:9' : $ratio,
     'image'     => $input['image'],
-    'classList' => [$input['columnSize'], 'u-height--100'],
+    'classList' => array_merge($input['classList'] ?? [], [$input['columnSize'], 'u-height--100'])
     'context'   => $context,
     'link'      => $input['link'],
+    'attributeList' => $input['attributeList'] ?? []
 ])
 @endblock

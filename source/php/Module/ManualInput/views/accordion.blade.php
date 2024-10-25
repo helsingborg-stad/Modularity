@@ -24,6 +24,8 @@
                 @foreach ($manualInputs as $input)
                     @accordion__item([
                         'heading' => $input['accordionColumnValues'],
+                        'attributeList' => $input['attributeList'] ?? [],
+                        'classList' => $input['classList'] ?? []
                     ])
                         {!! $input['content'] !!}
                     @endaccordion__item

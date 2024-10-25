@@ -25,7 +25,7 @@ class UserOrdering {
         this.submitButton.addEventListener('click', (event) => {
             event.preventDefault();
 
-            let values = {};
+            let values: ValuesInterface = {};
 
             this.checkboxes.forEach((checkbox) => {
                 values[checkbox.value] = checkbox.checked;
@@ -37,23 +37,51 @@ class UserOrdering {
 
     private patchUser(values: ValuesInterface) {
         this.handleBeforeSave();
-        fetch(`${wpApiSettings.root}wp/v2/users/${this.userId}`, {
-            method: 'PATCH',
+    
+        const endpoint = `${wpApiSettings.root}wp/v2/users/${this.userId}`;
+        // Fetch the existing user data first
+        fetch(endpoint, {
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'X-WP-NONCE': wpApiSettings?.nonce ?? '',
             },
-            body: JSON.stringify({'meta': {'manualInputs': {[this.moduleId]: values}}}),
+        })
+        .then(response => {
+            // Check for successful response
+            if (!response.ok) {
+                throw new Error('Failed to fetch existing user data');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Get existing manualInputs or initialize it
+            let manualInputs = data.meta?.manualInputs || {};
+            
+            manualInputs[this.moduleId] = values;
+    
+            return fetch(endpoint, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-WP-NONCE': wpApiSettings?.nonce ?? '',
+                },
+                body: JSON.stringify({
+                    meta: {
+                        manualInputs: manualInputs,
+                    }
+                }),
+            });
+        })
+        .then(() => {
+            this.handleSuccessfullSave();
         })
         .catch(error => {
             console.error('Error:', error);
             this.handleFailedSave();
-        })
-        .finally(() => {
-            this.handleSuccessfullSave();
         });
     }
-
+    
     private handleFailedSave() {
 
     }
@@ -62,6 +90,7 @@ class UserOrdering {
         this.submitButton.disabled = false;
         this.closeButton.disabled = false;
         this.submitButton.textContent = this.buttonText;
+        this.closeButton.click();
     }
 
     private handleBeforeSave() {
@@ -72,6 +101,7 @@ class UserOrdering {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    const privateManualInputs = document.query
     const forms = document.querySelectorAll('form[data-js-manual-input-form]');
 
     forms.forEach(form => {

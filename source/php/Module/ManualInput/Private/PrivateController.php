@@ -27,7 +27,7 @@ class PrivateController
         if (empty($user->ID)) {
             return $data;
         }
-        
+
         $data['template'] = $this->manualInputInstance->template;
         $this->manualInputInstance->template = 'private';
 
@@ -38,10 +38,47 @@ class PrivateController
             'cancel'      => __('Cancel', 'modularity'),
             'description' => __('Description', 'modularity'),
             'name'        => __('Name', 'modularity'),
-            'saving'      => __('Saving', 'modularity')
+            'saving'      => __('Saving', 'modularity'),
+            'obligatory'  => __('This item is obligatory', 'modularity')
         ];
 
+        $data['filteredManualInputs'] = $this->getUserStructuredManualInputs($data, $user->ID);
+
         return $data;
+    }
+
+    private function getUserStructuredManualInputs(array $data): array
+    {
+        $userManualInputs = get_user_meta($data['user'], 'manualInputs', true);
+
+        if (empty($userManualInputs[$this->manualInputInstance->ID]) || empty($data['manualInputs'])) {
+            return $data['manualInputs'] ?? [];
+        }
+
+        $userManualInput = $userManualInputs[$this->manualInputInstance->ID];
+
+        $filteredManualInputs = [];
+        foreach ($data['manualInputs'] as $manualInput) {
+            $manualInput['classList'] = isset($manualInput['classList']) ? $manualInput['classList'] : [];
+            $manualInput['attributeList'] = isset($manualInput['attributeList']) ? $manualInput['attributeList'] : [];
+
+            if (
+                empty($manualInput['obligatory']) && 
+                isset($userManualInput[$manualInput['uniqueId']]) && 
+                !$userManualInput[$manualInput['uniqueId']]
+            ) {
+                $manualInput['classList'][] = 'u-display--none';
+                $manualInput['checked'] = false;
+            } else {
+                $manualInput['checked'] = true;
+            }
+
+            $manualInput['attributeList']['data-js-row-id'] = $manualInput['uniqueId']; 
+
+            $filteredManualInputs[] = $manualInput;
+        }
+
+        return $filteredManualInputs;
     }
 
     private function registerMeta(): void

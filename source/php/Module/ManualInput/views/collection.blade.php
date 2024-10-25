@@ -6,10 +6,11 @@
         @foreach ($manualInputs as $input)
             @collection__item([
                 'link' => $input['link'],
-                'classList' => [$input['columnSize']],
+                'classList' => array_merge($input['classList'] ?? [], [$input['columnSize']]),
                 'context' => $context,
                 'containerAware' => true,
                 'bordered' => true,
+                'attributeList' => $input['attributeList'] ?? []
             ])
                 @slot('before')
                     @if (!empty($input['image']))
