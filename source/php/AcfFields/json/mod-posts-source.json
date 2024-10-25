@@ -269,10 +269,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "1": "Municipio Local",
-                "2": "Second Site"
-            },
+            "choices": [],
             "default_value": [],
             "return_format": "value",
             "multiple": 1,

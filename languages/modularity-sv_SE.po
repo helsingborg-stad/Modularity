@@ -1473,6 +1473,7 @@ msgstr "Aktiverad"
 
 #: php/AcfFields/php/mod-map.php:219
 #: php/AcfFields/php/mod-posts-displau.php:638
+#: php/AcfFields/php/mod-posts-source.php:214
 msgid "Disabled"
 msgstr "Avaktiverad"
 
@@ -10463,11 +10464,11 @@ msgstr "Inlägg som har förälder"
 msgid "Set to -1 to show all"
 msgstr "Ange -1 för att visa alla"
 
-#: php/AcfFields/php/mod-posts-source.php:201
+#: php/AcfFields/php/mod-posts-source.php:229
 msgid "Link to post type archive"
 msgstr "Länka till posttypens arkiv"
 
-#: php/AcfFields/php/mod-posts-source.php:222
+#: php/AcfFields/php/mod-posts-source.php:250
 msgid "Yes, link to post type archive"
 msgstr "Ja, länka till posttypens arkiv"
 
@@ -10725,7 +10726,7 @@ msgstr "Extern"
 
 #: php/AcfFields/php/mod-slider.php:759
 #: php/Module/ManualInput/ManualInput.php:109
-#: php/Module/Posts/Posts.php:183
+#: php/Module/Posts/Posts.php:187
 #: php/Module/Slider/Slider.php:215
 msgid "Read more"
 msgstr "Läs mer"
@@ -12136,13 +12137,13 @@ msgid "Outputs a gallery with images"
 msgstr "Visar ett galleri med bilder"
 
 #: php/Module/Gallery/Gallery.php:27
-#: php/Module/Posts/Posts.php:168
+#: php/Module/Posts/Posts.php:172
 #: php/Module/Slider/Slider.php:69
 msgid "Previous slide"
 msgstr "Gå till föregående bild"
 
 #: php/Module/Gallery/Gallery.php:28
-#: php/Module/Posts/Posts.php:169
+#: php/Module/Posts/Posts.php:173
 #: php/Module/Slider/Slider.php:70
 msgid "Next slide"
 msgstr "Gå till nästa bild"
@@ -12298,16 +12299,16 @@ msgstr "Visar en notis"
 msgid "Modularity expandable list column values"
 msgstr "Expanderbar lista - kolumninnehåll"
 
-#: php/Module/Posts/Posts.php:32
-#: php/Module/Posts/Posts.php:33
+#: php/Module/Posts/Posts.php:28
+#: php/Module/Posts/Posts.php:29
 msgid "Posts"
 msgstr "Inlägg"
 
-#: php/Module/Posts/Posts.php:34
+#: php/Module/Posts/Posts.php:30
 msgid "Outputs selected posts in specified layout"
 msgstr "Visar valda inlägg i en vald layout"
 
-#: php/Module/Posts/Posts.php:182
+#: php/Module/Posts/Posts.php:186
 msgid "Show more"
 msgstr "Visa mer"
 
@@ -12750,15 +12751,13 @@ msgstr ""
 msgid "Schema Type"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:229
-#: php/AcfFields/php/mod-posts-source.php:271
+#: php/AcfFields/php/mod-posts-source.php:257
 msgid "From network sites"
-msgstr ""
+msgstr "Från andra sajter i nätverket"
 
-#: php/AcfFields/php/mod-posts-source.php:233
-#: php/AcfFields/php/mod-posts-source.php:275
+#: php/AcfFields/php/mod-posts-source.php:261
 msgid "Get posts from other sites in the network. Leave empty to only show posts from this site. If you chose one or more from this list you must also choose this site to get posts from this site."
-msgstr ""
+msgstr "Hämta poster från andrea sajter i nätverket. Lämna tom för att endast visa poster från denna sajt. Om du väljer en eller flera från denna lista måste du också välja denna sajten för att inkludera poster från denna sajten."
 
 #: php/AcfFields/php/mod-search.php:8
 msgid "Search Module"
@@ -12839,3 +12838,23 @@ msgstr "Välj användare"
 #: php/AcfFields/php/mod-contacts.php:177
 msgid "Add phone number"
 msgstr "Lägg till telefonnummer"
+
+#: php/AcfFields/php/mod-posts-source.php:201
+msgid "Pagination"
+msgstr "Paginering"
+
+#: php/AcfFields/php/mod-posts-source.php:215
+msgid "Page numbers"
+msgstr "Sidnummer"
+
+#: php/AcfFields/php/mod-posts-source.php:217
+msgid "disabled"
+msgstr ""
+
+#: php/Module/Posts/Posts.php:222
+msgid "First page"
+msgstr "Första sidan"
+
+#: php/Module/Posts/Posts.php:228
+msgid "Page %d"
+msgstr "Sida %d"

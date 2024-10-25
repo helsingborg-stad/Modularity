@@ -280,8 +280,6 @@
                 'id' => '',
             ),
             'choices' => array(
-                1 => __('Municipio Local', 'modularity'),
-                2 => __('Second Site', 'modularity'),
             ),
             'default_value' => array(
             ),
