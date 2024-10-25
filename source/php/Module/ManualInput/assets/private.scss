@@ -1,0 +1,48 @@
+$base: var(--base, 8px) !default;
+$color-primary: var(--color-primary, #ec6701) !default;
+$color-white: var(--color-white, #ffffff) !default;
+$color-primary-contrasting: var(--color-primary-contrasting, $color-white) !default;
+
+.mod-manual-input-private {
+    .mod-manual-input-private__grid {
+        grid-template-columns: auto 1fr;
+    }
+
+    .mod-manual-input-private__form {
+        outline: 2px solid $color-primary;
+        outline-offset: -1px;
+        border-radius: $base;
+    }
+
+    .mod-manual-input-private__form-title:not(.mod-manual-input-private__description) {
+        border-top-left-radius: $base;
+    }   
+    
+    .mod-manual-input-private__form-title:not(.mod-manual-input-private__value) {
+        border-top-right-radius: $base;
+    }
+
+    .mod-manual-input-private__form-title {
+        background-color: $color-primary;
+        margin-top: 0 !important;
+        color: $color-primary-contrasting;
+    }    
+
+    .mod-manual-input-private__edit-button {
+        cursor: pointer;
+    }
+
+    .mod-manual-input-private__description,
+    .mod-manual-input-private__value {
+        padding: calc($base * 2) calc($base * 3);
+    }
+
+    .mod-manual-input-private__description:not(.mod-manual-input-private__form-title),
+    .mod-manual-input-private__value:not(.mod-manual-input-private__form-title) {
+        padding: calc($base * 3) calc($base * 3);
+    }
+
+    .mod-manual-input-private__buttons {
+        padding-top: calc($base * 6);
+    }
+}

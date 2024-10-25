@@ -39,7 +39,8 @@ class PrivateController
             'description' => __('Description', 'modularity'),
             'name'        => __('Name', 'modularity'),
             'saving'      => __('Saving', 'modularity'),
-            'obligatory'  => __('This item is obligatory', 'modularity')
+            'obligatory'  => __('This item is obligatory', 'modularity'),
+            'error'       => __('An error occurred and the data could not be saved. Please try again later', 'modularity'),
         ];
 
         $data['filteredManualInputs'] = $this->getUserStructuredManualInputs($data, $user->ID);
@@ -59,8 +60,8 @@ class PrivateController
 
         $filteredManualInputs = [];
         foreach ($data['manualInputs'] as $manualInput) {
-            $manualInput['classList'] = isset($manualInput['classList']) ? $manualInput['classList'] : [];
-            $manualInput['attributeList'] = isset($manualInput['attributeList']) ? $manualInput['attributeList'] : [];
+            $manualInput['classList'] ??= [];
+            $manualInput['attributeList'] ??= [];
 
             if (
                 empty($manualInput['obligatory']) && 
@@ -73,7 +74,7 @@ class PrivateController
                 $manualInput['checked'] = true;
             }
 
-            $manualInput['attributeList']['data-js-row-id'] = $manualInput['uniqueId']; 
+            $manualInput['attributeList']['data-js-item-id'] = $manualInput['uniqueId']; 
 
             $filteredManualInputs[] = $manualInput;
         }
@@ -103,7 +104,7 @@ class PrivateController
         ));
     }
 
-    public function assignUniqueIdToRows($value, $post_id, $field, $original): string
+    public function assignUniqueIdToRows($value, $postId, $field, $original): string
     {
         if (empty($value)) {
             $value = self::$index . '-' . uniqid();

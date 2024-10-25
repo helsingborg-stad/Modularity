@@ -1,10 +1,11 @@
-TODO: ALLA ELEMENT VERKAR HA c-component--text-align-left class
-
 @element([
     'attributeList' => [                
         'data-js-manual-input-user' => $user,
         'data-js-manual-input-id' => $ID,
-        'data-js-manual-input-user-ordering' = ''
+        'data-js-manual-input-user-ordering' => ''
+    ],
+    'classList' => [
+        'mod-manual-input-private',
     ]
 ])
     @includeFirst([$template, 'base'],
@@ -14,53 +15,81 @@ TODO: ALLA ELEMENT VERKAR HA c-component--text-align-left class
             'icon' => 'edit',
             'size' => 'md',
             'attributeList' => [
-                'data-open' => 'modal-' . $ID,
-                'style' => 'cursor: pointer;'
+                'data-open' => 'modal-' . $ID
+            ],
+            'classList' => [
+                'mod-manual-input-private__edit-button'
             ]
         ]
     ])
 
     @modal([
         'id' => 'modal-' . $ID,
-        'isPanel' => true
+        'size' => 'md'
     ])
-        <div class="o-container">
-        @form([
-            'method'    => 'POST',
-            'classList' => ['u-print-display--none'],
+    @group([
+        'classList' => [
+            'o-container',
+            'u-padding__bottom--6',
+            'u-padding__top--6',
+        ],
+        'direction' => 'vertical',
+        'justifyContent' => 'center'
+    ])
+        @notice([
+            'type' => 'error',
+            'classList' => [
+                'u-display--none',
+                'u-print-display--none',
+                'u-margin__bottom--2'
+            ],
+            'message' => ['text' => $lang['error']],
             'attributeList' => [
-                'data-js-manual-input-user' => $user,
-                'data-js-manual-input-id' => $ID,
-                'data-js-manual-input-form' => ''
+                'data-js-manual-input-error' => ''
+            ],
+            'icon' => [
+                'name' => 'report',
+                'size' => 'md',
+                'color' => 'white'
+            ]
+        ])
+        @endnotice
+        @form([
+            'classList' => [
+                'u-print-display--none',
+                'mod-manual-input-private__form',
+            ],
+            'attributeList' => [
+                'data-js-manual-input-form' => '',
             ]
         ])
             @group([
                 'display' => 'grid',
-                'gap' => 3,
-                'attributeList' => [
-                    'style' => 'grid-template-columns: auto 1fr;'
-                ],
                 'classList' => [
-                    'u-margin__bottom--3'
+                    'mod-manual-input-private__grid'
                 ],
             ])
                     @typography([
                         'element' => 'h3',
-                        'variant' => 'h4',
-                        'classList' => ['u-margin__top--0']
+                        'classList' => [
+                            'mod-manual-input-private__form-title',
+                            'mod-manual-input-private__value'
+                        ]
                     ])
                         {{ $lang['name'] }}
                     @endtypography
                     @typography([
                         'element' => 'h3',
-                        'variant' => 'h4',
-                        'classList' => ['u-margin__top--0']
+                        'classList' => [
+                            'mod-manual-input-private__form-title',
+                            'mod-manual-input-private__description'
+                        ]
                     ])
                         {{ $lang['description'] }}
                     @endtypography
 
                 @foreach ($filteredManualInputs as $input)
-                    <div @if(!empty($input['obligatory'])) data-tooltip="{{ $lang['obligatory'] }}" @endif>
+                    <div class="mod-manual-input-private__value" @if(!empty($input['obligatory'])) data-tooltip="{{ $lang['obligatory'] }}" @endif>
                         @option([
                             'type' => 'checkbox',
                             'value' => $input['uniqueId'],
@@ -74,7 +103,7 @@ TODO: ALLA ELEMENT VERKAR HA c-component--text-align-left class
                         ])
                         @endoption
                     </div>
-                    <div>
+                    <div class="mod-manual-input-private__description">
                         @if (!empty($input['linkDescription']))
                             {{ $input['linkDescription'] }}
                         @endif
@@ -82,28 +111,31 @@ TODO: ALLA ELEMENT VERKAR HA c-component--text-align-left class
                 @endforeach
             @endgroup
 
-            @button([
-                'text' => $lang['save'],
-                'type' => 'submit',
-                'size' => 'md',
-                'color' => 'primary',
-                'disableColor' => false,
-                'attributeList' => [
-                    'data-js-saving-lang' => $lang['saving'],
-                ]
-            ])
-            @endbutton
-            @button([
-                'text' => $lang['cancel'],
-                'size' => 'md',
-                'color' => 'default',
-                'attributeList' => [
-                    'data-close' => ''
-                ],
-                'disableColor' => false,
-            ])
-            @endbutton
         @endform
-        </div>    
+            <div class="mod-manual-input-private__buttons">
+                @button([
+                    'text' => $lang['save'],
+                    'type' => 'submit',
+                    'size' => 'md',
+                    'color' => 'primary',
+                    'disableColor' => false,
+                    'attributeList' => [
+                        'data-js-saving-lang' => $lang['saving'],
+                    ]
+                ])
+                @endbutton
+                @button([
+                    'text' => $lang['cancel'],
+                    'size' => 'md',
+                    'color' => 'default',
+                    'attributeList' => [
+                        'data-close' => '',
+                        'data-js-cancel-save' => ''
+                    ],
+                    'disableColor' => false,
+                ])
+                @endbutton
+            </div>
+        @endgroup
     @endmodal
 @endelement

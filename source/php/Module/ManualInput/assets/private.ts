@@ -3,13 +3,19 @@ declare const wpApiSettings: any;
 interface ValuesInterface {
     [key: string]: boolean;
 }
+
+interface ManualInputItemsObject {
+    [key: string]: HTMLElement;
+}
+
 class UserOrdering {
     private savingLang: string = 'Saving';
     private buttonText: string;
     constructor(
-        private form: HTMLFormElement, 
         private submitButton: HTMLButtonElement,
         private closeButton: HTMLButtonElement,
+        private errorNotice: HTMLElement,
+        private manualInputItemsObject: ManualInputItemsObject,
         private checkboxes: NodeListOf<HTMLInputElement>,
         private readonly userId: string, 
         private readonly moduleId: string
@@ -48,14 +54,12 @@ class UserOrdering {
             },
         })
         .then(response => {
-            // Check for successful response
             if (!response.ok) {
                 throw new Error('Failed to fetch existing user data');
             }
             return response.json();
         })
         .then(data => {
-            // Get existing manualInputs or initialize it
             let manualInputs = data.meta?.manualInputs || {};
             
             manualInputs[this.moduleId] = values;
@@ -74,48 +78,79 @@ class UserOrdering {
             });
         })
         .then(() => {
-            this.handleSuccessfullSave();
+            this.handleSuccessfullSave(values);
         })
         .catch(error => {
             console.error('Error:', error);
             this.handleFailedSave();
         });
     }
-    
-    private handleFailedSave() {
-
-    }
-
-    private handleSuccessfullSave() {
-        this.submitButton.disabled = false;
-        this.closeButton.disabled = false;
-        this.submitButton.textContent = this.buttonText;
-        this.closeButton.click();
-    }
 
     private handleBeforeSave() {
         this.submitButton.disabled = true;
         this.closeButton.disabled = true;
+        console.log(this.closeButton);
         this.submitButton.textContent = this.savingLang + '...';
+    }
+    
+    private handleFailedSave() {
+        this.errorNotice.classList.remove('u-display--none');
+        this.submitButton.disabled = false;
+        this.closeButton.disabled = false;
+        this.submitButton.textContent = this.buttonText;
+    }
+
+    private handleSuccessfullSave(values: ValuesInterface) {
+        this.submitButton.disabled = false;
+        this.closeButton.disabled = false;
+        this.submitButton.textContent = this.buttonText;
+        this.showOrHideItemsBasedOnSaved(values);
+        this.closeButton.click();
+    }
+
+    private showOrHideItemsBasedOnSaved(values: ValuesInterface) {
+
+        for (const [key, element] of Object.entries(this.manualInputItemsObject)) { 
+            if (!(key in values)) {
+                continue;
+            }
+
+            if (values[key]) {
+                element.classList.remove('u-display--none');
+            } else {
+                element.classList.add('u-display--none');
+            }
+        }
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const privateManualInputs = document.query
-    const forms = document.querySelectorAll('form[data-js-manual-input-form]');
+    const privateManualInputs = document.querySelectorAll('[data-js-manual-input-user-ordering]');
+    
+    privateManualInputs.forEach(privateManualInput => {
+        const userId = privateManualInput.getAttribute('data-js-manual-input-user');
+        const moduleId = privateManualInput.getAttribute('data-js-manual-input-id');
+        const submitButton = privateManualInput.querySelector('button[type="submit"]');
+        const checkboxes = privateManualInput.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+        const errorNotice = privateManualInput.querySelector('[data-js-manual-input-error]');
+        let manualInputItemsObject: ManualInputItemsObject = {};
 
-    forms.forEach(form => {
-        const userId = form.getAttribute('data-js-manual-input-user');
-        const moduleId = form.getAttribute('data-js-manual-input-id');
-        const submitButton = form.querySelector('button[type="submit"]');
-        const checkboxes = form.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
-        const closeButton = form.querySelector('button[data-close]');
+        privateManualInput.querySelectorAll('[data-js-item-id]').forEach(item => {
+            const itemId = item.getAttribute('data-js-item-id');
+            if (itemId) {
+                manualInputItemsObject[itemId] = item as HTMLElement;
+            }
+        });
+
+        const closeButton = privateManualInput.querySelector('button[data-js-cancel-save]');
 
         if (submitButton && closeButton && userId && moduleId && checkboxes.length) {
+
             new UserOrdering(
-                form as HTMLFormElement, 
                 submitButton as HTMLButtonElement, 
                 closeButton as HTMLButtonElement, 
+                errorNotice as HTMLElement,
+                manualInputItemsObject,
                 checkboxes, 
                 userId, 
                 moduleId

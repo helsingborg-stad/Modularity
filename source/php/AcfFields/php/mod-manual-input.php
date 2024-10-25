@@ -506,7 +506,7 @@
                         ),
                     ),
                     'wrapper' => array(
-                        'width' => '25',
+                        'width' => '50',
                         'class' => '',
                         'id' => '',
                     ),
@@ -518,35 +518,6 @@
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 5 => array(
-                    'key' => 'field_6715fa430ed6f',
-                    'label' => __('Optional', 'modularity'),
-                    'name' => 'optional',
-                    'aria-label' => '',
-                    'type' => 'true_false',
-                    'instructions' => '',
-                    'required' => 0,
-                    'conditional_logic' => array(
-                        0 => array(
-                            0 => array(
-                                'field' => 'field_67126c170c176',
-                                'operator' => '==',
-                                'value' => '1',
-                            ),
-                        ),
-                    ),
-                    'wrapper' => array(
-                        'width' => '25',
-                        'class' => '',
-                        'id' => '',
-                    ),
-                    'message' => '',
-                    'default_value' => 0,
-                    'ui' => 0,
-                    'ui_on_text' => '',
-                    'ui_off_text' => '',
-                    'parent_repeater' => 'field_64ff22b2d91b7',
-                ),
-                6 => array(
                     'key' => 'field_6718c31e2862b',
                     'label' => __('UniqueId', 'modularity'),
                     'name' => 'unique_id',
@@ -575,7 +546,7 @@
                     'append' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                7 => array(
+                6 => array(
                     'key' => 'field_6717a0079988c',
                     'label' => __('Link description', 'modularity'),
                     'name' => 'link_description',
@@ -604,7 +575,7 @@
                     'append' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                8 => array(
+                7 => array(
                     'key' => 'field_65002bce6d459',
                     'label' => __('Link text', 'modularity'),
                     'name' => 'link_text',
@@ -633,7 +604,7 @@
                     'append' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                9 => array(
+                8 => array(
                     'key' => 'field_64ff2355d91bb',
                     'label' => __('Image', 'modularity'),
                     'name' => 'image',
@@ -674,7 +645,7 @@
                     'library' => 'all',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
-                10 => array(
+                9 => array(
                     'key' => 'field_65293de2a26c7',
                     'label' => __('Icon', 'modularity'),
                     'name' => 'box_icon',
