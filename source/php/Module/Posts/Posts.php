@@ -205,17 +205,7 @@ class Posts extends \Modularity\Module
      * @return int Default is 1
      */
     private function getPageNumber():int {
-        $valueFromGetParam = filter_input(
-            INPUT_GET,
-            $this->getPagintationIdentifier(),
-            FILTER_SANITIZE_NUMBER_INT
-        );
-        
-        if (empty($valueFromGetParam)) {
-            return 1;
-        }
-        
-        return $valueFromGetParam;
+        return filter_input( INPUT_GET, $this->getPagintationIdentifier(), FILTER_SANITIZE_NUMBER_INT ) ?: 1;
     }
 
     /**
