@@ -9,6 +9,13 @@
     'alt'               => $slide['hasImageContract'] ? null : $slide['image']['alt'],
     'heroStyle'         => $sidebarContext === 'sidebar.slider-area',
     'cta'               => $slide['call_to_action'] ?? null,
-    'context'           => ['module.slider-item', $sidebarContext . '.module.slider-item']
+    'context'           => [
+        'module.slider-item', 
+        $sidebarContext . '.module.slider-item',
+         (
+            $sidebarContext === 'sidebar.slider-area' ? 
+            'module.slider.hero.slider-item' : 'module.slider.default.slider-item'
+        )
+    ]
 ])
 @endslider__item
