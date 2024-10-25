@@ -100,44 +100,6 @@ class Posts extends \Modularity\Module
         return $field;
     }
 
-    private function getPagintationIdentifier():string {
-        return "{$this->post_type}-{$this->ID}-page";
-    }
-
-    private function getPageNumber():int {
-        $valueFromGetParam = filter_input(
-            INPUT_GET,
-            $this->getPagintationIdentifier(),
-            FILTER_SANITIZE_NUMBER_INT
-        );
-        
-        if (empty($valueFromGetParam)) {
-            return 1;
-        }
-        
-        return $valueFromGetParam;
-    }
-
-    private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
-        
-        $listItemOne = [
-            'href' => remove_query_arg($this->getPagintationIdentifier()),
-            'label' => __("First page", 'modularity')
-        ];
-
-        $listItems = array_map(function($pageNumber) {
-            return [
-                'href' => add_query_arg($this->getPagintationIdentifier(), $pageNumber),
-                'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
-            ];
-        }, range(2, $maxNumPages));
-
-        return [
-            'list' => array_merge([$listItemOne], $listItems),
-            'current' => $currentPage
-        ];
-    }
-
     /**
      * @return array
      */
@@ -226,6 +188,61 @@ class Posts extends \Modularity\Module
         ];
 
         return $data;
+    }
+
+    /**
+     * Get pagination identifier
+     * 
+     * @return string
+     */
+    private function getPagintationIdentifier():string {
+        return "{$this->post_type}-{$this->ID}-page";
+    }
+
+    /**
+     * Get current page number
+     * 
+     * @return int Default is 1
+     */
+    private function getPageNumber():int {
+        $valueFromGetParam = filter_input(
+            INPUT_GET,
+            $this->getPagintationIdentifier(),
+            FILTER_SANITIZE_NUMBER_INT
+        );
+        
+        if (empty($valueFromGetParam)) {
+            return 1;
+        }
+        
+        return $valueFromGetParam;
+    }
+
+    /**
+     * Get pagination arguments for page numbers.
+     * 
+     * @param int $maxNumPages
+     * @param int $currentPage
+     * @return array
+     */
+    private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
+        
+        $listItemOne = [
+            'href' => remove_query_arg($this->getPagintationIdentifier()),
+            'label' => __("First page", 'modularity')
+        ];
+
+        $listItems = array_map(function($pageNumber) {
+            return [
+                'href' => add_query_arg($this->getPagintationIdentifier(), $pageNumber),
+                'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
+            ];
+        }, range(2, $maxNumPages));
+
+        return [
+            'list' => array_merge([$listItemOne], $listItems),
+            'current' => $currentPage
+        ];
     }
 
     /**
