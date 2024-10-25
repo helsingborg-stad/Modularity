@@ -54,11 +54,16 @@
                 'data-js-manual-input-form' => '',
             ]
         ])
-        @collection()
+        @collection([
+            'bordered' => true,
+            'attributeList' => [
+                'style' => 'border: none;'
+            ]
+        ])
             @foreach ($filteredManualInputs as $input)
                 @collection__item([])
                     @slot('prefix')
-                        <div class="c-collection__icon" style="margin-top: 4px;" @if(!empty($input['obligatory'])) data-tooltip="{{ $lang['obligatory'] }}" @endif>
+                        <div class="c-collection__icon u-padding__left--0" @if(!empty($input['obligatory'])) data-tooltip="{{ $lang['obligatory'] }}" @endif>
                             @option([
                                 'type' => 'checkbox',
                                 'value' => $input['uniqueId'],
@@ -68,7 +73,7 @@
                                     (!empty($input['obligatory']) ? ['disabled' => ''] : [])
                                 ),
                                 'checked' => $input['checked'],
-                                'classList' => [(!empty($input['obligatory']) ? 'is-disabled' : '')]
+                                'classList' => ['u-display--flex', (!empty($input['obligatory']) ? 'is-disabled' : '')]
                             ])
                             @endoption
                         </div>
@@ -90,17 +95,10 @@
         @endform
         @endgroup
         @slot('bottom')
-            @button([
-                'text' => $lang['save'],
-                'type' => 'submit',
-                'size' => 'md',
-                'color' => 'primary',
-                'disableColor' => false,
-                'attributeList' => [
-                    'data-js-saving-lang' => $lang['saving'],
-                ]
-            ])
-            @endbutton
+        @group([
+            'justifyContent' => 'flex-end',
+            'gap' => 1
+        ])
             @button([
                 'text' => $lang['cancel'],
                 'size' => 'md',
@@ -112,6 +110,18 @@
                 'disableColor' => false,
             ])
             @endbutton
+            @button([
+                'text' => $lang['save'],
+                'type' => 'submit',
+                'size' => 'md',
+                'color' => 'primary',
+                'disableColor' => false,
+                'attributeList' => [
+                    'data-js-saving-lang' => $lang['saving'],
+                ]
+            ])
+            @endbutton
+        @endgroup
         @endslot
     @endmodal
 @endelement
