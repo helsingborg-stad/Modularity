@@ -11,6 +11,7 @@ import Modal from './prompt/modal';
 
 import { ModulesRestAPI, ModulesRestAPIEndpoints } from './helpers/ModulesRestAPI';
 import { ModuleRefresher, ensureWPApiSettings } from './helpers/ModuleRefresher';
+import { PaginationTransition } from './helpers/PaginationTransition';
 
 if (!parent.Modularity) {
     var Modularity = parent.Modularity || {};
@@ -109,4 +110,8 @@ if (!parent.Modularity) {
     } catch (error) {
         console.warn(error);
     }
+})();
+
+(function () {
+    new PaginationTransition().setupEventListeners();
 })();
