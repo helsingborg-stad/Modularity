@@ -50,9 +50,7 @@
                 ]
             ],
             "wrapper": {
-                "width": "",
-                "class": "modularity-latest-post-type",
-                "id": "modularity-latest-post-type"
+                "width": ""
             },
             "choices": [],
             "default_value": false,
@@ -312,4 +310,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

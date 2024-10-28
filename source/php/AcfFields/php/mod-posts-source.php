@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
     'title' => __('Data source', 'modularity'),
     'fields' => array(
@@ -53,9 +55,7 @@
                 ),
             ),
             'wrapper' => array(
-                'width' => '',
-                'class' => 'modularity-latest-post-type',
-                'id' => 'modularity-latest-post-type',
+                'width' => ''
             ),
             'choices' => array(
             ),
@@ -324,4 +324,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
