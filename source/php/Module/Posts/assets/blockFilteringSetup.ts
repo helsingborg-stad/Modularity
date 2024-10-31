@@ -59,7 +59,6 @@ class BlockFilteringSetup {
     }
 
     private getFilterElements(block: Block): FilterElements|null {
-        console.log(block.clientId);
         const filterContainerElement    = document.querySelector('#block-' + block.clientId);
         const sidebar                   = document.getElementById(this.sidebarId);
 
