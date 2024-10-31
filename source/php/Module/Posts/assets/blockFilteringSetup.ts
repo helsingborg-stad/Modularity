@@ -5,6 +5,10 @@ declare const wp: any;
 
 class BlockFilteringSetup {
     private initializedPostsBlocks: Array<string>;
+    private postTypeSelectFieldKey: string = '571dfc40f8114';
+    private taxonomySelectFieldKey: string = '571e048136f10';
+    private termsSelectFieldKey: string = '571e049636f11';
+    private sidebarId: string = 'edit-post:block';
 
     constructor(private postId: string) {
         this.initializedPostsBlocks = [];
@@ -13,7 +17,7 @@ class BlockFilteringSetup {
 
     private listenForBlocks() {
         const editor = wp.data.select('core/block-editor');
-
+        
         wp.data.subscribe(() => {
             const postsBlockIds = editor.getBlocksByName('acf/posts');
             if (postsBlockIds.length > 0) {
@@ -55,12 +59,13 @@ class BlockFilteringSetup {
     }
 
     private getFilterElements(block: Block): FilterElements|null {
+        console.log(block.clientId);
         const filterContainerElement    = document.querySelector('#block-' + block.clientId);
-        const taxonomySelect            = filterContainerElement?.querySelector('.modularity-latest-taxonomy select');
-        const termsSelect               = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value select');
-        const taxonomySelectLabel       = filterContainerElement?.querySelector('.modularity-latest-taxonomy .acf-label label');
-        const termsSelectLabel          = filterContainerElement?.querySelector('.modularity-latest-taxonomy-value .acf-label label');
-        const postTypeSelect            = filterContainerElement?.querySelector('.modularity-latest-post-type select');
+        const sidebar                   = document.getElementById(this.sidebarId);
+
+        const {taxonomySelect, taxonomySelectLabel} = this.getTaxonomyElements(block, sidebar, filterContainerElement);
+        const {termsSelect, termsSelectLabel} = this.getTermsElements(block, sidebar, filterContainerElement);
+        const postTypeSelect = this.getPostTypeElement(block, sidebar, filterContainerElement);
 
         if (
             !postTypeSelect || 
@@ -80,6 +85,24 @@ class BlockFilteringSetup {
             termsSelect: (termsSelect as HTMLSelectElement),
             termsSelectLabel: (termsSelectLabel as HTMLElement),
         };
+    }
+
+    private getTaxonomyElements(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
+        const taxonomySelect      = filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.taxonomySelectFieldKey}`);
+        const taxonomySelectLabel = filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] .acf-label label`) || sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.taxonomySelectFieldKey}"`);
+
+        return {taxonomySelect, taxonomySelectLabel};
+    }
+
+    private getTermsElements(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
+        const termsSelect         = filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.termsSelectFieldKey}`);
+        const termsSelectLabel    = filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] .acf-label label`) || sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.termsSelectFieldKey}"`);
+
+        return {termsSelect, termsSelectLabel};
+    }
+
+    private getPostTypeElement(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
+        return filterContainerElement?.querySelector(`[data-key="field_${this.postTypeSelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.postTypeSelectFieldKey}`);
     }
 }
 
