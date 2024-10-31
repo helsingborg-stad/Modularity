@@ -64,8 +64,8 @@ class BlockFilteringSetup {
         const sidebar                   = document.getElementById(this.sidebarId);
 
         const {taxonomySelect, taxonomySelectLabel} = this.getTaxonomyElements(block, sidebar, filterContainerElement);
-        const {termsSelect, termsSelectLabel} = this.getTermsElements(block, sidebar, filterContainerElement);
-        const postTypeSelect = this.getPostTypeElement(block, sidebar, filterContainerElement);
+        const {termsSelect, termsSelectLabel}       = this.getTermsElements(block, sidebar, filterContainerElement);
+        const postTypeSelect                        = this.getPostTypeElement(block, sidebar, filterContainerElement);
 
         if (
             !postTypeSelect || 
