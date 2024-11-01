@@ -178,7 +178,7 @@ if (function_exists('acf_add_local_field_group')) {
             'name' => 'posts_count',
             'aria-label' => '',
             'type' => 'number',
-            'instructions' => __('Set to -1 to show all (Maximum of 100)', 'modularity'),
+            'instructions' => __('Amount of posts to show (Maximum of 100)', 'modularity'),
             'required' => 1,
             'conditional_logic' => 0,
             'wrapper' => array(
@@ -186,7 +186,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => -1,
+            'default_value' => 10,
             'min' => '',
             'max' => '',
             'step' => '',

@@ -166,7 +166,7 @@
             "name": "posts_count",
             "aria-label": "",
             "type": "number",
-            "instructions": "Set to -1 to show all (Maximum of 100)",
+            "instructions": "Amount of posts to show (Maximum of 100)",
             "required": 1,
             "conditional_logic": 0,
             "wrapper": {
@@ -174,7 +174,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": -1,
+            "default_value": 10,
             "min": "",
             "max": "",
             "step": "",
