@@ -28,6 +28,7 @@
                         'author' => $contact['full_name'] ?? '', 
                         'authorRole' => $contact['full_title'],
                         'avatar' => $contact['thumbnail'][0] ?? null,
+                        'placeholderAvatar' => isset($placeholder_avatar) ? $placeholder_avatar : true,
                         'classList' => ['u-margin--2'],
                     ])
                     @endsignature
