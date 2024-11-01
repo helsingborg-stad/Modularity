@@ -182,7 +182,9 @@ class GetPosts
 
         // Number of posts
         if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
-            $getPostsArgs['posts_per_page'] = $fields['posts_count'];
+            $postsPerPage = ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
+
+            $getPostsArgs['posts_per_page'] = $postsPerPage;
         }
 
         // Apply pagination
