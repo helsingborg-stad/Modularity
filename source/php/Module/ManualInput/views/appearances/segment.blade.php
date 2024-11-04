@@ -7,7 +7,8 @@
     'buttons' => [['text' => $input['linkText'], 'href' => $input['link'], 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => $imagePosition,
-    'classList' => [$input['columnSize']],
+    'classList' => array_merge($input['classList'] ?? [], [$input['columnSize']]),
     'hasPlaceholder' => $anyItemHasImage,
+    'attributeList' => $input['attributeList'] ?? []
 ])
 @endsegment
