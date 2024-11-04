@@ -202,7 +202,15 @@ if (function_exists('acf_add_local_field_group')) {
             'type' => 'select',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfaafe6984',
+                        'operator' => '!=',
+                        'value' => 'manual',
+                    ),
+                ),
+            ),
             'wrapper' => array(
                 'width' => '',
                 'class' => '',
