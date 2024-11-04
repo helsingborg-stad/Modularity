@@ -3,6 +3,56 @@
     "title": "Contacts",
     "fields": [
         {
+            "key": "field_5805e5dc1ddcd",
+            "label": "Columns",
+            "name": "columns",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "grid-md-12": "1",
+                "grid-md-6": "2",
+                "grid-md-4": "3",
+                "grid-md-3": "4"
+            },
+            "default_value": "o-grid-12@md",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
+            "key": "field_6724b0113e1b6",
+            "label": "Placeholder avatar",
+            "name": "placeholder_avatar",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "If the items that are missing an avatar image should show a placeholder avatar. This avatar will be based on the name of the author.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_5805e5dc1dc55",
             "label": "Contacts",
             "name": "contacts",
@@ -461,36 +511,6 @@
                 "acfe_flexible_modal_col": "4",
                 "acfe_flexible_modal_categories": false
             }
-        },
-        {
-            "key": "field_5805e5dc1ddcd",
-            "label": "Columns",
-            "name": "columns",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "grid-md-12": "1",
-                "grid-md-6": "2",
-                "grid-md-4": "3",
-                "grid-md-3": "4"
-            },
-            "default_value": "o-grid-12@md",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
         }
     ],
     "location": [
