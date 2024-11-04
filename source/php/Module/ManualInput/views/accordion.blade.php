@@ -1,4 +1,4 @@
-<div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}">
+<div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}" {{!empty($freeTextFiltering) ? 'js-filter-container=' . $ID : ''}}>
     @card([
         'context' => $context
     ])
@@ -8,6 +8,7 @@
             </div>
         @endif
         <div>
+            @includeWhen(!empty($freeTextFiltering), 'partials.search-field')
             @if (!empty($accordionColumnTitles))
                 <header class="accordion-table__head">
                     @foreach ($accordionColumnTitles as $title)
@@ -24,7 +25,11 @@
                 @foreach ($manualInputs as $input)
                     @accordion__item([
                         'heading' => $input['accordionColumnValues'],
-                        'attributeList' => $input['attributeList'] ?? [],
+                        'attributeList' => array_merge([
+                            'js-filter-item' => '',
+                            'js-filter-data' => ''
+                        ],
+                            $input['attributeList'] ?? []),
                         'classList' => $input['classList'] ?? []
                     ])
                         {!! $input['content'] !!}

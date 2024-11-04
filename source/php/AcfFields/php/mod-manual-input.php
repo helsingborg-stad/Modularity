@@ -87,6 +87,34 @@
             'ui' => 1,
         ),
         3 => array(
+            'key' => 'field_67289fa6dfea3',
+            'label' => __('Free text filtering', 'modularity'),
+            'name' => 'free_text_filtering',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Enables filtering using a input field.', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_656f4b44999e9',
+                        'operator' => '==',
+                        'value' => 'accordion',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        4 => array(
             'key' => 'field_650067ed6cc3c',
             'label' => __('Column marking', 'modularity'),
             'name' => 'accordion_column_marking',
@@ -114,7 +142,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_65005968bbc75',
             'label' => __('Column titles', 'modularity'),
             'name' => 'accordion_column_titles',
@@ -168,7 +196,7 @@
                 ),
             ),
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_65001d039d4c4',
             'label' => __('Columns', 'modularity'),
             'name' => 'columns',
@@ -216,7 +244,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        6 => array(
+        7 => array(
             'key' => 'field_663372f4922a5',
             'label' => __('Highlight first input', 'modularity'),
             'name' => 'highlight_first_input',
@@ -258,7 +286,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        7 => array(
+        8 => array(
             'key' => 'field_6641de045ab9d',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -291,7 +319,7 @@
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        8 => array(
+        9 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -335,7 +363,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        9 => array(
+        10 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
