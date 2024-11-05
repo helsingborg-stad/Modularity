@@ -83,7 +83,8 @@ add_action('plugins_loaded', function () {
         'mod-sites'            => 'group_58ecb6b6330f4',
         'mod-index'            => 'group_569ceab2c16ee',
 
-
+        # Conditional
+        'post-status-conditional' => 'group_671241997f07d',
     ));
     $acfExportManager->import();
 });
