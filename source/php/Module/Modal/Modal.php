@@ -17,8 +17,11 @@ class Modal extends \Modularity\Module
         $this->description = __("Outputs a button and the content of a selected Modal Content post into a modal, accessible by clicking on the button.", 'modularity');
         $this->postType = 'modal-content';
 
-        add_action('init', [$this, 'registerPostType'], 99);
-        add_filter('allowed_block_types_all', array($this, 'disallowBlockType'), 10, 2);
+        // Only run if module is enabled
+        if (in_array('mod-' . $this->slug, \Modularity\ModuleManager::getEnabled())) {
+            add_action('init', [$this, 'registerPostType'], 99);
+            add_filter('allowed_block_types_all', array($this, 'disallowBlockType'), 10, 2);
+        }
     }
 
     public function data(): array
