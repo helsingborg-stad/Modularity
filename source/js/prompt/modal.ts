@@ -4,17 +4,21 @@ declare const modularityAdminLanguage: {
 
 class Modal {
     modalContainer: HTMLDivElement | null;
-    body: HTMLElement;
+    body: HTMLElement | null;
     isOpen: boolean;
 
     constructor() {
         this.modalContainer = null;
-        this.body = document.body;
+        this.body = null;
         this.isOpen = false;
-        this.handleEvents();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            this.body = document.body;
+            this.handleEvents();
+        });
     }
 
-    private createModalContent(url: string) {
+    private createModalContent(url: string): string {
         return `
             <div class="modularity-modal-wrapper">
                 <button class="modularity-modal-close" data-modularity-modal-action="close">&times; ${modularityAdminLanguage.close}</button>
@@ -24,7 +28,12 @@ class Modal {
         `;
     }
 
-    public open(url: string) {
+    public open(url: string): void {
+        if (!this.body) {
+            console.error('Document body is not available.');
+            return;
+        }
+
         this.modalContainer = document.createElement('div');
         this.modalContainer.id = 'modularity-modal';
         this.modalContainer.innerHTML = this.createModalContent(url);
@@ -34,15 +43,21 @@ class Modal {
         this.isOpen = true;
     }
 
-    private close() {
-        if (this.modalContainer) {
-            this.body.removeChild(this.modalContainer);
-            this.body.classList.remove('modularity-modal-open');
-            this.isOpen = false;
+    private close(): void {
+        if (!this.body || !this.modalContainer) {
+            return;
         }
+
+        this.body.removeChild(this.modalContainer);
+        this.body.classList.remove('modularity-modal-open');
+        this.isOpen = false;
     }
 
-    private handleEvents() {
+    private handleEvents(): void {
+        if (!this.body) {
+            return;
+        }
+
         this.body.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
             if (target && target.getAttribute('data-modularity-modal-action') === 'close') {
