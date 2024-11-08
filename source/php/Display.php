@@ -515,7 +515,7 @@ class Display
         );
 
         //Hide module if preview
-        if (is_preview() && $module->hidden) {
+        if (is_preview() && isset($module->hidden) && $module->hidden) {
             $classes[] = 'modularity-preview-hidden';
         }
 
