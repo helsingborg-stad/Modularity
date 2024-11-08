@@ -3,9 +3,7 @@
 @collection([
     'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal'],
 ])
-    @if($renderedPosts)
-        {!! $renderedPosts !!}
-    @endif
+    {!! $renderPosts(\Municipio\PostObject\PostObjectRenderer\Appearances\Appearance::CollectionItem) !!}
 @endcollection
 
 @include('partials.more')

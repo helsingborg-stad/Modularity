@@ -4,6 +4,10 @@ namespace Modularity\Module\Posts;
 
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
+use Municipio\PostObject\PostObjectInterface;
+use Municipio\PostObject\PostObjectRenderer\Appearances\Appearance;
+use Municipio\PostObject\PostObjectRenderer\PostObjectRendererFactory;
+use Municipio\PostObject\PostObjectRenderer\PostObjectRendererInterface;
 
 /**
  * Class Posts
@@ -187,7 +191,30 @@ class Posts extends \Modularity\Module
             'readMore' => __('Read more', 'modularity')
         ];
 
+        $data['renderPosts'] = fn(Appearance $appearance) => $this->renderPosts($data['posts'], $appearance, $this->fields);
+
         return $data;
+    }
+
+    private function renderPosts(array $postObjects, Appearance $appearance):string {
+        $renderer = PostObjectRendererFactory::create($appearance, $this->getRendererConfig($appearance));
+        return join(array_map(fn ($postObject) => $this->renderPostObject($postObject, $renderer), $postObjects));
+    }
+
+    private function renderPostObject(PostObjectInterface $postObject, PostObjectRendererInterface $renderer):string {
+        return $postObject->getRendered($renderer);
+    }
+
+    protected function getRendererConfig(Appearance $appearance):array {
+
+        if($appearance === Appearance::CollectionItem) {
+            return [
+                'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
+                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
+            ];
+        }
+
+        return [];
     }
 
     /**
