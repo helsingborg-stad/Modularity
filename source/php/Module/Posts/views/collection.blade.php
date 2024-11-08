@@ -3,10 +3,8 @@
 @collection([
     'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal'],
 ])
-    @if($posts)
-        @foreach ($posts as $post)
-            @include('partials.post.collection-item')
-        @endforeach
+    @if($renderedPosts)
+        {!! $renderedPosts !!}
     @endif
 @endcollection
 
