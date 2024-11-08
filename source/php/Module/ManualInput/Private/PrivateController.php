@@ -52,12 +52,7 @@ class PrivateController
     private function getUserStructuredManualInputs(array $data): array
     {
         $userManualInputs = get_user_meta($data['user'], 'manualInputs', true);
-
-        if (empty($userManualInputs[$this->manualInputInstance->ID]) || empty($data['manualInputs'])) {
-            return $data['manualInputs'] ?? [];
-        }
-
-        $userManualInput = $userManualInputs[$this->manualInputInstance->ID];
+        $userManualInput = $userManualInputs[$this->manualInputInstance->ID] ?? null;
 
         $filteredManualInputs = [];
         foreach ($data['manualInputs'] as $manualInput) {
