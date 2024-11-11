@@ -40,14 +40,17 @@ class ManualInput extends \Modularity\Module
         $displayAs      = $this->getTemplateToUse($fields);
         $this->template = $displayAs;
 
-        $data['manualInputs']   = [];
-        $data['ID']             = $this->ID;
-        $data['columns']        = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
-        $data['context']        = ['module.manual-input.' . $this->template];
-        $data['ratio']          = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
-        $data['imagePosition']  = !empty($fields['image_position']) ? true : false;
-        $imageSize              = $this->getImageSize($displayAs);
-        $data['freeTextFiltering']     = !empty($fields['free_text_filtering']) ? true : false;
+        $data['manualInputs']      = [];
+        $data['ID']                = $this->ID;
+        $data['columns']           = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
+        $data['context']           = ['module.manual-input.' . $this->template];
+        $data['ratio']             = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
+        $data['imagePosition']     = !empty($fields['image_position']) ? true : false;
+        $imageSize                 = $this->getImageSize($displayAs);
+        $data['freeTextFiltering'] = !empty($fields['free_text_filtering']) ? true : false;
+        $data['lang']              = [
+            'search' => __('Search', 'modularity'),
+        ];
 
         $data['accordionColumnTitles'] = $this->createAccordionTitles(
             isset($fields['accordion_column_titles']) ? $fields['accordion_column_titles'] : [], 

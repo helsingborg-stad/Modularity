@@ -1,13 +1,13 @@
-<div class="c-card__body" aria-label="{{ __('Search', 'municipio') }}">
+<div class="c-card__body" aria-label="{{ $lang['search'] }}">
         @field([
             'type' => 'search',
             'name' => 'search',
-            'label' => __('Search', 'municipio'),
+            'label' => $lang['search'],
             'hideLabel' => true,
             'attributeList' => [
                 'js-filter-input' => $ID
             ],
-            'placeholder' => __('Search', 'municipio')
+            'placeholder' => $lang['search']
         ])
         @endfield
 </div>
