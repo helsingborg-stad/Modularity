@@ -272,28 +272,27 @@ class Posts extends \Modularity\Module
      * @return array
      */
     protected function getRendererConfig(Appearance $appearance):array {
-
-        if($appearance === Appearance::CollectionItem) {
-            return [
+        return match($appearance) {
+            Appearance::BoxGridItem => [
+                'gridColumnClass' => $this->fields['posts_columns'] ?? '',
+                'ratio' => $this->fields['ratio'] ?? null                
+            ],
+            Appearance::BoxSliderItem => [
+                'ratio' => $this->fields['ratio'] ?? null
+            ],
+            Appearance::CollectionItem => [
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ];
-        }
-        
-        if($appearance === Appearance::BoxGridItem) {
-            return [
-                'gridColumnClass' => $this->fields['posts_columns'] ?? '',
-                'ratio' => $this->fields['ratio'] ?? null
-            ];
-        }
-        
-        if($appearance === Appearance::BoxSliderItem) {
-            return [
-                'ratio' => $this->fields['ratio'] ?? null
-            ];
-        }
-
-        return [];
+            ],
+            Appearance::SegmentGridItem => [
+                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
+                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
+            ],
+            Appearance::SegmentSliderItem => [
+                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
+            ],
+            default => [],
+        };
     }
 
     /**
