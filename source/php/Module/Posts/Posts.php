@@ -279,6 +279,19 @@ class Posts extends \Modularity\Module
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
             ];
         }
+        
+        if($appearance === Appearance::BoxGridItem) {
+            return [
+                'gridColumnClass' => $this->fields['posts_columns'] ?? '',
+                'ratio' => $this->fields['ratio'] ?? null
+            ];
+        }
+        
+        if($appearance === Appearance::BoxSliderItem) {
+            return [
+                'ratio' => $this->fields['ratio'] ?? null
+            ];
+        }
 
         return [];
     }

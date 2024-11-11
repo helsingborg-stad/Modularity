@@ -26,17 +26,21 @@
         ]
     ])
         @foreach ($posts as $key => $post)
-            @slider__item([
-                'classList' => ['c-slider__item--post']
-            ])
-                @if ($postsDisplayAs === 'index' || $postsDisplayAs === 'items' || $postsDisplayAs === 'news')
-                    @include('partials.slider.item.index')
-                @else
-                    @include('partials.slider.item.' . $postsDisplayAs, [
-                        'display_reading_time' => $display_reading_time,
-                    ])
-                @endif
-            @endslider__item
+            @if ($postsDisplayAs === 'features-grid')
+                {!! $renderPosts(\Municipio\PostObject\PostObjectRenderer\Appearances\Appearance::BoxSliderItem) !!}
+            @else
+                @slider__item([
+                    'classList' => ['c-slider__item--post']
+                ])
+                    @if ($postsDisplayAs === 'index' || $postsDisplayAs === 'items' || $postsDisplayAs === 'news')
+                        @include('partials.slider.item.index')
+                    @else
+                        @include('partials.slider.item.' . $postsDisplayAs, [
+                            'display_reading_time' => $display_reading_time,
+                        ])
+                    @endif
+                @endslider__item
+            @endif
         @endforeach
     @endslider
 
