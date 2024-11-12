@@ -8,44 +8,18 @@ $color-primary: var(--color-primary, #ec6701) !default;
         display: flex;
         text-decoration: none;
         color: $color-primary;
-
-        .mod-menu__heading-description {
-            color: $color-black;
-        }
+        border-bottom: 2px solid $color-primary;
     }
 
     .mod-menu__heading-label {
         width: 100%;
         margin-top: 0;
-    }
-
-    .mod-menu__heading-description,
-    .mod-menu__heading-label {
         transition: transform .2s ease-in-out;
-    }
-    
-    .mod-menu__heading-label-wrapper {
-        border-bottom: 2px solid $color-primary;
-    }
-
-    .mod-menu__heading-icon {
-        margin-right: $base;
-    }
-
-    .mod-menu__heading-icon,
-    .mod-menu__heading-label-wrapper {
-        padding-bottom: calc($base * .5);
-    }
-
-    .mod-menu__list {
-        margin-top: $base;
-        padding-left: calc($base * 4);
     }
 
     a.mod-menu__heading {
         &:hover {
-            .mod-menu__heading-label,
-            .mod-menu__heading-description {
+            .mod-menu__heading-label {
                 color: $color-primary;
                 transform: translateX(calc($base * .5));
             }
