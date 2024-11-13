@@ -54,7 +54,7 @@ class Menu extends \Modularity\Module
         $menuDirector->buildStandardMenu();
         $data['menu'] = $menuBuilder->getMenu()->getMenu();
 
-
+        // echo '<pre>' . print_r( $data['menu'], true ) . '</pre>';
         // Used to decorate the data based on view.
         $dataDecorator = new DataDecorator($fields);
         
@@ -66,7 +66,7 @@ class Menu extends \Modularity\Module
     {
         if ($identifier === 'mod-menu-listing' && !$item['top_level']) {
             $item['icon'] = ['icon' => 'chevron_right', 'size' => 'md'];
-            $item['classList'][] = 'mod-menu__list-item';
+            $item['classList'][] = 'mod-menu__child';
         }
 
         return $item;

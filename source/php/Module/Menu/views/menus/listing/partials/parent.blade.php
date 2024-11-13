@@ -1,7 +1,7 @@
 @link([
     'href' => $menuItem['href'] ?? '#',
     'classList' => [
-        'mod-menu__heading',
+        'mod-menu__heading-link',
         'u-padding__bottom--1'
     ]
 ])
@@ -16,15 +16,3 @@
         {{$menuItem['label'] ?? ""}}
     @endtypography
 @endlink
-@if (!empty($menuItem['description']))
-    @typography([
-        'element' => 'span',
-        'classList' => [
-            'mod-menu__heading-description',
-            'u-margin__top--1',
-            'u-display--block'
-        ]
-    ])
-    {{ $menuItem['description'] }}
-    @endtypography
-@endif

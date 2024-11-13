@@ -4,7 +4,18 @@ $color-primary: var(--color-primary, #ec6701) !default;
 
 .mod-menu.mod-menu--listing {
     transition: .5s ease-in-out;
-    a.mod-menu__heading {
+
+    .mod-menu__grid {
+        grid-template-columns: auto 1fr;
+
+        .mod-menu__children, 
+        .mod-menu__heading-description,
+        .mod-menu__heading-link {
+            grid-column: 2;
+        }
+    }
+
+    a.mod-menu__heading-link {
         display: flex;
         text-decoration: none;
         color: $color-primary;
@@ -17,7 +28,7 @@ $color-primary: var(--color-primary, #ec6701) !default;
         transition: transform .2s ease-in-out;
     }
 
-    a.mod-menu__heading {
+    a.mod-menu__heading-link {
         &:hover {
             .mod-menu__heading-label {
                 color: $color-primary;
@@ -27,7 +38,7 @@ $color-primary: var(--color-primary, #ec6701) !default;
     }
 
     // Needs a more complex selector to override the default menu customizer styles.
-    .mod-menu__list.c-nav .mod-menu__list-item a {
+    .mod-menu__children.c-nav .mod-menu__child a {
         color: rgba($color-black, 0.96);
 
         span.c-nav__text {
