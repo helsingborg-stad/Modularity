@@ -59,8 +59,12 @@ class UserOrdering {
             return response.json();
         })
         .then(data => {
-            let manualInputs = data.meta?.manualInputs || {};
-            
+            let manualInputs = data.meta?.manualInputs;
+
+            if (!manualInputs || typeof manualInputs !== 'object' || Array.isArray(manualInputs)) {
+                manualInputs = {};
+            }
+
             manualInputs[this.moduleId] = values;
     
             return fetch(endpoint, {
@@ -88,7 +92,7 @@ class UserOrdering {
     private handleBeforeSave() {
         this.submitButton.disabled = true;
         this.closeButton.disabled = true;
-        console.log(this.closeButton);
+
         this.submitButton.textContent = this.savingLang + '...';
     }
     
