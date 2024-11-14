@@ -12,7 +12,14 @@ class ComponentFilters
     public function collectionItemCompressed($data)
     {
         $context = \Modularity\Helper\Context::get();
-        if ($context == 'sidebar.left-sidebar' || $context == 'sidebar.right-sidebar') {
+
+        $sidebarContexts = [
+            'sidebar.left-sidebar',
+            'sidebar.right-sidebar',
+            'sidebar.left-sidebar-bottom',
+            'sidebar.right-sidebar-bottom',
+        ];
+        if (in_array($context, $sidebarContexts)) {
             $data['compact'] = true;
         }
 

@@ -17,7 +17,7 @@ class Context
     /**
      * Get a context
      *
-     * @return void
+     * @return string|false
      */
     public static function get()
     {
