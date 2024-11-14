@@ -70,6 +70,26 @@
             "search_placeholder": ""
         },
         {
+            "key": "field_6734a0413d66b",
+            "label": "Background",
+            "name": "mod_menu_wrapped",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Decides if the menu is wrapped in a container.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_66c5c3e6b7b5d",
             "label": "Items Per Column",
             "name": "mod_menu_columns",

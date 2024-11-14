@@ -37,6 +37,7 @@ class Menu extends \Modularity\Module
         $wpService  = WpService::get();
 
         $data['displayAs'] = $fields['mod_menu_display_as'] ?? 'listing';
+        $data['wrapped']   = $fields['mod_menu_wrapped'] ?? false;
 
         $menuConfig = new MenuConfig(
             'mod-menu-' . $data['displayAs'],
@@ -54,7 +55,6 @@ class Menu extends \Modularity\Module
         $menuDirector->buildStandardMenu();
         $data['menu'] = $menuBuilder->getMenu()->getMenu();
 
-
         // Used to decorate the data based on view.
         $dataDecorator = new DataDecorator($fields);
         
@@ -66,7 +66,7 @@ class Menu extends \Modularity\Module
     {
         if ($identifier === 'mod-menu-listing' && !$item['top_level']) {
             $item['icon'] = ['icon' => 'chevron_right', 'size' => 'md'];
-            $item['classList'][] = 'mod-menu__list-item';
+            $item['classList'][] = 'mod-menu__child';
         }
 
         return $item;

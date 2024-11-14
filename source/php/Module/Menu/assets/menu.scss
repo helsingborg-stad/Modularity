@@ -1,59 +1,66 @@
 $base: var(--base, 8px) !default;
 $color-black: var(--color-black, #000000) !default;
 $color-primary: var(--color-primary, #ec6701) !default;
+$paper-color: var(--c-paper-color-background, var(--color-background-card, var(--color-white, #ffffff))) !default;
+$color-lighter: var(--color-lighter, #e5e5e5) !default;
 
 .mod-menu.mod-menu--listing {
     transition: .5s ease-in-out;
-    a.mod-menu__heading {
+
+    &.mod-menu--wrapped {
+        a.mod-menu__heading-link {
+            border-bottom: unset;
+        }
+
+        .mod-menu__heading-description {
+            padding-left: calc($base * .5);
+        }
+
+        .mod-menu__container {
+            gap: 1px;
+            background-color: $color-lighter;
+            grid-auto-rows: 1fr;
+        }
+
+        .mod-menu__item {
+            padding: calc($base * 4);
+            background-color: $paper-color;
+        }
+
+        .mod-menu__children, 
+        .mod-menu__heading-description {
+            grid-column: 1 / span 2;
+        }
+    }
+
+    .mod-menu__children, 
+    .mod-menu__heading-description,
+    .mod-menu__heading-link {
+        grid-column: 2;
+    }
+
+    a.mod-menu__heading-link {
         display: flex;
         text-decoration: none;
         color: $color-primary;
-
-        .mod-menu__heading-description {
-            color: $color-black;
-        }
+        border-bottom: 2px solid $color-primary;
     }
 
     .mod-menu__heading-label {
         width: 100%;
         margin-top: 0;
-    }
-
-    .mod-menu__heading-description,
-    .mod-menu__heading-label {
         transition: transform .2s ease-in-out;
     }
-    
-    .mod-menu__heading-label-wrapper {
-        border-bottom: 2px solid $color-primary;
-    }
 
-    .mod-menu__heading-icon {
-        margin-right: $base;
-    }
-
-    .mod-menu__heading-icon,
-    .mod-menu__heading-label-wrapper {
-        padding-bottom: calc($base * .5);
-    }
-
-    .mod-menu__list {
-        margin-top: $base;
-        padding-left: calc($base * 4);
-    }
-
-    a.mod-menu__heading {
-        &:hover {
-            .mod-menu__heading-label,
-            .mod-menu__heading-description {
-                color: $color-primary;
-                transform: translateX(calc($base * .5));
-            }
+    a:hover {
+        .mod-menu__heading-label {
+            color: $color-primary;
+            transform: translateX(calc($base * .5));
         }
     }
 
-    // Needs a more complex selector to override the default menu customizer styles.
-    .mod-menu__list.c-nav .mod-menu__list-item a {
+    // Specified selection needed
+    .mod-menu__child.c-nav__item a.c-nav__link {
         color: rgba($color-black, 0.96);
 
         span.c-nav__text {
@@ -61,13 +68,12 @@ $color-primary: var(--color-primary, #ec6701) !default;
         }
 
         &:hover {
+            span.c-nav__text {
+                transform: translateX(calc($base * .5));
+            }
             span.c-nav__text,
             span.c-icon {
                 color: $color-primary;
-            }
-
-            span.c-nav__text {
-                transform: translateX(calc($base * .5));
             }
         }
     }
