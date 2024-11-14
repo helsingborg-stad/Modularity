@@ -19,6 +19,7 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
         .mod-menu__container {
             gap: 1px;
             background-color: $color-lighter;
+            grid-auto-rows: 1fr;
         }
 
         .mod-menu__item {
