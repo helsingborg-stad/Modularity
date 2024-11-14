@@ -1,18 +1,41 @@
 $base: var(--base, 8px) !default;
 $color-black: var(--color-black, #000000) !default;
 $color-primary: var(--color-primary, #ec6701) !default;
+$paper-color: var(--c-paper-color-background, var(--color-background-card, var(--color-white, #ffffff))) !default;
+$color-lighter: var(--color-lighter, #e5e5e5) !default;
 
 .mod-menu.mod-menu--listing {
     transition: .5s ease-in-out;
 
-    .mod-menu__grid {
-        grid-template-columns: auto 1fr;
+    &.mod-menu--wrapped {
+        a.mod-menu__heading-link {
+            border-bottom: unset;
+        }
+
+        .mod-menu__heading-description {
+            padding-left: calc($base * .5);
+        }
+
+        .mod-menu__container {
+            gap: 1px;
+            background-color: $color-lighter;
+        }
+
+        .mod-menu__item {
+            padding: calc($base * 4);
+            background-color: $paper-color;
+        }
 
         .mod-menu__children, 
-        .mod-menu__heading-description,
-        .mod-menu__heading-link {
-            grid-column: 2;
+        .mod-menu__heading-description {
+            grid-column: 1 / span 2;
         }
+    }
+
+    .mod-menu__children, 
+    .mod-menu__heading-description,
+    .mod-menu__heading-link {
+        grid-column: 2;
     }
 
     a.mod-menu__heading-link {
@@ -28,17 +51,15 @@ $color-primary: var(--color-primary, #ec6701) !default;
         transition: transform .2s ease-in-out;
     }
 
-    a.mod-menu__heading-link {
-        &:hover {
-            .mod-menu__heading-label {
-                color: $color-primary;
-                transform: translateX(calc($base * .5));
-            }
+    a:hover {
+        .mod-menu__heading-label {
+            color: $color-primary;
+            transform: translateX(calc($base * .5));
         }
     }
 
-    // Needs a more complex selector to override the default menu customizer styles.
-    .mod-menu__children.c-nav .mod-menu__child a {
+    // Specified selection needed
+    .mod-menu__child.c-nav__item a.c-nav__link {
         color: rgba($color-black, 0.96);
 
         span.c-nav__text {
@@ -46,13 +67,12 @@ $color-primary: var(--color-primary, #ec6701) !default;
         }
 
         &:hover {
+            span.c-nav__text {
+                transform: translateX(calc($base * .5));
+            }
             span.c-nav__text,
             span.c-icon {
                 color: $color-primary;
-            }
-
-            span.c-nav__text {
-                transform: translateX(calc($base * .5));
             }
         }
     }

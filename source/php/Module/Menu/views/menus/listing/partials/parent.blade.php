@@ -2,7 +2,6 @@
     'href' => $menuItem['href'] ?? '#',
     'classList' => [
         'mod-menu__heading-link',
-        'u-padding__bottom--1'
     ]
 ])
     @typography([
