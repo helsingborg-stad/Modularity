@@ -26,11 +26,11 @@
         ]
     ])
         @foreach ($posts as $key => $post)
-
-            @if($postsDisplayAs === 'segment')
+            @if ($postsDisplayAs === 'features-grid')
+                {!! $renderPosts(\Municipio\PostObject\PostObjectRenderer\Appearances\Appearance::BoxSliderItem) !!}
+            @elseif($postsDisplayAs === 'segment')
                     {!! $renderPosts(\Municipio\PostObject\PostObjectRenderer\Appearances\Appearance::SegmentSliderItem) !!}
             @else
-
                 @slider__item([
                     'classList' => ['c-slider__item--post']
                 ])
@@ -42,7 +42,6 @@
                         ])
                     @endif
                 @endslider__item
-
             @endif
         @endforeach
     @endslider
