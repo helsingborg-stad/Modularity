@@ -18,24 +18,7 @@
                     'sharpTop' => true,
                     'bordered' => true
                 ])
-                    @if($prepareList)
-                        @foreach ($prepareList as $post)
-                            @if ($post['link'] && $post['title'])
-                                @collection__item([
-                                    'displayIcon' => true,
-                                    'icon' => 'arrow_forward',
-                                    'link' => $post['link']
-                                ])
-                                    @typography([
-                                        'element' => 'h2',
-                                        'variant' => 'h4'
-                                    ])
-                                        {{ $post['title'] }}
-                                    @endtypography
-                                @endcollection__item
-                            @endif
-                        @endforeach
-                    @endif
+                    {!! $renderPosts(\Municipio\PostObject\PostObjectRenderer\Appearances\Appearance::ListItem) !!}
                 @endcollection
             </div>
         </div>
