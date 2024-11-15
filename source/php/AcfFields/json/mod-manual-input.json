@@ -84,6 +84,34 @@
             "ui": 1
         },
         {
+            "key": "field_67289fa6dfea3",
+            "label": "Free text filtering",
+            "name": "free_text_filtering",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Enables filtering using a input field.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_656f4b44999e9",
+                        "operator": "==",
+                        "value": "accordion"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_650067ed6cc3c",
             "label": "Column marking",
             "name": "accordion_column_marking",
