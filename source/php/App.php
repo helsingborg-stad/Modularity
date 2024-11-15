@@ -56,8 +56,6 @@ class App
             new PrivateAcfFields();
         }
 
-        new ComponentFilters();
-
         new Helper\Acf();
         new CachePurge();
 
