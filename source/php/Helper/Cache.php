@@ -32,7 +32,11 @@ class Cache
         // Create hash string
         $this->hash = $this->createShortHash($module);
 
-        // Role based key
+        if ($this->hash === false) {
+            $this->ttl = null;
+            return;
+        }
+
         if (is_user_logged_in() && isset(wp_get_current_user()->caps) && is_array(wp_get_current_user()->caps)) {
             $caps = wp_get_current_user()->caps;
 
@@ -40,11 +44,13 @@ class Cache
                 $caps['superadmin'] = true;
             }
 
-            $this->hash = $this->hash . "-auth-" . $this->createShortHash($caps, true);
+            $roleHash = $this->createShortHash($caps, true);
+            if ($roleHash !== false) {
+                $this->hash = $this->hash . "-auth-" . $roleHash;
+            }
         }
 
-        //Ban cache on save post
-        add_action('save_post', array($this, 'clearCache'));
+        add_action('save_post', [$this, 'clearCache']);
     }
 
     /**
@@ -174,17 +180,19 @@ class Cache
      */
     private function createShortHash($input, $keysOnly = false)
     {
-        if ($keysOnly === true && (is_array($input) || is_object($input))) {
-            $input = array_keys($input);
-        }
-
-        if (is_array($input) || is_object($input)) {
-            $input = substr(base_convert(md5(serialize($input)), 16, 32), 0, 12);
+        try {
+            if ($keysOnly && (is_array($input) || is_object($input))) {
+                $input = array_keys($input);
+            }
+            if (is_array($input) || is_object($input)) {
+                $input = substr(base_convert(md5(serialize($input)), 16, 32), 0, 12);
+            } else {
+                $input = substr(base_convert(md5($input), 16, 32), 0, 12);
+            }
             return $input;
+        } catch (\Exception $e) {
+            return false;
         }
-
-        $input = substr(base_convert(md5($input), 16, 32), 0, 12);
-        return $input;
     }
 }
 
