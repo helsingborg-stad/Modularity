@@ -12,7 +12,11 @@ class Listing implements DataDecoratorInterface
         $amountOfItems       = !empty($data['menu']['items']) ? count($data['menu']['items']) : 0;
         $columns             = (int) $this->fields['mod_menu_columns'] ?? 3;
         $data['columns']     = $this->tryGetColumns($data['wrapped'], $columns, $amountOfItems);
-        $data['gridClasses'] = $this->getGridColumnsCompabilityClasses($data['wrapped'], $columns, $amountOfItems);
+        $data['gridClasses'] = $this->getGridColumnsCompabilityClasses(
+            $data['wrapped'], 
+            $columns, 
+            $amountOfItems
+        ) ?? [];
 
         return $data;
     }
