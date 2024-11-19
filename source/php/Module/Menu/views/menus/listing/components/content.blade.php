@@ -4,7 +4,7 @@
     'display' => 'grid',
     'classList' => array_merge([
         'mod-menu__container',
-    ], $gridClasses)
+    ], $gridClasses ?? [])
 ]) 
 @foreach ($menu['items'] as $menuItem)
     <div class="mod-menu__item {{$menuItem['post_type'] ? 's-post-type-' . $menuItem['post_type'] : ''}}">
