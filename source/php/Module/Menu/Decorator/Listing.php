@@ -58,7 +58,7 @@ class Listing implements DataDecoratorInterface
      * @param int $amountOfItems The amount of items.
      * @return array The array of grid classes.
      */
-    private function getGridColumnsCompabilityClasses (bool $wrapped, int $columns, int $amountOfItems)
+    private function getGridColumnsCompabilityClasses (bool $wrapped, int $columns, int $amountOfItems): array
     {
         if (!$wrapped) {
             return [];
