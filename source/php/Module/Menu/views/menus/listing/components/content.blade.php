@@ -7,7 +7,7 @@
     ], $gridClasses ?? [])
 ]) 
 @foreach ($menu['items'] as $menuItem)
-    <div class="mod-menu__item {{$menuItem['post_type'] ? 's-post-type-' . $menuItem['post_type'] : ''}}">
+    <div class="mod-menu__item {{implode(' ', $menuItem['classList'] ?? [])}}">
         @group([
             'display' => 'grid',
             'classList' => [
