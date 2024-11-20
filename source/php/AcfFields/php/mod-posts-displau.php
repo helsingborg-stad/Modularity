@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
     'title' => __('Data display', 'modularity'),
     'fields' => array(
@@ -383,7 +381,7 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        8 => array(
+        7 => array(
             'key' => 'field_571e01e7f246c',
             'label' => __('Fields', 'modularity'),
             'name' => 'posts_fields',
@@ -428,8 +426,9 @@ if (function_exists('acf_add_local_field_group')) {
             'layout' => 'horizontal',
             'toggle' => 0,
             'save_custom' => 0,
+            'custom_choice_button_text' => 'Add new choice',
         ),
-        9 => array(
+        8 => array(
             'key' => 'field_62387e4b55b75',
             'label' => __('Date source', 'modularity'),
             'name' => 'posts_date_source',
@@ -465,7 +464,7 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        10 => array(
+        9 => array(
             'key' => 'field_591176fff96d6',
             'label' => __('Hide the title column', 'modularity'),
             'name' => 'posts_hide_title_column',
@@ -493,7 +492,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        11 => array(
+        10 => array(
             'key' => 'field_57e3bcae3826e',
             'label' => __('Title column label', 'modularity'),
             'name' => 'title_column_label',
@@ -526,7 +525,7 @@ if (function_exists('acf_add_local_field_group')) {
             'prepend' => '',
             'append' => '',
         ),
-        12 => array(
+        11 => array(
             'key' => 'field_571f5776592e6',
             'label' => __('List column labels', 'modularity'),
             'name' => 'posts_list_column_titles',
@@ -581,7 +580,7 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
             ),
         ),
-        13 => array(
+        12 => array(
             'key' => 'field_59197c6dafb31',
             'label' => __('Allow freetext filtering', 'modularity'),
             'name' => 'allow_freetext_filtering',
@@ -609,7 +608,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        14 => array(
+        13 => array(
             'key' => 'field_5be480e163246',
             'label' => __('Highlight post', 'modularity'),
             'name' => 'posts_highlight',
@@ -637,7 +636,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => __('Enabled', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
         ),
-        15 => array(
+        14 => array(
             'key' => 'field_5bdb0d4217e91',
             'label' => __('Date format', 'modularity'),
             'name' => 'posts_date_format',
@@ -678,7 +677,7 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        16 => array(
+        15 => array(
             'key' => 'field_5bd8575106176',
             'label' => __('Placeholder image', 'modularity'),
             'name' => 'posts_placeholder',
@@ -718,7 +717,7 @@ if (function_exists('acf_add_local_field_group')) {
             'uploader' => '',
             'acfe_thumbnail' => 0,
         ),
-        17 => array(
+        16 => array(
             'key' => 'field_628e0f242aa5f',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -794,5 +793,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}

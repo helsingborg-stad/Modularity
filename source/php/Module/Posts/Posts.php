@@ -264,29 +264,10 @@ class Posts extends \Modularity\Module
      * @return array
      */
     protected function getRendererConfig(RenderType $type):array {
+        $config = [...$this->data, ...$this->fields, 'gridColumnClass' => $this->fields['posts_columns'] ?? []];
+
         return match($type) {
-            RenderType::BoxGridItemCollection => [
-                'gridColumnClass' => $this->fields['posts_columns'] ?? '',
-                'ratio' => $this->fields['ratio'] ?? null                
-            ],
-            // RenderType::BoxSlider => [
-            //     'ratio' => $this->fields['ratio'] ?? null
-            // ],
-            RenderType::CollectionItemCollection => [
-                'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
-                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ],
-            RenderType::ListItemCollection => [
-                'heading' => !$this->data['hideTitle'] && !empty($this->data['postTitle']) ? $this->data['postTitle'] : null,
-            ],
-            RenderType::SegmentGridItemCollection => [
-                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
-                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ],
-            RenderType::SegmentGridItemCollection => [
-                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
-            ],
-            default => [],
+            default => $config,
         };
     }
 

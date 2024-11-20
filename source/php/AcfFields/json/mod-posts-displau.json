@@ -422,7 +422,8 @@
             "allow_custom": 0,
             "layout": "horizontal",
             "toggle": 0,
-            "save_custom": 0
+            "save_custom": 0,
+            "custom_choice_button_text": "Add new choice"
         },
         {
             "key": "field_62387e4b55b75",
@@ -789,4 +790,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
