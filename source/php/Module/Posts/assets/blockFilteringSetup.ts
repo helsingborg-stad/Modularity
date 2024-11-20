@@ -67,7 +67,8 @@ class BlockFilteringSetup {
         const {termsSelect, termsSelectLabel}       = this.getTermsElements(block, sidebar, filterContainerElement);
         const postTypeSelect                        = this.getPostTypeElement(block, sidebar, filterContainerElement);
         
-        console.log(sidebar, postTypeSelect, taxonomySelect, taxonomySelectLabel, termsSelect, termsSelectLabel);
+        console.log('filterElementKey: ' + '#block-' + block.clientId);
+        console.log(sidebar, filterContainerElement, postTypeSelect, taxonomySelect, taxonomySelectLabel, termsSelect, termsSelectLabel);
 
         if (
             !postTypeSelect || 
@@ -90,6 +91,8 @@ class BlockFilteringSetup {
     }
 
     private getTaxonomyElements(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
+        console.log('taxonomySelectFieldKey' + `#acf-${block.clientId}-field_${this.taxonomySelectFieldKey}`);
+
         const taxonomySelect      = filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.taxonomySelectFieldKey}`);
         const taxonomySelectLabel = filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] .acf-label label`) || sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.taxonomySelectFieldKey}"`);
 
@@ -97,6 +100,8 @@ class BlockFilteringSetup {
     }
 
     private getTermsElements(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
+        console.log('termsSelectFieldKey' + `#acf-${block.clientId}-field_${this.termsSelectFieldKey}`);
+
         const termsSelect         = filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.termsSelectFieldKey}`);
         const termsSelectLabel    = filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] .acf-label label`) || sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.termsSelectFieldKey}"`);
 
@@ -104,6 +109,7 @@ class BlockFilteringSetup {
     }
 
     private getPostTypeElement(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
+        console.log('postTypeSelectFieldKey' + `#acf-${block.clientId}-field_${this.postTypeSelectFieldKey}`);
         return filterContainerElement?.querySelector(`[data-key="field_${this.postTypeSelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.postTypeSelectFieldKey}`);
     }
 }
