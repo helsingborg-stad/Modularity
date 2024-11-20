@@ -4,10 +4,12 @@ namespace Modularity\Module\Posts;
 
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
-use Municipio\PostObject\PostObjectInterface;
-use Municipio\PostObject\PostObjectRenderer\Appearances\Appearance;
-use Municipio\PostObject\PostObjectRenderer\PostObjectRendererFactory;
-use Municipio\PostObject\PostObjectRenderer\PostObjectRendererInterface;
+use Municipio\PostObject\Renderer\RenderBuilder;
+use Municipio\PostObject\Renderer\RenderCollectionType;
+use Municipio\PostObject\Renderer\RenderCollectionTypeToRender;
+use Municipio\PostObject\Renderer\RenderDirector;
+use Municipio\PostObject\Renderer\RenderType;
+use Municipio\PostObject\Renderer\RenderTypeToRender;
 
 /**
  * Class Posts
@@ -191,7 +193,7 @@ class Posts extends \Modularity\Module
             'readMore' => __('Read more', 'modularity')
         ];
 
-        $data['renderPosts'] = fn(Appearance $appearance) => $this->renderPosts($data['posts'], $appearance, $this->fields);
+        $data['renderPosts'] = fn(RenderType $type) => $this->renderPosts($data['posts'], $type, $this->fields);
 
         return $data;
     }
@@ -245,51 +247,43 @@ class Posts extends \Modularity\Module
      * Render posts
      * 
      * @param array $postObjects
-     * @param Appearance $appearance
+     * @param RenderType $type
      * 
      * @return string Rendered posts
      */
-    private function renderPosts(array $postObjects, Appearance $appearance):string {
-        $renderer = PostObjectRendererFactory::create($appearance, $this->getRendererConfig($appearance));
-        return join(array_map(fn ($postObject) => $this->renderPostObject($postObject, $renderer), $postObjects));
-    }
-
-    /**
-     * Render post object
-     * 
-     * @param PostObjectInterface $postObject
-     * @param PostObjectRendererInterface $renderer
-     * @return string Rendered post object
-     */
-    private function renderPostObject(PostObjectInterface $postObject, PostObjectRendererInterface $renderer):string {
-        return $postObject->getRendered($renderer);
+    private function renderPosts(array $postObjects, RenderType $type):string {
+        $config = [...$this->getRendererConfig($type), 'postObjects' => $postObjects];
+        $renderFactory = new RenderTypeToRender(new RenderDirector(new RenderBuilder()));
+        return $renderFactory->getRenderFromRenderType($type, $config)->render();
     }
 
     /**
      * Get renderer configuration
      * 
-     * @param Appearance $appearance
+     * @param RenderType $type
      * @return array
      */
-    protected function getRendererConfig(Appearance $appearance):array {
-        return match($appearance) {
-            Appearance::BoxGridItem => [
+    protected function getRendererConfig(RenderType $type):array {
+        return match($type) {
+            RenderType::BoxGridItemCollection => [
                 'gridColumnClass' => $this->fields['posts_columns'] ?? '',
                 'ratio' => $this->fields['ratio'] ?? null                
             ],
-            Appearance::BoxSliderItem => [
-                'ratio' => $this->fields['ratio'] ?? null
-            ],
-            Appearance::CollectionItem => [
+            // RenderType::BoxSlider => [
+            //     'ratio' => $this->fields['ratio'] ?? null
+            // ],
+            RenderType::CollectionItemCollection => [
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
             ],
-            Appearance::ListItem => [],
-            Appearance::SegmentGridItem => [
+            RenderType::ListItemCollection => [
+                'heading' => !$this->data['hideTitle'] && !empty($this->data['postTitle']) ? $this->data['postTitle'] : null,
+            ],
+            RenderType::SegmentGridItemCollection => [
                 'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
             ],
-            Appearance::SegmentSliderItem => [
+            RenderType::SegmentGridItemCollection => [
                 'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
             ],
             default => [],
