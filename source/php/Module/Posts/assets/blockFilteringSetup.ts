@@ -17,7 +17,7 @@ class BlockFilteringSetup {
 
     private listenForBlocks() {
         const editor = wp.data.select('core/block-editor');
-        
+        console.log('Setting up listeners for blocks');
         wp.data.subscribe(() => {
             const postsBlockIds = editor.getBlocksByName('acf/posts');
             if (postsBlockIds.length > 0) {
@@ -30,10 +30,12 @@ class BlockFilteringSetup {
 
     private setupBlockTaxonomyFiltering(postBlockId: string, editor: any) {
         if (!this.initializedPostsBlocks.includes(postBlockId)) {
+            console.log('New listener setup for block: ' + postBlockId);
             this.initializedPostsBlocks.push(postBlockId);
             const block = editor.getBlock(postBlockId);
             const intervalId = setInterval(() => {
                 const filterElements = this.getFilterElements(block);
+                console.log(filterElements);
                 if (filterElements) {
                     this.taxonomyFilteringBlockInitialization(block, filterElements);
                     clearInterval(intervalId);
@@ -61,10 +63,11 @@ class BlockFilteringSetup {
     private getFilterElements(block: Block): FilterElements|null {
         const filterContainerElement    = document.querySelector('#block-' + block.clientId);
         const sidebar                   = document.getElementById(this.sidebarId);
-
         const {taxonomySelect, taxonomySelectLabel} = this.getTaxonomyElements(block, sidebar, filterContainerElement);
         const {termsSelect, termsSelectLabel}       = this.getTermsElements(block, sidebar, filterContainerElement);
         const postTypeSelect                        = this.getPostTypeElement(block, sidebar, filterContainerElement);
+        
+        console.log(sidebar, postTypeSelect, taxonomySelect, taxonomySelectLabel, termsSelect, termsSelectLabel);
 
         if (
             !postTypeSelect || 
