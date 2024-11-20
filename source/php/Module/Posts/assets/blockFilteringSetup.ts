@@ -17,7 +17,7 @@ class BlockFilteringSetup {
 
     private listenForBlocks() {
         const editor = wp.data.select('core/block-editor');
-        console.log('Setting up listeners for blocks');
+
         wp.data.subscribe(() => {
             const postsBlockIds = editor.getBlocksByName('acf/posts');
             if (postsBlockIds.length > 0) {
@@ -30,12 +30,10 @@ class BlockFilteringSetup {
 
     private setupBlockTaxonomyFiltering(postBlockId: string, editor: any) {
         if (!this.initializedPostsBlocks.includes(postBlockId)) {
-            console.log('New listener setup for block: ' + postBlockId);
             this.initializedPostsBlocks.push(postBlockId);
             const block = editor.getBlock(postBlockId);
             const intervalId = setInterval(() => {
                 const filterElements = this.getFilterElements(block);
-                console.log(filterElements);
                 if (filterElements) {
                     this.taxonomyFilteringBlockInitialization(block, filterElements);
                     clearInterval(intervalId);
@@ -66,9 +64,6 @@ class BlockFilteringSetup {
         const {taxonomySelect, taxonomySelectLabel} = this.getTaxonomyElements(block, sidebar, filterContainerElement);
         const {termsSelect, termsSelectLabel}       = this.getTermsElements(block, sidebar, filterContainerElement);
         const postTypeSelect                        = this.getPostTypeElement(block, sidebar, filterContainerElement);
-        
-        console.log('filterElementKey: ' + '#block-' + block.clientId);
-        console.log(sidebar, filterContainerElement, postTypeSelect, taxonomySelect, taxonomySelectLabel, termsSelect, termsSelectLabel);
 
         if (
             !postTypeSelect || 
@@ -91,26 +86,36 @@ class BlockFilteringSetup {
     }
 
     private getTaxonomyElements(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
-        console.log('taxonomySelectFieldKey' + `#acf-${block.clientId}-field_${this.taxonomySelectFieldKey}`);
+        const taxonomySelect = 
+            filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] select`) ||
+            sidebar?.querySelector(`#acf-block_${block.clientId}-field_${this.taxonomySelectFieldKey}`) ||
+            sidebar?.querySelector(`#acf-${block.clientId}-field_${this.taxonomySelectFieldKey}`);
 
-        const taxonomySelect      = filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.taxonomySelectFieldKey}`);
-        const taxonomySelectLabel = filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] .acf-label label`) || sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.taxonomySelectFieldKey}"`);
+        const taxonomySelectLabel = 
+            filterContainerElement?.querySelector(`[data-key="field_${this.taxonomySelectFieldKey}"] .acf-label label`) ||
+            sidebar?.querySelector(`label[for="acf-block_${block.clientId}-field_${this.taxonomySelectFieldKey}"`) ||
+            sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.taxonomySelectFieldKey}"`);
 
         return {taxonomySelect, taxonomySelectLabel};
     }
 
     private getTermsElements(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
-        console.log('termsSelectFieldKey' + `#acf-${block.clientId}-field_${this.termsSelectFieldKey}`);
+        const termsSelect = 
+            filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] select`) ||sidebar?.querySelector(`#acf-block_${block.clientId}-field_${this.termsSelectFieldKey}`) || 
+            sidebar?.querySelector(`#acf-${block.clientId}-field_${this.termsSelectFieldKey}`);
 
-        const termsSelect         = filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.termsSelectFieldKey}`);
-        const termsSelectLabel    = filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] .acf-label label`) || sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.termsSelectFieldKey}"`);
+        const termsSelectLabel = 
+            filterContainerElement?.querySelector(`[data-key="field_${this.termsSelectFieldKey}"] .acf-label label`) || 
+            sidebar?.querySelector(`label[for="acf-block_${block.clientId}-field_${this.termsSelectFieldKey}"`) ||
+            sidebar?.querySelector(`label[for="acf-${block.clientId}-field_${this.termsSelectFieldKey}"`);
 
         return {termsSelect, termsSelectLabel};
     }
 
     private getPostTypeElement(block: Block, sidebar: HTMLElement|null, filterContainerElement: Element|null) {
-        console.log('postTypeSelectFieldKey' + `#acf-${block.clientId}-field_${this.postTypeSelectFieldKey}`);
-        return filterContainerElement?.querySelector(`[data-key="field_${this.postTypeSelectFieldKey}"] select`) || sidebar?.querySelector(`#acf-${block.clientId}-field_${this.postTypeSelectFieldKey}`);
+        return filterContainerElement?.querySelector(`[data-key="field_${this.postTypeSelectFieldKey}"] select`) ||
+            sidebar?.querySelector(`#acf-block_${block.clientId}-field_${this.postTypeSelectFieldKey}`) ||
+            sidebar?.querySelector(`#acf-${block.clientId}-field_${this.postTypeSelectFieldKey}`);
     }
 }
 
