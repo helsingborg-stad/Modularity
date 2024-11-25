@@ -7,6 +7,10 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
 .mod-menu.mod-menu--listing {
     transition: .5s ease-in-out;
 
+    .mod-menu__container {
+        gap: calc($base * 3);
+    }
+
     &.mod-menu--wrapped {
         a.mod-menu__heading-link {
             border-bottom: unset;
