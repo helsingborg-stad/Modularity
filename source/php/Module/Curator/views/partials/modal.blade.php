@@ -18,7 +18,7 @@
             @else
                 <div class="o-grid-12">
         @endif
-        <header class="o-container o-container--fullwidth u-margin__left u-margin__top u-margin__bottom--1">
+        <header class="o-container o-container--fullwidth o-container--remove-spacing u-margin__left u-margin__top u-margin__bottom--1">
             @avatar([
                 'image' => $post->user_image,
                 'name' => $post->user_screen_name,
