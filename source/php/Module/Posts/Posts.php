@@ -280,6 +280,12 @@ class Posts extends \Modularity\Module
                 'reverseColumns' => $this->fields['image_position'] === '1',
                 'gridColumnClass' => $this->fields['posts_columns'],
             ],
+            RenderType::BoxGridItemCollection => [
+                'stretch' => $this->data['stretch'] ?? false,
+                'noGutter' => $this->data['noGutter'] ?? false,
+                'gridColumnClass' => $this->fields['posts_columns'],
+                'ratio' => $this->fields['ratio'],
+            ],
             default => [],
         };
 
