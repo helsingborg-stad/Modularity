@@ -11,6 +11,11 @@ class PrivateController
     {
         $this->registerMeta();
         add_filter('acf/update_value/key=field_6718c31e2862b', array($this, 'assignUniqueIdToRows'), 20, 4);
+
+        // Do not cache private manual inputs
+        if ($this->manualInputInstance->postStatus === 'private') {
+            $this->manualInputInstance->cacheTtl = 0;
+        }
     }
 
     public function decorateData(array $data, array $fields): array
