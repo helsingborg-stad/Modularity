@@ -8,6 +8,10 @@ use Municipio\PostObject\PostObjectInterface;
 use Municipio\PostObject\PostObjectRenderer\Appearances\Appearance;
 use Municipio\PostObject\PostObjectRenderer\PostObjectRendererFactory;
 use Municipio\PostObject\PostObjectRenderer\PostObjectRendererInterface;
+use Municipio\PostObject\Renderer\RenderBuilder;
+use Municipio\PostObject\Renderer\RenderDirector;
+use Municipio\PostObject\Renderer\RenderType;
+use Municipio\PostObject\Renderer\RenderTypeToRender;
 
 /**
  * Class Posts
@@ -191,7 +195,7 @@ class Posts extends \Modularity\Module
             'readMore' => __('Read more', 'modularity')
         ];
 
-        $data['renderPosts'] = fn(Appearance $appearance) => $this->renderPosts($data['posts'], $appearance, $this->fields);
+        $data['renderPosts'] = fn(RenderType $type) => $this->renderPosts($data['posts'], $type, $this->fields);
 
         return $data;
     }
@@ -249,51 +253,34 @@ class Posts extends \Modularity\Module
      * 
      * @return string Rendered posts
      */
-    private function renderPosts(array $postObjects, Appearance $appearance):string {
-        $renderer = PostObjectRendererFactory::create($appearance, $this->getRendererConfig($appearance));
-        return join(array_map(fn ($postObject) => $this->renderPostObject($postObject, $renderer), $postObjects));
-    }
-
-    /**
-     * Render post object
-     * 
-     * @param PostObjectInterface $postObject
-     * @param PostObjectRendererInterface $renderer
-     * @return string Rendered post object
-     */
-    private function renderPostObject(PostObjectInterface $postObject, PostObjectRendererInterface $renderer):string {
-        return $postObject->getRendered($renderer);
+    private function renderPosts(array $postObjects, RenderType $type):string {
+        $renderFactory = new RenderTypeToRender(new RenderDirector(new RenderBuilder()));
+        $renderer = $renderFactory->getRenderFromRenderType($type, $this->getRendererConfig($type, $postObjects));
+        return $renderer->render();
     }
 
     /**
      * Get renderer configuration
      * 
      * @param Appearance $appearance
+     * @param array $postObjects
      * @return array
      */
-    protected function getRendererConfig(Appearance $appearance):array {
-        return match($appearance) {
-            Appearance::BoxGridItem => [
-                'gridColumnClass' => $this->fields['posts_columns'] ?? '',
-                'ratio' => $this->fields['ratio'] ?? null                
-            ],
-            Appearance::BoxSliderItem => [
-                'ratio' => $this->fields['ratio'] ?? null
-            ],
-            Appearance::CollectionItem => [
+    protected function getRendererConfig(RenderType $type, array $postObjects):array {
+        
+        $config = match($type) {
+            RenderType::CollectionItemCollection => [
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
-                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ],
-            Appearance::ListItem => [],
-            Appearance::SegmentGridItem => [
-                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
-                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ],
-            Appearance::SegmentSliderItem => [
-                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
+                'gridColumnClass' => $this->fields['posts_columns'],
+                'title' => !empty($this->data['hideTitle']) && !empty($this->data['postTitle']) ? $this->data['postTitle'] : null,
+                'preamble' => !empty($this->data['preamble']) ? $this->data['preamble'] : null,
             ],
             default => [],
         };
+
+        $config['postObjects'] = $postObjects;
+
+        return $config;
     }
 
     /**
