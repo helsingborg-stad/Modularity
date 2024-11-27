@@ -267,18 +267,25 @@ class Posts extends \Modularity\Module
      * @return array
      */
     protected function getRendererConfig(RenderType $type, array $postObjects):array {
-        
+
         $config = match($type) {
             RenderType::CollectionItemCollection => [
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
                 'gridColumnClass' => $this->fields['posts_columns'],
-                'title' => !empty($this->data['hideTitle']) && !empty($this->data['postTitle']) ? $this->data['postTitle'] : null,
-                'preamble' => !empty($this->data['preamble']) ? $this->data['preamble'] : null,
+            ],
+            RenderType::SegmentGridItemCollection => [
+                'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
+                'stretch' => $this->data['stretch'] ?? false,
+                'noGutter' => $this->data['noGutter'] ?? false,
+                'reverseColumns' => $this->fields['image_position'] === '1',
+                'gridColumnClass' => $this->fields['posts_columns'],
             ],
             default => [],
         };
 
         $config['postObjects'] = $postObjects;
+        $config['title'] = empty($this->data['hideTitle']) && !empty($this->data['postTitle']) ? $this->data['postTitle'] : null;
+        $config['preamble'] = !empty($this->data['preamble']) ? $this->data['preamble'] : null;
 
         return $config;
     }
