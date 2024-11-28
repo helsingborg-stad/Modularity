@@ -277,7 +277,6 @@ class Posts extends \Modularity\Module
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
             ],
-            Appearance::ListItem => [],
             Appearance::SegmentGridItem => [
                 'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
