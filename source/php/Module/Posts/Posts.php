@@ -4,10 +4,6 @@ namespace Modularity\Module\Posts;
 
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
-use Municipio\PostObject\PostObjectInterface;
-use Municipio\PostObject\PostObjectRenderer\Appearances\Appearance;
-use Municipio\PostObject\PostObjectRenderer\PostObjectRendererFactory;
-use Municipio\PostObject\PostObjectRenderer\PostObjectRendererInterface;
 
 /**
  * Class Posts
@@ -191,8 +187,6 @@ class Posts extends \Modularity\Module
             'readMore' => __('Read more', 'modularity')
         ];
 
-        $data['renderPosts'] = fn(Appearance $appearance) => $this->renderPosts($data['posts'], $appearance, $this->fields);
-
         return $data;
     }
 
@@ -239,48 +233,6 @@ class Posts extends \Modularity\Module
             'list' => array_merge([$listItemOne], $listItems),
             'current' => $currentPage
         ];
-    }
-
-    /**
-     * Render posts
-     * 
-     * @param array $postObjects
-     * @param Appearance $appearance
-     * 
-     * @return string Rendered posts
-     */
-    private function renderPosts(array $postObjects, Appearance $appearance):string {
-        $renderer = PostObjectRendererFactory::create($appearance, $this->getRendererConfig($appearance));
-        return join(array_map(fn ($postObject) => $this->renderPostObject($postObject, $renderer), $postObjects));
-    }
-
-    /**
-     * Render post object
-     * 
-     * @param PostObjectInterface $postObject
-     * @param PostObjectRendererInterface $renderer
-     * @return string Rendered post object
-     */
-    private function renderPostObject(PostObjectInterface $postObject, PostObjectRendererInterface $renderer):string {
-        return $postObject->getRendered($renderer);
-    }
-
-    /**
-     * Get renderer configuration
-     * 
-     * @param Appearance $appearance
-     * @return array
-     */
-    protected function getRendererConfig(Appearance $appearance):array {
-
-        if($appearance === Appearance::CollectionItem) {
-            return [
-                'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
-                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ];
-        }
-
-        return [];
     }
 
     /**
