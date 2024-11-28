@@ -273,13 +273,6 @@ class Posts extends \Modularity\Module
      */
     protected function getRendererConfig(Appearance $appearance):array {
         return match($appearance) {
-            Appearance::BoxGridItem => [
-                'gridColumnClass' => $this->fields['posts_columns'] ?? '',
-                'ratio' => $this->fields['ratio'] ?? null                
-            ],
-            Appearance::BoxSliderItem => [
-                'ratio' => $this->fields['ratio'] ?? null
-            ],
             Appearance::CollectionItem => [
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
