@@ -272,20 +272,15 @@ class Posts extends \Modularity\Module
      * @return array
      */
     protected function getRendererConfig(Appearance $appearance):array {
-        return match($appearance) {
-            Appearance::CollectionItem => [
+
+        if($appearance === Appearance::CollectionItem) {
+            return [
                 'displayFeaturedImage' => in_array('image', $this->fields['posts_fields'] ?? []),
                 'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ],
-            Appearance::SegmentGridItem => [
-                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
-                'gridColumnClass' => $this->fields['posts_columns'] ?? [],
-            ],
-            Appearance::SegmentSliderItem => [
-                'reveseColumns' => (bool)(int)$this->fields['image_position'] ?? true,
-            ],
-            default => [],
-        };
+            ];
+        }
+
+        return [];
     }
 
     /**
