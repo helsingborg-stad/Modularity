@@ -211,10 +211,7 @@ class Module
         if (!is_admin()) {
             add_action('wp_enqueue_scripts', function () {
 
-                if (
-                    $this->hasModule() || 
-                    in_array(str_replace('mod-', '', $this->moduleSlug), $this->getAllBlocks())
-                ) {
+                if ($this->hasModule()) {
                     if (method_exists($this, 'style')) {
                         $this->style();
                     }
@@ -323,7 +320,7 @@ class Module
         return get_fields() ?: []; //Blocks
     }
 
-    private function getAllBlocks(): array
+    private function getBlockNamesFromPage(): array
     {
         static $blocks;
 
@@ -341,6 +338,10 @@ class Module
         preg_match_all($blockNamesRegex, $post->post_content, $matches);
 
         $blocks = $matches[1] ?? [];
+
+        $blocks = array_map(function ($block) {
+            return 'mod-' . $block;
+        }, $blocks);
 
         return $blocks;
     }
@@ -403,7 +404,7 @@ class Module
                                     'post_type'
             ),
             'shortcodes'    => $this->getShortcodeModules($postId),
-            'blocks'        => $this->getBlocks($postId),
+            'blocks'        => $this->getBlockNamesFromPage(),
             'widgets'       => $this->getWidgets(),
         ];  
 
@@ -509,40 +510,6 @@ class Module
         }
         
         return $modules;
-    }
-
-    /**
-     * Check for use of block modules
-     * @return array Array with modules from one page sections
-     */
-    public function getBlocks($postId): array
-    {
-        if (!has_blocks($postId)) {
-            return [];
-        }
-
-        if ($currentPost = get_post($postId)) {
-            $modules    = [];
-            $blocks     = parse_blocks($currentPost->post_content);
-
-            if (is_array($blocks) && !empty($blocks)) {
-                foreach ($blocks as $block) {
-                    if (!is_string($block['blockName']) && !is_array($block['blockName'])) {
-                        continue;
-                    }
-                    $modules[] = str_replace('acf/', 'mod-', $block['blockName']);
-                }
-            }
-
-            //Only keep modules
-            $modules = array_filter($modules, function($key) {
-                return strpos($key, 'mod-') === 0;
-            });
-
-            return $modules;
-        }
-
-        return [];
     }
 
     /**
