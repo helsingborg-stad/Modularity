@@ -211,8 +211,10 @@ class Module
         if (!is_admin()) {
             add_action('wp_enqueue_scripts', function () {
 
-
-                if ($this->hasModule()) {
+                if (
+                    $this->hasModule() || 
+                    in_array(str_replace('mod-', '', $this->moduleSlug), $this->getAllBlocks())
+                ) {
                     if (method_exists($this, 'style')) {
                         $this->style();
                     }
@@ -319,6 +321,28 @@ class Module
             return get_fields($this->ID) ?: [];
         }
         return get_fields() ?: []; //Blocks
+    }
+
+    private function getAllBlocks(): array
+    {
+        static $blocks;
+
+        if (is_array($blocks)) {
+            return $blocks;
+        }
+
+        $post = get_post(\Municipio\Helper\CurrentPostId::get());
+
+        if (empty($post->post_content)) {
+            return $blocks = [];
+        }
+
+        $blockNamesRegex = '/<!--\s*wp:acf\/([a-zA-Z0-9_-]+)/';
+        preg_match_all($blockNamesRegex, $post->post_content, $matches);
+
+        $blocks = $matches[1] ?? [];
+
+        return $blocks;
     }
 
     /**
