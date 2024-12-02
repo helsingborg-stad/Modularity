@@ -451,7 +451,7 @@ class Display
         }
 
         //Do not cache private modules
-        if(get_post_status($module->ID) === 'private') {
+        if(get_post_status($module) === 'private') {
             $moduleSettings['cache_ttl'] = 0;
         }
 
