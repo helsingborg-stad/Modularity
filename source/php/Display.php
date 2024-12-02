@@ -450,6 +450,11 @@ class Display
             $args['id'] = 'no-id';
         }
 
+        //Do not cache private modules
+        if(get_post_status($module->ID) === 'private') {
+            $moduleSettings['cache_ttl'] = 0;
+        }
+
         $cache = new \Modularity\Helper\Cache(
             $module->ID, [
                 $module, 
