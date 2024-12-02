@@ -216,6 +216,10 @@ class Posts extends \Modularity\Module
      * @return array
      */
     private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
+
+        if($maxNumPages < 2) {
+            return [];
+        }
         
         $listItemOne = [
             'href' => remove_query_arg($this->getPagintationIdentifier()),
