@@ -17,6 +17,7 @@ class ManualInput extends \Modularity\Module
         'align' => ['full']
     );
 
+    public $cacheTtl = 0;
     public string $postStatus;
     public $template;
 
