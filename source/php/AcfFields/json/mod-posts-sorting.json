@@ -19,7 +19,6 @@
             "allow_null": 0,
             "choices": {
                 "false": "Do not sort",
-                "ID": "ID",
                 "title": "Titel",
                 "date": "Publiceringsdatum",
                 "modified": "Date modified",

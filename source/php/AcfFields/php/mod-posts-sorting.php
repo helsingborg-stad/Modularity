@@ -24,7 +24,6 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_null' => 0,
             'choices' => array(
                 'false' => __('Do not sort', 'modularity'),
-                'ID' => __('ID', 'modularity'),
                 'title' => __('Titel', 'modularity'),
                 'date' => __('Publiceringsdatum', 'modularity'),
                 'modified' => __('Date modified', 'modularity'),
