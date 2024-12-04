@@ -116,8 +116,15 @@ class Markdown extends \Modularity\Module {
         ) : false;
         $showMarkdownSource = $fields['mod_markdown_show_source'] ?: false;
 
-            var_dump($showMarkdownSource);
-
+        //Setup translations
+        $language = [
+            'sourceUrl' =>  __('Source Url', 'modularity'),
+            'nextUpdate' => __('Next update', 'modularity'),
+            'lastUpdated' => __('Last updated', 'modularity'),
+            'fetchError' => __('We could not fetch any content at this moment. Please try again later.', 'modularity'),
+            'parseError' => __('The url provided could not be parsed by any of the allowed providers.', 'modularity'),
+        ];
+        
         //Return data
         return [
             'isMarkdownUrl' => $isMarkdownUrl,
@@ -127,6 +134,7 @@ class Markdown extends \Modularity\Module {
             'markdownUrl' => $markdownUrl,
             'markdownLastUpdated' => get_transient($this->createTransientKey($markdownUrl) . $this->lastUpdatedKey),
             'markdownNextUpdate' => get_transient($this->createTransientKey($markdownUrl) . $this->nextUpdateKey),
+            'language' => (object) $language,
         ];
     }
 

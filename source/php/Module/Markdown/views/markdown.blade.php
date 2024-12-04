@@ -23,17 +23,17 @@
             @paper(['padding' => '2', 'classList' => ['u-margin__top--4']])
                 @if (!empty($markdownUrl))
                     <small class="u-display--block">
-                        <strong>Source Url:</strong> <a href="{{ $markdownUrl }}" class="u-text-decoration--none" target="_blank" rel="noopener noreferrer">
+                        <strong>{{ $language->sourceUrl }}:</strong> <a href="{{ $markdownUrl }}" class="u-text-decoration--none" target="_blank" rel="noopener noreferrer">
                             {{ $markdownUrl }}
                         </a>
                     </small>
                 @endif
                 @if (!empty($markdownLastUpdated))
                     <small class="u-display--block">
-                        <strong>Last update:</strong> {{ $markdownLastUpdated }}
+                        <strong>{{ $language->lastUpdated }}:</strong> {{ $markdownLastUpdated }}
                     </small>
                     <small class="u-display--block">
-                        <strong>Next update:</strong> {{ $markdownNextUpdate }}
+                        <strong>{{ $language->nextUpdate }}:</strong> {{ $markdownNextUpdate }}
                     </small>
                 @endif
             @endpaper
@@ -43,7 +43,7 @@
             'id' => 'mod-markdown-' . $ID .'-notice',
             'type' => 'info',
             'message' => [
-                'text' => 'No content to display',
+                'text' => $language->fetchError,
             ],
             'icon' => [
                 'name' => 'report',
@@ -59,7 +59,7 @@
         'id'        => 'mod-markdown-' . $ID .'-notice',
         'type' => 'info',
         'message' => [
-            'text' => 'The url provided does not match any of the allowed domains.',
+            'text' => $language->parseError,
         ],
         'icon' => [
             'name' => 'report',
