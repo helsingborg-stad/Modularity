@@ -3,12 +3,13 @@
 if (function_exists('acf_add_local_field_group')) {
     acf_add_local_field_group(array(
     'key' => 'group_5756ce3e48783',
-    'title' => 'Files',
+    'title' => __('Files', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_57fb41f2cb40e',
             'label' => __('Filer', 'modularity'),
             'name' => 'file_list',
+            'aria-label' => '',
             'type' => 'repeater',
             'instructions' => '',
             'required' => 1,
@@ -23,11 +24,14 @@
             'layout' => 'block',
             'button_label' => __('Lägg till fil', 'modularity'),
             'collapsed' => '',
+            'rows_per_page' => 20,
+            'acfe_repeater_stylised_button' => 0,
             'sub_fields' => array(
                 0 => array(
                     'key' => 'field_57fb4218cb40f',
                     'label' => __('Fil', 'modularity'),
                     'name' => 'file',
+                    'aria-label' => '',
                     'type' => 'file',
                     'instructions' => '',
                     'required' => 1,
@@ -42,6 +46,8 @@
                     'min_size' => '',
                     'max_size' => '',
                     'mime_types' => '',
+                    'uploader' => '',
+                    'parent_repeater' => 'field_57fb41f2cb40e',
                 ),
             ),
         ),
@@ -49,6 +55,7 @@
             'key' => 'field_587600817ff7f',
             'label' => __('Filter', 'modularity'),
             'name' => 'show_filter',
+            'aria-label' => '',
             'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
@@ -64,6 +71,33 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
+        2 => array(
+            'key' => 'field_6750883f3caf7',
+            'label' => __('Settings', 'modularity'),
+            'name' => 'settings',
+            'aria-label' => '',
+            'type' => 'checkbox',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'hide_filetype' => __('Hide file type', 'modularity'),
+                'hide_filesize' => __('Hide file size', 'modularity'),
+            ),
+            'default_value' => array(
+            ),
+            'return_format' => 'value',
+            'allow_custom' => 0,
+            'layout' => 'horizontal',
+            'toggle' => 0,
+            'save_custom' => 0,
+            'custom_choice_button_text' => 'Lägg till nytt val',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -71,6 +105,13 @@
                 'param' => 'post_type',
                 'operator' => '==',
                 'value' => 'mod-fileslist',
+            ),
+        ),
+        1 => array(
+            0 => array(
+                'param' => 'block',
+                'operator' => '==',
+                'value' => 'acf/fileslist',
             ),
         ),
     ),
@@ -82,5 +123,11 @@
     'hide_on_screen' => '',
     'active' => true,
     'description' => '',
+    'show_in_rest' => 0,
+    'acfe_display_title' => '',
+    'acfe_autosync' => '',
+    'acfe_form' => 0,
+    'acfe_meta' => '',
+    'acfe_note' => '',
 ));
 }
