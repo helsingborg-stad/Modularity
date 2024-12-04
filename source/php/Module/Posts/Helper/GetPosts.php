@@ -67,7 +67,7 @@ class GetPosts
                 restore_current_blog();
             }
 
-            // Remove posts that are not supposed to be displayed to not exceed the desired post count.
+            // Limit the number of posts to the desired count to avoid exceeding the limit.
             $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
 
             return [
@@ -199,7 +199,7 @@ class GetPosts
         return $getPostsArgs;
     }
 
-    private function getPostsPerPage(array $fields):int {
+    private function getPostsPerPage(array $fields): int {
         if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
             return ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
         }
