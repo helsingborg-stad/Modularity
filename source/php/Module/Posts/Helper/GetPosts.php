@@ -55,7 +55,13 @@ class GetPosts
             foreach($fields['posts_data_network_sources'] as $site) {
                 switch_to_blog($site);
                 $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
-                $posts = array_merge($posts, $wpQuery->get_posts());
+                $postsFromOtherSite = $wpQuery->get_posts();
+
+                array_walk($postsFromOtherSite, function($post) {
+                    $post->originalPermalink = get_permalink($post->ID);
+                });
+
+                $posts = array_merge($posts, $postsFromOtherSite);
                 $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
                 restore_current_blog();
             }
