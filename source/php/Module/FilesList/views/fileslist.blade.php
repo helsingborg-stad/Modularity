@@ -54,7 +54,10 @@
                        ' js-filter-data' => ''
                     ]
                 ])
-                    {{ $row['title'] }} ({{ $row['type'] }}, {{ $row['filesize'] }})
+                    {{ $row['title'] }} 
+                    @if(!empty($row['meta']))
+                        ({{ implode(', ', $row['meta']) }})
+                    @endif
                 @endtypography
 
                 @if(!empty($row['description']))

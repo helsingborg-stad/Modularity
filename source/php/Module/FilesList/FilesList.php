@@ -47,17 +47,27 @@ class FilesList extends \Modularity\Module
     private function prepareFileData()
     {
         $files = get_field('file_list', $this->ID);
+        $settings = get_field('settings', $this->ID);
         $rows = [];
 
         foreach ($files as $key => $item) {
+            $meta = [];
             $rows[$key] = [
                 'title' => $this->filenameToTitle($item['file']['title'] ?? ''),
                 'href' => $item['file']['url'] ?? '',
                 'description' => $item['file']['description'] ?? '',
-                'type' => pathInfo($item['file']['url'], PATHINFO_EXTENSION),
-                'filesize' => $this->formatBytes($item['file']['filesize']),
                 'icon' => $this->getIconClass($item['file']['subtype'])
             ];
+
+            if (!in_array('hide_filetype', $settings)) {
+                $meta[] = pathInfo($item['file']['url'], PATHINFO_EXTENSION);
+            }
+
+            if (!in_array('hide_filesize', $settings)) {
+                $meta[] = $this->formatBytes($item['file']['filesize']);
+            }
+
+            $rows[$key]['meta'] = $meta;
         }
 
         return $rows;
