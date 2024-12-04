@@ -7,9 +7,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-10-25T07:41:10+00:00\n"
+"POT-Creation-Date: 2024-12-04T17:19:56+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: modularity\n"
 
 #: php/AcfFields/php/mod-all.php:8
@@ -585,7 +585,7 @@ msgid "Right"
 msgstr ""
 
 #: php/AcfFields/php/mod-audio.php:108
-#: php/AcfFields/php/mod-manual-input.php:286
+#: php/AcfFields/php/mod-manual-input.php:314
 msgid "left"
 msgstr ""
 
@@ -626,192 +626,188 @@ msgid "Länk till webbshop"
 msgstr ""
 
 #: php/AcfFields/php/mod-contacts.php:8
-#: php/AcfFields/php/mod-contacts.php:12
+#: php/AcfFields/php/mod-contacts.php:62
 msgid "Contacts"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:29
+#: php/AcfFields/php/mod-contacts.php:12
+#: php/AcfFields/php/mod-curator.php:62
+#: php/AcfFields/php/mod-index.php:313
+#: php/AcfFields/php/mod-manual-input.php:203
+#: php/AcfFields/php/mod-posts-displau.php:308
+msgid "Columns"
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:25
+#: php/AcfFields/php/mod-index.php:327
+#: php/AcfFields/php/mod-manual-input.php:234
+#: php/AcfFields/php/mod-menu.php:120
+#: php/AcfFields/php/mod-posts-displau.php:371
+msgid "1"
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:26
+#: php/AcfFields/php/mod-index.php:328
+#: php/AcfFields/php/mod-manual-input.php:235
+#: php/AcfFields/php/mod-menu.php:121
+#: php/AcfFields/php/mod-posts-displau.php:372
+msgid "2"
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:27
+#: php/AcfFields/php/mod-curator.php:75
+#: php/AcfFields/php/mod-index.php:329
+#: php/AcfFields/php/mod-manual-input.php:236
+#: php/AcfFields/php/mod-menu.php:122
+#: php/AcfFields/php/mod-posts-displau.php:373
+msgid "3"
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:28
+#: php/AcfFields/php/mod-curator.php:76
+#: php/AcfFields/php/mod-index.php:330
+#: php/AcfFields/php/mod-manual-input.php:237
+#: php/AcfFields/php/mod-menu.php:123
+#: php/AcfFields/php/mod-posts-displau.php:374
+msgid "4"
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:42
+msgid "Placeholder avatar"
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:46
+msgid "If the items that are missing an avatar image should show a placeholder avatar. This avatar will be based on the name of the author."
+msgstr ""
+
+#: php/AcfFields/php/mod-contacts.php:79
 #: php/AcfFields/php/mod-image.php:138
 msgid "Custom"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:34
+#: php/AcfFields/php/mod-contacts.php:84
 #: php/AcfFields/php/mod-hero.php:90
 #: php/AcfFields/php/mod-image.php:8
 #: php/AcfFields/php/mod-image.php:12
 #: php/AcfFields/php/mod-index.php:110
-#: php/AcfFields/php/mod-manual-input.php:582
+#: php/AcfFields/php/mod-manual-input.php:639
 #: php/Module/Image/Image.php:22
 msgid "Image"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:61
+#: php/AcfFields/php/mod-contacts.php:111
 msgid "First name"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:81
+#: php/AcfFields/php/mod-contacts.php:131
 msgid "Surname"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:101
+#: php/AcfFields/php/mod-contacts.php:151
 msgid "Job title"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:121
+#: php/AcfFields/php/mod-contacts.php:171
 msgid "Administration unit"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:141
+#: php/AcfFields/php/mod-contacts.php:191
 msgid "E-mail"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:160
+#: php/AcfFields/php/mod-contacts.php:210
 msgid "Phone numbers"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:177
+#: php/AcfFields/php/mod-contacts.php:227
 msgid "Add phone number"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:182
+#: php/AcfFields/php/mod-contacts.php:232
 #: php/AcfFields/php/mod-video.php:12
 msgid "Type"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:195
+#: php/AcfFields/php/mod-contacts.php:245
 msgid "Landline"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:196
+#: php/AcfFields/php/mod-contacts.php:246
 msgid "Cell phone"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:198
-msgid "phone"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:211
+#: php/AcfFields/php/mod-contacts.php:261
 msgid "Phone number"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:234
+#: php/AcfFields/php/mod-contacts.php:284
 msgid "Social Media"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:250
+#: php/AcfFields/php/mod-contacts.php:300
 #: php/AcfFields/php/mod-index.php:26
 #: php/AcfFields/php/mod-inlaylist.php:27
-#: php/AcfFields/php/mod-manual-input.php:147
-#: php/AcfFields/php/mod-manual-input.php:360
-#: php/AcfFields/php/mod-manual-input.php:411
+#: php/AcfFields/php/mod-manual-input.php:175
+#: php/AcfFields/php/mod-manual-input.php:388
+#: php/AcfFields/php/mod-manual-input.php:439
 #: php/AcfFields/php/mod-map.php:339
 #: php/AcfFields/php/mod-posts-displau.php:554
 msgid "Lägg till rad"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:256
+#: php/AcfFields/php/mod-contacts.php:306
 msgid "Media"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:269
+#: php/AcfFields/php/mod-contacts.php:319
 msgid "Facebook"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:270
+#: php/AcfFields/php/mod-contacts.php:320
 msgid "LinkedIn"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:271
+#: php/AcfFields/php/mod-contacts.php:321
 msgid "Twitter"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:272
+#: php/AcfFields/php/mod-contacts.php:322
 msgid "Instagram"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:274
-msgid "facebook"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:287
+#: php/AcfFields/php/mod-contacts.php:337
 msgid "URL"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:307
+#: php/AcfFields/php/mod-contacts.php:357
 #: php/Module/Contacts/Contacts.php:35
 msgid "Address"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:328
+#: php/AcfFields/php/mod-contacts.php:378
 #: php/Module/Contacts/Contacts.php:36
 msgid "Visiting address"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:349
+#: php/AcfFields/php/mod-contacts.php:399
 #: php/Module/Contacts/Contacts.php:37
 msgid "Opening hours"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:370
+#: php/AcfFields/php/mod-contacts.php:420
 msgid "Other"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:403
+#: php/AcfFields/php/mod-contacts.php:453
 msgid "User"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:408
+#: php/AcfFields/php/mod-contacts.php:458
 msgid "Select user"
 msgstr ""
 
-#: php/AcfFields/php/mod-contacts.php:446
+#: php/AcfFields/php/mod-contacts.php:496
 msgid "Lägg till kontakt"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:476
-#: php/AcfFields/php/mod-curator.php:62
-#: php/AcfFields/php/mod-index.php:313
-#: php/AcfFields/php/mod-manual-input.php:175
-#: php/AcfFields/php/mod-posts-displau.php:308
-msgid "Columns"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:489
-#: php/AcfFields/php/mod-index.php:327
-#: php/AcfFields/php/mod-manual-input.php:206
-#: php/AcfFields/php/mod-menu.php:100
-#: php/AcfFields/php/mod-posts-displau.php:371
-msgid "1"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:490
-#: php/AcfFields/php/mod-index.php:328
-#: php/AcfFields/php/mod-manual-input.php:207
-#: php/AcfFields/php/mod-menu.php:101
-#: php/AcfFields/php/mod-posts-displau.php:372
-msgid "2"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:491
-#: php/AcfFields/php/mod-curator.php:75
-#: php/AcfFields/php/mod-index.php:329
-#: php/AcfFields/php/mod-manual-input.php:208
-#: php/AcfFields/php/mod-menu.php:102
-#: php/AcfFields/php/mod-posts-displau.php:373
-msgid "3"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:492
-#: php/AcfFields/php/mod-curator.php:76
-#: php/AcfFields/php/mod-index.php:330
-#: php/AcfFields/php/mod-manual-input.php:209
-#: php/AcfFields/php/mod-menu.php:103
-#: php/AcfFields/php/mod-posts-displau.php:374
-msgid "4"
-msgstr ""
-
-#: php/AcfFields/php/mod-contacts.php:494
-msgid "o-grid-12@md"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:8
@@ -821,7 +817,7 @@ msgid "Curator Social Media"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:12
-#: php/AcfFields/php/mod-posts-source.php:177
+#: php/AcfFields/php/mod-posts-source.php:175
 msgid "Number of posts"
 msgstr ""
 
@@ -857,20 +853,20 @@ msgid "No space between the posts in the grid"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:118
-#: php/AcfFields/php/mod-manual-input.php:298
+#: php/AcfFields/php/mod-manual-input.php:326
 #: php/AcfFields/php/mod-posts-displau.php:723
 msgid "Ratio"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:139
 #: php/AcfFields/php/mod-curator.php:143
-#: php/AcfFields/php/mod-manual-input.php:326
+#: php/AcfFields/php/mod-manual-input.php:354
 #: php/AcfFields/php/mod-posts-displau.php:751
 msgid "1:1"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:140
-#: php/AcfFields/php/mod-manual-input.php:327
+#: php/AcfFields/php/mod-manual-input.php:355
 #: php/AcfFields/php/mod-posts-displau.php:752
 #: php/AcfFields/php/mod-posts-displau.php:755
 msgid "4:3"
@@ -942,24 +938,43 @@ msgstr ""
 msgid "h2"
 msgstr ""
 
+#: php/AcfFields/php/mod-fileslist.php:8
+#: php/Module/FilesList/FilesList.php:12
+#: php/Module/FilesList/FilesList.php:13
+msgid "Files"
+msgstr ""
+
 #: php/AcfFields/php/mod-fileslist.php:12
 msgid "Filer"
 msgstr ""
 
-#: php/AcfFields/php/mod-fileslist.php:26
+#: php/AcfFields/php/mod-fileslist.php:27
 msgid "Lägg till fil"
 msgstr ""
 
-#: php/AcfFields/php/mod-fileslist.php:31
+#: php/AcfFields/php/mod-fileslist.php:34
 msgid "Fil"
 msgstr ""
 
-#: php/AcfFields/php/mod-fileslist.php:52
+#: php/AcfFields/php/mod-fileslist.php:58
 msgid "Filter"
 msgstr ""
 
-#: php/AcfFields/php/mod-fileslist.php:64
+#: php/AcfFields/php/mod-fileslist.php:71
 msgid "Tillåt filtrering"
+msgstr ""
+
+#: php/AcfFields/php/mod-fileslist.php:78
+msgid "Filter above card"
+msgstr ""
+
+#: php/AcfFields/php/mod-fileslist.php:98
+#: php/AcfFields/php/mod-wpwidget.php:85
+#: php/AcfFields/php/mod-wpwidget.php:117
+#: php/AcfFields/php/mod-wpwidget.php:149
+#: php/AcfFields/php/mod-wpwidget.php:181
+#: php/AcfFields/php/mod-wpwidget.php:213
+msgid "Yes"
 msgstr ""
 
 #: php/AcfFields/php/mod-gallery.php:23
@@ -1130,6 +1145,7 @@ msgstr ""
 #: php/AcfFields/php/mod-map.php:364
 #: php/AcfFields/php/mod-slider.php:422
 #: php/AcfFields/php/mod-slider.php:820
+#: php/Module/ManualInput/Private/PrivateController.php:44
 msgid "Description"
 msgstr ""
 
@@ -1188,7 +1204,7 @@ msgstr ""
 #: php/AcfFields/php/mod-inlaylist.php:109
 #: php/AcfFields/php/mod-inlaylist.php:166
 #: php/AcfFields/php/mod-logogrid.php:74
-#: php/AcfFields/php/mod-manual-input.php:469
+#: php/AcfFields/php/mod-manual-input.php:497
 #: php/AcfFields/php/mod-slider.php:275
 #: php/AcfFields/php/mod-slider.php:666
 msgid "Link"
@@ -1343,6 +1359,7 @@ msgid "Image/logotype"
 msgstr ""
 
 #: php/AcfFields/php/mod-logogrid.php:55
+#: php/Module/ManualInput/Private/PrivateController.php:45
 msgid "Name"
 msgstr ""
 
@@ -1360,44 +1377,48 @@ msgid "Allow logged in users to modify their list"
 msgstr ""
 
 #: php/AcfFields/php/mod-manual-input.php:93
-msgid "Column marking"
+msgid "Free text filtering"
+msgstr ""
+
+#: php/AcfFields/php/mod-manual-input.php:97
+msgid "Enables filtering using a input field."
 msgstr ""
 
 #: php/AcfFields/php/mod-manual-input.php:121
 msgid "Column titles"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:152
+#: php/AcfFields/php/mod-manual-input.php:180
 msgid "Column title"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:223
+#: php/AcfFields/php/mod-manual-input.php:251
 msgid "Highlight first input"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:227
+#: php/AcfFields/php/mod-manual-input.php:255
 msgid "Makes the first input bigger"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:265
+#: php/AcfFields/php/mod-manual-input.php:293
 #: php/AcfFields/php/mod-posts-displau.php:170
 msgid "Image position"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:287
+#: php/AcfFields/php/mod-manual-input.php:315
 msgid "right"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:328
+#: php/AcfFields/php/mod-manual-input.php:356
 #: php/AcfFields/php/mod-posts-displau.php:753
 msgid "12:16"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:342
+#: php/AcfFields/php/mod-manual-input.php:370
 msgid "Manual inputs"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:365
+#: php/AcfFields/php/mod-manual-input.php:393
 #: php/AcfFields/php/mod-map.php:344
 #: php/AcfFields/php/mod-slider.php:212
 #: php/AcfFields/php/mod-slider.php:523
@@ -1406,36 +1427,40 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:386
+#: php/AcfFields/php/mod-manual-input.php:414
 msgid "Column values"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:417
+#: php/AcfFields/php/mod-manual-input.php:445
 msgid "Column value"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:440
+#: php/AcfFields/php/mod-manual-input.php:468
 #: php/AcfFields/php/mod-slider.php:254
 #: php/AcfFields/php/mod-slider.php:543
 #: php/Editor.php:125
 msgid "Content"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:495
+#: php/AcfFields/php/mod-manual-input.php:523
 msgid "Obligatory"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:524
-msgid "Optional"
+#: php/AcfFields/php/mod-manual-input.php:552
+msgid "UniqueId"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:553
+#: php/AcfFields/php/mod-manual-input.php:581
+msgid "Link description"
+msgstr ""
+
+#: php/AcfFields/php/mod-manual-input.php:610
 #: php/AcfFields/php/mod-map.php:385
 #: php/AcfFields/php/mod-slider.php:732
 msgid "Link text"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:623
+#: php/AcfFields/php/mod-manual-input.php:680
 #: php/AcfFields/php/mod-modal.php:51
 msgid "Icon"
 msgstr ""
@@ -1524,7 +1549,7 @@ msgstr ""
 
 #: php/AcfFields/php/mod-map.php:219
 #: php/AcfFields/php/mod-posts-displau.php:638
-#: php/AcfFields/php/mod-posts-source.php:214
+#: php/AcfFields/php/mod-posts-source.php:220
 msgid "Disabled"
 msgstr ""
 
@@ -10152,8 +10177,8 @@ msgid "lg"
 msgstr ""
 
 #: php/AcfFields/php/mod-modal.php:2351
-#: php/Module/Modal/Modal.php:76
-#: php/Module/Modal/Modal.php:77
+#: php/Module/Modal/Modal.php:79
+#: php/Module/Modal/Modal.php:80
 msgid "Modal Content"
 msgstr ""
 
@@ -10499,48 +10524,47 @@ msgstr ""
 msgid "Schema Type"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:76
+#: php/AcfFields/php/mod-posts-source.php:74
 msgid "Post Types"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:105
+#: php/AcfFields/php/mod-posts-source.php:103
 msgid "Pick posts to display"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:141
+#: php/AcfFields/php/mod-posts-source.php:139
 msgid "Childs of"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:181
-#: php/AcfFields/php/mod-rss.php:31
-msgid "Set to -1 to show all"
+#: php/AcfFields/php/mod-posts-source.php:179
+msgid "Amount of posts to show (Maximum of 100)"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:201
+#: php/AcfFields/php/mod-posts-source.php:199
 msgid "Pagination"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:215
+#: php/AcfFields/php/mod-posts-source.php:221
 msgid "Page numbers"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:217
+#: php/AcfFields/php/mod-posts-source.php:223
 msgid "disabled"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:229
+#: php/AcfFields/php/mod-posts-source.php:235
 msgid "Link to post type archive"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:250
+#: php/AcfFields/php/mod-posts-source.php:256
 msgid "Yes, link to post type archive"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:257
+#: php/AcfFields/php/mod-posts-source.php:263
 msgid "From network sites"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:261
+#: php/AcfFields/php/mod-posts-source.php:267
 msgid "Get posts from other sites in the network. Leave empty to only show posts from this site. If you chose one or more from this list you must also choose this site to get posts from this site."
 msgstr ""
 
@@ -10555,6 +10579,10 @@ msgstr ""
 
 #: php/AcfFields/php/mod-rss.php:28
 msgid "Number of items"
+msgstr ""
+
+#: php/AcfFields/php/mod-rss.php:31
+msgid "Set to -1 to show all"
 msgstr ""
 
 #: php/AcfFields/php/mod-rss.php:49
@@ -10825,7 +10853,7 @@ msgid "Extern"
 msgstr ""
 
 #: php/AcfFields/php/mod-slider.php:759
-#: php/Module/ManualInput/ManualInput.php:109
+#: php/Module/ManualInput/ManualInput.php:117
 #: php/Module/Posts/Posts.php:187
 #: php/Module/Slider/Slider.php:215
 msgid "Read more"
@@ -11888,14 +11916,6 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: php/AcfFields/php/mod-wpwidget.php:85
-#: php/AcfFields/php/mod-wpwidget.php:117
-#: php/AcfFields/php/mod-wpwidget.php:149
-#: php/AcfFields/php/mod-wpwidget.php:181
-#: php/AcfFields/php/mod-wpwidget.php:213
-msgid "Yes"
-msgstr ""
-
 #: php/AcfFields/php/mod-wpwidget.php:93
 msgid "Show number of items indicator"
 msgstr ""
@@ -11992,6 +12012,11 @@ msgstr ""
 msgid "Taxonomy"
 msgstr ""
 
+#: php/AcfFields/php/post-status-conditional.php:8
+#: php/AcfFields/php/post-status-conditional.php:12
+msgid "Hidden Post Status Condition"
+msgstr ""
+
 #: php/App.php:161
 #: php/App.php:192
 #: php/App.php:252
@@ -12057,7 +12082,7 @@ msgstr ""
 msgid "Block settings"
 msgstr ""
 
-#: php/Display.php:625
+#: php/Display.php:630
 msgid "Edit module"
 msgstr ""
 
@@ -12204,11 +12229,6 @@ msgstr ""
 msgid "Add a content divider."
 msgstr ""
 
-#: php/Module/FilesList/FilesList.php:12
-#: php/Module/FilesList/FilesList.php:13
-msgid "Files"
-msgstr ""
-
 #: php/Module/FilesList/FilesList.php:14
 msgid "Outputs a file archive."
 msgstr ""
@@ -12294,16 +12314,47 @@ msgstr ""
 msgid "Outputs a grid of logotypes"
 msgstr ""
 
-#: php/Module/ManualInput/ManualInput.php:23
+#: php/Module/ManualInput/ManualInput.php:27
 msgid "Manual Input"
 msgstr ""
 
-#: php/Module/ManualInput/ManualInput.php:24
+#: php/Module/ManualInput/ManualInput.php:28
 msgid "Manual Inputs"
 msgstr ""
 
-#: php/Module/ManualInput/ManualInput.php:25
+#: php/Module/ManualInput/ManualInput.php:29
 msgid "Creates manual input content."
+msgstr ""
+
+#: php/Module/ManualInput/ManualInput.php:52
+#: php/Module/Search/Search.php:13
+#: php/Module/Search/Search.php:14
+#: php/Module/WpWidget/WpWidget.php:160
+msgid "Search"
+msgstr ""
+
+#: php/Module/ManualInput/Private/PrivateController.php:42
+msgid "Save"
+msgstr ""
+
+#: php/Module/ManualInput/Private/PrivateController.php:43
+msgid "Cancel"
+msgstr ""
+
+#: php/Module/ManualInput/Private/PrivateController.php:46
+msgid "Saving"
+msgstr ""
+
+#: php/Module/ManualInput/Private/PrivateController.php:47
+msgid "This item is obligatory"
+msgstr ""
+
+#: php/Module/ManualInput/Private/PrivateController.php:48
+msgid "An error occurred and the data could not be saved. Please try again later"
+msgstr ""
+
+#: php/Module/ManualInput/Private/PrivateController.php:49
+msgid "Change the lists content"
 msgstr ""
 
 #: php/Module/Map/Map.php:15
@@ -12318,15 +12369,15 @@ msgstr ""
 msgid "Your map link must start with http<strong>s</strong>://. Links without this prefix will not display."
 msgstr ""
 
-#: php/Module/Menu/Menu.php:23
+#: php/Module/Menu/Menu.php:22
 msgid "Menu"
 msgstr ""
 
-#: php/Module/Menu/Menu.php:24
+#: php/Module/Menu/Menu.php:23
 msgid "Menus"
 msgstr ""
 
-#: php/Module/Menu/Menu.php:25
+#: php/Module/Menu/Menu.php:24
 msgid "Outputs a menu."
 msgstr ""
 
@@ -12338,39 +12389,39 @@ msgstr ""
 msgid "Outputs a button and the content of a selected Modal Content post into a modal, accessible by clicking on the button."
 msgstr ""
 
-#: php/Module/Modal/Modal.php:75
+#: php/Module/Modal/Modal.php:78
 msgid "All Modal Contents"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:78
+#: php/Module/Modal/Modal.php:81
 msgid "Add New Modal Content"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:79
+#: php/Module/Modal/Modal.php:82
 msgid "Add Modal Content"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:80
+#: php/Module/Modal/Modal.php:83
 msgid "New Modal Content"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:81
+#: php/Module/Modal/Modal.php:84
 msgid "Edit Modal Content"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:82
+#: php/Module/Modal/Modal.php:85
 msgid "Update Modal Content"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:83
+#: php/Module/Modal/Modal.php:86
 msgid "View Modal Content"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:84
+#: php/Module/Modal/Modal.php:87
 msgid "View Modal Contents"
 msgstr ""
 
-#: php/Module/Modal/Modal.php:85
+#: php/Module/Modal/Modal.php:88
 msgid "Search For Modal Content"
 msgstr ""
 
@@ -12400,11 +12451,11 @@ msgstr ""
 msgid "Show more"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:222
+#: php/Module/Posts/Posts.php:226
 msgid "First page"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:228
+#: php/Module/Posts/Posts.php:232
 msgid "Page %d"
 msgstr ""
 
@@ -12439,12 +12490,6 @@ msgstr ""
 
 #: php/Module/Script/Script.php:27
 msgid "Please use a more appropriate module for your content. (video or iframe module)"
-msgstr ""
-
-#: php/Module/Search/Search.php:13
-#: php/Module/Search/Search.php:14
-#: php/Module/WpWidget/WpWidget.php:160
-msgid "Search"
 msgstr ""
 
 #: php/Module/Search/Search.php:15
