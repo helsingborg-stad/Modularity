@@ -67,6 +67,9 @@ class GetPosts
                 restore_current_blog();
             }
 
+            // Limit the number of posts to the desired count to avoid exceeding the limit.
+            $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
+
             return [
                 'posts' => $posts,
                 'maxNumPages' => $maxNumPages
@@ -188,16 +191,20 @@ class GetPosts
         }
 
         // Number of posts
-        if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
-            $postsPerPage = ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
-
-            $getPostsArgs['posts_per_page'] = $postsPerPage;
-        }
+        $getPostsArgs['posts_per_page'] = $this->getPostsPerPage($fields);
 
         // Apply pagination
         $getPostsArgs['paged'] = $page;
 
         return $getPostsArgs;
+    }
+
+    private function getPostsPerPage(array $fields): int {
+        if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
+            return ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
+        }
+
+        return 10;
     }
 
     private function getPostTypesFromSchemaType(string $schemaType):array {
