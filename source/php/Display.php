@@ -617,12 +617,20 @@ class Display
      * TODO: Needs filters
      */
     private function createEditModuleMarkup($module) {
+        $options = get_option('modularity-options');
         $linkParameters = [
             'post' => $module->ID ,
             'action' => 'edit',
             'is_thickbox' => 'true',
             'is_inline' => 'true'
         ]; 
+
+        if (isset($options['show-modules-usage-in-frontend']) && $options['show-modules-usage-in-frontend'] == 'on') {
+            $usage = sizeof(ModuleManager::getModuleUsage($module->ID));
+            if ($usage > 1) {
+                $module->data['post_type_name'] .= ' (' . $usage . ')';
+            }
+        }
 
         return '
             <div class="modularity-edit-module">

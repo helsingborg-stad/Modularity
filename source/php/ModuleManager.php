@@ -82,6 +82,9 @@ class ModuleManager
         // Description meta box
         add_action('add_meta_boxes', array($this, 'descriptionMetabox'), 5);
         add_action('save_post', array($this, 'descriptionMetaboxSave'));
+
+        // Possibly show notice nag when editing module used in several places
+        add_action('admin_notices', [$this, 'maybeShowEditModuleUsageNoticeNag']);
     }
 
     /**
@@ -603,5 +606,25 @@ class ModuleManager
         $columns['description'] = 'description';
         $columns['usage']       = 'usage';
         return $columns;
+    }
+
+    /**
+     * Possibly adds a notice nag if a module is used in more than one place
+     * @return void
+     */
+    public function maybeShowEditModuleUsageNoticeNag() {
+        $options = get_option('modularity-options');
+
+        // Add admin notice about module usage if setting is enabled
+        if (isset($options['show-modules-usage-edit-notice-nag']) && $options['show-modules-usage-edit-notice-nag'] == 'on') {
+            $screen = get_current_screen();
+            $usage = sizeof(ModuleManager::getModuleUsage(get_the_ID()));
+
+            if (strpos($screen->post_type, 'mod-') === 0 && $usage > 1) {
+                echo '<div class="notice notice-warning">';
+                echo '<p>' . __('<strong>Heads up:</strong> This module is used in several places', 'modularity') . '</p>';
+                echo '</div>';
+            }
+        }
     }
 }

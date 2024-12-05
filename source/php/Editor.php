@@ -515,6 +515,7 @@ class Editor extends \Modularity\Options
 
     public static function getModule($id, $moduleArgs = array())
     {
+        $options = get_option('modularity-options');
         $available = \Modularity\ModuleManager::$available;
 
         $postStatuses = array('publish');
@@ -538,6 +539,11 @@ class Editor extends \Modularity\Options
         $module->post_type_name = $available[$module->post_type]['labels']['name'];
         $module->meta = get_post_custom($module->ID);
         $module->isDeprecated = in_array($module->post_type, \Modularity\ModuleManager::$deprecated);
+
+        // Module usage 
+        if (isset($options['show-modules-usage-in-post-list']) && $options['show-modules-in-menu'] == 'on') {
+            $module->usage = sizeof(ModuleManager::getModuleUsage($module->ID));
+        }
 
         // Args
         if (count($moduleArgs) > 0) {
