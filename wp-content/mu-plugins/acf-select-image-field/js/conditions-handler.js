@@ -9,13 +9,7 @@ class ImageSelect {
         const conditionalField = this.imageSelectFieldGroup?.querySelector(`[data-name="${this.imageSelectFieldName}_conditional"]`);
         
         this.conditionalAcfField = conditionalField?.hasAttribute('data-key') ? acf.getField(conditionalField.getAttribute('data-key')) : false;
-        
-        console.log('acf: ', acf);
-        console.log('ConditionalField: ' + conditionalField);
-        console.log('conditional field data key: ', conditionalField.getAttribute('data-key'));
-        console.log('acf-field: ', acf.getField('field_656f4b44999e9'));
-        console.log('real data: ', acf.getField(conditionalField.getAttribute('data-key')));
-        
+ 
         this.ImageSelectSiblingFieldsConditions = this.getSiblingFields();
 
         //Run functionality
