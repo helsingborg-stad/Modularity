@@ -3,6 +3,7 @@
 namespace Modularity\Module\Markdown;
 
 use Parsedown;
+use WP_Error;
 use Modularity\Module\Markdown\Providers\ProviderInterface;
 
 class Markdown extends \Modularity\Module {
@@ -111,9 +112,17 @@ class Markdown extends \Modularity\Module {
         $markdownUrl    = $fields['mod_markdown_url'] ?: false;
         $isMarkdownUrl = $this->checkIfIsValidMarkdownProvider($markdownUrl, ...$this->providers);
         $markdownContent = $isMarkdownUrl ? $this->getDocument($markdownUrl) : false;
-        $parsedMarkdown = $isMarkdownUrl ? $this->parseMarkdown(
-            $this->filterMarkDownContent($markdownContent)
-        ) : false;
+
+        if(!is_wp_error($markdownContent)) {
+            $parsedMarkdown = $isMarkdownUrl ? $this->parseMarkdown(
+                $this->filterMarkDownContent($markdownContent)
+            ) : false;
+            $wpError = false;
+        } else {
+            $parsedMarkdown = false;
+            $wpError = $markdownContent;
+        }
+       
         $showMarkdownSource = $fields['mod_markdown_show_source'] ?: false;
 
         //Setup translations
@@ -124,10 +133,11 @@ class Markdown extends \Modularity\Module {
             'fetchError' => __('We could not fetch any content at this moment. Please try again later.', 'modularity'),
             'parseError' => __('The url provided could not be parsed by any of the allowed providers.', 'modularity'),
         ];
-        
+
         //Return data
         return [
             'isMarkdownUrl' => $isMarkdownUrl,
+            'wpError' => $wpError,
             'markdownContent' => $markdownContent,
             'parsedMarkdown' => $parsedMarkdown,
             'showMarkdownSource' => $showMarkdownSource,
@@ -174,10 +184,14 @@ class Markdown extends \Modularity\Module {
     /**
      * Parse markdown content.
      */
-    private function parseMarkdown($markdown)
+    private function parseMarkdown($markdown): string
     {
-        $parsedown = new \Parsedown();
-        return $parsedown->text($markdown);
+        try {
+            $parsedown = new \Parsedown();
+            return $parsedown->text($markdown);
+        } catch (\Exception $e) {
+            return "";
+        }
     }
 
     /**
@@ -187,7 +201,7 @@ class Markdown extends \Modularity\Module {
      * 
      * @return mixed The remote document.
      */
-    public function getDocument($requestUrl)
+    public function getDocument($requestUrl): string | \WP_Error
     {
         $requestArgs = [
             'headers' => [
@@ -206,7 +220,7 @@ class Markdown extends \Modularity\Module {
      * @param bool $cache Whether to use cached response or not.
      * @return mixed Cached response if available or remote response.
      */
-    private function maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache)
+    private function maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache) : string | \WP_Error
     {
         $transientKey = $this->createTransientKey($requestUrl);
 
@@ -225,11 +239,18 @@ class Markdown extends \Modularity\Module {
      * @param string $transientKey The transient key for caching the response.
      * @return mixed Remote response.
      */
-    private function getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey)
+    private function getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey) : string | \WP_Error
     {
-        $data = wp_remote_retrieve_body(wp_remote_get($requestUrl, $requestArgs));
+        $response = wp_remote_get($requestUrl, $requestArgs); 
 
-        if ($data) {
+        if (is_wp_error($response) || ($responseCode = wp_remote_retrieve_response_code($response) !== 200)) {    
+            if($responseCode !== 200) {
+                return new \WP_Error('fetch_error', __('We could not fetch any content at this moment. Please try again later. Response Code ' . ($responseCode), 'modularity'));
+            }
+            return new \WP_Error('fetch_error', __('We could not fetch any content at this moment. Please try again later.', 'modularity'));
+        }
+
+        if ($data = wp_remote_retrieve_body($response)) {
             set_transient($transientKey, $data, $this->cacheTtl);
             set_transient($transientKey . $this->lastUpdatedKey, date("Y-m-d H:i", time()), $this->cacheTtl);
             set_transient($transientKey . $this->nextUpdateKey, date("Y-m-d H:i", time() + $this->cacheTtl), $this->cacheTtl);
@@ -245,7 +266,7 @@ class Markdown extends \Modularity\Module {
      * @param array $requestArgs Optional. Arguments for the remote request.
      * @return string The transient key for caching the response.
      */
-    private function createTransientKey($requestUrl)
+    private function createTransientKey($requestUrl) : string
     {
         return "mod_markdown_" . md5(serialize($requestUrl));
     }

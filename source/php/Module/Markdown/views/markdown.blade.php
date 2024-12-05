@@ -54,18 +54,34 @@
         @endnotice
     @endif
 
-@else 
-    @notice([
-        'id'        => 'mod-markdown-' . $ID .'-notice',
-        'type' => 'info',
-        'message' => [
-            'text' => $language->parseError,
-        ],
-        'icon' => [
-            'name' => 'report',
-            'size' => 'md',
-            'color' => 'white'
-        ]
-    ])
-    @endnotice
+@else
+    @if ($wpError)
+        @notice([
+            'id'        => 'mod-markdown-' . $ID .'-notice',
+            'type' => 'info',
+            'message' => [
+                'text' => $wpError->getMessage(),
+            ],
+            'icon' => [
+                'name' => 'report',
+                'size' => 'md',
+                'color' => 'white'
+            ]
+        ])
+        @endnotice
+    @else 
+        @notice([
+            'id'        => 'mod-markdown-' . $ID .'-notice',
+            'type' => 'info',
+            'message' => [
+                'text' => $language->parseError,
+            ],
+            'icon' => [
+                'name' => 'report',
+                'size' => 'md',
+                'color' => 'white'
+            ]
+        ])
+        @endnotice
+    @endif
 @endif
