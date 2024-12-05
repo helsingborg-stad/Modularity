@@ -118,10 +118,13 @@ class Markdown extends \Modularity\Module {
             $parsedMarkdown = $isMarkdownUrl ? $this->parseMarkdown(
                 $this->filterMarkDownContent($markdownContent)
             ) : false;
-            $wpError = false;
+            $wpError = (is_wp_error($parsedMarkdown)) ? $parsedMarkdown : false;
         } else {
-            $parsedMarkdown = false;
             $wpError = $markdownContent;
+        }
+
+        if(is_wp_error($wpError)) {
+            $parsedMarkdown = false;
         }
        
         $showMarkdownSource = $fields['mod_markdown_show_source'] ?: false;
@@ -186,13 +189,13 @@ class Markdown extends \Modularity\Module {
     /**
      * Parse markdown content.
      */
-    private function parseMarkdown($markdown): string
+    private function parseMarkdown($markdown): string | \WP_Error
     {
         try {
             $parsedown = new \Parsedown();
             return $parsedown->text($markdown);
         } catch (\Exception $e) {
-            return "";
+            return new \WP_Error('parse_error', __('The url provided could not be parsed as markdown.', 'modularity'));
         }
     }
 
