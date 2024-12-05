@@ -2,10 +2,9 @@
 
 namespace Modularity\Module\Markdown;
 
-use Parsedown;
 use WP_Error;
 use Modularity\Module\Markdown\Providers\ProviderInterface;
-
+use League\CommonMark\CommonMarkConverter;
 class Markdown extends \Modularity\Module {
     public $slug = 'markdown';
     public $supports = array();
@@ -67,12 +66,16 @@ class Markdown extends \Modularity\Module {
      * @return array The field array.
      */
     public function createDocumentationField($field) {
+
+        //Get language
+        $language = $this->getLanguage();
+
         // Initialize table content
         $tableContent = '<table class="widefat striped">';
         $tableContent .= '<thead>';
         $tableContent .= '<tr>';
-        $tableContent .= '<th>Provider Name</th>';
-        $tableContent .= '<th>Example URL</th>';
+        $tableContent .= '<th>' . $language->tableProviderHead . '</th>';
+        $tableContent .= '<th> ' . $language->tableExampleHead .' </th>';
         $tableContent .= '</tr>';
         $tableContent .= '</thead>';
         $tableContent .= '<tbody>';
@@ -129,15 +132,6 @@ class Markdown extends \Modularity\Module {
        
         $showMarkdownSource = $fields['mod_markdown_show_source'] ?: false;
 
-        //Setup translations
-        $language = [
-            'sourceUrl' =>  __('Source Url', 'modularity'),
-            'nextUpdate' => __('Next update', 'modularity'),
-            'lastUpdated' => __('Last updated', 'modularity'),
-            'fetchError' => __('We could not fetch any content at this moment. Please try again later.', 'modularity'),
-            'parseError' => __('The url provided could not be parsed by any of the allowed providers.', 'modularity'),
-        ];
-
         //Return data
         return [
             'isMarkdownUrl' => $isMarkdownUrl,
@@ -148,8 +142,26 @@ class Markdown extends \Modularity\Module {
             'markdownUrl' => $markdownUrl,
             'markdownLastUpdated' => get_transient($this->createTransientKey($markdownUrl) . $this->lastUpdatedKey),
             'markdownNextUpdate' => get_transient($this->createTransientKey($markdownUrl) . $this->nextUpdateKey),
-            'language' => (object) $language,
+            'language' => $this->getLanguage(),
             'isWrapped' => $isWrapped,
+        ];
+    }
+
+    /**
+     * Get the language object.
+     * 
+     * @return object The language object.
+     */
+    private function getLanguage(): object 
+    {
+        return (object) [
+            'sourceUrl' =>  __('Source Url', 'modularity'),
+            'nextUpdate' => __('Next update', 'modularity'),
+            'lastUpdated' => __('Last updated', 'modularity'),
+            'fetchError' => __('We could not fetch any content at this moment. Please try again later.', 'modularity'),
+            'parseError' => __('The url provided could not be parsed by any of the allowed providers.', 'modularity'),
+            'tableProviderHead' => __('Provider', 'modularity'),
+            'tableExampleHead' => __('Example', 'modularity'),
         ];
     }
 
@@ -192,8 +204,8 @@ class Markdown extends \Modularity\Module {
     private function parseMarkdown($markdown): string | \WP_Error
     {
         try {
-            $parsedown = new \Parsedown();
-            return $parsedown->text($markdown);
+            $converter = new CommonMarkConverter();
+            return $converter->convert($markdown)->getContent();
         } catch (\Exception $e) {
             return new \WP_Error('parse_error', __('The url provided could not be parsed as markdown.', 'modularity'));
         }
