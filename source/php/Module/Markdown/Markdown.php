@@ -37,15 +37,15 @@ class Markdown extends \Modularity\Module {
         add_filter('acf/prepare_field/key=field_67506eebcdbfd', array($this, 'createDocumentationField'));
 
         //Delete transients when saving
-        add_action('acf/save_post', array($this, 'deleteTransients'), 20);
+        add_action('acf/save_post', array($this, 'deleteTransients'), 10, 0);
     }
 
     /**
      * Delete transients when saving.
      * 
-     * @param int $postId The post ID.
+     * @return void
      */
-    public function deleteTransients($postId)
+    public function deleteTransients(): void
     {
         $fields = $this->getFields();
         $markdownUrl = $fields['mod_markdown_url'] ?: false;
@@ -65,7 +65,8 @@ class Markdown extends \Modularity\Module {
      * 
      * @return array The field array.
      */
-    public function createDocumentationField($field) {
+    public function createDocumentationField(array $field): array 
+    {
 
         //Get language
         $language = $this->getLanguage();
@@ -172,7 +173,7 @@ class Markdown extends \Modularity\Module {
      * 
      * @return string The filtered markdown content.
      */
-    private function filterMarkDownContent($markdownContent)
+    private function filterMarkDownContent(string $markdownContent): string
     {
         $filters = [
             new Filters\DemoteTitles(),
@@ -201,7 +202,7 @@ class Markdown extends \Modularity\Module {
     /**
      * Parse markdown content.
      */
-    private function parseMarkdown($markdown): string | \WP_Error
+    private function parseMarkdown(string $markdown): string | \WP_Error
     {
         try {
             $converter = new CommonMarkConverter();
@@ -218,7 +219,7 @@ class Markdown extends \Modularity\Module {
      * 
      * @return mixed The remote document.
      */
-    public function getDocument($requestUrl): string | \WP_Error
+    public function getDocument(string $requestUrl): string | \WP_Error
     {
         $requestArgs = [
             'headers' => [
@@ -226,7 +227,7 @@ class Markdown extends \Modularity\Module {
             ]
         ];
 
-        return $this->maybeRetriveCachedResponse($requestUrl, $requestArgs, true);
+        return $this->maybeRetrieveCachedResponse($requestUrl, $requestArgs, true);
     }
 
     /**
@@ -235,9 +236,10 @@ class Markdown extends \Modularity\Module {
      * @param string $requestUrl The URL to request.
      * @param array $requestArgs Optional. Arguments for the remote request.
      * @param bool $cache Whether to use cached response or not.
+     * 
      * @return mixed Cached response if available or remote response.
      */
-    private function maybeRetriveCachedResponse($requestUrl, $requestArgs, $cache) : string | \WP_Error
+    private function maybeRetrieveCachedResponse(string $requestUrl, array $requestArgs, bool $cache) : string | \WP_Error
     {
         $transientKey = $this->createTransientKey($requestUrl);
 
@@ -245,18 +247,19 @@ class Markdown extends \Modularity\Module {
             return $cachedDocument;
         }
 
-        return $this->getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey);
+        return $this->getRemoteAndSetCachedResponse($requestUrl, $transientKey, $requestArgs);
     }
 
     /**
      * Get remote response and set cached response.
      *
      * @param string $requestUrl The URL to request.
-     * @param array $requestArgs Optional. Arguments for the remote request.
      * @param string $transientKey The transient key for caching the response.
-     * @return mixed Remote response.
+     * @param array $requestArgs Optional. Arguments for the remote request.
+     * 
+     * @return string|WP_Error Remote response.
      */
-    private function getRemoteAndSetCachedResponse($requestUrl, $requestArgs, $transientKey) : string | \WP_Error
+    private function getRemoteAndSetCachedResponse(string $requestUrl, string $transientKey, array $requestArgs = []) : string | \WP_Error
     {
         $response = wp_remote_get($requestUrl, $requestArgs); 
 
@@ -280,7 +283,7 @@ class Markdown extends \Modularity\Module {
      * Create a transient key for caching the response.
      *
      * @param string $requestUrl The URL to request.
-     * @param array $requestArgs Optional. Arguments for the remote request.
+     * 
      * @return string The transient key for caching the response.
      */
     private function createTransientKey($requestUrl) : string
