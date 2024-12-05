@@ -30,7 +30,7 @@ class Markdown extends \Modularity\Module {
             new Providers\CGit(),
             new Providers\Gitea(),
             new Providers\Codeberg(),
-            new Providers\Sourcehut(),
+            new Providers\SourceHut(),
         ];
 
         //Filter example fields
