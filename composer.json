@@ -48,7 +48,8 @@
         "wpackagist-plugin/acf-extended": "0.8.9.4",
         "helsingborg-stad/acf-select-image-field": "~1.4.3",
         "landrok/language-detector": "dev-master",
-        "league/commonmark": "^2.5.3"
+        "league/commonmark": "^2.5.3",
+        "league/config": "^1.2"
     },
     "autoload": {
         "psr-4": {
