@@ -33,6 +33,7 @@ class FilesList extends \Modularity\Module
             )
         );
         $data['isFilterable'] = get_field('show_filter', $this->ID);
+        $data['filterAboveCard'] = get_field('filter_above_card', $this->ID);
         $data['uID'] = uniqid();
         $data['ID'] = $this->ID;
 
