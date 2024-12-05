@@ -112,6 +112,7 @@ class Markdown extends \Modularity\Module {
         $markdownUrl    = $fields['mod_markdown_url'] ?: false;
         $isMarkdownUrl = $this->checkIfIsValidMarkdownProvider($markdownUrl, ...$this->providers);
         $markdownContent = $isMarkdownUrl ? $this->getDocument($markdownUrl) : false;
+        $isWrapped  = $fields['mod_markdown_wrap_in_container'] ?? false;
 
         if(!is_wp_error($markdownContent)) {
             $parsedMarkdown = $isMarkdownUrl ? $this->parseMarkdown(
@@ -145,6 +146,7 @@ class Markdown extends \Modularity\Module {
             'markdownLastUpdated' => get_transient($this->createTransientKey($markdownUrl) . $this->lastUpdatedKey),
             'markdownNextUpdate' => get_transient($this->createTransientKey($markdownUrl) . $this->nextUpdateKey),
             'language' => (object) $language,
+            'isWrapped' => $isWrapped,
         ];
     }
 
