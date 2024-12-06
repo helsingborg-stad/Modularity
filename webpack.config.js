@@ -43,6 +43,8 @@ module.exports = {
 		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts',
 		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
 		'css/menu': './source/php/Module/Menu/assets/menu.scss',
+		
+		'js/mod-posts-get-posts': './source/php/Module/Posts/assets/getPosts.ts',
 	},
 
 	/**

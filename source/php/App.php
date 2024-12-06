@@ -34,6 +34,16 @@ class App
         new Ajax();
         new Options\General();
 
+        add_filter('Municipio/Api/Posts/Appearances', function ($appearances) {
+            return [
+                new PostResolver(
+                    [MODULARITY_MODULE_PATH . 'Posts/views/partials/post'],
+                    'modularity-posts',
+                    new \Modularity\Module\Posts\Helper\GetPosts(),
+                ),
+            ];
+        });
+
         $upgradeInstance = new Upgrade();
         new WpCli($upgradeInstance);
 

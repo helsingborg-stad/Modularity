@@ -25,7 +25,7 @@ class GetPosts
             $helperMethod = 'preparePostObject';
             $helperArchiveMethod = 'preparePostObjectArchive';
             
-            if(!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
+            if (!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
                 error_log("Class or method does not exist: {$helperClass}::{$helperMethod} or {$helperClass}::{$helperArchiveMethod}");
                 return $post;
             }
