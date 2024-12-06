@@ -28,16 +28,20 @@
             "label": "Display as conditional target",
             "name": "mod_menu_display_as_conditional",
             "aria-label": "",
-            "type": "acfe_hidden",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "acf-hidden",
                 "id": ""
             },
-            "default_value": ""
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_66c34c655680e",
@@ -53,12 +57,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "575": "drawer down",
-                "564": "Language",
-                "573": "ny",
-                "576": "Primary"
-            },
+            "choices": {},
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -161,4 +160,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

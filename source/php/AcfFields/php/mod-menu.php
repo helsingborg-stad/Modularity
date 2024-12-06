@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
     'title' => __('Menu Module', 'modularity'),
     'fields' => array(
@@ -31,16 +33,20 @@
             'label' => __('Display as conditional target', 'modularity'),
             'name' => 'mod_menu_display_as_conditional',
             'aria-label' => '',
-            'type' => 'acfe_hidden',
+            'type' => 'text',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '',
-                'class' => '',
+                'class' => 'acf-hidden',
                 'id' => '',
             ),
             'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
         ),
         2 => array(
             'key' => 'field_66c34c655680e',
@@ -56,12 +62,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(
-                575 => __('drawer down', 'modularity'),
-                564 => __('Language', 'modularity'),
-                573 => __('ny', 'modularity'),
-                576 => __('Primary', 'modularity'),
-            ),
+            'choices' => array(),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -164,4 +165,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
