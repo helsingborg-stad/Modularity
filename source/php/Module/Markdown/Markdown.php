@@ -48,7 +48,7 @@ class Markdown extends \Modularity\Module {
     public function deleteTransients(): void
     {
         $fields = $this->getFields();
-        $markdownUrl = $fields['mod_markdown_url'] ?: false;
+        $markdownUrl = $fields['mod_markdown_url'] ?? false;
 
         if ($markdownUrl) {
             $transientKey = $this->createTransientKey($markdownUrl);
