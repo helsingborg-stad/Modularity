@@ -68,7 +68,7 @@ class V7 implements versionInterface {
                 }
 
                 if (
-                    !empty($block['attrs']['data'][$this->fieldName]) && 
+                    empty($block['attrs']['data'][$this->fieldName]) || 
                     $block['attrs']['data'][$this->fieldName] !== $this->oldValue
                 ) {
                     continue;
