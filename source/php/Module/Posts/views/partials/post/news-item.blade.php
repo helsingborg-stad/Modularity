@@ -7,6 +7,10 @@
     'link'                => $post->permalink,
     'context'             => ['module.posts.news-item'],
     'hasPlaceholderImage' => $post->hasPlaceholderImage,
+    'classList' => [
+        $posts_columns
+    ],
+    'standing' => $standing
 ])
     @slot('headerLeftArea')
         @if (count($postsSources) > 1 && !empty($post->originalSite))
