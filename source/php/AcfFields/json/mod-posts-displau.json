@@ -276,6 +276,11 @@
                         "field": "field_628e0ffba7da4",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "!=",
+                        "value": "news"
                     }
                 ]
             ],
@@ -289,10 +294,10 @@
                 "card": "Card"
             },
             "default_value": "block",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
@@ -422,7 +427,8 @@
             "allow_custom": 0,
             "layout": "horizontal",
             "toggle": 0,
-            "save_custom": 0
+            "save_custom": 0,
+            "custom_choice_button_text": "L\u00e4gg till nytt val"
         },
         {
             "key": "field_62387e4b55b75",
@@ -789,4 +795,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
