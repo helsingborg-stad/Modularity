@@ -4,6 +4,10 @@ namespace Modularity\Module\Markdown\Filters;
 
 class DemoteTitles implements FilterInterface
 {
+    public function __construct(private array $fields)
+    {   
+    }
+
     /**
      * Filter the content.
      *

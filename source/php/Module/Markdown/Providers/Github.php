@@ -3,8 +3,10 @@
 namespace Modularity\Module\Markdown\Providers;
 
 use Modularity\Module\Markdown\Providers\ProviderInterface;
+use League\CommonMark\GithubFlavoredMarkdownConverter;
+use League\CommonMark\MarkdownConverter;
 
-class Github implements ProviderInterface
+class Github extends BaseProvider implements ProviderInterface
 {
     public function isValidProviderUrl(string $url): bool
     {
@@ -23,5 +25,10 @@ class Github implements ProviderInterface
     public function getName(): string
     {
         return 'Github';
+    }
+
+    public function implementation(): MarkdownConverter
+    {
+        return new GithubFlavoredMarkdownConverter();
     }
 }
