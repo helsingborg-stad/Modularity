@@ -121,10 +121,12 @@ class Markdown extends \Modularity\Module {
         $isMarkdownUrl = $this->checkIfIsValidMarkdownProvider($markdownUrl, ...$this->providers);
         $markdownContent = $isMarkdownUrl ? $this->getDocument($markdownUrl) : false;
         $isWrapped  = $fields['mod_markdown_wrap_in_container'] ?? false;
+        $markDownImplementation = $isMarkdownUrl ? $this->getMarkdownProvider($markdownUrl, ...$this->providers) : false;
 
         if(!is_wp_error($markdownContent)) {
             $parsedMarkdown = $isMarkdownUrl ? $this->parseMarkdown(
-                $this->filterMarkDownContent($markdownContent)
+                $this->filterMarkDownContent($markdownContent, $fields ?? []),
+                $markDownImplementation
             ) : false;
             $wpError = (is_wp_error($parsedMarkdown)) ? $parsedMarkdown : false;
         } else {
@@ -177,10 +179,11 @@ class Markdown extends \Modularity\Module {
      * 
      * @return string The filtered markdown content.
      */
-    private function filterMarkDownContent(string $markdownContent): string
+    private function filterMarkDownContent(string $markdownContent, array $fields): string
     {
         $filters = [
-            new Filters\DemoteTitles(),
+            new Filters\DemoteTitles($fields),
+            new Filters\RelativeAssets($fields),
         ]; 
 
         foreach ($filters as $filter) {
@@ -195,21 +198,36 @@ class Markdown extends \Modularity\Module {
      */
     private function checkIfIsValidMarkdownProvider($url, ProviderInterface ...$providers): bool
     {
-        foreach ($providers as $provider) {
-            if ($provider->isValidProviderUrl($url)) {
-                return true;
-            }
+        if(!is_null($this->getMarkdownProvider($url, ...$providers))) {
+            return true;
         }
         return false;
     }
 
     /**
+     * Get markdown provider.
+     */
+    private function getMarkdownProvider($url, ProviderInterface ...$providers): ProviderInterface | null
+    {
+        foreach ($providers as $provider) {
+            if ($provider->isValidProviderUrl($url)) {
+                return $provider;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Parse markdown content.
      */
-    private function parseMarkdown(string $markdown): string | \WP_Error
+    private function parseMarkdown(string $markdown, ProviderInterface $markDownImplementation): string | \WP_Error
     {
         try {
-            $converter = new CommonMarkConverter();
+            if($markDownImplementation) {
+                $converter = $markDownImplementation->implementation();
+            } else {
+                $converter = new CommonMarkConverter();
+            }
             return $converter->convert($markdown)->getContent();
         } catch (\Exception $e) {
             return new \WP_Error('parse_error', __('The url provided could not be parsed as markdown.', 'modularity'));

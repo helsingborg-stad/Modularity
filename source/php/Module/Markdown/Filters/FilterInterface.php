@@ -9,6 +9,9 @@ namespace Modularity\Module\Markdown\Filters;
  */
 
 interface FilterInterface {
+
+    public function __construct(array $fields);
+
     /**
      * Filter the content.
      *
