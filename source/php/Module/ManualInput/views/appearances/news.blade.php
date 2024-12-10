@@ -8,6 +8,4 @@
     'classList'           => array_merge($input['classList'] ?? [], [$input['columnSize']]),
     'attributeList'       => $input['attributeList'] ?? [],
 ])
-    @slot('headerLeftArea')
-    @endslot
 @endnewsItem
