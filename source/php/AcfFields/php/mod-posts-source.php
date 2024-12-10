@@ -291,7 +291,7 @@ if (function_exists('acf_add_local_field_group')) {
             ),
             'default_value' => array(
             ),
-            'return_format' => 'value',
+            'return_format' => 'array',
             'multiple' => 1,
             'allow_null' => 0,
             'ui' => 0,
