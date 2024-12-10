@@ -37,7 +37,7 @@ class Markdown extends \Modularity\Module {
         add_filter('acf/prepare_field/key=field_67506eebcdbfd', array($this, 'createDocumentationField'));
 
         //Delete transients when saving
-        add_action('acf/save_post', array($this, 'deleteTransients'), 10, 0);
+        add_action('acf/save_post', array($this, 'deleteTransients'), 10, 1);
     }
 
     /**
@@ -45,8 +45,12 @@ class Markdown extends \Modularity\Module {
      * 
      * @return void
      */
-    public function deleteTransients(): void
+    public function deleteTransients($postId): void
     {
+        if(get_post_type($postId) !== 'mod-markdown') {
+            return;
+        }
+
         $fields = $this->getFields();
         $markdownUrl = $fields['mod_markdown_url'] ?? false;
 
