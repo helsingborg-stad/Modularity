@@ -226,6 +226,26 @@ class GetPostsTest extends TestCase {
         $this->assertNotEquals($secondSort, $posts); // Assert that the posts are not in the same order
     }
 
+    #[TestDox('sortPosts() does not sort if invalid sort order is provided')]
+    public function testSortPostsDoesNotSortIfInvalidSortOrderIsProvided() {
+        $posts = [
+            $this->getWpPostMock(['menu_order' => 3]),
+            $this->getWpPostMock(['menu_order' => 1]),
+            $this->getWpPostMock(['menu_order' => 2]),
+        ];
+
+        $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
+        $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
+        
+        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+
+        $sortedPosts = $getPosts->sortPosts($posts, 'foo');
+
+        $this->assertEquals(3, $sortedPosts[0]->menu_order);
+        $this->assertEquals(1, $sortedPosts[1]->menu_order);
+        $this->assertEquals(2, $sortedPosts[2]->menu_order);
+    }
+
     private function getWpPostMock(array $data = []):WP_Post|MockObject {
         $wpPost = $this->createStub(stdClass::class);
         $wpPost->post_date = $data['post_date'] ?? '';
