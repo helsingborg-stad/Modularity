@@ -76,7 +76,7 @@
     "suggest": {
         "helsingborg-stad/component-library": "Required for modules in modularity"
     },
-    "version": "6.50.3",
+    "version": "6.50.4",
     "require-dev": {
         "phpunit/phpunit": "^11"
     }
