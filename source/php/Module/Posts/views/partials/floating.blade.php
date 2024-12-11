@@ -1,4 +1,6 @@
 @slot('floating')
-    @icon($post->callToActionItems['floating'])
-    @endicon
+    @element($post->callToActionItems['floating']['wrapper'] ?? [])
+        @icon($post->callToActionItems['floating']['icon'])
+        @endicon
+    @endelement
 @endslot

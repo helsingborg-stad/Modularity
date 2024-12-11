@@ -13,5 +13,8 @@
     'icon' => $post->termIcon,
     'attributeList' => array_merge($post->attributeList, []),
 ])
-    @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
+    @includeWhen(
+        !empty($post->callToActionItems['floating']['icon']), 
+        'partials.floating'
+    )
 @endblock
