@@ -77,7 +77,6 @@
     },
     "version": "6.50.1",
     "require-dev": {
-        "10up/wp_mock": "dev-trunk#1.0.1",
-        "php-mock/php-mock-mockery": "^1.4"
+        "phpunit/phpunit": "^11"
     }
 }

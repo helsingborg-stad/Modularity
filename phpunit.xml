@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
-         bootstrap="./bootstrap.php"
-         backupGlobals="false"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         executionOrder="depends,defects"
+         shortenArraysForExportThreshold="10"
+         requireCoverageMetadata="true"
+         beStrictAboutCoverageMetadata="true"
+         beStrictAboutOutputDuringTests="true"
+         displayDetailsOnPhpunitDeprecations="true"
+         failOnPhpunitDeprecation="true"
+         failOnRisky="true"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true">
+         failOnWarning="true">
+    <testsuites>
+        <testsuite name="default">
+            <directory suffix=".Test.php">source/php</directory>
+        </testsuite>
+    </testsuites>
 
-  <coverage processUncoveredFiles="false">
-    <include>
-      <directory suffix=".php">./source</directory>
-    </include>
-    <exclude>
-      <directory suffix=".php">./source/php/AcfFields</directory>
-    </exclude>
-    <report>
-      <text outputFile="php://stdout" showUncoveredFiles="true"/>
-      <html outputDirectory="./tests/phpunit/.coverage"/>
-      <clover outputFile="./tests/phpunit/.coverage/clover.xml"/>
-    </report>
-  </coverage>
-
-  <testsuites>
-    <testsuite name="default">
-      <directory suffix=".test.php">source/php</directory>
-    </testsuite>
-  </testsuites>
-
-  <php>
-    <ini name="error_reporting" value="E_ALL" />
-  </php>
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>source/php</directory>
+        </include>
+    </source>
 </phpunit>
