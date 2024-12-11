@@ -88,6 +88,7 @@ class GetPosts
             }
 
             // Limit the number of posts to the desired count to avoid exceeding the limit.
+            $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
             $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
 
             return [
@@ -257,5 +258,28 @@ class GetPosts
         }
 
         return $this->wpService->getTheID();
+    }
+
+    /**
+     * Sort posts
+     * 
+     * @param \WP_Post[] $posts
+     * @param string $orderby Can be 'date', 'title', 'modified', 'menu_order', 'rand'. Default is 'date'.
+     * @param string $order Can be 'asc' or 'desc'. Default is 'desc'. When 'rand' is used, this parameter is ignored.
+     */
+    public function sortPosts(array $posts, string $orderby = 'date', string $order = 'desc') : array
+    {
+        usort($posts, fn($a, $b) =>
+            match($orderby) {
+                'date' => strtotime($a->post_date) > strtotime($b->post_date) ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'title' => $a->post_title > $b->post_title ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'modified' => strtotime($a->post_modified) > strtotime($b->post_modified) ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'menu_order' => $a->menu_order > $b->menu_order ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'rand' => rand(-1, 1),
+                default => 0,
+            }
+        );
+
+        return $posts;
     }
 }
