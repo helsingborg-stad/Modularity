@@ -3,13 +3,15 @@
 namespace Modularity\Module\Posts\Helper;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
-use WpService\Contracts\GetPermalink;
-use WpService\Contracts\GetPostType;
-use WpService\Contracts\GetTheID;
-use WpService\Contracts\IsArchive;
-use WpService\Contracts\IsUserLoggedIn;
-use WpService\Contracts\RestoreCurrentBlog;
-use WpService\Contracts\SwitchToBlog;
+use WpService\Contracts\{
+    GetPermalink,
+    GetPostType,
+    GetTheID,
+    IsArchive,
+    IsUserLoggedIn,
+    RestoreCurrentBlog,
+    SwitchToBlog,
+};
 
 class GetPosts
 {
