@@ -9,11 +9,6 @@ use WpService\Implementations\FakeWpService;
 
 class GetPostsTest extends TestCase {
 
-    protected function tearDown(): void
-    {
-        unset($GLOBALS['post']);
-    }
-
     #[TestDox('getCurrentPostID() returns the current post ID')]
     public function testGetCurrentPostIDReturnsTheCurrentPostID() {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
