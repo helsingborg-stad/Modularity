@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
+use Modularity\Helper\WpQueryFactory\WpQueryFactory;
+use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
 
@@ -52,7 +54,7 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $this->getPostsHelper = new GetPosts();
+        $this->getPostsHelper = new GetPosts(WpService::get(), new WpQueryFactory());
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
