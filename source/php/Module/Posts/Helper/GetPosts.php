@@ -260,6 +260,13 @@ class GetPosts
         return $this->wpService->getTheID();
     }
 
+    /**
+     * Sort posts
+     * 
+     * @param \WP_Post[] $posts
+     * @param string $orderby Can be 'date', 'title', 'modified', 'menu_order', 'rand'. Default is 'date'.
+     * @param string $order Can be 'asc' or 'desc'. Default is 'desc'. When 'rand' is used, this parameter is ignored.
+     */
     public function sortPosts(array $posts, string $orderby = 'date', string $order = 'desc') : array
     {
         usort($posts, fn($a, $b) =>
