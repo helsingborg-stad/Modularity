@@ -11,7 +11,7 @@ use WP_CLI;
  */
 class Upgrade
 {
-    private $dbVersion = 6;
+    private $dbVersion = 7;
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 

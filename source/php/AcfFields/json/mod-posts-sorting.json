@@ -19,14 +19,10 @@
             "allow_null": 0,
             "choices": {
                 "false": "Do not sort",
-                "ID": "ID",
-                "author": "F\u00f6rfattare",
                 "title": "Titel",
                 "date": "Publiceringsdatum",
                 "modified": "Date modified",
-                "parent": "Parent",
                 "rand": "Random",
-                "comment_count": "Comment count",
                 "menu_order": "Menu order"
             },
             "default_value": "date",
@@ -91,4 +87,4 @@
     "show_in_rest": false,
     "modified": 1461661083
 }]
-
+

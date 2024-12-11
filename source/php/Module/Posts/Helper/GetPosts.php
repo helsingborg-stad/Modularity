@@ -52,14 +52,16 @@ class GetPosts
         if(!empty($fields['posts_data_network_sources'])) {
             $posts      = [];
             $maxNumPages = 0;
+
             foreach($fields['posts_data_network_sources'] as $site) {
-                switch_to_blog($site);
+                switch_to_blog($site['value']);
                 $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
                 $postsFromSite = $wpQuery->get_posts();
 
-                array_walk($postsFromSite, function($post) {
+                array_walk($postsFromSite, function($post) use ($site) {
                     // Add the original permalink to the post object for reference in network sources.
                     $post->originalPermalink = get_permalink($post->ID);
+                    $post->originalSite      = $site['label'];
                 });
 
                 $posts = array_merge($posts, $postsFromSite);

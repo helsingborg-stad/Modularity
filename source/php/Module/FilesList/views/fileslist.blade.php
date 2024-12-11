@@ -1,75 +1,77 @@
-@card([
-    'heading'       => false,
-    'classList'     => [$classes],
+@group([
+    'classList'     => $filterAboveCard ? ['has-filter-outside-card'] : false,
+    'direction'     => 'vertical',
     'attributeList' => [
-        'js-filter-container'   => $uID,
-        "aria-labelledby"       => 'mod-fileslist-' . $ID .'-label',
-    ],
-    'context' => 'module.files.list'
+        'js-filter-container' => $uID
+    ]
 ])
-    @if (!$hideTitle && !empty($postTitle))
-        <div class="c-card__header">
-            @typography([
-                'id'      => 'mod-fileslist-' . $ID .'-label',
-                'element' => 'h2',
-                'variant' => 'h4'
-            ])
-                {!! $postTitle !!}
-            @endtypography
-        </div>
-    @endif
-
-    @if($isFilterable)
-    <div class="c-card__body">
-        @field([
-            'type'          => 'text',
-            'attributeList' => [
-                'type'              => 'search',
-                'name'              => 'search',
-                'js-filter-input'   => $uID
-            ],
-            'label'         => __('Search', 'municipio')
+    @if ($isFilterable && $filterAboveCard)
+        @card([
+            'classList' => ['u-padding__4']
         ])
-        @endfield
-    </div>
+            @include('partials.filter')
+        @endcard
     @endif
 
-    @collection([
-        'sharpTop' => true
+    @card([
+        'heading'       => false,
+        'classList'     => [$classes],
+        'attributeList' => [
+            'js-filter-container' => $uID,
+            'aria-labelledby'     => 'mod-fileslist-' . $ID . '-label'
+        ],
+        'context'       => 'module.files.list'
     ])
-
-        @foreach($rows as $row)
-            @collection__item([
-                'link'          => $row['href'],
-                'icon'          => $row['icon'],
-                'attributeList' => [
-                    'js-filter-item' => ''
-                ]
-            ])
-
+        @if (!$hideTitle && !empty($postTitle))
+            <div class="c-card__header"@if ($filterAboveCard) style="border-top-left-radius:0;border-top-right-radius:0;"@endif>
                 @typography([
-                    'element'       => 'span',
-                    'variant'       => 'bold',
+                    'id'      => 'mod-fileslist-' . $ID . '-label',
+                    'element' => 'h2',
+                    'variant' => 'h4'
+                ])
+                    {!! $postTitle !!}
+                @endtypography
+            </div>
+        @endif
+
+        @if ($isFilterable && !$filterAboveCard)
+            @include('partials.filter')
+        @endif
+
+        @collection([
+            'sharpTop' => true
+        ])
+            @foreach ($rows as $row)
+                @collection__item([
+                    'link'          => $row['href'],
+                    'icon'          => $row['icon'],
                     'attributeList' => [
-                       ' js-filter-data' => ''
+                        'js-filter-item' => ''
                     ]
                 ])
-                    {{ $row['title'] }} ({{ $row['type'] }}, {{ $row['filesize'] }})
-                @endtypography
-
-                @if(!empty($row['description']))
                     @typography([
                         'element'       => 'span',
-                        'variant'       => 'meta',
+                        'variant'       => 'bold',
                         'attributeList' => [
-                        ' js-filter-data' => ''
+                            ' js-filter-data' => ''
                         ]
                     ])
-                        {{ $row['description'] }}
+                        {{ $row['title'] }} ({{ $row['type'] }}, {{ $row['filesize'] }})
                     @endtypography
-                @endif
 
-            @endcollection__item
-        @endforeach
-    @endcollection
-@endcard
+                    @if (!empty($row['description']))
+                        @typography([
+                            'element'       => 'span',
+                            'variant'       => 'meta',
+                            'attributeList' => [
+                                ' js-filter-data' => ''
+                            ]
+                        ])
+                            {{ $row['description'] }}
+                        @endtypography
+                    @endif
+                @endcollection__item
+            @endforeach
+        @endcollection
+    @endcard
+@endgroup
