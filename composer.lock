@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b501bdb9176abc9407722d5cc4a627f6",
+    "content-hash": "6da0f0d8ffffa99ccd61a0a3042d4803",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -379,6 +379,56 @@
                 "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.4.6"
             },
             "time": "2024-10-30T13:19:25+00:00"
+        },
+        {
+            "name": "helsingborg-stad/wpservice",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/wpservice.git",
+                "reference": "5fa494bbb8ac3a8ca8e969715772bb35424df9cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/wpservice/zipball/5fa494bbb8ac3a8ca8e969715772bb35424df9cc",
+                "reference": "5fa494bbb8ac3a8ca8e969715772bb35424df9cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "helsingborg-stad/phpcs": "^0.3.5",
+                "johnpbloch/wordpress": "^6.6",
+                "php-stubs/generator": "*",
+                "php-stubs/wordpress-stubs": "^6.6",
+                "phpunit/phpunit": "^9.6"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WpService\\": "src/",
+                    "WpCronService\\": "src/WpCronService/",
+                    "WpService\\Generator\\": "generator/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thor Brink",
+                    "email": "thor.brink@helsingborg.se"
+                }
+            ],
+            "description": "Simplifies WordPress integration by providing a centralized WpService that exposes global WordPress functions in a streamlined manner. Simplify your development workflow and enhance WordPress integration with ease.",
+            "support": {
+                "issues": "https://github.com/helsingborg-stad/wpservice/issues",
+                "source": "https://github.com/helsingborg-stad/wpservice/tree/2.0.8"
+            },
+            "time": "2024-11-22T10:51:26+00:00"
         },
         {
             "name": "jeradin/acf-dynamic-table-field",
@@ -1757,12 +1807,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a6586b3d03d1b18f8533441608763deed9fbd0cd"
+                "reference": "b3dddef7334da6e07a71ab6be7abb3a561345829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a6586b3d03d1b18f8533441608763deed9fbd0cd",
-                "reference": "a6586b3d03d1b18f8533441608763deed9fbd0cd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b3dddef7334da6e07a71ab6be7abb3a561345829",
+                "reference": "b3dddef7334da6e07a71ab6be7abb3a561345829",
                 "shasum": ""
             },
             "require": {
@@ -1850,7 +1900,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-07T14:00:02+00:00"
+            "time": "2024-12-11T09:20:59+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2895,18 +2945,19 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "clark-nikdel-powell/post-type-select-for-acf": 20,
-        "enshrined/svg-sanitize": 20,
-        "jeradin/acf-dynamic-table-field": 20,
-        "jeradin/acf-website-field": 20,
         "johannheyne/advanced-custom-fields-table-field": 20,
-        "landrok/language-detector": 20
+        "clark-nikdel-powell/post-type-select-for-acf": 20,
+        "jeradin/acf-website-field": 20,
+        "jeradin/acf-dynamic-table-field": 20,
+        "enshrined/svg-sanitize": 20,
+        "landrok/language-detector": 20,
+        "helsingborg-stad/wpservice": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

@@ -2,8 +2,22 @@
 
 namespace Modularity\Module\Posts\Helper;
 
+use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use WpService\Contracts\GetPermalink;
+use WpService\Contracts\GetPostType;
+use WpService\Contracts\IsUserLoggedIn;
+use WpService\Contracts\RestoreCurrentBlog;
+use WpService\Contracts\SwitchToBlog;
+
 class GetPosts
 {
+    public function __construct(
+        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType $wpService,
+        private WpQueryFactoryInterface $wpQueryFactory
+    )
+    {
+    }
+
     /**
      * Get posts and pagination data
      * 
@@ -54,19 +68,19 @@ class GetPosts
             $maxNumPages = 0;
 
             foreach($fields['posts_data_network_sources'] as $site) {
-                switch_to_blog($site['value']);
+                $this->wpService->switchToBlog($site['value']);
                 $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
                 $postsFromSite = $wpQuery->get_posts();
 
                 array_walk($postsFromSite, function($post) use ($site) {
                     // Add the original permalink to the post object for reference in network sources.
-                    $post->originalPermalink = get_permalink($post->ID);
+                    $post->originalPermalink = $this->wpService->getPermalink($post->ID);
                     $post->originalSite      = $site['label'];
                 });
 
                 $posts = array_merge($posts, $postsFromSite);
                 $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
-                restore_current_blog();
+                $this->wpService->restoreCurrentBlog();
             }
 
             // Limit the number of posts to the desired count to avoid exceeding the limit.
@@ -78,7 +92,7 @@ class GetPosts
             ];
         }
 
-        $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
+        $wpQuery = $this->wpQueryFactory->create($this->getPostArgs($fields, $page));
 
         return [
             'posts' => $wpQuery->get_posts(),
@@ -125,7 +139,7 @@ class GetPosts
 
         // Post statuses
         $getPostsArgs['post_status'] = ['publish', 'inherit'];
-        if (is_user_logged_in()) {
+        if ($this->wpService->isUserLoggedIn()) {
             $getPostsArgs['post_status'][] = 'private';
         }
 
@@ -157,7 +171,7 @@ class GetPosts
         }
 
         // Data source
-        switch ($fields['posts_data_source']) {
+        switch ($fields['posts_data_source'] ?? []) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields['posts_data_post_type'];
                 if ($currentPostID = $this->getCurrentPostID()) {
@@ -168,7 +182,7 @@ class GetPosts
                 break;
 
             case 'children':
-                $getPostsArgs['post_type'] = get_post_type();
+                $getPostsArgs['post_type'] = $this->wpService->getPostType();
                 $getPostsArgs['post_parent'] = $fields['posts_data_child_of'];
                 break;
 
