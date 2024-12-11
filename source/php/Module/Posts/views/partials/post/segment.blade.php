@@ -16,5 +16,8 @@
     'attributeList' => $post->attributeList ?? [],
     'classList' => $classList ?? [],
 ])
-@includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
+    @includeWhen(
+        !empty($post->callToActionItems['floating']['icon']),
+        'partials.floating'
+    )
 @endsegment
