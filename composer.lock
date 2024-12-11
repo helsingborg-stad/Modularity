@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "54ad5d1541b7eec787b05d3969dafc8b",
+    "content-hash": "6da0f0d8ffffa99ccd61a0a3042d4803",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -1807,12 +1807,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a6586b3d03d1b18f8533441608763deed9fbd0cd"
+                "reference": "b3dddef7334da6e07a71ab6be7abb3a561345829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a6586b3d03d1b18f8533441608763deed9fbd0cd",
-                "reference": "a6586b3d03d1b18f8533441608763deed9fbd0cd",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b3dddef7334da6e07a71ab6be7abb3a561345829",
+                "reference": "b3dddef7334da6e07a71ab6be7abb3a561345829",
                 "shasum": ""
             },
             "require": {
@@ -1900,7 +1900,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-07T14:00:02+00:00"
+            "time": "2024-12-11T09:20:59+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2950,7 +2950,8 @@
         "jeradin/acf-website-field": 20,
         "jeradin/acf-dynamic-table-field": 20,
         "enshrined/svg-sanitize": 20,
-        "landrok/language-detector": 20
+        "landrok/language-detector": 20,
+        "helsingborg-stad/wpservice": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
