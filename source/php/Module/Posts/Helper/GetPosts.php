@@ -3,16 +3,20 @@
 namespace Modularity\Module\Posts\Helper;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
-use WpService\Contracts\GetPermalink;
-use WpService\Contracts\GetPostType;
-use WpService\Contracts\IsUserLoggedIn;
-use WpService\Contracts\RestoreCurrentBlog;
-use WpService\Contracts\SwitchToBlog;
+use WpService\Contracts\{
+    GetPermalink,
+    GetPostType,
+    GetTheID,
+    IsArchive,
+    IsUserLoggedIn,
+    RestoreCurrentBlog,
+    SwitchToBlog,
+};
 
 class GetPosts
 {
     public function __construct(
-        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType $wpService,
+        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
         private WpQueryFactoryInterface $wpQueryFactory
     )
     {
@@ -243,12 +247,15 @@ class GetPosts
         return $postTypes;
     }
 
-    public function getCurrentPostID()
+    /**
+     * Get the current post ID
+     */
+    public function getCurrentPostID():int|false
     {
-        global $post;
-        if (isset($post->ID) && is_numeric($post->ID)) {
-            return $post->ID;
+        if ($this->wpService->isArchive()) {
+            return false;
         }
-        return false;
+
+        return $this->wpService->getTheID();
     }
 }
