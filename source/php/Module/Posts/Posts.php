@@ -93,7 +93,7 @@ class Posts extends \Modularity\Module
 
         $field['choices'] = [];
 
-        foreach (get_sites() as $site) {
+        foreach (get_sites(['number' => 0]) as $site) {
             switch_to_blog($site->blog_id);
             $field['choices'][$site->blog_id] = get_bloginfo('name');
             restore_current_blog();
