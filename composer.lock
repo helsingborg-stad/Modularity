@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b610b2ebee436483e741ddaeb398fbc",
+    "content-hash": "3d1b9c734502516568ad9af8e0b30fb9",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -379,6 +379,51 @@
                 "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.4.6"
             },
             "time": "2024-10-30T13:19:25+00:00"
+        },
+        {
+            "name": "helsingborg-stad/acfservice",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/helsingborg-stad/acfservice.git",
+                "reference": "7efd89ef7eb3a1062a08bc5b833f517350e4b2fa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/helsingborg-stad/acfservice/zipball/7efd89ef7eb3a1062a08bc5b833f517350e4b2fa",
+                "reference": "7efd89ef7eb3a1062a08bc5b833f517350e4b2fa",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "helsingborg-stad/phpcs": "^0.3.5",
+                "phpunit/phpunit": "^9.6"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AcfService\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thor Brink",
+                    "email": "thor.brink@helsingborg.se"
+                }
+            ],
+            "description": "Simplifies ACF integration by providing a centralized AcfService that exposes global ACF functions in a streamlined manner. Simplify your development workflow and enhance ACF integration with ease.",
+            "support": {
+                "issues": "https://github.com/helsingborg-stad/acfservice/issues",
+                "source": "https://github.com/helsingborg-stad/acfservice/tree/0.8.1"
+            },
+            "time": "2024-08-20T06:00:33+00:00"
         },
         {
             "name": "helsingborg-stad/wpservice",
@@ -838,12 +883,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/utils.git",
-                "reference": "736c567e257dbe0fcf6ce81b4d6dbe05c6899f96"
+                "reference": "2d4c11ff471904323354e3ea3ae62ff7397d4267"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/utils/zipball/736c567e257dbe0fcf6ce81b4d6dbe05c6899f96",
-                "reference": "736c567e257dbe0fcf6ce81b4d6dbe05c6899f96",
+                "url": "https://api.github.com/repos/nette/utils/zipball/2d4c11ff471904323354e3ea3ae62ff7397d4267",
+                "reference": "2d4c11ff471904323354e3ea3ae62ff7397d4267",
                 "shasum": ""
             },
             "require": {
@@ -915,9 +960,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nette/utils/issues",
-                "source": "https://github.com/nette/utils/tree/v4.0.5"
+                "source": "https://github.com/nette/utils/tree/master"
             },
-            "time": "2024-08-07T15:39:19+00:00"
+            "time": "2024-12-11T14:09:36+00:00"
         },
         {
             "name": "ooksanen/acf-focuspoint",
@@ -1480,12 +1525,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "0d00c0bcbd7814d8168c180ccb7ee1df6d9b6d22"
+                "reference": "418c59fd080954f8c4aa5631d9502ecda2387118"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/0d00c0bcbd7814d8168c180ccb7ee1df6d9b6d22",
-                "reference": "0d00c0bcbd7814d8168c180ccb7ee1df6d9b6d22",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/418c59fd080954f8c4aa5631d9502ecda2387118",
+                "reference": "418c59fd080954f8c4aa5631d9502ecda2387118",
                 "shasum": ""
             },
             "require": {
@@ -1542,7 +1587,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/php-code-coverage/issues",
                 "security": "https://github.com/sebastianbergmann/php-code-coverage/security/policy",
-                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0"
+                "source": "https://github.com/sebastianbergmann/php-code-coverage/tree/11.0.8"
             },
             "funding": [
                 {
@@ -1550,7 +1595,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-07T09:22:56+00:00"
+            "time": "2024-12-11T12:34:27+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1807,12 +1852,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b3dddef7334da6e07a71ab6be7abb3a561345829"
+                "reference": "8b7e5b856a91d8ef61de051f5a66e06cc06b2852"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b3dddef7334da6e07a71ab6be7abb3a561345829",
-                "reference": "b3dddef7334da6e07a71ab6be7abb3a561345829",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8b7e5b856a91d8ef61de051f5a66e06cc06b2852",
+                "reference": "8b7e5b856a91d8ef61de051f5a66e06cc06b2852",
                 "shasum": ""
             },
             "require": {
@@ -1826,7 +1871,7 @@
                 "phar-io/manifest": "^2.0.4",
                 "phar-io/version": "^3.2.1",
                 "php": ">=8.2",
-                "phpunit/php-code-coverage": "^11.0.7",
+                "phpunit/php-code-coverage": "^11.0.8",
                 "phpunit/php-file-iterator": "^5.1.0",
                 "phpunit/php-invoker": "^5.0.1",
                 "phpunit/php-text-template": "^4.0.1",
@@ -1900,7 +1945,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-11T09:20:59+00:00"
+            "time": "2024-12-12T06:31:55+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -2945,19 +2990,20 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "clark-nikdel-powell/post-type-select-for-acf": 20,
-        "enshrined/svg-sanitize": 20,
-        "helsingborg-stad/wpservice": 20,
-        "jeradin/acf-dynamic-table-field": 20,
-        "jeradin/acf-website-field": 20,
         "johannheyne/advanced-custom-fields-table-field": 20,
-        "landrok/language-detector": 20
+        "clark-nikdel-powell/post-type-select-for-acf": 20,
+        "jeradin/acf-website-field": 20,
+        "jeradin/acf-dynamic-table-field": 20,
+        "enshrined/svg-sanitize": 20,
+        "landrok/language-detector": 20,
+        "helsingborg-stad/wpservice": 20,
+        "helsingborg-stad/acfservice": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

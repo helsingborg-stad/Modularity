@@ -12,7 +12,7 @@ class WpServiceTest extends TestCase {
     #[TestDox('::get throws an exception when WpService is not set')]
     #[RunInSeparateProcess]
     public function testGetThrowsAnExceptionWhenWpServiceIsNotSet() {
-        $this->expectException(\Exception::class);
+        $this->expectException(\RuntimeException::class);
         \Modularity\Helper\WpService::get();
     }
 

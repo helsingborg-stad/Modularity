@@ -50,7 +50,8 @@
         "landrok/language-detector": "dev-master",
         "league/commonmark": "2.5.3",
         "league/config": "1.1.1",
-        "helsingborg-stad/wpservice": "dev-main"
+        "helsingborg-stad/wpservice": "dev-main",
+        "helsingborg-stad/acfservice": "dev-main"
     },
     "autoload": {
         "psr-4": {

@@ -35,7 +35,7 @@ class WpService
     public static function get(): ?OriginalWpService
     {
         if (self::$wpService === null) {
-            throw new \Exception('WpService not set');
+            throw new \RuntimeException('WpService not set');
         }
 
         return self::$wpService;
