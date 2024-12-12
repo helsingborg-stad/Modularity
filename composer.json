@@ -65,7 +65,8 @@
     "extra": {
         "installer-paths": {
             "vendor/{$vendor}/{$name}/": [
-                "vendor:wpackagist-plugin"
+                "vendor:wpackagist-plugin",
+                "type:wordpress-muplugin"
             ]
         }
     },
