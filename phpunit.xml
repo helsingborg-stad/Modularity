@@ -3,6 +3,7 @@
   <testsuites>
     <testsuite name="default">
       <directory suffix="Test.php">source/php</directory>
+      <directory suffix="Test.php">tests</directory>
     </testsuite>
   </testsuites>
   <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
