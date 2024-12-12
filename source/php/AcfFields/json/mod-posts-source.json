@@ -196,6 +196,10 @@
                         "field": "field_571dfaafe6984",
                         "operator": "!=",
                         "value": "manual"
+                    },
+                    {
+                        "field": "field_6710ff6562e8c",
+                        "operator": "==empty"
                     }
                 ]
             ],
@@ -212,6 +216,7 @@
             "return_format": "value",
             "multiple": 0,
             "allow_null": 0,
+            "allow_in_bindings": 1,
             "ui": 0,
             "ajax": 0,
             "placeholder": "",
