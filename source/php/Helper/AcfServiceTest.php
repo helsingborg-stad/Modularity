@@ -12,7 +12,7 @@ class AcfServiceTest extends TestCase {
     #[TestDox('::get throws an exception when AcfService is not set')]
     #[RunInSeparateProcess]
     public function testGetThrowsAnExceptionWhenAcfServiceIsNotSet() {
-        $this->expectException(\Exception::class);
+        $this->expectException(\RuntimeException::class);
         \Modularity\Helper\AcfService::get();
     }
 

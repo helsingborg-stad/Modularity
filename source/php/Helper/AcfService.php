@@ -35,7 +35,7 @@ class AcfService
     public static function get(): ?OriginalAcfService
     {
         if (self::$acfService === null) {
-            throw new \Exception('AcfService not set');
+            throw new \RuntimeException('AcfService not set');
         }
 
         return self::$acfService;
