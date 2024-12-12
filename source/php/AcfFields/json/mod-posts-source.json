@@ -284,11 +284,12 @@
             "default_value": [],
             "return_format": "array",
             "multiple": 1,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
             "allow_custom": 0,
+            "placeholder": "",
+            "allow_null": 0,
+            "allow_in_bindings": 1,
+            "ui": 1,
+            "ajax": 0,
             "search_placeholder": ""
         }
     ],
