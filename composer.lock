@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7c39edbc41ad89887832edaeea469fd2",
+    "content-hash": "83fd70ed9dd0681bc02eeb13e9f25b56",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -382,7 +382,7 @@
         },
         {
             "name": "helsingborg-stad/acfservice",
-            "version": "dev-main",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acfservice.git",
@@ -401,7 +401,6 @@
                 "helsingborg-stad/phpcs": "^0.3.5",
                 "phpunit/phpunit": "^9.6"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -427,7 +426,7 @@
         },
         {
             "name": "helsingborg-stad/wpservice",
-            "version": "dev-main",
+            "version": "2.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/wpservice.git",
@@ -449,7 +448,6 @@
                 "php-stubs/wordpress-stubs": "^6.6",
                 "phpunit/phpunit": "^9.6"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -2990,20 +2988,18 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "clark-nikdel-powell/post-type-select-for-acf": 20,
-        "enshrined/svg-sanitize": 20,
-        "helsingborg-stad/acfservice": 20,
-        "helsingborg-stad/wpservice": 20,
-        "jeradin/acf-dynamic-table-field": 20,
-        "jeradin/acf-website-field": 20,
         "johannheyne/advanced-custom-fields-table-field": 20,
+        "clark-nikdel-powell/post-type-select-for-acf": 20,
+        "jeradin/acf-website-field": 20,
+        "jeradin/acf-dynamic-table-field": 20,
+        "enshrined/svg-sanitize": 20,
         "landrok/language-detector": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.0"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
