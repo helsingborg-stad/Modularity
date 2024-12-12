@@ -12,6 +12,8 @@
  * Copyright (C) 2016
  */
 
+use AcfService\Implementations\NativeAcfService;
+use Modularity\Helper\AcfService;
 use Modularity\Helper\WpService;
 use WpService\Implementations\NativeWpService;
 
@@ -32,7 +34,9 @@ if (file_exists(MODULARITY_PATH . 'vendor/autoload.php')) {
 }
 require_once MODULARITY_PATH . 'Public.php';
 
+// Set services
 WpService::set(new NativeWpService());
+AcfService::set(new NativeAcfService());
 
 // Acf auto import and export
 add_action('plugins_loaded', function () {
