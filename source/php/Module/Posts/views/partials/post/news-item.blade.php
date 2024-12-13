@@ -1,3 +1,4 @@
+
 @newsItem([
     'heading'             => $post->postTitle,
     'content'             => $post->excerpt,
@@ -31,5 +32,9 @@
             ])
             @endtags
         @endif
+    @endslot
+
+    @slot('headerRightArea')
+        @includeWhen($post->commentCount !== false, 'partials.comment-count')
     @endslot
 @endnewsItem

@@ -101,7 +101,8 @@ class AbstractController
             'callToActionItems' => false,
             'imagePosition' => true,
             'image' => false,
-            'attributeList' => []
+            'attributeList' => [],
+            'commentCount' => false,
         ];
     }
 
@@ -123,9 +124,11 @@ class AbstractController
         ) : [];
         $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
         $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && empty($post->image) ? true : false;
+        $post->commentCount         = in_array('comment_count', $this->data['posts_fields']) ? (string) $post->getCommentCount() : false;
         $post->readingTime          = in_array('reading_time', $this->data['posts_fields']) ? $post->readingTime : false;
+
         $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
-        
+
         if (!empty($post->image) && is_array($post->image)) {
             $post->image['removeCaption'] = true;
             $post->image['backgroundColor'] = 'secondary';
@@ -141,7 +144,7 @@ class AbstractController
                 $post->postDateFormatted = false;
             }
         }
-        
+
         return $post;
     }
 
