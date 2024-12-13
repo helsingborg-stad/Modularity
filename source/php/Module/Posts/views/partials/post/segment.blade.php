@@ -2,7 +2,6 @@
     'layout' => 'card',
     'title' => $post->postTitle,
     'context' => ['module.posts.segment'],
-    'meta' => $post->readingTime,
     'tags' => $post->termsUnlinked,
     'image' => $post->image,
     'date' => $post->postDateFormatted,
@@ -20,4 +19,9 @@
         !empty($post->callToActionItems['floating']['icon']),
         'partials.floating'
     )
+
+    @slot('aboveContent')
+        @includeWhen(!empty($post->readingTime), 'partials.read-time')
+        @includeWhen($post->commentCount !== false, 'partials.comment-count')
+    @endslot
 @endsegment
