@@ -17,4 +17,7 @@
         !empty($post->callToActionItems['floating']['icon']), 
         'partials.floating'
     )
+    @slot('metaArea')
+        @includeWhen($post->commentCount !== false, 'partials.comment-count')
+    @endslot
 @endblock
