@@ -419,6 +419,7 @@
                 'title' => __('Show title', 'modularity'),
                 'image' => __('Show featured image', 'modularity'),
                 'reading_time' => __('Show reading time', 'modularity'),
+                'comment_count' => __('Comment count', 'modularity'),
             ),
             'default_value' => array(
                 0 => 'date',

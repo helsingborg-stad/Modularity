@@ -36,7 +36,7 @@ class GetPosts
         if( empty($result['posts'])) {
             return $result;
         }
-
+    
         $result['posts'] = array_map(function($post) use ($fields) {
             $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';

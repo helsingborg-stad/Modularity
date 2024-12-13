@@ -415,7 +415,8 @@
                 "excerpt": "Show excerpt",
                 "title": "Show title",
                 "image": "Show featured image",
-                "reading_time": "Show reading time"
+                "reading_time": "Show reading time",
+                "comment_count": "Comment count"
             },
             "default_value": [
                 "date",

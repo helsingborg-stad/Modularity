@@ -14,6 +14,9 @@
     'icon' => $post->termIcon,
     'attributeList' => array_merge($post->attributeList, []),
 ])
+    @slot('aboveContent')
+        
+    @endslot
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']), 
         'partials.floating'
