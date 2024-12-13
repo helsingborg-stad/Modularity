@@ -67,15 +67,15 @@ class AbstractController
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
                 $post = $this->setPostViewData($post, $index);
+
                 $post = array_filter((array) $post, function($value) {
-                    return !empty($value) || $value === false;
+                    return !empty($value) || $value === false || $value === "0";
                 });
 
-                
                 $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
             }
         }
-        
+
         return $posts;
     }
 
