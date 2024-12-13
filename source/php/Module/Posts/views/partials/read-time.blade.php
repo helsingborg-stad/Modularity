@@ -7,11 +7,11 @@
     ]
 ])
     @icon([
-        'icon' => 'chat_bubble',
+        'icon' => 'timer',
+        'size' => 'sm',
         'attributeList' => [
             'style' => 'margin-right: 4px;',
         ],
-    ])
-    @endicon
-    {!! $post->commentCount !!}
+    ]) 
+    @endicon {{ $post->readingTime }}
 @endtypography
