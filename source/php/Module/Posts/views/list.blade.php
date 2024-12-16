@@ -23,7 +23,7 @@
                             @if ($post['link'] && $post['title'])
                                 @collection__item([
                                     'displayIcon' => true,
-                                    'icon' => 'arrow_forward',
+                                    'icon' => $post['icon'],
                                     'link' => $post['link']
                                 ])
                                     @typography([

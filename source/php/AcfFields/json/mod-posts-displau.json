@@ -35,6 +35,35 @@
             "save_other_choice": 0
         },
         {
+            "key": "field_675c0e6f7becc",
+            "label": "Use term icon as icon in list",
+            "name": "use_term_icon_as_icon_in_list",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_571dfd4c0d9d9",
+                        "operator": "==",
+                        "value": "list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_636249fee87cc",
             "label": "Preamble",
             "name": "preamble",

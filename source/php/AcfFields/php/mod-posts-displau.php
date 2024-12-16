@@ -30,7 +30,7 @@
                 'segment' => __('Segment', 'modularity'),
                 'collection' => __('Collection', 'modularity'),
             ),
-            'default_value' => 'list',
+            'default_value' => __('list', 'modularity'),
             'return_format' => 'value',
             'allow_null' => 0,
             'other_choice' => 0,
@@ -38,6 +38,35 @@
             'save_other_choice' => 0,
         ),
         1 => array(
+            'key' => 'field_675c0e6f7becc',
+            'label' => __('Use term icon as icon in list', 'modularity'),
+            'name' => 'use_term_icon_as_icon_in_list',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'list',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        2 => array(
             'key' => 'field_636249fee87cc',
             'label' => __('Preamble', 'modularity'),
             'name' => 'preamble',
@@ -100,7 +129,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_6356477fbc5e4',
             'label' => __('Show as slider', 'modularity'),
             'name' => 'show_as_slider',
@@ -163,7 +192,7 @@
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_6418289cf23a6',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -196,7 +225,7 @@
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_628e0ffba7da4',
             'label' => __('Highlight first post', 'modularity'),
             'name' => 'posts_highlight_first',
@@ -265,7 +294,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_629f1b34ef9fc',
             'label' => __('Display highlighted post as', 'modularity'),
             'name' => 'posts_display_highlighted_as',
@@ -296,7 +325,7 @@
                 'block' => __('Block', 'modularity'),
                 'card' => __('Card', 'modularity'),
             ),
-            'default_value' => 'block',
+            'default_value' => __('block', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -306,7 +335,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        6 => array(
+        7 => array(
             'key' => 'field_571dfdf50d9da',
             'label' => __('Columns', 'modularity'),
             'name' => 'posts_columns',
@@ -376,7 +405,7 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => 'grid-md-12',
+            'default_value' => __('grid-md-12', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -386,7 +415,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        7 => array(
+        8 => array(
             'key' => 'field_571e01e7f246c',
             'label' => __('Fields', 'modularity'),
             'name' => 'posts_fields',
@@ -422,10 +451,10 @@
                 'comment_count' => __('Comment count', 'modularity'),
             ),
             'default_value' => array(
-                0 => 'date',
-                1 => 'excerpt',
-                2 => 'title',
-                3 => 'image',
+                0 => __('date', 'modularity'),
+                1 => __('excerpt', 'modularity'),
+                2 => __('title', 'modularity'),
+                3 => __('image', 'modularity'),
             ),
             'return_format' => 'value',
             'allow_custom' => 0,
@@ -434,7 +463,7 @@
             'save_custom' => 0,
             'custom_choice_button_text' => 'Lägg till nytt val',
         ),
-        8 => array(
+        9 => array(
             'key' => 'field_62387e4b55b75',
             'label' => __('Date source', 'modularity'),
             'name' => 'posts_date_source',
@@ -470,7 +499,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        9 => array(
+        10 => array(
             'key' => 'field_591176fff96d6',
             'label' => __('Hide the title column', 'modularity'),
             'name' => 'posts_hide_title_column',
@@ -498,7 +527,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        10 => array(
+        11 => array(
             'key' => 'field_57e3bcae3826e',
             'label' => __('Title column label', 'modularity'),
             'name' => 'title_column_label',
@@ -531,7 +560,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        11 => array(
+        12 => array(
             'key' => 'field_571f5776592e6',
             'label' => __('List column labels', 'modularity'),
             'name' => 'posts_list_column_titles',
@@ -586,7 +615,7 @@
                 ),
             ),
         ),
-        12 => array(
+        13 => array(
             'key' => 'field_59197c6dafb31',
             'label' => __('Allow freetext filtering', 'modularity'),
             'name' => 'allow_freetext_filtering',
@@ -614,7 +643,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        13 => array(
+        14 => array(
             'key' => 'field_5be480e163246',
             'label' => __('Highlight post', 'modularity'),
             'name' => 'posts_highlight',
@@ -642,7 +671,7 @@
             'ui_on_text' => __('Enabled', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
         ),
-        14 => array(
+        15 => array(
             'key' => 'field_5bdb0d4217e91',
             'label' => __('Date format', 'modularity'),
             'name' => 'posts_date_format',
@@ -673,7 +702,7 @@
                 'default' => __('Default timestamp', 'modularity'),
                 'readable' => __('Readable timestamp', 'modularity'),
             ),
-            'default_value' => 'default',
+            'default_value' => __('default', 'modularity'),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,
@@ -683,7 +712,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        15 => array(
+        16 => array(
             'key' => 'field_5bd8575106176',
             'label' => __('Placeholder image', 'modularity'),
             'name' => 'posts_placeholder',
@@ -723,7 +752,7 @@
             'uploader' => '',
             'acfe_thumbnail' => 0,
         ),
-        16 => array(
+        17 => array(
             'key' => 'field_628e0f242aa5f',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -757,7 +786,7 @@
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
             ),
-            'default_value' => '4:3',
+            'default_value' => __('4:3', 'modularity'),
             'allow_null' => 0,
             'multiple' => 0,
             'ui' => 0,

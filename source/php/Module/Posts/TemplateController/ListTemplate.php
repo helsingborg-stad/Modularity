@@ -40,15 +40,27 @@ class ListTemplate
         $list = [];
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
             foreach ($this->data['posts'] as $post) {
-                if (!empty($post->postType) && $post->postType == 'attachment') {
-                    $link = wp_get_attachment_url($post->id);
+                if ($post->getPostType() === 'attachment') {
+                    $link = wp_get_attachment_url($post->getId());
                 } else {
-                    $link = $post->originalPermalink ?? $post->permalink;
+                    $link = $post->originalPermalink ?? $post->getPermalink();
                 }
-    
-                if (!empty($post->postTitle)) {
-                    array_push($list, ['link' => $link ?? '', 'title' => $post->postTitle]);
+
+                $listItem = [
+                    'link' => $link,
+                    'title' => $post->getTitle(),
+                    'icon' => 'arrow_forward',
+                ];
+
+                if(boolval(($this->data['meta']['use_term_icon_as_icon_in_list'] ?? false))) {
+                    $listItem['icon'] = !empty($post->getTermIcons()) ? [
+                            'icon' => $post->getTermIcons()[0]->getIcon(),
+                            'customColor' => $post->getTermIcons()[0]->getColor(),
+                            'size' => 'md'
+                    ] : 'arrow_forward';
                 }
+
+                $list[] = $listItem;
             }
         }
 
