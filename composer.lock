@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "928f06476b497114a8dfa34e3a61de64",
+    "content-hash": "e4c4ed32acd50a671b06aa8e7877e535",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
