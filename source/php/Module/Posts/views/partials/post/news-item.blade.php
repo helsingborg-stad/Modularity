@@ -1,4 +1,3 @@
-
 @newsItem([
     'heading'             => $post->postTitle,
     'content'             => $post->excerpt,
@@ -14,7 +13,7 @@
     'standing' => $standing
 ])
     @slot('headerLeftArea')
-        @if (count($postsSources) > 1 && !empty($post->originalSite))
+        @if (!empty($postsSources) && count($postsSources) > 1 && !empty($post->originalSite))
             @typography([
                 'element' => 'span',
                 'variant' => 'bold',
@@ -22,7 +21,6 @@
             ])
                 {{ $post->originalSite }}
             @endtypography
-
         @endif
         @if($post->termsUnlinked)
             @tags([
