@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5756ce3e48783',
     'title' => __('Files', 'modularity'),
     'fields' => array(
@@ -72,6 +74,34 @@
             'ui_off_text' => '',
         ),
         2 => array(
+            'key' => 'field_67507dc1a8793',
+            'label' => __('Filter above card', 'modularity'),
+            'name' => 'filter_above_card',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_587600817ff7f',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => __('Yes', 'modularity'),
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        3 => array(
             'key' => 'field_6750883f3caf7',
             'label' => __('Settings', 'modularity'),
             'name' => 'settings',
@@ -130,4 +160,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

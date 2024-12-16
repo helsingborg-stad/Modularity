@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
     'title' => __('Data display', 'modularity'),
     'fields' => array(
@@ -40,6 +38,35 @@ if (function_exists('acf_add_local_field_group')) {
             'save_other_choice' => 0,
         ),
         1 => array(
+            'key' => 'field_675c0e6f7becc',
+            'label' => __('Use term icon as icon in list', 'modularity'),
+            'name' => 'use_term_icon_as_icon_in_list',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '==',
+                        'value' => 'list',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'allow_in_bindings' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        2 => array(
             'key' => 'field_636249fee87cc',
             'label' => __('Preamble', 'modularity'),
             'name' => 'preamble',
@@ -102,7 +129,7 @@ if (function_exists('acf_add_local_field_group')) {
             'prepend' => '',
             'append' => '',
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_6356477fbc5e4',
             'label' => __('Show as slider', 'modularity'),
             'name' => 'show_as_slider',
@@ -165,7 +192,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        3 => array(
+        4 => array(
             'key' => 'field_6418289cf23a6',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -198,7 +225,7 @@ if (function_exists('acf_add_local_field_group')) {
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        4 => array(
+        5 => array(
             'key' => 'field_628e0ffba7da4',
             'label' => __('Highlight first post', 'modularity'),
             'name' => 'posts_highlight_first',
@@ -267,7 +294,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        5 => array(
+        6 => array(
             'key' => 'field_629f1b34ef9fc',
             'label' => __('Display highlighted post as', 'modularity'),
             'name' => 'posts_display_highlighted_as',
@@ -282,6 +309,11 @@ if (function_exists('acf_add_local_field_group')) {
                         'operator' => '==',
                         'value' => '1',
                     ),
+                    1 => array(
+                        'field' => 'field_571dfd4c0d9d9',
+                        'operator' => '!=',
+                        'value' => 'news',
+                    ),
                 ),
             ),
             'wrapper' => array(
@@ -294,16 +326,16 @@ if (function_exists('acf_add_local_field_group')) {
                 'card' => __('Card', 'modularity'),
             ),
             'default_value' => __('block', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
             'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        6 => array(
+        7 => array(
             'key' => 'field_571dfdf50d9da',
             'label' => __('Columns', 'modularity'),
             'name' => 'posts_columns',
@@ -416,6 +448,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'title' => __('Show title', 'modularity'),
                 'image' => __('Show featured image', 'modularity'),
                 'reading_time' => __('Show reading time', 'modularity'),
+                'comment_count' => __('Comment count', 'modularity'),
             ),
             'default_value' => array(
                 0 => __('date', 'modularity'),
@@ -428,6 +461,7 @@ if (function_exists('acf_add_local_field_group')) {
             'layout' => 'horizontal',
             'toggle' => 0,
             'save_custom' => 0,
+            'custom_choice_button_text' => 'Lägg till nytt val',
         ),
         9 => array(
             'key' => 'field_62387e4b55b75',
@@ -794,5 +828,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}

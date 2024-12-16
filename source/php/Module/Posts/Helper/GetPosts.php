@@ -2,8 +2,26 @@
 
 namespace Modularity\Module\Posts\Helper;
 
+use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use WpService\Contracts\{
+    GetPermalink,
+    GetPostType,
+    GetTheID,
+    IsArchive,
+    IsUserLoggedIn,
+    RestoreCurrentBlog,
+    SwitchToBlog,
+};
+
 class GetPosts
 {
+    public function __construct(
+        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
+        private WpQueryFactoryInterface $wpQueryFactory
+    )
+    {
+    }
+
     /**
      * Get posts and pagination data
      * 
@@ -18,7 +36,7 @@ class GetPosts
         if( empty($result['posts'])) {
             return $result;
         }
-
+    
         $result['posts'] = array_map(function($post) use ($fields) {
             $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
@@ -52,20 +70,26 @@ class GetPosts
         if(!empty($fields['posts_data_network_sources'])) {
             $posts      = [];
             $maxNumPages = 0;
+
             foreach($fields['posts_data_network_sources'] as $site) {
-                switch_to_blog($site);
+                $this->wpService->switchToBlog($site['value']);
                 $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
                 $postsFromSite = $wpQuery->get_posts();
 
-                array_walk($postsFromSite, function($post) {
+                array_walk($postsFromSite, function($post) use ($site) {
                     // Add the original permalink to the post object for reference in network sources.
-                    $post->originalPermalink = get_permalink($post->ID);
+                    $post->originalPermalink = $this->wpService->getPermalink($post->ID);
+                    $post->originalSite      = $site['label'];
                 });
 
                 $posts = array_merge($posts, $postsFromSite);
                 $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
-                restore_current_blog();
+                $this->wpService->restoreCurrentBlog();
             }
+
+            // Limit the number of posts to the desired count to avoid exceeding the limit.
+            $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+            $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
 
             return [
                 'posts' => $posts,
@@ -73,7 +97,7 @@ class GetPosts
             ];
         }
 
-        $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
+        $wpQuery = $this->wpQueryFactory->create($this->getPostArgs($fields, $page));
 
         return [
             'posts' => $wpQuery->get_posts(),
@@ -120,7 +144,7 @@ class GetPosts
 
         // Post statuses
         $getPostsArgs['post_status'] = ['publish', 'inherit'];
-        if (is_user_logged_in()) {
+        if ($this->wpService->isUserLoggedIn()) {
             $getPostsArgs['post_status'][] = 'private';
         }
 
@@ -152,7 +176,7 @@ class GetPosts
         }
 
         // Data source
-        switch ($fields['posts_data_source']) {
+        switch ($fields['posts_data_source'] ?? []) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields['posts_data_post_type'];
                 if ($currentPostID = $this->getCurrentPostID()) {
@@ -163,7 +187,7 @@ class GetPosts
                 break;
 
             case 'children':
-                $getPostsArgs['post_type'] = get_post_type();
+                $getPostsArgs['post_type'] = $this->wpService->getPostType();
                 $getPostsArgs['post_parent'] = $fields['posts_data_child_of'];
                 break;
 
@@ -188,16 +212,20 @@ class GetPosts
         }
 
         // Number of posts
-        if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
-            $postsPerPage = ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
-
-            $getPostsArgs['posts_per_page'] = $postsPerPage;
-        }
+        $getPostsArgs['posts_per_page'] = $this->getPostsPerPage($fields);
 
         // Apply pagination
         $getPostsArgs['paged'] = $page;
 
         return $getPostsArgs;
+    }
+
+    private function getPostsPerPage(array $fields): int {
+        if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
+            return ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
+        }
+
+        return 10;
     }
 
     private function getPostTypesFromSchemaType(string $schemaType):array {
@@ -220,12 +248,38 @@ class GetPosts
         return $postTypes;
     }
 
-    public function getCurrentPostID()
+    /**
+     * Get the current post ID
+     */
+    public function getCurrentPostID():int|false
     {
-        global $post;
-        if (isset($post->ID) && is_numeric($post->ID)) {
-            return $post->ID;
+        if ($this->wpService->isArchive()) {
+            return false;
         }
-        return false;
+
+        return $this->wpService->getTheID();
+    }
+
+    /**
+     * Sort posts
+     * 
+     * @param \WP_Post[] $posts
+     * @param string $orderby Can be 'date', 'title', 'modified', 'menu_order', 'rand'. Default is 'date'.
+     * @param string $order Can be 'asc' or 'desc'. Default is 'desc'. When 'rand' is used, this parameter is ignored.
+     */
+    public function sortPosts(array $posts, string $orderby = 'date', string $order = 'desc') : array
+    {
+        usort($posts, fn($a, $b) =>
+            match($orderby) {
+                'date' => strtotime($a->post_date) > strtotime($b->post_date) ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'title' => $a->post_title > $b->post_title ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'modified' => strtotime($a->post_modified) > strtotime($b->post_modified) ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'menu_order' => $a->menu_order > $b->menu_order ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'rand' => rand(-1, 1),
+                default => 0,
+            }
+        );
+
+        return $posts;
     }
 }

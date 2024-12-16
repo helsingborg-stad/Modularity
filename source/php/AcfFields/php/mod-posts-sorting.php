@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_571dffc63090c',
     'title' => __('Data sorting', 'modularity'),
     'fields' => array(
@@ -22,14 +24,10 @@
             'allow_null' => 0,
             'choices' => array(
                 'false' => __('Do not sort', 'modularity'),
-                'ID' => __('ID', 'modularity'),
-                'author' => __('Författare', 'modularity'),
                 'title' => __('Titel', 'modularity'),
                 'date' => __('Publiceringsdatum', 'modularity'),
                 'modified' => __('Date modified', 'modularity'),
-                'parent' => __('Parent', 'modularity'),
                 'rand' => __('Random', 'modularity'),
-                'comment_count' => __('Comment count', 'modularity'),
                 'menu_order' => __('Menu order', 'modularity'),
             ),
             'default_value' => __('date', 'modularity'),
@@ -94,4 +92,5 @@
     'show_in_rest' => false,
     'modified' => 1461661083,
 ));
-}
+
+}

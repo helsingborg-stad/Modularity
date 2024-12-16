@@ -69,6 +69,34 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_67507dc1a8793",
+            "label": "Filter above card",
+            "name": "filter_above_card",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_587600817ff7f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Yes",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_6750883f3caf7",
             "label": "Settings",
             "name": "settings",
@@ -126,4 +154,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

@@ -4,13 +4,18 @@
  * Plugin Name: Modularity
  * Plugin URI: -
  * Description: Modular component system for WordPress
- * Version: 6.46.15
+ * Version: 6.54.2
  * Author: Kristoffer Svanmark, Sebastian Thulin
  * Author URI: -
  * Text domain: modularity
  *
  * Copyright (C) 2016
  */
+
+use AcfService\Implementations\NativeAcfService;
+use Modularity\Helper\AcfService;
+use Modularity\Helper\WpService;
+use WpService\Implementations\NativeWpService;
 
 define('MODULARITY_PATH', plugin_dir_path(__FILE__));
 define('MODULARITY_URL', plugins_url('', __FILE__));
@@ -28,6 +33,10 @@ if (file_exists(MODULARITY_PATH . 'vendor/autoload.php')) {
     require_once MODULARITY_PATH . 'vendor/autoload.php';
 }
 require_once MODULARITY_PATH . 'Public.php';
+
+// Set services
+WpService::set(new NativeWpService());
+AcfService::set(new NativeAcfService());
 
 // Acf auto import and export
 add_action('plugins_loaded', function () {
@@ -76,6 +85,7 @@ add_action('plugins_loaded', function () {
         'mod-menu'                  => 'group_66c34c64b8d10',
         'mod-audio'                 => 'group_66d0837591221',
         'mod-search'                => 'group_66dffe0be28c1',
+        'mod-markdown'              => 'group_67506ac21d132',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',

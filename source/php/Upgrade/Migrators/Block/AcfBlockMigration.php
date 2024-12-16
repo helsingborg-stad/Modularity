@@ -4,6 +4,7 @@ namespace Modularity\Upgrade\Migrators\Block;
 
 use Modularity\Upgrade\Migrators\Block\AcfBlockMigrationHandler;
 use \Modularity\Upgrade\Version\Helper\GetPagesByBlockName;
+use Modularity\Upgrade\Version\Helper\UpdatePageContent;
 use WP_CLI;
 
 class AcfBlockMigration {
@@ -58,14 +59,7 @@ class AcfBlockMigration {
     private function updatePageContent($blocks, $page) {
         $serializedBlocks = serialize_blocks($blocks); 
 
-        if (!empty($serializedBlocks) && !empty($page->ID)) {
-            $queryUpdateContent = $this->db->prepare(
-                "UPDATE " . $this->db->posts . " SET post_content = %s WHERE ID = %d", 
-                $serializedBlocks, 
-                $page->ID
-            ); 
-            $this->db->query($queryUpdateContent); 
-        }
+        UpdatePageContent::update($this->db, $page, $serializedBlocks);
     }
 
     private function isValidPagesAndFields():bool {

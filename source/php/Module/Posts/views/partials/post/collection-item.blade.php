@@ -7,7 +7,11 @@
     'bordered' => true,
     'attributeList' => array_merge($post->attributeList, []),
 ])
-    @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
+    @includeWhen(
+        !empty($post->callToActionItems['floating']['icon']),
+        'partials.floating'
+    )
+
     @slot('before')
         @if ($post->images['thumbnail1:1']['src'] ?? false)
             @image([

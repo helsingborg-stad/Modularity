@@ -4,7 +4,6 @@
     'context' => ['module.posts.index'],
     'content' => $post->excerptShort,
     'tags' => $post->termsUnlinked,
-    'meta' => $post->readingTime,
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
     'classList' => ['u-height--100'],
@@ -14,5 +13,13 @@
     'icon' => $post->termIcon,
     'attributeList' => array_merge($post->attributeList, []),
 ])
-    @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
+    @slot('aboveContent')
+        @includeWhen(!empty($post->readingTime), 'partials.read-time')
+        @includeWhen($post->commentCount !== false, 'partials.comment-count')
+    @endslot
+
+    @includeWhen(
+        !empty($post->callToActionItems['floating']['icon']), 
+        'partials.floating'
+    )
 @endcard

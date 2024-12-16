@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Posts;
 
+use Modularity\Helper\WpQueryFactory\WpQueryFactory;
+use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
 
@@ -52,7 +54,7 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $this->getPostsHelper = new GetPosts();
+        $this->getPostsHelper = new GetPosts(WpService::get(), new WpQueryFactory());
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
@@ -91,7 +93,7 @@ class Posts extends \Modularity\Module
 
         $field['choices'] = [];
 
-        foreach (get_sites() as $site) {
+        foreach (get_sites(['number' => 0]) as $site) {
             switch_to_blog($site->blog_id);
             $field['choices'][$site->blog_id] = get_bloginfo('name');
             restore_current_blog();
@@ -111,11 +113,12 @@ class Posts extends \Modularity\Module
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 
         // Posts
-        $data['preamble']               = $this->fields['preamble'] ?? false;
-        $data['posts_fields']           = $this->fields['posts_fields'] ?? false;
-        $data['posts_date_source']      = $this->fields['posts_date_source'] ?? false;
-        $data['posts_data_post_type']   = $this->fields['posts_data_post_type'] ?? false;
-        $data['posts_data_source']      = $this->fields['posts_data_source'] ?? false;
+        $data['preamble']             = $this->fields['preamble'] ?? false;
+        $data['posts_fields']         = $this->fields['posts_fields'] ?? false;
+        $data['posts_date_source']    = $this->fields['posts_date_source'] ?? false;
+        $data['posts_data_post_type'] = $this->fields['posts_data_post_type'] ?? false;
+        $data['posts_data_source']    = $this->fields['posts_data_source'] ?? false;
+        $data['postsSources']         = $this->fields['posts_data_network_sources'] ?? [];
 
         $postsAndPaginationData = $this->getPostsAndPaginationData();
         $data['posts'] = $postsAndPaginationData['posts'];
@@ -420,7 +423,6 @@ class Posts extends \Modularity\Module
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
-            'news'  => 'index'
         ];
 
         if (array_key_exists($templateSlug, $deprecatedTemplates)) {
