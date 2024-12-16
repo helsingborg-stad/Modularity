@@ -1,6 +1,6 @@
 @group([
-    'classList' => $filterAboveCard ? ['has-filter-outside-card'] : false,
-    'direction' => 'vertical',
+    'classList'     => $filterAboveCard ? ['has-filter-outside-card'] : false,
+    'direction'     => 'vertical',
     'attributeList' => [
         'js-filter-container' => $uID
     ]
@@ -14,19 +14,18 @@
     @endif
 
     @card([
-        'heading' => false,
-        'classList' => [$classes],
+        'heading'       => false,
+        'classList'     => [$classes],
         'attributeList' => [
             'js-filter-container' => $uID,
-            'aria-labelledby' => 'mod-fileslist-' . $ID . '-label'
+            'aria-labelledby'     => 'mod-fileslist-' . $ID . '-label'
         ],
-        'context' => 'module.files.list'
+        'context'       => 'module.files.list'
     ])
         @if (!$hideTitle && !empty($postTitle))
-            <div
-                class="c-card__header"@if ($filterAboveCard) style="border-top-left-radius:0;border-top-right-radius:0;" @endif>
+            <div class="c-card__header"@if ($filterAboveCard) style="border-top-left-radius:0;border-top-right-radius:0;"@endif>
                 @typography([
-                    'id' => 'mod-fileslist-' . $ID . '-label',
+                    'id'      => 'mod-fileslist-' . $ID . '-label',
                     'element' => 'h2',
                     'variant' => 'h4'
                 ])
@@ -44,15 +43,15 @@
         ])
             @foreach ($rows as $row)
                 @collection__item([
-                    'link' => $row['href'],
-                    'icon' => $row['icon'],
+                    'link'          => $row['href'],
+                    'icon'          => $row['icon'],
                     'attributeList' => [
                         'js-filter-item' => ''
                     ]
                 ])
                     @typography([
-                        'element' => 'span',
-                        'variant' => 'bold',
+                        'element'       => 'span',
+                        'variant'       => 'bold',
                         'attributeList' => [
                             ' js-filter-data' => ''
                         ]
@@ -65,8 +64,8 @@
 
                     @if (!empty($row['description']))
                         @typography([
-                            'element' => 'span',
-                            'variant' => 'meta',
+                            'element'       => 'span',
+                            'variant'       => 'meta',
                             'attributeList' => [
                                 ' js-filter-data' => ''
                             ]
