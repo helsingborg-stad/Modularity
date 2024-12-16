@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5756ce3e48783',
     'title' => __('Files', 'modularity'),
     'fields' => array(
@@ -99,6 +101,33 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
+        3 => array(
+            'key' => 'field_6750883f3caf7',
+            'label' => __('Settings', 'modularity'),
+            'name' => 'settings',
+            'aria-label' => '',
+            'type' => 'checkbox',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'hide_filetype' => __('Hide file type', 'modularity'),
+                'hide_filesize' => __('Hide file size', 'modularity'),
+            ),
+            'default_value' => array(
+            ),
+            'return_format' => 'value',
+            'allow_custom' => 0,
+            'layout' => 'horizontal',
+            'toggle' => 0,
+            'save_custom' => 0,
+            'custom_choice_button_text' => 'Lägg till nytt val',
+        ),
     ),
     'location' => array(
         0 => array(
@@ -131,4 +160,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

@@ -7,7 +7,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-04T17:19:56+00:00\n"
+"POT-Creation-Date: 2024-12-16T16:52:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: modularity\n"
@@ -17,7 +17,6 @@ msgid "Screen reader language"
 msgstr ""
 
 #: php/AcfFields/php/mod-all.php:12
-#: php/AcfFields/php/mod-menu.php:63
 #: php/AcfFields/php/mod-video.php:164
 msgid "Language"
 msgstr ""
@@ -568,7 +567,7 @@ msgid "Alignment"
 msgstr ""
 
 #: php/AcfFields/php/mod-audio.php:104
-#: php/AcfFields/php/mod-posts-displau.php:191
+#: php/AcfFields/php/mod-posts-displau.php:220
 #: php/AcfFields/php/mod-search.php:95
 msgid "Left"
 msgstr ""
@@ -579,13 +578,13 @@ msgid "Center"
 msgstr ""
 
 #: php/AcfFields/php/mod-audio.php:106
-#: php/AcfFields/php/mod-posts-displau.php:192
+#: php/AcfFields/php/mod-posts-displau.php:221
 #: php/AcfFields/php/mod-search.php:97
 msgid "Right"
 msgstr ""
 
 #: php/AcfFields/php/mod-audio.php:108
-#: php/AcfFields/php/mod-manual-input.php:314
+#: php/AcfFields/php/mod-manual-input.php:329
 msgid "left"
 msgstr ""
 
@@ -633,42 +632,42 @@ msgstr ""
 #: php/AcfFields/php/mod-contacts.php:12
 #: php/AcfFields/php/mod-curator.php:62
 #: php/AcfFields/php/mod-index.php:313
-#: php/AcfFields/php/mod-manual-input.php:203
-#: php/AcfFields/php/mod-posts-displau.php:308
+#: php/AcfFields/php/mod-manual-input.php:211
+#: php/AcfFields/php/mod-posts-displau.php:342
 msgid "Columns"
 msgstr ""
 
 #: php/AcfFields/php/mod-contacts.php:25
 #: php/AcfFields/php/mod-index.php:327
-#: php/AcfFields/php/mod-manual-input.php:234
-#: php/AcfFields/php/mod-menu.php:120
-#: php/AcfFields/php/mod-posts-displau.php:371
+#: php/AcfFields/php/mod-manual-input.php:242
+#: php/AcfFields/php/mod-menu.php:119
+#: php/AcfFields/php/mod-posts-displau.php:405
 msgid "1"
 msgstr ""
 
 #: php/AcfFields/php/mod-contacts.php:26
 #: php/AcfFields/php/mod-index.php:328
-#: php/AcfFields/php/mod-manual-input.php:235
-#: php/AcfFields/php/mod-menu.php:121
-#: php/AcfFields/php/mod-posts-displau.php:372
+#: php/AcfFields/php/mod-manual-input.php:243
+#: php/AcfFields/php/mod-menu.php:120
+#: php/AcfFields/php/mod-posts-displau.php:406
 msgid "2"
 msgstr ""
 
 #: php/AcfFields/php/mod-contacts.php:27
 #: php/AcfFields/php/mod-curator.php:75
 #: php/AcfFields/php/mod-index.php:329
-#: php/AcfFields/php/mod-manual-input.php:236
-#: php/AcfFields/php/mod-menu.php:122
-#: php/AcfFields/php/mod-posts-displau.php:373
+#: php/AcfFields/php/mod-manual-input.php:244
+#: php/AcfFields/php/mod-menu.php:121
+#: php/AcfFields/php/mod-posts-displau.php:407
 msgid "3"
 msgstr ""
 
 #: php/AcfFields/php/mod-contacts.php:28
 #: php/AcfFields/php/mod-curator.php:76
 #: php/AcfFields/php/mod-index.php:330
-#: php/AcfFields/php/mod-manual-input.php:237
-#: php/AcfFields/php/mod-menu.php:123
-#: php/AcfFields/php/mod-posts-displau.php:374
+#: php/AcfFields/php/mod-manual-input.php:245
+#: php/AcfFields/php/mod-menu.php:122
+#: php/AcfFields/php/mod-posts-displau.php:408
 msgid "4"
 msgstr ""
 
@@ -690,7 +689,7 @@ msgstr ""
 #: php/AcfFields/php/mod-image.php:8
 #: php/AcfFields/php/mod-image.php:12
 #: php/AcfFields/php/mod-index.php:110
-#: php/AcfFields/php/mod-manual-input.php:639
+#: php/AcfFields/php/mod-manual-input.php:654
 #: php/Module/Image/Image.php:22
 msgid "Image"
 msgstr ""
@@ -747,11 +746,11 @@ msgstr ""
 #: php/AcfFields/php/mod-contacts.php:300
 #: php/AcfFields/php/mod-index.php:26
 #: php/AcfFields/php/mod-inlaylist.php:27
-#: php/AcfFields/php/mod-manual-input.php:175
-#: php/AcfFields/php/mod-manual-input.php:388
-#: php/AcfFields/php/mod-manual-input.php:439
+#: php/AcfFields/php/mod-manual-input.php:183
+#: php/AcfFields/php/mod-manual-input.php:403
+#: php/AcfFields/php/mod-manual-input.php:454
 #: php/AcfFields/php/mod-map.php:339
-#: php/AcfFields/php/mod-posts-displau.php:554
+#: php/AcfFields/php/mod-posts-displau.php:590
 msgid "Lägg till rad"
 msgstr ""
 
@@ -830,13 +829,13 @@ msgid "Layout"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:47
-#: php/AcfFields/php/mod-posts-displau.php:294
+#: php/AcfFields/php/mod-posts-displau.php:328
 #: php/AcfFields/php/mod-script.php:42
 msgid "Card"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:48
-#: php/AcfFields/php/mod-posts-displau.php:293
+#: php/AcfFields/php/mod-posts-displau.php:327
 msgid "Block"
 msgstr ""
 
@@ -853,22 +852,22 @@ msgid "No space between the posts in the grid"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:118
-#: php/AcfFields/php/mod-manual-input.php:326
-#: php/AcfFields/php/mod-posts-displau.php:723
+#: php/AcfFields/php/mod-manual-input.php:341
+#: php/AcfFields/php/mod-posts-displau.php:759
 msgid "Ratio"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:139
 #: php/AcfFields/php/mod-curator.php:143
-#: php/AcfFields/php/mod-manual-input.php:354
-#: php/AcfFields/php/mod-posts-displau.php:751
+#: php/AcfFields/php/mod-manual-input.php:369
+#: php/AcfFields/php/mod-posts-displau.php:787
 msgid "1:1"
 msgstr ""
 
 #: php/AcfFields/php/mod-curator.php:140
-#: php/AcfFields/php/mod-manual-input.php:355
-#: php/AcfFields/php/mod-posts-displau.php:752
-#: php/AcfFields/php/mod-posts-displau.php:755
+#: php/AcfFields/php/mod-manual-input.php:370
+#: php/AcfFields/php/mod-posts-displau.php:788
+#: php/AcfFields/php/mod-posts-displau.php:791
 msgid "4:3"
 msgstr ""
 
@@ -975,6 +974,18 @@ msgstr ""
 #: php/AcfFields/php/mod-wpwidget.php:181
 #: php/AcfFields/php/mod-wpwidget.php:213
 msgid "Yes"
+msgstr ""
+
+#: php/AcfFields/php/mod-fileslist.php:106
+msgid "Settings"
+msgstr ""
+
+#: php/AcfFields/php/mod-fileslist.php:119
+msgid "Hide file type"
+msgstr ""
+
+#: php/AcfFields/php/mod-fileslist.php:120
+msgid "Hide file size"
 msgstr ""
 
 #: php/AcfFields/php/mod-gallery.php:23
@@ -1204,7 +1215,7 @@ msgstr ""
 #: php/AcfFields/php/mod-inlaylist.php:109
 #: php/AcfFields/php/mod-inlaylist.php:166
 #: php/AcfFields/php/mod-logogrid.php:74
-#: php/AcfFields/php/mod-manual-input.php:497
+#: php/AcfFields/php/mod-manual-input.php:512
 #: php/AcfFields/php/mod-slider.php:275
 #: php/AcfFields/php/mod-slider.php:666
 msgid "Link"
@@ -1275,7 +1286,7 @@ msgstr ""
 #: php/AcfFields/php/mod-index.php:216
 #: php/AcfFields/php/mod-inlaylist.php:55
 #: php/AcfFields/php/mod-inlaylist.php:82
-#: php/AcfFields/php/mod-posts-sorting.php:29
+#: php/AcfFields/php/mod-posts-sorting.php:27
 #: php/AcfFields/php/mod-wpwidget.php:245
 msgid "Titel"
 msgstr ""
@@ -1295,7 +1306,7 @@ msgid "Om du inte vill använda den underliggande sidans ingress kan du skriva i
 msgstr ""
 
 #: php/AcfFields/php/mod-index.php:333
-#: php/AcfFields/php/mod-posts-displau.php:376
+#: php/AcfFields/php/mod-posts-displau.php:410
 msgid "grid-md-12"
 msgstr ""
 
@@ -1367,58 +1378,61 @@ msgstr ""
 msgid "Manual Input Data"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:57
-#: php/AcfFields/php/mod-menu.php:33
-msgid "Display as conditional target"
+#: php/AcfFields/php/mod-manual-input.php:61
+msgid "display_as_conditional"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:73
+#: php/AcfFields/php/mod-manual-input.php:81
 msgid "Allow logged in users to modify their list"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:93
+#: php/AcfFields/php/mod-manual-input.php:101
 msgid "Free text filtering"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:97
+#: php/AcfFields/php/mod-manual-input.php:105
 msgid "Enables filtering using a input field."
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:121
+#: php/AcfFields/php/mod-manual-input.php:129
+msgid "Column marking"
+msgstr ""
+
+#: php/AcfFields/php/mod-manual-input.php:157
 msgid "Column titles"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:180
+#: php/AcfFields/php/mod-manual-input.php:188
 msgid "Column title"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:251
+#: php/AcfFields/php/mod-manual-input.php:259
 msgid "Highlight first input"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:255
+#: php/AcfFields/php/mod-manual-input.php:263
 msgid "Makes the first input bigger"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:293
-#: php/AcfFields/php/mod-posts-displau.php:170
+#: php/AcfFields/php/mod-manual-input.php:308
+#: php/AcfFields/php/mod-posts-displau.php:199
 msgid "Image position"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:315
+#: php/AcfFields/php/mod-manual-input.php:330
 msgid "right"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:356
-#: php/AcfFields/php/mod-posts-displau.php:753
+#: php/AcfFields/php/mod-manual-input.php:371
+#: php/AcfFields/php/mod-posts-displau.php:789
 msgid "12:16"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:370
+#: php/AcfFields/php/mod-manual-input.php:385
 msgid "Manual inputs"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:393
+#: php/AcfFields/php/mod-manual-input.php:408
 #: php/AcfFields/php/mod-map.php:344
 #: php/AcfFields/php/mod-slider.php:212
 #: php/AcfFields/php/mod-slider.php:523
@@ -1427,40 +1441,40 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:414
+#: php/AcfFields/php/mod-manual-input.php:429
 msgid "Column values"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:445
+#: php/AcfFields/php/mod-manual-input.php:459
 msgid "Column value"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:468
+#: php/AcfFields/php/mod-manual-input.php:483
 #: php/AcfFields/php/mod-slider.php:254
 #: php/AcfFields/php/mod-slider.php:543
 #: php/Editor.php:125
 msgid "Content"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:523
+#: php/AcfFields/php/mod-manual-input.php:538
 msgid "Obligatory"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:552
+#: php/AcfFields/php/mod-manual-input.php:567
 msgid "UniqueId"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:581
+#: php/AcfFields/php/mod-manual-input.php:596
 msgid "Link description"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:610
+#: php/AcfFields/php/mod-manual-input.php:625
 #: php/AcfFields/php/mod-map.php:385
 #: php/AcfFields/php/mod-slider.php:732
 msgid "Link text"
 msgstr ""
 
-#: php/AcfFields/php/mod-manual-input.php:680
+#: php/AcfFields/php/mod-manual-input.php:695
 #: php/AcfFields/php/mod-modal.php:51
 msgid "Icon"
 msgstr ""
@@ -1483,7 +1497,7 @@ msgid "Open Street Map"
 msgstr ""
 
 #: php/AcfFields/php/mod-map.php:27
-#: php/AcfFields/php/mod-posts-displau.php:671
+#: php/AcfFields/php/mod-posts-displau.php:707
 msgid "default"
 msgstr ""
 
@@ -1543,13 +1557,13 @@ msgid "The extra info card is disabled by default"
 msgstr ""
 
 #: php/AcfFields/php/mod-map.php:218
-#: php/AcfFields/php/mod-posts-displau.php:637
+#: php/AcfFields/php/mod-posts-displau.php:673
 msgid "Enabled"
 msgstr ""
 
 #: php/AcfFields/php/mod-map.php:219
-#: php/AcfFields/php/mod-posts-displau.php:638
-#: php/AcfFields/php/mod-posts-source.php:220
+#: php/AcfFields/php/mod-posts-displau.php:674
+#: php/AcfFields/php/mod-posts-source.php:224
 msgid "Disabled"
 msgstr ""
 
@@ -1587,6 +1601,44 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
+#: php/AcfFields/php/mod-markdown.php:8
+#: php/Module/Markdown/Markdown.php:20
+#: php/Module/Markdown/Markdown.php:21
+msgid "Markdown"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:12
+msgid "Markdown URL"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:16
+msgid "A link to a raw version of a md file, for example https://raw.githubusercontent.com/readme.md"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:25
+msgid "https://raw.githubusercontent.com/readme.md"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:29
+msgid "Show source"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:41
+msgid "Display the source url"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:49
+msgid "Wrap in container"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:69
+msgid "Supported providers"
+msgstr ""
+
+#: php/AcfFields/php/mod-markdown.php:81
+msgid "ABC"
+msgstr ""
+
 #: php/AcfFields/php/mod-menu.php:8
 msgid "Menu Module"
 msgstr ""
@@ -1595,24 +1647,23 @@ msgstr ""
 msgid "Display Menu As"
 msgstr ""
 
-#: php/AcfFields/php/mod-menu.php:49
+#: php/AcfFields/php/mod-menu.php:33
+msgid "Display as conditional target"
+msgstr ""
+
+#: php/AcfFields/php/mod-menu.php:53
 msgid "Select a Menu"
 msgstr ""
 
-#: php/AcfFields/php/mod-menu.php:62
-msgid "drawer down"
+#: php/AcfFields/php/mod-menu.php:78
+msgid "Background"
 msgstr ""
 
-#: php/AcfFields/php/mod-menu.php:64
-msgid "ny"
+#: php/AcfFields/php/mod-menu.php:82
+msgid "Decides if the menu is wrapped in a container."
 msgstr ""
 
-#: php/AcfFields/php/mod-menu.php:65
-#: php/AcfFields/php/mod-modal.php:2280
-msgid "Primary"
-msgstr ""
-
-#: php/AcfFields/php/mod-menu.php:79
+#: php/AcfFields/php/mod-menu.php:98
 msgid "Items Per Column"
 msgstr ""
 
@@ -10157,6 +10208,10 @@ msgstr ""
 msgid "Color scheme"
 msgstr ""
 
+#: php/AcfFields/php/mod-modal.php:2280
+msgid "Primary"
+msgstr ""
+
 #: php/AcfFields/php/mod-modal.php:2281
 msgid "Secondary"
 msgstr ""
@@ -10295,131 +10350,139 @@ msgid "list"
 msgstr ""
 
 #: php/AcfFields/php/mod-posts-displau.php:44
+msgid "Use term icon as icon in list"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:73
 msgid "Preamble"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:107
+#: php/AcfFields/php/mod-posts-displau.php:136
 msgid "Show as slider"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:203
+#: php/AcfFields/php/mod-posts-displau.php:232
 msgid "Highlight first post"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:207
+#: php/AcfFields/php/mod-posts-displau.php:236
 msgid "Makes the first post bigger"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:272
+#: php/AcfFields/php/mod-posts-displau.php:301
 msgid "Display highlighted post as"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:296
+#: php/AcfFields/php/mod-posts-displau.php:330
 msgid "block"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:388
+#: php/AcfFields/php/mod-posts-displau.php:422
 #: php/AcfFields/php/mod-rss.php:73
 msgid "Fields"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:414
+#: php/AcfFields/php/mod-posts-displau.php:448
 #: php/AcfFields/php/mod-wpwidget.php:485
 msgid "Show date"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:415
+#: php/AcfFields/php/mod-posts-displau.php:449
 msgid "Show excerpt"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:416
+#: php/AcfFields/php/mod-posts-displau.php:450
 msgid "Show title"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:417
+#: php/AcfFields/php/mod-posts-displau.php:451
 msgid "Show featured image"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:418
+#: php/AcfFields/php/mod-posts-displau.php:452
 msgid "Show reading time"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:421
-#: php/AcfFields/php/mod-posts-sorting.php:37
-msgid "date"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-displau.php:422
-msgid "excerpt"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-displau.php:423
-msgid "title"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-displau.php:424
-msgid "image"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-displau.php:434
-msgid "Date source"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-displau.php:455
-msgid "Date published"
+#: php/AcfFields/php/mod-posts-displau.php:453
+msgid "Comment count"
 msgstr ""
 
 #: php/AcfFields/php/mod-posts-displau.php:456
-#: php/AcfFields/php/mod-posts-sorting.php:31
-msgid "Date modified"
+#: php/AcfFields/php/mod-posts-sorting.php:33
+msgid "date"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:457
+msgid "excerpt"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:458
+msgid "title"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:459
+msgid "image"
 msgstr ""
 
 #: php/AcfFields/php/mod-posts-displau.php:470
-msgid "Hide the title column"
+msgid "Date source"
 msgstr ""
 
 #: php/AcfFields/php/mod-posts-displau.php:491
+msgid "Date published"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:492
+#: php/AcfFields/php/mod-posts-sorting.php:29
+msgid "Date modified"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:506
+msgid "Hide the title column"
+msgstr ""
+
+#: php/AcfFields/php/mod-posts-displau.php:527
 msgid "Yes, hide the title column"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:498
+#: php/AcfFields/php/mod-posts-displau.php:534
 msgid "Title column label"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:531
+#: php/AcfFields/php/mod-posts-displau.php:567
 msgid "List column labels"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:535
+#: php/AcfFields/php/mod-posts-displau.php:571
 msgid "A title field will always be added as the first column. You will need to go to each post in this list to give the values for each column."
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:561
+#: php/AcfFields/php/mod-posts-displau.php:597
 msgid "Column header"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:586
-#: php/AcfFields/php/mod-posts-displau.php:607
+#: php/AcfFields/php/mod-posts-displau.php:622
+#: php/AcfFields/php/mod-posts-displau.php:643
 msgid "Allow freetext filtering"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:614
+#: php/AcfFields/php/mod-posts-displau.php:650
 msgid "Highlight post"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:642
+#: php/AcfFields/php/mod-posts-displau.php:678
 msgid "Date format"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:668
+#: php/AcfFields/php/mod-posts-displau.php:704
 msgid "Default timestamp"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:669
+#: php/AcfFields/php/mod-posts-displau.php:705
 msgid "Readable timestamp"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-displau.php:683
+#: php/AcfFields/php/mod-posts-displau.php:719
 msgid "Placeholder image"
 msgstr ""
 
@@ -10456,45 +10519,29 @@ msgstr ""
 msgid "Do not sort"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-sorting.php:27
-msgid "ID"
-msgstr ""
-
 #: php/AcfFields/php/mod-posts-sorting.php:28
-msgid "Författare"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-sorting.php:30
 msgid "Publiceringsdatum"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-sorting.php:32
-msgid "Parent"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-sorting.php:33
+#: php/AcfFields/php/mod-posts-sorting.php:30
 msgid "Random"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-sorting.php:34
-msgid "Comment count"
-msgstr ""
-
-#: php/AcfFields/php/mod-posts-sorting.php:35
+#: php/AcfFields/php/mod-posts-sorting.php:31
 #: php/AcfFields/php/mod-wpwidget.php:246
 msgid "Menu order"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-sorting.php:49
+#: php/AcfFields/php/mod-posts-sorting.php:45
 msgid "Order"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-sorting.php:62
+#: php/AcfFields/php/mod-posts-sorting.php:58
 #: php/AcfFields/php/mod-rss.php:62
 msgid "Ascending"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-sorting.php:63
+#: php/AcfFields/php/mod-posts-sorting.php:59
 #: php/AcfFields/php/mod-rss.php:61
 msgid "Descending"
 msgstr ""
@@ -10544,27 +10591,27 @@ msgstr ""
 msgid "Pagination"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:221
+#: php/AcfFields/php/mod-posts-source.php:225
 msgid "Page numbers"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:223
+#: php/AcfFields/php/mod-posts-source.php:227
 msgid "disabled"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:235
+#: php/AcfFields/php/mod-posts-source.php:240
 msgid "Link to post type archive"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:256
+#: php/AcfFields/php/mod-posts-source.php:261
 msgid "Yes, link to post type archive"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:263
+#: php/AcfFields/php/mod-posts-source.php:268
 msgid "From network sites"
 msgstr ""
 
-#: php/AcfFields/php/mod-posts-source.php:267
+#: php/AcfFields/php/mod-posts-source.php:272
 msgid "Get posts from other sites in the network. Leave empty to only show posts from this site. If you chose one or more from this list you must also choose this site to get posts from this site."
 msgstr ""
 
@@ -10854,7 +10901,7 @@ msgstr ""
 
 #: php/AcfFields/php/mod-slider.php:759
 #: php/Module/ManualInput/ManualInput.php:117
-#: php/Module/Posts/Posts.php:187
+#: php/Module/Posts/Posts.php:190
 #: php/Module/Slider/Slider.php:215
 msgid "Read more"
 msgstr ""
@@ -12246,13 +12293,13 @@ msgid "Outputs a gallery with images"
 msgstr ""
 
 #: php/Module/Gallery/Gallery.php:27
-#: php/Module/Posts/Posts.php:172
+#: php/Module/Posts/Posts.php:175
 #: php/Module/Slider/Slider.php:69
 msgid "Previous slide"
 msgstr ""
 
 #: php/Module/Gallery/Gallery.php:28
-#: php/Module/Posts/Posts.php:173
+#: php/Module/Posts/Posts.php:176
 #: php/Module/Slider/Slider.php:70
 msgid "Next slide"
 msgstr ""
@@ -12369,15 +12416,52 @@ msgstr ""
 msgid "Your map link must start with http<strong>s</strong>://. Links without this prefix will not display."
 msgstr ""
 
-#: php/Module/Menu/Menu.php:22
+#: php/Module/Markdown/Markdown.php:22
+msgid "Outputs a markdown resource as module."
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:165
+msgid "Source Url"
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:166
+msgid "Next update"
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:167
+msgid "Last updated"
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:168
+#: php/Module/Markdown/Markdown.php:292
+msgid "We could not fetch any content at this moment. Please try again later."
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:169
+msgid "The url provided could not be parsed by any of the allowed providers."
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:170
+msgid "Provider"
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:171
+msgid "Example"
+msgstr ""
+
+#: php/Module/Markdown/Markdown.php:233
+msgid "The url provided could not be parsed as markdown."
+msgstr ""
+
+#: php/Module/Menu/Menu.php:20
 msgid "Menu"
 msgstr ""
 
-#: php/Module/Menu/Menu.php:23
+#: php/Module/Menu/Menu.php:21
 msgid "Menus"
 msgstr ""
 
-#: php/Module/Menu/Menu.php:24
+#: php/Module/Menu/Menu.php:22
 msgid "Outputs a menu."
 msgstr ""
 
@@ -12438,24 +12522,24 @@ msgstr ""
 msgid "Modularity expandable list column values"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:28
-#: php/Module/Posts/Posts.php:29
+#: php/Module/Posts/Posts.php:30
+#: php/Module/Posts/Posts.php:31
 msgid "Posts"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:30
+#: php/Module/Posts/Posts.php:32
 msgid "Outputs selected posts in specified layout"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:186
+#: php/Module/Posts/Posts.php:189
 msgid "Show more"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:226
+#: php/Module/Posts/Posts.php:229
 msgid "First page"
 msgstr ""
 
-#: php/Module/Posts/Posts.php:232
+#: php/Module/Posts/Posts.php:235
 msgid "Page %d"
 msgstr ""
 
