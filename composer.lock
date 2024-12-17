@@ -351,16 +351,16 @@
         },
         {
             "name": "helsingborg-stad/acf-select-image-field",
-            "version": "1.4.6",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acf-image-select-field.git",
-                "reference": "d834d6919a7823dae1862ba162c8388264c77fb7"
+                "reference": "4b5fc58ffa29b583706839ecdf95bfcac5649758"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/d834d6919a7823dae1862ba162c8388264c77fb7",
-                "reference": "d834d6919a7823dae1862ba162c8388264c77fb7",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/4b5fc58ffa29b583706839ecdf95bfcac5649758",
+                "reference": "4b5fc58ffa29b583706839ecdf95bfcac5649758",
                 "shasum": ""
             },
             "type": "wordpress-muplugin",
@@ -376,9 +376,9 @@
             ],
             "support": {
                 "issues": "https://github.com/helsingborg-stad/acf-image-select-field/issues",
-                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.4.6"
+                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.5.0"
             },
-            "time": "2024-10-30T13:19:25+00:00"
+            "time": "2024-12-10T07:31:14+00:00"
         },
         {
             "name": "helsingborg-stad/acfservice",
