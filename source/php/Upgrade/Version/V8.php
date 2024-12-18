@@ -67,13 +67,13 @@ class V8 implements versionInterface {
       }
 
       /* Update how many rows that have been migrated */
-      $query = $this->db->prepare(
+      $numberOfRowsQuery = $this->db->prepare(
           "SELECT COUNT(*) 
           FROM {$this->db->prefix}postmeta 
           WHERE post_id = %d AND meta_key LIKE ",
           $module->ID,
         ) . "'{$this->newKey}_%_title'";
-      update_post_meta($module->ID, 'manual_inputs', $this->db->get_var($query) ?? 0);
+      update_post_meta($module->ID, 'manual_inputs', $this->db->get_var($numberOfRowsQuery) ?? 0);
     
       return true;
     }
