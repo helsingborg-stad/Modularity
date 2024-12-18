@@ -2,6 +2,9 @@
 
 namespace Modularity\Module\FilesList;
 
+use Modularity\Helper\AcfService;
+use Modularity\Helper\WpService;
+
 class FilesList extends \Modularity\Module
 {
     public $slug = 'fileslist';
@@ -45,10 +48,11 @@ class FilesList extends \Modularity\Module
      *
      * @return array All file data.
      */
-    private function prepareFileData()
+    public function prepareFileData()
     {
-        $files = get_field('file_list', $this->ID);
-        $settings = get_field('settings', $this->ID);
+        $acfService = AcfService::get();
+        $files = $acfService->getField('file_list', $this->ID);
+        $settings = $acfService->getField('settings', $this->ID);
         $rows = [];
 
         foreach ($files as $key => $item) {
@@ -60,11 +64,11 @@ class FilesList extends \Modularity\Module
                 'icon' => $this->getIconClass($item['file']['subtype'])
             ];
 
-            if (!in_array('hide_filetype', $settings)) {
+            if (!is_array($settings) || !in_array('hide_filetype', $settings)) {
                 $meta[] = pathInfo($item['file']['url'], PATHINFO_EXTENSION);
             }
 
-            if (!in_array('hide_filesize', $settings)) {
+            if (!is_array($settings) || !in_array('hide_filesize', $settings)) {
                 $meta[] = $this->formatBytes($item['file']['filesize']);
             }
 
@@ -82,7 +86,9 @@ class FilesList extends \Modularity\Module
      */
     private function filenameToTitle(string $filename): string
     {
-        if ($filename == sanitize_title($filename)) {
+        $wpService = WpService::get();
+
+        if ($filename == $wpService->sanitizeTitle($filename)) {
             $filename = str_replace(['-', '_'], [' ', ' '], $filename);
         }
 
