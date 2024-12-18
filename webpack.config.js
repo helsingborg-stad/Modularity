@@ -18,7 +18,7 @@ module.exports = {
 	entry: {
 		'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
 		'js/modularity-text-module': './source/js/modularity-text-module.ts',
-		'js/modularity': './source/js/modularity.js',
+		'js/modularity': './source/js/modularity.ts',
 		'css/modularity': './source/sass/modularity.scss',
 		'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
 
