@@ -30,7 +30,7 @@ class Posts extends \Modularity\Module
         $this->nameSingular     = __('Posts', 'modularity');
         $this->namePlural       = __('Posts', 'modularity');
         $this->description      = __('Outputs selected posts in specified layout', 'modularity');
-        
+
         // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
 
@@ -56,6 +56,7 @@ class Posts extends \Modularity\Module
         // Helpers
         $this->getPostsHelper = new GetPosts(WpService::get(), new WpQueryFactory());
         $this->archiveUrlHelper = new GetArchiveUrl();
+
         new PostsAjax($this);
     }
 
@@ -109,6 +110,7 @@ class Posts extends \Modularity\Module
     {
         $data = [];
         $this->fields = $this->getFields();
+
         $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 
@@ -401,10 +403,10 @@ class Posts extends \Modularity\Module
      *
      * @return array $postsAndPaginationData Array with posts and pagination data. e.g. ['posts' => [], 'maxNumPages' => 0]
      */
-    public function getPostsAndPaginationData(): array
+    public function getPostsAndPaginationData(?array $fields = null, ?int $pageNumber = null): array
     {
-        if ($this->fields) {
-            return $this->getPostsHelper->getPostsAndPaginationData($this->fields, $this->getPageNumber());
+        if ($this->fields || $fields) {
+            return $this->getPostsHelper->getPostsAndPaginationData($fields ?? $this->fields, $pageNumber ?? $this->getPageNumber());
         }
 
         return [
@@ -439,6 +441,14 @@ class Posts extends \Modularity\Module
             'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-taxonomy-filtering');
+    }
+
+    public function script()
+    {
+        wp_register_script('mod-posts-get-posts', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/mod-posts-get-posts.js'));
+
+        wp_enqueue_script('mod-posts-get-posts');
     }
 
     /**

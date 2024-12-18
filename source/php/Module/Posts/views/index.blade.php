@@ -17,3 +17,11 @@
 </div>
 
 @include('partials.more')
+
+@button([
+    'text' => __('More'),
+    'classList' => ['c-button--block', 'c-button--primary'],
+    'context' => ['module.posts.index'],
+    'iconPosition' => 'right',
+    'attributeList' => ['data-js-load-more' => $ID],
+])@endbutton
