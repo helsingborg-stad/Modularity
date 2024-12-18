@@ -5,7 +5,6 @@ namespace Modularity\Module\FilesList;
 use AcfService\Implementations\FakeAcfService;
 use Modularity\Helper\AcfService;
 use Modularity\Helper\WpService;
-use PHPUnit\Framework\Attributes\RunInSeparateProcess;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\TestCase;
 use WpService\Implementations\FakeWpService;
@@ -13,7 +12,6 @@ use WpService\Implementations\FakeWpService;
 class FilesListTest extends TestCase
 {
     #[TestDox('prepareFileData() does not throw warnings when settings is not an array')]
-    #[RunInSeparateProcess]
     public function testPrepareFileDataSettingsIsNotArray()
     {
         WpService::set(new FakeWpService(['sanitizeTitle' => fn($title) => $title]));
