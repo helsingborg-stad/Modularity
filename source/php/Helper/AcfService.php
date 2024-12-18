@@ -21,10 +21,7 @@ class AcfService
      */
     public static function set(OriginalAcfService $acfService): void
     {
-        if (self::$acfService === null) {
-            // Allow setting once to prevent accidental overwriting.
-            self::$acfService = $acfService;
-        }
+        self::$acfService = $acfService;
     }
 
     /**
