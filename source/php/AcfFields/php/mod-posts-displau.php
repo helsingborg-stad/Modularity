@@ -6,13 +6,13 @@
     'title' => __('Data display', 'modularity'),
     'fields' => array(
         0 => array(
-            'key' => 'field_571dfd4c0d9d9',
+            'key' => 'field_6762db8c6bdd4',
             'label' => __('Display as', 'modularity'),
             'name' => 'posts_display_as',
             'aria-label' => '',
-            'type' => 'radio',
+            'type' => 'image_select',
             'instructions' => '',
-            'required' => 1,
+            'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '',
@@ -20,51 +20,59 @@
                 'id' => '',
             ),
             'choices' => array(
-                'list' => __('List', 'modularity'),
-                'expandable-list' => __('Expandable List', 'modularity'),
-                'items' => __('Post items', 'modularity'),
-                'news' => __('News items', 'modularity'),
-                'index' => __('Index', 'modularity'),
-                'grid' => __('Blocks', 'modularity'),
-                'features-grid' => __('Features grid', 'modularity'),
-                'segment' => __('Segment', 'modularity'),
-                'collection' => __('Collection', 'modularity'),
-            ),
-            'default_value' => __('list', 'modularity'),
-            'return_format' => 'value',
-            'allow_null' => 0,
-            'other_choice' => 0,
-            'layout' => 'horizontal',
-            'save_other_choice' => 0,
-        ),
-        1 => array(
-            'key' => 'field_675c0e6f7becc',
-            'label' => __('Use term icon as icon in list', 'modularity'),
-            'name' => 'use_term_icon_as_icon_in_list',
-            'aria-label' => '',
-            'type' => 'true_false',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'list',
-                    ),
+                'row-6762dd536bdd6' => array(
+                    'image-select-repeater-label' => 'Accordion',
+                    'image-select-repeater-value' => 'expandable-list',
+                ),
+                'row-6762dbba6bdd5' => array(
+                    'image-select-repeater-label' => 'Block',
+                    'image-select-repeater-value' => 'grid',
+                ),
+                'row-6762de116bdd8' => array(
+                    'image-select-repeater-label' => 'Box',
+                    'image-select-repeater-value' => 'features-grid',
+                ),
+                'row-6762dd5c6bdd7' => array(
+                    'image-select-repeater-label' => 'Card',
+                    'image-select-repeater-value' => 'index',
+                ),
+                'row-6762de306bddc' => array(
+                    'image-select-repeater-label' => 'Collection',
+                    'image-select-repeater-value' => 'collection',
+                ),
+                'row-6762de1f6bdd9' => array(
+                    'image-select-repeater-label' => 'List',
+                    'image-select-repeater-value' => 'list',
+                ),
+                'row-6762de2b6bddb' => array(
+                    'image-select-repeater-label' => 'News',
+                    'image-select-repeater-value' => 'news',
+                ),
+                'row-6762de246bdda' => array(
+                    'image-select-repeater-label' => 'Segment',
+                    'image-select-repeater-value' => 'segment',
                 ),
             ),
+        ),
+        1 => array(
+            'key' => 'field_675c3c7f9fb12',
+            'label' => __('posts_display_as_conditional', 'modularity'),
+            'name' => 'posts_display_as_conditional',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
             'wrapper' => array(
                 'width' => '',
-                'class' => '',
+                'class' => 'acf-hidden',
                 'id' => '',
             ),
-            'message' => '',
-            'default_value' => 0,
-            'allow_in_bindings' => 0,
-            'ui' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
         ),
         2 => array(
             'key' => 'field_636249fee87cc',
@@ -77,44 +85,14 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'index',
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'list',
                     ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'news',
-                    ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'grid',
-                    ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'features-grid',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'items',
-                    ),
-                ),
-                5 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'segment',
+                    1 => array(
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
                 ),
             ),
@@ -140,44 +118,14 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'index',
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'list',
                     ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
-                    ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'news',
-                    ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'features-grid',
-                    ),
-                ),
-                5 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'segment',
+                    1 => array(
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
                 ),
             ),
@@ -203,7 +151,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'segment',
                     ),
@@ -236,47 +184,31 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
-                    ),
-                    1 => array(
-                        'field' => 'field_6356477fbc5e4',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '!=',
-                        'value' => '1',
-                    ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'index',
+                        'value' => 'segment',
                     ),
                     1 => array(
-                        'field' => 'field_6356477fbc5e4',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '!=',
-                        'value' => '1',
+                        'value' => 'expandable-list',
                     ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
-                    ),
-                    1 => array(
-                        'field' => 'field_6356477fbc5e4',
+                    2 => array(
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '!=',
-                        'value' => '1',
+                        'value' => 'collection',
                     ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'news',
+                    3 => array(
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'features-grid',
                     ),
-                    1 => array(
+                    4 => array(
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'list',
+                    ),
+                    5 => array(
                         'field' => 'field_6356477fbc5e4',
                         'operator' => '!=',
                         'value' => '1',
@@ -310,7 +242,7 @@
                         'value' => '1',
                     ),
                     1 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '!=',
                         'value' => 'news',
                     ),
@@ -325,7 +257,7 @@
                 'block' => __('Block', 'modularity'),
                 'card' => __('Card', 'modularity'),
             ),
-            'default_value' => __('block', 'modularity'),
+            'default_value' => 'block',
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -346,51 +278,14 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'list',
                     ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'index',
-                    ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
-                    ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'news',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'features-grid',
-                    ),
-                ),
-                5 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'segment',
-                    ),
-                ),
-                6 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'collection',
+                    1 => array(
+                        'field' => 'field_675c3c7f9fb12',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
                 ),
             ),
@@ -405,7 +300,7 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => __('grid-md-12', 'modularity'),
+            'default_value' => 'grid-md-12',
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -426,12 +321,12 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '!=',
                         'value' => 'expandable-list',
                     ),
                     1 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '!=',
                         'value' => 'list',
                     ),
@@ -451,10 +346,10 @@
                 'comment_count' => __('Comment count', 'modularity'),
             ),
             'default_value' => array(
-                0 => __('date', 'modularity'),
-                1 => __('excerpt', 'modularity'),
-                2 => __('title', 'modularity'),
-                3 => __('image', 'modularity'),
+                0 => 'date',
+                1 => 'excerpt',
+                2 => 'title',
+                3 => 'image',
             ),
             'return_format' => 'value',
             'allow_custom' => 0,
@@ -510,7 +405,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -521,8 +416,8 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => 0,
             'message' => __('Yes, hide the title column', 'modularity'),
+            'default_value' => 0,
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
@@ -538,7 +433,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -571,7 +466,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -582,13 +477,14 @@
                 'class' => '',
                 'id' => '',
             ),
+            'acfe_repeater_stylised_button' => 0,
+            'layout' => 'table',
+            'pagination' => 0,
             'min' => 0,
             'max' => 0,
-            'layout' => 'table',
-            'button_label' => __('Lägg till rad', 'modularity'),
             'collapsed' => '',
+            'button_label' => __('Lägg till rad', 'modularity'),
             'rows_per_page' => 20,
-            'acfe_repeater_stylised_button' => 0,
             'sub_fields' => array(
                 0 => array(
                     'key' => 'field_571f5790592e7',
@@ -626,7 +522,7 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -637,8 +533,8 @@
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => 1,
             'message' => __('Allow freetext filtering', 'modularity'),
+            'default_value' => 1,
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
@@ -654,9 +550,9 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
-                        'value' => 'horizontal',
+                        'value' => 'list',
                     ),
                 ),
             ),
@@ -667,9 +563,9 @@
             ),
             'message' => '',
             'default_value' => 0,
-            'ui' => 1,
             'ui_on_text' => __('Enabled', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
+            'ui' => 1,
         ),
         15 => array(
             'key' => 'field_5bdb0d4217e91',
@@ -682,9 +578,9 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
-                        'value' => 'horizontal',
+                        'value' => 'list',
                     ),
                     1 => array(
                         'field' => 'field_571e01e7f246c',
@@ -702,11 +598,11 @@
                 'default' => __('Default timestamp', 'modularity'),
                 'readable' => __('Readable timestamp', 'modularity'),
             ),
-            'default_value' => __('default', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
+            'default_value' => 'default',
             'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'allow_custom' => 0,
@@ -723,9 +619,9 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
-                        'value' => 'horizontal',
+                        'value' => 'list',
                     ),
                     1 => array(
                         'field' => 'field_571e01e7f246c',
@@ -739,9 +635,9 @@
                 'class' => '',
                 'id' => '',
             ),
+            'uploader' => '',
             'return_format' => 'array',
-            'preview_size' => 'thumbnail',
-            'library' => 'all',
+            'acfe_thumbnail' => 0,
             'min_width' => '',
             'min_height' => '',
             'min_size' => '',
@@ -749,8 +645,8 @@
             'max_height' => '',
             'max_size' => '',
             'mime_types' => '',
-            'uploader' => '',
-            'acfe_thumbnail' => 0,
+            'preview_size' => 'thumbnail',
+            'library' => 'all',
         ),
         17 => array(
             'key' => 'field_628e0f242aa5f',
@@ -763,14 +659,14 @@
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'grid',
                     ),
                 ),
                 1 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_675c3c7f9fb12',
                         'operator' => '==',
                         'value' => 'features-grid',
                     ),
@@ -786,11 +682,11 @@
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
             ),
-            'default_value' => __('4:3', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
+            'default_value' => '4:3',
             'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'allow_custom' => 0,

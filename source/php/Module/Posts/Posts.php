@@ -109,6 +109,7 @@ class Posts extends \Modularity\Module
     {
         $data = [];
         $this->fields = $this->getFields();
+        echo '<pre>' . print_r( $this->fields, true ) . '</pre>';die;
         $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 
