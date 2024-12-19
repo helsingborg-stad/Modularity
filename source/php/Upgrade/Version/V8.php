@@ -3,6 +3,7 @@
 namespace Modularity\Upgrade\Version;
 
 use \Modularity\Upgrade\Version\Helper\GetPostsByPostType;
+use \Modularity\Upgrade\Migrators\Module\AcfModuleRepeaterFieldsMigrator;
 
 /**
  * Class V8
@@ -35,47 +36,52 @@ class V8 implements versionInterface {
     private function upgradeModules() 
     {
       $modulesMatchingCriteria = $this->getModules(); 
-
-      if(empty($modulesMatchingCriteria)) {
-        return false;
-      }
-
       foreach ($modulesMatchingCriteria as $module) {
-        /* Update prefix */ 
-        $query = $this->db->prepare(
-          "UPDATE {$this->db->prefix}postmeta 
-          SET meta_key = REPLACE(meta_key, %s, %s) 
-          WHERE post_id = %d AND meta_key ",
-          $this->oldKey,
-          $this->newKey,
-          $module->ID,
-        ) . "LIKE '%{$this->oldKey}%'";
-        $this->db->query($query);
 
-        /* Updates suffix */ 
-        foreach(['_post_title' => '_title', '_post_content' => '_content'] as $old => $new) {
-          $subQuery = $this->db->prepare(
-            "UPDATE {$this->db->prefix}postmeta 
-            SET meta_key = REPLACE(meta_key, %s, %s) 
-            WHERE post_id = %d AND meta_key ",
-            $old,  
-            $new,
-            $module->ID,
-          ) . "LIKE '%{$this->newKey}%{$old}%'";
-          $this->db->query($subQuery);
-        }
+        $oldFieldValue = $this->getUndefinedField($module->ID, $this->oldKey);
+
+        $newField = [
+          'type' => 'repeater',
+          'name' => $this->newKey,
+          'fields' => [
+            'post_title' => 'title',
+            'post_content' => 'content',
+          ]
+        ];
+        $migrator = new AcfModuleRepeaterFieldsMigrator($newField, $oldFieldValue, $module->ID);
+        $migrator->migrate();
+
+
+        var_dump($module->ID, get_field($this->newKey, $module->ID));
+
+
+
+        break;
+
+
       }
+    }
 
-      /* Update how many rows that have been migrated */
-      $numberOfRowsQuery = $this->db->prepare(
-          "SELECT COUNT(*) 
-          FROM {$this->db->prefix}postmeta 
-          WHERE post_id = %d AND meta_key LIKE ",
-          $module->ID,
-        ) . "'{$this->newKey}_%_title'";
-      update_post_meta($module->ID, $this->newKey, $this->db->get_var($numberOfRowsQuery) ?? 0);
-    
-      return true;
+    private function getUndefinedField($postId, $fieldKey) {
+      $query = $this->db->prepare(
+        "SELECT * FROM {$this->db->postmeta} WHERE post_id = %d AND meta_key LIKE ",
+        $postId 
+      ) . "'" . $fieldKey . "_%_%'";
+
+      $results = $this->db->get_results($query, ARRAY_A);
+
+      // Group results by prefix
+      $groupedData = [];
+      foreach ($results as $row) {
+          if (preg_match('/' . preg_quote($fieldKey, '/') . '_(\d+)_(.+)$/', $row['meta_key'], $matches)) {
+              $index = (int)$matches[1]; // Extract the numeric index (e.g., 0, 1, etc.)
+              $key = $matches[2];        // Extract the key (e.g., post_title, post_content, etc.)
+              $groupedData[$index][$key] = $row['meta_value'];
+          }
+      }
+      ksort($groupedData);
+
+      return $groupedData;
     }
 
     /**
@@ -88,16 +94,12 @@ class V8 implements versionInterface {
     private function getModules(): array 
     {
         $postsModules = GetPostsByPostType::getPostsByPostType('mod-manualinput');
-
-        //Get modules that does not have any data in the manual_inputs field
         $filteredPostsModules = array_filter($postsModules, function ($module) {
             if (!empty($module->ID)) {
-                $dataInList = get_field($this->newKey, $module->ID);
-                return empty($dataInList);
+                return empty(get_field($this->newKey, $module->ID) ?? false);
             }
             return false;
         });
         return $filteredPostsModules ?? [];
     }
-
 }
