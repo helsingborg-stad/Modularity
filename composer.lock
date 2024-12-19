@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c76a60c05fade478fbb6942a400f5abf",
+    "content-hash": "4a4651e245ff669e57cde6c9655a24f8",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -351,16 +351,16 @@
         },
         {
             "name": "helsingborg-stad/acf-select-image-field",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acf-image-select-field.git",
-                "reference": "4b5fc58ffa29b583706839ecdf95bfcac5649758"
+                "reference": "366c629bd864645a3f1bd5963c4a628af1b02f30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/4b5fc58ffa29b583706839ecdf95bfcac5649758",
-                "reference": "4b5fc58ffa29b583706839ecdf95bfcac5649758",
+                "url": "https://api.github.com/repos/helsingborg-stad/acf-image-select-field/zipball/366c629bd864645a3f1bd5963c4a628af1b02f30",
+                "reference": "366c629bd864645a3f1bd5963c4a628af1b02f30",
                 "shasum": ""
             },
             "type": "wordpress-muplugin",
@@ -376,9 +376,9 @@
             ],
             "support": {
                 "issues": "https://github.com/helsingborg-stad/acf-image-select-field/issues",
-                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.5.0"
+                "source": "https://github.com/helsingborg-stad/acf-image-select-field/tree/1.6.0"
             },
-            "time": "2024-12-10T07:31:14+00:00"
+            "time": "2024-12-19T07:30:01+00:00"
         },
         {
             "name": "helsingborg-stad/acfservice",
@@ -2988,11 +2988,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "clark-nikdel-powell/post-type-select-for-acf": 20,
-        "enshrined/svg-sanitize": 20,
-        "jeradin/acf-dynamic-table-field": 20,
-        "jeradin/acf-website-field": 20,
         "johannheyne/advanced-custom-fields-table-field": 20,
+        "clark-nikdel-powell/post-type-select-for-acf": 20,
+        "jeradin/acf-website-field": 20,
+        "jeradin/acf-dynamic-table-field": 20,
+        "enshrined/svg-sanitize": 20,
         "landrok/language-detector": 20
     },
     "prefer-stable": false,
@@ -3000,6 +3000,6 @@
     "platform": {
         "php": "^8.0"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
