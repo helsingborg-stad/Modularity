@@ -73,7 +73,7 @@ class V8 implements versionInterface {
           WHERE post_id = %d AND meta_key LIKE ",
           $module->ID,
         ) . "'{$this->newKey}_%_title'";
-      update_post_meta($module->ID, 'manual_inputs', $this->db->get_var($numberOfRowsQuery) ?? 0);
+      update_post_meta($module->ID, $this->newKey, $this->db->get_var($numberOfRowsQuery) ?? 0);
     
       return true;
     }
