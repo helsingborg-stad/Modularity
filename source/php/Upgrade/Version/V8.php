@@ -46,22 +46,27 @@ class V8 implements versionInterface {
           'fields' => [
             'post_title' => 'title',
             'post_content' => 'content',
+            'permalink' => 'permalink',
+            'image' => 'image',
+            'column_values' => 'accordion_column_values',
           ]
         ];
         $migrator = new AcfModuleRepeaterFieldsMigrator($newField, $oldFieldValue, $module->ID);
         $migrator->migrate();
 
-
-        var_dump($module->ID, get_field($this->newKey, $module->ID));
-
-
-
-        break;
-
-
+        break; // Test one module at a time
       }
     }
 
+    /**
+     * A version of get_field that can handle fields that are not defined in ACF
+     * @supports: repeater fields
+     * 
+     * @param int $postId
+     * @param string $fieldKey
+     * 
+     * @return array
+     */
     private function getUndefinedField($postId, $fieldKey) {
       $query = $this->db->prepare(
         "SELECT * FROM {$this->db->postmeta} WHERE post_id = %d AND meta_key LIKE ",
