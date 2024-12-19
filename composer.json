@@ -46,7 +46,7 @@
         "jeradin/acf-dynamic-table-field": "dev-master",
         "enshrined/svg-sanitize": "dev-master",
         "wpackagist-plugin/acf-extended": "0.8.9.4",
-        "helsingborg-stad/acf-select-image-field": "1.5.0",
+        "helsingborg-stad/acf-select-image-field": "1.6.0",
         "landrok/language-detector": "dev-master",
         "league/commonmark": "2.5.3",
         "league/config": "1.1.1",
