@@ -36,8 +36,12 @@ class V8 implements versionInterface {
     private function upgradeModules() 
     {
       $modulesMatchingCriteria = $this->getModules(); 
-      foreach ($modulesMatchingCriteria as $module) {
 
+      if (empty($modulesMatchingCriteria)) {
+        return;
+      }
+
+      foreach ($modulesMatchingCriteria as $module) {
         $oldFieldValue = $this->getUndefinedField($module->ID, $this->oldKey);
 
         $newField = [
@@ -47,14 +51,13 @@ class V8 implements versionInterface {
             'post_title' => 'title',
             'post_content' => 'content',
             'permalink' => 'permalink',
+            'permalink' => 'link',
             'image' => 'image',
             'column_values' => 'accordion_column_values',
           ]
         ];
         $migrator = new AcfModuleRepeaterFieldsMigrator($newField, $oldFieldValue, $module->ID);
         $migrator->migrate();
-
-        break; // Test one module at a time
       }
     }
 
