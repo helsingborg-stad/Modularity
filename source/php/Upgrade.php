@@ -61,7 +61,6 @@ class Upgrade
      */
     public function upgrade()
     {
-
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
         }
