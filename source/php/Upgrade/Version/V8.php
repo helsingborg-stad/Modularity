@@ -46,15 +46,15 @@ class V8 implements versionInterface {
           "UPDATE {$this->db->prefix}postmeta 
           SET meta_key = REPLACE(meta_key, %s, %s) 
           WHERE post_id = %d AND meta_key ",
-          $this->oldKey,  // The part to replace
-          $this->newKey,  // The new value to replace it with
+          $this->oldKey,
+          $this->newKey,
           $module->ID,
         ) . "LIKE '%{$this->oldKey}%'";
         $this->db->query($query);
 
         /* Updates suffix */ 
         foreach(['_post_title' => '_title', '_post_content' => '_content'] as $old => $new) {
-          $subQuery = $query = $this->db->prepare(
+          $subQuery = $this->db->prepare(
             "UPDATE {$this->db->prefix}postmeta 
             SET meta_key = REPLACE(meta_key, %s, %s) 
             WHERE post_id = %d AND meta_key ",
