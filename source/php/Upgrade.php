@@ -39,7 +39,7 @@ class Upgrade
      */
     public function reset()
     {
-        update_option($this->dbVersionKey, 7);
+        update_option($this->dbVersionKey, 0);
     }
 
     /**
@@ -61,8 +61,6 @@ class Upgrade
      */
     public function upgrade()
     {
-
-        $this->reset();
 
         if (empty(get_option($this->dbVersionKey))) {
             update_option($this->dbVersionKey, 0);
