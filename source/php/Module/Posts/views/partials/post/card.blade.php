@@ -10,7 +10,11 @@
     'containerAware' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'image' => $post->image,
-    'icon' => $post->termIcon,
+    'icon' => $post->getTermIcon() ? [
+        'icon' => $post->getTermIcon()->getIcon(),
+        'color' => 'white',
+        'backgroundColor' => $post->getTermIcon()->getColor(),
+    ] : null,
     'attributeList' => array_merge($post->attributeList, []),
 ])
     @slot('aboveContent')

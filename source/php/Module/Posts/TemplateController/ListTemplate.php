@@ -6,7 +6,7 @@ namespace Modularity\Module\Posts\TemplateController;
  * Class ListTemplate
  * @package Modularity\Module\Posts\TemplateController
  */
-class ListTemplate
+class ListTemplate extends AbstractController
 {
     protected $args;
     public $data = [];
@@ -39,6 +39,7 @@ class ListTemplate
     {
         $list = [];
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
+            $this->data['posts'] = $this->preparePosts($this->data['posts']);
             foreach ($this->data['posts'] as $post) {
                 if ($post->getPostType() === 'attachment') {
                     $link = wp_get_attachment_url($post->getId());

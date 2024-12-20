@@ -10,7 +10,11 @@
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
     'link' => $post->permalink,
-    'icon' => $post->termIcon,
+        'icon' => $post->getTermIcon() ? [
+        'icon' => $post->getTermIcon()->getIcon(),
+        'color' => 'white',
+        'backgroundColor' => $post->getTermIcon()->getColor(),
+    ] : null,
     'attributeList' => array_merge($post->attributeList, []),
 ])
     @includeWhen(

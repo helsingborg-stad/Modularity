@@ -31,38 +31,7 @@ class GetPosts
      */
     public function getPostsAndPaginationData(array $fields, int $page = 1) :array
     {
-        $result = (array) $this->getPostsFromSelectedSites($fields, $page);
-
-        if( empty($result['posts'])) {
-            return $result;
-        }
-    
-        $result['posts'] = array_map(function($post) use ($fields) {
-            $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
-            $helperClass = '\Municipio\Helper\Post';
-            $helperMethod = 'preparePostObject';
-            $helperArchiveMethod = 'preparePostObjectArchive';
-            
-            if(!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
-                error_log("Class or method does not exist: {$helperClass}::{$helperMethod} or {$helperClass}::{$helperArchiveMethod}");
-                return $post;
-            }
-
-            if (in_array($fields['posts_display_as'], ['expandable-list'])) {
-                $post = call_user_func([$helperClass, $helperMethod], $post);
-            } else {
-                $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
-            }
-
-            if (!empty($post->schemaData['place']['pin'])) {
-                $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
-            }
-
-            return $post;
-
-        }, $result['posts']);
-        
-        return $result;
+        return (array) $this->getPostsFromSelectedSites($fields, $page);
     }
 
     private function getPostsFromSelectedSites(array $fields, int $page):array {
