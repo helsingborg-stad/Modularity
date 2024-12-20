@@ -3,6 +3,7 @@
 namespace Modularity;
 
 use WP_CLI;
+use WP_Site;
 
 /**
  * Class App
@@ -18,12 +19,22 @@ class Upgrade
     public function __construct()
     {
         add_action('admin_notices', array($this, 'addAdminNotice'));
+        add_action('wp_initialize_site', array($this, 'updateDbVersion'), 10, 1);
+    }
+
+    // Update db version when creating a new site
+    public function updateDbVersion(WP_Site $newSite)
+    {
+        switch_to_blog($newSite->blog_id);
+        update_option($this->dbVersionKey, $this->dbVersion);
+        restore_current_blog();
     }
 
     public function addAdminNotice() 
     {
         $currentDbVersion = get_option($this->dbVersionKey);
-        if (empty($currentDbVersion) || $currentDbVersion < $this->dbVersion) {
+        echo '<pre>' . print_r( $currentDbVersion, true ) . '</pre>';
+        if ($currentDbVersion !== false && $currentDbVersion < $this->dbVersion) {
             echo sprintf(
                 '<div class="notice notice-warning update-nag inline">%s</div>',
                 __('A newer version of Modularity is available. Run wp-cli "modularity upgrade" to upgrade.', 'modularity')
