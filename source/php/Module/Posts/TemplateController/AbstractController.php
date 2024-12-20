@@ -64,15 +64,47 @@ class AbstractController
     */
     public function preparePosts($posts = [])
     {
+        $posts = array_map(function($post) {
+            $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
+            $helperClass = '\Municipio\Helper\Post';
+            $helperMethod = 'preparePostObject';
+            $helperArchiveMethod = 'preparePostObjectArchive';
+            
+            if(!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
+                error_log("Class or method does not exist: {$helperClass}::{$helperMethod} or {$helperClass}::{$helperArchiveMethod}");
+                return $post;
+            }
+
+            if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
+                $post = call_user_func([$helperClass, $helperMethod], $post);
+            } else {
+                $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
+            }
+
+            if (!empty($post->schemaData['place']['pin'])) {
+                $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
+            }
+
+            return $post;
+
+        }, $posts);
+
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
                 $post = $this->setPostViewData($post, $index);
 
-                $post = array_filter((array) $post, function($value) {
-                    return !empty($value) || $value === false || $value === "0";
-                });
+                // $post = array_filter((array) $post, function($value) {
+                //     return !empty($value) || $value === false || $value === "0";
+                // });
 
-                $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
+                // $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
+
+                // Apply $this->getDefaultValuesForPosts() to the post object without turning it into an array
+                foreach ($this->getDefaultValuesForPosts() as $key => $value) {
+                    if (!isset($post->$key)) {
+                        $post->$key = $value;
+                    }
+                }
             }
         }
 
