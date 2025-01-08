@@ -5,7 +5,6 @@
     'tags' => $post->termsUnlinked,
     'image' => $post->image,
     'date' => $post->postDateFormatted,
-    'dateBadge' => $post->dateBadge,
     'content' => $post->excerptShort,
     'buttons' => [['text' => $lang['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
