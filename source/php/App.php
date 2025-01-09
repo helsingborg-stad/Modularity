@@ -2,7 +2,6 @@
 
 namespace Modularity;
 
-use Modularity\Private\AcfPrivateSettings;
 use Modularity\Private\PrivateAcfFields;
 
 class App
@@ -57,7 +56,6 @@ class App
 
         if (is_admin()) {
             new PrivateAcfFields();
-            new AcfPrivateSettings();
         }
 
         new Helper\Acf();
