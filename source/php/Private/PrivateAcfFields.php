@@ -1,6 +1,6 @@
 <?php
 
-namespace Modularity;
+namespace Modularity\Private;
 
 class PrivateAcfFields
 {
