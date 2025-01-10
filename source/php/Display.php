@@ -171,81 +171,10 @@ class Display
                     continue;
                 }
 
-                if ($this->hasUserGroupSettings($module) && !$this->userGroupIsAllowedToViewModule($module)) {
-                    continue;
-                }
-  
                 return true;
             }
         }
         return false;
-    }
-
-    /**
-     * Checks if the current user is allowed to view the given module based on user group visibility.
-     *
-     * This method retrieves the user group visibility metadata for the module
-     * and compares it against the user group terms assigned to the current user.
-     * If a match is found, the user is allowed to view the module.
-     *
-     * @param \WP_Post $module The module post object.
-     * @return bool True if the user is allowed to view the module, false otherwise.
-     */
-    private function userGroupIsAllowedToViewModule(\WP_Post $module): bool
-    {
-        static $allowedUserGroups;
-
-        $allowedUserGroups = !$allowedUserGroups ? 
-            get_post_meta($module->ID, 'user-group-visibility', true) : 
-            $allowedUserGroups;
-
-        $userGroupTerms = $this->getUserGroupTerms();
-
-        foreach ($userGroupTerms as $term) {
-            if (in_array($term, $allowedUserGroups)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Retrieves the user group terms for the current user.
-     *
-     * @return array The user group terms as an array of slugs.
-     */
-    private function getUserGroupTerms(): array
-    {
-        static $user;
-        static $userGroupTerms;
-
-        $user = !$user ? wp_get_current_user() : $user;
-
-        if (!$userGroupTerms) {
-            $terms = wp_get_post_terms($user->ID, 'user_group', true);
-
-            if (is_wp_error($terms) || empty($terms)) {
-                $userGroupTerms = [];
-                
-                return $userGroupTerms;
-            }
-
-            $userGroupTerms = array_map(fn($term) => $term->slug, $terms);
-        }
-
-        return $userGroupTerms;
-    }
-
-    /**
-     * Checks if a module has user group settings.
-     *
-     * @param \WP_Post $module The module post object.
-     * @return bool Returns true if the module has user group settings, false otherwise.
-     */
-    private function hasUserGroupSettings(\WP_Post $module): bool
-    {
-        return $module->post_status === 'private' && !empty($module->meta['user-group-visibility']);
     }
 
     /**
