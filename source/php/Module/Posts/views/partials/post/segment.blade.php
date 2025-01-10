@@ -9,7 +9,11 @@
     'buttons' => [['text' => $lang['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => $imagePosition,
-    'icon' => $post->termIcon,
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
+        'color' => 'white',
+        'backgroundColor' => $post->getIcon()->getCustomColor(),
+    ] : null,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'attributeList' => $post->attributeList ?? [],
     'classList' => $classList ?? [],
