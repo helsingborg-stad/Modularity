@@ -54,11 +54,7 @@ class ListTemplate extends AbstractController
                 ];
 
                 if(boolval(($this->data['meta']['use_term_icon_as_icon_in_list'] ?? false))) {
-                    $listItem['icon'] = !empty($post->getTermIcons()) ? [
-                            'icon' => $post->getTermIcons()[0]->getIcon(),
-                            'customColor' => $post->getTermIcons()[0]->getColor(),
-                            'size' => 'md'
-                    ] : 'arrow_forward';
+                    $listItem['icon'] = $post->getIcon()?->toArray() ?: 'arrow_forward';
                 }
 
                 $list[] = $listItem;

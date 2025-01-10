@@ -10,10 +10,10 @@
     'hasPlaceholder' => !empty($post->hasPlaceholderImage),
     'attributeList' => ['style' => 'z-index:' . (999 - $key) . ';'],
     'classList' => ['u-height--100', 'project-card'],
-    'icon' => $post->getTermIcon() ? [
-        'icon' => $post->getTermIcon()->getIcon(),
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getTermIcon()->getColor(),
+        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
 ])
     @slot('afterContent')

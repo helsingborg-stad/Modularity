@@ -10,10 +10,10 @@
     'containerAware' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'image' => $post->image,
-    'icon' => $post->getTermIcon() ? [
-        'icon' => $post->getTermIcon()->getIcon(),
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getTermIcon()->getColor(),
+        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
     'attributeList' => array_merge($post->attributeList, []),
 ])

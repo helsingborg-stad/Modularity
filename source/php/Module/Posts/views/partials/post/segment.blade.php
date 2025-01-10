@@ -9,10 +9,10 @@
     'buttons' => [['text' => $lang['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
     'reverseColumns' => $imagePosition,
-    'icon' => $post->getTermIcon() ? [
-        'icon' => $post->getTermIcon()->getIcon(),
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getTermIcon()->getColor(),
+        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'attributeList' => $post->attributeList ?? [],

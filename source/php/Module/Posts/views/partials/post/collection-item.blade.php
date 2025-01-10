@@ -33,19 +33,19 @@
             ])
                 {{ $post->postTitle }}
             @endtypography
-            @if ($post->getTermIcon())
+            @if ($post->getIcon())
                 @inlineCssWrapper([
-                    'styles' => ['background-color' => $post->getTermIcon()->getColor(), 'display' => 'flex'],
+                    'styles' => ['background-color' => $post->getIcon()->getCustomColor(), 'display' => 'flex'],
                     'classList' => [
-                        $post->getTermIcon()->getColor() ? '' : 'u-color__bg--primary',
+                        $post->getIcon()->getCustomColor() ? '' : 'u-color__bg--primary',
                         'u-rounded--full',
                         'u-detail-shadow-3'
                     ]
                 ])
                     @icon([
-                        'icon' => $post->getTermIcon()->getIcon(),
+                        'icon' => $post->getIcon()->getIcon(),
                         'color' => 'white',
-                        'backgroundColor' => $post->getTermIcon()->getColor(),
+                        'backgroundColor' => $post->getIcon()->getCustomColor(),
                     ])
                     @endicon
                 @endinlineCssWrapper

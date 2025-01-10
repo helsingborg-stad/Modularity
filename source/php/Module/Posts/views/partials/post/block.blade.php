@@ -10,10 +10,10 @@
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
     'link' => $post->permalink,
-        'icon' => $post->getTermIcon() ? [
-        'icon' => $post->getTermIcon()->getIcon(),
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getTermIcon()->getColor(),
+        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
     'attributeList' => array_merge($post->attributeList, []),
 ])
