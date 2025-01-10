@@ -93,12 +93,6 @@ class AbstractController
             foreach ($posts as $index => &$post) {
                 $post = $this->setPostViewData($post, $index);
 
-                // $post = array_filter((array) $post, function($value) {
-                //     return !empty($value) || $value === false || $value === "0";
-                // });
-
-                // $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
-
                 // Apply $this->getDefaultValuesForPosts() to the post object without turning it into an array
                 foreach ($this->getDefaultValuesForPosts() as $key => $value) {
                     if (!isset($post->$key)) {
