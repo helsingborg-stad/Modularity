@@ -6,6 +6,7 @@ use Modularity\Helper\WpQueryFactory\WpQueryFactory;
 use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
+use Modularity\Module\Posts\Private\PrivateController;
 
 /**
  * Class Posts
@@ -22,6 +23,8 @@ class Posts extends \Modularity\Module
     public $getPostsHelper;
     public $archiveUrlHelper;
     private array $enabledSchemaTypes = [];
+    public string $postStatus;
+    private PrivateController $privateController;
 
     private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
@@ -30,6 +33,9 @@ class Posts extends \Modularity\Module
         $this->nameSingular     = __('Posts', 'modularity');
         $this->namePlural       = __('Posts', 'modularity');
         $this->description      = __('Outputs selected posts in specified layout', 'modularity');
+
+        // Private controller
+        $this->privateController = new PrivateController($this);
         
         // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
@@ -190,6 +196,7 @@ class Posts extends \Modularity\Module
             'readMore' => __('Read more', 'modularity')
         ];
 
+        $data = $this->privateController->decorateData($data, $this->fields);
         return $data;
     }
 
@@ -339,11 +346,15 @@ class Posts extends \Modularity\Module
             $template = 'slider';
         }
         
-        $this->getTemplateData($this->replaceDeprecatedTemplate($template));
+
+        $template = $this->replaceDeprecatedTemplate($template);
+        $this->getTemplateData($template);
+
+        $this->data['template'] = $template;
 
         return apply_filters(
             'Modularity/Module/Posts/template',
-            $this->replaceDeprecatedTemplate($template) . '.blade.php',
+            $template . '.blade.php',
             $this,
             $this->data,
             $this->fields
@@ -439,6 +450,14 @@ class Posts extends \Modularity\Module
             'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-taxonomy-filtering');
+    }
+
+    public function script()
+    {
+        wp_register_script('mod-posts-private-script', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/posts-private.js'));
+
+        wp_enqueue_script('mod-posts-private-script');
     }
 
     /**

@@ -72,6 +72,26 @@
             "append": ""
         },
         {
+            "key": "field_67813612eb109",
+            "label": "Allow logged in users to modify their list",
+            "name": "allow_user_modification",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_675c0e6f7becc",
             "label": "Use term icon as icon in list",
             "name": "use_term_icon_as_icon_in_list",

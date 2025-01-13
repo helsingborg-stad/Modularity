@@ -5,7 +5,14 @@
     'meta' => $post->termsUnlinked,
     'date' => $post->postDateFormatted,
     'ratio' => $ratio,
-    'image' => $post->imageContract ?? $post->image
+    'image' => $post->imageContract ?? $post->image,
+    'classList' => $post->classList ?? [],
+    'attributeList' => array_merge(
+        $post->attributeList ?? [], 
+        [
+            'data-js-post-id' => $post->id
+        ]
+    ),
 ])
     @slot('metaArea')
         @includeWhen(!empty($post->readingTime), 'partials.read-time')

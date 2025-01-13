@@ -1,4 +1,4 @@
-@includeWhen(!$hideTitle && !empty($postTitle), 'partials.post-title')
+@includeWhen((!$hideTitle && !empty($postTitle))|| !empty($userCanEditPosts), 'partials.post-title')
 @includeWhen($preamble, 'partials.preamble')
 @collection([
     'classList' => ['c-collection', 'o-grid', 'o-grid--horizontal'],

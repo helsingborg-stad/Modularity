@@ -8,7 +8,7 @@
             ],
             'context' => 'module.posts.expandablelist'
         ])
-        @if(!$hideTitle && !empty($postTitle))
+        @if ((!$hideTitle && !empty($postTitle)) || !empty($userCanEditPosts))
             <div class="c-card__header">
                 @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
             </div>

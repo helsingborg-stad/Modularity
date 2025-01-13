@@ -11,8 +11,13 @@
     'reverseColumns' => $imagePosition,
     'icon' => $post->termIcon,
     'hasPlaceholder' => $post->hasPlaceholderImage,
-    'attributeList' => $post->attributeList ?? [],
-    'classList' => $classList ?? [],
+    'classList' => array_merge($post->classList ?? [], $classList ?? []),
+    'attributeList' => array_merge(
+        $post->attributeList ?? [], 
+        [
+            'data-js-post-id' => $post->id
+        ]
+    ),
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']),
