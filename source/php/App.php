@@ -2,6 +2,8 @@
 
 namespace Modularity;
 
+use Modularity\Private\PrivateAcfFields;
+
 class App
 {
     public static $display = null;
@@ -273,14 +275,6 @@ class App
         wp_register_script('modularity-text-module', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity-text-module.js'));
         wp_enqueue_script('modularity-text-module');
-
-        wp_register_script('acf-hidden-post-status-conditional', MODULARITY_URL . '/dist/' 
-        . \Modularity\Helper\CacheBust::name('js/hidden-post-status-conditional.js'), array('acf-input', 'jquery'));
-        wp_enqueue_script('acf-hidden-post-status-conditional');
-
-        wp_register_style('acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('css/acf.css'));
-        wp_enqueue_style('acf');
 
         add_action('admin_head', function () {
             echo "

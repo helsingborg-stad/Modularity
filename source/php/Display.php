@@ -170,10 +170,10 @@ class Display
                 if (!is_preview() && $module->hidden == 'true') {
                     continue;
                 }
+
                 return true;
             }
         }
-
         return false;
     }
 
