@@ -5,9 +5,9 @@
     ],
     'context' => 'module.posts.list'
 ])
-@if (!$hideTitle && !empty($postTitle))
+@if ((!$hideTitle && !empty($postTitle)) || !empty($titleCTA))
 <div class="c-card__header">
-    @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
+    @include('partials.post-title', ['variant' => 'h4', 'classList' => [], 'titleCTA' => $titleCTA ?? null])
 </div>
 @endif
 
@@ -24,7 +24,9 @@
                                 @collection__item([
                                     'displayIcon' => true,
                                     'icon' => $post['icon'],
-                                    'link' => $post['link']
+                                    'link' => $post['link'],
+                                    'attributeList' => $post['attributeList'],
+                                    'classList' => $post['classList']
                                 ])
                                     @typography([
                                         'element' => 'h2',

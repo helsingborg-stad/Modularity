@@ -1,11 +1,16 @@
 @collection__item([
     'link' => $post->permalink,
-    'classList' => [$posts_columns],
+    'classList' => array_merge($post->classList ?? [], [$posts_columns]),
     'context' => ['module.posts.collection__item'],
     'before' => $post->readingTime,
     'containerAware' => true,
     'bordered' => true,
-    'attributeList' => array_merge($post->attributeList, []),
+    'attributeList' => array_merge(
+        $post->attributeList ?? [], 
+        [
+            'data-js-item-id' => $post->id
+        ]
+    ),
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']),

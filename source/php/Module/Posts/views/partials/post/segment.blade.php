@@ -15,8 +15,7 @@
         'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
     'hasPlaceholder' => $post->hasPlaceholderImage,
-    'attributeList' => $post->attributeList ?? [],
-    'classList' => $classList ?? [],
+    'classList' => array_merge($classList ?? []),
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']),

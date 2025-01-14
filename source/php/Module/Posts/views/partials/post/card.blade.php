@@ -15,7 +15,6 @@
         'color' => 'white',
         'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
-    'attributeList' => array_merge($post->attributeList, []),
 ])
     @slot('aboveContent')
         @includeWhen(!empty($post->readingTime), 'partials.read-time')

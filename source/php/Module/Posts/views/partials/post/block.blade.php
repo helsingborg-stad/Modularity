@@ -15,7 +15,6 @@
         'color' => 'white',
         'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
-    'attributeList' => array_merge($post->attributeList, []),
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']), 

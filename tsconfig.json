@@ -17,5 +17,6 @@
     },
     "include": [
       "source/js/**/*",
+      "global.d.ts"
     ]
 }
