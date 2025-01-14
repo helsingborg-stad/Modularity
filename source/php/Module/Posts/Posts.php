@@ -52,6 +52,12 @@ class Posts extends \Modularity\Module
         // Populate schema types field
         add_filter('acf/load_field/name=posts_data_network_sources', [$this, 'loadNetworkSourcesField']);
 
+        add_filter('acf/prepare_field/key=field_678665cc4cc6e', function($field) {
+            $user = wp_get_current_user();
+
+            return $field;
+        });
+
         //Add full width data to view
         add_filter('Modularity/Block/Data', array($this, 'blockData'), 50, 3);
         add_filter(
