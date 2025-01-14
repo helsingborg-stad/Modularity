@@ -1,8 +1,8 @@
 @element([
     'attributeList' => [                
-        'data-js-manual-input-user' => $user,
-        'data-js-manual-input-id' => $ID,
-        'data-js-manual-input-user-ordering' => ''
+        'data-js-user-editable' => 'manualInputs',
+        'data-js-user-editable-user' => $user,
+        'data-js-user-editable-id' => $ID
     ],
 ])
     @includeFirst([$template, 'base'],
@@ -37,7 +37,7 @@
             ],
             'message' => ['text' => $lang['error']],
             'attributeList' => [
-                'data-js-manual-input-error' => ''
+                'data-js-user-editable-error' => ''
             ],
             'icon' => [
                 'name' => 'report',
@@ -50,9 +50,6 @@
             'classList' => [
                 'u-print-display--none',
             ],
-            'attributeList' => [
-                'data-js-manual-input-form' => '',
-            ]
         ])
         @collection([
             'bordered' => true,

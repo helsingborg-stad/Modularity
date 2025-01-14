@@ -8,13 +8,6 @@ class PrivateController {
     public function __construct(private Posts $postsInstance)
     {
         $this->registerMeta();
-        // $privatePosts = (object) [
-        //     4113147 => (object) [
-        //         123 => true,
-        //         212 => false
-        //     ]
-        // ];
-        // update_user_meta(1, 'privatePostsModule', $privatePosts);
 
         if ($this->postsInstance->postStatus === 'private') {
             $this->postsInstance->cacheTtl = 0;
@@ -56,20 +49,24 @@ class PrivateController {
     {
         $moduleId = $this->postsInstance->ID;
         $userPosts = get_user_meta($currentUser, 'privatePostsModule', true);
-        
-        if (empty($userPosts) || empty($userPosts->{$moduleId})) {
+
+        if (empty($userPosts) || empty($userPosts[$moduleId])) {
             return $posts;
         }
 
-        $userPostIds = $userPosts->{$moduleId};
+        $userPostIds = $userPosts[$moduleId];
 
         foreach ($posts as &$post) {
+            $post->classList = $post->classList ?? [];
+
             if (
-                isset($userPostIds->{$post->getId()}) && 
-                empty($userPostIds->{$post->getId()})
+                isset($userPostIds[$post->getId()]) && 
+                empty($userPostIds[$post->getId()])
             ) {
-                $post->classList   = $post->classList ?? [];
+                $post->checked     = false;
                 $post->classList[] = 'u-display--none';
+            } else {
+                $post->checked     = true;
             }
         }
 

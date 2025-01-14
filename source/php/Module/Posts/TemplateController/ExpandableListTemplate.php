@@ -113,8 +113,10 @@ class ExpandableListTemplate
                         }
                     }
                 }
-                $accordion[$index]['heading'] = $item->postTitle ?? '';
-                $accordion[$index]['content'] = $item->postContentFiltered ?? '';
+                $accordion[$index]['heading']       = $item->postTitle ?? '';
+                $accordion[$index]['content']       = $item->postContentFiltered ?? '';
+                $accordion[$index]['classList']     = $item->classList ?? [];
+                $accordion[$index]['attributeList'] = ['data-js-item-id' => $item->getId()];
             }
         }
 

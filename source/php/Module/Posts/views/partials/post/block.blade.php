@@ -7,16 +7,10 @@
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
     'image' => $post->image,
-    'classList' => array_merge($post->classList ?? [], ['t-posts-block', ' u-height--100']),
+    'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
     'link' => $post->permalink,
     'icon' => $post->termIcon,
-    'attributeList' => array_merge(
-        $post->attributeList ?? [], 
-        [
-            'data-js-post-id' => $post->id
-        ]
-    ),
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']), 

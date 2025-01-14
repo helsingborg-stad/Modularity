@@ -6,17 +6,11 @@
     'tags' => $post->termsUnlinked,
     'date' => $post->postDateFormatted,
     'dateBadge' => $post->dateBadge,
-    'classList' => array_merge($post->classList ?? [], ['u-height--100']),
+    'classList' => ['u-height--100'],
     'containerAware' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'image' => $post->image,
     'icon' => $post->termIcon,
-    'attributeList' => array_merge(
-        $post->attributeList ?? [], 
-        [
-            'data-js-post-id' => $post->id
-        ]
-    ),
 ])
     @slot('aboveContent')
         @includeWhen(!empty($post->readingTime), 'partials.read-time')

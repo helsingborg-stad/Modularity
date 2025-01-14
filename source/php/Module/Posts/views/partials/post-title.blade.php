@@ -1,6 +1,7 @@
 @group([
     'direction' => 'horizontal',
-    'justifyContent' => 'space-between'
+    'justifyContent' => 'space-between',
+    'alignItems' => 'center'
 ])
     @if (!$hideTitle && !empty($postTitle))
         @typography([
@@ -12,7 +13,8 @@
             {!! $postTitle !!}
         @endtypography
     @endif
-    @if (!empty($userCanEditPosts))
-        hello
+    @if (!empty($titleCTA))
+        @icon($titleCTA)
+        @endicon
     @endif
 @endgroup

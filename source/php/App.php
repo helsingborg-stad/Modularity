@@ -204,6 +204,11 @@ class App
         ));
         wp_enqueue_script('modularity');
 
+        wp_register_script('user-editable-list', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/user-editable-list.js'));
+
+        wp_enqueue_script('user-editable-list');
+
         if (!current_user_can('edit_posts')) {
             return;
         }

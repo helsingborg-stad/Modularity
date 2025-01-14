@@ -21,6 +21,7 @@ module.exports = {
 		'js/modularity': './source/js/modularity.js',
 		'css/modularity': './source/sass/modularity.scss',
 		'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
+		'js/user-editable-list': './source/js/private/userEditableList.ts',
 
 		//Admin
 		'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
@@ -35,8 +36,6 @@ module.exports = {
 		'css/table': './source/php/Module/Table/assets/table.scss',
 		'js/video': './source/php/Module/Video/assets/video.js',
 		'css/video': './source/php/Module/Video/assets/video.scss',
-		'js/manual-input-private': './source/php/Module/ManualInput/assets/private.ts',
-		'js/posts-private': './source/php/Module/Posts/assets/private.ts',
 		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts',
 		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
 		'css/menu': './source/php/Module/Menu/assets/menu.scss',

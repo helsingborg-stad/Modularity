@@ -47,9 +47,11 @@ class ListTemplate
                 }
 
                 $listItem = [
-                    'link' => $link,
-                    'title' => $post->getTitle(),
-                    'icon' => 'arrow_forward',
+                    'link'          => $link,
+                    'title'         => $post->getTitle(),
+                    'icon'          => 'arrow_forward',
+                    'classList'     => $post->classList ?? [],
+                    'attributeList' => ['data-js-item-id' => $post->getId()],
                 ];
 
                 if(boolval(($this->data['meta']['use_term_icon_as_icon_in_list'] ?? false))) {

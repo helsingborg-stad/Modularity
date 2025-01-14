@@ -12,7 +12,7 @@
     'attributeList' => array_merge(
         $post->attributeList ?? [], 
         [
-            'data-js-post-id' => $post->id
+            'data-js-item-id' => $post->id
         ]
     ),
 ])

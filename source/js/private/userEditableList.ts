@@ -1,27 +1,22 @@
-declare const wpApiSettings: any;
+import { ValuesInterface, ItemsObject } from "../interface/privateModules";
 
-interface ValuesInterface {
-    [key: string]: boolean;
-}
-
-interface ManualInputItemsObject {
-    [key: string]: HTMLElement;
-}
-
-class UserOrdering {
+class UserEditableList {
     private savingLang: string = 'Saving';
     private buttonText: string;
+
     constructor(
         private submitButton: HTMLButtonElement,
         private closeButton: HTMLButtonElement,
         private errorNotice: HTMLElement,
-        private manualInputItemsObject: ManualInputItemsObject,
+        private itemsObject: ItemsObject,
         private checkboxes: NodeListOf<HTMLInputElement>,
         private readonly userId: string, 
-        private readonly moduleId: string
+        private readonly moduleId: string,
+        private metaKey: string
     ) {
         this.buttonText = this.submitButton.textContent ?? 'Save';
         this.savingLang = this.submitButton.getAttribute('data-js-saving-lang') ?? this.savingLang;
+
         if (wpApiSettings) {
             this.submitListener();
         }
@@ -44,7 +39,7 @@ class UserOrdering {
     private patchUser(values: ValuesInterface) {
         this.handleBeforeSave();
     
-        const endpoint = `${wpApiSettings.root}wp/v2/users/${this.userId}`;
+        const endpoint = `${wpApiSettings?.root}wp/v2/users/${this.userId}`;
         fetch(endpoint, {
             method: 'GET',
             headers: {
@@ -59,14 +54,14 @@ class UserOrdering {
             return response.json();
         })
         .then(data => {
-            let manualInputs = data.meta?.manualInputs;
+            let metaData = data.meta ? data.meta[this.metaKey] : null;
 
-            if (!manualInputs || typeof manualInputs !== 'object' || Array.isArray(manualInputs)) {
-                manualInputs = {};
+            if (!metaData || typeof metaData !== 'object' || Array.isArray(metaData)) {
+                metaData = {};
             }
 
-            manualInputs[this.moduleId] = values;
-    
+            metaData[this.moduleId] = values;
+
             return fetch(endpoint, {
                 method: 'PATCH',
                 headers: {
@@ -75,7 +70,7 @@ class UserOrdering {
                 },
                 body: JSON.stringify({
                     meta: {
-                        manualInputs: manualInputs,
+                        [this.metaKey]: metaData,
                     }
                 }),
             });
@@ -93,7 +88,7 @@ class UserOrdering {
         this.submitButton.disabled = true;
         this.closeButton.disabled = true;
 
-        this.submitButton.textContent = this.savingLang + '...';
+        this.submitButton.textContent = this.savingLang;
     }
     
     private handleFailedSave() {
@@ -112,8 +107,7 @@ class UserOrdering {
     }
 
     private showOrHideItemsBasedOnSaved(values: ValuesInterface) {
-
-        for (const [key, element] of Object.entries(this.manualInputItemsObject)) { 
+        for (const [key, element] of Object.entries(this.itemsObject)) { 
             if (!(key in values)) {
                 continue;
             }
@@ -128,35 +122,39 @@ class UserOrdering {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const privateManualInputs = document.querySelectorAll('[data-js-manual-input-user-ordering]');
-    
-    privateManualInputs.forEach(privateManualInput => {
-        const userId = privateManualInput.getAttribute('data-js-manual-input-user');
-        const moduleId = privateManualInput.getAttribute('data-js-manual-input-id');
-        const submitButton = privateManualInput.querySelector('button[type="submit"]');
-        const checkboxes = privateManualInput.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
-        const errorNotice = privateManualInput.querySelector('[data-js-manual-input-error]');
-        let manualInputItemsObject: ManualInputItemsObject = {};
+    document.querySelectorAll('[data-js-user-editable]').forEach(userEditable => {
+        const metaKey = userEditable.getAttribute('data-js-user-editable');
 
-        privateManualInput.querySelectorAll('[data-js-item-id]').forEach(item => {
+        if (!metaKey) {
+            return;
+        }
+
+        const userId = userEditable.getAttribute('data-js-user-editable-user');
+        const moduleId = userEditable.getAttribute('data-js-user-editable-id');
+        const submitButton = userEditable.querySelector('button[type="submit"]');
+        const checkboxes = userEditable.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+        const errorNotice = userEditable.querySelector('[data-js-user-editable-error]');
+        let itemsObject: ItemsObject = {};
+
+        userEditable.querySelectorAll('[data-js-item-id]').forEach(item => {
             const itemId = item.getAttribute('data-js-item-id');
             if (itemId) {
-                manualInputItemsObject[itemId] = item as HTMLElement;
+                itemsObject[itemId] = item as HTMLElement;
             }
         });
 
-        const closeButton = privateManualInput.querySelector('button[data-js-cancel-save]');
+        const closeButton = userEditable.querySelector('button[data-js-cancel-save]');
 
         if (submitButton && closeButton && userId && moduleId && checkboxes.length) {
-
-            new UserOrdering(
+            new UserEditableList(
                 submitButton as HTMLButtonElement, 
                 closeButton as HTMLButtonElement, 
                 errorNotice as HTMLElement,
-                manualInputItemsObject,
+                itemsObject,
                 checkboxes, 
                 userId, 
-                moduleId
+                moduleId,
+                metaKey
             );
         }
     });

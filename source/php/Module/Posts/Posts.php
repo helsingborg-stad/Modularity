@@ -193,7 +193,14 @@ class Posts extends \Modularity\Module
 
         $data['lang'] = [
             'showMore' => __('Show more', 'modularity'),
-            'readMore' => __('Read more', 'modularity')
+            'readMore' => __('Read more', 'modularity'),
+            'save'        => __('Save', 'modularity'),
+            'cancel'      => __('Cancel', 'modularity'),
+            'description' => __('Description', 'modularity'),
+            'name'        => __('Name', 'modularity'),
+            'saving'      => __('Saving', 'modularity'),
+            'error'       => __('An error occurred and the data could not be saved. Please try again later', 'modularity'),
+            'changeContent' => __('Change the lists content', 'modularity'),
         ];
 
         $data = $this->privateController->decorateData($data, $this->fields);
@@ -450,14 +457,6 @@ class Posts extends \Modularity\Module
             'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
         ]);
         wp_enqueue_script('mod-posts-taxonomy-filtering');
-    }
-
-    public function script()
-    {
-        wp_register_script('mod-posts-private-script', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/posts-private.js'));
-
-        wp_enqueue_script('mod-posts-private-script');
     }
 
     /**
