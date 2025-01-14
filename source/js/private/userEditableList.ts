@@ -121,41 +121,45 @@ class UserEditableList {
     }
 }
 
+export default function initUserEditableList(userEditable: HTMLElement) {
+    const metaKey = userEditable.getAttribute('data-js-user-editable');
+
+    if (!metaKey) {
+        return;
+    }
+
+    const userId = userEditable.getAttribute('data-js-user-editable-user');
+    const moduleId = userEditable.getAttribute('data-js-user-editable-id');
+    const submitButton = userEditable.querySelector('button[type="submit"]');
+    const checkboxes = userEditable.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
+    const errorNotice = userEditable.querySelector('[data-js-user-editable-error]');
+    let itemsObject: ItemsObject = {};
+
+    userEditable.querySelectorAll('[data-js-item-id]').forEach(item => {
+        const itemId = item.getAttribute('data-js-item-id');
+        if (itemId) {
+            itemsObject[itemId] = item as HTMLElement;
+        }
+    });
+
+    const closeButton = userEditable.querySelector('button[data-js-cancel-save]');
+
+    if (submitButton && closeButton && userId && moduleId && checkboxes.length) {
+        new UserEditableList(
+            submitButton as HTMLButtonElement, 
+            closeButton as HTMLButtonElement, 
+            errorNotice as HTMLElement,
+            itemsObject,
+            checkboxes, 
+            userId, 
+            moduleId,
+            metaKey
+        );
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('[data-js-user-editable]').forEach(userEditable => {
-        const metaKey = userEditable.getAttribute('data-js-user-editable');
-
-        if (!metaKey) {
-            return;
-        }
-
-        const userId = userEditable.getAttribute('data-js-user-editable-user');
-        const moduleId = userEditable.getAttribute('data-js-user-editable-id');
-        const submitButton = userEditable.querySelector('button[type="submit"]');
-        const checkboxes = userEditable.querySelectorAll('input[type="checkbox"]') as NodeListOf<HTMLInputElement>;
-        const errorNotice = userEditable.querySelector('[data-js-user-editable-error]');
-        let itemsObject: ItemsObject = {};
-
-        userEditable.querySelectorAll('[data-js-item-id]').forEach(item => {
-            const itemId = item.getAttribute('data-js-item-id');
-            if (itemId) {
-                itemsObject[itemId] = item as HTMLElement;
-            }
-        });
-
-        const closeButton = userEditable.querySelector('button[data-js-cancel-save]');
-
-        if (submitButton && closeButton && userId && moduleId && checkboxes.length) {
-            new UserEditableList(
-                submitButton as HTMLButtonElement, 
-                closeButton as HTMLButtonElement, 
-                errorNotice as HTMLElement,
-                itemsObject,
-                checkboxes, 
-                userId, 
-                moduleId,
-                metaKey
-            );
-        }
+        initUserEditableList(userEditable as HTMLElement);
     });
 });
