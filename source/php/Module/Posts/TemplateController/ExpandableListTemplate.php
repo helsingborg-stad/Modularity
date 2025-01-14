@@ -9,7 +9,7 @@ namespace Modularity\Module\Posts\TemplateController;
  *
  * @package Modularity\Module\Posts\TemplateController
  */
-class ExpandableListTemplate
+class ExpandableListTemplate extends AbstractController
 {
     /**
      * The instance of the Posts module associated with this template.
@@ -46,6 +46,7 @@ class ExpandableListTemplate
      */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
+        parent::__construct($module);
         $this->module = $module;
         $this->args = $module->args;
         $this->data = $module->data;
@@ -100,6 +101,8 @@ class ExpandableListTemplate
         $columnValues = $this->getColumnValues();
 
         $accordion = [];
+
+        $this->data['posts'] = $this->preparePosts($this->data['posts']);
 
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
             foreach ($this->data['posts'] as $index => $item) {

@@ -10,7 +10,11 @@
     'containerAware' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'image' => $post->image,
-    'icon' => $post->termIcon,
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
+        'color' => 'white',
+    ] : null,
+        'backgroundColor' => $post->getIcon()->getCustomColor(),
 ])
     @slot('aboveContent')
         @includeWhen(!empty($post->readingTime), 'partials.read-time')
