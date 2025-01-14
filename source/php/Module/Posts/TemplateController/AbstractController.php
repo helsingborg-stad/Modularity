@@ -2,6 +2,7 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 
 /**
@@ -64,7 +65,9 @@ class AbstractController
     */
     public function preparePosts($posts = [])
     {
-        $posts = array_map(function($post) {
+        $wpService = WpService::get();
+
+        $posts = array_map(function($post) use ($wpService) {
             $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -75,16 +78,22 @@ class AbstractController
                 return $post;
             }
 
+            if($post->originalPostId !== $wpService->getCurrentBlogId()) {
+                $wpService->switchToBlog($post->originalBlogId);
+            }
+
             if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
                 $post = call_user_func([$helperClass, $helperMethod], $post);
             } else {
                 $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
             }
 
+            $wpService->restoreCurrentBlog();
+            
             if (!empty($post->schemaData['place']['pin'])) {
                 $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
             }
-
+            
             return $post;
 
         }, $posts);
@@ -160,7 +169,7 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
-        if( $this->postUsesSchemaTypeEvent($post) || $post->postType == 'event') {
+        if( $this->postUsesSchemaTypeEvent($post) || $post->getPostType() == 'event') {
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
                 $post->postDateFormatted = $eventOccasions[0]['start_date'];
