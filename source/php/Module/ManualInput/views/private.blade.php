@@ -1,8 +1,8 @@
 @element([
     'attributeList' => [                
-        'data-js-user-editable' => 'manualInputs',
         'data-js-user-editable-user' => $user,
-        'data-js-user-editable-id' => $ID
+        'data-js-user-editable-id' => $privateModuleMetaKey,
+        'data-js-user-editable' => $userMetaKey
     ],
 ])
     @includeFirst([$template, 'base'],
@@ -12,14 +12,14 @@
             'icon' => 'edit',
             'size' => 'md',
             'attributeList' => [
-                'data-open' => 'modal-' . $ID,
+                'data-open' => 'modal-' . $privateModuleMetaKey,
                 'style' => 'cursor: pointer;'
             ]
         ]
     ])
 
     @modal([
-        'id' => 'modal-' . $ID,
+        'id' => 'modal-' . $privateModuleMetaKey,
         'size' => 'sm',
         'padding' => 4,
         'heading' => $lang['changeContent']
