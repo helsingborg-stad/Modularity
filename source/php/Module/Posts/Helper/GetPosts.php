@@ -47,7 +47,6 @@ class GetPosts
 
                 array_walk($postsFromSite, function($post) use ($site) {
                     // Add the original permalink to the post object for reference in network sources.
-                    $post->originalPermalink = $this->wpService->getPermalink($post->ID);
                     $post->originalSite      = $site['label'];
                     $post->originalBlogId    = (int)$site['value'];
                 });
