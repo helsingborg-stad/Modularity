@@ -44,7 +44,7 @@ class ListTemplate extends AbstractController
                 if ($post->getPostType() === 'attachment') {
                     $link = wp_get_attachment_url($post->getId());
                 } else {
-                    $link = $post->originalPermalink ?? $post->getPermalink();
+                    $link = $post->getPermalink();
                 }
 
                 $listItem = [
