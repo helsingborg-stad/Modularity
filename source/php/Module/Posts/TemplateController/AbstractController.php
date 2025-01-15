@@ -78,7 +78,7 @@ class AbstractController
                 return $post;
             }
 
-            if($post->originalPostId !== $wpService->getCurrentBlogId()) {
+            if(!empty($post->originalBlogId) && $post->originalBlogId !== $wpService->getCurrentBlogId()) {
                 $wpService->switchToBlog($post->originalBlogId);
             }
 
