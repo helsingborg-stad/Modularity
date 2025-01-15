@@ -203,7 +203,6 @@ class Posts extends \Modularity\Module
             'changeContent' => __('Change the lists content', 'modularity'),
         ];
 
-        $data = $this->privateController->decorateData($data, $this->fields);
         return $data;
     }
 
@@ -391,6 +390,7 @@ class Posts extends \Modularity\Module
         if (class_exists($class)) {
             $controller = new $class($this);
             $this->data = array_merge($this->data, $controller->data);
+            $this->data = $this->privateController->decorateData($this->data, $this->fields);
         }
     }
 
