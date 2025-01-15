@@ -131,8 +131,9 @@ class PrivateController {
     public function checkForChangedMetaKeyValue($value, $postId, $field, $originalValue) 
     {
         $oldKey = get_field($field['key'], $postId);
-        $oldKey = is_string($oldKey) ? sanitize_title($oldKey) : null;
-        $newKey = sanitize_title($value);
+        $oldKey = sanitize_title(empty($oldKey) ? $postId : $oldKey);
+
+        $newKey = sanitize_title(empty($value) ? $postId : $value);
 
         if ($oldKey === $newKey) {
             return $value;
@@ -141,9 +142,6 @@ class PrivateController {
         $user = wp_get_current_user();
 
         $userMeta = get_user_meta($user->ID, $this->userMetaKey, true);
-
-        $newKey = empty($newKey) ? $this->postsInstance->ID : $newKey;
-        $oldKey = empty($oldKey) ? $this->postsInstance->ID : $oldKey;
 
         if (isset($userMeta[$oldKey])) {
             $userMeta[$newKey] = $userMeta[$oldKey];
