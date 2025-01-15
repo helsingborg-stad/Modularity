@@ -164,6 +164,10 @@ class PrivateController {
     {
         $user = wp_get_current_user();
 
-        return ($user->caps && in_array('administrator', $user->caps)) ? $field : false;
+        if (!$user->caps || !in_array('administrator', $user->caps)) {
+            $field['wrapper']['class'] = 'acf-hidden';
+        }
+        
+        return $field;
     }
 }
