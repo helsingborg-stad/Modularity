@@ -22,7 +22,6 @@
                         @foreach ($prepareList as $post)
                             @if ($post['link'] && $post['title'])
                                 @collection__item([
-                                    'displayIcon' => true,
                                     'icon' => $post['icon'],
                                     'link' => $post['link'],
                                     'attributeList' => $post['attributeList'],
