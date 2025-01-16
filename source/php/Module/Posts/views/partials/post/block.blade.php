@@ -13,8 +13,8 @@
     'icon' => $post->getIcon() ? [
         'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
+    'iconBackgroundColor' => $post->getIcon()->getCustomColor(),
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']), 
