@@ -12,8 +12,8 @@
     'icon' => $post->getIcon() ? [
         'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
+    'iconBackgroundColor' => $post->getIcon()->getCustomColor(),
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'classList' => array_merge($classList ?? []),
 ])
