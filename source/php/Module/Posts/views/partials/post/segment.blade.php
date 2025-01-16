@@ -13,7 +13,7 @@
         'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
     ] : null,
-    'iconBackgroundColor' => $post->getIcon()->getCustomColor(),
+    'iconBackgroundColor' => $post->getIcon() ? $post->getIcon()->getCustomColor() : null,
     'hasPlaceholder' => $post->hasPlaceholderImage,
     'classList' => array_merge($classList ?? []),
 ])
