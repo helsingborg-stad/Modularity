@@ -735,6 +735,34 @@
                                 "operator": "==",
                                 "value": "list"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "card"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "block"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "segment"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "collection"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -743,7 +771,7 @@
                         "id": ""
                     },
                     "choices": [],
-                    "default_value": "arrow_forward",
+                    "default_value": false,
                     "return_format": "value",
                     "multiple": 0,
                     "allow_custom": 0,

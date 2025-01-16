@@ -739,6 +739,34 @@
                                 'value' => 'list',
                             ),
                         ),
+                        2 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'card',
+                            ),
+                        ),
+                        3 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'block',
+                            ),
+                        ),
+                        4 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'segment',
+                            ),
+                        ),
+                        5 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'collection',
+                            ),
+                        ),
                     ),
                     'wrapper' => array(
                         'width' => '',
@@ -747,7 +775,7 @@
                     ),
                     'choices' => array(
                     ),
-                    'default_value' => 'arrow_forward',
+                    'default_value' => false,
                     'return_format' => 'value',
                     'multiple' => 0,
                     'allow_custom' => 0,
