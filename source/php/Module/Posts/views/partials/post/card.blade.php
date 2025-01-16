@@ -13,8 +13,8 @@
     'icon' => $post->getIcon() ? [
         'icon' => $post->getIcon()->getIcon(),
         'color' => 'white',
-        'backgroundColor' => $post->getIcon()->getCustomColor(),
     ] : null,
+    'iconBackgroundColor' => $post->getIcon()->getCustomColor(),
 ])
     @slot('aboveContent')
         @includeWhen(!empty($post->readingTime), 'partials.read-time')

@@ -39,21 +39,21 @@
                 {{ $post->postTitle }}
             @endtypography
             @if ($post->getIcon())
-                @inlineCssWrapper([
-                    'styles' => ['background-color' => $post->getIcon()->getCustomColor(), 'display' => 'flex'],
-                    'classList' => [
-                        $post->getIcon()->getCustomColor() ? '' : 'u-color__bg--primary',
-                        'u-rounded--full',
-                        'u-detail-shadow-3'
-                    ]
-                ])
-                    @icon([
-                        'icon' => $post->getIcon()->getIcon(),
-                        'color' => 'white',
-                        'backgroundColor' => $post->getIcon()->getCustomColor(),
+                @element([
+                        'attributeList' => [
+                            'style' => 'background-color: ' . $post->getIcon()->getCustomColor() ?? 'transparent' . ';',
+                        ],
+                        'classList' => [
+                            'u-display--flex',
+                            $post->getIcon()->getCustomColor() ? 'u-padding__x--1' : '',
+                            $post->getIcon()->getCustomColor() ? 'u-padding__y--1' : '',
+                            'u-rounded--full',
+                            'u-detail-shadow-3'
+                        ]
                     ])
-                    @endicon
-                @endinlineCssWrapper
+                        @icon($icon)
+                        @endicon
+                    @endelement
             @endif
         @endgroup
         @if($post->termsUnlinked)
