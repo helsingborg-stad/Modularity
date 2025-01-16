@@ -81,7 +81,7 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "30",
                 "class": "",
                 "id": ""
             },
@@ -90,6 +90,34 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_678784f60a1a6",
+            "label": "Save as custom meta key",
+            "name": "save_as_custom_meta_key",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Will default to the module ID but can be set to save as a custom meta key.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67126c170c176",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "70",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "unique-key",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_67289fa6dfea3",
@@ -707,6 +735,34 @@
                                 "operator": "==",
                                 "value": "list"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "card"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "block"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "segment"
+                            }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "collection"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -715,7 +771,7 @@
                         "id": ""
                     },
                     "choices": [],
-                    "default_value": "arrow_forward",
+                    "default_value": false,
                     "return_format": "value",
                     "multiple": 0,
                     "allow_custom": 0,
@@ -762,4 +818,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

@@ -11,6 +11,11 @@
         'containerAware'    => true,
         'classList'         => array_merge($input['classList'] ?? [], ['u-height--100']),
         'hasPlaceholder'    => $anyItemHasImage,
+        'icon'              => $input['icon'] ? [
+            'icon' => $input['icon'],
+            'size' => 'md',
+            'color' => 'black'
+        ] : null
     ])
     @endcard
 @endelement
