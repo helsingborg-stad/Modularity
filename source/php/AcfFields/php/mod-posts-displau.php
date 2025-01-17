@@ -82,7 +82,15 @@
             'type' => 'true_false',
             'instructions' => '',
             'required' => 0,
-            'conditional_logic' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
+                    ),
+                ),
+            ),
             'wrapper' => array(
                 'width' => '30',
                 'class' => '',
