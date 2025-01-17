@@ -22,7 +22,7 @@ class ListTemplate extends AbstractController
     {
         $this->args = $module->args;
         $this->data = $module->data;
-        $this->data['prepareList'] = $this->prepare([
+        $this->data['posts'] = $this->prepare([
             'posts_data_source' => $this->data['posts_data_source'] ?? '',
             'archive_link' => $this->data['archive_link'] ?? '',
             'archive_link_url' => $this->data['archive_link_url'] ?? '',
@@ -37,7 +37,7 @@ class ListTemplate extends AbstractController
      */
     public function prepare(array $postData)
     {
-        $list = [];
+        $posts = [];
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
             $this->data['posts'] = $this->preparePosts($this->data['posts']);
             foreach ($this->data['posts'] as $post) {
@@ -47,22 +47,19 @@ class ListTemplate extends AbstractController
                     $link = $post->getPermalink();
                 }
 
-                $listItem = [
-                    'link'          => $link,
-                    'title'         => $post->getTitle(),
-                    'icon'          => 'arrow_forward',
-                    'classList'     => $post->classList ?? [],
-                    'attributeList' => ['data-js-item-id' => $post->getId()],
-                ];
+                $post->permalink = $link;
+                $post->icon      = 'arrow_forward';
+                $post->classList = $post->classList ?? [];
+                $post->attributeList = ['data-js-item-id' => $post->getId()]; 
 
                 if(boolval(($this->data['meta']['use_term_icon_as_icon_in_list'] ?? false))) {
-                    $listItem['icon'] = $post->getIcon()?->toArray() ?: 'arrow_forward';
+                    $post->icon = $post->getIcon()?->toArray() ?: 'arrow_forward';
                 }
 
-                $list[] = $listItem;
+                $posts[] = $post;
             }
         }
 
-        return $list;
+        return $posts;
     }
 }
