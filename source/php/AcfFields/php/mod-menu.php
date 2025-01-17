@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
     'title' => __('Menu Module', 'modularity'),
     'fields' => array(
@@ -62,7 +60,14 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(),
+            'choices' => array(
+                646 => __('Drawer bottom', 'modularity'),
+                736 => __('Etjanster', 'modularity'),
+                564 => __('Language', 'modularity'),
+                573 => __('ny', 'modularity'),
+                576 => __('Primar', 'modularity'),
+                737 => __('Våra webbplatser', 'modularity'),
+            ),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -94,6 +99,35 @@ if (function_exists('acf_add_local_field_group')) {
             'ui' => 1,
         ),
         4 => array(
+            'key' => 'field_678a24781b23e',
+            'label' => __('Background Notice', 'modularity'),
+            'name' => '',
+            'aria-label' => '',
+            'type' => 'message',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6734a0413d66b',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => __('While using a background, the "Item Per Column" works different. 
+
+Amount of parents / columns needs to be a whole number for the background to work. 
+If it isn\'t a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.', 'modularity'),
+            'new_lines' => 'wpautop',
+            'esc_html' => 0,
+        ),
+        5 => array(
             'key' => 'field_66c5c3e6b7b5d',
             'label' => __('Items Per Column', 'modularity'),
             'name' => 'mod_menu_columns',
@@ -165,5 +199,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
