@@ -169,6 +169,15 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
+        if (
+            $post->postDateFormatted && 
+            isset($this->fields['posts_date_source']) && 
+            $this->fields['posts_date_source'] !== 'post_date'
+        ) {
+            $dateMetaValue = get_post_meta($post->id, 'post_date', true);
+            $post->postDateFormatted = !empty($dateMetaValue) ? $dateMetaValue : $post->postDateFormatted;
+        }
+
         if( $this->postUsesSchemaTypeEvent($post) || $post->getPostType() == 'event') {
             $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
