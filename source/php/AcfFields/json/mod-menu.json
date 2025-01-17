@@ -57,14 +57,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "646": "Drawer bottom",
-                "736": "Etjanster",
-                "564": "Language",
-                "573": "ny",
-                "576": "Primar",
-                "737": "V\u00e5ra webbplatser"
-            },
+            "choices": {},
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -193,4 +186,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
