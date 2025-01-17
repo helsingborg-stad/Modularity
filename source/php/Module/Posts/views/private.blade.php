@@ -80,11 +80,6 @@
                     ])
                         {{ $post->postTitle }}
                     @endtypography
-                    @if (!empty($post->excerpt))
-                        @typography([])
-                            {!! $post->excerpt !!}
-                        @endtypography
-                    @endif
                 @endcollection__item
             @endforeach
         @endcollection
