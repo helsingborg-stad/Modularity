@@ -11,30 +11,32 @@
 </div>
 @endif
 
-    @if (!empty($posts))
+    @if (!empty($prepareList))
         <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}">
             <div class="o-grid-12">
                 @collection([
                     'sharpTop' => true,
                     'bordered' => true
                 ])
-                    @foreach ($posts as $post)
-                        @if ($post->permalink && $post->getTitle())
-                            @collection__item([
-                                'icon' => $post->icon,
-                                'link' => $post->permalink,
-                                'attributeList' => $post->attributeList,
-                                'classList' => $post->classList
-                            ])
-                                @typography([
-                                    'element' => 'h2',
-                                    'variant' => 'h4'
+                    @if($prepareList)
+                        @foreach ($prepareList as $post)
+                            @if ($post['link'] && $post['title'])
+                                @collection__item([
+                                    'icon' => $post['icon'],
+                                    'link' => $post['link'],
+                                    'attributeList' => $post['attributeList'],
+                                    'classList' => $post['classList']
                                 ])
-                                    {{ $post->getTitle() }}
-                                @endtypography
-                            @endcollection__item
-                        @endif
-                    @endforeach
+                                    @typography([
+                                        'element' => 'h2',
+                                        'variant' => 'h4'
+                                    ])
+                                        {{ $post['title'] }}
+                                    @endtypography
+                                @endcollection__item
+                            @endif
+                        @endforeach
+                    @endif
                 @endcollection
             </div>
         </div>
