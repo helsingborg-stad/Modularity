@@ -89,6 +89,32 @@
             "ui": 1
         },
         {
+            "key": "field_678a24781b23e",
+            "label": "Background Notice",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6734a0413d66b",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "While using a background, the \"Item Per Column\" works different. \r\n\r\nAmount of parents \/ columns needs to be a whole number for the background to work. \r\nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
             "key": "field_66c5c3e6b7b5d",
             "label": "Items Per Column",
             "name": "mod_menu_columns",
