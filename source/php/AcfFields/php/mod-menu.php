@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
     'title' => __('Menu Module', 'modularity'),
     'fields' => array(
@@ -60,14 +62,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(
-                646 => __('Drawer bottom', 'modularity'),
-                736 => __('Etjanster', 'modularity'),
-                564 => __('Language', 'modularity'),
-                573 => __('ny', 'modularity'),
-                576 => __('Primar', 'modularity'),
-                737 => __('Våra webbplatser', 'modularity'),
-            ),
+            'choices' => array(),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -199,4 +194,5 @@ If it isn\'t a whole number it will be calculated automatically using a better s
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
