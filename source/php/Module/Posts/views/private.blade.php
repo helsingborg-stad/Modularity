@@ -78,7 +78,7 @@
                         'element' => 'h3',
                         'variant' => 'h3',
                     ])
-                        {{ $post->postTitle }}
+                        {{ $post->getTitle() }}
                     @endtypography
                 @endcollection__item
             @endforeach
