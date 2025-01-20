@@ -41,13 +41,11 @@ class ListTemplate extends AbstractController
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
             $this->data['posts'] = $this->preparePosts($this->data['posts']);
             foreach ($this->data['posts'] as $post) {
+                
                 if ($post->getPostType() === 'attachment') {
-                    $link = wp_get_attachment_url($post->getId());
-                } else {
-                    $link = $post->getPermalink();
+                    $post->permalink = wp_get_attachment_url($post->getId());
                 }
 
-                $post->permalink = $link;
                 $post->icon      = 'arrow_forward';
                 $post->classList = $post->classList ?? [];
                 $post->attributeList = ['data-js-item-id' => $post->getId()]; 
