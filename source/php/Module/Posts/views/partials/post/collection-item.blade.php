@@ -51,7 +51,11 @@
                             'u-detail-shadow-3'
                         ]
                     ])
-                        @icon($icon)
+                        @icon([
+                            'icon' => $post->getIcon()->getIcon(),
+                            'color' => 'white',
+                            'size' => 'md'
+                        ])
                         @endicon
                     @endelement
             @endif
