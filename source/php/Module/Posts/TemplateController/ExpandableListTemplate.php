@@ -117,7 +117,7 @@ class ExpandableListTemplate extends AbstractController
                     }
                 }
 
-                $accordion[$index]['heading']       = $item->postTitle ?? '';
+                $accordion[$index]['heading']       = $item->getTitle() ?? '';
                 $accordion[$index]['content']       = $item->postContentFiltered ?? '';
                 $accordion[$index]['classList']     = $item->classList ?? [];
                 $accordion[$index]['attributeList'] = ['data-js-item-id' => $item->getId()];
