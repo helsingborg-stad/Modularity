@@ -152,7 +152,7 @@ class AbstractController
     private function setPostViewData(object $post, $index = false)
     {
         $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $post->excerptShort : false;
-        $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->postTitle : false;
+        $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->getTitle() : false;
         $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $this->getImageContractOrByRatio(
             $post->images ?? null, 
             $post->imageContract ?? null
