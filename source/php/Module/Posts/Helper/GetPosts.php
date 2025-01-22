@@ -76,15 +76,17 @@ class GetPosts
 
     private function getPostArgs(array $fields, int $page)
     {
-        $metaQuery  = false;
-        $orderby    = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
-        $order      = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
+        $metaQuery        = false;
+        $orderby          = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
+        $order            = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
+        $shouldSkipSticky = isset($fields['posts_data_source']) && $fields['posts_data_source'] === 'manual' ?true : false;
 
         // Get post args
         $getPostsArgs = [
             'post_type' => 'any',
             'post_password' => false,
-            'suppress_filters' => false
+            'suppress_filters' => false,
+            'ignore_sticky_posts' => $shouldSkipSticky,
         ];
 
         // Sort by meta key
