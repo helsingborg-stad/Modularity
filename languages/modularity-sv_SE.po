@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 10:49+0100\n"
-"PO-Revision-Date: 2025-01-17 10:53+0100\n"
+"POT-Creation-Date: 2025-01-22 11:05+0100\n"
+"PO-Revision-Date: 2025-01-22 11:06+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -30,7 +30,6 @@ msgid "Screen reader language"
 msgstr "Språk för skärmläsare"
 
 #: source/php/AcfFields/php/mod-all.php:10
-#: source/php/AcfFields/php/mod-menu.php:66
 #: source/php/AcfFields/php/mod-video.php:162
 msgid "Language"
 msgstr "Språk"
@@ -587,7 +586,7 @@ msgid "Alignment"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-audio.php:102
-#: source/php/AcfFields/php/mod-posts-displau.php:242
+#: source/php/AcfFields/php/mod-posts-displau.php:250
 #: source/php/AcfFields/php/mod-search.php:93
 msgid "Left"
 msgstr "Till vänster om innehållet"
@@ -599,7 +598,7 @@ msgid "Center"
 msgstr "Centrerad"
 
 #: source/php/AcfFields/php/mod-audio.php:104
-#: source/php/AcfFields/php/mod-posts-displau.php:243
+#: source/php/AcfFields/php/mod-posts-displau.php:251
 #: source/php/AcfFields/php/mod-search.php:95
 msgid "Right"
 msgstr "Till höger om innehållet"
@@ -656,23 +655,23 @@ msgstr "Kontakter"
 #: source/php/AcfFields/php/mod-curator.php:60
 #: source/php/AcfFields/php/mod-index.php:311
 #: source/php/AcfFields/php/mod-manual-input.php:237
-#: source/php/AcfFields/php/mod-posts-displau.php:343
+#: source/php/AcfFields/php/mod-posts-displau.php:351
 msgid "Columns"
 msgstr "Kolumner"
 
 #: source/php/AcfFields/php/mod-contacts.php:23
 #: source/php/AcfFields/php/mod-index.php:325
 #: source/php/AcfFields/php/mod-manual-input.php:268
-#: source/php/AcfFields/php/mod-menu.php:153
-#: source/php/AcfFields/php/mod-posts-displau.php:369
+#: source/php/AcfFields/php/mod-menu.php:148
+#: source/php/AcfFields/php/mod-posts-displau.php:377
 msgid "1"
 msgstr "1"
 
 #: source/php/AcfFields/php/mod-contacts.php:24
 #: source/php/AcfFields/php/mod-index.php:326
 #: source/php/AcfFields/php/mod-manual-input.php:269
-#: source/php/AcfFields/php/mod-menu.php:154
-#: source/php/AcfFields/php/mod-posts-displau.php:370
+#: source/php/AcfFields/php/mod-menu.php:149
+#: source/php/AcfFields/php/mod-posts-displau.php:378
 msgid "2"
 msgstr "2"
 
@@ -680,8 +679,8 @@ msgstr "2"
 #: source/php/AcfFields/php/mod-curator.php:73
 #: source/php/AcfFields/php/mod-index.php:327
 #: source/php/AcfFields/php/mod-manual-input.php:270
-#: source/php/AcfFields/php/mod-menu.php:155
-#: source/php/AcfFields/php/mod-posts-displau.php:371
+#: source/php/AcfFields/php/mod-menu.php:150
+#: source/php/AcfFields/php/mod-posts-displau.php:379
 msgid "3"
 msgstr "3"
 
@@ -689,8 +688,8 @@ msgstr "3"
 #: source/php/AcfFields/php/mod-curator.php:74
 #: source/php/AcfFields/php/mod-index.php:328
 #: source/php/AcfFields/php/mod-manual-input.php:271
-#: source/php/AcfFields/php/mod-menu.php:156
-#: source/php/AcfFields/php/mod-posts-displau.php:372
+#: source/php/AcfFields/php/mod-menu.php:151
+#: source/php/AcfFields/php/mod-posts-displau.php:380
 msgid "4"
 msgstr "4"
 
@@ -776,7 +775,7 @@ msgstr "Sociala Medier"
 #: source/php/AcfFields/php/mod-manual-input.php:429
 #: source/php/AcfFields/php/mod-manual-input.php:480
 #: source/php/AcfFields/php/mod-map.php:337
-#: source/php/AcfFields/php/mod-posts-displau.php:557
+#: source/php/AcfFields/php/mod-posts-displau.php:565
 msgid "Lägg till rad"
 msgstr "Lägg till rad"
 
@@ -855,13 +854,13 @@ msgid "Layout"
 msgstr "Layout"
 
 #: source/php/AcfFields/php/mod-curator.php:45
-#: source/php/AcfFields/php/mod-posts-displau.php:329
+#: source/php/AcfFields/php/mod-posts-displau.php:337
 #: source/php/AcfFields/php/mod-script.php:42
 msgid "Card"
 msgstr "Kort"
 
 #: source/php/AcfFields/php/mod-curator.php:46
-#: source/php/AcfFields/php/mod-posts-displau.php:328
+#: source/php/AcfFields/php/mod-posts-displau.php:336
 msgid "Block"
 msgstr "Block"
 
@@ -879,20 +878,20 @@ msgstr ""
 
 #: source/php/AcfFields/php/mod-curator.php:116
 #: source/php/AcfFields/php/mod-manual-input.php:367
-#: source/php/AcfFields/php/mod-posts-displau.php:724
+#: source/php/AcfFields/php/mod-posts-displau.php:732
 msgid "Ratio"
 msgstr "Proportioner"
 
 #: source/php/AcfFields/php/mod-curator.php:137
 #: source/php/AcfFields/php/mod-curator.php:141
 #: source/php/AcfFields/php/mod-manual-input.php:395
-#: source/php/AcfFields/php/mod-posts-displau.php:752
+#: source/php/AcfFields/php/mod-posts-displau.php:760
 msgid "1:1"
 msgstr "1:1"
 
 #: source/php/AcfFields/php/mod-curator.php:138
 #: source/php/AcfFields/php/mod-manual-input.php:396
-#: source/php/AcfFields/php/mod-posts-displau.php:753
+#: source/php/AcfFields/php/mod-posts-displau.php:761
 msgid "4:3"
 msgstr "4:3"
 
@@ -1443,18 +1442,18 @@ msgid "Allow logged in users to modify their list"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-manual-input.php:99
-#: source/php/AcfFields/php/mod-posts-displau.php:99
+#: source/php/AcfFields/php/mod-posts-displau.php:107
 msgid "Save as custom meta key"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-manual-input.php:103
-#: source/php/AcfFields/php/mod-posts-displau.php:103
+#: source/php/AcfFields/php/mod-posts-displau.php:111
 msgid ""
 "Will default to the module ID but can be set to save as a custom meta key."
 msgstr ""
 
 #: source/php/AcfFields/php/mod-manual-input.php:121
-#: source/php/AcfFields/php/mod-posts-displau.php:121
+#: source/php/AcfFields/php/mod-posts-displau.php:129
 msgid "unique-key"
 msgstr ""
 
@@ -1489,7 +1488,7 @@ msgid "Makes the first input bigger"
 msgstr ""
 
 #: source/php/AcfFields/php/mod-manual-input.php:334
-#: source/php/AcfFields/php/mod-posts-displau.php:221
+#: source/php/AcfFields/php/mod-posts-displau.php:229
 msgid "Image position"
 msgstr "Placera bild"
 
@@ -1499,7 +1498,7 @@ msgid "right"
 msgstr "Till höger om innehållet"
 
 #: source/php/AcfFields/php/mod-manual-input.php:397
-#: source/php/AcfFields/php/mod-posts-displau.php:754
+#: source/php/AcfFields/php/mod-posts-displau.php:762
 msgid "12:16"
 msgstr "12:16"
 
@@ -1637,14 +1636,14 @@ msgid "The extra info card is disabled by default"
 msgstr "Kortet med extra info är inaktiverat som standard"
 
 #: source/php/AcfFields/php/mod-map.php:216
-#: source/php/AcfFields/php/mod-posts-displau.php:637
+#: source/php/AcfFields/php/mod-posts-displau.php:645
 #: templates/options/partials/modularity-modules.php:16
 #: templates/options/partials/modularity-post-types.php:8
 msgid "Enabled"
 msgstr "Aktiverad"
 
 #: source/php/AcfFields/php/mod-map.php:217
-#: source/php/AcfFields/php/mod-posts-displau.php:638
+#: source/php/AcfFields/php/mod-posts-displau.php:646
 #: source/php/AcfFields/php/mod-posts-source.php:224
 msgid "Disabled"
 msgstr "Avaktiverad"
@@ -1727,57 +1726,35 @@ msgstr "Välj en leverantör"
 msgid "ABC"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-menu.php:6
+#: source/php/AcfFields/php/mod-menu.php:8
 msgid "Menu Module"
 msgstr "Menymodul"
 
-#: source/php/AcfFields/php/mod-menu.php:10
+#: source/php/AcfFields/php/mod-menu.php:12
 msgid "Display Menu As"
 msgstr "Visa meny som"
 
-#: source/php/AcfFields/php/mod-menu.php:31
+#: source/php/AcfFields/php/mod-menu.php:33
 msgid "Display as conditional target"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-menu.php:51
+#: source/php/AcfFields/php/mod-menu.php:53
 msgid "Select a Menu"
 msgstr "Välj meny"
 
-#: source/php/AcfFields/php/mod-menu.php:64
-#, fuzzy
-#| msgid "bottom"
-msgid "Drawer bottom"
-msgstr "bottom"
-
-#: source/php/AcfFields/php/mod-menu.php:65
-msgid "Etjanster"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-menu.php:67
-msgid "ny"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-menu.php:68
-msgid "Primar"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-menu.php:69
-msgid "Våra webbplatser"
-msgstr ""
-
-#: source/php/AcfFields/php/mod-menu.php:83
+#: source/php/AcfFields/php/mod-menu.php:78
 msgid "Background"
 msgstr "Bakgrund"
 
-#: source/php/AcfFields/php/mod-menu.php:87
+#: source/php/AcfFields/php/mod-menu.php:82
 msgid "Decides if the menu is wrapped in a container."
 msgstr "Bestämmer ifall menyn ska ha en bakgrund"
 
-#: source/php/AcfFields/php/mod-menu.php:103
+#: source/php/AcfFields/php/mod-menu.php:98
 msgid "Background Notice"
 msgstr "Bakgrundsnotis"
 
-#: source/php/AcfFields/php/mod-menu.php:123
+#: source/php/AcfFields/php/mod-menu.php:118
 msgid ""
 "While using a background, the \"Item Per Column\" works different. \r\n"
 "\r\n"
@@ -1795,7 +1772,7 @@ msgstr ""
 "Ifall det inte är ett helt nummer kommer antalet kolumner räknas ut "
 "automatiskt för att vara så nära ditt val av antal kolumner som möjligt."
 
-#: source/php/AcfFields/php/mod-menu.php:132
+#: source/php/AcfFields/php/mod-menu.php:127
 msgid "Items Per Column"
 msgstr "Antal objekt per rad"
 
@@ -23259,90 +23236,90 @@ msgstr "Data visare"
 msgid "posts_display_as_conditional"
 msgstr ""
 
-#: source/php/AcfFields/php/mod-posts-displau.php:127
+#: source/php/AcfFields/php/mod-posts-displau.php:135
 msgid "Use term icon as icon in list"
 msgstr "Använd termikon som ikon i lista"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:155
+#: source/php/AcfFields/php/mod-posts-displau.php:163
 msgid "Preamble"
 msgstr "Ingress"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:188
+#: source/php/AcfFields/php/mod-posts-displau.php:196
 msgid "Show as slider"
 msgstr "Visa som slider/bildspel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:254
+#: source/php/AcfFields/php/mod-posts-displau.php:262
 msgid "Highlight first post"
 msgstr "Betona första inlägget"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:258
+#: source/php/AcfFields/php/mod-posts-displau.php:266
 msgid "Makes the first post bigger"
 msgstr "Gör första inlägget större"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:302
+#: source/php/AcfFields/php/mod-posts-displau.php:310
 msgid "Display highlighted post as"
 msgstr "Visa betonat inlägg som"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:386
+#: source/php/AcfFields/php/mod-posts-displau.php:394
 #: source/php/AcfFields/php/mod-rss.php:71
 msgid "Fields"
 msgstr "Fält"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:412
+#: source/php/AcfFields/php/mod-posts-displau.php:420
 #: source/php/AcfFields/php/mod-wpwidget.php:483
 msgid "Show date"
 msgstr "Visa datum"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:413
+#: source/php/AcfFields/php/mod-posts-displau.php:421
 msgid "Show excerpt"
 msgstr "Visa ingress"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:414
+#: source/php/AcfFields/php/mod-posts-displau.php:422
 msgid "Show title"
 msgstr "Visa titel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:415
+#: source/php/AcfFields/php/mod-posts-displau.php:423
 msgid "Show featured image"
 msgstr "Visa utvald bild"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:416
+#: source/php/AcfFields/php/mod-posts-displau.php:424
 msgid "Show reading time"
 msgstr "Visa lästid"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:417
+#: source/php/AcfFields/php/mod-posts-displau.php:425
 msgid "Comment count"
 msgstr "Antal kommentarer"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:434
+#: source/php/AcfFields/php/mod-posts-displau.php:442
 msgid "Date source"
 msgstr "Datakälla"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:455
+#: source/php/AcfFields/php/mod-posts-displau.php:463
 msgid "Date published"
 msgstr "Publiceringsdatum"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:456
+#: source/php/AcfFields/php/mod-posts-displau.php:464
 #: source/php/AcfFields/php/mod-posts-sorting.php:29
 msgid "Date modified"
 msgstr "Senast uppdaterad"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:470
+#: source/php/AcfFields/php/mod-posts-displau.php:478
 msgid "Hide the title column"
 msgstr "Dölj titelkolumnen"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:490
+#: source/php/AcfFields/php/mod-posts-displau.php:498
 msgid "Yes, hide the title column"
 msgstr "Ja, göm titelkolumnen"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:498
+#: source/php/AcfFields/php/mod-posts-displau.php:506
 msgid "Title column label"
 msgstr "Titelkolumnents märkning"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:531
+#: source/php/AcfFields/php/mod-posts-displau.php:539
 msgid "List column labels"
 msgstr "Lista kolumnetiketter"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:535
+#: source/php/AcfFields/php/mod-posts-displau.php:543
 msgid ""
 "A title field will always be added as the first column. You will need to go "
 "to each post in this list to give the values for each column."
@@ -23350,32 +23327,32 @@ msgstr ""
 "Ett titelfält kommer alltid att läggas till som första kolumn. Du behöver få "
 "till varje inlägg och lägga till värden för varje kolumn."
 
-#: source/php/AcfFields/php/mod-posts-displau.php:562
+#: source/php/AcfFields/php/mod-posts-displau.php:570
 msgid "Column header"
 msgstr "Kolumnhuvud"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:587
-#: source/php/AcfFields/php/mod-posts-displau.php:607
+#: source/php/AcfFields/php/mod-posts-displau.php:595
+#: source/php/AcfFields/php/mod-posts-displau.php:615
 msgid "Allow freetext filtering"
 msgstr "Tillåt fritext-sök"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:615
+#: source/php/AcfFields/php/mod-posts-displau.php:623
 msgid "Highlight post"
 msgstr "Markera inlägg"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:643
+#: source/php/AcfFields/php/mod-posts-displau.php:651
 msgid "Date format"
 msgstr "Datumformat"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:669
+#: source/php/AcfFields/php/mod-posts-displau.php:677
 msgid "Default timestamp"
 msgstr "Standardtidstämpel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:670
+#: source/php/AcfFields/php/mod-posts-displau.php:678
 msgid "Readable timestamp"
 msgstr "Läsbar tidsstämpel"
 
-#: source/php/AcfFields/php/mod-posts-displau.php:684
+#: source/php/AcfFields/php/mod-posts-displau.php:692
 msgid "Placeholder image"
 msgstr "Affischbild"
 
@@ -25995,10 +25972,8 @@ msgid "Has modules"
 msgstr "Har moduler"
 
 #: source/php/Options/ArchivesList.php:60
-#, fuzzy
-#| msgid "View %s"
 msgid "View"
-msgstr "Visa %s"
+msgstr "Visa"
 
 #: source/php/Options/ArchivesList.php:61
 msgid "Edit modules"
@@ -26043,9 +26018,11 @@ msgstr "Posttyp moduler"
 
 #: source/php/Upgrade.php:29
 msgid ""
-"A newer version of Modularity is available. Run wp-cli \"modularity "
-"upgrade\" to upgrade."
+"The database may need to be updated to accomodate new datatastructures. Run "
+"wp-cli \"modularity upgrade\" to upgrade."
 msgstr ""
+"Databasen kan behöva uppdateras för att anpassas till nya datastrukturer. "
+"Kör wp-cli ”modularity upgrade” för att uppgradera."
 
 #: source/php/Upgrade.php:71
 msgid "To be installed database version must be a number."
@@ -26233,6 +26210,11 @@ msgstr ""
 #. Author of the plugin/theme
 msgid "Kristoffer Svanmark, Sebastian Thulin"
 msgstr ""
+
+#, fuzzy
+#~| msgid "bottom"
+#~ msgid "Drawer bottom"
+#~ msgstr "bottom"
 
 #~ msgid "Expandable List"
 #~ msgstr "Expanderbar lista"
