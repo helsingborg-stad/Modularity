@@ -16,6 +16,7 @@ use WpService\Contracts\{
 class GetPosts
 {
     public function __construct(
+        private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption = null,
         private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
         private WpQueryFactoryInterface $wpQueryFactory
     )
@@ -37,13 +38,20 @@ class GetPosts
     private function getPostsFromSelectedSites(array $fields, int $page):array {
         
         if(!empty($fields['posts_data_network_sources'])) {
-            $posts      = [];
+            $posts       = [];
             $maxNumPages = 0;
+            $stickyPosts = [];
 
             foreach($fields['posts_data_network_sources'] as $site) {
                 $this->wpService->switchToBlog($site['value']);
-                $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
-                $postsFromSite = $wpQuery->get_posts();
+
+                $stickyPostIds       = $this->getStickyPostIds($fields, $page);
+                $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
+                $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds, count($stickyPostsFromSite)));
+                $postsFromSite       = $wpQuery->get_posts();
+
+                $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
+                $postsFromSite       = $this->addSiteDataToPosts($postsFromSite, $site);
 
                 array_walk($postsFromSite, function($post) use ($site) {
                     // Add the original permalink to the post object for reference in network sources.
@@ -51,13 +59,19 @@ class GetPosts
                     $post->originalBlogId    = (int)$site['value'];
                 });
 
-                $posts = array_merge($posts, $postsFromSite);
+                $stickyPosts = array_merge($stickyPosts, $stickyPostsFromSite);
+                $posts       = array_merge($posts, $postsFromSite);
                 $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
+
                 $this->wpService->restoreCurrentBlog();
             }
 
             // Limit the number of posts to the desired count to avoid exceeding the limit.
+            $stickyPostsFromSite = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
             $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
+            $posts = array_merge($stickyPostsFromSite, $posts);
             $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
 
             return [
@@ -66,26 +80,90 @@ class GetPosts
             ];
         }
 
-        $wpQuery = $this->wpQueryFactory->create($this->getPostArgs($fields, $page));
+        $stickyPostIds       = $this->getStickyPostIds($fields, $page);
+        $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
+
+        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds, count($stickyPostsFromSite)));
+
+        $stickyPostsFromSite = $this->sortPosts($stickyPostsFromSite, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
+        $posts = array_merge($stickyPostsFromSite, $wpQuery->get_posts());
 
         return [
-            'posts' => $wpQuery->get_posts(),
+            'posts' => $posts,
             'maxNumPages' => $wpQuery->max_num_pages
         ];
     }
 
-    private function getPostArgs(array $fields, int $page)
+    /**
+     * Add site data to posts
+     */
+    private function addSiteDataToPosts(array $posts, array $site): array
     {
-        $metaQuery  = false;
-        $orderby    = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
-        $order      = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
+        array_walk($posts, function(&$post) use ($site) {
+            // Add the original permalink to the post object for reference in network sources.
+            $post->originalSite      = $site['label'];
+            $post->originalBlogId    = (int)$site['value'];
+        });
+
+        return $posts;
+    }
+
+    /**
+     * Get sticky posts for site
+     */
+    private function getStickyPostsForSite(array $fields, int $page, array $stickyPostIds): array
+    {
+        if (
+            empty($stickyPostIds) ||
+            empty($fields['posts_data_source']) ||
+            $fields['posts_data_source'] !== 'posttype' ||
+            empty($fields['posts_data_post_type']) ||
+            $page !== 1
+        ) {
+            return [];
+        }
+
+        if (array_key_exists($currentPostID = $this->getCurrentPostID(), $stickyPostIds)) {
+            unset($stickyPostIds[$currentPostID]);
+        }
+
+        $args = $this->getDefaultQueryArgs();
+        $args['post_type'] = $fields['posts_data_post_type'];
+        $args['post__in'] = array_values($stickyPostIds);
+        $args['orderby'] = 'date';
+        $args['order'] = 'DESC';
+        $args['posts_per_page'] = $this->getPostsPerPage($fields);
+
+        $wpQuery = $this->wpQueryFactory->create($args);
+
+        return $wpQuery->get_posts();
+    }
+
+    /**
+     * Get sticky post IDs
+     */
+    private function getStickyPostIds(array $fields, int $page): array 
+    {
+        $stickyPosts = [];
+        if (is_null($this->getStickyOption) || !empty($fields['posts_data_post_type'])) {
+            $stickyPosts = $this->getStickyOption->getOption($fields['posts_data_post_type']);
+        }
+
+        return $stickyPosts;
+    }
+
+    /**
+     * Get post args
+     */
+    private function getPostArgs(array $fields, int $page, array $stickyPostIds = [], int $stickyCount = 0)
+    {
+        $metaQuery        = false;
+        $orderby          = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
+        $order            = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
 
         // Get post args
-        $getPostsArgs = [
-            'post_type' => 'any',
-            'post_password' => false,
-            'suppress_filters' => false
-        ];
+        $getPostsArgs = $this->getDefaultQueryArgs();
 
         // Sort by meta key
         if (strpos($orderby, '_metakey_') === 0) {
@@ -148,11 +226,14 @@ class GetPosts
         switch ($fields['posts_data_source'] ?? []) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields['posts_data_post_type'];
+                $postsNotIn = [];
                 if ($currentPostID = $this->getCurrentPostID()) {
-                    $getPostsArgs['post__not_in'] = [
-                        $currentPostID
-                    ];
+                    $postsNotIn[] = $currentPostID;
                 }
+
+                $postsNotIn = array_merge($postsNotIn, $stickyPostIds);
+                $getPostsArgs['post__not_in'] = $postsNotIn;
+
                 break;
 
             case 'children':
@@ -181,7 +262,8 @@ class GetPosts
         }
 
         // Number of posts
-        $getPostsArgs['posts_per_page'] = $this->getPostsPerPage($fields);
+        $postsPerPage = $this->getPostsPerPage($fields) - $stickyCount;
+        $getPostsArgs['posts_per_page'] = $postsPerPage < 0 ? 0 : $postsPerPage;
 
         // Apply pagination
         $getPostsArgs['paged'] = $page;
@@ -189,6 +271,22 @@ class GetPosts
         return $getPostsArgs;
     }
 
+    /**
+     * Get default query args
+     */
+    private function getDefaultQueryArgs()
+    {
+        return [
+            'post_type' => 'any',
+            'post_password' => false,
+            'suppress_filters' => false,
+            'ignore_sticky_posts' => true,
+        ];
+    }
+
+    /**
+     * Get posts per page
+     */
     private function getPostsPerPage(array $fields): int {
         if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
             return ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
@@ -197,6 +295,9 @@ class GetPosts
         return 10;
     }
 
+    /**
+     * Get post types from schema type
+     */
     private function getPostTypesFromSchemaType(string $schemaType):array {
         
         $class = '\Municipio\SchemaData\Helper\GetSchemaType';

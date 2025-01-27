@@ -60,7 +60,11 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $this->getPostsHelper = new GetPosts(WpService::get(), new WpQueryFactory());
+        $stickyPostHelper = new \Municipio\StickyPost\Helper\GetStickyOption(
+            new \Municipio\StickyPost\Config\StickyPostConfig(),
+            WpService::get()
+        );
+        $this->getPostsHelper = new GetPosts($stickyPostHelper, WpService::get(), new WpQueryFactory());
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
