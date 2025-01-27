@@ -17,7 +17,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $this->assertEquals(1, $getPosts->getCurrentPostID());
     }
@@ -27,7 +27,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => false, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $this->assertFalse($getPosts->getCurrentPostID());
     }
@@ -37,7 +37,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => true]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $this->assertFalse($getPosts->getCurrentPostID());
     }
@@ -53,7 +53,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'date', 'desc');
 
@@ -73,7 +73,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'date', 'asc');
 
@@ -93,7 +93,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'title', 'desc');
 
@@ -113,7 +113,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'title', 'asc');
 
@@ -133,7 +133,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'modified', 'desc');
 
@@ -153,7 +153,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'modified', 'asc');
 
@@ -173,7 +173,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'menu_order', 'desc');
 
@@ -193,7 +193,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'menu_order', 'asc');
 
@@ -213,7 +213,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $firstSort = $getPosts->sortPosts($posts, 'rand', 'asc');
         $secondSort = $getPosts->sortPosts($posts, 'rand', 'asc');
@@ -237,7 +237,7 @@ class GetPostsTest extends TestCase {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
         
-        $getPosts = new GetPosts($wpService, $wpQueryFactory);
+        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'foo');
 

@@ -16,7 +16,7 @@ use WpService\Contracts\{
 class GetPosts
 {
     public function __construct(
-        private \Municipio\StickyPost\Helper\GetStickyOption $getStickyOption,
+        private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption = null,
         private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
         private WpQueryFactoryInterface $wpQueryFactory
     )
@@ -146,7 +146,7 @@ class GetPosts
     private function getStickyPostIds(array $fields, int $page): array 
     {
         $stickyPosts = [];
-        if (!empty($fields['posts_data_post_type'])) {
+        if (is_null($this->getStickyOption) || !empty($fields['posts_data_post_type'])) {
             $stickyPosts = $this->getStickyOption->getOption($fields['posts_data_post_type']);
         }
 
