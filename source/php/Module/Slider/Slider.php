@@ -202,7 +202,8 @@ class Slider extends \Modularity\Module
      * @return array
      */
     private function getLinkData(array $slide) {
-        if (empty($slide['link_url'])) {
+
+        if(!$this->slideHasLink($slide)) {
             return $slide;
         }
 
@@ -226,6 +227,24 @@ class Slider extends \Modularity\Module
         }
 
         return $slide;
+    }
+
+    /**
+     * Check if slide has link
+     * 
+     * @param array $slide
+     * @return bool
+     */
+    public function slideHasLink(array $slide):bool {
+        if( $slide['link_type'] !== 'internal' && $slide['link_type'] !== 'external' ) {
+            return false;
+        }
+
+        if( empty($slide['link_url']) ) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
