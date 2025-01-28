@@ -96,7 +96,7 @@ class AbstractController
             
             return $post;
 
-        }, $posts);
+        }, $posts ?? []);
 
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
