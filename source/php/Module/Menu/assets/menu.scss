@@ -37,6 +37,22 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
         }
     }
 
+    .mod-menu__container.c-group--size-lg {
+        .mod-menu__children-toggle {
+            display: none;
+        }
+    }
+
+    .mod-menu__item.is-expanded {
+        .mod-menu__children-toggle {
+            transform: rotate(180deg);
+
+            &:hover .mod-menu__children-toggle-icon {
+                transform: scale(1.2);
+            }
+        }
+    }
+
     .mod-menu__item.is-expanded,
     .mod-menu__container.c-group--size-lg {
         .mod-menu__children {
