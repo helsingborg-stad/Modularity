@@ -131,7 +131,8 @@ class Posts extends \Modularity\Module
         $data['postsSources']         = $this->fields['posts_data_network_sources'] ?? [];
 
         $postsAndPaginationData = $this->getPostsAndPaginationData();
-        $data['posts'] = $postsAndPaginationData['posts'];
+        $data['posts']          = $postsAndPaginationData['posts'];
+        $data['stickyPosts']    = $postsAndPaginationData['stickyPosts'];
 
         if( !empty($this->fields['posts_pagination']) && $this->fields['posts_pagination'] === 'page_numbers' ) {
             $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
@@ -431,7 +432,8 @@ class Posts extends \Modularity\Module
 
         return [
             'posts' => [],
-            'maxNumPages' => 0
+            'maxNumPages' => 0,
+            'stickyPosts' => []
         ];
     }
 

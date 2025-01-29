@@ -7,8 +7,11 @@
 @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}" @endif>
     @if($posts)    
         @foreach ($posts as $post)
-            <div class="{{ $loop->first && $highlight_first_column ? $highlight_first_column : $posts_columns }} {{!empty($post->classList) ? implode(' ', $post->classList) : ''}}" data-js-item-id="{{$post->id}}" {{!empty($post->attributeList) ? implode(' ', $post->attributeList) : ''}}>
-                @if ($loop->first && $highlight_first_column && $highlight_first_column_as === 'block')
+            <div class="{{!empty($post->classList) ? implode(' ', $post->classList) : ''}}" 
+            {{!empty($post->attributeList) ? implode(' ', array_map(function($key, $value) {
+                return $key . '=' . $value;
+            }, array_keys($post->attributeList), $post->attributeList)) : '' }}>
+                @if ($highlight_first_column_as === 'block' && $post->isHighlighted)
                     @include('partials.post.block', ['ratio' => '16:9'])
                 @else
                     @include('partials.post.card')

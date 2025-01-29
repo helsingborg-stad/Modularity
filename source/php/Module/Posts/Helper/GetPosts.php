@@ -47,7 +47,7 @@ class GetPosts
 
                 $stickyPostIds       = $this->getStickyPostIds($fields, $page);
                 $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
-                $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds, count($stickyPostsFromSite)));
+                $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
                 $postsFromSite       = $wpQuery->get_posts();
 
                 $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
@@ -67,31 +67,32 @@ class GetPosts
             }
 
             // Limit the number of posts to the desired count to avoid exceeding the limit.
-            $stickyPostsFromSite = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+            $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
 
             $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
 
-            $posts = array_merge($stickyPostsFromSite, $posts);
             $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
 
             return [
                 'posts' => $posts,
-                'maxNumPages' => $maxNumPages
+                'maxNumPages' => $maxNumPages,
+                'stickyPosts' => $stickyPosts,
             ];
         }
 
         $stickyPostIds       = $this->getStickyPostIds($fields, $page);
-        $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
+        $stickyPosts         = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
 
-        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds, count($stickyPostsFromSite)));
+        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
 
-        $stickyPostsFromSite = $this->sortPosts($stickyPostsFromSite, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+        $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
 
-        $posts = array_merge($stickyPostsFromSite, $wpQuery->get_posts());
+        $posts = $wpQuery->get_posts();
 
         return [
             'posts' => $posts,
-            'maxNumPages' => $wpQuery->max_num_pages
+            'maxNumPages' => $wpQuery->max_num_pages,
+            'stickyPosts' => $stickyPosts,
         ];
     }
 
@@ -156,7 +157,7 @@ class GetPosts
     /**
      * Get post args
      */
-    private function getPostArgs(array $fields, int $page, array $stickyPostIds = [], int $stickyCount = 0)
+    private function getPostArgs(array $fields, int $page, array $stickyPostIds = [])
     {
         $metaQuery        = false;
         $orderby          = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
@@ -262,8 +263,7 @@ class GetPosts
         }
 
         // Number of posts
-        $postsPerPage = $this->getPostsPerPage($fields) - $stickyCount;
-        $getPostsArgs['posts_per_page'] = $postsPerPage < 0 ? 0 : $postsPerPage;
+        $getPostsArgs['posts_per_page'] = $this->getPostsPerPage($fields);
 
         // Apply pagination
         $getPostsArgs['paged'] = $page;

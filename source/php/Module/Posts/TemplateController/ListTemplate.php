@@ -22,7 +22,8 @@ class ListTemplate extends AbstractController
     {
         $this->args = $module->args;
         $this->data = $module->data;
-        $this->data['posts'] = $this->prepare([
+        $this->module = $module;
+        $this->data['posts'] = $this->prepareList([
             'posts_data_source' => $this->data['posts_data_source'] ?? '',
             'archive_link' => $this->data['archive_link'] ?? '',
             'archive_link_url' => $this->data['archive_link_url'] ?? '',
@@ -35,11 +36,11 @@ class ListTemplate extends AbstractController
      * @param array $postData array of data settings
      * @return array
      */
-    public function prepare(array $postData)
+    public function prepareList(array $postData)
     {
         $posts = [];
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
-            $this->data['posts'] = $this->preparePosts($this->data['posts']);
+            $this->data['posts'] = $this->preparePosts($this->module);
             foreach ($this->data['posts'] as $post) {
                 
                 if ($post->getPostType() === 'attachment') {
