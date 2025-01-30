@@ -75,15 +75,7 @@ class ExpandableListTemplate extends AbstractController
         $columnValues = [];
         
         foreach ($this->data['posts'] as $colIndex => $post) {
-            if ($this->data['posts_data_source'] === 'input') {
-                if ($post->columnValues !== false && is_array($post->columnValues) && count($post->columnValues) > 0) {
-                    foreach ($post->columnValues as $key => $columnValue) {
-                        $columnValues[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]['column_header'])] = $columnValue['value'] ?? '';
-                    }
-                }
-            } else {
-                $columnValues[] = get_post_meta($post->id, 'modularity-mod-posts-expandable-list', true) ?? '';
-            }
+            $columnValues[] = get_post_meta($post->getId(), 'modularity-mod-posts-expandable-list', true) ?? '';
         }
 
         return $columnValues;
@@ -98,11 +90,10 @@ class ExpandableListTemplate extends AbstractController
      */
     public function prepareExpandableList(): ?array
     {
-        $columnValues = $this->getColumnValues();
-
         $accordion = [];
-
-        $this->data['posts'] = $this->preparePosts($this->module);
+        
+        $this->data['posts'] = $this->preparePosts($this->data['posts']);
+        $columnValues        = $this->getColumnValues();
 
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
             foreach ($this->data['posts'] as $index => $item) {
