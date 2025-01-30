@@ -11,11 +11,12 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
         gap: calc($base * 3);
     }
 
+    // Expanded state
     .mod-menu__children {
         overflow: hidden;
         max-height: calc($base * 9);
         mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,0) 100%);
-        transition: all 0.5s ease-in-out;
+        transition: max-height .3s ease-in-out;
     }
 
     .mod-menu__children-toggle {
@@ -34,6 +35,8 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
 
         .mod-menu__children-toggle-icon {
             transition: .2s ease-in-out;
+            display: flex;
+            align-items: center;
         }
     }
 
@@ -45,10 +48,12 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
 
     .mod-menu__item.is-expanded {
         .mod-menu__children-toggle {
-            transform: rotate(180deg);
+            .mod-menu__children-toggle-icon {
+                transform: rotate(180deg);
+            }
 
             &:hover .mod-menu__children-toggle-icon {
-                transform: scale(1.2);
+                transform: scale(1.2) rotate(180deg);
             }
         }
     }
@@ -56,12 +61,14 @@ $color-lighter: var(--color-lighter, #e5e5e5) !default;
     .mod-menu__item.is-expanded,
     .mod-menu__container.c-group--size-lg {
         .mod-menu__children {
-            max-height: unset;
+            max-height: calc($base * 200);
             overflow: visible;
             mask-image: none;
         }
     }
 
+
+    // Wrapped
     &.mod-menu--wrapped {
         a.mod-menu__heading-link {
             border-bottom: unset;
