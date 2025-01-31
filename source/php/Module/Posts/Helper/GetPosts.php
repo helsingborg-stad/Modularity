@@ -136,6 +136,11 @@ class GetPosts
         $args['order'] = 'DESC';
         $args['posts_per_page'] = $this->getPostsPerPage($fields);
 
+        $args['post_status'] = ['publish', 'inherit'];
+        if ($this->wpService->isUserLoggedIn()) {
+            $args['post_status'][] = 'private';
+        }
+
         $wpQuery = $this->wpQueryFactory->create($args);
 
         return $wpQuery->get_posts();
