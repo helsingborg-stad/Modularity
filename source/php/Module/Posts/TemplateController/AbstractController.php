@@ -21,6 +21,9 @@ class AbstractController
     /** @var \Modularity\Module\Posts\Posts */
     protected $module;
 
+    /** @var WpService */
+    protected $wpService;
+
     /**
      * AbstractController constructor.
      *
@@ -28,6 +31,7 @@ class AbstractController
     */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
+        $this->wpService            = WpService::get();
         $this->module               = $module;
         $this->fields               = $module->fields;
         $this->data                 = $this->addDataViewData($module->data, $module->fields);
@@ -51,6 +55,7 @@ class AbstractController
         $data['highlight_first_column'] = !empty($fields['posts_highlight_first']) ? 
         ColumnHelper::getFirstColumnSize($data['posts_columns']) : false;
         $data['imagePosition'] = $fields['image_position'] ?? false;
+        $data['dateFormat'] = $this->getDateFormat($data['posts_data_source'], $data['posts_data_post_type']);
 
         return $data;
     }
@@ -65,9 +70,7 @@ class AbstractController
     */
     public function preparePosts($posts = [])
     {
-        $wpService = WpService::get();
-
-        $posts = array_map(function($post) use ($wpService) {
+        $posts = array_map(function($post) {
             $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -78,8 +81,8 @@ class AbstractController
                 return $post;
             }
 
-            if(!empty($post->originalBlogId) && $post->originalBlogId !== $wpService->getCurrentBlogId()) {
-                $wpService->switchToBlog($post->originalBlogId);
+            if(!empty($post->originalBlogId) && $post->originalBlogId !== $this->wpService->getCurrentBlogId()) {
+                $this->wpService->switchToBlog($post->originalBlogId);
             }
 
             if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
@@ -88,7 +91,7 @@ class AbstractController
                 $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
             }
 
-            $wpService->restoreCurrentBlog();
+            $this->wpService->restoreCurrentBlog();
             
             if (!empty($post->schemaData['place']['pin'])) {
                 $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
@@ -240,5 +243,23 @@ class AbstractController
         }
 
         return false;
+    }
+
+    /**
+     * Get date format.
+     *
+     * @param string $source
+     *
+     * @return string
+    */
+    private function getDateFormat(?string $source, ?string $postType): string
+    {
+        $dateFormat = 'date';
+
+        if ($source === 'posttype' && $postType) {
+            $dateFormat = $this->wpService->getThemeMod('archive_' . $postType . '_date_format', 'date');
+        }
+
+        return $dateFormat;
     }
 }
