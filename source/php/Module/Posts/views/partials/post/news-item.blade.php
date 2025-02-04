@@ -7,14 +7,9 @@
     'link'                => $post->permalink,
     'context'             => ['module.posts.news-item'],
     'hasPlaceholderImage' => $post->hasPlaceholderImage,
-    'classList' => array_merge($post->classList ?? [], [$posts_columns]),
+    'classList' => $post->classList ?? [],
     'standing' => $standing,
-    'attributeList' => array_merge(
-        $post->attributeList ?? [], 
-        [
-            'data-js-item-id' => $post->id
-        ]
-    ),
+    'attributeList' => $post->attributeList ?? [],
 ])
     @slot('headerLeftArea')
         @if (!empty($postsSources) && count($postsSources) > 1 && !empty($post->originalSite))

@@ -7,7 +7,10 @@
     aria-labelledby="{{ 'mod-posts-' . $ID . '-label' }}">
     @if($posts)
         @foreach ($posts as $post)
-            <div class="{{ $posts_columns }}">
+            <div class="{{!empty($post->classList) ? implode(' ', $post->classList) : ''}}"
+            {{!empty($post->attributeList) ? implode(' ', array_map(function($key, $value) {
+                return $key . '=' . $value;
+            }, array_keys($post->attributeList), $post->attributeList)) : '' }}>
                 @include('partials.post.box')
             </div>
         @endforeach

@@ -58,7 +58,7 @@ class ExpandableListTemplate extends AbstractController
         $this->data['posts_hide_title_column'] = ($this->fields['posts_hide_title_column']) ? true : false;
         $this->data['title_column_label'] = $this->fields['title_column_label'] ?? null;
         $this->data['allow_freetext_filtering'] = $this->fields['allow_freetext_filtering'] ?? null;
-        $this->data['prepareAccordion'] = $this->prepare();
+        $this->data['prepareAccordion'] = $this->prepareExpandableList();
     }
 
     /**
@@ -88,7 +88,7 @@ class ExpandableListTemplate extends AbstractController
      * 
      * @return array|null
      */
-    public function prepare(): ?array
+    public function prepareExpandableList(): ?array
     {
         $accordion = [];
         

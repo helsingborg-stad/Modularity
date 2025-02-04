@@ -31,8 +31,27 @@ class AbstractController
         $this->module               = $module;
         $this->fields               = $module->fields;
         $this->data                 = $this->addDataViewData($module->data, $module->fields);
-        $this->data['posts']        = $this->preparePosts($module->data['posts']);
+        $this->data['posts']        = $this->preparePosts($module);
+
         $this->data['classList']    = [];
+    }
+
+    /**
+     * Prepare posts for display.
+     *
+     * @param \Modularity\Module\Posts\Posts $module
+     *
+     * @return array
+    */
+    public function preparePosts(\Modularity\Module\Posts\Posts $module)
+    {
+        $stickyPosts = $module->data['stickyPosts'] ?? [];
+        $stickyPosts = $this->addStickyPostsData($stickyPosts);
+        $stickyPosts = $this->addPostData($stickyPosts);
+        $posts       = $this->addPostData($module->data['posts']);
+        $posts       = array_merge($stickyPosts, $posts);
+
+        return $posts;
     }
 
     /**
@@ -47,9 +66,11 @@ class AbstractController
     {
         $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
         $data['ratio'] = $fields['ratio'] ?? '16:9';
+
         $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
         $data['highlight_first_column'] = !empty($fields['posts_highlight_first']) ? 
-        ColumnHelper::getFirstColumnSize($data['posts_columns']) : false;
+            ColumnHelper::getFirstColumnSize($data['posts_columns']) : 
+            false;
         $data['imagePosition'] = $fields['image_position'] ?? false;
 
         return $data;
@@ -63,7 +84,7 @@ class AbstractController
      * @return array
      * TODO: This should require an array, but cant because sometimes it gets null. 
     */
-    public function preparePosts($posts = [])
+    public function addPostData($posts = [])
     {
         $wpService = WpService::get();
 
@@ -100,7 +121,9 @@ class AbstractController
 
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
-                $post = $this->setPostViewData($post, $index);
+                $post             = $this->setPostViewData($post, $index);
+                $post->classList  = $post->classList ?? [];
+                $post             = $this->addHighlightData($post, $index);
 
                 // Apply $this->getDefaultValuesForPosts() to the post object without turning it into an array
                 foreach ($this->getDefaultValuesForPosts() as $key => $value) {
@@ -112,6 +135,31 @@ class AbstractController
         }
 
         return $posts;
+    }
+
+    /**
+     * Add post columns class.
+     *
+     * @param object $post
+     * @param false|int $index
+     *
+     * @return object
+    */
+    private function addHighlightData(object $post, $index): object
+    {
+        $columnsClass =  $this->data['posts_columns'] ?? 'o-grid-12@md';
+
+        if (!empty($post->isSticky)) {
+            $columnsClass = 'o-grid-12@md';
+            $post->isHighlighted = true;
+        } elseif ($index === 0 && !empty($this->data['highlight_first_column'])) {
+            $columnsClass = $this->data['highlight_first_column'];
+            $post->isHighlighted = true;
+        }
+
+        $post->classList[] = $columnsClass;
+
+        return $post;
     }
 
     /**
@@ -137,6 +185,7 @@ class AbstractController
             'imagePosition' => true,
             'image' => false,
             'attributeList' => [],
+            'isSticky' => false,
             'commentCount' => false,
         ];
     }
@@ -162,7 +211,8 @@ class AbstractController
         $post->commentCount         = in_array('comment_count', $this->data['posts_fields'] ?? []) ? (string) $post->getCommentCount() : false;
         $post->readingTime          = in_array('reading_time', $this->data['posts_fields'] ?? []) ? $post->readingTime : false;
 
-        $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
+        $post->attributeList                    = !empty($post->attributeList) ? $post->attributeList : [];
+        $post->attributeList['data-js-item-id'] = $post->getId();
 
         if (!empty($post->image) && is_array($post->image)) {
             $post->image['removeCaption'] = true;
@@ -240,5 +290,25 @@ class AbstractController
         }
 
         return false;
+    }
+
+    /**
+     * Add sticky posts data.
+     *
+     * @param array $stickyPosts
+     *
+     * @return array
+    */
+    private function addStickyPostsData(array $stickyPosts = [])
+    {
+        if (empty($stickyPosts)) {
+            return [];
+        }
+
+        foreach ($stickyPosts as &$post) {
+            $post->isSticky    = true;
+        }
+
+        return $stickyPosts;
     }
 }
