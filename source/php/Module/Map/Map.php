@@ -2,11 +2,13 @@
 
 namespace Modularity\Module\Map;
 
+use Modularity\Module\Map\Resolvers\TemplateResolver;
+use Modularity\Module\Map\Resolvers\TemplateResolverInterface;
 use Modularity\Module\Map\TemplateController\OpenStreetMapController;
 use Modularity\Module\Map\TemplateController\EmbedController;
-use Modularity\Module\Map\TemplateController\TemplateControllerInterface;
 use Modularity\Module\Map\TemplateController\NullController;
-use Modularity\Module\Map\Resolvers\TemplateResolver;
+use Modularity\Module\Map\TemplateController\TemplateControllerInterface;
+
 
 class Map extends \Modularity\Module
 {
@@ -16,6 +18,7 @@ class Map extends \Modularity\Module
     protected $template = 'default';
 
     private TemplateControllerInterface $templateController;
+    private TemplateResolverInterface $templateResolver;
 
 
     public function init()
@@ -28,7 +31,7 @@ class Map extends \Modularity\Module
         add_filter('acf/load_value/name=map_url', array($this,'filterMapUrl'), 10, 3);
         add_filter('acf/update_value/name=map_url', array($this,'filterMapUrl'), 10, 3);
 
-        $this->templateController = new TemplateResolver(
+        $this->templateResolver = new TemplateResolver(
             new OpenStreetMapController(),
             new EmbedController($this),
             new NullController()
@@ -47,6 +50,7 @@ class Map extends \Modularity\Module
     {
         $fields = $this->getFields();
         $data = array();
+        $this->templateController = $this->templateResolver->resolve($fields);
 
         //Shared template data
         $data['height'] = !empty($fields['height']) ? $fields['height'] : '400';

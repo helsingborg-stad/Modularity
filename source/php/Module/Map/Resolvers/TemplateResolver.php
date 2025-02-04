@@ -4,7 +4,7 @@ namespace Modularity\Module\Map\Resolvers;
 
 use Modularity\Module\Map\TemplateController\TemplateControllerInterface;
 
-class TemplateResolver
+class TemplateResolver implements TemplateResolverInterface
 {
     private array $templateControllers;
 
@@ -13,7 +13,7 @@ class TemplateResolver
         $this->templateControllers = $templateControllers;
     }
 
-    public function Resolve(array $fields): TemplateControllerInterface
+    public function resolve(array $fields): TemplateControllerInterface
     {
         foreach ($this->templateControllers as $templateController) {
             if ($templateController->canHandle($fields)) {

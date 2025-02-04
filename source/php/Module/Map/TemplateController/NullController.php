@@ -8,6 +8,8 @@ namespace Modularity\Module\Map\TemplateController;
  */
 class NullController implements TemplateControllerInterface
 {
+    private string $templateName = 'notFound';
+
     /**
      * Add data to the template.
      */
@@ -16,6 +18,17 @@ class NullController implements TemplateControllerInterface
         return $data;
     }
 
+    /**
+     * Get the template name.
+     */
+    public function getTemplateName(): string
+    {
+        return $this->templateName;
+    }
+
+    /**
+     * Check if the controller can handle the fields.
+     */
     public function canHandle(array $fields): bool
     {
         return true;

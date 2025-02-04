@@ -4,8 +4,17 @@ namespace Modularity\Module\Map\TemplateController;
 
 use Modularity\Module\Map\Map;
 
+/**
+ * Class EmbedController
+ * @package Modularity\Module\Map\TemplateController
+ */
 class EmbedController implements TemplateControllerInterface
 {
+    private string $templateName = 'embed';
+
+    /**
+     * Constructor
+     */
     public function __construct(private Map $module)
     {
     }
@@ -63,6 +72,14 @@ class EmbedController implements TemplateControllerInterface
         ];
 
         return $data;
+    }
+
+    /**
+     * Get the template name.
+     */
+    public function getTemplateName(): string
+    {
+        return $this->templateName;
     }
 
     /**
