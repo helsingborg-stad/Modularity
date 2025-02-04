@@ -2,12 +2,21 @@
 
 namespace Modularity\Module\Map;
 
+use Modularity\Module\Map\TemplateController\OpenStreetMapController;
+use Modularity\Module\Map\TemplateController\EmbedController;
+use Modularity\Module\Map\TemplateController\TemplateControllerInterface;
+use Modularity\Module\Map\TemplateController\NullController;
+use Modularity\Module\Map\Resolvers\TemplateResolver;
+
 class Map extends \Modularity\Module
 {
     public $slug = 'map';
     public $supports = array();
 
     protected $template = 'default';
+
+    private TemplateControllerInterface $templateController;
+
 
     public function init()
     {
@@ -18,6 +27,12 @@ class Map extends \Modularity\Module
         add_filter('acf/load_field/name=map_url', array($this,'sslNotice'));
         add_filter('acf/load_value/name=map_url', array($this,'filterMapUrl'), 10, 3);
         add_filter('acf/update_value/name=map_url', array($this,'filterMapUrl'), 10, 3);
+
+        $this->templateController = new TemplateResolver(
+            new OpenStreetMapController(),
+            new EmbedController($this),
+            new NullController()
+        );
     }
 
     /**
@@ -36,153 +51,7 @@ class Map extends \Modularity\Module
         //Shared template data
         $data['height'] = !empty($fields['height']) ? $fields['height'] : '400';
 
-        //Set map type 
-        if (empty($fields['map_type'])) {
-            $fields['map_type'] = 'default';
-        }
-        $this->template = $fields['map_type'];
-
-        //Handle as OpenStreetMap
-        if ($fields['map_type'] == 'openStreetMap') {
-            return $this->openStreetMapTemplateData($data, $fields);
-        }
-
-        //Handle as default
-        return $this->defaultTemplateData($data, $fields);   
-    }
-
-    /**
-     * The function `openStreetMapTemplateData` processes marker data and start position data for an
-     * OpenStreetMap template.
-     * 
-     * @param data The `openStreetMapTemplateData` function takes two parameters: `` and
-     * ``.
-     * @param fields The `openStreetMapTemplateData` function takes two parameters: `` and
-     * ``.
-     * 
-     * @return The function `openStreetMapTemplateData` is returning the modified `` array after
-     * processing the input data and fields. The function adds pins with latitude, longitude, and
-     * tooltip information to the `['pins']` array based on the provided markers. It also sets the
-     * start position with latitude, longitude, and zoom level if the `osm_start_position` field is not
-     * empty. Finally
-     */
-    private function openStreetMapTemplateData($data, $fields) {
-
-        $data['pins'] = array();
-        $start = $fields['osm_start_position'];
-
-        if(!empty($fields['osm_markers']) && is_array($fields['osm_markers'])) {
-            foreach ($fields['osm_markers'] as $marker) {
-                if ($this->hasCorrectPlaceData($marker['position'])) {
-                    $pin = array();
-                    $pin['lat'] = $marker['position']['lat'];
-                    $pin['lng'] = $marker['position']['lng'];
-                    $pin['tooltip'] = $this->createMarkerTooltip($marker);
-
-                    array_push($data['pins'], $pin);
-                }
-            }
-        }
-
-        if (!empty($start)) {
-            $data['startPosition'] = [
-                'lat' => $start['lat'], 
-                'lng' => $start['lng'], 
-                'zoom' => $start['zoom']
-            ];
-        }
-
-        return $data;
-    }
-    
-    /**
-     * Generates default template data for the Map module.
-     *
-     * @param array $data The existing data array.
-     * @param array $fields The fields array containing module settings.
-     * @return array The updated data array with default template data.
-     */
-    private function defaultTemplateData($data, $fields) {
-        //Get and sanitize url
-        $map_url = $fields['map_url'];
-        $map_url = str_replace('http://', 'https://', $map_url, $replaced); // Enforce ssl
-
-        /**
-         * If the scheme is not altered with str_replace, the url may only contain // without https:
-         */
-        if(0 === $replaced) {
-            $parsedUrl = parse_url( $map_url );
-            if(!isset($parsedUrl['scheme']) ) {
-                $map_url = str_replace('//', 'https://', $map_url); // Ensure url scheme is literal
-            }
-        }
-
-        $map_url = str_replace('disable_scroll=false', 'disable_scroll=true', $map_url); //Remove scroll arcgis
-
-        //Create data array
-        $data['map_url']            = $map_url;
-        $data['map_description']    = !empty($fields['map_description']) ? $fields['map_description'] : '';
-        
-        $data['show_button']        = !empty($fields['show_button']) ? $fields['show_button'] : false;
-        $data['button_label']       = !empty($fields['button_label']) ? $fields['button_label'] : false;
-        $data['button_url']         = !empty($fields['button_url']) ? $fields['button_url'] : false;
-        $data['more_info_button']   = !empty($fields['more_info_button']) ? $fields['more_info_button'] : false;
-        $data['more_info']          = !empty($fields['more_info']) ? $fields['more_info'] : false;
-        $data['more_info_title']    = !empty($fields['more_info_title']) ? $fields['more_info_title'] : false;
-
-        $data['cardMapCss']         = ($data['more_info_button']) ? 'o-grid-12@xs o-grid-8@md' : 'o-grid-12@md';
-        $data['cardMoreInfoCss']    = ($data['more_info_button']) ? 'o-grid-12@xs o-grid-4@md' : '';
-
-        $data['uid']                = uniqid();
-        $data['id']                 = $this->ID;
-
-        $data['lang'] = [
-            'knownLabels' => [
-                'title' => __('We need your consent to continue', 'modularity'),
-                'info' => sprintf(__('This part of the website shows content from %s. By continuing, <a href="%s"> you are accepting GDPR and privacy policy</a>.', 'modularity'), '{SUPPLIER_WEBSITE}', '{SUPPLIER_POLICY}'),
-                'button' => __('I understand, continue.', 'modularity'),
-            ],
-
-            'unknownLabels' => [
-                'title' => __('We need your consent to continue', 'modularity'),
-                'info' => sprintf(__('This part of the website shows content from another website (%s). By continuing, you are accepting GDPR and privacy policy.', 'municipio'), '{SUPPLIER_WEBSITE}'),
-                'button' => __('I understand, continue.', 'modularity'),
-            ],
-        ];
-
-        return $data;
-    }
-
-    /**
-     * The function checks if the position data contains non-empty latitude and longitude values.
-     * 
-     * @param position The `hasCorrectPlaceData` function is checking if the `position` parameter is
-     * not empty and if it contains both `lat` and `lng` keys with non-empty values. This function
-     * returns a boolean value indicating whether the `position` data is in the correct format.
-     * 
-     * @return bool a boolean value, either true or false.
-     */
-    private function hasCorrectPlaceData($position): bool {
-        return !empty($position) && !empty($position['lat'] && !empty($position['lng']));
-    }
-
-   /**
-    * The function createMarkerTooltip in PHP creates a tooltip array based on marker data.
-    * 
-    * @param marker The `createMarkerTooltip` function takes a `` parameter, which is expected
-    * to be an associative array containing the following keys:
-    * 
-    * @return An array containing the title, excerpt, directions label, and directions URL of the
-    * marker.
-    */
-    private function createMarkerTooltip($marker) {
-        $tooltip = array();
-        $tooltip['title'] = $marker['title'];
-        $tooltip['excerpt'] = $marker['description'];
-        $tooltip['directions']['label'] = $marker['link_text'];
-        $tooltip['directions']['url'] = $marker['url'];
-
-        return $tooltip;
+        return $this->templateController->addData($data, $fields);  
     }
 
     /**
