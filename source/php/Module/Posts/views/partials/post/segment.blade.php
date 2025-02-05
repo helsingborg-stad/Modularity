@@ -4,7 +4,10 @@
     'context' => ['module.posts.segment'],
     'tags' => $post->termsUnlinked,
     'image' => $post->image,
-    'date' => $post->postDateFormatted,
+    'date'  => [
+        'timestamp' => $post->getArchiveDateTimestamp(),
+        'format'    => $post->getArchiveDateFormat(),
+    ],
     'content' => $post->excerptShort,
     'buttons' => [['text' => $lang['readMore'], 'href' => $post->permalink, 'color' => 'primary']],
     'containerAware' => true,
