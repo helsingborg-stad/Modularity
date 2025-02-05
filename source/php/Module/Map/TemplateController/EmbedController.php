@@ -87,6 +87,6 @@ class EmbedController implements TemplateControllerInterface
      */
     public function canHandle(array $fields): bool
     {
-        return empty($fields['map_type']) && isset($fields['map_url']);
+        return !empty($fields['map_type']) && $fields['map_type'] === 'default' && isset($fields['map_url']);
     }
 }

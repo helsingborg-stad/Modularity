@@ -117,13 +117,13 @@ class Map extends \Modularity\Module
      * @return string The template file path.
      */
     public function template() {
-        $path = __DIR__ . "/views/" . $this->template . ".blade.php";
+        $path = __DIR__ . "/views/" . $this->templateController->getTemplateName() . ".blade.php";
 
         if (file_exists($path)) {
-            return $this->template . ".blade.php";
+            return $this->templateController->getTemplateName() . ".blade.php";
         }
         
-        return 'default.blade.php';
+        return 'notFound.blade.php';
     }
 
     /**
