@@ -1,4 +1,6 @@
-@element([
+@button([
+    'style' => 'basic',
+    'pressed' => false,
     'classList' => [
         'mod-menu__children-toggle',
     ],
@@ -14,4 +16,4 @@
         ]
     ])
     @endicon
-@endelement
+@endbutton
