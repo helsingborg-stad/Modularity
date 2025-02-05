@@ -15,8 +15,6 @@ class Map extends \Modularity\Module
     public $slug = 'map';
     public $supports = array();
 
-    protected $template = 'default';
-
     private TemplateControllerInterface $templateController;
     private TemplateResolverInterface $templateResolver;
 
