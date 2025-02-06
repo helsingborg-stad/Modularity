@@ -5,6 +5,13 @@
         'title' => !$hideTitle && !empty($postTitle) ? $postTitle : null,
         'text' => $notice_text,
     ],
+    'action' => isset($include_link) && $include_link === true && is_array($link) 
+        ? [
+            'text' => isset($link['title']) ? $link['title'] : $link['url'],
+            'url' => $link['url'],
+            'position' => $link_position,
+         ] 
+        : null,
     'icon' => $icon,
     'context' => ['notice', 'module.notice']
 ])
