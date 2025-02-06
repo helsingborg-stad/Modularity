@@ -1,6 +1,6 @@
 [{
     "key": "group_575a842dd1283",
-    "title": "Notisinst\u00e4llningar",
+    "title": "Notice settings",
     "fields": [
         {
             "key": "field_575a8454ea3b4",
@@ -17,10 +17,10 @@
                 "id": ""
             },
             "choices": {
-                "success": "Framg\u00e5ng (gr\u00f6n)",
-                "info": "Info (Svart)",
-                "warning": "Varning (gul)",
-                "danger": "Fara (r\u00f6d)"
+                "success": "Success (green)",
+                "info": "Info (black)",
+                "warning": "Warning (gul)",
+                "danger": "Danger (red)"
             },
             "default_value": "success",
             "allow_null": 0,
@@ -164,4 +164,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

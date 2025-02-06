@@ -1,9 +1,11 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_575a842dd1283',
-    'title' => __('Notisinställningar', 'modularity'),
+    'title' => __('Notice settings', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_575a8454ea3b4',
@@ -20,10 +22,10 @@
                 'id' => '',
             ),
             'choices' => array(
-                'success' => __('Framgång (grön)', 'modularity'),
-                'info' => __('Info (Svart)', 'modularity'),
-                'warning' => __('Varning (gul)', 'modularity'),
-                'danger' => __('Fara (röd)', 'modularity'),
+                'success' => __('Success (green)', 'modularity'),
+                'info' => __('Info (black)', 'modularity'),
+                'warning' => __('Warning (gul)', 'modularity'),
+                'danger' => __('Danger (red)', 'modularity'),
             ),
             'default_value' => __('success', 'modularity'),
             'allow_null' => 0,
@@ -167,4 +169,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
