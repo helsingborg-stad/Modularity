@@ -220,12 +220,8 @@ class AbstractController
         }
 
         if( $this->postUsesSchemaTypeEvent($post) || $post->getPostType() == 'event') {
-            $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
-                $post->postDateFormatted = $eventOccasions[0]['start_date'];
                 $post->dateBadge = true;
-            } else {
-                $post->postDateFormatted = false;
             }
         }
 
