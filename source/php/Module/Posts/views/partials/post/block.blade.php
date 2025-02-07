@@ -8,7 +8,7 @@
         'timestamp' => $post->getArchiveDateTimestamp(),
         'format'    => $post->getArchiveDateFormat(),
     ],
-    'dateBadge' => $post->dateBadge ?: $post->getArchiveDateFormat() == 'date-badge',
+    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'image' => $post->image,
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
