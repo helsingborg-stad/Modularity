@@ -219,13 +219,10 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
+        // TODO: Should be removed in the future
         if( $this->postUsesSchemaTypeEvent($post) || $post->getPostType() == 'event') {
-            $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
             if (!empty($eventOccasions)) {
-                $post->postDateFormatted = $eventOccasions[0]['start_date'];
                 $post->dateBadge = true;
-            } else {
-                $post->postDateFormatted = false;
             }
         }
 
