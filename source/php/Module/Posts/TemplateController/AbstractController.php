@@ -173,7 +173,6 @@ class AbstractController
             'excerptShort' => false,
             'termsUnlinked' => false,
             'postDateFormatted' => false,
-            'dateBadge' => false,
             'images' => false,
             'hasPlaceholderImage' => false,
             'readingTime' => false,

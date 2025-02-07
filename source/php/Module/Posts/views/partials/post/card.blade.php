@@ -8,7 +8,7 @@
         'timestamp' => $post->getArchiveDateTimestamp(),
         'format'    => $post->getArchiveDateFormat(),
     ],
-    'dateBadge' => $post->dateBadge ?: $post->getArchiveDateFormat() == 'date-badge',
+    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'classList' => ['u-height--100'],
     'containerAware' => true,
     'hasPlaceholder' => $post->hasPlaceholderImage,
