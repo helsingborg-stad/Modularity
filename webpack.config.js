@@ -24,7 +24,6 @@ module.exports = {
 		'js/user-editable-list': './source/js/private/userEditableList.ts',
 
 		//Admin
-		'js/dynamic-acf': './source/js/admin/dynamic-acf.js',
 		'js/dynamic-map-acf': './source/js/admin/dynamic-map-acf.js',
 
 		'js/block-validation': './source/js/block-validation.ts',

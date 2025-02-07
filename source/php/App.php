@@ -269,10 +269,6 @@ class App
         ));
         wp_enqueue_script('modularity');
 
-        wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'), ['jquery']);
-        wp_enqueue_script('dynamic-acf');
-
         wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'), ['jquery']);
         wp_enqueue_script('dynamic-map-acf');

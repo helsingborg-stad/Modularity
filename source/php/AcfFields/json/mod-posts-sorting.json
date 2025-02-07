@@ -6,6 +6,7 @@
             "key": "field_571dffca1d90b",
             "label": "Sort by",
             "name": "posts_sort_by",
+            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 1,
@@ -39,6 +40,7 @@
             "key": "field_571e00241d90c",
             "label": "Order",
             "name": "posts_sort_order",
+            "aria-label": "",
             "type": "radio",
             "instructions": "",
             "required": 1,
@@ -87,4 +89,4 @@
     "show_in_rest": false,
     "modified": 1461661083
 }]
-
+
