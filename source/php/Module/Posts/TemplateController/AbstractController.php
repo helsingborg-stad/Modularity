@@ -219,13 +219,6 @@ class AbstractController
             $post->image['backgroundColor'] = 'secondary';
         }
 
-        // TODO: Should be removed in the future
-        if( $this->postUsesSchemaTypeEvent($post) || $post->getPostType() == 'event') {
-            if (!empty($eventOccasions)) {
-                $post->dateBadge = true;
-            }
-        }
-
         return $post;
     }
 
