@@ -35,6 +35,7 @@ class Menu extends \Modularity\Module
 
         $data['displayAs'] = $fields['mod_menu_display_as'] ?? 'listing';
         $data['wrapped']   = $fields['mod_menu_wrapped'] ?? false;
+        $data['ID']        = $this->ID ?? uniqid();
 
         $menuConfig = new MenuConfig(
             'mod-menu-' . $data['displayAs'],
