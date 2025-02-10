@@ -122,7 +122,6 @@ class Posts extends \Modularity\Module
         // Posts
         $data['preamble']             = $this->fields['preamble'] ?? false;
         $data['posts_fields']         = $this->fields['posts_fields'] ?? [];
-        $data['posts_date_source']    = $this->fields['posts_date_source'] ?? false;
         $data['posts_data_post_type'] = $this->fields['posts_data_post_type'] ?? false;
         $data['posts_data_source']    = $this->fields['posts_data_source'] ?? false;
         $data['postsSources']         = $this->fields['posts_data_network_sources'] ?? [];
