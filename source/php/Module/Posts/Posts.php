@@ -39,9 +39,6 @@ class Posts extends \Modularity\Module
         
         // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
-
-        // Handle date field
-        add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
         
         // Populate enabled schema types
         add_filter('Municipio/SchemaData/EnabledSchemaTypes', [$this, 'setEnabledSchemaTypes']);
@@ -261,37 +258,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Get list of date sources
-     *
-     * @param string $postType
-     * @return array
-     */
-    public function getDateSource($postType): array
-    {
-        //TODO: Remove [Start feature: Date from Archive settings]
-        if (empty($postType)) {
-            return false;
-        }
-
-        $metaKeys = [
-            'post_date'  => 'Date published',
-            'post_modified' => 'Date modified',
-        ];
-
-        $metaKeysRaw = \Municipio\Helper\Post::getPosttypeMetaKeys($postType);
-
-        if (isset($metaKeysRaw) && is_array($metaKeysRaw) && !empty($metaKeysRaw)) {
-            foreach ($metaKeysRaw as $metaKey) {
-                $metaKeys[$metaKey] = $metaKey;
-            }
-        }
-
-        return $metaKeys;
-
-        //TODO: Remove [End feature: Date from Archive settings]
-    }
-
-    /**
      * Add full width setting to frontend.
      *
      * @param [array] $viewData
@@ -330,21 +296,6 @@ class Posts extends \Modularity\Module
 
         return $args;
     }
-
-    //TODO: Remove [Start feature: Date from Archive settings]
-    public function loadDateField($field = [])
-    {
-        $postType = get_field('posts_data_post_type', $this->ID);
-
-        if (empty($postType)) {
-            return $field;
-        }
-
-        $field['choices'] = $this->getDateSource($postType);
-
-        return $field;
-    }
-    //TODO: Remove [End feature: Date from Archive settings]
 
     /**
      * @return false|string
