@@ -5,7 +5,7 @@
         {
             "key": "field_67a9b074d4fc5",
             "label": "Post type",
-            "name": "Interactive_map_post_type",
+            "name": "interactive_map_post_type",
             "aria-label": "",
             "type": "select",
             "instructions": "",
@@ -16,18 +16,41 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "place": "Place"
-            },
+            "choices": [],
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
-            "allow_custom": 0,
             "placeholder": "Select a post type",
-            "search_placeholder": "",
             "allow_null": 1,
-            "ui": 1,
-            "ajax": 0
+            "ui": 0,
+            "ajax": 0,
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
+            "key": "field_67aa0d363318b",
+            "label": "Taxonomy filtering",
+            "name": "interactive_map_taxonomy_filtering",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": [],
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
         },
         {
             "key": "field_67a6219ca1318",

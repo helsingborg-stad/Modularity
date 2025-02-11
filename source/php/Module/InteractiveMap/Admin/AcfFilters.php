@@ -8,9 +8,9 @@ class AcfFilters
 {
     private string $placeSchemaName = 'Place';
 
-    public function __construct(private WpService $wpService)
+    public function __construct(private WpService $wpService, private GetTaxonomies $taxonomiesHelper)
     {
-        $this->wpService->addFilter('acf/load_field/key=field_67a9b074d4fc5', array($this, 'filterPostTypesBasedOnSchema'));
+        $this->wpService->addFilter('acf/prepare_field/name=interactive_map_post_type', array($this, 'filterPostTypesBasedOnSchema'));
     }
 
     public function filterPostTypesBasedOnSchema($field)
