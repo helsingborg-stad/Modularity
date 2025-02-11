@@ -12939,6 +12939,10 @@ msgstr ""
 msgid "Nothing to display…"
 msgstr ""
 
+#: AcfFields/php/mod-notice.php:63
+msgid "Include link"
+msgstr "
+
 #: AcfFields/php/mod-notice.php:107
 msgid "Link position"
 msgstr ""
@@ -12949,7 +12953,7 @@ msgstr ""
 
 #: AcfFields/php/mod-notice.php:129
 msgid "Below text"
-msgstr ""
+msgstr ""q
 
 #: AcfFields/php/mod-notice.php:131
 msgid "below"
