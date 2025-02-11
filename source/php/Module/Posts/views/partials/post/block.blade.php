@@ -4,8 +4,11 @@
     'ratio' => $ratio,
     'meta' => $post->termsUnlinked,
     'secondaryMeta' => $post->readingTime,
-    'date' => $post->postDateFormatted,
-    'dateBadge' => $post->dateBadge,
+    'date'          => $showDate ? [
+        'timestamp' => $post->getArchiveDateTimestamp(),
+        'format'    => $post->getArchiveDateFormat(),
+    ] : null,
+    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'image' => $post->image,
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],

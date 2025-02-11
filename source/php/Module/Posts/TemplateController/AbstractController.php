@@ -72,6 +72,8 @@ class AbstractController
             ColumnHelper::getFirstColumnSize($data['posts_columns']) : 
             false;
         $data['imagePosition'] = $fields['image_position'] ?? false;
+        $data['showDate'] = in_array('date', $fields['posts_fields'] ?? []);
+
 
         return $data;
     }
@@ -173,7 +175,6 @@ class AbstractController
             'excerptShort' => false,
             'termsUnlinked' => false,
             'postDateFormatted' => false,
-            'dateBadge' => false,
             'images' => false,
             'hasPlaceholderImage' => false,
             'readingTime' => false,
@@ -206,7 +207,6 @@ class AbstractController
             $post->images ?? null, 
             $post->imageContract ?? null
         ) : [];
-        $post->postDateFormatted    = in_array('date', $this->data['posts_fields'] ?? []) ? $post->postDateFormatted : false;
         $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields'] ?? []) && empty($post->image) ? true : false;
         $post->commentCount         = in_array('comment_count', $this->data['posts_fields'] ?? []) ? (string) $post->getCommentCount() : false;
         $post->readingTime          = in_array('reading_time', $this->data['posts_fields'] ?? []) ? $post->readingTime : false;
@@ -217,16 +217,6 @@ class AbstractController
         if (!empty($post->image) && is_array($post->image)) {
             $post->image['removeCaption'] = true;
             $post->image['backgroundColor'] = 'secondary';
-        }
-
-        if( $this->postUsesSchemaTypeEvent($post) || $post->getPostType() == 'event') {
-            $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
-            if (!empty($eventOccasions)) {
-                $post->postDateFormatted = $eventOccasions[0]['start_date'];
-                $post->dateBadge = true;
-            } else {
-                $post->postDateFormatted = false;
-            }
         }
 
         return $post;

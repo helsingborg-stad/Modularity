@@ -435,42 +435,6 @@
             "custom_choice_button_text": "L\u00e4gg till nytt val"
         },
         {
-            "key": "field_62387e4b55b75",
-            "label": "Date source",
-            "name": "posts_date_source",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571e01e7f246c",
-                        "operator": "==",
-                        "value": "date"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "post_date": "Date published",
-                "post_modified": "Date modified"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
-        },
-        {
             "key": "field_591176fff96d6",
             "label": "Hide the title column",
             "name": "posts_hide_title_column",
@@ -642,47 +606,6 @@
             "ui_on_text": "Enabled",
             "ui_off_text": "Disabled",
             "ui": 1
-        },
-        {
-            "key": "field_5bdb0d4217e91",
-            "label": "Date format",
-            "name": "posts_date_format",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6762ecffda0e3",
-                        "operator": "==",
-                        "value": "list"
-                    },
-                    {
-                        "field": "field_571e01e7f246c",
-                        "operator": "==",
-                        "value": "date"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Default timestamp",
-                "readable": "Readable timestamp"
-            },
-            "default_value": "default",
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
         },
         {
             "key": "field_5bd8575106176",

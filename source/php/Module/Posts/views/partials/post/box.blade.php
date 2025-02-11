@@ -3,7 +3,11 @@
     'content' => $post->excerptShort,
     'link' => $post->permalink,
     'meta' => $post->termsUnlinked,
-    'date' => $post->postDateFormatted,
+    'date' => $showDate ? [
+        'timestamp' => $post->getArchiveDateTimestamp(),
+        'format'    => $post->getArchiveDateFormat(),
+    ] : null,
+    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'ratio' => $ratio,
     'image' => $post->imageContract ?? $post->image,
 ])

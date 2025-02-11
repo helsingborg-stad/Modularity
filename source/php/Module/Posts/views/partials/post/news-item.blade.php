@@ -2,7 +2,10 @@
     'heading'             => $post->postTitle,
     'content'             => $post->excerpt,
     'image'               => $post->image,
-    'date'                => $post->postDateFormatted,
+    'date'                => $showDate ? [
+        'timestamp' => $post->getArchiveDateTimestamp(),
+        'format'    => $post->getArchiveDateFormat(),
+    ] : null,
     'readTime'            => $post->readingTime,
     'link'                => $post->permalink,
     'context'             => ['module.posts.news-item'],
