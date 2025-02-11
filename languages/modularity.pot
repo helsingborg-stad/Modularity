@@ -968,6 +968,8 @@ msgid "Filter above card"
 msgstr ""
 
 #: AcfFields/php/mod-fileslist.php:98
+#: AcfFields/php/mod-notice.php:75
+#: AcfFields/php/mod-notice.php:152
 #: AcfFields/php/mod-wpwidget.php:85
 #: AcfFields/php/mod-wpwidget.php:117
 #: AcfFields/php/mod-wpwidget.php:149
@@ -1216,6 +1218,7 @@ msgstr ""
 #: AcfFields/php/mod-inlaylist.php:166
 #: AcfFields/php/mod-logogrid.php:74
 #: AcfFields/php/mod-manual-input.php:512
+#: AcfFields/php/mod-notice.php:83
 #: AcfFields/php/mod-slider.php:275
 #: AcfFields/php/mod-slider.php:666
 msgid "Link"
@@ -10289,28 +10292,24 @@ msgstr ""
 msgid "Typ"
 msgstr ""
 
-#: AcfFields/php/mod-notice.php:24
+#: AcfFields/php/mod-notice.php:25
 msgid "Success (green)"
 msgstr ""
 
-#: AcfFields/php/mod-notice.php:25
+#: AcfFields/php/mod-notice.php:26
 msgid "Info (black)"
 msgstr ""
 
-#: AcfFields/php/mod-notice.php:26
-msgid "Warning (gul)"
+#: AcfFields/php/mod-notice.php:27
+msgid "Warning (yellow)"
 msgstr ""
 
-#: AcfFields/php/mod-notice.php:27
+#: AcfFields/php/mod-notice.php:28
 msgid "Danger (red)"
 msgstr ""
 
-#: AcfFields/php/mod-notice.php:29
+#: AcfFields/php/mod-notice.php:30
 msgid "success"
-msgstr ""
-
-#: AcfFields/php/mod-notice.php:39
-msgid "Notis"
 msgstr ""
 
 #: AcfFields/php/mod-posts-displau.php:8
@@ -12509,6 +12508,7 @@ msgstr ""
 msgid "Search For Modal Content"
 msgstr ""
 
+#: AcfFields/php/mod-notice.php:39
 #: Module/Notice/Notice.php:15
 #: Module/Notice/Notice.php:16
 msgid "Notice"
@@ -12937,4 +12937,48 @@ msgstr ""
 
 #: Module/Posts/views/expandable-list.blade.php:107
 msgid "Nothing to display…"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:63
+msgid "Include link"
+msgstr "
+
+#: AcfFields/php/mod-notice.php:107
+msgid "Link position"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:128
+msgid "Aside text"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:129
+msgid "Below text"
+msgstr ""q
+
+#: AcfFields/php/mod-notice.php:131
+msgid "below"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:140
+msgid "Dismissible"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:160
+msgid "Dismissal time"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:181
+msgid "Dismissed until user restarts browser"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:182
+msgid "Dismissed \"forever\""
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:183
+msgid "Dismissed until page reload"
+msgstr ""
+
+#: AcfFields/php/mod-notice.php:185
+msgid "session"
 msgstr ""
