@@ -91,8 +91,8 @@ class ExpandableListTemplate extends AbstractController
     public function prepareExpandableList(): ?array
     {
         $accordion = [];
-        
-        $this->data['posts'] = $this->preparePosts($this->data['posts']);
+
+        $this->data['posts'] = $this->preparePosts($this->module);
         $columnValues        = $this->getColumnValues();
 
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
