@@ -12,6 +12,7 @@
             'position' => $link_position,
          ] 
         : null,
+    'dismissable' => isset($dismissible) && $dismissible ? $dismissal_time : false,
     'icon' => $icon,
     'context' => ['notice', 'module.notice']
 ])
