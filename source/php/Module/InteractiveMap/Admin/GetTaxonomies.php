@@ -13,7 +13,7 @@ class GetTaxonomies
 
     }
 
-    public function getTaxonomies()
+    public function getTaxonomies(): array
     {
         static $taxonomies;
         if ($taxonomies) {
@@ -30,7 +30,7 @@ class GetTaxonomies
         return $taxonomies;
     }
 
-    private function getStructuredTaxonomies($postType)
+    private function getStructuredTaxonomies($postType): array
     {
         $taxonomies = $this->wpService->getObjectTaxonomies($postType, 'objects');
 
