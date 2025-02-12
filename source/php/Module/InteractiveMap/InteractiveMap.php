@@ -23,6 +23,7 @@ class InteractiveMap extends \Modularity\Module
     private ?OriginalAcfService $acfService;
     private ?InteractiveMapConfigInterface $config = null;
     private GetTaxonomies $taxonomiesHelper;
+    private array $lang;
 
     public function init()
     {
@@ -32,9 +33,11 @@ class InteractiveMap extends \Modularity\Module
         $this->nameSingular = $this->wpService->__('Interactive map', 'modularity');
         $this->namePlural = $this->wpService->__('Interactive maps', 'modularity');
         $this->description = $this->wpService->__('Outputs an interactive map', 'modularity');
+        
+        $this->lang = $this->getLang();
 
         $this->taxonomiesHelper = new GetTaxonomies($this->wpService);
-        new AcfFilters($this->wpService, $this->taxonomiesHelper);
+        new AcfFilters($this->wpService, $this->taxonomiesHelper, $this->lang);
     }
 
     public function data(): array
@@ -56,6 +59,13 @@ class InteractiveMap extends \Modularity\Module
         );
     }
 
+    private function getLang(): array
+    {
+        return [
+            'no-filter' => $this->wpService->__('No taxonomy filter', 'modularity'),
+        ];
+    }
+
     public function adminEnqueue() {
         $this->wpService->wpRegisterScript(
             'mod-interactive-map-admin',
@@ -67,9 +77,7 @@ class InteractiveMap extends \Modularity\Module
             'mod-interactive-map-admin',
             'interactiveMapData',
             [
-                'translations' => [
-                    'no-filter' => $this->wpService->__('No taxonomy filter', 'modularity'),
-                ],
+                'translations' => $this->lang,
                 'taxonomies' => $this->taxonomiesHelper->getTaxonomies()
             ]
         );

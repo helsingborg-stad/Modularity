@@ -1,8 +1,41 @@
+import BlockTaxonomyFiltering from './blockTaxonomyFiltering';
 import ModuleTaxonomyFiltering from './moduleTaxonomyFiltering';
 import GetBlockData from './getBlockData';
+import GetModuleData from './getModuleData';
+import internal from 'stream';
 let initializedBlocks = {};
 
-if (wp && acf && interactiveMapData && interactiveMapData.taxonomies && interactiveMapData.translations) {
+if (pagenow === 'page' && wp && wp.blocks) {
+    initializeBlock();
+} else if (pagenow === 'mod-interactivemap') {
+    initializeModule();
+}
+
+console.log(pagenow);
+function initializeModule()
+{
+    if (checkIfModuleVariableExists()) {
+        return;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        new ModuleTaxonomyFiltering(
+            new GetModuleData(),
+            interactiveMapData.taxonomies,
+            interactiveMapData.translations
+        )
+    });
+}
+
+function initializeBlock() 
+{
+    if (
+        !acf ||
+        checkIfModuleVariableExists()
+    ) {
+        return;
+    }
+    
     const editor = wp.data.select('core/block-editor');
     wp.data.subscribe(() => {
         const interactivemaps = editor.getBlocksByName('acf/interactivemap')
@@ -21,7 +54,7 @@ if (wp && acf && interactiveMapData && interactiveMapData.taxonomies && interact
                         initializedBlocks[blockId].getTaxonomyFieldSelectElement()
                     ) {
                         clearInterval(intervalId);
-                        new ModuleTaxonomyFiltering(
+                        new BlockTaxonomyFiltering(
                             initializedBlocks[blockId],
                             interactiveMapData.taxonomies,
                             interactiveMapData.translations
@@ -31,4 +64,9 @@ if (wp && acf && interactiveMapData && interactiveMapData.taxonomies && interact
             });
         }
     });
+}
+
+function checkIfModuleVariableExists()
+{
+    return !interactiveMapData || !interactiveMapData.taxonomies || !interactiveMapData.translations;
 }

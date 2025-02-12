@@ -1,8 +1,4 @@
-export interface GetBlockDataInterface {
-    getBlockId(): string;
-    getBlock(): any;
-    getField(fieldName: string): any;
-    getBlockElement(): null|HTMLElement;
+export interface GetFieldsInterface {
     getPostTypeFieldKey(): string;
     getPostTypeFieldElement(): null|HTMLElement;
     getPostTypeFieldSelectElement(): null|HTMLSelectElement;

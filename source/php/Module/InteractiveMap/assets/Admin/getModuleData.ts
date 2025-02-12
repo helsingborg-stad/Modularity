@@ -1,53 +1,24 @@
-import { GetBlockDataInterface } from "./interface/getBlocksData";
 import { GetFieldsInterface } from "./interface/getFields";
 
-class GetBlockData implements GetBlockDataInterface, GetFieldsInterface {
-    private block: any = null;
-    private blockElement: null|HTMLElement = null;
+class GetModuleData implements GetFieldsInterface
+{
     private postTypeFieldElement: null|HTMLElement = null;
     private postTypeFieldSelectElement: null|HTMLSelectElement = null;
     private taxonomyFilterFieldElement: null|HTMLElement = null;
     private taxonomyFilterFieldSelectElement: null|HTMLSelectElement = null;
     private taxonomyFilterFieldKey: string = 'interactive_map_taxonomy_filtering';
     private postTypeFieldKey: string = 'interactive_map_post_type';
-
     constructor(
-        private blockId: string,
-        private editor: any
     ) {
     }
 
-    public getBlockId(): string {
-        return this.blockId;
-    }
-
-    public getBlock(): any {
-        if (!this.block) {
-            this.block = this.editor.getBlock(this.blockId);
-        }
-
-        return this.block;
-    }
-
-    public getField(fieldName: string) {
-        return this.getBlock()?.attributes?.data?.[fieldName] ?? null;
-    }
-
-    public getBlockElement(): null|HTMLElement {
-        if (!this.blockElement) {
-            this.blockElement = document.querySelector(`[data-block="${this.blockId}"]`);
-        }
-
-        return this.blockElement;
-    }
-
-    public getTaxonomyFieldKey(): string {
-        return this.taxonomyFilterFieldKey;
+    public getPostTypeFieldKey(): string {
+        return this.postTypeFieldKey;
     }
 
     public getPostTypeFieldElement(): null|HTMLElement {
         if (!this.postTypeFieldElement) {
-            this.postTypeFieldElement = this.getBlockElement()?.querySelector('[data-name="interactive_map_post_type"]') ?? null;
+            this.postTypeFieldElement = document.querySelector('[data-name="interactive_map_post_type"]') ?? null;
         }
 
         return this.postTypeFieldElement;
@@ -61,13 +32,13 @@ class GetBlockData implements GetBlockDataInterface, GetFieldsInterface {
         return this.postTypeFieldSelectElement;
     }
 
-    public getPostTypeFieldKey(): string {
-        return this.postTypeFieldKey;
+    public getTaxonomyFieldKey(): string {
+        return this.taxonomyFilterFieldKey;
     }
 
     public getTaxonomyFieldElement(): null|HTMLElement {
         if (!this.taxonomyFilterFieldElement) {
-            this.taxonomyFilterFieldElement = this.getBlockElement()?.querySelector('[data-name="interactive_map_taxonomy_filtering"]') ?? null;
+            this.taxonomyFilterFieldElement = document.querySelector('[data-name="interactive_map_taxonomy_filtering"]') ?? null;
         }
 
         return this.taxonomyFilterFieldElement;
@@ -82,4 +53,4 @@ class GetBlockData implements GetBlockDataInterface, GetFieldsInterface {
     }
 }
 
-export default GetBlockData;
+export default GetModuleData;
