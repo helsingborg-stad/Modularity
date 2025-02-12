@@ -10,7 +10,7 @@ class AcfFilters
 
     public function __construct(private WpService $wpService, private GetTaxonomies $taxonomiesHelper)
     {
-        $this->wpService->addFilter('acf/prepare_field/name=interactive_map_post_type', array($this, 'filterPostTypesBasedOnSchema'));
+        $this->wpService->addFilter('acf/load_field/name=interactive_map_post_type', array($this, 'filterPostTypesBasedOnSchema'));
     }
 
     public function filterPostTypesBasedOnSchema($field)
