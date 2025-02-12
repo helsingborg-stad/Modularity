@@ -20,7 +20,6 @@ class InteractiveMap extends \Modularity\Module
         'align' => ['full']
     );
     private ?OriginalWpService $wpService;
-    private ?OriginalAcfService $acfService;
     private ?InteractiveMapConfigInterface $config = null;
     private GetTaxonomies $taxonomiesHelper;
     private array $lang;
@@ -28,7 +27,6 @@ class InteractiveMap extends \Modularity\Module
     public function init()
     {
         $this->wpService = WpService::get();
-        $this->acfService = AcfService::get();
 
         $this->nameSingular = $this->wpService->__('Interactive map', 'modularity');
         $this->namePlural = $this->wpService->__('Interactive maps', 'modularity');
@@ -53,9 +51,12 @@ class InteractiveMap extends \Modularity\Module
     {
         $googleMapsAcfLocation = !empty($settings['interactive_map_start_position']) && is_array($settings['interactive_start_position']) ? $settings['interactive_map_start_position'] : [];
         $postType = !empty($settings['interactive_map_post_type']) ? $settings['interactive_map_post_type'] : null;
+        $taxonomyFiltering = !empty($settings['interactive_map_taxonomy_filtering']) ? $settings['interactive_map_taxonomy_filtering'] : null;
 
         return new InteractiveMapConfig(
-            new GoogleMapsAcfLocation($googleMapsAcfLocation)
+            new GoogleMapsAcfLocation($googleMapsAcfLocation),
+            $postType,
+            $taxonomyFiltering
         );
     }
 
