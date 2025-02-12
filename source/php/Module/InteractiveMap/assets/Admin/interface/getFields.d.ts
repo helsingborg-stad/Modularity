@@ -5,4 +5,5 @@ export interface GetFieldsInterface {
     getTaxonomyFieldKey(): string;
     getTaxonomyFieldElement(): null|HTMLElement;
     getTaxonomyFieldSelectElement(): null|HTMLSelectElement;
+    getField(fieldName: string): any;
 }

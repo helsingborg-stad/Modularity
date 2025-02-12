@@ -2,7 +2,6 @@ import BlockTaxonomyFiltering from './blockTaxonomyFiltering';
 import ModuleTaxonomyFiltering from './moduleTaxonomyFiltering';
 import GetBlockData from './getBlockData';
 import GetModuleData from './getModuleData';
-import internal from 'stream';
 let initializedBlocks = {};
 
 if (pagenow === 'page' && wp && wp.blocks) {
@@ -11,7 +10,6 @@ if (pagenow === 'page' && wp && wp.blocks) {
     initializeModule();
 }
 
-console.log(pagenow);
 function initializeModule()
 {
     if (checkIfModuleVariableExists()) {
@@ -20,7 +18,9 @@ function initializeModule()
 
     document.addEventListener('DOMContentLoaded', () => {
         new ModuleTaxonomyFiltering(
-            new GetModuleData(),
+            new GetModuleData(
+                interactiveMapData.fields
+            ),
             interactiveMapData.taxonomies,
             interactiveMapData.translations
         )
@@ -68,5 +68,5 @@ function initializeBlock()
 
 function checkIfModuleVariableExists()
 {
-    return !interactiveMapData || !interactiveMapData.taxonomies || !interactiveMapData.translations;
+    return !interactiveMapData || !interactiveMapData.taxonomies || !interactiveMapData.translations || !interactiveMapData.fields;
 }

@@ -67,6 +67,12 @@ class InteractiveMap extends \Modularity\Module
     }
 
     public function adminEnqueue() {
+        $currentPostType = $this->wpService->getPostType();
+        
+        if ($currentPostType === 'mod-' . $this->slug) {
+            $fields = $this->getFields();
+        }
+
         $this->wpService->wpRegisterScript(
             'mod-interactive-map-admin',
             MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-interactive-map-admin.js'),
@@ -78,7 +84,8 @@ class InteractiveMap extends \Modularity\Module
             'interactiveMapData',
             [
                 'translations' => $this->lang,
-                'taxonomies' => $this->taxonomiesHelper->getTaxonomies()
+                'taxonomies'   => $this->taxonomiesHelper->getTaxonomies(),
+                'fields'       => $fields ?? []
             ]
         );
 

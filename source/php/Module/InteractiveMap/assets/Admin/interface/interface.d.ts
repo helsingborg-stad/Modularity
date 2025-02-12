@@ -9,3 +9,7 @@ export interface Taxonomies {
 export interface Translations {
     [key: string]: string;
 }
+
+export interface fields {
+    [key: string]: any;
+}

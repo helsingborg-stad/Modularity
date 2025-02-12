@@ -23,22 +23,22 @@ class GetBlockData implements GetBlockDataInterface, GetFieldsInterface {
 
     public getBlock(): any {
         if (!this.block) {
-            this.block = this.editor.getBlock(this.blockId);
+            this.block = this.editor.getBlock(this.getBlockId());
         }
 
         return this.block;
     }
 
-    public getField(fieldName: string) {
-        return this.getBlock()?.attributes?.data?.[fieldName] ?? null;
-    }
-
     public getBlockElement(): null|HTMLElement {
         if (!this.blockElement) {
-            this.blockElement = document.querySelector(`[data-block="${this.blockId}"]`);
+            this.blockElement = document.querySelector(`[data-block="${this.getBlockId()}"]`);
         }
 
         return this.blockElement;
+    }
+    
+    public getField(fieldName: string) {
+        return this.getBlock()?.attributes?.data?.[fieldName] ?? null;
     }
 
     public getTaxonomyFieldKey(): string {

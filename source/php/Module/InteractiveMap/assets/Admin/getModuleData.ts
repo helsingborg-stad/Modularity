@@ -1,4 +1,5 @@
 import { GetFieldsInterface } from "./interface/getFields";
+import { fields } from "./interface/interface";
 
 class GetModuleData implements GetFieldsInterface
 {
@@ -9,6 +10,7 @@ class GetModuleData implements GetFieldsInterface
     private taxonomyFilterFieldKey: string = 'interactive_map_taxonomy_filtering';
     private postTypeFieldKey: string = 'interactive_map_post_type';
     constructor(
+        private fields: fields
     ) {
     }
 
@@ -50,6 +52,10 @@ class GetModuleData implements GetFieldsInterface
         }
 
         return this.taxonomyFilterFieldSelectElement;
+    }
+
+    public getField(fieldName: string) {
+        return this.fields[fieldName] ?? null;
     }
 }
 
