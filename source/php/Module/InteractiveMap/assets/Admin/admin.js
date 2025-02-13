@@ -8,6 +8,30 @@ if (pagenow === 'page' && wp && wp.blocks) {
     initializeBlock();
 } else if (pagenow === 'mod-interactivemap') {
     initializeModule();
+    test();
+}
+
+function test() {
+    document.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            console.log("runs")
+            const img = document.querySelector('[data-name="interactive_map_overlay_image"] img');
+            const map = document.querySelector('[data-name="interactive_map_start_position"] .acf-input .canvas');
+            if (img && map) {
+                console.log("append")
+                const clone = img.cloneNode(true);
+                clone.id = '';
+                clone.style.transform = 'translate(-50%, 50%)';
+                clone.style.left = '50%';
+                clone.style.right = '50%';
+                clone.style.zIndex = '9999';
+                clone.style.position = 'absolute';
+                clone.style.top = '0';
+
+                map.appendChild(clone);
+            }
+        }, 2000);
+    });
 }
 
 function initializeModule()
