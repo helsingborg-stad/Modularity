@@ -49,7 +49,7 @@ class InteractiveMap extends \Modularity\Module
 
     private function setupConfig(array $settings): InteractiveMapConfigInterface
     {
-        $googleMapsAcfLocation = !empty($settings['interactive_map_start_position']) && is_array($settings['interactive_start_position']) ? $settings['interactive_map_start_position'] : [];
+        $googleMapsAcfLocation = !empty($settings['interactive_map_start_position']) && is_array($settings['interactive_map_start_position']) ? $settings['interactive_map_start_position'] : [];
         $postType = !empty($settings['interactive_map_post_type']) ? $settings['interactive_map_post_type'] : null;
         $taxonomyFiltering = !empty($settings['interactive_map_taxonomy_filtering']) ? $settings['interactive_map_taxonomy_filtering'] : null;
 
