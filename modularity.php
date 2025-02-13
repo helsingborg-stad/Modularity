@@ -86,6 +86,7 @@ add_action('plugins_loaded', function () {
         'mod-audio'                 => 'group_66d0837591221',
         'mod-search'                => 'group_66dffe0be28c1',
         'mod-markdown'              => 'group_67506ac21d132',
+        'mod-interactive-map'       => 'group_67a6218f4b8a6',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
