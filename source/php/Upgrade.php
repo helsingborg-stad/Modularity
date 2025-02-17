@@ -22,6 +22,10 @@ class Upgrade
 
     public function addAdminNotice() 
     {
+        if (!is_super_admin()) {
+            return;
+        }
+
         $currentDbVersion = get_option($this->dbVersionKey);
         if (empty($currentDbVersion) || $currentDbVersion < $this->dbVersion) {
             echo sprintf(
