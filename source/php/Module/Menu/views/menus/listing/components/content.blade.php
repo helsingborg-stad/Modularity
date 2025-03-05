@@ -8,7 +8,7 @@
 ]) 
 @foreach ($menu['items'] as $index => $menuItem)
     <div 
-        class="mod-menu__item {{implode(' ', $menuItem['classList'] ?? [])}}" 
+        class="mod-menu__item {{implode(' ', $menuItem['classList'] ?? [])}}@if (!$mobileCollapse) is-expanded @endif" 
         @if ($mobileCollapse)
         data-js-toggle-item="mod-menu-item-{{$ID}}-{{$index}}" data-js-toggle-class="is-expanded"
         @endif

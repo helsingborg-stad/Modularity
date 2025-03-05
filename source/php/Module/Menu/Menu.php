@@ -49,8 +49,6 @@ class Menu extends \Modularity\Module
             $wpService
         );
 
-        $data['containerAware'] = $data['mobileCollapse'];
-
         $menuDirector = new MenuDirector();
         $menuDirector->setBuilder($menuBuilder);
         $menuDirector->buildStandardMenu();

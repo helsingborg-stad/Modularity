@@ -2,8 +2,7 @@
     'items' => $menuItem['children'],
     'compressed' => true,
     'classList' => [
-        'mod-menu__children',
-        /* !$mobileCollapse ? 'is-expanded' : null, */ 
+        'mod-menu__children'
     ],
     'attributeList' => $mobileCollapse 
         ? [
