@@ -1,13 +1,15 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
-    'title' => __('Menymodul', 'modularity'),
+    'title' => __('Menu Module', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_66c59ae797a04',
-            'label' => __('Visa meny som', 'modularity'),
+            'label' => __('Display Menu As', 'modularity'),
             'name' => 'mod_menu_display_as',
             'aria-label' => '',
             'type' => 'image_select',
@@ -48,7 +50,7 @@
         ),
         2 => array(
             'key' => 'field_66c34c655680e',
-            'label' => __('Välj meny', 'modularity'),
+            'label' => __('Select a Menu', 'modularity'),
             'name' => 'mod_menu_menu',
             'aria-label' => '',
             'type' => 'select',
@@ -60,11 +62,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(
-                3 => __('Header-meny', 'modularity'),
-                5 => __('Panelmeny', 'modularity'),
-                53 => __('Startpuffar', 'modularity'),
-            ),
+            'choices' => array(),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -77,11 +75,11 @@
         ),
         3 => array(
             'key' => 'field_6734a0413d66b',
-            'label' => __('Bakgrund', 'modularity'),
+            'label' => __('Background', 'modularity'),
             'name' => 'mod_menu_wrapped',
             'aria-label' => '',
             'type' => 'true_false',
-            'instructions' => __('Bestämmer ifall menyn ska ha en bakgrund', 'modularity'),
+            'instructions' => __('Decides if the menu is wrapped in a container.', 'modularity'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
@@ -126,7 +124,7 @@ If it isn\'t a whole number it will be calculated automatically using a better s
         ),
         5 => array(
             'key' => 'field_66c5c3e6b7b5d',
-            'label' => __('Antal objekt per rad', 'modularity'),
+            'label' => __('Items Per Column', 'modularity'),
             'name' => 'mod_menu_columns',
             'aria-label' => '',
             'type' => 'select',
@@ -217,4 +215,5 @@ If it isn\'t a whole number it will be calculated automatically using a better s
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

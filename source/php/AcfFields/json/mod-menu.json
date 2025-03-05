@@ -1,10 +1,10 @@
 [{
     "key": "group_66c34c64b8d10",
-    "title": "Menymodul",
+    "title": "Menu Module",
     "fields": [
         {
             "key": "field_66c59ae797a04",
-            "label": "Visa meny som",
+            "label": "Display Menu As",
             "name": "mod_menu_display_as",
             "aria-label": "",
             "type": "image_select",
@@ -45,7 +45,7 @@
         },
         {
             "key": "field_66c34c655680e",
-            "label": "V\u00e4lj meny",
+            "label": "Select a Menu",
             "name": "mod_menu_menu",
             "aria-label": "",
             "type": "select",
@@ -57,11 +57,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "3": "Header-meny",
-                "5": "Panelmeny",
-                "53": "Startpuffar"
-            },
+            "choices": {},
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -74,11 +70,11 @@
         },
         {
             "key": "field_6734a0413d66b",
-            "label": "Bakgrund",
+            "label": "Background",
             "name": "mod_menu_wrapped",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Best\u00e4mmer ifall menyn ska ha en bakgrund",
+            "instructions": "Decides if the menu is wrapped in a container.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -120,7 +116,7 @@
         },
         {
             "key": "field_66c5c3e6b7b5d",
-            "label": "Antal objekt per rad",
+            "label": "Items Per Column",
             "name": "mod_menu_columns",
             "aria-label": "",
             "type": "select",
@@ -211,4 +207,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Modularity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-05T16:53:25+00:00\n"
-"PO-Revision-Date: 2025-03-05 17:55+0100\n"
+"POT-Creation-Date: 2025-03-05T17:03:16+00:00\n"
+"PO-Revision-Date: 2025-03-05 18:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -647,26 +647,26 @@ msgid "Columns"
 msgstr "Kolumner"
 
 #: AcfFields/php/mod-contacts.php:25 AcfFields/php/mod-index.php:327
-#: AcfFields/php/mod-manual-input.php:270 AcfFields/php/mod-menu.php:152
+#: AcfFields/php/mod-manual-input.php:270 AcfFields/php/mod-menu.php:148
 #: AcfFields/php/mod-posts-displau.php:379
 msgid "1"
 msgstr "1"
 
 #: AcfFields/php/mod-contacts.php:26 AcfFields/php/mod-index.php:328
-#: AcfFields/php/mod-manual-input.php:271 AcfFields/php/mod-menu.php:153
+#: AcfFields/php/mod-manual-input.php:271 AcfFields/php/mod-menu.php:149
 #: AcfFields/php/mod-posts-displau.php:380
 msgid "2"
 msgstr "2"
 
 #: AcfFields/php/mod-contacts.php:27 AcfFields/php/mod-curator.php:75
 #: AcfFields/php/mod-index.php:329 AcfFields/php/mod-manual-input.php:272
-#: AcfFields/php/mod-menu.php:154 AcfFields/php/mod-posts-displau.php:381
+#: AcfFields/php/mod-menu.php:150 AcfFields/php/mod-posts-displau.php:381
 msgid "3"
 msgstr "3"
 
 #: AcfFields/php/mod-contacts.php:28 AcfFields/php/mod-curator.php:76
 #: AcfFields/php/mod-index.php:330 AcfFields/php/mod-manual-input.php:273
-#: AcfFields/php/mod-menu.php:155 AcfFields/php/mod-posts-displau.php:382
+#: AcfFields/php/mod-menu.php:151 AcfFields/php/mod-posts-displau.php:382
 msgid "4"
 msgstr "4"
 
@@ -1638,52 +1638,49 @@ msgstr ""
 
 #: AcfFields/php/mod-menu.php:8
 #, fuzzy
-#| msgid "Menu Module"
-msgid "Menymodul"
-msgstr "Menymodul"
+#| msgid "Menu order"
+msgid "Menu Module"
+msgstr "Menyordning"
 
 #: AcfFields/php/mod-menu.php:12
-msgid "Visa meny som"
-msgstr ""
+msgid "Display Menu As"
+msgstr "Visa meny som"
 
 #: AcfFields/php/mod-menu.php:33
 msgid "Display as conditional target"
 msgstr ""
 
 #: AcfFields/php/mod-menu.php:53
-msgid "Välj meny"
-msgstr ""
+msgid "Select a Menu"
+msgstr "Välj meny"
 
-#: AcfFields/php/mod-menu.php:66
-msgid "Header-meny"
-msgstr ""
-
-#: AcfFields/php/mod-menu.php:67
-msgid "Panelmeny"
-msgstr ""
-
-#: AcfFields/php/mod-menu.php:68
-msgid "Startpuffar"
-msgstr ""
+#: AcfFields/php/mod-menu.php:78
+msgid "Background"
+msgstr "Bakgrund"
 
 #: AcfFields/php/mod-menu.php:82
-msgid "Bakgrund"
-msgstr ""
+msgid "Decides if the menu is wrapped in a container."
+msgstr "Bestämmer ifall menyn ska ha en bakgrund"
 
-#: AcfFields/php/mod-menu.php:86
-msgid "Bestämmer ifall menyn ska ha en bakgrund"
-msgstr ""
-
-#: AcfFields/php/mod-menu.php:102
+#: AcfFields/php/mod-menu.php:98
 msgid "Background Notice"
 msgstr "Bakgrundsnotis"
 
-#: AcfFields/php/mod-menu.php:122
+#: AcfFields/php/mod-menu.php:118
+#, fuzzy
+#| msgid ""
+#| "While using a background, the \"Item Per Column\" works different. \r\n"
+#| "\r\n"
+#| "Amount of parents / columns needs to be a whole number for the background "
+#| "to work. \r\n"
+#| "If it isn't a whole number it will be calculated automatically using a "
+#| "better suited amount of columns using an amount as close to your choice "
+#| "as possible."
 msgid ""
-"While using a background, the \"Item Per Column\" works different. \r\n"
-"\r\n"
+"While using a background, the \"Item Per Column\" works different. \n"
+"\n"
 "Amount of parents / columns needs to be a whole number for the background to "
-"work. \r\n"
+"work. \n"
 "If it isn't a whole number it will be calculated automatically using a "
 "better suited amount of columns using an amount as close to your choice as "
 "possible."
@@ -1696,15 +1693,15 @@ msgstr ""
 "Ifall det inte är ett helt nummer kommer antalet kolumner räknas ut "
 "automatiskt för att vara så nära ditt val av antal kolumner som möjligt."
 
-#: AcfFields/php/mod-menu.php:131
-msgid "Antal objekt per rad"
-msgstr ""
+#: AcfFields/php/mod-menu.php:127
+msgid "Items Per Column"
+msgstr "Antal objekt per rad"
 
-#: AcfFields/php/mod-menu.php:169
+#: AcfFields/php/mod-menu.php:165
 msgid "Collapse menu on mobile"
 msgstr "Minimera menygrupper på mobiltelefon"
 
-#: AcfFields/php/mod-menu.php:173
+#: AcfFields/php/mod-menu.php:169
 msgid ""
 "Will collapse menu groups on mobile to save vertical space. User has ability "
 "to expand individual menu groups with a button click."
@@ -25837,20 +25834,10 @@ msgstr ""
 msgid "Nothing to display…"
 msgstr "Inget att visa…"
 
-#~ msgid "Display Menu As"
-#~ msgstr "Visa meny som"
-
-#~ msgid "Select a Menu"
-#~ msgstr "Välj meny"
-
-#~ msgid "Background"
-#~ msgstr "Bakgrund"
-
-#~ msgid "Decides if the menu is wrapped in a container."
-#~ msgstr "Bestämmer ifall menyn ska ha en bakgrund"
-
-#~ msgid "Items Per Column"
-#~ msgstr "Antal objekt per rad"
+#, fuzzy
+#~| msgid "Menu Module"
+#~ msgid "Menymodul"
+#~ msgstr "Menymodul"
 
 #~ msgid "Typ"
 #~ msgstr "Typ"
