@@ -110,7 +110,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "While using a background, the \"Item Per Column\" works different. \r\n\r\nAmount of parents \/ columns needs to be a whole number for the background to work. \r\nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
+            "message": "While using a background, the \"Item Per Column\" works different. \n\nAmount of parents \/ columns needs to be a whole number for the background to work. \nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
