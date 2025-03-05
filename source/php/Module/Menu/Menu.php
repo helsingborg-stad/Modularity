@@ -33,9 +33,10 @@ class Menu extends \Modularity\Module
         $acfService = \Modularity\Helper\AcfService::get();
         $wpService  = \Modularity\Helper\WpService::get();
 
-        $data['displayAs'] = $fields['mod_menu_display_as'] ?? 'listing';
-        $data['wrapped']   = $fields['mod_menu_wrapped'] ?? false;
-        $data['ID']        = $this->ID ?? uniqid();
+        $data['displayAs']      = $fields['mod_menu_display_as'] ?? 'listing';
+        $data['wrapped']        = $fields['mod_menu_wrapped'] ?? false;
+        $data['mobileCollapse'] = $fields['mod_menu_mobile_collapse'] ?? true;
+        $data['ID']             = $this->ID ?? uniqid();
 
         $menuConfig = new MenuConfig(
             'mod-menu-' . $data['displayAs'],
@@ -47,6 +48,8 @@ class Menu extends \Modularity\Module
             $acfService, 
             $wpService
         );
+
+        $data['containerAware'] = $data['mobileCollapse'];
 
         $menuDirector = new MenuDirector();
         $menuDirector->setBuilder($menuBuilder);

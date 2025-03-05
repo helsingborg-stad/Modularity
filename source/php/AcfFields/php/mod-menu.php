@@ -1,15 +1,13 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
-    'title' => __('Menu Module', 'modularity'),
+    'title' => __('Menymodul', 'modularity'),
     'fields' => array(
         0 => array(
             'key' => 'field_66c59ae797a04',
-            'label' => __('Display Menu As', 'modularity'),
+            'label' => __('Visa meny som', 'modularity'),
             'name' => 'mod_menu_display_as',
             'aria-label' => '',
             'type' => 'image_select',
@@ -50,7 +48,7 @@ if (function_exists('acf_add_local_field_group')) {
         ),
         2 => array(
             'key' => 'field_66c34c655680e',
-            'label' => __('Select a Menu', 'modularity'),
+            'label' => __('Välj meny', 'modularity'),
             'name' => 'mod_menu_menu',
             'aria-label' => '',
             'type' => 'select',
@@ -62,7 +60,11 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(),
+            'choices' => array(
+                3 => __('Header-meny', 'modularity'),
+                5 => __('Panelmeny', 'modularity'),
+                53 => __('Startpuffar', 'modularity'),
+            ),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -75,11 +77,11 @@ if (function_exists('acf_add_local_field_group')) {
         ),
         3 => array(
             'key' => 'field_6734a0413d66b',
-            'label' => __('Background', 'modularity'),
+            'label' => __('Bakgrund', 'modularity'),
             'name' => 'mod_menu_wrapped',
             'aria-label' => '',
             'type' => 'true_false',
-            'instructions' => __('Decides if the menu is wrapped in a container.', 'modularity'),
+            'instructions' => __('Bestämmer ifall menyn ska ha en bakgrund', 'modularity'),
             'required' => 0,
             'conditional_logic' => 0,
             'wrapper' => array(
@@ -124,7 +126,7 @@ If it isn\'t a whole number it will be calculated automatically using a better s
         ),
         5 => array(
             'key' => 'field_66c5c3e6b7b5d',
-            'label' => __('Items Per Column', 'modularity'),
+            'label' => __('Antal objekt per rad', 'modularity'),
             'name' => 'mod_menu_columns',
             'aria-label' => '',
             'type' => 'select',
@@ -160,6 +162,27 @@ If it isn\'t a whole number it will be calculated automatically using a better s
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
+        6 => array(
+            'key' => 'field_67c846a5654c1',
+            'label' => __('Collapse menu on mobile', 'modularity'),
+            'name' => 'mod_menu_mobile_collapse',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Will collapse menu groups on mobile to save vertical space. User has ability to expand individual menu groups with a button click.', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 1,
+            'allow_in_bindings' => 1,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
     ),
     'location' => array(
         0 => array(
@@ -194,5 +217,4 @@ If it isn\'t a whole number it will be calculated automatically using a better s
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}

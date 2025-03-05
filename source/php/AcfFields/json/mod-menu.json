@@ -1,10 +1,10 @@
 [{
     "key": "group_66c34c64b8d10",
-    "title": "Menu Module",
+    "title": "Menymodul",
     "fields": [
         {
             "key": "field_66c59ae797a04",
-            "label": "Display Menu As",
+            "label": "Visa meny som",
             "name": "mod_menu_display_as",
             "aria-label": "",
             "type": "image_select",
@@ -45,7 +45,7 @@
         },
         {
             "key": "field_66c34c655680e",
-            "label": "Select a Menu",
+            "label": "V\u00e4lj meny",
             "name": "mod_menu_menu",
             "aria-label": "",
             "type": "select",
@@ -57,7 +57,11 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {},
+            "choices": {
+                "3": "Header-meny",
+                "5": "Panelmeny",
+                "53": "Startpuffar"
+            },
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -70,11 +74,11 @@
         },
         {
             "key": "field_6734a0413d66b",
-            "label": "Background",
+            "label": "Bakgrund",
             "name": "mod_menu_wrapped",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "Decides if the menu is wrapped in a container.",
+            "instructions": "Best\u00e4mmer ifall menyn ska ha en bakgrund",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -116,7 +120,7 @@
         },
         {
             "key": "field_66c5c3e6b7b5d",
-            "label": "Items Per Column",
+            "label": "Antal objekt per rad",
             "name": "mod_menu_columns",
             "aria-label": "",
             "type": "select",
@@ -151,6 +155,27 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
+        },
+        {
+            "key": "field_67c846a5654c1",
+            "label": "Collapse menu on mobile",
+            "name": "mod_menu_mobile_collapse",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Will collapse menu groups on mobile to save vertical space. User has ability to expand individual menu groups with a button click.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [
@@ -186,4 +211,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
