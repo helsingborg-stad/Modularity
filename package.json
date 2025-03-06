@@ -62,5 +62,8 @@
         "collectCoverageFrom": [
             "source/**/*.js"
         ]
+    },
+    "dependencies": {
+        "@helsingborg-stad/openstreetmap": "^0.30.2"
     }
 }

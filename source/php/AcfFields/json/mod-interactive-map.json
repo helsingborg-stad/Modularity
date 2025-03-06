@@ -16,7 +16,9 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [],
+            "choices": {
+                "place": "Place"
+            },
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -53,11 +55,11 @@
             "search_placeholder": ""
         },
         {
-            "key": "field_67a6219ca1318",
-            "label": "Start position",
-            "name": "interactive_map_start_position",
+            "key": "field_67b44cbc181c6",
+            "label": "OSM",
+            "name": "osm",
             "aria-label": "",
-            "type": "google_map",
+            "type": "openstreetmap",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -66,59 +68,8 @@
                 "class": "",
                 "id": ""
             },
-            "center_lat": "59.32932",
-            "center_lng": "18.06858",
-            "zoom": "",
-            "height": 500
-        },
-        {
-            "key": "field_67ad901b076bd",
-            "label": "Overlay Image",
-            "name": "interactive_map_overlay_image",
-            "aria-label": "",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "uploader": "",
-            "return_format": "id",
-            "acfe_thumbnail": 0,
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "preview_size": "medium",
-            "library": "all"
-        },
-        {
-            "key": "field_67ad93c61f7d9",
-            "label": "test",
-            "name": "test",
-            "aria-label": "",
-            "type": "acfe_button",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "button_value": "abc",
-            "button_type": "button",
-            "button_class": "button button-secondary",
-            "button_id": "",
-            "button_before": "",
-            "button_after": "",
-            "button_ajax": 0
+            "default_lat": "",
+            "default_lng": ""
         }
     ],
     "location": [

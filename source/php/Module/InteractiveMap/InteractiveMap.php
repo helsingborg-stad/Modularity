@@ -42,8 +42,10 @@ class InteractiveMap extends \Modularity\Module
     {
         $data = [];
         $fields = $this->getFields();
-        $this->config = $this->setupConfig($fields);
-
+        // $this->config = $this->setupConfig($fields);
+        $data['mapID'] = uniqid('map-');
+        $data['mapData'] = $fields['osm'];
+        // die;
         return $data;
     }
 
@@ -65,6 +67,22 @@ class InteractiveMap extends \Modularity\Module
         return [
             'no-filter' => $this->wpService->__('No taxonomy filter', 'modularity'),
         ];
+    }
+
+    public function script() {
+        $this->wpService->wpRegisterScript(
+            'mod-interactive-map',
+            MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-interactive-map.js')
+        );
+
+        $this->wpService->wpEnqueueScript('mod-interactive-map');
+    }
+
+    public function style() {
+        $this->wpService->wpRegisterStyle('mod-interactive-map', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('css/interactive-map.css'));
+
+        $this->wpService->wpEnqueueStyle('mod-interactive-map');
     }
 
     public function adminEnqueue() {
