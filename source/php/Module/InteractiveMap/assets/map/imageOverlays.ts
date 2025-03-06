@@ -12,8 +12,10 @@ class ImageOverlays {
     public createImageOverlays(): ImageOverlaysData {
         let imageOverlays: ImageOverlaysData = {};
         this.savedImageOverlays.forEach(imageOverlayData => {
-            const hasParent = this.hasParent(imageOverlayData.layerGroup);
-            const imageOverlay = new CreateImageOverlay().create(imageOverlayData.image, imageOverlayData.position);
+            const imageOverlay = new CreateImageOverlay().create({
+                url: imageOverlayData.image,
+                bounds: imageOverlayData.position
+            });
 
             if (imageOverlayData.layerGroup && this.layerGroups.hasOwnProperty(imageOverlayData.layerGroup)) {
                 imageOverlay.addTo(this.layerGroups[imageOverlayData.layerGroup].layerGroup);
@@ -23,10 +25,6 @@ class ImageOverlays {
         });
 
         return imageOverlays;
-    }
-
-    private hasParent(layerGroup: string): boolean {
-        return !!layerGroup && this.layerGroups.hasOwnProperty(layerGroup);
     }
 }
 
