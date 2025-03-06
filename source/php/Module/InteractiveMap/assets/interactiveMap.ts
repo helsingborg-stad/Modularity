@@ -9,7 +9,7 @@ class InteractiveMap {
         const map = createMap({
             id: mapId,
             center: mapData.startPosition ?? { lat: 56.046467, lng: 12.694512 },
-            zoom: 15
+            zoom: parseInt(mapData.zoom ?? "16"),
         });
 
         const layerGroups   = new LayerGroups(map, mapData.layerGroups).createLayerGroups();
@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
     (document.querySelectorAll('[data-js-interactive-map]') as NodeListOf<HTMLElement>).forEach(container => {
         const mapId = container.dataset.jsInteractiveMap;
         const mapData = JSON.parse(container.dataset.jsInteractiveMapData ?? '');
-        console.log(mapData);
         if (mapId && mapData) {
             new InteractiveMap(mapId, mapData as SaveData, container);
         } else {
