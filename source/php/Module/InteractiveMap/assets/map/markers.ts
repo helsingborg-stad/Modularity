@@ -38,7 +38,7 @@ class Markers {
     }
 
     private getHtml(icon: string, color: string): string {
-        return `<span style="color: ${color}; font-size: 32px;" material-symbol="${icon}" class="material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`;
+        return `<span style="color: ${color}; font-size: 32px;" data-material-symbol="${icon}" class="material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`;
     }
 
     private getMarkerIcon(hasParent: boolean, layerGroup: string): string {
