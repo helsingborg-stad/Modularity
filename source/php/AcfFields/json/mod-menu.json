@@ -110,7 +110,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "While using a background, the \"Item Per Column\" works different. \r\n\r\nAmount of parents \/ columns needs to be a whole number for the background to work. \r\nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
+            "message": "While using a background, the \"Item Per Column\" works different. \n\nAmount of parents \/ columns needs to be a whole number for the background to work. \nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -151,6 +151,27 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
+        },
+        {
+            "key": "field_67c846a5654c1",
+            "label": "Collapse menu on mobile",
+            "name": "mod_menu_mobile_collapse",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Will collapse menu groups on mobile to save vertical space. User has ability to expand individual menu groups with a button click.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [
