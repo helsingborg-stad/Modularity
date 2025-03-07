@@ -32,4 +32,5 @@ type SaveData = {
     imageOverlays: SavedImageOverlay[];
     startPosition: SavedStartPosition;
     zoom: string;
+    mapStyle: string;
 }

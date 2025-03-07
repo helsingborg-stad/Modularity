@@ -45,21 +45,44 @@ class InteractiveMap extends \Modularity\Module
         // $this->config = $this->setupConfig($fields);
         $data['mapID'] = uniqid('map-');
         $data['mapData'] = $fields['osm'];
-        // die;
+
+        $data['structuredLayerFilters'] = $this->getStructuredLayerFilters($fields['osm']);
+        echo '<pre>' . print_r( $data['structuredLayerFilters'], true ) . '</pre>';
+        die;
         return $data;
     }
 
-    private function setupConfig(array $settings): InteractiveMapConfigInterface
-    {
-        $googleMapsAcfLocation = !empty($settings['interactive_map_start_position']) && is_array($settings['interactive_map_start_position']) ? $settings['interactive_map_start_position'] : [];
-        $postType = !empty($settings['interactive_map_post_type']) ? $settings['interactive_map_post_type'] : null;
-        $taxonomyFiltering = !empty($settings['interactive_map_taxonomy_filtering']) ? $settings['interactive_map_taxonomy_filtering'] : null;
+    private function getStructuredLayerFilters($field) {
+        $data = json_decode($field, true);
 
-        return new InteractiveMapConfig(
-            new GoogleMapsAcfLocation($googleMapsAcfLocation),
-            $postType,
-            $taxonomyFiltering
-        );
+        if (
+            empty($data['layerGroups']) || 
+            (empty($data['layerFilter']) || $data['layerFilter'] === 'false')
+        ) {
+            return []; 
+        }
+        
+        $layers = $data['layerGroups'];
+        $tree = [];
+        $lookup = [];
+
+        foreach ($layers as $layer) {
+            $lookup[$layer['id']] = $layer;
+        }
+    
+        foreach ($lookup as $id => &$layer) {
+            $level = 0;
+    
+            $parentId = $layer['layerGroup'];
+            while (!empty($parentId) && isset($lookup[$parentId])) {
+                $level++;
+                $parentId = $lookup[$parentId]['layerGroup'];
+            }
+    
+            $tree[$level][] = &$layer;
+        }
+    
+        return $tree;
     }
 
     private function getLang(): array
