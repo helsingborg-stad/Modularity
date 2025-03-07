@@ -3,14 +3,20 @@
         'data-js-interactive-map-filters' => ''
     ]
 ])
-    @if (!empty($structuredLayerFilters[0]))
+    @foreach($structuredLayerFilters as $level => $filters)
         @element([
 
         ])
 
-            @foreach($structuredLayerFilters[0] as $filter)
-                @dump($filter)
+            @foreach($filters as $filter)
+                @button([
+                    'text' => $filter['title'] ?? 'Untitled',
+                    'attributeList' => [
+                        'data-js-filter' => $filter['id'] ?? '',
+                    ]
+                ])
+                @endbutton
             @endforeach
         @endelement
-    @endif
+    @endforeach
 @endelement

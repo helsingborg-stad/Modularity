@@ -32,12 +32,11 @@ class InteractiveMap extends \Modularity\Module
     {
         $data = [];
         $fields = $this->getFields();
-        // $this->config = $this->setupConfig($fields);
         $data['mapID'] = uniqid('map-');
         $data['mapData'] = $fields['osm'];
 
         $data['structuredLayerFilters'] = $this->getStructuredLayerFilters($fields['osm']);
-        echo '<pre>' . print_r( $data['structuredLayerFilters'], true ) . '</pre>';die;
+
         return $data;
     }
 
@@ -70,8 +69,9 @@ class InteractiveMap extends \Modularity\Module
     
             $tree[$level][] = &$layer;
         }
-    
-        return ksort($tree);
+        
+        ksort($tree);
+        return $tree;
     }
 
     private function getLang(): array
