@@ -38,7 +38,6 @@ module.exports = {
 		'js/ungapd': './source/php/Module/Subscribe/assets/ungapd.ts',
 		'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
 		'css/menu': './source/php/Module/Menu/assets/menu.scss',
-		'js/mod-interactive-map-admin': './source/php/Module/InteractiveMap/assets/Admin/admin.js',
 		'css/interactive-map': './source/php/Module/InteractiveMap/assets/interactive-map.scss',
 		'js/mod-interactive-map': './source/php/Module/InteractiveMap/assets/interactiveMap.ts',
 	},

@@ -47,8 +47,7 @@ class InteractiveMap extends \Modularity\Module
         $data['mapData'] = $fields['osm'];
 
         $data['structuredLayerFilters'] = $this->getStructuredLayerFilters($fields['osm']);
-        echo '<pre>' . print_r( $data['structuredLayerFilters'], true ) . '</pre>';
-        die;
+        echo '<pre>' . print_r( $data['structuredLayerFilters'], true ) . '</pre>';die;
         return $data;
     }
 
@@ -82,7 +81,7 @@ class InteractiveMap extends \Modularity\Module
             $tree[$level][] = &$layer;
         }
     
-        return $tree;
+        return ksort($tree);
     }
 
     private function getLang(): array
@@ -106,32 +105,6 @@ class InteractiveMap extends \Modularity\Module
         . \Modularity\Helper\CacheBust::name('css/interactive-map.css'));
 
         $this->wpService->wpEnqueueStyle('mod-interactive-map');
-    }
-
-    public function adminEnqueue() {
-        $currentPostType = $this->wpService->getPostType();
-        
-        if ($currentPostType === 'mod-' . $this->slug) {
-            $fields = $this->getFields();
-        }
-
-        $this->wpService->wpRegisterScript(
-            'mod-interactive-map-admin',
-            MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-interactive-map-admin.js'),
-            ['jquery', 'acf-input']
-        );
-
-        $this->wpService->wpLocalizeScript(
-            'mod-interactive-map-admin',
-            'interactiveMapData',
-            [
-                'translations' => $this->lang,
-                'taxonomies'   => $this->taxonomiesHelper->getTaxonomies(),
-                'fields'       => $fields ?? []
-            ]
-        );
-
-        $this->wpService->wpEnqueueScript('mod-interactive-map-admin');
     }
 
     public function template(): string
