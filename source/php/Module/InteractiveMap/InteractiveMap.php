@@ -2,14 +2,8 @@
 
 namespace Modularity\Module\InteractiveMap;
 
-use Modularity\Helper\AcfService;
 use Modularity\Helper\WpService;
 use WpService\WpService as OriginalWpService;
-use AcfService\AcfService as OriginalAcfService;
-use Modularity\Module\InteractiveMap\Admin\AcfFilters;
-use Modularity\Module\InteractiveMap\Admin\GetTaxonomies;
-use Modularity\Module\InteractiveMap\Config\GoogleMapsAcfLocation;
-use Modularity\Module\InteractiveMap\Config\InteractiveMapConfig;
 use Modularity\Module\InteractiveMap\Config\InteractiveMapConfigInterface;
 
 class InteractiveMap extends \Modularity\Module
@@ -21,7 +15,6 @@ class InteractiveMap extends \Modularity\Module
     );
     private ?OriginalWpService $wpService;
     private ?InteractiveMapConfigInterface $config = null;
-    private GetTaxonomies $taxonomiesHelper;
     private array $lang;
 
     public function init()
@@ -33,9 +26,6 @@ class InteractiveMap extends \Modularity\Module
         $this->description = $this->wpService->__('Outputs an interactive map', 'modularity');
         
         $this->lang = $this->getLang();
-
-        $this->taxonomiesHelper = new GetTaxonomies($this->wpService);
-        new AcfFilters($this->wpService, $this->taxonomiesHelper, $this->lang);
     }
 
     public function data(): array
