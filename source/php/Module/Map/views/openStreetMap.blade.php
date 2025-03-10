@@ -11,6 +11,6 @@
 @openStreetMap([
     'startPosition' => $startPosition,
     'pins' => $pins,
-    'height' => $height . 'px'
+    'height' => 'min(' . $height . 'px,' . '100vh)',
 ])
 @endopenStreetMap
