@@ -1,12 +1,13 @@
 import { CreateMarker, MapInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedMarker } from "../mapData";
-import { LayerGroupsData, MarkersData } from "./interface";
+import { MarkersData } from "./interface";
+import { StorageInterface } from "./filtering/storageInterface";
 
 class Markers {
     constructor(
         private map: MapInterface,
         private savedMarkers: SavedMarker[],
-        private layerGroups: LayerGroupsData
+        private storageInstance: StorageInterface
     ) {}
 
     public createMarkers(): MarkersData {
@@ -27,8 +28,8 @@ class Markers {
                 content: markerData.title
             });
 
-            if (markerData.layerGroup && this.layerGroups.hasOwnProperty(markerData.layerGroup)) {
-                marker.addTo(this.layerGroups[markerData.layerGroup].layerGroup);
+            if (markerData.layerGroup && this.storageInstance.getOrderedLayerGroups().hasOwnProperty(markerData.layerGroup)) {
+                marker.addTo(this.storageInstance.getOrderedLayerGroups()[markerData.layerGroup].getLayerGroup());
             } else {
                 marker.addTo(this.map);
             }
@@ -42,23 +43,23 @@ class Markers {
     }
 
     private getMarkerIcon(hasParent: boolean, layerGroup: string): string {
-        if (!hasParent || !this.layerGroups[layerGroup].data.icon) {
+        if (!hasParent || !this.storageInstance.getOrderedLayerGroups()[layerGroup].getSavedLayerGroup().icon) {
             return 'location_on';
         }
 
-        return this.layerGroups[layerGroup].data.icon;
+        return this.storageInstance.getOrderedLayerGroups()[layerGroup].getSavedLayerGroup().icon;
     }
 
     private getMarkerColor(hasParent: boolean, layerGroup: string): string {
-        if (!hasParent || !this.layerGroups[layerGroup].data.color) {
+        if (!hasParent || !this.storageInstance.getOrderedLayerGroups()[layerGroup].getSavedLayerGroup().color) {
             return '#E04A39';
         }
 
-        return this.layerGroups[layerGroup].data.color;
+        return this.storageInstance.getOrderedLayerGroups()[layerGroup].getSavedLayerGroup().color;
     }
 
     private hasParent(layerGroup: string): boolean {
-        return !!layerGroup && this.layerGroups.hasOwnProperty(layerGroup);
+        return !!layerGroup && this.storageInstance.getOrderedLayerGroups().hasOwnProperty(layerGroup);
     }
 }
 

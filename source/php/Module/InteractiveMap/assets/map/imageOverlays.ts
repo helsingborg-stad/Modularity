@@ -1,12 +1,13 @@
 import { CreateImageOverlay, MapInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedImageOverlay } from "../mapData";
-import { ImageOverlaysData, LayerGroupsData } from "./interface";
+import { ImageOverlaysData } from "./interface";
+import { StorageInterface } from "./filtering/storageInterface";
 
 class ImageOverlays {
     constructor(
         private map: MapInterface,
         private savedImageOverlays: SavedImageOverlay[],
-        private layerGroups: LayerGroupsData
+        private storageInstance: StorageInterface
     ) {}
 
     public createImageOverlays(): ImageOverlaysData {
@@ -17,8 +18,8 @@ class ImageOverlays {
                 bounds: imageOverlayData.position
             });
 
-            if (imageOverlayData.layerGroup && this.layerGroups.hasOwnProperty(imageOverlayData.layerGroup)) {
-                imageOverlay.addTo(this.layerGroups[imageOverlayData.layerGroup].layerGroup);
+            if (imageOverlayData.layerGroup && this.storageInstance.getOrderedLayerGroups().hasOwnProperty(imageOverlayData.layerGroup)) {
+                imageOverlay.addTo(this.storageInstance.getOrderedLayerGroups()[imageOverlayData.layerGroup].getLayerGroup());
             } else {
                 imageOverlay.addTo(this.map);
             }

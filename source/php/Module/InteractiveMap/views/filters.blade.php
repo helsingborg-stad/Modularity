@@ -3,16 +3,17 @@
         'data-js-interactive-map-filters' => ''
     ]
 ])
-    @foreach($structuredLayerFilters as $level => $filters)
+    @foreach($structuredLayerFilters as $level => $layerGroups)
         @element([
-
+            'attributeList' => [
+                'data-js-layer-group-level' => $level,
+            ]
         ])
-
-            @foreach($filters as $filter)
+            @foreach($layerGroups as $layerGroup)
                 @button([
-                    'text' => $filter['title'] ?? 'Untitled',
+                    'text' => $layerGroup['title'] ?? 'Untitled',
                     'attributeList' => [
-                        'data-js-filter' => $filter['id'] ?? '',
+                        'data-js-layer-group' => $layerGroup['id'] ?? '',
                     ]
                 ])
                 @endbutton

@@ -1,8 +1,10 @@
-import { CreateMap, CreateAttribution, CreateTileLayer, TilesHelper } from "@helsingborg-stad/openstreetmap";
+import { CreateMap, CreateAttribution, CreateTileLayer, TilesHelper, CreateLayerGroup } from "@helsingborg-stad/openstreetmap";
 import { SaveData } from "./mapData";
 import LayerGroups from "./map/layerGroups";
 import Markers from "./map/markers";
 import ImageOverlays from "./map/imageOverlays";
+import LayerGroupFilterFactory from "./map/filtering/layerGroupFilterFactory";
+import Storage from "./map/filtering/storage";
 
 class InteractiveMap {
     constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
@@ -17,10 +19,33 @@ class InteractiveMap {
         new CreateTileLayer().create().setUrl(url).addTo(map);
         new CreateAttribution().create().setPrefix(attribution).addTo(map);
 
+        // Filter
+        const storageInstance = new Storage();
+        const layerGroupFilterFactory = new LayerGroupFilterFactory(map, storageInstance);
+
         // Adding layerGroups, markers and imageOverlays to the map
-        const layerGroups   = new LayerGroups(map, mapData.layerGroups).createLayerGroups();
-        const markers       = new Markers(map, mapData.markers, layerGroups).createMarkers();
-        const imageOverlays = new ImageOverlays(map, mapData.imageOverlays, layerGroups).createImageOverlays();
+        const layerGroups = new LayerGroups(
+            container,
+            storageInstance,
+            new CreateLayerGroup(),
+            layerGroupFilterFactory,
+            mapData.layerGroups
+        ).createLayerGroups();
+
+        const markers = new Markers(
+            map,
+            mapData.markers,
+            storageInstance
+        ).createMarkers();
+
+        const imageOverlays = new ImageOverlays(
+            map,
+            mapData.imageOverlays,
+            storageInstance
+        ).createImageOverlays();
+
+        // Filter
+        // const filterInstance = new Filter(container, layerGroups, layerGroupFilterFactory);
     }
 }
 
