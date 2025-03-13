@@ -1,12 +1,12 @@
 import { OrderedLayerGroups, StructuredLayerGroups } from "../interface";
-import { FilterInterface } from "./filterInterface";
 import { StorageInterface } from "./storageInterface";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 
 class Storage implements StorageInterface {
     protected structuredLayerGroups: StructuredLayerGroups = {};
     protected orderedLayerGroups: OrderedLayerGroups = {};
 
-    public setStructuredLayerGroup(id: string, value: FilterInterface[]): void {
+    public setStructuredLayerGroup(id: string, value: LayerGroupFilterInterface[]): void {
         this.structuredLayerGroups[id] = value;
     }
 
@@ -14,7 +14,7 @@ class Storage implements StorageInterface {
         return this.structuredLayerGroups;
     }
 
-    public setOrderedLayerGroup(id: string, value: FilterInterface): void {
+    public setOrderedLayerGroup(id: string, value: LayerGroupFilterInterface): void {
         this.orderedLayerGroups[id] = value;
     }
 

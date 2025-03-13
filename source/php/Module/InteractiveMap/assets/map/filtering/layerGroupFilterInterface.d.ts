@@ -1,9 +1,11 @@
 import { LayerGroupInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedLayerGroup } from "../../mapData";
 
-export interface FilterInterface {
+export interface LayerGroupFilterInterface {
+    init(): void;
     getLayerGroup(): LayerGroupInterface;
     getSavedLayerGroup(): SavedLayerGroup;
     getFilterButton(): HTMLElement|null;
-    setListener(): void;
+    hideFilterButton(): void;
+    showFilterButton(): void;   
 }

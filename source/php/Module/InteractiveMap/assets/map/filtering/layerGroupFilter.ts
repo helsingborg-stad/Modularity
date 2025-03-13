@@ -1,9 +1,11 @@
 import { Addable, LayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
-import { FilterInterface } from "./filterInterface";
 import { SavedLayerGroup } from "../../mapData";
 import Storage from "./storage";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 
-class LayerGroupFilter implements FilterInterface {
+class LayerGroupFilter implements LayerGroupFilterInterface {
+    private isAddedToMap: boolean = false;
+    private isInitiated: boolean = false;
     constructor(
         private mapInstance: MapInterface,
         private storageInstance: Storage,
@@ -13,7 +15,15 @@ class LayerGroupFilter implements FilterInterface {
     ) {
     }
 
-    public setListener(): void {
+    public init(): void {
+        if (this.isInitiated) {
+            return;
+        }
+
+        this.setListener();
+    }
+
+    private setListener(): void {
         const parent = this.findParent();
 
         if (!this.getFilterButton()) {
@@ -22,7 +32,55 @@ class LayerGroupFilter implements FilterInterface {
         }
 
         this.getFilterButton()!.addEventListener('click', () => {
-            this.getLayerGroup().addTo(parent);
+            if (this.filterButton?.classList.contains('is-active')) {
+                return this.handleRemoveActive();
+            }
+
+            this.handleAddActive();
+        });
+    }
+
+    private handleAddActive(): void {
+        this.filterButton?.classList.add('is-active');
+
+        if (!this.isAddedToMap) {
+            this.getLayerGroup().addTo(this.findParent());
+        }
+
+        this.isAddedToMap = true;
+
+        const children = this.storageInstance.getStructuredLayerGroups()[this.getSavedLayerGroup().id];
+
+        children?.forEach(child => {
+            child.showFilterButton();
+        });        
+    }
+
+    private handleRemoveActive(): void {
+        this.filterButton?.classList.remove('is-active');
+        this.getLayerGroup().removeLayerGroup();
+        this.isAddedToMap = false;
+        
+        const children = this.storageInstance.getStructuredLayerGroups()[this.getSavedLayerGroup().id];
+
+        children?.forEach(child => {
+            child.hideFilterButton();
+        });
+    }
+
+    public hideFilterButton(): void {
+        this.filterButton?.classList.add('u-display--none');
+
+        this.findChildren().forEach(child => {
+            child.hideFilterButton();
+        });
+    }
+
+    public showFilterButton(): void {
+        this.filterButton?.classList.remove('u-display--none');
+
+        this.findChildren().forEach(child => {
+            child.showFilterButton();
         });
     }
 
@@ -32,6 +90,10 @@ class LayerGroupFilter implements FilterInterface {
         }
 
         return this.mapInstance;
+    }
+
+    public findChildren(): LayerGroupFilterInterface[] {
+        return this.storageInstance.getStructuredLayerGroups()[this.getSavedLayerGroup().id] ?? [];
     }
 
     public getFilterButton(): HTMLElement|null {

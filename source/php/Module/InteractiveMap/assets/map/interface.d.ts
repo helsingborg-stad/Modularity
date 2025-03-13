@@ -1,6 +1,6 @@
 import { ImageOverlayInterface, LayerGroupInterface, MarkerInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedImageOverlay, SavedLayerGroup, SavedMarker } from "../mapData";
-import { FilterInterface } from "./filtering/filterInterface";
+import { LayerGroupFilterInterface } from "./filtering/layerGroupFilterInterface";
 
 type MarkersData = {
     [key: string]: {
@@ -16,11 +16,11 @@ type LayerGroupData = {
 }
 
 type OrderedLayerGroups = {
-    [key: string]: FilterInterface;
+    [key: string]: LayerGroupFilterInterface;
 }
 
 type StructuredLayerGroups = {
-    [key: string]: FilterInterface[];
+    [key: string]: LayerGroupFilterInterface[];
 }
 
 type ImageOverlaysData = {

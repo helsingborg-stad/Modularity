@@ -1,6 +1,5 @@
-import { CreateLayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
+import { CreateLayerGroupInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedLayerGroup } from "../mapData";
-import { OrderedLayerGroups, StructuredLayerGroups } from "./interface";
 import LayerGroupFilterFactory from "./filtering/layerGroupFilterFactory";
 import { StorageInterface } from "./filtering/storageInterface";
 
@@ -14,11 +13,10 @@ class LayerGroups {
     ) {}
 
     public createLayerGroups(): LayerGroups {
+        // Add to storage
         this.savedLayerGroups.forEach(layer => {
             const layerGroup = this.createLayerGroup.create();
-            console.log(layer.id);
             const filterButton = this.container.querySelector(`[data-js-layer-group="${layer.id}"]`) as HTMLElement;
-            console.log(this.container);
 
             const layerGroupDataFilter = this.layerGroupFilterFactory.createLayerGroupFilter(
                 layer,
@@ -35,9 +33,10 @@ class LayerGroups {
             this.storageInstance.setStructuredLayerGroup(parent, structuredLayerGroup);
         });
 
+        // Initiate the layer group filters after added to storage
         const orderedLayerGroups = this.storageInstance.getOrderedLayerGroups();
         for (const layerGroupId in orderedLayerGroups) {
-            orderedLayerGroups[layerGroupId].setListener();
+            orderedLayerGroups[layerGroupId].init();
         }
 
         return this;

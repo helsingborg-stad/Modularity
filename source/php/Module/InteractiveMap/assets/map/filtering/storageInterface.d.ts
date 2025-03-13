@@ -1,9 +1,9 @@
 import { OrderedLayerGroups, StructuredLayerGroups } from "../interface";
-import { FilterInterface } from "./filterInterface";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 
 interface StorageInterface {
-    setStructuredLayerGroup(id: string, value: FilterInterface[]): void;
+    setStructuredLayerGroup(id: string, value: LayerGroupFilterInterface[]): void;
     getStructuredLayerGroups(): StructuredLayerGroups;
-    setOrderedLayerGroup(id: string, value: FilterInterface): void;
+    setOrderedLayerGroup(id: string, value: LayerGroupFilterInterface): void;
     getOrderedLayerGroups(): OrderedLayerGroups;
 }

@@ -1,6 +1,6 @@
-import { AddTo, LayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
+import { LayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
 import LayerGroupFilter from "./layerGroupFilter";
-import { FilterInterface } from "./filterInterface";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 import { SavedLayerGroup } from "../../mapData";
 import Storage from "./storage";
 
@@ -13,7 +13,7 @@ class LayerGroupFilterFactory {
         savedLayerGroup: SavedLayerGroup,
         layerGroup: LayerGroupInterface,
         filterButton: HTMLElement|null
-    ): FilterInterface {
+    ): LayerGroupFilterInterface {
         return new LayerGroupFilter(this.mapInstance, this.storageInstance, savedLayerGroup, layerGroup, filterButton);
     }
 }
