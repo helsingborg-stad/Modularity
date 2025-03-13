@@ -6,6 +6,7 @@ import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 class LayerGroupFilter implements LayerGroupFilterInterface {
     private isAddedToMap: boolean = false;
     private isInitiated: boolean = false;
+    private activeClass: string = 'is-active';
     constructor(
         private mapInstance: MapInterface,
         private storageInstance: Storage,
