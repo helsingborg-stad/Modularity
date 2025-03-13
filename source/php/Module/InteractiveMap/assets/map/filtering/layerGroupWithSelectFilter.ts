@@ -1,11 +1,10 @@
 import { LayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedLayerGroup } from "../../mapData";
-import Storage from "./storage";
-import { LayerGroupFilters } from "./layerGroupFilterInterface";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 import { FilterHelperInterface } from "./filterHelperInterface";
 
-class LayerGroupFilterMainItems implements LayerGroupFilters {
-    private static mainFilterItems: {[key: string]: LayerGroupFilters} = {};
+class LayerGroupWithSelectFilter implements LayerGroupFilterInterface {
+    private static mainFilterItems: {[key: string]: LayerGroupFilterInterface} = {};
     private static listenerIsInitiated: boolean = false;
     private static latestValue: string = '';
     constructor(
@@ -15,12 +14,12 @@ class LayerGroupFilterMainItems implements LayerGroupFilters {
         private savedLayerGroup: SavedLayerGroup,
         private layerGroup: LayerGroupInterface
     ) {
-        LayerGroupFilterMainItems.mainFilterItems[savedLayerGroup.id] = this;
+        LayerGroupWithSelectFilter.mainFilterItems[savedLayerGroup.id] = this;
     }
     public init(): void {
-        if (!LayerGroupFilterMainItems.listenerIsInitiated) {
+        if (!LayerGroupWithSelectFilter.listenerIsInitiated) {
             this.setMainListener();
-            LayerGroupFilterMainItems.listenerIsInitiated = true;
+            LayerGroupWithSelectFilter.listenerIsInitiated = true;
         }
     }
 
@@ -30,30 +29,30 @@ class LayerGroupFilterMainItems implements LayerGroupFilters {
             return;
         }
 
-        LayerGroupFilterMainItems.latestValue = select.value;
+        LayerGroupWithSelectFilter.latestValue = select.value;
 
         select.addEventListener('change', (e) => {
             const value = select.value;
-            if (LayerGroupFilterMainItems.latestValue === value) {
+            if (LayerGroupWithSelectFilter.latestValue === value) {
                 return;
             }
 
-            this.removePreviousSelectedMainFilterFromMap(LayerGroupFilterMainItems.latestValue);
+            this.removePreviousSelectedMainFilterFromMap(LayerGroupWithSelectFilter.latestValue);
             this.addNewMainFilterToMap(value);
 
-            LayerGroupFilterMainItems.latestValue = value;
+            LayerGroupWithSelectFilter.latestValue = value;
         });
     }
 
     private addNewMainFilterToMap(id: string): void {
-        const newLayerGroup = LayerGroupFilterMainItems.mainFilterItems[id];
+        const newLayerGroup = LayerGroupWithSelectFilter.mainFilterItems[id];
 
         this.filterHelperInstance.showChildrenFilter(id);
         newLayerGroup.getLayerGroup().addTo(this.mapInstance);
     }
 
     private removePreviousSelectedMainFilterFromMap(id: string): void {
-        const previousLayerGroup = LayerGroupFilterMainItems.mainFilterItems[id];
+        const previousLayerGroup = LayerGroupWithSelectFilter.mainFilterItems[id];
 
         this.filterHelperInstance.hideChildrenFilter(id);
         previousLayerGroup.getLayerGroup().removeLayerGroup();
@@ -76,4 +75,4 @@ class LayerGroupFilterMainItems implements LayerGroupFilters {
     }
 }
 
-export default LayerGroupFilterMainItems;
+export default LayerGroupWithSelectFilter;

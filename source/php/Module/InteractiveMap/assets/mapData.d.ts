@@ -33,4 +33,5 @@ type SaveData = {
     startPosition: SavedStartPosition;
     zoom: string;
     mapStyle: string;
+    layerFilter: boolean;
 }

@@ -33,27 +33,52 @@ class InteractiveMap extends \Modularity\Module
         $data = [];
         $fields = $this->getFields();
         $data['mapID'] = uniqid('map-');
-        $data['mapData'] = $fields['osm'];
+        $data['mapData'] = $fields['osm'] ?? "";
+        $parsedMapData = json_decode($fields['osm'] ?? '{}', true);
 
-        $data['subFilters'] = $this->getStructuredLayerFilters($fields['osm']);
-        $mainFilter = $data['subFilters'][0] ?? [];
-        unset($data['subFilters'][0]);
-        $data['mainFilters'] = [];
-        $data['preselectedMainFilter'] = null;
-        foreach ($mainFilter as $filter) {
-            if (empty($data['preselectedMainFilter']) || !empty($filter['selected'])) {
-                $data['preselectedMainFilter'] = $filter['id'];
-            }
+        [$buttonFilters, $selectFilters, $preselectedSelectFilter] = $this->getSelectAndButtonFilters($this->getStructuredLayerFilters($parsedMapData));
 
-            $data['mainFilters'][$filter['id']] = $filter['title'];
+        $data['attributeList'] = [];
+        $data['attributeList']['data-js-interactive-map'] = $data['mapID'];
+        $data['attributeList']['data-js-interactive-map-data'] = $data['mapData'];
+        if (empty($selectFilters)) {
+            $data['attributeList']['data-js-interactive-map-one-level-only'] = "true";
         }
+
+        $data['allowFiltering'] = $parsedMapData['layerFilter'] ?? false;
+        $data['buttonFilters'] = $buttonFilters;
+        $data['selectFilters'] = $selectFilters;
+        $data['preselectedSelectFilter'] = $preselectedSelectFilter;
 
         return $data;
     }
 
-    private function getStructuredLayerFilters($field) {
-        $data = json_decode($field, true);
+    private function getSelectAndButtonFilters(array $structuredLayerFilters)
+    {
+        $buttonFilters = [];
+        $selectFilters = [];
+        $preselectedSelectFilter = null;
 
+        if (count($structuredLayerFilters) <= 1) {
+            $buttonFilters = $structuredLayerFilters;
+        } else {
+            $unformattedSelectFilters = $structuredLayerFilters[0];
+            unset($structuredLayerFilters[0]);
+            $buttonFilters = $structuredLayerFilters;
+
+            foreach ($unformattedSelectFilters as $filter) {
+                if (empty($preselectedSelectFilter) || !empty($filter['selected'])) {
+                    $preselectedSelectFilter = $filter['id'];
+                }
+
+                $selectFilters[$filter['id']] = $filter['title'];
+            }
+        }
+
+        return [$buttonFilters, $selectFilters, $preselectedSelectFilter];
+    }
+
+    private function getStructuredLayerFilters($data) {
         if (
             empty($data['layerGroups']) || 
             (empty($data['layerFilter']) || $data['layerFilter'] === 'false')

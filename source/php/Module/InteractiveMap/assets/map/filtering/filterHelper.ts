@@ -1,5 +1,5 @@
-import { MapInterface } from "@helsingborg-stad/openstreetmap";
-import { LayerGroupFilterInterface, LayerGroupFilters } from "./layerGroupFilterInterface";
+import { Addable, MapInterface } from "@helsingborg-stad/openstreetmap";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 import { StorageInterface } from "./storageInterface";
 import { FilterHelperInterface } from "./filterHelperInterface";
 
@@ -11,9 +11,9 @@ class FilterHelper implements FilterHelperInterface {
 
     }
 
-    public findParent(parentId: string): LayerGroupFilters|null {
+    public findParent(parentId: string): Addable|null {
         if (this.storageInstance.getOrderedLayerGroups().hasOwnProperty(parentId)) {
-            return this.storageInstance.getOrderedLayerGroups()[parentId];
+            return this.storageInstance.getOrderedLayerGroups()[parentId].getLayerGroup();
         }
 
         return null;

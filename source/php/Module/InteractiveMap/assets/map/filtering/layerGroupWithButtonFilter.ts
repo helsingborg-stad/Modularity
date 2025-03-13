@@ -1,12 +1,11 @@
-import { LayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
+import { Addable, LayerGroupInterface, MapInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedLayerGroup } from "../../mapData";
-import Storage from "./storage";
-import { LayerGroupFilterInterface, LayerGroupFilters } from "./layerGroupFilterInterface";
+import { LayerGroupFilterInterface } from "./layerGroupFilterInterface";
 import { FilterHelperInterface } from "./filterHelperInterface";
 
-class LayerGroupFilterSubItems implements LayerGroupFilters {
+class LayerGroupWithButtonFilter implements LayerGroupFilterInterface {
     private listenerIsInitiated: boolean = false;
-    private parent: LayerGroupFilterInterface|null;
+    private parent: Addable|null;
     private filterButton: HTMLElement|null;
     private activeClass: string = 'is-active';
     private displayNoneClass: string = 'u-display--none';
@@ -23,11 +22,7 @@ class LayerGroupFilterSubItems implements LayerGroupFilters {
     }
 
     public init(): void {
-        if (this.listenerIsInitiated) {
-            return;
-        }
-
-        if (!this.parent || !this.filterButton) {
+        if (this.listenerIsInitiated || !this.filterButton) {
             return;
         }
 
@@ -38,11 +33,11 @@ class LayerGroupFilterSubItems implements LayerGroupFilters {
     private setSubListener(): void {
         this.filterButton!.addEventListener('click', () => {
             if (this.filterButton!.classList.contains(this.activeClass)) {
-                this.getLayerGroup().removeLayerGroupFrom(this.parent!.getLayerGroup());
+                this.getLayerGroup().removeLayerGroupFrom(this.parent ?? this.mapInstance);
                 this.filterButton!.classList.remove(this.activeClass);
                 this.hideChildren();
             } else {
-                this.getLayerGroup().addTo(this.parent!.getLayerGroup());
+                this.getLayerGroup().addTo(this.parent ?? this.mapInstance);
                 this.filterButton!.classList.add(this.activeClass);
                 this.showChildren();
             }
@@ -76,4 +71,4 @@ class LayerGroupFilterSubItems implements LayerGroupFilters {
     }
 }
 
-export default LayerGroupFilterSubItems;
+export default LayerGroupWithButtonFilter;

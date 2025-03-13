@@ -15,6 +15,10 @@ class InteractiveMap {
             zoom: parseInt(mapData.zoom ?? "16"),
         }).create();
 
+        // Options
+        const allowFiltering = mapData.layerFilter ?? false;
+        const onlyOneLayerGroup = container.hasAttribute('data-js-interactive-map-one-level-only');
+
         // Add the tiles and attribution to the map
         const {url, attribution} = new TilesHelper().getDefaultTiles(mapData.mapStyle);
         new CreateTileLayer().create().setUrl(url).addTo(map);
@@ -23,7 +27,7 @@ class InteractiveMap {
         // Filter
         const storageInstance = new Storage();
         const filterHelperInstance = new FilterHelper(map, storageInstance);
-        const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance);
+        const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance, allowFiltering, onlyOneLayerGroup);
 
         // Adding layerGroups, markers and imageOverlays to the map
         const layerGroups = new LayerGroups(

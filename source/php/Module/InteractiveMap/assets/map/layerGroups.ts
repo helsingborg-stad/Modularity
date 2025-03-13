@@ -24,7 +24,7 @@ class LayerGroups {
 
             this.storageInstance.setOrderedLayerGroup(layer.id, layerGroupDataFilter);
 
-            const parent = layer.layerGroup ?? '0';
+            const parent = layer.layerGroup ? layer.layerGroup : '0';
             const structuredLayerGroups = this.storageInstance.getStructuredLayerGroups();
             const structuredLayerGroup = structuredLayerGroups[parent] ?? [];
             structuredLayerGroup.push(layerGroupDataFilter);
