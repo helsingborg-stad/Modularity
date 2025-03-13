@@ -22,8 +22,8 @@ class Markers {
                 position: markerData.position,
                 icon: html,
                 className: 'interactive-map__marker',
-                iconSize: [32, 32],
-                iconAnchor: [16, 2]
+                iconSize: [28, 28],
+                iconAnchor: [14, 2]
             }, {
                 content: markerData.title
             });
@@ -39,7 +39,7 @@ class Markers {
     }
 
     private getHtml(icon: string, color: string): string {
-        return `<span style="color: ${color}; font-size: 32px;" data-material-symbol="${icon}" class="material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`;
+        return `<span style="background-color: ${color}; color: white; font-size: 20px; padding: 4px; border-radius: 50%;" data-material-symbol="${icon}" class="material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`
     }
 
     private getMarkerIcon(hasParent: boolean, layerGroup: string): string {

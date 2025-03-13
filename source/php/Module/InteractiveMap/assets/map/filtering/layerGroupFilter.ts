@@ -33,7 +33,7 @@ class LayerGroupFilter implements LayerGroupFilterInterface {
         }
 
         this.getFilterButton()!.addEventListener('click', () => {
-            if (this.filterButton?.classList.contains('is-active')) {
+            if (this.filterButton?.classList.contains(this.activeClass)) {
                 return this.handleRemoveActive();
             }
 
@@ -42,7 +42,7 @@ class LayerGroupFilter implements LayerGroupFilterInterface {
     }
 
     private handleAddActive(): void {
-        this.filterButton?.classList.add('is-active');
+        this.filterButton?.classList.add(this.activeClass);
 
         if (!this.isAddedToMap) {
             this.getLayerGroup().addTo(this.findParent());
@@ -58,7 +58,7 @@ class LayerGroupFilter implements LayerGroupFilterInterface {
     }
 
     private handleRemoveActive(): void {
-        this.filterButton?.classList.remove('is-active');
+        this.filterButton?.classList.remove(this.activeClass);
         this.getLayerGroup().removeLayerGroup();
         this.isAddedToMap = false;
         
