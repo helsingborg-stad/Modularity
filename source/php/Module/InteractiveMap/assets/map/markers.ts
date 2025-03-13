@@ -20,7 +20,7 @@ class Markers {
 
             const marker = new CreateMarker().create({
                 position: markerData.position,
-                icon: html,
+                html: html,
                 className: 'interactive-map__marker',
                 iconSize: [28, 28],
                 iconAnchor: [14, 2]

@@ -16,12 +16,10 @@ class LayerGroups {
         // Add to storage
         this.savedLayerGroups.forEach(layer => {
             const layerGroup = this.createLayerGroup.create();
-            const filterButton = this.container.querySelector(`[data-js-layer-group="${layer.id}"]`) as HTMLElement;
 
             const layerGroupDataFilter = this.layerGroupFilterFactory.createLayerGroupFilter(
                 layer,
-                layerGroup,
-                filterButton
+                layerGroup
             );
 
             this.storageInstance.setOrderedLayerGroup(layer.id, layerGroupDataFilter);

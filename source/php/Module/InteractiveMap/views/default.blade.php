@@ -6,5 +6,5 @@
         </div>
 
     </div>
-    @includeWhen(!empty($structuredLayerFilters), 'filters')
+    @includeWhen(!empty($mainFilters), 'filters')
 </div>

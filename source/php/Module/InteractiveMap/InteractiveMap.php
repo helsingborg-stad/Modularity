@@ -35,7 +35,18 @@ class InteractiveMap extends \Modularity\Module
         $data['mapID'] = uniqid('map-');
         $data['mapData'] = $fields['osm'];
 
-        $data['structuredLayerFilters'] = $this->getStructuredLayerFilters($fields['osm']);
+        $data['subFilters'] = $this->getStructuredLayerFilters($fields['osm']);
+        $mainFilter = $data['subFilters'][0] ?? [];
+        unset($data['subFilters'][0]);
+        $data['mainFilters'] = [];
+        $data['preselectedMainFilter'] = null;
+        foreach ($mainFilter as $filter) {
+            if (empty($data['preselectedMainFilter']) || !empty($filter['selected'])) {
+                $data['preselectedMainFilter'] = $filter['id'];
+            }
+
+            $data['mainFilters'][$filter['id']] = $filter['title'];
+        }
 
         return $data;
     }

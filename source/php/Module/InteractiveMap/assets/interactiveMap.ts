@@ -5,6 +5,7 @@ import Markers from "./map/markers";
 import ImageOverlays from "./map/imageOverlays";
 import LayerGroupFilterFactory from "./map/filtering/layerGroupFilterFactory";
 import Storage from "./map/filtering/storage";
+import FilterHelper from "./map/filtering/filterHelper";
 
 class InteractiveMap {
     constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
@@ -21,7 +22,8 @@ class InteractiveMap {
 
         // Filter
         const storageInstance = new Storage();
-        const layerGroupFilterFactory = new LayerGroupFilterFactory(map, storageInstance);
+        const filterHelperInstance = new FilterHelper(map, storageInstance);
+        const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance);
 
         // Adding layerGroups, markers and imageOverlays to the map
         const layerGroups = new LayerGroups(
