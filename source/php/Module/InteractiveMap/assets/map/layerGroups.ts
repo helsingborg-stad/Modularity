@@ -33,6 +33,7 @@ class LayerGroups {
 
         // Initiate the layer group filters after added to storage
         const orderedLayerGroups = this.storageInstance.getOrderedLayerGroups();
+
         for (const layerGroupId in orderedLayerGroups) {
             orderedLayerGroups[layerGroupId].init();
         }

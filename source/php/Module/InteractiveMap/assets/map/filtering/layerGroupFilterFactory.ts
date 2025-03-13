@@ -5,6 +5,7 @@ import Storage from "./storage";
 import LayerGroupWithSelectFilter from "./layerGroupWithSelectFilter";
 import { FilterHelperInterface } from "./filterHelperInterface";
 import LayerGroupWithButtonFilter from "./layerGroupWithButtonFilter";
+import LayerGroupWithoutFilter from "./LayerGroupWithoutFilter";
 
 class LayerGroupFilterFactory {
     constructor(
@@ -12,15 +13,15 @@ class LayerGroupFilterFactory {
         private mapInstance: MapInterface,
         private storageInstance: Storage,
         private filterHelperInstance: FilterHelperInterface,
-        private allowFiltering: boolean,
+        private allowFiltering: string,
         private onlyOneLayerGroup: boolean,
     ) {}
     createLayerGroupFilter(
         savedLayerGroup: SavedLayerGroup,
         layerGroup: LayerGroupInterface,
     ): LayerGroupFilterInterface {
-        if (!this.allowFiltering) {
-            // return new LayerGroupWithOutFilter(this.container, this.mapInstance, savedLayerGroup, layerGroup);
+        if (!this.allowFiltering || this.allowFiltering === 'false') {
+            return new LayerGroupWithoutFilter(this.container, this.mapInstance, savedLayerGroup, layerGroup);
         }
 
         if (!this.onlyOneLayerGroup && (!savedLayerGroup.layerGroup || savedLayerGroup.layerGroup === '')) {
