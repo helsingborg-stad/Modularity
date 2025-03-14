@@ -6,6 +6,7 @@ import ImageOverlays from "./map/imageOverlays";
 import LayerGroupFilterFactory from "./map/filtering/layerGroupFilterFactory";
 import Storage from "./map/filtering/storage";
 import FilterHelper from "./map/filtering/filterHelper";
+import FilterButton from "./map/filtering/filterButton";
 
 class InteractiveMap {
     constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
@@ -27,6 +28,7 @@ class InteractiveMap {
 
         // Filter
         const storageInstance = new Storage();
+        const filterButton = new FilterButton(container);
         const filterHelperInstance = new FilterHelper(map, storageInstance);
         const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance, allowFiltering, onlyOneLevelLayerGroup, onlyOneParentLayerGroup);
 

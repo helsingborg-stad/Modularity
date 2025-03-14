@@ -3,14 +3,14 @@
         'interactive-map__filters-container'
     ],
     'attributeList' => [
-        'data-js-interactive-map-filters' => ''
+        'data-js-interactive-map-filters-container' => ''
     ]
 ])
     @if (!empty($buttonFilters))
         @foreach($buttonFilters as $level => $layerGroups)
             @element([
                 'classList' => [
-                    'interactive-map__filters-sub'
+                    'interactive-map__filters-buttons'
                 ],
                 'attributeList' => [
                     'data-js-layer-group-level' => $level,
@@ -36,14 +36,23 @@
         @endforeach
     @endif
     @if(!empty($selectFilters) && count($selectFilters) > 1)
-        @select([
-            'options' => $selectFilters,
-            'preselected' => $preselectedSelectFilter,
-            'required' => true,
-            'selectAttributeList' => [
-                'data-js-main-filter' => ''
-            ]
-        ])
-        @endselect
+    @element([
+        'classList' => [
+            'interactive-map__filters-selects'
+        ]
+    ])
+            @select([
+                'options' => $selectFilters,
+                'preselected' => $preselectedSelectFilter,
+                'required' => true,
+                'selectAttributeList' => [
+                    'data-js-main-filter' => ''
+                ],
+                'classList' => [
+                    'interactive-map__filter-select'
+                ]
+            ])
+            @endselect
+        @endelement
     @endif
 @endelement
