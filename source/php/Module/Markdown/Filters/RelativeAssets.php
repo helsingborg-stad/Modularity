@@ -2,7 +2,7 @@
 
 namespace Modularity\Module\Markdown\Filters;
 
-class RelativeAssets implements FilterInterface
+class RelativeAssets implements LayerGroupFilterInterface
 {
     private string $baseUrl;
 
