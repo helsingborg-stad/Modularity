@@ -11,9 +11,9 @@ class FilterHelper implements FilterHelperInterface {
 
     }
 
-    public findParent(parentId: string): Addable|null {
+    public findParent(parentId: string): LayerGroupFilterInterface|null {
         if (this.storageInstance.getOrderedLayerGroups().hasOwnProperty(parentId)) {
-            return this.storageInstance.getOrderedLayerGroups()[parentId].getLayerGroup();
+            return this.storageInstance.getOrderedLayerGroups()[parentId];
         }
 
         return null;
@@ -26,6 +26,8 @@ class FilterHelper implements FilterHelperInterface {
     }
 
     public showChildrenFilter(id: string): void {
+        console.log(id);
+        console.log(this.findChildren(id));
         this.findChildren(id).forEach(child => {
             child.showFilter();
         });

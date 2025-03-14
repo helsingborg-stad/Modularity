@@ -14,21 +14,28 @@ class LayerGroupFilterFactory {
         private storageInstance: Storage,
         private filterHelperInstance: FilterHelperInterface,
         private allowFiltering: string,
-        private onlyOneLayerGroup: boolean,
+        private onlyOneLevelLayerGroup: boolean,
+        private onlyOneParentLayerGroup: boolean,
     ) {}
     createLayerGroupFilter(
         savedLayerGroup: SavedLayerGroup,
-        layerGroup: LayerGroupInterface,
+        layerGroup: LayerGroupInterface
     ): LayerGroupFilterInterface {
-        if (!this.allowFiltering || this.allowFiltering === 'false') {
-            return new LayerGroupWithoutFilter(this.container, this.mapInstance, savedLayerGroup, layerGroup);
+        const isTopLevel = !savedLayerGroup.layerGroup || savedLayerGroup.layerGroup === '';
+
+        if (!this.filteringIsAllowed() || (this.onlyOneParentLayerGroup && isTopLevel)) {
+            return new LayerGroupWithoutFilter(this.container, this.mapInstance, this.filterHelperInstance, savedLayerGroup, layerGroup);
         }
 
-        if (!this.onlyOneLayerGroup && (!savedLayerGroup.layerGroup || savedLayerGroup.layerGroup === '')) {
+        if (!this.onlyOneLevelLayerGroup && isTopLevel) {
             return new LayerGroupWithSelectFilter(this.container, this.mapInstance, this.filterHelperInstance, savedLayerGroup, layerGroup);
         }
 
         return new LayerGroupWithButtonFilter(this.container, this.mapInstance, this.filterHelperInstance,savedLayerGroup, layerGroup);
+    }
+
+    private filteringIsAllowed(): boolean {
+        return !!this.allowFiltering && this.allowFiltering !== 'false';
     }
 }
 

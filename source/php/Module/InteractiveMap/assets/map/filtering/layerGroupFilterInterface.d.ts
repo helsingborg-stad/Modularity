@@ -7,4 +7,5 @@ export interface LayerGroupFilterInterface {
     getSavedLayerGroup(): SavedLayerGroup;
     hideFilter(): void;
     showFilter(): void;
+    isActive(): void;
 }

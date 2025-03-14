@@ -7,6 +7,7 @@ class LayerGroupWithSelectFilter implements LayerGroupFilterInterface {
     private static mainFilterItems: {[key: string]: LayerGroupFilterInterface} = {};
     private static listenerIsInitiated: boolean = false;
     private static latestValue: string = '';
+    private selectFilter: HTMLSelectElement|null;
     constructor(
         private container: HTMLElement,
         private mapInstance: MapInterface,
@@ -14,9 +15,16 @@ class LayerGroupWithSelectFilter implements LayerGroupFilterInterface {
         private savedLayerGroup: SavedLayerGroup,
         private layerGroup: LayerGroupInterface
     ) {
+        this.selectFilter = this.container.querySelector('[data-js-main-filter]') as HTMLSelectElement;
         LayerGroupWithSelectFilter.mainFilterItems[savedLayerGroup.id] = this;
     }
+
     public init(): void {
+        if (this.isActive()) {
+            this.getLayerGroup().addTo(this.mapInstance);
+            this.filterHelperInstance.showChildrenFilter(this.savedLayerGroup.id);
+        }
+
         if (!LayerGroupWithSelectFilter.listenerIsInitiated) {
             this.setMainListener();
             LayerGroupWithSelectFilter.listenerIsInitiated = true;
@@ -24,15 +32,14 @@ class LayerGroupWithSelectFilter implements LayerGroupFilterInterface {
     }
 
     private setMainListener(): void {
-        const select = this.container.querySelector('[data-js-main-filter]') as HTMLSelectElement;
-        if (!select) {
+        if (!this.selectFilter) {
             return;
         }
 
-        LayerGroupWithSelectFilter.latestValue = select.value;
+        LayerGroupWithSelectFilter.latestValue = this.selectFilter.value;
 
-        select.addEventListener('change', (e) => {
-            const value = select.value;
+        this.selectFilter!.addEventListener('change', (e) => {
+            const value = this.selectFilter!.value;
             if (LayerGroupWithSelectFilter.latestValue === value) {
                 return;
             }
@@ -56,6 +63,10 @@ class LayerGroupWithSelectFilter implements LayerGroupFilterInterface {
 
         this.filterHelperInstance.hideChildrenFilter(id);
         previousLayerGroup.getLayerGroup().removeLayerGroup();
+    }
+
+    public isActive(): boolean {
+        return this.selectFilter?.value === this.savedLayerGroup.id;
     }
 
     public hideFilter(): void {

@@ -14,7 +14,6 @@ class InteractiveMap extends \Modularity\Module
         'align' => ['full']
     );
     private ?OriginalWpService $wpService;
-    private ?InteractiveMapConfigInterface $config = null;
     private array $lang;
 
     public function init()
@@ -41,8 +40,13 @@ class InteractiveMap extends \Modularity\Module
         $data['attributeList'] = [];
         $data['attributeList']['data-js-interactive-map'] = $data['mapID'];
         $data['attributeList']['data-js-interactive-map-data'] = $data['mapData'];
+
         if (empty($selectFilters)) {
             $data['attributeList']['data-js-interactive-map-one-level-only'] = "true";
+        }
+
+        if (count($selectFilters) === 1) {
+            $data['attributeList']['data-js-interactive-map-one-parent-only'] = "true";
         }
 
         $data['allowFiltering'] = $parsedMapData['layerFilter'] ?? false;
@@ -60,14 +64,14 @@ class InteractiveMap extends \Modularity\Module
         $preselectedSelectFilter = null;
 
         if (count($structuredLayerFilters) <= 1) {
-            $buttonFilters = $structuredLayerFilters;
+            $buttonFilters = array_reverse($structuredLayerFilters);
         } else {
             $unformattedSelectFilters = $structuredLayerFilters[0];
             unset($structuredLayerFilters[0]);
-            $buttonFilters = $structuredLayerFilters;
+            $buttonFilters = array_reverse($structuredLayerFilters);
 
             foreach ($unformattedSelectFilters as $filter) {
-                if (empty($preselectedSelectFilter) || !empty($filter['selected'])) {
+                if (empty($preselectedSelectFilter) || !empty($filter['preselected'])) {
                     $preselectedSelectFilter = $filter['id'];
                 }
 

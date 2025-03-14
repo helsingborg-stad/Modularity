@@ -17,7 +17,8 @@ class InteractiveMap {
 
         // Options
         const allowFiltering = mapData.layerFilter ?? false;
-        const onlyOneLayerGroup = container.hasAttribute('data-js-interactive-map-one-level-only');
+        const onlyOneLevelLayerGroup = container.hasAttribute('data-js-interactive-map-one-level-only');
+        const onlyOneParentLayerGroup = container.hasAttribute('data-js-interactive-map-one-parent-only');
 
         // Add the tiles and attribution to the map
         const {url, attribution} = new TilesHelper().getDefaultTiles(mapData.mapStyle);
@@ -27,7 +28,7 @@ class InteractiveMap {
         // Filter
         const storageInstance = new Storage();
         const filterHelperInstance = new FilterHelper(map, storageInstance);
-        const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance, allowFiltering, onlyOneLayerGroup);
+        const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance, allowFiltering, onlyOneLevelLayerGroup, onlyOneParentLayerGroup);
 
         // Adding layerGroups, markers and imageOverlays to the map
         const layerGroups = new LayerGroups(

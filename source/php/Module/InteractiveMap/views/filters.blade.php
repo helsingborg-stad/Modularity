@@ -23,7 +23,8 @@
                         'style' => 'outlined',
                         'toggle' => true,
                         'classList' => [
-                            'interactive-map__filter-button'
+                            'interactive-map__filter-button',
+                            'u-display--none'
                         ],
                         'attributeList' => [
                             'data-js-layer-group' => $layerGroup['id'] ?? '',
@@ -34,7 +35,7 @@
             @endelement
         @endforeach
     @endif
-    @if(!empty($selectFilters))
+    @if(!empty($selectFilters) && count($selectFilters) > 1)
         @select([
             'options' => $selectFilters,
             'preselected' => $preselectedSelectFilter,
