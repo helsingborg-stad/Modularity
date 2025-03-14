@@ -27,6 +27,6 @@ class CacheBust
                . MODULARITY_PATH . '/README.md for more info.</div>';
         }
 
-        return $revManifest[$name];
+        return $revManifest[$name] ?? $name;
     }
 }
