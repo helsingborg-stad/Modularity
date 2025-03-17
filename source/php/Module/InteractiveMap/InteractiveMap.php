@@ -31,8 +31,8 @@ class InteractiveMap extends \Modularity\Module
         $data = [];
         $fields = $this->getFields();
         $data['mapID'] = uniqid('map-');
-        $data['mapData'] = $fields['osm'] ?? "";
-        $parsedMapData = json_decode($fields['osm'] ?? '{}', true);
+        $data['mapData'] = $fields['interactive-map'] ?? "";
+        $parsedMapData = json_decode($fields['interactive-map'] ?? '{}', true);
 
         [$buttonFilters, $selectFilters, $preselectedSelectFilter] = $this->getSelectAndButtonFilters($this->getStructuredLayerFilters($parsedMapData));
 
