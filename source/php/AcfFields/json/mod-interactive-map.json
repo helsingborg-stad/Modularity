@@ -3,61 +3,9 @@
     "title": "Interactive Map",
     "fields": [
         {
-            "key": "field_67a9b074d4fc5",
-            "label": "Post type",
-            "name": "interactive_map_post_type",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "place": "Place"
-            },
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "placeholder": "Select a post type",
-            "allow_null": 1,
-            "ui": 0,
-            "ajax": 0,
-            "allow_custom": 0,
-            "search_placeholder": ""
-        },
-        {
-            "key": "field_67aa0d363318b",
-            "label": "Taxonomy filtering",
-            "name": "interactive_map_taxonomy_filtering",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": [],
-            "default_value": false,
-            "return_format": "value",
-            "multiple": 0,
-            "allow_null": 0,
-            "ui": 0,
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
-        },
-        {
             "key": "field_67b44cbc181c6",
-            "label": "OSM",
-            "name": "osm",
+            "label": "Interactive Map",
+            "name": "interactive-map",
             "aria-label": "",
             "type": "openstreetmap",
             "instructions": "",
@@ -69,7 +17,8 @@
                 "id": ""
             },
             "default_lat": "",
-            "default_lng": ""
+            "default_lng": "",
+            "allow_in_bindings": 1
         }
     ],
     "location": [
