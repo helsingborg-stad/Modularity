@@ -52,9 +52,6 @@ class InteractiveMap {
             mapData.imageOverlays,
             storageInstance
         ).createImageOverlays();
-
-        // Filter
-        // const filterInstance = new Filter(container, layerGroups, layerGroupFilterFactory);
     }
 }
 
