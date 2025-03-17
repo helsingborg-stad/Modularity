@@ -26,8 +26,6 @@ class FilterHelper implements FilterHelperInterface {
     }
 
     public showChildrenFilter(id: string): void {
-        console.log(id);
-        console.log(this.findChildren(id));
         this.findChildren(id).forEach(child => {
             child.showFilter();
         });
