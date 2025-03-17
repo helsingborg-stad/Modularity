@@ -4,7 +4,6 @@ namespace Modularity\Module\InteractiveMap;
 
 use Modularity\Helper\WpService;
 use WpService\WpService as OriginalWpService;
-use Modularity\Module\InteractiveMap\Config\InteractiveMapConfigInterface;
 
 class InteractiveMap extends \Modularity\Module
 {
