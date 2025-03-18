@@ -1,7 +1,7 @@
 @element([
-    'element' => 'article',
+    'componentElement' => 'article',
     'attributeList' => [
-        ...($font_size) ? ['class' => $font_size] : []),
+        ...($font_size ? ['class' => $font_size] : []),
         ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-text-' . $ID . '-label'] : []),
     ]
 ])
