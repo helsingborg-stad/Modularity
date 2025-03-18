@@ -7,7 +7,7 @@
                 'c-card__map'
             ],
             'attributeList' => [
-                'aria-labelledby' => 'mod-map-' . $id .'-label',
+                ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-map-' . $ID . '-label'] : []),
                 'style' => 'min-height: ' . $height . 'px;'
             ],
             'context' => 'module.map'
@@ -63,7 +63,7 @@
         <div class="modularity-map-container__more-info {{$cardMoreInfoCss}}">
             @card([
                 'attributeList' => [
-                    'aria-labelledby' => 'mod-map-' . $id .'-label-moreinfo'
+                    ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-map-' . $ID . '-label-moreinfo'] : []),
                 ],
                 'context' => 'module.map'
             ])

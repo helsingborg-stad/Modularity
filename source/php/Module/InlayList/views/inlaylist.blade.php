@@ -1,6 +1,6 @@
 @card([
     'attributeList' => [
-        'aria-labelledby' => 'mod-inlaylist' . $ID . '-label'
+        ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-inlaylist-' . $ID . '-label'] : []),
     ],
     'context' => 'module.inlay.list'
 ])

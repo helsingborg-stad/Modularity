@@ -1,6 +1,6 @@
 @card([
     'attributeList' => [
-        'aria-labelledby' => 'mod-text-' . $ID .'-label'
+        ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-text-' . $ID . '-label'] : []),
     ],
     'context' => 'module.text.box'
 ])
