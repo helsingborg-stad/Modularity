@@ -24,10 +24,12 @@
                         'toggle' => true,
                         'classList' => [
                             'interactive-map__filter-button',
+                            'u-display--none'
                         ],
                         'attributeList' => [
                             'data-js-layer-group' => $layerGroup['id'] ?? '',
-                        ]
+                        ],
+                        'icon' => 'check_box_outline_blank',
                     ])
                     @endbutton
                 @endforeach
