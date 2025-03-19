@@ -23,28 +23,32 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     justify-content: end;
     flex-direction: column;
     position: absolute;
-    top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    height: 100%;
     width: 100%;
     transition: .2s ease-in-out;
     pointer-events: none;
     opacity: 0;
     z-index: 4000;
+    background-color: $color-secondary;
 
     .interactive-map__filters-buttons {
-        background-color: color-mix(in srgb, $color-secondary 80%, white);
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        .interactive-map__filter-button + .interactive-map__filter-button {
+            margin-left: 0;
+        }
     }
 
     .interactive-map__filters-selects {
-        background-color: $color-secondary;
+        background-color: color-mix(in srgb, $color-secondary 97%, black);
     }
 
     .interactive-map__filters-buttons,
     .interactive-map__filters-selects {
-        transition: .1s ease-in-out;
+        transition: .2s ease-in-out;
         transform: translateY(2rem);
         padding-left: 2rem;
         padding-right: 2rem;
