@@ -25,13 +25,11 @@ class FilterButton {
 
     private close() {
         this.isOpen = false;
-        this.body.classList.remove('u-overflow--hidden');
         this.filterItemsContainer!.classList.remove('is-open');
     }
 
     private open() {
         this.isOpen = true;
-        this.body.classList.add('u-overflow--hidden');
         this.filterItemsContainer!.classList.add('is-open');
     }
 }

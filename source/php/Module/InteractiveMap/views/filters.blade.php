@@ -7,6 +7,19 @@
     ]
 ])
     @if (!empty($buttonFilters))
+            @typography([
+                'element' => 'h3',
+                'variant' => 'h4',
+                'classList' => [
+                    'interactive-map__filters-button-title'
+                ],
+            ])
+                @if (empty($selectFilters) || count($selectFilters) <= 1)
+                    {{$mainFilterTitle}}
+                @else
+                    {{$lang['filter']}}
+                @endif
+            @endtypography
         @foreach($buttonFilters as $level => $layerGroups)
             @element([
                 'classList' => [
@@ -37,11 +50,20 @@
         @endforeach
     @endif
     @if(!empty($selectFilters) && count($selectFilters) > 1)
-    @element([
-        'classList' => [
-            'interactive-map__filters-selects'
-        ]
-    ])
+        @element([
+            'classList' => [
+                'interactive-map__filters-selects'
+            ]
+        ])
+            @typography([
+                'element' => 'h3',
+                'variant' => 'h4',
+                'classList' => [
+                    'interactive-map__filters-select-title'
+                ],
+            ])
+                {{ $mainFilterTitle }}
+            @endtypography
             @select([
                 'options' => $selectFilters,
                 'preselected' => $preselectedSelectFilter,

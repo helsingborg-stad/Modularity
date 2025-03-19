@@ -27,11 +27,19 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     bottom: 0;
     right: 0;
     width: 100%;
-    transition: .2s ease-in-out;
-    pointer-events: none;
+    transform: scaleY(0);
     opacity: 0;
+    transform-origin: bottom;
+    transition: 0.1s ease-in-out;
+    pointer-events: none;
     z-index: 4000;
     background-color: $color-secondary;
+
+    .interactive-map__filters-button-title {
+        padding-top: 1.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
 
     .interactive-map__filters-buttons {
         display: flex;
@@ -44,6 +52,10 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 
     .interactive-map__filters-selects {
         background-color: color-mix(in srgb, $color-secondary 97%, black);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
     }
 
     .interactive-map__filters-buttons,
@@ -62,6 +74,8 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
         width: 100%;
     }
 
+    .interactive-map__filters-button-title,
+    .interactive-map__filters-select-title,
     .interactive-map__filter-button,
     .interactive-map__filter-select {
         transform: translateY(1rem);
@@ -69,13 +83,15 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     }
 
     &.is-open {
-        align-items: end;
+        transform: scaleY(1);
         opacity: 1;
 
         & > * {
             pointer-events: all;
         }
 
+        .interactive-map__filters-button-title,
+        .interactive-map__filters-select-title,
         .interactive-map__filter-button,
         .interactive-map__filter-select {
             transform: translateY(0);

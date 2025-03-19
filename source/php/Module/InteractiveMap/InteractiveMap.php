@@ -22,8 +22,6 @@ class InteractiveMap extends \Modularity\Module
         $this->nameSingular = $this->wpService->__('Interactive map', 'modularity');
         $this->namePlural = $this->wpService->__('Interactive maps', 'modularity');
         $this->description = $this->wpService->__('Outputs an interactive map', 'modularity');
-        
-        $this->lang = $this->getLang();
     }
 
     public function data(): array
@@ -32,6 +30,8 @@ class InteractiveMap extends \Modularity\Module
         $fields = $this->getFields();
         $data['mapID'] = uniqid('map-');
         $data['mapData'] = $fields['interactive-map'] ?? "";
+        $data['lang'] = $this->getLang();
+
         $parsedMapData = json_decode($fields['interactive-map'] ?? '{}', true);
 
         [$buttonFilters, $selectFilters, $preselectedSelectFilter] = $this->getSelectAndButtonFilters($this->getStructuredLayerFilters($parsedMapData));
@@ -48,9 +48,10 @@ class InteractiveMap extends \Modularity\Module
             $data['attributeList']['data-js-interactive-map-one-parent-only'] = "true";
         }
 
-        $data['allowFiltering'] = $parsedMapData['layerFilter'] ?? false;
-        $data['buttonFilters'] = $buttonFilters;
-        $data['selectFilters'] = $selectFilters;
+        $data['allowFiltering']          = $parsedMapData['layerFilter'] ?? false;
+        $data['mainFilterTitle']         = $parsedMapData['layerFilterTitle'] ?? $this->getLang()['filter'];
+        $data['buttonFilters']           = $buttonFilters;
+        $data['selectFilters']           = $selectFilters;
         $data['preselectedSelectFilter'] = $preselectedSelectFilter;
 
         return $data;
@@ -115,9 +116,18 @@ class InteractiveMap extends \Modularity\Module
 
     private function getLang(): array
     {
-        return [
+        static $lang;
+
+        if ($lang) {
+            return $lang;
+        }
+
+        $lang = [
             'no-filter' => $this->wpService->__('No taxonomy filter', 'modularity'),
+            'filter' => $this->wpService->__('Filter', 'modularity'),
         ];
+
+        return $lang;
     }
 
     public function script() {
