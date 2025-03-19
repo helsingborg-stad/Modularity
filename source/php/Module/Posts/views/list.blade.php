@@ -1,7 +1,7 @@
 @card([
     'heading' => false,
     'attributeList' => [
-        'aria-labelledby' => 'mod-posts-' . $ID . '-label'
+        ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-posts-' . $ID . '-label'] : []),
     ],
     'context' => 'module.posts.list'
 ])

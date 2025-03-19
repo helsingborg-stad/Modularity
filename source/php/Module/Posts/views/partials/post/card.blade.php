@@ -4,10 +4,10 @@
     'context' => ['module.posts.index'],
     'content' => $post->excerptShort,
     'tags' => $post->termsUnlinked,
-    'date' => [
+    'date' => $showDate ? [
         'timestamp' => $post->getArchiveDateTimestamp(),
         'format'    => $post->getArchiveDateFormat(),
-    ],
+    ] : null,
     'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'classList' => ['u-height--100'],
     'containerAware' => true,

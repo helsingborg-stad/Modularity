@@ -160,6 +160,27 @@ If it isn\'t a whole number it will be calculated automatically using a better s
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
+        6 => array(
+            'key' => 'field_67c846a5654c1',
+            'label' => __('Collapse menu on mobile', 'modularity'),
+            'name' => 'mod_menu_mobile_collapse',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Will collapse menu groups on mobile to save vertical space. User has ability to expand individual menu groups with a button click.', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 1,
+            'allow_in_bindings' => 1,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
     ),
     'location' => array(
         0 => array(
