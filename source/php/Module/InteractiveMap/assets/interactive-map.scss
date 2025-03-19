@@ -66,8 +66,11 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 
     &.is-open {
         align-items: end;
-        pointer-events: all;
         opacity: 1;
+
+        & > * {
+            pointer-events: all;
+        }
 
         .interactive-map__filter-button,
         .interactive-map__filter-select {

@@ -10,5 +10,6 @@
         </div>
 
     </div>
+    
     @includeWhen((!empty($selectFilters) || !empty($buttonFilters)) && $allowFiltering, 'filters')
 @endelement
