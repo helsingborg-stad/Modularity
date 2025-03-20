@@ -7,7 +7,8 @@ import LayerGroupFilterFactory from "./map/filtering/layerGroupFilterFactory";
 import Storage from "./map/filtering/storage";
 import FilterHelper from "./map/filtering/filterHelper";
 import FilterButton from "./map/filtering/filterButton";
-import MarkerClick from "./map/marker/markerClick";
+import MarkerClick from "./map/markerClick/markerClick";
+import ContainerEvent from "./map/helper/containerEventHelper";
 
 class InteractiveMap {
     constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
@@ -16,6 +17,9 @@ class InteractiveMap {
             center: mapData.startPosition ?? { lat: 56.046467, lng: 12.694512 },
             zoom: parseInt(mapData.zoom ?? "16"),
         }).create();
+
+        // Helper
+        const containerEventHelper = new ContainerEvent(container);
 
         // Options
         const allowFiltering = mapData.layerFilter ?? false;
@@ -29,7 +33,7 @@ class InteractiveMap {
 
         // Filter
         const storageInstance = new Storage();
-        const filterButton = new FilterButton(container);
+        const filterButton = new FilterButton(container, containerEventHelper);
         const filterHelperInstance = new FilterHelper(map, storageInstance);
         const layerGroupFilterFactory = new LayerGroupFilterFactory(container, map, storageInstance, filterHelperInstance, allowFiltering, onlyOneLevelLayerGroup, onlyOneParentLayerGroup);
 
@@ -46,7 +50,7 @@ class InteractiveMap {
             map,
             mapData.markers,
             storageInstance,
-            new MarkerClick(container)
+            new MarkerClick(container, containerEventHelper)
         ).createMarkers();
 
         const imageOverlays = new ImageOverlays(
