@@ -16,12 +16,12 @@
     ])
     @endtypography
     @typography([
-    'classList' => [
-        'interactive-map__marker-description'
-    ],
-    'attributeList' => [
-        'data-js-interactive-map-marker-info-description' => ''
-    ]
-])
-@endtypography
+        'classList' => [
+            'interactive-map__marker-description'
+        ],
+        'attributeList' => [
+            'data-js-interactive-map-marker-info-description' => ''
+        ]
+    ])
+    @endtypography
 @endelement

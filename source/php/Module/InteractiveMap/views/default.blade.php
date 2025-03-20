@@ -12,4 +12,5 @@
     </div>
     
     @includeWhen((!empty($selectFilters) || !empty($buttonFilters)) && $allowFiltering, 'filters')
+    @include('markerInfo')
 @endelement

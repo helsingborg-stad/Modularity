@@ -4,6 +4,7 @@ class FilterButton {
     private innerCloseButton: HTMLElement|null;
     private isOpen: boolean = false;
     private iconAttribute: string = "data-material-symbol";
+    private openClass: string = "is-open";
 
     constructor(container: HTMLElement) {
         this.filterButton = container.querySelector('[data-js-interactive-map-filter-icon]');
@@ -31,13 +32,13 @@ class FilterButton {
 
     private close() {
         this.isOpen = false;
-        this.filterItemsContainer!.classList.remove('is-open');
+        this.filterItemsContainer!.classList.remove(this.openClass);
         this.filterButton?.setAttribute(this.iconAttribute, 'tune');
     }
     
     private open() {
         this.isOpen = true;
-        this.filterItemsContainer!.classList.add('is-open');
+        this.filterItemsContainer!.classList.add(this.openClass);
         this.filterButton?.setAttribute(this.iconAttribute, 'close');
     }
 }

@@ -46,7 +46,7 @@ class InteractiveMap {
             map,
             mapData.markers,
             storageInstance,
-            new MarkerClick()
+            new MarkerClick(container)
         ).createMarkers();
 
         const imageOverlays = new ImageOverlays(
