@@ -2,12 +2,14 @@ import { CreateMarker, MapInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedMarker } from "../mapData";
 import { MarkersData } from "./interface";
 import { StorageInterface } from "./filtering/storageInterface";
+import { MarkerClickInterface } from "./marker/markerClickInterface";
 
 class Markers {
     constructor(
         private map: MapInterface,
         private savedMarkers: SavedMarker[],
-        private storageInstance: StorageInterface
+        private storageInstance: StorageInterface,
+        private markerClick: MarkerClickInterface
     ) {}
 
     public createMarkers(): MarkersData {
@@ -33,6 +35,10 @@ class Markers {
             } else {
                 marker.addTo(this.map);
             }
+
+            marker.addListener('click', () => {
+                this.markerClick.click(markerData);
+            });
         });
 
         return markers;

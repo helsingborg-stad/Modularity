@@ -13,7 +13,7 @@
         'interactive-map__filters-close-icon'
     ],
     'attributeList' => [
-       'data-js-interactive-map-filters-close-icon',
+       'data-js-interactive-map-filters-close-icon' => '',
        'role' => 'button',
        'aria-label' => $lang['closeFilter']
     ]

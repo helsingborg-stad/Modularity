@@ -7,6 +7,7 @@ import LayerGroupFilterFactory from "./map/filtering/layerGroupFilterFactory";
 import Storage from "./map/filtering/storage";
 import FilterHelper from "./map/filtering/filterHelper";
 import FilterButton from "./map/filtering/filterButton";
+import MarkerClick from "./map/marker/markerClick";
 
 class InteractiveMap {
     constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
@@ -44,7 +45,8 @@ class InteractiveMap {
         const markers = new Markers(
             map,
             mapData.markers,
-            storageInstance
+            storageInstance,
+            new MarkerClick()
         ).createMarkers();
 
         const imageOverlays = new ImageOverlays(
