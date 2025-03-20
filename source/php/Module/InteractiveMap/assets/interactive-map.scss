@@ -1,0 +1,141 @@
+$color-primary: var(--color-primary, #ae0b05) !default;
+$color-primary-contrasting: var(--color-primary-contrasting, #fff) !default;
+$color-secondary: var(--color-secondary, #ec6701) !default;
+$color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
+
+@import "~@helsingborg-stad/openstreetmap/dist/main.css";
+
+// Marker info
+.interactive-map__marker-info-container {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s ease-in-out;
+    z-index: 4000;
+    background-color: $color-secondary;
+
+    &.is-open {
+        transform: scaleY(1);
+    }
+}
+
+// Filter
+.interactive-map__filters-container {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    transform: scaleY(0);
+    opacity: 0;
+    transform-origin: bottom;
+    transition: 0.1s ease-in-out;
+    pointer-events: none;
+    z-index: 4000;
+    background-color: $color-secondary;
+
+    .interactive-map__filters-button-title {
+        padding-top: 1.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .interactive-map__filters-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        .interactive-map__filter-button + .interactive-map__filter-button {
+            margin-left: 0;
+        }
+    }
+
+    .interactive-map__filters-selects {
+        background-color: color-mix(in srgb, $color-secondary 97%, black);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        
+        .interactive-map__filter-select {
+            max-width: 15rem;
+        }
+    }
+
+    .interactive-map__filters-buttons,
+    .interactive-map__filters-selects {
+        transition: .2s ease-in-out;
+        transform: translateY(2rem);
+        padding-left: 2rem;
+        padding-right: 2rem;
+        &:has(.interactive-map__filter-button:not(.u-display--none)),
+        &:has(.interactive-map__filter-select) {
+            transform: translateY(0);
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    
+        width: 100%;
+    }
+
+    .interactive-map__filters-button-title,
+    .interactive-map__filters-select-title,
+    .interactive-map__filter-button,
+    .interactive-map__filter-select {
+        transform: translateY(1rem);
+        transition: .2s ease-in-out;
+    }
+
+    &.is-open {
+        transform: scaleY(1);
+        opacity: 1;
+
+        & > * {
+            pointer-events: all;
+        }
+
+        .interactive-map__filters-button-title,
+        .interactive-map__filters-select-title,
+        .interactive-map__filter-button,
+        .interactive-map__filter-select {
+            transform: translateY(0);
+        }
+    }
+}
+
+
+.interactive-map__filter-icon {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 5000;
+    padding: .5rem;
+    background-color: $color-primary-contrasting;
+    color: $color-primary;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    transition: transform .2s ease-in-out;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: scale(1);
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.interactive-map__filters-close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 1000;
+}
