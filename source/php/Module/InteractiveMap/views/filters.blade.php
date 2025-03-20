@@ -6,12 +6,26 @@
         'data-js-interactive-map-filters-container' => ''
     ]
 ])
+@icon([
+    'icon' => 'close',
+    'size' => 'md',
+    'classList' => [
+        'interactive-map__filters-close-icon'
+    ],
+    'attributeList' => [
+       'data-js-interactive-map-filters-close-icon',
+       'role' => 'button',
+       'aria-label' => $lang['closeFilter']
+    ]
+])
+@endicon
     @if (!empty($buttonFilters))
             @typography([
                 'element' => 'h3',
                 'variant' => 'h4',
                 'classList' => [
-                    'interactive-map__filters-button-title'
+                    'interactive-map__filters-button-title',
+                    'u-margin__top--0'
                 ],
             ])
                 @if (empty($selectFilters) || count($selectFilters) <= 1)
