@@ -29,6 +29,7 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     top: 1rem;
     right: 1rem;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .interactive-map__filters-container {
