@@ -2,7 +2,7 @@ import { CreateMarker, MapInterface } from "@helsingborg-stad/openstreetmap";
 import { SavedMarker } from "../mapData";
 import { MarkersData } from "./interface";
 import { StorageInterface } from "./filtering/storageInterface";
-import { MarkerClickInterface } from "./marker/markerClickInterface";
+import { MarkerClickInterface } from "./markerClick/markerClickInterface";
 
 class Markers {
     constructor(
@@ -37,7 +37,7 @@ class Markers {
             }
 
             marker.addListener('click', () => {
-                this.markerClick.click(markerData);
+                this.markerClick.click(markerData, marker.isPopupOpen());
             });
         });
 
