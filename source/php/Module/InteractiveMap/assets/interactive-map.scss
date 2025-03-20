@@ -13,12 +13,17 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     left: 0;
     right: 0;
     transform: scaleY(0);
+    transform-origin: bottom;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.1s ease-in-out;
     z-index: 4000;
     background-color: $color-secondary;
+
+    &.is-open {
+        transform: scaleY(1);
+    }
 }
 
 // Filter
@@ -105,31 +110,32 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
             transform: translateY(0);
         }
     }
+}
 
-    .interactive-map__filter-icon {
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-        z-index: 5000;
-        padding: .5rem;
-        background-color: $color-primary-contrasting;
-        color: $color-primary;
-        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
-        transition: transform .2s ease-in-out;
-        border-radius: 50%;
-        cursor: pointer;
-        transform: scale(1);
-    
-        &:hover {
-            transform: scale(1.1);
-        }
+
+.interactive-map__filter-icon {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 5000;
+    padding: .5rem;
+    background-color: $color-primary-contrasting;
+    color: $color-primary;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    transition: transform .2s ease-in-out;
+    border-radius: 50%;
+    cursor: pointer;
+    transform: scale(1);
+
+    &:hover {
+        transform: scale(1.1);
     }
-    
-    .interactive-map__filters-close-icon {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        cursor: pointer;
-        z-index: 1000;
-    }
+}
+
+.interactive-map__filters-close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+    z-index: 1000;
 }
