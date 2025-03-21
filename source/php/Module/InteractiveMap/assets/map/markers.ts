@@ -19,6 +19,7 @@ class Markers {
             const markerColor = this.getMarkerColor(hasParent, markerData.layerGroup);
             const markerIcon  = this.getMarkerIcon(hasParent, markerData.layerGroup);
             const html        = this.getHtml(markerIcon, markerColor);
+            let highlighted   = false;
 
             const marker = new CreateMarker().create({
                 position: markerData.position,
@@ -27,7 +28,7 @@ class Markers {
                 iconSize: [28, 28],
                 iconAnchor: [14, 2]
             }, {
-                content: markerData.title
+                content: `<h2 class="interactive-map__popup-title">${markerData.title}</h2>`
             });
 
             if (markerData.layerGroup && this.storageInstance.getOrderedLayerGroups().hasOwnProperty(markerData.layerGroup)) {
@@ -38,6 +39,17 @@ class Markers {
 
             marker.addListener('click', () => {
                 this.markerClick.click(markerData, marker.isPopupOpen());
+            });
+
+            marker.addListener('popupopen', () => {
+                highlighted = true;
+                console.log("open");
+            });
+
+
+            marker.addListener('popupclose', () => {
+                highlighted = true;
+                console.log("close");
             });
         });
 

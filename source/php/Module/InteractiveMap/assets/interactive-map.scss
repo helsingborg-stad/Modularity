@@ -5,6 +5,10 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 
 @import "~@helsingborg-stad/openstreetmap/dist/main.css";
 
+.interactive-map .openstreetmap .leaflet-popup-content-wrapper {
+    border-radius: 3px;
+}
+
 // Marker info
 .interactive-map__marker-info-container {
     position: absolute;
@@ -24,6 +28,11 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     &.is-open {
         transform: scaleY(1);
     }
+}
+
+.interactive-map__popup-title {
+    font-size: 1rem;
+    text-align: center;
 }
 
 // Filter
@@ -126,6 +135,10 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     border-radius: 50%;
     cursor: pointer;
     transform: scale(1);
+
+    &.c-icon.c-icon--size-lg:after {
+        display: block;
+    }
 
     &:hover {
         transform: scale(1.1);
