@@ -6,6 +6,8 @@ class MarkerClick implements MarkerClickInterface {
     private markerInfoContainer: HTMLElement;
     private markerInfoTitle: HTMLElement;
     private markerInfoDescription: HTMLElement;
+    private markerInfoImage: HTMLElement;
+    private closeButton: HTMLElement;
     private hasCorrectMarkup: boolean;
     private openClass: string = "is-open";
     private shouldBeOpen: boolean = false;
@@ -14,8 +16,18 @@ class MarkerClick implements MarkerClickInterface {
         this.markerInfoContainer = this.container.querySelector('[data-js-interactive-map-marker-info-container]') as HTMLElement;
         this.markerInfoTitle = this.container.querySelector('[data-js-interactive-map-marker-info-title]') as HTMLElement;
         this.markerInfoDescription = this.container.querySelector('[data-js-interactive-map-marker-info-description]') as HTMLElement;
+        this.markerInfoImage = this.container.querySelector('[data-js-interactive-map-marker-info-image]') as HTMLElement;
+        this.closeButton = this.container.querySelector('[data-js-interactive-map-marker-info-close-icon]') as HTMLElement;
 
-        this.hasCorrectMarkup = !!(this.markerInfoContainer && this.markerInfoTitle && this.markerInfoDescription);
+        this.hasCorrectMarkup = !!(
+            this.markerInfoContainer &&
+            this.markerInfoTitle &&
+            this.markerInfoDescription &&
+            this.markerInfoImage &&
+            this.closeButton
+        );
+
+        this.setCloseButtonListener();
         this.setOpenCloseListeners();
     }
 
@@ -27,6 +39,12 @@ class MarkerClick implements MarkerClickInterface {
         this.shouldBeOpen = shouldOpen;
         this.markerInfoTitle.innerHTML = markerData.title;
         this.markerInfoDescription.innerHTML = markerData.description;
+        
+        if (markerData.image) {
+            this.markerInfoImage.innerHTML = this.createImageMarkup(markerData);
+        } else {
+            this.markerInfoImage.innerHTML = "";
+        }
 
         if (shouldOpen) {
             this.open();
@@ -35,6 +53,18 @@ class MarkerClick implements MarkerClickInterface {
             this.close();
             this.containerEventHelper.dispatchWasClosedEvent("marker");
         }
+    }
+
+    private setCloseButtonListener() {
+        this.closeButton.addEventListener('click', () => {
+            this.close();
+            this.containerEventHelper.dispatchWasClosedEvent("marker");
+            this.shouldBeOpen = false;
+        });
+    }
+    
+    private createImageMarkup(markerData: SavedMarker): string {
+        return `<img src="${markerData.image}" alt="${markerData.title}" />`;
     }
 
     private setOpenCloseListeners() {

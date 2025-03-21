@@ -28,7 +28,8 @@ class Markers {
                 iconSize: [32, 32],
                 iconAnchor: [16, 2]
             }, {
-                content: `<h2 class="interactive-map__popup-title">${markerData.title}</h2>`
+                content: `<h2 class="interactive-map__popup-title">${markerData.title}</h2>`,
+                closeButton: false
             });
 
             if (markerData.layerGroup && this.storageInstance.getOrderedLayerGroups().hasOwnProperty(markerData.layerGroup)) {

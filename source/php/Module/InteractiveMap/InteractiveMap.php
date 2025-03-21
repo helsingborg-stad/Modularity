@@ -125,7 +125,8 @@ class InteractiveMap extends \Modularity\Module
         $lang = [
             'no-filter' => $this->wpService->__('No taxonomy filter', 'modularity'),
             'filter' => $this->wpService->__('Filter', 'modularity'),
-            'closeFilter' => $this->wpService->__('Close filtering panel', 'modularity')
+            'closeFilter' => $this->wpService->__('Close filtering panel', 'modularity'),
+            'closeMarker' => $this->wpService->__('Close marker info', 'modularity')
         ];
 
         return $lang;
