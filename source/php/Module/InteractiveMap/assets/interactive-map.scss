@@ -9,6 +9,20 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     border-radius: 3px;
 }
 
+// Marker
+@keyframes highlight-marker {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.2);
+    }
+}
+
+.interactive-map__highlighted-marker {
+    animation: highlight-marker 0.1s ease-in-out forwards;
+}
+
 // Marker info
 .interactive-map__marker-info-container {
     position: absolute;

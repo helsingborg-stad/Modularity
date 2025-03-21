@@ -25,8 +25,8 @@ class Markers {
                 position: markerData.position,
                 html: html,
                 className: 'interactive-map__marker',
-                iconSize: [28, 28],
-                iconAnchor: [14, 2]
+                iconSize: [32, 32],
+                iconAnchor: [16, 2]
             }, {
                 content: `<h2 class="interactive-map__popup-title">${markerData.title}</h2>`
             });
@@ -43,21 +43,33 @@ class Markers {
 
             marker.addListener('popupopen', () => {
                 highlighted = true;
-                console.log("open");
+                marker.setIcon({
+                    html: this.getHighlightedHtml(markerIcon, markerColor),
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 2]
+                });
             });
 
 
             marker.addListener('popupclose', () => {
                 highlighted = true;
-                console.log("close");
+                marker.setIcon({
+                    html: this.getHtml(markerIcon, markerColor),
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 2]
+                });
             });
         });
 
         return markers;
     }
 
+    private getHighlightedHtml(icon: string, color: string): string {
+        return `<span style="background-color: white; border: solid 2px ${color}; color: ${color}; font-size: 20px; padding: 4px; border-radius: 50%;" data-material-symbol="${icon}" class="interactive-map__highlighted-marker material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`;
+    }
+
     private getHtml(icon: string, color: string): string {
-        return `<span style="background-color: ${color}; color: white; font-size: 20px; padding: 4px; border-radius: 50%;" data-material-symbol="${icon}" class="material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`
+        return `<span style="background-color: ${color}; border: solid 2px ${color}; color: white; font-size: 20px; padding: 4px; border-radius: 50%;" data-material-symbol="${icon}" class="material-symbols material-symbols-rounded material-symbols-sharp material-symbols-outlined material-symbols--filled"></span>`;
     }
 
     private getMarkerIcon(hasParent: boolean, layerGroup: string): string {

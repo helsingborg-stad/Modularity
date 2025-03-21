@@ -6,6 +6,20 @@
         'data-js-interactive-map-marker-info-container' => ''
     ]
 ])
+@slot('before')
+    @element([
+        'classList' => [
+            'interactive-map__marker-info-image'
+        ],
+        'attributeList' => [
+            'data-js-interactive-map-marker-info-image' => ''
+        ]
+    ])
+    @endelement
+@endslot
+@group([
+    'direction' => 'vertical'
+])
     @typography([
         'classList' => [
             'interactive-map__marker-title'
@@ -24,4 +38,7 @@
         ]
     ])
     @endtypography
+@endgroup
+    @element([])
+    @endelement
 @endelement
