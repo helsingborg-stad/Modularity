@@ -59,7 +59,7 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 
 .interactive-map__marker-info {
     display: flex;
-    width: 80%;
+    width: min(80%, 75rem);
     gap: 1rem;
     margin: 1rem 0;
     background-color: white;
