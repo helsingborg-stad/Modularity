@@ -217,3 +217,8 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     cursor: pointer;
     z-index: 1000;
 }
+
+.interactive-map__marker-info-container,
+.interactive-map__filters-container {
+    box-shadow: 0 -3px 10px -5px rgba(0, 0, 0, 0.2);
+}

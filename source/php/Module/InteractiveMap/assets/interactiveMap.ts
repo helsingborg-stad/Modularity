@@ -14,8 +14,8 @@ class InteractiveMap {
     constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
         const map = new CreateMap({
             id: mapId,
-            center: mapData.startPosition ?? { lat: 56.046467, lng: 12.694512 },
-            zoom: parseInt(mapData.zoom ?? "16"),
+            center: mapData.startPosition.latlng ?? { lat: 56.046467, lng: 12.694512 },
+            zoom: mapData.startPosition.zoom ?? 16,
         }).create();
 
         // Helper

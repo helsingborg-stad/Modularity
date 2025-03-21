@@ -26,14 +26,16 @@ type SavedImageOverlay = {
     aspectRatio: number;
 };
 
-type SavedStartPosition = LatLngObject|null;
+type SavedStartPosition = {
+    latlng: LatLngObject;
+    zoom: number;
+}
 
 type SaveData = {
     layerGroups: SavedLayerGroup[];
     markers: SavedMarker[];
     imageOverlays: SavedImageOverlay[];
     startPosition: SavedStartPosition;
-    zoom: string;
     mapStyle: string;
     layerFilter: string;
 }
