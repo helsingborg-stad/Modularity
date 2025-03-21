@@ -15,6 +15,7 @@ type SavedMarker = {
     url: string;
     position: LatLngObject;
     layerGroup: string;
+    image: string;
 };
 
 type SavedImageOverlay = {
