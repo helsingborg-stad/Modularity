@@ -63,7 +63,7 @@ class InteractiveMap extends \Modularity\Module
             case 'small':
                 return '400px';
             case 'large':
-                return '95vh';
+                return '80vh';
             default:
                 return 'min(60vh, 800px)';
         }
