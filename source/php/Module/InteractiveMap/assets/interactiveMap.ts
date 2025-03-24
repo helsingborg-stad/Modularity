@@ -11,7 +11,11 @@ import MarkerClick from "./map/markerClick/markerClick";
 import ContainerEvent from "./map/helper/containerEventHelper";
 
 class InteractiveMap {
-    constructor(mapId: string, mapData: SaveData, container: HTMLElement) {
+    constructor(
+        mapId: string,
+        mapData: SaveData,
+        container: HTMLElement
+    ) {
         const map = new CreateMap({
             id: mapId,
             center: mapData.startPosition.latlng ?? { lat: 56.046467, lng: 12.694512 },
@@ -65,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     (document.querySelectorAll('[data-js-interactive-map]') as NodeListOf<HTMLElement>).forEach(container => {
         const mapId = container.dataset.jsInteractiveMap;
         const mapData = JSON.parse(container.dataset.jsInteractiveMapData ?? '');
+
         if (mapId && mapData) {
             new InteractiveMap(mapId, mapData as SaveData, container);
         } else {

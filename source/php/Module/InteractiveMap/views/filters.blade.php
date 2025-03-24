@@ -47,6 +47,7 @@
                     @button([
                         'text' => $layerGroup['title'] ?? 'Untitled',
                         'color' => 'primary',
+                        'size' => 'sm',
                         'style' => 'outlined',
                         'toggle' => true,
                         'classList' => [

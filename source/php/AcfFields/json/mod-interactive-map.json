@@ -3,6 +3,36 @@
     "title": "Interactive Map",
     "fields": [
         {
+            "key": "field_67dd6e61f1d7d",
+            "label": "Size",
+            "name": "mod_interactive_map_size",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "small": "Small",
+                "medium": "Medium",
+                "large": "Large"
+            },
+            "default_value": "medium",
+            "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "placeholder": "",
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
             "key": "field_67b44cbc181c6",
             "label": "Interactive Map",
             "name": "interactive-map",

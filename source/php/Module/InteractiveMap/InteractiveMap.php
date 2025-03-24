@@ -31,11 +31,11 @@ class InteractiveMap extends \Modularity\Module
         $data['mapID'] = uniqid('map-');
         $data['mapData'] = $fields['interactive-map'] ?? "";
         $data['lang'] = $this->getLang();
+        $data['mapSize'] = $this->getMapSize($fields['mod_interactive_map_size'] ?? 'medium');
 
         $parsedMapData = json_decode($fields['interactive-map'] ?? '{}', true);
 
         [$buttonFilters, $selectFilters, $preselectedSelectFilter] = $this->getSelectAndButtonFilters($this->getStructuredLayerFilters($parsedMapData));
-
         $data['attributeList'] = [];
         $data['attributeList']['data-js-interactive-map'] = $data['mapID'];
         $data['attributeList']['data-js-interactive-map-data'] = $data['mapData'];
@@ -55,6 +55,18 @@ class InteractiveMap extends \Modularity\Module
         $data['preselectedSelectFilter'] = $preselectedSelectFilter;
 
         return $data;
+    }
+
+    private function getMapSize(string $size): string
+    {
+        switch ($size) {
+            case 'small':
+                return '400px';
+            case 'large':
+                return '95vh';
+            default:
+                return 'min(60vh, 800px)';
+        }
     }
 
     private function getSelectAndButtonFilters(array $structuredLayerFilters)
