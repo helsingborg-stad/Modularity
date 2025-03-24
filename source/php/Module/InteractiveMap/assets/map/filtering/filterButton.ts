@@ -54,8 +54,18 @@ class FilterButton {
     }
     
     private open() {
+        this.scrollIntoViewIfNeeded();
         this.filterItemsContainer!.classList.add(this.openClass);
         this.filterButton?.setAttribute(this.iconAttribute, 'close');
+    }
+
+    private scrollIntoViewIfNeeded() {
+        const rect = this.container.getBoundingClientRect();
+        const isNotVisible = rect.bottom > window.innerHeight;
+
+        if (isNotVisible) {
+            this.container.scrollIntoView({ behavior: "smooth", block: "end" });
+        }
     }
 }
 
