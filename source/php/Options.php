@@ -22,7 +22,7 @@ abstract class Options
      * @param  string      $menuTitle  Menu title
      * @param  string      $capability Capability needed
      * @param  string      $menuSlug   Menu slug
-     * @param  strin/array $function   Callback function for content
+     * @param  string/array $function   Callback function for content
      * @param  string      $iconUrl    Menu icon
      * @param  integer     $position   Menu position
      * @return void
