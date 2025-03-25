@@ -218,6 +218,7 @@ class BlockManager
                         'render_callback'   => array($this, 'renderBlock'),
                         'category'          => 'modules',
                         'moduleName'        => $class->slug,
+                        'mode'              => 'edit',
                         'supports'          => array_merge(
                             [
                                 'jsx' => true,
