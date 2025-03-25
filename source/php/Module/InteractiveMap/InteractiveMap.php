@@ -9,11 +9,8 @@ class InteractiveMap extends \Modularity\Module
 {
     public $slug = 'interactivemap';
     public $supports = array();
-    public $blockSupports = array(
-        'align' => ['full']
-    );
+    public $isBlockCompatible = false;
     private ?OriginalWpService $wpService;
-    private array $lang;
 
     public function init()
     {
