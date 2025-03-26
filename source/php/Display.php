@@ -108,7 +108,6 @@ class Display
         $this->isBlock = !empty($data['blockData']);
         $this->isRenderingModule = true;
 
-        // echo '<pre>' . print_r( $view, true ) . '</pre>';
         // Adding Module path to filter
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $this->getModuleDirectory($data['post_type']) . '/views';
         $externalViewPaths = apply_filters('/Modularity/externalViewPath', []);
