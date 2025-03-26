@@ -5,6 +5,10 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 
 @import "~@helsingborg-stad/openstreetmap/dist/main.css";
 
+.interactive-map {
+    position: relative;
+}
+
 .interactive-map .openstreetmap .leaflet-popup-content-wrapper {
     border-radius: 3px;
 }

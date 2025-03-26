@@ -52,7 +52,7 @@
                         'toggle' => true,
                         'classList' => [
                             'interactive-map__filter-button',
-                            'u-display--none'
+                            ((empty($selectFilters) || count($selectFilters) > 1) && $level === 0) ? '' :'u-display--none'
                         ],
                         'attributeList' => [
                             'data-js-layer-group' => $layerGroup['id'] ?? '',
