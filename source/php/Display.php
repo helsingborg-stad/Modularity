@@ -16,6 +16,8 @@ class Display
      */
     public $modules = array();
     public $options = null;
+    private $isBlock = false;
+    private $isRenderingModule = false;
 
     private static $sidebarState = []; //Holds state of sidebars.
 
@@ -32,6 +34,14 @@ class Display
         add_filter('acf/format_value/type=wysiwyg', array( $this, 'filterModularityShortcodes'), 9, 3);
         add_filter('Modularity/Display/SanitizeContent', array($this, 'sanitizeContent'), 10);
         add_filter('Modularity/Display/replaceGrid', array($this, 'replaceGridClasses'), 10);
+
+        add_filter('ComponentLibrary/Component/Data', function ($data) {
+            if ($this->isRenderingModule) {
+                $data['isBlock'] = $this->isBlock;
+            }
+
+            return $data;
+        });
     }
 
     /**
@@ -95,6 +105,10 @@ class Display
     {
         $data['sidebarContext'] = \Modularity\Helper\Context::get();
 
+        $this->isBlock = !empty($data['blockData']);
+        $this->isRenderingModule = true;
+
+        // echo '<pre>' . print_r( $view, true ) . '</pre>';
         // Adding Module path to filter
         $moduleView = MODULARITY_PATH . 'source/php/Module/' . $this->getModuleDirectory($data['post_type']) . '/views';
         $externalViewPaths = apply_filters('/Modularity/externalViewPath', []);
@@ -118,11 +132,15 @@ class Display
         );
 
         try {
-            return $blade->makeView( $view, $viewData, [], $moduleView )->render();
+            $rendered = $blade->makeView( $view, $viewData, [], $moduleView )->render();
+            $this->isRenderingModule = false;
+
+            return $rendered;
         } catch (Throwable $e) {
             $blade->errorHandler($e)->print();
         }
 
+        $this->isRenderingModule = false;
         return false;
     }
 
