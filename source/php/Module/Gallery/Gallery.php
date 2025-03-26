@@ -2,6 +2,8 @@
 
 namespace Modularity\Module\Gallery;
 
+use Modularity\Integrations\Component\ImageResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
 class Gallery extends \Modularity\Module
 {
     public $slug = 'gallery';
@@ -30,7 +32,14 @@ class Gallery extends \Modularity\Module
 
         if ($data['mod_gallery_images']) {
             $data['mod_gallery_images'] = $this->getThumbnails($data['mod_gallery_images']);
-            foreach ($data['mod_gallery_images'] as $i=>$image) {
+            foreach ($data['mod_gallery_images'] as $i => $image) {
+
+                $data['images'][$i]['image'] = ImageComponentContract::factory(
+                    (int) $image['id'],
+                    [768, 432],
+                    new ImageResolver()
+                );
+
                 $data['images'][$i]['largeImage']  = $image["sizes"]["large"];
                 $data['images'][$i]['smallImage']  = $image["sizes"]["thumbnail"];
                 $data['images'][$i]['alt']  = $image["description"];
