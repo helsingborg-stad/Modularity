@@ -1,5 +1,5 @@
 @element([
-    'classList' => ['interactive-map'],
+    'classList' => ['interactive-map', 'o-grid', ($stretch ? 'o-grid--stretch' : '')],
     'attributeList' => $attributeList 
 ])
     @includeWhen((!empty($selectFilters) || !empty($buttonFilters)) && $allowFiltering, 'filterIcon')

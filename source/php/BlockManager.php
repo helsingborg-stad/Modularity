@@ -448,6 +448,7 @@ class BlockManager
 
             //Filter view data
             $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
+            $viewData = apply_filters('Modularity/Block/'.  $block['name'] . '/Data', $viewData, $block, $module);
 
             if ($this->validateFields($viewData)) {
                 $display = new Display(false);
