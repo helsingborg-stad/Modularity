@@ -37,7 +37,7 @@ class MarkerClick implements MarkerClickInterface {
         }
 
         this.shouldBeOpen = shouldOpen;
-        this.markerInfoTitle.innerHTML = markerData.title;
+        this.markerInfoTitle.innerHTML = this.createImageTitleMarkup(markerData);
         this.markerInfoDescription.innerHTML = markerData.description;
         
         if (markerData.image) {
@@ -61,6 +61,14 @@ class MarkerClick implements MarkerClickInterface {
             this.containerEventHelper.dispatchWasClosedEvent("marker");
             this.shouldBeOpen = false;
         });
+    }
+
+    private createImageTitleMarkup(markerData: SavedMarker): string {
+        if (markerData.url) {
+            return `<a href="${markerData.url}">${markerData.title}</a>`;
+        }
+        
+        return markerData.title;
     }
     
     private createImageMarkup(markerData: SavedMarker): string {
