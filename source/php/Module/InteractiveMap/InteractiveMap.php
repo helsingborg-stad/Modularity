@@ -22,6 +22,8 @@ class InteractiveMap extends \Modularity\Module
         $this->nameSingular = $this->wpService->__('Interactive map', 'modularity');
         $this->namePlural = $this->wpService->__('Interactive maps', 'modularity');
         $this->description = $this->wpService->__('Outputs an interactive map', 'modularity');
+
+        add_filter('Modularity/Block/acf/interactivemap/Data', array($this, 'blockData'), 50, 3);
     }
 
     public function data(): array
@@ -32,6 +34,10 @@ class InteractiveMap extends \Modularity\Module
         $data['mapData'] = $fields['interactive-map'] ?? "";
         $data['lang'] = $this->getLang();
         $data['mapSize'] = $this->getMapSize($fields['mod_interactive_map_size'] ?? 'medium');
+
+        if (!isset($data['stretch'])) {
+            $data['stretch'] = false;
+        }
 
         $parsedMapData = json_decode($fields['interactive-map'] ?? '{}', true);
 
@@ -124,6 +130,15 @@ class InteractiveMap extends \Modularity\Module
         
         ksort($tree);
         return $tree;
+    }
+
+    public function BlockData($viewData, $block, $module): array
+    {
+        if ($block['align'] && $block['align'] === 'full') {
+            $viewData['stretch'] = true;
+        }
+
+        return $viewData;
     }
 
     private function getLang(): array

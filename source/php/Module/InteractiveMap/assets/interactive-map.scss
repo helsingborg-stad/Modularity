@@ -203,6 +203,7 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
     border-radius: 50%;
     cursor: pointer;
     transform: scale(1);
+    width: unset;
 
     &.c-icon.c-icon--size-lg:after {
         display: block;
