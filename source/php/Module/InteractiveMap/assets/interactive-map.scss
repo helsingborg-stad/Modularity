@@ -78,7 +78,7 @@ $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 }
 
 .interactive-map__marker-info-image {
-    aspect-ratio: 1;
+    aspect-ratio: 1/1;
     width: 8rem;
     max-width: 8rem;
     line-height: 0;
