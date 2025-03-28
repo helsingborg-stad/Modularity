@@ -16,7 +16,7 @@
         ])
             {{ $archive_link_title ?? $lang['showMore'] }}
             @icon([
-                'icon' => 'arrow_right_alt',
+                'icon' => 'trending_flat',
                 'size' => 'lg',
                 'classList' => [$baseClass . '__icon']
             ])
