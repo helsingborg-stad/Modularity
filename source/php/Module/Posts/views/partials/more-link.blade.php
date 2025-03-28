@@ -10,13 +10,14 @@
                 'u-margin__top--1@sm',
                 'u-justify-content--end@md',
                 'u-justify-content--end@lg',
-                'u-justify-content--end@xl'
+                'u-justify-content--end@xl',
+                'u-align-items--center'
             ]
         ])
             {{ $archive_link_title ?? $lang['showMore'] }}
             @icon([
                 'icon' => 'arrow_right_alt',
-                'size' => 'md',
+                'size' => 'lg',
                 'classList' => [$baseClass . '__icon']
             ])
             @endicon
