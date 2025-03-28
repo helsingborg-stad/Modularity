@@ -16,7 +16,7 @@ use WpService\Contracts\{
 class GetPosts
 {
     public function __construct(
-        private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption = null,
+        private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption,
         private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
         private WpQueryFactoryInterface $wpQueryFactory
     )
