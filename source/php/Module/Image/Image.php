@@ -51,8 +51,7 @@ class Image extends \Modularity\Module
             $data['image'] = ImageComponentContract::factory(
                 $imageId,
                 [1920, false],
-                new ImageResolver(),
-                new ImageFocusResolver('test')
+                new ImageResolver()
             );
 
             $data['caption']    = $this->getImageCaption($fields, $imageId);
