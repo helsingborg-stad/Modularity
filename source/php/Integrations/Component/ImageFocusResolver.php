@@ -30,7 +30,7 @@ class ImageFocusResolver implements ImageFocusResolverInterface {
       $focusPoint['top'] = $data['top'] ?? 50;
     }
 
-    if ($focusPoint['left'] === 50 && $focusPoint['top'] === 50) {
+    if (!empty($data['id']) && $focusPoint['left'] === 50 && $focusPoint['top'] === 50) {
       $focusPoint = apply_filters('attachment_focus_point', $focusPoint, $data['id']);
     }
 
