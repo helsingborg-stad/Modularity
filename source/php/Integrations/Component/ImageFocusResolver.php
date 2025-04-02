@@ -20,12 +20,20 @@ class ImageFocusResolver implements ImageFocusResolverInterface {
    */
   public function getFocusPoint(): array {
     $data = $this->data;
-    if($data && isset($data['left'], $data['top'])) {
-      return [
-        'left' => $data['left'] ?? 50,
-        'top' => $data['top'] ?? 50
-      ];
+    $focusPoint = [
+      'left' => 50,
+      'top' => 50
+    ];
+  
+    if ($data && isset($data['left'], $data['top'])) {
+      $focusPoint['left'] = $data['left'] ?? 50;
+      $focusPoint['top'] = $data['top'] ?? 50;
     }
-    return ['left' => 50, 'top' => 50];
+
+    if ($focusPoint['left'] === 50 && $focusPoint['top'] === 50) {
+      $focusPoint = apply_filters('attachment_focus_point', $focusPoint, $data['id']);
+    }
+
+    return $focusPoint;
   } 
 }
