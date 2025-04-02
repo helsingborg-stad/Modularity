@@ -68,7 +68,7 @@ class Image extends \Modularity\Module
      * If the image should be a link or not.
      * 
      * @param array $fields All the acf fields
-     * @param array $image All the data attached to the image
+     * @param array $imageId The image id
      * @return string|false
      */
     private function getImageCaption(array $fields, int $imageId) {
