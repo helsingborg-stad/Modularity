@@ -142,20 +142,6 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "all"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "all"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
                 "value": "acf\/image"
             }
         ]

@@ -147,20 +147,6 @@
             0 => array(
                 'param' => 'block',
                 'operator' => '==',
-                'value' => 'all',
-            ),
-        ),
-        2 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
-                'value' => 'all',
-            ),
-        ),
-        3 => array(
-            0 => array(
-                'param' => 'block',
-                'operator' => '==',
                 'value' => 'acf/image',
             ),
         ),
