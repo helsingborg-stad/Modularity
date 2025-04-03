@@ -64,6 +64,7 @@ class ManualInput extends \Modularity\Module
                 });
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
+                $arr['id']                      = 'item-' . $this->ID . '-' . $index;
                 // TODO: change name and migrate
                 $arr['icon']                    = $arr['box_icon'];
                 $arr['image']                   = $this->maybeGetImageImageContract($displayAs, $arr['image']) ?? $this->getImageData($arr['image'], $imageSize);
