@@ -23,12 +23,15 @@
                             @collection__item([
                                 'icon' => $post->icon,
                                 'link' => $post->permalink,
-                                'attributeList' => $post->attributeList,
+                                'attributeList' => array_merge($post->attributeList, [
+                                    'aria-labelledby' => 'post-' . $ID . '-' . $post->getId() . '-title'
+                                ]),
                                 'classList' => $post->classList
                             ])
                                 @typography([
                                     'element' => 'h2',
-                                    'variant' => 'h4'
+                                    'variant' => 'h4',
+                                    'id' => 'post-' . $ID . '-' . $post->getId() . '-title',
                                 ])
                                     {{ $post->getTitle() }}
                                 @endtypography
