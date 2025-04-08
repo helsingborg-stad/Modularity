@@ -38,4 +38,6 @@ type SaveData = {
     startPosition: SavedStartPosition;
     mapStyle: string;
     layerFilter: string;
+    layerFilterTitle: string;
+    layerFilterDefaultOpen: string;
 }
