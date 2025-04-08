@@ -8,12 +8,19 @@ class FilterButton {
     private iconAttribute: string = "data-material-symbol";
     private openClass: string = "is-open";
 
-    constructor(private container: HTMLElement, private containerEventHelper: ContainerEventHelperInterface) {
+    constructor(
+        private container: HTMLElement,
+        private containerEventHelper: ContainerEventHelperInterface,
+    ) {
         this.filterButton = this.container.querySelector('[data-js-interactive-map-filter-icon]');
         this.innerCloseButton = this.container.querySelector('[data-js-interactive-map-filters-close-icon]');
         this.filterItemsContainer = this.container.querySelector('[data-js-interactive-map-filters-container]');
 
         if (this.filterButton && this.filterItemsContainer) {
+            if (this.filterItemsContainer.classList.contains(this.openClass)) {
+                this.isOpen = true;
+            }
+
             this.setListener();
             this.setOpenCloseListeners();
         }
@@ -22,19 +29,17 @@ class FilterButton {
     private setListener() {
         this.filterButton!.addEventListener('click', () => {
             if (!this.isOpen) {
+                this.scrollIntoViewIfNeeded();
                 this.open();
-                this.isOpen = true;
                 this.containerEventHelper.dispatchWasOpenedEvent("filter");
             } else {
                 this.close();
-                this.isOpen = false;
                 this.containerEventHelper.dispatchWasClosedEvent("filter");
             }
         });
 
         this.innerCloseButton?.addEventListener('click', () => {
             this.close();
-            this.isOpen = false;
         });
     }
 
@@ -42,7 +47,6 @@ class FilterButton {
         this.container.addEventListener(this.containerEventHelper.getWasOpenedEventName(), (event) => {
             const customEvent = event as CustomEvent<OpenStateDetail>
             if (customEvent.detail === "marker" && this.isOpen) {
-                this.isOpen = false;
                 this.close();
             }
         });
@@ -51,12 +55,13 @@ class FilterButton {
     private close() {
         this.filterItemsContainer!.classList.remove(this.openClass);
         this.filterButton?.setAttribute(this.iconAttribute, 'tune');
+        this.isOpen = false;
     }
     
     private open() {
-        this.scrollIntoViewIfNeeded();
         this.filterItemsContainer!.classList.add(this.openClass);
         this.filterButton?.setAttribute(this.iconAttribute, 'close');
+        this.isOpen = true;
     }
 
     private scrollIntoViewIfNeeded() {

@@ -55,6 +55,7 @@ class InteractiveMap extends \Modularity\Module
         }
 
         $data['allowFiltering']          = $parsedMapData['layerFilter'] ?? false;
+        $data['filterDefaultOpen']       = $parsedMapData['layerFilterDefaultOpen'] === 'true' ? true : false;
         $data['mainFilterTitle']         = $parsedMapData['layerFilterTitle'] ?? $this->getLang()['filter'];
         $data['buttonFilters']           = $buttonFilters;
         $data['selectFilters']           = $selectFilters;
