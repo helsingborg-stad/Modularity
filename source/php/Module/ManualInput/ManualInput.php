@@ -57,6 +57,12 @@ class ManualInput extends \Modularity\Module
             isset($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : ''
         );
 
+        // Accordion settings
+        if ($fields['display_as'] === 'accordion') {
+            $data['accordionHeadingTitle'] = $fields['accordion_heading_title'] ?? false;
+            $data['accordionSpacedSections'] = $fields['accordion_spaced_sections'] ?? false;
+        }
+
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
