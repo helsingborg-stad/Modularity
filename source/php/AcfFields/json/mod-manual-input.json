@@ -148,6 +148,62 @@
             "ui": 1
         },
         {
+            "key": "field_67f666d7dd2a1",
+            "label": "Title as heading",
+            "name": "accordion_heading_title",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Title will be displayed as heading instead of card header",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6752f959acfda",
+                        "operator": "==",
+                        "value": "accordion"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_67f66637f8734",
+            "label": "Spaced sections",
+            "name": "accordion_spaced_sections",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Accordion items will have some space between them",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6752f959acfda",
+                        "operator": "==",
+                        "value": "accordion"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_650067ed6cc3c",
             "label": "Column marking",
             "name": "accordion_column_marking",
@@ -476,6 +532,7 @@
                     "collapsed": "",
                     "button_label": "L\u00e4gg till rad",
                     "rows_per_page": 20,
+                    "parent_repeater": "field_64ff22b2d91b7",
                     "sub_fields": [
                         {
                             "key": "field_64ff23afd91bd",
@@ -498,8 +555,7 @@
                             "append": "",
                             "parent_repeater": "field_64ff2372d91bc"
                         }
-                    ],
-                    "parent_repeater": "field_64ff22b2d91b7"
+                    ]
                 },
                 {
                     "key": "field_64ff231ed91b9",
@@ -818,4 +874,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

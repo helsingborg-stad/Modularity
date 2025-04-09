@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_64ff22b117e2c',
     'title' => __('Manual Input Data', 'modularity'),
     'fields' => array(
@@ -151,6 +153,62 @@
             'ui' => 1,
         ),
         5 => array(
+            'key' => 'field_67f666d7dd2a1',
+            'label' => __('Title as heading', 'modularity'),
+            'name' => 'accordion_heading_title',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Title will be displayed as heading instead of card header', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6752f959acfda',
+                        'operator' => '==',
+                        'value' => 'accordion',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        6 => array(
+            'key' => 'field_67f66637f8734',
+            'label' => __('Spaced sections', 'modularity'),
+            'name' => 'accordion_spaced_sections',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Accordion items will have some space between them', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6752f959acfda',
+                        'operator' => '==',
+                        'value' => 'accordion',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        7 => array(
             'key' => 'field_650067ed6cc3c',
             'label' => __('Column marking', 'modularity'),
             'name' => 'accordion_column_marking',
@@ -178,7 +236,7 @@
             'prepend' => '',
             'append' => '',
         ),
-        6 => array(
+        8 => array(
             'key' => 'field_65005968bbc75',
             'label' => __('Column titles', 'modularity'),
             'name' => 'accordion_column_titles',
@@ -232,7 +290,7 @@
                 ),
             ),
         ),
-        7 => array(
+        9 => array(
             'key' => 'field_65001d039d4c4',
             'label' => __('Columns', 'modularity'),
             'name' => 'columns',
@@ -270,7 +328,7 @@
                 'o-grid-4' => __('3', 'modularity'),
                 'o-grid-3' => __('4', 'modularity'),
             ),
-            'default_value' => 'o-grid-4',
+            'default_value' => __('o-grid-4', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -280,7 +338,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        8 => array(
+        10 => array(
             'key' => 'field_663372f4922a5',
             'label' => __('Highlight first input', 'modularity'),
             'name' => 'highlight_first_input',
@@ -329,7 +387,7 @@
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        9 => array(
+        11 => array(
             'key' => 'field_6641de045ab9d',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -362,7 +420,7 @@
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        10 => array(
+        12 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -396,7 +454,7 @@
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
             ),
-            'default_value' => '4:3',
+            'default_value' => __('4:3', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -406,7 +464,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        11 => array(
+        13 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -479,6 +537,7 @@
                     'collapsed' => '',
                     'button_label' => __('Lägg till rad', 'modularity'),
                     'rows_per_page' => 20,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
                     'sub_fields' => array(
                         0 => array(
                             'key' => 'field_64ff23afd91bd',
@@ -502,7 +561,6 @@
                             'parent_repeater' => 'field_64ff2372d91bc',
                         ),
                     ),
-                    'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 2 => array(
                     'key' => 'field_64ff231ed91b9',
@@ -773,8 +831,7 @@
                         'class' => '',
                         'id' => '',
                     ),
-                    'choices' => array(
-                    ),
+                    'choices' => array(),
                     'default_value' => false,
                     'return_format' => 'value',
                     'multiple' => 0,
@@ -822,4 +879,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
