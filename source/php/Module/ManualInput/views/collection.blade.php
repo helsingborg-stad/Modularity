@@ -10,7 +10,10 @@
                 'context' => $context,
                 'containerAware' => true,
                 'bordered' => true,
-                'attributeList' => $input['attributeList'] ?? []
+                'attributeList' => [
+                    ...($input['attributeList'] ?? []),
+                    ...($input['link'] ? ['aria-labelledby' => $input['id']] : [])
+                ]
             ])
                 @slot('before')
                     @if (!empty($input['image']))
@@ -27,6 +30,7 @@
                         @typography([
                             'element' => 'h2',
                             'variant' => 'h3'
+                            'id'      => $input['id']
                         ])
                             {{ $input['title'] }}
                         @endtypography
