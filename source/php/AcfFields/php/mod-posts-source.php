@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
     'title' => __('Data source', 'modularity'),
     'fields' => array(
@@ -55,9 +53,16 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
             ),
             'wrapper' => array(
-                'width' => ''
+                'width' => '',
+                'class' => '',
+                'id' => '',
             ),
             'choices' => array(
+                'Place' => __('Place', 'modularity'),
+                'School' => __('School', 'modularity'),
+                'Project' => __('Project', 'modularity'),
+                'JobPosting' => __('JobPosting', 'modularity'),
+                'SpecialAnnouncement' => __('SpecialAnnouncement', 'modularity'),
             ),
             'default_value' => false,
             'return_format' => 'value',
@@ -185,8 +190,8 @@ if (function_exists('acf_add_local_field_group')) {
                 'id' => '',
             ),
             'default_value' => 10,
-            'min' => '1',
-            'max' => '100',
+            'min' => 1,
+            'max' => 100,
             'step' => '',
             'placeholder' => '',
             'prepend' => '',
@@ -264,6 +269,62 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
         ),
         8 => array(
+            'key' => 'field_67e6e75d155eb',
+            'label' => __('Link title', 'modularity'),
+            'name' => 'archive_link_title',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 1,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_57ecf1007b749',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        9 => array(
+            'key' => 'field_67e6eed195ff6',
+            'label' => __('Archive link above posts', 'modularity'),
+            'name' => 'archive_link_above_posts',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_57ecf1007b749',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        10 => array(
             'key' => 'field_6710ff6562e8c',
             'label' => __('From network sites', 'modularity'),
             'name' => 'posts_data_network_sources',
@@ -293,6 +354,14 @@ if (function_exists('acf_add_local_field_group')) {
                 'id' => '',
             ),
             'choices' => array(
+                1 => __('Municipio', 'modularity'),
+                201 => __('Familjen Helsingborg', 'modularity'),
+                202 => __('Traineeprogrammet Familjen Helsingborg', 'modularity'),
+                203 => false,
+                204 => false,
+                205 => __('Intranät', 'modularity'),
+                206 => false,
+                217 => false,
             ),
             'default_value' => array(
             ),
@@ -338,5 +407,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
