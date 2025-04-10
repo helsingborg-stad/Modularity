@@ -29,7 +29,7 @@
                     ])
                         @typography([
                             'element' => 'h2',
-                            'variant' => 'h3'
+                            'variant' => 'h3',
                             'id'      => $input['id']
                         ])
                             {{ $input['title'] }}
