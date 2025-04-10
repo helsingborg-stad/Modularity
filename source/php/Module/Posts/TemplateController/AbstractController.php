@@ -22,8 +22,6 @@ class AbstractController
     /** @var \Modularity\Module\Posts\Posts */
     protected $module;
 
-    private WpService $wpService;
-
     /**
      * AbstractController constructor.
      *
@@ -31,13 +29,21 @@ class AbstractController
     */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
-        $this->wpService            = WpServiceHelper::get();
         $this->module               = $module;
         $this->fields               = $module->fields;
         $this->data                 = $this->addDataViewData($module->data, $module->fields);
         $this->data['posts']        = $this->preparePosts($module);
 
         $this->data['classList']    = [];
+    }
+
+    /**
+     * Get the WpService instance.
+     * 
+     * @return \WpService\WpService
+     */
+    private function getWpService(): WpService {
+        return WpServiceHelper::get();
     }
 
     /**
@@ -68,7 +74,7 @@ class AbstractController
     */
     public function addDataViewData(array $data, array $fields) 
     {
-        $data['posts_columns'] = $this->wpService->applyFilters('Modularity/Display/replaceGrid', $fields['posts_columns']);
+        $data['posts_columns'] = $this->getWpService()->applyFilters('Modularity/Display/replaceGrid', $fields['posts_columns']);
         $data['ratio'] = $fields['ratio'] ?? '16:9';
 
         $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
@@ -103,8 +109,8 @@ class AbstractController
                 return $post;
             }
 
-            if(!empty($post->originalBlogId) && $post->originalBlogId !== $this->wpService->getCurrentBlogId()) {
-                $this->wpService->switchToBlog($post->originalBlogId);
+            if(!empty($post->originalBlogId) && $post->originalBlogId !== $this->getWpService()->getCurrentBlogId()) {
+                $this->getWpService()->switchToBlog($post->originalBlogId);
             }
 
             if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
@@ -113,7 +119,7 @@ class AbstractController
                 $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
             }
 
-            $this->wpService->restoreCurrentBlog();
+            $this->getWpService()->restoreCurrentBlog();
             
             return $post;
 
