@@ -16,7 +16,7 @@ class Posts extends \Modularity\Module
 {
     public $slug = 'posts';
     public $supports = [];
-    public $fields;
+    public array $fields = [];
     public $blockSupports = array(
         'align' => ['full']
     );

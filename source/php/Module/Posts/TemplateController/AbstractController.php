@@ -2,8 +2,9 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
-use Modularity\Helper\WpService;
+use Modularity\Helper\WpService as WpServiceHelper;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+use WpService\WpService;
 
 /**
  * Class AbstractController
@@ -21,6 +22,8 @@ class AbstractController
     /** @var \Modularity\Module\Posts\Posts */
     protected $module;
 
+    private WpService $wpService;
+
     /**
      * AbstractController constructor.
      *
@@ -28,6 +31,7 @@ class AbstractController
     */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
+        $this->wpService            = WpServiceHelper::get();
         $this->module               = $module;
         $this->fields               = $module->fields;
         $this->data                 = $this->addDataViewData($module->data, $module->fields);
@@ -64,7 +68,7 @@ class AbstractController
     */
     public function addDataViewData(array $data, array $fields) 
     {
-        $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
+        $data['posts_columns'] = $this->wpService->applyFilters('Modularity/Display/replaceGrid', $fields['posts_columns']);
         $data['ratio'] = $fields['ratio'] ?? '16:9';
 
         $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
@@ -88,9 +92,7 @@ class AbstractController
     */
     public function addPostData($posts = [])
     {
-        $wpService = WpService::get();
-
-        $posts = array_map(function($post) use ($wpService) {
+        $posts = array_map(function($post) {
             $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -101,8 +103,8 @@ class AbstractController
                 return $post;
             }
 
-            if(!empty($post->originalBlogId) && $post->originalBlogId !== $wpService->getCurrentBlogId()) {
-                $wpService->switchToBlog($post->originalBlogId);
+            if(!empty($post->originalBlogId) && $post->originalBlogId !== $this->wpService->getCurrentBlogId()) {
+                $this->wpService->switchToBlog($post->originalBlogId);
             }
 
             if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
@@ -111,7 +113,7 @@ class AbstractController
                 $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
             }
 
-            $wpService->restoreCurrentBlog();
+            $this->wpService->restoreCurrentBlog();
             
             if (!empty($post->schemaData['place']['pin'])) {
                 $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
@@ -223,15 +225,7 @@ class AbstractController
     }
 
     public function postUsesSchemaTypeEvent(object $post):bool {
-        if(!isset($post->schemaObject)) {
-            return false;
-        } 
-
-        $implements = class_implements($post->schemaObject);
-        
-        return  in_array('Spatie\SchemaOrg\BaseType', $implements) &&
-                isset($post->schemaObject['@type']) &&
-                $post->schemaObject['@type'] == 'Event';
+        return $post->getSchemaProperty('@type') === 'Event';
     }
 
     /**
