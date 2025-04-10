@@ -115,10 +115,6 @@ class AbstractController
 
             $this->wpService->restoreCurrentBlog();
             
-            if (!empty($post->schemaData['place']['pin'])) {
-                $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
-            }
-            
             return $post;
 
         }, $posts ?? []);
