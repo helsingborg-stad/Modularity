@@ -49,29 +49,24 @@
                         'js-filter-item' => ''
                     ]
                 ])
-                    @typography([
-                        'element'       => 'span',
-                        'variant'       => 'bold',
-                        'attributeList' => [
-                            ' js-filter-data' => ''
-                        ]
-                    ])
-                        {{ $row['title'] }} 
-                        @if(!empty($row['meta']))
-                            ({{ implode(', ', $row['meta']) }})
-                        @endif
-                    @endtypography
-
-                    @if (!empty($row['description']))
-                        @typography([
-                            'element'       => 'span',
-                            'variant'       => 'meta',
-                            'attributeList' => [
-                                ' js-filter-data' => ''
-                            ]
+                    @if ($showDownloadIcon)
+                        @group([
+                            'justifyContent' => 'space-between',
+                            'classList' => ['u-gap-1',]
                         ])
-                            {{ $row['description'] }}
-                        @endtypography
+                            @group([
+                                'classList' => ['u-display--block'],
+                            ])
+                                @include('partials.file')
+                            @endgroup
+                            @icon([
+                                'icon' => 'download',
+                                'size' => 'md'
+                            ])
+                            @endicon
+                        @endgroup
+                    @else
+                        @include('partials.file')
                     @endif
                 @endcollection__item
             @endforeach
