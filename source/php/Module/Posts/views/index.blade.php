@@ -1,4 +1,4 @@
-@if($archive_link_above_posts)
+@if($archiveLinkAbovePosts)
     <div class="o-grid u-align-items--center">
         <div class="o-grid-9@md">
             @include('partials.head')
@@ -29,4 +29,4 @@
     @endif
 </div>
 
-@includeWhen(!$archive_link_above_posts, 'partials.more')
+@includeWhen(!$archiveLinkAbovePosts, 'partials.more')

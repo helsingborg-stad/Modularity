@@ -168,20 +168,20 @@ class Posts extends \Modularity\Module
         }
 
         //Get archive link
-        $data['archive_link_url'] = $this->archiveUrlHelper->getArchiveUrl(
+        $data['archiveLinkUrl'] = $this->archiveUrlHelper->getArchiveUrl(
             $data['posts_data_post_type'],
             $this->fields ?? null
         );
 
         // Archive link title
-        $data['archive_link_title'] = $this->fields['archive_link_title'];
+        $data['archiveLinkTitle'] = $this->fields['archive_link_title'];
 
         // Archive link position
-        $data['archive_link_above_posts'] = $this->fields['archive_link_above_posts'];
+        $data['archiveLinkAbovePosts'] = $this->fields['archive_link_above_posts'];
 
         //Add filters to archive link
-        if($data['archive_link_url'] && is_array($data['filters']) && !empty($data['filters'])) {
-            $data['archive_link_url'] .= "?" . http_build_query($data['filters']);
+        if($data['archiveLinkUrl'] && is_array($data['filters']) && !empty($data['filters'])) {
+            $data['archiveLinkUrl'] .= "?" . http_build_query($data['filters']);
         }
 
         $data['ariaLabels'] =  (object) [

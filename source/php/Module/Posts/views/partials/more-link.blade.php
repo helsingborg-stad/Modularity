@@ -1,6 +1,6 @@
-@if ($posts_data_source !== 'input' && !empty($archive_link_url))
+@if ($posts_data_source !== 'input' && !empty($archiveLinkUrl))
     @link([
-        'href' => $archive_link_url,
+        'href' => $archiveLinkUrl,
         'classList' => ['u-display-block']
     ])
         @group([
@@ -14,7 +14,7 @@
                 'u-align-items--center'
             ]
         ])
-            {{ $archive_link_title ?? $lang['showMore'] }}
+            {{ $archiveLinkTitle ?? $lang['showMore'] }}
             @icon([
                 'icon' => 'trending_flat',
                 'size' => 'lg',
