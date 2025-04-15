@@ -59,7 +59,6 @@ class ManualInput extends \Modularity\Module
 
         // Accordion settings
         if ($fields['display_as'] === 'accordion') {
-            $data['accordionHeadingTitle'] = $fields['accordion_heading_title'] ?? false;
             $data['accordionSpacedSections'] = $fields['accordion_spaced_sections'] ?? false;
         }
 
