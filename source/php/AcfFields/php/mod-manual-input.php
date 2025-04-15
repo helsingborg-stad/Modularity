@@ -152,34 +152,6 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        5 => array(
-            'key' => 'field_67f666d7dd2a1',
-            'label' => __('Title as heading', 'modularity'),
-            'name' => 'accordion_heading_title',
-            'aria-label' => '',
-            'type' => 'true_false',
-            'instructions' => __('Title will be displayed as heading instead of card header', 'modularity'),
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_6752f959acfda',
-                        'operator' => '==',
-                        'value' => 'accordion',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'message' => '',
-            'default_value' => 0,
-            'ui_on_text' => '',
-            'ui_off_text' => '',
-            'ui' => 1,
-        ),
         6 => array(
             'key' => 'field_67f66637f8734',
             'label' => __('Spaced sections', 'modularity'),

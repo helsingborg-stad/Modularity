@@ -148,34 +148,6 @@
             "ui": 1
         },
         {
-            "key": "field_67f666d7dd2a1",
-            "label": "Title as heading",
-            "name": "accordion_heading_title",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "Title will be displayed as heading instead of card header",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_6752f959acfda",
-                        "operator": "==",
-                        "value": "accordion"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 0,
-            "ui_on_text": "",
-            "ui_off_text": "",
-            "ui": 1
-        },
-        {
             "key": "field_67f66637f8734",
             "label": "Spaced sections",
             "name": "accordion_spaced_sections",
