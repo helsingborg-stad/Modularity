@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_571dfaabc3fc5',
     'title' => __('Data source', 'modularity'),
     'fields' => array(
@@ -58,11 +60,6 @@
                 'id' => '',
             ),
             'choices' => array(
-                'Place' => __('Place', 'modularity'),
-                'School' => __('School', 'modularity'),
-                'Project' => __('Project', 'modularity'),
-                'JobPosting' => __('JobPosting', 'modularity'),
-                'SpecialAnnouncement' => __('SpecialAnnouncement', 'modularity'),
             ),
             'default_value' => false,
             'return_format' => 'value',
@@ -326,14 +323,6 @@
                 'id' => '',
             ),
             'choices' => array(
-                1 => __('Municipio', 'modularity'),
-                201 => __('Familjen Helsingborg', 'modularity'),
-                202 => __('Traineeprogrammet Familjen Helsingborg', 'modularity'),
-                203 => false,
-                204 => false,
-                205 => __('Intranät', 'modularity'),
-                206 => false,
-                217 => false,
             ),
             'default_value' => array(
             ),
@@ -379,4 +368,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

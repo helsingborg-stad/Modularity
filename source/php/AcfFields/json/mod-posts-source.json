@@ -54,13 +54,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "Place": "Place",
-                "School": "School",
-                "Project": "Project",
-                "JobPosting": "JobPosting",
-                "SpecialAnnouncement": "SpecialAnnouncement"
-            },
+            "choices": [],
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -316,16 +310,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "1": "Municipio",
-                "201": "Familjen Helsingborg",
-                "202": "Traineeprogrammet Familjen Helsingborg",
-                "203": false,
-                "204": false,
-                "205": "Intran\u00e4t",
-                "206": false,
-                "217": false
-            },
+            "choices": [],
             "default_value": [],
             "return_format": "array",
             "multiple": 1,
@@ -369,4 +354,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
