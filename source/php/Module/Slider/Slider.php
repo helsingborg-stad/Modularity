@@ -191,7 +191,7 @@ class Slider extends \Modularity\Module
             (int) $imageId,
             [1920, false],
             new ImageResolver(),
-            !is_null($focus) ? new ImageFocusResolver($focus) : null
+            !is_null($focus) ? new ImageFocusResolver($focus) : new ImageFocusResolver(['id' => $imageId])
         ); 
     }
 
