@@ -104,7 +104,8 @@ class ManualInput extends \Modularity\Module
             return ImageComponentContract::factory(
                 $imageId,
                 [$width, false],
-                new ImageResolver()
+                new ImageResolver(),
+                new ImageFocusResolver(['id' => $imageId])
             );
         }
 
