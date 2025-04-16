@@ -25,8 +25,8 @@ class ListTemplate extends AbstractController
         $this->module = $module;
         $this->data['posts'] = $this->prepareList([
             'posts_data_source' => $this->data['posts_data_source'] ?? '',
-            'archive_link' => $this->data['archive_link'] ?? '',
-            'archive_link_url' => $this->data['archive_link_url'] ?? '',
+            'archive_link' => $this->data['archiveLink'] ?? '',
+            'archive_link_url' => $this->data['archiveLinkUrl'] ?? '',
             'filters' => $this->data['filters'] ?? '',
         ]);
     }
