@@ -282,6 +282,34 @@
             "append": ""
         },
         {
+            "key": "field_67e6eed195ff6",
+            "label": "Archive link above posts",
+            "name": "archive_link_above_posts",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_57ecf1007b749",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_6710ff6562e8c",
             "label": "From network sites",
             "name": "posts_data_network_sources",

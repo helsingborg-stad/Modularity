@@ -5,7 +5,9 @@
     'before' => $post->readingTime,
     'containerAware' => true,
     'bordered' => true,
-    'attributeList' => $post->attributeList ?? []
+    'attributeList' => array_merge($post->attributeList ?? [
+        'aria-labelledby' => 'post-' . $ID . '-' . $post->getId() . '-title'
+    ])
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']),
@@ -29,9 +31,10 @@
         ])
             @typography([
                 'element' => 'h2',
-                'variant' => 'h3'
+                'variant' => 'h3',
+                'id' => 'post-' . $ID . '-' . $post->getId() . '-title',
             ])
-                {{ $post->postTitle }}
+                {{ $post->getTitle() }}
             @endtypography
             @if ($post->getIcon())
                 @element([

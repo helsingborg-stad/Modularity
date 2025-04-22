@@ -294,6 +294,34 @@ if (function_exists('acf_add_local_field_group')) {
             'append' => '',
         ),
         9 => array(
+            'key' => 'field_67e6eed195ff6',
+            'label' => __('Archive link above posts', 'modularity'),
+            'name' => 'archive_link_above_posts',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_57ecf1007b749',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        10 => array(
             'key' => 'field_6710ff6562e8c',
             'label' => __('From network sites', 'modularity'),
             'name' => 'posts_data_network_sources',

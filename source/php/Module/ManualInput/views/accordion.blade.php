@@ -1,8 +1,13 @@
+@if (empty($hideTitle) && !empty($postTitle) && $accordionSpacedSections)
+    <div class="u-margin__bottom--2">
+        @include('partials.post-title', ['variant' => 'h2', 'classList' => []])
+    </div>
+@endif
 <div class="o-grid{{ !empty($stretch) ? ' o-grid--stretch' : '' }}" {{!empty($freeTextFiltering) ? 'js-filter-container=' . $ID : ''}}>
     @card([
         'context' => $context
     ])
-        @if (empty($hideTitle) && !empty($postTitle))
+        @if (empty($hideTitle) && !empty($postTitle) && !$accordionSpacedSections)
             <div class="c-card__header">
                 @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
             </div>
@@ -21,7 +26,10 @@
                     @endforeach
                 </header>
             @endif
-            @accordion([])
+    
+            @accordion([
+                'spacedSections' => $accordionSpacedSections
+            ])
                 @foreach ($manualInputs as $input)
                     @accordion__item([
                         'heading' => $input['accordionColumnValues'],

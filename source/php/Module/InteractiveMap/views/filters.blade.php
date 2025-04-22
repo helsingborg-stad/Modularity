@@ -1,6 +1,8 @@
+
 @element([
     'classList' => [
-        'interactive-map__filters-container'
+        'interactive-map__filters-container',
+        $filterDefaultOpen ? 'is-open' : ''
     ],
     'attributeList' => [
         'data-js-interactive-map-filters-container' => ''

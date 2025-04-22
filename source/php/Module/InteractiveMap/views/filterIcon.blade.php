@@ -7,7 +7,7 @@
         'role' => 'button',
         'aria-label' => 'Filter'
     ],
-    'icon' => 'tune',
+    'icon' =>  $filterDefaultOpen ? 'close' : 'tune',
     'size' => 'lg'
 ])
 @endicon

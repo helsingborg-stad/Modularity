@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_5756ce3e48783',
     'title' => __('Files', 'modularity'),
     'fields' => array(
@@ -118,6 +116,7 @@ if (function_exists('acf_add_local_field_group')) {
             'choices' => array(
                 'hide_filetype' => __('Hide file type', 'modularity'),
                 'hide_filesize' => __('Hide file size', 'modularity'),
+                'show_download_icon' => __('Show download icon', 'modularity'),
             ),
             'default_value' => array(
             ),
@@ -126,7 +125,7 @@ if (function_exists('acf_add_local_field_group')) {
             'layout' => 'horizontal',
             'toggle' => 0,
             'save_custom' => 0,
-            'custom_choice_button_text' => 'Lägg till nytt val',
+            'custom_choice_button_text' => 'Add new choice',
         ),
     ),
     'location' => array(
@@ -160,5 +159,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}

@@ -57,6 +57,11 @@ class ManualInput extends \Modularity\Module
             isset($fields['accordion_column_marking']) ? $fields['accordion_column_marking'] : ''
         );
 
+        // Accordion settings
+        if ($fields['display_as'] === 'accordion') {
+            $data['accordionSpacedSections'] = $fields['accordion_spaced_sections'] ?? false;
+        }
+
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
@@ -64,6 +69,7 @@ class ManualInput extends \Modularity\Module
                 });
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
+                $arr['id']                      = 'item-' . $this->ID . '-' . $index;
                 // TODO: change name and migrate
                 $arr['icon']                    = $arr['box_icon'];
                 $arr['image']                   = $this->maybeGetImageImageContract($displayAs, $arr['image']) ?? $this->getImageData($arr['image'], $imageSize);
@@ -98,7 +104,8 @@ class ManualInput extends \Modularity\Module
             return ImageComponentContract::factory(
                 $imageId,
                 [$width, false],
-                new ImageResolver()
+                new ImageResolver(),
+                new ImageFocusResolver(['id' => $imageId])
             );
         }
 

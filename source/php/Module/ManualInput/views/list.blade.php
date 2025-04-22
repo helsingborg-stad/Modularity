@@ -20,12 +20,16 @@
                 @collection__item([
                     'icon' => $input['icon'] ?? 'arrow_forward',
                     'link' => $input['link'],
-                    'attributeList' => $input['attributeList'] ?? [],
-                    'classList' => $input['classList'] ?? []
+                    'classList' => $input['classList'] ?? [],
+                    'attributeList' => [
+                        ...($input['attributeList'] ?? []),
+                        ...($input['link'] ? ['aria-labelledby' => $input['id']] : [])
+                    ]
                 ])
                     @typography([
                         'element' => 'h2',
-                        'variant' => 'h4'
+                        'variant' => 'h4',
+                        'id'      => $input['id']
                     ])
                         {{ $input['title'] }}
                     @endtypography
