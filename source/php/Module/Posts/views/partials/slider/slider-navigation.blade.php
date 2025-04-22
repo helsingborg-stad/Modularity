@@ -1,11 +1,11 @@
     <div class="o-grid-12@sm o-grid-4@md o-grid-4@lg u-display--flex u-align-items--end u-justify-content--end">
-        @if (($posts_data_source !== 'input' && $archive_link_url))
+        @if (($posts_data_source !== 'input' && $archiveLinkUrl))
         <div class="t-read-more-section">
             @button([
                 'text' => __('Show more', 'modularity'),
                 'color' => 'default',
                 'style' => 'basic',
-                'href' => $archive_link_url,
+                'href' => $archiveLinkUrl,
                 'classList' => ['u-flex-grow--1@xs', 'u-margin__right--2']
             ])
             @endbutton
