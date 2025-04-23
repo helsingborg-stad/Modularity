@@ -23,7 +23,7 @@ class Text extends \Modularity\Module
         }
 
         // Check if content contains h1-h6 tags
-        $data['hasHeadingsInContent'] = preg_match('/<h[1-6]/', $data['post_content']);
+        $data['hasHeadingsInContent'] = preg_match('/<h[1-6]/', $data['post_content'] ?? '');
 
         if (empty($this->ID)) {
             $data['ID'] = uniqid();
