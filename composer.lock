@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c28e0c4bc9a5fa8d9406aaf03d285be",
+    "content-hash": "730abb068d9a8ecebc649855d5335425",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -382,16 +382,16 @@
         },
         {
             "name": "helsingborg-stad/acfservice",
-            "version": "0.8.1",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acfservice.git",
-                "reference": "7efd89ef7eb3a1062a08bc5b833f517350e4b2fa"
+                "reference": "c1750a9e4f0d54161e49e7cab9f9cec12d9f4dce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/acfservice/zipball/7efd89ef7eb3a1062a08bc5b833f517350e4b2fa",
-                "reference": "7efd89ef7eb3a1062a08bc5b833f517350e4b2fa",
+                "url": "https://api.github.com/repos/helsingborg-stad/acfservice/zipball/c1750a9e4f0d54161e49e7cab9f9cec12d9f4dce",
+                "reference": "c1750a9e4f0d54161e49e7cab9f9cec12d9f4dce",
                 "shasum": ""
             },
             "require": {
@@ -420,9 +420,9 @@
             "description": "Simplifies ACF integration by providing a centralized AcfService that exposes global ACF functions in a streamlined manner. Simplify your development workflow and enhance ACF integration with ease.",
             "support": {
                 "issues": "https://github.com/helsingborg-stad/acfservice/issues",
-                "source": "https://github.com/helsingborg-stad/acfservice/tree/0.8.1"
+                "source": "https://github.com/helsingborg-stad/acfservice/tree/1.0.1"
             },
-            "time": "2024-08-20T06:00:33+00:00"
+            "time": "2025-04-23T10:51:02+00:00"
         },
         {
             "name": "helsingborg-stad/wpservice",
@@ -2988,11 +2988,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "johannheyne/advanced-custom-fields-table-field": 20,
         "clark-nikdel-powell/post-type-select-for-acf": 20,
-        "jeradin/acf-website-field": 20,
-        "jeradin/acf-dynamic-table-field": 20,
         "enshrined/svg-sanitize": 20,
+        "jeradin/acf-dynamic-table-field": 20,
+        "jeradin/acf-website-field": 20,
+        "johannheyne/advanced-custom-fields-table-field": 20,
         "landrok/language-detector": 20
     },
     "prefer-stable": false,
@@ -3000,6 +3000,6 @@
     "platform": {
         "php": "^8.0"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
