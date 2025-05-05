@@ -18,15 +18,12 @@ class Text extends \Modularity\Module
     {
         $data = $this->getFields() ?? []; 
 
-        // Check if module is in inline mode
-        $isInline = (bool) $this->args['inline'] ?? false;
-
         // Post content [with multiple fallbacks]
         $data['postContent'] = $this->data['post_content'] ?? $data['post_content'] ?: $data['content'] ?? '';
 
         //Run relevant filters
         foreach(['Modularity/Display/SanitizeContent', 'the_content'] as $filter) {
-            if($filter === 'the_content' && $isInline) {
+            if($filter === 'the_content' && $this->isInline()) {
                 continue;
             }
             $data['postContent'] = apply_filters($filter, $data['postContent']);
