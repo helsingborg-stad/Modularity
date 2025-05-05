@@ -411,23 +411,8 @@ class ModuleManager
             echo '<p>';
             echo __('Copy and paste this shortcode to display the module inline.', 'modularity');
             echo '</p><p>';
-            echo '<label><input type="checkbox" class="modularity-inline-template" checked> Use inline template</label>';
             echo '<textarea style="margin-top:10px; overflow: hidden;width: 100%;height:30px;background:#f9f9f9;border:1px solid #ddd;padding:5px;">[modularity id="' . $post->ID . '"]</textarea>';
             echo '</p>';
-
-            echo "<script>
-                jQuery(document).ready(function ($) {
-                    $('.modularity-inline-template').prop('checked', true);
-
-                    $('.modularity-inline-template').on('change', function () {
-                        if ($(this).prop('checked') == false) {
-                            $(this).parents('.inside').find('pre span').text(' inline=\"false\"');
-                        } else {
-                            $(this).parents('.inside').find('pre span').text('');
-                        }
-                    });
-                });
-            </script>";
         }, self::$enabled, 'side', 'default');
     }
 
