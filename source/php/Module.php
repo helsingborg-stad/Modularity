@@ -287,6 +287,15 @@ class Module
     }
 
     /**
+     * Check if the module is in inline mode (eg. in shortcode etc)
+     * @return boolean
+     */
+    public function isInline(): bool
+    {
+        return (bool) $this->args['inline'] ?? false;
+    }
+
+    /**
      * Get module view
      * @return string
      */

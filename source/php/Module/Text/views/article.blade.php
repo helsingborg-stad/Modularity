@@ -5,7 +5,6 @@
         ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-text-' . $ID . '-label'] : []),
     ]
 ])
-    
     @if (!$hideTitle && !empty($postTitle))
         @typography([
                 "element" => "h2",
@@ -15,6 +14,8 @@
                 {!! $postTitle !!}
         @endtypography
     @endif
-    
-    {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $post_content)) !!}
+
+    @if($postContent)
+        {!! $postContent !!}
+    @endif
 @endelement

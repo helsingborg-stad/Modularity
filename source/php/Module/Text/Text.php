@@ -16,24 +16,27 @@ class Text extends \Modularity\Module
 
     public function data() : array
     {
-        $data = $this->getFields(); 
+        $data = $this->getFields() ?? []; 
 
-        if (empty($data['post_content']) && !empty($data['content'])) {
-            $data['post_content'] = $data['content'];
+        // Post content [with multiple fallbacks]
+        $data['postContent'] = $this->data['post_content'] ?? $data['post_content'] ?: $data['content'] ?? '';
+
+        //Run relevant filters
+        foreach(['Modularity/Display/SanitizeContent', 'the_content'] as $filter) {
+            if($filter === 'the_content' && $this->isInline()) {
+                continue;
+            }
+            $data['postContent'] = apply_filters($filter, $data['postContent']);
         }
 
         // Check if content contains h1-h6 tags
         $data['hasHeadingsInContent'] = preg_match('/<h[1-6]/', $data['post_content'] ?? '');
 
-        if (empty($this->ID)) {
-            $data['ID'] = uniqid();
-        }
+        // Alway set ID
+        $data['ID'] = $data['ID'] ?? uniqid();
 
-        if(is_array($data)) {
-            return $data; 
-        }
-        
-        return [];
+        // Set default values
+        return $data ?? []; 
     }
     
     public function template()

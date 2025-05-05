@@ -15,7 +15,10 @@
             @endtypography
         </div>
     @endif
-    <div class="c-card__body">
-        {!! apply_filters('the_content', apply_filters('Modularity/Display/SanitizeContent', $post_content)) !!}
-    </div>
+    
+    @if($postContent)
+        <div class="c-card__body">
+            {!! $postContent !!}
+        </div>
+    @endif
 @endcard
