@@ -9,6 +9,11 @@
     'reverseColumns' => $imagePosition,
     'classList' => array_merge($input['classList'] ?? [], [$input['columnSize']]),
     'hasPlaceholder' => $anyItemHasImage,
-    'attributeList' => $input['attributeList'] ?? []
+    'attributeList' => $input['attributeList'] ?? [],
+    'icon' => [
+        'icon' => $input['icon'],
+        'size' => 'md',
+        'color' => 'black'
+    ]
 ])
 @endsegment

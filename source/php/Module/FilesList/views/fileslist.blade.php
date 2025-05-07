@@ -18,7 +18,7 @@
         'classList'     => [$classes],
         'attributeList' => [
             'js-filter-container' => $uID,
-            'aria-labelledby'     => 'mod-fileslist-' . $ID . '-label'
+            ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-fileslist-' . $ID . '-label'] : []),
         ],
         'context'       => 'module.files.list'
     ])
@@ -49,26 +49,24 @@
                         'js-filter-item' => ''
                     ]
                 ])
-                    @typography([
-                        'element'       => 'span',
-                        'variant'       => 'bold',
-                        'attributeList' => [
-                            ' js-filter-data' => ''
-                        ]
-                    ])
-                        {{ $row['title'] }} ({{ $row['type'] }}, {{ $row['filesize'] }})
-                    @endtypography
-
-                    @if (!empty($row['description']))
-                        @typography([
-                            'element'       => 'span',
-                            'variant'       => 'meta',
-                            'attributeList' => [
-                                ' js-filter-data' => ''
-                            ]
+                    @if ($showDownloadIcon)
+                        @group([
+                            'justifyContent' => 'space-between',
+                            'classList' => ['u-gap-1',]
                         ])
-                            {{ $row['description'] }}
-                        @endtypography
+                            @group([
+                                'classList' => ['u-display--block'],
+                            ])
+                                @include('partials.file')
+                            @endgroup
+                            @icon([
+                                'icon' => 'download',
+                                'size' => 'md'
+                            ])
+                            @endicon
+                        @endgroup
+                    @else
+                        @include('partials.file')
                     @endif
                 @endcollection__item
             @endforeach

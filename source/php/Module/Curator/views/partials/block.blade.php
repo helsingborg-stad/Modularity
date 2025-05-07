@@ -1,7 +1,6 @@
 @foreach ($posts as $post)
     <div class="open-modal modularity-socialmedia__item {{ $columnClasses }}">
         @block([
-            'filled' => false,
             'image' => [
                 'src' => $post->image,
                 'alt' => $post->text,

@@ -11,7 +11,7 @@ use WP_CLI;
  */
 class Upgrade
 {
-    private $dbVersion = 6;
+    private $dbVersion = 8;
     private $dbVersionKey = 'modularity_db_version';
     private $db;
 
@@ -22,11 +22,15 @@ class Upgrade
 
     public function addAdminNotice() 
     {
+        if (!is_super_admin()) {
+            return;
+        }
+
         $currentDbVersion = get_option($this->dbVersionKey);
         if (empty($currentDbVersion) || $currentDbVersion < $this->dbVersion) {
             echo sprintf(
                 '<div class="notice notice-warning update-nag inline">%s</div>',
-                __('A newer version of Modularity is available. Run wp-cli "modularity upgrade" to upgrade.', 'modularity')
+                __('The database may need to be updated to accomodate new datatastructures. Run wp-cli "modularity upgrade" to upgrade.', 'modularity')
             );
             
         }

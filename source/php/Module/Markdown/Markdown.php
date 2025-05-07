@@ -37,7 +37,7 @@ class Markdown extends \Modularity\Module {
         add_filter('acf/prepare_field/key=field_67506eebcdbfd', array($this, 'createDocumentationField'));
 
         //Delete transients when saving
-        add_action('acf/save_post', array($this, 'deleteTransients'), 10, 0);
+        add_action('acf/save_post', array($this, 'deleteTransients'), 10, 1);
     }
 
     /**
@@ -45,10 +45,14 @@ class Markdown extends \Modularity\Module {
      * 
      * @return void
      */
-    public function deleteTransients(): void
+    public function deleteTransients($postId): void
     {
+        if(get_post_type($postId) !== 'mod-markdown') {
+            return;
+        }
+
         $fields = $this->getFields();
-        $markdownUrl = $fields['mod_markdown_url'] ?: false;
+        $markdownUrl = $fields['mod_markdown_url'] ?? false;
 
         if ($markdownUrl) {
             $transientKey = $this->createTransientKey($markdownUrl);
@@ -117,10 +121,12 @@ class Markdown extends \Modularity\Module {
         $isMarkdownUrl = $this->checkIfIsValidMarkdownProvider($markdownUrl, ...$this->providers);
         $markdownContent = $isMarkdownUrl ? $this->getDocument($markdownUrl) : false;
         $isWrapped  = $fields['mod_markdown_wrap_in_container'] ?? false;
+        $markDownImplementation = $isMarkdownUrl ? $this->getMarkdownProvider($markdownUrl, ...$this->providers) : false;
 
         if(!is_wp_error($markdownContent)) {
             $parsedMarkdown = $isMarkdownUrl ? $this->parseMarkdown(
-                $this->filterMarkDownContent($markdownContent)
+                $this->filterMarkDownContent($markdownContent, $fields ?? []),
+                $markDownImplementation
             ) : false;
             $wpError = (is_wp_error($parsedMarkdown)) ? $parsedMarkdown : false;
         } else {
@@ -173,10 +179,11 @@ class Markdown extends \Modularity\Module {
      * 
      * @return string The filtered markdown content.
      */
-    private function filterMarkDownContent(string $markdownContent): string
+    private function filterMarkDownContent(string $markdownContent, array $fields): string
     {
         $filters = [
-            new Filters\DemoteTitles(),
+            new Filters\DemoteTitles($fields),
+            new Filters\RelativeAssets($fields),
         ]; 
 
         foreach ($filters as $filter) {
@@ -191,21 +198,36 @@ class Markdown extends \Modularity\Module {
      */
     private function checkIfIsValidMarkdownProvider($url, ProviderInterface ...$providers): bool
     {
-        foreach ($providers as $provider) {
-            if ($provider->isValidProviderUrl($url)) {
-                return true;
-            }
+        if(!is_null($this->getMarkdownProvider($url, ...$providers))) {
+            return true;
         }
         return false;
     }
 
     /**
+     * Get markdown provider.
+     */
+    private function getMarkdownProvider($url, ProviderInterface ...$providers): ProviderInterface | null
+    {
+        foreach ($providers as $provider) {
+            if ($provider->isValidProviderUrl($url)) {
+                return $provider;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Parse markdown content.
      */
-    private function parseMarkdown(string $markdown): string | \WP_Error
+    private function parseMarkdown(string $markdown, ProviderInterface $markDownImplementation): string | \WP_Error
     {
         try {
-            $converter = new CommonMarkConverter();
+            if($markDownImplementation) {
+                $converter = $markDownImplementation->implementation();
+            } else {
+                $converter = new CommonMarkConverter();
+            }
             return $converter->convert($markdown)->getContent();
         } catch (\Exception $e) {
             return new \WP_Error('parse_error', __('The url provided could not be parsed as markdown.', 'modularity'));

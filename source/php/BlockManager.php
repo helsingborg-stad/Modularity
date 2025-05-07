@@ -116,7 +116,7 @@ class BlockManager
         $pageLanguage = strtolower(get_post_meta(get_the_ID(), 'lang', true)) ?: $siteLanguage;
         $blockLanguage = !empty($block['attrs']['data']['lang']) ? strtolower($block['attrs']['data']['lang']) : $pageLanguage;
 
-        if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage])) {
+        if (!in_array($blockLanguage, [$siteLanguage, $pageLanguage]) && $blockLanguage != 'auto') {
             $blockContent = '<div lang="' . htmlspecialchars($blockLanguage, ENT_QUOTES, 'UTF-8') . '">' . $blockContent . '</div>';
         }
 
@@ -218,6 +218,7 @@ class BlockManager
                         'render_callback'   => array($this, 'renderBlock'),
                         'category'          => 'modules',
                         'moduleName'        => $class->slug,
+                        'mode'              => 'edit',
                         'supports'          => array_merge(
                             [
                                 'jsx' => true,
@@ -447,6 +448,7 @@ class BlockManager
 
             //Filter view data
             $viewData = apply_filters('Modularity/Block/Data', $viewData, $block, $module);
+            $viewData = apply_filters('Modularity/Block/'.  $block['name'] . '/Data', $viewData, $block, $module);
 
             if ($this->validateFields($viewData)) {
                 $display = new Display(false);

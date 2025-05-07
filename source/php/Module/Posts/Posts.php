@@ -2,8 +2,11 @@
 
 namespace Modularity\Module\Posts;
 
+use Modularity\Helper\WpQueryFactory\WpQueryFactory;
+use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts;
+use Modularity\Module\Posts\Private\PrivateController;
 
 /**
  * Class Posts
@@ -13,13 +16,15 @@ class Posts extends \Modularity\Module
 {
     public $slug = 'posts';
     public $supports = [];
-    public $fields;
+    public array $fields = [];
     public $blockSupports = array(
         'align' => ['full']
     );
     public $getPostsHelper;
     public $archiveUrlHelper;
     private array $enabledSchemaTypes = [];
+    public string $postStatus;
+    private PrivateController $privateController;
 
     private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
 
@@ -28,12 +33,12 @@ class Posts extends \Modularity\Module
         $this->nameSingular     = __('Posts', 'modularity');
         $this->namePlural       = __('Posts', 'modularity');
         $this->description      = __('Outputs selected posts in specified layout', 'modularity');
+
+        // Private controller
+        $this->privateController = new PrivateController($this);
         
         // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
-
-        // Handle date field
-        add_filter('acf/load_field/name=posts_date_source', array($this, 'loadDateField'));
         
         // Populate enabled schema types
         add_filter('Municipio/SchemaData/EnabledSchemaTypes', [$this, 'setEnabledSchemaTypes']);
@@ -52,7 +57,11 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $this->getPostsHelper = new GetPosts();
+        $stickyPostHelper = new \Municipio\StickyPost\Helper\GetStickyOption(
+            new \Municipio\StickyPost\Config\StickyPostConfig(),
+            WpService::get()
+        );
+        $this->getPostsHelper = new GetPosts($stickyPostHelper, WpService::get(), new WpQueryFactory());
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
@@ -91,7 +100,7 @@ class Posts extends \Modularity\Module
 
         $field['choices'] = [];
 
-        foreach (get_sites() as $site) {
+        foreach (get_sites(['number' => 0]) as $site) {
             switch_to_blog($site->blog_id);
             $field['choices'][$site->blog_id] = get_bloginfo('name');
             restore_current_blog();
@@ -111,14 +120,15 @@ class Posts extends \Modularity\Module
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 
         // Posts
-        $data['preamble']               = $this->fields['preamble'] ?? false;
-        $data['posts_fields']           = $this->fields['posts_fields'] ?? false;
-        $data['posts_date_source']      = $this->fields['posts_date_source'] ?? false;
-        $data['posts_data_post_type']   = $this->fields['posts_data_post_type'] ?? false;
-        $data['posts_data_source']      = $this->fields['posts_data_source'] ?? false;
+        $data['preamble']             = $this->fields['preamble'] ?? false;
+        $data['posts_fields']         = $this->fields['posts_fields'] ?? [];
+        $data['posts_data_post_type'] = $this->fields['posts_data_post_type'] ?? false;
+        $data['posts_data_source']    = $this->fields['posts_data_source'] ?? false;
+        $data['postsSources']         = $this->fields['posts_data_network_sources'] ?? [];
 
         $postsAndPaginationData = $this->getPostsAndPaginationData();
-        $data['posts'] = $postsAndPaginationData['posts'];
+        $data['posts']          = $postsAndPaginationData['posts'];
+        $data['stickyPosts']    = $postsAndPaginationData['stickyPosts'];
 
         if( !empty($this->fields['posts_pagination']) && $this->fields['posts_pagination'] === 'page_numbers' ) {
             $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
@@ -158,14 +168,20 @@ class Posts extends \Modularity\Module
         }
 
         //Get archive link
-        $data['archive_link_url'] = $this->archiveUrlHelper->getArchiveUrl(
+        $data['archiveLinkUrl'] = $this->archiveUrlHelper->getArchiveUrl(
             $data['posts_data_post_type'],
             $this->fields ?? null
         );
 
+        // Archive link title
+        $data['archiveLinkTitle'] = $this->fields['archive_link_title'];
+
+        // Archive link position
+        $data['archiveLinkAbovePosts'] = $this->fields['archive_link_above_posts'];
+
         //Add filters to archive link
-        if($data['archive_link_url'] && is_array($data['filters']) && !empty($data['filters'])) {
-            $data['archive_link_url'] .= "?" . http_build_query($data['filters']);
+        if($data['archiveLinkUrl'] && is_array($data['filters']) && !empty($data['filters'])) {
+            $data['archiveLinkUrl'] .= "?" . http_build_query($data['filters']);
         }
 
         $data['ariaLabels'] =  (object) [
@@ -184,7 +200,14 @@ class Posts extends \Modularity\Module
 
         $data['lang'] = [
             'showMore' => __('Show more', 'modularity'),
-            'readMore' => __('Read more', 'modularity')
+            'readMore' => __('Read more', 'modularity'),
+            'save'        => __('Save', 'modularity'),
+            'cancel'      => __('Cancel', 'modularity'),
+            'description' => __('Description', 'modularity'),
+            'name'        => __('Name', 'modularity'),
+            'saving'      => __('Saving', 'modularity'),
+            'error'       => __('An error occurred and the data could not be saved. Please try again later', 'modularity'),
+            'changeContent' => __('Change the lists content', 'modularity'),
         ];
 
         return $data;
@@ -240,37 +263,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Get list of date sources
-     *
-     * @param string $postType
-     * @return array
-     */
-    public function getDateSource($postType): array
-    {
-        //TODO: Remove [Start feature: Date from Archive settings]
-        if (empty($postType)) {
-            return false;
-        }
-
-        $metaKeys = [
-            'post_date'  => 'Date published',
-            'post_modified' => 'Date modified',
-        ];
-
-        $metaKeysRaw = \Municipio\Helper\Post::getPosttypeMetaKeys($postType);
-
-        if (isset($metaKeysRaw) && is_array($metaKeysRaw) && !empty($metaKeysRaw)) {
-            foreach ($metaKeysRaw as $metaKey) {
-                $metaKeys[$metaKey] = $metaKey;
-            }
-        }
-
-        return $metaKeys;
-
-        //TODO: Remove [End feature: Date from Archive settings]
-    }
-
-    /**
      * Add full width setting to frontend.
      *
      * @param [array] $viewData
@@ -310,21 +302,6 @@ class Posts extends \Modularity\Module
         return $args;
     }
 
-    //TODO: Remove [Start feature: Date from Archive settings]
-    public function loadDateField($field = [])
-    {
-        $postType = get_field('posts_data_post_type', $this->ID);
-
-        if (empty($postType)) {
-            return $field;
-        }
-
-        $field['choices'] = $this->getDateSource($postType);
-
-        return $field;
-    }
-    //TODO: Remove [End feature: Date from Archive settings]
-
     /**
      * @return false|string
      */
@@ -336,11 +313,15 @@ class Posts extends \Modularity\Module
             $template = 'slider';
         }
         
-        $this->getTemplateData($this->replaceDeprecatedTemplate($template));
+
+        $template = $this->replaceDeprecatedTemplate($template);
+        $this->getTemplateData($template);
+
+        $this->data['template'] = $template;
 
         return apply_filters(
             'Modularity/Module/Posts/template',
-            $this->replaceDeprecatedTemplate($template) . '.blade.php',
+            $template . '.blade.php',
             $this,
             $this->data,
             $this->fields
@@ -370,6 +351,7 @@ class Posts extends \Modularity\Module
         if (class_exists($class)) {
             $controller = new $class($this);
             $this->data = array_merge($this->data, $controller->data);
+            $this->data = $this->privateController->decorateData($this->data, $this->fields);
         }
     }
 
@@ -406,7 +388,8 @@ class Posts extends \Modularity\Module
 
         return [
             'posts' => [],
-            'maxNumPages' => 0
+            'maxNumPages' => 0,
+            'stickyPosts' => []
         ];
     }
 
@@ -420,7 +403,6 @@ class Posts extends \Modularity\Module
         // Add deprecated template/replacement slug to array.
         $deprecatedTemplates = [
             'items' => 'index',
-            'news'  => 'index'
         ];
 
         if (array_key_exists($templateSlug, $deprecatedTemplates)) {

@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_571dfd3c07a77',
     'title' => __('Data display', 'modularity'),
     'fields' => array(
@@ -12,7 +10,7 @@ if (function_exists('acf_add_local_field_group')) {
             'label' => __('Display as', 'modularity'),
             'name' => 'posts_display_as',
             'aria-label' => '',
-            'type' => 'radio',
+            'type' => 'image_select',
             'instructions' => '',
             'required' => 1,
             'conditional_logic' => 0,
@@ -22,24 +20,145 @@ if (function_exists('acf_add_local_field_group')) {
                 'id' => '',
             ),
             'choices' => array(
-                'list' => __('List', 'modularity'),
-                'expandable-list' => __('Expandable List', 'modularity'),
-                'items' => __('Post items', 'modularity'),
-                'news' => __('News items', 'modularity'),
-                'index' => __('Index', 'modularity'),
-                'grid' => __('Blocks', 'modularity'),
-                'features-grid' => __('Features grid', 'modularity'),
-                'segment' => __('Segment', 'modularity'),
-                'collection' => __('Collection', 'modularity'),
+                '6762ed43da0e4' => array(
+                    'image-select-repeater-label' => 'Accordion',
+                    'image-select-repeater-value' => 'expandable-list',
+                ),
+                '6762eee7da0e7' => array(
+                    'image-select-repeater-label' => 'Block',
+                    'image-select-repeater-value' => 'grid',
+                ),
+                '6762eeeeda0e8' => array(
+                    'image-select-repeater-label' => 'Box',
+                    'image-select-repeater-value' => 'features-grid',
+                ),
+                '6762eef4da0e9' => array(
+                    'image-select-repeater-label' => 'Card',
+                    'image-select-repeater-value' => 'index',
+                ),
+                '6762eefeda0ea' => array(
+                    'image-select-repeater-label' => 'Collection',
+                    'image-select-repeater-value' => 'collection',
+                ),
+                '6762ef12da0eb' => array(
+                    'image-select-repeater-label' => 'List',
+                    'image-select-repeater-value' => 'list',
+                ),
+                '6762ef6ada0ec' => array(
+                    'image-select-repeater-label' => 'News',
+                    'image-select-repeater-value' => 'news',
+                ),
+                '6762ef74da0ed' => array(
+                    'image-select-repeater-label' => 'Segment',
+                    'image-select-repeater-value' => 'segment',
+                ),
             ),
-            'default_value' => __('list', 'modularity'),
-            'return_format' => 'value',
-            'allow_null' => 0,
-            'other_choice' => 0,
-            'layout' => 'horizontal',
-            'save_other_choice' => 0,
         ),
         1 => array(
+            'key' => 'field_6762ecffda0e3',
+            'label' => __('posts_display_as_conditional', 'modularity'),
+            'name' => 'posts_display_as_conditional',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => 'acf-hidden',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+        ),
+        2 => array(
+            'key' => 'field_67813612eb109',
+            'label' => __('Allow logged in users to modify their list', 'modularity'),
+            'name' => 'allow_user_modification',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '30',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        3 => array(
+            'key' => 'field_678665cc4cc6e',
+            'label' => __('Save as custom meta key', 'modularity'),
+            'name' => 'save_as_custom_meta_key',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => __('Will default to the module ID but can be set to save as a custom meta key.', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_67813612eb109',
+                        'operator' => '==',
+                        'value' => '1',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '70',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => __('unique-key', 'modularity'),
+            'prepend' => '',
+            'append' => '',
+        ),
+        4 => array(
+            'key' => 'field_675c0e6f7becc',
+            'label' => __('Use term icon as icon in list', 'modularity'),
+            'name' => 'use_term_icon_as_icon_in_list',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '==',
+                        'value' => 'list',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        5 => array(
             'key' => 'field_636249fee87cc',
             'label' => __('Preamble', 'modularity'),
             'name' => 'preamble',
@@ -50,44 +169,14 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'index',
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'news',
-                    ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'grid',
-                    ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'features-grid',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'items',
-                    ),
-                ),
-                5 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==contains',
-                        'value' => 'segment',
+                    1 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'list',
                     ),
                 ),
             ),
@@ -102,7 +191,7 @@ if (function_exists('acf_add_local_field_group')) {
             'prepend' => '',
             'append' => '',
         ),
-        2 => array(
+        6 => array(
             'key' => 'field_6356477fbc5e4',
             'label' => __('Show as slider', 'modularity'),
             'name' => 'show_as_slider',
@@ -113,44 +202,14 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'index',
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
-                    ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'news',
-                    ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'features-grid',
-                    ),
-                ),
-                5 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'segment',
+                    1 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'list',
                     ),
                 ),
             ),
@@ -165,7 +224,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        3 => array(
+        7 => array(
             'key' => 'field_6418289cf23a6',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -176,7 +235,7 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'segment',
                     ),
@@ -198,7 +257,7 @@ if (function_exists('acf_add_local_field_group')) {
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        4 => array(
+        8 => array(
             'key' => 'field_628e0ffba7da4',
             'label' => __('Highlight first post', 'modularity'),
             'name' => 'posts_highlight_first',
@@ -209,47 +268,26 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
-                    ),
-                    1 => array(
-                        'field' => 'field_6356477fbc5e4',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '!=',
-                        'value' => '1',
-                    ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'index',
+                        'value' => 'segment',
                     ),
                     1 => array(
-                        'field' => 'field_6356477fbc5e4',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '!=',
-                        'value' => '1',
+                        'value' => 'list',
                     ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
-                    ),
-                    1 => array(
-                        'field' => 'field_6356477fbc5e4',
+                    2 => array(
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '!=',
-                        'value' => '1',
+                        'value' => 'features-grid',
                     ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'news',
+                    3 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
-                    1 => array(
+                    4 => array(
                         'field' => 'field_6356477fbc5e4',
                         'operator' => '!=',
                         'value' => '1',
@@ -267,7 +305,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        5 => array(
+        9 => array(
             'key' => 'field_629f1b34ef9fc',
             'label' => __('Display highlighted post as', 'modularity'),
             'name' => 'posts_display_highlighted_as',
@@ -282,6 +320,11 @@ if (function_exists('acf_add_local_field_group')) {
                         'operator' => '==',
                         'value' => '1',
                     ),
+                    1 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'news',
+                    ),
                 ),
             ),
             'wrapper' => array(
@@ -293,17 +336,17 @@ if (function_exists('acf_add_local_field_group')) {
                 'block' => __('Block', 'modularity'),
                 'card' => __('Card', 'modularity'),
             ),
-            'default_value' => __('block', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
+            'default_value' => 'block',
             'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        6 => array(
+        10 => array(
             'key' => 'field_571dfdf50d9da',
             'label' => __('Columns', 'modularity'),
             'name' => 'posts_columns',
@@ -314,51 +357,14 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'items',
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'expandable-list',
                     ),
-                ),
-                1 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'index',
-                    ),
-                ),
-                2 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'grid',
-                    ),
-                ),
-                3 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'news',
-                    ),
-                ),
-                4 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'features-grid',
-                    ),
-                ),
-                5 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'segment',
-                    ),
-                ),
-                6 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'collection',
+                    1 => array(
+                        'field' => 'field_6762ecffda0e3',
+                        'operator' => '!=',
+                        'value' => 'list',
                     ),
                 ),
             ),
@@ -373,7 +379,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => __('grid-md-12', 'modularity'),
+            'default_value' => 'grid-md-12',
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -383,7 +389,7 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        8 => array(
+        11 => array(
             'key' => 'field_571e01e7f246c',
             'label' => __('Fields', 'modularity'),
             'name' => 'posts_fields',
@@ -394,12 +400,12 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '!=',
                         'value' => 'expandable-list',
                     ),
                     1 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '!=',
                         'value' => 'list',
                     ),
@@ -416,56 +422,22 @@ if (function_exists('acf_add_local_field_group')) {
                 'title' => __('Show title', 'modularity'),
                 'image' => __('Show featured image', 'modularity'),
                 'reading_time' => __('Show reading time', 'modularity'),
+                'comment_count' => __('Comment count', 'modularity'),
             ),
             'default_value' => array(
-                0 => __('date', 'modularity'),
-                1 => __('excerpt', 'modularity'),
-                2 => __('title', 'modularity'),
-                3 => __('image', 'modularity'),
+                0 => 'date',
+                1 => 'excerpt',
+                2 => 'title',
+                3 => 'image',
             ),
             'return_format' => 'value',
             'allow_custom' => 0,
             'layout' => 'horizontal',
             'toggle' => 0,
             'save_custom' => 0,
+            'custom_choice_button_text' => 'Lägg till nytt val',
         ),
-        9 => array(
-            'key' => 'field_62387e4b55b75',
-            'label' => __('Date source', 'modularity'),
-            'name' => 'posts_date_source',
-            'aria-label' => '',
-            'type' => 'select',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571e01e7f246c',
-                        'operator' => '==',
-                        'value' => 'date',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'choices' => array(
-                'post_date' => __('Date published', 'modularity'),
-                'post_modified' => __('Date modified', 'modularity'),
-            ),
-            'default_value' => false,
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
-            'return_format' => 'value',
-            'ajax' => 0,
-            'placeholder' => '',
-            'allow_custom' => 0,
-            'search_placeholder' => '',
-        ),
-        10 => array(
+        12 => array(
             'key' => 'field_591176fff96d6',
             'label' => __('Hide the title column', 'modularity'),
             'name' => 'posts_hide_title_column',
@@ -476,7 +448,7 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -487,13 +459,13 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => 0,
             'message' => __('Yes, hide the title column', 'modularity'),
+            'default_value' => 0,
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        11 => array(
+        13 => array(
             'key' => 'field_57e3bcae3826e',
             'label' => __('Title column label', 'modularity'),
             'name' => 'title_column_label',
@@ -504,7 +476,7 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -526,7 +498,7 @@ if (function_exists('acf_add_local_field_group')) {
             'prepend' => '',
             'append' => '',
         ),
-        12 => array(
+        14 => array(
             'key' => 'field_571f5776592e6',
             'label' => __('List column labels', 'modularity'),
             'name' => 'posts_list_column_titles',
@@ -537,7 +509,7 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -548,13 +520,14 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
+            'acfe_repeater_stylised_button' => 0,
+            'layout' => 'table',
+            'pagination' => 0,
             'min' => 0,
             'max' => 0,
-            'layout' => 'table',
-            'button_label' => __('Lägg till rad', 'modularity'),
             'collapsed' => '',
+            'button_label' => __('Lägg till rad', 'modularity'),
             'rows_per_page' => 20,
-            'acfe_repeater_stylised_button' => 0,
             'sub_fields' => array(
                 0 => array(
                     'key' => 'field_571f5790592e7',
@@ -581,7 +554,7 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
             ),
         ),
-        13 => array(
+        15 => array(
             'key' => 'field_59197c6dafb31',
             'label' => __('Allow freetext filtering', 'modularity'),
             'name' => 'allow_freetext_filtering',
@@ -592,7 +565,7 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'expandable-list',
                     ),
@@ -603,13 +576,13 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => 1,
             'message' => __('Allow freetext filtering', 'modularity'),
+            'default_value' => 1,
             'ui' => 0,
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
-        14 => array(
+        16 => array(
             'key' => 'field_5be480e163246',
             'label' => __('Highlight post', 'modularity'),
             'name' => 'posts_highlight',
@@ -620,9 +593,9 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
-                        'value' => 'horizontal',
+                        'value' => 'list',
                     ),
                 ),
             ),
@@ -633,52 +606,11 @@ if (function_exists('acf_add_local_field_group')) {
             ),
             'message' => '',
             'default_value' => 0,
-            'ui' => 1,
             'ui_on_text' => __('Enabled', 'modularity'),
             'ui_off_text' => __('Disabled', 'modularity'),
+            'ui' => 1,
         ),
-        15 => array(
-            'key' => 'field_5bdb0d4217e91',
-            'label' => __('Date format', 'modularity'),
-            'name' => 'posts_date_format',
-            'aria-label' => '',
-            'type' => 'select',
-            'instructions' => '',
-            'required' => 0,
-            'conditional_logic' => array(
-                0 => array(
-                    0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
-                        'operator' => '==',
-                        'value' => 'horizontal',
-                    ),
-                    1 => array(
-                        'field' => 'field_571e01e7f246c',
-                        'operator' => '==',
-                        'value' => 'date',
-                    ),
-                ),
-            ),
-            'wrapper' => array(
-                'width' => '',
-                'class' => '',
-                'id' => '',
-            ),
-            'choices' => array(
-                'default' => __('Default timestamp', 'modularity'),
-                'readable' => __('Readable timestamp', 'modularity'),
-            ),
-            'default_value' => __('default', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
-            'return_format' => 'value',
-            'ajax' => 0,
-            'placeholder' => '',
-            'allow_custom' => 0,
-            'search_placeholder' => '',
-        ),
-        16 => array(
+        17 => array(
             'key' => 'field_5bd8575106176',
             'label' => __('Placeholder image', 'modularity'),
             'name' => 'posts_placeholder',
@@ -689,9 +621,9 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
-                        'value' => 'horizontal',
+                        'value' => 'list',
                     ),
                     1 => array(
                         'field' => 'field_571e01e7f246c',
@@ -705,9 +637,9 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
+            'uploader' => '',
             'return_format' => 'array',
-            'preview_size' => 'thumbnail',
-            'library' => 'all',
+            'acfe_thumbnail' => 0,
             'min_width' => '',
             'min_height' => '',
             'min_size' => '',
@@ -715,10 +647,10 @@ if (function_exists('acf_add_local_field_group')) {
             'max_height' => '',
             'max_size' => '',
             'mime_types' => '',
-            'uploader' => '',
-            'acfe_thumbnail' => 0,
+            'preview_size' => 'thumbnail',
+            'library' => 'all',
         ),
-        17 => array(
+        18 => array(
             'key' => 'field_628e0f242aa5f',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -729,14 +661,14 @@ if (function_exists('acf_add_local_field_group')) {
             'conditional_logic' => array(
                 0 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'grid',
                     ),
                 ),
                 1 => array(
                     0 => array(
-                        'field' => 'field_571dfd4c0d9d9',
+                        'field' => 'field_6762ecffda0e3',
                         'operator' => '==',
                         'value' => 'features-grid',
                     ),
@@ -752,11 +684,11 @@ if (function_exists('acf_add_local_field_group')) {
                 '4:3' => __('4:3', 'modularity'),
                 '12:16' => __('12:16', 'modularity'),
             ),
-            'default_value' => __('4:3', 'modularity'),
-            'allow_null' => 0,
-            'multiple' => 0,
-            'ui' => 0,
+            'default_value' => '4:3',
             'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
             'ajax' => 0,
             'placeholder' => '',
             'allow_custom' => 0,
@@ -794,5 +726,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}

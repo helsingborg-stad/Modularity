@@ -16,7 +16,6 @@
 
     .col {
         display: table-cell;
-        visibility: middle;
         padding: 10px 14px;
         width: 50%;
 
@@ -259,7 +258,7 @@
     display: flex;
     background: #00000005;
     border-right: 1px solid #E5E5E5;
-    aspect-ratio: 1;
+    aspect-ratio: 1/1;
     height: 100%;
     align-items: center;
     justify-content: center;
@@ -304,7 +303,7 @@
             .modularity-modules {
                 height: 100%;
                 min-height: none;
-                max-height: auto;
+                max-height: unset;
             }
         }
     }

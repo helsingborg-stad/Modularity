@@ -4,13 +4,13 @@
             'heading' => false,
             'attributeList' => [
                 'js-filter-container' => $ID,
-                'aria-labelledby' => 'mod-posts-' . $ID . '-label'
+                ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-posts-' . $ID . '-label'] : []),
             ],
             'context' => 'module.posts.expandablelist'
         ])
-        @if(!$hideTitle && !empty($postTitle))
+        @if ((!$hideTitle && !empty($postTitle)) || !empty($titleCTA))
             <div class="c-card__header">
-                @include('partials.post-title', ['variant' => 'h4', 'classList' => []])
+                @include('partials.post-title', ['variant' => 'h4', 'classList' => [], 'titleCTA' => $titleCTA ?? null])
             </div>
         @endif
             <div>
@@ -67,26 +67,28 @@
                                 @if ($posts_hide_title_column)
                                     @php $accordionItem['heading'] = []; @endphp
                                 @endif
-
                                 @accordion__item([
                                     'heading' => $accordionItem['column_values']
                                         ? array_merge((array) $accordionItem['heading'], (array) $accordionItem['column_values'])
                                         : $accordionItem['heading'],
-                                    'attributeList' => [
-                                        'js-filter-item' => '',
-                                        'js-filter-data' => ''
-                                    ],
-                                    'classList' => ['c-accordion-table', 'u-clearfix']
+                                    'attributeList' => array_merge(
+                                        ['js-filter-item' => '','js-filter-data' => ''], 
+                                        $accordionItem['attributeList']
+                                    ),
+                                    'classList' => array_merge(
+                                        $accordionItem['classList'], 
+                                        ['c-accordion-table', 'u-clearfix']
+                                    )
                                 ])
                                     {!! $accordionItem['content'] !!}
                                 @endaccordion__item
                             @else
                                 @accordion__item([
                                     'heading' => $accordionItem['heading'],
-                                    'attributeList' => [
-                                        'js-filter-item' => '',
-                                        'js-filter-data' => ''
-                                    ]
+                                    'classList' => $accordionItem['classList'],
+                                    'attributeList' => array_merge(
+                                        ['js-filter-item' => '','js-filter-data' => ''], 
+                                        $accordionItem['attributeList'])
                                 ])
                                     {!! $accordionItem['content'] !!}
                                 @endaccordion__item

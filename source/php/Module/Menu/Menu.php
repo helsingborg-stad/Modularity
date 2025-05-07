@@ -7,8 +7,6 @@ use Modularity\Module\Menu\Decorator\DataDecorator;
 use \Municipio\Controller\Navigation\MenuDirector;
 use \Municipio\Controller\Navigation\MenuBuilder;
 use \Municipio\Controller\Navigation\Config\MenuConfig;
-use \Municipio\Helper\WpService;
-use \Municipio\Helper\AcfService;
 
 class Menu extends \Modularity\Module
 {
@@ -32,11 +30,13 @@ class Menu extends \Modularity\Module
         $data = [];
         $fields = $this->getFields();
 
-        $acfService = AcfService::get();
-        $wpService  = WpService::get();
+        $acfService = \Modularity\Helper\AcfService::get();
+        $wpService  = \Modularity\Helper\WpService::get();
 
-        $data['displayAs'] = $fields['mod_menu_display_as'] ?? 'listing';
-        $data['wrapped']   = $fields['mod_menu_wrapped'] ?? false;
+        $data['displayAs']      = $fields['mod_menu_display_as'] ?? 'listing';
+        $data['wrapped']        = $fields['mod_menu_wrapped'] ?? false;
+        $data['mobileCollapse'] = $fields['mod_menu_mobile_collapse'] ?? true;
+        $data['ID']             = $this->ID ?? uniqid();
 
         $menuConfig = new MenuConfig(
             'mod-menu-' . $data['displayAs'],

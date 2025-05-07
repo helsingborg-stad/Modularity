@@ -4,7 +4,7 @@
     'layout'            => $slide['textblock_position'],
     'image'             => $slide['hasImageContract'] ? $slide['image'] : $slide['image']['src'],
     'video'             => $slide['video_mp4']['url'] ?? false,
-    'link'              => $slide['link_url'] ?? null,
+    'link'              => $slide['link_type'] !== "false" ? ($slide['link_url'] ?? null) : null,
     'linkDescription'   => $slide['link_url_description'] ?? null,
     'alt'               => $slide['hasImageContract'] ? null : $slide['image']['alt'],
     'heroStyle'         => $sidebarContext === 'sidebar.slider-area',

@@ -1,8 +1,8 @@
 @element([
     'attributeList' => [                
-        'data-js-manual-input-user' => $user,
-        'data-js-manual-input-id' => $ID,
-        'data-js-manual-input-user-ordering' => ''
+        'data-js-user-editable-user' => $user,
+        'data-js-user-editable-id' => $privateModuleMetaKey,
+        'data-js-user-editable' => $userMetaKey
     ],
 ])
     @includeFirst([$template, 'base'],
@@ -12,14 +12,14 @@
             'icon' => 'edit',
             'size' => 'md',
             'attributeList' => [
-                'data-open' => 'modal-' . $ID,
+                'data-open' => 'modal-' . $privateModuleMetaKey,
                 'style' => 'cursor: pointer;'
             ]
         ]
     ])
 
     @modal([
-        'id' => 'modal-' . $ID,
+        'id' => 'modal-' . $privateModuleMetaKey,
         'size' => 'sm',
         'padding' => 4,
         'heading' => $lang['changeContent']
@@ -37,7 +37,7 @@
             ],
             'message' => ['text' => $lang['error']],
             'attributeList' => [
-                'data-js-manual-input-error' => ''
+                'data-js-user-editable-error' => ''
             ],
             'icon' => [
                 'name' => 'report',
@@ -50,9 +50,6 @@
             'classList' => [
                 'u-print-display--none',
             ],
-            'attributeList' => [
-                'data-js-manual-input-form' => '',
-            ]
         ])
         @collection([
             'bordered' => true,

@@ -7,7 +7,7 @@
             "label": "Display as",
             "name": "posts_display_as",
             "aria-label": "",
-            "type": "radio",
+            "type": "image_select",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -17,22 +17,143 @@
                 "id": ""
             },
             "choices": {
-                "list": "List",
-                "expandable-list": "Expandable List",
-                "items": "Post items",
-                "news": "News items",
-                "index": "Index",
-                "grid": "Blocks",
-                "features-grid": "Features grid",
-                "segment": "Segment",
-                "collection": "Collection"
+                "6762ed43da0e4": {
+                    "image-select-repeater-label": "Accordion",
+                    "image-select-repeater-value": "expandable-list"
+                },
+                "6762eee7da0e7": {
+                    "image-select-repeater-label": "Block",
+                    "image-select-repeater-value": "grid"
+                },
+                "6762eeeeda0e8": {
+                    "image-select-repeater-label": "Box",
+                    "image-select-repeater-value": "features-grid"
+                },
+                "6762eef4da0e9": {
+                    "image-select-repeater-label": "Card",
+                    "image-select-repeater-value": "index"
+                },
+                "6762eefeda0ea": {
+                    "image-select-repeater-label": "Collection",
+                    "image-select-repeater-value": "collection"
+                },
+                "6762ef12da0eb": {
+                    "image-select-repeater-label": "List",
+                    "image-select-repeater-value": "list"
+                },
+                "6762ef6ada0ec": {
+                    "image-select-repeater-label": "News",
+                    "image-select-repeater-value": "news"
+                },
+                "6762ef74da0ed": {
+                    "image-select-repeater-label": "Segment",
+                    "image-select-repeater-value": "segment"
+                }
+            }
+        },
+        {
+            "key": "field_6762ecffda0e3",
+            "label": "posts_display_as_conditional",
+            "name": "posts_display_as_conditional",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "acf-hidden",
+                "id": ""
             },
-            "default_value": "list",
-            "return_format": "value",
-            "allow_null": 0,
-            "other_choice": 0,
-            "layout": "horizontal",
-            "save_other_choice": 0
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_67813612eb109",
+            "label": "Allow logged in users to modify their list",
+            "name": "allow_user_modification",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "expandable-list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "30",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
+            "key": "field_678665cc4cc6e",
+            "label": "Save as custom meta key",
+            "name": "save_as_custom_meta_key",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "Will default to the module ID but can be set to save as a custom meta key.",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_67813612eb109",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "70",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "unique-key",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_675c0e6f7becc",
+            "label": "Use term icon as icon in list",
+            "name": "use_term_icon_as_icon_in_list",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6762ecffda0e3",
+                        "operator": "==",
+                        "value": "list"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_636249fee87cc",
@@ -45,44 +166,14 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==contains",
-                        "value": "index"
-                    }
-                ],
-                [
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "expandable-list"
+                    },
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==contains",
-                        "value": "news"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==contains",
-                        "value": "grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==contains",
-                        "value": "features-grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==contains",
-                        "value": "items"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==contains",
-                        "value": "segment"
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "list"
                     }
                 ]
             ],
@@ -108,44 +199,14 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "index"
-                    }
-                ],
-                [
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "expandable-list"
+                    },
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "items"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "news"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "features-grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "segment"
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "list"
                     }
                 ]
             ],
@@ -171,7 +232,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "segment"
                     }
@@ -204,45 +265,24 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "items"
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "segment"
                     },
                     {
-                        "field": "field_6356477fbc5e4",
+                        "field": "field_6762ecffda0e3",
                         "operator": "!=",
-                        "value": "1"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "index"
+                        "value": "list"
                     },
                     {
-                        "field": "field_6356477fbc5e4",
+                        "field": "field_6762ecffda0e3",
                         "operator": "!=",
-                        "value": "1"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "grid"
+                        "value": "features-grid"
                     },
                     {
-                        "field": "field_6356477fbc5e4",
+                        "field": "field_6762ecffda0e3",
                         "operator": "!=",
-                        "value": "1"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "news"
+                        "value": "expandable-list"
                     },
                     {
                         "field": "field_6356477fbc5e4",
@@ -276,6 +316,11 @@
                         "field": "field_628e0ffba7da4",
                         "operator": "==",
                         "value": "1"
+                    },
+                    {
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "news"
                     }
                 ]
             ],
@@ -289,10 +334,10 @@
                 "card": "Card"
             },
             "default_value": "block",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
@@ -309,51 +354,14 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "items"
-                    }
-                ],
-                [
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "expandable-list"
+                    },
                     {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "index"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "news"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "features-grid"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "segment"
-                    }
-                ],
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "collection"
+                        "field": "field_6762ecffda0e3",
+                        "operator": "!=",
+                        "value": "list"
                     }
                 ]
             ],
@@ -389,12 +397,12 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "!=",
                         "value": "expandable-list"
                     },
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "!=",
                         "value": "list"
                     }
@@ -410,7 +418,8 @@
                 "excerpt": "Show excerpt",
                 "title": "Show title",
                 "image": "Show featured image",
-                "reading_time": "Show reading time"
+                "reading_time": "Show reading time",
+                "comment_count": "Comment count"
             },
             "default_value": [
                 "date",
@@ -422,43 +431,8 @@
             "allow_custom": 0,
             "layout": "horizontal",
             "toggle": 0,
-            "save_custom": 0
-        },
-        {
-            "key": "field_62387e4b55b75",
-            "label": "Date source",
-            "name": "posts_date_source",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571e01e7f246c",
-                        "operator": "==",
-                        "value": "date"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "post_date": "Date published",
-                "post_modified": "Date modified"
-            },
-            "default_value": false,
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
+            "save_custom": 0,
+            "custom_choice_button_text": "L\u00e4gg till nytt val"
         },
         {
             "key": "field_591176fff96d6",
@@ -471,7 +445,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "expandable-list"
                     }
@@ -482,8 +456,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 0,
             "message": "Yes, hide the title column",
+            "default_value": 0,
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -499,7 +473,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "expandable-list"
                     },
@@ -532,7 +506,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "expandable-list"
                     }
@@ -543,13 +517,14 @@
                 "class": "",
                 "id": ""
             },
+            "acfe_repeater_stylised_button": 0,
+            "layout": "table",
+            "pagination": 0,
             "min": 0,
             "max": 0,
-            "layout": "table",
-            "button_label": "L\u00e4gg till rad",
             "collapsed": "",
+            "button_label": "L\u00e4gg till rad",
             "rows_per_page": 20,
-            "acfe_repeater_stylised_button": 0,
             "sub_fields": [
                 {
                     "key": "field_571f5790592e7",
@@ -587,7 +562,7 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "expandable-list"
                     }
@@ -598,8 +573,8 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 1,
             "message": "Allow freetext filtering",
+            "default_value": 1,
             "ui": 0,
             "ui_on_text": "",
             "ui_off_text": ""
@@ -615,9 +590,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
-                        "value": "horizontal"
+                        "value": "list"
                     }
                 ]
             ],
@@ -628,50 +603,9 @@
             },
             "message": "",
             "default_value": 0,
-            "ui": 1,
             "ui_on_text": "Enabled",
-            "ui_off_text": "Disabled"
-        },
-        {
-            "key": "field_5bdb0d4217e91",
-            "label": "Date format",
-            "name": "posts_date_format",
-            "aria-label": "",
-            "type": "select",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_571dfd4c0d9d9",
-                        "operator": "==",
-                        "value": "horizontal"
-                    },
-                    {
-                        "field": "field_571e01e7f246c",
-                        "operator": "==",
-                        "value": "date"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "default": "Default timestamp",
-                "readable": "Readable timestamp"
-            },
-            "default_value": "default",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
-            "return_format": "value",
-            "ajax": 0,
-            "placeholder": "",
-            "allow_custom": 0,
-            "search_placeholder": ""
+            "ui_off_text": "Disabled",
+            "ui": 1
         },
         {
             "key": "field_5bd8575106176",
@@ -684,9 +618,9 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
-                        "value": "horizontal"
+                        "value": "list"
                     },
                     {
                         "field": "field_571e01e7f246c",
@@ -700,9 +634,9 @@
                 "class": "",
                 "id": ""
             },
+            "uploader": "",
             "return_format": "array",
-            "preview_size": "thumbnail",
-            "library": "all",
+            "acfe_thumbnail": 0,
             "min_width": "",
             "min_height": "",
             "min_size": "",
@@ -710,8 +644,8 @@
             "max_height": "",
             "max_size": "",
             "mime_types": "",
-            "uploader": "",
-            "acfe_thumbnail": 0
+            "preview_size": "thumbnail",
+            "library": "all"
         },
         {
             "key": "field_628e0f242aa5f",
@@ -724,14 +658,14 @@
             "conditional_logic": [
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "grid"
                     }
                 ],
                 [
                     {
-                        "field": "field_571dfd4c0d9d9",
+                        "field": "field_6762ecffda0e3",
                         "operator": "==",
                         "value": "features-grid"
                     }
@@ -748,10 +682,10 @@
                 "12:16": "12:16"
             },
             "default_value": "4:3",
-            "allow_null": 0,
-            "multiple": 0,
-            "ui": 0,
             "return_format": "value",
+            "multiple": 0,
+            "allow_null": 0,
+            "ui": 0,
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
@@ -789,4 +723,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

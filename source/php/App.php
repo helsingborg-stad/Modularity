@@ -2,6 +2,8 @@
 
 namespace Modularity;
 
+use Modularity\Private\PrivateAcfFields;
+
 class App
 {
     public static $display = null;
@@ -202,6 +204,11 @@ class App
         ));
         wp_enqueue_script('modularity');
 
+        wp_register_script('user-editable-list', MODULARITY_URL . '/dist/'
+        . \Modularity\Helper\CacheBust::name('js/user-editable-list.js'));
+
+        wp_enqueue_script('user-editable-list');
+
         if (!current_user_can('edit_posts')) {
             return;
         }
@@ -262,10 +269,6 @@ class App
         ));
         wp_enqueue_script('modularity');
 
-        wp_register_script('dynamic-acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/dynamic-acf.js'), ['jquery']);
-        wp_enqueue_script('dynamic-acf');
-
         wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'), ['jquery']);
         wp_enqueue_script('dynamic-map-acf');
@@ -273,14 +276,6 @@ class App
         wp_register_script('modularity-text-module', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity-text-module.js'));
         wp_enqueue_script('modularity-text-module');
-
-        wp_register_script('acf-hidden-post-status-conditional', MODULARITY_URL . '/dist/' 
-        . \Modularity\Helper\CacheBust::name('js/hidden-post-status-conditional.js'), array('acf-input', 'jquery'));
-        wp_enqueue_script('acf-hidden-post-status-conditional');
-
-        wp_register_style('acf', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('css/acf.css'));
-        wp_enqueue_style('acf');
 
         add_action('admin_head', function () {
             echo "

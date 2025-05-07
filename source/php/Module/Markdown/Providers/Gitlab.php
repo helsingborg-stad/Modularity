@@ -4,7 +4,7 @@ namespace Modularity\Module\Markdown\Providers;
 
 use Modularity\Module\Markdown\Providers\ProviderInterface;
 
-class Gitlab implements ProviderInterface
+class Gitlab extends BaseProvider implements ProviderInterface
 {
     public function isValidProviderUrl(string $url): bool
     {

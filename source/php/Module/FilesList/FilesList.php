@@ -2,6 +2,9 @@
 
 namespace Modularity\Module\FilesList;
 
+use Modularity\Helper\AcfService;
+use Modularity\Helper\WpService;
+
 class FilesList extends \Modularity\Module
 {
     public $slug = 'fileslist';
@@ -21,6 +24,9 @@ class FilesList extends \Modularity\Module
      */
     public function data(): array
     {
+        $fields = $this->getFields();
+        $settings = isset($fields['settings']) && is_array($fields['settings']) ? $fields['settings'] : [];
+
         $data = [];
         $data['rows'] = $this->prepareFileData();
         $data['classes'] = implode(
@@ -34,6 +40,7 @@ class FilesList extends \Modularity\Module
         );
         $data['isFilterable'] = get_field('show_filter', $this->ID);
         $data['filterAboveCard'] = get_field('filter_above_card', $this->ID);
+        $data['showDownloadIcon'] = in_array('show_download_icon', $settings);
         $data['uID'] = uniqid();
         $data['ID'] = $this->ID;
 
@@ -45,20 +52,31 @@ class FilesList extends \Modularity\Module
      *
      * @return array All file data.
      */
-    private function prepareFileData()
+    public function prepareFileData()
     {
-        $files = get_field('file_list', $this->ID);
+        $acfService = AcfService::get();
+        $files = $acfService->getField('file_list', $this->ID);
+        $settings = $acfService->getField('settings', $this->ID);
         $rows = [];
 
         foreach ($files as $key => $item) {
+            $meta = [];
             $rows[$key] = [
                 'title' => $this->filenameToTitle($item['file']['title'] ?? ''),
                 'href' => $item['file']['url'] ?? '',
                 'description' => $item['file']['description'] ?? '',
-                'type' => pathInfo($item['file']['url'], PATHINFO_EXTENSION),
-                'filesize' => $this->formatBytes($item['file']['filesize']),
                 'icon' => $this->getIconClass($item['file']['subtype'])
             ];
+
+            if (!is_array($settings) || !in_array('hide_filetype', $settings)) {
+                $meta[] = pathInfo($item['file']['url'], PATHINFO_EXTENSION);
+            }
+
+            if (!is_array($settings) || !in_array('hide_filesize', $settings)) {
+                $meta[] = $this->formatBytes($item['file']['filesize']);
+            }
+
+            $rows[$key]['meta'] = $meta;
         }
 
         return $rows;
@@ -72,7 +90,9 @@ class FilesList extends \Modularity\Module
      */
     private function filenameToTitle(string $filename): string
     {
-        if ($filename == sanitize_title($filename)) {
+        $wpService = WpService::get();
+
+        if ($filename == $wpService->sanitizeTitle($filename)) {
             $filename = str_replace(['-', '_'], [' ', ' '], $filename);
         }
 
@@ -87,6 +107,21 @@ class FilesList extends \Modularity\Module
     private function getIconClass($type): string
     {
         switch ($type) {
+            case 'jpg':
+            case 'jpeg':
+            case 'png':
+            case 'gif':
+            case 'bmp':
+            case 'tif':
+            case 'tiff':
+            case 'webp':
+            case 'avif':
+            case 'svg':
+            case 'heic':
+            case 'heif':
+            case 'raw':
+            case 'dng':
+                return 'photo_library';
             case 'mp4':
             case 'mov':
             case 'wmv':
@@ -99,6 +134,14 @@ class FilesList extends \Modularity\Module
             case 'aiff':
             case 'flac':
                 return 'audio_file';
+            case 'zip':
+            case 'tar':
+            case 'gz':
+            case '7z':
+            case 'tgz':
+            case 'bz2':
+            case 'rar':
+                return 'folder_zip';
             case 'pdf':
                 return 'picture_as_pdf';
         }

@@ -4,7 +4,7 @@ namespace Modularity\Module\Markdown\Providers;
 
 use Modularity\Module\Markdown\Providers\ProviderInterface;
 
-class Gitea implements ProviderInterface
+class Gitea extends BaseProvider implements ProviderInterface
 {
     public function isValidProviderUrl(string $url): bool
     {

@@ -4,13 +4,18 @@
  * Plugin Name: Modularity
  * Plugin URI: -
  * Description: Modular component system for WordPress
- * Version: 6.47.4
+ * Version: 6.81.1
  * Author: Kristoffer Svanmark, Sebastian Thulin
  * Author URI: -
  * Text domain: modularity
  *
  * Copyright (C) 2016
  */
+
+use AcfService\Implementations\NativeAcfService;
+use Modularity\Helper\AcfService;
+use Modularity\Helper\WpService;
+use WpService\Implementations\NativeWpService;
 
 define('MODULARITY_PATH', plugin_dir_path(__FILE__));
 define('MODULARITY_URL', plugins_url('', __FILE__));
@@ -19,7 +24,7 @@ define('MODULARITY_TEMPLATE_PATH', MODULARITY_PATH . 'templates/');
 define('MODULARITY_MODULE_PATH', MODULARITY_PATH . 'source/php/Module/');
 define('MODULARITY_MODULE_URL', MODULARITY_URL . '/source/php/Module/');
 
-add_action('plugins_loaded', function () {
+add_action('init', function () {
     load_plugin_textdomain('modularity', false, plugin_basename(dirname(__FILE__)) . '/languages');
 });
 
@@ -28,6 +33,10 @@ if (file_exists(MODULARITY_PATH . 'vendor/autoload.php')) {
     require_once MODULARITY_PATH . 'vendor/autoload.php';
 }
 require_once MODULARITY_PATH . 'Public.php';
+
+// Set services
+WpService::set(new NativeWpService());
+AcfService::set(new NativeAcfService());
 
 // Acf auto import and export
 add_action('plugins_loaded', function () {
@@ -77,6 +86,7 @@ add_action('plugins_loaded', function () {
         'mod-audio'                 => 'group_66d0837591221',
         'mod-search'                => 'group_66dffe0be28c1',
         'mod-markdown'              => 'group_67506ac21d132',
+        'mod-interactive-map'       => 'group_67a6218f4b8a6',
 
         # Deactivated
         'mod-social'           => 'group_56dedc26e5327',
@@ -84,8 +94,6 @@ add_action('plugins_loaded', function () {
         'mod-sites'            => 'group_58ecb6b6330f4',
         'mod-index'            => 'group_569ceab2c16ee',
 
-        # Conditional
-        'post-status-conditional' => 'group_671241997f07d',
     ));
     $acfExportManager->import();
 });

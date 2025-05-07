@@ -9,7 +9,7 @@ namespace Modularity\Module\Posts\TemplateController;
  *
  * @package Modularity\Module\Posts\TemplateController
  */
-class ExpandableListTemplate
+class ExpandableListTemplate extends AbstractController
 {
     /**
      * The instance of the Posts module associated with this template.
@@ -46,6 +46,7 @@ class ExpandableListTemplate
      */
     public function __construct(\Modularity\Module\Posts\Posts $module)
     {
+        parent::__construct($module);
         $this->module = $module;
         $this->args = $module->args;
         $this->data = $module->data;
@@ -57,7 +58,7 @@ class ExpandableListTemplate
         $this->data['posts_hide_title_column'] = ($this->fields['posts_hide_title_column']) ? true : false;
         $this->data['title_column_label'] = $this->fields['title_column_label'] ?? null;
         $this->data['allow_freetext_filtering'] = $this->fields['allow_freetext_filtering'] ?? null;
-        $this->data['prepareAccordion'] = $this->prepare();
+        $this->data['prepareAccordion'] = $this->prepareExpandableList();
     }
 
     /**
@@ -74,15 +75,7 @@ class ExpandableListTemplate
         $columnValues = [];
         
         foreach ($this->data['posts'] as $colIndex => $post) {
-            if ($this->data['posts_data_source'] === 'input') {
-                if ($post->columnValues !== false && is_array($post->columnValues) && count($post->columnValues) > 0) {
-                    foreach ($post->columnValues as $key => $columnValue) {
-                        $columnValues[$colIndex][sanitize_title($this->data['posts_list_column_titles'][$key]['column_header'])] = $columnValue['value'] ?? '';
-                    }
-                }
-            } else {
-                $columnValues[] = get_post_meta($post->id, 'modularity-mod-posts-expandable-list', true) ?? '';
-            }
+            $columnValues[] = get_post_meta($post->getId(), 'modularity-mod-posts-expandable-list', true) ?? '';
         }
 
         return $columnValues;
@@ -95,11 +88,12 @@ class ExpandableListTemplate
      * 
      * @return array|null
      */
-    public function prepare(): ?array
+    public function prepareExpandableList(): ?array
     {
-        $columnValues = $this->getColumnValues();
-
         $accordion = [];
+
+        $this->data['posts'] = $this->preparePosts($this->module);
+        $columnValues        = $this->getColumnValues();
 
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
             foreach ($this->data['posts'] as $index => $item) {
@@ -113,8 +107,11 @@ class ExpandableListTemplate
                         }
                     }
                 }
-                $accordion[$index]['heading'] = $item->postTitle ?? '';
-                $accordion[$index]['content'] = $item->postContentFiltered ?? '';
+
+                $accordion[$index]['heading']       = $item->getTitle() ?? '';
+                $accordion[$index]['content']       = $item->postContentFiltered ?? '';
+                $accordion[$index]['classList']     = $item->classList ?? [];
+                $accordion[$index]['attributeList'] = ['data-js-item-id' => $item->getId()];
             }
         }
 

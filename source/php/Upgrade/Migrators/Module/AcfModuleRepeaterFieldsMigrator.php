@@ -41,8 +41,7 @@ class AcfModuleRepeaterFieldsMigrator implements MigratorInterface {
                 false;
                 
                 if (!empty($oldSubFieldValue)) {
-                    update_sub_field([$this->newField['name'], $i, $newFieldName], $oldSubFieldValue, $this->moduleId);
-                    $fieldWasUpdated = true;
+                    $fieldWasUpdated = update_sub_field([$this->newField['name'], $i, $newFieldName], $oldSubFieldValue, $this->moduleId);
                 }
             }
         }

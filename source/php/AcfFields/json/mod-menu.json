@@ -28,16 +28,20 @@
             "label": "Display as conditional target",
             "name": "mod_menu_display_as_conditional",
             "aria-label": "",
-            "type": "acfe_hidden",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
-                "class": "",
+                "class": "acf-hidden",
                 "id": ""
             },
-            "default_value": ""
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_66c34c655680e",
@@ -53,12 +57,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "575": "drawer down",
-                "564": "Language",
-                "573": "ny",
-                "576": "Primary"
-            },
+            "choices": {},
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -88,6 +87,32 @@
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
+        },
+        {
+            "key": "field_678a24781b23e",
+            "label": "Background Notice",
+            "name": "",
+            "aria-label": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6734a0413d66b",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "While using a background, the \"Item Per Column\" works different. \n\nAmount of parents \/ columns needs to be a whole number for the background to work. \nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
             "key": "field_66c5c3e6b7b5d",
@@ -126,6 +151,27 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
+        },
+        {
+            "key": "field_67c846a5654c1",
+            "label": "Collapse menu on mobile",
+            "name": "mod_menu_mobile_collapse",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Will collapse menu groups on mobile to save vertical space. User has ability to expand individual menu groups with a button click.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 1,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
         }
     ],
     "location": [
@@ -161,4 +207,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

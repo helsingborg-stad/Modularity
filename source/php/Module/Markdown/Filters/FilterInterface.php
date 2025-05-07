@@ -3,12 +3,15 @@
 namespace Modularity\Module\Markdown\Filters;
 
 /**
- * Interface FilterInterface
+ * Interface LayerGroupFilterInterface
  *
  * @package Modularity\Module\Markdown\Filters
  */
 
-interface FilterInterface {
+interface LayerGroupFilterInterface {
+
+    public function __construct(array $fields);
+
     /**
      * Filter the content.
      *

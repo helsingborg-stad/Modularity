@@ -4,7 +4,7 @@ namespace Modularity\Module\Markdown\Providers;
 
 use Modularity\Module\Markdown\Providers\ProviderInterface;
 
-class Bitbucket implements ProviderInterface
+class Bitbucket extends BaseProvider implements ProviderInterface
 {
     public function isValidProviderUrl(string $url): bool
     {

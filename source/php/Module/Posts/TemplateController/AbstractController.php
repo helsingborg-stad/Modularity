@@ -2,7 +2,9 @@
 
 namespace Modularity\Module\Posts\TemplateController;
 
+use Modularity\Helper\WpService as WpServiceHelper;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+use WpService\WpService;
 
 /**
  * Class AbstractController
@@ -30,8 +32,36 @@ class AbstractController
         $this->module               = $module;
         $this->fields               = $module->fields;
         $this->data                 = $this->addDataViewData($module->data, $module->fields);
-        $this->data['posts']        = $this->preparePosts($module->data['posts']);
+        $this->data['posts']        = $this->preparePosts($module);
+
         $this->data['classList']    = [];
+    }
+
+    /**
+     * Get the WpService instance.
+     * 
+     * @return \WpService\WpService
+     */
+    private function getWpService(): WpService {
+        return WpServiceHelper::get();
+    }
+
+    /**
+     * Prepare posts for display.
+     *
+     * @param \Modularity\Module\Posts\Posts $module
+     *
+     * @return array
+    */
+    public function preparePosts(\Modularity\Module\Posts\Posts $module)
+    {
+        $stickyPosts = $module->data['stickyPosts'] ?? [];
+        $stickyPosts = $this->addStickyPostsData($stickyPosts);
+        $stickyPosts = $this->addPostData($stickyPosts);
+        $posts       = $this->addPostData($module->data['posts']);
+        $posts       = array_merge($stickyPosts, $posts);
+
+        return $posts;
     }
 
     /**
@@ -44,12 +74,16 @@ class AbstractController
     */
     public function addDataViewData(array $data, array $fields) 
     {
-        $data['posts_columns'] = apply_filters('Modularity/Display/replaceGrid', $fields['posts_columns']);
+        $data['posts_columns'] = $this->getWpService()->applyFilters('Modularity/Display/replaceGrid', $fields['posts_columns']);
         $data['ratio'] = $fields['ratio'] ?? '16:9';
+
         $data['highlight_first_column_as'] = $fields['posts_display_highlighted_as'] ?? 'block';
         $data['highlight_first_column'] = !empty($fields['posts_highlight_first']) ? 
-        ColumnHelper::getFirstColumnSize($data['posts_columns']) : false;
+            ColumnHelper::getFirstColumnSize($data['posts_columns']) : 
+            false;
         $data['imagePosition'] = $fields['image_position'] ?? false;
+        $data['showDate'] = in_array('date', $fields['posts_fields'] ?? []);
+
 
         return $data;
     }
@@ -62,21 +96,76 @@ class AbstractController
      * @return array
      * TODO: This should require an array, but cant because sometimes it gets null. 
     */
-    public function preparePosts($posts = [])
+    public function addPostData($posts = [])
     {
+        $posts = array_map(function($post) {
+            $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
+            $helperClass = '\Municipio\Helper\Post';
+            $helperMethod = 'preparePostObject';
+            $helperArchiveMethod = 'preparePostObjectArchive';
+            
+            if(!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
+                error_log("Class or method does not exist: {$helperClass}::{$helperMethod} or {$helperClass}::{$helperArchiveMethod}");
+                return $post;
+            }
+
+            if(!empty($post->originalBlogId) && $post->originalBlogId !== $this->getWpService()->getCurrentBlogId()) {
+                $this->getWpService()->switchToBlog($post->originalBlogId);
+            }
+
+            if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
+                $post = call_user_func([$helperClass, $helperMethod], $post);
+            } else {
+                $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
+            }
+
+            $this->getWpService()->restoreCurrentBlog();
+            
+            return $post;
+
+        }, $posts ?? []);
+
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
-                $post = $this->setPostViewData($post, $index);
-                $post = array_filter((array) $post, function($value) {
-                    return !empty($value) || $value === false;
-                });
+                $post             = $this->setPostViewData($post, $index);
+                $post->classList  = $post->classList ?? [];
+                $post             = $this->addHighlightData($post, $index);
 
-                
-                $post = (object) array_merge($this->getDefaultValuesForPosts(), $post);
+                // Apply $this->getDefaultValuesForPosts() to the post object without turning it into an array
+                foreach ($this->getDefaultValuesForPosts() as $key => $value) {
+                    if (!isset($post->$key)) {
+                        $post->$key = $value;
+                    }
+                }
             }
         }
-        
+
         return $posts;
+    }
+
+    /**
+     * Add post columns class.
+     *
+     * @param object $post
+     * @param false|int $index
+     *
+     * @return object
+    */
+    private function addHighlightData(object $post, $index): object
+    {
+        $columnsClass =  $this->data['posts_columns'] ?? 'o-grid-12@md';
+
+        if (!empty($post->isSticky)) {
+            $columnsClass = 'o-grid-12@md';
+            $post->isHighlighted = true;
+        } elseif ($index === 0 && !empty($this->data['highlight_first_column'])) {
+            $columnsClass = $this->data['highlight_first_column'];
+            $post->isHighlighted = true;
+        }
+
+        $post->classList[] = $columnsClass;
+
+        return $post;
     }
 
     /**
@@ -90,7 +179,6 @@ class AbstractController
             'excerptShort' => false,
             'termsUnlinked' => false,
             'postDateFormatted' => false,
-            'dateBadge' => false,
             'images' => false,
             'hasPlaceholderImage' => false,
             'readingTime' => false,
@@ -101,7 +189,9 @@ class AbstractController
             'callToActionItems' => false,
             'imagePosition' => true,
             'image' => false,
-            'attributeList' => []
+            'attributeList' => [],
+            'isSticky' => false,
+            'commentCount' => false,
         ];
     }
 
@@ -115,46 +205,29 @@ class AbstractController
     */
     private function setPostViewData(object $post, $index = false)
     {
-        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields']) ? $post->excerptShort : false;
-        $post->postTitle            = in_array('title', $this->data['posts_fields']) ? $post->postTitle : false;
-        $post->image                = in_array('image', $this->data['posts_fields']) ? $this->getImageContractOrByRatio(
+        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $post->excerptShort : false;
+        $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->getTitle() : false;
+        $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $this->getImageContractOrByRatio(
             $post->images ?? null, 
             $post->imageContract ?? null
         ) : [];
-        $post->postDateFormatted    = in_array('date', $this->data['posts_fields']) ? $post->postDateFormatted : false;
-        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields']) && empty($post->image) ? true : false;
-        $post->readingTime          = in_array('reading_time', $this->data['posts_fields']) ? $post->readingTime : false;
-        $post->attributeList        = !empty($post->attributeList) ? $post->attributeList : [];
-        
+        $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields'] ?? []) && empty($post->image) ? true : false;
+        $post->commentCount         = in_array('comment_count', $this->data['posts_fields'] ?? []) ? (string) $post->getCommentCount() : false;
+        $post->readingTime          = in_array('reading_time', $this->data['posts_fields'] ?? []) ? $post->readingTime : false;
+
+        $post->attributeList                    = !empty($post->attributeList) ? $post->attributeList : [];
+        $post->attributeList['data-js-item-id'] = $post->getId();
+
         if (!empty($post->image) && is_array($post->image)) {
             $post->image['removeCaption'] = true;
             $post->image['backgroundColor'] = 'secondary';
         }
 
-        // TODO: Once there Schema type event is implemented, this should changed
-        if( $this->postUsesSchemaTypeEvent($post) || $post->postType == 'event') {
-            $eventOccasions = get_post_meta($post->id, 'occasions_complete', true);
-            if (!empty($eventOccasions)) {
-                $post->postDateFormatted = $eventOccasions[0]['start_date'];
-                $post->dateBadge = true;
-            } else {
-                $post->postDateFormatted = false;
-            }
-        }
-        
         return $post;
     }
 
     public function postUsesSchemaTypeEvent(object $post):bool {
-        if(!isset($post->schemaObject)) {
-            return false;
-        } 
-
-        $implements = class_implements($post->schemaObject);
-        
-        return  in_array('Spatie\SchemaOrg\BaseType', $implements) &&
-                isset($post->schemaObject['@type']) &&
-                $post->schemaObject['@type'] == 'Event';
+        return $post->getSchemaProperty('@type') === 'Event';
     }
 
     /**
@@ -203,5 +276,25 @@ class AbstractController
         }
 
         return false;
+    }
+
+    /**
+     * Add sticky posts data.
+     *
+     * @param array $stickyPosts
+     *
+     * @return array
+    */
+    private function addStickyPostsData(array $stickyPosts = [])
+    {
+        if (empty($stickyPosts)) {
+            return [];
+        }
+
+        foreach ($stickyPosts as &$post) {
+            $post->isSticky    = true;
+        }
+
+        return $stickyPosts;
     }
 }

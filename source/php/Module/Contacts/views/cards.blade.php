@@ -9,7 +9,7 @@
     @endtypography
 @endif
 
-<div class="o-grid o-grid--half-gutter" aria-labelledby="{{'mod-text-' . $ID .'-label'}}"">
+<div class="o-grid o-grid--half-gutter" @if (!$hideTitle && !empty($postTitle)) aria-labelledby="{{ 'mod-text-' . $ID . '-label' }}" @endif>
     @foreach ($contacts as $contact)
         <div class="o-grid-12 {{apply_filters('Municipio/Controller/Archive/GridColumnClass', $columns)}}">
             @card([

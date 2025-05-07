@@ -4,14 +4,26 @@
     'ratio' => $ratio,
     'meta' => $post->termsUnlinked,
     'secondaryMeta' => $post->readingTime,
-    'date' => $post->postDateFormatted,
-    'dateBadge' => $post->dateBadge,
+    'date'          => $showDate ? [
+        'timestamp' => $post->getArchiveDateTimestamp(),
+        'format'    => $post->getArchiveDateFormat(),
+    ] : null,
+    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'image' => $post->image,
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
     'link' => $post->permalink,
-    'icon' => $post->termIcon,
-    'attributeList' => array_merge($post->attributeList, []),
+    'icon' => $post->getIcon() ? [
+        'icon' => $post->getIcon()->getIcon(),
+        'color' => 'white',
+    ] : null,
+    'iconBackgroundColor' => $post->getIcon() ? $post->getIcon()->getCustomColor() : null,
 ])
-    @includeWhen(!empty($post->callToActionItems['floating']), 'partials.floating')
+    @includeWhen(
+        !empty($post->callToActionItems['floating']['icon']), 
+        'partials.floating'
+    )
+    @slot('metaArea')
+        @includeWhen($post->commentCount !== false, 'partials.comment-count')
+    @endslot
 @endblock

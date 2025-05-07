@@ -2,8 +2,27 @@
 
 namespace Modularity\Module\Posts\Helper;
 
+use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use WpService\Contracts\{
+    GetPermalink,
+    GetPostType,
+    GetTheID,
+    IsArchive,
+    IsUserLoggedIn,
+    RestoreCurrentBlog,
+    SwitchToBlog,
+};
+
 class GetPosts
 {
+    public function __construct(
+        private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption,
+        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
+        private WpQueryFactoryInterface $wpQueryFactory
+    )
+    {
+    }
+
     /**
      * Get posts and pagination data
      * 
@@ -13,89 +32,144 @@ class GetPosts
      */
     public function getPostsAndPaginationData(array $fields, int $page = 1) :array
     {
-        $result = (array) $this->getPostsFromSelectedSites($fields, $page);
-
-        if( empty($result['posts'])) {
-            return $result;
-        }
-
-        $result['posts'] = array_map(function($post) use ($fields) {
-            $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display']) ? $fields['taxonomy_display'] : [];
-            $helperClass = '\Municipio\Helper\Post';
-            $helperMethod = 'preparePostObject';
-            $helperArchiveMethod = 'preparePostObjectArchive';
-            
-            if(!class_exists($helperClass) || !method_exists($helperClass, $helperMethod) || !method_exists($helperClass, $helperArchiveMethod)) {
-                error_log("Class or method does not exist: {$helperClass}::{$helperMethod} or {$helperClass}::{$helperArchiveMethod}");
-                return $post;
-            }
-
-            if (in_array($fields['posts_display_as'], ['expandable-list'])) {
-                $post = call_user_func([$helperClass, $helperMethod], $post);
-            } else {
-                $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
-            }
-
-            if (!empty($post->schemaData['place']['pin'])) {
-                $post->attributeList['data-js-map-location'] = json_encode($post->schemaData['place']['pin']);
-            }
-
-            return $post;
-
-        }, $result['posts']);
-        
-        return $result;
+        return (array) $this->getPostsFromSelectedSites($fields, $page);
     }
 
     private function getPostsFromSelectedSites(array $fields, int $page):array {
         
         if(!empty($fields['posts_data_network_sources'])) {
-            $posts      = [];
+            $posts       = [];
             $maxNumPages = 0;
-            foreach($fields['posts_data_network_sources'] as $site) {
-                switch_to_blog($site);
-                $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
-                $postsFromSite = $wpQuery->get_posts();
+            $stickyPosts = [];
 
-                array_walk($postsFromSite, function($post) {
+            foreach($fields['posts_data_network_sources'] as $site) {
+                $this->wpService->switchToBlog($site['value']);
+
+                $stickyPostIds       = $this->getStickyPostIds($fields, $page);
+                $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
+                $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
+                $postsFromSite       = $wpQuery->get_posts();
+
+                $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
+                $postsFromSite       = $this->addSiteDataToPosts($postsFromSite, $site);
+
+                array_walk($postsFromSite, function($post) use ($site) {
                     // Add the original permalink to the post object for reference in network sources.
-                    $post->originalPermalink = get_permalink($post->ID);
+                    $post->originalSite      = $site['label'];
+                    $post->originalBlogId    = (int)$site['value'];
                 });
 
-                $posts = array_merge($posts, $postsFromSite);
+                $stickyPosts = array_merge($stickyPosts, $stickyPostsFromSite);
+                $posts       = array_merge($posts, $postsFromSite);
                 $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
-                restore_current_blog();
+
+                $this->wpService->restoreCurrentBlog();
             }
 
             // Limit the number of posts to the desired count to avoid exceeding the limit.
+            $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
+            $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
             $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
 
             return [
                 'posts' => $posts,
-                'maxNumPages' => $maxNumPages
+                'maxNumPages' => $maxNumPages,
+                'stickyPosts' => $stickyPosts,
             ];
         }
 
-        $wpQuery = new \WP_Query($this->getPostArgs($fields, $page));
+        $stickyPostIds       = $this->getStickyPostIds($fields, $page);
+        $stickyPosts         = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
+
+        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
+
+        $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
+        $posts = $wpQuery->get_posts();
 
         return [
-            'posts' => $wpQuery->get_posts(),
-            'maxNumPages' => $wpQuery->max_num_pages
+            'posts' => $posts,
+            'maxNumPages' => $wpQuery->max_num_pages,
+            'stickyPosts' => $stickyPosts,
         ];
     }
 
-    private function getPostArgs(array $fields, int $page)
+    /**
+     * Add site data to posts
+     */
+    private function addSiteDataToPosts(array $posts, array $site): array
     {
-        $metaQuery  = false;
-        $orderby    = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
-        $order      = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
+        array_walk($posts, function(&$post) use ($site) {
+            // Add the original permalink to the post object for reference in network sources.
+            $post->originalSite      = $site['label'];
+            $post->originalBlogId    = (int)$site['value'];
+        });
+
+        return $posts;
+    }
+
+    /**
+     * Get sticky posts for site
+     */
+    private function getStickyPostsForSite(array $fields, int $page, array $stickyPostIds): array
+    {
+        if (
+            empty($stickyPostIds) ||
+            empty($fields['posts_data_source']) ||
+            $fields['posts_data_source'] !== 'posttype' ||
+            empty($fields['posts_data_post_type']) ||
+            $page !== 1
+        ) {
+            return [];
+        }
+
+        if (array_key_exists($currentPostID = $this->getCurrentPostID(), $stickyPostIds)) {
+            unset($stickyPostIds[$currentPostID]);
+        }
+
+        $args = $this->getDefaultQueryArgs();
+        $args['post_type'] = $fields['posts_data_post_type'];
+        $args['post__in'] = array_values($stickyPostIds);
+        $args['orderby'] = 'date';
+        $args['order'] = 'DESC';
+        $args['posts_per_page'] = $this->getPostsPerPage($fields);
+
+        $args['post_status'] = ['publish', 'inherit'];
+        if ($this->wpService->isUserLoggedIn()) {
+            $args['post_status'][] = 'private';
+        }
+
+        $wpQuery = $this->wpQueryFactory->create($args);
+
+        return $wpQuery->get_posts();
+    }
+
+    /**
+     * Get sticky post IDs
+     */
+    private function getStickyPostIds(array $fields, int $page): array 
+    {
+        $stickyPosts = [];
+        if (is_null($this->getStickyOption) || !empty($fields['posts_data_post_type'])) {
+            $stickyPosts = $this->getStickyOption->getOption($fields['posts_data_post_type']);
+        }
+
+        return $stickyPosts;
+    }
+
+    /**
+     * Get post args
+     */
+    private function getPostArgs(array $fields, int $page, array $stickyPostIds = [])
+    {
+        $metaQuery        = false;
+        $orderby          = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
+        $order            = !empty($fields['posts_sort_order']) ? $fields['posts_sort_order'] : 'desc';
 
         // Get post args
-        $getPostsArgs = [
-            'post_type' => 'any',
-            'post_password' => false,
-            'suppress_filters' => false
-        ];
+        $getPostsArgs = $this->getDefaultQueryArgs();
 
         // Sort by meta key
         if (strpos($orderby, '_metakey_') === 0) {
@@ -123,7 +197,7 @@ class GetPosts
 
         // Post statuses
         $getPostsArgs['post_status'] = ['publish', 'inherit'];
-        if (is_user_logged_in()) {
+        if ($this->wpService->isUserLoggedIn()) {
             $getPostsArgs['post_status'][] = 'private';
         }
 
@@ -155,18 +229,21 @@ class GetPosts
         }
 
         // Data source
-        switch ($fields['posts_data_source']) {
+        switch ($fields['posts_data_source'] ?? []) {
             case 'posttype':
                 $getPostsArgs['post_type'] = $fields['posts_data_post_type'];
+                $postsNotIn = [];
                 if ($currentPostID = $this->getCurrentPostID()) {
-                    $getPostsArgs['post__not_in'] = [
-                        $currentPostID
-                    ];
+                    $postsNotIn[] = $currentPostID;
                 }
+
+                $postsNotIn = array_merge($postsNotIn, $stickyPostIds);
+                $getPostsArgs['post__not_in'] = $postsNotIn;
+
                 break;
 
             case 'children':
-                $getPostsArgs['post_type'] = get_post_type();
+                $getPostsArgs['post_type'] = $this->wpService->getPostType();
                 $getPostsArgs['post_parent'] = $fields['posts_data_child_of'];
                 break;
 
@@ -199,6 +276,22 @@ class GetPosts
         return $getPostsArgs;
     }
 
+    /**
+     * Get default query args
+     */
+    private function getDefaultQueryArgs()
+    {
+        return [
+            'post_type' => 'any',
+            'post_password' => false,
+            'suppress_filters' => false,
+            'ignore_sticky_posts' => true,
+        ];
+    }
+
+    /**
+     * Get posts per page
+     */
     private function getPostsPerPage(array $fields): int {
         if (isset($fields['posts_count']) && is_numeric($fields['posts_count'])) {
             return ($fields['posts_count'] == -1 || $fields['posts_count'] > 100) ? 100 : $fields['posts_count'];
@@ -207,6 +300,9 @@ class GetPosts
         return 10;
     }
 
+    /**
+     * Get post types from schema type
+     */
     private function getPostTypesFromSchemaType(string $schemaType):array {
         
         $class = '\Municipio\SchemaData\Helper\GetSchemaType';
@@ -227,12 +323,38 @@ class GetPosts
         return $postTypes;
     }
 
-    public function getCurrentPostID()
+    /**
+     * Get the current post ID
+     */
+    public function getCurrentPostID():int|false
     {
-        global $post;
-        if (isset($post->ID) && is_numeric($post->ID)) {
-            return $post->ID;
+        if ($this->wpService->isArchive()) {
+            return false;
         }
-        return false;
+
+        return $this->wpService->getTheID();
+    }
+
+    /**
+     * Sort posts
+     * 
+     * @param \WP_Post[] $posts
+     * @param string $orderby Can be 'date', 'title', 'modified', 'menu_order', 'rand'. Default is 'date'.
+     * @param string $order Can be 'asc' or 'desc'. Default is 'desc'. When 'rand' is used, this parameter is ignored.
+     */
+    public function sortPosts(array $posts, string $orderby = 'date', string $order = 'desc') : array
+    {
+        usort($posts, fn($a, $b) =>
+            match($orderby) {
+                'date' => strtotime($a->post_date) > strtotime($b->post_date) ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'title' => $a->post_title > $b->post_title ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'modified' => strtotime($a->post_modified) > strtotime($b->post_modified) ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'menu_order' => $a->menu_order > $b->menu_order ? ($order == 'asc' ? 1 : -1) : ($order == 'asc' ? -1 : 1),
+                'rand' => rand(-1, 1),
+                default => 0,
+            }
+        );
+
+        return $posts;
     }
 }

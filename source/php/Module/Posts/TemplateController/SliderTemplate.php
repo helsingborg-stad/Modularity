@@ -24,11 +24,6 @@ class SliderTemplate extends AbstractController
 
         $this->data['postsDisplayAs'] = !empty($this->fields['posts_display_as']) ? 
             $this->fields['posts_display_as'] : 'segment';
-
-        //TODO: Change this when ContentType templates are done
-        if ($this->data['posts_data_post_type'] === 'project') {
-            $this->data['postsDisplayAs'] = 'project';
-        }
     }
 
     private function addSliderViewData() {

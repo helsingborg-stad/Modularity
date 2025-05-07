@@ -3,9 +3,16 @@
     'content' => $post->excerptShort,
     'link' => $post->permalink,
     'meta' => $post->termsUnlinked,
-    'secondaryMeta' => $post->readingTime,
-    'date' => $post->postDateFormatted,
+    'date' => $showDate ? [
+        'timestamp' => $post->getArchiveDateTimestamp(),
+        'format'    => $post->getArchiveDateFormat(),
+    ] : null,
+    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'ratio' => $ratio,
-    'image' => $post->imageContract ?? $post->image
+    'image' => $post->imageContract ?? $post->image,
 ])
+    @slot('metaArea')
+        @includeWhen(!empty($post->readingTime), 'partials.read-time')
+        @includeWhen($post->commentCount !== false, 'partials.comment-count')
+    @endslot
 @endbox

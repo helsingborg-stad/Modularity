@@ -6,7 +6,7 @@ namespace Modularity\Module\Posts\TemplateController;
  * Class ListTemplate
  * @package Modularity\Module\Posts\TemplateController
  */
-class ListTemplate
+class ListTemplate extends AbstractController
 {
     protected $args;
     public $data = [];
@@ -22,10 +22,11 @@ class ListTemplate
     {
         $this->args = $module->args;
         $this->data = $module->data;
-        $this->data['prepareList'] = $this->prepare([
+        $this->module = $module;
+        $this->data['posts'] = $this->prepareList([
             'posts_data_source' => $this->data['posts_data_source'] ?? '',
-            'archive_link' => $this->data['archive_link'] ?? '',
-            'archive_link_url' => $this->data['archive_link_url'] ?? '',
+            'archive_link' => $this->data['archiveLink'] ?? '',
+            'archive_link_url' => $this->data['archiveLinkUrl'] ?? '',
             'filters' => $this->data['filters'] ?? '',
         ]);
     }
@@ -35,23 +36,29 @@ class ListTemplate
      * @param array $postData array of data settings
      * @return array
      */
-    public function prepare(array $postData)
+    public function prepareList(array $postData)
     {
-        $list = [];
+        $posts = [];
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
+            $this->data['posts'] = $this->preparePosts($this->module);
             foreach ($this->data['posts'] as $post) {
-                if (!empty($post->postType) && $post->postType == 'attachment') {
-                    $link = wp_get_attachment_url($post->id);
-                } else {
-                    $link = $post->originalPermalink ?? $post->permalink;
+                
+                if ($post->getPostType() === 'attachment') {
+                    $post->permalink = wp_get_attachment_url($post->getId());
                 }
-    
-                if (!empty($post->postTitle)) {
-                    array_push($list, ['link' => $link ?? '', 'title' => $post->postTitle]);
+
+                $post->icon      = 'arrow_forward';
+                $post->classList = $post->classList ?? [];
+                $post->attributeList = ['data-js-item-id' => $post->getId()]; 
+
+                if(boolval(($this->data['meta']['use_term_icon_as_icon_in_list'] ?? false))) {
+                    $post->icon = $post->getIcon()?->toArray() ?: 'arrow_forward';
                 }
+
+                $posts[] = $post;
             }
         }
 
-        return $list;
+        return $posts;
     }
 }

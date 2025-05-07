@@ -41,14 +41,15 @@
             @button([
                 'text' => $buttonLabel,
                 'type' => 'submit',
-                'size' => 'lg',
+                'size' => 'md',
                 'color' => 'primary',
                 'attributeList' => [
                 ],
                 'disableColor' => false,
                 'context' => ['module.search.button'],
                 'classList' => [
-                    'u-height--unset'
+                    'u-height--unset',
+                    'u-padding__x--1'
                 ]
             ])
             @endbutton

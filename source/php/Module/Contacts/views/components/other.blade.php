@@ -1,6 +1,6 @@
 @if ($contact['other'])
     @typography([
-        'element' => 'span',
+        'element' => 'div',
         'variant' => 'meta',
         'classList' => [
             'u-margin__x--2',
