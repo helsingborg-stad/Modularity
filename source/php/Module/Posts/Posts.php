@@ -22,7 +22,6 @@ class Posts extends \Modularity\Module
     );
     public $getPostsHelper;
     public $archiveUrlHelper;
-    private array $enabledSchemaTypes = [];
     public string $postStatus;
     private PrivateController $privateController;
 
@@ -39,9 +38,6 @@ class Posts extends \Modularity\Module
         
         // Saves meta data to expandable list posts
         new \Modularity\Module\Posts\Helper\AddMetaToExpandableList();
-        
-        // Populate enabled schema types
-        add_filter('Municipio/SchemaData/EnabledSchemaTypes', [$this, 'setEnabledSchemaTypes']);
 
         // Populate schema types field
         add_filter('acf/load_field/name=posts_data_schema_type', [$this, 'loadSchemaTypesField']);
@@ -67,17 +63,6 @@ class Posts extends \Modularity\Module
     }
 
     /**
-     * Set enabled schema types
-     *
-     * @param array $types
-     * @return array
-     */
-    public function setEnabledSchemaTypes(array $types):array {
-        $this->enabledSchemaTypes = array_keys($types);
-        return $types;
-    }
-
-    /**
      * Load schema types field
      *
      * @param array $field
@@ -88,7 +73,11 @@ class Posts extends \Modularity\Module
             return $field;
         }
 
-        $field['choices'] = array_combine($this->enabledSchemaTypes, $this->enabledSchemaTypes);
+        global $wpdb;
+        $schemaTypesService = new \Municipio\SchemaData\Utils\SchemaTypesInUse($wpdb);
+
+        // Set options. E.g. ["Event" => "Event", "Article" => "Article"]...
+        $field['choices'] = array_combine( $schemaTypes = $schemaTypesService->getSchemaTypesInUse(), $schemaTypes );
         return $field;
     }
 
@@ -174,10 +163,10 @@ class Posts extends \Modularity\Module
         );
 
         // Archive link title
-        $data['archiveLinkTitle'] = $this->fields['archive_link_title'];
+        $data['archiveLinkTitle'] = $this->fields['archive_link_title'] ?? false;
 
         // Archive link position
-        $data['archiveLinkAbovePosts'] = $this->fields['archive_link_above_posts'];
+        $data['archiveLinkAbovePosts'] = $this->fields['archive_link_above_posts'] ?? false;
 
         //Add filters to archive link
         if($data['archiveLinkUrl'] && is_array($data['filters']) && !empty($data['filters'])) {
