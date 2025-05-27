@@ -31,7 +31,6 @@ module.exports = {
 
 		//Modules
 		'js/mod-curator-load-more': './source/php/Module/Curator/assets/mod-curator-load-more.js',
-		'js/table-init': './source/php/Module/Table/assets/table-init.js',
 		'css/table': './source/php/Module/Table/assets/table.scss',
 		'js/video': './source/php/Module/Video/assets/video.js',
 		'css/video': './source/php/Module/Video/assets/video.scss',
