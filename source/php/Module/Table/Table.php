@@ -193,37 +193,6 @@ class Table extends \Modularity\Module
         wp_enqueue_style('mod-table');
     }
 
-    public function script()
-    {
-        if (!$this->hasModule()) {
-            return;
-        }
-
-        wp_enqueue_script('datatables', 'https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js', array(), '1.10.11', true);
-
-        wp_register_script('datatables-init', MODULARITY_URL . '/dist/'
-        . \Modularity\Helper\CacheBust::name('js/table-init.js'));
-        wp_enqueue_script('datatables-init');
-
-
-        wp_localize_script('datatables-init', 'datatablesLang', array(
-            'sEmptyTable' => __('No data available in table', 'modularity'),
-            'sInfo' => __('Showing _START_ to _END_ of _TOTAL_ entries', 'modularity'),
-            'sInfoEmpty' => __('Showing 0 to 0 of 0 entries', 'modularity'),
-            'sInfoFiltered' => __('filtered from _MAX_ total entries', 'modularity'),
-            'sLengthMenu' => __('Show _MENU_ entries', 'modularity'),
-            'sLoadingRecords' => __('Loading...', 'modularity'),
-            'sProcessing' => __('Processing...', 'modularity'),
-            'sZeroRecords' => __('No matching records found', 'modularity'),
-            'sFirst' => __('First', 'modularity'),
-            'sLast' => __('Last', 'modularity'),
-            'sNext' => __('Next', 'modularity'),
-            'sPrevious' => __('Previous', 'modularity'),
-            'sSortAscending' => __('activate to sort column ascending', 'modularity'),
-            'sSortDescending' => __('activate to sort column descending', 'modularity')
-        ));
-    }
-
     public function tableList($arr)
     {
         $data = [];
