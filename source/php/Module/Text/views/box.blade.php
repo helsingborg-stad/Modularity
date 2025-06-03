@@ -6,13 +6,7 @@
 ])
     @if (empty($hideTitle) && !empty($postTitle))
         <div class="c-card__header">
-            @typography([
-                "element" => "h2",
-                "variant" => "h4",
-                'id' => 'mod-text-' . $ID .'-label'
-            ])
-                {!! $postTitle !!}
-            @endtypography
+            @include('partials.postTitle')
         </div>
     @endif
     
