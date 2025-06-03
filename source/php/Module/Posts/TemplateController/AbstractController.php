@@ -99,7 +99,7 @@ class AbstractController
     public function addPostData($posts = [])
     {
         $posts = array_map(function($post) {
-            $data['taxonomiesToDisplay'] = !empty($fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
+            $data['taxonomiesToDisplay'] = !empty($this->fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
             $helperArchiveMethod = 'preparePostObjectArchive';
