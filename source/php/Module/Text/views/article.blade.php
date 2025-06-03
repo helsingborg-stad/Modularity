@@ -1,7 +1,7 @@
 @element([
     'componentElement' => ((!$hideTitle && !empty($postTitle)) || $hasHeadingsInContent) ? 'article' : 'div',
     'attributeList' => [
-        ...($font_size ? ['class' => $font_size] : []),
+        ...(!empty($font_size) ? ['class' => $font_size] : []),
         ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-text-' . $ID . '-label'] : []),
     ]
 ])
