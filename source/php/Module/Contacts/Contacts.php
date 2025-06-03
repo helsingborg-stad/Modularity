@@ -93,7 +93,7 @@ class Contacts extends \Modularity\Module
                          'administration_unit' => null,
                          'email'               => $contact['user']['user_email'] ?? '',
                          'phone'               => $fields['phone_numbers'] ?: null,
-                         'social_media'        => $this->getUserSocialMedia($fields),
+                         'social_media'        => $this->getUserSocialMedia($fields ?: []),
                          'address'             => strip_tags($fields['address'] ?? '', '<br>'),
                          'visiting_address'    => strip_tags($fields['visiting_address'] ?? '', ['<br>', '<a>']),
                          'opening_hours'       => null,
