@@ -32,54 +32,15 @@ class GetPosts
      */
     public function getPostsAndPaginationData(array $fields, int $page = 1) :array
     {
-        return (array) $this->getPostsFromSelectedSites($fields, $page);
-    }
-
-    private function getPostsFromSelectedSites(array $fields, int $page):array {
-        
         if(!empty($fields['posts_data_network_sources'])) {
-            $posts       = [];
-            $maxNumPages = 0;
-            $stickyPosts = [];
-
-            foreach($fields['posts_data_network_sources'] as $site) {
-                $this->wpService->switchToBlog($site['value']);
-
-                $stickyPostIds       = $this->getStickyPostIds($fields, $page);
-                $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
-                $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
-                $postsFromSite       = $wpQuery->get_posts();
-
-                $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
-                $postsFromSite       = $this->addSiteDataToPosts($postsFromSite, $site);
-
-                array_walk($postsFromSite, function($post) use ($site) {
-                    // Add the original permalink to the post object for reference in network sources.
-                    $post->originalSite      = $site['label'];
-                    $post->originalBlogId    = (int)$site['value'];
-                });
-
-                $stickyPosts = array_merge($stickyPosts, $stickyPostsFromSite);
-                $posts       = array_merge($posts, $postsFromSite);
-                $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
-
-                $this->wpService->restoreCurrentBlog();
-            }
-
-            // Limit the number of posts to the desired count to avoid exceeding the limit.
-            $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
-
-            $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
-
-            $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
-
-            return [
-                'posts' => $posts,
-                'maxNumPages' => $maxNumPages,
-                'stickyPosts' => $stickyPosts,
-            ];
+            return $this->getPostsFromMultipleSites($fields, $page);
         }
 
+        return (array) $this->getPosts($fields, $page);
+    }
+
+    private function getPosts(array $fields, int $page):array {
+        
         $stickyPostIds       = $this->getStickyPostIds($fields, $page);
         $stickyPosts         = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
 
@@ -92,6 +53,49 @@ class GetPosts
         return [
             'posts' => $posts,
             'maxNumPages' => $wpQuery->max_num_pages,
+            'stickyPosts' => $stickyPosts,
+        ];
+    }
+
+    private function getPostsFromMultipleSites(array $fields, int $page):array {
+        $posts       = [];
+        $maxNumPages = 0;
+        $stickyPosts = [];
+
+        foreach($fields['posts_data_network_sources'] as $site) {
+            $this->wpService->switchToBlog($site['value']);
+
+            $stickyPostIds       = $this->getStickyPostIds($fields, $page);
+            $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
+            $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
+            $postsFromSite       = $wpQuery->get_posts();
+
+            $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
+            $postsFromSite       = $this->addSiteDataToPosts($postsFromSite, $site);
+
+            array_walk($postsFromSite, function($post) use ($site) {
+                // Add the original permalink to the post object for reference in network sources.
+                $post->originalSite      = $site['label'];
+                $post->originalBlogId    = (int)$site['value'];
+            });
+
+            $stickyPosts = array_merge($stickyPosts, $stickyPostsFromSite);
+            $posts       = array_merge($posts, $postsFromSite);
+            $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
+
+            $this->wpService->restoreCurrentBlog();
+        }
+
+        // Limit the number of posts to the desired count to avoid exceeding the limit.
+        $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
+        $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+
+        $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
+
+        return [
+            'posts' => $posts,
+            'maxNumPages' => $maxNumPages,
             'stickyPosts' => $stickyPosts,
         ];
     }
