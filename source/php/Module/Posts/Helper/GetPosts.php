@@ -3,6 +3,7 @@
 namespace Modularity\Module\Posts\Helper;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use WP_Query;
 use WpService\Contracts\{
     GetPermalink,
     GetPostType,
@@ -33,7 +34,7 @@ class GetPosts
     public function getPostsAndPaginationData(array $fields, int $page = 1) :array
     {
         if(!empty($fields['posts_data_network_sources'])) {
-            return $this->getPostsFromMultipleSites($fields, $page);
+            return $this->getPostsFromMultipleSites($fields, $page, array_map(fn($site) => $site['value'], $fields['posts_data_network_sources']));
         }
 
         return (array) $this->getPosts($fields, $page);
@@ -57,46 +58,134 @@ class GetPosts
         ];
     }
 
-    private function getPostsFromMultipleSites(array $fields, int $page):array {
-        $posts       = [];
-        $maxNumPages = 0;
-        $stickyPosts = [];
+    private function getPostsFromMultipleSites(array $fields, int $page, array $sites):array {
 
-        foreach($fields['posts_data_network_sources'] as $site) {
-            $this->wpService->switchToBlog($site['value']);
+        global $wpdb;
 
-            $stickyPostIds       = $this->getStickyPostIds($fields, $page);
-            $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
-            $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
-            $postsFromSite       = $wpQuery->get_posts();
+        $sites = array_filter($sites, function ($site) {
+            return isset(get_site($site)->deleted) && !get_site($site)->deleted;
+        });
 
-            $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
-            $postsFromSite       = $this->addSiteDataToPosts($postsFromSite, $site);
+        $posts = array();
+        $i = 0;
+        $sql = null;
 
-            array_walk($postsFromSite, function($post) use ($site) {
-                // Add the original permalink to the post object for reference in network sources.
-                $post->originalSite      = $site['label'];
-                $post->originalBlogId    = (int)$site['value'];
-            });
+        $sites = array_filter($sites, function ($site) {
+            return is_a(get_blog_details($site), 'WP_Site');
+        });
 
-            $stickyPosts = array_merge($stickyPosts, $stickyPostsFromSite);
-            $posts       = array_merge($posts, $postsFromSite);
-            $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
-
-            $this->wpService->restoreCurrentBlog();
+        $postStatusesArr = array('publish');
+        if (is_user_logged_in()) {
+            $postStatusesArr[] = 'private';
         }
 
-        // Limit the number of posts to the desired count to avoid exceeding the limit.
-        $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+        // Add quotes to each item
+        $postStatuses = array_map(function ($item) {
+            return sprintf("'%s'", $item);
+        }, $postStatusesArr);
 
-        $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
+        // Convert to comma separated string
+        $postStatuses = implode(',', $postStatuses);
 
-        $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
+        $sql .= 'SELECT
+                    blog_id,
+                    post_id,
+                    post_date,
+                    is_sticky,
+                    post_title,
+                    post_modified,
+                    menu_order
+                from (';
+
+        foreach ($sites as $site) {
+            if ($i > 0) {
+                $sql .= " UNION ";
+            }
+
+            $postsTable = "{$wpdb->base_prefix}{$site}_posts";
+            $postMetaTable = "{$wpdb->base_prefix}{$site}_postmeta";
+
+            if ($site == 1) {
+                $postsTable = "{$wpdb->base_prefix}posts";
+                $postMetaTable = "{$wpdb->base_prefix}postmeta";
+            }
+
+            $postType = 'post';
+
+            $sql .= "(
+                SELECT DISTINCT
+                    '{$site}' AS blog_id,
+                    posts.ID AS post_id,
+                    posts.post_date,
+                    posts.post_title,
+                    posts.post_modified,
+                    posts.menu_order,
+                    CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
+                FROM $postsTable posts
+                    LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+                WHERE
+                    posts.post_type = '" . $postType . "'
+                    AND posts.post_status IN ({$postStatuses})
+                    AND posts.post_date < NOW()
+                )";
+
+            $i++;
+        }
+
+        // $sql .= ")
+        //         as posts
+        //         WHERE ";
+        $sql .= ") as posts";
+
+        if (is_main_site()) {
+            // $sql .= "posts.exclude_post = '0' AND (";
+        }
+
+        // $sql .= "posts.target_groups IS NULL ";
+
+        // $sql .= ") ORDER BY post_date DESC LIMIT $offset, $count";
+        $orderby = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
+        $order = !empty($fields['posts_sort_order']) ? strtoupper($fields['posts_sort_order']) : 'DESC';
+
+        $sql .= match ($orderby) {
+            'date' => ' ORDER BY post_date ' . $order,
+            'title' => ' ORDER BY post_title ' . $order,
+            'modified' => ' ORDER BY post_modified ' . $order,
+            'menu_order' => ' ORDER BY menu_order ' . $order,
+            'rand' => ' ORDER BY RAND()',
+            default => ' ORDER BY post_date ' . $order,
+        };
+
+        $dbResults = $wpdb->get_results($sql);
+
+        if (is_array($dbResults) && !empty($dbResults)) {
+            $dbResults = array_filter($dbResults, function ($item) {
+                return !is_null($item->post_id);
+            });
+        }
+
+        if (!empty($dbResults)) {
+            foreach ($dbResults as $item) {
+                $post = get_blog_post($item->blog_id, $item->post_id);
+                if (!in_array($post->post_status, $postStatusesArr)) {
+                    continue;
+                }
+                $posts[] = $post;
+                end($posts);
+                $key = key($posts);
+
+                $posts[$key]->blog_id = $item->blog_id;
+                $posts[$key]->is_sticky = $item->is_sticky;
+            }
+        }
+
+        $postsPerPage = $this->getPostsPerPage($fields);
+        $offset = ($page - 1) * $postsPerPage;
 
         return [
-            'posts' => $posts,
-            'maxNumPages' => $maxNumPages,
-            'stickyPosts' => $stickyPosts,
+            'posts' => array_slice($posts, $offset, $postsPerPage),
+            'maxNumPages' => ceil(count($posts) / $postsPerPage),
+            'stickyPosts' => []
         ];
     }
 

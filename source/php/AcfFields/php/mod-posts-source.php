@@ -211,10 +211,6 @@ if (function_exists('acf_add_local_field_group')) {
                         'operator' => '!=',
                         'value' => 'manual',
                     ),
-                    1 => array(
-                        'field' => 'field_6710ff6562e8c',
-                        'operator' => '==empty',
-                    ),
                 ),
             ),
             'wrapper' => array(

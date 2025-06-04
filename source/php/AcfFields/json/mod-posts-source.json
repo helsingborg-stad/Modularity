@@ -198,10 +198,6 @@
                         "field": "field_571dfaafe6984",
                         "operator": "!=",
                         "value": "manual"
-                    },
-                    {
-                        "field": "field_6710ff6562e8c",
-                        "operator": "==empty"
                     }
                 ]
             ],
