@@ -292,7 +292,7 @@ class Module
      */
     public function isInline(): bool
     {
-        return !empty($this->data['inline']);
+        return (bool) ($this->args['inline'] ?? false);
     }
 
     /**
