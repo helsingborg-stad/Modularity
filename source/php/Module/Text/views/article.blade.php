@@ -5,15 +5,7 @@
         ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-text-' . $ID . '-label'] : []),
     ]
 ])
-    @if (!$hideTitle && !empty($postTitle))
-        @typography([
-                "element" => "h2",
-                "variant" => "h4",
-                "id" => 'mod-text-' . $ID .'-label'
-        ])
-                {!! $postTitle !!}
-        @endtypography
-    @endif
+    @includeWhen(!$hideTitle && !empty($postTitle), 'partials.postTitle', ['variant' => 'h2'])
 
     @if($postContent)
         {!! $postContent !!}
