@@ -1,8 +1,9 @@
 <?php
 
-namespace Modularity\Module\Posts\Helper;
+namespace Modularity\Module\Posts\Helper\GetPosts;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\NullPostTypesFromSchemaTypeResolver;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -16,8 +17,9 @@ class GetPostsTest extends TestCase {
     public function testGetCurrentPostIDReturnsTheCurrentPostID() {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
         
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $this->assertEquals(1, $getPosts->getCurrentPostID());
     }
@@ -26,8 +28,9 @@ class GetPostsTest extends TestCase {
     public function testGetCurrentPostIDReturnsFalseWhenPostIsNotSet() {
         $wpService = new FakeWpService(['getTheID' => false, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $this->assertFalse($getPosts->getCurrentPostID());
     }
@@ -36,8 +39,9 @@ class GetPostsTest extends TestCase {
     public function testGetCurrentPostIDReturnsFalseWhenInArchiveContext() {
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => true]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $this->assertFalse($getPosts->getCurrentPostID());
     }
@@ -52,8 +56,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'date', 'desc');
 
@@ -72,8 +77,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'date', 'asc');
 
@@ -92,8 +98,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'title', 'desc');
 
@@ -112,8 +119,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'title', 'asc');
 
@@ -132,8 +140,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'modified', 'desc');
 
@@ -152,8 +161,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'modified', 'asc');
 
@@ -172,8 +182,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'menu_order', 'desc');
 
@@ -192,8 +203,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $sortedPosts = $getPosts->sortPosts($posts, 'menu_order', 'asc');
 
@@ -212,8 +224,9 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);
 
         $firstSort = $getPosts->sortPosts($posts, 'rand', 'asc');
         $secondSort = $getPosts->sortPosts($posts, 'rand', 'asc');
@@ -236,8 +249,8 @@ class GetPostsTest extends TestCase {
 
         $wpService = new FakeWpService(['getTheID' => 1, 'isArchive' => false]);
         $wpQueryFactory = $this->createStub(WpQueryFactoryInterface::class);
-        
-        $getPosts = new GetPosts(null, $wpService, $wpQueryFactory);
+        $postTypeFromSchemaTypeResolver = new NullPostTypesFromSchemaTypeResolver();
+        $getPosts = new GetPosts([], 1, null, $wpService, $wpQueryFactory, $postTypeFromSchemaTypeResolver);    
 
         $sortedPosts = $getPosts->sortPosts($posts, 'foo');
 

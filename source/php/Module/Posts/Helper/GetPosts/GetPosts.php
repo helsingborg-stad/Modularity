@@ -1,19 +1,18 @@
 <?php
 
-namespace Modularity\Module\Posts\Helper;
+namespace Modularity\Module\Posts\Helper\GetPosts;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
 use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResult;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolverInterface;
 use WpService\Contracts\{
     GetPermalink,
     GetPostType,
     GetTheID,
     IsArchive,
     IsUserLoggedIn,
-    RestoreCurrentBlog,
-    SwitchToBlog,
 };
 
 class GetPosts implements GetPostsInterface
@@ -22,8 +21,9 @@ class GetPosts implements GetPostsInterface
         private array $fields,
         private int $page,
         private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption,
-        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
-        private WpQueryFactoryInterface $wpQueryFactory
+        private IsUserLoggedIn&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
+        private WpQueryFactoryInterface $wpQueryFactory,
+        private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver
     )
     {
     }
@@ -37,129 +37,16 @@ class GetPosts implements GetPostsInterface
      */
     public function getPosts() :PostsResultInterface
     {
-        if(!empty($this->fields['posts_data_network_sources'])) {
-            return $this->getPostsFromMultipleSites($this->fields, $this->page, array_map(fn($site) => $site['value'], $this->fields['posts_data_network_sources']));
-        }
-
-        return $this->getPostFromCurrentBlogOnly($this->fields, $this->page);
-    }
-
-    private function getPostFromCurrentBlogOnly(array $fields, int $page):PostsResultInterface {
-        
-        $stickyPostIds       = $this->getStickyPostIds($fields, $page);
-        $stickyPosts         = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
-
-        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
-
-        $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
-
+        $stickyPostIds       = $this->getStickyPostIds($this->fields, $this->page);
+        $stickyPosts         = $this->getStickyPostsForSite($this->fields, $this->page, $stickyPostIds);
+        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($this->fields, $this->page, $stickyPostIds));
+        $stickyPosts = $this->sortPosts($stickyPosts, $this->fields['posts_sort_by'] ?? 'date', $this->fields['posts_sort_order'] ?? 'desc');
         $posts = $wpQuery->get_posts();
 
         return $this->formatResponse(
             $posts,
             $wpQuery->max_num_pages,
             $stickyPosts
-        );
-    }
-
-    /**
-     * Get posts from multiple sites
-     * 
-     * @param array $fields
-     * @param int $page
-     * @param array $sites
-     * @return PostsResultInterface
-     */
-    private function getPostsFromMultipleSites(array $fields, int $page, array $sites): PostsResultInterface
-    {
-        global $wpdb;
-        
-        $postStatuses = is_user_logged_in() ? ['publish', 'private'] : ['publish'];
-        $postStatusesSql = implode(',', array_map(fn($status) => sprintf("'%s'", esc_sql($status)), $postStatuses));
-        $unionQueries = [];
-
-        // Filter out deleted or invalid sites
-        $sites = array_filter($sites, function ($site) {
-            $siteObj = get_site($site);
-            return $siteObj && isset($siteObj->deleted) && !$siteObj->deleted && is_a(get_blog_details($site), 'WP_Site');
-        });
-
-        if (empty($sites)) {
-            return $this->formatResponse([], 0, []);
-        }
-
-        foreach ($sites as $site) {
-            $postsTable = $site == 1 ? "{$wpdb->base_prefix}posts" : "{$wpdb->base_prefix}{$site}_posts";
-            $postMetaTable = $site == 1 ? "{$wpdb->base_prefix}postmeta" : "{$wpdb->base_prefix}{$site}_postmeta";
-
-            switch_to_blog($site);
-
-            $postTypes = match ($fields['posts_data_source'] ?? null) {
-                'posttype' => [$fields['posts_data_post_type']],
-                'schematype' => !empty($fields['posts_data_schema_type']) ? $this->getPostTypesFromSchemaType($fields['posts_data_schema_type']) : [],
-                default => ['post'],
-            };
-
-            $postTypesSql = implode(',', array_map(fn($type) => sprintf("'%s'", esc_sql($type)), $postTypes));
-            restore_current_blog();
-
-            $unionQueries[] = "
-                SELECT DISTINCT
-                    '{$site}' AS blog_id,
-                    posts.ID AS post_id,
-                    posts.post_date,
-                    posts.post_title,
-                    posts.post_modified,
-                    posts.menu_order,
-                    CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
-                FROM $postsTable posts
-                LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
-                WHERE
-                    posts.post_type IN ($postTypesSql)
-                    AND posts.post_status IN ($postStatusesSql)
-                    AND posts.post_date < NOW()
-            ";
-        }
-
-        $sql = 'SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order FROM ('
-            . implode(' UNION ', $unionQueries)
-            . ') as posts';
-
-        $orderby = $fields['posts_sort_by'] ?? 'date';
-        $order = strtoupper($fields['posts_sort_order'] ?? 'DESC');
-        $orderSql = match ($orderby) {
-            'date' => " ORDER BY post_date $order",
-            'title' => " ORDER BY post_title $order",
-            'modified' => " ORDER BY post_modified $order",
-            'menu_order' => " ORDER BY menu_order $order",
-            'rand' => " ORDER BY RAND()",
-            default => " ORDER BY post_date $order",
-        };
-        $sql .= $orderSql;
-
-        $dbResults = $wpdb->get_results($sql);
-        $postsPerPage = $this->getPostsPerPage($fields);
-        $offset = ($page - 1) * $postsPerPage;
-        $maxNumPages = $postsPerPage > 0 ? (int)ceil(count($dbResults) / $postsPerPage) : 0;
-        $dbResults = array_slice($dbResults, $offset, $postsPerPage);
-
-        $dbResults = array_filter($dbResults, function ($item) {
-            return !empty($item->post_id);
-        });
-
-        $posts = array_map(function($item) use ($postStatuses) {
-            $post = get_blog_post($item->blog_id, $item->post_id);
-            if (!$post || !in_array($post->post_status, $postStatuses, true)) {
-                return null;
-            }
-            $post->originalBlogId = $item->blog_id;
-            return $post;
-        }, $dbResults);
-
-        return $this->formatResponse(
-            array_values(array_filter($posts)),
-            $maxNumPages,
-            []
         );
     }
 
@@ -324,7 +211,7 @@ class GetPosts implements GetPostsInterface
                 if(empty($fields['posts_data_schema_type'])) {
                     break;
                 }
-                $getPostsArgs['post_type'] = $this->getPostTypesFromSchemaType($fields['posts_data_schema_type']);
+                $getPostsArgs['post_type'] = $this->postTypesFromSchemaTypeResolver->resolve($fields['posts_data_schema_type']);
                 break;
         }
 
@@ -364,29 +251,6 @@ class GetPosts implements GetPostsInterface
         }
 
         return 10;
-    }
-
-    /**
-     * Get post types from schema type
-     */
-    private function getPostTypesFromSchemaType(string $schemaType):array {
-        
-        $class = '\Municipio\SchemaData\Helper\GetSchemaType';
-        $method = 'getPostTypesFromSchemaType';
-        
-        if(!class_exists($class) || !method_exists($class, $method)) {
-            $backtrace = debug_backtrace();
-            error_log("Class or method does not exist: {$class}::{$method} in {$backtrace[0]['file']} on line {$backtrace[0]['line']}");
-            return [];
-        }
-
-        $postTypes = call_user_func([new $class(), $method], $schemaType);
-
-        if( !is_array($postTypes) ) {
-            return [];
-        }
-
-        return $postTypes;
     }
 
     /**

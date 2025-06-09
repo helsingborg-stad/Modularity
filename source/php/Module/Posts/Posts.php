@@ -5,10 +5,14 @@ namespace Modularity\Module\Posts;
 use Modularity\Helper\WpQueryFactory\WpQueryFactory;
 use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
-use Modularity\Module\Posts\Helper\GetPosts;
 use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolver;
 use Modularity\Module\Posts\Private\PrivateController;
+use Modularity\Module\Posts\Helper\GetPosts\{
+    GetPosts,
+    GetPostsFromMultipleSites
+};
 
 /**
  * Class Posts
@@ -369,7 +373,27 @@ class Posts extends \Modularity\Module
     public function getPostsResult(): PostsResultInterface
     {
         $stickyPostHelper = new \Municipio\StickyPost\Helper\GetStickyOption( new \Municipio\StickyPost\Config\StickyPostConfig(), WpService::get() );
-        $this->getPostsHelper = new GetPosts($this->fields, $this->getPageNumber(), $stickyPostHelper, WpService::get(), new WpQueryFactory());
+        $postTypesFromSchemaTypeResolver = new PostTypesFromSchemaTypeResolver();
+
+        if(!empty($this->fields['posts_data_network_sources'])){
+            $this->getPostsHelper = new GetPostsFromMultipleSites(
+                $this->fields,
+                $this->getPageNumber(),
+                array_map(fn($siteOption) => $siteOption['value'], $this->fields['posts_data_network_sources']),
+                WpService::get(),
+                $postTypesFromSchemaTypeResolver
+            );
+        } else {
+            $this->getPostsHelper = new GetPosts(
+                $this->fields, 
+                $this->getPageNumber(), 
+                $stickyPostHelper, 
+                WpService::get(), 
+                new WpQueryFactory(), 
+                $postTypesFromSchemaTypeResolver
+            );
+        }
+
         return $this->getPostsHelper->getPosts();
     }
 
