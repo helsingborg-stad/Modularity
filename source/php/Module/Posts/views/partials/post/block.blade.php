@@ -18,6 +18,7 @@
         'color' => 'white',
     ] : null,
     'iconBackgroundColor' => $post->getIcon() ? $post->getIcon()->getCustomColor() : null,
+    'attributeList' => $post->attributeList ?? []
 ])
     @includeWhen(
         !empty($post->callToActionItems['floating']['icon']), 
