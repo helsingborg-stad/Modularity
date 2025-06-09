@@ -3,7 +3,6 @@
 namespace Modularity\Module\Posts\Helper;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
-use WP_Query;
 use WpService\Contracts\{
     GetPermalink,
     GetPostType,
@@ -51,68 +50,55 @@ class GetPosts
 
         $posts = $wpQuery->get_posts();
 
-        return [
-            'posts' => $posts,
-            'maxNumPages' => $wpQuery->max_num_pages,
-            'stickyPosts' => $stickyPosts,
-        ];
+        return $this->formatResponse(
+            $posts,
+            $wpQuery->max_num_pages,
+            $stickyPosts
+        );
     }
 
-    private function getPostsFromMultipleSites(array $fields, int $page, array $sites):array {
-
+    /**
+     * Get posts from multiple sites
+     * 
+     * @param array $fields
+     * @param int $page
+     * @param array $sites
+     * @return array
+     */
+    private function getPostsFromMultipleSites(array $fields, int $page, array $sites): array
+    {
         global $wpdb;
+        
+        $postStatuses = is_user_logged_in() ? ['publish', 'private'] : ['publish'];
+        $postStatusesSql = implode(',', array_map(fn($status) => sprintf("'%s'", esc_sql($status)), $postStatuses));
+        $unionQueries = [];
 
+        // Filter out deleted or invalid sites
         $sites = array_filter($sites, function ($site) {
-            return isset(get_site($site)->deleted) && !get_site($site)->deleted;
+            $siteObj = get_site($site);
+            return $siteObj && isset($siteObj->deleted) && !$siteObj->deleted && is_a(get_blog_details($site), 'WP_Site');
         });
 
-        $posts = array();
-        $i = 0;
-        $sql = null;
-
-        $sites = array_filter($sites, function ($site) {
-            return is_a(get_blog_details($site), 'WP_Site');
-        });
-
-        $postStatusesArr = array('publish');
-        if (is_user_logged_in()) {
-            $postStatusesArr[] = 'private';
+        if (empty($sites)) {
+            return $this->formatResponse([], 0, []);
         }
 
-        // Add quotes to each item
-        $postStatuses = array_map(function ($item) {
-            return sprintf("'%s'", $item);
-        }, $postStatusesArr);
-
-        // Convert to comma separated string
-        $postStatuses = implode(',', $postStatuses);
-
-        $sql .= 'SELECT
-                    blog_id,
-                    post_id,
-                    post_date,
-                    is_sticky,
-                    post_title,
-                    post_modified,
-                    menu_order
-                from (';
-
         foreach ($sites as $site) {
-            if ($i > 0) {
-                $sql .= " UNION ";
-            }
+            $postsTable = $site == 1 ? "{$wpdb->base_prefix}posts" : "{$wpdb->base_prefix}{$site}_posts";
+            $postMetaTable = $site == 1 ? "{$wpdb->base_prefix}postmeta" : "{$wpdb->base_prefix}{$site}_postmeta";
 
-            $postsTable = "{$wpdb->base_prefix}{$site}_posts";
-            $postMetaTable = "{$wpdb->base_prefix}{$site}_postmeta";
+            switch_to_blog($site);
 
-            if ($site == 1) {
-                $postsTable = "{$wpdb->base_prefix}posts";
-                $postMetaTable = "{$wpdb->base_prefix}postmeta";
-            }
+            $postTypes = match ($fields['posts_data_source'] ?? null) {
+                'posttype' => [$fields['posts_data_post_type']],
+                'schematype' => !empty($fields['posts_data_schema_type']) ? $this->getPostTypesFromSchemaType($fields['posts_data_schema_type']) : [],
+                default => ['post'],
+            };
 
-            $postType = 'post';
+            $postTypesSql = implode(',', array_map(fn($type) => sprintf("'%s'", esc_sql($type)), $postTypes));
+            restore_current_blog();
 
-            $sql .= "(
+            $unionQueries[] = "
                 SELECT DISTINCT
                     '{$site}' AS blog_id,
                     posts.ID AS post_id,
@@ -122,85 +108,72 @@ class GetPosts
                     posts.menu_order,
                     CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
                 FROM $postsTable posts
-                    LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+                LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
                 WHERE
-                    posts.post_type = '" . $postType . "'
-                    AND posts.post_status IN ({$postStatuses})
+                    posts.post_type IN ($postTypesSql)
+                    AND posts.post_status IN ($postStatusesSql)
                     AND posts.post_date < NOW()
-                )";
-
-            $i++;
+            ";
         }
 
-        // $sql .= ")
-        //         as posts
-        //         WHERE ";
-        $sql .= ") as posts";
+        $sql = 'SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order FROM ('
+            . implode(' UNION ', $unionQueries)
+            . ') as posts';
 
-        if (is_main_site()) {
-            // $sql .= "posts.exclude_post = '0' AND (";
-        }
-
-        // $sql .= "posts.target_groups IS NULL ";
-
-        // $sql .= ") ORDER BY post_date DESC LIMIT $offset, $count";
-        $orderby = !empty($fields['posts_sort_by']) ? $fields['posts_sort_by'] : 'date';
-        $order = !empty($fields['posts_sort_order']) ? strtoupper($fields['posts_sort_order']) : 'DESC';
-
-        $sql .= match ($orderby) {
-            'date' => ' ORDER BY post_date ' . $order,
-            'title' => ' ORDER BY post_title ' . $order,
-            'modified' => ' ORDER BY post_modified ' . $order,
-            'menu_order' => ' ORDER BY menu_order ' . $order,
-            'rand' => ' ORDER BY RAND()',
-            default => ' ORDER BY post_date ' . $order,
+        $orderby = $fields['posts_sort_by'] ?? 'date';
+        $order = strtoupper($fields['posts_sort_order'] ?? 'DESC');
+        $orderSql = match ($orderby) {
+            'date' => " ORDER BY post_date $order",
+            'title' => " ORDER BY post_title $order",
+            'modified' => " ORDER BY post_modified $order",
+            'menu_order' => " ORDER BY menu_order $order",
+            'rand' => " ORDER BY RAND()",
+            default => " ORDER BY post_date $order",
         };
+        $sql .= $orderSql;
 
         $dbResults = $wpdb->get_results($sql);
 
-        if (is_array($dbResults) && !empty($dbResults)) {
-            $dbResults = array_filter($dbResults, function ($item) {
-                return !is_null($item->post_id);
-            });
-        }
-
+        $posts = [];
         if (!empty($dbResults)) {
             foreach ($dbResults as $item) {
-                $post = get_blog_post($item->blog_id, $item->post_id);
-                if (!in_array($post->post_status, $postStatusesArr)) {
+                if (empty($item->post_id)) {
                     continue;
                 }
+                $post = get_blog_post($item->blog_id, $item->post_id);
+                if (!$post || !in_array($post->post_status, $postStatuses, true)) {
+                    continue;
+                }
+                $post->originalBlogId = $item->blog_id;
                 $posts[] = $post;
-                end($posts);
-                $key = key($posts);
-
-                $posts[$key]->blog_id = $item->blog_id;
-                $posts[$key]->is_sticky = $item->is_sticky;
             }
         }
 
         $postsPerPage = $this->getPostsPerPage($fields);
         $offset = ($page - 1) * $postsPerPage;
 
-        return [
-            'posts' => array_slice($posts, $offset, $postsPerPage),
-            'maxNumPages' => ceil(count($posts) / $postsPerPage),
-            'stickyPosts' => []
-        ];
+        return $this->formatResponse(
+            array_slice($posts, $offset, $postsPerPage),
+            $postsPerPage > 0 ? (int)ceil(count($posts) / $postsPerPage) : 0,
+            $this->getStickyPostsForSite($fields, $page, $this->getStickyPostIds($fields, $page))
+        );
     }
 
     /**
-     * Add site data to posts
+     * Format the response
+     * 
+     * @param array $posts
+     * @param int $maxNumPages
+     * @param array $stickyPosts
+     * @return array e.g. ['posts' => [], 'maxNumPages' => 0, 'stickyPosts' => []]
      */
-    private function addSiteDataToPosts(array $posts, array $site): array
+    private function formatResponse(array $posts, int $maxNumPages, array $stickyPosts): array
     {
-        array_walk($posts, function(&$post) use ($site) {
-            // Add the original permalink to the post object for reference in network sources.
-            $post->originalSite      = $site['label'];
-            $post->originalBlogId    = (int)$site['value'];
-        });
-
-        return $posts;
+        return [
+            'posts' => $posts,
+            'maxNumPages' => $maxNumPages,
+            'stickyPosts' => $stickyPosts,
+        ];
     }
 
     /**
