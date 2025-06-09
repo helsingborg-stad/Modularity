@@ -30,7 +30,7 @@
                             ])
                                 @typography([
                                     'element' => 'h2',
-                                    'variant' => 'h6',
+                                    'variant' => 'h4',
                                     'id' => 'post-' . $ID . '-' . $post->getId() . '-title',
                                 ])
                                     {{ $post->getTitle() }}
