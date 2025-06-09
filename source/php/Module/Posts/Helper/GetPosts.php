@@ -3,6 +3,9 @@
 namespace Modularity\Module\Posts\Helper;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostsResult;
+use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
 use WpService\Contracts\{
     GetPermalink,
     GetPostType,
@@ -13,9 +16,11 @@ use WpService\Contracts\{
     SwitchToBlog,
 };
 
-class GetPosts
+class GetPosts implements GetPostsInterface
 {
     public function __construct(
+        private array $fields,
+        private int $page,
         private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption,
         private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
         private WpQueryFactoryInterface $wpQueryFactory
@@ -28,18 +33,18 @@ class GetPosts
      * 
      * @param array $fields
      * @param int $page
-     * @return array $result e.g. ['posts' => [], 'maxNumPages' => 0]
+     * @return PostsResultInterface
      */
-    public function getPostsAndPaginationData(array $fields, int $page = 1) :array
+    public function getPosts() :PostsResultInterface
     {
-        if(!empty($fields['posts_data_network_sources'])) {
-            return $this->getPostsFromMultipleSites($fields, $page, array_map(fn($site) => $site['value'], $fields['posts_data_network_sources']));
+        if(!empty($this->fields['posts_data_network_sources'])) {
+            return $this->getPostsFromMultipleSites($this->fields, $this->page, array_map(fn($site) => $site['value'], $this->fields['posts_data_network_sources']));
         }
 
-        return (array) $this->getPosts($fields, $page);
+        return $this->getPostFromCurrentBlogOnly($this->fields, $this->page);
     }
 
-    private function getPosts(array $fields, int $page):array {
+    private function getPostFromCurrentBlogOnly(array $fields, int $page):PostsResultInterface {
         
         $stickyPostIds       = $this->getStickyPostIds($fields, $page);
         $stickyPosts         = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
@@ -63,9 +68,9 @@ class GetPosts
      * @param array $fields
      * @param int $page
      * @param array $sites
-     * @return array
+     * @return PostsResultInterface
      */
-    private function getPostsFromMultipleSites(array $fields, int $page, array $sites): array
+    private function getPostsFromMultipleSites(array $fields, int $page, array $sites): PostsResultInterface
     {
         global $wpdb;
         
@@ -164,15 +169,11 @@ class GetPosts
      * @param array $posts
      * @param int $maxNumPages
      * @param array $stickyPosts
-     * @return array e.g. ['posts' => [], 'maxNumPages' => 0, 'stickyPosts' => []]
+     * @return PostsResultInterface
      */
-    private function formatResponse(array $posts, int $maxNumPages, array $stickyPosts): array
+    private function formatResponse(array $posts, int $maxNumPages, array $stickyPosts): PostsResultInterface
     {
-        return [
-            'posts' => $posts,
-            'maxNumPages' => $maxNumPages,
-            'stickyPosts' => $stickyPosts,
-        ];
+        return new PostsResult( $posts, $maxNumPages, $stickyPosts );
     }
 
     /**
