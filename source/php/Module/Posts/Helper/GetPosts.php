@@ -133,29 +133,28 @@ class GetPosts
         $sql .= $orderSql;
 
         $dbResults = $wpdb->get_results($sql);
-
-        $posts = [];
-        if (!empty($dbResults)) {
-            foreach ($dbResults as $item) {
-                if (empty($item->post_id)) {
-                    continue;
-                }
-                $post = get_blog_post($item->blog_id, $item->post_id);
-                if (!$post || !in_array($post->post_status, $postStatuses, true)) {
-                    continue;
-                }
-                $post->originalBlogId = $item->blog_id;
-                $posts[] = $post;
-            }
-        }
-
         $postsPerPage = $this->getPostsPerPage($fields);
         $offset = ($page - 1) * $postsPerPage;
+        $maxNumPages = $postsPerPage > 0 ? (int)ceil(count($dbResults) / $postsPerPage) : 0;
+        $dbResults = array_slice($dbResults, $offset, $postsPerPage);
+
+        $dbResults = array_filter($dbResults, function ($item) {
+            return !empty($item->post_id);
+        });
+
+        $posts = array_map(function($item) use ($postStatuses) {
+            $post = get_blog_post($item->blog_id, $item->post_id);
+            if (!$post || !in_array($post->post_status, $postStatuses, true)) {
+                return null;
+            }
+            $post->originalBlogId = $item->blog_id;
+            return $post;
+        }, $dbResults);
 
         return $this->formatResponse(
-            array_slice($posts, $offset, $postsPerPage),
-            $postsPerPage > 0 ? (int)ceil(count($posts) / $postsPerPage) : 0,
-            $this->getStickyPostsForSite($fields, $page, $this->getStickyPostIds($fields, $page))
+            array_values(array_filter($posts)),
+            $maxNumPages,
+            []
         );
     }
 
