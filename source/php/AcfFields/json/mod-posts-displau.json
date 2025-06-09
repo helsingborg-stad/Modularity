@@ -189,6 +189,36 @@
             "append": ""
         },
         {
+            "key": "field_68469afc46fa3",
+            "label": "Open links in new tab",
+            "name": "posts_open_links_in_new_tab",
+            "aria-label": "",
+            "type": "select",
+            "instructions": "How a link should open (new tab or in current tab)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "is_publicly_hidden": 0,
+            "is_privately_hidden": 0,
+            "choices": {
+                "external": "External"
+            },
+            "default_value": false,
+            "return_format": "value",
+            "multiple": 0,
+            "placeholder": "None",
+            "allow_null": 1,
+            "allow_in_bindings": 0,
+            "ui": 0,
+            "ajax": 0,
+            "allow_custom": 0,
+            "search_placeholder": ""
+        },
+        {
             "key": "field_6356477fbc5e4",
             "label": "Show as slider",
             "name": "show_as_slider",
