@@ -50,7 +50,7 @@ Module.prototype.loadModules = function (postId) {
                 }
 
                 var incompability = (typeof data.sidebar_incompability != 'undefined' && !$.isEmptyObject(data.sidebar_incompability)) ? JSON.stringify(data.sidebar_incompability) : '';
-                this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated, incompability);
+                this.addModule(sidebarElement, data.post_type, data.post_type_name, data.post_title, data.ID, data.hidden, data.columnWidth, data.isDeprecated, incompability, data.usage ?? null);
             }.bind(this));
 
             sidebarElement.removeClass('modularity-spinner');
@@ -118,7 +118,7 @@ Module.prototype.getImportUrl = function (data) {
  * @param {string} moduleId   The module id slug
  * @param {string} moduleName The module name
  */
-Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth, isDeprecated, incompability) {
+Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle, postId, hidden, columnWidth, isDeprecated, incompability, usage) {
     moduleTitle = (typeof moduleTitle != 'undefined') ? ': ' + moduleTitle : '';
     postId = (typeof postId != 'undefined') ? postId : '';
     columnWidth = (typeof columnWidth != 'undefined') ? columnWidth : '';
@@ -154,6 +154,10 @@ Module.prototype.addModule = function (target, moduleId, moduleName, moduleTitle
 
     var sidebarId = $(target).data('area-id');
     var itemRowId = Math.random().toString(36).substr(2, 9); // ToDO: Fix uuid helper lModularity.Helpers.uuid();
+
+    if (typeof usage === 'number' && usage > 1) {
+        moduleTitle += ` <em>(${usage})</em>`;
+    }
 
     var html = '<li id="post-' + postId + '" data-module-id="' + moduleId + '" data-module-stored-width="' + columnWidth + '" data-sidebar-incompability=\'' + incompability + '\'>\
             <span class="modularity-line-wrapper">\
