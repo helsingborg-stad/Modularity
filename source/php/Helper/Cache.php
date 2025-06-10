@@ -54,7 +54,7 @@ class Cache
 
             $roleHash = $this->createShortHash($caps, true);
             if ($roleHash !== false) {
-                $this->hash = $this->hash . "-auth-" . $roleHash . "-" . $cacheGroup;
+                $this->hash = $this->hash . "-auth-" . $roleHash;
             }
         }
 
