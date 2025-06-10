@@ -8,7 +8,8 @@ class Cache
      * Fragment cache in object cache
      * @param  string $postId      The post id that you want to cache (or any other key that relates to specific data)
      * @param  string $module      Any input data altering output result as a concatinated string/array/object.
-     * @param  string $ttl         The time that a cache should live (in seconds)
+     * @param  string $ttl         The time that a cache should live (in seconds),
+     * @param  mixed  $cacheGroup  The value to create a short hash from, to create a unique cache group.
      * @return string              The request response
      */
 
@@ -18,8 +19,15 @@ class Cache
 
     public $keyGroup = 'modules';
 
-    public function __construct($postId, $module = '', $ttl = 3600*24)
+    public function __construct($postId, $module = '', $ttl = 3600*24, $cacheGroup = null)
     {
+        // Create cache group hash
+        if(!is_null($cacheGroup)) {
+            $cacheGroup = $this->createShortHash($cacheGroup);
+        } else {
+            $cacheGroup = '';
+        }
+
         // Set variables
         $this->postId       = $postId;
         $this->ttl          = $ttl;
@@ -48,6 +56,10 @@ class Cache
             if ($roleHash !== false) {
                 $this->hash = $this->hash . "-auth-" . $roleHash;
             }
+        }
+
+        if($cacheGroup != '') {
+            $this->hash = $this->hash . "-" . $cacheGroup;
         }
 
         add_action('save_post', [$this, 'clearCache']);

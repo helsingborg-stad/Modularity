@@ -477,7 +477,8 @@ class Display
                 $module, 
                 $args['id']
             ], 
-            $moduleSettings['cache_ttl'] ?? 0
+            $moduleSettings['cache_ttl'] ?? 0,
+            $this->getRegisteredQueryVars() ?: null
         );
 
         if ($echo == false) {
@@ -502,6 +503,22 @@ class Display
         }
 
         return true;
+    }
+
+    /**
+     * Get registered query vars
+     * @return array
+     */
+    private function getRegisteredQueryVars(): array
+    {
+        global $wp;
+        $result = [];
+        if (isset($wp->public_query_vars) && is_array($wp->public_query_vars)) {
+            foreach ($wp->public_query_vars as $var) {
+                $result[$var] = get_query_var($var);
+            }
+        }
+        return array_filter($result);
     }
 
     /**
