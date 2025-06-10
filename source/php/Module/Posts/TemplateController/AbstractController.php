@@ -112,7 +112,8 @@ class AbstractController
                 return $post;
             }
 
-            if(!empty($post->originalBlogId) && $post->originalBlogId !== $this->getWpService()->getCurrentBlogId()) {
+            if(!empty($post->originalBlogId)) {
+                $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
                 $this->getWpService()->switchToBlog($post->originalBlogId);
             }
 
