@@ -34,8 +34,8 @@ class AbstractController
     {
         $this->module               = $module;
         $this->fields               = $module->fields;
-        $this->data                 = $this->addDataViewData($module->data, $module->fields);
         $this->domainChecker        = $module->domainChecker;
+        $this->data                 = $this->addDataViewData($module->data, $module->fields);
         $this->data['posts']        = $this->preparePosts($module);
 
         $this->data['classList']    = [];
