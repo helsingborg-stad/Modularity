@@ -478,7 +478,7 @@ class Display
                 $args['id']
             ], 
             $moduleSettings['cache_ttl'] ?? 0,
-            $this->getRegisteredQueryVars() ?? null
+            $this->getRegisteredQueryVars() ?: null
         );
 
         if ($echo == false) {
@@ -518,7 +518,7 @@ class Display
                 $result[$var] = get_query_var($var);
             }
         }
-        return $result;
+        return array_filter($result);
     }
 
     /**
