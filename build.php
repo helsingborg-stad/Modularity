@@ -73,7 +73,7 @@ $removables = [
     './source/' . $globRecursivePattern . '*test.php',
     './source/' . $globRecursivePattern . '*Test.php',
     './source/' . $globRecursivePattern . '__snapshots__',
-    '.tests'
+    './tests/'
 ];
 
 $dirName = basename(dirname(__FILE__));
