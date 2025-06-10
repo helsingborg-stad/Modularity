@@ -477,7 +477,8 @@ class Display
                 $module, 
                 $args['id']
             ], 
-            $moduleSettings['cache_ttl'] ?? 0
+            $moduleSettings['cache_ttl'] ?? 0,
+            $_GET ?? null
         );
 
         if ($echo == false) {
