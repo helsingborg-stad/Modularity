@@ -1,5 +1,5 @@
 @card([
-    'link' => $post->permalink,
+    'link' => $post->getPermalink(),
     'heading' => $post->postTitle,
     'context' => ['module.posts.index'],
     'content' => $post->excerptShort,
@@ -18,6 +18,7 @@
         'color' => 'white',
     ] : null,
     'iconBackgroundColor' => $post->getIcon() ? $post->getIcon()->getCustomColor() : null,
+    'attributeList' => $post->attributeList ?? []
 ])
     @slot('aboveContent')
         @includeWhen(!empty($post->readingTime), 'partials.read-time')

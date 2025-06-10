@@ -4,6 +4,7 @@ namespace Modularity\Module\Posts;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactory;
 use Modularity\Helper\WpService;
+use Modularity\Module\Posts\Helper\DomainChecker;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
 use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
@@ -29,6 +30,7 @@ class Posts extends \Modularity\Module
     public GetPostsInterface $getPostsHelper;
     public $archiveUrlHelper;
     public string $postStatus;
+    public DomainChecker $domainChecker;
     private PrivateController $privateController;
 
     private $sliderCompatibleLayouts = ['items', 'news', 'index', 'grid', 'features-grid', 'segment'];
@@ -106,6 +108,7 @@ class Posts extends \Modularity\Module
     {
         $data = [];
         $this->fields = $this->getFields();
+        $this->domainChecker = new DomainChecker($this->fields);
         $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
 

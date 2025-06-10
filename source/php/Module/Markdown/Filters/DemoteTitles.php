@@ -2,7 +2,9 @@
 
 namespace Modularity\Module\Markdown\Filters;
 
-class DemoteTitles implements LayerGroupFilterInterface
+use Modularity\Module\Markdown\Filters\FilterInterface;
+
+class DemoteTitles implements FilterInterface
 {
     public function __construct(private array $fields)
     {   

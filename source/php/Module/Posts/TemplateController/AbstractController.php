@@ -4,6 +4,7 @@ namespace Modularity\Module\Posts\TemplateController;
 
 use Modularity\Helper\WpService as WpServiceHelper;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
+use Modularity\Module\Posts\Helper\DomainChecker;
 use WpService\WpService;
 
 /**
@@ -22,6 +23,8 @@ class AbstractController
     /** @var \Modularity\Module\Posts\Posts */
     protected $module;
 
+    protected DomainChecker $domainChecker;
+
     /**
      * AbstractController constructor.
      *
@@ -32,6 +35,7 @@ class AbstractController
         $this->module               = $module;
         $this->fields               = $module->fields;
         $this->data                 = $this->addDataViewData($module->data, $module->fields);
+        $this->domainChecker        = $module->domainChecker;
         $this->data['posts']        = $this->preparePosts($module);
 
         $this->data['classList']    = [];
@@ -84,7 +88,6 @@ class AbstractController
         $data['imagePosition'] = $fields['image_position'] ?? false;
         $data['showDate'] = in_array('date', $fields['posts_fields'] ?? []);
 
-
         return $data;
     }
 
@@ -127,9 +130,9 @@ class AbstractController
 
         if(!empty($posts)) {
             foreach ($posts as $index => &$post) {
-                $post             = $this->setPostViewData($post, $index);
-                $post->classList  = $post->classList ?? [];
-                $post             = $this->addHighlightData($post, $index);
+                $post               = $this->setPostViewData($post, $index);
+                $post->classList    = $post->classList ?? [];
+                $post               = $this->addHighlightData($post, $index);
 
                 // Apply $this->getDefaultValuesForPosts() to the post object without turning it into an array
                 foreach ($this->getDefaultValuesForPosts() as $key => $value) {
@@ -217,6 +220,14 @@ class AbstractController
 
         $post->attributeList                    = !empty($post->attributeList) ? $post->attributeList : [];
         $post->attributeList['data-js-item-id'] = $post->getId();
+
+        
+        if (
+            !empty($this->fields['posts_open_links_in_new_tab']) &&
+            !$this->domainChecker->isSameDomain($post->getPermalink())
+        ) {
+            $post->attributeList['target'] = '_blank';
+        }
 
         if (!empty($post->image) && is_array($post->image)) {
             $post->image['removeCaption'] = true;
