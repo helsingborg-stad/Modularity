@@ -10,5 +10,6 @@
     "ariaLabel" => $ariaLabel,
     "buttonArgs" => $buttonArgs,
     "poster" => $poster,
+    "heroView" => $heroView,
 ])
 @endhero

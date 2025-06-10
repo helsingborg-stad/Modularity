@@ -76,14 +76,18 @@ class Hero extends \Modularity\Module
     {
         $buttonArgs = null;
 
-        if (!empty($fields['mod_hero_button_href'])) {
-            $buttonArgs['href'] = $fields['mod_hero_button_href'];
-        }
-
-        if (!empty($fields['mod_hero_button_text'])) {
-            $buttonArgs['text'] = $fields['mod_hero_button_text'];
-            $buttonArgs['classList'] = ['u-margin__top--2'];
-            $buttonArgs['color'] = 'primary';
+        if (is_array($fields['mod_hero_buttons']) && !empty($fields['mod_hero_buttons'])) {
+            $buttonArgs = [];
+            foreach ($fields['mod_hero_buttons'] as $button) {
+                if (is_array($button['link']) && !empty($button['link']['url']) && !empty($button['link']['title'])) {
+                    $buttonArgs[] = [
+                        'href' => $button['link']['url'],
+                        'text' => $button['link']['title'],
+                        'color' => $button['color'] ?? 'primary',
+                        'style' => $button['type'] ?? 'filled',
+                    ];
+                }
+            }
         }
 
         return $buttonArgs;
