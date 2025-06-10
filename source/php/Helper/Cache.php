@@ -9,7 +9,7 @@ class Cache
      * @param  string $postId      The post id that you want to cache (or any other key that relates to specific data)
      * @param  string $module      Any input data altering output result as a concatinated string/array/object.
      * @param  string $ttl         The time that a cache should live (in seconds),
-     * @param  string $cacheGroup    The cache key to use, if not set it will use the postId as key
+     * @param  mixed  $cacheGroup  The value to create a short hash from, to create a unique cache group.
      * @return string              The request response
      */
 
