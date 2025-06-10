@@ -13,3 +13,5 @@
         @endforeach
     @endif
 </div>
+
+@include('partials.more')

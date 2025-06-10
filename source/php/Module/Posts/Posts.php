@@ -6,8 +6,14 @@ use Modularity\Helper\WpQueryFactory\WpQueryFactory;
 use Modularity\Helper\WpService;
 use Modularity\Module\Posts\Helper\DomainChecker;
 use Modularity\Module\Posts\Helper\GetArchiveUrl;
-use Modularity\Module\Posts\Helper\GetPosts;
+use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolver;
 use Modularity\Module\Posts\Private\PrivateController;
+use Modularity\Module\Posts\Helper\GetPosts\{
+    GetPosts,
+    GetPostsFromMultipleSites
+};
 
 /**
  * Class Posts
@@ -21,7 +27,7 @@ class Posts extends \Modularity\Module
     public $blockSupports = array(
         'align' => ['full']
     );
-    public $getPostsHelper;
+    public GetPostsInterface $getPostsHelper;
     public $archiveUrlHelper;
     public string $postStatus;
     public DomainChecker $domainChecker;
@@ -55,11 +61,6 @@ class Posts extends \Modularity\Module
         );
         
         // Helpers
-        $stickyPostHelper = new \Municipio\StickyPost\Helper\GetStickyOption(
-            new \Municipio\StickyPost\Config\StickyPostConfig(),
-            WpService::get()
-        );
-        $this->getPostsHelper = new GetPosts($stickyPostHelper, WpService::get(), new WpQueryFactory());
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
     }
@@ -118,12 +119,12 @@ class Posts extends \Modularity\Module
         $data['posts_data_source']    = $this->fields['posts_data_source'] ?? false;
         $data['postsSources']         = $this->fields['posts_data_network_sources'] ?? [];
 
-        $postsAndPaginationData = $this->getPostsAndPaginationData();
-        $data['posts']          = $postsAndPaginationData['posts'];
-        $data['stickyPosts']    = $postsAndPaginationData['stickyPosts'];
+        $postsAndPaginationData = $this->getPostsResult();
+        $data['posts']          = $postsAndPaginationData->getPosts();
+        $data['stickyPosts']    = $postsAndPaginationData->getStickyPosts();
 
         if( !empty($this->fields['posts_pagination']) && $this->fields['posts_pagination'] === 'page_numbers' ) {
-            $data['maxNumPages'] = $postsAndPaginationData['maxNumPages'];
+            $data['maxNumPages'] = $postsAndPaginationData->getNumberOfPages();
             $data['paginationArguments'] = $this->getPaginationArguments($data['maxNumPages'], $this->getPageNumber());
         } else {
             $data['paginationArguments'] = null;
@@ -370,19 +371,35 @@ class Posts extends \Modularity\Module
     /**
      * Get posts and pagination data.
      *
-     * @return array $postsAndPaginationData Array with posts and pagination data. e.g. ['posts' => [], 'maxNumPages' => 0]
+     * @return PostsResultInterface
      */
-    public function getPostsAndPaginationData(): array
+    public function getPostsResult(): PostsResultInterface
     {
-        if ($this->fields) {
-            return $this->getPostsHelper->getPostsAndPaginationData($this->fields, $this->getPageNumber());
+        $stickyPostHelper = new \Municipio\StickyPost\Helper\GetStickyOption( new \Municipio\StickyPost\Config\StickyPostConfig(), WpService::get() );
+        $postTypesFromSchemaTypeResolver = new PostTypesFromSchemaTypeResolver();
+
+        if(!empty($this->fields['posts_data_network_sources'])){
+            global $wpdb;
+            $this->getPostsHelper = new GetPostsFromMultipleSites(
+                $this->fields,
+                $this->getPageNumber(),
+                array_map(fn($siteOption) => $siteOption['value'], $this->fields['posts_data_network_sources']),
+                $wpdb,
+                WpService::get(),
+                $postTypesFromSchemaTypeResolver
+            );
+        } else {
+            $this->getPostsHelper = new GetPosts(
+                $this->fields, 
+                $this->getPageNumber(), 
+                $stickyPostHelper, 
+                WpService::get(), 
+                new WpQueryFactory(), 
+                $postTypesFromSchemaTypeResolver
+            );
         }
 
-        return [
-            'posts' => [],
-            'maxNumPages' => 0,
-            'stickyPosts' => []
-        ];
+        return $this->getPostsHelper->getPosts();
     }
 
     /**
@@ -405,10 +422,14 @@ class Posts extends \Modularity\Module
     }
 
     public function adminEnqueue() {
+
+        $wpService = WpService::get();
+        $getCurrentPostId = fn() => $wpService->isArchive() ? false : $wpService->getTheID();
+
         wp_register_script('mod-posts-taxonomy-filtering', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/mod-posts-taxonomy-filtering.js'));
         wp_localize_script('mod-posts-taxonomy-filtering', 'modPostsTaxonomyFiltering', [
-            'currentPostID' => $this->getPostsHelper->getCurrentPostID(),
+            'currentPostID' => $getCurrentPostId(),
         ]);
         wp_enqueue_script('mod-posts-taxonomy-filtering');
     }

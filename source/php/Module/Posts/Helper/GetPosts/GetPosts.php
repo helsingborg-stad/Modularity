@@ -1,24 +1,29 @@
 <?php
 
-namespace Modularity\Module\Posts\Helper;
+namespace Modularity\Module\Posts\Helper\GetPosts;
 
 use Modularity\Helper\WpQueryFactory\WpQueryFactoryInterface;
+use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostsResult;
+use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
+use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolverInterface;
 use WpService\Contracts\{
     GetPermalink,
     GetPostType,
     GetTheID,
     IsArchive,
     IsUserLoggedIn,
-    RestoreCurrentBlog,
-    SwitchToBlog,
 };
 
-class GetPosts
+class GetPosts implements GetPostsInterface
 {
     public function __construct(
+        private array $fields,
+        private int $page,
         private \Municipio\StickyPost\Helper\GetStickyOption|null $getStickyOption,
-        private IsUserLoggedIn&SwitchToBlog&RestoreCurrentBlog&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
-        private WpQueryFactoryInterface $wpQueryFactory
+        private IsUserLoggedIn&GetPermalink&GetPostType&IsArchive&GetTheID $wpService,
+        private WpQueryFactoryInterface $wpQueryFactory,
+        private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver
     )
     {
     }
@@ -28,86 +33,34 @@ class GetPosts
      * 
      * @param array $fields
      * @param int $page
-     * @return array $result e.g. ['posts' => [], 'maxNumPages' => 0]
+     * @return PostsResultInterface
      */
-    public function getPostsAndPaginationData(array $fields, int $page = 1) :array
+    public function getPosts() :PostsResultInterface
     {
-        return (array) $this->getPostsFromSelectedSites($fields, $page);
-    }
-
-    private function getPostsFromSelectedSites(array $fields, int $page):array {
-        
-        if(!empty($fields['posts_data_network_sources'])) {
-            $posts       = [];
-            $maxNumPages = 0;
-            $stickyPosts = [];
-
-            foreach($fields['posts_data_network_sources'] as $site) {
-                $this->wpService->switchToBlog($site['value']);
-
-                $stickyPostIds       = $this->getStickyPostIds($fields, $page);
-                $stickyPostsFromSite = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
-                $wpQuery             = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
-                $postsFromSite       = $wpQuery->get_posts();
-
-                $stickyPostsFromSite = $this->addSiteDataToPosts($stickyPostsFromSite, $site);
-                $postsFromSite       = $this->addSiteDataToPosts($postsFromSite, $site);
-
-                array_walk($postsFromSite, function($post) use ($site) {
-                    // Add the original permalink to the post object for reference in network sources.
-                    $post->originalSite      = $site['label'];
-                    $post->originalBlogId    = (int)$site['value'];
-                });
-
-                $stickyPosts = array_merge($stickyPosts, $stickyPostsFromSite);
-                $posts       = array_merge($posts, $postsFromSite);
-                $maxNumPages = max($maxNumPages, $wpQuery->max_num_pages);
-
-                $this->wpService->restoreCurrentBlog();
-            }
-
-            // Limit the number of posts to the desired count to avoid exceeding the limit.
-            $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
-
-            $posts = $this->sortPosts($posts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
-
-            $posts = array_slice($posts, 0, $this->getPostsPerPage($fields));
-
-            return [
-                'posts' => $posts,
-                'maxNumPages' => $maxNumPages,
-                'stickyPosts' => $stickyPosts,
-            ];
-        }
-
-        $stickyPostIds       = $this->getStickyPostIds($fields, $page);
-        $stickyPosts         = $this->getStickyPostsForSite($fields, $page, $stickyPostIds);
-
-        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($fields, $page, $stickyPostIds));
-
-        $stickyPosts = $this->sortPosts($stickyPosts, $fields['posts_sort_by'] ?? 'date', $fields['posts_sort_order'] ?? 'desc');
-
+        $stickyPostIds       = $this->getStickyPostIds($this->fields, $this->page);
+        $stickyPosts         = $this->getStickyPostsForSite($this->fields, $this->page, $stickyPostIds);
+        $wpQuery     = $this->wpQueryFactory->create($this->getPostArgs($this->fields, $this->page, $stickyPostIds));
+        $stickyPosts = $this->sortPosts($stickyPosts, $this->fields['posts_sort_by'] ?? 'date', $this->fields['posts_sort_order'] ?? 'desc');
         $posts = $wpQuery->get_posts();
 
-        return [
-            'posts' => $posts,
-            'maxNumPages' => $wpQuery->max_num_pages,
-            'stickyPosts' => $stickyPosts,
-        ];
+        return $this->formatResponse(
+            $posts,
+            $wpQuery->max_num_pages,
+            $stickyPosts
+        );
     }
 
     /**
-     * Add site data to posts
+     * Format the response
+     * 
+     * @param array $posts
+     * @param int $maxNumPages
+     * @param array $stickyPosts
+     * @return PostsResultInterface
      */
-    private function addSiteDataToPosts(array $posts, array $site): array
+    private function formatResponse(array $posts, int $maxNumPages, array $stickyPosts): PostsResultInterface
     {
-        array_walk($posts, function(&$post) use ($site) {
-            // Add the original permalink to the post object for reference in network sources.
-            $post->originalSite      = $site['label'];
-            $post->originalBlogId    = (int)$site['value'];
-        });
-
-        return $posts;
+        return new PostsResult( $posts, $maxNumPages, $stickyPosts );
     }
 
     /**
@@ -258,7 +211,7 @@ class GetPosts
                 if(empty($fields['posts_data_schema_type'])) {
                     break;
                 }
-                $getPostsArgs['post_type'] = $this->getPostTypesFromSchemaType($fields['posts_data_schema_type']);
+                $getPostsArgs['post_type'] = $this->postTypesFromSchemaTypeResolver->resolve($fields['posts_data_schema_type']);
                 break;
         }
 
@@ -298,29 +251,6 @@ class GetPosts
         }
 
         return 10;
-    }
-
-    /**
-     * Get post types from schema type
-     */
-    private function getPostTypesFromSchemaType(string $schemaType):array {
-        
-        $class = '\Municipio\SchemaData\Helper\GetSchemaType';
-        $method = 'getPostTypesFromSchemaType';
-        
-        if(!class_exists($class) || !method_exists($class, $method)) {
-            $backtrace = debug_backtrace();
-            error_log("Class or method does not exist: {$class}::{$method} in {$backtrace[0]['file']} on line {$backtrace[0]['line']}");
-            return [];
-        }
-
-        $postTypes = call_user_func([new $class(), $method], $schemaType);
-
-        if( !is_array($postTypes) ) {
-            return [];
-        }
-
-        return $postTypes;
     }
 
     /**

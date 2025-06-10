@@ -6,7 +6,6 @@ use Modularity\Helper\WpService;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 use WpService\Implementations\FakeWpService;
 
 class AbstractControllerTest extends TestCase
@@ -43,6 +42,7 @@ class AbstractControllerTest extends TestCase
         $module = $this->createMock(\Modularity\Module\Posts\Posts::class);
         $module->data = ['posts' => []];
         $module->fields = ['posts_columns' => 2];
+        $module->domainChecker = $this->createMock(\Modularity\Module\Posts\Helper\DomainChecker::class);
 
         return $module;
     }
