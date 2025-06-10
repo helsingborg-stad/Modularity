@@ -39,6 +39,13 @@ if(file_exists('package-lock.json') && !file_exists('gulp.js')) {
     $buildCommands[] = 'gulp';
 }
 
+$dirRecurseDepth = 10;
+$globRecursivePattern = '{';
+for ($i = 0; $i < $dirRecurseDepth; $i++) {
+    $globRecursivePattern .= str_repeat('*/', $i+1) . ',';
+}
+$globRecursivePattern .= '}';
+
 // Files and directories not suitable for prod to be removed.
 $removables = [
     '.git',
@@ -54,6 +61,7 @@ $removables = [
     'package-lock.json',
     'package.json',
     'phpunit.xml.dist',
+    'phpunit.xml',
     'README.md',
     'gulpfile.js',
     './node_modules/',
@@ -61,7 +69,11 @@ $removables = [
     './source/js/',
     'LICENSE',
     'babel.config.js',
-    'yarn.lock'
+    'yarn.lock',
+    './source/' . $globRecursivePattern . '*test.php',
+    './source/' . $globRecursivePattern . '*Test.php',
+    './source/' . $globRecursivePattern . '__snapshots__',
+    '.tests'
 ];
 
 $dirName = basename(dirname(__FILE__));
@@ -82,10 +94,24 @@ foreach ($buildCommands as $buildCommand) {
 
 // Remove files and directories if '--cleanup' argument is supplied to save local developers from disasters.
 if(is_array($argv) && in_array('--cleanup', $argv)) {
+
     foreach ($removables as $removable) {
-        if (file_exists($removable)) {
-            print "Removing $removable from $dirName\n";
-            shell_exec("rm -rf $removable");
+        // Handle glob patterns for removables like './source/php/**/*Test.php'
+        $paths = glob($removable, GLOB_BRACE | GLOB_NOSORT | GLOB_MARK);
+        if ($paths === false) {
+            $paths = [];
+        }
+    
+        // If glob returns no matches, treat as literal file/directory
+        if (empty($paths)) {
+            $paths = [$removable];
+        }
+
+        foreach ($paths as $path) {
+            if (file_exists($path) || is_link($path)) {
+                print "Removing $path from $dirName\n";
+                shell_exec("rm -rf $path");
+            }
         }
     }
 }
