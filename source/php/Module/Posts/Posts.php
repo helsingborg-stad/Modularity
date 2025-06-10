@@ -64,8 +64,8 @@ class Posts extends \Modularity\Module
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
 
+        // Register pagination query var
         add_filter('query_vars', [$this, 'registerPaginationQueryVar']);
-        
     }
 
     /**
@@ -233,7 +233,7 @@ class Posts extends \Modularity\Module
      * @return string
      */
     private function getPagintationIdentifier():string {
-        return "mod-{$this->slug}-pagination";
+        return "mod-{$this->slug}-page";
     }
 
     /**
@@ -244,6 +244,12 @@ class Posts extends \Modularity\Module
     private function getPageNumber($defaultPageNumber = 1): int {
         $pagination = get_query_var($this->getPagintationIdentifier(), $defaultPageNumber);
         
+        if (is_string($pagination)) {
+            $pagination = json_decode($pagination, true);
+        }
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $pagination = $defaultPageNumber;
+        }
         if(is_array($pagination) && isset($pagination[$this->ID])) {
             $pagination = $pagination[$this->ID];
         }
@@ -277,11 +283,13 @@ class Posts extends \Modularity\Module
             return [
                 'href' => add_query_arg(
                     $this->getPagintationIdentifier(), 
-                    [$this->ID => $pageNumber]
+                    json_encode([$this->ID => $pageNumber])
                 ),
                 'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
             ];
         }, range(2, $maxNumPages));
+
+        var_dump($listItems);
 
         return [
             'list' => array_merge([$listItemOne], $listItems),
