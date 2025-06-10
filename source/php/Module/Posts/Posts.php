@@ -63,7 +63,28 @@ class Posts extends \Modularity\Module
         // Helpers
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
+
+        // Add query vars for pagination
+        add_filter('query_vars', array($this, 'registerPaginationQueryVar'), 10, 1);
     }
+
+    /**
+     * Add query vars for pagination.
+     *
+     * @param array $vars
+     * @return array
+     */
+    public function registerPaginationQueryVar($vars)
+    {
+        $vars[] = $this->getPagintationIdentifier();
+        return $vars;
+    }
+    
+    /**
+     * Get the post type for this module.
+     *
+     * @return string
+     */
 
     /**
      * Load schema types field
