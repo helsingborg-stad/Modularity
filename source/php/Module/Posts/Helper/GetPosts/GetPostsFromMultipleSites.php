@@ -10,7 +10,6 @@ use WpService\Contracts\{
     EscSql,
     GetBlogDetails,
     GetBlogPost,
-    GetSite,
     IsUserLoggedIn,
     RestoreCurrentBlog,
     SwitchToBlog,
@@ -18,79 +17,104 @@ use WpService\Contracts\{
 
 class GetPostsFromMultipleSites implements GetPostsInterface
 {
-    /**
-     * Constructor
-     * 
-     * @param array $fields
-     * @param int $page
-     * @param array $siteIds
-     * @param IsUserLoggedIn&EscSql&GetSite&GetBlogDetails&SwitchToBlog&RestoreCurrentBlog&GetBlogPost $wpService
-     */
     public function __construct(
         private array $fields,
         private int $page,
         private array $siteIds,
-        private IsUserLoggedIn&EscSql&GetSite&GetBlogDetails&SwitchToBlog&RestoreCurrentBlog&GetBlogPost $wpService,
+        private \wpdb $wpdb,
+        private IsUserLoggedIn&EscSql&GetBlogDetails&SwitchToBlog&RestoreCurrentBlog&GetBlogPost $wpService,
         private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver
-    )
-    {
+    ) {}
+
+    public function getSql(): string {
+        return $this->buildUnionSql(array_map(
+            fn($site) => $this->buildSiteQuery($site, $this->toSqlList($this->getPostStatuses())),
+            $this->getValidSites()
+        ));
     }
 
-    /**
-     * Get posts and pagination data
-     */
-    public function getPosts() :PostsResultInterface
+    public function getPosts(): PostsResultInterface
     {
-        global $wpdb;
-        
         $currentBlogId = $this->wpService->getBlogDetails()->blog_id;
-        $postStatuses = $this->wpService->isUserLoggedIn() ? ['publish', 'private'] : ['publish'];
-        $postStatusesSql = implode(',', array_map(fn($status) => sprintf("'%s'", $this->wpService->escSql($status)), $postStatuses));
-        $unionQueries = [];
-
-        // Filter out deleted or invalid sites
-        $sites = array_filter($this->siteIds, function ($site) {
-            $siteObj = $this->wpService->getSite($site);
-            return $siteObj && isset($siteObj->deleted) && !$siteObj->deleted && is_a($this->wpService->getBlogDetails($site), 'WP_Site');
-        });
-
+        $postStatuses = $this->getPostStatuses();
+        $sites = $this->getValidSites();
+        
         if (empty($sites)) {
             return $this->formatResponse([], 0, []);
         }
+        
+        $dbResults = $this->wpdb->get_results($this->getSql());
 
-        foreach ($sites as $site) {
-            $postsTable = $site == 1 ? "{$wpdb->base_prefix}posts" : "{$wpdb->base_prefix}{$site}_posts";
-            $postMetaTable = $site == 1 ? "{$wpdb->base_prefix}postmeta" : "{$wpdb->base_prefix}{$site}_postmeta";
+        $postsPerPage = $this->getPostsPerPage();
+        $offset = ($this->page - 1) * $postsPerPage;
+        $maxNumPages = $postsPerPage > 0 ? (int)ceil(count($dbResults) / $postsPerPage) : 0;
+        $pagedResults = array_slice($dbResults, $offset, $postsPerPage);
 
-            $this->wpService->switchToBlog($site);
+        $posts = $this->fetchPosts($pagedResults, $postStatuses, $currentBlogId);
 
-            $postTypes = match ($this->fields['posts_data_source'] ?? null) {
-                'posttype' => [$this->fields['posts_data_post_type']],
-                'schematype' => !empty($this->fields['posts_data_schema_type']) ? $this->postTypesFromSchemaTypeResolver->resolve($this->fields['posts_data_schema_type']) : [],
-                default => ['post'],
-            };
+        return $this->formatResponse($posts, $maxNumPages, []);
+    }
 
-            $postTypesSql = implode(',', array_map(fn($type) => sprintf("'%s'", $this->wpService->escSql($type)), $postTypes));
-            $this->wpService->restoreCurrentBlog();
+    private function getPostStatuses(): array
+    {
+        return $this->wpService->isUserLoggedIn() ? ['publish', 'private'] : ['publish'];
+    }
 
-            $unionQueries[] = "
-                SELECT DISTINCT
-                    '{$site}' AS blog_id,
-                    posts.ID AS post_id,
-                    posts.post_date,
-                    posts.post_title,
-                    posts.post_modified,
-                    posts.menu_order,
-                    CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
-                FROM $postsTable posts
-                LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
-                WHERE
-                    posts.post_type IN ($postTypesSql)
-                    AND posts.post_status IN ($postStatusesSql)
-                    AND posts.post_date < NOW()
-            ";
-        }
+    private function toSqlList(array $items): string
+    {
+        return implode(',', array_map(
+            fn($item) => sprintf("'%s'", $this->wpService->escSql($item)),
+            $items
+        ));
+    }
 
+    private function getValidSites(): array
+    {
+        $numericSiteIds = array_filter($this->siteIds, 'is_numeric');
+        return array_map('intval', $numericSiteIds);   
+    }
+
+    private function buildSiteQuery($site, $postStatusesSql): string
+    {
+        $postsTable = $site == 1 ? "{$this->wpdb->base_prefix}posts" : "{$this->wpdb->base_prefix}{$site}_posts";
+        $postMetaTable = $site == 1 ? "{$this->wpdb->base_prefix}postmeta" : "{$this->wpdb->base_prefix}{$site}_postmeta";
+
+        $this->wpService->switchToBlog($site);
+        $postTypes = $this->resolvePostTypes();
+        $postTypesSql = $this->toSqlList($postTypes);
+        $this->wpService->restoreCurrentBlog();
+
+        return "
+            SELECT DISTINCT
+                '{$site}' AS blog_id,
+                posts.ID AS post_id,
+                posts.post_date,
+                posts.post_title,
+                posts.post_modified,
+                posts.menu_order,
+                CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
+            FROM $postsTable posts
+            LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            WHERE
+                posts.post_type IN ($postTypesSql)
+                AND posts.post_status IN ($postStatusesSql)
+                AND posts.post_date < NOW()
+        ";
+    }
+
+    private function resolvePostTypes(): array
+    {
+        return match ($this->fields['posts_data_source'] ?? null) {
+            'posttype' => [$this->fields['posts_data_post_type']],
+            'schematype' => !empty($this->fields['posts_data_schema_type'])
+                ? $this->postTypesFromSchemaTypeResolver->resolve($this->fields['posts_data_schema_type'])
+                : [],
+            default => ['post'],
+        };
+    }
+
+    private function buildUnionSql(array $unionQueries): string
+    {
         $sql = 'SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order FROM ('
             . implode(' UNION ', $unionQueries)
             . ') as posts';
@@ -105,59 +129,38 @@ class GetPostsFromMultipleSites implements GetPostsInterface
             'rand' => " ORDER BY RAND()",
             default => " ORDER BY post_date $order",
         };
-        $sql .= $orderSql;
+        return $sql . $orderSql;
+    }
 
-        $dbResults = $wpdb->get_results($sql);
-        $postsPerPage = $this->getPostsPerPage();
-        $offset = ($this->page - 1) * $postsPerPage;
-        $maxNumPages = $postsPerPage > 0 ? (int)ceil(count($dbResults) / $postsPerPage) : 0;
-        $dbResults = array_slice($dbResults, $offset, $postsPerPage);
+    private function fetchPosts(array $dbResults, array $postStatuses, int $currentBlogId): array
+    {
+        $dbResults = array_filter($dbResults, fn($item) => !empty($item->post_id));
 
-        $dbResults = array_filter($dbResults, function ($item) {
-            return !empty($item->post_id);
-        });
-
-        $posts = array_map(function($item) use ($postStatuses, $currentBlogId) {
+        $posts = array_map(function ($item) use ($postStatuses, $currentBlogId) {
             $post = $this->wpService->getBlogPost($item->blog_id, $item->post_id);
             if (!$post || !in_array($post->post_status, $postStatuses, true)) {
                 return null;
             }
-            
-            if($item->blog_id !== $currentBlogId) {
+            if ($item->blog_id !== $currentBlogId) {
                 $post->originalBlogId = $item->blog_id;
             }
-
             return $post;
         }, $dbResults);
 
-        return $this->formatResponse(
-            array_values(array_filter($posts)),
-            $maxNumPages,
-            []
-        );
+        return array_values(array_filter($posts));
     }
 
-    /**
-     * Format the response
-     * 
-     * @param array $posts
-     * @param int $maxNumPages
-     * @param array $stickyPosts
-     * @return PostsResultInterface
-     */
     private function formatResponse(array $posts, int $maxNumPages, array $stickyPosts): PostsResultInterface
     {
-        return new PostsResult( $posts, $maxNumPages, $stickyPosts );
+        return new PostsResult($posts, $maxNumPages, $stickyPosts);
     }
 
-    /**
-     * Get posts per page
-     */
-    private function getPostsPerPage(): int {
+    private function getPostsPerPage(): int
+    {
         if (isset($this->fields['posts_count']) && is_numeric($this->fields['posts_count'])) {
-            return ($this->fields['posts_count'] == -1 || $this->fields['posts_count'] > 100) ? 100 : $this->fields['posts_count'];
+            $count = (int)$this->fields['posts_count'];
+            return ($count == -1 || $count > 100) ? 100 : $count;
         }
-
         return 10;
     }
 }

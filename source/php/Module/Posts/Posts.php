@@ -376,10 +376,12 @@ class Posts extends \Modularity\Module
         $postTypesFromSchemaTypeResolver = new PostTypesFromSchemaTypeResolver();
 
         if(!empty($this->fields['posts_data_network_sources'])){
+            global $wpdb;
             $this->getPostsHelper = new GetPostsFromMultipleSites(
                 $this->fields,
                 $this->getPageNumber(),
                 array_map(fn($siteOption) => $siteOption['value'], $this->fields['posts_data_network_sources']),
+                $wpdb,
                 WpService::get(),
                 $postTypesFromSchemaTypeResolver
             );
