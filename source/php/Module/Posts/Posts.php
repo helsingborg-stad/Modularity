@@ -64,8 +64,8 @@ class Posts extends \Modularity\Module
         $this->archiveUrlHelper = new GetArchiveUrl();
         new PostsAjax($this);
 
-        // Add query vars for pagination
-        add_filter('query_vars', array($this, 'registerPaginationQueryVar'), 10, 1);
+        add_filter('query_vars', [$this, 'registerPaginationQueryVar']);
+        
     }
 
     /**
@@ -79,7 +79,7 @@ class Posts extends \Modularity\Module
         $vars[] = $this->getPagintationIdentifier();
         return $vars;
     }
-    
+
     /**
      * Get the post type for this module.
      *
@@ -233,16 +233,26 @@ class Posts extends \Modularity\Module
      * @return string
      */
     private function getPagintationIdentifier():string {
-        return "{$this->post_type}-{$this->ID}-page";
+        return "mod-{$this->slug}-pagination";
     }
 
     /**
      * Get current page number
-     * 
-     * @return int Default is 1
+     * @param int $defaultPageNumber Default page number to return if not set in query var
+     * @return int The current page number or the default page number if not set
      */
-    private function getPageNumber():int {
-        return filter_input( INPUT_GET, $this->getPagintationIdentifier(), FILTER_SANITIZE_NUMBER_INT ) ?: 1;
+    private function getPageNumber($defaultPageNumber = 1): int {
+        $pagination = get_query_var($this->getPagintationIdentifier(), $defaultPageNumber);
+        
+        if(is_array($pagination) && isset($pagination[$this->ID])) {
+            $pagination = $pagination[$this->ID];
+        }
+
+        if(is_int($pagination)) {
+            return (int) $pagination;
+        }
+
+        return $defaultPageNumber;
     }
 
     /**
@@ -265,7 +275,10 @@ class Posts extends \Modularity\Module
 
         $listItems = array_map(function($pageNumber) {
             return [
-                'href' => add_query_arg($this->getPagintationIdentifier(), $pageNumber),
+                'href' => add_query_arg(
+                    $this->getPagintationIdentifier(), 
+                    [$this->ID => $pageNumber]
+                ),
                 'label' => sprintf(__("Page %d", 'modularity'), $pageNumber)
             ];
         }, range(2, $maxNumPages));
