@@ -1,16 +1,105 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_614b3f1a751bf',
     'title' => __('Hero', 'modularity'),
     'fields' => array(
         0 => array(
+            'key' => 'field_63ca5ed1394e1',
+            'label' => __('Display as', 'modularity'),
+            'name' => 'mod_hero_display_as',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'default' => __('Default', 'modularity'),
+                'twoColumn' => __('Two columns', 'modularity'),
+            ),
+            'default_value' => __('defualt', 'modularity'),
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
+        1 => array(
+            'key' => 'field_63ca60c84bb03',
+            'label' => __('Background color', 'modularity'),
+            'name' => 'mod_hero_background_color',
+            'aria-label' => '',
+            'type' => 'color_picker',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_63ca5ed1394e1',
+                        'operator' => '==',
+                        'value' => 'twoColumn',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'default_value' => __('rgba(255,255,255,0.0)', 'modularity'),
+            'enable_opacity' => 1,
+            'return_format' => 'string',
+        ),
+        2 => array(
+            'key' => 'field_63d7907b6805a',
+            'label' => __('Text color', 'modularity'),
+            'name' => 'mod_hero_text_color',
+            'aria-label' => '',
+            'type' => 'select',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_63ca5ed1394e1',
+                        'operator' => '==',
+                        'value' => 'twoColumn',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'white' => __('White', 'modularity'),
+                'black' => __('Black', 'modularity'),
+            ),
+            'default_value' => __('white', 'modularity'),
+            'return_format' => 'value',
+            'multiple' => 0,
+            'allow_null' => 0,
+            'ui' => 0,
+            'ajax' => 0,
+            'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
+        ),
+        3 => array(
             'key' => 'field_614b3f1e6ed4a',
             'label' => __('Byline', 'modularity'),
             'name' => 'mod_hero_byline',
+            'aria-label' => '',
             'type' => 'text',
             'instructions' => __('A clear byline, to say something else.', 'modularity'),
             'required' => 0,
@@ -31,10 +120,11 @@ if (function_exists('acf_add_local_field_group')) {
             'wp_object' => '',
             'is_id' => 0,
         ),
-        1 => array(
+        4 => array(
             'key' => 'field_63d78c4897632',
             'label' => __('Meta', 'modularity'),
             'name' => 'mod_hero_meta',
+            'aria-label' => '',
             'type' => 'text',
             'instructions' => '',
             'required' => 0,
@@ -50,10 +140,11 @@ if (function_exists('acf_add_local_field_group')) {
             'prepend' => '',
             'append' => '',
         ),
-        2 => array(
+        5 => array(
             'key' => 'field_614b3f5a6ed4b',
             'label' => __('Body', 'modularity'),
             'name' => 'mod_hero_body',
+            'aria-label' => '',
             'type' => 'textarea',
             'instructions' => __('A short and concise text about this site. What\'s it about? Maximum 500 characters.', 'modularity'),
             'required' => 0,
@@ -72,11 +163,13 @@ if (function_exists('acf_add_local_field_group')) {
             'rows' => 4,
             'new_lines' => '',
             'wp_object' => '',
+            'acfe_textarea_code' => 0,
         ),
-        3 => array(
+        6 => array(
             'key' => 'field_62c3f89f983b1',
             'label' => __('Background type', 'modularity'),
             'name' => 'mod_hero_background_type',
+            'aria-label' => '',
             'type' => 'select',
             'instructions' => '',
             'required' => 0,
@@ -97,11 +190,14 @@ if (function_exists('acf_add_local_field_group')) {
             'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
         ),
-        4 => array(
+        7 => array(
             'key' => 'field_614b3f786ed4c',
             'label' => __('Background image', 'modularity'),
             'name' => 'mod_hero_background_image',
+            'aria-label' => '',
             'type' => 'focuspoint',
             'instructions' => '',
             'required' => 1,
@@ -127,10 +223,11 @@ if (function_exists('acf_add_local_field_group')) {
             'max_height' => '',
             'max_size' => '',
         ),
-        5 => array(
+        8 => array(
             'key' => 'field_62c3f8fa57719',
             'label' => __('Background video', 'modularity'),
             'name' => 'mod_hero_background_video',
+            'aria-label' => '',
             'type' => 'file',
             'instructions' => '',
             'required' => 1,
@@ -153,11 +250,13 @@ if (function_exists('acf_add_local_field_group')) {
             'min_size' => '',
             'max_size' => '',
             'mime_types' => 'mp4',
+            'uploader' => '',
         ),
-        6 => array(
+        9 => array(
             'key' => 'field_646f25456ea80',
             'label' => __('Poster image', 'modularity'),
             'name' => 'mod_hero_poster_image',
+            'aria-label' => '',
             'type' => 'image',
             'instructions' => '',
             'required' => 1,
@@ -188,10 +287,11 @@ if (function_exists('acf_add_local_field_group')) {
             'preview_size' => 'medium',
             'library' => 'all',
         ),
-        7 => array(
+        10 => array(
             'key' => 'field_614b43a186da4',
             'label' => __('Size', 'modularity'),
             'name' => 'mod_hero_size',
+            'aria-label' => '',
             'type' => 'select',
             'instructions' => '',
             'required' => 0,
@@ -222,6 +322,8 @@ if (function_exists('acf_add_local_field_group')) {
             'return_format' => 'value',
             'ajax' => 0,
             'placeholder' => '',
+            'allow_custom' => 0,
+            'search_placeholder' => '',
         ),
     ),
     'location' => array(
@@ -255,5 +357,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
