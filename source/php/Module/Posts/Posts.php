@@ -14,6 +14,7 @@ use Modularity\Module\Posts\Helper\GetPosts\{
     GetPosts,
     GetPostsFromMultipleSites
 };
+use Modularity\Module\Posts\Helper\GetPosts\UserGroupResolver\UserGroupResolver;
 
 /**
  * Class Posts
@@ -386,7 +387,8 @@ class Posts extends \Modularity\Module
                 array_map(fn($siteOption) => $siteOption['value'], $this->fields['posts_data_network_sources']),
                 $wpdb,
                 WpService::get(),
-                $postTypesFromSchemaTypeResolver
+                $postTypesFromSchemaTypeResolver,
+                new UserGroupResolver(WpService::get())
             );
         } else {
             $this->getPostsHelper = new GetPosts(

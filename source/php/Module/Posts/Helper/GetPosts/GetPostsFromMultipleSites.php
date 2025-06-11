@@ -6,6 +6,7 @@ use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResult;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolverInterface;
+use Modularity\Module\Posts\Helper\GetPosts\UserGroupResolver\UserGroupResolverInterface;
 use WpService\Contracts\{
     EscSql,
     GetBlogDetails,
@@ -23,7 +24,8 @@ class GetPostsFromMultipleSites implements GetPostsInterface
         private array $siteIds,
         private \wpdb $wpdb,
         private IsUserLoggedIn&EscSql&GetBlogDetails&SwitchToBlog&RestoreCurrentBlog&GetBlogPost $wpService,
-        private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver
+        private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver,
+        private UserGroupResolverInterface $userGroupResolver
     ) {}
 
     public function getSql(): string {
@@ -31,26 +33,6 @@ class GetPostsFromMultipleSites implements GetPostsInterface
             fn($site) => $this->buildSiteQuery($site, $this->toSqlList($this->getPostStatuses())),
             $this->getValidSites()
         ));
-    }
-
-    private function getUserGroup(int $currentBlogId):?string {
-        $userGroupId = get_user_meta(1, 'user_group', true);
-
-        if (!empty($userGroupId)) {
-            if( $currentBlogId !== get_main_site_id() ) {
-                $this->wpService->switchToBlog(get_main_site_id());
-            }
-            
-            $term = get_term($userGroupId, 'user_group');
-            
-            restore_current_blog();
-
-            if( is_a($term, 'WP_Term') ) {
-                return $term->slug;
-            }
-        }
-
-        return null;
     }
 
     public function getPosts(): PostsResultInterface
@@ -143,7 +125,7 @@ class GetPostsFromMultipleSites implements GetPostsInterface
             . implode(' UNION ', $unionQueries)
             . ') as posts';
 
-        $userGroup = $this->getUserGroup($this->wpService->getBlogDetails()->blog_id);
+        $userGroup = $this->userGroupResolver->getUserGroup();
 
         if( !empty($userGroup) ) {
             $sql .= sprintf(" WHERE user_group_visibility = '%s' OR user_group_visibility IS NULL", $userGroup);
