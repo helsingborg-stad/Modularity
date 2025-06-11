@@ -42,6 +42,11 @@ class UserGroupResolver implements UserGroupResolverInterface
      */
     private function getUserGroupFromBlog():?string {
         $currentUserId  = $this->wpService->getCurrentUserId();
+
+        if (empty($currentUserId)) {
+            return null;
+        }
+
         $userGroupId    = $this->wpService->getUserMeta($currentUserId, 'user_group', true);
 
         if (empty($userGroupId)) {
