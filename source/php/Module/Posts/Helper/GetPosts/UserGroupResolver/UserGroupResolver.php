@@ -24,11 +24,12 @@ class UserGroupResolver implements UserGroupResolverInterface
      */
     public function getUserGroup(): ?string
     {
-        $currentBlogId  = $this->wpService->getCurrentSite()->blog_id ?? null;
+        $currentBlogId  = ((int) $this->wpService->getCurrentBlogId()) ?? null;
+        $mainBlogId     = ((int) $this->wpService->getMainSiteId()) ?? null;
         $userGroupId    = null;
 
-        if ($currentBlogId !== $this->wpService->getMainSiteId()) {
-            $this->wpService->switchToBlog($this->wpService->getMainSiteId());
+        if ($currentBlogId !== $mainBlogId) {
+            $this->wpService->switchToBlog($mainBlogId);
                 $userGroupId = $this->getUserGroupFromBlog();
             $this->wpService->restoreCurrentBlog();
             return $userGroupId;
@@ -42,37 +43,13 @@ class UserGroupResolver implements UserGroupResolverInterface
      *
      * @return string|null The user group slug or null if not found.
      */
-    private function getUserGroupFromBlog():?string {
-        
-        // Current user ID
-        $currentUserId  = $this->wpService->getCurrentUserId();
-        if (empty($currentUserId)) {
-            return null;
-        }
-
-        // User group ID from
-        $userGroupId = $this->wpService->getUserMeta($currentUserId, 'user_group', true);
-        if (empty($userGroupId)) {
-            return null;
-        }
-
-        // Register the taxonomy if it does not exist
-        $this->maybeRegisterTaxonomy();
-
-        // Get the term for the user group ID
-        $term = $this->wpService->getTerm($userGroupId, self::TAXONOMY_NAME);
-
-        // If the term is not found or is not a valid WP_Term, return null
-        return (!is_a($term, 'WP_Term')) ? null : $term->slug;
-    }
-
-    /**
-     * Register the user group taxonomy if it does not exist.
-     */
-    private function maybeRegisterTaxonomy(): void
+    private function getUserGroupFromBlog(): ?string
     {
-        if (!$this->wpService->taxonomyExists(self::TAXONOMY_NAME)) {
-            $this->wpService->registerTaxonomy(self::TAXONOMY_NAME, self::TAXONOMY_NAME, []);
-        }
+        $terms = $this->wpService->wpGetObjectTerms(
+            $this->wpService->getCurrentUserId(),
+            self::TAXONOMY_NAME
+        );
+
+        return (!empty($terms) && $terms[0] instanceof \WP_Term) ? $terms[0]->slug : null;
     }
 }
