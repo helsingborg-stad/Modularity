@@ -559,6 +559,9 @@ class Display
                     return preg_match($pattern, $var);
                 }
             );
+            foreach ($queryVars as $key => $value) {
+                $queryVars[$value] = sanitize_text_field($_GET[$value] ?? '');
+            }
         } else {
             $queryVars = [];
         }
