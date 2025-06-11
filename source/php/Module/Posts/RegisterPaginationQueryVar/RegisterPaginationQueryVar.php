@@ -40,7 +40,6 @@ class RegisterPaginationQueryVar implements Hookable
     public function registerPaginationQueryVars(array $queryVars): array
     {
         foreach (array_keys($_GET) as $key) {
-            // Match keys like "mod-post-123-page"
             if ($this->matchesPattern($key) && !in_array($key, $queryVars, true)) {
                 $queryVars[] = $key;
             }
