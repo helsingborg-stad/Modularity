@@ -141,7 +141,7 @@ class GetPostsFromMultipleSites implements GetPostsInterface
             if (!$post || !in_array($post->post_status, $postStatuses, true)) {
                 return null;
             }
-            if ($item->blog_id !== $currentBlogId) {
+            if ((int)$item->blog_id !== $currentBlogId) {
                 $post->originalBlogId = $item->blog_id;
             }
             return $post;
