@@ -22,33 +22,36 @@ class UserGroupResolver implements UserGroupResolverInterface
      */
     public function getUserGroup(): ?string
     {
-        $currentBlogId = $this->wpService->getCurrentSite()->blog_id;
-        $userGroupId = null;
+        $currentBlogId  = $this->wpService->getCurrentSite()->blog_id ?? null;
+        $userGroupId    = null;
 
         if ($currentBlogId !== $this->wpService->getMainSiteId()) {
             $this->wpService->switchToBlog($this->wpService->getMainSiteId());
-            $userGroupId = $this->getUserGroupFromBlog();
+                $userGroupId = $this->getUserGroupFromBlog();
             $this->wpService->restoreCurrentBlog();
-
             return $userGroupId;
         }
 
         return $this->getUserGroupFromBlog();
     }
 
+    /**
+     * Get the user group. 
+     *
+     * @return string|null The user group slug or null if not found.
+     */
     private function getUserGroupFromBlog():?string {
-        $userGroupId = $this->wpService->getUserMeta(1, 'user_group', true);
+        $currentUserId  = $this->wpService->getCurrentUserId();
+        $userGroupId    = $this->wpService->getUserMeta($currentUserId, 'user_group', true);
 
         if (empty($userGroupId)) {
             return null;
         }
-        
         $term = $this->wpService->getTerm($userGroupId, 'user_group');
 
-        if( !is_a($term, 'WP_Term') ) {
+        if(!is_a($term, 'WP_Term')) {
             return null;
         }
-
-        return $term->slug;;
+        return $term->slug;
     }
 }
