@@ -1,31 +1,39 @@
-SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order FROM (
+SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order, user_group_visibility FROM (
             SELECT DISTINCT
-                '1' AS blog_id,
-                posts.ID AS post_id,
-                posts.post_date,
-                posts.post_title,
-                posts.post_modified,
-                posts.menu_order,
-                CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
+            '1' AS blog_id,
+            posts.ID AS post_id,
+            posts.post_date,
+            posts.post_title,
+            posts.post_modified,
+            posts.menu_order,
+            CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky,
+            postmeta2.meta_value AS user_group_visibility
             FROM mun_posts posts
-            LEFT JOIN mun_postmeta postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            LEFT JOIN mun_postmeta postmeta1 
+            ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            LEFT JOIN mun_postmeta postmeta2 
+            ON posts.ID = postmeta2.post_id AND postmeta2.meta_key = 'user-group-visibility'
             WHERE
-                posts.post_type IN ('custom_post_type')
-                AND posts.post_status IN ('publish')
-                AND posts.post_date < NOW()
+            posts.post_type IN ('custom_post_type')
+            AND posts.post_status IN ('publish')
+            AND posts.post_date < NOW()
          UNION 
             SELECT DISTINCT
-                '2' AS blog_id,
-                posts.ID AS post_id,
-                posts.post_date,
-                posts.post_title,
-                posts.post_modified,
-                posts.menu_order,
-                CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
+            '2' AS blog_id,
+            posts.ID AS post_id,
+            posts.post_date,
+            posts.post_title,
+            posts.post_modified,
+            posts.menu_order,
+            CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky,
+            postmeta2.meta_value AS user_group_visibility
             FROM mun_2_posts posts
-            LEFT JOIN mun_2_postmeta postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            LEFT JOIN mun_2_postmeta postmeta1 
+            ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            LEFT JOIN mun_2_postmeta postmeta2 
+            ON posts.ID = postmeta2.post_id AND postmeta2.meta_key = 'user-group-visibility'
             WHERE
-                posts.post_type IN ('custom_post_type')
-                AND posts.post_status IN ('publish')
-                AND posts.post_date < NOW()
-        ) as posts ORDER BY post_modified DESC
+            posts.post_type IN ('custom_post_type')
+            AND posts.post_status IN ('publish')
+            AND posts.post_date < NOW()
+        ) as posts WHERE user_group_visibility IS NULL ORDER BY post_modified DESC
