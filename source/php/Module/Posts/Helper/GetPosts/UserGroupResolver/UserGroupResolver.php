@@ -11,6 +11,8 @@ use WpService\Contracts\SwitchToBlog;
 
 class UserGroupResolver implements UserGroupResolverInterface
 {
+    private const TAXONOMY_NAME = 'user_group';
+
     public function __construct(private GetUserMeta&GetMainSiteId&SwitchToBlog&GetTerm&RestoreCurrentBlog&GetCurrentSite $wpService)
     {
     }
@@ -41,25 +43,36 @@ class UserGroupResolver implements UserGroupResolverInterface
      * @return string|null The user group slug or null if not found.
      */
     private function getUserGroupFromBlog():?string {
+        
+        // Current user ID
         $currentUserId  = $this->wpService->getCurrentUserId();
-
         if (empty($currentUserId)) {
             return null;
         }
 
-        $userGroupId    = $this->wpService->getUserMeta($currentUserId, 'user_group', true);
-
+        // User group ID from
+        $userGroupId = $this->wpService->getUserMeta($currentUserId, 'user_group', true);
         if (empty($userGroupId)) {
             return null;
         }
 
-        $this->wpService->registerTaxonomy('user_group', 'user_group', []);
+        // Register the taxonomy if it does not exist
+        $this->maybeRegisterTaxonomy();
 
-        $term = $this->wpService->getTerm($userGroupId, 'user_group');
-        
-        if(!is_a($term, 'WP_Term')) {
-            return null;
+        // Get the term for the user group ID
+        $term = $this->wpService->getTerm($userGroupId, self::TAXONOMY_NAME);
+
+        // If the term is not found or is not a valid WP_Term, return null
+        return (!is_a($term, 'WP_Term')) ? null : $term->slug;
+    }
+
+    /**
+     * Register the user group taxonomy if it does not exist.
+     */
+    private function maybeRegisterTaxonomy(): void
+    {
+        if (!$this->wpService->taxonomyExists(self::TAXONOMY_NAME)) {
+            $this->wpService->registerTaxonomy(self::TAXONOMY_NAME, self::TAXONOMY_NAME, []);
         }
-        return $term->slug;
     }
 }
