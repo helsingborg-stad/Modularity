@@ -4,6 +4,7 @@ namespace Modularity\Module\Posts\Helper\GetPosts;
 
 use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\NullPostTypesFromSchemaTypeResolver;
 use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolverInterface;
+use Modularity\Module\Posts\Helper\GetPosts\UserGroupResolver\UserGroupResolverInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -118,7 +119,8 @@ class GetPostsFromMultipleSitesTest extends TestCase
             $sites,
             $wpdb ?? $this->getWpdbMock(),
             $wpService ?? $this->getWpServiceMock(),
-            $resolver ?? $this->getPostsTypesFromSchemaTypeResolverMock()
+            $resolver ?? $this->getPostsTypesFromSchemaTypeResolverMock(),
+            $this->getUserGroupResolverMock()
         );
     }
 
@@ -166,5 +168,10 @@ class GetPostsFromMultipleSitesTest extends TestCase
         ]);
         $wpService->method('escSql')->willReturnArgument(0);
         return $wpService;
+    }
+
+    private function getUserGroupResolverMock(): UserGroupResolverInterface|MockObject
+    {
+        return $this->createMock(UserGroupResolverInterface::class);
     }
 }

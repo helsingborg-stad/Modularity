@@ -6,6 +6,7 @@ use Modularity\Module\Posts\Helper\GetPosts\GetPostsInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResult;
 use Modularity\Module\Posts\Helper\GetPosts\PostsResultInterface;
 use Modularity\Module\Posts\Helper\GetPosts\PostTypesFromSchemaType\PostTypesFromSchemaTypeResolverInterface;
+use Modularity\Module\Posts\Helper\GetPosts\UserGroupResolver\UserGroupResolverInterface;
 use WpService\Contracts\{
     EscSql,
     GetBlogDetails,
@@ -23,7 +24,8 @@ class GetPostsFromMultipleSites implements GetPostsInterface
         private array $siteIds,
         private \wpdb $wpdb,
         private IsUserLoggedIn&EscSql&GetBlogDetails&SwitchToBlog&RestoreCurrentBlog&GetBlogPost $wpService,
-        private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver
+        private PostTypesFromSchemaTypeResolverInterface $postTypesFromSchemaTypeResolver,
+        private UserGroupResolverInterface $userGroupResolver
     ) {}
 
     public function getSql(): string {
@@ -42,7 +44,7 @@ class GetPostsFromMultipleSites implements GetPostsInterface
         if (empty($sites)) {
             return $this->formatResponse([], 0, []);
         }
-        
+
         $dbResults = $this->wpdb->get_results($this->getSql());
 
         $postsPerPage = $this->getPostsPerPage();
@@ -86,19 +88,23 @@ class GetPostsFromMultipleSites implements GetPostsInterface
 
         return "
             SELECT DISTINCT
-                '{$site}' AS blog_id,
-                posts.ID AS post_id,
-                posts.post_date,
-                posts.post_title,
-                posts.post_modified,
-                posts.menu_order,
-                CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky
+            '{$site}' AS blog_id,
+            posts.ID AS post_id,
+            posts.post_date,
+            posts.post_title,
+            posts.post_modified,
+            posts.menu_order,
+            CASE WHEN postmeta1.meta_value COLLATE utf8mb4_swedish_ci THEN postmeta1.meta_value ELSE 0 END AS is_sticky,
+            postmeta2.meta_value AS user_group_visibility
             FROM $postsTable posts
-            LEFT JOIN $postMetaTable postmeta1 ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            LEFT JOIN $postMetaTable postmeta1 
+            ON posts.ID = postmeta1.post_id AND postmeta1.meta_key = 'is_sticky'
+            LEFT JOIN $postMetaTable postmeta2 
+            ON posts.ID = postmeta2.post_id AND postmeta2.meta_key = 'user-group-visibility'
             WHERE
-                posts.post_type IN ($postTypesSql)
-                AND posts.post_status IN ($postStatusesSql)
-                AND posts.post_date < NOW()
+            posts.post_type IN ($postTypesSql)
+            AND posts.post_status IN ($postStatusesSql)
+            AND posts.post_date < NOW()
         ";
     }
 
@@ -115,9 +121,17 @@ class GetPostsFromMultipleSites implements GetPostsInterface
 
     private function buildUnionSql(array $unionQueries): string
     {
-        $sql = 'SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order FROM ('
+        $sql = 'SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_order, user_group_visibility FROM ('
             . implode(' UNION ', $unionQueries)
             . ') as posts';
+
+        $userGroup = $this->userGroupResolver->getUserGroup();
+
+        if( !empty($userGroup) ) {
+            $sql .= sprintf(" WHERE user_group_visibility = '%s' OR user_group_visibility IS NULL", $userGroup);
+        } else {
+            $sql .= " WHERE user_group_visibility IS NULL";
+        }
 
         $orderby = $this->fields['posts_sort_by'] ?? 'date';
         $order = strtoupper($this->fields['posts_sort_order'] ?? 'DESC');
@@ -129,6 +143,7 @@ class GetPostsFromMultipleSites implements GetPostsInterface
             'rand' => " ORDER BY RAND()",
             default => " ORDER BY post_date $order",
         };
+
         return $sql . $orderSql;
     }
 
