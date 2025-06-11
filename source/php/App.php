@@ -2,6 +2,7 @@
 
 namespace Modularity;
 
+use Modularity\Helper\WpService;
 use Modularity\Private\PrivateAcfFields;
 
 class App
@@ -43,6 +44,9 @@ class App
         $archivesAdminPage->addHooks();
         $optionsForSingleViews = new Options\SingleAdminPage();
         $optionsForSingleViews->addHooks();
+
+        // Register pagination query var for the Posts module
+        (new \Modularity\Module\Posts\RegisterPaginationQueryVar\RegisterPaginationQueryVar($_GET, WpService::get()))->addHooks();
 
         // Rest Controllers
         $modulesRestController = new Api\V1\Modules();
