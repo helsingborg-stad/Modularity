@@ -16,8 +16,10 @@ class RegisterPaginationQueryVar implements Hookable
 
     /**
      * Constructor.
+     * @param array $getParams GET parameters to check against the pattern.
+     * @param AddFilter $wpSer Service to add WordPress filters.
      */
-    public function __construct(private AddFilter $wpSer)
+    public function __construct(private array $getParams, private AddFilter $wpSer)
     {
     }
 
@@ -39,7 +41,7 @@ class RegisterPaginationQueryVar implements Hookable
      */
     public function registerPaginationQueryVars(array $queryVars): array
     {
-        foreach (array_keys($_GET) as $key) {
+        foreach (array_keys($this->getParams) as $key) {
             if ($this->matchesPattern($key) && !in_array($key, $queryVars, true)) {
                 $queryVars[] = $key;
             }

@@ -13,23 +13,11 @@ use WpService\Contracts\AddFilter;
  */
 class RegisterPaginationQueryVarTest extends \PHPUnit\Framework\TestCase{
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $_GET = [];
-    }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-        $_GET = [];
-    }
-
     #[TestDox('can be instantiated')]
     public function testCanBeInstantiated(): void
     {
         $wpService = $this->getWpServiceMock();
-        $instance = new RegisterPaginationQueryVar($wpService);
+        $instance = new RegisterPaginationQueryVar([], $wpService);
         $this->assertInstanceOf(RegisterPaginationQueryVar::class, $instance);
     }
 
@@ -37,7 +25,7 @@ class RegisterPaginationQueryVarTest extends \PHPUnit\Framework\TestCase{
     public function testAttachesToQueryVarsFilter(): void
     {
         $wpService = $this->getWpServiceMock();
-        $instance = new RegisterPaginationQueryVar($wpService);
+        $instance = new RegisterPaginationQueryVar([], $wpService);
 
         $wpService->expects($this->once())
             ->method('addFilter')
@@ -49,9 +37,8 @@ class RegisterPaginationQueryVarTest extends \PHPUnit\Framework\TestCase{
     #[TestDox('registers pagination query var if it matches the pattern')]
     public function testRegistersPaginationQueryVars(): void
     {
-        $_GET['mod-posts-123-page'] = '1';
         $queryVars = ['existing_var'];
-        $instance = new RegisterPaginationQueryVar($this->getWpServiceMock());
+        $instance = new RegisterPaginationQueryVar(['mod-posts-123-page' => '1'], $this->getWpServiceMock());
 
         $result = $instance->registerPaginationQueryVars($queryVars);
         $this->assertContains('mod-posts-123-page', $result);
@@ -60,9 +47,8 @@ class RegisterPaginationQueryVarTest extends \PHPUnit\Framework\TestCase{
     #[TestDox('does not register pagination query var if it does not match the pattern')]
     public function testDoesNotRegisterNonMatchingQueryVars(): void
     {
-        $_GET['mod-posts-invalid-page'] = '1';
         $queryVars = ['existing_var'];
-        $instance = new RegisterPaginationQueryVar($this->getWpServiceMock());
+        $instance = new RegisterPaginationQueryVar(['mod-posts-invalid-page' => '1'], $this->getWpServiceMock());
 
         $result = $instance->registerPaginationQueryVars($queryVars);
         $this->assertEquals(['existing_var'], $result);
@@ -71,9 +57,8 @@ class RegisterPaginationQueryVarTest extends \PHPUnit\Framework\TestCase{
     #[TestDox('does not register pagination query var if it is already in the query vars')]
     public function testDoesNotRegisterExistingQueryVars(): void
     {
-        $_GET['mod-posts-123-page'] = '1';
         $queryVars = ['mod-posts-123-page', 'existing_var'];
-        $instance = new RegisterPaginationQueryVar($this->getWpServiceMock());
+        $instance = new RegisterPaginationQueryVar(['mod-posts-123-page' => '1'], $this->getWpServiceMock());
 
         $result = $instance->registerPaginationQueryVars($queryVars);
         $this->assertEquals(['mod-posts-123-page', 'existing_var'], $result);
