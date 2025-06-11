@@ -52,8 +52,11 @@ class UserGroupResolver implements UserGroupResolverInterface
         if (empty($userGroupId)) {
             return null;
         }
-        $term = $this->wpService->getTerm($userGroupId, 'user_group');
 
+        $this->wpService->registerTaxonomy('user_group', 'user_group', []);
+
+        $term = $this->wpService->getTerm($userGroupId, 'user_group');
+        
         if(!is_a($term, 'WP_Term')) {
             return null;
         }
