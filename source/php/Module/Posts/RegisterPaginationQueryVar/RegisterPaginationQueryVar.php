@@ -16,7 +16,7 @@ class RegisterPaginationQueryVar implements Hookable
 
     /**
      * Constructor.
-     * @param array $requestParams GET parameters to check against the pattern.
+     * @param array $requestParams Request($_GET, $_POST or $_REQUEST) parameters to check against the pattern.
      * @param AddFilter $wpService Service to add WordPress filters.
      */
     public function __construct(private array $requestParams, private AddFilter $wpService)
