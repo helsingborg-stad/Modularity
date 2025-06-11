@@ -221,7 +221,7 @@ class Posts extends \Modularity\Module
      * @return int Default is 1
      */
     private function getPageNumber():int {
-        return filter_var( WpService::get()->getQueryVar($this->getPaginationQueryVarName()), FILTER_VALIDATE_INT ) ?: 1;
+        return filter_input(INPUT_GET, $this->getPaginationQueryVarName(), FILTER_VALIDATE_INT) ?: 1;
     }
 
     /**
