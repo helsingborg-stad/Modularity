@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Modularity\Module\Posts\RegisterPaginationQueryVar;
 
-use Modularity\HooksRegistrar\Hookable;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use WpService\Contracts\AddFilter;
@@ -67,6 +66,17 @@ class RegisterPaginationQueryVarTest extends \PHPUnit\Framework\TestCase{
 
         $result = $instance->registerPaginationQueryVars($queryVars);
         $this->assertEquals(['existing_var'], $result);
+    }
+    
+    #[TestDox('does not register pagination query var if it is already in the query vars')]
+    public function testDoesNotRegisterExistingQueryVars(): void
+    {
+        $_GET['mod-posts-123-page'] = '1';
+        $queryVars = ['mod-posts-123-page', 'existing_var'];
+        $instance = new RegisterPaginationQueryVar($this->getWpServiceMock());
+
+        $result = $instance->registerPaginationQueryVars($queryVars);
+        $this->assertEquals(['mod-posts-123-page', 'existing_var'], $result);
     }
 
     private function getWpServiceMock(): AddFilter|MockObject
