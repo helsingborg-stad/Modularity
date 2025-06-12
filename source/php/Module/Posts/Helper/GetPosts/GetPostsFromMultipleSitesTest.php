@@ -16,6 +16,7 @@ use WpService\Contracts\{
     EscSql,
     GetBlogDetails,
     GetBlogPost,
+    GetOption,
     IsUserLoggedIn,
     RestoreCurrentBlog,
     SwitchToBlog,
@@ -67,14 +68,16 @@ class GetPostsFromMultipleSitesTest extends TestCase
                 'post_id' => $postFromBlog1->ID,
                 'post_title' => $postFromBlog1->post_title,
                 'post_date' => $postFromBlog1->post_date,
-                'post_status' => $postFromBlog1->post_status
+                'post_status' => $postFromBlog1->post_status,
+                'is_sticky' => "0",
             ],
             (object)[
                 'blog_id' => 2,
                 'post_id' => $postFromBlog2->ID,
                 'post_title' => $postFromBlog2->post_title,
                 'post_date' => $postFromBlog2->post_date,
-                'post_status' => $postFromBlog2->post_status
+                'post_status' => $postFromBlog2->post_status,
+                'is_sticky' => "1",
             ],
         ]);
 
@@ -87,7 +90,8 @@ class GetPostsFromMultipleSitesTest extends TestCase
 
         $result = $instance->getPosts();
 
-        $this->assertCount(2, $result->getPosts());
+        $this->assertCount(1, $result->getPosts());
+        $this->assertCount(1, $result->getStickyPosts());
         $this->assertEquals(1, $result->getNumberOfPages());
         $this->assertMatchesTextSnapshot($instance->getSql());
     }
@@ -156,7 +160,7 @@ class GetPostsFromMultipleSitesTest extends TestCase
         return $this->createMock(NullPostTypesFromSchemaTypeResolver::class);
     }
 
-    private function getWpServiceMock(): IsUserLoggedIn|EscSql|GetBlogDetails|SwitchToBlog|RestoreCurrentBlog|GetBlogPost|MockObject
+    private function getWpServiceMock(): IsUserLoggedIn|EscSql|GetBlogDetails|SwitchToBlog|RestoreCurrentBlog|GetBlogPost|GetOption|MockObject
     {
         $wpService = $this->createMockForIntersectionOfInterfaces([
             IsUserLoggedIn::class,
@@ -164,9 +168,11 @@ class GetPostsFromMultipleSitesTest extends TestCase
             GetBlogDetails::class,
             SwitchToBlog::class,
             RestoreCurrentBlog::class,
-            GetBlogPost::class
+            GetBlogPost::class,
+            GetOption::class
         ]);
         $wpService->method('escSql')->willReturnArgument(0);
+        $wpService->method('getOption')->willReturn([2]);
         return $wpService;
     }
 
