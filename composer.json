@@ -48,7 +48,7 @@
         "wpackagist-plugin/acf-extended": "0.8.9.4",
         "helsingborg-stad/acf-select-image-field": "1.6.1",
         "landrok/language-detector": "dev-master",
-        "league/commonmark": "2.5.3",
+        "league/commonmark": "2.7.0",
         "league/config": "1.1.1",
         "helsingborg-stad/wpservice": "^2.0",
         "helsingborg-stad/acfservice": "^1.0.0"
