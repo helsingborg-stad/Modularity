@@ -157,10 +157,25 @@ class AbstractController
         return $posts;
     }
 
+    /**
+     * Check if the blog name should be added to the post.
+     *
+     * @param object $post
+     * @param bool $force
+     *
+     * @return bool
+    */
     public function shouldAddBlogNameToPost(object $post, bool $force = false): bool {
         return !empty($post->originalBlogId) || $force;
     }
 
+    /**
+     * Add blog name to the post object.
+     *
+     * @param WP_Post $post
+     *
+     * @return WP_Post
+    */
     private function addBlogNameToPost(WP_Post $post ):WP_Post {
         if(!empty($post->originalBlogId)) {
             $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
