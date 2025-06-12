@@ -5,6 +5,8 @@ namespace Modularity\Module\Posts\TemplateController;
 use Modularity\Helper\WpService as WpServiceHelper;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 use Modularity\Module\Posts\Helper\DomainChecker;
+use WP;
+use WP_Post;
 use WpService\WpService;
 
 /**
@@ -101,7 +103,9 @@ class AbstractController
     */
     public function addPostData($posts = [])
     {
-        $posts = array_map(function($post) {
+        static $anyPostIsFromOtherBlog = false;
+
+        $posts = array_map(function($post) use (&$anyPostIsFromOtherBlog) {
             $data['taxonomiesToDisplay'] = !empty($this->fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -112,8 +116,12 @@ class AbstractController
                 return $post;
             }
 
+            if( $this->shouldAddBlogNameToPost($post, $anyPostIsFromOtherBlog) ) {
+                $anyPostIsFromOtherBlog = true;
+                $post = $this->addBlogNameToPost($post);
+            }
+
             if(!empty($post->originalBlogId)) {
-                $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
                 $this->getWpService()->switchToBlog($post->originalBlogId);
             }
 
@@ -123,7 +131,9 @@ class AbstractController
                 $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
             }
 
-            $this->getWpService()->restoreCurrentBlog();
+            if(!empty($post->originalBlogId)) {
+                $this->getWpService()->restoreCurrentBlog();
+            }
             
             return $post;
 
@@ -145,6 +155,35 @@ class AbstractController
         }
 
         return $posts;
+    }
+
+    /**
+     * Check if the blog name should be added to the post.
+     *
+     * @param object $post
+     * @param bool $force
+     *
+     * @return bool
+    */
+    public function shouldAddBlogNameToPost(object $post, bool $force = false): bool {
+        return !empty($post->originalBlogId) || $force;
+    }
+
+    /**
+     * Add blog name to the post object.
+     *
+     * @param WP_Post $post
+     *
+     * @return WP_Post
+    */
+    private function addBlogNameToPost(WP_Post $post ):WP_Post {
+        if(!empty($post->originalBlogId)) {
+            $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
+        } else {
+            $post->originalSite = $this->getWpService()->getBlogDetails()->blogname;
+        }
+
+        return $post;
     }
 
     /**
