@@ -5,6 +5,8 @@ namespace Modularity\Module\Posts\TemplateController;
 use Modularity\Helper\WpService as WpServiceHelper;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 use Modularity\Module\Posts\Helper\DomainChecker;
+use WP;
+use WP_Post;
 use WpService\WpService;
 
 /**
@@ -114,13 +116,13 @@ class AbstractController
                 return $post;
             }
 
-            if(!empty($post->originalBlogId)) {
-                $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
-                $this->getWpService()->switchToBlog($post->originalBlogId);
+            if( $this->shouldAddBlogNameToPost($post, $anyPostIsFromOtherBlog) ) {
                 $anyPostIsFromOtherBlog = true;
-            } elseif($anyPostIsFromOtherBlog ) {
-                static $currentBlogName = $this->getWpService()->getBlogDetails()->blogname;
-                $post->originalSite = $currentBlogName;
+                $post = $this->addBlogNameToPost($post);
+            }
+
+            if(!empty($post->originalBlogId)) {
+                $this->getWpService()->switchToBlog($post->originalBlogId);
             }
 
             if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
@@ -129,7 +131,9 @@ class AbstractController
                 $post = call_user_func([$helperClass, $helperArchiveMethod], $post, $data);
             }
 
-            $this->getWpService()->restoreCurrentBlog();
+            if(!empty($post->originalBlogId)) {
+                $this->getWpService()->restoreCurrentBlog();
+            }
             
             return $post;
 
@@ -151,6 +155,20 @@ class AbstractController
         }
 
         return $posts;
+    }
+
+    public function shouldAddBlogNameToPost(object $post, bool $force = false): bool {
+        return !empty($post->originalBlogId) || $force;
+    }
+
+    private function addBlogNameToPost(WP_Post $post ):WP_Post {
+        if(!empty($post->originalBlogId)) {
+            $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
+        } else {
+            $post->originalSite = $this->getWpService()->getBlogDetails()->blogname;
+        }
+
+        return $post;
     }
 
     /**
