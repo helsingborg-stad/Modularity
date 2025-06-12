@@ -1,6 +1,6 @@
 @typography([
-    'element' => 'span',
-    'variant' => 'bold',
+    'element' => 'h2',
+    'variant' => 'h6',
     'attributeList' => [
         ' js-filter-data' => ''
     ]
