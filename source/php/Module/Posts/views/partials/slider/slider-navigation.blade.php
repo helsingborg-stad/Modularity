@@ -13,19 +13,23 @@
         @endif
         <div class="splide__arrows c-slider__arrows" id="js-custom-buttons-{{$sliderId}}">
             @button([
-                'classList' => ['splide__arrow', 'splide__arrow--prev'],
                 'icon' => 'keyboard_arrow_left',
                 'style' => 'filled',
                 'color' => 'primary',
                 'ariaLabel' => $ariaLabels->prev,
+                'attributeList' => [
+                    'data-js-slider-prev' => true
+                ]
             ])
             @endbutton
             @button([
-                'classList' => ['splide__arrow', 'splide__arrow--next'],
                 'icon' => 'keyboard_arrow_right',
                 'style' => 'filled',
                 'color' => 'primary',
                 'ariaLabel' => $ariaLabels->next,
+                'attributeList' => [
+                    'data-js-slider-next' => true
+                ]
             ])
             @endbutton
         </div>
