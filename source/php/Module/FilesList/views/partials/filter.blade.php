@@ -1,6 +1,7 @@
 <div class="c-card__body">
     @field([
-        'type'          => 'text',
+        'type'          => 'search',
+        'icon'          => 'search',
         'name'          => 'search',
         'attributeList' => [
             'js-filter-input'   => $uID
