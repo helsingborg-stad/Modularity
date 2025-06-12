@@ -101,7 +101,9 @@ class AbstractController
     */
     public function addPostData($posts = [])
     {
-        $posts = array_map(function($post) {
+        static $anyPostIsFromOtherBlog = false;
+
+        $posts = array_map(function($post) use (&$anyPostIsFromOtherBlog) {
             $data['taxonomiesToDisplay'] = !empty($this->fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -115,6 +117,10 @@ class AbstractController
             if(!empty($post->originalBlogId)) {
                 $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
                 $this->getWpService()->switchToBlog($post->originalBlogId);
+                $anyPostIsFromOtherBlog = true;
+            } elseif($anyPostIsFromOtherBlog ) {
+                static $currentBlogName = $this->getWpService()->getBlogDetails()->blogname;
+                $post->originalSite = $currentBlogName;
             }
 
             if (isset($this->fields['posts_display_as']) && in_array($this->fields['posts_display_as'], ['expandable-list'])) {
