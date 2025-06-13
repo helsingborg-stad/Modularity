@@ -11,5 +11,6 @@
     "buttonArgs" => $buttonArgs,
     "poster" => $poster,
     "heroView" => $heroView,
+    "customHeroData" => $customHeroData ?? [],
 ])
 @endhero

@@ -52,6 +52,12 @@ class Hero extends \Modularity\Module
             $data['stretch'] = false;
         }
 
+        //Custom hero data
+        $customHeroData = [];
+        if ($fields['mod_hero_display_as'] === 'callToActions') {
+            $customHeroData['mediaFirst'] = $fields['mod_hero_media_first'] ?? false;
+        }
+
         //Common fields
         $data['type']               = $type;
         $data['size']               = $fields['mod_hero_size'];
@@ -63,6 +69,7 @@ class Hero extends \Modularity\Module
         $data['meta']               = !empty($fields['mod_hero_meta']) ? $fields['mod_hero_meta'] : false;
         $data['buttonArgs']         = $this->getButtonArgsFromFields($fields);
         $data['poster']             = $fields['mod_hero_poster_image']['sizes']['large'] ?? false;
+        $data['customHeroData']     = $customHeroData;
 
         return $data;
     }

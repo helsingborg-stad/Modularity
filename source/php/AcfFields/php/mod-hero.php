@@ -300,6 +300,34 @@
             'library' => 'all',
         ),
         10 => array(
+            'key' => 'field_684bf60873e57',
+            'label' => __('Display media above content', 'modularity'),
+            'name' => 'mod_hero_media_first',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_63ca5ed1394e1',
+                        'operator' => '==',
+                        'value' => 'callToActions',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+            'ui' => 1,
+        ),
+        11 => array(
             'key' => 'field_614b43a186da4',
             'label' => __('Size', 'modularity'),
             'name' => 'mod_hero_size',
@@ -328,7 +356,7 @@
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        11 => array(
+        12 => array(
             'key' => 'field_6848393a785be',
             'label' => __('Buttons', 'modularity'),
             'name' => 'mod_hero_buttons',

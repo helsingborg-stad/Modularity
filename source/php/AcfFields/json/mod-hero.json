@@ -297,6 +297,34 @@
             "library": "all"
         },
         {
+            "key": "field_684bf60873e57",
+            "label": "Display media above content",
+            "name": "mod_hero_media_first",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_63ca5ed1394e1",
+                        "operator": "==",
+                        "value": "callToActions"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_614b43a186da4",
             "label": "Size",
             "name": "mod_hero_size",
