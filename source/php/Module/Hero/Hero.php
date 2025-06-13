@@ -52,6 +52,12 @@ class Hero extends \Modularity\Module
             $data['stretch'] = false;
         }
 
+        //Custom hero data
+        $customHeroData = [];
+        if ($fields['mod_hero_display_as'] === 'callToActions') {
+            $customHeroData['mediaFirst'] = $fields['mod_hero_media_first'] ?? false;
+        }
+
         //Common fields
         $data['type']               = $type;
         $data['size']               = $fields['mod_hero_size'];
@@ -63,6 +69,7 @@ class Hero extends \Modularity\Module
         $data['meta']               = !empty($fields['mod_hero_meta']) ? $fields['mod_hero_meta'] : false;
         $data['buttonArgs']         = $this->getButtonArgsFromFields($fields);
         $data['poster']             = $fields['mod_hero_poster_image']['sizes']['large'] ?? false;
+        $data['customHeroData']     = $customHeroData;
 
         return $data;
     }
@@ -76,14 +83,18 @@ class Hero extends \Modularity\Module
     {
         $buttonArgs = null;
 
-        if (!empty($fields['mod_hero_button_href'])) {
-            $buttonArgs['href'] = $fields['mod_hero_button_href'];
-        }
-
-        if (!empty($fields['mod_hero_button_text'])) {
-            $buttonArgs['text'] = $fields['mod_hero_button_text'];
-            $buttonArgs['classList'] = ['u-margin__top--2'];
-            $buttonArgs['color'] = 'primary';
+        if (is_array($fields['mod_hero_buttons']) && !empty($fields['mod_hero_buttons'])) {
+            $buttonArgs = [];
+            foreach ($fields['mod_hero_buttons'] as $button) {
+                if (is_array($button['link']) && !empty($button['link']['url']) && !empty($button['link']['title'])) {
+                    $buttonArgs[] = [
+                        'href' => $button['link']['url'],
+                        'text' => $button['link']['title'],
+                        'color' => $button['color'] ?? 'primary',
+                        'style' => $button['type'] ?? 'filled',
+                    ];
+                }
+            }
         }
 
         return $buttonArgs;
