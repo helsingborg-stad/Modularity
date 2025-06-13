@@ -11,7 +11,7 @@
             @endbutton
         </div>
         @endif
-        <div class="splide__arrows c-slider__arrows" id="js-custom-buttons-{{$sliderId}}">
+        <div class="c-slider__arrows" id="slider_{{ $sliderId }}">
             @button([
                 'icon' => 'keyboard_arrow_left',
                 'style' => 'filled',

@@ -19,7 +19,7 @@
         'autoSlide' => false,
         'isPost' => true,
         'repeatSlide' => $postsDisplayAs != 'segment' ? true : false,
-        'customButtons' => $postsDisplayAs != 'segment' ? 'js-custom-buttons-' . $sliderId : false,
+        'customButtons' => $postsDisplayAs != 'segment' ? 'slider_' . $sliderId : false,
         'containerAware' => true,
         'attributeList' => [
             ...(!$hideTitle && !empty($postTitle) ? ['aria-labelledby' => 'mod-slider-' . $sliderId . '-label'] : []),
