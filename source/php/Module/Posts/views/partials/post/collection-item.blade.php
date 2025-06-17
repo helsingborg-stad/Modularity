@@ -15,10 +15,10 @@
     )
 
     @slot('before')
-        @if ($post->images['thumbnail1:1']['src'] ?? false)
+        @if ($post->getImage() ?? false)
             @image([
-                'src' => $post->images['thumbnail1:1']['src'],
-                'alt' => $post->images['thumbnail1:1']['alt'],
+                'src' => $post->getImage(120,120)->getUrl(),
+                'alt' => $post->getImage()->getAltText(),
             ])
             @endimage
         @endif
