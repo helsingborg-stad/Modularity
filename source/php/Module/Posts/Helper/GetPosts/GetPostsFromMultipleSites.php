@@ -81,7 +81,15 @@ class GetPostsFromMultipleSites implements GetPostsInterface
     private function getValidSites(): array
     {
         $numericSiteIds = array_filter($this->siteIds, 'is_numeric');
-        return array_map('intval', $numericSiteIds);   
+        $integerSiteIds = array_map('intval', $numericSiteIds);
+        
+        return array_filter($integerSiteIds, fn($siteId) => $this->blogIsPublic($siteId));
+    }
+
+    private function blogIsPublic(int $siteId): bool
+    {
+        $blogDetails = $this->wpService->getBlogDetails($siteId);
+        return $blogDetails && $blogDetails->public === "1" && $blogDetails->archived === "0" && $blogDetails->deleted === "0";
     }
 
     private function buildSiteQuery($site, $postStatusesSql): string
