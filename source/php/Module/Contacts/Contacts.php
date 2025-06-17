@@ -157,6 +157,16 @@ class Contacts extends \Modularity\Module
                 }, $info['social_media']);
             }
 
+            // Restructure legacy opening hours for new component format
+            if (isset($info['opening_hours']) && !empty($info['opening_hours'])) {
+                $info['custom_sections'] = [
+                    [
+                        'title' => __('Opening hours', 'modularity'),
+                        'content' => $info['opening_hours']
+                    ]
+                ];
+            }
+
             //Contact returns
             $retContacts[] = $info;
         }
