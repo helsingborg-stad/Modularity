@@ -10,6 +10,7 @@
     "context" => ['hero', 'module.hero', 'module.hero.image', $sidebarContext . '.animation-item'],
     "ariaLabel" => $ariaLabel,
     "heroView" => $heroView,
-    "buttonArgs" => $buttonArgs
+    "buttonArgs" => $buttonArgs,
+    "customHeroData" => $customHeroData ?? [],
 ])
 @endhero
