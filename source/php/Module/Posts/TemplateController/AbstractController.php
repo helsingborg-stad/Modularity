@@ -5,7 +5,6 @@ namespace Modularity\Module\Posts\TemplateController;
 use Modularity\Helper\WpService as WpServiceHelper;
 use Modularity\Module\Posts\Helper\Column as ColumnHelper;
 use Modularity\Module\Posts\Helper\DomainChecker;
-use WP;
 use WP_Post;
 use WpService\WpService;
 
@@ -250,10 +249,7 @@ class AbstractController
     {
         $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $post->excerptShort : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->getTitle() : false;
-        $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $this->getImageContractOrByRatio(
-            $post->images ?? null, 
-            $post->imageContract ?? null
-        ) : [];
+        $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $post->getImage() : [];
         $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields'] ?? []) && empty($post->image) ? true : false;
         $post->commentCount         = in_array('comment_count', $this->data['posts_fields'] ?? []) ? (string) $post->getCommentCount() : false;
         $post->readingTime          = in_array('reading_time', $this->data['posts_fields'] ?? []) ? $post->readingTime : false;
@@ -279,54 +275,6 @@ class AbstractController
 
     public function postUsesSchemaTypeEvent(object $post):bool {
         return $post->getSchemaProperty('@type') === 'Event';
-    }
-
-    /**
-     * Get the image based on ratio and index.
-     *
-     * @param array $images
-     *
-     * @return mixed|null
-    */
-    private function getImageBasedOnRatio(array $images) {
-        if (empty($this->data['posts_display_as']) || empty($images['thumbnail16:9']['src'])) return false;
-
-        if (!empty($this->data['highlight_first_column']) && in_array($this->data['posts_display_as'], ['block', 'index'])) {
-            return $images['featuredImage'];
-        }
-
-        switch ($this->data['posts_display_as']) {
-            case 'grid': 
-                return $images['thumbnail' . $this->data['ratio']] ?? false;
-            default: 
-                return $images['thumbnail16:9'];
-        }
-
-        return false;
-    }
-
-    /**
-     * Get image by contract or by ratio.
-     *
-     * @param array $images
-     * @param mixed $imageContract
-     *
-     * @return mixed
-    */
-    private function getImageContractOrByRatio(array $images, $imageContract) {
-
-        //Image by contract
-        if(is_a($imageContract, 'ComponentLibrary\Integrations\Image\Image') && !empty($imageContract->getUrl())) {
-            return $imageContract;
-        }
-
-        //Image by ratio
-        $imageByRatio = $this->getImageBasedOnRatio($images);
-        if(isset($imageByRatio['src']) && !empty($imageByRatio['src'])) {
-            return $imageByRatio['src'];
-        }
-
-        return false;
     }
 
     /**

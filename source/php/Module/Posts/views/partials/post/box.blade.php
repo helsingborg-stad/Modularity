@@ -9,7 +9,7 @@
     ] : null,
     'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
     'ratio' => $ratio,
-    'image' => $post->imageContract ?? $post->image,
+    'image' => $post->getImage(),
     'attributeList' => $post->attributeList ?? []
 ])
     @slot('metaArea')
