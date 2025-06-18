@@ -271,7 +271,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "",
+            "default_value": "Show more",
             "maxlength": "",
             "placeholder": "",
             "prepend": "",
@@ -283,7 +283,7 @@
             "name": "archive_link_above_posts",
             "aria-label": "",
             "type": "true_false",
-            "instructions": "",
+            "instructions": "Doesn't work in combination with slider turned on",
             "required": 0,
             "conditional_logic": [
                 [
@@ -301,6 +301,7 @@
             },
             "message": "",
             "default_value": 0,
+            "allow_in_bindings": 1,
             "ui_on_text": "",
             "ui_off_text": "",
             "ui": 1
