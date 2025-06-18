@@ -22,10 +22,11 @@
                 'address' => $contact['address'] ?? false,
                 'visitingAddress' => $contact['visiting_address'] ?? false,
                 'socialMedia' => $contact['social_media'] ?? false,
-                'image' => $contact['thumbnail'][0] ?? false,
+                'image' => $contact['thumbnail'] ?? false,
                 'description' => $contact['other'] ?? false,
                 'customSections' => $contact['custom_sections'] ?? [],
-                'useAvatarFallback' => isset($placeholder_avatar) ? $placeholder_avatar : true
+                'useAvatarFallback' => isset($placeholder_avatar) ? $placeholder_avatar : true,
+                'view' => $view ?? 'extended'
             ])
             @endperson
         </div>

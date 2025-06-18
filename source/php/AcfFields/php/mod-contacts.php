@@ -25,7 +25,7 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => 'o-grid-12@md',
+            'default_value' => __('o-grid-12@md', 'modularity'),
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -36,6 +36,29 @@
             'search_placeholder' => '',
         ),
         1 => array(
+            'key' => 'field_6851b66acc73f',
+            'label' => __('View', 'modularity'),
+            'name' => 'view',
+            'aria-label' => '',
+            'type' => 'button_group',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'simple' => __('Simple', 'modularity'),
+                'extended' => __('Extended', 'modularity'),
+            ),
+            'default_value' => __('extended', 'modularity'),
+            'return_format' => 'value',
+            'allow_null' => 0,
+            'layout' => 'horizontal',
+        ),
+        2 => array(
             'key' => 'field_6724b0113e1b6',
             'label' => __('Placeholder avatar', 'modularity'),
             'name' => 'placeholder_avatar',
@@ -55,7 +78,7 @@
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_5805e5dc1dc55',
             'label' => __('Contacts', 'modularity'),
             'name' => 'contacts',
@@ -243,7 +266,7 @@
                                         'phone' => __('Landline', 'modularity'),
                                         'smartphone' => __('Cell phone', 'modularity'),
                                     ),
-                                    'default_value' => 'phone',
+                                    'default_value' => __('phone', 'modularity'),
                                     'return_format' => 'value',
                                     'multiple' => 0,
                                     'allow_null' => 0,
@@ -285,19 +308,27 @@
                             'type' => 'repeater',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
                                 'id' => '',
                             ),
-                            'collapsed' => '',
+                            'acfe_repeater_stylised_button' => 0,
+                            'layout' => 'table',
                             'min' => 0,
                             'max' => 0,
-                            'layout' => 'table',
+                            'collapsed' => '',
                             'button_label' => __('Lägg till rad', 'modularity'),
                             'rows_per_page' => 20,
-                            'acfe_repeater_stylised_button' => 0,
                             'sub_fields' => array(
                                 0 => array(
                                     'key' => 'field_5bf6a737c1b6c',
@@ -319,7 +350,7 @@
                                         'twitter' => __('Twitter', 'modularity'),
                                         'instagram' => __('Instagram', 'modularity'),
                                     ),
-                                    'default_value' => 'facebook',
+                                    'default_value' => __('facebook', 'modularity'),
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -365,11 +396,11 @@
                                 'id' => '',
                             ),
                             'default_value' => '',
-                            'placeholder' => '',
+                            'acfe_textarea_code' => 0,
                             'maxlength' => '',
                             'rows' => '',
+                            'placeholder' => '',
                             'new_lines' => 'wpautop',
-                            'acfe_textarea_code' => 0,
                         ),
                         9 => array(
                             'key' => 'field_5805e5dc28e30',
@@ -379,7 +410,15 @@
                             'type' => 'textarea',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '50',
                                 'class' => '',
@@ -400,7 +439,15 @@
                             'type' => 'textarea',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
@@ -421,7 +468,15 @@
                             'type' => 'wysiwyg',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',

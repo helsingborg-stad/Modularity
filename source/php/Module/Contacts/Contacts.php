@@ -2,12 +2,15 @@
 
 namespace Modularity\Module\Contacts;
 
+use Modularity\Integrations\Component\ImageResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
 class Contacts extends \Modularity\Module
 {
     public $slug = 'contacts';
     public $supports = array();
     public $displaySettings = null;
-
+    
+    private $view = null;
     public function init()
     {
         $this->nameSingular = __('Contacts v2', 'modularity');
@@ -19,6 +22,8 @@ class Contacts extends \Modularity\Module
     {
         $data = $this->getFields();
         $data['ID'] = $this->ID;
+
+        $this->view = $data['view'] ?? 'extended';
 
         if(!empty($data['contacts'])) {
             $data['contacts'] = $this->prepareContacts($data['contacts']);
@@ -110,10 +115,16 @@ class Contacts extends \Modularity\Module
                 $attachmentId = attachment_url_to_postid($info['image']);
             }
 
-            if (!empty($attachmentId)) {
+            if (!empty($attachmentId) && $this->view === 'extended') {
                 $info['thumbnail'] = wp_get_attachment_image_src(
                     $attachmentId,
                     [400, 400]
+                )[0];
+            } elseif (!empty($attachmentId) && $this->view === 'simple') {
+                $info['thumbnail'] = ImageComponentContract::factory(
+                    (int) $attachmentId,
+                    [1024, 1024],
+                    new ImageResolver()
                 );
             }
 
