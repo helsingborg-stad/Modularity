@@ -2,7 +2,7 @@
         @if (($posts_data_source !== 'input' && $archiveLinkUrl))
         <div class="t-read-more-section">
             @button([
-                'text' => __('Show more', 'modularity'),
+                'text' => $archiveLinkTitle ?? $lang['showMore'],
                 'color' => 'default',
                 'style' => 'basic',
                 'href' => $archiveLinkUrl,

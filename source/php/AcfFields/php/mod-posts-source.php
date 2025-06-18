@@ -283,7 +283,7 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'default_value' => '',
+            'default_value' => __('Show more', 'modularity'),
             'maxlength' => '',
             'placeholder' => '',
             'prepend' => '',
@@ -295,7 +295,7 @@ if (function_exists('acf_add_local_field_group')) {
             'name' => 'archive_link_above_posts',
             'aria-label' => '',
             'type' => 'true_false',
-            'instructions' => '',
+            'instructions' => __('Doesn\'t work in combination with slider turned on', 'modularity'),
             'required' => 0,
             'conditional_logic' => array(
                 0 => array(
@@ -313,6 +313,7 @@ if (function_exists('acf_add_local_field_group')) {
             ),
             'message' => '',
             'default_value' => 0,
+            'allow_in_bindings' => 1,
             'ui_on_text' => '',
             'ui_off_text' => '',
             'ui' => 1,
