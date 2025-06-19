@@ -247,7 +247,7 @@ class AbstractController
     */
     private function setPostViewData(object $post, $index = false)
     {
-        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $this->sanitizeExcerpt($post->excerptShort) : false;
+        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $post->excerptShort : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->getTitle() : false;
         $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $post->getImage() : [];
         $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields'] ?? []) && empty($post->image) ? true : false;
@@ -271,17 +271,6 @@ class AbstractController
         }
 
         return $post;
-    }
-
-    /**
-     * Sanitize the excerpt by removing links.
-     *
-     * @param string $excerpt
-     *
-     * @return string
-    */
-    private function sanitizeExcerpt(string $excerpt): string {
-        return preg_replace('/<a\b[^>]*>(.*?)<\/a>/is', '$1', $excerpt);
     }
 
     public function postUsesSchemaTypeEvent(object $post):bool {
