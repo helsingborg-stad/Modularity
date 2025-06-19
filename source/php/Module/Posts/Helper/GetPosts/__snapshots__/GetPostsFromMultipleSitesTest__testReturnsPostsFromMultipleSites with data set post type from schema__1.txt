@@ -14,7 +14,7 @@ SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_o
             WHERE
             posts.post_type IN ()
             AND posts.post_status IN ('publish')
-            AND posts.post_date < NOW()
+            AND posts.post_date_gmt < NOW()
          UNION 
             SELECT DISTINCT
             '2' AS blog_id,
@@ -31,5 +31,5 @@ SELECT blog_id, post_id, post_date, is_sticky, post_title, post_modified, menu_o
             WHERE
             posts.post_type IN ()
             AND posts.post_status IN ('publish')
-            AND posts.post_date < NOW()
+            AND posts.post_date_gmt < NOW()
         ) as posts WHERE user_group_visibility IS NULL ORDER BY is_sticky DESC, post_date DESC
