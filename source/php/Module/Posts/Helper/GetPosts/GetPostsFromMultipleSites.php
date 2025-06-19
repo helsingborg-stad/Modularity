@@ -116,7 +116,7 @@ class GetPostsFromMultipleSites implements GetPostsInterface
             WHERE
             posts.post_type IN ($postTypesSql)
             AND posts.post_status IN ($postStatusesSql)
-            AND posts.post_date < NOW()
+            AND posts.post_date_gmt < NOW()
         ";
     }
 
