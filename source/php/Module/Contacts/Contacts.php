@@ -33,6 +33,10 @@ class Contacts extends \Modularity\Module
             $data['columns'] = 'o-grid-12@md';
         }
 
+        if ($data['view'] === 'simple') {
+            $data['columns'] .= ' o-grid-6@sm';
+        }
+
         //Translations
         $data['lang'] = (object) [
             'email' => __('Email', 'modularity'),
