@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5805e5dc0a3be',
     'title' => __('Contacts', 'modularity'),
     'fields' => array(
@@ -25,7 +27,7 @@
                 'grid-md-4' => __('3', 'modularity'),
                 'grid-md-3' => __('4', 'modularity'),
             ),
-            'default_value' => __('o-grid-12@md', 'modularity'),
+            'default_value' => 'o-grid-12@md',
             'return_format' => 'value',
             'multiple' => 0,
             'allow_null' => 0,
@@ -53,7 +55,7 @@
                 'simple' => __('Simple', 'modularity'),
                 'extended' => __('Extended', 'modularity'),
             ),
-            'default_value' => __('extended', 'modularity'),
+            'default_value' => 'extended',
             'return_format' => 'value',
             'allow_null' => 0,
             'layout' => 'horizontal',
@@ -266,7 +268,7 @@
                                         'phone' => __('Landline', 'modularity'),
                                         'smartphone' => __('Cell phone', 'modularity'),
                                     ),
-                                    'default_value' => __('phone', 'modularity'),
+                                    'default_value' => 'phone',
                                     'return_format' => 'value',
                                     'multiple' => 0,
                                     'allow_null' => 0,
@@ -350,7 +352,7 @@
                                         'twitter' => __('Twitter', 'modularity'),
                                         'instagram' => __('Instagram', 'modularity'),
                                     ),
-                                    'default_value' => __('facebook', 'modularity'),
+                                    'default_value' => 'facebook',
                                     'allow_null' => 0,
                                     'multiple' => 0,
                                     'ui' => 0,
@@ -606,4 +608,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}
