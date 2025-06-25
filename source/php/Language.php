@@ -54,14 +54,13 @@ class Language
      * @return void 
      */
     public function autoDetectLanguage($post_id, $post, $update, $post_before): bool {
-
         if ($this->isModularityModule($post_id) === false) {
-          return false;
+            return false;
         }
-
+        
         //Render by using the module's render method
         $module = $this->getRenderedModule($post_id);
-
+        
         //Get the language of the module
         $detector = new LanguageDetector();
         $langCode = (string) $detector->evaluate($module)->getLanguage();
