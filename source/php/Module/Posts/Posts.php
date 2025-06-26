@@ -158,7 +158,7 @@ class Posts extends \Modularity\Module
             $taxValues = (array)$this->fields['posts_taxonomy_value'];
             $taxValues = implode('|', $taxValues);
 
-            $data['filters']['filter[' . $taxType . ']'] = $taxValues;
+            $data['filters']["{$taxType}[]"] = $taxValues;
         }
 
         //Get archive link
