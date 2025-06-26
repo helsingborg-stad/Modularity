@@ -18,6 +18,7 @@ class Display
     public $options = null;
     private $isBlock = false;
     private $isRenderingModule = false;
+    private static $renderedShortcodeModules = [];
 
     private static $sidebarState = []; //Holds state of sidebars.
 
@@ -759,6 +760,10 @@ class Display
 
         if (!is_numeric($args['id'])) {
             return;
+        }
+
+        if (isset(self::$renderedShortcodeModules[$args['id']])) {
+            return self::$renderedShortcodeModules[$args['id']];
         }
 
         //Get module details
