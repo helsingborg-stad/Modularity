@@ -785,8 +785,11 @@ class Display
 
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+        $moduleMarkup = '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
 
-        return '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
+        self::$renderedShortcodeModules[$args['id']] = $moduleMarkup;
+
+        return $moduleMarkup;
     }
 
     /**
