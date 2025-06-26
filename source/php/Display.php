@@ -18,6 +18,7 @@ class Display
     public $options = null;
     private $isBlock = false;
     private $isRenderingModule = false;
+    private static $renderedShortcodeModules = [];
 
     private static $sidebarState = []; //Holds state of sidebars.
 
@@ -761,6 +762,10 @@ class Display
             return;
         }
 
+        if (isset(self::$renderedShortcodeModules[$args['id']])) {
+            return self::$renderedShortcodeModules[$args['id']];
+        }
+
         //Get module details
         $module = \Modularity\Editor::getModule($args['id']);
 
@@ -780,8 +785,11 @@ class Display
 
         $moduleMarkup = apply_filters('Modularity/Display/Markup', $moduleMarkup, $module);
         $moduleMarkup = apply_filters('Modularity/Display/' . $module->post_type . '/Markup', $moduleMarkup, $module);
+        $moduleMarkup = '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
 
-        return '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
+        self::$renderedShortcodeModules[$args['id']] = $moduleMarkup;
+
+        return $moduleMarkup;
     }
 
     /**
