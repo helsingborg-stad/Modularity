@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b6d6df64642da1826586c31b1efef3c0",
+    "content-hash": "002be665aed6e2a67a60096c57410c7a",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -382,16 +382,16 @@
         },
         {
             "name": "helsingborg-stad/acfservice",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/helsingborg-stad/acfservice.git",
-                "reference": "c1750a9e4f0d54161e49e7cab9f9cec12d9f4dce"
+                "reference": "105f38c54a167015a7dec7e0828f07cd595865a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/helsingborg-stad/acfservice/zipball/c1750a9e4f0d54161e49e7cab9f9cec12d9f4dce",
-                "reference": "c1750a9e4f0d54161e49e7cab9f9cec12d9f4dce",
+                "url": "https://api.github.com/repos/helsingborg-stad/acfservice/zipball/105f38c54a167015a7dec7e0828f07cd595865a1",
+                "reference": "105f38c54a167015a7dec7e0828f07cd595865a1",
                 "shasum": ""
             },
             "require": {
@@ -420,9 +420,9 @@
             "description": "Simplifies ACF integration by providing a centralized AcfService that exposes global ACF functions in a streamlined manner. Simplify your development workflow and enhance ACF integration with ease.",
             "support": {
                 "issues": "https://github.com/helsingborg-stad/acfservice/issues",
-                "source": "https://github.com/helsingborg-stad/acfservice/tree/1.0.1"
+                "source": "https://github.com/helsingborg-stad/acfservice/tree/1.1.0"
             },
-            "time": "2025-04-23T10:51:02+00:00"
+            "time": "2025-05-13T05:33:13+00:00"
         },
         {
             "name": "helsingborg-stad/wpservice",
