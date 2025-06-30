@@ -128,7 +128,7 @@ class Table extends \Modularity\Module
         while (!feof($file)) {
             $row = fgetcsv($file, 0, $delimiter);
 
-            if (count($row) === 0) {
+            if (!is_array($row) || count($row) === 0) {
                 continue;
             }
 
@@ -165,7 +165,7 @@ class Table extends \Modularity\Module
         while (!feof($file)) {
             $row = fgetcsv($file, 0, ';');
 
-            if (count($row) === 0) {
+            if (!is_array($row) || count($row) === 0) {
                 continue;
             }
 
