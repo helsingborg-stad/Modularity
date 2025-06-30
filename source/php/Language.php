@@ -159,6 +159,7 @@ class Language
         $module = do_shortcode('[modularity id="' . $postId . '"]');
         $module = strip_tags($module);
         $module = trim($module);
+        $module = preg_replace('/\s+/', ' ', $module);
         return $module;
     }
 
