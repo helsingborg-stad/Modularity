@@ -102,9 +102,9 @@ class AbstractController
     */
     public function addPostData($posts = [])
     {
-        static $anyPostIsFromOtherBlog = false;
+        $shouldAddBlogNameToPost = $this->shouldAddBlogNameToPost();
 
-        $posts = array_map(function($post) use (&$anyPostIsFromOtherBlog) {
+        $posts = array_map(function($post) use ($shouldAddBlogNameToPost) {
             $data['taxonomiesToDisplay'] = !empty($this->fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -115,8 +115,7 @@ class AbstractController
                 return $post;
             }
 
-            if( $this->shouldAddBlogNameToPost($post, $anyPostIsFromOtherBlog) ) {
-                $anyPostIsFromOtherBlog = true;
+            if( $shouldAddBlogNameToPost ) {
                 $post = $this->addBlogNameToPost($post);
             }
 
@@ -157,15 +156,14 @@ class AbstractController
     }
 
     /**
-     * Check if the blog name should be added to the post.
-     *
-     * @param object $post
-     * @param bool $force
+     * Determine if the blog name should be added to the post.
      *
      * @return bool
-    */
-    public function shouldAddBlogNameToPost(object $post, bool $force = false): bool {
-        return !empty($post->originalBlogId) || $force;
+     */
+    public function shouldAddBlogNameToPost(): bool
+    {
+        $sources = $this->fields['posts_data_network_sources'] ?? [];
+        return is_array($sources) && !empty($sources);
     }
 
     /**
@@ -175,12 +173,15 @@ class AbstractController
      *
      * @return WP_Post
     */
-    private function addBlogNameToPost(WP_Post $post ):WP_Post {
-        if(!empty($post->originalBlogId)) {
-            $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
-        } else {
-            $post->originalSite = $this->getWpService()->getBlogDetails()->blogname;
+    private function addBlogNameToPost(WP_Post $post): WP_Post {
+        static $blogDetailsCache = [];
+        $blogId = !empty($post->originalBlogId) ? $post->originalBlogId : $this->getWpService()->getBlogDetails()->blog_id;
+
+        if (!isset($blogDetailsCache[$blogId])) {
+            $blogDetailsCache[$blogId] = $this->getWpService()->getBlogDetails($blogId);
         }
+
+        $post->originalSite = $blogDetailsCache[$blogId]->blogname ?? '';
 
         return $post;
     }
