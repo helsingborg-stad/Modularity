@@ -133,6 +133,7 @@ class AbstractController
                 $this->getWpService()->restoreCurrentBlog();
             }
             
+            $post = clone $post; // Ensure we don't modify the original post object
             return $post;
 
         }, $posts ?? []);
