@@ -39,29 +39,27 @@ class AbstractControllerTest extends TestCase
         $this->assertFalse($controller->postUsesSchemaTypeEvent($post));
     }
 
-    #[TestDox('shouldAddBlogNameToPost() returns true if blog name should be added')]
+    #[TestDox('shouldAddBlogNameToPost() returns true if field posts_data_network_sources is a non-empty array')]
     public function testShouldAddBlogNameToPostReturnsTrue() {
         $controller = new AbstractController($this->getModuleMock());
-        $post = new WP_Post([]);
-        $post->originalBlogId = 2;
+        $controller->fields['posts_data_network_sources'] = ['source1', 'source2'];
 
-        $this->assertTrue($controller->shouldAddBlogNameToPost($post));
+        $this->assertTrue($controller->shouldAddBlogNameToPost());
     }
 
-    #[TestDox('shouldAddBlogNameToPost() returns true if force is provided as true')]
-    public function testShouldAddBlogNameToPostReturnsTrueIfForce() {
-        $controller = new AbstractController($this->getModuleMock());
-        $post = new WP_Post([]);
-
-        $this->assertTrue($controller->shouldAddBlogNameToPost($post, true));
-    }
-
-    #[TestDox('shouldAddBlogNameToPost() returns false if blog name should not be added')]
+    #[TestDox('shouldAddBlogNameToPost() returns false if field posts_data_network_sources is an empty array')]
     public function testShouldAddBlogNameToPostReturnsFalse() {
         $controller = new AbstractController($this->getModuleMock());
-        $post = new WP_Post([]);
+        $controller->fields['posts_data_network_sources'] = [];
 
-        $this->assertFalse($controller->shouldAddBlogNameToPost($post));
+        $this->assertFalse($controller->shouldAddBlogNameToPost());
+    }
+
+    #[TestDox('shouldAddBlogNameToPost() returns false if field posts_data_network_sources is not set')]
+    public function testShouldAddBlogNameToPostReturnsFalseIfNotSet() {
+        $controller = new AbstractController($this->getModuleMock());
+        unset($controller->fields['posts_data_network_sources']);
+        $this->assertFalse($controller->shouldAddBlogNameToPost());
     }
 
     private function getModuleMock():\Modularity\Module\Posts\Posts|MockObject {
