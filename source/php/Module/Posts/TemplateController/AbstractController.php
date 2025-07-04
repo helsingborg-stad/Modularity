@@ -173,12 +173,15 @@ class AbstractController
      *
      * @return WP_Post
     */
-    private function addBlogNameToPost(WP_Post $post ):WP_Post {
-        if(!empty($post->originalBlogId)) {
-            $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
-        } else {
-            $post->originalSite = $this->getWpService()->getBlogDetails()->blogname;
+    private function addBlogNameToPost(WP_Post $post): WP_Post {
+        static $blogDetailsCache = [];
+        $blogId = !empty($post->originalBlogId) ? $post->originalBlogId : $this->getWpService()->getBlogDetails()->blog_id;
+
+        if (!isset($blogDetailsCache[$blogId])) {
+            $blogDetailsCache[$blogId] = $this->getWpService()->getBlogDetails($blogId);
         }
+
+        $post->originalSite = $blogDetailsCache[$blogId]->blogname ?? '';
 
         return $post;
     }

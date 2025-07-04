@@ -6,7 +6,6 @@ use Modularity\Helper\WpService;
 use PHPUnit\Framework\Attributes\TestDox;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use WP_Post;
 use WpService\Implementations\FakeWpService;
 
 class AbstractControllerTest extends TestCase
