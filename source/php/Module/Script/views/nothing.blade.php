@@ -1,4 +1,4 @@
-<div class="{{ $classes }} script-{{$scriptWrapWithClassName}}">
+<div class="{{ $classes ?? '' }} script-{{$scriptWrapWithClassName}}">
     @if (!$hideTitle && !empty($postTitle))
         <div class="script-{{$scriptWrapWithClassName}}__header">
             @php
