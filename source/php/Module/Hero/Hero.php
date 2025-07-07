@@ -83,7 +83,7 @@ class Hero extends \Modularity\Module
     {
         $buttonArgs = null;
 
-        if (is_array($fields['mod_hero_buttons']) && !empty($fields['mod_hero_buttons'])) {
+        if (isset($fields['mod_hero_buttons']) && is_array($fields['mod_hero_buttons']) && !empty($fields['mod_hero_buttons'])) {
             $buttonArgs = [];
             foreach ($fields['mod_hero_buttons'] as $button) {
                 if (is_array($button['link']) && !empty($button['link']['url']) && !empty($button['link']['title'])) {
