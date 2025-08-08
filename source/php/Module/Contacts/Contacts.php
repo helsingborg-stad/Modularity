@@ -82,7 +82,7 @@ class Contacts extends \Modularity\Module
                         'work_title'          => $contact['work_title'],
                         'administration_unit' => $contact['administration_unit'],
                         'email'               => strtolower($contact['email']),
-                        'phone'               => $contact['phone_numbers'] ?? null,
+                        'phone'               => $this->structurePhoneNumbers($contact['phone_numbers'] ?? []),
                         'social_media'        => $contact['social_media'] ?? null,
                         'address'             => strip_tags($contact['address'] ?? '', '<br>'),
                         'visiting_address'    => strip_tags($contact['visiting_address'] ?? '', ['<br>', '<a>']),
@@ -101,7 +101,7 @@ class Contacts extends \Modularity\Module
                          'work_title'          => null,
                          'administration_unit' => null,
                          'email'               => $contact['user']['user_email'] ?? '',
-                         'phone'               => $fields['phone_numbers'] ?: null,
+                        'phone'               => $this->structurePhoneNumbers($contact['phone'] ?? []),
                          'social_media'        => $this->getUserSocialMedia($fields ?: []),
                          'address'             => strip_tags($fields['address'] ?? '', '<br>'),
                          'visiting_address'    => strip_tags($fields['visiting_address'] ?? '', ['<br>', '<a>']),
@@ -187,6 +187,23 @@ class Contacts extends \Modularity\Module
         }
 
         return $retContacts;
+    }
+
+    private function structurePhoneNumbers(array $phoneNumbers): ?array {
+        if (empty($phoneNumbers)) {
+            return null;
+        }
+
+        $structured = [];
+        foreach ($phoneNumbers as $phone) {
+            if (empty($phone['number'])) {
+                continue;
+            }
+
+            
+        }
+        return [];
+        return $structured ?: null;
     }
 
     private function getUserSocialMedia(array $fields): ?array {
