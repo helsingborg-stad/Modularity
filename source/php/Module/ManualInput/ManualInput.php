@@ -62,6 +62,12 @@ class ManualInput extends \Modularity\Module
             $data['accordionSpacedSections'] = $fields['accordion_spaced_sections'] ?? false;
         }
 
+        // Card settings
+        if ($fields['display_as'] === 'card') {
+            $data['titleAboveImage'] = $fields['title_above_image'] ?? false;
+            $data['disableLayoutShift'] = $fields['disable_resize_layout_shift'] ?? false;
+        }
+
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
