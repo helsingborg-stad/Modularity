@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_64ff22b117e2c',
     'title' => __('Manual Input Data', 'modularity'),
     'fields' => array(
@@ -493,6 +491,34 @@ if (function_exists('acf_add_local_field_group')) {
             'search_placeholder' => '',
         ),
         14 => array(
+            'key' => 'field_689b2ce333d43',
+            'label' => __('Use custom card color', 'modularity'),
+            'name' => 'use_custom_card_color',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6752f959acfda',
+                        'operator' => '==',
+                        'value' => 'card',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        15 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -866,7 +892,8 @@ if (function_exists('acf_add_local_field_group')) {
                         'class' => '',
                         'id' => '',
                     ),
-                    'choices' => array(),
+                    'choices' => array(
+                    ),
                     'default_value' => false,
                     'return_format' => 'value',
                     'multiple' => 0,
@@ -876,6 +903,46 @@ if (function_exists('acf_add_local_field_group')) {
                     'allow_null' => 1,
                     'ui' => 1,
                     'ajax' => 0,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                10 => array(
+                    'key' => 'field_689b2cf733d44',
+                    'label' => __('Custom background color', 'modularity'),
+                    'name' => 'custom_background_color',
+                    'aria-label' => '',
+                    'type' => 'select',
+                    'instructions' => '',
+                    'required' => 1,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'card',
+                            ),
+                            1 => array(
+                                'field' => 'field_689b2ce333d43',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => array(
+                    ),
+                    'default_value' => false,
+                    'return_format' => 'value',
+                    'multiple' => 0,
+                    'allow_custom' => 0,
+                    'search_placeholder' => '',
+                    'allow_null' => 0,
+                    'ui' => 1,
+                    'ajax' => 0,
+                    'placeholder' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
             ),
@@ -914,5 +981,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}

@@ -20,4 +20,16 @@
         ] : null
     ])
     @endcard
+    @if (!empty($input['customBackgroundColor']) && !empty($input['customTextColor']))
+        <style>
+            #{{ $input['id'] }} {
+                --c-card-color-background: var({{ $input['customBackgroundColor'] }});
+                color: {{ $input['customTextColor'] }};
+            }
+
+            #{{ $input['id'] }} .c-card:hover{
+                background-color: var({{ $input['customBackgroundColor'] }});
+            }
+        </style>
+    @endif
 @endelement
