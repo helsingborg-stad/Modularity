@@ -911,7 +911,7 @@
                     'name' => 'custom_background_color',
                     'aria-label' => '',
                     'type' => 'select',
-                    'instructions' => '',
+                    'instructions' => __('Colors can be defined in site customizer under General appearance > Colors > Additional colors.', 'modularity'),
                     'required' => 1,
                     'conditional_logic' => array(
                         0 => array(
