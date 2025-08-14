@@ -355,6 +355,62 @@
             "ui_off_text": ""
         },
         {
+            "key": "field_68975344a0707",
+            "label": "Show title above image",
+            "name": "title_above_image",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Show title above the card image instead of grouped with text",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6752f959acfda",
+                        "operator": "==",
+                        "value": "card"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_689751b4887b6",
+            "label": "Disable card layout shift",
+            "name": "disable_resize_layout_shift",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Disable the standard card layout shift when browser resizes",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6752f959acfda",
+                        "operator": "==",
+                        "value": "card"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
             "key": "field_6641de045ab9d",
             "label": "Image position",
             "name": "image_position",
@@ -430,6 +486,34 @@
             "placeholder": "",
             "allow_custom": 0,
             "search_placeholder": ""
+        },
+        {
+            "key": "field_689b2ce333d43",
+            "label": "Use custom card color",
+            "name": "use_custom_card_color",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_6752f959acfda",
+                        "operator": "==",
+                        "value": "card"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
             "key": "field_64ff22b2d91b7",
@@ -686,6 +770,13 @@
                                 "operator": "==",
                                 "value": "segment"
                             }
+                        ],
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "card"
+                            }
                         ]
                     ],
                     "wrapper": {
@@ -809,6 +900,45 @@
                     "ui": 1,
                     "ajax": 0,
                     "parent_repeater": "field_64ff22b2d91b7"
+                },
+                {
+                    "key": "field_689b2cf733d44",
+                    "label": "Custom background color",
+                    "name": "custom_background_color",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "Colors can be defined in site customizer under General appearance > Colors > Additional colors.",
+                    "required": 1,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_6752f959acfda",
+                                "operator": "==",
+                                "value": "card"
+                            },
+                            {
+                                "field": "field_689b2ce333d43",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": [],
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_custom": 0,
+                    "search_placeholder": "",
+                    "allow_null": 0,
+                    "ui": 1,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "parent_repeater": "field_64ff22b2d91b7"
                 }
             ]
         }
@@ -846,4 +976,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

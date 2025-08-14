@@ -41,7 +41,7 @@ class ManualInput extends \Modularity\Module
         $this->template = $displayAs;
 
         $data['manualInputs']      = [];
-        $data['ID']                = $this->ID;
+        $data['ID']                = !empty($this->ID) ? $this->ID : uniqid('manualinput-');
         $data['columns']           = !empty($fields['columns']) ? $fields['columns'] . '@md' : 'o-grid-4@md';
         $data['context']           = ['module.manual-input.' . $this->template];
         $data['ratio']             = !empty($fields['ratio']) ? $fields['ratio'] : '4:3';
@@ -62,21 +62,49 @@ class ManualInput extends \Modularity\Module
             $data['accordionSpacedSections'] = $fields['accordion_spaced_sections'] ?? false;
         }
 
+        // Card settings
+        if ($fields['display_as'] === 'card') {
+            $data['titleAboveImage'] = $fields['title_above_image'] ?? false;
+            $data['disableLayoutShift'] = $fields['disable_resize_layout_shift'] ?? false;
+        }
+
         if (!empty($fields['manual_inputs']) && is_array($fields['manual_inputs'])) {
             foreach ($fields['manual_inputs'] as $index => &$input) {
                 $input = array_filter($input, function($value) {
                     return !empty($value) || $value === false;
                 });
+
+                // Custom background color
+                $customBackgroundColor = $fields['use_custom_card_color'] 
+                                            && !empty($input['custom_background_color']) 
+                                            && strpos($input['custom_background_color'], '::') !== false
+                    ? explode('::', $input['custom_background_color'])[0]
+                    : false;
+                
+                // Custom text color
+                $customTextColor = $customBackgroundColor 
+                    ? \Municipio\Helper\Color::getBestContrastColor(explode('::', $input['custom_background_color'])[1], false)
+                    : false;
+
+                // Extra classes
+                if ($customBackgroundColor) {
+                    $input['classList'] = ['c-card--has-custom-background'];
+                }
+
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
-                $arr['id']                      = 'item-' . $this->ID . '-' . $index;
+                $arr['id']                      = 'item-' . $data['ID'] . '-' . $index;
                 // TODO: change name and migrate
                 $arr['icon']                    = $arr['box_icon'];
                 $arr['image']                   = $this->maybeGetImageImageContract($displayAs, $arr['image']) ?? $this->getImageData($arr['image'], $imageSize);
                 $arr['accordion_column_values'] = $this->createAccordionTitles($arr['accordion_column_values'], $arr['title']);
                 $arr['view']                    = $this->getInputView($arr['isHighlighted']);
                 $arr['columnSize']              = $this->getInputColumnSize($fields, $arr['isHighlighted']);
+                $arr['attributeList']           = ['id' => $arr['id']];
+                $arr['custom_background_color'] = $customBackgroundColor;
+                $arr['custom_text_color']       = $customTextColor;
                 $arr                            = \Municipio\Helper\FormatObject::camelCase($arr);
+
                 $data['manualInputs'][]         = (array) $arr;
             }
         }
@@ -124,7 +152,8 @@ class ManualInput extends \Modularity\Module
             'link_text'                 => __("Read more", 'modularity'),
             'image'                     => null,
             'accordion_column_values'   => [],
-            'box_icon'                  => null
+            'box_icon'                  => null,
+            'custom_background_color'   => null,
         ];
     }
 
