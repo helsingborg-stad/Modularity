@@ -3,8 +3,8 @@ $color-primary-contrasting: var(--color-primary-contrasting, #fff) !default;
 $color-secondary: var(--color-secondary, #ec6701) !default;
 $color-secondary-contrasting: var(--color-secondary-contrasting, #fff) !default;
 
-/* TODO: Re-enable when @helsingborg-stad/openstreetmap dependency is available */
-/* @import "~@helsingborg-stad/openstreetmap/dist/main.css"; */
+// TODO: Re-enable when @helsingborg-stad/openstreetmap dependency is available and configured
+// @import "~@helsingborg-stad/openstreetmap/dist/main.css";
 
 .interactive-map {
     position: relative;
