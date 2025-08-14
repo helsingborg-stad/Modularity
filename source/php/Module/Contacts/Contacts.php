@@ -37,15 +37,6 @@ class Contacts extends \Modularity\Module
             $data['columns'] .= ' o-grid-6@sm';
         }
 
-        //Translations
-        $data['lang'] = (object) [
-            'email' => __('Email', 'modularity'),
-            'call' => __('Call', 'modularity'),
-            'address' => __('Address', 'modularity'),
-            'visiting_address' => __('Visiting address', 'modularity'),
-            'opening_hours' => __('Opening hours', 'modularity')
-        ];
-
         return $data;
     }
 
