@@ -86,6 +86,11 @@ class ManualInput extends \Modularity\Module
                     ? \Municipio\Helper\Color::getBestContrastColor(explode('::', $input['custom_background_color'])[1], false)
                     : false;
 
+                // Extra classes
+                if ($customBackgroundColor) {
+                    $input['classList'] = ['c-card--has-custom-background'];
+                }
+
                 $arr                            = array_merge($this->getManualInputDefaultValues(), $input);
                 $arr['isHighlighted']           = $this->canBeHighlighted($fields, $index);
                 $arr['id']                      = 'item-' . $data['ID'] . '-' . $index;
