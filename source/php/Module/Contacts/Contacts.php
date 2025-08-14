@@ -73,7 +73,7 @@ class Contacts extends \Modularity\Module
                         'work_title'          => $contact['work_title'],
                         'administration_unit' => $contact['administration_unit'],
                         'email'               => strtolower($contact['email']),
-                        'phone'               => $contact['phone_numbers'] ?: null,
+                        'phone'               => $contact['phone_numbers'] ?? null,
                         'social_media'        => $contact['social_media'] ?? null,
                         'address'             => strip_tags($contact['address'] ?? '', '<br>'),
                         'visiting_address'    => strip_tags($contact['visiting_address'] ?? '', ['<br>', '<a>']),
