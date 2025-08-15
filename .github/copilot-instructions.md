@@ -92,6 +92,29 @@ vendor/             # PHP dependencies (composer)
 node_modules/       # Node.js dependencies (npm)
 ```
 
+### Build System Architecture
+
+**Webpack Bundle Creation**: The webpack configuration (`webpack.config.js`) creates specific bundles that correspond directly to WordPress enqueue functions in `source/php/App.php`:
+
+**Frontend Bundles** (enqueued by `enqueueFront()`):
+- `js/modularity.js` ← `./source/js/modularity.js`
+- `css/modularity.css` ← `./source/sass/modularity.scss`
+- `js/user-editable-list.js` ← `./source/js/private/userEditableList.ts`
+
+**Block Editor Bundles** (enqueued by `enqueueBlockEditor()`):
+- `js/edit-modules-block-editor.js` ← `./source/js/edit-modules-block-editor.ts`
+- `js/block-validation.js` ← `./source/js/block-validation.ts`
+
+**Admin Bundles** (enqueued by `enqueueAdmin()`):
+- `js/modularity.js` ← `./source/js/modularity.js` (shared with frontend)
+- `css/modularity.css` ← `./source/sass/modularity.scss` (shared with frontend)
+- `js/dynamic-map-acf.js` ← `./source/js/admin/dynamic-map-acf.js`
+- `js/modularity-text-module.js` ← `./source/js/modularity-text-module.ts`
+
+**Module-Specific Bundles** (automatically included for individual modules):
+- Each module in `source/php/Module/[ModuleName]/assets/` gets its own webpack entry
+- Examples: `js/mod-interactive-map.js`, `css/table.css`, `js/video.js`
+
 ### Important Files
 - `composer.json` - PHP dependencies and scripts
 - `package.json` - Node.js dependencies and npm scripts  
@@ -99,6 +122,19 @@ node_modules/       # Node.js dependencies (npm)
 - `build.php` - Automated build script (orchestrates full build)
 - `phpunit.xml` - PHP test configuration
 - `.github/workflows/` - CI/CD pipelines
+- `source/php/App.php` - Main application class with enqueue functions
+
+### Asset Management
+**Cache Busting**: All assets use `\Modularity\Helper\CacheBust::name()` to append content hashes for cache invalidation. Example:
+```php
+wp_register_script('modularity', MODULARITY_URL . '/dist/' 
+    . \Modularity\Helper\CacheBust::name('js/modularity.js'));
+```
+
+**WordPress Integration**: Assets are enqueued through three main functions in `App.php`:
+- `enqueueFront()` - Frontend scripts and styles for public pages
+- `enqueueBlockEditor()` - Gutenberg block editor integration scripts
+- `enqueueAdmin()` - WordPress admin interface scripts and styles
 
 ## Common Commands Reference
 
@@ -175,7 +211,21 @@ composer test:coverage  # With coverage report
 ### Module Structure  
 - Each module in `source/php/Module/[ModuleName]/`
 - Frontend assets in module's `assets/` subdirectory
-- Webpack automatically includes module assets (see webpack.config.js entries)
+- **Webpack Integration**: Module assets are automatically included as webpack entry points:
+  ```javascript
+  // Examples from webpack.config.js:
+  'js/mod-curator-load-more': './source/php/Module/Curator/assets/mod-curator-load-more.js',
+  'css/table': './source/php/Module/Table/assets/table.scss',
+  'js/video': './source/php/Module/Video/assets/video.js',
+  'css/video': './source/php/Module/Video/assets/video.scss',
+  'js/mod-interactive-map': './source/php/Module/InteractiveMap/assets/interactiveMap.ts',
+  ```
+
+### Adding Module Assets
+1. **Create asset files** in `source/php/Module/[YourModule]/assets/`
+2. **Add webpack entry** in `webpack.config.js` following the naming pattern
+3. **Enqueue in module PHP** using `\Modularity\Helper\CacheBust::name()` for cache busting
+4. **Run build** with `npm run build` to generate dist files
 
 ## WordPress Integration
 
