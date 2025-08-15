@@ -34,13 +34,21 @@ function manifestPlugin() {
       // Map files based on their generated names and match to entries
       for (const [fileName, chunk] of Object.entries(bundle)) {
         if (chunk.type === 'asset' && fileName.endsWith('.css')) {
-          // CSS files - extract the base name from the generated file
-          const baseName = fileName.replace(/\.[a-zA-Z0-9_-]+\.css$/, '')
+          // CSS files - extract the base name without extension
+          let baseName = fileName.replace('.css', '')
+          // Remove hash part if in production
+          if (baseName.includes('.')) {
+            baseName = baseName.replace(/\.[a-zA-Z0-9_-]+$/, '')
+          }
           const entryKey = baseName + '.css'
           manifest[entryKey] = fileName
         } else if (chunk.type === 'chunk' && fileName.endsWith('.js')) {
-          // JS files - extract the base name from the generated file  
-          const baseName = fileName.replace(/\.[a-zA-Z0-9_-]+\.js$/, '')
+          // JS files - extract the base name without extension
+          let baseName = fileName.replace('.js', '')
+          // Remove hash part if in production
+          if (baseName.includes('.')) {
+            baseName = baseName.replace(/\.[a-zA-Z0-9_-]+$/, '')
+          }
           const entryKey = baseName + '.js'
           // Only add JS files that start with js/ to avoid CSS-related JS chunks
           if (entryKey.startsWith('js/')) {
@@ -91,13 +99,16 @@ export default defineConfig(({ mode }) => {
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           includePaths: ['node_modules', 'source'],
-          importer: [
-            function(url) {
-              if (url.startsWith('~')) {
-                return { file: url.slice(1) }
+          importers: [
+            {
+              findFileUrl(url) {
+                if (url.startsWith('~')) {
+                  return new URL(url.slice(1), new URL('../node_modules/', import.meta.url))
+                }
+                return null
               }
-              return null
             }
           ]
         }
