@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
+const { manifestPlugin } = await import('vite-plugin-simple-manifest').then(m => m.default || m)
 
 // Entry points configuration matching the original webpack config
 const entries = {
@@ -24,51 +25,8 @@ const entries = {
   'css/interactive-map': './source/php/Module/InteractiveMap/assets/interactive-map.scss',
 }
 
-// Plugin to generate manifest.json for cache busting
-function manifestPlugin() {
-  return {
-    name: 'manifest-plugin',
-    generateBundle(options, bundle) {
-      const manifest = {}
-      
-      // Map files based on their generated names and match to entries
-      for (const [fileName, chunk] of Object.entries(bundle)) {
-        if (chunk.type === 'asset' && fileName.endsWith('.css')) {
-          // CSS files - extract the base name without extension
-          let baseName = fileName.replace('.css', '')
-          // Remove hash part if in production
-          if (baseName.includes('.')) {
-            baseName = baseName.replace(/\.[a-zA-Z0-9_-]+$/, '')
-          }
-          const entryKey = baseName + '.css'
-          manifest[entryKey] = fileName
-        } else if (chunk.type === 'chunk' && fileName.endsWith('.js')) {
-          // JS files - extract the base name without extension
-          let baseName = fileName.replace('.js', '')
-          // Remove hash part if in production
-          if (baseName.includes('.')) {
-            baseName = baseName.replace(/\.[a-zA-Z0-9_-]+$/, '')
-          }
-          const entryKey = baseName + '.js'
-          // Only add JS files that start with js/ to avoid CSS-related JS chunks
-          if (entryKey.startsWith('js/')) {
-            manifest[entryKey] = fileName
-          }
-        }
-      }
-      
-      this.emitFile({
-        type: 'asset',
-        fileName: 'manifest.json',
-        source: JSON.stringify(manifest, null, 2)
-      })
-    }
-  }
-}
-
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
-  
   return {
     build: {
       outDir: 'dist',
@@ -120,8 +78,6 @@ export default defineConfig(({ mode }) => {
         '~': resolve(__dirname, 'node_modules')
       }
     },
-    plugins: [
-      manifestPlugin()
-    ]
+    plugins: [manifestPlugin('manifest.json')]
   }
 })
