@@ -3,7 +3,6 @@ import { resolve } from 'path'
 
 // Entry points configuration matching the original webpack config
 const entries = {
-  // JavaScript/TypeScript files
   'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
   'js/modularity-text-module': './source/js/modularity-text-module.ts',
   'js/modularity': './source/js/modularity.js',
@@ -17,7 +16,6 @@ const entries = {
   'js/mod-posts-taxonomy-filtering': './source/php/Module/Posts/assets/taxonomyFiltering.js',
   'js/mod-interactive-map': './source/php/Module/InteractiveMap/assets/interactiveMap.ts',
   
-  // SCSS files
   'css/modularity': './source/sass/modularity.scss',
   'css/modularity-thickbox-edit': './source/sass/modularity-thickbox-edit.scss',
   'css/table': './source/php/Module/Table/assets/table.scss',
@@ -91,16 +89,9 @@ export default defineConfig(({ mode }) => {
       minifyIdentifiers: false
     },
     css: {
-      postcss: {
-        plugins: [
-          require('autoprefixer')
-        ]
-      },
       preprocessorOptions: {
         scss: {
-          // Allow importing from node_modules and source directories
           includePaths: ['node_modules', 'source'],
-          // Handle ~ imports like webpack
           importer: [
             function(url) {
               if (url.startsWith('~')) {
@@ -120,16 +111,6 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       manifestPlugin()
-    ],
-    server: {
-      host: true,
-      port: 3000,
-      proxy: process.env.BROWSER_SYNC_PROXY_URL ? {
-        '/': {
-          target: process.env.BROWSER_SYNC_PROXY_URL,
-          changeOrigin: true
-        }
-      } : undefined
-    }
+    ]
   }
 })
