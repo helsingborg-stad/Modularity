@@ -25,7 +25,8 @@
         @foreach($items as $item)
             @collection__item([
                 'icon' => 'arrow_forward',
-                'link' => $item['href']
+                'iconLast' => $iconLast ?? false,
+                'link' => $item['href'],
             ])
                 @typography([
                     'element' => 'h2',
