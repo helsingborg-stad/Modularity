@@ -29,8 +29,7 @@
         "dev": "vite",
         "build": "vite build",
         "build:dev": "vite build --mode development",
-        "watch": "vite build --watch --mode development",
-        "preview": "vite preview"
+        "watch": "vite build --watch --mode development"
     },
     "author": "Kristoffer Svanmark",
     "license": "MIT",
