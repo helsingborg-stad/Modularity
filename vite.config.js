@@ -84,7 +84,14 @@ export default defineConfig(({ mode }) => {
           }
         }
       },
+      // Configure esbuild to handle TypeScript decorators properly
+      minify: isProduction ? 'esbuild' : false,
       sourcemap: true
+    },
+    esbuild: {
+      // Configure esbuild to prevent variable name collisions
+      keepNames: true,
+      minifyIdentifiers: false
     },
     css: {
       postcss: {
