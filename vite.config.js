@@ -1,8 +1,5 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import { glob } from 'glob'
-import fs from 'fs'
-import path from 'path'
 
 // Entry points configuration matching the original webpack config
 const entries = {
