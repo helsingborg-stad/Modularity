@@ -24,7 +24,7 @@
         "rollup-plugin-copy": "^3.5.0"
     },
     "scripts": {
-        "test": "jest --coverage",
+        "test": "jest --coverage --maxWorkers=$(node -e \"console.log(Math.max(1, Math.floor(require('os').cpus().length / 2)))\")",
         "dev": "vite",
         "build": "vite build",
         "build:dev": "vite build --mode development",
