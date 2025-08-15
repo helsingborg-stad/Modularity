@@ -33,7 +33,6 @@ export default defineConfig(({ mode }) => {
       emptyOutDir: true,
       rollupOptions: {
         input: entries,
-        external: ['@helsingborg-stad/openstreetmap'], // Temporarily external until dependency is available
         output: {
           entryFileNames: isProduction ? '[name].[hash].js' : '[name].js',
           chunkFileNames: isProduction ? '[name].[hash].js' : '[name].js',
