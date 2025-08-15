@@ -36,48 +36,23 @@ function manifestPlugin() {
     generateBundle(options, bundle) {
       const manifest = {}
       
-      // Track CSS files separately
-      const cssFiles = {}
-      const jsFiles = {}
-      
+      // Map files based on their generated names and match to entries
       for (const [fileName, chunk] of Object.entries(bundle)) {
         if (chunk.type === 'asset' && fileName.endsWith('.css')) {
-          // CSS files - map based on the source entry
-          for (const [entryName, entryPath] of Object.entries(entries)) {
-            if (entryName.startsWith('css/') && chunk.facadeModuleId?.includes(entryPath.replace('./', ''))) {
-              cssFiles[entryName + '.css'] = fileName
-              break
-            }
-          }
+          // CSS files - extract the base name from the generated file
+          const baseName = fileName.replace(/\.[a-zA-Z0-9_-]+\.css$/, '')
+          const entryKey = baseName + '.css'
+          manifest[entryKey] = fileName
         } else if (chunk.type === 'chunk' && fileName.endsWith('.js')) {
-          // JS files
-          for (const [entryName, entryPath] of Object.entries(entries)) {
-            if (entryName.startsWith('js/') && (
-              chunk.facadeModuleId?.includes(entryPath.replace('./', '')) ||
-              chunk.name === entryName ||
-              entryPath.includes(chunk.name)
-            )) {
-              jsFiles[entryName + '.js'] = fileName
-              break
-            }
+          // JS files - extract the base name from the generated file  
+          const baseName = fileName.replace(/\.[a-zA-Z0-9_-]+\.js$/, '')
+          const entryKey = baseName + '.js'
+          // Only add JS files that start with js/ to avoid CSS-related JS chunks
+          if (entryKey.startsWith('js/')) {
+            manifest[entryKey] = fileName
           }
         }
       }
-      
-      // Manual mapping for CSS files based on known patterns
-      for (const fileName of Object.keys(bundle)) {
-        if (fileName.endsWith('.css')) {
-          const baseName = fileName.replace(/\.[a-zA-Z0-9_-]+\.css$/, '').replace('.css', '')
-          if (baseName === 'css/modularity') cssFiles['css/modularity.css'] = fileName
-          if (baseName === 'css/modularity-thickbox-edit') cssFiles['css/modularity-thickbox-edit.css'] = fileName
-          if (baseName === 'css/table') cssFiles['css/table.css'] = fileName
-          if (baseName === 'css/video') cssFiles['css/video.css'] = fileName
-          if (baseName === 'css/menu') cssFiles['css/menu.css'] = fileName
-          if (baseName === 'css/interactive-map') cssFiles['css/interactive-map.css'] = fileName
-        }
-      }
-      
-      Object.assign(manifest, cssFiles, jsFiles)
       
       this.emitFile({
         type: 'asset',
