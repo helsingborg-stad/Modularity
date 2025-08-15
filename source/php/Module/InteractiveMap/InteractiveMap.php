@@ -23,6 +23,16 @@ class InteractiveMap extends \Modularity\Module
         $this->namePlural = $this->wpService->__('Interactive maps', 'modularity');
         $this->description = $this->wpService->__('Outputs an interactive map', 'modularity');
 
+        add_filter('WpSecurity/Csp', function ($csp) {
+
+            if (isset($csp['img-src'])) {
+                $csp['img-src'][] = '*.basemaps.cartocdn.com';
+                $csp['img-src'][] = 'server.arcgisonline.com';
+            }
+
+            return $csp;
+        });
+
         add_filter('Modularity/Block/acf/interactivemap/Data', array($this, 'blockData'), 50, 3);
     }
 
