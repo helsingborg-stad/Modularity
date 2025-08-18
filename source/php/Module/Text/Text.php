@@ -23,9 +23,6 @@ class Text extends \Modularity\Module
 
         //Run relevant filters
         foreach(['Modularity/Display/SanitizeContent', 'the_content'] as $filter) {
-            if($filter === 'the_content' && $this->isInline()) {
-                continue;
-            }
             $data['postContent'] = apply_filters($filter, $data['postContent']);
         }
 
