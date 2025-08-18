@@ -23,6 +23,7 @@ class InteractiveMap extends \Modularity\Module
         $this->namePlural = $this->wpService->__('Interactive maps', 'modularity');
         $this->description = $this->wpService->__('Outputs an interactive map', 'modularity');
 
+        add_filter('WpSecurity/Csp', array($this, 'csp'), 10, 1);
         add_filter('Modularity/Block/acf/interactivemap/Data', array($this, 'blockData'), 50, 3);
     }
 
@@ -140,6 +141,19 @@ class InteractiveMap extends \Modularity\Module
         }
 
         return $viewData;
+    }
+
+    public function csp($csp): array
+    {
+        if (!is_array($csp)) {
+            return $csp;
+        }
+
+        $csp['img-src'] = $csp['img-src'] ?? [];
+        $csp['img-src'][] = '*.basemaps.cartocdn.com';
+        $csp['img-src'][] = 'server.arcgisonline.com';
+
+        return $csp;
     }
 
     private function getLang(): array
