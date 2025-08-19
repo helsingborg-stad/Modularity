@@ -3,7 +3,7 @@ interface ModularityBlockEditor {
     editModulesLinkHref: string;
 }
 
-const { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editor;
+const { PluginSidebar } = wp.editor;
 const { registerPlugin } = wp.plugins;
 const { Fragment } = wp.element;
 const { PanelBody, Button } = wp.components;
@@ -13,7 +13,6 @@ declare const modularityBlockEditor: ModularityBlockEditor;
 interface WP {
     editor: {
         PluginSidebar: any;
-        PluginSidebarMoreMenuItem: any;
     };
     plugins: {
         registerPlugin: any;
