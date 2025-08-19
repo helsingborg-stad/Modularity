@@ -1,8 +1,5 @@
-import { defineConfig } from 'vite'
-import { resolve } from 'path'
-const { manifestPlugin } = await import('vite-plugin-simple-manifest').then(m => m.default || m)
+import { createViteConfig } from 'vite-config-factory'
 
-// Entry points configuration matching the original webpack config
 const entries = {
   'js/modularity-editor-modal': './source/js/modularity-editor-modal.js',
   'js/modularity-text-module': './source/js/modularity-text-module.ts',
@@ -25,58 +22,7 @@ const entries = {
   'css/interactive-map': './source/php/Module/InteractiveMap/assets/interactive-map.scss',
 }
 
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production'
-  return {
-    build: {
-      outDir: 'dist',
-      emptyOutDir: true,
-      rollupOptions: {
-        input: entries,
-        output: {
-          entryFileNames: isProduction ? '[name].[hash].js' : '[name].js',
-          chunkFileNames: isProduction ? '[name].[hash].js' : '[name].js',
-          assetFileNames: (assetInfo) => {
-            if (assetInfo.name?.endsWith('.css')) {
-              return isProduction ? '[name].[hash].css' : '[name].css'
-            }
-            return 'assets/[name].[hash].[ext]'
-          }
-        }
-      },
-      // Configure esbuild to handle TypeScript decorators properly
-      minify: isProduction ? 'esbuild' : false,
-      sourcemap: true
-    },
-    esbuild: {
-      // Configure esbuild to prevent variable name collisions
-      keepNames: true,
-      minifyIdentifiers: false
-    },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: 'modern-compiler',
-          includePaths: ['node_modules', 'source'],
-          importers: [
-            {
-              findFileUrl(url) {
-                if (url.startsWith('~')) {
-                  return new URL(url.slice(1), new URL('../node_modules/', import.meta.url))
-                }
-                return null
-              }
-            }
-          ]
-        }
-      }
-    },
-    resolve: {
-      extensions: ['.tsx', '.ts', '.js', '.scss', '.css'],
-      alias: {
-        '~': resolve(__dirname, 'node_modules')
-      }
-    },
-    plugins: [manifestPlugin('manifest.json')]
-  }
+export default createViteConfig(entries, {
+  outDir: 'dist',
+  manifestFile: 'manifest.json'
 })

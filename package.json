@@ -58,6 +58,7 @@
         ]
     },
     "dependencies": {
-        "@helsingborg-stad/openstreetmap": "^0.51.4"
+        "@helsingborg-stad/openstreetmap": "^0.51.4",
+        "vite-config-factory": "^1.0.1"
     }
 }
