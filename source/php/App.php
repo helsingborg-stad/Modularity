@@ -223,8 +223,13 @@ class App
     public function enqueueBlockEditor() {
 
         if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
-            wp_register_script('block-editor-edit-modules', MODULARITY_URL . '/dist/'
-            . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'), [], null, ['in_footer' => true]);
+            wp_register_script(
+                'block-editor-edit-modules',
+                MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'),
+                array('wp-plugins', 'wp-edit-post', 'wp-element', 'wp-components'), // dependencies
+                null,
+                true 
+            );
 
             wp_register_script('block-editor-validation', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/block-validation.js'), [], null, ['in_footer' => true]);
