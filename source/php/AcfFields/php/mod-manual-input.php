@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_64ff22b117e2c',
     'title' => __('Manual Input Data', 'modularity'),
     'fields' => array(
@@ -152,7 +150,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        6 => array(
+        5 => array(
             'key' => 'field_67f66637f8734',
             'label' => __('Spaced sections', 'modularity'),
             'name' => 'accordion_spaced_sections',
@@ -180,7 +178,7 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        7 => array(
+        6 => array(
             'key' => 'field_650067ed6cc3c',
             'label' => __('Column marking', 'modularity'),
             'name' => 'accordion_column_marking',
@@ -208,7 +206,7 @@ if (function_exists('acf_add_local_field_group')) {
             'prepend' => '',
             'append' => '',
         ),
-        8 => array(
+        7 => array(
             'key' => 'field_65005968bbc75',
             'label' => __('Column titles', 'modularity'),
             'name' => 'accordion_column_titles',
@@ -262,7 +260,7 @@ if (function_exists('acf_add_local_field_group')) {
                 ),
             ),
         ),
-        9 => array(
+        8 => array(
             'key' => 'field_65001d039d4c4',
             'label' => __('Columns', 'modularity'),
             'name' => 'columns',
@@ -310,7 +308,7 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        10 => array(
+        9 => array(
             'key' => 'field_663372f4922a5',
             'label' => __('Highlight first input', 'modularity'),
             'name' => 'highlight_first_input',
@@ -359,7 +357,63 @@ if (function_exists('acf_add_local_field_group')) {
             'ui_on_text' => '',
             'ui_off_text' => '',
         ),
+        10 => array(
+            'key' => 'field_68975344a0707',
+            'label' => __('Show title above image', 'modularity'),
+            'name' => 'title_above_image',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Show title above the card image instead of grouped with text', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6752f959acfda',
+                        'operator' => '==',
+                        'value' => 'card',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
         11 => array(
+            'key' => 'field_689751b4887b6',
+            'label' => __('Disable card layout shift', 'modularity'),
+            'name' => 'disable_resize_layout_shift',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => __('Disable the standard card layout shift when browser resizes', 'modularity'),
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6752f959acfda',
+                        'operator' => '==',
+                        'value' => 'card',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        12 => array(
             'key' => 'field_6641de045ab9d',
             'label' => __('Image position', 'modularity'),
             'name' => 'image_position',
@@ -392,7 +446,7 @@ if (function_exists('acf_add_local_field_group')) {
             'layout' => 'horizontal',
             'save_other_choice' => 0,
         ),
-        12 => array(
+        13 => array(
             'key' => 'field_65016a6f0a085',
             'label' => __('Ratio', 'modularity'),
             'name' => 'ratio',
@@ -436,7 +490,35 @@ if (function_exists('acf_add_local_field_group')) {
             'allow_custom' => 0,
             'search_placeholder' => '',
         ),
-        13 => array(
+        14 => array(
+            'key' => 'field_689b2ce333d43',
+            'label' => __('Use custom card color', 'modularity'),
+            'name' => 'use_custom_card_color',
+            'aria-label' => '',
+            'type' => 'true_false',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => array(
+                0 => array(
+                    0 => array(
+                        'field' => 'field_6752f959acfda',
+                        'operator' => '==',
+                        'value' => 'card',
+                    ),
+                ),
+            ),
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'message' => '',
+            'default_value' => 0,
+            'ui' => 0,
+            'ui_on_text' => '',
+            'ui_off_text' => '',
+        ),
+        15 => array(
             'key' => 'field_64ff22b2d91b7',
             'label' => __('Manual inputs', 'modularity'),
             'name' => 'manual_inputs',
@@ -692,6 +774,13 @@ if (function_exists('acf_add_local_field_group')) {
                                 'value' => 'segment',
                             ),
                         ),
+                        1 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'card',
+                            ),
+                        ),
                     ),
                     'wrapper' => array(
                         'width' => '50',
@@ -803,7 +892,8 @@ if (function_exists('acf_add_local_field_group')) {
                         'class' => '',
                         'id' => '',
                     ),
-                    'choices' => array(),
+                    'choices' => array(
+                    ),
                     'default_value' => false,
                     'return_format' => 'value',
                     'multiple' => 0,
@@ -813,6 +903,46 @@ if (function_exists('acf_add_local_field_group')) {
                     'allow_null' => 1,
                     'ui' => 1,
                     'ajax' => 0,
+                    'parent_repeater' => 'field_64ff22b2d91b7',
+                ),
+                10 => array(
+                    'key' => 'field_689b2cf733d44',
+                    'label' => __('Custom background color', 'modularity'),
+                    'name' => 'custom_background_color',
+                    'aria-label' => '',
+                    'type' => 'select',
+                    'instructions' => __('Colors can be defined in site customizer under General appearance > Colors > Additional colors.', 'modularity'),
+                    'required' => 1,
+                    'conditional_logic' => array(
+                        0 => array(
+                            0 => array(
+                                'field' => 'field_6752f959acfda',
+                                'operator' => '==',
+                                'value' => 'card',
+                            ),
+                            1 => array(
+                                'field' => 'field_689b2ce333d43',
+                                'operator' => '==',
+                                'value' => '1',
+                            ),
+                        ),
+                    ),
+                    'wrapper' => array(
+                        'width' => '',
+                        'class' => '',
+                        'id' => '',
+                    ),
+                    'choices' => array(
+                    ),
+                    'default_value' => false,
+                    'return_format' => 'value',
+                    'multiple' => 0,
+                    'allow_custom' => 0,
+                    'search_placeholder' => '',
+                    'allow_null' => 0,
+                    'ui' => 1,
+                    'ajax' => 0,
+                    'placeholder' => '',
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
             ),
@@ -851,5 +981,4 @@ if (function_exists('acf_add_local_field_group')) {
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
