@@ -69,7 +69,7 @@ class Curator extends \Modularity\Module
 
     public function script()
     {
-        wp_register_script(
+        wp_register_script_module(
             'mod-curator-load-more',
             MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/mod-curator-load-more.js')
         );
@@ -78,7 +78,7 @@ class Curator extends \Modularity\Module
         'nonce' => wp_create_nonce('mod-posts-load-more')
         ]);
         wp_localize_script('mod-curator-load-more', 'curator', $strings);
-        wp_enqueue_script('mod-curator-load-more');
+        wp_enqueue_script_module('mod-curator-load-more');
     }
 
     public function data(): array

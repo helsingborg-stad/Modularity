@@ -428,12 +428,12 @@ class Posts extends \Modularity\Module
         $wpService = WpService::get();
         $getCurrentPostId = fn() => $wpService->isArchive() ? false : $wpService->getTheID();
 
-        wp_register_script('mod-posts-taxonomy-filtering', MODULARITY_URL . '/dist/'
+        wp_register_script_module('mod-posts-taxonomy-filtering', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/mod-posts-taxonomy-filtering.js'));
         wp_localize_script('mod-posts-taxonomy-filtering', 'modPostsTaxonomyFiltering', [
             'currentPostID' => $getCurrentPostId(),
         ]);
-        wp_enqueue_script('mod-posts-taxonomy-filtering');
+        wp_enqueue_script_module('mod-posts-taxonomy-filtering');
     }
 
     /**

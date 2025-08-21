@@ -458,10 +458,10 @@ class Video extends \Modularity\Module
 
     public function script()
     {
-        wp_register_script('mod-video-script', MODULARITY_URL . '/dist/'
+        wp_register_script_module('mod-video-script', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/video.js'));
 
-        wp_enqueue_script('mod-video-script');
+        wp_enqueue_script_module('mod-video-script');
     }
 
     private function accessProtected($obj, $prop)

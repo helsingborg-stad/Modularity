@@ -82,11 +82,12 @@ class Subscribe extends \Modularity\Module
 
     public function script()
     {
-        wp_register_script('mod-subscribe-ungapd', MODULARITY_URL . '/dist/'
+        wp_register_script_module('mod-subscribe-ungapd', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/ungapd.js'));
- 
-        wp_enqueue_script('mod-subscribe-ungapd');
+
+        wp_enqueue_script_module('mod-subscribe-ungapd');
     }
+
     /**
      * Available "magic" methods for modules:
      * init()            What to do on initialization

@@ -66,14 +66,14 @@ class Thickbox
     public function enqueue()
     {
         // Script
-        wp_register_script(
+        wp_register_script_module(
             'modularity-thickbox', 
             MODULARITY_URL . '/dist/' . \Modularity\Helper\CacheBust::name('js/modularity-editor-modal.js'),
             [],
             '1.0.0',
             true
         );
-        wp_enqueue_script('modularity-thickbox');
+        wp_enqueue_script_module('modularity-thickbox');
 
         // Style
         wp_register_style(

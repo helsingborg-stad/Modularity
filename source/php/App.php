@@ -17,6 +17,7 @@ class App
         add_action('admin_enqueue_scripts', array($this, 'enqueueAdmin'), 950);
         add_action('enqueue_block_editor_assets', array($this, 'enqueueBlockEditor'));
         add_action('wp_enqueue_scripts', array($this, 'enqueueFront'), 950);
+        add_action('wp_enqueue_scripts', array($this, 'enqueueFrontForEditors'), 1000);
         add_action('admin_menu', array($this, 'addAdminMenuPage'));
         add_action('admin_init', array($this, 'addCaps'));
 
@@ -181,13 +182,17 @@ class App
         return $url;
     }
 
+    /**
+     * Enqueue scripts and styles for public front-end
+     * @return void
+     **/
     public function enqueueFront()
     {
         wp_register_style('modularity', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('css/modularity.css'));
         wp_enqueue_style('modularity');
 
-        wp_register_script('modularity', MODULARITY_URL . '/dist/'
+        wp_register_script_module('modularity', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/modularity.js'), [], null, true);
 
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
@@ -203,30 +208,39 @@ class App
             'widthOptions' => $this->editor->getWidthOptions(),
             'deprecated' => __('Deprecated', 'modularity')
         ));
-        wp_enqueue_script('modularity');
+        wp_enqueue_script_module('modularity');
 
-        wp_register_script('user-editable-list', MODULARITY_URL . '/dist/'
+        wp_register_script_module('user-editable-list', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/user-editable-list.js'));
+        wp_enqueue_script_module('user-editable-list');
+    }
 
-        wp_enqueue_script('user-editable-list');
-
+    /**
+     * Enqueues scripts and styles for the front-end when the user is an editor
+     * @return void
+     */
+    public function enqueueFrontForEditors()
+    {
         if (!current_user_can('edit_posts')) {
             return;
         }
-        //Register admin specific scripts/styling here
 
         if (wp_script_is('jquery', 'registered') && !wp_script_is('jquery', 'enqueued')) {
             wp_enqueue_script('jquery');
         }
     }
 
+    /**
+     * Enqueues scripts and styles for the block editor
+     * @return void
+     */
     public function enqueueBlockEditor() {
 
         if ($modulesEditorId = \Modularity\Helper\Wp::isGutenbergEditor()) {
-            wp_register_script('block-editor-edit-modules', MODULARITY_URL . '/dist/'
+            wp_register_script_module('block-editor-edit-modules', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/edit-modules-block-editor.js'), [], null, ['in_footer' => true]);
 
-            wp_register_script('block-editor-validation', MODULARITY_URL . '/dist/'
+            wp_register_script_module('block-editor-validation', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/block-validation.js'), [], null, ['in_footer' => true]);
 
             wp_localize_script('block-editor-edit-modules', 'modularityBlockEditor', array(
@@ -234,8 +248,8 @@ class App
                 'editModulesLinkHref' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
             ));
 
-            wp_enqueue_script('block-editor-validation');
-            wp_enqueue_script('block-editor-edit-modules');
+            wp_enqueue_script_module('block-editor-validation');
+            wp_enqueue_script_module('block-editor-edit-modules');
         }
     }
 
@@ -253,8 +267,9 @@ class App
         . \Modularity\Helper\CacheBust::name('css/modularity.css'));
         wp_enqueue_style('modularity');
 
-        wp_register_script('modularity', MODULARITY_URL . '/dist/'
+        wp_register_script_module('modularity', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
+
         wp_localize_script('modularity', 'modularityAdminLanguage', array(
             'langvisibility' => __('Toggle visibility', 'modularity'),
             'langedit' => __('Edit', 'modularity'),
@@ -270,13 +285,13 @@ class App
         ));
         wp_enqueue_script('modularity');
 
-        wp_register_script('dynamic-map-acf', MODULARITY_URL . '/dist/'
+        wp_register_script_module('dynamic-map-acf', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/dynamic-map-acf.js'), ['jquery']);
-        wp_enqueue_script('dynamic-map-acf');
+        wp_enqueue_script_module('dynamic-map-acf');
 
-        wp_register_script('modularity-text-module', MODULARITY_URL . '/dist/'
+        wp_register_script_module('modularity-text-module', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity-text-module.js'));
-        wp_enqueue_script('modularity-text-module');
+        wp_enqueue_script_module('modularity-text-module');
 
         add_action('admin_head', function () {
             echo "
