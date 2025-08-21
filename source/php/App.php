@@ -192,6 +192,7 @@ class App
             . \Modularity\Helper\CacheBust::name('css/modularity.css'));
         wp_enqueue_style('modularity');
 
+        wp_enqueue_script('wp-api');
         wp_register_script_module('modularity', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
 
