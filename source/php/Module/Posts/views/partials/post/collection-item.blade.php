@@ -15,7 +15,7 @@
     )
 
     @slot('before')
-        @if ($post->getImage() ?? false)
+        @if ($post->image ?? false)
             @image([
                 'src' => $post->getImage(120,120)->getUrl(),
                 'alt' => $post->getImage()->getAltText(),
