@@ -75,7 +75,7 @@ class ManualInput extends \Modularity\Module
                 });
 
                 // Custom background color
-                $customBackgroundColor = $fields['use_custom_card_color'] 
+                $customBackgroundColor = ($fields['use_custom_card_color'] ?? false) 
                                             && !empty($input['custom_background_color']) 
                                             && strpos($input['custom_background_color'], '::') !== false
                     ? explode('::', $input['custom_background_color'])[0]
