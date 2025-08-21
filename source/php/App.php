@@ -195,7 +195,7 @@ class App
         wp_register_script_module('modularity', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
 
-        wp_localize_script('modularity', 'modularityAdminLanguage', array(
+        $this->wpLocalizeScriptModule('modularity', 'modularityAdminLanguage', array(
             'langvisibility' => __('Toggle visibility', 'modularity'),
             'langedit' => __('Edit', 'modularity'), 
             'langimport' => __('Import', 'modularity'),
@@ -243,7 +243,7 @@ class App
             wp_register_script_module('block-editor-validation', MODULARITY_URL . '/dist/'
             . \Modularity\Helper\CacheBust::name('js/block-validation.js'), [], null, ['in_footer' => true]);
 
-            wp_localize_script('block-editor-edit-modules', 'modularityBlockEditor', array(
+            $this->wpLocalizeScriptModule('block-editor-edit-modules', 'modularityBlockEditor', array(
                 'editModulesLinkLabel' => __('Edit Modules', 'modularity'),
                 'editModulesLinkHref' => admin_url('options.php?page=modularity-editor&id=' . $modulesEditorId)
             ));
@@ -270,7 +270,7 @@ class App
         wp_register_script_module('modularity', MODULARITY_URL . '/dist/'
         . \Modularity\Helper\CacheBust::name('js/modularity.js'), ['wp-api'], null, true);
 
-        wp_localize_script('modularity', 'modularityAdminLanguage', array(
+        $this->wpLocalizeScriptModule('modularity', 'modularityAdminLanguage', array(
             'langvisibility' => __('Toggle visibility', 'modularity'),
             'langedit' => __('Edit', 'modularity'),
             'langimport' => __('Import', 'modularity'),
@@ -439,5 +439,35 @@ class App
         // Add the hook back once the post has been updated
         add_action('post_updated', [$this, 'updatePostModifiedDateOnPostsRelatedToModule'], 10, 2);
 
+    }
+
+    /**
+     * Drop-in replacement for wp_localize_script() but for script modules.
+     *
+     * @param string $handle   The registered script module handle.
+     * @param string $object   The name of the JavaScript object to create.
+     * @param array  $l10n     The data to be passed to the script.
+     *
+     * @return bool True on success, false on failure.
+     */
+    public function wpLocalizeScriptModule( string $handle, string $object, array $l10n ): bool {
+        if ( empty( $handle ) || empty( $object ) || ! is_array( $l10n ) ) {
+            return false;
+        }
+
+        // Encode the data
+        $json = wp_json_encode( $l10n, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT );
+
+        if ( ! $json ) {
+            return false;
+        }
+
+        // Create inline script just like wp_localize_script would
+        $script = "const {$object} = {$json};";
+
+        // Attach before the module
+        wp_add_inline_script( $handle, $script, 'before' );
+
+        return true;
     }
 }
