@@ -476,6 +476,15 @@ class BlockManager
                 error_log('Class ' . get_class($module) . ' must use the getFields function to ensure block compability.');
             }
 
+            $wrapModule = apply_filters('Modularity/Block/DisplayBlockWrapper', true);
+            if ($wrapModule) {
+                $classes = [
+                    "modularity-mod-{$block['moduleName']}",
+                    "block-modularity-mod-{$block['moduleName']}",
+                ];
+                $renderedView = '<div class="' . implode(' ', $classes) . '">' . $renderedView . '</div>';
+            }
+
             // Render block view if validated correctly
             echo $renderedView;
 
