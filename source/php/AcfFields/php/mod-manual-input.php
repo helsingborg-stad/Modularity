@@ -840,7 +840,7 @@
                     'label' => __('Icon', 'modularity'),
                     'name' => 'box_icon',
                     'aria-label' => '',
-                    'type' => 'select',
+                    'type' => 'icon',
                     'instructions' => '',
                     'required' => 0,
                     'conditional_logic' => array(
@@ -892,17 +892,8 @@
                         'class' => '',
                         'id' => '',
                     ),
-                    'choices' => array(
-                    ),
-                    'default_value' => false,
-                    'return_format' => 'value',
-                    'multiple' => 0,
-                    'allow_custom' => 0,
+                    'default_value' => '',
                     'placeholder' => '',
-                    'search_placeholder' => '',
-                    'allow_null' => 1,
-                    'ui' => 1,
-                    'ajax' => 0,
                     'parent_repeater' => 'field_64ff22b2d91b7',
                 ),
                 10 => array(
