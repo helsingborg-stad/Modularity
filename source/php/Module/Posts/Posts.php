@@ -300,8 +300,8 @@ class Posts extends \Modularity\Module
      * @return false|string
      */
     public function template()
-    {   
-        $template = $this->data['posts_display_as'] ?? 'list';
+    { 
+        $template = !empty($this->data['posts_display_as']) ? $this->data['posts_display_as'] : 'list';
 
         if (!empty($this->fields['show_as_slider']) && in_array($this->fields['posts_display_as'], $this->sliderCompatibleLayouts, true)) {
             $template = 'slider';
@@ -330,6 +330,7 @@ class Posts extends \Modularity\Module
         if (empty($template)) {
             return false;
         }
+
         if (!empty($data)) {
             $this->data = $data;
         }
