@@ -78,7 +78,7 @@
     "suggest": {
         "helsingborg-stad/component-library": "Required for modules in modularity"
     },
-    "version": "6.90.8",
+    "version": "6.90.9",
     "require-dev": {
         "phpunit/phpunit": "^11",
         "php-stubs/wordpress-stubs": "dev-master",
