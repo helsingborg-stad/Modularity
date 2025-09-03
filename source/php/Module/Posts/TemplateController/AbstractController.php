@@ -60,13 +60,38 @@ class AbstractController
     */
     public function preparePosts(\Modularity\Module\Posts\Posts $module)
     {
+        $this->disableBlockRendering();
         $stickyPosts = $module->data['stickyPosts'] ?? [];
         $stickyPosts = $this->addStickyPostsData($stickyPosts);
         $stickyPosts = $this->addPostData($stickyPosts);
         $posts       = $this->addPostData($module->data['posts']);
         $posts       = array_merge($stickyPosts, $posts);
+        $this->enableBlockRendering();
 
         return $posts;
+    }
+
+    /**
+     * Disable block rendering.
+     * Should run before preparing posts to avoid rendering blocks in content.
+     * Prevents performance issues.
+     */
+    protected function disableBlockRendering(): void
+    {
+        $this->getWpService()->addFilter( 'pre_render_block', function($preRender) {
+            return true; 
+        } );
+    }
+
+    /**
+     * Enable block rendering.
+     * Should run after preparing posts to allow rendering blocks in content.
+     */
+    protected function enableBlockRendering(): void
+    {
+        $this->getWpService()->addFilter( 'pre_render_block', function($preRender) {
+            return null;
+        } );
     }
 
     /**

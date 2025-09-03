@@ -13,6 +13,7 @@ class AbstractControllerTest extends TestCase
     protected function setUp(): void
     {
         WpService::set(new FakeWpService([
+            'addFilter' => true
         ]));
     }
 
