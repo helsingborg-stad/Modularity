@@ -10,16 +10,14 @@
         "dist/"
     ],
     "devDependencies": {
-        "@babel/core": "^7.28.3",
-        "@babel/preset-env": "^7.28.3",
-        "@babel/preset-typescript": "^7.27.1",
+        "@types/jest": "^30.0.0",
         "autoprefixer": "^10.4.20",
-        "babel-jest": "^30.0.5",
-        "jest": "^30.0.5",
-        "jest-environment-jsdom": "^30.0.5",
+        "jest": "^30.1.3",
+        "jest-environment-jsdom": "^30.1.2",
         "postcss": "^8.5.1",
         "rollup-plugin-copy": "^3.5.0",
         "sass": "^1.90.0",
+        "ts-jest": "^29.4.1",
         "typescript": "^5.9.2",
         "vite": "^7.1.2",
         "vite-plugin-simple-manifest": "^1.0.2"
@@ -40,7 +38,7 @@
     "jest": {
         "testEnvironment": "jsdom",
         "transform": {
-            "^.+\\.(js|ts)$": "babel-jest"
+            "^.+\\.(js|ts)$": "ts-jest"
         },
         "collectCoverageFrom": [
             "source/**/*.js",
