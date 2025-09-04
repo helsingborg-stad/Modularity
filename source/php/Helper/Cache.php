@@ -181,7 +181,23 @@ class Cache
             return false;
         }
 
+        if ($this->isAdmin()) {
+            return false;
+        }
+
         return true;
+    }
+
+    /**
+     * Check if current request is in admin
+     * @return boolean
+     */
+    private function isAdmin()
+    {
+        if (is_admin() && !wp_doing_ajax()) {
+            return true;
+        }
+        return false;
     }
 
     /**
