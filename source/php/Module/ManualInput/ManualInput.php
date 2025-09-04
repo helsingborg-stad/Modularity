@@ -150,6 +150,7 @@ class ManualInput extends \Modularity\Module
             'content'                   => null,
             'link'                      => null,
             'link_text'                 => null,
+            'default_link_text'         => __('Read more', 'modularity'),
             'image'                     => null,
             'accordion_column_values'   => [],
             'box_icon'                  => null,
