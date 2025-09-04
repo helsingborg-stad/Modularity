@@ -135,9 +135,6 @@ class Cache
         if (!$this->isActive()) {
             return false;
         }
-        if ($this->isAdmin()) {
-            return false;
-        }
         return !empty($this->getCache(false));
     }
 
@@ -181,6 +178,10 @@ class Cache
         }
 
         if(empty($this->ttl)) {
+            return false;
+        }
+
+        if ($this->isAdmin()) {
             return false;
         }
 
