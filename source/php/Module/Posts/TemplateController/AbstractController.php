@@ -95,7 +95,7 @@ class AbstractController
     /**
      * Prepare posts data by setting default values and post flags.
      *
-     * @param array $posts
+     * @param \WP_Post[] $posts Array of WP_Post objects
      *
      * @return array
      * TODO: This should require an array, but cant because sometimes it gets null. 
@@ -105,6 +105,7 @@ class AbstractController
         $shouldAddBlogNameToPost = $this->shouldAddBlogNameToPost();
 
         $posts = array_map(function($post) use ($shouldAddBlogNameToPost) {
+            $post->post_content = $this->removePostsModuleBlocksFromContent($post->post_content);
             $data['taxonomiesToDisplay'] = !empty($this->fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -154,6 +155,12 @@ class AbstractController
         }
 
         return $posts;
+    }
+
+    private function removePostsModuleBlocksFromContent(string $content): string {
+        // Use regex to remove Modularity Posts blocks from the content
+        $pattern = '/<!--\s*wp:acf\/posts\s.*-->/';
+        return preg_replace($pattern, '', $content);
     }
 
     /**
