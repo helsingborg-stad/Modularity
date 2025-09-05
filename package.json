@@ -1,78 +1,64 @@
 {
-    "name": "@helsingborg-stad/modularity",
-    "version": "6.88.1",
-    "description": "Modular component system for WordPress",
-    "browserslist": [
-        "> 1%",
-        "not dead"
-    ],
-    "files": [
-        "dist/"
-    ],
-    "devDependencies": {
-        "@types/jest": "^30.0.0",
-        "autoprefixer": "^10.4.20",
-        "jest": "^30.1.3",
-        "jest-environment-jsdom": "^30.1.2",
-        "postcss": "^8.5.1",
-        "rollup-plugin-copy": "^3.5.0",
-        "sass": "^1.90.0",
-        "ts-jest": "^29.4.1",
-        "typescript": "^5.9.2",
-        "vite": "^7.1.2",
-        "vite-plugin-simple-manifest": "^1.0.2",
-        "prettier": "3.6.2",
-        "eslint": "^9.34.0",
-        "eslint-config-prettier": "^10.1.8",
-        "typescript-eslint": "^8.41.0"
-    },
-    "scripts": {
-        "test": "jest --coverage --maxWorkers=$(node -e \"console.log(Math.max(1, Math.floor(require('os').cpus().length / 2)))\")",
-        "dev": "vite",
-        "build": "vite build",
-        "build:dev": "vite build --mode development",
-        "watch": "vite build --watch --mode development",
-        "lint": "eslint ./source/js",
-        "lint:fix": "eslint ./source/js --fix",
-        "prettier": "prettier  \"./**/*.+(js|ts|json)\"",
-        "prettier:fix": "prettier --write \"./**/*.+(js|ts|json)\""
-    },
-    "author": "Kristoffer Svanmark",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/helsingborg-stad/modularity.git"
-    },
-    "jest": {
-        "testEnvironment": "jsdom",
-        "transform": {
-            "^.+\\.(js|ts)$": "ts-jest"
-        },
-        "collectCoverageFrom": [
-            "source/**/*.js",
-            "source/**/*.ts"
-        ],
-        "moduleFileExtensions": [
-            "js",
-            "ts"
-        ],
-        "testMatch": [
-            "**/*.test.(js|ts)"
-        ],
-        "transformIgnorePatterns": [
-            "node_modules/(?!(.*\\.mjs$))"
-        ]
-    },
-    "prettier": {
-        "trailingComma": "es5",
-        "semi": false,
-        "singleQuote": true,
-        "arrowParens": "avoid",
-        "endOfLine": "lf",
-        "tabWidth": 4
-    },
-    "dependencies": {
-        "@helsingborg-stad/openstreetmap": "^0.51.4",
-        "vite-config-factory": "^1.0.1"
-    }
+	"name": "@helsingborg-stad/modularity",
+	"version": "6.88.1",
+	"description": "Modular component system for WordPress",
+	"browserslist": [
+		"> 1%",
+		"not dead"
+	],
+	"files": [
+		"dist/"
+	],
+	"scripts": {
+		"test": "jest --coverage --maxWorkers=50%",
+		"dev": "vite",
+		"build": "vite build",
+		"build:dev": "vite build --mode development",
+		"watch": "vite build --watch --mode development",
+		"format": "npx biome format ./source",
+		"format:write": "npx biome format ./source --write",
+		"lint": "npx biome lint ./source",
+		"lint:write": "npx biome lint ./source --write"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.2.2",
+		"@types/jest": "^30.0.0",
+		"autoprefixer": "^10.4.20",
+		"jest": "^30.1.3",
+		"jest-environment-jsdom": "^30.1.2",
+		"ts-jest": "^29.4.1",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.2",
+		"sass": "^1.90.0"
+	},
+	"author": "Kristoffer Svanmark",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/helsingborg-stad/modularity.git"
+	},
+	"jest": {
+		"testEnvironment": "jsdom",
+		"transform": {
+			"^.+\\.(js|ts)$": "ts-jest"
+		},
+		"collectCoverageFrom": [
+			"source/**/*.js",
+			"source/**/*.ts"
+		],
+		"moduleFileExtensions": [
+			"js",
+			"ts"
+		],
+		"testMatch": [
+			"**/*.test.(js|ts)"
+		],
+		"transformIgnorePatterns": [
+			"node_modules/(?!(.*\\.mjs$))"
+		]
+	},
+	"dependencies": {
+		"@helsingborg-stad/openstreetmap": "^0.51.4",
+		"vite-config-factory": "^1.0.1"
+	}
 }

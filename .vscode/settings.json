@@ -1,9 +1,8 @@
 {
     "git.ignoreLimitWarning": true,
-    "editor.formatOnSave": true,
-    "eslint.validate": ["typescript", "javascript"],
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit"
-    }
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit"
+	}
 }
