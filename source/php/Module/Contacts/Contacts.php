@@ -24,6 +24,7 @@ class Contacts extends \Modularity\Module
         $data['ID'] = $this->ID;
 
         $this->view = $data['view'] ?? 'extended';
+        $data['view'] = $this->view;
 
         if(!empty($data['contacts'])) {
             $data['contacts'] = $this->prepareContacts($data['contacts']);
