@@ -396,6 +396,7 @@ class BlockManager
      */
     public function renderBlock($block)
     {
+        
         global $post;
 
         $module = $this->classes[$block['moduleName']];
