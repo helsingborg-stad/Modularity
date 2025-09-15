@@ -98,7 +98,9 @@ class Posts extends \Modularity\Module
      */
     public function loadTaxonomyDisplayField(array $field = []): array 
     {
-        $taxonomies = get_taxonomies([], 'objects');
+        $taxonomies = get_taxonomies([
+            'public' => true
+        ], 'objects');
 
         $choices = [];
         foreach ($taxonomies as $taxonomyName => $taxonomyObj) {
