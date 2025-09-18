@@ -1,4 +1,4 @@
-<div class="{{ $classes }} script-{{$scriptWrapWithClassName}}">
+<div class="{{ $classes ?? '' }} script-{{$scriptWrapWithClassName}}">
     @if (!$hideTitle && !empty($postTitle))
         <div class="script-{{$scriptWrapWithClassName}}__header">
             @php
@@ -17,8 +17,8 @@
 	@include('partials.content')
 
     @image([
-            'src'=> $placeholder['url'],
-            'alt' => $placeholder['alt'],
+            'src'=> $placeholder['url'] ?? false,
+            'alt' => $placeholder['alt'] ?? '',
             'classList' => ['box-image','u-print-display--inline-block','u-display--none']
         ])
     @endimage

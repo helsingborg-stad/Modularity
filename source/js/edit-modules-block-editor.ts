@@ -3,9 +3,22 @@ interface ModularityBlockEditor {
     editModulesLinkHref: string;
 }
 
+const { PluginSidebar } = wp.editor;
+const { registerPlugin } = wp.plugins;
+const { Fragment } = wp.element;
+const { PanelBody, Button } = wp.components;
+
 declare const modularityBlockEditor: ModularityBlockEditor;
 
 interface WP {
+    editor: {
+        PluginSidebar: any;
+    };
+    plugins: {
+        registerPlugin: any;
+    };
+    element: any;
+    components: any;
     data: {
         subscribe(callback: () => void): void;
     };
@@ -13,41 +26,40 @@ interface WP {
 
 declare const wp: WP;
 
-(function (wp: WP) {
-    const editModulesLinkId = 'editModulesPageLink';
+function ModulesPluginSidebar() {
     const { editModulesLinkLabel, editModulesLinkHref } = modularityBlockEditor;
 
-    // prepare our custom link's html.
-    const editModulesLinkHTML = `
-        <a 
-            id="${editModulesLinkId}" 
-            class="components-button has-icon"
-            aria-label="${editModulesLinkLabel}" 
-            href="${editModulesLinkHref}"
-        >
-            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" style="margin-right: .3em;" aria-hidden="true" focusable="false">
-                <path d="M240-440h360v-80H240v80Zm0-120h360v-80H240v80Zm-80 400q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm0-80h640v-480H160v480Zm0 0v-480 480Z"/>
-            </svg>
-            ${editModulesLinkLabel}
-        </a>
-    `;
+    const sidebar = wp.element.createElement(
+        wp.editor.PluginSidebar,
+        {
+            name: 'modules-plugins-sidebar',
+            icon: 'grid-view',
+            title: editModulesLinkLabel,
+        },
+        wp.element.createElement(
+            wp.components.PanelBody,
+            null,
+            wp.element.createElement(
+                wp.components.Button,
+                {
+                    isPrimary: true,
+                    onClick: function () {
+                        window.location.href = editModulesLinkHref;
+                    }
+                },
+                editModulesLinkLabel
+            )
+        )
+    );
 
-    // check if gutenberg's editor root element is present.
-    const editorEl: HTMLElement | null = document.getElementById('editor');
-    if (!editorEl) {
-        return;
-    }
+    return wp.element.createElement(
+        wp.element.Fragment,
+        null,
+        sidebar
+    );
+}
 
-    // Append button if not existing
-    wp.data.subscribe(() => {
-        setTimeout(() => {
-            if (!document.getElementById(editModulesLinkId)) {
-                const toolbarContainer: HTMLElement | null = editorEl.querySelector('.editor-header__settings');
-
-                if (toolbarContainer instanceof HTMLElement) {
-                    toolbarContainer.insertAdjacentHTML('afterbegin', editModulesLinkHTML);
-                }
-            }
-        }, 1);
-    });
-})(wp);
+// Register the plugin
+wp.plugins.registerPlugin('modules-plugins-sidebar', {
+    render: ModulesPluginSidebar
+});

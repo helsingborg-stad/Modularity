@@ -19,7 +19,7 @@ class Display
     private $isBlock = false;
     private $isRenderingModule = false;
     private static $renderedShortcodeModules = [];
-
+    private $isShortcode = false; // Flag to indicate if the current context is a shortcode.
     private static $sidebarState = []; //Holds state of sidebars.
 
     public function __construct()
@@ -39,6 +39,10 @@ class Display
         add_filter('ComponentLibrary/Component/Data', function ($data) {
             if ($this->isRenderingModule) {
                 $data['isBlock'] = $this->isBlock;
+            }
+
+            if ($this->isShortcode) {
+                $data['isShortcode'] = true;
             }
 
             return $data;
@@ -778,8 +782,10 @@ class Display
         $class = \Modularity\ModuleManager::$classes[$module->post_type];
         $module = new $class($module, $args);
 
+        $this->isShortcode = true;
         $moduleMarkup = $this->getModuleMarkup($module, $args);
         if (empty($moduleMarkup)) {
+            $this->isShortcode = false;
             return;
         }
 
@@ -788,7 +794,7 @@ class Display
         $moduleMarkup = '<div class="' . $module->post_type . '">' . $moduleMarkup . '</div>';
 
         self::$renderedShortcodeModules[$args['id']] = $moduleMarkup;
-
+        $this->isShortcode = false;
         return $moduleMarkup;
     }
 

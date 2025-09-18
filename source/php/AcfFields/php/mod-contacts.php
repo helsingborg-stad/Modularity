@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_5805e5dc0a3be',
     'title' => __('Contacts', 'modularity'),
     'fields' => array(
@@ -36,6 +38,29 @@
             'search_placeholder' => '',
         ),
         1 => array(
+            'key' => 'field_6851b66acc73f',
+            'label' => __('View', 'modularity'),
+            'name' => 'view',
+            'aria-label' => '',
+            'type' => 'button_group',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+                'width' => '',
+                'class' => '',
+                'id' => '',
+            ),
+            'choices' => array(
+                'simple' => __('Simple', 'modularity'),
+                'extended' => __('Extended', 'modularity'),
+            ),
+            'default_value' => 'extended',
+            'return_format' => 'value',
+            'allow_null' => 0,
+            'layout' => 'horizontal',
+        ),
+        2 => array(
             'key' => 'field_6724b0113e1b6',
             'label' => __('Placeholder avatar', 'modularity'),
             'name' => 'placeholder_avatar',
@@ -55,7 +80,7 @@
             'ui_off_text' => '',
             'ui' => 1,
         ),
-        2 => array(
+        3 => array(
             'key' => 'field_5805e5dc1dc55',
             'label' => __('Contacts', 'modularity'),
             'name' => 'contacts',
@@ -285,19 +310,27 @@
                             'type' => 'repeater',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
                                 'id' => '',
                             ),
-                            'collapsed' => '',
+                            'acfe_repeater_stylised_button' => 0,
+                            'layout' => 'table',
                             'min' => 0,
                             'max' => 0,
-                            'layout' => 'table',
+                            'collapsed' => '',
                             'button_label' => __('Lägg till rad', 'modularity'),
                             'rows_per_page' => 20,
-                            'acfe_repeater_stylised_button' => 0,
                             'sub_fields' => array(
                                 0 => array(
                                     'key' => 'field_5bf6a737c1b6c',
@@ -365,11 +398,11 @@
                                 'id' => '',
                             ),
                             'default_value' => '',
-                            'placeholder' => '',
+                            'acfe_textarea_code' => 0,
                             'maxlength' => '',
                             'rows' => '',
+                            'placeholder' => '',
                             'new_lines' => 'wpautop',
-                            'acfe_textarea_code' => 0,
                         ),
                         9 => array(
                             'key' => 'field_5805e5dc28e30',
@@ -379,7 +412,15 @@
                             'type' => 'textarea',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '50',
                                 'class' => '',
@@ -400,7 +441,15 @@
                             'type' => 'textarea',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
@@ -421,7 +470,15 @@
                             'type' => 'wysiwyg',
                             'instructions' => '',
                             'required' => 0,
-                            'conditional_logic' => 0,
+                            'conditional_logic' => array(
+                                0 => array(
+                                    0 => array(
+                                        'field' => 'field_6851b66acc73f',
+                                        'operator' => '==',
+                                        'value' => 'extended',
+                                    ),
+                                ),
+                            ),
                             'wrapper' => array(
                                 'width' => '',
                                 'class' => '',
@@ -551,4 +608,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

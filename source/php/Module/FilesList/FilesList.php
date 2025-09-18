@@ -38,8 +38,8 @@ class FilesList extends \Modularity\Module
                 $this->args
             )
         );
-        $data['isFilterable'] = get_field('show_filter', $this->ID);
-        $data['filterAboveCard'] = get_field('filter_above_card', $this->ID);
+        $data['isFilterable'] = $fields['show_filter'] ?? false;
+        $data['filterAboveCard'] = $fields['filter_above_card'] ?? false;
         $data['showDownloadIcon'] = in_array('show_download_icon', $settings);
         $data['uID'] = uniqid();
         $data['ID'] = $this->ID;
@@ -54,9 +54,9 @@ class FilesList extends \Modularity\Module
      */
     public function prepareFileData()
     {
-        $acfService = AcfService::get();
-        $files = $acfService->getField('file_list', $this->ID);
-        $settings = $acfService->getField('settings', $this->ID);
+        $fields = $this->getFields();
+        $files = $fields['file_list'] ?? [];
+        $settings = $fields['settings'] ?? [];
         $rows = [];
 
         foreach ($files as $key => $item) {

@@ -95,16 +95,17 @@ class AbstractController
     /**
      * Prepare posts data by setting default values and post flags.
      *
-     * @param array $posts
+     * @param \WP_Post[] $posts Array of WP_Post objects
      *
      * @return array
      * TODO: This should require an array, but cant because sometimes it gets null. 
     */
     public function addPostData($posts = [])
     {
-        static $anyPostIsFromOtherBlog = false;
+        $shouldAddBlogNameToPost = $this->shouldAddBlogNameToPost();
 
-        $posts = array_map(function($post) use (&$anyPostIsFromOtherBlog) {
+        $posts = array_map(function($post) use ($shouldAddBlogNameToPost) {
+            $post->post_content = $this->removePostsModuleBlocksFromContent($post->post_content);
             $data['taxonomiesToDisplay'] = !empty($this->fields['taxonomy_display'] ?? null) ? $this->fields['taxonomy_display'] : [];
             $helperClass = '\Municipio\Helper\Post';
             $helperMethod = 'preparePostObject';
@@ -115,8 +116,7 @@ class AbstractController
                 return $post;
             }
 
-            if( $this->shouldAddBlogNameToPost($post, $anyPostIsFromOtherBlog) ) {
-                $anyPostIsFromOtherBlog = true;
+            if( $shouldAddBlogNameToPost ) {
                 $post = $this->addBlogNameToPost($post);
             }
 
@@ -134,6 +134,7 @@ class AbstractController
                 $this->getWpService()->restoreCurrentBlog();
             }
             
+            $post = clone $post; // Ensure we don't modify the original post object
             return $post;
 
         }, $posts ?? []);
@@ -156,16 +157,21 @@ class AbstractController
         return $posts;
     }
 
+    private function removePostsModuleBlocksFromContent(string $content): string {
+        // Use regex to remove Modularity Posts blocks from the content
+        $pattern = '/<!--\s*wp:acf\/posts\s.*-->/';
+        return preg_replace($pattern, '', $content);
+    }
+
     /**
-     * Check if the blog name should be added to the post.
-     *
-     * @param object $post
-     * @param bool $force
+     * Determine if the blog name should be added to the post.
      *
      * @return bool
-    */
-    public function shouldAddBlogNameToPost(object $post, bool $force = false): bool {
-        return !empty($post->originalBlogId) || $force;
+     */
+    public function shouldAddBlogNameToPost(): bool
+    {
+        $sources = $this->fields['posts_data_network_sources'] ?? [];
+        return is_array($sources) && !empty($sources);
     }
 
     /**
@@ -175,12 +181,15 @@ class AbstractController
      *
      * @return WP_Post
     */
-    private function addBlogNameToPost(WP_Post $post ):WP_Post {
-        if(!empty($post->originalBlogId)) {
-            $post->originalSite = $this->getWpService()->getBlogDetails($post->originalBlogId)->blogname;
-        } else {
-            $post->originalSite = $this->getWpService()->getBlogDetails()->blogname;
+    private function addBlogNameToPost(WP_Post $post): WP_Post {
+        static $blogDetailsCache = [];
+        $blogId = !empty($post->originalBlogId) ? $post->originalBlogId : $this->getWpService()->getBlogDetails()->blog_id;
+
+        if (!isset($blogDetailsCache[$blogId])) {
+            $blogDetailsCache[$blogId] = $this->getWpService()->getBlogDetails($blogId);
         }
+
+        $post->originalSite = $blogDetailsCache[$blogId]->blogname ?? '';
 
         return $post;
     }
@@ -247,7 +256,7 @@ class AbstractController
     */
     private function setPostViewData(object $post, $index = false)
     {
-        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $this->sanitizeExcerpt($post->excerptShort) : false;
+        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $post->excerptShort : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->getTitle() : false;
         $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $post->getImage() : [];
         $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields'] ?? []) && empty($post->image) ? true : false;
@@ -271,17 +280,6 @@ class AbstractController
         }
 
         return $post;
-    }
-
-    /**
-     * Sanitize the excerpt by removing links.
-     *
-     * @param string $excerpt
-     *
-     * @return string
-    */
-    private function sanitizeExcerpt(string $excerpt): string {
-        return preg_replace('/<a\b[^>]*>(.*?)<\/a>/is', '$1', $excerpt);
     }
 
     public function postUsesSchemaTypeEvent(object $post):bool {

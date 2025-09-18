@@ -2,12 +2,15 @@
 
 namespace Modularity\Module\Contacts;
 
+use Modularity\Integrations\Component\ImageResolver;
+use ComponentLibrary\Integrations\Image\Image as ImageComponentContract;
 class Contacts extends \Modularity\Module
 {
     public $slug = 'contacts';
     public $supports = array();
     public $displaySettings = null;
-
+    
+    private $view = null;
     public function init()
     {
         $this->nameSingular = __('Contacts v2', 'modularity');
@@ -20,6 +23,9 @@ class Contacts extends \Modularity\Module
         $data = $this->getFields();
         $data['ID'] = $this->ID;
 
+        $this->view = $data['view'] ?? 'extended';
+        $data['view'] = $this->view;
+
         if(!empty($data['contacts'])) {
             $data['contacts'] = $this->prepareContacts($data['contacts']);
         }
@@ -28,14 +34,9 @@ class Contacts extends \Modularity\Module
             $data['columns'] = 'o-grid-12@md';
         }
 
-        //Translations
-        $data['lang'] = (object) [
-            'email' => __('Email', 'modularity'),
-            'call' => __('Call', 'modularity'),
-            'address' => __('Address', 'modularity'),
-            'visiting_address' => __('Visiting address', 'modularity'),
-            'opening_hours' => __('Opening hours', 'modularity')
-        ];
+        if ($data['view'] === 'simple') {
+            $data['columns'] .= ' o-grid-6@sm';
+        }
 
         return $data;
     }
@@ -110,10 +111,16 @@ class Contacts extends \Modularity\Module
                 $attachmentId = attachment_url_to_postid($info['image']);
             }
 
-            if (!empty($attachmentId)) {
+            if (!empty($attachmentId) && $this->view === 'extended') {
                 $info['thumbnail'] = wp_get_attachment_image_src(
                     $attachmentId,
                     [400, 400]
+                )[0];
+            } elseif (!empty($attachmentId) && $this->view === 'simple') {
+                $info['thumbnail'] = ImageComponentContract::factory(
+                    (int) $attachmentId,
+                    [1024, 1024],
+                    new ImageResolver()
                 );
             }
 
@@ -155,6 +162,16 @@ class Contacts extends \Modularity\Module
 
                     return $item;
                 }, $info['social_media']);
+            }
+
+            // Restructure legacy opening hours for new component format
+            if (isset($info['opening_hours']) && !empty($info['opening_hours'])) {
+                $info['custom_sections'] = [
+                    [
+                        'title' => __('Opening hours', 'modularity'),
+                        'content' => $info['opening_hours']
+                    ]
+                ];
             }
 
             //Contact returns

@@ -21,6 +21,7 @@ class Image extends \Modularity\Module
         $this->nameSingular = __('Image', 'modularity');
         $this->namePlural = __('Images', 'modularity');
         $this->description = __('Outputs an image', 'modularity');
+        add_filter('acf/load_field/key=field_570770b8e2e61', [$this, 'filterImageField']);
     }
 
     /**
@@ -102,6 +103,54 @@ class Image extends \Modularity\Module
      */
     private function imageHasLink(array $fields) {
         return !empty($fields['mod_image_link']) && $fields['mod_image_link'] != "false" && !empty($fields['mod_image_link_url']);
+    }
+
+    /**
+     * Filter the image field to only allow certain mime types
+     * @param array $field The acf field
+     * @return array The modified acf field
+     */
+     public function filterImageField($field)
+    {
+        $imageMimeTypes = $this->getAllowedImageMimeTypes();
+        $field['mime_types'] = $imageMimeTypes;
+        $field['instructions'] = sprintf(
+            __('Allowed file types: %s', 'modularity'),
+            $imageMimeTypes
+        );
+
+        return $field;
+    }
+
+    /**
+     * Get allowed image mime types
+     * 
+     * @return string Comma separated list of allowed image mime types
+     */
+    private function getAllowedImageMimeTypes()
+    {
+        static $allowedMimeTypes = null;
+
+        if (!empty($allowedMimeTypes)) {
+            return $allowedMimeTypes;
+        }
+
+        $allAllowedMimeTypes = get_allowed_mime_types();
+
+        $allowedImageMimeTypes = array_filter($allAllowedMimeTypes, function($type) {
+            return strpos($type, 'image/') === 0;
+        });
+
+        $structuredArray = [];
+        foreach ($allowedImageMimeTypes as $key => $type) {
+            foreach (explode('|', $key) as $ext) {
+                $structuredArray[] = $ext;
+            }
+        }
+
+        $allowedMimeTypes = implode(', ', $structuredArray);
+
+        return $allowedMimeTypes;
     }
 
     /**
