@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d091c8238f6f2197a980054dc9a427aa",
+    "content-hash": "a98603da213ad913368688e27a4e5c00",
     "packages": [
         {
             "name": "clark-nikdel-powell/post-type-select-for-acf",
@@ -4205,11 +4205,11 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "johannheyne/advanced-custom-fields-table-field": 20,
         "clark-nikdel-powell/post-type-select-for-acf": 20,
-        "jeradin/acf-website-field": 20,
-        "jeradin/acf-dynamic-table-field": 20,
         "enshrined/svg-sanitize": 20,
+        "jeradin/acf-dynamic-table-field": 20,
+        "jeradin/acf-website-field": 20,
+        "johannheyne/advanced-custom-fields-table-field": 20,
         "landrok/language-detector": 20,
         "php-stubs/wordpress-stubs": 20,
         "spatie/phpunit-snapshot-assertions": 20
@@ -4219,6 +4219,6 @@
     "platform": {
         "php": "^8.0"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
