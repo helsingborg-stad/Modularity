@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_630645d822841',
     'title' => __('Taxonomies to display', 'modularity'),
     'fields' => array(
@@ -10,7 +12,7 @@
             'label' => __('Taxonomies to display', 'modularity'),
             'name' => 'taxonomy_display',
             'aria-label' => '',
-            'type' => 'acfe_taxonomies',
+            'type' => 'checkbox',
             'instructions' => '',
             'required' => 0,
             'conditional_logic' => 0,
@@ -19,23 +21,16 @@
                 'class' => '',
                 'id' => '',
             ),
-            'taxonomy' => '',
-            'field_type' => 'checkbox',
+            'choices' => array(),
             'default_value' => array(
             ),
-            'return_format' => 'name',
+            'return_format' => 'value',
+            'allow_custom' => 0,
+            'allow_in_bindings' => 0,
             'layout' => 'horizontal',
             'toggle' => 0,
-            'allow_custom' => 0,
-            'multiple' => 0,
-            'allow_null' => 0,
-            'choices' => array(
-            ),
-            'ui' => 0,
-            'ajax' => 0,
-            'placeholder' => '',
-            'search_placeholder' => '',
-            'other_choice' => 0,
+            'save_custom' => 0,
+            'custom_choice_button_text' => 'Add new choice',
         ),
     ),
     'location' => array(
@@ -69,4 +64,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

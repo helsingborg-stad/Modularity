@@ -60,6 +60,11 @@ class Posts extends \Modularity\Module
             'acf/fields/post_object/query/name=posts_data_posts', 
             array($this, 'removeUnwantedPostTypesFromManuallyPicked'), 10, 3
         );
+
+        add_filter(
+            'acf/load_field/name=taxonomy_display',
+            array($this, 'loadTaxonomyDisplayField')
+        );
         
         // Helpers
         $this->archiveUrlHelper = new GetArchiveUrl();
@@ -85,7 +90,30 @@ class Posts extends \Modularity\Module
         return $field;
     }
 
-    public function loadNetworkSourcesField(array $field = []):array {
+    /**
+     * Load taxonomy display field
+     *
+     * @param array $field
+     * @return array
+     */
+    public function loadTaxonomyDisplayField(array $field = []): array 
+    {
+        $taxonomies = get_taxonomies([
+            'public' => true
+        ], 'objects');
+
+        $choices = [];
+        foreach ($taxonomies as $taxonomyName => $taxonomyObj) {
+            $choices[$taxonomyName] = $taxonomyObj->labels->singular_name;
+        }
+
+        $field['choices'] = $choices;
+
+        return $field;
+    }
+
+    public function loadNetworkSourcesField(array $field = []) :array 
+    {
         
         if(!is_multisite() || get_post_type() === 'acf-field-group') {
             return $field;
