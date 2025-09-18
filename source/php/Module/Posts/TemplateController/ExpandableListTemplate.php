@@ -82,6 +82,44 @@ class ExpandableListTemplate extends AbstractController
     }
 
     /**
+     * Rewrite post content headings to fit into accordion structure
+     * 
+     * @param array $preparedPosts Array of prepared posts
+     * 
+     * @return array
+     */
+    private function rewritePostContent($preparedPosts): array
+    {
+        $rewrittenPosts = [];
+
+        $increment = empty($this->module->hideTitle) && !empty($this->data['post_title']) ? 2 : 1;
+
+        foreach ($preparedPosts as &$post) {
+            for ($i = 5; $i >= 1; $i--) {
+                $newLevel = $i + $increment;
+
+                if ($newLevel > 6) {
+                    $newLevel = 6;
+                }
+
+                $post->postContentFiltered = preg_replace(
+                    [
+                        '/<h' . $i . '([^>]*)>/i',
+                        '/<\/h' . $i . '>/i'
+                    ],
+                    [
+                        '<h' . $newLevel . '$1>',
+                        '</h' . $newLevel . '>'
+                    ],
+                    $post->postContentFiltered
+                );
+            }
+        }
+
+        return $preparedPosts;
+    }
+
+    /**
      * Prepare Data for accordion
      * @param array $items Array of posts
      * @param array $this->data Array of settings
@@ -92,7 +130,7 @@ class ExpandableListTemplate extends AbstractController
     {
         $accordion = [];
 
-        $this->data['posts'] = $this->preparePosts($this->module);
+        $this->data['posts'] = $this->rewritePostContent($this->preparePosts($this->module));
         $columnValues        = $this->getColumnValues();
 
         if (!empty($this->data['posts']) && is_array($this->data['posts'])) {
