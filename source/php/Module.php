@@ -2,6 +2,9 @@
 
 namespace Modularity;
 
+use Modularity\Helper\AcfService;
+use Modularity\Helper\WpService;
+
 class Module
 {
     /**
@@ -172,9 +175,15 @@ class Module
 
     /**
      * Constructs a module
-     * @param int $postId
+     * Override the wpService and acfService to use a fake service for testing
+     *
+     * @param WP_Post $post - Core post object
+     * @param array $args - Extra arguments
      */
-    public function __construct(\WP_Post $post = null, $args = array())
+    public function __construct(
+        // Provided by WordPress
+        ?\WP_Post $post = null,
+        $args = array())
     {
         $this->args = $args;
 
@@ -203,13 +212,13 @@ class Module
             $this->collectViewData();
         }
 
-        add_action('admin_enqueue_scripts', array($this, 'adminEnqueue'));
+        WpService::get()->addAction('admin_enqueue_scripts', array($this, 'adminEnqueue'));
 
 
         $this->data['postTitle'] = $post->post_title ?? false;
 
         if (!is_admin()) {
-            add_action('wp_enqueue_scripts', function () {
+            WpService::get()->addAction('wp_enqueue_scripts', function () {
 
                 if ($this->hasModule()) {
                     if (method_exists($this, 'style')) {
@@ -223,8 +232,8 @@ class Module
             });
         }
 
-        add_action('save_post', function($postID, $post, $update) {
-            wp_cache_delete('modularity_has_modules_' . $postID);
+        WpService::get()->addAction('save_post', function($postID, $post, $update) {
+            WpService::get()->wpCacheDelete('modularity_has_modules_' . $postID);
         }, 1, 3);
     }
 
@@ -257,7 +266,7 @@ class Module
     public function adminEnqueue()
     {
         if (\Modularity\Helper\Wp::isAddOrEditOfPostType($this->moduleSlug)) {
-            do_action('Modularity/Module/' . $this->moduleSlug . '/enqueue');
+            WpService::get()->doAction('Modularity/Module/' . $this->moduleSlug . '/enqueue');
         }
     }
 
@@ -266,7 +275,7 @@ class Module
      * @param  \WP_Post $post
      * @return void
      */
-    private function extractPostProperties(\WP_Post $post)
+    private function extractPostProperties(\WP_Post $post): void
     {
         foreach ($post as $key => $value) {
             $this->extractedPostProperties[] = $key;
@@ -310,7 +319,7 @@ class Module
 
     /**
      * Get module view data
-     * @return array
+     * @return void
      */
     public function collectViewData()
     {
@@ -324,9 +333,9 @@ class Module
     protected function getFields() {
         $this->dataFetched = true;
         if(is_numeric($this->ID)) {
-            return get_fields($this->ID) ?: [];
+            return AcfService::get()->getFields($this->ID) ?: [];
         }
-        return get_fields() ?: []; //Blocks
+        return AcfService::get()->getFields() ?: []; //Blocks
     }
 
     private function getBlockNamesFromPage(): array
@@ -337,7 +346,7 @@ class Module
             return $blocks;
         }
 
-        $post = get_post(\Municipio\Helper\CurrentPostId::get());
+        $post = WpService::get()->getPost(\Municipio\Helper\CurrentPostId::get());
 
         if (empty($post->post_content)) {
             return $blocks = [];
@@ -372,7 +381,7 @@ class Module
         } elseif (isset($post->ID)) {
             $postId = $post->ID;
         } else {
-            return apply_filters('Modularity/hasModule', true, null);
+            return WpService::get()->applyFilters('Modularity/hasModule', true, null);
         }
 
         //Get modules
@@ -384,7 +393,7 @@ class Module
             $moduleSlug = isset($this->data['post_type']) ? $this->data['post_type'] : null;
         }
 
-        return apply_filters(
+        return WpService::get()->applyFilters(
             'Modularity/hasModule',
             in_array($moduleSlug, $modules),
             $archiveSlug
@@ -400,7 +409,7 @@ class Module
     {
 
         //Return cached modules
-        if($cachedModules = wp_cache_get('modularity_has_modules_' . $postId)) {
+        if($cachedModules = WpService::get()->wpCacheGet('modularity_has_modules_' . $postId)) {
             return $cachedModules;
         }
 
@@ -429,8 +438,8 @@ class Module
         $modules = array_unique($modules);
 
         //Set cache
-        wp_cache_set('modularity_has_modules_' . $postId, $modules);
-    
+        WpService::get()->wpCacheSet('modularity_has_modules_' . $postId, $modules);
+
         return $modules;
     }
 
@@ -441,7 +450,7 @@ class Module
      * @param string $needle
      * @return array
      */
-    private function getValueFromKeyRecursive(array $haystack, $needle)
+    private function getValueFromKeyRecursive(array $haystack, $needle): array
     {
         $stack = [];
         $iterator  = new \RecursiveArrayIterator($haystack);
@@ -463,8 +472,8 @@ class Module
      *
      * @return array An array containing module names extracted from widgets.
      */
-    private function getWidgets() {
-        $widgets = get_option('widget_block');
+    private function getWidgets(): array{
+        $widgets = WpService::get()->getOption('widget_block');
 
         $modules = [];
         if (!empty($widgets) && is_array($widgets)) {
@@ -488,7 +497,7 @@ class Module
      * @param array $widget The widget data array.
      * @return array The extracted module name or false if not found.
      */
-    private function getWidgetNames($widget) {
+    private function getWidgetNames($widget): array|false {
 
         if (!is_array($widget) || empty($widget['content'])) {
             return false;
@@ -510,8 +519,8 @@ class Module
 
         if (!empty($shortCodeIds[1]) && is_array($shortCodeIds[1])) {
             foreach ($shortCodeIds[1] as $shortCodeId) {
-                $module = get_post_type(intval($shortCodeId));
-                
+                $module = WpService::get()->getPostType(intval($shortCodeId));
+
                 if (!empty($module)) {
                     $modules[$module] = $module;
                 }
@@ -528,8 +537,8 @@ class Module
      */
     public function getShortcodeModules($post_id): array
     {
-        $post = get_post($post_id);
-        $pattern = get_shortcode_regex();
+        $post = WpService::get()->getPost($post_id);
+        $pattern = WpService::get()->getShortcodeRegex();
         $modules = array();
 
         if (
