@@ -1,7 +1,9 @@
 <?php 
 
-if (function_exists('acf_add_local_field_group')) {
-    acf_add_local_field_group(array(
+
+if (function_exists('acf_add_local_field_group')) {
+
+    acf_add_local_field_group(array(
     'key' => 'group_630645d822841',
     'title' => __('Taxonomies to display', 'modularity'),
     'fields' => array(
@@ -19,26 +21,7 @@
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(
-                'category' => __('Category', 'modularity'),
-                'post_tag' => __('Tag', 'modularity'),
-                'nav_menu' => __('Navigation Menu', 'modularity'),
-                'link_category' => __('Link Category', 'modularity'),
-                'post_format' => __('Format', 'modularity'),
-                'wp_theme' => __('Theme', 'modularity'),
-                'wp_template_part_area' => __('Template Part Area', 'modularity'),
-                'wp_pattern_category' => __('Pattern Category', 'modularity'),
-                'event_categories' => __('Event category', 'modularity'),
-                'event_tags' => __('Event tag', 'modularity'),
-                'event_groups' => __('Event group', 'modularity'),
-                'user_group' => __('User Groups', 'modularity'),
-                'acf-field-group-category' => __('Categories', 'modularity'),
-                'feedback_topic' => __('Topic', 'modularity'),
-                'test' => __('Test', 'modularity'),
-                'custom' => __('Custom', 'modularity'),
-                'job_posting_relevant_occupation' => __('Job Category', 'modularity'),
-                'job_posting_valid_through' => __('Latest Application Date', 'modularity'),
-            ),
+            'choices' => array(),
             'default_value' => array(
             ),
             'return_format' => 'value',
@@ -81,4 +64,5 @@
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-}
+
+}

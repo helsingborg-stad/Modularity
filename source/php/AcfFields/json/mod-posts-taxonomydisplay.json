@@ -16,26 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "category": "Category",
-                "post_tag": "Tag",
-                "nav_menu": "Navigation Menu",
-                "link_category": "Link Category",
-                "post_format": "Format",
-                "wp_theme": "Theme",
-                "wp_template_part_area": "Template Part Area",
-                "wp_pattern_category": "Pattern Category",
-                "event_categories": "Event category",
-                "event_tags": "Event tag",
-                "event_groups": "Event group",
-                "user_group": "User Groups",
-                "acf-field-group-category": "Categories",
-                "feedback_topic": "Topic",
-                "test": "Test",
-                "custom": "Custom",
-                "job_posting_relevant_occupation": "Job Category",
-                "job_posting_valid_through": "Latest Application Date"
-            },
+            "choices": {},
             "default_value": [],
             "return_format": "value",
             "allow_custom": 0,
@@ -77,4 +58,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
