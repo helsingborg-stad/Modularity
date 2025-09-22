@@ -537,6 +537,11 @@ class Module
      */
     public function getShortcodeModules($post_id): array
     {
+        if(is_numeric($post_id) === false || $post_id <= 0) {
+            return [];
+        }
+
+        $post_id = intval($post_id);
         $post = WpService::get()->getPost($post_id);
         $pattern = WpService::get()->getShortcodeRegex();
         $modules = array();
