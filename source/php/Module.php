@@ -327,6 +327,21 @@ class Module
     }
 
     /**
+     * Get the ID of the module or block
+     * @return int|string|null
+     */
+    protected function getID(): int|string|null
+    {
+        if ($this->ID) {
+            $id = $this->ID;
+        } else {
+            $id = acf_get_valid_post_id( false );
+        }
+
+        return $id ?: null;
+    }
+
+    /**
      * Get metadata for block or module.
      * @return array
      */
