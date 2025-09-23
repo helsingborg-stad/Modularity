@@ -1,6 +1,6 @@
 {
     "name": "@helsingborg-stad/modularity",
-    "version": "6.90.22",
+    "version": "6.90.23",
     "description": "Modular component system for WordPress",
     "browserslist": [
         "> 1%",
