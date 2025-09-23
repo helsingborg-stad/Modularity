@@ -18,7 +18,7 @@ class Module
      * A place to store the id of a module instance.
      * Adds block support, which dosen't require a ID (works well with null).
      *
-     * @var int|null
+     * @var int|string|null
      */
     public $ID = null;
 
@@ -188,6 +188,7 @@ class Module
         $this->args = $args;
 
         $this->ID = $post->ID ?? null;
+
         $this->postStatus = $post->post_status ?? 'publish';
 
         $this->init();
@@ -327,15 +328,27 @@ class Module
     }
 
     /**
+     * Get the ID of the module or block
+     * @return int|string|null
+     */
+    protected function getID(): int|string|null
+    {
+        if ($this->ID) {
+            $id = $this->ID;
+        } else {
+            $id = acf_get_valid_post_id( false );
+        }
+
+        return $this->ID = $id ?: null;
+    }
+
+    /**
      * Get metadata for block or module.
      * @return array
      */
     protected function getFields() {
         $this->dataFetched = true;
-        if(is_numeric($this->ID)) {
-            return AcfService::get()->getFields($this->ID) ?: [];
-        }
-        return AcfService::get()->getFields() ?: []; //Blocks
+        return AcfService::get()->getFields($this->getID()) ?: [];
     }
 
     private function getBlockNamesFromPage(): array
