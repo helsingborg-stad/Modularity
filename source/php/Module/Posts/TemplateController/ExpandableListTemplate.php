@@ -90,9 +90,7 @@ class ExpandableListTemplate extends AbstractController
      */
     private function rewritePostContent($preparedPosts): array
     {
-        $rewrittenPosts = [];
-
-        $increment = empty($this->module->hideTitle) && !empty($this->data['post_title']) ? 2 : 1;
+        $increment = 2;
 
         foreach ($preparedPosts as &$post) {
             for ($i = 5; $i >= 1; $i--) {
