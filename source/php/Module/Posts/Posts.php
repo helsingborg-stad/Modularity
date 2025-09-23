@@ -137,6 +137,7 @@ class Posts extends \Modularity\Module
     {
         $data = [];
         $this->fields = $this->getFields();
+
         $this->domainChecker = new DomainChecker($this->fields);
         $data['posts_display_as'] = $this->fields['posts_display_as'] ?? false;
         $data['display_reading_time'] = !empty($this->fields['posts_fields']) && in_array('reading_time', $this->fields['posts_fields']) ?? false;
@@ -211,8 +212,8 @@ class Posts extends \Modularity\Module
             'next' => __('Next slide', 'modularity'),
         ];
 
-        if ($this->ID) {
-            $data['sliderId'] = $this->ID;
+        if ($this->getID()) {
+            $data['sliderId'] = $this->getID();
         } else {
             $data['sliderId'] = uniqid();
             $data['ID'] = uniqid();
@@ -241,7 +242,7 @@ class Posts extends \Modularity\Module
      * @return string
      */
     private function getPaginationQueryVarName():string {
-        return "{$this->post_type}-{$this->ID}-page";
+        return "{$this->slug}-{$this->getID()}-page";
     }
 
     /**
@@ -262,7 +263,7 @@ class Posts extends \Modularity\Module
      */
     private function getPaginationArguments(int $maxNumPages, int $currentPage):array {
 
-        if($maxNumPages < 2) {
+        if ($maxNumPages < 2) {
             return [];
         }
         
@@ -280,7 +281,8 @@ class Posts extends \Modularity\Module
 
         return [
             'list' => array_merge([$listItemOne], $listItems),
-            'current' => $currentPage
+            'current' => $currentPage,
+            'linkPrefix' => $this->getPaginationQueryVarName()
         ];
     }
 
