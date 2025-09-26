@@ -482,6 +482,12 @@ class BlockManager
                     "modularity-mod-{$block['moduleName']}",
                     "block-modularity-mod-{$block['moduleName']}",
                 ];
+
+                // Add WordPress' extra classes
+                if (isset($block['className']) && !empty($block['className'])) {
+                    $classes = array_merge($classes, explode(' ', $block['className']));
+                }
+
                 $renderedView = '<div class="' . implode(' ', $classes) . '">' . $renderedView . '</div>';
             }
 
