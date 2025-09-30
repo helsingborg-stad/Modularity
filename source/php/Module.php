@@ -188,6 +188,7 @@ class Module
         $this->args = $args;
 
         $this->ID = $post->ID ?? null;
+        $this->mode = $this->ID ? 'module' : 'block';
 
         $this->postStatus = $post->post_status ?? 'publish';
 
@@ -346,9 +347,10 @@ class Module
      * Get metadata for block or module.
      * @return array
      */
-    protected function getFields() {
+    protected function getFields(): array
+    {
         $this->dataFetched = true;
-        return AcfService::get()->getFields($this->getID()) ?: [];
+        return AcfService::get()->getFields($this->mode === 'module' ? $this->getID() : []) ?: [];
     }
 
     private function getBlockNamesFromPage(): array
