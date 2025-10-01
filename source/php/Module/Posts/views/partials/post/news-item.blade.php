@@ -1,6 +1,6 @@
 @newsItem([
     'heading'             => $post->postTitle,
-    'content'             => $post->excerpt,
+    'content'             => $post->excerptShort,
     'image'               => $post->image,
     'date'                => $showDate ? [
         'timestamp' => $post->getArchiveDateTimestamp(),

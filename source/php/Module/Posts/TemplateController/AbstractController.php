@@ -256,7 +256,7 @@ class AbstractController
     */
     private function setPostViewData(object $post, $index = false)
     {
-        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $post->excerptShort : false;
+        $post->excerptShort         = in_array('excerpt', $this->data['posts_fields'] ?? []) ? $this->sanitizeExcerpt($this->data['posts_display_as'] === 'news' ? $post->excerpt : $post->excerptShort) : false;
         $post->postTitle            = in_array('title', $this->data['posts_fields'] ?? []) ? $post->getTitle() : false;
         $post->image                = in_array('image', $this->data['posts_fields'] ?? []) ? $post->getImage() : [];
         $post->hasPlaceholderImage  = in_array('image', $this->data['posts_fields'] ?? []) && empty($post->image) ? true : false;
@@ -284,6 +284,23 @@ class AbstractController
 
     public function postUsesSchemaTypeEvent(object $post):bool {
         return $post->getSchemaProperty('@type') === 'Event';
+    }
+
+    /**
+     * Sanitize excerpt by stripping tags, normalizing whitespace, trimming, and converting newlines to <br>.
+     *
+     * @param string $excerpt
+     *
+     * @return string
+    */
+    private function sanitizeExcerpt(string $excerpt)
+    {
+        $excerpt = strip_tags($excerpt);
+        $excerpt = preg_replace("/[\r\n]+/", "\n", $excerpt);
+        $excerpt = trim($excerpt);
+        $excerpt = nl2br($excerpt);
+
+        return $excerpt;
     }
 
     /**
