@@ -242,7 +242,7 @@ class Posts extends \Modularity\Module
      * @return string
      */
     private function getPaginationQueryVarName():string {
-        return "{$this->slug}-{$this->getID()}-page";
+        return "mod-{$this->slug}-{$this->getID()}-page";
     }
 
     /**
