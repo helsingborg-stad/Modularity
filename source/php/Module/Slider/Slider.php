@@ -57,6 +57,7 @@ class Slider extends \Modularity\Module
     {
         //Get settings
         $fields = $this->getFields();
+
         $data = [];
 
         //Assign settings to objects
@@ -270,7 +271,7 @@ class Slider extends \Modularity\Module
         return 
             !empty($slide['link_type']) && 
             $slide['link_type'] !== 'false' && 
-            ($slide['link_style'] === 'button' || $slide['acf_fc_layout'] === 'video');
+            $slide['link_style'] === 'button';
     }
 
     /**
