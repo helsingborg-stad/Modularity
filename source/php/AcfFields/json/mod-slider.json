@@ -30,7 +30,9 @@
             "return_format": "value",
             "placeholder": "",
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_5731c6d886811",
@@ -200,7 +202,9 @@
                             "ajax": 0,
                             "placeholder": "",
                             "allow_custom": 0,
-                            "search_placeholder": ""
+                            "search_placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_5702597b7d869",
@@ -595,7 +599,9 @@
                             "disabled": 0,
                             "readonly": 0,
                             "allow_custom": 0,
-                            "search_placeholder": ""
+                            "search_placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_6007f74a5f5a5",
@@ -624,7 +630,9 @@
                             "ajax": 0,
                             "placeholder": "",
                             "allow_custom": 0,
-                            "search_placeholder": ""
+                            "search_placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_6007f6bf5f5a3",
@@ -654,7 +662,9 @@
                             "ajax": 0,
                             "placeholder": "",
                             "allow_custom": 0,
-                            "search_placeholder": ""
+                            "search_placeholder": "",
+                            "create_options": 0,
+                            "save_options": 0
                         },
                         {
                             "key": "field_56fa87ec3ace2",
@@ -733,16 +743,9 @@
                             "conditional_logic": [
                                 [
                                     {
-                                        "field": "field_56fa87ec3ace2",
-                                        "operator": "!=",
-                                        "value": "internal"
-                                    }
-                                ],
-                                [
-                                    {
-                                        "field": "field_56fa87ec3ace2",
-                                        "operator": "!=",
-                                        "value": "external"
+                                        "field": "field_646f76b08b955",
+                                        "operator": "==",
+                                        "value": "button"
                                     }
                                 ]
                             ],
@@ -753,6 +756,7 @@
                             },
                             "default_value": "Read more",
                             "maxlength": 50,
+                            "allow_in_bindings": 1,
                             "placeholder": "",
                             "prepend": "",
                             "append": ""
@@ -901,62 +905,6 @@
                 "operator": "==",
                 "value": "acf\/slider"
             }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
-        ],
-        [
-            {
-                "param": "block",
-                "operator": "==",
-                "value": "acf\/slider"
-            }
         ]
     ],
     "menu_order": 0,
@@ -974,4 +922,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
