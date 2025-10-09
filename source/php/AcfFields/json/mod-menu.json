@@ -57,7 +57,12 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {},
+            "choices": {
+                "172": "Huvudmeny",
+                "3": "Main",
+                "2": "Nested Pages",
+                "173": "Test"
+            },
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -66,7 +71,9 @@
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_6734a0413d66b",
@@ -110,7 +117,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "While using a background, the \"Item Per Column\" works different. \n\nAmount of parents \/ columns needs to be a whole number for the background to work. \nIf it isn't a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.",
+            "message": "OBS! The amount of top level menu items of the menu must be divisible with the amount of columns chosen. This is always the case when using the option \"Background\".\r\n\r\nEx. If 4 columns is chosen, the amount of top level menu items should be 4, 8, 12 and so on.\r\n\r\nOtherwise the amount of columns will be calculated as best it can automatically.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -150,7 +157,9 @@
             "ajax": 0,
             "placeholder": "",
             "allow_custom": 0,
-            "search_placeholder": ""
+            "search_placeholder": "",
+            "create_options": 0,
+            "save_options": 0
         },
         {
             "key": "field_67c846a5654c1",
@@ -179,14 +188,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "mod-menu"
+                "value": "all"
             }
         ],
         [
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/menu"
+                "value": "all"
             }
         ]
     ],
@@ -207,4 +216,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

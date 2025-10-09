@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
     'title' => __('Menu Module', 'modularity'),
     'fields' => array(
@@ -62,7 +60,12 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(),
+            'choices' => array(
+                172 => __('Huvudmeny', 'modularity'),
+                3 => __('Main', 'modularity'),
+                2 => __('Nested Pages', 'modularity'),
+                173 => __('Test', 'modularity'),
+            ),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -72,6 +75,8 @@ if (function_exists('acf_add_local_field_group')) {
             'placeholder' => '',
             'allow_custom' => 0,
             'search_placeholder' => '',
+            'create_options' => 0,
+            'save_options' => 0,
         ),
         3 => array(
             'key' => 'field_6734a0413d66b',
@@ -115,10 +120,11 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'message' => __('While using a background, the "Item Per Column" works different. 
+            'message' => __('OBS! The amount of top level menu items of the menu must be divisible with the amount of columns chosen. This is always the case when using the option "Background".
 
-Amount of parents / columns needs to be a whole number for the background to work. 
-If it isn\'t a whole number it will be calculated automatically using a better suited amount of columns using an amount as close to your choice as possible.', 'modularity'),
+Ex. If 4 columns is chosen, the amount of top level menu items should be 4, 8, 12 and so on.
+
+Otherwise the amount of columns will be calculated as best it can automatically.', 'modularity'),
             'new_lines' => 'wpautop',
             'esc_html' => 0,
         ),
@@ -159,6 +165,8 @@ If it isn\'t a whole number it will be calculated automatically using a better s
             'placeholder' => '',
             'allow_custom' => 0,
             'search_placeholder' => '',
+            'create_options' => 0,
+            'save_options' => 0,
         ),
         6 => array(
             'key' => 'field_67c846a5654c1',
@@ -187,14 +195,14 @@ If it isn\'t a whole number it will be calculated automatically using a better s
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'mod-menu',
+                'value' => 'all',
             ),
         ),
         1 => array(
             0 => array(
                 'param' => 'block',
                 'operator' => '==',
-                'value' => 'acf/menu',
+                'value' => 'all',
             ),
         ),
     ),
@@ -215,5 +223,4 @@ If it isn\'t a whole number it will be calculated automatically using a better s
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
