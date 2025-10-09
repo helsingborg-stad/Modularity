@@ -8,7 +8,7 @@
         'timestamp' => $post->getArchiveDateTimestamp(),
         'format'    => $post->getArchiveDateFormat(),
     ] : null,
-    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
+    'dateBadge' => \Municipio\Helper\DateFormat::getUnresolvedDateFormat($post) == 'date-badge',
     'image' => $post->image,
     'classList' => ['t-posts-block', ' u-height--100'],
     'context' => ['module.posts.block'],
