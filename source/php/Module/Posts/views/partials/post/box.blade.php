@@ -7,7 +7,7 @@
         'timestamp' => $post->getArchiveDateTimestamp(),
         'format'    => $post->getArchiveDateFormat(),
     ] : null,
-    'dateBadge' => $post->getArchiveDateFormat() == 'date-badge',
+    'dateBadge' => \Municipio\Helper\DateFormat::getUnresolvedDateFormat($post) == 'date-badge',
     'ratio' => $ratio,
     'image' => $post->image,
     'attributeList' => $post->attributeList ?? []
