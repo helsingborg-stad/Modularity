@@ -57,12 +57,7 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {
-                "172": "Huvudmeny",
-                "3": "Main",
-                "2": "Nested Pages",
-                "173": "Test"
-            },
+            "choices": {},
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -216,4 +211,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+
