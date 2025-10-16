@@ -57,7 +57,12 @@
                 "class": "",
                 "id": ""
             },
-            "choices": {},
+            "choices": {
+                "172": "Huvudmeny",
+                "3": "Main",
+                "2": "Nested Pages",
+                "173": "Test"
+            },
             "default_value": false,
             "return_format": "value",
             "multiple": 0,
@@ -183,14 +188,14 @@
             {
                 "param": "post_type",
                 "operator": "==",
-                "value": "all"
+                "value": "mod-menu"
             }
         ],
         [
             {
                 "param": "block",
                 "operator": "==",
-                "value": "all"
+                "value": "acf\/menu"
             }
         ]
     ],
@@ -211,4 +216,4 @@
     "acfe_meta": "",
     "acfe_note": ""
 }]
-
+

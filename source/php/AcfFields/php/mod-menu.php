@@ -1,9 +1,7 @@
 <?php 
 
-
-if (function_exists('acf_add_local_field_group')) {
-
-    acf_add_local_field_group(array(
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
     'key' => 'group_66c34c64b8d10',
     'title' => __('Menu Module', 'modularity'),
     'fields' => array(
@@ -62,7 +60,12 @@ if (function_exists('acf_add_local_field_group')) {
                 'class' => '',
                 'id' => '',
             ),
-            'choices' => array(),
+            'choices' => array(
+                172 => __('Huvudmeny', 'modularity'),
+                3 => __('Main', 'modularity'),
+                2 => __('Nested Pages', 'modularity'),
+                173 => __('Test', 'modularity'),
+            ),
             'default_value' => false,
             'return_format' => 'value',
             'multiple' => 0,
@@ -192,14 +195,14 @@ Otherwise the amount of columns will be calculated as best it can automatically.
             0 => array(
                 'param' => 'post_type',
                 'operator' => '==',
-                'value' => 'all',
+                'value' => 'mod-menu',
             ),
         ),
         1 => array(
             0 => array(
                 'param' => 'block',
                 'operator' => '==',
-                'value' => 'all',
+                'value' => 'acf/menu',
             ),
         ),
     ),
@@ -220,5 +223,4 @@ Otherwise the amount of columns will be calculated as best it can automatically.
     'acfe_meta' => '',
     'acfe_note' => '',
 ));
-
-}
+}
