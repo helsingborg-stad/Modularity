@@ -45,6 +45,12 @@ class Breadcrumbs extends \Modularity\Module
     public function data(): array
     {
         $data = array();
+        
+        $data['classList'] = [
+            'nav-helper'
+        ];
+
+        $data['classList'][] = $this->mode === 'block' ? '' : 'o-container';
 
         $theme = wp_get_theme('municipio');
         if ($theme->exists()) {
