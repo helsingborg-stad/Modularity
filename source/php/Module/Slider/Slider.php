@@ -32,6 +32,7 @@ class Slider extends \Modularity\Module
 
         //Adds backwards compability to when we didn't have focal points
         add_filter('acf/load_value/key=field_56a5ed2f398dc', array($this,'filterDesktopImage'), 10, 3);
+        add_filter('WpSecurity/Csp', array($this, 'csp'), 10, 1);
     }
 
     /**
@@ -272,6 +273,33 @@ class Slider extends \Modularity\Module
             !empty($slide['link_type']) && 
             $slide['link_type'] !== 'false' && 
             $slide['link_style'] === 'button';
+    }
+
+    /**
+     * Content Security Policy - Add video domains
+     */
+    public function csp(array $domains): array
+    {
+        $slides = $this->getFields()['slides'] ?? [];
+
+        foreach ($slides as $slide) {
+            if (empty($slide['video_mp4']['url'])) {
+                continue;
+            }
+
+            $host = parse_url($slide['video_mp4']['url'], PHP_URL_HOST);
+
+            if (!$host) {
+                continue;
+            }
+
+            $domains['media-src'] ??= [];
+            $domains['media-src'][] = $host;
+        }
+
+        $domains['media-src'] = $domains['media-src'] ? array_unique($domains['media-src']) : [];
+
+        return $domains;
     }
 
     /**
