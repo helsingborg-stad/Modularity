@@ -1,3 +1,8 @@
+#⚠️ Modularity Plugin Deprecated
+
+The Modularity plugin is no longer maintained.
+All features have been moved into the [Municipio Theme](https://github.com/helsingborg-stad/municipio), where ongoing updates and improvements will continue.
+
 Modularity
 ==========
 
